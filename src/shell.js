@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 
-export function execute(command, opt) {
+export function executeAsync(command, opt) {
   return new Promise((resolve, reject) => {
     exec(command, opt, (error, stdout, stderr) => {
       if (error) {
@@ -16,7 +16,7 @@ export function execute(command, opt) {
   });
 }
 
-export async function tryLog(fn) {
+export async function tryLogAsync(fn) {
   try {
     return await fn;
   } catch (e) {

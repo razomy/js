@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es2015",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "allowJs": true,
+    "types": [],
+    "lib": [
+      "dom",
+      "es2018"
+    ]
+  },
+  "exclude": [
+    "src/**/*.spec.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js"
+  ]
+}

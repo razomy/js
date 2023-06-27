@@ -8,9 +8,9 @@ const consoleTransport = new winston.transports.Console({
   label: 'rest-api',
 });
 
-const logger = new winston.createLogger({
+export const logger = new winston.createLogger({
   transports: [consoleTransport],
 });
 
-module.exports = logger;
+
 

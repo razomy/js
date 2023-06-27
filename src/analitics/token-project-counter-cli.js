@@ -1,14 +1,14 @@
-const countProjectTokens = require('./token-project-counter');
+import { countProjectTokens } from './token-project-counter';
 
 // Call the countProjectTokens function with the specified project directory
 const projectDir = '../../../';
 const tokenCount = countProjectTokens(
   projectDir,
   /\.(js)$/,
-  /^\.|node_modules|dist/
+  /^\.|node_modules|dist/,
 );
 
-const tockenFormated=new Intl.NumberFormat('en-US', {
+const tockenFormated = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,

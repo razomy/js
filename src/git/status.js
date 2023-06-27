@@ -1,5 +1,4 @@
-const { exec } = require('child_process');
-var parse_status = function(str) {
+export const parse_status = function(str) {
   var lines;
   var branch_line;
   var branches;
@@ -42,7 +41,7 @@ var parse_status = function(str) {
   return status;
 };
 
-var parse_show_ref = function(str) {
+export const parse_show_ref = function(str) {
   var refs = {};
   var lines = str.length === 0 ? [] : str.split('\n');
   lines.forEach(function(str) {
@@ -55,7 +54,7 @@ var parse_show_ref = function(str) {
   return refs;
 };
 
-function getStatus(callback, opt) {
+export function getStatus(callback, opt) {
   var exec = require('child_process').exec;
   var cmd = 'git status --porcelain -b';
   exec(cmd, opt, function(err, stdout) {
@@ -64,7 +63,7 @@ function getStatus(callback, opt) {
   });
 }
 
-const isClean = async (opt) => new Promise((res, ex) => {
+export const isClean = async (opt) => new Promise((res, ex) => {
   getStatus((e, c) => {
     if (e) {
       ex(e);
@@ -74,7 +73,3 @@ const isClean = async (opt) => new Promise((res, ex) => {
   }, opt);
 });
 
-module.exports = getStatus;
-module.exports.parse_status = parse_status;
-module.exports.parse_show_ref = parse_show_ref;
-module.exports.isClean = isClean;

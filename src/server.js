@@ -1,16 +1,21 @@
-global.nodejserver = {};
-const express = require('express');
-const expressWs = require('express-ws');
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
-const cookieParser = require('cookie-parser');
-const logger = require('./src/servers/plugins/logger');
-const shutdownFunction = require('./src/servers/plugins/shutdownFunction.js');
-const { passport, isAuthenticated, passportAdd } = require('./src/servers/plugins/google_auth');
-const cors = require('cors');
+import express from 'express';
+import expressWs from 'express-ws';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import methodOverride from 'method-override';
 
-const {Datastore} = require('@google-cloud/datastore');
-const {DatastoreStore} = require('@google-cloud/connect-datastore');
+global.nodejserver = {};
+
+import { logger } from './servers/plugins/logger';
+export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
+
+import cors from 'cors';
+import { DatastoreStore } from '@google-cloud/connect-datastore';
+import { Datastore } from '@google-cloud/datastore';
+import { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth';
+
+export { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth';
+
 
 nodejserver.cors = {
   frameSrc: ['https://www.youtube.com', 'https://docs.google.com;'],
@@ -21,8 +26,8 @@ nodejserver.logger = logger;
 
 
 const app = express();
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.text({limit: '50mb'}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.text({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 app.use(methodOverride());
@@ -75,8 +80,3 @@ const server = app.listen(8080);
 
 nodejserver.app = app;
 nodejserver.server = server;
-
-module.exports = {
-  isAuthenticated,
-  onShutdown: shutdownFunction,
-};

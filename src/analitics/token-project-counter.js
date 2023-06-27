@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // Define the function to count the tokens in the project directory
-function countProjectTokens(
+export function countProjectTokens(
   projectDir,
   fileRegex = /\.js$/,
   // Define the regex pattern to exclude certain files/directories
@@ -34,6 +34,3 @@ function countProjectTokens(
   // Return the total token count
   return tokenCount;
 }
-
-// Export the countProjectTokens function for use by other modules
-module.exports = countProjectTokens;

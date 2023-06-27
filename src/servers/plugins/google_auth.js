@@ -1,8 +1,8 @@
-const passport = require('passport');
+export const passport = require('passport');
 const { OAuth2Client } = require('google-auth-library');
 
-const ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
-const isAuthenticated = ensureLogIn();
+export const ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
+export const isAuthenticated = ensureLogIn();
 
 const CustomStrategy = require('passport-custom').Strategy;
 
@@ -13,27 +13,24 @@ global.nodejserver.google = {
     const CLIENT_ID = '104553962015-q818tj1upgha4bhfnepfn37s1lfmcvvc.apps.googleusercontent.com';
     const client = new OAuth2Client(CLIENT_ID);
 
-    async function verify() {
-      const ticket = await client.verifyIdToken({
-        idToken: csrf_token_cookie,
-        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
-        // Or, if multiple clients access the backend:
-        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-      });
-      const payload = ticket.getPayload();
-      if (!payload.email_verified) {
-        return null;
-      }
+    const ticket = await client.verifyIdToken({
+      idToken: csrf_token_cookie,
+      audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
 
-      return {
-        name: payload.name,
-        email: payload.email,
-        picture: payload.picture,
-      };
+    const payload = ticket.getPayload();
+
+    if (!payload.email_verified) {
+      return null;
     }
 
-    const data = await verify().catch(console.error);
-    return data;
+    return {
+      name: payload.name,
+      email: payload.email,
+      picture: payload.picture,
+    };
   },
 };
 
@@ -78,19 +75,15 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-module.exports = {
-  passport,
-  isAuthenticated,
-  passportAdd(app) {
-    app.use(passport.initialize());
-    app.use(passport.session());
+export function passportAdd(app) {
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-    app.post('/api/auth/sign/google', passport.authenticate('google-tap-on', { failureRedirect: '/login' }), (rq, rs) => rs.redirect('/'));
-    app.get('/api/auth/get', (req, res) => {
-      if (req.isAuthenticated()) {
-        return res.sendStatus(200);
-      }
-      return res.sendStatus(403);
-    });
-  },
+  app.post('/api/auth/sign/google', passport.authenticate('google-tap-on', { failureRedirect: '/login' }), (rq, rs) => rs.redirect('/'));
+  app.get('/api/auth/get', (req, res) => {
+    if (req.isAuthenticated()) {
+      return res.sendStatus(200);
+    }
+    return res.sendStatus(403);
+  });
 };

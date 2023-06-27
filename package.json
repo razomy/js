@@ -2,13 +2,27 @@
   "name": "razomy.nodejs",
   "version": "0.0.1",
   "private": true,
-  "main": "server.js",
   "scripts": {
-    "start:prod": "NODE_ENV=production node server.js"
+    "start": "tsc --project tsconfig.lib.json --watch",
+    "build": "tsc --project tsconfig.lib.json",
+    "start:server:prod": "NODE_ENV=production node dist/server.js"
   },
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    "./*": "./dist/*"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["dist/*"]
+    }
+  },
+  "types": "dist/**/*",
   "devDependencies": {},
   "dependencies": {
     "@google-cloud/datastore": "^7.5.1",
+    "typescript": "^4.9.5",
     "@google-cloud/connect-datastore": "^6.0.1",
     "mini-waf": "0.4.99",
     "@google-cloud/storage": "^6.10.0",
