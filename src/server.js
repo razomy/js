@@ -18,8 +18,10 @@ export { isAuthenticated, passport, passportAdd } from './servers/plugins/google
 
 
 nodejserver.cors = {
-  frameSrc: ['https://www.youtube.com', 'https://docs.google.com;'],
+  frameSrc: ['https://www.youtube.com', 'https://docs.google.com', 'https://accounts.google.com'],
   sockets: ['https://play.google.com'],
+  scriptSrc: ['https://accounts.google.com/gsi/client'],
+  connectSrc: ['https://accounts.google.com/gsi/status', 'https://accounts.google.com/gsi/log'],
 };
 
 nodejserver.logger = logger;
@@ -55,7 +57,7 @@ expressWs(app);
 app.use(function(req, res, next) {
   res.setHeader(
     'Content-Security-Policy-Report-Only',
-    `default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' https://accounts.google.com/gsi/client'; style-src 'self' https: 'unsafe-inline'; frame-src 'self' ${nodejserver.cors.frameSrc.join(' ')}`,
+    `default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' ${nodejserver.cors.scriptSrc.join(' ')}; connect-src 'self' ${nodejserver.cors.connectSrc.join(' ')}; style-src 'self' https: 'unsafe-inline'; frame-src 'self' ${nodejserver.cors.frameSrc.join(' ')}`,
   );
   next();
 });
