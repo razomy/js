@@ -40,7 +40,7 @@ const session = require('express-session');
 const isProdSecure = process.env.NODE_ENV === 'production';
 app.use(session({
   proxy: true,
-  cookie: { maxAge: 86400000, secure: false, httpOnly: true },
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 7, secure: false, httpOnly: true },
   store: new DatastoreStore({
     kind: 'express-sessions',
     expirationMs: 1000 * 60 * 60 * 24 * 31,
