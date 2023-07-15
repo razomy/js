@@ -1,37 +1,20 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": true,
-    "allowSyntheticDefaultImports": true,
-    "declarationDir": "dist",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "baseUrl": ".",
-    "paths": {
-      "razomy.ecmascript/*": [
-        "src/*"
-      ]
-    },
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "dist",
     "esModuleInterop": true,
     "lib": [
       "es6",
       "dom"
     ],
-    "strict": true,
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    // for typeorm
-    "emitDecoratorMetadata": true
-    // for typeorm
+    "noImplicitAny": false,
+    "allowJs": true,
+    "outDir": "dist",
+    "strict": true,
+    "target": "es6"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
+    "src/**/*"
   ]
 }

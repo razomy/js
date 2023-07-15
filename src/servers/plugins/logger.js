@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston';
 
 const consoleTransport = new winston.transports.Console({
   level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',

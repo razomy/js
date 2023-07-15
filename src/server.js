@@ -1,20 +1,22 @@
+global.nodejserver = {};
 import express from 'express';
 import expressWs from 'express-ws';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 
-global.nodejserver = {};
 
-import { logger } from './servers/plugins/logger';
+import { logger } from './servers/plugins/logger.js';
 export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
 
 import cors from 'cors';
 import { DatastoreStore } from '@google-cloud/connect-datastore';
 import { Datastore } from '@google-cloud/datastore';
-import { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth';
+import { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth.js';
 
-export { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth';
+import session from 'express-session';
+
+export { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth.js';
 
 
 nodejserver.cors = {
@@ -34,9 +36,6 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 app.use(methodOverride());
 app.use(cors());
-
-const session = require('express-session');
-
 const isProdSecure = process.env.NODE_ENV === 'production';
 app.use(session({
   proxy: true,

@@ -1,12 +1,14 @@
-export const passport = require('passport');
-const { OAuth2Client } = require('google-auth-library');
+import _passport from 'passport';
+import { OAuth2Client } from 'google-auth-library';
 
-export const ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
+import { ensureLoggedIn as ensureLogIn } from 'connect-ensure-login';
+
+import { Strategy as CustomStrategy } from 'passport-custom';
+
+export const passport = _passport;
+
 export const isAuthenticated = ensureLogIn();
-
-const CustomStrategy = require('passport-custom').Strategy;
-
-global.nodejserver.google = {
+const google = {
   async auth(req, res) {
     const csrf_token_cookie = req.body.credential;
 
@@ -87,3 +89,6 @@ export function passportAdd(app) {
     return res.sendStatus(403);
   });
 };
+
+global.nodejserver = global.nodejserver || {};
+global.nodejserver.google = google;
