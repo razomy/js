@@ -8,7 +8,51 @@ import { Strategy as CustomStrategy } from 'passport-custom';
 export const passport = _passport;
 
 export const isAuthenticated = ensureLogIn();
-const google = {
+export default class google {
+  constructor(ctx) {
+    passport.use('google-tap-on', new CustomStrategy(
+      async function(req, callback) {
+        const csrf_token_cookie = req.cookies.g_csrf_token;
+        if (!csrf_token_cookie) {
+          this.fail(400, 'No CSRF token in Cookie.');
+          return;
+        }
+
+        const csrf_token_body = req.body.g_csrf_token;
+        if (!csrf_token_body) {
+          this.fail(400, 'No CSRF token in post body.');
+          return;
+        }
+
+        if (csrf_token_cookie !== csrf_token_body) {
+          this.fail(400, 'Failed to verify double submit cookie.');
+          return;
+        }
+
+        const res = await ctx.google.auth(req);
+        if (!res) {
+          this.fail(400, 'Failed to Auth check.');
+          return;
+        }
+
+        callback(null, {
+          name: res.name,
+          email: res.email,
+          picture: res.picture,
+        });
+      },
+    ));
+
+    passport.serializeUser(function(user, done) {
+      done(null, user);
+    });
+
+    passport.deserializeUser(function(user, done) {
+      done(null, user);
+    });
+
+  }
+
   async auth(req, res) {
     const csrf_token_cookie = req.body.credential;
 
@@ -33,49 +77,8 @@ const google = {
       email: payload.email,
       picture: payload.picture,
     };
-  },
+  }
 };
-
-passport.use('google-tap-on', new CustomStrategy(
-  async function(req, callback) {
-    const csrf_token_cookie = req.cookies.g_csrf_token;
-    if (!csrf_token_cookie) {
-      this.fail(400, 'No CSRF token in Cookie.');
-      return;
-    }
-
-    const csrf_token_body = req.body.g_csrf_token;
-    if (!csrf_token_body) {
-      this.fail(400, 'No CSRF token in post body.');
-      return;
-    }
-
-    if (csrf_token_cookie !== csrf_token_body) {
-      this.fail(400, 'Failed to verify double submit cookie.');
-      return;
-    }
-
-    const res = await nodejserver.google.auth(req);
-    if (!res) {
-      this.fail(400, 'Failed to Auth check.');
-      return;
-    }
-
-    callback(null, {
-      name: res.name,
-      email: res.email,
-      picture: res.picture,
-    });
-  },
-));
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 
 export function passportAdd(app) {
   app.use(passport.initialize());
@@ -89,6 +92,3 @@ export function passportAdd(app) {
     return res.sendStatus(403);
   });
 };
-
-global.nodejserver = global.nodejserver || {};
-global.nodejserver.google = google;

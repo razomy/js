@@ -1,4 +1,3 @@
-global.nodejserver = {};
 import express from 'express';
 import expressWs from 'express-ws';
 import bodyParser from 'body-parser';
@@ -7,29 +6,31 @@ import methodOverride from 'method-override';
 
 
 import { logger } from './servers/plugins/logger.js';
-export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
-
 import cors from 'cors';
 import { DatastoreStore } from '@google-cloud/connect-datastore';
 import { Datastore } from '@google-cloud/datastore';
-import { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth.js';
+import google, { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth.js';
 
 import session from 'express-session';
+import { Ctx } from './ctx.js';
+
+export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
 
 export { isAuthenticated, passport, passportAdd } from './servers/plugins/google_auth.js';
 
-
-nodejserver.cors = {
+const ctx: Ctx = {} as any;
+ctx.cors = {
   frameSrc: ['https://www.youtube.com', 'https://docs.google.com', 'https://accounts.google.com'],
   sockets: ['https://play.google.com'],
   scriptSrc: ['https://accounts.google.com/gsi/client'],
   connectSrc: ['https://accounts.google.com/gsi/status', 'https://accounts.google.com/gsi/log'],
 };
 
-nodejserver.logger = logger;
-
+ctx.logger = logger;
 
 const app = express();
+ctx.app = app;
+ctx.google = new google(ctx);
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.text({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -52,11 +53,12 @@ app.use(session({
 
 app.options('*', cors());
 expressWs(app);
+ctx.ws = app['ws'] as expressWs.Application;
 
 app.use(function(req, res, next) {
   res.setHeader(
     'Content-Security-Policy-Report-Only',
-    `default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' ${nodejserver.cors.scriptSrc.join(' ')}; connect-src 'self' ${nodejserver.cors.connectSrc.join(' ')}; style-src 'self' https: 'unsafe-inline'; frame-src 'self' ${nodejserver.cors.frameSrc.join(' ')}`,
+    `default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' ${ctx.cors.scriptSrc.join(' ')}; connect-src 'self' ${ctx.cors.connectSrc.join(' ')}; style-src 'self' https: 'unsafe-inline'; frame-src 'self' ${ctx.cors.frameSrc.join(' ')}`,
   );
   next();
 });
@@ -79,5 +81,6 @@ app.get('/api/echo', function(req, res) {
 
 const server = app.listen(8080);
 
-nodejserver.app = app;
-nodejserver.server = server;
+ctx.server = server;
+
+export default ctx;
