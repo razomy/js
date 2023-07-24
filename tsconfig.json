@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
+    "declaration": true,
     "esModuleInterop": true,
     "lib": [
       "es6",
@@ -9,7 +11,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "allowJs": true,
     "outDir": "dist",
     "strict": true,
     "target": "es6"
