@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import expressWs from 'express-ws';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -28,7 +28,7 @@ ctx.cors = {
 
 ctx.logger = logger;
 
-const app = express();
+const app = express() as (Express & { ws: expressWs.Application });
 ctx.app = app;
 ctx.google = new google(ctx);
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -53,7 +53,7 @@ app.use(session({
 
 app.options('*', cors());
 expressWs(app);
-ctx.ws = app['ws'] as expressWs.Application;
+ctx.ws = app.ws;
 
 app.use(function(req, res, next) {
   res.setHeader(

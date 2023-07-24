@@ -7,7 +7,7 @@ import expressWs from 'express-ws';
 export interface Ctx {
   ws: expressWs.Application;
   google: google;
-  app: Express;
+  app: Express & { ws: expressWs.Application };
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
   logger: winston.Logger;
   cors: {
