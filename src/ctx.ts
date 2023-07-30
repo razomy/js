@@ -5,6 +5,7 @@ import google from './servers/plugins/google_auth';
 import expressWs from 'express-ws';
 
 export interface Ctx {
+  isProdSecure: boolean;
   ws: expressWs.Application;
   google: google;
   app: Express & { ws: expressWs.Application };

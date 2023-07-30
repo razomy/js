@@ -1,16 +1,13 @@
-import _passport from 'passport';
 import { OAuth2Client } from 'google-auth-library';
-
 import { ensureLoggedIn as ensureLogIn } from 'connect-ensure-login';
-
 import { Strategy as CustomStrategy } from 'passport-custom';
-
-export const passport = _passport;
+import passport from 'passport';
 
 export const isAuthenticated = ensureLogIn();
+export const googleTapOn = 'google-tap-on';
 export default class google {
   constructor(ctx) {
-    passport.use('google-tap-on', new CustomStrategy(
+    passport.use(googleTapOn, new CustomStrategy(
       async function(req, callback) {
         const csrf_token_cookie = req.cookies.g_csrf_token;
         if (!csrf_token_cookie) {
@@ -78,17 +75,4 @@ export default class google {
       picture: payload.picture,
     };
   }
-};
-
-export function passportAdd(app) {
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  app.post('/api/auth/sign/google', passport.authenticate('google-tap-on', { failureRedirect: '/login' }), (rq, rs) => rs.redirect('/'));
-  app.get('/api/auth/get', (req, res) => {
-    if (req.isAuthenticated()) {
-      return res.sendStatus(200);
-    }
-    return res.sendStatus(403);
-  });
 };
