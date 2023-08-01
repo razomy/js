@@ -16,9 +16,9 @@
   },
   "name": "razomy.ecmascript",
   "scripts": {
-    "razomy.ecmascript:start": "tsc --project tsconfig.lib.json --watch",
-    "razomy.ecmascript:build": "tsc --project tsconfig.lib.json",
-    "razomy.ecmascript:test": "jest"
+    "start:dev": "tsc --project tsconfig.lib.json --watch",
+    "build": "tsc --project tsconfig.lib.json",
+    "test": "jest"
   },
   "type": "commonjs",
   "version": "0.0.1"
