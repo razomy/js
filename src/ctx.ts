@@ -11,10 +11,4 @@ export interface Ctx {
   app: Express & { ws: expressWs.Application };
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
   logger: winston.Logger;
-  cors: {
-    frameSrc: string[];
-    sockets: string[];
-    scriptSrc: string[];
-    connectSrc: string[];
-  };
 }

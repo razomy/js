@@ -9,23 +9,15 @@ import { Datastore } from '@google-cloud/datastore';
 import helmet from 'helmet';
 import session from 'express-session';
 import passport from 'passport';
-import rateLimit from 'express-rate-limit';
 
 import { logger } from './servers/plugins/logger.js';
 import google, { googleTapOn } from './servers/plugins/google_auth.js';
 import { Ctx } from './ctx.js';
-import { apiKeyAuth } from './servers/plugins/api_key_auth';
 import { echo } from './servers/plugins/echo';
 
 export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
 
 const ctx: Ctx = {} as any;
-ctx.cors = {
-  frameSrc: ['https://www.youtube.com', 'https://docs.google.com', 'https://accounts.google.com'],
-  sockets: ['https://play.google.com'],
-  scriptSrc: ['https://accounts.google.com/gsi/client'],
-  connectSrc: ['https://accounts.google.com/gsi/status', 'https://accounts.google.com/gsi/log'],
-};
 
 ctx.logger = logger;
 
@@ -34,7 +26,19 @@ ctx.app = app;
 ctx.isProdSecure = process.env.NODE_ENV === 'production';
 ctx.google = new google(ctx);
 
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      'script-src': ['\'self\'', 'https://accounts.google.com/gsi/client'],
+      'default-src': ['\'self\''],
+      'font-src': ['\'self\''],
+      'img-src': ['\'self\''],
+      'style-src': ['\'self\' https: \'unsafe-inline\''],
+      'connect-src': ['\'self\'', 'https://accounts.google.com/gsi/status', 'https://accounts.google.com/gsi/log'],
+      'frame-src': ['\'self\'', 'https://www.youtube.com', 'https://docs.google.com', 'https://accounts.google.com'],
+    },
+  },
+}));
 
 // TODO:user typing and  websocket connection requeres another way of securing
 // app.use(rateLimit({
@@ -64,14 +68,6 @@ app.use(session({
 app.options('*', cors());
 expressWs(app);
 ctx.ws = app.ws;
-
-app.use(function(req, res, next) {
-  res.setHeader(
-    'Content-Security-Policy-Report-Only',
-    `default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' ${ctx.cors.scriptSrc.join(' ')}; connect-src 'self' ${ctx.cors.connectSrc.join(' ')}; style-src 'self' https: 'unsafe-inline'; frame-src 'self' ${ctx.cors.frameSrc.join(' ')}`,
-  );
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
