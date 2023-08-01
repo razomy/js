@@ -36,10 +36,11 @@ ctx.google = new google(ctx);
 
 app.use(helmet());
 
-app.use(rateLimit({
-  windowMs: 50, // 1 second
-  max: 1,
-}));
+// TODO:user typing and  websocket connection requeres another way of securing
+// app.use(rateLimit({
+//   windowMs: 50,
+//   max: 1,
+// }));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.text({ limit: '50mb' }));
