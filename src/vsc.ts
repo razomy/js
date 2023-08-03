@@ -19,7 +19,7 @@ export interface AddCommitChange {
 }
 
 export interface CommitChange extends RemoveCommitChange, AddCommitChange {
-  pos?: number,
+  pos: number,
 }
 
 export interface Commit {
