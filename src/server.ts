@@ -10,12 +10,12 @@ import helmet from 'helmet';
 import session from 'express-session';
 import passport from 'passport';
 
-import { logger } from './servers/plugins/logger.js';
-import google, { googleTapOn } from './servers/plugins/google_auth.js';
+import { logger } from './servers/logger.js';
+import google, { googleTapOn } from './auths/google_auth.js';
 import { Ctx } from './ctx.js';
-import { echo } from './servers/plugins/echo';
+import { echo } from './servers/echo';
 
-export { shutdownFunction } from './servers/plugins/shutdownFunction.js';
+export { shutdownFunction } from './servers/shutdownFunction.js';
 
 const ctx: Ctx = {} as any;
 
