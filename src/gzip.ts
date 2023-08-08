@@ -2,7 +2,7 @@ import pako from 'pako';
 
 
 export function encodeString(input: string): string {
-  const encodedData = pako.deflate(input, { level: 9 });
+  const encodedData = pako.deflate(input);
   const encodedStr = base64FromArrayBuffer(encodedData);
   return encodedStr;
 }
