@@ -1,5 +1,4 @@
-
-export function isDateToday(inputDate) {
+export function isDateToday(inputDate: Date) {
   const currentDate = new Date();
   const inputDateObj = new Date(inputDate);
 
