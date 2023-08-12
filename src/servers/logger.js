@@ -1,10 +1,11 @@
 import winston from 'winston';
 
+const isProduction = process.env.NODE_ENV === 'production';
 const consoleTransport = new winston.transports.Console({
-  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  prettyPrint: process.env.NODE_ENV !== 'production',
-  colorize: process.env.NODE_ENV !== 'production',
-  timestamp: process.env.NODE_ENV !== 'production',
+  level: isProduction ? 'info' : 'debug',
+  prettyPrint: !isProduction,
+  colorize: !isProduction,
+  timestamp: !isProduction,
   label: 'rest-api',
 });
 
