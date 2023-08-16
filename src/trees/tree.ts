@@ -20,16 +20,19 @@ export function getPathsWithAnyKey(obj: object, keys: string[]) {
 
   if (_.isObject(obj)) {
     let result: string[] = [];
-    _.forEach(obj, (value, key) => {
-      const children = getPathsWithAnyKey(value, keys);
-      const withKey = _.map(children, ckey => `${key}:` + ckey);
-      result = result.concat(withKey);
-    });
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        const children = getPathsWithAnyKey(value, keys);
+        const withKey = children.map(ckey => `${key}:` + ckey);
+        result = result.concat(withKey);
+      }
+    }
     return result;
   }
 
   if (_.isArray(obj)) {
-    let result:string[] = [];
+    let result: string[] = [];
     _.forEach(obj as object[], (value, key, index) => {
       const children = getPathsWithAnyKey(value, keys);
       const withKey = _.map(children, ckey => `${key}:${index}` + ckey);
@@ -109,7 +112,7 @@ export function findAllNodeByPath<T extends TreeNode>(node: T, path, match) {
   }
 
   const [currentValue, ...remainingPath] = path;
-  let matchingNodes:T[] = [];
+  let matchingNodes: T[] = [];
 
   if (match(node, currentValue)) {
     if (remainingPath.length === 0) {
