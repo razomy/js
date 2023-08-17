@@ -90,7 +90,7 @@ export function getObjectByPath(obj, path: string) {
   });
 
   if (!childNode) {
-    throw new Error(`Node not found path=${path}.`);
+    throw new Error(`Node not found path="${path}".`);
   }
 
   const remainingString = path.substring(closingBracketIndex + 1);
@@ -111,7 +111,7 @@ export function getObjectsInPath(obj, path: string) {
   });
 
   if (!childNode) {
-    throw new Error(`Node not found path=${path}.`);
+    throw new Error(`Node not found path="${path}".`);
   }
 
   const remainingString = path.substring(closingBracketIndex + 1);
@@ -119,7 +119,7 @@ export function getObjectsInPath(obj, path: string) {
   return [childNode, ...getObjectsInPath(childNode, remainingString)];
 }
 
-export function getNodeByPath<T extends TreeNode>(node: T, path: string): T {
+export function getNodeByPath<T extends TreeNode>(node: T, path: string): T | null {
   if (path === '') {
     return node;
   }
@@ -127,15 +127,21 @@ export function getNodeByPath<T extends TreeNode>(node: T, path: string): T {
   const closingBracketIndex = path.indexOf(':');
   const slug = path.substring(0, closingBracketIndex);
 
-  const childNode = node.children.find(child => child.value === slug);
+  const childNodes = node.children.filter(child => child.value === slug);
 
-  if (!childNode) {
-    throw new Error(`Node not found path=${path}.`);
+  if (!childNodes.length) {
+    return null;
   }
 
-  const remainingString = path.substring(closingBracketIndex + 1);
+  for (let childNode of childNodes) {
+    const remainingString = path.substring(closingBracketIndex + 1);
+    const res = getNodeByPath(childNode, remainingString);
+    if (res) {
+      return res;
+    }
+  }
 
-  return getNodeByPath(childNode, remainingString);
+  throw new Error(`Node not found path="${path}".`);
 }
 
 
