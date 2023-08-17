@@ -90,7 +90,7 @@ export function getObjectByPath(obj, path: string) {
   });
 
   if (!childNode) {
-    throw new Error('Node not found');
+    throw new Error(`Node not found path=${path}.`);
   }
 
   const remainingString = path.substring(closingBracketIndex + 1);
@@ -111,7 +111,7 @@ export function getObjectsInPath(obj, path: string) {
   });
 
   if (!childNode) {
-    throw new Error('Node not found');
+    throw new Error(`Node not found path=${path}.`);
   }
 
   const remainingString = path.substring(closingBracketIndex + 1);
@@ -130,7 +130,7 @@ export function getNodeByPath<T extends TreeNode>(node: T, path: string): T {
   const childNode = node.children.find(child => child.value === slug);
 
   if (!childNode) {
-    throw new Error('Node not found');
+    throw new Error(`Node not found path=${path}.`);
   }
 
   const remainingString = path.substring(closingBracketIndex + 1);
