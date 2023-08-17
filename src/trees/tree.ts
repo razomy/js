@@ -44,6 +44,39 @@ export function getPathsWithAnyKey(obj: object, keys: string[]) {
   return [];
 }
 
+export function getPathsWithAnyKeyAll(obj: object, keys: string[]) {
+  let res: string[] = [];
+  if (isPropertyExists(obj, keys)) {
+    res.push('');
+  }
+
+  if (_.isObject(obj)) {
+    let result: string[] = [];
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        const children = getPathsWithAnyKeyAll(value, keys);
+        const withKey = children.map(ckey => `${key}:` + ckey);
+        result = result.concat(withKey);
+      }
+    }
+    res = res.concat(result);
+
+  }
+
+  if (_.isArray(obj)) {
+    let result: string[] = [];
+    _.forEach(obj as object[], (value, key, index) => {
+      const children = getPathsWithAnyKeyAll(value, keys);
+      const withKey = _.map(children, ckey => `${key}:${index}` + ckey);
+      result = result.concat(withKey);
+    });
+    res = res.concat(result);
+  }
+
+  return res;
+}
+
 export function getObjectByPath(obj, path: string) {
   if (path === '') {
     return obj;
@@ -63,6 +96,27 @@ export function getObjectByPath(obj, path: string) {
   const remainingString = path.substring(closingBracketIndex + 1);
 
   return getObjectByPath(childNode, remainingString);
+}
+
+export function getObjectsInPath(obj, path: string) {
+  if (path === '') {
+    return [];
+  }
+
+  const closingBracketIndex = path.indexOf(':');
+  const slug = path.substring(0, closingBracketIndex);
+
+  let childNode = _.find(obj, (value, key) => {
+    return key === slug;
+  });
+
+  if (!childNode) {
+    throw new Error('Node not found');
+  }
+
+  const remainingString = path.substring(closingBracketIndex + 1);
+
+  return [childNode, ...getObjectsInPath(childNode, remainingString)];
 }
 
 export function getNodeByPath<T extends TreeNode>(node: T, path: string): T {
