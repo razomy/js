@@ -38,6 +38,9 @@ app.use(helmet({
       'frame-src': ['\'self\'', 'https://www.youtube.com', 'https://docs.google.com', 'https://accounts.google.com'],
     },
   },
+  referrerPolicy: {
+    policy: 'strict-origin-when-cross-origin',
+  },
 }));
 
 // TODO:user typing and  websocket connection requeres another way of securing
