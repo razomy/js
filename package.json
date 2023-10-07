@@ -24,7 +24,7 @@
     "typescript": "^4.9.5",
     "winston": "^3.8.2"
   },
-  "name": "razomy.nodejs",
+  "name": "razomy.js.server",
   "private": true,
   "scripts": {
     "start:dev": "tsc --project tsconfig.lib.json --watch",
