@@ -1,4 +1,4 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 function pixelAt(idata: any, x: number, y: number) {
   var idx = (y * idata.width + x) * 4;

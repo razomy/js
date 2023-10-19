@@ -1,4 +1,4 @@
-import { IFactory } from '../Interfaces/IFactory';
+import { IFactory } from '../Interfaces/IFactory.js';
 
 export function guid() {
   function _p8(s?: boolean) {

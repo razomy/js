@@ -1,5 +1,5 @@
-import { TextAttribute } from '../../../GUI/Graphics/Attributes/TextAttribute';
-import { ElementView } from './ElementView';
+import { TextAttribute } from '../Attributes/TextAttribute.js';
+import { ElementView } from './ElementView.js';
 
 
 export class TextElement extends ElementView {

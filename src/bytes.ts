@@ -13,7 +13,7 @@ export function formatBytes(bytes: number, decimals = 2): string {
 }
 
 export function getObjectSizeInBytes(obj: any): number {
-  return sizeof(obj);
+  return sizeof.default(obj);
 }
 
 export function formattedSizeSizeInBytes(obj: unknown): string {

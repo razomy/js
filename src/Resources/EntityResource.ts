@@ -1,6 +1,6 @@
-import ArgumentException from '../Exceptions/ArgumentException';
-import { Constructor } from '../Interfaces/Constructor';
-import Resource from '../Resources/Resource';
+import ArgumentException from '../Exceptions/ArgumentException.js';
+import { Constructor } from '../Interfaces/Constructor.js';
+import Resource from '../Resources/Resource.js';
 
 export class NodeProvidedException extends Error {
 

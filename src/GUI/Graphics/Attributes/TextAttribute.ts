@@ -1,5 +1,5 @@
-import AttributeResource from '../../../Resources/AttributeResource';
-import ArgumentException from '../../../Exceptions/ArgumentException';
+import AttributeResource from '../../../Resources/AttributeResource.js';
+import ArgumentException from '../../../Exceptions/ArgumentException.js';
 
 export class TextAttribute extends AttributeResource {
   public text: string;

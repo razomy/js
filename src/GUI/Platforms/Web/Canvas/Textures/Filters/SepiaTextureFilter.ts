@@ -1,4 +1,4 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 

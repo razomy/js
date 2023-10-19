@@ -1,13 +1,13 @@
-import { ICodec } from '../../../../../Interfaces/ICodec';
-import { PositionAttribute } from '../../../../../GUI/Graphics/Attributes/PositionAttribute';
-import { SizeAttribute } from '../../../../../GUI/Graphics/Attributes/SizeAttribute';
-import { BorderStyle } from '../../../../../GUI/Graphics/Attributes/Styles/BorderStyle';
-import { FillStyle } from '../../../../../GUI/Graphics/Attributes/Styles/FillStyle';
-import { RectangleRoundStyle } from '../../../../../GUI/Graphics/Elements/Shapes/RectangleRoundStyle';
-import { RectangleShape } from '../../../../../GUI/Graphics/Elements/Shapes/RectangleShape';
-import { ColorCodex } from '../../../../../GUI/Platforms/Web/Svg/Codecs/Color/ColorCodex';
-import { HexParser } from '../../../../../GUI/Platforms/Web/Svg/Codecs/Color/HexParser';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
+import { ICodec } from '../../../../../Interfaces/ICodec.js';
+import { PositionAttribute } from '../../../../Graphics/Attributes/PositionAttribute.js';
+import { SizeAttribute } from '../../../../Graphics/Attributes/SizeAttribute.js';
+import { BorderStyle } from '../../../../Graphics/Attributes/Styles/BorderStyle.js';
+import { FillStyle } from '../../../../Graphics/Attributes/Styles/FillStyle.js';
+import { RectangleRoundStyle } from '../../../../Graphics/Elements/Shapes/RectangleRoundStyle.js';
+import { RectangleShape } from '../../../../Graphics/Elements/Shapes/RectangleShape.js';
+import { ColorCodex } from './Color/ColorCodex.js';
+import { HexParser } from './Color/HexParser.js';
+import { EncodeNodeFactory } from './EncodeNodeFactory.js';
 
 export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
 

@@ -44,7 +44,7 @@
      OTHER DEALINGS IN THE SOFTWARE.
      */
 
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 class BlurStack {
   public r = 0;

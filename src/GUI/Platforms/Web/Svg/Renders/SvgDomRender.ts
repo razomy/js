@@ -1,10 +1,10 @@
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { CodecConfig } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecConfig';
-import { CodecFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecFactory';
-import { CodecRegistry } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecRegistry';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
-import { WebSvgHighLightsRender } from '../../../../../GUI/Platforms/Web/Svg/Renders/WebSvgHighLightsRender';
-import Render from '../../../../../GUI/Renderes/Render';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { CodecConfig } from '../Codecs/CodecConfig.js';
+import { CodecFactory } from '../Codecs/CodecFactory.js';
+import { CodecRegistry } from '../Codecs/CodecRegistry.js';
+import { EncodeNodeFactory } from '../Codecs/EncodeNodeFactory.js';
+import { WebSvgHighLightsRender } from './WebSvgHighLightsRender.js';
+import Render from '../../../../../GUI/Renderes/Render.js';
 
 export class WebSvgRender extends Render<ElementView> {
 

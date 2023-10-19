@@ -1,4 +1,4 @@
-import { StyleAttribute } from '../../../../GUI/Graphics/Attributes/StyleAttribute';
+import { StyleAttribute } from '../../Attributes/StyleAttribute.js';
 
 export class RectangleRoundStyle extends StyleAttribute {
   public topLeft: number;

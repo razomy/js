@@ -1,11 +1,11 @@
-import { Color } from '../../../../../../GUI/Platforms/Web/Svg/Codecs/Color/Color';
-import { HexParser } from '../../../../../../GUI/Platforms/Web/Svg/Codecs/Color/HexParser';
-import { HslaParser } from '../../../../../../GUI/Platforms/Web/Svg/Codecs/Color/HslaParser';
-import { RgbaParser } from '../../../../../../GUI/Platforms/Web/Svg/Codecs/Color/RgbaParser';
+import { Color } from './Color.js';
+import { HexParser } from './HexParser.js';
+import { HslaParser } from './HslaParser.js';
+import { RgbaParser } from './RgbaParser.js';
 import {
   SvgColorKeys,
   SvgColorParser
-} from '../../../../../../GUI/Platforms/Web/Svg/Codecs/Color/SvgColorParser';
+} from './SvgColorParser.js';
 
 
 /**

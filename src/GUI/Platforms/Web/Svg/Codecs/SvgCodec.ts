@@ -1,7 +1,7 @@
-import { ICodec } from '../../../../../Interfaces/ICodec';
-import { SizeAttribute } from '../../../../../GUI/Graphics/Attributes/SizeAttribute';
-import { ViewportElement } from '../../../../../GUI/Graphics/Elements/ViewportElement';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
+import { ICodec } from '../../../../../Interfaces/ICodec.js';
+import { SizeAttribute } from '../../../../Graphics/Attributes/SizeAttribute.js';
+import { ViewportElement } from '../../../../Graphics/Elements/ViewportElement.js';
+import { EncodeNodeFactory } from './EncodeNodeFactory.js';
 
 export class SvgCodec implements ICodec<ViewportElement, SVGElement> {
   constructor(private encodeNodeFactory: EncodeNodeFactory) {

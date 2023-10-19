@@ -1,13 +1,13 @@
-import { IFactory } from '../../../../../Interfaces/IFactory';
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { RectangleShape } from '../../../../../GUI/Graphics/Elements/Shapes/RectangleShape';
-import { TextElement } from '../../../../../GUI/Graphics/Elements/TextElement';
-import { ViewportElement } from '../../../../../GUI/Graphics/Elements/ViewportElement';
-import { RectangleRender } from '../../../../../GUI/Platforms/Web/Canvas/Renders/RectangleRender';
-import { WebCanvasHighLightsRender } from '../../../../../GUI/Platforms/Web/Canvas/Renders/WebCanvasHighLightsRender';
-import IRender from '../../../../../GUI/Renderes/IRender';
-import Render from '../../../../../GUI/Renderes/Render';
-import NotSupportedException from '../../../../../Exceptions/ContextError';
+import { IFactory } from '../../../../../Interfaces/IFactory.js';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { RectangleShape } from '../../../../Graphics/Elements/Shapes/RectangleShape.js';
+import { TextElement } from '../../../../Graphics/Elements/TextElement.js';
+import { ViewportElement } from '../../../../Graphics/Elements/ViewportElement.js';
+import { RectangleRender } from './RectangleRender.js';
+import { WebCanvasHighLightsRender } from './WebCanvasHighLightsRender.js';
+import IRender from '../../../../../GUI/Renderes/IRender.js';
+import Render from '../../../../../GUI/Renderes/Render.js';
+import NotSupportedException from '../../../../../Exceptions/ContextError.js';
 
 
 export class ViewportRender {

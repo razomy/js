@@ -1,5 +1,5 @@
-import { IObject } from '../Interfaces/IObject';
-import GuidFactory from '../Operations/GuidFactory';
+import { IObject } from '../Interfaces/IObject.js';
+import GuidFactory from '../Operations/GuidFactory.js';
 
 export default abstract class ObjectExtended implements IObject {
 

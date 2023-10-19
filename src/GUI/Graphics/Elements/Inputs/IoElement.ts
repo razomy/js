@@ -1,4 +1,4 @@
-import { ElementView } from '../../../../GUI/Graphics/Elements/ElementView';
+import { ElementView } from '../ElementView.js';
 
 export default abstract class IoElement extends ElementView {
 }

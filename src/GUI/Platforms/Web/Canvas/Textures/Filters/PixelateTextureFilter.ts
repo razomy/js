@@ -1,5 +1,5 @@
 /*eslint-disable max-depth */
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 /**
  * Pixelate Filter. Averages groups of pixels and redraws

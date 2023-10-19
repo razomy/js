@@ -1,15 +1,15 @@
-import { ICodec } from '../../../../../Interfaces/ICodec';
-import { IFactory } from '../../../../../Interfaces/IFactory';
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { RectangleShape } from '../../../../../GUI/Graphics/Elements/Shapes/RectangleShape';
-import { TextElement } from '../../../../../GUI/Graphics/Elements/TextElement';
-import { ViewportElement } from '../../../../../GUI/Graphics/Elements/ViewportElement';
-import { CodecConfig } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecConfig';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
-import { RectangleCodec } from '../../../../../GUI/Platforms/Web/Svg/Codecs/RectangleCodec';
-import { SvgCodec } from '../../../../../GUI/Platforms/Web/Svg/Codecs/SvgCodec';
-import { TextCodec } from '../../../../../GUI/Platforms/Web/Svg/Codecs/TextCodec';
-import NotSupportedException from '../../../../../Exceptions/ContextError';
+import { ICodec } from '../../../../../Interfaces/ICodec.js';
+import { IFactory } from '../../../../../Interfaces/IFactory.js';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { RectangleShape } from '../../../../Graphics/Elements/Shapes/RectangleShape.js';
+import { TextElement } from '../../../../Graphics/Elements/TextElement.js';
+import { ViewportElement } from '../../../../Graphics/Elements/ViewportElement.js';
+import { CodecConfig } from './CodecConfig.js';
+import { EncodeNodeFactory } from './EncodeNodeFactory.js';
+import { RectangleCodec } from './RectangleCodec.js';
+import { SvgCodec } from './SvgCodec.js';
+import { TextCodec } from './TextCodec.js';
+import NotSupportedException from '../../../../../Exceptions/ContextError.js';
 
 
 export class CodecFactory implements IFactory<ICodec<ElementView, any>> {

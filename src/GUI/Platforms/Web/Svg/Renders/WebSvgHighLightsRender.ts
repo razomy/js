@@ -1,6 +1,6 @@
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { SelectionAttribute } from '../../../../../GUI/SelectionAttribute';
-import { UserEntity } from '../../../../../GUI/UserEntity';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { SelectionAttribute } from '../../../../SelectionAttribute.js';
+import { UserEntity } from '../../../../UserEntity.js';
 
 export class WebSvgHighLightsRender {
   constructor(

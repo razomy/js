@@ -1,4 +1,4 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 /**
  * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)

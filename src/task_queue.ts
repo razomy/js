@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { ConsoleLogger, Logger } from './logger';
+import { ConsoleLogger, Logger } from './logger.js';
 
 function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
   return () => new Promise(async (resolve, reject) => {

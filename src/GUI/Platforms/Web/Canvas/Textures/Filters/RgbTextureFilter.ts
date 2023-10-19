@@ -1,4 +1,4 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 export function byteSlice(val: number): number {
   if (val > 255) {

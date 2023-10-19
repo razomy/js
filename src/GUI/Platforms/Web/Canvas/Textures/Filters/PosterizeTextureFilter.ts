@@ -1,4 +1,4 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 /**
  * Posterize Filter. Adjusts the channels so that there are no more

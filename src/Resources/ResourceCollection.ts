@@ -1,8 +1,7 @@
-import NotImplementedException from '../Exceptions/NotImplementedException';
-import { Constructor } from '../Interfaces/Constructor';
-import { IObject } from '../Interfaces/IObject';
-import Resource from '../Resources/Resource';
-import { EntityResource } from './EntityResource';
+import NotImplementedException from '../Exceptions/NotImplementedException.js';
+import { Constructor } from '../Interfaces/Constructor.js';
+import Resource from '../Resources/Resource.js';
+import { EntityResource } from './EntityResource.js';
 
 export interface INodeResourceCollection {
   nodes?: EntityResource[];

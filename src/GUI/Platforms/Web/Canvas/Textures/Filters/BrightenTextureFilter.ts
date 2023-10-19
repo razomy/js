@@ -10,7 +10,7 @@
  * node.Filters([Konva.Filters.Brighten]);
  * node.brightness(0.8);
  */
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 export default class BrightenTextureFilter implements ITextureFilter {
   /**

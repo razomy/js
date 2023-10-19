@@ -1,10 +1,10 @@
-import NotImplementedException from '../../../Exceptions/NotImplementedException';
-import { ICodec } from '../../../Interfaces/ICodec';
-import { IObject } from '../../../Interfaces/IObject';
-import { ISizeResource } from '../../../GUI/Graphics/Attributes/SizeAttribute';
-import { ElementView } from '../../../GUI/Graphics/Elements/ElementView';
-import Resource from '../../../Resources/Resource';
-import ResourceCollection from '../../../Resources/ResourceCollection';
+import NotImplementedException from '../../../Exceptions/NotImplementedException.js';
+import { ICodec } from '../../../Interfaces/ICodec.js';
+import { IObject } from '../../../Interfaces/IObject.js';
+import { ISizeResource } from '../../Graphics/Attributes/SizeAttribute.js';
+import { ElementView } from '../../Graphics/Elements/ElementView.js';
+import Resource from '../../../Resources/Resource.js';
+import ResourceCollection from '../../../Resources/ResourceCollection.js';
 
 
 interface JsonObject {

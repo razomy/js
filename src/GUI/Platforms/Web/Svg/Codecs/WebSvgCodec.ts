@@ -1,11 +1,11 @@
-import ResourceCollection from '../../../../../Resources/ResourceCollection';
-import NotImplementedException from '../../../../../Exceptions/NotImplementedException';
-import { ICodec } from '../../../../../Interfaces/ICodec';
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { CodecConfig } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecConfig';
-import { CodecFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecFactory';
-import { CodecRegistry } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecRegistry';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
+import ResourceCollection from '../../../../../Resources/ResourceCollection.js';
+import NotImplementedException from '../../../../../Exceptions/NotImplementedException.js';
+import { ICodec } from '../../../../../Interfaces/ICodec.js';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { CodecConfig } from './CodecConfig.js';
+import { CodecFactory } from './CodecFactory.js';
+import { CodecRegistry } from './CodecRegistry.js';
+import { EncodeNodeFactory } from './EncodeNodeFactory.js';
 
 export class WebSvgCodec implements ICodec<ElementView, Node> {
 

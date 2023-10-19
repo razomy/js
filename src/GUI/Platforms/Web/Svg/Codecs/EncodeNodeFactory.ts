@@ -1,4 +1,4 @@
-import { CodecConfig } from '../../../../../GUI/Platforms/Web/Svg/Codecs/CodecConfig';
+import { CodecConfig } from './CodecConfig.js';
 
 export class EncodeNodeFactory {
 

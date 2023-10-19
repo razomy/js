@@ -1,5 +1,5 @@
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
-import { byteSlice } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/RgbTextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
+import { byteSlice } from './RgbTextureFilter.js';
 
 export function bitSlice(val: number) {
   if (val > 1) {

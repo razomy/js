@@ -1,7 +1,7 @@
-import ResourceCollection from '../../../Resources/ResourceCollection';
-import { PositionAttribute } from '../../../GUI/Graphics/Attributes/PositionAttribute';
-import { SizeAttribute } from '../../../GUI/Graphics/Attributes/SizeAttribute';
-import { ViewGraphic } from '../../../GUI/Graphics/ViewGraphic';
+import ResourceCollection from '../../../Resources/ResourceCollection.js';
+import { PositionAttribute } from '../Attributes/PositionAttribute.js';
+import { SizeAttribute } from '../Attributes/SizeAttribute.js';
+import { ViewGraphic } from '../ViewGraphic.js';
 
 export class ElementView extends ViewGraphic {
 

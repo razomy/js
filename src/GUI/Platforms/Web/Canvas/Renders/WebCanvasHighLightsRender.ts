@@ -1,11 +1,11 @@
-import { PositionAttribute } from '../../../../../GUI/Graphics/Attributes/PositionAttribute';
-import { SizeAttribute } from '../../../../../GUI/Graphics/Attributes/SizeAttribute';
-import { ElementView } from '../../../../../GUI/Graphics/Elements/ElementView';
-import { RectangleShape } from '../../../../../GUI/Graphics/Elements/Shapes/RectangleShape';
-import { RectangleRender } from '../../../../../GUI/Platforms/Web/Canvas/Renders/RectangleRender';
-import { RenderFactory } from '../../../../../GUI/Platforms/Web/Canvas/Renders/WebCanvasRender';
-import { SelectionAttribute } from '../../../../../GUI/SelectionAttribute';
-import { UserEntity } from '../../../../../GUI/UserEntity';
+import { PositionAttribute } from '../../../../Graphics/Attributes/PositionAttribute.js';
+import { SizeAttribute } from '../../../../Graphics/Attributes/SizeAttribute.js';
+import { ElementView } from '../../../../Graphics/Elements/ElementView.js';
+import { RectangleShape } from '../../../../Graphics/Elements/Shapes/RectangleShape.js';
+import { RectangleRender } from './RectangleRender.js';
+import { RenderFactory } from './WebCanvasRender.js';
+import { SelectionAttribute } from '../../../../SelectionAttribute.js';
+import { UserEntity } from '../../../../UserEntity.js';
 
 export class WebCanvasHighLightsRender {
   constructor(

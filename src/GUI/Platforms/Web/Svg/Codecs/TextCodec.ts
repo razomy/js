@@ -1,9 +1,9 @@
-import { ICodec } from '../../../../../Interfaces/ICodec';
-import { PositionAttribute } from '../../../../../GUI/Graphics/Attributes/PositionAttribute';
-import { SizeAttribute } from '../../../../../GUI/Graphics/Attributes/SizeAttribute';
-import { TextAttribute } from '../../../../../GUI/Graphics/Attributes/TextAttribute';
-import { TextElement } from '../../../../../GUI/Graphics/Elements/TextElement';
-import { EncodeNodeFactory } from '../../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
+import { ICodec } from '../../../../../Interfaces/ICodec.js';
+import { PositionAttribute } from '../../../../Graphics/Attributes/PositionAttribute.js';
+import { SizeAttribute } from '../../../../Graphics/Attributes/SizeAttribute.js';
+import { TextAttribute } from '../../../../Graphics/Attributes/TextAttribute.js';
+import { TextElement } from '../../../../Graphics/Elements/TextElement.js';
+import { EncodeNodeFactory } from './EncodeNodeFactory.js';
 
 export class TextCodec implements ICodec<TextElement, SVGTextElement> {
 

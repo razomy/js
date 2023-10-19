@@ -1,5 +1,4 @@
-import { ElementView } from '../../../GUI/Graphics/Elements/ElementView';
-import { ViewGraphic } from '../../../GUI/Graphics/ViewGraphic';
+import { ElementView } from './ElementView.js';
 
 export class LayoutElement extends ElementView {
 

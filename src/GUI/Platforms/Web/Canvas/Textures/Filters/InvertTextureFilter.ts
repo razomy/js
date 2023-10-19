@@ -8,7 +8,7 @@
  * node.cache();
  * node.Filters([Konva.Filters.Invert]);
  */
-import { ITextureFilter } from '../../../../../../GUI/Platforms/Web/Canvas/Textures/Filters/ITextureFilter';
+import { ITextureFilter } from './ITextureFilter.js';
 
 export default class InvertTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {

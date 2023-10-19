@@ -1,4 +1,4 @@
-import GraphicEntity from '../../GUI/Graphics/GraphicEntity';
+import GraphicEntity from '../../GUI/Graphics/GraphicEntity.js';
 
 export interface IViewGraphic {
 }

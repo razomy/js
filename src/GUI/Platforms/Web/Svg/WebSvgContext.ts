@@ -1,7 +1,7 @@
-import { CodecConfig } from '../../../../GUI/Platforms/Web/Svg/Codecs/CodecConfig';
-import { CodecFactory } from '../../../../GUI/Platforms/Web/Svg/Codecs/CodecFactory';
-import { CodecRegistry } from '../../../../GUI/Platforms/Web/Svg/Codecs/CodecRegistry';
-import { EncodeNodeFactory } from '../../../../GUI/Platforms/Web/Svg/Codecs/EncodeNodeFactory';
+import { CodecConfig } from './Codecs/CodecConfig.js';
+import { CodecFactory } from './Codecs/CodecFactory.js';
+import { CodecRegistry } from './Codecs/CodecRegistry.js';
+import { EncodeNodeFactory } from './Codecs/EncodeNodeFactory.js';
 
 export class WebSvgContext {
 

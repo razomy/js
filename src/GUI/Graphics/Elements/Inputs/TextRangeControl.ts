@@ -1,4 +1,4 @@
-import { ControlElement } from '../../../../GUI/Graphics/Elements/Inputs/Control';
+import { ControlElement } from './Control.js';
 
 export class TextRangeControl extends ControlElement {
 }

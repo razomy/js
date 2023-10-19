@@ -1,7 +1,7 @@
-import { BorderStyle } from '../../../../GUI/Graphics/Attributes/Styles/BorderStyle';
-import { FillStyle } from '../../../../GUI/Graphics/Attributes/Styles/FillStyle';
-import { RectangleRoundStyle } from '../../../../GUI/Graphics/Elements/Shapes/RectangleRoundStyle';
-import { ShapeElement } from '../../../../GUI/Graphics/Elements/Shapes/ShapeElement';
+import { BorderStyle } from '../../Attributes/Styles/BorderStyle.js';
+import { FillStyle } from '../../Attributes/Styles/FillStyle.js';
+import { RectangleRoundStyle } from './RectangleRoundStyle.js';
+import { ShapeElement } from './ShapeElement.js';
 
 export interface IRectangleShape {
 }

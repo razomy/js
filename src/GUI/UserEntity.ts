@@ -1,5 +1,5 @@
-import { EntityResource } from '../Resources/EntityResource';
-import { SelectionAttribute } from './SelectionAttribute';
+import { EntityResource } from '../Resources/EntityResource.js';
+import { SelectionAttribute } from './SelectionAttribute.js';
 
 export class UserEntity extends EntityResource {
   constructor() {
