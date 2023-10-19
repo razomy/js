@@ -10,10 +10,12 @@ export function readFileJson(filePath) {
 }
 
 export function writeFile(filePath, content) {
+  createPathIfNotExistsRecursive(filePath);
   return fs.writeFileSync(filePath, content, 'utf8');
 }
 
 export function writeFileJson(filePath, content) {
+  createPathIfNotExistsRecursive(filePath);
   return fs.writeFileSync(filePath,  JSON.stringify(content), 'utf8');
 }
 
@@ -25,6 +27,16 @@ export const createDirectoryIfNotExists = (directoryPath) => {
     console.log(`Directory already exists: ${directoryPath}`);
   }
 };
+
+export function createPathIfNotExistsRecursive(filePath) {
+  const dirname = path.dirname(filePath);
+
+  if (!fs.existsSync(dirname)) {
+    createPathIfNotExistsRecursive(dirname);
+    fs.mkdirSync(dirname);
+  }
+}
+
 
 export const clearDirectoryAsync = async (directoryPath) => {
   try {
@@ -61,15 +73,6 @@ export function readFileFileAsync(filePath) {
   });
 }
 
-export function createPathRecursive(filePath) {
-  const dirname = path.dirname(filePath);
-
-  if (!fs.existsSync(dirname)) {
-    createPathRecursive(dirname);
-    fs.mkdirSync(dirname);
-  }
-}
-
 export function waitAsync(seconds) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -77,3 +80,26 @@ export function waitAsync(seconds) {
     }, seconds); // convert seconds to milliseconds
   });
 }
+
+export function getAllFilesInDirectory(directory) {
+  let files = [];
+
+  function walk(currentDirPath) {
+    const items = fs.readdirSync(currentDirPath);
+
+    for (const item of items) {
+      const itemPath = path.join(currentDirPath, item);
+      const stat = fs.statSync(itemPath);
+
+      if (stat.isFile()) {
+        files.push(itemPath);
+      } else if (stat.isDirectory()) {
+        walk(itemPath);
+      }
+    }
+  }
+
+  walk(directory);
+  return files;
+}
+
