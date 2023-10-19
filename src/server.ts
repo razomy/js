@@ -13,7 +13,7 @@ import passport from 'passport';
 import { logger } from './servers/logger.js';
 import google, { googleTapOn } from './auths/google_auth.js';
 import { Ctx } from './ctx.js';
-import { echo } from './servers/echo';
+import { echo } from './servers/echo.js';
 
 export { shutdownFunction } from './servers/shutdownFunction.js';
 

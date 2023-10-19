@@ -1,7 +1,7 @@
 import winston from 'winston';
 import { Express } from 'express';
 import * as http from 'http';
-import google from './auths/google_auth';
+import google from './auths/google_auth.js';
 import expressWs from 'express-ws';
 
 export interface Ctx {

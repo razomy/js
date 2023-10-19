@@ -5,15 +5,15 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
-      "es6",
+      "ESNext",
       "dom"
     ],
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "dist",
     "strict": true,
-    "target": "es6"
+    "target": "ESNext"
   },
   "include": [
     "src/**/*"
