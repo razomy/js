@@ -8,7 +8,7 @@ export interface Ctx {
   isProdSecure: boolean;
   ws: expressWs.Application;
   google: google;
-  app: Express & { ws: expressWs.Application };
+  app: Express;
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
   logger: winston.Logger;
 }
