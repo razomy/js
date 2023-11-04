@@ -1,12 +1,24 @@
 import fs from 'fs';
+import fsExtra from 'fs-extra';
 import path from 'path';
 
 export function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
 }
 
+export function deleteFile(filePath) {
+  return fs.rmSync(filePath);
+}
+
 export function readFileJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+export function tryReadFileJson(filePath) {
+  if (!fs.existsSync(filePath)){
+    return null;
+  }
+  return readFileJson(filePath);
 }
 
 export function writeFile(filePath, content) {
@@ -16,7 +28,7 @@ export function writeFile(filePath, content) {
 
 export function writeFileJson(filePath, content) {
   createPathIfNotExistsRecursive(filePath);
-  return fs.writeFileSync(filePath,  JSON.stringify(content), 'utf8');
+  return fs.writeFileSync(filePath, JSON.stringify(content), 'utf8');
 }
 
 export const createDirectoryIfNotExists = (directoryPath) => {
@@ -55,7 +67,7 @@ export function writeToFileAsync(filePath, content) {
       if (err) {
         reject(err);
       } else {
-        resolve();
+        resolve(filePath);
       }
     });
   });
@@ -76,13 +88,13 @@ export function readFileFileAsync(filePath) {
 export function waitAsync(seconds) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(); // or you can use reject() to reject the promise
+      resolve(seconds); // or you can use reject() to reject the promise
     }, seconds); // convert seconds to milliseconds
   });
 }
 
 export function getAllFilesInDirectory(directory) {
-  let files = [];
+  let files: string[] = [];
 
   function walk(currentDirPath) {
     const items = fs.readdirSync(currentDirPath);
