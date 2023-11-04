@@ -15,8 +15,14 @@
     "typescript-collections": "^1.3.3"
   },
   "exports": {
-    "./*": "./dist/*.js",
-    "./*/*": "./dist/*/*.js"
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./*/*": {
+      "types": "./dist/*/*.d.ts",
+      "default": "./dist/*/*.js"
+    }
   },
   "name": "razomy.js",
   "scripts": {
