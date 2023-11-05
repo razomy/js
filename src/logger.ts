@@ -1,32 +1,27 @@
 export interface Logger {
-  info(message): void;
-
-  debug(message): void;
-
-  error(message): void;
+  info(message: string): void;
+  debug(message: string): void;
+  error(message: string): void;
 }
 
 export class NoneLogger implements Logger {
-  info(message) {
-  }
+  info(message: string) { }
 
-  debug(message) {
-  }
+  debug(message: string) { }
 
-  error(message) {
-  }
+  error(message: string) { }
 }
 
 export class ConsoleLogger implements Logger {
-  info(message) {
+  info(message: string) {
     console.info(message);
   }
 
-  error(message) {
+  error(message: string) {
     console.error(message);
   }
 
-  debug(message) {
+  debug(message: string) {
     console.debug(message);
   }
 }

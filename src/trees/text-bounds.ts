@@ -1,8 +1,8 @@
 export interface Bounds {
-  startX: number,
-  startY: number,
-  finishX: number,
-  finishY: number,
+  startX: number;
+  startY: number;
+  finishX: number;
+  finishY: number;
 }
 
 export interface Offset {

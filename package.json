@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "diff": "^5.1.0",
+    "rxjs": "^7.8.1",
     "lodash": "^4.17.21",
     "pako": "^2.1.0",
     "object-sizeof": "^2.6.1"
@@ -30,6 +31,8 @@
     "build": "tsc --project tsconfig.lib.json",
     "test": "jest"
   },
+  "license": "Apache-2.0",
   "type": "module",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "packageManager": "yarn@1.22.19"
 }
