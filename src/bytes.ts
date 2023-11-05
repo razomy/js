@@ -16,9 +16,8 @@ export function getObjectSizeInBytes(obj: any): number {
   return sizeof.default(obj);
 }
 
-export function formattedSizeSizeInBytes(obj: unknown): string {
+export function formattedSizeInBytes(obj: unknown): string {
   const sizeInBytes = getObjectSizeInBytes(obj);
   const formattedSize = formatBytes(sizeInBytes);
   return formattedSize;
 }
-

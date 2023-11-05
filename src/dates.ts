@@ -9,7 +9,7 @@ export function isDateToday(inputDate: Date) {
   );
 }
 
-export function formatTimeLength(milliseconds) {
+export function formatTimeLength(milliseconds: number) {
   const timeUnits: string[] = [];
 
   const seconds = Math.floor(milliseconds / 1000);
@@ -32,5 +32,3 @@ export function formatTimeLength(milliseconds) {
   const formattedTime = timeUnits.join(':');
   return formattedTime;
 }
-
-

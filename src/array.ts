@@ -1,14 +1,14 @@
-export function newArray(size, fill = 0) {
+export function newArray(size: number, fill: number = 0): number[] {
   return new Array(size).fill(fill);
 }
 
-export function vectorOf(ix, size) {
+export function vectorOf(ix: number, size: number): number[] {
   const arr = newArray(size);
   arr[ix] = 1;
   return arr;
 }
 
-export function sumArrays(...arrays) {
+export function sumArrays(...arrays: number[][]): number[] {
   // Check if there are at least two arrays to sum
   if (arrays.length < 2) {
     throw new Error("At least two arrays are required for summation.");
@@ -29,7 +29,7 @@ export function sumArrays(...arrays) {
   return result;
 }
 
-export function shuffleArray(array) {
+export function shuffleArray(array: any[]): any[] {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); // Generate a random index
     [array[i], array[j]] = [array[j], array[i]]; // Swap elements
@@ -38,6 +38,6 @@ export function shuffleArray(array) {
   return array;
 }
 
-export function sum(arr, property) {
+export function sum(arr: any[], property: string): number {
   return arr.reduce((acc, obj) => acc + obj[property], 0);
 }

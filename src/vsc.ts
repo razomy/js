@@ -1,12 +1,12 @@
 import * as diff from 'diff';
 
 // Insert characters at a specific index
-export const insertAtIndex = (string, index, chars) => {
+export const insertAtIndex = (string: string, index: number, chars: string): string => {
   return string.substring(0, index) + chars + string.substring(index);
 };
 
 // Remove characters from a specific index with a given length
-export const removeAtIndex = (string, index, length) => {
+export const removeAtIndex = (string: string, index: number, length: number): string => {
   return string.substring(0, index) + string.substring(index + length);
 };
 
@@ -29,7 +29,7 @@ export interface Commit {
   changes: CommitChange[],
 }
 
-export function getCommitChanges(getPreviousContent: string, getCurrentContent: string) {
+export function getCommitChanges(getPreviousContent: string, getCurrentContent: string): CommitChange[] {
   const diffResult = diff.diffLines(
     getPreviousContent,
     getCurrentContent,
@@ -62,7 +62,7 @@ export function getCommitChanges(getPreviousContent: string, getCurrentContent: 
   return changes;
 }
 
-export function snapshot(prevSnapshot: string, commits: Commit[]) {
+export function snapshot(prevSnapshot: string, commits: Commit[]): string {
 
   let state = prevSnapshot;
 
@@ -73,7 +73,7 @@ export function snapshot(prevSnapshot: string, commits: Commit[]) {
       if (change.removeLength) {
         state = removeAtIndex(state, change.pos, change.removeLength);
       } else {
-        state = insertAtIndex(state, change.pos, change.addValue);
+        state = insertAtIndex(state, change.pos, change.addValue!);
       }
     }
   }
@@ -81,7 +81,7 @@ export function snapshot(prevSnapshot: string, commits: Commit[]) {
   return state;
 }
 
-export function applyChanges(prevSnapshot: string, changes: CommitChange[]) {
+export function applyChanges(prevSnapshot: string, changes: CommitChange[]): string {
 
   let state = prevSnapshot;
 
@@ -90,7 +90,7 @@ export function applyChanges(prevSnapshot: string, changes: CommitChange[]) {
     if (change.removeLength) {
       state = removeAtIndex(state, change.pos, change.removeLength);
     } else {
-      state = insertAtIndex(state, change.pos, change.addValue);
+      state = insertAtIndex(state, change.pos, change.addValue!);
     }
   }
 
