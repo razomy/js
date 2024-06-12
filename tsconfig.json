@@ -8,8 +8,9 @@
       "ESNext",
       "dom"
     ],
+    "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "noImplicitAny": false,
     "outDir": "dist",
     "strict": true,

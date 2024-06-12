@@ -4,7 +4,7 @@ import google, { googleTapOn } from './auths/google_auth.js';
 import session from 'express-session';
 import passport from 'passport';
 
-function googleSesionApi(ctx) {
+export function googleSesionApi(ctx) {
   ctx.app.use(session({
     proxy: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true },
@@ -33,7 +33,7 @@ function googleSesionApi(ctx) {
   ctx.google = new google(ctx);
 
   ctx.app.post('/api/auth/sign/google',
-    ctx.passport.authenticate(googleTapOn, { failureRedirect: '/login' }),
+    passport.authenticate(googleTapOn, { failureRedirect: '/login' }),
     (rq, rs) => rs.redirect('/'));
 
 }
