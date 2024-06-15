@@ -6,9 +6,9 @@ import { ISizeResource } from '../../graphics/attributes/size-attribute.js';
 import { ElementView } from '../../graphics/elements/element-view.js';
 import Resource from '../../../resources/resource.js';
 import ResourceCollection from '../../../resources/resource-collection.js';
-import { CodecFactory } from '../web/Svg/Codecs/codec-factory.js';
-import { CodecConfig } from '../web/Svg/Codecs/codec-config.js';
-import { EncodeNodeFactory } from '../web/Svg/Codecs/encode-node-factory.js';
+import { CodecFactory } from '../web/svg/codecs/codec-factory.js';
+import { CodecConfig } from '../web/svg/codecs/codec-config.js';
+import { EncodeNodeFactory } from '../web/svg/codecs/encode-node-factory.js';
 
 
 interface JsonObject {

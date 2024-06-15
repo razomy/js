@@ -9,7 +9,7 @@
       "dom"
     ],
     "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "bundler",
     "noImplicitAny": false,
     "outDir": "dist",
     "strict": true,

@@ -4,8 +4,8 @@ import { PositionAttribute } from '../../../../graphics/attributes/position-attr
 import { SizeAttribute } from '../../../../graphics/attributes/size-attribute.js';
 import { BorderStyle } from '../../../../graphics/attributes/styles/border-style.js';
 import { FillStyle } from '../../../../graphics/attributes/styles/FillStyle.js';
-import { RectangleRoundStyle } from '../../../../graphics/elements/Shapes/rectangle-round-style.js';
-import { RectangleShape } from '../../../../graphics/elements/Shapes/rectangle-shape.js';
+import { RectangleRoundStyle } from '../../../../graphics/elements/shapes/rectangle-round-style.js';
+import { RectangleShape } from '../../../../graphics/elements/shapes/rectangle-shape.js';
 import { ColorCodex } from './color/color-codex.js';
 import { HexParser } from './color/hex-parser.js';
 import { EncodeNodeFactory } from './encode-node-factory.js';

@@ -1,7 +1,7 @@
 import { PositionAttribute } from '../../../../graphics/attributes/position-attribute.js';
 import { SizeAttribute } from '../../../../graphics/attributes/size-attribute.js';
 import { ElementView } from '../../../../graphics/elements/element-view.js';
-import { RectangleShape } from '../../../../graphics/elements/Shapes/rectangle-shape.js';
+import { RectangleShape } from '../../../../graphics/elements/shapes/rectangle-shape.js';
 import { RectangleRender } from './RectangleRender.js';
 import { RenderFactory } from './WebCanvasRender.js';
 import { SelectionAttribute } from '../../../../selection-attribute.js';

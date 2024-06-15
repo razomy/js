@@ -1,5 +1,5 @@
 import { StyleAttribute } from '../style-attribute.js';
-import { Color } from '../../../platforms/web/Svg/Codecs/Color/Color.js';
+import { Color } from '../../../platforms/web/svg/codecs/color/color.js';
 
 export class FillStyle extends StyleAttribute {
   public color: Color;

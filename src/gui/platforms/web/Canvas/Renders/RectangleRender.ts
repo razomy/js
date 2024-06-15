@@ -1,8 +1,8 @@
 import { PositionAttribute } from '../../../../graphics/attributes/position-attribute.js';
 import { BorderStyle } from '../../../../graphics/attributes/styles/border-style.js';
 import { FillStyle } from '../../../../graphics/attributes/styles/FillStyle.js';
-import { RectangleShape } from '../../../../graphics/elements/Shapes/rectangle-shape.js';
-import { HexParser } from '../../Svg/Codecs/Color/hex-parser.js';
+import { RectangleShape } from '../../../../graphics/elements/shapes/rectangle-shape.js';
+import { HexParser } from '../../svg/codecs/color/hex-parser.js';
 
 export class RectangleRender {
   constructor(

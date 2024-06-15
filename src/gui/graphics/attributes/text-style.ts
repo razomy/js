@@ -1,6 +1,6 @@
 
 import { StyleAttribute } from './style-attribute.js';
-import { Color } from '../../platforms/web/Svg/Codecs/Color/color.js';
+import { Color } from '../../platforms/web/svg/codecs/color/color.js';
 
 export class TextStyle extends StyleAttribute {
   constructor(

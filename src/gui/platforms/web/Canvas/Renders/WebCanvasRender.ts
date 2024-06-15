@@ -1,12 +1,12 @@
 import { IFactory } from '../../../../../interfaces/i-factory.js';
 import { ElementView } from '../../../../graphics/elements/element-view.js';
-import { RectangleShape } from '../../../../graphics/elements/Shapes/rectangle-shape.js';
+import { RectangleShape } from '../../../../graphics/elements/shapes/rectangle-shape.js';
 import { TextElement } from '../../../../graphics/elements/text-element.js';
 import { ViewportElement } from '../../../../graphics/elements/viewport-element.js';
 import { RectangleRender } from './RectangleRender.js';
 import { WebCanvasHighLightsRender } from './WebCanvasHighLightsRender.js';
 import IRender from '../../../../renderes/i-render.js';
-import Render from '../../../../renderes/Render.js';
+import Render from '../../../../renderes/render.js';
 import NotSupportedException from '../../../../../exceptions/context-error.js';
 
 

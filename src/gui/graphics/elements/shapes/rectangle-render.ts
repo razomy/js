@@ -3,7 +3,7 @@ import { PositionAttribute } from '../../attributes/position-attribute.js';
 import { BorderStyle } from '../../attributes/styles/border-style.js';
 import { FillStyle } from '../../attributes/fill-style.js';
 import { RectangleShape } from './rectangle-shape.js';
-import { HexParser } from '../../../platforms/web/Svg/Codecs/Color/hex-parser.js';
+import { HexParser } from '../../../platforms/web/svg/codecs/color/hex-parser.js';
 
 export class RectangleRender {
   constructor(
