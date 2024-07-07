@@ -32,7 +32,7 @@ export function accept_language_pick(supportedLanguages, acceptLanguage, options
   }
 
   if (isString(acceptLanguage)) {
-    acceptLanguage = parse(acceptLanguage);
+    // TODO: Unkbown parce function CODE: acceptLanguage = parse(acceptLanguage);
   }
 
   const supported = supportedLanguages.map(support => {

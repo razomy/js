@@ -9,9 +9,10 @@
       "dom"
     ],
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "noImplicitAny": false,
     "outDir": "dist",
+    "resolveJsonModule": true,
     "strict": true,
     "target": "ESNext"
   },
