@@ -5,16 +5,22 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
-      "ESNext",
-      "dom"
+      "ESNext"
     ],
     "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "rootDir": "src",
+    "moduleResolution": "Node",
     "noImplicitAny": false,
+    "resolveJsonModule": true,
     "outDir": "dist",
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {
+      "razomy.js.server/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"
