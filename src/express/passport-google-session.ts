@@ -1,6 +1,6 @@
 import { DatastoreStore } from '@google-cloud/connect-datastore';
 import { Datastore } from '@google-cloud/datastore';
-import google, { googleTapOn } from './auths/google_auth.js';
+import google, { googleTapOn } from '../auths/google_auth.js';
 import session from 'express-session';
 import passport from 'passport';
 

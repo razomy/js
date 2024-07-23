@@ -4,11 +4,11 @@ import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 // import cors from 'cors';
 // import helmet from 'helmet';
-import { logger } from './servers/logger.js';
+import { logger } from '../servers/logger.js';
 import { Ctx } from './ctx.js';
-import { echo } from './servers/echo.js';
+import { echo } from '../servers/echo.js';
 
-export { shutdownFunction } from './servers/shutdownFunction.js';
+export { shutdownFunction } from '../servers/shutdownFunction.js';
 
 const ctx: Ctx = {} as any;
 

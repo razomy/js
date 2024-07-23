@@ -2,7 +2,7 @@ import { Storage } from '@google-cloud/storage';
 
 import fs from 'fs';
 import path from 'path';
-import {createPathIfNotExistsRecursive, readFile} from 'razomy.js.server/fs/fs';
+import {createPathIfNotExistsRecursive, readFile} from 'razomy.js/fs/fs';
 
 async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');

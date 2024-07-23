@@ -17,7 +17,7 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "razomy.js.server/*": [
+      "razomy.js/*": [
         "src/*"
       ]
     }

@@ -1,4 +1,4 @@
-import {OpenAiCtx, WithOpenAiCtx} from "razomy.js.server/openai/open_ai_ctx.js";
+import {OpenAiCtx, WithOpenAiCtx} from "razomy.js/openai/open_ai_ctx.js";
 
 export default class chat {
 
