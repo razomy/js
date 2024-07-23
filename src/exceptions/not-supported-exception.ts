@@ -1,5 +1,5 @@
 
-import {ContextError} from 'razomy.js/exceptions/context-error.js';
+import {ContextError} from 'razomy.js/exceptions/context-error';
 
 export class NotSupportedException extends ContextError {
   constructor(message?: string, ctx: any = null) {
