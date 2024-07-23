@@ -1,8 +1,0 @@
-project
-    name:js
-    description:Monorepo for all js/ts code.
-    start
-        ide
-            jetbrains.intellij
-                ts
-                    absolute_path:true
