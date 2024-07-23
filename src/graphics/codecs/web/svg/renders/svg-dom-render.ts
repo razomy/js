@@ -1,11 +1,11 @@
 
 import { ElementView } from 'razomy.js/graphics/elements/element-view';
 import { WebSvgHighLightsRender } from './web-svg-high-lights-render';
-import {CodecRegistry} from "razomy.js/graphics/codecs/web/svg/codecs/codec-registry";
-import {CodecFactory} from "razomy.js/graphics/codecs/web/svg/codecs/codec-factory";
-import {EncodeNodeFactory} from "razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory";
-import {CodecConfig} from "razomy.js/graphics/codecs/web/svg/codecs/codec-config";
-import {Render} from "razomy.js/graphics/renderes/render";
+import {CodecRegistry} from 'razomy.js/graphics/codecs/web/svg/codecs/codec-registry.js';
+import {CodecFactory} from 'razomy.js/graphics/codecs/web/svg/codecs/codec-factory.js';
+import {EncodeNodeFactory} from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory.js';
+import {CodecConfig} from 'razomy.js/graphics/codecs/web/svg/codecs/codec-config.js';
+import {Render} from 'razomy.js/graphics/renderes/render.js';
 
 export class WebSvgRender extends Render<ElementView> {
 

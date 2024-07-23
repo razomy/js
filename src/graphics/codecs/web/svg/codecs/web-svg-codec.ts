@@ -5,7 +5,7 @@ import { CodecFactory } from './codec-factory';
 import { CodecRegistry } from './codec-registry';
 import { EncodeNodeFactory } from './encode-node-factory';
 import { ICodec } from 'razomy.js/codec/i-codec';
-import {ResourceCollection} from "razomy.js/resources/resource-collection";
+import {ResourceCollection} from 'razomy.js/resources/resource-collection.js';
 
 export class WebSvgCodec implements ICodec<ElementView, Node> {
 

@@ -1,13 +1,13 @@
 import { WebCanvasHighLightsRender } from './web-canvas-highlights-render';
 import {IRender} from 'razomy.js/graphics/renderes/i-render';
 import {Render} from 'razomy.js/graphics/renderes/render';
-import {TextElement} from "razomy.js/graphics/elements/text-element";
-import {ViewportElement} from "razomy.js/graphics/elements/viewport-element";
-import {IFactory} from "razomy.js/interfaces/i-factory";
-import {ElementView} from "razomy.js/graphics/elements/element-view";
-import {RectangleShape} from "razomy.js/graphics/shapes/rectangle-shape";
-import {NotSupportedException} from "razomy.js/exceptions/not-supported-exception";
-import {RectangleRender} from "razomy.js/graphics/shapes/rectangle-render";
+import {TextElement} from 'razomy.js/graphics/elements/text-element.js';
+import {ViewportElement} from 'razomy.js/graphics/elements/viewport-element.js';
+import {IFactory} from 'razomy.js/interfaces/i-factory.js';
+import {ElementView} from 'razomy.js/graphics/elements/element-view.js';
+import {RectangleShape} from 'razomy.js/graphics/shapes/rectangle-shape.js';
+import {NotSupportedException} from 'razomy.js/exceptions/not-supported-exception.js';
+import {RectangleRender} from 'razomy.js/graphics/shapes/rectangle-render.js';
 
 
 export class ViewportRender {

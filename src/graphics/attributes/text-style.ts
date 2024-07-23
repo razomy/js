@@ -1,6 +1,6 @@
 
 import { StyleAttribute } from './style-attribute';
-import {Color} from "razomy.js/graphics/codecs/web/svg/color/color";
+import {Color} from 'razomy.js/graphics/codecs/web/svg/color/color.js';
 
 export class TextStyle extends StyleAttribute {
   constructor(

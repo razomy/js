@@ -9,7 +9,7 @@ import { EncodeNodeFactory } from './encode-node-factory';
 import { RectangleCodec } from './rectangle-codec';
 import { SvgCodec } from './svg-codec';
 import { TextCodec } from './text-codec';
-import {NotSupportedException} from "razomy.js/exceptions/not-supported-exception";
+import {NotSupportedException} from 'razomy.js/exceptions/not-supported-exception.js';
 
 
 export class CodecFactory implements IFactory<ICodec<ElementView, any>> {

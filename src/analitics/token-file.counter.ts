@@ -1,7 +1,7 @@
-const fs = require('fs');
-const esprima = require('esprima');
+import fs from "fs";
+import esprima from "esprima";
 
-function countTokensByPath(filePath) {
+export function countTokensByPath(filePath) {
   try {
     const code = fs.readFileSync(filePath, 'utf8');
     const tokens = esprima.tokenize(code, { loc: true });
@@ -20,7 +20,7 @@ function countTokensByPath(filePath) {
 
     return tokenCountByType;
   } catch (error) {
-    console.error('Error reading or parsing the file:', error.message);
+    console.error('Error reading or parsing the file:', error);
     return null;
   }
 }

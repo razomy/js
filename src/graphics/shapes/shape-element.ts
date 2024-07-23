@@ -1,4 +1,4 @@
-import {ElementView} from "razomy.js/graphics/elements/element-view";
+import {ElementView} from 'razomy.js/graphics/elements/element-view.js';
 
 export class ShapeElement extends ElementView {
 }

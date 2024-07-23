@@ -2,7 +2,7 @@ export function shutdownFunction(server, callback) {
   process.on('SIGTERM', shutDown);
   process.on('SIGINT', shutDown);
 
-  let connections = [];
+  let connections: any[] = [];
 
   server.on('connection', connection => {
     connections.push(connection);

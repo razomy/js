@@ -1,5 +1,5 @@
 import {SelectionAttribute} from './selection-attribute';
-import {EntityResource} from "razomy.js/resources/entity-resource";
+import {EntityResource} from 'razomy.js/resources/entity-resource.js';
 
 export class UserEntity extends EntityResource {
   constructor() {

@@ -2,7 +2,7 @@ import {OpenAiCtx, WithOpenAiCtx} from "./open_ai_ctx";
 import OpenAI from "openai";
 import Completion = OpenAI.Completion;
 
-export default class language_grammar_correction {
+export class language_grammar_correction {
     constructor(private ctx: WithOpenAiCtx) {
     }
 

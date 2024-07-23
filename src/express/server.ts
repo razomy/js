@@ -8,9 +8,9 @@ import { logger } from '../servers/logger.js';
 import { Ctx } from './ctx.js';
 import { echo } from '../servers/echo.js';
 
-export { shutdownFunction } from '../servers/shutdownFunction.js';
+export { shutdownFunction } from '../servers/shutdown-function.js';
 
-const ctx: Ctx = {} as any;
+export const ctx: Ctx = {} as any;
 
 ctx.logger = logger;
 
@@ -62,6 +62,3 @@ app.use((err, req, res, next) => {
   logger.error(err.stack);
   res.status(500).send('System error!');
 });
-
-
-export default ctx;

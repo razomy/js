@@ -7,7 +7,7 @@ export const parse_status = function(str) {
     remote_branch: null,
     remote_diff: null,
     clean: true,
-    files: [],
+    files: [] as string[],
   };
   var result;
   var initial_commit_rx = /^\#\# Initial commit on ([^\n]+)\s?$/;

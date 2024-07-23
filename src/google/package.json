@@ -1,0 +1,9 @@
+{
+  "name": "razomy.js.google",
+  "version": "0.0.0",
+  "dependencies": {
+    "@google-cloud/datastore": "^9.0.0",
+    "@google-cloud/storage": "^6.10.0",
+    "google-auth-library": "^8.8.0"
+  }
+}

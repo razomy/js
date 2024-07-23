@@ -1,11 +1,11 @@
-import { promises as fs } from 'fs';
+import {promises as fs} from 'fs';
 import path from 'path';
 
-async function copyFilesRecursive(source, target, excludedDirs = []) {
+async function copyFilesRecursive(source, target, excludedDirs: string[] = []) {
   const sourceStats = await fs.stat(source);
 
   if (sourceStats.isDirectory()) {
-    await fs.mkdir(target, { recursive: true });
+    await fs.mkdir(target, {recursive: true});
 
     const folderItems = await fs.readdir(source);
 
@@ -20,7 +20,7 @@ async function copyFilesRecursive(source, target, excludedDirs = []) {
       await copyFilesRecursive(sourcePath, targetPath, excludedDirs);
     }
   } else {
-    await fs.mkdir(path.dirname(target), { recursive: true });
+    await fs.mkdir(path.dirname(target), {recursive: true});
     await fs.copyFile(source, target);
   }
 }

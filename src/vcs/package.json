@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "openai": "^4.52.7"
+    "diff": "^5.1.0"
   }
 }

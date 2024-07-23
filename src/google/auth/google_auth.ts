@@ -1,14 +1,15 @@
-import { OAuth2Client } from 'google-auth-library';
-import { ensureLoggedIn as ensureLogIn } from 'connect-ensure-login';
-import { Strategy as CustomStrategy } from 'passport-custom';
+import {OAuth2Client} from 'google-auth-library';
+import {ensureLoggedIn as ensureLogIn} from 'connect-ensure-login';
+import {Strategy as CustomStrategy} from 'passport-custom';
 import passport from 'passport';
 
 export const isAuthenticated = ensureLogIn();
 export const googleTapOn = 'google-tap-on';
-export default class google {
+
+export class google {
   constructor(ctx) {
     passport.use(googleTapOn, new CustomStrategy(
-      async function(req, callback) {
+      async function (this: any, req, callback) {
         const csrf_token_cookie = req.cookies.g_csrf_token;
         if (!csrf_token_cookie) {
           this.fail(400, 'No CSRF token in Cookie.');
@@ -40,11 +41,11 @@ export default class google {
       },
     ));
 
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done: any) {
       done(null, user);
     });
 
-    passport.deserializeUser(function(user, done) {
+    passport.deserializeUser(function (user, done: any) {
       done(null, user);
     });
 
@@ -63,7 +64,7 @@ export default class google {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });
 
-    const payload = ticket.getPayload();
+    const payload = ticket.getPayload()!;
 
     if (!payload.email_verified) {
       return null;

@@ -1,12 +1,12 @@
 import {NotImplementedException} from 'razomy.js/exceptions/not-implemented-exception';
 import {ICodec} from 'razomy.js/codec/i-codec';
 import {IObject} from 'razomy.js/interfaces/i-object';
-import {ISizeResource} from "razomy.js/graphics/attributes/size-attribute";
-import {ResourceCollection} from "razomy.js/resources/resource-collection";
-import {CodecFactory} from "razomy.js/graphics/codecs/web/svg/codecs/codec-factory";
-import {EncodeNodeFactory} from "razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory";
-import {CodecConfig} from "razomy.js/graphics/codecs/web/svg/codecs/codec-config";
-import {ElementView} from "razomy.js/graphics/elements/element-view";
+import {ISizeResource} from 'razomy.js/graphics/attributes/size-attribute.js';
+import {ResourceCollection} from 'razomy.js/resources/resource-collection.js';
+import {CodecFactory} from 'razomy.js/graphics/codecs/web/svg/codecs/codec-factory.js';
+import {EncodeNodeFactory} from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory.js';
+import {CodecConfig} from 'razomy.js/graphics/codecs/web/svg/codecs/codec-config.js';
+import {ElementView} from 'razomy.js/graphics/elements/element-view.js';
 
 
 interface JsonObject {

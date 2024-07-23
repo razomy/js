@@ -82,7 +82,7 @@ export async function uploadFilesToStorage(bucketName, folderPath) {
   console.log('All files uploaded successfully.');
 }
 
-export default class CloudFileStore {
+export class CloudFileStore {
   async downloadFile(bucketName, filePath, folderPath) {
     await downloadFile(bucketName, filePath, folderPath);
   }

@@ -1,8 +1,6 @@
 {
+  "name": "razomy.js.express",
   "dependencies": {
-    "@google-cloud/connect-datastore": "7.0.0",
-    "@google-cloud/datastore": "^9.0.0",
-    "@google-cloud/storage": "^6.10.0",
     "@types/passport": "^1.0.12",
     "body-parser": "^1.20.2",
     "connect-ensure-login": "^0.1.1",
@@ -14,15 +12,18 @@
     "express-session": "^1.17.3",
     "express-ws": "^5.0.2",
     "fs-extra": "^11.2.0",
-    "google-auth-library": "^8.8.0",
     "helmet": "^7.0.0",
     "memorystore": "^1.6.7",
     "method-override": "^3.0.0",
     "nodemon": "^3.1.3",
-    "openai": "^4.52.7",
     "passport": "^0.6.0",
     "passport-custom": "^1.1.1",
-    "typescript": "^4.9.5",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "@google-cloud/connect-datastore": "latest"
+  },
+  "overrides": {
+  "@google-cloud/connect-datastore": {
+    "@google-cloud/datastore": "$@google-cloud/datastore"
   }
+}
 }

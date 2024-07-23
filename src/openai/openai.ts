@@ -1,6 +1,6 @@
 import {OpenAI} from 'openai';
 
-export default class openai {
+export class openai {
     openai: OpenAI;
 
     constructor(ctx) {

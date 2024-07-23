@@ -1,9 +1,9 @@
 import { EncodeNodeFactory } from './encode-node-factory';
 import { ICodec } from 'razomy.js/codec/i-codec';
-import {PositionAttribute} from "razomy.js/graphics/attributes/position-attribute";
-import {SizeAttribute} from "razomy.js/graphics/attributes/size-attribute";
-import {TextAttribute} from "razomy.js/graphics/attributes/text-attribute";
-import {TextElement} from "razomy.js/graphics/elements/text-element";
+import {PositionAttribute} from 'razomy.js/graphics/attributes/position-attribute.js';
+import {SizeAttribute} from 'razomy.js/graphics/attributes/size-attribute.js';
+import {TextAttribute} from 'razomy.js/graphics/attributes/text-attribute.js';
+import {TextElement} from 'razomy.js/graphics/elements/text-element.js';
 
 export class TextCodec implements ICodec<TextElement, SVGTextElement> {
 
