@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { ConsoleLogger, Logger } from '../logging/logger.js';
+import { ConsoleLogger, Logger } from 'razomy.js/logging/logger';
 
 function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
   return () => new Promise(async (resolve, reject) => {
@@ -17,7 +17,7 @@ function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promi
   });
 }
 
-export default class TaskQueue {
+export class TaskQueue {
   private isProcessing: boolean;
   private queue: { id: number, task: () => Promise<any> }[];
   private id = 0;

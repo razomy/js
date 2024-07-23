@@ -15,7 +15,12 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {
+      "razomy.js/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"

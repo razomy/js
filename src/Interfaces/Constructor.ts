@@ -1,5 +1,5 @@
-import { IObjectConstructor } from './i-object.js';
-import ObjectExtended from '../types/object-extended.js';
+import { IObjectConstructor } from './i-object';
+import {ObjectExtended} from 'razomy.js/types/object-extended';
 
 export interface Constructor<T extends ObjectExtended> extends IObjectConstructor {
   new(...args: any[]): T;

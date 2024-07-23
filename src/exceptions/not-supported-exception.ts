@@ -1,7 +1,7 @@
 
-import ContextError from './context-error.js';
+import {ContextError} from './context-error';
 
-export default class NotSupportedException extends ContextError {
+export class NotSupportedException extends ContextError {
   constructor(message?: string, ctx: any = null) {
     super(message || 'Not supported to execute exception!', ctx);
   }

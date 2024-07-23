@@ -1,4 +1,4 @@
-import Resource from './resource.js';
+import {Resource} from './resource';
 
-export default abstract class AttributeResource extends Resource {
+export abstract class AttributeResource extends Resource {
 }

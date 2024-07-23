@@ -1,5 +1,5 @@
-import { IGuid } from './i-guid.js';
-import { IType } from './i-type.js';
+import { IGuid } from './i-guid';
+import { IType } from './i-type';
 
 export interface IObject extends IGuid, IType {
 }

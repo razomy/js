@@ -1,7 +1,7 @@
-import { IObject } from '../interfaces/i-object.js';
-import GuidFactory from '../id/guid-factory.js';
+import { IObject } from 'razomy.js/interfaces/i-object';
+import {GuidFactory} from 'razomy.js/id/guid-factory';
 
-export default abstract class ObjectExtended implements IObject {
+export abstract class ObjectExtended implements IObject {
 
   public readonly id: string = new GuidFactory().create();
 

@@ -1,4 +1,4 @@
-import { extractPrePathFrom, extractSubPathFrom } from './string.js';
+import { extractPrePathFrom, extractSubPathFrom } from './string';
 import * as path from 'path';
 
 console.log(extractSubPathFrom(path.resolve(), 'razomy'));

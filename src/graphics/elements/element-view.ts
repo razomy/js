@@ -1,8 +1,7 @@
-
-import ResourceCollection from '../../../resources/resource-collection.js';
-import { PositionAttribute } from '../attributes/position-attribute.js';
-import { SizeAttribute } from '../attributes/size-attribute.js';
-import { ViewGraphic } from '../view-graphic.js';
+import {PositionAttribute} from 'razomy.js/graphics/attributes/position-attribute';
+import {SizeAttribute} from 'razomy.js/graphics/attributes/size-attribute';
+import {ResourceCollection} from "razomy.js/resources/resource-collection";
+import {ViewGraphic} from "razomy.js/graphics/graphic/view-graphic";
 
 export class ElementView extends ViewGraphic {
 

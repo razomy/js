@@ -1,5 +1,5 @@
 
-import ContextError from './context-error.js';
+import {ContextError} from './context-error';
 
-export default class ArgumentException extends ContextError {
+export class ArgumentException extends ContextError {
 }

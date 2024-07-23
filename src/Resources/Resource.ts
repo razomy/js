@@ -1,4 +1,4 @@
-import ObjectExtended from '../types/object-extended.js';
+import {ObjectExtended} from 'razomy.js/types/object-extended';
 
-export default abstract class Resource extends ObjectExtended {
+export abstract class Resource extends ObjectExtended {
 }

@@ -1,5 +1,5 @@
-import { ViewGraphic } from '../graphics/view-graphic.js';
+import { ViewGraphic } from 'razomy.js/graphics/graphic/view-graphic';
 
-export default interface IRender<T extends ViewGraphic> {
+export interface IRender<T extends ViewGraphic> {
   render(view: T): void;
 }

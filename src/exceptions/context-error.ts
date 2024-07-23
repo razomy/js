@@ -1,4 +1,4 @@
-export default class ContextError extends Error {
+export class ContextError extends Error {
   public ctx: any;
 
   constructor(message?: string, ctx: any = {}) {

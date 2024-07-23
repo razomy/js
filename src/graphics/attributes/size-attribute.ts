@@ -1,6 +1,5 @@
-
-import AttributeResource from '../../../resources/attribute-resource.js';
-import ArgumentException from '../../../exceptions/argument-exception.js';
+import {AttributeResource} from "razomy.js/resources/attribute-resource";
+import {ArgumentException} from "razomy.js/exceptions/argument-exception";
 
 export interface ISizeResource {
   height: number;

@@ -1,5 +1,5 @@
 
-import { ElementView } from './element-view.js';
+import { ElementView } from './element-view';
 
 export interface IViewport {
 }

@@ -1,6 +1,6 @@
 
-import { TextAttribute } from '../attributes/text-attribute.js';
-import { ElementView } from './element-view.js';
+import { TextAttribute } from 'razomy.js/graphics/attributes/text-attribute';
+import { ElementView } from './element-view';
 
 
 export class TextElement extends ElementView {
