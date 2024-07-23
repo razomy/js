@@ -1,30 +1,3 @@
-.vscode
-.idea
-
-Builds
-*.csproj
-Library
-Logs
-obj
-Packages
-package-lock.json
-!Packages/manifest.json
-Temp
-Assets/Plugins
-Recordings
-
-Assets/Temp
-
-
-# Dependenices
 node_modules
-package-lock.json
-
-# Build
 dist
-
-# Cache
-.angular
-
-gcloud-service-key.json
-razomy.notation.google-storage.notation
+.idea

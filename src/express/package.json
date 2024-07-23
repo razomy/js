@@ -24,24 +24,5 @@
     "passport-custom": "^1.1.1",
     "typescript": "^4.9.5",
     "winston": "^3.8.2"
-  },
-  "exports": {
-    "./*": {
-      "types": "./dist/*.d.ts",
-      "default": "./dist/*.js"
-    },
-    "./*/*": {
-      "types": "./dist/*/*.d.ts",
-      "default": "./dist/*/*.js"
-    }
-  },
-  "name": "razomy.js.server",
-  "private": true,
-  "scripts": {
-    "start:dev": "tsc --project tsconfig.lib.json --watch",
-    "build": "tsc --project tsconfig.lib.json",
-    "start:server:prod": "NODE_ENV=production node dist/server.js"
-  },
-  "type": "module",
-  "version": "0.0.1"
+  }
 }
