@@ -1,5 +1,17 @@
-import { extractPrePathFrom, extractSubPathFrom } from './string';
+import {extractPrePathFrom, extractSubPathFrom, escapeString, unescapeString} from './string';
 import * as path from 'path';
 
-console.log(extractSubPathFrom(path.resolve(), 'razomy'));
-console.log(extractPrePathFrom(path.resolve(), 'razomy'));
+describe('razomy.js.string', () => {
+  it('path', () => {
+    console.log(extractSubPathFrom(path.resolve(), 'razomy'));
+    console.log(extractPrePathFrom(path.resolve(), 'razomy'));
+  })
+  describe('escape', () => {
+    it('`', () => {
+      var result = escapeString('`', '`');
+      expect(result).toStrictEqual('\\`')
+    })
+    it('\\`', () => expect(unescapeString('\\`', '`')).toStrictEqual('`'))
+
+  });
+});

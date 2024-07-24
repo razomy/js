@@ -1,6 +1,7 @@
 import fs from 'fs';
 import fsExtra from 'fs-extra';
 import path from 'path';
+import {isObject} from "razomy.js/dict/get-first-key";
 
 export function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -15,7 +16,7 @@ export function readFileJson(filePath) {
 }
 
 export function tryReadFileJson(filePath) {
-  if (!fs.existsSync(filePath)){
+  if (!fs.existsSync(filePath)) {
     return null;
   }
   return readFileJson(filePath);
@@ -93,7 +94,7 @@ export function waitAsync(seconds) {
   });
 }
 
-export function getAllFilesInDirectory(directory) {
+export function getAllFilesInDirectoryFlat(directory) {
   let files: string[] = [];
 
   function walk(currentDirPath) {
@@ -113,5 +114,38 @@ export function getAllFilesInDirectory(directory) {
 
   walk(directory);
   return files;
+}
+
+export type Recursive<T> = { [key: string]: Recursive<T> | T }
+
+export function getFilesRecursiveToDict(directory: string) {
+  let files: Recursive<string> = {};
+
+  const items = fs.readdirSync(directory);
+  for (const item of items) {
+    const itemPath = path.join(directory, item);
+    const stat = fs.statSync(itemPath);
+
+    if (stat.isFile()) {
+      const data = fs.readFileSync(itemPath).toString('base64');
+      files[item] = data;
+    } else if (stat.isDirectory()) {
+      files[item] = getFilesRecursiveToDict(itemPath);
+    }
+  }
+  return files;
+}
+
+export function createFilesRecursiveFromDict(directory: string, dict: Recursive<string>) {
+  for (const key in dict) {
+    const value = dict[key];
+    const itemPath = path.join(directory, key);
+    if (isObject(value)) {
+      createDirectoryIfNotExists(itemPath)
+      createFilesRecursiveFromDict(itemPath, value as Recursive<string>);
+    } else {
+      fs.writeFileSync(itemPath, Buffer.from(value as string, 'base64'))
+    }
+  }
 }
 

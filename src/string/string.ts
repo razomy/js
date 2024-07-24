@@ -81,3 +81,11 @@ export const countSpacesAtFront = (strs: string[]): number[] =>
     }
     return i;
   });
+
+export function escapeString(str: string, key: string): string {
+  return str.replaceAll(key, '\\' + key);
+}
+
+export function unescapeString(str: string, key: string): string {
+  return str.replaceAll('\\' + key, key);
+}

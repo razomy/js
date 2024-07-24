@@ -6,3 +6,7 @@ export function getFirstKey(obj: any): string | undefined {
   }
   return undefined;
 }
+
+export function isObject(val) {
+  return (typeof val === 'object');
+}
