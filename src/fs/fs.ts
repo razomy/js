@@ -1,7 +1,7 @@
 import fs from 'fs';
 import fsExtra from 'fs-extra';
 import path from 'path';
-import {isObject} from "razomy.js/dict/get-first-key";
+import {LeafTree} from "razomy.js/trees/leaf_tree";
 
 export function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -116,10 +116,8 @@ export function getAllFilesInDirectoryFlat(directory) {
   return files;
 }
 
-export type Recursive<T> = { [key: string]: Recursive<T> | T }
-
 export function getFilesRecursiveToDict(directory: string) {
-  let files: Recursive<string> = {};
+  let files: LeafTree<Buffer> = {};
 
   const items = fs.readdirSync(directory);
   for (const item of items) {
@@ -127,24 +125,30 @@ export function getFilesRecursiveToDict(directory: string) {
     const stat = fs.statSync(itemPath);
 
     if (stat.isFile()) {
-      const data = fs.readFileSync(itemPath).toString('base64');
-      files[item] = data;
+      const data = fs.readFileSync(itemPath);
+      files[item] = {
+        value: data,
+        isLeaf: true
+      };
     } else if (stat.isDirectory()) {
-      files[item] = getFilesRecursiveToDict(itemPath);
+      files[item] = {
+        isLeaf: false,
+        children: getFilesRecursiveToDict(itemPath)
+      };
     }
   }
   return files;
 }
 
-export function createFilesRecursiveFromDict(directory: string, dict: Recursive<string>) {
+export function createFilesRecursiveFromDict(directory: string, dict: LeafTree<Buffer>) {
   for (const key in dict) {
     const value = dict[key];
     const itemPath = path.join(directory, key);
-    if (isObject(value)) {
-      createDirectoryIfNotExists(itemPath)
-      createFilesRecursiveFromDict(itemPath, value as Recursive<string>);
+    if (value.isLeaf) {
+      fs.writeFileSync(itemPath, value.value)
     } else {
-      fs.writeFileSync(itemPath, Buffer.from(value as string, 'base64'))
+      createDirectoryIfNotExists(itemPath)
+      createFilesRecursiveFromDict(itemPath, value.children);
     }
   }
 }

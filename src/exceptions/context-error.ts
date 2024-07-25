@@ -1,7 +1,6 @@
 export class ContextError extends Error {
-  public ctx: any;
-
-  constructor(message?: string, ctx: any = {}) {
-    super(message, ctx);
+  constructor(message?: string, args: any = {}) {
+    console.error(message, args);
+    super(message + ` args: ${args}`);
   }
 }
