@@ -28,5 +28,8 @@ export function getByPath<T>(value: DictRecursiveValue<T>, path: string[], offse
 }
 
 export function getItemByStringPath<T>(value: DictRecursive<T>, path: string) {
+  if (path === '') {
+    return value;
+  }
   return getByPath(value, path.split(':'), 0);
 }
