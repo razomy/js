@@ -17,6 +17,9 @@
       "default": "./dist/*/*.js"
     }
   },
+  "bin": {
+    "razomy": "./dist/cli/bin/razomy.js"
+  },
   "license": "Apache-2.0",
   "name": "razomy.js",
   "packageManager": "npm@10.1.0",

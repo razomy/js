@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+'use strict';
+
+import {cli} from 'razomy.js/cli/cli';
+
+await cli(process.argv.slice(2));
