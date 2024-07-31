@@ -4,9 +4,12 @@ export async function cli(terminalArgs: string[]): Promise<number> {
   }
   console.log('razomy.js.cli start')
 
-  const package_impl = await import('razomy.js.' + terminalArgs[0]);
-  package_impl[terminalArgs[1]](terminalArgs.slice(1));
+  const rootpath = terminalArgs[0];
+  const key_name = terminalArgs[1];
+  const value_arguments = terminalArgs.slice(2);
+  const package_impl = await import('razomy.js' + rootpath);
+  const result = await package_impl[key_name](...value_arguments);
 
   console.log('razomy.js.cli finish')
-  return 1;
+  return result;
 }
