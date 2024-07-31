@@ -13,3 +13,11 @@ export function isPromise(p: any): boolean {
 
   return false;
 }
+
+export function waitAsync(seconds) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(seconds); // or you can use reject() to reject the promise
+    }, seconds); // convert seconds to milliseconds
+  });
+}

@@ -25,7 +25,7 @@ async function copyFilesRecursive(source, target, excludedDirs: string[] = []) {
   }
 }
 
-async function main() {
+async function cli() {
   const [, , ...args] = process.argv;
 
   if (args.length < 2) {
@@ -42,5 +42,3 @@ async function main() {
     console.error('Error copying files:', error);
   }
 }
-
-main();
