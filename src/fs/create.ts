@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {LeafTree} from 'razomy.js/trees/leaf_tree';
+import {LeafBranchDict} from 'razomy.js/trees/leaf_tree';
 
 export const createDirectoryIfNotExists = (directoryPath) => {
   if (!fs.existsSync(directoryPath)) {
@@ -20,7 +20,7 @@ export function createPathIfNotExistsRecursive(filePath) {
   }
 }
 
-export function createFilesRecursiveFromDict(directory: string, dict: LeafTree<Buffer>) {
+export function createFilesRecursiveFromDict(directory: string, dict: LeafBranchDict<Buffer>) {
   for (const key in dict) {
     const value = dict[key];
     const itemPath = path.join(directory, key);

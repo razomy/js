@@ -1,5 +1,5 @@
 
-import { IFactory } from 'razomy.js/interfaces/i_factory';
+import { IFactory } from 'razomy.js/factory/i_factory';
 
 export function generateGuid() {
   function generatePart8(withHyphen?: boolean) {

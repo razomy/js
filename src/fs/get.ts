@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {LeafTree} from 'razomy.js/trees/leaf_tree';
+import {LeafBranchDict} from 'razomy.js/trees/leaf_tree';
 
 export function getAllFilesInDirectoryFlat(directory) {
   let files: string[] = [];
@@ -25,7 +25,7 @@ export function getAllFilesInDirectoryFlat(directory) {
 }
 
 export function getFilesRecursiveToDict(directory: string) {
-  let files: LeafTree<Buffer> = {};
+  let files: LeafBranchDict<Buffer> = {};
 
   const items = fs.readdirSync(directory);
   for (const item of items) {

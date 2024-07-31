@@ -3,7 +3,7 @@ import {IRender} from 'razomy.js/graphics/renderes/i_render';
 import {Render} from 'razomy.js/graphics/renderes/render';
 import {TextElement} from 'razomy.js/graphics/elements/text_element';
 import {ViewportElement} from 'razomy.js/graphics/elements/viewport_element';
-import {IFactory} from 'razomy.js/interfaces/i_factory';
+import {IFactory} from 'razomy.js/factory/i_factory';
 import {ElementView} from 'razomy.js/graphics/elements/element_view';
 import {RectangleShape} from 'razomy.js/graphics/shapes/rectangle_shape';
 import {NotSupportedException} from 'razomy.js/exceptions/not_supported_exception';
