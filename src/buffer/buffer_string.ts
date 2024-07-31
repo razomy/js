@@ -1,4 +1,4 @@
-import {ICodec} from 'razomy.js/codec/i-codec';
+import {ICodec} from 'razomy.js/codec/i_codec';
 
 export function string_to_buffer(base64: string, encoding: BufferEncoding): Buffer {
   return Buffer.from(base64, encoding)

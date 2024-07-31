@@ -8,7 +8,7 @@ import { logger } from 'razomy.js/servers/logger.js';
 import { Ctx }  from 'razomy.js/express/ctx';
 import { echo } from 'razomy.js/servers/echo.js';
 
-export { shutdownFunction } from 'razomy.js/servers/shutdown-function.js';
+export { shutdownFunction } from 'razomy.js/servers/shutdown_function';
 
 export const ctx: Ctx = {} as any;
 
