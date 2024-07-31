@@ -1,5 +1,5 @@
-import { IGuid } from './i-guid';
-import { IType } from './i-type';
+import { IGuid }  from 'razomy.js/interfaces/i-guid';
+import { IType }  from 'razomy.js/interfaces/i-type';
 
 export interface IObject extends IGuid, IType {
 }

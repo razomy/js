@@ -1,7 +1,7 @@
 import winston from 'winston';
 import { Express } from 'express';
 import * as http from 'http';
-import {google} from 'razomy.js/google/auth/google_auth.js';
+import {google} from 'razomy.js/google/auth/google_auth';
 import expressWs from 'express-ws';
 
 export interface Ctx {

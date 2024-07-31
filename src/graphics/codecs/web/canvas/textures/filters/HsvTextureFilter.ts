@@ -1,4 +1,4 @@
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value

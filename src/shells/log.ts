@@ -13,6 +13,6 @@ function log(error, stdout, stderr)  {
   console.log(`stdout: ${stdout}`);
 }
 
-exec("npm -v", log);
-exec("node -v", log);
-exec("ls -a", log);
+exec('npm -v', log);
+exec('node -v', log);
+exec('ls -a', log);

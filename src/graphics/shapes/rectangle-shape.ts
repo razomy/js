@@ -1,7 +1,7 @@
 import { BorderStyle } from 'razomy.js/graphics/styles/border-style';
-import { RectangleRoundStyle } from './rectangle-round-style';
-import { ShapeElement } from './shape-element';
-import {FillStyle} from 'razomy.js/graphics/styles/fill-style.js';
+import { RectangleRoundStyle }  from 'razomy.js/graphics/shapes/rectangle-round-style';
+import { ShapeElement }  from 'razomy.js/graphics/shapes/shape-element';
+import {FillStyle} from 'razomy.js/graphics/styles/fill-style';
 
 export interface IRectangleShape {
 }

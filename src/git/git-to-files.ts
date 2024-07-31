@@ -1,7 +1,7 @@
 import path from 'path';
 import { executeAsync, tryLogAsync } from 'razomy.js/shells/shell';
-import {readFile} from "razomy.js/fs/read";
-import {writeFile} from "razomy.js/fs/write";
+import {readFile} from 'razomy.js/fs/read';
+import {writeFile} from 'razomy.js/fs/write';
 
 
 // Execute the command

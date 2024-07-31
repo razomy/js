@@ -4,12 +4,12 @@ import { ElementView } from 'razomy.js/graphics/elements/element-view';
 import { RectangleShape } from 'razomy.js/graphics/shapes/rectangle-shape';
 import { TextElement } from 'razomy.js/graphics/elements/text-element';
 import { ViewportElement } from 'razomy.js/graphics/elements/viewport-element';
-import { CodecConfig } from './codec-config';
-import { EncodeNodeFactory } from './encode-node-factory';
-import { RectangleCodec } from './rectangle-codec';
-import { SvgCodec } from './svg-codec';
-import { TextCodec } from './text-codec';
-import {NotSupportedException} from 'razomy.js/exceptions/not-supported-exception.js';
+import { CodecConfig }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec-config';
+import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory';
+import { RectangleCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/rectangle-codec';
+import { SvgCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/svg-codec';
+import { TextCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/text-codec';
+import {NotSupportedException} from 'razomy.js/exceptions/not-supported-exception';
 
 
 export class CodecFactory implements IFactory<ICodec<ElementView, any>> {

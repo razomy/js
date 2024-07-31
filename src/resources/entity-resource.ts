@@ -1,6 +1,6 @@
 import {ArgumentException} from 'razomy.js/exceptions/argument-exception';
 import { Constructor } from 'razomy.js/interfaces/constructor';
-import {Resource} from './resource';
+import {Resource}  from 'razomy.js/resources/resource';
 
 export class NodeProvidedException extends Error {
 

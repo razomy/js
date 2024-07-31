@@ -1,4 +1,4 @@
-import { getObjectSizeInBytes } from './bytes';
+import { getObjectSizeInBytes }  from 'razomy.js/bytes/bytes';
 
 describe('encodeString and decodeString', () => {
   it('should encode a string using gzip compression', () => {

@@ -1,4 +1,4 @@
-import { decodeJsonString, encodeJsonString } from './gzip';
+import { decodeJsonString, encodeJsonString }  from 'razomy.js/gzip';
 
 describe('encodeString and decodeString', () => {
   it('should encode a string using gzip compression', () => {

@@ -1,5 +1,5 @@
-import fs from "fs";
-import {createPathIfNotExistsRecursive} from "razomy.js/fs/create";
+import fs from 'fs';
+import {createPathIfNotExistsRecursive} from 'razomy.js/fs/create';
 
 export function writeFile(filePath, content) {
   createPathIfNotExistsRecursive(filePath);

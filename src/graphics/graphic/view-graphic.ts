@@ -1,5 +1,5 @@
 
-import {GraphicEntity} from './graphic-entity';
+import {GraphicEntity}  from 'razomy.js/graphics/graphic/graphic-entity';
 
 export interface IViewGraphic {
 }

@@ -8,7 +8,7 @@
  * node.cache();
  * node.Filters([Konva.Filters.Invert]);
  */
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 export class InvertTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {

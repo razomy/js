@@ -1,8 +1,8 @@
 
 import {NotImplementedException} from 'razomy.js/exceptions/not-implemented-exception';
 import { Constructor } from 'razomy.js/interfaces/constructor';
-import {Resource} from './resource';
-import { EntityResource } from './entity-resource';
+import {Resource}  from 'razomy.js/resources/resource';
+import { EntityResource }  from 'razomy.js/resources/entity-resource';
 
 export interface INodeResourceCollection {
   nodes?: EntityResource[];

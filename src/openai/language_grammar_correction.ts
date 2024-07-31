@@ -1,5 +1,5 @@
-import {OpenAiCtx, WithOpenAiCtx} from "./open_ai_ctx";
-import OpenAI from "openai";
+import {OpenAiCtx, WithOpenAiCtx} from 'razomy.js/openai/open_ai_ctx';
+import OpenAI from 'openai';
 import Completion = OpenAI.Completion;
 
 export class language_grammar_correction {

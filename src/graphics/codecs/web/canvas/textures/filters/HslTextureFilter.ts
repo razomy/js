@@ -1,4 +1,4 @@
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 /**
  * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)

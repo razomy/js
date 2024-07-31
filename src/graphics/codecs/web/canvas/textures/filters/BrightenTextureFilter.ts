@@ -10,7 +10,7 @@
  * node.Filters([Konva.Filters.Brighten]);
  * node.brightness(0.8);
  */
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 export class BrightenTextureFilter implements ITextureFilter {
   /**

@@ -1,4 +1,4 @@
-import { CodecConfig } from './codec-config';
+import { CodecConfig }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec-config';
 
 export class EncodeNodeFactory {
 

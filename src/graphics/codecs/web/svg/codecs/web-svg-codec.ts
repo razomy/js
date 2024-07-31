@@ -1,11 +1,11 @@
 import {NotImplementedException} from 'razomy.js/exceptions/not-implemented-exception';
 import { ElementView } from 'razomy.js/graphics/elements/element-view';
-import { CodecConfig } from './codec-config';
-import { CodecFactory } from './codec-factory';
-import { CodecRegistry } from './codec-registry';
-import { EncodeNodeFactory } from './encode-node-factory';
+import { CodecConfig }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec-config';
+import { CodecFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec-factory';
+import { CodecRegistry }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec-registry';
+import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory';
 import { ICodec } from 'razomy.js/codec/i-codec';
-import {ResourceCollection} from 'razomy.js/resources/resource-collection.js';
+import {ResourceCollection} from 'razomy.js/resources/resource-collection';
 
 export class WebSvgCodec implements ICodec<ElementView, Node> {
 

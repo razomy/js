@@ -44,7 +44,7 @@
      OTHER DEALINGS IN THE SOFTWARE.
      */
 
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 class BlurStack {
   public r = 0;

@@ -1,4 +1,4 @@
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 function pixelAt(idata: any, x: number, y: number) {
   var idx = (y * idata.width + x) * 4;

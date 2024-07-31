@@ -1,5 +1,5 @@
-import {DictRecursive, DictRecursiveValue} from "razomy.js/dict/recursive/recursive";
-import {ArgumentException} from "razomy.js/exceptions/argument-exception";
+import {DictRecursive, DictRecursiveValue} from 'razomy.js/dict/recursive/recursive';
+import {ArgumentException} from 'razomy.js/exceptions/argument-exception';
 
 export function getFirstKey(obj: Record<string, any>): string | undefined {
   for (const key in obj) {

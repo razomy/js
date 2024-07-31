@@ -1,4 +1,4 @@
-import { ITextureFilter } from './ITextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
 
 function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, toMax: any) {
   // Compute the range of the data

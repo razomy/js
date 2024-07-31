@@ -1,5 +1,5 @@
 
-import { ElementView } from './element-view';
+import { ElementView }  from 'razomy.js/graphics/elements/element-view';
 
 export class LayoutElement extends ElementView {
 

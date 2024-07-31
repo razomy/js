@@ -4,11 +4,11 @@ import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 // import cors from 'cors';
 // import helmet from 'helmet';
-import { logger } from '../servers/logger.js';
-import { Ctx } from './ctx.js';
-import { echo } from '../servers/echo.js';
+import { logger } from 'razomy.js/servers/logger.js';
+import { Ctx }  from 'razomy.js/express/ctx';
+import { echo } from 'razomy.js/servers/echo.js';
 
-export { shutdownFunction } from '../servers/shutdown-function.js';
+export { shutdownFunction } from 'razomy.js/servers/shutdown-function.js';
 
 export const ctx: Ctx = {} as any;
 

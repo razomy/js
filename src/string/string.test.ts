@@ -1,4 +1,4 @@
-import {extractPrePathFrom, extractSubPathFrom, escapeString, unescapeString} from './string';
+import {extractPrePathFrom, extractSubPathFrom, escapeString, unescapeString}  from 'razomy.js/string';
 import * as path from 'path';
 
 describe('razomy.js.string', () => {

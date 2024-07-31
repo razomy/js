@@ -1,4 +1,4 @@
-import { EncodeNodeFactory } from './encode-node-factory';
+import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory';
 import { ICodec } from 'razomy.js/codec/i-codec';
 import { SizeAttribute } from 'razomy.js/graphics/attributes/size-attribute';
 import { ViewportElement } from 'razomy.js/graphics/elements/viewport-element';

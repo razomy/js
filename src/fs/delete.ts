@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 import fsExtra from 'fs-extra';
 
 export function deleteFile(filePath) {

@@ -1,5 +1,5 @@
-import fs from "fs";
-import esprima from "esprima";
+import fs from 'fs';
+import esprima from 'esprima';
 
 export function countTokensByPath(filePath) {
   try {

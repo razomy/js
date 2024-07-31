@@ -1,7 +1,7 @@
 import {PositionAttribute} from 'razomy.js/graphics/attributes/position-attribute';
 import {SizeAttribute} from 'razomy.js/graphics/attributes/size-attribute';
-import {ResourceCollection} from 'razomy.js/resources/resource-collection.js';
-import {ViewGraphic} from 'razomy.js/graphics/graphic/view-graphic.js';
+import {ResourceCollection} from 'razomy.js/resources/resource-collection';
+import {ViewGraphic} from 'razomy.js/graphics/graphic/view-graphic';
 
 export class ElementView extends ViewGraphic {
 

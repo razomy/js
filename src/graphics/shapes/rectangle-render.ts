@@ -1,9 +1,9 @@
 
 import { PositionAttribute } from 'razomy.js/graphics/attributes/position-attribute';
 import { BorderStyle } from 'razomy.js/graphics/styles/border-style';
-import { RectangleShape } from './rectangle-shape';
-import {HexParser} from 'razomy.js/graphics/codecs/web/svg/color/hex-parser.js';
-import {FillStyle} from 'razomy.js/graphics/styles/fill-style.js';
+import { RectangleShape }  from 'razomy.js/graphics/shapes/rectangle-shape';
+import {HexParser} from 'razomy.js/graphics/codecs/web/svg/color/hex-parser';
+import {FillStyle} from 'razomy.js/graphics/styles/fill-style';
 
 export class RectangleRender {
   constructor(

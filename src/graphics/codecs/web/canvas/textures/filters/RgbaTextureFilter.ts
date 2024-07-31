@@ -1,5 +1,5 @@
-import { ITextureFilter } from './ITextureFilter';
-import { byteSlice } from './RgbTextureFilter';
+import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/ITextureFilter';
+import { byteSlice }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/RgbTextureFilter';
 
 export function bitSlice(val: number) {
   if (val > 1) {

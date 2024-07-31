@@ -8,7 +8,7 @@ import { RectangleRoundStyle } from 'razomy.js/graphics/shapes/rectangle-round-s
 import { RectangleShape } from 'razomy.js/graphics/shapes/rectangle-shape';
 import { ColorCodex } from 'razomy.js/graphics/codecs/web/svg/color/color-codex';
 import { HexParser } from 'razomy.js/graphics/codecs/web/svg/color/hex-parser';
-import { EncodeNodeFactory } from './encode-node-factory';
+import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/encode-node-factory';
 
 export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
 

@@ -1,7 +1,7 @@
-import {getAllFilesInDirectoryFlat} from "razomy.js/fs/get";
-import {string_to_snake_case} from "razomy.js/string/string_to_snake_case";
-import path from "path";
-import fs from "fs";
+import {getAllFilesInDirectoryFlat} from 'razomy.js/fs/get';
+import {string_to_snake_case} from 'razomy.js/string/string_to_snake_case';
+import path from 'path';
+import fs from 'fs';
 
 export function rename_to_snack_case_recursive(dir_path: string, must_include: string, must_not_include) {
   let files = getAllFilesInDirectoryFlat(dir_path);
