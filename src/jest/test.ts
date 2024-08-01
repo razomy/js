@@ -1,21 +1,23 @@
-type Execute<I, O> = (req: I) => O
+type Execute<I extends Array<any>, O> = (...req: I) => O
 
-export function execute_text<I, O>(cb: Execute<I, O>, req: I, res: O) {
-  const resultFn = () => cb(req);
-  const result = resultFn();
+export async function execute_text<I extends Array<any>, O>(cb: Execute<I, O>, req: I, res: O | null = null, err: Error | null = null) {
+  const resultFn = async () => await cb(...req);
   if (res != null) {
-    expect(result).toStrictEqual(res);
+    expect(await resultFn()).toStrictEqual(res);
+  } else if (err != null) {
+    expect(resultFn).toThrowError(err);
   }
 }
 
-export interface Test<I, O> {
+export interface Test<I extends Array<any>, O> {
   input: I,
-  utput: O
+  otput: O,
+  error?: Error,
 }
 
-export function texts<I, O>(cb: Execute<I, O>, array: Test<I, O>[]) {
+export function texts<I extends Array<any>, O>(cb: Execute<I, O>, array: Test<I, O>[]) {
   for (let key in array) {
     const test = array[key];
-    it(key, () => execute_text(cb, test.input, test.utput));
+    it(key, async () => await execute_text(cb, test.input, test.otput, test.error));
   }
 }

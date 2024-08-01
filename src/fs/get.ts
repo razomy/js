@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import {LeafBranchDict} from 'razomy.js/trees/leaf_tree';
+import {DictBranch, DictLeaf, DictRoot} from 'razomy.js/trees/dict_tree';
+import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
 export function getAllFilesInDirectoryFlat(directory) {
   let files: string[] = [];
@@ -24,26 +25,28 @@ export function getAllFilesInDirectoryFlat(directory) {
   return files;
 }
 
-export function getFilesRecursiveToDict(directory: string) {
-  let files: LeafBranchDict<Buffer> = {};
+export function getFilesRecursiveToDict(parent: DictRoot<Buffer>, directory: string) {
+  const stat = fs.statSync(directory);
 
-  const items = fs.readdirSync(directory);
-  for (const item of items) {
-    const itemPath = path.join(directory, item);
-    const stat = fs.statSync(itemPath);
-
-    if (stat.isFile()) {
-      const data = fs.readFileSync(itemPath);
-      files[item] = {
-        value: data,
-        isLeaf: true
-      };
-    } else if (stat.isDirectory()) {
-      files[item] = {
-        isLeaf: false,
-        children: getFilesRecursiveToDict(itemPath)
-      };
+  if (stat.isFile()) {
+    const data = fs.readFileSync(directory);
+    return {
+      parent: parent,
+      value: data,
+    } as DictLeaf<Buffer>;
+  } else if (stat.isDirectory()) {
+    let files: DictBranch<Buffer> = {
+      parent: parent,
+      value: directory,
+      children: {}
+    };
+    const items = fs.readdirSync(directory);
+    for (const item of items) {
+      const itemPath = path.join(directory, item);
+      files[itemPath] = getFilesRecursiveToDict(parent, itemPath);
     }
+    return files;
+  } else {
+    throw new ArgumentException('unkown file type', directory)
   }
-  return files;
 }

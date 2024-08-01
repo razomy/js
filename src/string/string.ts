@@ -22,11 +22,6 @@ export function extractPrePathFrom(filePath: string, root: string): string {
   }
 }
 
-export function count(str: string, char: string) {
-  return str.split(char).length - 1;
-}
-
-
 export function indexOfAny(str: string, chars: string[], offset: number) {
   for (let i = offset; i < str.length; i++) {
     if (chars.includes(str[i])) {

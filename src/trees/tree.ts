@@ -213,7 +213,21 @@ export function LastChildDeep<T extends TreeNode>(node: T) {
 export function ForeachDeep<T extends TreeNode>(node: T, cb: (node: T) => void) {
   cb(node);
   for (const n of node.children) {
-    ForeachDeep<T>(n as T, cb);
+    ForeachDeep<T>(n, cb);
+  }
+}
+
+export function ForeachDeepDict<T extends TreeNode>(node: T, cb: (node: T) => void) {
+  cb(node);
+  for (const n in node.children) {
+    ForeachDeepDict<T>(node.children[n], cb);
+  }
+}
+
+export function ForeachDeepDictOptional<T extends TreeNode>(node: T, cb: (node: T) => void) {
+  cb(node);
+  for (const n in node.children || []) {
+    ForeachDeepDictOptional<T>(node.children[n], cb);
   }
 }
 
