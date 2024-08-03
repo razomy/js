@@ -9,7 +9,8 @@ import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/enc
 import { RectangleCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/rectangle_codec';
 import { SvgCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/svg_codec';
 import { TextCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/text_codec';
-import {NotSupportedException} from 'razomy.js/exceptions/not_supported_exception';
+
+import {UnknownTypeArgumentException} from "razomy.js/exceptions/unknown_type_argument_exception";
 
 
 export class CodecFactory implements IFactory<ICodec<ElementView, any>> {
@@ -31,7 +32,7 @@ export class CodecFactory implements IFactory<ICodec<ElementView, any>> {
       return new TextCodec(this.encodeNodeFactory);
     }
 
-    throw new NotSupportedException();
+    throw new UnknownTypeArgumentException(element);
   }
 
   public createByNode(element?: ElementView): ICodec<ElementView, any> {
@@ -43,6 +44,6 @@ export class CodecFactory implements IFactory<ICodec<ElementView, any>> {
       return new TextCodec(this.encodeNodeFactory);
     }
 
-    throw new NotSupportedException();
+    throw new UnknownTypeArgumentException(element);
   }
 }

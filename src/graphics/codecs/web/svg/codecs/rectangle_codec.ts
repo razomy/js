@@ -1,4 +1,3 @@
-
 import { ICodec } from 'razomy.js/codec/i_codec';
 import { PositionAttribute } from 'razomy.js/graphics/attributes/position_attribute';
 import { SizeAttribute } from 'razomy.js/graphics/attributes/size_attribute';

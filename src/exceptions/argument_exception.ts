@@ -1,5 +1,5 @@
+import {Exception} from 'razomy.js/exceptions/exception';
 
-import {ContextError} from 'razomy.js/exceptions/context_error';
-
-export class ArgumentException extends ContextError {
+export class ArgumentException extends Exception {
 }
+

@@ -1,6 +1,6 @@
-const regex = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
+import {isString} from "razomy.js/string/string";
 
-const isString = s => typeof (s) === 'string';
+const regex = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
 
 export function accept_language_parse(al) {
   const strings = (al || '').match(regex);

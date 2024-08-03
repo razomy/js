@@ -1,5 +1,7 @@
+import {Exception} from 'razomy.js/exceptions/exception';
 
-import {ContextError} from 'razomy.js/exceptions/context_error';
-
-export class NotImplementedException extends ContextError {
+export class NotImplementedException extends Exception {
+  constructor() {
+    super('Code under construction.', null);
+  }
 }

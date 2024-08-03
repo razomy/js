@@ -1,7 +1,8 @@
 import path from 'path';
-import { executeAsync, tryLogAsync } from 'razomy.js/shells/shell';
+import { executeAsync } from 'razomy.js/shells/shell';
 import {readFile} from 'razomy.js/fs/read';
 import {writeFile} from 'razomy.js/fs/write';
+import {tryAsync} from "razomy.js/async/promise";
 
 
 // Execute the command
@@ -40,13 +41,13 @@ fileSubPath = '/data/start.txt',
     const index = commits.indexOf(commit);
 
     const checkoutCommand = `git checkout ${commit.commitID}`;
-    await tryLogAsync(executeAsync(checkoutCommand, { cwd: repositoryPath }));
+    await tryAsync(executeAsync(checkoutCommand, { cwd: repositoryPath }));
 
     const data = readFile(repositoryPath + fileSubPath);
     writeFile(repositorynewPath + fileSubPath, data);
 
     const commitCommand = `git add . && git commit --date "${commit.commitDate}" -m "${commit.commitName}"`;
-    await tryLogAsync(executeAsync(commitCommand, { cwd: repositorynewPath }));
+    await tryAsync(executeAsync(commitCommand, { cwd: repositorynewPath }));
 
     console.log(`${index + 1}. Commit ID: ${commit.commitID}`);
     console.log(`   Commit Name: ${commit.commitName}`);

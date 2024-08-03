@@ -1,12 +1,13 @@
+import 'dotenv/config'
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
-// import cors from 'cors';
+import cors from 'cors';
 // import helmet from 'helmet';
-import { logger } from 'razomy.js/servers/logger.js';
+import { logger } from 'razomy.js/servers/logger';
 import { Ctx }  from 'razomy.js/express/ctx';
-import { echo } from 'razomy.js/servers/echo.js';
+import { echo } from 'razomy.js/servers/echo';
 
 export { shutdownFunction } from 'razomy.js/servers/shutdown_function';
 
@@ -46,7 +47,7 @@ app.use(bodyParser.text({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 app.use(methodOverride());
-// app.use(cors());
+app.use(cors());
 
 
 // app.options('*', cors());

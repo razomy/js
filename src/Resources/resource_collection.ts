@@ -1,4 +1,3 @@
-
 import {NotImplementedException} from 'razomy.js/exceptions/not_implemented_exception';
 import { Constructor } from 'razomy.js/object/constructor';
 import {Resource}  from 'razomy.js/resources/resource';

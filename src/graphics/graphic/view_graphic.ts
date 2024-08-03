@@ -1,4 +1,3 @@
-
 import {GraphicEntity}  from 'razomy.js/graphics/graphic/graphic_entity';
 
 export interface IViewGraphic {

@@ -21,3 +21,11 @@ export function waitAsync(seconds) {
     }, seconds); // convert seconds to milliseconds
   });
 }
+
+export async function tryAsync(fn) {
+  try {
+    return await fn;
+  } catch (e) {
+    console.log(e);
+  }
+}

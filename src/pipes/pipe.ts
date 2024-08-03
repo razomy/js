@@ -1,6 +1,6 @@
 type ExecuteAny = (input: unknown) => unknown
 type Execute<I, O> = (input: I) => O
-type Pipe<I1, O1> = Execute<I1, O1>
+export type Pipe<I1, O1> = Execute<I1, O1>
 
 type P1<I1, O1> = [Pipe<I1, O1>]
 type P2<I1, O1, O2> = [...P1<I1, O1>, Pipe<O1, O2>]
@@ -28,7 +28,16 @@ export function line<T>(...array: T[]): T[] {
 export function execute<I1, O1>(
   arr: [Pipe<I1, any>, ...any, Pipe<any, O1>],
   args: I1
-): O1 {
+);
+export function execute<I1, O1>(
+  arr: Pipe<any, any>[],
+  args: I1
+);
+export function execute<I1, O1>(
+  arr: Pipe<any, any>[],
+  args: I1
+)
+  : O1 {
   let next_value: any = args;
   for (let i = 0; i < arr.length; i++) {
     const fn = arr[i];

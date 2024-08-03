@@ -1,23 +1,30 @@
-type Execute<I extends Array<any>, O> = (...req: I) => O
+import {Function} from "razomy.js/function/function";
+import {Dict} from "razomy.js/dict/dict";
+import {FunctionSpec} from "razomy.js/spec/function_spec";
 
-export async function execute_text<I extends Array<any>, O>(cb: Execute<I, O>, req: I, res: O | null = null, err: Error | null = null) {
+
+export async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
   const resultFn = async () => await cb(...req);
-  if (res != null) {
-    expect(await resultFn()).toStrictEqual(res);
-  } else if (err != null) {
+  if (err != null) {
     expect(resultFn).toThrowError(err);
+    return;
+  }
+  const result = await resultFn();
+  if (res != null) {
+    expect(result).toStrictEqual(res);
   }
 }
 
-export interface Test<I extends Array<any>, O> {
-  input: I,
-  otput: O,
-  error?: Error,
+
+export function tests<I extends Array<any>, O>(cb: Function<I, O>, array: Dict<FunctionSpec<I, O>>) {
+  for (let key in array) {
+    const spec = array[key];
+    it(key, async () => await test(cb, spec.input, spec.otput, spec.error));
+  }
 }
 
-export function texts<I extends Array<any>, O>(cb: Execute<I, O>, array: Test<I, O>[]) {
-  for (let key in array) {
-    const test = array[key];
-    it(key, async () => await execute_text(cb, test.input, test.otput, test.error));
+function assert(condition: boolean, message = "Assertion failed") {
+  if (!condition) {
+    throw new Error(message);
   }
 }

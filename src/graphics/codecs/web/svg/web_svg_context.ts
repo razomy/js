@@ -1,4 +1,3 @@
-
 import { CodecConfig }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec_config';
 import { CodecFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec_factory';
 import { CodecRegistry }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec_registry';

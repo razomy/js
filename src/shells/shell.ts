@@ -15,11 +15,3 @@ export function executeAsync(command, opt) {
     });
   });
 }
-
-export async function tryLogAsync(fn) {
-  try {
-    return await fn;
-  } catch (e) {
-    console.log(e);
-  }
-}

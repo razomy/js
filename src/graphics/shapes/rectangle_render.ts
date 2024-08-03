@@ -1,4 +1,3 @@
-
 import { PositionAttribute } from 'razomy.js/graphics/attributes/position_attribute';
 import { BorderStyle } from 'razomy.js/graphics/styles/border_style';
 import { RectangleShape }  from 'razomy.js/graphics/shapes/rectangle_shape';

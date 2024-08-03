@@ -1,4 +1,3 @@
-
 import {AttributeResource} from 'razomy.js/resources/attribute_resource';
 import {ArgumentException} from 'razomy.js/exceptions/argument_exception';
 
@@ -26,6 +25,6 @@ export class TextAttribute extends AttributeResource {
       return;
     }
 
-    throw new ArgumentException();
+    throw new ArgumentException('unknown', args);
   }
 }

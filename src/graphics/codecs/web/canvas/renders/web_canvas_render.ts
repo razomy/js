@@ -8,6 +8,8 @@ import {ElementView} from 'razomy.js/graphics/elements/element_view';
 import {RectangleShape} from 'razomy.js/graphics/shapes/rectangle_shape';
 import {NotSupportedException} from 'razomy.js/exceptions/not_supported_exception';
 import {RectangleRender} from 'razomy.js/graphics/shapes/rectangle_render';
+import {ArgumentException} from "razomy.js/exceptions/argument_exception";
+import {UnknownTypeArgumentException} from "razomy.js/exceptions/unknown_type_argument_exception";
 
 
 export class ViewportRender {
@@ -49,7 +51,7 @@ export class RenderFactory implements IFactory<IRender<any>> {
       return new TextRender(this.ctx);
     }
 
-    throw  new NotSupportedException();
+    throw new UnknownTypeArgumentException('un');
   }
 }
 

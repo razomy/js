@@ -67,7 +67,7 @@ export class EntityResource extends Resource implements IEntityResource {
       return ctor;
     }
 
-    throw new ArgumentException();
+    throw new ArgumentException('unknown', ctor);
   }
 
 }

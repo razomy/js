@@ -1,5 +1,3 @@
-import * as _ from 'lodash';
-
 export class HslaParser {
   /**
    * Regex matching color in HSL or HSLA formats (ex: hsl(200, 80%, 10%), hsla(300, 50%, 80%, 0.5), hsla( 300 , 50% , 80% , 0.5 ))
@@ -25,8 +23,9 @@ export class HslaParser {
     let h: number;
     let s: number;
     let l: number;
-    const max = _.max([r, g, b]) as number;
-    const min = _.min([r, g, b]) as number;
+    const values = [r, g, b];
+    const max = Math.max(...values);
+    const min = Math.min(...values);
 
     l = (max + min) / 2;
 

@@ -1,14 +1,19 @@
 import winston from 'winston';
-import { Express } from 'express';
+import {Express} from 'express';
 import * as http from 'http';
 import {google} from 'razomy.js/google/auth/google_auth';
-import expressWs from 'express-ws';
 
-export interface Ctx {
+export interface WithServer {
+  server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
+}
+
+export interface WithUrl {
+  url: string
+}
+
+export interface Ctx extends WithServer, WithUrl {
   isProdSecure: boolean;
-  ws: expressWs.Application;
   google: google;
   app: Express;
-  server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
   logger: winston.Logger;
 }

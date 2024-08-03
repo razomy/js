@@ -3,11 +3,11 @@ export function apiKeyAuth(key) {
     key,
   ]);
 
-return function(req, res, next) {
+  return function express_middleware(req, res, next) {
     const apiKey = req.headers['x-api-key'];
 
     if (!apiKey || !validApiKeys.has(apiKey)) {
-      return res.status(401).json({ error: 'Invalid API key.' });
+      return res.status(401).json({error: 'Invalid API key.'});
     }
 
     next();

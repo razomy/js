@@ -1,4 +1,3 @@
-
 import { ElementView }  from 'razomy.js/graphics/elements/element_view';
 
 export interface IViewport {

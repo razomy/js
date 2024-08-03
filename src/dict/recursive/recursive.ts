@@ -1,4 +1,4 @@
-export type DictRecursiveValue<T> = T | DictRecursive<T>
-export type DictRecursive<T> = {
-  [key: string]: DictRecursiveValue<T>
+import {Dict} from "razomy.js/dict/dict";
+
+export interface RecursiveDict extends Dict<RecursiveDict> {
 }

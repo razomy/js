@@ -1,4 +1,3 @@
-
 import { Color }  from 'razomy.js/graphics/codecs/web/svg/color/color';
 import { HexParser }  from 'razomy.js/graphics/codecs/web/svg/color/hex_parser';
 import { HslaParser }  from 'razomy.js/graphics/codecs/web/svg/color/hsla_parser';

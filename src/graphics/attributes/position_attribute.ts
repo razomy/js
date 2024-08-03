@@ -34,6 +34,6 @@ export class PositionAttribute extends AttributeResource implements IPositionAtt
       return;
     }
 
-    throw new ArgumentException();
+    throw new ArgumentException('unknown', args);
   }
 }

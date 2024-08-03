@@ -1,4 +1,3 @@
-
 import { ElementView } from 'razomy.js/graphics/elements/element_view';
 import { WebSvgHighLightsRender }  from 'razomy.js/graphics/codecs/web/svg/renders/web_svg_high_lights_render';
 import {CodecRegistry} from 'razomy.js/graphics/codecs/web/svg/codecs/codec_registry';

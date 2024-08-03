@@ -1,4 +1,3 @@
-
 import { IFactory } from 'razomy.js/factory/i_factory';
 
 export function generateGuid() {

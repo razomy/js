@@ -1,0 +1,1 @@
+export type Function<I extends Array<any>, O> = (...req: I) => O

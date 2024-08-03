@@ -1,4 +1,3 @@
-
 import { TextAttribute } from 'razomy.js/graphics/attributes/text_attribute';
 import { ElementView }  from 'razomy.js/graphics/elements/element_view';
 
