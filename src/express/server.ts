@@ -5,19 +5,18 @@ import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 import cors from 'cors';
 // import helmet from 'helmet';
-import { logger } from 'razomy.js/servers/logger';
-import { Ctx }  from 'razomy.js/express/ctx';
-import { echo } from 'razomy.js/servers/echo';
+import {logger} from 'razomy.js/servers/logger';
+import {Ctx} from 'razomy.js/express/ctx';
+import {echo} from 'razomy.js/servers/echo';
 
-export { shutdownFunction } from 'razomy.js/servers/shutdown_function';
+export {shutdownFunction} from 'razomy.js/servers/shutdown_function';
 
-export const ctx: Ctx = {} as any;
+export function create(ctx: Ctx) {
+  ctx.logger = logger;
 
-ctx.logger = logger;
-
-const app = express();
-ctx.app = app;
-ctx.isProdSecure = process.env.NODE_ENV === 'production';
+  const app = express();
+  ctx.app = app;
+  ctx.isProdSecure = process.env.NODE_ENV === 'production';
 
 // app.use(helmet({
 //   contentSecurityPolicy: {
@@ -42,24 +41,25 @@ ctx.isProdSecure = process.env.NODE_ENV === 'production';
 //   max: 1,
 // }));
 
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.text({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-app.use(cookieParser());
-app.use(methodOverride());
-app.use(cors());
+  app.use(bodyParser.json({limit: '50mb'}));
+  app.use(bodyParser.text({limit: '50mb'}));
+  app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
+  app.use(cookieParser());
+  app.use(methodOverride());
+
+  app.use(cors());
+  app.options('*', cors());
 
 
-// app.options('*', cors());
+  ctx.server = app.listen(8080);
 
-
-ctx.server = app.listen(8080);
-
-app.get('/api/echo', echo());
+  app.get('/api/echo', echo());
 
 // app.use(express.static('public'));
 
-app.use((err, req, res, next) => {
-  logger.error(err.stack);
-  res.status(500).send('System error!');
-});
+  app.use((err, req, res, next) => {
+    logger.error(err.stack);
+    res.status(500).send('System error!');
+  });
+  return ctx;
+}

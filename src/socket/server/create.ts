@@ -1,5 +1,5 @@
 import {Server} from "socket.io";
-import {WithServer} from "razomy.js/express/ctx";
+import {WithServer} from "razomy.js/servers/server";
 
 export interface WithWebsocket {
   web_socket: Server;
