@@ -16,3 +16,7 @@ export class ValueRecursiveDict<T> implements _ValueRecursiveDict<T> {
 export function is_value_recursion<T>(obj: ValueRecursiveDictOrValue<T>): obj is ValueRecursiveDict<T> {
   return obj instanceof ValueRecursiveDict;
 }
+
+export function d<T>(_: T): ValueRecursiveDict<unknown> & T {
+  return new ValueRecursiveDict(_ as any) as ValueRecursiveDict<unknown> & T;
+}
