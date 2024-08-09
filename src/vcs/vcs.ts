@@ -1,11 +1,9 @@
-import * as diff from 'diff';
+import {difference} from "razomy.js/string/difference";
 
-// Insert characters at a specific index
 export const insertAtIndex = (string: string, index: number, chars: string): string => {
   return string.substring(0, index) + chars + string.substring(index);
 };
 
-// Remove characters from a specific index with a given length
 export const removeAtIndex = (string: string, index: number, length: number): string => {
   return string.substring(0, index) + string.substring(index + length);
 };
@@ -30,26 +28,20 @@ export interface Commit {
 }
 
 export function getCommitChanges(getPreviousContent: string, getCurrentContent: string): CommitChange[] {
-  const diffResult = diff.diffLines(
-    getPreviousContent,
-    getCurrentContent,
-    {
-      ignoreWhitespace: false,
-      newlineIsToken: true,
-    });
+  const diffResult = difference(getPreviousContent, getCurrentContent);
 
   const changes: CommitChange[] = [];
   let pos = 0;
   for (let i = 0; i < diffResult.length; i++) {
     const diffChange = diffResult[i];
 
-    if (diffChange.added) {
+    if (diffChange.type === 'added') {
       changes.push({
         pos,
         addValue: diffChange.value,
       });
       pos += diffChange.value.length;
-    } else if (diffChange.removed) {
+    } else if (diffChange.type === 'removed') {
       changes.push({
         pos,
         removeLength: diffChange.value.length,

@@ -3,4 +3,8 @@ export class Exception extends Error {
     console.error(message, args);
     super();
   }
+
+  toString() {
+    return this.message;
+  }
 }
