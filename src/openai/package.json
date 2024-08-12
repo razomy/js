@@ -1,4 +1,5 @@
 {
+  "name": "razomy.js.openai",
   "dependencies": {
     "openai": "^4.52.7"
   }
