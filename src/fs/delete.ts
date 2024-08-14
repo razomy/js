@@ -1,8 +1,8 @@
 import fs from 'fs';
 import fsExtra from 'fs-extra';
 
-export function deleteFile(filePath) {
-  return fs.rmSync(filePath);
+export function deletei(filePath: string) {
+  return fs.rmSync(filePath, {recursive: true, force: true});
 }
 
 export const clearDirectoryAsync = async (directoryPath) => {

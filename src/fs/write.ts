@@ -1,13 +1,17 @@
 import fs from 'fs';
-import {createPathIfNotExistsRecursive} from 'razomy.js/fs/create';
+import {createDirectoryIfNotExists} from 'razomy.js/fs/create';
+import path from "path";
+
+export function tryWriteFile(filePath, content) {
+  createDirectoryIfNotExists(path.dirname(filePath));
+  return fs.writeFileSync(filePath, content, 'utf8');
+}
 
 export function writeFile(filePath, content) {
-  createPathIfNotExistsRecursive(filePath);
   return fs.writeFileSync(filePath, content, 'utf8');
 }
 
 export function writeFileJson(filePath, content) {
-  createPathIfNotExistsRecursive(filePath);
   return fs.writeFileSync(filePath, JSON.stringify(content), 'utf8');
 }
 

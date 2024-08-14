@@ -1,20 +1,11 @@
 import fs from 'fs';
-import path from 'path';
+import {log_inline} from "razomy.js/shells/log";
 
-export const createDirectoryIfNotExists = (directoryPath) => {
-  if (!fs.existsSync(directoryPath)) {
-    fs.mkdirSync(directoryPath);
-    console.log(`Directory created: ${directoryPath}`);
+export function createDirectoryIfNotExists(dir_path: string) {
+  if (!fs.existsSync(dir_path)) {
+    fs.mkdirSync(dir_path, {recursive: true});
+    log_inline(`Directory created: ${dir_path}`);
   } else {
-    console.log(`Directory already exists: ${directoryPath}`);
-  }
-};
-
-export function createPathIfNotExistsRecursive(filePath) {
-  const dirname = path.dirname(filePath);
-
-  if (!fs.existsSync(dirname)) {
-    createPathIfNotExistsRecursive(dirname);
-    fs.mkdirSync(dirname);
+    log_inline(`Directory already exists: ${dir_path}`);
   }
 }

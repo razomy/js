@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from "fs";
 
 function generateRandomCharacter() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

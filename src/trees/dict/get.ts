@@ -1,5 +1,6 @@
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 import {WithChildrenDict} from "razomy.js/trees/dict/with_children_dict";
+import {assign} from "razomy.js/key/assign";
 
 export function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
@@ -31,7 +32,7 @@ export function get_path(obj, path: string) {
     return [];
   }
 
-  const closingBracketIndex = path.indexOf(':');
+  const closingBracketIndex = path.indexOf(assign);
   const slug = path.substring(0, closingBracketIndex);
 
   let childNode = Object.keys(obj).find(key => key === slug);

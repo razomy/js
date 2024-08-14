@@ -10,7 +10,9 @@ export function filter<I>(input: ValueRecursiveDictOrValue<I>, is_keep: (input: 
       const value = input[inputKey];
       if (!is_keep(value, inputKey)) {
         delete input[inputKey];
+        continue;
       }
+      input[inputKey] = filter(value, is_keep);
     }
     return input;
   } else {

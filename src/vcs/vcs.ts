@@ -113,3 +113,4 @@ export function minimizeChanges(changes: CommitChange[]): CommitChange[] {
 
   return minimizedChanges;
 }
+

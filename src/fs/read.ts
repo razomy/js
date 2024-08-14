@@ -26,3 +26,7 @@ export function tryReadFileJson(filePath) {
   }
   return readFileJson(filePath);
 }
+
+export function is_exist(file_path: string) {
+  return fs.existsSync(file_path);
+}

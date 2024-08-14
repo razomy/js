@@ -2,12 +2,13 @@ import { Storage } from '@google-cloud/storage';
 
 import fs from 'fs';
 import path from 'path';
-import {createPathIfNotExistsRecursive} from 'razomy.js/fs/create';
+import {createDirectoryIfNotExists} from 'razomy.js/fs/create';
 
 async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');
+  const dir_path = path.join(folderPath, destinationPath);
   const destinationFile = path.join(folderPath, destinationPath, filePath);
-  createPathIfNotExistsRecursive(destinationFile);
+  createDirectoryIfNotExists(dir_path);
   await file.download({ destination: destinationFile });
 }
 
@@ -46,7 +47,7 @@ async function uploadFilesRecursive(bucket, folderPath, destinationPath = '') {
 }
 
 
-export async function downloadFile(bucketName, filePath, folderPath) {
+export async function downloadFile(bucketName:string, filePath, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 

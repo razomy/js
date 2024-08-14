@@ -1,7 +1,4 @@
-import { exec } from 'child_process';
-
-
-function log(error, stdout, stderr)  {
+function log(error, stdout, stderr) {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
@@ -13,6 +10,15 @@ function log(error, stdout, stderr)  {
   console.log(`stdout: ${stdout}`);
 }
 
-exec('npm -v', log);
-exec('node -v', log);
-exec('ls -a', log);
+export function log_inline(message: string) {
+  process.stdout.write(message);
+}
+
+
+export function progress(progress: number, total: number, message: string = 'Loading') {
+  const percent = (progress / total) * 100;
+  log_inline(`\r${message}: ${progress}/${total} ${percent.toFixed(2)}%`);
+  if (progress >= total) {
+    log_inline(`\n${message} complete!\n`);
+  }
+}

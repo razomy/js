@@ -1,35 +1,8 @@
-import {exec} from 'child_process';
-import fs from 'fs';
 import path from 'path';
+import {writeToFileAsync} from "razomy.js/fs/write";
+import {formatNumber} from "razomy.js/string/number";
+import {executeAsync} from "razomy.js/shells/execute";
 
-
-export function formatNumber(number) {
-  return number.toFixed(2);
-}
-
-function writeToFile(baseDir, filename, content) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(path.join(baseDir, filename), content, 'utf8', (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(null);
-      }
-    });
-  });
-}
-
-function gitCommit(baseDir, message) {
-  return new Promise((resolve, reject) => {
-    exec(message, {cwd: baseDir}, (err, stdout, stderr) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(stdout);
-      }
-    });
-  });
-}
 
 export async function exportFiles(baseDir) {
   baseDir = path.resolve(baseDir);
@@ -58,8 +31,8 @@ export async function exportFiles(baseDir) {
     const commitMessage = `Update fileName:${fileName} date:${date}`;
 
     try {
-      await writeToFile(baseDir, filePath, content);
-      await gitCommit(baseDir, `git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`);
+      await writeToFileAsync(path.join(baseDir, filePath), content);
+      await executeAsync(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
     } catch (e) {
       console.log(e);
     }
