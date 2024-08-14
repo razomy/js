@@ -29,6 +29,6 @@ export function formatTimeLength(milliseconds: number) {
   if (remainingSeconds > 0) timeUnits.push(`${remainingSeconds}s`);
   if (remainingMilliseconds > 0) timeUnits.push(`${remainingMilliseconds}ms`);
 
-  const formattedTime = timeUnits.join(':');
+  const formattedTime = timeUnits.join(' ');
   return formattedTime;
 }

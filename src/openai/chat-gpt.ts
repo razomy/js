@@ -1,0 +1,156 @@
+import OpenAI from 'openai';
+import {models} from "razomy.js/openai/models";
+import {isObject} from "razomy.js/object/object";
+import {isString} from "razomy.js/string/string";
+
+const openai = new OpenAI();
+
+
+export function addSystemMessage(ctx, task) {
+  const messages = ctx.messages || [];
+  messages.push(
+    {
+      role: 'system',
+      content: task,
+    },
+  );
+  ctx.messages = messages;
+}
+
+export function addUserMessage(ctx, task) {
+  const messages = ctx.messages || [];
+  messages.push(
+    {
+      role: 'user',
+      content: task,
+    },
+  );
+  ctx.messages = messages;
+}
+
+export function addFunctionAndAssign(ctx, functionTemplate) {
+  const [name, description, result, result_description] = functionTemplate.split(': ');
+  const functions = ctx.functions || [];
+  functions.push({
+    name: name,
+    description: description,
+    parameters: {
+      type: 'object',
+      properties: {
+        [result]: { type: 'string', description: result_description },
+      },
+      required: [],
+    },
+  });
+
+
+  const updated = {
+    function_call: functions.length > 1 ? 'auto' : { name: name },
+    functions,
+  };
+  Object.assign(ctx, updated);
+}
+
+export function setWeightAnTokens(request) {
+  setWeight(request);
+  setTokens(request);
+}
+
+export function setWeight(ctx) {
+  const updated = {
+    temperature: 1,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  };
+  Object.assign(ctx, updated);
+}
+
+export function setTokens(ctx) {
+  const model = ctx.model || models.mild;
+  const messagesTExt = JSON.stringify(ctx.messages) + JSON.stringify(ctx.functions);
+  const max_tokens = model.token - Math.floor(messagesTExt.length / 2.5);
+  const updated = { model: model.name };
+  Object.assign(ctx, updated);
+
+  return ctx;
+}
+
+export async function gptApiV2(params = { messages: [] }) {
+  const request = {
+    temperature: 1,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    ...params,
+  };
+
+  const response = await openai.chat.completions.create(request as any);
+
+  return response;
+}
+
+
+export async function apiMessage(request) {
+  setWeightAnTokens(request);
+
+  const response = await openai.chat.completions.create(request);
+  return response.choices[0].message;
+}
+
+
+export async function v1(params = { messages: [] } as any) {
+  const prompt = params.messages.map(i => i.content).join('\n');
+
+  delete params.messages;
+
+  const request = {
+    prompt,
+    temperature: 1,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    ...params,
+  };
+  const response = await openai.completions.create(request);
+
+  return response.choices[0].text;
+}
+
+export async function gptApi(messageOrMessagesOrRequest) {
+  if (isString(messageOrMessagesOrRequest)) {
+    const req = { messages: [{ role: 'user', content: messageOrMessagesOrRequest }] };
+    setTokens(req);
+    return (await gptApiV2(req as any)).choices[0].message.content;
+  } else if (Array.isArray(messageOrMessagesOrRequest)) {
+    return (await gptApiV2(messageOrMessagesOrRequest as any)).choices[0].message.content;
+  } else if (isObject(messageOrMessagesOrRequest)) {
+    setTokens(messageOrMessagesOrRequest);
+    return (await gptApiV2(messageOrMessagesOrRequest)).choices[0].message.content;
+  } else {
+    throw new Error('Unknown request');
+  }
+}
+
+export async function getModels() {
+  const res = await openai.models.list();
+  console.log(res.data.map(i => i.id));
+  return res.data;
+}
+
+export async function singleRequestPro(text, model = models.expensive120000) {
+  let messageOrMessagesOrRequest = {
+    messages: [
+      {
+        role: 'system',
+        content: text,
+      },
+    ],
+    model: model,
+  };
+  messageOrMessagesOrRequest = setTokens(messageOrMessagesOrRequest);
+
+  const result = await gptApiV2(messageOrMessagesOrRequest as any);
+  const message = result.choices[0].message.content;
+  return message;
+}
