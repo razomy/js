@@ -1,6 +1,6 @@
 import {ValueListItemValue, ValueRecursiveList} from "razomy.js/list/value_recursive/value";
 import {Dict} from "razomy.js/dict/dict";
-import {isString} from "razomy.js/string/string";
+import {is_string} from "razomy.js/string/is_string";
 import {assign} from "razomy.js/key/assign";
 
 export function value_or_list_to_flat_dict(
@@ -9,7 +9,7 @@ export function value_or_list_to_flat_dict(
   parent: string,
   separator: string
 ): Dict<string> {
-  if (isString(input)) {
+  if (is_string(input)) {
     dict[parent] = input;
   } else {
     for (let inputKey of input) {

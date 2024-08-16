@@ -1,6 +1,6 @@
 import path from 'path';
 import {writeToFileAsync} from "razomy.js/fs/write";
-import {formatNumber} from "razomy.js/string/number";
+import {number_string} from "razomy.js/string/number_string";
 import {executeAsync} from "razomy.js/shells/execute";
 
 
@@ -36,7 +36,7 @@ export async function exportFiles(baseDir) {
     } catch (e) {
       console.log(e);
     }
-    console.log(`Add ${i} of ${files.length} ${formatNumber(i / files.length * 100)} %`);
+    console.log(`Add ${i} of ${files.length} ${number_string(i / files.length * 100)} %`);
     // return;
   }
 }

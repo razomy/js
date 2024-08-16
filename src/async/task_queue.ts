@@ -38,7 +38,7 @@ export class TaskQueue {
 
     this.tryProcessQueue();
 
-    return new Promise((r, er) => {
+    return new Promise((resolve, reject) => {
       const subscription = this.complete.subscribe({
         next: (i) => {
           const taskState = i[id];
@@ -53,20 +53,20 @@ export class TaskQueue {
           this.ctx.logger.debug('Task remove id=' + id + '.');
 
           if (taskState.error) {
-            er(taskState.error);
+            reject(taskState.error);
           } else {
-            r(taskState.res);
+            resolve(taskState.res);
           }
         },
         error: (e) => {
           subscription.unsubscribe();
           this.ctx.logger.error(e);
-          er(e);
+          reject(e);
         }, complete: () => {
           subscription.unsubscribe();
           const error = { message: 'Subject complete before task next.' };
           this.ctx.logger.error(error.message);
-          er(error);
+          reject(error);
         },
       });
     });

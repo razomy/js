@@ -1,13 +1,7 @@
-import {difference_string} from "razomy.js/string/difference";
+import {differences_string} from "razomy.js/string/differences_string";
 import {progress} from "razomy.js/shells/log";
+import {add_index_string, remove_index_string} from "razomy.js/string/index_string";
 
-export const insertAtIndex = (string: string, index: number, chars: string): string => {
-  return string.substring(0, index) + chars + string.substring(index);
-};
-
-export const removeAtIndex = (string: string, index: number, length: number): string => {
-  return string.substring(0, index) + string.substring(index + length);
-};
 
 export interface RemoveCommitChange {
   removeLength: number,
@@ -29,7 +23,7 @@ export interface Commit {
 }
 
 export function getCommitChanges(getPreviousContent: string, getCurrentContent: string): CommitChange[] {
-  const diffResult = difference_string(getPreviousContent, getCurrentContent);
+  const diffResult = differences_string(getPreviousContent, getCurrentContent);
 
   const changes: CommitChange[] = [];
   let pos = 0;
@@ -55,39 +49,26 @@ export function getCommitChanges(getPreviousContent: string, getCurrentContent: 
   return changes;
 }
 
-export function snapshot(prevSnapshot: string, commits: Commit[]): string {
-
-  let state = prevSnapshot;
-
+export function snapshot(prev_snapshot: string, commits: Commit[]): string {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
-    for (let j = 0; j < commit.changes.length; j++) {
-      const change = commit.changes[j];
-      if ('removeLength' in change) {
-        state = removeAtIndex(state, change.pos, change.removeLength);
-      } else {
-        state = insertAtIndex(state, change.pos, change.addValue!);
-      }
-    }
+    prev_snapshot = applyChanges(prev_snapshot, commit.changes);
   }
 
-  return state;
+  return prev_snapshot;
 }
 
-export function applyChanges(prevSnapshot: string, changes: CommitChange[]): string {
-
-  let state = prevSnapshot;
-
+export function applyChanges(prev_snapshot: string, changes: CommitChange[]): string {
   for (let j = 0; j < changes.length; j++) {
     const change = changes[j];
     if ('removeLength' in change) {
-      state = removeAtIndex(state, change.pos, change.removeLength);
+      prev_snapshot = remove_index_string(prev_snapshot, change.pos, change.removeLength);
     } else {
-      state = insertAtIndex(state, change.pos, change.addValue!);
+      prev_snapshot = add_index_string(prev_snapshot, change.pos, change.addValue!);
     }
   }
 
-  return state;
+  return prev_snapshot;
 }
 
 

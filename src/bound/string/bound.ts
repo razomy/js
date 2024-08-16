@@ -64,6 +64,7 @@ export function getStart(str: string): { x: number, y: number } {
   loop: while (i < str.length) {
     const char = str[i];
 
+
     switch (char) {
       case '\n':
         y++;

@@ -1,4 +1,4 @@
-import {WithValue} from "razomy.js/value/value";
+import {WithValue} from "razomy.js/value/with_value";
 
 export interface Leaf<T> extends WithValue<T> {
 }

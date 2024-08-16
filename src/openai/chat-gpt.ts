@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import {models} from "razomy.js/openai/models";
 import {isObject} from "razomy.js/object/object";
-import {isString} from "razomy.js/string/string";
+import {is_string} from "razomy.js/string/is_string";
 
 const openai = new OpenAI();
 
@@ -118,7 +118,7 @@ export async function v1(params = { messages: [] } as any) {
 }
 
 export async function gptApi(messageOrMessagesOrRequest) {
-  if (isString(messageOrMessagesOrRequest)) {
+  if (is_string(messageOrMessagesOrRequest)) {
     const req = { messages: [{ role: 'user', content: messageOrMessagesOrRequest }] };
     setTokens(req);
     return (await gptApiV2(req as any)).choices[0].message.content;

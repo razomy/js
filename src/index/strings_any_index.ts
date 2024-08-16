@@ -1,0 +1,18 @@
+import {String} from "razomy.js/string/string";
+import {Offset} from "razomy.js/offset/offest";
+import {Index} from "razomy.js/index/index";
+
+export function strings_any_index(
+  string: String,
+  equal_strings: String[],
+  offset: Offset = 0,
+  max_offset: Offset = string.length
+): Index {
+  for (let i = offset; i < max_offset; i++) {
+    if (equal_strings.includes(string[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}

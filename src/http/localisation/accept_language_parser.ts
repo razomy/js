@@ -1,4 +1,4 @@
-import {isString} from "razomy.js/string/string";
+import {is_string} from "razomy.js/string/is_string";
 
 const regex = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
 
@@ -31,7 +31,7 @@ export function accept_language_pick(supportedLanguages, acceptLanguage, options
     return null;
   }
 
-  if (isString(acceptLanguage)) {
+  if (is_string(acceptLanguage)) {
     // TODO: Unkbown parce function CODE: acceptLanguage = parse(acceptLanguage);
   }
 
