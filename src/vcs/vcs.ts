@@ -1,4 +1,5 @@
-import {difference} from "razomy.js/string/difference";
+import {difference_string} from "razomy.js/string/difference";
+import {progress} from "razomy.js/shells/log";
 
 export const insertAtIndex = (string: string, index: number, chars: string): string => {
   return string.substring(0, index) + chars + string.substring(index);
@@ -9,16 +10,16 @@ export const removeAtIndex = (string: string, index: number, length: number): st
 };
 
 export interface RemoveCommitChange {
-  removeLength?: number,
+  removeLength: number,
+  pos: number,
 }
 
 export interface AddCommitChange {
-  addValue?: string,
-}
-
-export interface CommitChange extends RemoveCommitChange, AddCommitChange {
+  addValue: string,
   pos: number,
 }
+
+export type CommitChange = RemoveCommitChange | AddCommitChange;
 
 export interface Commit {
   id: string,
@@ -28,7 +29,7 @@ export interface Commit {
 }
 
 export function getCommitChanges(getPreviousContent: string, getCurrentContent: string): CommitChange[] {
-  const diffResult = difference(getPreviousContent, getCurrentContent);
+  const diffResult = difference_string(getPreviousContent, getCurrentContent);
 
   const changes: CommitChange[] = [];
   let pos = 0;
@@ -62,7 +63,7 @@ export function snapshot(prevSnapshot: string, commits: Commit[]): string {
     const commit = commits[i];
     for (let j = 0; j < commit.changes.length; j++) {
       const change = commit.changes[j];
-      if (change.removeLength) {
+      if ('removeLength' in change) {
         state = removeAtIndex(state, change.pos, change.removeLength);
       } else {
         state = insertAtIndex(state, change.pos, change.addValue!);
@@ -79,7 +80,7 @@ export function applyChanges(prevSnapshot: string, changes: CommitChange[]): str
 
   for (let j = 0; j < changes.length; j++) {
     const change = changes[j];
-    if (change.removeLength) {
+    if ('removeLength' in change) {
       state = removeAtIndex(state, change.pos, change.removeLength);
     } else {
       state = insertAtIndex(state, change.pos, change.addValue!);
@@ -90,27 +91,114 @@ export function applyChanges(prevSnapshot: string, changes: CommitChange[]): str
 }
 
 
-export function minimizeChanges(changes: CommitChange[]): CommitChange[] {
+export function removeDuplicatedChanges(changes: CommitChange[]): CommitChange[] {
   const minimizedChanges: CommitChange[] = [];
 
   for (let i = 0; i < changes.length; i++) {
-    const currentChange = changes[i];
-    const { pos, addValue, removeLength } = currentChange;
+    const current = changes[i];
 
     // Check if the change conflicts with any subsequent changes
     const hasConflict = changes.slice(i + 1).some(change => {
-      return change.pos === pos && (
-        (change.addValue && addValue) ||
-        (change.removeLength && removeLength)
+      return change.pos === current.pos && (
+        ('addValue' in change && 'addValue' in current && change.addValue && current.addValue) ||
+        ('removeLength' in change && 'removeLength' in current && change.removeLength && current.removeLength)
       );
     });
 
     // If there is no conflict, add the change to the minimized array
     if (!hasConflict) {
-      minimizedChanges.push(currentChange);
+      minimizedChanges.push(current);
     }
   }
 
   return minimizedChanges;
+}
+
+
+export function squashChanges(changes: CommitChange[]): CommitChange[] {
+  if (changes.length === 0) {
+    return [];
+  }
+
+  let last_add: AddCommitChange | undefined = undefined;
+  let last_remove: RemoveCommitChange | undefined = undefined;
+  let last = changes[0];
+  let pos_sshit = 1;
+  const next: CommitChange[] = [changes[0]];
+
+  for (let i = 1; i < changes.length; i++) {
+    const current = changes[i];
+
+    if ('addValue' in current) {
+      if (last_add === undefined) {
+        last_add = last = current;
+        pos_sshit = 1;
+        next.push(last)
+        continue;
+      }
+
+      if (last_add.pos + last_add.addValue.length + pos_sshit === current.pos) {
+        last_add.addValue += current.addValue;
+        pos_sshit += 1;
+        continue;
+      }
+      last_add = last = current;
+      next.push(last)
+      pos_sshit = 1;
+    } else if ('removeLength' in current) {
+      if (last_remove === undefined) {
+        last_remove = last = current;
+        next.push(last)
+        pos_sshit = 1;
+        continue;
+      }
+
+      if (last_add === undefined) {
+        continue;
+      }
+
+      if (last_remove.pos + last_add.addValue.length + pos_sshit === current.pos) {
+        last_remove.removeLength += current.removeLength;
+        continue;
+      }
+      last_remove = last = current;
+      pos_sshit = 1;
+      next.push(last)
+    }
+  }
+
+  return next;
+}
+
+export function iterate_commit(commits: Commit[], iter) {
+  let snapshot_ = '';
+  for (let i = 0; i < commits.length; i++) {
+    const commit = commits[i];
+    const commit_snapshot = snapshot(snapshot_, [commit]);
+    iter(snapshot_);
+    snapshot_ = commit_snapshot;
+  }
+}
+
+
+export function map_commit(commits: Commit[]) {
+  let snapshot_ = '';
+  const result: Commit[] = [];
+  for (let i = 0; i < commits.length; i++) {
+    progress(i, commits.length);
+    const commit = commits[i];
+    if (commit.changes.length === 0) {
+      continue;
+    }
+    const commit_snapshot = snapshot(snapshot_, [commit]);
+    result.push({
+      changes: getCommitChanges(snapshot_, commit_snapshot),
+      user: commit.user,
+      id: commit.id,
+      date: commit.date,
+    });
+    snapshot_ = commit_snapshot;
+  }
+  return result;
 }
 
