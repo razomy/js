@@ -11,13 +11,13 @@ function log(error, stdout, stderr) {
 }
 
 export function log_inline(message: string) {
-  process.stdout.write(message);
+  process.stdout.write('\r' + message);
 }
 
 
 export function progress(progress: number, total: number, message: string = 'Loading') {
   const percent = (progress / total) * 100;
-  log_inline(`\r${message}: ${progress}/${total} ${percent.toFixed(2)}%`);
+  log_inline(`${message}: ${progress}/${total} ${percent.toFixed(2)}%`);
   if (progress >= total) {
     log_inline(`\n${message} complete!\n`);
   }
