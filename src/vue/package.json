@@ -1,6 +1,7 @@
 {
   "name": "razomy.js.vue",
   "dependencies": {
-    "vue": "^3.4.36"
+    "vue": "^3.4.36",
+    "vuetify": "^3.7.0"
   }
 }

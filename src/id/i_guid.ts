@@ -1,3 +1,3 @@
-export interface IGuid {
+export interface WithId {
     id: string;
 }

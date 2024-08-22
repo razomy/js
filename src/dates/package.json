@@ -1,0 +1,7 @@
+{
+  "name": "razomy.js.dates",
+  "dependencies": {
+    "cron-parser": "^4.9.0",
+    "ms": "^2.1.3"
+  }
+}

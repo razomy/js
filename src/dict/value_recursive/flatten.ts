@@ -1,7 +1,9 @@
+import {assign as key_assign} from "razomy.js/key/assign";
+
 export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
-  function recurse(cur: any, prop: string) {
+  function recurse(cur: any, prop: string, assign = key_assign) {
     if (typeof cur !== 'object' || cur === null) {
       result[prop] = cur;
     } else if (Array.isArray(cur)) {
@@ -16,7 +18,7 @@ export function flatten(data: Record<string, any>): Record<string, any> {
       for (const p in cur) {
         if (Object.prototype.hasOwnProperty.call(cur, p)) {
           isEmpty = false;
-          recurse(cur[p], prop ? `${prop}.${p}` : p);
+          recurse(cur[p], prop ? `${prop}${assign}${p}` : p);
         }
       }
       if (isEmpty && prop) {
@@ -29,11 +31,11 @@ export function flatten(data: Record<string, any>): Record<string, any> {
   return result;
 }
 
-export function unflatten(data: Record<string, any>): Record<string, any> {
+export function unflatten(data: Record<string, any>, assign = key_assign): Record<string, any> {
   if (typeof data !== 'object' || data === null || Array.isArray(data)) {
     return data;
   }
-  const regex = /\.?([^.[\]]+)|\[(\d+)]/g;
+  const regex = new RegExp(`\\${assign}?([^${assign}[\]]+)|\[(\d+)]`, 'g');
   const resultholder: Record<string, any> = {};
   for (const p in data) {
     let cur = resultholder;

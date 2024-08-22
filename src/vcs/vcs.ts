@@ -183,3 +183,36 @@ export function map_commit(commits: Commit[]) {
   return result;
 }
 
+function findRepetitions(arr: Commit[]) {
+  const frequencyMap = new Map();
+
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    for (let j = 0; j < item.changes.length; j++) {
+      const change = item.changes[j];
+      if ('addValue' in change) {
+        if (frequencyMap.has(change.addValue)) {
+          frequencyMap.set(change.addValue, frequencyMap.get(change.addValue) + 1);
+        } else {
+          frequencyMap.set(change.addValue, 1);
+        }
+      }
+
+    }
+  }
+
+
+  const repetitiveItems = Array.from(frequencyMap.entries())
+    .filter(([item, count]) => count > 1)
+    .sort((a, b) => b[1] - a[1]);
+
+  const repetitions: string[] = [];
+
+
+  // Collect items that appear more than once
+  repetitiveItems.forEach(([item, count]) => {
+    repetitions.push(count + '_' + item);
+  });
+
+  return repetitions;
+}

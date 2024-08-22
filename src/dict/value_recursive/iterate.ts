@@ -1,18 +1,19 @@
 import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
 import {DictKey} from "razomy.js/dict/dict";
 
-export function iterate<I>(input: ValueRecursiveDictOrValue<I>,
-                           node_cb: (input: ValueRecursiveDict<I>, parent: DictKey) => void,
-                           leaf_cb: (input: I, parent: DictKey) => void,
-                           parent: string): void {
+export function iterate<T>(input: ValueRecursiveDictOrValue<T>,
+                           node_cb: (input: ValueRecursiveDict<T>, parents: DictKey[]) => void,
+                           leaf_cb: (input: T, parent: DictKey[]) => void,
+                           parents: DictKey[],
+                           ): void {
   if (is_value_recursion(input)) {
-    node_cb(input, parent)
+    node_cb(input, parents)
     for (let inputKey in input) {
       const value = input[inputKey];
-      iterate(value, node_cb, leaf_cb, inputKey)
+      iterate(value, node_cb, leaf_cb, [...parents, inputKey])
     }
   } else {
-    leaf_cb(input, parent)
+    leaf_cb(input, parents)
   }
 }
 
