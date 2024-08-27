@@ -1,16 +1,9 @@
 import fs from 'fs';
-import fsExtra from 'fs-extra';
 
-export function deletei(filePath: string) {
+export function delete_(filePath: string) {
   return fs.rmSync(filePath, {recursive: true, force: true});
 }
 
-export const clearDirectoryAsync = async (directoryPath) => {
-  try {
-    await fsExtra.emptyDir(directoryPath);
-    console.log(`Directory cleared: ${directoryPath}`);
-  } catch (error) {
-    console.error(`Error clearing directory: ${directoryPath}`);
-    console.error(error);
-  }
-};
+export function delete_async(filePath: string) {
+  return fs.rmSync(filePath, {recursive: true, force: true});
+}

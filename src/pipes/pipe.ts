@@ -46,7 +46,7 @@ export function execute<I1, O1>(
   return next_value as O1;
 }
 
-export async function executeAsync<I1, O1>(
+export async function execute_async<I1, O1>(
   arr: [Pipe<I1, any>, ...any, Pipe<any, O1>],
   args: I1
 ) {

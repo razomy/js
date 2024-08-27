@@ -1,6 +1,7 @@
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
+import {String} from "razomy.js/string/string";
 
-export function sub_extract_path(file_path: string, equal_path: string): string {
+export function sub_extract_path(file_path: String, equal_path: String): String {
   const parts: string[] = file_path.split('/');
   const startIndex: number = parts.indexOf(equal_path);
 
@@ -12,7 +13,7 @@ export function sub_extract_path(file_path: string, equal_path: string): string 
   }
 }
 
-export function pre_extract_path(file_path: string, equal_path: string): string {
+export function pre_extract_path(file_path: String, equal_path: String): String {
   const parts: string[] = file_path.split('/');
   const startIndex: number = parts.indexOf(equal_path);
 
