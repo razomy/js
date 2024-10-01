@@ -1,6 +1,7 @@
 type ExecuteAny = (input: unknown) => unknown
 type Execute<I, O> = (input: I) => O
-export type Pipe<I1, O1> = Execute<I1, O1>
+export type Pipe<I1, O1 = I1> = Execute<I1, O1>
+
 
 type P1<I1, O1> = [Pipe<I1, O1>]
 type P2<I1, O1, O2> = [...P1<I1, O1>, Pipe<O1, O2>]
