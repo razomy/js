@@ -30,6 +30,10 @@ export function execute<I1, O1>(
   arr: [Pipe<I1, any>, ...any, Pipe<any, O1>],
   args: I1
 );
+export function execute(
+  arr: ExecuteAny[],
+  args?: any
+);
 export function execute<I1, O1>(
   arr: Pipe<any, any>[],
   args: I1
