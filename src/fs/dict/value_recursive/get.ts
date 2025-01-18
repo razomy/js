@@ -14,7 +14,7 @@ function order_by_create_date(directory: string, items: string[]) {
     .map(i => i.path);
 }
 
-export function get(directory: string): ValueRecursiveDictOrValue<Buffer> {
+export function get(directory: string, is_skip: (path) => boolean): ValueRecursiveDictOrValue<Buffer> {
   const stat = fs.statSync(directory);
 
   if (stat.isFile()) {
@@ -25,7 +25,10 @@ export function get(directory: string): ValueRecursiveDictOrValue<Buffer> {
     const items = order_by_create_date(directory, fs.readdirSync(directory));
     for (const item of items) {
       const itemPath = path.join(directory, item);
-      files[item] = get(itemPath);
+      if(is_skip(itemPath)) {
+          continue
+      }
+      files[item] = get(itemPath, is_skip);
     }
     return files;
   } else {
