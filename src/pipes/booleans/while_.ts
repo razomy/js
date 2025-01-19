@@ -1,6 +1,6 @@
 import {Execute} from "razomy.js/pipes/booleans/execute";
 
-export function loop<T>(ctx: T, next: Execute<T>) {
+export function while_<T>(ctx: T, next: Execute<T>) {
   while (next(ctx)) {
   }
   return false;
