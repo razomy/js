@@ -5,7 +5,7 @@ import {writeFile} from 'razomy.js/fs/write';
 import {tryAsync} from "razomy.js/async/promise";
 
 
-export async function get_commits(dir_path: string, commitCount: number = 100) {
+export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
 
 
 // Command to retrieve the last commits with commit IDs and names
@@ -15,7 +15,7 @@ export async function get_commits(dir_path: string, commitCount: number = 100) {
   const lines = stdout.trim().split('\n');
 
   // Create an array to store the commit information
-  let commits: { id:string, commitName:string, date:string }[] = [];
+  let commits: { id: string, commitName: string, date: string }[] = [];
 
   // Process each line to extract the commit ID and name
   lines.forEach((line) => {
@@ -26,8 +26,7 @@ export async function get_commits(dir_path: string, commitCount: number = 100) {
   return commits.reverse();
 }
 
-// Execute the command
-async function git_to_string_gitted(
+async function git_file_to_new_git_file(
   repositoryPath,
   repositorynewPath,
   fileSubPath = '/data/start.txt',
@@ -35,7 +34,7 @@ async function git_to_string_gitted(
   repositoryPath = path.resolve(repositoryPath);
   repositorynewPath = path.resolve(repositorynewPath);
 
-  const commits = await get_commits(repositoryPath);
+  const commits = await get_git_commits_id(repositoryPath);
   for (const commit of commits) {
     const index = commits.indexOf(commit);
 

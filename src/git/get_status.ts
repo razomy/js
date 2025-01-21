@@ -54,7 +54,7 @@ export function parse_status(str: string): Status {
   return status;
 }
 
-export function parse_show_ref(str: string) {
+export function parse_status_ref(str: string) {
   var refs = {};
   var lines = str.length === 0 ? [] : str.split('\n');
   lines.forEach(function (str) {
@@ -67,7 +67,7 @@ export function parse_show_ref(str: string) {
   return refs;
 }
 
-export async function status_git(dir_path: string) {
+export async function get_status(dir_path: string) {
   return new Promise<Status>((resolve, reject) => {
     var cmd = 'git status --porcelain -b';
     exec(cmd, {cwd: dir_path}, function (err, stdout) {
@@ -77,15 +77,6 @@ export async function status_git(dir_path: string) {
   });
 }
 
-export async function is_clean_status_git(dir_path: string) {
-  return (await status_git(dir_path)).clean;
-}
-
-export async function get_last_commit_id_or_null(ctx: { dir_path: string }) {
-  try {
-    return (await executeAsync(`git log --format="%H" -n 1`, {cwd: ctx.dir_path})).toString();
-  } catch (e) {
-
-  }
-  return null;
+export async function is_clean_status(dir_path: string) {
+  return (await get_status(dir_path)).clean;
 }

@@ -56,7 +56,7 @@ async function compareVersions(repoPath, filePath) {
 }
 
 
-async function git_history_to_json(
+async function git_file_commits_to_commit_json_file(
   repositoryPathRoot: string,
   fileSubPath: string,
 ) {
