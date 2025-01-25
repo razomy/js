@@ -1,19 +1,53 @@
-import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
-import {DictKey} from "razomy.js/dict/dict";
+import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {Execute} from "razomy.js/pipes/booleans/execute";
 
-export function iterate<T>(input: ValueRecursiveDictOrValue<T>,
-                           node_cb: (input: ValueRecursiveDict<T>, parents: DictKey[]) => void,
-                           leaf_cb: (input: T, parent: DictKey[]) => void,
-                           parents: DictKey[],
-                           ): void {
-  if (is_value_recursion(input)) {
-    node_cb(input, parents)
-    for (let inputKey in input) {
-      const value = input[inputKey];
-      iterate(value, node_cb, leaf_cb, [...parents, inputKey])
-    }
-  } else {
-    leaf_cb(input, parents)
-  }
+interface Iterate<T> {
+  parents: string[];
+  input: ValueRecursiveDictOrValue<T>;
 }
 
+export enum IterateBreaks {
+  None = 0,
+  Skip = 1,
+  Break = 2,
+}
+
+export function iterate<T, C extends Iterate<T>>(
+  ctx: C,
+  is_iterate_child_execute_bool: (ctx: C) => IterateBreaks,
+): IterateBreaks {
+  const result = is_iterate_child_execute_bool(ctx);
+  if (result === IterateBreaks.Skip) {
+    return result;
+  }
+  if (result === IterateBreaks.Break) {
+    return result;
+  }
+
+  if (is_value_recursion(ctx.input)) {
+    for (let inputKey in ctx.input) {
+      const parents = ctx.parents;
+      const value = ctx.input[inputKey];
+      ctx.parents = [...parents, inputKey];
+      ctx.input = value;
+
+      const result = iterate(ctx, is_iterate_child_execute_bool);
+      if (result === IterateBreaks.Break) {
+        return result;
+      }
+    }
+  }
+  return IterateBreaks.None;
+}
+
+
+export function iterate_break<T, C extends Iterate<T>>(
+  ctx: C,
+  is_iterate_child_execute_bool: Execute<C>
+): void {
+  iterate(ctx, (c) => {
+    return is_iterate_child_execute_bool(c)
+      ? IterateBreaks.None
+      : IterateBreaks.Break
+  })
+}

@@ -1,8 +1,8 @@
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
 import {create_by_path} from "razomy.js/dict/value_recursive/create_by_path";
 import {set} from "razomy.js/dict/value_recursive/set";
-import {iterate} from "razomy.js/dict/value_recursive/iterate";
+import {iterate_break} from "razomy.js/dict/value_recursive/iterate";
 import {DictKey} from "razomy.js/dict/dict";
 
 export function get<T>(value_recursive: ValueRecursiveDictOrValue<T>, path: DictKey[], path_offset: number): ValueRecursiveDictOrValue<T> {
@@ -32,14 +32,17 @@ export function get_with_path<T>(value_recursive: ValueRecursiveDictOrValue<T>, 
 
 export function get_matches_key<T>(value_recursive: ValueRecursiveDictOrValue<T>, keys: string[]) {
   const matches = [] as DictKey[][];
-  iterate(value_recursive, (n, parents) => {
-    for (let key of keys) {
-      if (key in n) {
-        matches.push(parents);
-        return;
+  iterate_break({input: value_recursive, parents: []}, (ctx) => {
+    if (is_value_recursion(ctx.input)) {
+      for (let key of keys) {
+        if (key in ctx.input) {
+          matches.push(ctx.parents);
+          return false;
+        }
       }
     }
-  }, i => i, []);
+    return true;
+  });
   return matches;
 }
 
