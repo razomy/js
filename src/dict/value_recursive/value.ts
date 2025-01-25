@@ -8,7 +8,7 @@ interface _ValueRecursiveDict<T> extends Dict<ValueRecursiveDictOrValue<T>> {
 export class ValueRecursiveDict<T> implements _ValueRecursiveDict<T> {
   [key: string]: ValueRecursiveDictOrValue<T>;
 
-  constructor(args = {}) {
+  constructor(args: any = {}) {
     Object.assign(this, args);
   }
 }
@@ -17,6 +17,6 @@ export function is_value_recursion<T>(obj: ValueRecursiveDictOrValue<T>): obj is
   return obj instanceof ValueRecursiveDict;
 }
 
-export function d<T>(_: T): ValueRecursiveDict<unknown> & T {
-  return new ValueRecursiveDict(_ as any) as ValueRecursiveDict<unknown> & T;
+export function d<T = unknown, T1 = object>(_: T1): ValueRecursiveDict<T> & T1 {
+  return new ValueRecursiveDict<T>(_) as ValueRecursiveDict<T> & T1;
 }

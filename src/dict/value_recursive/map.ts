@@ -3,7 +3,7 @@ import {isObject} from "razomy.js/object/object";
 import {DictKey} from "razomy.js/dict/dict";
 
 export function map<I, O>(input: ValueRecursiveDict<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): ValueRecursiveDict<O>;
-export function map<I, O>(input: I, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): O;
+export function map<I, O>(input: I, leaf_value_cb: (input: I, parent?: DictKey) => O, parent: DictKey): O;
 export function map<I, O>(input: ValueRecursiveDictOrValue<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): ValueRecursiveDictOrValue<O> ;
 export function map<I, O>(
   input: ValueRecursiveDictOrValue<I>,
@@ -15,7 +15,7 @@ export function map<I, O>(
   input: ValueRecursiveDictOrValue<I>,
   leaf_value_cb: (input: I, parent: DictKey) => O,
   parent: DictKey,
-  node_cb: ((input: ValueRecursiveDict<I>, parent: DictKey) => ValueRecursiveDict<O> | O) | null = null,
+  node_cb: ((input: ValueRecursiveDict<I>, parent: DictKey) => ValueRecursiveDict<O> | O) | undefined = undefined,
 ): ValueRecursiveDictOrValue<O> {
   if (is_value_recursion(input)) {
     let iter: any = input;
