@@ -9,20 +9,30 @@ import {
 import {equal_} from "razomy.js/equal/equal";
 import {get_similar, get_string} from "razomy.js/array/change/get";
 
-type P<T> = ChangeDifference<ValueRecursiveDictOrValue<T>> & { path: string };
+export interface ReplaceDifference<T> {
+  type: 'replace_key',
+  old_value: T,
+  value: T,
+}
+
+
+type P<T> = (ReplaceDifference<ValueRecursiveDictOrValue<T>> | ChangeDifference<ValueRecursiveDictOrValue<T>>) & {
+  path: string
+};
 
 export function differences_dict<T>(
   diffs: P<T>[],
   a: ValueRecursiveDict<T>,
   b: ValueRecursiveDict<T>,
-  path
+  path,
+  separator = '/'
 ): P<T>[] {
   const a_keys = Object.keys(a);
   let b_keys = Object.keys(b);
 
   for (let old_key of a_keys) {
     if (b_keys.includes(old_key)) {
-      differences(diffs, a[old_key], b[old_key], path + '.' + old_key);
+      differences(diffs, a[old_key], b[old_key], [path, old_key].filter(i => i).join(separator));
       b_keys = b_keys.filter(i => i != old_key);
       continue
     }
@@ -30,10 +40,10 @@ export function differences_dict<T>(
     let new_key: string | null = get_similar(old_key, b_keys);
     if (new_key) {
       diffs.push({
-        type: "replace",
+        type: "replace_key",
         path: path,
         old_value: d({[old_key]: a[old_key]}),
-        value: d({[new_key]: b[new_key]}) as any
+        value: d({[new_key]: b[new_key]})
       });
       b_keys = b_keys.filter(i => i != new_key);
       continue
