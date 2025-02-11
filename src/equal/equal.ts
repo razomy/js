@@ -1,5 +1,5 @@
 export function equal_(a, b) {
-  if (a === b) return true;
+  if (a.equals(b)) return true;
 
   if (typeof a !== "object" || typeof b !== "object" || a === null || b === null) {
     return false;
