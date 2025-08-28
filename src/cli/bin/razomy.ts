@@ -3,4 +3,4 @@
 
 import {cli} from 'razomy.js/cli/cli';
 
-await cli(process.argv.slice(2));
+await cli(process.argv.slice(2) as any);
