@@ -1,5 +1,5 @@
-export class Exception extends Error {
-  constructor(public message: string, public args: unknown) {
+export class Exception<T = unknown> extends Error {
+  constructor(public message: string, public context: T) {
     super();
   }
 

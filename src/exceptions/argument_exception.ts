@@ -1,5 +1,5 @@
 import {Exception} from 'razomy.js/exceptions/exception';
 
-export class ArgumentException extends Exception {
+export class ArgumentException<T = unknown> extends Exception<T> {
 }
 

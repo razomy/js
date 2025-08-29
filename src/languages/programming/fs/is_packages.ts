@@ -1,6 +1,7 @@
 import * as path from 'path';
 import {Slug, WithPath} from "razomy.js/fs/path";
 import {is_exist} from "razomy.js/fs/read";
+import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
 export const PYTHON_DEPENDENCIES = ['venv'];
 export const NODEJS_DEPENDENCIES = ['node_modules'];
@@ -26,6 +27,12 @@ export const MAC_DS_STORE_FILE = ".DS_Store";
 
 export function is_mac_ds_store_key(slug: Slug) {
   return slug.endsWith(MAC_DS_STORE_FILE);
+}
+
+export class is_mac_ds_store_key_ArgumentException extends ArgumentException<WithPath> {
+  constructor(path: string) {
+    super(is_mac_ds_store_key.name, {path});
+  }
 }
 
 export function is_git_key(slug: Slug) {

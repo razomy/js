@@ -6,7 +6,9 @@ export const JS_ANGULAR_CACHE = ['.angular'];
 export const CSHARP_CACHE = ['obj'];
 export const DART_CACHE = ['.dart_tool'];
 export const NEXT_CACHE = ['.next'];
+export const NUXT_CACHE = ['.nuxt'];
 export const DART_FIREBASE_CACHE = ['.firebase'];
+export const UNITY_CACHE = ['Temp'];
 
 export const KNOWN_CACHE = [
   ...PYTHON_CACHE,
@@ -14,7 +16,9 @@ export const KNOWN_CACHE = [
   ...CSHARP_CACHE,
   ...DART_CACHE,
   ...NEXT_CACHE,
+  ...NUXT_CACHE,
   ...DART_FIREBASE_CACHE,
+  ...UNITY_CACHE,
 ];
 
 function getPathComponents(path_: string): string[] {
