@@ -2,7 +2,7 @@ import {Exception} from "razomy.js/exceptions/exception";
 
 export type CatchFn = (throwable_fn: () => void) => void;
 
-export function collect(context_fn: (catch_fn_: CatchFn) => void) {
+export function collect() {
   const errors = [] as Error[];
 
   function catch_fn(throwable_fn: () => void) {
@@ -15,7 +15,5 @@ export function collect(context_fn: (catch_fn_: CatchFn) => void) {
     }
   }
 
-  context_fn(catch_fn);
-
-  return errors;
+  return {errors, catch_fn};
 }
