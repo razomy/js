@@ -1,11 +1,9 @@
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 import {create_by_path} from "razomy.js/kv/create_by_path";
 import {set} from "razomy.js/kv/set";
-import {iterate} from "razomy.js/kv/iterate";
-import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable, Valuable} from "razomy.js/kv/kv";
+import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from "razomy.js/kv/kv";
 import {is_akv} from "razomy.js/kv/akv";
-
-export type Key = string;
+import {Slug} from "razomy.js/fs/path";
 
 export function get<T>(value_recursive: ArrayOrKeyValuable<T, T>, path: T[], path_offset: number): Valuable<T, T> {
   if (is_akv(value_recursive)) {
@@ -35,7 +33,7 @@ export function get_with_path<T>(value_recursive: ArrayKeyValuable<T, T>, path: 
 }
 
 
-export function get_parents<T>(value_recursive: Valuable<T, T>, path: Key[], path_offset: number): Valuable<T, T>[] {
+export function get_parents<T>(value_recursive: Valuable<T, T>, path: Slug[], path_offset: number): Valuable<T, T>[] {
   if (is_akv(value_recursive)) {
     for (let [key, value] of value_recursive!) {
       if (key !== path[path_offset]) {
