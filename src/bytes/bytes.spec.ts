@@ -1,11 +1,11 @@
 import { getObjectSizeInBytes }  from 'razomy.js/bytes/bytes';
 
-describe('encodeString and decodeString', () => {
-  it('should encode a string using gzip compression', () => {
+describe('bytes', () => {
+  it('getObjectSizeInBytes', () => {
     const input = { foo: 'bar' };
 
     const encoded = getObjectSizeInBytes(input);
-    console.log(encoded);
+    expect(encoded).toStrictEqual(13)
   });
 });
 

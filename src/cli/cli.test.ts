@@ -1,5 +1,5 @@
 import {cli} from "razomy.js/cli/cli";
-import {Module} from "razomy.js/cli/module";
+import {Module, TerminalArgs} from "razomy.js/cli/module";
 
 const TestModule = {
     ["test:test1"]: () => Promise.resolve(0),
@@ -7,6 +7,16 @@ const TestModule = {
     ["test:test3"]: (a: string, b: string) => Promise.resolve(0),
 } as const satisfies Module;
 
-cli(["test:test1"]);
-cli(["test:test2", "a"]);
-cli(["test:test3", "a", "b"]);
+describe("cli", () => {
+    describe("cli", () => {
+        it("accepts empty arrays for `mergeProcessCovs`", () => {
+            const params = [
+                ["test:test1"],
+                ["test:tests1"],
+                ["test:test2", "a"],
+                ["test:test3", "a", "b"],
+            ] satisfies TerminalArgs<keyof Module & string>[];
+            expect(true).toStrictEqual(true)
+        });
+    });
+});

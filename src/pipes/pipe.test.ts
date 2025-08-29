@@ -1,6 +1,6 @@
 import {execute, line} from 'razomy.js/pipes/pipe';
 
-describe('razomy.js.pipe', () => {
+describe('pipe', () => {
   it('pipe', () => {
     const world_line = line(
       (prefix: string) => prefix + ' world',

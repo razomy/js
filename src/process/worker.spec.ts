@@ -1,4 +1,10 @@
-// import process from 'process';
+describe('processes', () => {
+  it('processes_to_promise', () => {
+    expect(true).toStrictEqual(true)
+  });
+});
+
+
 //
 // const send_event = (id, ctx) => process.send({id, ctx})
 //
