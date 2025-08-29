@@ -16,8 +16,8 @@ function getPathComponents(path_: string): string[] {
   return path_.split(path.sep).filter(component => component.length > 0);
 }
 
-export function isInPackages(ctx: WithPath): boolean {
-  const pathComponents = getPathComponents(ctx.path);
+export function isInPackages(path_: string): boolean {
+  const pathComponents = getPathComponents(path_);
   return KNOWN_DEPENDENCIES.some(depDir => pathComponents.includes(depDir));
 }
 
@@ -33,5 +33,5 @@ export function is_git_key(slug: Slug) {
 }
 
 export function is_without_git(slug: Slug) {
-  return is_exist(path.join(slug, GIT_SLUG))
+  return !is_exist(path.join(slug, GIT_SLUG))
 }

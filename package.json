@@ -23,7 +23,7 @@
   "scripts": {
     "init": "npm install",
     "start:dev": "tsc --project tsconfig.lib.json --watch",
-    "build": "tsc --project tsconfig.lib.json",
+    "build": "rm -rf dist && tsc --project tsconfig.lib.json",
     "test": "jest"
   },
   "type": "module",

@@ -1,6 +1,5 @@
 export class Exception extends Error {
-  constructor(message: string, args: unknown) {
-    console.error(message, args);
+  constructor(public message: string, public args: unknown) {
     super();
   }
 

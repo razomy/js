@@ -19,8 +19,8 @@ function getPathComponents(path_: string): string[] {
   return path_.split(path.sep).filter(component => component.length > 0);
 }
 
-export function isInOutput(ctx: WithPath): boolean {
-  const pathComponents = getPathComponents(ctx.path);
+export function isInOutput(path_: string): boolean {
+  const pathComponents = getPathComponents(path_);
 
   return KNOWN_OUTPUT.some(outputDir => pathComponents.includes(outputDir));
 }
