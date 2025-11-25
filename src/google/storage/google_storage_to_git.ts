@@ -18,7 +18,7 @@ export async function exportFiles(baseDir) {
     // maxResults: 5,
     versions: true,
   });
-  files = files.sort((a, b) => new Date(a.metadata.timeCreated).getTime() - new Date(b.metadata.timeCreated).getTime());
+  files = files.sort((a, b) => new Date(a.metadata.timeCreated!).getTime() - new Date(b.metadata.timeCreated!).getTime());
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
