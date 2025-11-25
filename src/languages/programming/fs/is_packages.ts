@@ -3,7 +3,7 @@ import {Slug, WithPath} from "razomy.js/fs/path";
 import {is_exist} from "razomy.js/fs/read";
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
-export const PYTHON_DEPENDENCIES = ['venv'];
+export const PYTHON_DEPENDENCIES = ['.venv'];
 export const NODEJS_DEPENDENCIES = ['node_modules'];
 export const UNITY_DEPENDENCIES = ['Library'];
 

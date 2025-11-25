@@ -1,5 +1,5 @@
-import {executeAsync} from "razomy.js/shells/execute";
 import {exec} from "child_process";
+import {execSync} from "node:child_process";
 
 interface Status {
   local_branch: string,
@@ -75,6 +75,12 @@ export async function get_status(dir_path: string) {
       resolve(parse_status(stdout));
     });
   });
+}
+
+export function get_status_sync(dir_path: string) {
+  var cmd = 'git status --porcelain -b';
+  const stdout = execSync(cmd, {cwd: dir_path, encoding: "utf-8"});
+  return parse_status(stdout);
 }
 
 export async function is_clean_status(dir_path: string) {

@@ -1,7 +1,7 @@
 export class Counter {
   value = 0
 
-  increment() {
-    this.value = this.value + 1;
+  increment(size = 1) {
+    this.value = this.value + size;
   }
 }
