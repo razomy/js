@@ -1,6 +1,6 @@
 {
   "name": "razomy.js.git",
   "dependencies": {
-    "simple-git": "3.25.0"
+    "simple-git": "3.30.0"
   }
 }
