@@ -8,7 +8,11 @@ export const NEXT_CACHE = ['.next'];
 export const NX_CACHE = ['lib'];
 export const IDEA_CACHE = ['.idea'];
 export const NUXT_CACHE = ['.nuxt'];
-export const DART_FIREBASE_CACHE = ['.firebase', ["flutter", "ephemeral"]];
+export const DART_FIREBASE_CACHE = [
+  '.firebase',
+  ["flutter", "ephemeral"],
+  ["ios", ".symlinks"],
+];
 export const UNITY_CACHE = ['Temp', 'Debug'];
 export const JAVA_CACHE = ['.gradle'];
 

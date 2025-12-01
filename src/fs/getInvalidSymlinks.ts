@@ -7,7 +7,7 @@ import {CatchFn} from "razomy.js/exceptions/collect";
 export class InvalidLinkException extends Exception {
   constructor(public linkPath: string,
               public targetPath: string) {
-    super("invalid link", {});
+    super("InvalidLinkException", "invalid link");
   }
 }
 
