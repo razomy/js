@@ -7,5 +7,5 @@ export function getFirstKey<T>(obj: Dict<T>): string {
       return key;
     }
   }
-  throw new ArgumentException('no keys in object', obj);
+  throw new ArgumentException('no keys in object', obj as {});
 }

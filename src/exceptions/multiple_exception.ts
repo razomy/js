@@ -4,7 +4,7 @@ export class MultipleException extends Exception {
   public exceptions: Exception[];
 
   constructor(exceptions: Exception[]) {
-    super("MultipleException", " Merge execeptions");
+    super("Merge exceptions");
     this.exceptions = exceptions;
   }
 }

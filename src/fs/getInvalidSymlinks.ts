@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {Exception} from "razomy.js/exceptions/exception";
-import {is_exist} from "razomy.js/fs/read";
-import {CatchFn} from "razomy.js/exceptions/collect";
+import {is_exist} from 'razomy.js/fs/read';
+import {CatchFn} from 'razomy.js/exceptions/collect';
+import {ArgumentException} from 'razomy.js/exceptions/argument_exception';
 
-export class InvalidLinkException extends Exception {
+export class InvalidLinkException extends ArgumentException<{ linkPath: string, targetPath: string }> {
   constructor(public linkPath: string,
               public targetPath: string) {
-    super("InvalidLinkException", "invalid link");
+    super('invalid targetPath', {linkPath, targetPath});
   }
 }
 
