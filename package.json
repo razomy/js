@@ -8,6 +8,11 @@
     "@types/node": "24.10.1"
   },
   "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./*": {
       "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
@@ -30,9 +35,14 @@
   "engines": {
     "node": "24.5.0"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+
   "version": "0.0.0",
   "workspaces": [
-    "src/*",
-    "../js.notation"
+    "src/*"
   ]
 }
