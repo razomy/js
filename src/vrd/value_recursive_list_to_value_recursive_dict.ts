@@ -1,4 +1,4 @@
-import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 import {ValueRecursiveList, ValueRecursiveListOrValueItem} from "razomy.js/list/value_recursive/value";
 import {is_string} from "razomy.js/string/is_string";
 

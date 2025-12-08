@@ -1,5 +1,5 @@
-import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
-import {get} from "razomy.js/dict/value_recursive/get";
+import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
+import {get} from "razomy.js/vrd/get";
 
 export function set<T>(value: ValueRecursiveDictOrValue<T>, path: string[], newValue: ValueRecursiveDictOrValue<T>): void {
   const parent_path = path.slice(0, -1);

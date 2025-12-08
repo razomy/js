@@ -1,8 +1,8 @@
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
-import {create_by_path} from "razomy.js/dict/value_recursive/create_by_path";
-import {set} from "razomy.js/dict/value_recursive/set";
-import {iterate_break} from "razomy.js/dict/value_recursive/iterate";
+import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
+import {create_by_path} from "razomy.js/vrd/create_by_path";
+import {set} from "razomy.js/vrd/set";
+import {iterate_break} from "razomy.js/vrd/iterate";
 import {DictKey} from "razomy.js/dict/dict";
 
 export function get<T>(value_recursive: ValueRecursiveDictOrValue<T>, path: DictKey[], path_offset: number): ValueRecursiveDictOrValue<T> {

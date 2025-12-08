@@ -5,7 +5,7 @@ import {
   is_value_recursion,
   ValueRecursiveDict,
   ValueRecursiveDictOrValue
-} from "razomy.js/dict/value_recursive/value";
+} from "razomy.js/vrd/value";
 import {equal_} from "razomy.js/equal/equal";
 import {get_similar, get_string} from "razomy.js/array/change/get";
 

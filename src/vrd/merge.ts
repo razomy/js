@@ -1,4 +1,4 @@
-import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 
 export function merge<T>(a: ValueRecursiveDictOrValue<T>, b: ValueRecursiveDictOrValue<T>, empty: T): ValueRecursiveDictOrValue<T> ;
 export function merge<A, B>(a: A, b: B, empty: string): A & B ;

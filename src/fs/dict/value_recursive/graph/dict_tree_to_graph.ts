@@ -1,6 +1,6 @@
 import {BranchDictOrLeaf} from "razomy.js/trees/dict/dict";
 import {Graph} from "razomy.js/graph/graph";
-import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 
 
 function iterate_children<T>(

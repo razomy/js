@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import {createDirectoryIfNotExists} from "razomy.js/fs/create";
-import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 
 export function create(absolute_path: string, dict: ValueRecursiveDictOrValue<Buffer>) {
   if (is_value_recursion(dict)) {

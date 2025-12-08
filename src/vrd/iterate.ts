@@ -1,4 +1,4 @@
-import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {is_value_recursion, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 import {Execute} from "razomy.js/pipes/booleans/execute";
 
 interface Iterate<T> {

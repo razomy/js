@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/dict/value_recursive/value";
+import {ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 
 function order_by_create_date(directory: string, items: string[]) {
   return items

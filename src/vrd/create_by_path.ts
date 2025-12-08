@@ -1,4 +1,4 @@
-import {ValueRecursiveDict} from "razomy.js/dict/value_recursive/value";
+import {ValueRecursiveDict} from "razomy.js/vrd/value";
 
 export function create_by_path<T>(path: string[]) {
   const res = new ValueRecursiveDict<T>();

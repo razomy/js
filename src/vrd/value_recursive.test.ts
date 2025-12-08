@@ -1,6 +1,6 @@
-import {get} from "razomy.js/dict/value_recursive/get";
-import {ValueRecursiveDict} from "razomy.js/dict/value_recursive/value";
-import {merge} from "razomy.js/dict/value_recursive/merge";
+import {get} from "razomy.js/vrd/get";
+import {ValueRecursiveDict} from "razomy.js/vrd/value";
+import {merge} from "razomy.js/vrd/merge";
 
 describe('dict', () => {
   describe('value_recursive', () => {
