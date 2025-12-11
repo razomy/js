@@ -69,3 +69,9 @@ export function last_equal<T, T2>(as: T[], bs: T2[], is_condition: (a: T, b: T2)
   }
   return null;
 }
+
+export function has_sub_array(master: string[], sub: string[]): boolean {
+  return sub.every(
+    (i => v => i = master.indexOf(v, i) + 1)(0)
+  );
+}

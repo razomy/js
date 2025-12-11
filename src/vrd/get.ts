@@ -33,13 +33,11 @@ export function get_with_path<T>(value_recursive: ValueRecursiveDictOrValue<T>, 
 export function get_matches_key<T>(value_recursive: ValueRecursiveDictOrValue<T>, keys: string[]) {
   const matches = [] as DictKey[][];
   iterate_skip({input: value_recursive, parents: []}, (ctx) => {
-    if (is_value_recursion(ctx.input)) {
       for (let key of keys) {
-        if (key in ctx.input) {
+        if (key === ctx.parents.at(-1)) {
           matches.push(ctx.parents);
           return false;
         }
-      }
     }
     return true;
   });

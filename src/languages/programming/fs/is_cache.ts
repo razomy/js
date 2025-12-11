@@ -1,4 +1,5 @@
 import * as path from 'path';
+import {has_sub_array} from 'razomy.js/array/array';
 
 export const PYTHON_CACHE = ['__pycache__', '.pytest_cache'];
 export const JS_ANGULAR_CACHE = ['.angular'];
@@ -10,8 +11,8 @@ export const IDEA_CACHE = ['.idea'];
 export const NUXT_CACHE = ['.nuxt'];
 export const DART_FIREBASE_CACHE = [
   '.firebase',
-  ["flutter", "ephemeral"],
-  ["ios", ".symlinks"],
+  ['flutter', 'ephemeral'],
+  ['ios', '.symlinks'],
 ];
 export const UNITY_CACHE = ['Temp', 'Debug'];
 export const JAVA_CACHE = ['.gradle'];
@@ -36,7 +37,7 @@ function getPathComponents(path_: string): string[] {
 
 function hasSubArray(master: string[], sub: string | string[]): boolean {
   if (Array.isArray(sub)) {
-    return sub.every((i => v => i = master.indexOf(v, i) + 1)(0));
+    return has_sub_array(master, sub)
 
   }
   return master.includes(sub)
