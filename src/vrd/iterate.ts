@@ -24,10 +24,11 @@ export function iterate<T, C extends Iterate<T>>(
     return result;
   }
 
-  if (is_value_recursion(ctx.input)) {
-    for (let inputKey in ctx.input) {
-      const parents = ctx.parents;
-      const value = ctx.input[inputKey];
+  const input = ctx.input;
+  const parents = ctx.parents;
+  if (is_value_recursion(input)) {
+    for (let inputKey in input) {
+      const value = input[inputKey];
       ctx.parents = [...parents, inputKey];
       ctx.input = value;
 
@@ -49,5 +50,16 @@ export function iterate_break<T, C extends Iterate<T>>(
     return is_iterate_child_execute_bool(c)
       ? IterateBreaks.None
       : IterateBreaks.Break
+  })
+}
+
+export function iterate_skip<T, C extends Iterate<T>>(
+  ctx: C,
+  is_iterate_child_execute_bool: Execute<C>
+): void {
+  iterate(ctx, (c) => {
+    return is_iterate_child_execute_bool(c)
+      ? IterateBreaks.None
+      : IterateBreaks.Skip
   })
 }

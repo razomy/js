@@ -2,7 +2,7 @@ import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 import {is_value_recursion, ValueRecursiveDict, ValueRecursiveDictOrValue} from "razomy.js/vrd/value";
 import {create_by_path} from "razomy.js/vrd/create_by_path";
 import {set} from "razomy.js/vrd/set";
-import {iterate_break} from "razomy.js/vrd/iterate";
+import {iterate_break, iterate_skip} from 'razomy.js/vrd/iterate';
 import {DictKey} from "razomy.js/dict/dict";
 
 export function get<T>(value_recursive: ValueRecursiveDictOrValue<T>, path: DictKey[], path_offset: number): ValueRecursiveDictOrValue<T> {
@@ -32,7 +32,7 @@ export function get_with_path<T>(value_recursive: ValueRecursiveDictOrValue<T>, 
 
 export function get_matches_key<T>(value_recursive: ValueRecursiveDictOrValue<T>, keys: string[]) {
   const matches = [] as DictKey[][];
-  iterate_break({input: value_recursive, parents: []}, (ctx) => {
+  iterate_skip({input: value_recursive, parents: []}, (ctx) => {
     if (is_value_recursion(ctx.input)) {
       for (let key of keys) {
         if (key in ctx.input) {
