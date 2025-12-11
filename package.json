@@ -28,7 +28,7 @@
   "scripts": {
     "init": "npm install",
     "start:dev": "tsc --project tsconfig.lib.json --watch",
-    "build": "rm -rf dist && tsc --project tsconfig.lib.json",
+    "build": "rm -rf dist && tsc --project tsconfig.lib.json && npm pack",
     "test": "jest"
   },
   "type": "module",
@@ -38,10 +38,14 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "version": "0.0.0",
   "workspaces": [
     "src/*"
-  ]
+  ],
+  "dependencies": {
+    "razomy.js.dates": "./src/dates"
+  }
 }
