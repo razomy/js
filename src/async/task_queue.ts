@@ -1,4 +1,3 @@
-import { BehaviorSubject } from 'rxjs';
 import { ConsoleLogger, Logger } from 'razomy.js/logging/logger';
 
 function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
@@ -18,88 +17,73 @@ function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promi
 }
 
 export class TaskQueue {
-  private isProcessing: boolean;
-  private queue: { id: number, task: () => Promise<any> }[];
+  private isProcessing = false;
+  private queue: {
+    id: number;
+    task: () => Promise<any>;
+    resolve: (value: any) => void;
+    reject: (reason: any) => void;
+  }[] = [];
   private id = 0;
 
-  private complete = new BehaviorSubject<{ [id: number]: { promise: () => Promise<any>, res: any, error?: any } }>({});
+  constructor(private ctx: { logger: Logger } = { logger: new ConsoleLogger() }) {}
 
-  constructor(private ctx: { logger: Logger } = { logger: new ConsoleLogger() }) {
-    this.queue = [];
-    this.isProcessing = false;
-  }
-
-  async enqueue<T>(task: (() => T) | (() => Promise<T>)): Promise<T> {
-    const taskPromise = createTaskPromise<T>(task);
+  /**
+   * Adds a task to the queue and returns a Promise that resolves
+   * when the specific task has finished executing.
+   */
+  enqueue<T>(task: (() => T) | (() => Promise<T>)): Promise<T> {
     const id = ++this.id;
+    this.ctx.logger.debug(`Task add id=${id}.`);
 
-    this.queue.push({ task: taskPromise, id });
-    this.ctx.logger.debug('Task add id=' + id + '.');
+    return new Promise<T>((resolve, reject) => {
+      // 1. Wrap the task to ensure it is always a Promise
+      const wrappedTask = async () => Promise.resolve(task());
 
-    this.tryProcessQueue();
-
-    return new Promise((resolve, reject) => {
-      const subscription = this.complete.subscribe({
-        next: (i) => {
-          const taskState = i[id];
-
-          if (!taskState) {
-            // Skip not waiting task
-            return;
-          }
-
-          subscription.unsubscribe();
-          delete this.complete.value[id];
-          this.ctx.logger.debug('Task remove id=' + id + '.');
-
-          if (taskState.error) {
-            reject(taskState.error);
-          } else {
-            resolve(taskState.res);
-          }
-        },
-        error: (e) => {
-          subscription.unsubscribe();
-          this.ctx.logger.error(e);
-          reject(e);
-        }, complete: () => {
-          subscription.unsubscribe();
-          const error = { message: 'Subject complete before task next.' };
-          this.ctx.logger.error(error.message);
-          reject(error);
-        },
+      // 2. Push the task AND its controller (resolve/reject) to the queue
+      this.queue.push({
+        id,
+        task: wrappedTask,
+        resolve,
+        reject
       });
+
+      // 3. Trigger processing
+      this.tryProcessQueue();
     });
   }
 
-  private tryProcessQueue() {
-    if (this.isProcessing) {
-      return;
-    }
-
-    if (this.queue.length === 0) {
+  private async tryProcessQueue() {
+    // If already running or empty, do nothing
+    if (this.isProcessing || this.queue.length === 0) {
       return;
     }
 
     this.isProcessing = true;
-    const factory = this.queue.shift()!;
-    const task = factory.task();
-    this.ctx.logger.debug('Task start id=' + factory.id + '.');
 
-    task
-      .then((res) => {
-        this.ctx.logger.debug('Task finish id=' + factory.id + '.');
-        this.complete.value[factory.id] = { promise: factory.task, res: res };
-        this.complete.next(this.complete.value);
-        this.isProcessing = false;
-        this.tryProcessQueue(); // Process the next task recursively
-      })
-      .catch((error) => {
-        this.ctx.logger.debug('Task error id=' + factory.id + '.');
-        this.complete.value[factory.id] = { promise: factory.task, res: null, error };
-        this.complete.next(this.complete.value);
-        this.isProcessing = false;
-        this.tryProcessQueue(); // Process the next task recursively
-      });
+    // Process tasks until the queue is empty
+    while (this.queue.length > 0) {
+      const item = this.queue.shift();
+      if (!item) break;
+
+      this.ctx.logger.debug(`Task start id=${item.id}.`);
+
+      try {
+        // Execute the task
+        const result = await item.task();
+
+        this.ctx.logger.debug(`Task finish id=${item.id}.`);
+
+        // Resolve the promise held by the 'enqueue' caller
+        item.resolve(result);
+      } catch (error) {
+        this.ctx.logger.debug(`Task error id=${item.id}.`);
+
+        // Reject the promise held by the 'enqueue' caller
+        item.reject(error);
+      }
+    }
+
+    this.isProcessing = false;
   }
 }

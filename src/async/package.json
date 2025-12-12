@@ -1,6 +1,3 @@
 {
-  "name": "razomy.js.async",
-  "dependencies": {
-    "rxjs": "^7.8.1"
-  }
+  "name": "razomy.js.async"
 }

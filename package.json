@@ -43,9 +43,27 @@
   ],
   "version": "0.0.0",
   "workspaces": [
-    "src/*"
+    "src/dates",
+    "src/async",
+    "src/bytes",
+    "src/compression",
+    "src/express",
+    "src/git",
+    "src/google",
+    "src/openai",
+    "src/socket",
+    "src/vue"
   ],
   "dependencies": {
-    "razomy.js.dates": "./src/dates"
+    "razomy.js.dates": "./src/dates",
+    "razomy.js.async": "./src/async",
+    "razomy.js.bytes": "./src/bytes",
+    "razomy.js.compression": "./src/compression",
+    "razomy.js.express": "./src/express",
+    "razomy.js.git": "./src/git",
+    "razomy.js.google": "./src/google",
+    "razomy.js.openai": "./src/openai",
+    "razomy.js.socket": "./src/socket",
+    "razomy.js.vue": "./src/vue"
   }
 }
