@@ -75,3 +75,17 @@ export function has_sub_array(master: string[], sub: string[]): boolean {
     (i => v => i = master.indexOf(v, i) + 1)(0)
   );
 }
+
+
+export function sort_by_array(order: string[], data: string[]) {
+  const orderMap = {};
+  order.forEach((id, index) => {
+    orderMap[id] = index;
+  });
+
+// 2. Sort using the map lookup (instant access)
+  data.sort((a, b) => {
+    return orderMap[a] - orderMap[b];
+  });
+  return data
+}

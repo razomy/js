@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/jest": "30.0.0",
+    "@types/lodash": "^4.17.21",
     "@types/node": "24.10.1",
     "jest": "30.2.0",
     "ts-jest": "29.4.5",
@@ -28,7 +29,7 @@
   "scripts": {
     "init": "npm install",
     "start:dev": "tsc --project tsconfig.lib.json --watch",
-    "build": "rm -rf dist && tsc --project tsconfig.lib.json && npm pack",
+    "build": "rm -rf dist && tsc --project tsconfig.lib.json && mkdir -p ./_releases && npm pack --pack-destination=_releases",
     "test": "jest"
   },
   "type": "module",
@@ -55,10 +56,12 @@
     "src/vue"
   ],
   "dependencies": {
-    "razomy.js.dates": "./src/dates",
+    "date-fns": "^4.1.0",
+    "lodash": "^4.17.21",
     "razomy.js.async": "./src/async",
     "razomy.js.bytes": "./src/bytes",
     "razomy.js.compression": "./src/compression",
+    "razomy.js.dates": "./src/dates",
     "razomy.js.express": "./src/express",
     "razomy.js.git": "./src/git",
     "razomy.js.google": "./src/google",

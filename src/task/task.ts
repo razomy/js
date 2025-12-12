@@ -1,28 +1,29 @@
 // TODO:REFACTOR
-// export interface Serialisable<T> {
-// }
+// import {Serializable} from 'razomy.js/serializable/serializable';
 //
-// //TODO: extend form Resource
-// export interface Context<T = any> extends Serialisable<T> {
-// }
+// export interface Context<T = any> extends Serializable {}
 //
 // export interface Contextable<T extends Context<T>> {
-//     c: T;
+//   c: T;
 // }
 //
-// //TODO: extend form pipe
 // export interface Executable<T> {
-//     execute: (c: T) => Promise<void>;
+//   execute: (c: T) => Promise<void>;
 // }
 //
 // export interface Cancelable<T> {
-//     cancel: (c: T) => Promise<void>;
+//   cancel: (c: T) => Promise<void>;
+// }
+//
+// export interface Rollbackable<T> {
+//   rollback: (c: T) => Promise<void>;
 // }
 //
 // export interface Task<T extends Context<T>>
-//     extends Contextable<T>,
-//         Executable<T>,
-//         Cancelable<T> {
-//     task_id: string;
-//     history: T[];
+//   extends Contextable<T>,
+//     Executable<T>,
+//     Cancelable<T>,
+//     Rollbackable<T> {
+//   task_id: string;
+//   history: T[];
 // }

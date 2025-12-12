@@ -1,5 +1,6 @@
 import {exec} from 'child_process';
 import {execSync} from 'node:child_process';
+import {shell} from 'razomy.js/shells/execSync';
 
 interface Status {
   local_branch: string,
@@ -89,3 +90,10 @@ export async function is_clean_status(dir_path: string) {
   return (await get_status(dir_path)).clean;
 }
 
+export function gitInit(c: string) {
+  shell("git init", c);
+}
+
+export function gitCommit(c: string) {
+  shell("git status", c);
+}
