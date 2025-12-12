@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 // Define the function to count the tokens in the project directory
-export function countProjectTokens(
+export function project_count(
   projectDir,
-  fileRegex = /\.js$/,
+  fileRegex = /\.ts$/,
   // Define the regex pattern to exclude certain files/directories
   excludePattern = /^\.|node_modules/) {
   // Define the token count variable

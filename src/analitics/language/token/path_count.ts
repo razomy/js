@@ -1,8 +1,9 @@
 import fs from 'fs';
+import {FilePath} from 'razomy.js/fs/path';
 
-export function countTokensByPath(filePath) {
+export function path_count(file_path: FilePath) {
   try {
-    const code = fs.readFileSync(filePath, 'utf8');
+    const code = fs.readFileSync(file_path, 'utf8');
     const matches = code.trim().match(/\b\w+\b/g) || [];
     const tokens = matches;
 
