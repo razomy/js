@@ -13,6 +13,8 @@ export const DART_FIREBASE_CACHE = [
   '.firebase',
   ['flutter', 'ephemeral'],
   ['ios', '.symlinks'],
+  // ios
+  ['Pods'],
 ];
 export const UNITY_CACHE = ['Temp', 'Debug'];
 export const JAVA_CACHE = ['.gradle'];

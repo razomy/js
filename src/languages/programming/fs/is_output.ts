@@ -5,7 +5,7 @@ import {rename} from "razomy.js/fs/rename";
 export const JS_OUTPUT = ['dist'];
 export const JAVA_OUTPUT = ['out'];
 export const PYTHON_OUTPUT = ['build'];
-export const NUXT_OUTPUT = ['output'];
+export const NUXT_OUTPUT = ['.output'];
 export const RUST_OUTPUT = ['target'];
 export const E2E_OUTPUT = ['test-results'];
 export const RAZOMY_OUTPUT = ['_releases'];

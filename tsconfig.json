@@ -13,6 +13,8 @@
     "moduleResolution": "Node",
     "noImplicitAny": false,
     "outDir": "dist",
+    //todo:remove
+    "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
     "target": "ESNext",
