@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {Slug, WithPath} from "razomy.js/fs/path";
+import {Path, Slug, WithPath} from 'razomy.js/fs/path';
 import {is_exist} from "razomy.js/fs/read";
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
@@ -39,6 +39,10 @@ export function is_git_key(slug: Slug) {
   return slug === GIT_SLUG;
 }
 
-export function is_without_git(slug: Slug) {
-  return !is_exist(path.join(slug, GIT_SLUG))
+export function is_with_git(path_: Path) {
+  return is_exist(path.join(path_, GIT_SLUG))
+}
+
+export function is_without_git(path: Path) {
+  return !is_with_git(path)
 }

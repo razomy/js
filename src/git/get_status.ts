@@ -1,12 +1,12 @@
-import {exec} from "child_process";
-import {execSync} from "node:child_process";
+import {exec} from 'child_process';
+import {execSync} from 'node:child_process';
 
 interface Status {
   local_branch: string,
   remote_branch: string,
   remote_diff: string,
   clean: boolean,
-  files: string[],
+  files: { type: 'M' | 'D', path: string }[],
 }
 
 export function parse_status(str: string): Status {
@@ -18,7 +18,7 @@ export function parse_status(str: string): Status {
     remote_branch: '',
     remote_diff: '',
     clean: true,
-    files: [] as string[],
+    files: [],
   };
   var result;
   var initial_commit_rx = /^\#\# Initial commit on ([^\n]+)\s?$/;
@@ -44,9 +44,11 @@ export function parse_status(str: string): Status {
     result = branches[1].match(/\[([^\]]+)\]/);
     status.remote_diff = result ? result[1] : null;
   }
+
   lines.forEach(function (str) {
     if (str.match(/\S/)) {
-      status.files.push(str);
+      const [type, ...path] = str.trim().split(' ')
+      status.files.push({type, path: path.join(" ")});
     }
   });
 
@@ -79,10 +81,11 @@ export async function get_status(dir_path: string) {
 
 export function get_status_sync(dir_path: string) {
   var cmd = 'git status --porcelain -b';
-  const stdout = execSync(cmd, {cwd: dir_path, encoding: "utf-8"});
+  const stdout = execSync(cmd, {cwd: dir_path, encoding: 'utf-8'});
   return parse_status(stdout);
 }
 
 export async function is_clean_status(dir_path: string) {
   return (await get_status(dir_path)).clean;
 }
+
