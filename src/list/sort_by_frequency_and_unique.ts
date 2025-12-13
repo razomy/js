@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function sort_by_frequency_and_unique(arr) {
+export function sort_by_frequency_and_unique(arr: []) {
   // 1. Count the frequency of each element
   const frequencyMap = _.countBy(arr);
 
