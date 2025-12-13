@@ -1,7 +1,7 @@
-import {ChangeDifference, Difference, ReplaceDifference} from "razomy.js/difference/difference";
-import {similarity} from "razomy.js/string/similarity";
+import {ChangeDifference, Difference, ReplaceDifference} from 'razomy.js/difference/difference';
+import {similarity} from 'razomy.js/string/similarity';
 
-export function get_similar(str, items) {
+export function get_similar(str: string, items) {
   let bestMatch: string | null = null;
   let bestSimilarity = 0;
 
@@ -35,7 +35,7 @@ export function get_string(oldArray: string[], newArray: string[]): ChangeDiffer
     let bestMatch: string | null = get_similar(deletedItem, renamedItems);
 
     if (bestMatch) {
-      renamedItems.push({old_value: deletedItem, value: bestMatch, type: "replace"});
+      renamedItems.push({old_value: deletedItem, value: bestMatch, type: 'replace'});
       remainingNewItems.delete(bestMatch); // Avoid reusing the same match
     }
   });
@@ -43,10 +43,10 @@ export function get_string(oldArray: string[], newArray: string[]): ChangeDiffer
   // Remove renamed items from new and deleted lists
   const finalNewItems = newItems
     .filter(item => !renamedItems.some(pair => pair.value === item))
-    .map(item => ({value: item, type: "added"} as Difference<string>));
+    .map(item => ({value: item, type: 'added'} as Difference<string>));
   const finalDeletedItems = deletedItems
     .filter(item => !renamedItems.some(pair => pair.old_value === item))
-    .map(item => ({value: item, type: "removed"} as Difference<string>));
+    .map(item => ({value: item, type: 'removed'} as Difference<string>));
   return [
     ...finalNewItems,
     ...finalDeletedItems,

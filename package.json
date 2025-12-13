@@ -30,6 +30,7 @@
     "init": "npm install",
     "start:dev": "tsc --project tsconfig.lib.json --watch",
     "build": "rm -rf dist && tsc --project tsconfig.lib.json && mkdir -p ./_releases && npm pack --pack-destination=_releases",
+    "deploy:local": "npm run build && npm uninstall -g razomy.js && cd _releases && npm i -g razomy.js-0.0.0.tgz",
     "test": "jest"
   },
   "type": "module",

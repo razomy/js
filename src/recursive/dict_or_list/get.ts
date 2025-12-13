@@ -1,9 +1,9 @@
-import {isKeys} from "razomy.js/dict/is_keys";
+import {is_keys_in_dict} from "razomy.js/dict/is_keys_in_dict";
 import {Dict} from "razomy.js/dict/dict";
 import {isObject} from "razomy.js/object/object";
 
 export function get_any(obj: Dict<any>, keys: string[]) {
-  if (isKeys(obj, keys)) {
+  if (is_keys_in_dict(obj, keys)) {
     return [''];
   }
 
@@ -35,7 +35,7 @@ export function get_any(obj: Dict<any>, keys: string[]) {
 
 export function get_any_all(obj: Dict<any>, keys: string[]) {
   let res: string[] = [];
-  if (isKeys(obj, keys)) {
+  if (is_keys_in_dict(obj, keys)) {
     res.push('');
   }
 
