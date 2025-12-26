@@ -1,4 +1,4 @@
-import {progress} from "razomy.js/shells/log";
+import {progress} from "razomy.js/shell/log";
 import {Difference} from "razomy.js/difference/difference";
 import {DifferenceType} from "razomy.js/difference/difference_type";
 import {first_equal_indexes} from "razomy.js/indexes/first_equal_indexes";

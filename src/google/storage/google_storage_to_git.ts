@@ -1,7 +1,7 @@
 import path from 'path';
 import {writeToFileAsync} from "razomy.js/fs/write";
 import {string} from "razomy.js/number/string/string";
-import {executeAsync} from "razomy.js/shells/execute";
+import {executeAsync} from "razomy.js/shell/execute";
 
 
 export async function exportFiles(baseDir) {

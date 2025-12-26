@@ -1,7 +1,7 @@
 import {Commit, snapshot} from "razomy.js/vcs/vcs";
-import {executeAsync} from "razomy.js/shells/execute";
+import {executeAsync} from "razomy.js/shell/execute";
 import {writeFile} from "razomy.js/fs/write";
-import {progress} from "razomy.js/shells/log";
+import {progress} from "razomy.js/shell/log";
 
 export async function init(dir_path: string, file_name: string) {
   await executeAsync('git init && git config gc.auto 0', {cwd: dir_path});

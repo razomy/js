@@ -1,5 +1,5 @@
 import {differences_string} from "razomy.js/string/differences_string";
-import {progress} from "razomy.js/shells/log";
+import {progress} from "razomy.js/shell/log";
 import {add_index_string, remove_index_string} from "razomy.js/string/index_string";
 
 

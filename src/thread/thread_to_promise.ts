@@ -1,5 +1,5 @@
 import {isMainThread, Worker} from "worker_threads";
-import {WorkerEvent} from "razomy.js/process/process_to_promise";
+import {WorkerEvent} from "razomy.js/cluster/process_to_promise";
 
 
 export function worker_to_promise<T>(worker: Worker, ctx: T) {
