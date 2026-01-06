@@ -1,8 +1,9 @@
 import simpleGit from 'simple-git';
 import fs from 'fs';
 import path from 'path';
-import {Commit, snapshot} from 'razomy.js/vcs/vcs';
-import {getCommitChanges} from 'razomy.js/vcs/vcs';
+import {strings_to_delta_strings} from 'razomy.js/add/string/strings_to_delta_strings';
+import {ActorDatetimeDeltaString, addss_to_string} from 'razomy.js/add/string/adds';
+import {delta_strings_to_string} from 'razomy.js/add/string/delta_strings_to_string';
 
 function getAllCommitHashes(git) {
   return new Promise<{ hash:string, date:string, author_name:string }[]>((resolve, reject) => {
@@ -23,7 +24,7 @@ async function compareVersions(repoPath, filePath) {
   const commits = await getAllCommitHashes(git);
 
   const history = {
-    commits: [] as Commit[],
+    commits: [] as ActorDatetimeDeltaString[],
   };
 
   for (let i = 1; i < commits.length; i++) {
@@ -32,19 +33,18 @@ async function compareVersions(repoPath, filePath) {
     const getPreviousContent = await git.show([`${from.hash}:${filePath}`]);
     const getCurrentContent = await git.show([`${to.hash}:${filePath}`]);
 
-    const changes = getCommitChanges(getPreviousContent, getCurrentContent);
+    const changes = strings_to_delta_strings(getPreviousContent, getCurrentContent);
 
-    const commit = {
-      id: to.hash,
-      date: to.date,
-      user: to.author_name,
-      changes: changes,
+    const commit:ActorDatetimeDeltaString = {
+      datetime: to.date,
+      actor: to.author_name,
+      deltas: changes,
     };
 
     history.commits.push(commit);
   }
 
-  const snapshot1 = snapshot('', history.commits);
+  const snapshot1 = addss_to_string('', history.commits);
 
   const lastCommit = await git.show([`${commits.at(-1)!.hash}:${filePath}`]);
 
