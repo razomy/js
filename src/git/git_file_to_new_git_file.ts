@@ -1,5 +1,5 @@
 import path from 'path';
-import {executeAsync} from 'razomy.js/shell/execute';
+import {executeAsync} from 'razomy.js/shell/executeAsync';
 import {readFile} from 'razomy.js/fs/read';
 import {writeFile} from 'razomy.js/fs/write';
 import {tryAsync} from "razomy.js/async/promise";
