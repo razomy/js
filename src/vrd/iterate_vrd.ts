@@ -55,7 +55,7 @@ export function iterate_break<T, C extends Iterate<T>>(
 
 export function iterate_skip<T, C extends Iterate<T>>(
   ctx: C,
-  is_iterate_child_execute_bool: Execute<C>
+  is_iterate_child_execute_bool: Execute<C> | ((ctx: C) => void)
 ): void {
   iterate_vrd(ctx, (c) => {
     return is_iterate_child_execute_bool(c)

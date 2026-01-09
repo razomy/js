@@ -1,5 +1,5 @@
 import {NotImplementedException} from 'razomy.js/exceptions/not_implemented_exception';
-import { Constructor } from 'razomy.js/object/constructor';
+import { Constructor } from 'razomy.js/class/constructor';
 import {Resource}  from 'razomy.js/resources/resource';
 import { EntityResource }  from 'razomy.js/resources/entity_resource';
 
