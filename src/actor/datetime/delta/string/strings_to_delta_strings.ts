@@ -1,5 +1,5 @@
 import {differences_string} from 'razomy/string/differences_string';
-import {DeltaString} from 'razomy/add/string/delta_string';
+import {DeltaString} from 'razomy/actor/datetime/delta/string/delta_string';
 
 export function strings_to_delta_strings(getPreviousContent: string, getCurrentContent: string): DeltaString[] {
   const diffResult = differences_string(getPreviousContent, getCurrentContent);

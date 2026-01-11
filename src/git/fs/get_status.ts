@@ -1,5 +1,5 @@
 import {get_status_sync} from 'razomy/git/get_status';
-import {SourcePathString} from 'src/fs/path/pathString';
+import {SourcePathString} from 'razomy/path/string/pathString';
 import {is_with_git} from 'razomy/languages/programming/fs/is_packages';
 import path from 'path';
 

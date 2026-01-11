@@ -1,8 +1,8 @@
 
 import {executeAsync} from "razomy/shell/executeAsync";
-import {writeFile} from "src/fs/directory/children/file/write";
 import {progress} from "razomy/shell/log";
-import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/add/string/adds';
+import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/actor/datetime/delta/string/adds';
+import {writeFile} from 'razomy/fs/file/write';
 
 export async function init(dir_path: string, file_name: string) {
   await executeAsync('git init && git config gc.auto 0', {cwd: dir_path});

@@ -1,7 +1,6 @@
-import {getChildrenDirectoryFs} from 'razomy.js/fs';
+import {getChildrenDirectoryFs} from 'razomy/fs';
 
 export function generateIndexFiles(path: string) {
   const files = getChildrenDirectoryFs(path)
   console.log(files);
-  tryCreate()
 }
