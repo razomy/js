@@ -1,7 +1,7 @@
-import {DeltaString} from 'razomy/actor/datetime/delta/string/delta_string';
-import {delta_strings_to_string} from 'razomy/actor/datetime/delta/string/delta_strings_to_string';
+import {DeltaString} from 'razomy/commit/datetime/delta/string/delta_string';
+import {delta_strings_to_string} from 'razomy/commit/datetime/delta/string/delta_strings_to_string';
 import {progress} from 'razomy/shell/log';
-import {strings_to_delta_strings} from 'razomy/actor/datetime/delta/string/strings_to_delta_strings';
+import {strings_to_delta_strings} from 'razomy/commit/datetime/delta/string/strings_to_delta_strings';
 
 export interface ActorDatetimeDeltaString {
   datetime: string,

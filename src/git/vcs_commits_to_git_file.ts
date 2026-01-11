@@ -1,7 +1,7 @@
 
 import {executeAsync} from "razomy/shell/executeAsync";
 import {progress} from "razomy/shell/log";
-import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/actor/datetime/delta/string/adds';
+import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/commit/datetime/delta/string/adds';
 import {writeFile} from 'razomy/fs/file/write';
 
 export async function init(dir_path: string, file_name: string) {

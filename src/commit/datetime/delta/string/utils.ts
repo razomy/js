@@ -1,5 +1,5 @@
-import {AddDeltaString, DeltaString, RemoveDeltaString} from 'razomy/actor/datetime/delta/string/delta_string';
-import {delta_strings_to_string} from 'razomy/actor/datetime/delta/string/delta_strings_to_string';
+import {AddDeltaString, DeltaString, RemoveDeltaString} from 'razomy/commit/datetime/delta/string/delta_string';
+import {delta_strings_to_string} from 'razomy/commit/datetime/delta/string/delta_strings_to_string';
 
 export function removeDuplicatedChanges(changes: DeltaString[]): DeltaString[] {
   const minimizedChanges: DeltaString[] = [];
