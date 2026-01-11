@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export function getAllFilesInDirectoryFlat(directory) {
+export function get(directory) {
   let files: string[] = [];
 
   function walk(currentDirPath) {
