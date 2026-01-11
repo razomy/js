@@ -1,6 +1,6 @@
 import fs from 'fs';
-import {SourcePath} from "razomy.js/fs/path";
+import {SourcePathString} from "razomy.js/fs/pathString";
 
-export function rename(a: SourcePath, b: SourcePath) {
+export function rename(a: SourcePathString, b: SourcePathString) {
   fs.renameSync(a, b)
 }

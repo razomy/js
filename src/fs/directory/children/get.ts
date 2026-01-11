@@ -1,6 +1,6 @@
 import fs from 'fs';
-import {Path} from 'razomy.js/fs/path';
+import {PathString} from 'razomy.js/fs/pathString';
 
-export function get(path: Path): string[] {
+export function get(path: PathString): string[] {
   return fs.readdirSync(path)
 }

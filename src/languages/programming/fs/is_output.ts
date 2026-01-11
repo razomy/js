@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {Path} from "razomy.js/fs/path";
+import {PathString} from "razomy.js/fs/pathString";
 import {rename} from "razomy.js/fs/rename";
 
 export const JS_OUTPUT = ['dist'];
@@ -32,7 +32,7 @@ export function isInOutput(path_: string): boolean {
   return KNOWN_OUTPUT.some(outputDir => pathComponents.includes(outputDir));
 }
 
-export function renameSlugToRazomy(path_: Path) {
+export function renameSlugToRazomy(path_: PathString) {
   const dir = path.dirname(path_);
   const res = path.join(dir, RAZOMY_OUTPUT[0]);
   rename(path_, res)

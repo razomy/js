@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {Path, Slug, WithPath} from 'razomy.js/fs/path';
+import {PathString, Slug, WithPathString} from 'razomy.js/fs/pathString';
 import {is_exist} from "razomy.js/fs/read";
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
@@ -29,9 +29,9 @@ export function is_mac_ds_store_key(slug: Slug) {
   return slug.endsWith(MAC_DS_STORE_FILE);
 }
 
-export class is_mac_ds_store_key_ArgumentException extends ArgumentException<WithPath> {
+export class is_mac_ds_store_key_ArgumentException extends ArgumentException<WithPathString> {
   constructor(path: string) {
-    super(is_mac_ds_store_key.name, {path});
+    super(is_mac_ds_store_key.name, {pathString: path});
   }
 }
 
@@ -39,10 +39,10 @@ export function is_git_key(slug: Slug) {
   return slug === GIT_SLUG;
 }
 
-export function is_with_git(path_: Path) {
+export function is_with_git(path_: PathString) {
   return is_exist(path.join(path_, GIT_SLUG))
 }
 
-export function is_without_git(path: Path) {
+export function is_without_git(path: PathString) {
   return !is_with_git(path)
 }

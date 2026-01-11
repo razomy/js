@@ -2,9 +2,9 @@ import {get_recursive_status} from 'razomy.js/git/fs/get_status';
 import {nodes_array_to_tree} from 'razomy.js/trees/list/nodes_array_to_tree';
 import {iterate_reverse} from 'razomy.js/trees/list/iterate';
 import {execSync} from 'node:child_process';
-import {SourcePath} from 'razomy.js/fs/path';
+import {SourcePathString} from 'razomy.js/fs/pathString';
 
-function restore(source_path: SourcePath) {
+function restore(source_path: SourcePathString) {
   const {files, repos} = get_recursive_status(source_path)
   const tree = nodes_array_to_tree(repos, files);
   iterate_reverse(tree[0], (node) => {

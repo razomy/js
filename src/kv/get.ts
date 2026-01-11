@@ -3,7 +3,7 @@ import {create_by_path} from "razomy.js/kv/create_by_path";
 import {set} from "razomy.js/kv/set";
 import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from "razomy.js/kv/kv";
 import {is_akv} from "razomy.js/kv/akv";
-import {Slug} from "razomy.js/fs/path";
+import {Slug} from "razomy.js/fs/pathString";
 
 export function get<T>(value_recursive: ArrayOrKeyValuable<T, T>, path: T[], path_offset: number): Valuable<T, T> {
   if (is_akv(value_recursive)) {

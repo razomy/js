@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {SourcePath} from "razomy.js/fs/path";
+import {SourcePathString} from "razomy.js/fs/pathString";
 
 export function readFile(file_path) {
   return fs.readFileSync(file_path, 'utf8');
@@ -28,6 +28,6 @@ export function tryReadFileJson(file_path) {
   return readFileJson(file_path);
 }
 
-export function is_exist(file_path: SourcePath) {
+export function is_exist(file_path: SourcePathString) {
   return fs.existsSync(file_path);
 }
