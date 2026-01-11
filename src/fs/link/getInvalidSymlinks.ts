@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {is_exist} from 'razomy.js/fs/read';
+import {is_exist} from 'src/fs/file/read';
 import {CatchFn} from 'razomy.js/exceptions/collect';
 import {ArgumentException} from 'razomy.js/exceptions/argument_exception';
 

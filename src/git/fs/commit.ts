@@ -4,7 +4,7 @@ import {iterate_reverse} from 'razomy.js/trees/list/iterate';
 import {tryAsync} from 'razomy.js/async/promise';
 import {executeAsync} from 'razomy.js/shell/executeAsync';
 import {execSync} from 'node:child_process';
-import {SourcePathString} from 'razomy.js/fs/pathString';
+import {SourcePathString} from 'src/fs/path/pathString';
 
 function commit(source_path: SourcePathString) {
   const {files, repos} = get_recursive_status(source_path)

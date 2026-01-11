@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {createDirectoryIfNotExists} from 'razomy.js/fs/create';
 import path from "path";
-import {FilePathString} from "razomy.js/fs/pathString";
+import {FilePathString} from "src/fs/path/pathString";
 
 export function tryWriteFile(file_path: FilePathString, content) {
   createDirectoryIfNotExists(path.dirname(file_path));

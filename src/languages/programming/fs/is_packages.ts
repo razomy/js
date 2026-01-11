@@ -1,6 +1,6 @@
 import * as path from 'path';
-import {PathString, Slug, WithPathString} from 'razomy.js/fs/pathString';
-import {is_exist} from "razomy.js/fs/read";
+import {PathString, Slug, WithPathString} from 'src/fs/path/pathString';
+import {is_exist} from "src/fs/file/read";
 import {ArgumentException} from "razomy.js/exceptions/argument_exception";
 
 export const PYTHON_DEPENDENCIES = ['.venv'];

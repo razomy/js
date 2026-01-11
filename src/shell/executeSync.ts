@@ -1,6 +1,6 @@
 import {execSync} from 'node:child_process';
 import path from 'path';
-import {DirPathString} from 'razomy.js/fs/pathString';
+import {DirPathString} from 'src/fs/path/pathString';
 
 export type StringCommand = string;
 export type ShellCommand = StringCommand;

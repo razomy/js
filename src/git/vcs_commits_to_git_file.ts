@@ -1,6 +1,6 @@
 
 import {executeAsync} from "razomy.js/shell/executeAsync";
-import {writeFile} from "razomy.js/fs/write";
+import {writeFile} from "src/fs/directory/children/file/write";
 import {progress} from "razomy.js/shell/log";
 import {ActorDatetimeDeltaString, addss_to_string} from 'razomy.js/add/string/adds';
 

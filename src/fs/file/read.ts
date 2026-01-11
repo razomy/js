@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {SourcePathString} from "razomy.js/fs/pathString";
+import {SourcePathString} from "razomy.js/fs/path/pathString";
 
 export function readFile(file_path) {
   return fs.readFileSync(file_path, 'utf8');

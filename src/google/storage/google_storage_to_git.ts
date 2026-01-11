@@ -1,5 +1,5 @@
 import path from 'path';
-import {writeToFileAsync} from "razomy.js/fs/write";
+import {writeToFileAsync} from "src/fs/directory/children/file/write";
 import {string} from "razomy.js/number/string/string";
 import {executeAsync} from "razomy.js/shell/executeAsync";
 

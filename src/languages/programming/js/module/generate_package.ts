@@ -5,5 +5,3 @@ export function generateIndexFiles(path: string) {
   console.log(files);
   tryCreate()
 }
-
-generateIndexFiles()
