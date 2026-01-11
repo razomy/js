@@ -1,4 +1,4 @@
-import { getObjectSizeInBytes }  from 'razomy.js/bytes/bytes';
+import { getObjectSizeInBytes }  from 'razomy/bytes/bytes';
 
 describe('bytes', () => {
   it('getObjectSizeInBytes', () => {

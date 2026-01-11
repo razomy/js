@@ -1,4 +1,4 @@
-import {WithChildrenDict} from "razomy.js/trees/dict/with_children_dict";
+import {WithChildrenDict} from "razomy/trees/dict/with_children_dict";
 
 export function iterate<T extends WithChildrenDict<any>>(node: T, cb: (node: T) => void) {
   cb(node);

@@ -1,6 +1,6 @@
-import {BranchDictOrLeaf} from "razomy.js/trees/dict/dict";
-import {Graph} from "razomy.js/graph/graph";
-import {is_vrd, VrdOrValue} from "razomy.js/vrd/vrd";
+import {BranchDictOrLeaf} from "razomy/trees/dict/dict";
+import {Graph} from "razomy/graph/graph";
+import {is_vrd, VrdOrValue} from "razomy/vrd/vrd";
 
 
 function iterate_children<T>(

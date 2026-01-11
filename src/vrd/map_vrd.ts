@@ -1,6 +1,6 @@
-import {is_vrd, Vrd, VrdOrValue} from "razomy.js/vrd/vrd";
-import {isObject} from "razomy.js/object/object";
-import {DictKey} from "razomy.js/dict/dict";
+import {is_vrd, Vrd, VrdOrValue} from "razomy/vrd/vrd";
+import {isObject} from "razomy/object/object";
+import {DictKey} from "razomy/dict/dict";
 
 export function map_vrd<I, O>(input: Vrd<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): Vrd<O>;
 export function map_vrd<I, O>(input: I, leaf_value_cb: (input: I, parent?: DictKey) => O, parent: DictKey): O;

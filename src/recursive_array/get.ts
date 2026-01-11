@@ -1,6 +1,6 @@
-import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {getKey, getValue, ListItem, RecursiveList} from "razomy.js/recursive_array/recursive";
-import {assign} from "razomy.js/key/assign";
+import {ArgumentException} from "razomy/exceptions/argument_exception";
+import {getKey, getValue, ListItem, RecursiveList} from "razomy/recursive_array/recursive";
+import {assign} from "razomy/key/assign";
 
 export function getItemByPath(node: ListItem, path: string[], offset: number): ListItem {
   if (offset >= path.length) {

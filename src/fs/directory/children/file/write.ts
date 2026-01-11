@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {createDirectoryIfNotExists} from 'razomy.js/fs/create';
+import {createDirectoryIfNotExists} from 'razomy/fs/create';
 import path from "path";
 import {FilePathString} from "src/fs/path/pathString";
 

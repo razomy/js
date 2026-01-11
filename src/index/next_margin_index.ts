@@ -1,6 +1,6 @@
-import {String} from "razomy.js/string/string";
-import {Offset} from "razomy.js/offset/offest";
-import {Index} from "razomy.js/index/index";
+import {String} from "razomy/string/string";
+import {Offset} from "razomy/offset/offest";
+import {Index} from "razomy/index/index";
 
 export function next_margin_index(
   string: String,

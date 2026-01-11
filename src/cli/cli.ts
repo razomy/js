@@ -1,6 +1,6 @@
-import {assign} from 'razomy.js/key/assign';
-import {Module, TerminalArgs} from 'razomy.js/cli/module';
-import {validateArrayStringThrow} from 'razomy.js/cli/validateArrayStringThrow';
+import {assign} from 'razomy/key/assign';
+import {Module, TerminalArgs} from 'razomy/cli/module';
+import {validateArrayStringThrow} from 'razomy/cli/validateArrayStringThrow';
 
 export async function cli<
   Rm extends keyof Module & string>(terminalArgs: TerminalArgs<Rm> | null | undefined): Promise<number> {
@@ -11,7 +11,7 @@ export async function cli<
   const value_arguments = terminalArgs.slice(1);
   const module_key = module_key_and_function_key.join('/');
   const function_key = module_key_and_function_key.slice(-1).join('/');
-  const package_impl = await import('razomy.js' + module_key) as Module;
+  const package_impl = await import('razomy' + module_key) as Module;
   const result = await package_impl[function_key](...value_arguments);
 
   console.debug('razomy:js:cli:finish')

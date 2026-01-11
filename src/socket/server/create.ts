@@ -1,5 +1,5 @@
 import {Server} from "socket.io";
-import {WithServer} from "razomy.js/servers/server";
+import {WithServer} from "razomy/servers/server";
 
 export interface WithWebsocket {
   web_socket: Server;

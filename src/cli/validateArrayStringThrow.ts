@@ -1,4 +1,4 @@
-import {ArgumentException} from "razomy.js/exceptions/argument_exception";
+import {ArgumentException} from "razomy/exceptions/argument_exception";
 
 export function validateArrayStringThrow<T extends string[]>(array: T | null | undefined, name: string): T {
     const errorBuilder = (t) => `${name} is ${t}. Must be string[].`;

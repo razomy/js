@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {ArrayKeyValuable, ArrayOrKeyValuable, k, KeyValuable, Valuable, Value} from "razomy.js/kv/kv";
-import {ak} from "razomy.js/kv/akv";
+import {ArgumentException} from "razomy/exceptions/argument_exception";
+import {ArrayKeyValuable, ArrayOrKeyValuable, k, KeyValuable, Valuable, Value} from "razomy/kv/kv";
+import {ak} from "razomy/kv/akv";
 
 export function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
 export function get<T = KeyValuable<string, Buffer>>(file_path: string): T;

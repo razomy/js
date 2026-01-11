@@ -1,5 +1,5 @@
-import {ChangeDifference, Difference, ReplaceDifference} from 'razomy.js/difference/difference';
-import {similarity} from 'razomy.js/string/similarity';
+import {ChangeDifference, Difference, ReplaceDifference} from 'razomy/difference/difference';
+import {similarity} from 'razomy/string/similarity';
 
 export function get_similar(str: string, items) {
   let bestMatch: string | null = null;

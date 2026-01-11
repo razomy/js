@@ -1,4 +1,4 @@
-import {Resource}  from 'razomy.js/resources/resource';
+import {Resource}  from 'razomy/resources/resource';
 
 export abstract class AttributeResource extends Resource {
 }

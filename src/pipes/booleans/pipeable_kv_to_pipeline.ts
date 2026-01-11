@@ -3,11 +3,11 @@ import {
   ArrayPipe,
   Execute,
   Pipeable
-} from "razomy.js/pipes/booleans/execute";
+} from "razomy/pipes/booleans/execute";
 
-import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {is_kv, KeyValuable, Kv} from "razomy.js/kv/kv";
-import {is_akv} from "razomy.js/kv/akv";
+import {ArgumentException} from "razomy/exceptions/argument_exception";
+import {is_kv, KeyValuable, Kv} from "razomy/kv/kv";
+import {is_akv} from "razomy/kv/akv";
 
 export type PipeableKv<T> = KeyValuable<Pipeable<T>, Pipeable<T>>
 

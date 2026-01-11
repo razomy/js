@@ -1,5 +1,5 @@
 {
-  "name": "razomy.js.dates",
+  "name": "razomy.dates",
   "version": "0.0.0",
   "dependencies": {
     "cron-parser": "^4.9.0",

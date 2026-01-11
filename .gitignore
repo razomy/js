@@ -1,5 +1,5 @@
 node_modules
 dist
 .idea
-razomy.js*.tgz
+razomy*.tgz
 _releases

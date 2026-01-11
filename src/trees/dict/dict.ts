@@ -1,5 +1,5 @@
-import {WithChildrenDict} from "razomy.js/trees/dict/with_children_dict";
-import {Leaf} from "razomy.js/trees/leaf";
+import {WithChildrenDict} from "razomy/trees/dict/with_children_dict";
+import {Leaf} from "razomy/trees/leaf";
 
 export interface BranchDict<T, R = BranchDictOrLeaf<T>> extends RootDict<T, R> {
   value: string

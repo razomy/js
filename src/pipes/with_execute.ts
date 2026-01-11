@@ -1,4 +1,4 @@
-import {Execute} from "razomy.js/pipes/execute";
+import {Execute} from "razomy/pipes/execute";
 
 export interface WithExecute<I, O> {
   execute: Execute<I, O>

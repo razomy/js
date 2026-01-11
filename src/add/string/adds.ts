@@ -1,7 +1,7 @@
-import {DeltaString} from 'razomy.js/add/string/delta_string';
-import {delta_strings_to_string} from 'razomy.js/add/string/delta_strings_to_string';
-import {progress} from 'razomy.js/shell/log';
-import {strings_to_delta_strings} from 'razomy.js/add/string/strings_to_delta_strings';
+import {DeltaString} from 'razomy/add/string/delta_string';
+import {delta_strings_to_string} from 'razomy/add/string/delta_strings_to_string';
+import {progress} from 'razomy/shell/log';
+import {strings_to_delta_strings} from 'razomy/add/string/strings_to_delta_strings';
 
 export interface ActorDatetimeDeltaString {
   datetime: string,

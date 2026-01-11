@@ -1,8 +1,8 @@
-import {get_recursive_status} from 'razomy.js/git/fs/get_status';
-import {nodes_array_to_tree} from 'razomy.js/trees/list/nodes_array_to_tree';
-import {iterate_reverse} from 'razomy.js/trees/list/iterate';
-import {tryAsync} from 'razomy.js/async/promise';
-import {executeAsync} from 'razomy.js/shell/executeAsync';
+import {get_recursive_status} from 'razomy/git/fs/get_status';
+import {nodes_array_to_tree} from 'razomy/trees/list/nodes_array_to_tree';
+import {iterate_reverse} from 'razomy/trees/list/iterate';
+import {tryAsync} from 'razomy/async/promise';
+import {executeAsync} from 'razomy/shell/executeAsync';
 import {execSync} from 'node:child_process';
 import {SourcePathString} from 'src/fs/path/pathString';
 

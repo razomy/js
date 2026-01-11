@@ -1,4 +1,4 @@
-import {ArrayKeyValuable, KeyValuable} from "razomy.js/kv/kv";
+import {ArrayKeyValuable, KeyValuable} from "razomy/kv/kv";
 
 /** Array key recursive value */
 export class Akv<KT, VT> extends Array<KeyValuable<KT, VT>> {

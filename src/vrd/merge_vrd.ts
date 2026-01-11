@@ -1,4 +1,4 @@
-import {is_vrd, Vrd, VrdOrValue} from "razomy.js/vrd/vrd";
+import {is_vrd, Vrd, VrdOrValue} from "razomy/vrd/vrd";
 
 export function merge_vrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
 export function merge_vrd<A, B>(a: A, b: B, empty: string): A & B ;

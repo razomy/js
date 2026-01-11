@@ -1,11 +1,11 @@
-import { Color }  from 'razomy.js/graphics/codecs/web/svg/color/color';
-import { HexParser }  from 'razomy.js/graphics/codecs/web/svg/color/hex_parser';
-import { HslaParser }  from 'razomy.js/graphics/codecs/web/svg/color/hsla_parser';
-import { RgbaParser }  from 'razomy.js/graphics/codecs/web/svg/color/rgba_parser';
+import { Color }  from 'razomy/graphics/codecs/web/svg/color/color';
+import { HexParser }  from 'razomy/graphics/codecs/web/svg/color/hex_parser';
+import { HslaParser }  from 'razomy/graphics/codecs/web/svg/color/hsla_parser';
+import { RgbaParser }  from 'razomy/graphics/codecs/web/svg/color/rgba_parser';
 import {
   SvgColorKeys,
   SvgColorParser
-}  from 'razomy.js/graphics/codecs/web/svg/color/svg_color_parser';
+}  from 'razomy/graphics/codecs/web/svg/color/svg_color_parser';
 
 
 /**

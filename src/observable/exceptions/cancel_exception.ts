@@ -1,4 +1,4 @@
-import {Exception} from 'razomy.js/exceptions/exception';
+import {Exception} from 'razomy/exceptions/exception';
 
 export class CancelException extends Exception {
 }

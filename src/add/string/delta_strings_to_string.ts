@@ -1,5 +1,5 @@
-import {DeltaString} from 'razomy.js/add/string/delta_string';
-import {add_index_string, remove_index_string} from 'razomy.js/string/index_string';
+import {DeltaString} from 'razomy/add/string/delta_string';
+import {add_index_string, remove_index_string} from 'razomy/string/index_string';
 
 export function delta_strings_to_string(prev_snapshot: string, changes: DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {

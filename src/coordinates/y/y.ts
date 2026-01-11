@@ -1,4 +1,4 @@
-import {BoundX, WithX} from "razomy.js/coordinates/x/x";
+import {BoundX, WithX} from "razomy/coordinates/x/x";
 
 export interface WithY extends WithX {
   y: number;

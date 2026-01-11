@@ -1,6 +1,6 @@
-import {BoundY} from "razomy.js/coordinates/y/y";
-import {WithLength} from "razomy.js/coordinates/x/x";
-import {WithOffset} from "razomy.js/offset/offest";
+import {BoundY} from "razomy/coordinates/y/y";
+import {WithLength} from "razomy/coordinates/x/x";
+import {WithOffset} from "razomy/offset/offest";
 
 
 export interface NodeBound {

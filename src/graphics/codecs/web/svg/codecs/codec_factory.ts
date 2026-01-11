@@ -1,16 +1,16 @@
-import { ICodec } from 'razomy.js/codec/i_codec';
-import { IFactory } from 'razomy.js/factory/i_factory';
-import { ElementView } from 'razomy.js/graphics/elements/element_view';
-import { RectangleShape } from 'razomy.js/graphics/shapes/rectangle_shape';
-import { TextElement } from 'razomy.js/graphics/elements/text_element';
-import { ViewportElement } from 'razomy.js/graphics/elements/viewport_element';
-import { CodecConfig }  from 'razomy.js/graphics/codecs/web/svg/codecs/codec_config';
-import { EncodeNodeFactory }  from 'razomy.js/graphics/codecs/web/svg/codecs/encode_node_factory';
-import { RectangleCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/rectangle_codec';
-import { SvgCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/svg_codec';
-import { TextCodec }  from 'razomy.js/graphics/codecs/web/svg/codecs/text_codec';
+import { ICodec } from 'razomy/codec/i_codec';
+import { IFactory } from 'razomy/factory/i_factory';
+import { ElementView } from 'razomy/graphics/elements/element_view';
+import { RectangleShape } from 'razomy/graphics/shapes/rectangle_shape';
+import { TextElement } from 'razomy/graphics/elements/text_element';
+import { ViewportElement } from 'razomy/graphics/elements/viewport_element';
+import { CodecConfig }  from 'razomy/graphics/codecs/web/svg/codecs/codec_config';
+import { EncodeNodeFactory }  from 'razomy/graphics/codecs/web/svg/codecs/encode_node_factory';
+import { RectangleCodec }  from 'razomy/graphics/codecs/web/svg/codecs/rectangle_codec';
+import { SvgCodec }  from 'razomy/graphics/codecs/web/svg/codecs/svg_codec';
+import { TextCodec }  from 'razomy/graphics/codecs/web/svg/codecs/text_codec';
 
-import {UnknownTypeArgumentException} from "razomy.js/exceptions/unknown_type_argument_exception";
+import {UnknownTypeArgumentException} from "razomy/exceptions/unknown_type_argument_exception";
 
 
 export class CodecFactory implements IFactory<ICodec<ElementView, any>> {

@@ -1,6 +1,6 @@
-import {get_recursive_status} from 'razomy.js/git/fs/get_status';
-import {nodes_array_to_tree} from 'razomy.js/trees/list/nodes_array_to_tree';
-import {iterate_reverse} from 'razomy.js/trees/list/iterate';
+import {get_recursive_status} from 'razomy/git/fs/get_status';
+import {nodes_array_to_tree} from 'razomy/trees/list/nodes_array_to_tree';
+import {iterate_reverse} from 'razomy/trees/list/iterate';
 import {execSync} from 'node:child_process';
 import {SourcePathString} from 'src/fs/path/pathString';
 

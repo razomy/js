@@ -6,7 +6,7 @@ const config: JestConfigWithTsJest = {
   verbose: false,
   roots: ["src"],
   moduleNameMapper: {
-    '^razomy.js/(.*)': '<rootDir>/src/$1',
+    '^razomy/(.*)': '<rootDir>/src/$1',
   }
 }
 export default config;

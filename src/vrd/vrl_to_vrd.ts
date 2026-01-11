@@ -1,6 +1,6 @@
-import {Vrd, VrdOrValue} from "razomy.js/vrd/vrd";
-import {ValueRecursiveList, ValueRecursiveListOrValueItem} from "razomy.js/list/value_recursive/value";
-import {is_string} from "razomy.js/string/is_string";
+import {Vrd, VrdOrValue} from "razomy/vrd/vrd";
+import {ValueRecursiveList, ValueRecursiveListOrValueItem} from "razomy/list/value_recursive/value";
+import {is_string} from "razomy/string/is_string";
 
 export function vrl_to_vrd(dict: ValueRecursiveListOrValueItem<string> | string): VrdOrValue<string> {
   if (is_string(dict)) {

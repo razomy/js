@@ -1,6 +1,6 @@
-import {ArrayKeyValuable, is_kv, KeyValuable, Valuable, Value} from "razomy.js/kv/kv";
-import {Function} from "razomy.js/function/function";
-import {ak, is_akv} from "razomy.js/kv/akv";
+import {ArrayKeyValuable, is_kv, KeyValuable, Valuable, Value} from "razomy/kv/kv";
+import {Function} from "razomy/function/function";
+import {ak, is_akv} from "razomy/kv/akv";
 
 export function map<IV, OV>(
   input: Value<IV>,

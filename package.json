@@ -23,7 +23,7 @@
     "razomy": "./dist/cli/bin/razomy.js"
   },
   "license": "Apache-2.0",
-  "name": "razomy.js",
+  "name": "razomy",
   "packageManager": "npm@10.8.2",
   "private": true,
   "scripts": {

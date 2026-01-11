@@ -1,5 +1,5 @@
 {
-  "name": "razomy.js.bytes",
+  "name": "razomy.bytes",
   "version": "latest",
   "dependencies": {
     "object-sizeof": "^2.6.4"

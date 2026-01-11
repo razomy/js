@@ -1,4 +1,4 @@
-import {create_array} from 'razomy.js/array/create_array';
+import {create_array} from 'razomy/array/create_array';
 
 export function index_size_to_array(ix: number, size: number): number[] {
   const arr = create_array(size);

@@ -1,6 +1,6 @@
-import {Dispose} from "razomy.js/observable/dispose";
-import {Action} from "razomy.js/action/action";
-import {CancelException} from "razomy.js/observable/exceptions/cancel_exception";
+import {Dispose} from "razomy/observable/dispose";
+import {Action} from "razomy/action/action";
+import {CancelException} from "razomy/observable/exceptions/cancel_exception";
 
 function throw_exception<E>(error: E): void {
   throw error;

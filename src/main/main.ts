@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { argv } from 'process';
-import { isPromise } from 'razomy.js/async/promise';
-import { formatTimeLength } from 'razomy.js/dates/dates';
+import { isPromise } from 'razomy/async/promise';
+import { formatTimeLength } from 'razomy/dates/dates';
 
 export function isMain(moduleUrl) {
   const modulePath = fileURLToPath(moduleUrl);

@@ -1,5 +1,5 @@
-import {escape_string} from "razomy.js/string/escape_string";
-import {unescape_string} from "razomy.js/string/unescape_string";
+import {escape_string} from "razomy/string/escape_string";
+import {unescape_string} from "razomy/string/unescape_string";
 
 describe(`string`, () => {
   describe(escape_string.name, () => {

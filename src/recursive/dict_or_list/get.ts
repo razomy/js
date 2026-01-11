@@ -1,6 +1,6 @@
-import {is_keys_in_dict} from "razomy.js/dict/is_keys_in_dict";
-import {Dict} from "razomy.js/dict/dict";
-import {isObject} from "razomy.js/object/object";
+import {is_keys_in_dict} from "razomy/dict/is_keys_in_dict";
+import {Dict} from "razomy/dict/dict";
+import {isObject} from "razomy/object/object";
 
 export function get_any(obj: Dict<any>, keys: string[]) {
   if (is_keys_in_dict(obj, keys)) {

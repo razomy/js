@@ -1,4 +1,4 @@
-import {Observable} from "razomy.js/observable/observable";
+import {Observable} from "razomy/observable/observable";
 
 export function promise<T>(observable: Observable<T>) {
   return new Promise<T>((resolve, reject) => {

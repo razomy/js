@@ -1,4 +1,4 @@
-import {Key} from "razomy.js/kv/kv";
+import {Key} from "razomy/kv/kv";
 
 export type Slug = Key<string>;
 export type AbsolutePathString = Slug;

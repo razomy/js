@@ -1,8 +1,8 @@
-import {ArgumentException} from "razomy.js/exceptions/argument_exception";
-import {create_by_path} from "razomy.js/kv/create_by_path";
-import {set} from "razomy.js/kv/set";
-import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from "razomy.js/kv/kv";
-import {is_akv} from "razomy.js/kv/akv";
+import {ArgumentException} from "razomy/exceptions/argument_exception";
+import {create_by_path} from "razomy/kv/create_by_path";
+import {set} from "razomy/kv/set";
+import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from "razomy/kv/kv";
+import {is_akv} from "razomy/kv/akv";
 import {Slug} from "src/fs/path/pathString";
 
 export function get<T>(value_recursive: ArrayOrKeyValuable<T, T>, path: T[], path_offset: number): Valuable<T, T> {

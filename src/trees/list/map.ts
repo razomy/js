@@ -1,4 +1,4 @@
-import {WithChildrenList} from "razomy.js/trees/list/with_children_list";
+import {WithChildrenList} from "razomy/trees/list/with_children_list";
 
 export function map_children<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
   _children: I[],

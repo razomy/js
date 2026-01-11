@@ -1,3 +1,3 @@
-import {Number} from "razomy.js/number/number";
+import {Number} from "razomy/number/number";
 
 export type Index = Number;

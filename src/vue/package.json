@@ -1,5 +1,5 @@
 {
-  "name": "razomy.js.vue",
+  "name": "razomy.vue",
   "dependencies": {
     "vue": "^3.4.36",
     "vuetify": "^3.7.0"

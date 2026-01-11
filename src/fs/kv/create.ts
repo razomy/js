@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
-import {createDirectoryIfNotExists} from "razomy.js/fs/create";
-import {is_kv, Valuable} from "razomy.js/kv/kv";
-import {is_akv} from "razomy.js/kv/akv";
+import {createDirectoryIfNotExists} from "razomy/fs/create";
+import {is_kv, Valuable} from "razomy/kv/kv";
+import {is_akv} from "razomy/kv/akv";
 
 export function create(absolute_path: string, dict: Valuable<string, Buffer>) {
   if (is_akv(dict)) {

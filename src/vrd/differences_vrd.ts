@@ -1,13 +1,13 @@
-import {ChangeDifference} from "razomy.js/difference/difference";
+import {ChangeDifference} from "razomy/difference/difference";
 
 import {
   vrd,
   is_vrd,
   Vrd,
   VrdOrValue
-} from "razomy.js/vrd/vrd";
-import {equal_} from "razomy.js/equal/equal";
-import {get_similar, get_string} from "razomy.js/array/change/get";
+} from "razomy/vrd/vrd";
+import {equal_} from "razomy/equal/equal";
+import {get_similar, get_string} from "razomy/array/change/get";
 
 export interface ReplaceDifference<T> {
   type: 'replace_key',

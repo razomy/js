@@ -1,4 +1,4 @@
-import {Vrd} from "razomy.js/vrd/vrd";
+import {Vrd} from "razomy/vrd/vrd";
 
 export function path_to_vrd<T>(path: string[]) {
   const res = new Vrd<T>();

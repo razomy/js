@@ -1,5 +1,5 @@
 import fs from "fs";
-import {IGate} from "razomy.js/gate/i_gate";
+import {IGate} from "razomy/gate/i_gate";
 
 
 export class FileGate<T extends string> implements IGate<T> {

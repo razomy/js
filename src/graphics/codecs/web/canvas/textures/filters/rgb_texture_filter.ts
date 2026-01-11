@@ -1,4 +1,4 @@
-import { ITextureFilter }  from 'razomy.js/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 export function byteSlice(val: number): number {
   if (val > 255) {

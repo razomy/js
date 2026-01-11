@@ -1,5 +1,5 @@
 {
-  "name": "razomy.js.compression",
+  "name": "razomy.compression",
   "dependencies": {
     "pako": "^2.1.0"
   }

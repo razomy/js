@@ -1,7 +1,7 @@
-import {ValueListItemValue, ValueRecursiveList} from "razomy.js/list/value_recursive/value";
-import {Dict} from "razomy.js/dict/dict";
-import {is_string} from "razomy.js/string/is_string";
-import {assign} from "razomy.js/key/assign";
+import {ValueListItemValue, ValueRecursiveList} from "razomy/list/value_recursive/value";
+import {Dict} from "razomy/dict/dict";
+import {is_string} from "razomy/string/is_string";
+import {assign} from "razomy/key/assign";
 
 export function value_or_list_to_flat_dict(
   dict: {},

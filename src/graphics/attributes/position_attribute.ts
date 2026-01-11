@@ -1,5 +1,5 @@
-import {AttributeResource} from 'razomy.js/resources/attribute_resource';
-import {ArgumentException} from 'razomy.js/exceptions/argument_exception';
+import {AttributeResource} from 'razomy/resources/attribute_resource';
+import {ArgumentException} from 'razomy/exceptions/argument_exception';
 
 export interface IPositionAttribute {
   x: number;

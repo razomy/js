@@ -1,7 +1,7 @@
-import {is_kv, KeyValuable, Valuable} from "razomy.js/kv/kv";
-import {Function} from "razomy.js/function/function";
-import {is_akv} from "razomy.js/kv/akv";
-import {iterate} from "razomy.js/kv/iterate";
+import {is_kv, KeyValuable, Valuable} from "razomy/kv/kv";
+import {Function} from "razomy/function/function";
+import {is_akv} from "razomy/kv/akv";
+import {iterate} from "razomy/kv/iterate";
 
 
 /**

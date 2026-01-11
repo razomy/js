@@ -1,5 +1,5 @@
 {
-  "name": "razomy.js.express",
+  "name": "razomy.express",
   "dependencies": {
     "@types/passport": "^1.0.12",
     "body-parser": "^1.20.2",

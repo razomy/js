@@ -1,4 +1,4 @@
-import {String} from "razomy.js/string/string";
+import {String} from "razomy/string/string";
 
 export function strings_string(strings: String[]) {
   let result: String = '';
