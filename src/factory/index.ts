@@ -1,0 +1,1 @@
+export { IFactory as IFactoryFactory } from './i_factory';

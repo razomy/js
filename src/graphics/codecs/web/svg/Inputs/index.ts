@@ -1,0 +1,16 @@
+export { IInputAttribute as IInputAttributeInputsSvgWebCodecsGraphics } from './io_attribute';
+export { IOutputAttribute as IOutputAttributeInputsSvgWebCodecsGraphics } from './io_attribute';
+export { IIoAttribute as IIoAttributeInputsSvgWebCodecsGraphics } from './io_attribute';
+export { DWebBrowserInput as DWebBrowserInputInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { WebBrowserInput as WebBrowserInputInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { Move as MoveInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { Group as GroupInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { HotkeyInput as HotkeyInputInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { SSystemEvents as SSystemEventsInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { ZoomInOut as ZoomInOutInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { Log as LogInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { Drag as DragInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { Drop as DropInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { History as HistoryInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { InputConfig as InputConfigInputsSvgWebCodecsGraphics } from './web_browser_input';
+export { KonvaNodeEvent as KonvaNodeEventInputsSvgWebCodecsGraphics } from './web_browser_input';

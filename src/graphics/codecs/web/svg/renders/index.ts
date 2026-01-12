@@ -1,0 +1,2 @@
+export { WebSvgRender as WebSvgRenderRendersSvgWebCodecsGraphics } from './svg_dom_render';
+export { WebSvgHighLightsRender as WebSvgHighLightsRenderRendersSvgWebCodecsGraphics } from './web_svg_high_lights_render';

@@ -1,5 +1,5 @@
 import {ICodec} from 'razomy/codec/i_codec';
-import {buffer_to_string, string_to_buffer} from 'razomy/buffer/buffer_string';
+import {buffer_to_string, string_to_buffer} from 'razomy/buffer/buffer_to_string_64';
 
 export function buffer_to_string_codec(encoding: BufferEncoding): ICodec<Buffer, string> {
   return {

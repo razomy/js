@@ -1,0 +1,1 @@
+export { ArcRender as ArcRenderShapesRendersCanvasWebCodecsGraphics } from './arc_render';

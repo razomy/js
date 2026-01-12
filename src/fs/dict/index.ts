@@ -1,0 +1,1 @@
+export { get as get_dict_fs } from './get';

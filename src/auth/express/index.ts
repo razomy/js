@@ -1,0 +1,1 @@
+export { api_key_auth as api_key_auth_express_auth } from './api_key_auth';

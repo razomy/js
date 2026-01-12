@@ -3,7 +3,7 @@ import {iterate} from 'razomy/fs/iterate';
 
 const ai = new GoogleGenAI({apiKey: ''});
 
-async function ask() {
+export async function ask() {
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: 'How does AI work?',

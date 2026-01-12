@@ -1,0 +1,1 @@
+export { IGate as IGateGate } from './i_gate';

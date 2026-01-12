@@ -1,6 +1,6 @@
 import {String} from "razomy/string/string";
 import {Offset} from "razomy/offset/offest";
-import {strings_any_index} from "razomy/index/strings_any_index";
+import {strings_any_index} from "razomy/index_/strings_any_index";
 
 export function is_strings_any_index(
   string: String,

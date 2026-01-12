@@ -1,18 +1,17 @@
 import {String} from "razomy/string/string";
 import {Offset} from "razomy/offset/offest";
-import {Index} from "razomy/index/index";
+import {Index} from "razomy/index_/index_";
 
-export function strings_any_index(
+export function last_index(
   string: String,
-  equal_strings: String[],
+  equal_string: String,
   offset: Offset = 0,
   max_offset: Offset = string.length
 ): Index {
-  for (let i = offset; i < max_offset; i++) {
-    if (equal_strings.includes(string[i])) {
+  for (let i = max_offset - 1; i >= offset; i--) {
+    if (string[i] === equal_string) {
       return i;
     }
   }
-
   return -1;
 }

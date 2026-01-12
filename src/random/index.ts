@@ -1,0 +1,1 @@
+export { range as range_random } from './range';

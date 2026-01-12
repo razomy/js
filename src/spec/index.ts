@@ -1,0 +1,1 @@
+export { FunctionSpec as FunctionSpecSpec } from './function_spec';

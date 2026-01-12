@@ -1,0 +1,1 @@
+export { first_equal_indexes as first_equal_indexes_indexes } from './first_equal_indexes';

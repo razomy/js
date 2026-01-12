@@ -1,0 +1,12 @@
+export { AttributeResource as AttributeResourceResources } from './attribute_resource';
+export { NodeProvidedException as NodeProvidedExceptionResources } from './entity_resource';
+export { NodeAlreadyProvidedException as NodeAlreadyProvidedExceptionResources } from './entity_resource';
+export { EntityResource as EntityResourceResources } from './entity_resource';
+export { IResourceMap as IResourceMapResources } from './entity_resource';
+export { IEntityResourceMap as IEntityResourceMapResources } from './entity_resource';
+export { IEntityResource as IEntityResourceResources } from './entity_resource';
+export { IResource as IResourceResources } from './i_resource';
+export { ResourceCollection as ResourceCollectionResources } from './resource_collection';
+export { INodeResourceCollection as INodeResourceCollectionResources } from './resource_collection';
+export { IResourceCollection as IResourceCollectionResources } from './resource_collection';
+export { Resource as ResourceResources } from './resource';

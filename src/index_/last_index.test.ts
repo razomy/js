@@ -1,4 +1,4 @@
-import {last_index} from "razomy/index/last_index";
+import {last_index} from "razomy/index_/last_index";
 
 describe(`index`, () => {
   describe(last_index.name, () => {

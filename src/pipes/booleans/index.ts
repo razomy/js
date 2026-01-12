@@ -1,0 +1,10 @@
+export { all as all_booleans_pipes } from './all';
+export { any as any_booleans_pipes } from './any';
+export { Execute as ExecuteBooleansPipes } from './execute';
+export { Pipe as PipeBooleansPipes } from './execute';
+export { ArrayPipe as ArrayPipeBooleansPipes } from './execute';
+export { Pipeable as PipeableBooleansPipes } from './execute';
+export { pipeable_kv_to_pipeline as pipeable_kv_to_pipeline_booleans_pipes } from './pipeable_kv_to_pipeline';
+export { PipeableKv as PipeableKvBooleansPipes } from './pipeable_kv_to_pipeline';
+export { while_ as while__booleans_pipes } from './while_';
+export { WithExecute as WithExecuteBooleansPipes } from './with_execute';

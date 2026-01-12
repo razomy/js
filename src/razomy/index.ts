@@ -1,0 +1,1 @@
+export { razomy as razomyRazomy } from './razomy';

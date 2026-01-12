@@ -1,0 +1,1 @@
+export { log as log_console } from './log';

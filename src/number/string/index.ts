@@ -1,0 +1,1 @@
+export { string as string_string_number } from './string';
