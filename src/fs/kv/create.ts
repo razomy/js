@@ -1,12 +1,12 @@
 import path from "path";
 import fs from "fs";
-import {createDirectoryIfNotExists} from "razomy/fs/create";
+import {create_directory_if_not_exists} from "razomy/fs/create";
 import {is_kv, Valuable} from "razomy/kv/kv";
 import {is_akv} from "razomy/kv/akv";
 
 export function create(absolute_path: string, dict: Valuable<string, Buffer>) {
   if (is_akv(dict)) {
-    createDirectoryIfNotExists(absolute_path)
+    create_directory_if_not_exists(absolute_path)
     for (const kv of dict) {
       create(absolute_path, kv);
     }

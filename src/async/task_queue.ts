@@ -1,6 +1,6 @@
 import { ConsoleLogger, Logger } from 'razomy/logging/logger';
 
-function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
+function create_task_promise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
   return () => new Promise(async (resolve, reject) => {
     try {
       if (task instanceof Promise) {

@@ -1,4 +1,4 @@
-export function apiKeyAuth(key) {
+export function api_key_auth(key) {
   const validApiKeys = new Set([
     key,
   ]);

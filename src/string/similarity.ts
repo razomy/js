@@ -1,4 +1,4 @@
-export function levenshteinDistance(a, b): number {
+export function levenshtein_distance(a, b): number {
   const matrix = Array.from({length: a.length + 1}, (_, i) =>
     Array.from({length: b.length + 1}, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
   );
@@ -23,6 +23,6 @@ export function levenshteinDistance(a, b): number {
 
 export function similarity(str1: string, str2: string): number {
   const length = Math.max(str1.length, str2.length);
-  const distance = levenshteinDistance(str1, str2);
+  const distance = levenshtein_distance(str1, str2);
   return 1 - distance / length;
 }

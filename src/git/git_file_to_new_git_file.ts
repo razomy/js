@@ -1,8 +1,8 @@
 import path from 'path';
-import {executeAsync} from 'razomy/shell/executeAsync';
-import {readFile} from 'src/fs/file/read';
-import {tryAsync} from "razomy/async/promise";
-import {writeFile} from 'razomy/fs/file/write';
+import {execute_async} from 'razomy/shell/execute_async';
+import {read_file} from 'src/fs/file/read';
+import {try_async} from "razomy/async/promise";
+import {write_file} from 'razomy/fs/file/write';
 
 
 export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
@@ -11,7 +11,7 @@ export async function get_git_commits_id(dir_path: string, commitCount: number =
 // Command to retrieve the last commits with commit IDs and names
   const command = `git --git-dir=${dir_path}/.git log --pretty=format:%h%x09%s%x09%ad -n ${commitCount} --date=iso`;
 
-  const stdout = String(await executeAsync(command, {}));
+  const stdout = String(await execute_async(command, {}));
   const lines = stdout.trim().split('\n');
 
   // Create an array to store the commit information
@@ -39,13 +39,13 @@ async function git_file_to_new_git_file(
     const index = commits.indexOf(commit);
 
     const checkoutCommand = `git checkout ${commit.id}`;
-    await tryAsync(executeAsync(checkoutCommand, {cwd: repositoryPath}));
+    await try_async(execute_async(checkoutCommand, {cwd: repositoryPath}));
 
-    const data = readFile(repositoryPath + fileSubPath);
-    writeFile(repositorynewPath + fileSubPath, data);
+    const data = read_file(repositoryPath + fileSubPath);
+    write_file(repositorynewPath + fileSubPath, data);
 
     const commitCommand = `git add . && git commit --date "${commit.date}" -m "${commit.commitName}"`;
-    await tryAsync(executeAsync(commitCommand, {cwd: repositorynewPath}));
+    await try_async(execute_async(commitCommand, {cwd: repositorynewPath}));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
     console.log(`   Commit Name: ${commit.commitName}`);

@@ -2,28 +2,28 @@ import { Storage } from '@google-cloud/storage';
 
 import fs from 'fs';
 import path from 'path';
-import {createDirectoryIfNotExists} from 'razomy/fs/create';
+import {create_directory_if_not_exists} from 'razomy/fs/create';
 
-async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
+async function download_file_recursive_file(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');
   const dir_path = path.join(folderPath, destinationPath);
   const destinationFile = path.join(folderPath, destinationPath, filePath);
-  createDirectoryIfNotExists(dir_path);
+  create_directory_if_not_exists(dir_path);
   await file.download({ destination: destinationFile });
 }
 
-async function downloadFilesRecursive(bucket, folderPath, destinationPath = '') {
+async function download_files_recursive(bucket, folderPath, destinationPath = '') {
   const [files] = await bucket.getFiles();
 
   const downloadPromises = files.map(async (file) => {
-    await downloadFileRecursiveFile(file, folderPath, destinationPath);
+    await download_file_recursive_file(file, folderPath, destinationPath);
     // console.log(`Downloaded ${file.name} to ${destinationFile}`);
   });
 
   await Promise.all(downloadPromises);
 }
 
-async function uploadFilesRecursive(bucket, folderPath, destinationPath = '') {
+async function upload_files_recursive(bucket, folderPath, destinationPath = '') {
   const items = await fs.promises.readdir(folderPath);
 
   const uploadPromises = items.map(async (item) => {
@@ -39,7 +39,7 @@ async function uploadFilesRecursive(bucket, folderPath, destinationPath = '') {
     } else if (stats.isDirectory()) {
       const subfolderPath = path.join(folderPath, item);
       const subfolderDestination = path.join(destinationPath, item);
-      await uploadFilesRecursive(bucket, subfolderPath, subfolderDestination);
+      await upload_files_recursive(bucket, subfolderPath, subfolderDestination);
     }
   });
 
@@ -47,23 +47,23 @@ async function uploadFilesRecursive(bucket, folderPath, destinationPath = '') {
 }
 
 
-export async function downloadFile(bucketName:string, filePath, folderPath) {
+export async function download_file(bucketName:string, filePath, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 
   const file = await bucket.file(filePath);
-  await downloadFileRecursiveFile(file, folderPath, '');
+  await download_file_recursive_file(file, folderPath, '');
 }
 
-export async function downloadFilesFromStorage(bucketName, folderPath) {
+export async function download_files_from_storage(bucketName, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 
-  await downloadFilesRecursive(bucket, folderPath);
+  await download_files_recursive(bucket, folderPath);
   console.log('All files downloaded successfully.');
 }
 
-export async function uploadFile(bucketName, fileName, folderPath) {
+export async function upload_file(bucketName, fileName, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 
@@ -75,20 +75,20 @@ export async function uploadFile(bucketName, fileName, folderPath) {
   await bucket.upload(filePath, uploadOptions);
 }
 
-export async function uploadFilesToStorage(bucketName, folderPath) {
+export async function upload_files_to_storage(bucketName, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 
-  await uploadFilesRecursive(bucket, folderPath);
+  await upload_files_recursive(bucket, folderPath);
   console.log('All files uploaded successfully.');
 }
 
 export class CloudFileStore {
   async downloadFile(bucketName, filePath, folderPath) {
-    await downloadFile(bucketName, filePath, folderPath);
+    await download_file(bucketName, filePath, folderPath);
   }
 
   async uploadFile(bucketName, filePath, folderPath) {
-    await uploadFile(bucketName, filePath, folderPath);
+    await upload_file(bucketName, filePath, folderPath);
   }
 }

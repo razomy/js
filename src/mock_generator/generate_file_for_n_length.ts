@@ -1,16 +1,16 @@
 import fs from "fs";
 
-function generateRandomCharacter() {
+function generate_random_character() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   const randomIndex = Math.floor(Math.random() * characters.length);
   return characters.charAt(randomIndex);
 }
 
-function insertTotalCount(totalCount) {
+function insert_total_count(totalCount) {
   return `\n[Chunk:${totalCount} Count:${totalCount * 500}]\n`;
 }
 
-function generateFile(filePath, fileSize) {
+function generate_file(filePath, fileSize) {
   const chunkSize = 500;
   let totalCount = 0;
 
@@ -20,10 +20,10 @@ function generateFile(filePath, fileSize) {
     if (totalCount * chunkSize < fileSize) {
       let chunk = '';
       for (let i = 0; i < chunkSize; i++) {
-        chunk += generateRandomCharacter();
+        chunk += generate_random_character();
       }
 
-      const countInfo = insertTotalCount(totalCount);
+      const countInfo = insert_total_count(totalCount);
       totalCount++;
 
       if (!writableStream.write(chunk + countInfo)) {
@@ -73,4 +73,4 @@ const Novemdecillion =1e+114;
 const Vigintillion =1e+120;
 const Centillion =1e+600;
 
-generateFile(filePath, ten_Million);
+generate_file(filePath, ten_Million);

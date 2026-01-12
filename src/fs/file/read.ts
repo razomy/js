@@ -1,11 +1,11 @@
 import fs from 'fs';
-import {SourcePathString} from 'razomy/path/string/pathString';
+import {SourcePathString} from 'razomy/path/string/path_string';
 
-export function readFile(file_path) {
+export function read_file(file_path) {
   return fs.readFileSync(file_path, 'utf8');
 }
 
-export function readFileAsync(file_path) {
+export function read_file_async(file_path) {
   return new Promise((resolve, reject) => {
     fs.readFile(file_path, 'utf8', (err, data) => {
       if (err) {
@@ -17,15 +17,15 @@ export function readFileAsync(file_path) {
   });
 }
 
-export function readFileJson(file_path) {
+export function read_file_json(file_path) {
   return JSON.parse(fs.readFileSync(file_path, 'utf8'));
 }
 
-export function tryReadFileJson(file_path) {
+export function try_read_file_json(file_path) {
   if (!fs.existsSync(file_path)) {
     return null;
   }
-  return readFileJson(file_path);
+  return read_file_json(file_path);
 }
 
 export function is_exist(file_path: SourcePathString) {

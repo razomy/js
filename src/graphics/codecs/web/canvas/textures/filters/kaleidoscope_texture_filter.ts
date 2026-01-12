@@ -1,7 +1,7 @@
 import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 
-function createCanvasElement(): HTMLCanvasElement {
+function create_canvas_element(): HTMLCanvasElement {
   var canvas = document.createElement('canvas');
   // on some environments canvas.style is readonly
   try {
@@ -30,7 +30,7 @@ function createCanvasElement(): HTMLCanvasElement {
  */
 
 
-var ToPolar = function(src: any, dst: any, opt: any) {
+var to_polar = function(src: any, dst: any, opt: any) {
   var srcPixels = src.data,
     dstPixels = dst.data,
     xSize = src.width,
@@ -108,7 +108,7 @@ var ToPolar = function(src: any, dst: any, opt: any) {
  *  0 is no rotation, 360 degrees is a full rotation
  */
 
-var FromPolar = function(src: any, dst: any, opt: any) {
+var from_polar = function(src: any, dst: any, opt: any) {
   var srcPixels = src.data,
     dstPixels = dst.data,
     xSize = src.width,
@@ -227,13 +227,13 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     }
 
     // Work with our shared buffer canvas
-    var tempCanvas = createCanvasElement();
+    var tempCanvas = create_canvas_element();
     tempCanvas.width = xSize;
     tempCanvas.height = ySize;
     var scratchData = tempCanvas.getContext('2d')!.getImageData(0, 0, xSize, ySize);
 
     // Convert thhe original to polar coordinates
-    ToPolar(imageData, scratchData, {
+    to_polar(imageData, scratchData, {
       polarCenterX: xSize / 2,
       polarCenterY: ySize / 2
     });
@@ -296,7 +296,7 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     }
 
     // Convert back from polar coordinates
-    FromPolar(scratchData, imageData, { polarRotation: 0 });
+    from_polar(scratchData, imageData, { polarRotation: 0 });
   };
 }
 

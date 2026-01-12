@@ -2,7 +2,7 @@ export class ArgumentError {
   constructor(public value: any) {}
 }
 
-export function notEmpty(value) {
+export function not_empty(value) {
   if (value === null || value === undefined || value === "") {
     return false;
   }
@@ -14,21 +14,21 @@ export function notEmpty(value) {
   return true;
 }
 
-export function falseThrow(value) {
+export function false_throw(value) {
   if (value == false) {
     throw new ArgumentError(value);
   }
   return true;
 }
 
-export function emptyThrow(value) {
-  if (!notEmpty(value)) {
+export function empty_throw(value) {
+  if (!not_empty(value)) {
     throw new ArgumentError(value);
   }
   return true;
 }
 
-export function notZero(value) {
+export function not_zero(value) {
   return value !== 0;
 }
 
@@ -36,7 +36,7 @@ export function and(...value: boolean[]) {
   return value.reduce((acc, cur) => acc && cur, true);
 }
 
-export function andFalseThrow(...value: boolean[]) {
+export function and_false_throw(...value: boolean[]) {
   if (!and(...value)) {
     throw new ArgumentError(value);
   }

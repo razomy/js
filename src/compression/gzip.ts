@@ -1,30 +1,30 @@
 import pako from 'pako';
 
 
-export function encodeString(input: string): string {
+export function encode_string(input: string): string {
   const encodedData = pako.deflate(input);
-  const encodedStr = base64FromArrayBuffer(encodedData);
+  const encodedStr = base64from_array_buffer(encodedData);
   return encodedStr;
 }
 
-export function decodeString(encodedStr: string): string {
-  const encodedData = arrayBufferFromBase64(encodedStr);
+export function decode_string(encodedStr: string): string {
+  const encodedData = array_buffer_from_base64(encodedStr);
   const decodedData = pako.inflate(encodedData, { to: 'string' });
   return decodedData;
 }
 
 
-export function encodeJsonString<T>(str: T): string {
+export function encode_json_string<T>(str: T): string {
   const input = JSON.stringify(str);
-  return encodeString(input);
+  return encode_string(input);
 }
 
-export function decodeJsonString<T>(encodedStr: string): T {
-  const decodedData = decodeString(encodedStr);
+export function decode_json_string<T>(encodedStr: string): T {
+  const decodedData = decode_string(encodedStr);
   return JSON.parse(decodedData) as T;
 }
 
-function base64FromArrayBuffer(buffer: ArrayBuffer): string {
+function base64from_array_buffer(buffer: ArrayBuffer): string {
   const uint8Array = new Uint8Array(buffer);
   let binary = '';
   const length = uint8Array.byteLength;
@@ -34,7 +34,7 @@ function base64FromArrayBuffer(buffer: ArrayBuffer): string {
   return btoa(binary);
 }
 
-function arrayBufferFromBase64(base64: string): Uint8Array {
+function array_buffer_from_base64(base64: string): Uint8Array {
   const binary = atob(base64);
   const length = binary.length;
   const uint8Array = new Uint8Array(length);

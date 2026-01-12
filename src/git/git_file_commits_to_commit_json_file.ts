@@ -4,7 +4,7 @@ import path from 'path';
 import {strings_to_delta_strings} from 'razomy/commit/datetime/delta/string/strings_to_delta_strings';
 import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/commit/datetime/delta/string/adds';
 
-function getAllCommitHashes(git) {
+function get_all_commit_hashes(git) {
   return new Promise<{ hash:string, date:string, author_name:string }[]>((resolve, reject) => {
     git.log((err, log) => {
       if (err) {
@@ -18,9 +18,9 @@ function getAllCommitHashes(git) {
   });
 }
 
-async function compareVersions(repoPath, filePath) {
+async function compare_versions(repoPath, filePath) {
   const git = simpleGit(repoPath);
-  const commits = await getAllCommitHashes(git);
+  const commits = await get_all_commit_hashes(git);
 
   const history = {
     commits: [] as ActorDatetimeDeltaString[],
@@ -68,7 +68,7 @@ async function git_file_commits_to_commit_json_file(
   );
 
   // Usage example
-  const history = await compareVersions(repositoryPathRoot, fileSubPath);
+  const history = await compare_versions(repositoryPathRoot, fileSubPath);
   const historyJson = JSON.stringify(history);
 
   fs.writeFileSync(

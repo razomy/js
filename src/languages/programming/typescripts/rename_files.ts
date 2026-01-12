@@ -1,13 +1,13 @@
 import { Project } from 'ts-morph';
 
-const toSnakeCase = (str: string) => {
+const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2') // Insert _ before capitals
     .replace(/[\s-]+/g, '_')             // Replace spaces and hyphens with _
     .toLowerCase();
 };
 
-const renameWithMorph = async () => {
+const rename_with_morph = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
@@ -19,7 +19,7 @@ const renameWithMorph = async () => {
     const baseName = file.getBaseNameWithoutExtension();
     const ext = file.getExtension();
 
-    const newName = toSnakeCase(baseName);
+    const newName = to_snake_case(baseName);
 
     // Skip if name hasn't changed
     if (baseName === newName) continue;
@@ -37,4 +37,4 @@ const renameWithMorph = async () => {
   }
 };
 
-renameWithMorph();
+rename_with_morph();

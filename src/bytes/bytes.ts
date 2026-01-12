@@ -1,6 +1,6 @@
 import sizeof from 'object-sizeof';
 
-export function formatBytes(bytes: number, decimals = 2): string {
+export function format_bytes(bytes: number, decimals = 2): string {
   if (bytes === 0) return '0 Bytes';
 
   const k = 1024;
@@ -12,12 +12,12 @@ export function formatBytes(bytes: number, decimals = 2): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-export function getObjectSizeInBytes(obj: any): number {
+export function get_object_size_in_bytes(obj: any): number {
   return sizeof(obj);
 }
 
-export function formattedSizeInBytes(obj: unknown): string {
-  const sizeInBytes = getObjectSizeInBytes(obj);
-  const formattedSize = formatBytes(sizeInBytes);
+export function formatted_size_in_bytes(obj: unknown): string {
+  const sizeInBytes = get_object_size_in_bytes(obj);
+  const formattedSize = format_bytes(sizeInBytes);
   return formattedSize;
 }

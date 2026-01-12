@@ -50,7 +50,7 @@ function pipe_ctx_serializable<T extends Ctx>(ctx: T, data: { [key: string]: Ser
   return ctx;
 }
 
-function toSerializableType(value: any): Serializable | undefined {
+function to_serializable_type(value: any): Serializable | undefined {
   if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) {
     return value;
   } else if (Array.isArray(value)) {
@@ -67,7 +67,7 @@ function toSerializableType(value: any): Serializable | undefined {
 function serializable_ctx(d: { [key: string]: any }): { [key: string]: Serializable } {
   const result: { [key: string]: Serializable } = {};
   for (const [k, v] of Object.entries(d)) {
-    const s = toSerializableType(v);
+    const s = to_serializable_type(v);
     if (s !== undefined) {
       result[k] = s;
     }
@@ -76,13 +76,13 @@ function serializable_ctx(d: { [key: string]: any }): { [key: string]: Serializa
 }
 
 function ctx_serializables(data: any[]): Serializable[] {
-  return data.map(toSerializableType).filter(s => s !== undefined) as Serializable[];
+  return data.map(to_serializable_type).filter(s => s !== undefined) as Serializable[];
 }
 
 function ctx_serializable(ctx: Ctx): { [key: string]: Serializable } {
   const result: { [key: string]: Serializable } = {};
   for (const [k, v] of Object.entries(ctx.items())) {
-    const s = toSerializableType(v);
+    const s = to_serializable_type(v);
     if (s !== undefined) {
       result[k] = s;
     }
@@ -90,7 +90,7 @@ function ctx_serializable(ctx: Ctx): { [key: string]: Serializable } {
   return result;
 }
 
-function ctxTrySetSerializable(ctx: Ctx, data: { [key: string]: Serializable }) {
+function ctx_try_set_serializable(ctx: Ctx, data: { [key: string]: Serializable }) {
   for (const [k, v] of Object.entries(data)) {
     ctx.setIfDefault(k, v);
   }

@@ -1,6 +1,6 @@
 import { IFactory } from 'razomy/factory/i_factory';
 
-export function generateGuid() {
+export function generate_guid() {
   function generatePart8(withHyphen?: boolean) {
     const part = (Math.random().toString(16) + '000000000').substr(2, 8);
     return withHyphen ? '-' + part.substr(0, 4) + '-' + part.substr(4, 4) : part;
@@ -11,6 +11,6 @@ export function generateGuid() {
 
 export class GuidFactory implements IFactory<string> {
   public create(): string {
-    return generateGuid();
+    return generate_guid();
   }
 }

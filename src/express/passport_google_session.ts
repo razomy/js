@@ -4,7 +4,7 @@ import  {google, googleTapOn } from 'razomy/google/auth/google_auth';
 import session from 'express-session';
 import passport from 'passport';
 
-export function googleSesionApi(ctx) {
+export function google_sesion_api(ctx) {
   ctx.app.use(session({
     proxy: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true },

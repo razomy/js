@@ -1,73 +1,65 @@
 import { Project, SyntaxKind } from 'ts-morph';
 
-/**
- * Converts a path segment (file or folder name) to PascalCase
- */
-const toPascalCase = (segment: string): string => {
-  // Ignore segments like ".." or "."
-  if (segment === '.' || segment === '..') return segment;
-
-  // Only convert if it contains underscore or looks like it needs conversion
-  // Logic matches the file renamer
-    let ff = segment
-      .split('_')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join('');
-    ff = ff.charAt(0).toLowerCase() + ff.slice(1)
-    return ff
+const toSnakeCase = (str: string) => {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2')
+    .toLowerCase();
 };
 
-const fixImports = async () => {
-  console.log('Scanning for broken snake_case imports...');
+const transformPath = (path: string) => {
+  // Split path by slashes to handle folders individually
+  return path
+    .split('/')
+    .map(segment => {
+      // Don't change relative path indicators
+      if (segment === '.' || segment === '..') return segment;
+      return toSnakeCase(segment);
+    })
+    .join('/');
+};
 
+const renameImportPaths = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
 
   const sourceFiles = project.getSourceFiles();
-  let changeCount = 0;
+  let count = 0;
 
   for (const file of sourceFiles) {
-    // Get all import declarations (import x from '...')
-    // and export declarations (export x from '...')
-    const imports = [
-      ...file.getImportDeclarations(),
-      ...file.getExportDeclarations()
-    ];
+    // 1. Get all Import Declarations (import ... from '...')
+    const imports = file.getImportDeclarations();
 
-    for (const imp of imports) {
-      if (!imp.getModuleSpecifier()) continue;
+    // 2. Get all Export Declarations (export ... from '...')
+    const exports = file.getExportDeclarations();
 
-      const currentPath = imp.getModuleSpecifierValue()!;
+    const allDeclarations = [...imports, ...exports];
 
-      // 1. Only touch relative imports (starting with . or ..)
-      // Ignore libraries like 'lodash' or 'react'
-      if (currentPath.startsWith('.')) continue;
+    for (const dec of allDeclarations) {
+      const moduleSpecifier = dec.getModuleSpecifierValue();
 
-      // 2. Skip if no underscores (unless you want to force PascalCase on everything)
-      if (!currentPath.includes('_')) continue;
+      // Skip invalid or empty specifiers
+      if (!moduleSpecifier) continue;
 
-      // 3. Transform the path
-      // Split by '/' to handle folders: ./utils/user_helper -> ./Utils/UserHelper
-      const parts = currentPath.split('/');
-      const newParts = parts.map(part => toPascalCase(part));
-      const newPath = newParts.join('/');
+      // Skip external libraries (node_modules usually don't start with .)
+      if (moduleSpecifier.startsWith('.')) continue;
 
-      // 4. Update if different
-      if (currentPath !== newPath) {
-        imp.setModuleSpecifier(newPath);
-        console.log(`[FIX] ${file.getBaseName()}: '${currentPath}' -> '${newPath}'`);
-        changeCount++;
+      const newPath = transformPath(moduleSpecifier);
+
+      if (moduleSpecifier !== newPath) {
+        dec.setModuleSpecifier(newPath);
+        console.log(`[PATH] ${moduleSpecifier} -> ${newPath}`);
+        count++;
       }
     }
   }
 
-  if (changeCount > 0) {
-    console.log(`Saving ${changeCount} import path corrections...`);
+  if (count > 0) {
+    console.log(`Saving ${count} path updates...`);
     await project.save();
   } else {
-    console.log('No snake_case relative imports found.');
+    console.log('No import paths needed updating.');
   }
 };
 
-
+renameImportPaths();

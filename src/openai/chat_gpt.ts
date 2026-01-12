@@ -1,12 +1,12 @@
 import OpenAI from 'openai';
 import {models} from "razomy/openai/models";
-import {isObject} from "razomy/object/object";
+import {is_object} from "razomy/object/object";
 import {is_string} from "razomy/string/is_string";
 
 const openai = new OpenAI();
 
 
-export function addSystemMessage(ctx, task) {
+export function add_system_message(ctx, task) {
   const messages = ctx.messages || [];
   messages.push(
     {
@@ -17,7 +17,7 @@ export function addSystemMessage(ctx, task) {
   ctx.messages = messages;
 }
 
-export function addUserMessage(ctx, task) {
+export function add_user_message(ctx, task) {
   const messages = ctx.messages || [];
   messages.push(
     {
@@ -28,7 +28,7 @@ export function addUserMessage(ctx, task) {
   ctx.messages = messages;
 }
 
-export function addFunctionAndAssign(ctx, functionTemplate) {
+export function add_function_and_assign(ctx, functionTemplate) {
   const [name, description, result, result_description] = functionTemplate.split(': ');
   const functions = ctx.functions || [];
   functions.push({
@@ -51,12 +51,12 @@ export function addFunctionAndAssign(ctx, functionTemplate) {
   Object.assign(ctx, updated);
 }
 
-export function setWeightAnTokens(request) {
-  setWeight(request);
-  setTokens(request);
+export function set_weight_an_tokens(request) {
+  set_weight(request);
+  set_tokens(request);
 }
 
-export function setWeight(ctx) {
+export function set_weight(ctx) {
   const updated = {
     temperature: 1,
     top_p: 1,
@@ -66,7 +66,7 @@ export function setWeight(ctx) {
   Object.assign(ctx, updated);
 }
 
-export function setTokens(ctx) {
+export function set_tokens(ctx) {
   const model = ctx.model || models.mild;
   const messagesTExt = JSON.stringify(ctx.messages) + JSON.stringify(ctx.functions);
   const max_tokens = model.token - Math.floor(messagesTExt.length / 2.5);
@@ -76,7 +76,7 @@ export function setTokens(ctx) {
   return ctx;
 }
 
-export async function gptApiV2(params = { messages: [] }) {
+export async function gpt_api_v2(params = { messages: [] }) {
   const request = {
     temperature: 1,
     top_p: 1,
@@ -91,8 +91,8 @@ export async function gptApiV2(params = { messages: [] }) {
 }
 
 
-export async function apiMessage(request) {
-  setWeightAnTokens(request);
+export async function api_message(request) {
+  set_weight_an_tokens(request);
 
   const response = await openai.chat.completions.create(request);
   return response.choices[0].message;
@@ -117,28 +117,28 @@ export async function v1(params = { messages: [] } as any) {
   return response.choices[0].text;
 }
 
-export async function gptApi(messageOrMessagesOrRequest) {
+export async function gpt_api(messageOrMessagesOrRequest) {
   if (is_string(messageOrMessagesOrRequest)) {
     const req = { messages: [{ role: 'user', content: messageOrMessagesOrRequest }] };
-    setTokens(req);
-    return (await gptApiV2(req as any)).choices[0].message.content;
+    set_tokens(req);
+    return (await gpt_api_v2(req as any)).choices[0].message.content;
   } else if (Array.isArray(messageOrMessagesOrRequest)) {
-    return (await gptApiV2(messageOrMessagesOrRequest as any)).choices[0].message.content;
-  } else if (isObject(messageOrMessagesOrRequest)) {
-    setTokens(messageOrMessagesOrRequest);
-    return (await gptApiV2(messageOrMessagesOrRequest)).choices[0].message.content;
+    return (await gpt_api_v2(messageOrMessagesOrRequest as any)).choices[0].message.content;
+  } else if (is_object(messageOrMessagesOrRequest)) {
+    set_tokens(messageOrMessagesOrRequest);
+    return (await gpt_api_v2(messageOrMessagesOrRequest)).choices[0].message.content;
   } else {
     throw new Error('Unknown request');
   }
 }
 
-export async function getModels() {
+export async function get_models() {
   const res = await openai.models.list();
   console.log(res.data.map(i => i.id));
   return res.data;
 }
 
-export async function singleRequestPro(text, model = models.expensive120000) {
+export async function single_request_pro(text, model = models.expensive120000) {
   let messageOrMessagesOrRequest = {
     messages: [
       {
@@ -148,9 +148,9 @@ export async function singleRequestPro(text, model = models.expensive120000) {
     ],
     model: model,
   };
-  messageOrMessagesOrRequest = setTokens(messageOrMessagesOrRequest);
+  messageOrMessagesOrRequest = set_tokens(messageOrMessagesOrRequest);
 
-  const result = await gptApiV2(messageOrMessagesOrRequest as any);
+  const result = await gpt_api_v2(messageOrMessagesOrRequest as any);
   const message = result.choices[0].message.content;
   return message;
 }

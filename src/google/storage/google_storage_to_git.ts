@@ -1,10 +1,10 @@
 import path from 'path';
 import {string} from "razomy/number/string/string";
-import {executeAsync} from "razomy/shell/executeAsync";
-import {writeToFileAsync} from 'razomy/fs/file/write';
+import {execute_async} from "razomy/shell/execute_async";
+import {write_to_file_async} from 'razomy/fs/file/write';
 
 
-export async function exportFiles(baseDir) {
+export async function export_files(baseDir) {
   baseDir = path.resolve(baseDir);
 
   const {Storage} = await import('@google-cloud/storage');
@@ -31,8 +31,8 @@ export async function exportFiles(baseDir) {
     const commitMessage = `Update fileName:${fileName} date:${date}`;
 
     try {
-      await writeToFileAsync(path.join(baseDir, filePath), content);
-      await executeAsync(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
+      await write_to_file_async(path.join(baseDir, filePath), content);
+      await execute_async(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
     } catch (e) {
       console.log(e);
     }

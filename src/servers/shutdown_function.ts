@@ -1,4 +1,4 @@
-export function shutdownFunction(server, callback) {
+export function shutdown_function(server, callback) {
   process.on('SIGTERM', shutDown);
   process.on('SIGINT', shutDown);
 

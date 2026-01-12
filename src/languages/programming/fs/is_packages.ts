@@ -1,7 +1,7 @@
 import * as path from 'path';
 import {is_exist} from "src/fs/file/read";
 import {ArgumentException} from "razomy/exceptions/argument_exception";
-import {PathString, Slug, WithPathString} from 'razomy/path/string/pathString';
+import {PathString, Slug, WithPathString} from 'razomy/path/string/path_string';
 
 export const PYTHON_DEPENDENCIES = ['.venv'];
 export const NODEJS_DEPENDENCIES = ['node_modules'];
@@ -13,12 +13,12 @@ export const KNOWN_DEPENDENCIES = [
   ...UNITY_DEPENDENCIES,
 ];
 
-function getPathComponents(path_: string): string[] {
+function get_path_components(path_: string): string[] {
   return path_.split(path.sep).filter(component => component.length > 0);
 }
 
-export function isInPackages(path_: string): boolean {
-  const pathComponents = getPathComponents(path_);
+export function is_in_packages(path_: string): boolean {
+  const pathComponents = get_path_components(path_);
   return KNOWN_DEPENDENCIES.some(depDir => pathComponents.includes(depDir));
 }
 

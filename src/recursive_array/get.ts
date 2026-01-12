@@ -1,24 +1,24 @@
 import {ArgumentException} from "razomy/exceptions/argument_exception";
-import {getKey, getValue, ListItem, RecursiveList} from "razomy/recursive_array/recursive";
+import {get_key, get_value, ListItem, RecursiveList} from "razomy/recursive_array/recursive";
 import {assign} from "razomy/key/assign";
 
-export function getItemByPath(node: ListItem, path: string[], offset: number): ListItem {
+export function get_item_by_path(node: ListItem, path: string[], offset: number): ListItem {
   if (offset >= path.length) {
     return node;
   }
 
-  const value = getValue(node);
-  return getItemByPathFromValue(value, path, offset)
+  const value = get_value(node);
+  return get_item_by_path_from_value(value, path, offset)
 }
 
-export function getItemByPathFromValue(value: RecursiveList, path: string[], offset: number) {
+export function get_item_by_path_from_value(value: RecursiveList, path: string[], offset: number) {
   for (let node of value) {
-    const key = getKey(node);
+    const key = get_key(node);
     if (key !== path[offset]) {
       continue;
     }
 
-    return getItemByPath(node, path, offset + 1)
+    return get_item_by_path(node, path, offset + 1)
   }
 
   throw new ArgumentException('invalid arguments', {value, path, offset})
@@ -26,5 +26,5 @@ export function getItemByPathFromValue(value: RecursiveList, path: string[], off
 
 
 export function get(node: ListItem, path: string) {
-  return getItemByPath(node, path.split(assign), 0);
+  return get_item_by_path(node, path.split(assign), 0);
 }

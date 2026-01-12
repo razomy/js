@@ -570,7 +570,7 @@ var shg_table = [
   24
 ];
 
-function filterGaussBlurRGBA(imageData: any, radius: any) {
+function filter_gauss_blur_rgba(imageData: any, radius: any) {
   var pixels = imageData.data,
     width = imageData.width,
     height = imageData.height;
@@ -843,7 +843,7 @@ export class BlurTextureFilter implements ITextureFilter {
     var radius = Math.round(this.blurRadius);
 
     if (radius > 0) {
-      filterGaussBlurRGBA(imageData, radius);
+      filter_gauss_blur_rgba(imageData, radius);
     }
   };
 }

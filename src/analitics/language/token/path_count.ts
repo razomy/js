@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {FilePathString} from 'razomy/path/string/pathString';
+import {FilePathString} from 'razomy/path/string/path_string';
 
 export function path_count(file_path: FilePathString) {
   try {

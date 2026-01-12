@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {readFileJson} from 'razomy/fs/file/read';
-import {writeFileJson} from 'razomy/fs/file/write';
+import {read_file_json} from 'razomy/fs/file/read';
+import {write_file_json} from 'razomy/fs/file/write';
 
-export function createPackage() {
+export function create_package() {
   const srcDir: string = path.join(__dirname, '../../../');
   const prefix: string = 'razomy';
 
@@ -49,13 +49,13 @@ export function createPackage() {
     fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2));
     console.log(`✓ Updated: ${folder.name} -> ${newName}`);
   });
-  const file = readFileJson('../../../../package.json');
+  const file = read_file_json('../../../../package.json');
   file.workspaces = files.map(folder => 'src/' + folder.name)
   file.dependencies = Object.fromEntries(
     files.map(folder => ['razomy.' + folder.name, './src/' + folder.name])
   );
 
-  writeFileJson('../../../../package.json', file)
+  write_file_json('../../../../package.json', file)
 }
 
-createPackage()
+create_package()

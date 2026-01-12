@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import {has_sub_array} from 'razomy/array/has_sub_array';
+import {has_sub_array as has_sub_array2} from 'razomy/array/has_sub_array';
 
 export const PYTHON_CACHE = ['__pycache__', '.pytest_cache'];
 export const JS_ANGULAR_CACHE = ['.angular'];
@@ -34,20 +34,20 @@ export const KNOWN_CACHE = [
   ...IDEA_CACHE,
 ];
 
-function getPathComponents(path_: string): string[] {
+function get_path_components(path_: string): string[] {
   return path_.split(path.sep).filter(component => component.length > 0);
 }
 
-function hasSubArray(master: string[], sub: string | string[]): boolean {
+function has_sub_array(master: string[], sub: string | string[]): boolean {
   if (Array.isArray(sub)) {
-    return has_sub_array(master, sub)
+    return has_sub_array2(master, sub)
 
   }
   return master.includes(sub)
 }
 
-export function isInCache(path_: string): boolean {
-  const pathComponents = getPathComponents(path_);
+export function is_in_cache(path_: string): boolean {
+  const pathComponents = get_path_components(path_);
 
-  return KNOWN_CACHE.some(cacheDir => hasSubArray(pathComponents, cacheDir));
+  return KNOWN_CACHE.some(cacheDir => has_sub_array(pathComponents, cacheDir));
 }

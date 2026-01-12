@@ -1,4 +1,4 @@
-export function isDateToday(inputDate: Date) {
+export function is_date_today(inputDate: Date) {
   const currentDate = new Date(new Date().toISOString().split('T')[0]);
   const inputDateObj = new Date(inputDate);
 
@@ -9,7 +9,7 @@ export function isDateToday(inputDate: Date) {
   );
 }
 
-export function formatTimeLength(milliseconds: number) {
+export function format_time_length(milliseconds: number) {
   const timeUnits: string[] = [];
 
   const seconds = Math.floor(milliseconds / 1000);

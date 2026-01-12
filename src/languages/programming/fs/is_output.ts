@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {PathString} from "razomy/path/string/pathString";
+import {PathString} from "razomy/path/string/path_string";
 import {rename} from "razomy/fs/rename";
 
 export const JS_OUTPUT = ['dist'];
@@ -22,17 +22,17 @@ export const KNOWN_OUTPUT = [
   ...E2E_OUTPUT,
 ];
 
-function getPathComponents(path_: string): string[] {
+function get_path_components(path_: string): string[] {
   return path_.split(path.sep).filter(component => component.length > 0);
 }
 
-export function isInOutput(path_: string): boolean {
-  const pathComponents = getPathComponents(path_);
+export function is_in_output(path_: string): boolean {
+  const pathComponents = get_path_components(path_);
 
   return KNOWN_OUTPUT.some(outputDir => pathComponents.includes(outputDir));
 }
 
-export function renameSlugToRazomy(path_: PathString) {
+export function rename_slug_to_razomy(path_: PathString) {
   const dir = path.dirname(path_);
   const res = path.join(dir, RAZOMY_OUTPUT[0]);
   rename(path_, res)

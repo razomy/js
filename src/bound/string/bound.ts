@@ -7,7 +7,7 @@ export interface NodeBound {
   fullRect: BoundY & WithOffset & WithLength;
 }
 
-export function getPlacesBetweenNodes(nodes: NodeBound[], root: NodeBound) {
+export function get_places_between_nodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.start_y, finish_y: root.fullRect.finish_y }];
   }
@@ -56,7 +56,7 @@ export function getPlacesBetweenNodes(nodes: NodeBound[], root: NodeBound) {
   return places;
 }
 
-export function getStart(str: string): { x: number, y: number } {
+export function get_start(str: string): { x: number, y: number } {
   let i = 0;
   let x = 0;
   let y = 0;
@@ -79,9 +79,9 @@ export function getStart(str: string): { x: number, y: number } {
 }
 
 
-export function getRect(delta: string, str: string): BoundY & WithOffset & WithLength {
-  const start = getStart(delta);
-  const end = getStart(str);
+export function get_rect(delta: string, str: string): BoundY & WithOffset & WithLength {
+  const start = get_start(delta);
+  const end = get_start(str);
   return {
     offset: delta.length,
     length: str.length,

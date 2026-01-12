@@ -38,7 +38,7 @@ export function map_commit(commits: ActorDatetimeDeltaString[]) {
   return result;
 }
 
-function findRepetitions(arr: ActorDatetimeDeltaString[]) {
+function find_repetitions(arr: ActorDatetimeDeltaString[]) {
   const frequencyMap = new Map();
 
   for (let i = 0; i < arr.length; i++) {

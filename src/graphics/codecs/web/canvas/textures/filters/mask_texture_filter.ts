@@ -1,6 +1,6 @@
 import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
-function pixelAt(idata: any, x: number, y: number) {
+function pixel_at(idata: any, x: number, y: number) {
   var idx = (y * idata.width + x) * 4;
   var d: any[] = [];
   d.push(
@@ -12,7 +12,7 @@ function pixelAt(idata: any, x: number, y: number) {
   return d;
 }
 
-function rgbDistance(p1: number[], p2: number[]) {
+function rgb_distance(p1: number[], p2: number[]) {
   return Math.sqrt(
     Math.pow(p1[0] - p2[0], 2) +
     Math.pow(p1[1] - p2[1], 2) +
@@ -20,7 +20,7 @@ function rgbDistance(p1: number[], p2: number[]) {
   );
 }
 
-function rgbMean(pTab: any) {
+function rgb_mean(pTab: any) {
   var m = [0, 0, 0];
 
   for (var i = 0; i < pTab.length; i++) {
@@ -36,26 +36,26 @@ function rgbMean(pTab: any) {
   return m;
 }
 
-function backgroundMask(idata: any, threshold: number): any {
-  var rgbv_no = pixelAt(idata, 0, 0);
-  var rgbv_ne = pixelAt(idata, idata.width - 1, 0);
-  var rgbv_so = pixelAt(idata, 0, idata.height - 1);
-  var rgbv_se = pixelAt(idata, idata.width - 1, idata.height - 1);
+function background_mask(idata: any, threshold: number): any {
+  var rgbv_no = pixel_at(idata, 0, 0);
+  var rgbv_ne = pixel_at(idata, idata.width - 1, 0);
+  var rgbv_so = pixel_at(idata, 0, idata.height - 1);
+  var rgbv_se = pixel_at(idata, idata.width - 1, idata.height - 1);
 
   var thres = threshold || 10;
   if (
-    rgbDistance(rgbv_no, rgbv_ne) < thres &&
-    rgbDistance(rgbv_ne, rgbv_se) < thres &&
-    rgbDistance(rgbv_se, rgbv_so) < thres &&
-    rgbDistance(rgbv_so, rgbv_no) < thres
+    rgb_distance(rgbv_no, rgbv_ne) < thres &&
+    rgb_distance(rgbv_ne, rgbv_se) < thres &&
+    rgb_distance(rgbv_se, rgbv_so) < thres &&
+    rgb_distance(rgbv_so, rgbv_no) < thres
   ) {
     // Mean color
-    var mean = rgbMean([rgbv_ne, rgbv_no, rgbv_se, rgbv_so]);
+    var mean = rgb_mean([rgbv_ne, rgbv_no, rgbv_se, rgbv_so]);
 
     // Mask based on color distance
     var mask: any[] = [];
     for (var i = 0; i < idata.width * idata.height; i++) {
-      var d = rgbDistance(mean, [
+      var d = rgb_distance(mean, [
         idata.data[i * 4],
         idata.data[i * 4 + 1],
         idata.data[i * 4 + 2],
@@ -67,13 +67,13 @@ function backgroundMask(idata: any, threshold: number): any {
   }
 }
 
-function applyMask(idata: any, mask: any) {
+function apply_mask(idata: any, mask: any) {
   for (var i = 0; i < idata.width * idata.height; i++) {
     idata.data[4 * i + 3] = mask[i];
   }
 }
 
-function erodeMask(mask: any, sw: number, sh: number) {
+function erode_mask(mask: any, sw: number, sh: number) {
   var weights = [1, 1, 1, 1, 0, 1, 1, 1, 1];
   var side = Math.round(Math.sqrt(weights.length));
   var halfSide = Math.floor(side / 2);
@@ -104,7 +104,7 @@ function erodeMask(mask: any, sw: number, sh: number) {
   return maskResult;
 }
 
-function dilateMask(mask: any, sw: any, sh: any) {
+function dilate_mask(mask: any, sw: any, sh: any) {
   var weights = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   var side = Math.round(Math.sqrt(weights.length));
   var halfSide = Math.floor(side / 2);
@@ -135,7 +135,7 @@ function dilateMask(mask: any, sw: any, sh: any) {
   return maskResult;
 }
 
-function smoothEdgeMask(mask: any, sw: any, sh: any) {
+function smooth_edge_mask(mask: any, sw: any, sh: any) {
   var weights = [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9];
   var side = Math.round(Math.sqrt(weights.length));
   var halfSide = Math.floor(side / 2);
@@ -187,19 +187,19 @@ export class MaskTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {
     // Detect pixels close to the background color
     var threshold = this.threshold,
-      mask = backgroundMask(imageData, threshold);
+      mask = background_mask(imageData, threshold);
     if (mask) {
       // Erode
-      mask = erodeMask(mask, imageData.width, imageData.height);
+      mask = erode_mask(mask, imageData.width, imageData.height);
 
       // Dilate
-      mask = dilateMask(mask, imageData.width, imageData.height);
+      mask = dilate_mask(mask, imageData.width, imageData.height);
 
       // Gradient
-      mask = smoothEdgeMask(mask, imageData.width, imageData.height);
+      mask = smooth_edge_mask(mask, imageData.width, imageData.height);
 
       // Apply mask
-      applyMask(imageData, mask);
+      apply_mask(imageData, mask);
     }
 
     return imageData;

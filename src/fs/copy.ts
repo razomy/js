@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 import path from 'path';
 
-async function copyFilesRecursive(source, target, excludedDirs: string[] = []) {
+async function copy_files_recursive(source, target, excludedDirs: string[] = []) {
   const sourceStats = await fs.stat(source);
 
   if (sourceStats.isDirectory()) {
@@ -17,7 +17,7 @@ async function copyFilesRecursive(source, target, excludedDirs: string[] = []) {
       const sourcePath = path.join(source, fileOrDir);
       const targetPath = path.join(target, fileOrDir);
 
-      await copyFilesRecursive(sourcePath, targetPath, excludedDirs);
+      await copy_files_recursive(sourcePath, targetPath, excludedDirs);
     }
   } else {
     await fs.mkdir(path.dirname(target), {recursive: true});
@@ -36,7 +36,7 @@ async function cli() {
   const [source, target, ...excludedDirs] = args;
 
   try {
-    await copyFilesRecursive(path.resolve(source) + '', path.resolve(target) + '', excludedDirs);
+    await copy_files_recursive(path.resolve(source) + '', path.resolve(target) + '', excludedDirs);
     console.log('Files copied successfully.');
   } catch (error) {
     console.error('Error copying files:', error);

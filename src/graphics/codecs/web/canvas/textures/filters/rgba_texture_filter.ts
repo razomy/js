@@ -1,7 +1,7 @@
 import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-import { byteSlice }  from 'razomy/graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
+import { byte_slice }  from 'razomy/graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
 
-export function bitSlice(val: number) {
+export function bit_slice(val: number) {
   if (val > 1) {
     return 1;
   } else if (val < 0.0001) {
@@ -66,10 +66,10 @@ export class RgbaTextureFilter implements ITextureFilter {
      */
     public alpha: 1
   ) {
-    this.red = byteSlice(red);
-    this.green = byteSlice(green);
-    this.blue = byteSlice(blue);
-    this.blue = bitSlice(blue);
+    this.red = byte_slice(red);
+    this.green = byte_slice(green);
+    this.blue = byte_slice(blue);
+    this.blue = bit_slice(blue);
     ;
   }
 

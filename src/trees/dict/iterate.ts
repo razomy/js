@@ -7,9 +7,9 @@ export function iterate<T extends WithChildrenDict<any>>(node: T, cb: (node: T) 
   }
 }
 
-export function ForeachDeepDictOptional<T extends WithChildrenDict<any>>(node: T, cb: (node: T) => void) {
+export function foreach_deep_dict_optional<T extends WithChildrenDict<any>>(node: T, cb: (node: T) => void) {
   cb(node);
   for (const n in node.children || {}) {
-    ForeachDeepDictOptional<T>(node.children[n], cb);
+    foreach_deep_dict_optional<T>(node.children[n], cb);
   }
 }

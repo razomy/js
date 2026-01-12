@@ -1,10 +1,10 @@
 import {assign} from 'razomy/key/assign';
 import {Module, TerminalArgs} from 'razomy/cli/module';
-import {validateArrayStringThrow} from 'razomy/cli/validateArrayStringThrow';
+import {validate_array_string_throw} from 'razomy/cli/validate_array_string_throw';
 
 export async function cli<
   Rm extends keyof Module & string>(terminalArgs: TerminalArgs<Rm> | null | undefined): Promise<number> {
-  terminalArgs = validateArrayStringThrow(terminalArgs, 'terminalArgs')
+  terminalArgs = validate_array_string_throw(terminalArgs, 'terminalArgs')
   console.debug('razomy:js:cli:start')
 
   const module_key_and_function_key = terminalArgs[0].split("/");

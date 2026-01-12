@@ -1,6 +1,6 @@
 import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
-export function byteSlice(val: number): number {
+export function byte_slice(val: number): number {
   if (val > 255) {
     return 255;
   } else if (val < 0) {
@@ -56,9 +56,9 @@ export class RgbTextureFilter implements ITextureFilter {
      */
     public blue = 0
   ) {
-    this.red = byteSlice(red);
-    this.green = byteSlice(green);
-    this.blue = byteSlice(blue);
+    this.red = byte_slice(red);
+    this.green = byte_slice(green);
+    this.blue = byte_slice(blue);
   }
 
   public filter(imageData: any): void {
