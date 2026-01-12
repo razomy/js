@@ -3,5 +3,8 @@
   "dependencies": {
     "vue": "^3.4.36",
     "vuetify": "^3.7.0"
-  }
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }

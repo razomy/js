@@ -1,5 +1,7 @@
 {
-  "name": "razomy.actor",
-  "dependencies": {
-  }
+  "name": "razomy.commit",
+  "dependencies": {},
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }

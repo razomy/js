@@ -1,19 +1,15 @@
-import {Project} from 'ts-morph';
+import { Project } from 'ts-morph';
 
-const toPascalCase = (str: string) => {
-  let ff = str
-    .split('_')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('');
-  ff = ff.charAt(0).toLowerCase() + ff.slice(1)
-  return ff
+const toSnakeCase = (str: string) => {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2') // Insert _ before capitals
+    .replace(/[\s-]+/g, '_')             // Replace spaces and hyphens with _
+    .toLowerCase();
 };
 
 const renameWithMorph = async () => {
-  // Initialize with your tsconfig
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
-    skipAddingFilesFromTsConfig: false,
   });
 
   const sourceFiles = project.getSourceFiles();
@@ -23,20 +19,19 @@ const renameWithMorph = async () => {
     const baseName = file.getBaseNameWithoutExtension();
     const ext = file.getExtension();
 
-    // Skip if already PascalCase or no underscores
-    // if (!baseName.includes('_')) continue;
+    const newName = toSnakeCase(baseName);
 
-    const newName = toPascalCase(baseName) + ext;
+    // Skip if name hasn't changed
+    if (baseName === newName) continue;
 
-    // file.move() renames the file AND updates imports in other files
-    file.move(file.getDirectory().getPath() + '/' + newName);
-    console.log(`[RENAME] ${baseName}${ext} -> ${newName}`);
+    file.move(`${file.getDirectory().getPath()}/${newName}${ext}`);
+    console.log(`[RENAME] ${baseName}${ext} -> ${newName}${ext}`);
     count++;
   }
 
   if (count > 0) {
     console.log(`Saving ${count} changes...`);
-    await project.save(); // Writes changes to disk
+    await project.save();
   } else {
     console.log('No files needed renaming.');
   }

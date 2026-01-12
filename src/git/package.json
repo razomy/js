@@ -2,5 +2,8 @@
   "name": "razomy.git",
   "dependencies": {
     "simple-git": "3.30.0"
-  }
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }

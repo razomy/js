@@ -1,7 +1,9 @@
 {
   "name": "razomy.bytes",
-  "version": "latest",
+  "version": "0.0.0",
   "dependencies": {
     "object-sizeof": "^2.6.4"
-  }
+  },
+  "main": "index.js",
+  "license": "MIT"
 }

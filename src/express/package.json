@@ -22,8 +22,11 @@
     "@google-cloud/connect-datastore": "latest"
   },
   "overrides": {
-  "@google-cloud/connect-datastore": {
-    "@google-cloud/datastore": "$@google-cloud/datastore"
-  }
-}
+    "@google-cloud/connect-datastore": {
+      "@google-cloud/datastore": "$@google-cloud/datastore"
+    }
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }

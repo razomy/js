@@ -9,12 +9,12 @@ const toPascalCase = (segment: string): string => {
 
   // Only convert if it contains underscore or looks like it needs conversion
   // Logic matches the file renamer
-  let ff = segment
-    .split('_')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('');
-  ff = ff.charAt(0).toLowerCase() + ff.slice(1)
-  return ff
+    let ff = segment
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join('');
+    ff = ff.charAt(0).toLowerCase() + ff.slice(1)
+    return ff
 };
 
 const fixImports = async () => {
@@ -42,7 +42,7 @@ const fixImports = async () => {
 
       // 1. Only touch relative imports (starting with . or ..)
       // Ignore libraries like 'lodash' or 'react'
-      if (!currentPath.startsWith('.')) continue;
+      if (currentPath.startsWith('.')) continue;
 
       // 2. Skip if no underscores (unless you want to force PascalCase on everything)
       if (!currentPath.includes('_')) continue;
@@ -70,4 +70,4 @@ const fixImports = async () => {
   }
 };
 
-fixImports();
+

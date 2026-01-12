@@ -1,3 +1,6 @@
 {
-  "name": "razomy.async"
+  "name": "razomy.async",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
