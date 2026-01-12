@@ -7,7 +7,7 @@ import {
   VrdOrValue
 } from "razomy/vrd/vrd";
 import {equal_} from "razomy/equal/equal";
-import {get_string} from "razomy/array/change/get";
+import {get} from "razomy/array/change/get";
 import {get_similar} from 'razomy/array/change/get_similar';
 
 export interface ReplaceDifference<T> {

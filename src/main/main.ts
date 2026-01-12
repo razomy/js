@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { argv } from 'process';
-import { is_promise } from 'razomy/async/promise';
 import { format_time_length } from 'razomy/dates/dates';
+import {is_} from 'razomy/async/is_';
 
 export function is_main(moduleUrl) {
   const module_path = fileURLToPath(moduleUrl);
@@ -16,7 +16,7 @@ export async function on_main(moduleUrl, callback) {
     if (is_main(moduleUrl)) {
       console.log(`${path}.start`);
       const void_or_promise = callback();
-      if (is_promise(void_or_promise)) {
+      if (is_(void_or_promise)) {
         await void_or_promise;
       }
       const end_date = Date.now();

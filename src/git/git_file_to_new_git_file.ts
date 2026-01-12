@@ -1,8 +1,8 @@
 import path from 'path';
 import {execute_async} from 'razomy/shell/execute_async';
 import {read_file} from 'razomy/fs/file/read';
-import {try_async} from "razomy/async/promise";
 import {write_file} from 'razomy/fs/file/write';
+import {try_} from 'razomy/async/try_';
 
 
 export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
@@ -39,13 +39,13 @@ async function git_file_to_new_git_file(
     const index = commits.indexOf(commit);
 
     const checkout_command = `git checkout ${commit.id}`;
-    await try_async(execute_async(checkout_command, {cwd: repositoryPath}));
+    await try_(execute_async(checkout_command, {cwd: repositoryPath}));
 
     const data = read_file(repositoryPath + fileSubPath);
     write_file(repositorynewPath + fileSubPath, data);
 
     const commit_command = `git add . && git commit --date "${commit.date}" -m "${commit.commit_name}"`;
-    await try_async(execute_async(commit_command, {cwd: repositorynewPath}));
+    await try_(execute_async(commit_command, {cwd: repositorynewPath}));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
     console.log(`   Commit Name: ${commit.commit_name}`);

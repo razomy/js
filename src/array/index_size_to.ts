@@ -1,0 +1,7 @@
+import {create} from 'razomy/array/create';
+
+export function index_size_to(ix: number, size: number): number[] {
+  const arr = create(size);
+  arr[ix] = 1;
+  return arr;
+}

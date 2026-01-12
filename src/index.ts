@@ -1,5 +1,5 @@
 export * from './action';
-export * from './analitics';
+export * from './analytics';
 export * from './array';
 export * from './ast';
 export * from './async';
@@ -57,8 +57,8 @@ export * from './pipes';
 export * from './random';
 export * from './razomy';
 export * from './recursive';
-export * from './recursive_array';
-export * from './recursive_dict';
+export * from './array/recursive';
+export * from './dict/recursive';
 export * from './resources';
 export * from './respect';
 export * from './serializable';
