@@ -3,3 +3,7 @@ dist
 .idea
 razomy*.tgz
 _releases
+
+
+.nx/cache
+.nx/workspace-data

@@ -1,107 +1,66 @@
-import {Project, SyntaxKind} from 'ts-morph';
-import * as path from 'path';
+import {Project} from 'ts-morph';
 
 const to_snake_case = (str: string) => {
   return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
 };
 
-const to_pascal_case = (str: string) => {
-  let ff = str
-    .split('_')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('');
-  return ff
-};
-
-const generate_reverse_index = async () => {
+const generate_default_index = async () => {
   const project = new Project({tsConfigFilePath: '../../../../tsconfig.json'});
-
-  // Get project root absolute path to calculate relative paths later
-  const root_dir = project.getDirectory('../../../../src')?.getPath() || process.cwd();
-
   const directories = project.getDirectories();
   let count = 0;
 
   for (const dir of directories) {
     const dir_path = dir.getPath();
-    const export_statements: string[] = [];
+    const dir_name = dir.getBaseName();
 
-    // 1. Export Sub-Directories (Recursion)
+    // The predefined name for the variable (e.g. 'fs' or 'dir')
+    const const_name = to_snake_case(dir_name);
+
+    const imports: string[] = [];
+    const keys: string[] = [];
+
+    // 1. Sub-Directories (Import Default)
+    // Since we are changing logic to export default, we must import {default} from sub-dirs
     for (const sub_dir of dir.getDirectories()) {
-      export_statements.push(`export * from './${sub_dir.getBaseName()}';`);
+      const sub_name = to_snake_case(sub_dir.getBaseName());
+      imports.push(`import $sub_name from './$sub_dir.getBaseName()';`);
+      keys.push(sub_name);
     }
 
-    // 2. Process Files
+    // 2. Files (Import Namespace)
+    // Keeps all named exports from the file wrapped in an object
     for (const file of dir.getSourceFiles()) {
       const base_name = file.getBaseNameWithoutExtension();
+      const fullName = file.getBaseName();
       if (base_name === 'index') continue;
+      if (fullName.includes('.spec.')) continue;
+      if (fullName.includes('.test.')) continue;
 
-      // Logic: Get relative path -> Split -> Reverse -> Join
-      // e.g. "packages/auth/utils" becomes "utils_auth_packages"
-      const rel_path = path.relative(root_dir, file.getDirectoryPath());
-      const reversed_path = rel_path.replace('../../../', '')
-        .split(/[\\/]/) // Split by / or \
-        .reverse()
-        .map(to_snake_case)
-        .join('_');
+      let file_key = to_snake_case(base_name);
+      if (file_key == 'index') file_key += '_';
+      if (file_key == 'class') file_key += '_';
+      if (file_key == 'function') file_key += '_';
+      if (file_key == 'delete') file_key += '_';
+      if (file_key == 'is') file_key += '_';
+      if (file_key == 'with') file_key += '_';
 
-      const file_snake = to_snake_case(base_name);
-
-      // Builder: function_file_reversedPath
-      const create_alias = (name: string) => {
-        const func_snake = to_snake_case(name);
-        // Filter(Boolean) removes empty strings if file is at root
-        return [func_snake, reversed_path].filter(Boolean).join('_');
-      };
-
-      const create_alias_class = (name: string) => {
-        const func_snake = name;
-        if(func_snake == to_pascal_case(reversed_path)){
-          return [func_snake].filter(Boolean).join('')
-        }
-        // Filter(Boolean) removes empty strings if file is at root
-        return [func_snake, to_pascal_case(reversed_path)].filter(Boolean).join('');
-      };
-
-
-      // A. Standard Functions
-      file.getFunctions()
-        .filter(f => f.isExported())
-        .forEach(f => {
-          const name = f.getName();
-          if (name) {
-            export_statements.push(`export { ${name} as ${create_alias(name)} } from './${base_name}';`);
-          }
-        });
-
-      // B. Arrow Functions / Variables
-      [
-        ...file.getClasses(),
-        ...file.getEnums(),
-        ...file.getInterfaces(),
-        ...file.getTypeAliases()
-      ].forEach(v => {
-        if (v.isExported()) {
-          const name = v.getName()!;
-          export_statements.push(`export { ${name} as ${create_alias_class(name)} } from './${base_name}';`);
-        }
-      });
-
-      // B. Arrow Functions / Variables
-      file.getVariableDeclarations().forEach(v => {
-        if (v.isExported()) {
-          const init = v.getInitializer();
-          if (init && (init.isKind(SyntaxKind.ArrowFunction) || init.isKind(SyntaxKind.FunctionExpression))) {
-            const name = v.getName();
-            export_statements.push(`export { ${name} as ${create_alias(name)} } from './${base_name}';`);
-          }
-        }
-      });
+      imports.push(`import * as $file_key from './${base_name}';`);
+      keys.push(file_key);
     }
 
-    if (export_statements.length > 0) {
+    if (keys.length > 0) {
+      const index_content = [
+        imports.join('\n'),
+        '',
+        `const ${const_name} = {`,
+        `  ${keys.join(',\n  ')}`,
+        `};`,
+        '',
+        `export default ${const_name};`
+      ].join('\n');
+
       const index_file_path = `${dir_path}/index.ts`;
-      project.createSourceFile(index_file_path, export_statements.join('\n'), {overwrite: true});
+      project.createSourceFile(index_file_path, index_content, {overwrite: true});
       console.log(`[GENERATED] ${index_file_path}`);
       count++;
     }
@@ -110,4 +69,4 @@ const generate_reverse_index = async () => {
   if (count > 0) await project.save();
 };
 
-generate_reverse_index();
+generate_default_index();
