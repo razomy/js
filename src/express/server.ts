@@ -9,8 +9,6 @@ import {logger} from 'razomy/servers/logger';
 import {Ctx} from 'razomy/express/ctx';
 import echo from 'razomy/servers/echo';
 
-export {shutdown_function} from 'razomy/servers/shutdown_function';
-
 export function create(ctx: Ctx) {
   ctx.logger = logger;
 

@@ -1,4 +1,5 @@
-export { RemoveDeltaVrd as RemoveDeltaVrdVrdDatetimeCommit } from './addvrd';
-export { AddDeltaVrd as AddDeltaVrdVrdDatetimeCommit } from './addvrd';
-export { ActorDatetimeDeltaVrd as ActorDatetimeDeltaVrdVrdDatetimeCommit } from './addvrd';
-export { DeltaVrd as DeltaVrdVrdDatetimeCommit } from './addvrd';
+export * as addvrd from './addvrd';
+export { RemoveDeltaVrd } from './addvrd';
+export { AddDeltaVrd } from './addvrd';
+export { DeltaVrd } from './addvrd';
+export { ActorDatetimeDeltaVrd } from './addvrd';

@@ -1,12 +1,12 @@
 import path from 'path';
 import {ICodec} from 'razomy/codec/i_codec';
-import buffer_to_string_codec from 'razomy/buffer/buffer_to_string_codec';
+import to_codec from 'razomy/buffer/codec/to_codec';
 import {buffer_types} from 'razomy/fs/types';
 
 export const codecs: Record<BufferEncoding & '*', ICodec<Buffer, string>> = {
-  'base64': buffer_to_string_codec('base64'),
-  'utf-8': buffer_to_string_codec('utf-8'),
-  '*': buffer_to_string_codec('utf-8'),
+  'base64': to_codec('base64'),
+  'utf-8': to_codec('utf-8'),
+  '*': to_codec('utf-8'),
 } as const satisfies Record<BufferEncoding & '*', ICodec<Buffer, string>>;
 
 function file_name_to_codec(file_name: string) {

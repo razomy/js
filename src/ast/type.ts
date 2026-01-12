@@ -1,4 +1,4 @@
 export interface Ast {
-  type: string
+  syntax_type: string
   children: Ast[]
 }

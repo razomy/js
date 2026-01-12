@@ -1,1 +1,1 @@
-export { get as get_recursive_file_fs } from './get';
+export { default as get } from './get';

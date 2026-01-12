@@ -1,1 +1,1 @@
-export { debug as debug_debug } from './debug';
+export { default as debug } from './debug';

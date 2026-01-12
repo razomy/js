@@ -1,3 +1,5 @@
-export { is_with_value as is_with_value_value } from './is_with_value';
-export { Value as Value } from './value';
-export { WithValue as WithValueValue } from './with_value';
+export { default as is_with_value } from './is_with_value';
+export * as value from './value';
+export { Value } from './value';
+export * as with_value from './with_value';
+export { WithValue } from './with_value';

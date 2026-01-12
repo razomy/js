@@ -1,1 +1,1 @@
-export * from './localisation';
+export * as localisation from './localisation';

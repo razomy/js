@@ -1,1 +1,1 @@
-export { differences as differences_differences } from './differences';
+export { default as differences } from './differences';

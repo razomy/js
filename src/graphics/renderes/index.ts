@@ -1,2 +1,3 @@
-export { IRender as IRenderRenderesGraphics } from './i_render';
-export { Render as RenderRenderesGraphics } from './render';
+export * as i_render from './i_render';
+export { IRender } from './i_render';
+export * as render from './render';

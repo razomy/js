@@ -1,2 +1,3 @@
-export { Function as Function } from './function';
-export { is_function as is_function_function } from './is_function';
+export * as function_ from './function';
+export { Function } from './function';
+export { default as is_function } from './is_function';

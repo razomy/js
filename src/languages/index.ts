@@ -1,1 +1,1 @@
-export * from './programming';
+export * as programming from './programming';

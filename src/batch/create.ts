@@ -1,4 +1,4 @@
-async function batch<T>({batch_size, promises}: { batch_size: number, promises: Promise<T>[] }): Promise<T[]> {
+async function create<T>({batch_size, promises}: { batch_size: number, promises: Promise<T>[] }): Promise<T[]> {
     let current_batch_start = 0;
     const result: T[] = [];
 
@@ -25,4 +25,4 @@ async function batch<T>({batch_size, promises}: { batch_size: number, promises: 
 
 //const f_p = i => new Promise(resolve => resolve(i));
 //console.log(await batch({batchSize: 1, promises: [f_p(1), f_p(2), f_p(3), f_p(4)]}));
-export default batch;
+export default create;

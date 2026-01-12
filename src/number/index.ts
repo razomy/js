@@ -1,9 +1,7 @@
-export * from './string';
-export { Counter as CounterNumber } from './counter';
-export { Number as Number } from './number';
-export { random_code as random_code_number } from './random_code';
-export { OutIndex as OutIndexNumber } from './random_code';
-export { Index as IndexNumber } from './random_code';
-export { IndexOrOut as IndexOrOutNumber } from './random_code';
-export { sum_array as sum_array_number } from './sum_array';
-export { sum_arrays as sum_arrays_number } from './sum_arrays';
+export * as string from './string';
+export * as counter from './counter';
+export * as number from './number';
+export { Number } from './number';
+export { default as random_code } from './random_code';
+export { default as sum_array } from './sum_array';
+export { default as sum_arrays } from './sum_arrays';

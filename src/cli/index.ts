@@ -1,5 +1,7 @@
-export { cli as cli_cli } from './cli';
-export { Module as ModuleCli } from './module';
-export { CliFunction as CliFunctionCli } from './module';
-export { TerminalArgs as TerminalArgsCli } from './module';
-export { validate_array_string_throw as validate_array_string_throw_cli } from './validate_array_string_throw';
+export * as bin from './bin';
+export { default as cli } from './cli';
+export * as module from './module';
+export { CliFunction } from './module';
+export { Module } from './module';
+export { TerminalArgs } from './module';
+export { default as validate_array_string_throw } from './validate_array_string_throw';

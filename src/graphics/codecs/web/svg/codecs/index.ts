@@ -1,8 +1,8 @@
-export { CodecConfig as CodecConfigCodecsSvgWebCodecsGraphics } from './codec_config';
-export { CodecFactory as CodecFactoryCodecsSvgWebCodecsGraphics } from './codec_factory';
-export { CodecRegistry as CodecRegistryCodecsSvgWebCodecsGraphics } from './codec_registry';
-export { EncodeNodeFactory as EncodeNodeFactoryCodecsSvgWebCodecsGraphics } from './encode_node_factory';
-export { RectangleCodec as RectangleCodecCodecsSvgWebCodecsGraphics } from './rectangle_codec';
-export { SvgCodec as SvgCodecCodecsSvgWebCodecsGraphics } from './svg_codec';
-export { TextCodec as TextCodecCodecsSvgWebCodecsGraphics } from './text_codec';
-export { WebSvgCodec as WebSvgCodecCodecsSvgWebCodecsGraphics } from './web_svg_codec';
+export * as codec_config from './codec_config';
+export * as codec_factory from './codec_factory';
+export * as codec_registry from './codec_registry';
+export * as encode_node_factory from './encode_node_factory';
+export * as rectangle_codec from './rectangle_codec';
+export * as svg_codec from './svg_codec';
+export * as text_codec from './text_codec';
+export * as web_svg_codec from './web_svg_codec';

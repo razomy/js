@@ -1,1 +1,1 @@
-export { vrd_to_graph as vrd_to_graph_graph_fs_vrd } from './vrd_to_graph';
+export { default as vrd_to_graph } from './vrd_to_graph';

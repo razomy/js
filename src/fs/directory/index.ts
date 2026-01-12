@@ -1,1 +1,1 @@
-export { get as get_directory_fs } from './get';
+export { default as get } from './get';

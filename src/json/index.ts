@@ -1,9 +1,8 @@
-export { json_to_string as json_to_string_json } from './json_codec';
-export { string_to_json as string_to_json_json } from './json_codec';
-export { JsonCodec as JsonCodecJson } from './json_codec';
-export { JsonPrimitive as JsonPrimitiveJson } from './json';
-export { JsonObject as JsonObjectJson } from './json';
-export { JsonArray as JsonArrayJson } from './json';
-export { JsonValue as JsonValueJson } from './json';
-export { Json as Json } from './json';
-export { sort as sort_json } from './sort';
+export * as json_codec from './json_codec';
+export * as json from './json';
+export { JsonPrimitive } from './json';
+export { JsonObject } from './json';
+export { JsonArray } from './json';
+export { JsonValue } from './json';
+export { Json } from './json';
+export { default as sort } from './sort';

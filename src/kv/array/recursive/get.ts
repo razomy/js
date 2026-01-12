@@ -1,5 +1,5 @@
 import {ArgumentException} from "razomy/exceptions/argument_exception";
-import {get_key, get_value, ListItem, RecursiveList} from "razomy/array/recursive/recursive";
+import {get_key, get_value, ListItem, RecursiveList} from "razomy/kv/array/recursive/type";
 import {assign} from "razomy/key/assign";
 
 export function get_item_by_path(node: ListItem, path: string[], offset: number): ListItem {

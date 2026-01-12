@@ -1,2 +1,3 @@
-export { WithOffset as WithOffsetOffset } from './offest';
-export { Offset as Offset } from './offest';
+export * as offest from './offest';
+export { Offset } from './offest';
+export { WithOffset } from './offest';

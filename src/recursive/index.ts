@@ -1,1 +1,1 @@
-export * from './dict_or_list';
+export * as dict_or_list from './dict_or_list';

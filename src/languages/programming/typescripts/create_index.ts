@@ -1,66 +1,104 @@
-import {Project} from 'ts-morph';
+import { Project, SyntaxKind } from 'ts-morph';
+import * as path from 'path';
 
-const to_snake_case = (str: string) => {
-  return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+const to_snake_case = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+
+// Safe key now only checks JS reserved keywords, not namespace collisions
+const get_safe_key = (name: string) => {
+  const reserved = [
+    'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default', 'delete',
+    'do', 'else', 'enum', 'export', 'extends', 'false', 'finally', 'for', 'function', 'if',
+    'import', 'in', 'instanceof', 'new', 'null', 'return', 'super', 'switch', 'this', 'throw',
+    'true', 'try', 'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
+    'implements', 'interface', 'package', 'private', 'protected', 'public'
+  ];
+  let key = to_snake_case(name);
+  return reserved.includes(key) ? key + '_' : key;
 };
 
-const generate_default_index = async () => {
-  const project = new Project({tsConfigFilePath: '../../../../tsconfig.json'});
+const generate_final_index = async () => {
+  const project = new Project({ tsConfigFilePath: '../../../../tsconfig.json' });
+  // Ensure we don't accidentally process node_modules
+  const root_dir = project.getDirectory('../../../../src') || project.getDirectories()[0];
   const directories = project.getDirectories();
+
   let count = 0;
 
   for (const dir of directories) {
+    // Skip node_modules or output directories if they were somehow caught
+    if (dir.getPath().includes('node_modules')) continue;
+
     const dir_path = dir.getPath();
-    const dir_name = dir.getBaseName();
+    const export_entries: string[] = [];
 
-    // The predefined name for the variable (e.g. 'fs' or 'dir')
-    const const_name = to_snake_case(dir_name);
-
-    const imports: string[] = [];
-    const keys: string[] = [];
-
-    // 1. Sub-Directories (Import Default)
-    // Since we are changing logic to export default, we must import {default} from sub-dirs
+    // 1. Sub-Directories
+    // We assume sub-directories also run this script, meaning they will NOT have a 'default' export anymore.
+    // They will be a collection of named exports.
+    // So we use 'export * as name' to group them.
     for (const sub_dir of dir.getDirectories()) {
-      const sub_name = to_snake_case(sub_dir.getBaseName());
-      imports.push(`import $sub_name from './$sub_dir.getBaseName()';`);
-      keys.push(sub_name);
+      const safe_key = get_safe_key(sub_dir.getBaseName());
+      export_entries.push(`export * as ${safe_key} from './${sub_dir.getBaseName()}';`);
     }
 
-    // 2. Files (Import Namespace)
-    // Keeps all named exports from the file wrapped in an object
+    // 2. Files
     for (const file of dir.getSourceFiles()) {
-      const base_name = file.getBaseNameWithoutExtension();
-      const fullName = file.getBaseName();
-      if (base_name === 'index') continue;
-      if (fullName.includes('.spec.')) continue;
-      if (fullName.includes('.test.')) continue;
+      try {
+        const base_name = file.getBaseNameWithoutExtension();
+        // Skip index.ts and tests
+        if (base_name === 'index' || file.getBaseName().match(/\.(spec|test)\./)) continue;
 
-      let file_key = to_snake_case(base_name);
-      if (file_key == 'index') file_key += '_';
-      if (file_key == 'class') file_key += '_';
-      if (file_key == 'function') file_key += '_';
-      if (file_key == 'delete') file_key += '_';
-      if (file_key == 'is') file_key += '_';
-      if (file_key == 'with') file_key += '_';
+        const safe_key = get_safe_key(base_name);
 
-      imports.push(`import * as $file_key from './${base_name}';`);
-      keys.push(file_key);
+        // --- Analyze Exports ---
+        const exportedDeclarations = file.getExportedDeclarations();
+        const hasDefaultExport = exportedDeclarations.has('default');
+
+        // --- CASE A: File has a Default Export ---
+        // We assume the default export IS the main object (like your _length or _rectangle examples)
+        // We export it as a Named Export aliased to the file name.
+        if (hasDefaultExport) {
+          export_entries.push(`export { default as ${safe_key} } from './${base_name}';`);
+
+          // Note: If you have named exports ALONGSIDE default exports in these files,
+          // you might want to uncomment the line below, but usually, it's one or the other.
+          // export_entries.push(`export * from './${base_name}';`);
+        }
+
+          // --- CASE B: File has only Named Exports ---
+        // We group them into an object under the filename (Namespace Import pattern)
+        else {
+          export_entries.push(`export * as ${safe_key} from './${base_name}';`);
+
+          // --- Optional: Flatten Types ---
+          // Since we can't nest types inside the 'const' object created by 'export * as',
+          // we re-export Interfaces and Types to the top level so they are accessible.
+          for (const [name, decls] of exportedDeclarations) {
+            const decl = decls[0];
+            const kind = decl.getKind();
+
+            if (kind === SyntaxKind.InterfaceDeclaration || kind === SyntaxKind.TypeAliasDeclaration) {
+              // Prevent naming collisions if the type has the same name as the file alias
+              if (name !== safe_key) {
+                export_entries.push(`export { ${name} } from './${base_name}';`);
+              }
+            }
+          }
+        }
+
+      } catch(r) {
+        console.log(`Error processing ${file.getBaseName()}:`, r);
+      }
     }
 
-    if (keys.length > 0) {
+    // Only write if we have exports
+    if (export_entries.length > 0) {
       const index_content = [
-        imports.join('\n'),
-        '',
-        `const ${const_name} = {`,
-        `  ${keys.join(',\n  ')}`,
-        `};`,
-        '',
-        `export default ${const_name};`
+        export_entries.join('\n'),
+        '' // New line at end of file
       ].join('\n');
 
       const index_file_path = `${dir_path}/index.ts`;
-      project.createSourceFile(index_file_path, index_content, {overwrite: true});
+      project.createSourceFile(index_file_path, index_content, { overwrite: true });
       console.log(`[GENERATED] ${index_file_path}`);
       count++;
     }
@@ -69,4 +107,4 @@ const generate_default_index = async () => {
   if (count > 0) await project.save();
 };
 
-generate_default_index();
+generate_final_index();

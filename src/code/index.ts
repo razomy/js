@@ -1,2 +1,1 @@
-export { rename_to_snack_case_recursive as rename_to_snack_case_recursive_code } from './rename_filename_to_case_from_dir';
-export { rename_to_snack_case_recursive_ts as rename_to_snack_case_recursive_ts_code } from './rename_filename_to_case_from_dir';
+export * as rename_filename_to_case_from_dir from './rename_filename_to_case_from_dir';

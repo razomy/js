@@ -31,7 +31,7 @@ const convert_to_default_export = async () => {
       const decls = exported_decls.get(main_decl_name);
       if (!decls || decls.length === 0) continue;
 
-      const main_decl = decls[0];
+      const main_decl = decls[0] as any;
 
       // 2. Collect Import Declarations to modify (Snapshoting)
       // We collect the ImportDeclaration nodes immediately to avoid node invalidation issues
@@ -98,7 +98,7 @@ const convert_to_default_export = async () => {
           }
         } else if (type === 'namespace') {
           // Remove "* as create"
-          const ns_import = decl.getNamespaceImport();
+          const ns_import = decl.getNamespaceImport() as any;
           if (ns_import) {
             ns_import.remove();
             // Add default import

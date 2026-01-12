@@ -1,1 +1,2 @@
-export { LateInit as LateInitInit } from './late_init';
+export * as late_init from './late_init';
+export { LateInit } from './late_init';

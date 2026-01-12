@@ -1,12 +1,4 @@
-export * from './recursive';
-export { delete_ as delete__file_fs } from './delete';
-export { delete_async as delete_async_file_fs } from './delete';
-export { read_file as read_file_file_fs } from './read';
-export { read_file_async as read_file_async_file_fs } from './read';
-export { read_file_json as read_file_json_file_fs } from './read';
-export { try_read_file_json as try_read_file_json_file_fs } from './read';
-export { is_exist as is_exist_file_fs } from './read';
-export { try_write_file as try_write_file_file_fs } from './write';
-export { write_file as write_file_file_fs } from './write';
-export { write_file_json as write_file_json_file_fs } from './write';
-export { write_to_file_async as write_to_file_async_file_fs } from './write';
+export * as recursive from './recursive';
+export * as delete_ from './delete';
+export * as read from './read';
+export * as write from './write';

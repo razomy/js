@@ -1,1 +1,2 @@
-export { WithDatetime as WithDatetimeTimeDate } from './datetime';
+export * as datetime from './datetime';
+export { WithDatetime } from './datetime';

@@ -1,5 +1,7 @@
-export { echo as echo_servers } from './echo';
-export { WithServer as WithServerServers } from './server';
-export { WithUrl as WithUrlServers } from './server';
-export { shutdown_function as shutdown_function_servers } from './shutdown_function';
-export { static_html as static_html_servers } from './static_html';
+export { default as echo } from './echo';
+export * as logger from './logger';
+export * as server from './server';
+export { WithServer } from './server';
+export { WithUrl } from './server';
+export { default as shutdown_function } from './shutdown_function';
+export { default as static_html } from './static_html';

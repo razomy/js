@@ -1,5 +1,5 @@
-export { delay_await as await_with_delay_async } from './delay_await';
-export { TaskQueue as TaskQueueAsync } from './task_queue';
-export {freeze as thread_sleep_async} from 'razomy/async/freeze';
-export {is_ as is_promise_async} from 'razomy/async/is_';
-export {try_ as try_async_async} from 'razomy/async/try_';
+export { default as delay_await } from './delay_await';
+export { default as freeze } from './freeze';
+export { default as is_ } from './is_';
+export * as task_queue from './task_queue';
+export { default as try_ } from './try_';

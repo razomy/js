@@ -1,1 +1,2 @@
-export { RecursiveDict as RecursiveDict } from './recursive';
+export * as recursive from './recursive';
+export { RecursiveDict } from './recursive';

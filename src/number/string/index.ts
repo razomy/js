@@ -1,1 +1,1 @@
-export { string as string_string_number } from './string';
+export { default as string } from './string';

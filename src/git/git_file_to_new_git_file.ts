@@ -11,7 +11,7 @@ export async function get_git_commits_id(dir_path: string, commitCount: number =
 // Command to retrieve the last commits with commit IDs and names
   const command = `git --git-dir=${dir_path}/.git log --pretty=format:%h%x09%s%x09%ad -n ${commitCount} --date=iso`;
 
-  const stdout = String(await execute_async(command));
+  const stdout = String(await execute_async(command, {}));
   const lines = stdout.trim().split('\n');
 
   // Create an array to store the commit information

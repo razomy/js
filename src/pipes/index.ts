@@ -1,9 +1,9 @@
-export * from './booleans';
-export { create_ctx as create_ctx_pipes } from './create_ctx_pipes';
-export { WithCreateCtxPipes as WithCreateCtxPipesPipes } from './create_ctx_pipes';
-export { Execute as ExecutePipes } from './execute';
-export { line as line_pipes } from './pipe';
-export { execute as execute_pipes } from './pipe';
-export { execute_async as execute_async_pipes } from './pipe';
-export { Pipe as PipePipes } from './pipe';
-export { WithExecute as WithExecutePipes } from './with_execute';
+export * as booleans from './booleans';
+export * as create_ctx_pipes from './create_ctx_pipes';
+export { WithCreateCtxPipes } from './create_ctx_pipes';
+export * as execute from './execute';
+export { Execute } from './execute';
+export * as pipe from './pipe';
+export { Pipe } from './pipe';
+export * as with_execute from './with_execute';
+export { WithExecute } from './with_execute';

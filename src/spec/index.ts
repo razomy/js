@@ -1,1 +1,2 @@
-export { FunctionSpec as FunctionSpecSpec } from './function_spec';
+export * as function_spec from './function_spec';
+export { FunctionSpec } from './function_spec';

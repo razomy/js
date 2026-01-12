@@ -1,10 +1,8 @@
-export * from './change';
-export { create as create_array_array } from './create';
-export { first_equal as first_equal_array_array } from './first_equal';
-export { has_sub as has_sub_array_array } from './has_sub';
-export { index_size_to as index_size_to_array_array } from './index_size_to';
-export { last_equal as last_equal_array_array } from './last_equal';
-export { map_dict_to_array as map_dict_to_array_array } from './map_dict_to_array';
-export { shuffle as shuffle_array_array } from '../dict/shuffle';
-export { array_sort as sort_by_array_array } from './array_sort';
-export { toggle_item as toggle_item_array_array } from './toggle_item';
+export * as difference from './difference';
+export { default as array_sort } from './array_sort';
+export { default as create } from './create';
+export { default as first_equal } from './first_equal';
+export { default as index_size_create } from './index_size_create';
+export { default as item_toggle } from './item_toggle';
+export { default as last_equal } from './last_equal';
+export { default as sub_has } from './sub_has';

@@ -1,1 +1,1 @@
-export { observe as observe_shutdown } from './observe';
+export { default as observe } from './observe';

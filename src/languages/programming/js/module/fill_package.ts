@@ -1,6 +1,6 @@
-import {get_recursive_file_fs} from 'razomy/fs';
+import get from 'razomy/fs/file/recursive/get';
 
 export function generate_index_files(path: string) {
-  const files = get_recursive_file_fs(path)
+  const files = get(path)
   console.log(files);
 }

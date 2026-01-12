@@ -1,9 +1,9 @@
-export { ArgumentException as ArgumentExceptionExceptions } from './argument_exception';
-export { CollectException as CollectExceptionExceptions } from './collect';
-export { CatchFn as CatchFnExceptions } from './collect';
-export { Exception as ExceptionExceptions } from './exception';
-export { MultipleException as MultipleExceptionExceptions } from './multiple_exception';
-export { NotImplementedException as NotImplementedExceptionExceptions } from './not_implemented_exception';
-export { NotSupportedException as NotSupportedExceptionExceptions } from './not_supported_exception';
-export { PathException as PathExceptionExceptions } from './path_exception';
-export { UnknownTypeArgumentException as UnknownTypeArgumentExceptionExceptions } from './unknown_type_argument_exception';
+export * as argument_exception from './argument_exception';
+export * as collect from './collect';
+export { CatchFn } from './collect';
+export * as exception from './exception';
+export * as multiple_exception from './multiple_exception';
+export * as not_implemented_exception from './not_implemented_exception';
+export * as not_supported_exception from './not_supported_exception';
+export * as path_exception from './path_exception';
+export * as unknown_type_argument_exception from './unknown_type_argument_exception';

@@ -1,1 +1,1 @@
-export { log as log_console } from './log';
+export { default as log } from './log';

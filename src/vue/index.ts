@@ -1,2 +1,2 @@
-export * from './plugin';
-export * from './resource';
+export * as plugin from './plugin';
+export * as resource from './resource';

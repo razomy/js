@@ -1,2 +1,2 @@
-export * from './canvas';
-export * from './svg';
+export * as canvas from './canvas';
+export * as svg from './svg';

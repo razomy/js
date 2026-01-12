@@ -1,7 +1,5 @@
-export { RectangleRender as RectangleRenderShapesGraphics } from './rectangle_render';
-export { RectangleRoundStyle as RectangleRoundStyleShapesGraphics } from './rectangle_round_style';
-export { RectangleShape as RectangleShapeShapesGraphics } from './rectangle_shape';
-export { IRectangleShape as IRectangleShapeShapesGraphics } from './rectangle_shape';
-export { ShapeElement as ShapeElementShapesGraphics } from './shape_element';
-export { PointShape as PointShapeShapesGraphics } from './shape_element';
-export { LineShape as LineShapeShapesGraphics } from './shape_element';
+export * as rectangle_render from './rectangle_render';
+export * as rectangle_round_style from './rectangle_round_style';
+export * as rectangle_shape from './rectangle_shape';
+export { IRectangleShape } from './rectangle_shape';
+export * as shape_element from './shape_element';

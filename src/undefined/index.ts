@@ -1,1 +1,1 @@
-export { boolean_undefined as boolean_undefined_undefined } from './boolean_undefined';
+export { default as boolean_undefined } from './boolean_undefined';

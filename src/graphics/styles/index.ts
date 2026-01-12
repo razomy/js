@@ -1,4 +1,4 @@
-export { BorderStyle as BorderStyleStylesGraphics } from './border_style';
-export { FillStyle as FillStyleStylesGraphics } from './fill_style';
-export { ShadowStyle as ShadowStyleStylesGraphics } from './shadow_style';
-export { ThemeStyle as ThemeStyleStylesGraphics } from './theme_style';
+export * as border_style from './border_style';
+export * as fill_style from './fill_style';
+export * as shadow_style from './shadow_style';
+export * as theme_style from './theme_style';

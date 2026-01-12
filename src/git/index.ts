@@ -1,12 +1,5 @@
-export * from './fs';
-export { parse_status as parse_status_git } from './get_status';
-export { parse_status_ref as parse_status_ref_git } from './get_status';
-export { get_status as get_status_git } from './get_status';
-export { get_status_sync as get_status_sync_git } from './get_status';
-export { is_clean_status as is_clean_status_git } from './get_status';
-export { git_init as git_init_git } from './get_status';
-export { git_commit as git_commit_git } from './get_status';
-export { get_git_commits_id as get_git_commits_id_git } from './git_file_to_new_git_file';
-export { init as init_git } from './vcs_commits_to_git_file';
-export { vcs_commits_to_git_file as vcs_commits_to_git_file_git } from './vcs_commits_to_git_file';
-export { get_last_git_commit_id_or_null as get_last_git_commit_id_or_null_git } from './vcs_commits_to_git_file';
+export * as fs from './fs';
+export { default as get_status } from './get_status';
+export * as git_file_commits_to_commit_json_file from './git_file_commits_to_commit_json_file';
+export * as git_file_to_new_git_file from './git_file_to_new_git_file';
+export { default as vcs_commits_to_git_file } from './vcs_commits_to_git_file';

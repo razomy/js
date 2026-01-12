@@ -1,5 +1,5 @@
-import {ListItem} from "razomy/array/recursive/recursive";
-import get, {get_item_by_path} from "razomy/array/recursive/get";
+import {ListItem} from "razomy/kv/array/recursive/type";
+import get, {get_item_by_path} from "razomy/kv/array/recursive/get";
 
 
 describe('list', () => {

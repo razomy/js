@@ -1,2 +1,3 @@
-export { WithRespect as WithRespectRespect } from './with_respect';
-export { WithRespectReport as WithRespectReportRespect } from './with_respect';
+export * as with_respect from './with_respect';
+export { WithRespect } from './with_respect';
+export { WithRespectReport } from './with_respect';

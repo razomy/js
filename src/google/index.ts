@@ -1,3 +1,3 @@
-export * from './auth';
-export * from './genai';
-export * from './storage';
+export * as auth from './auth';
+export * as genai from './genai';
+export * as storage from './storage';

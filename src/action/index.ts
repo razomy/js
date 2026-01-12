@@ -1,1 +1,2 @@
-export { Action as Action } from './action';
+export * as type from './type';
+export { Action } from './type';

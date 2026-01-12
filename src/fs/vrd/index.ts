@@ -1,1 +1,1 @@
-export { vrd_to_fs as vrd_to_fs_vrd_fs } from './vrd_to_fs';
+export { default as vrd_to_fs } from './vrd_to_fs';

@@ -1,5 +1,7 @@
-export { IObjectClone as IObjectCloneObject } from './i_object_clone';
-export { IObject as IObjectObject } from './i_object';
-export { IObjectConstructor as IObjectConstructorObject } from './i_object';
-export { is_class_constructor as is_class_constructor_object } from './is_class_constructor';
-export { is_object as is_object_object } from './object';
+export * as i_object_clone from './i_object_clone';
+export { IObjectClone } from './i_object_clone';
+export * as i_object from './i_object';
+export { IObject } from './i_object';
+export { IObjectConstructor } from './i_object';
+export { default as is_class_constructor } from './is_class_constructor';
+export * as object from './object';

@@ -1,3 +1,3 @@
-export * from './json';
-export * from './web';
-export * from './xd';
+export * as json from './json';
+export * as web from './web';
+export * as xd from './xd';

@@ -1,1 +1,1 @@
-export { CancelException as CancelExceptionExceptionsObservable } from './cancel_exception';
+export * as cancel_exception from './cancel_exception';

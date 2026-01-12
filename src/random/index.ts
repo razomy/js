@@ -1,1 +1,1 @@
-export { range as range_random } from './range';
+export { default as range } from './range';

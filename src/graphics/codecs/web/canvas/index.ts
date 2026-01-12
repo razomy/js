@@ -1,2 +1,2 @@
-export * from './renders';
-export * from './textures';
+export * as renders from './renders';
+export * as textures from './textures';

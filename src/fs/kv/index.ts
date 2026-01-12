@@ -1,2 +1,2 @@
-export { create as create_kv_fs } from './create';
-export { get as get_kv_fs } from './get';
+export { default as create } from './create';
+export { default as get } from './get';

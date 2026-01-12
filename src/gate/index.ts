@@ -1,1 +1,2 @@
-export { IGate as IGateGate } from './i_gate';
+export * as i_gate from './i_gate';
+export { IGate } from './i_gate';

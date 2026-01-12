@@ -1,5 +1,5 @@
-export * from './codecs';
-export * from './color';
-export * from './Inputs';
-export * from './renders';
-export { WebSvgContext as WebSvgContextSvgWebCodecsGraphics } from './web_svg_context';
+export * as codecs from './codecs';
+export * as color from './color';
+export * as inputs from './Inputs';
+export * as renders from './renders';
+export * as web_svg_context from './web_svg_context';

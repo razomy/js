@@ -1,1 +1,1 @@
-export { ArcRender as ArcRenderShapesRendersCanvasWebCodecsGraphics } from './arc_render';
+export * as arc_render from './arc_render';

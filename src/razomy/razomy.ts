@@ -1,4 +1,2 @@
-interface razomy {
+export interface Razomy {
 }
-
-export default razomy;

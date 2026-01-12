@@ -1,3 +1,3 @@
-export { JsonCodec as JsonCodecJsonCodecsGraphics } from './json_codec';
-export { ResourceNode as ResourceNodeJsonCodecsGraphics } from './json_codec';
-export { ResourceDescription as ResourceDescriptionJsonCodecsGraphics } from './json_codec';
+export * as json_codec from './json_codec';
+export { ResourceNode } from './json_codec';
+export { ResourceDescription } from './json_codec';

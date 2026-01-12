@@ -1,1 +1,1 @@
-export { get as get_dict_fs } from './get';
+export { default as get } from './get';

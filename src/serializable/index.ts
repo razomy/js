@@ -1,1 +1,2 @@
-export { Serializable as Serializable } from './serializable';
+export * as serializable from './serializable';
+export { Serializable } from './serializable';

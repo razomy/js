@@ -1,3 +1,3 @@
-export { generate_guid as generate_guid_id } from './guid_factory';
-export { GuidFactory as GuidFactoryId } from './guid_factory';
-export { WithId as WithIdId } from './i_guid';
+export * as guid_factory from './guid_factory';
+export * as i_guid from './i_guid';
+export { WithId } from './i_guid';

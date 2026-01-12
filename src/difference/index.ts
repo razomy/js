@@ -1,4 +1,5 @@
-export { DifferenceType as DifferenceTypeDifference } from './difference_type';
-export { Difference as Difference } from './difference';
-export { ReplaceDifference as ReplaceDifferenceDifference } from './difference';
-export { ChangeDifference as ChangeDifferenceDifference } from './difference';
+export * as type from './type';
+export { DifferenceType } from './type';
+export { Difference } from './type';
+export { ReplaceDifference } from './type';
+export { ChangeDifference } from './type';

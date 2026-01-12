@@ -19,6 +19,9 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
+      "razomy": [
+        "src/index.ts"
+      ],
       "razomy/*": [
         "src/*"
       ]

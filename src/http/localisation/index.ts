@@ -1,2 +1,1 @@
-export { accept_language_parse as accept_language_parse_localisation_http } from './accept_language_parser';
-export { accept_language_pick as accept_language_pick_localisation_http } from './accept_language_parser';
+export * as accept_language_parser from './accept_language_parser';

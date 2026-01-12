@@ -1,9 +1,9 @@
-export { ColorCodex as ColorCodexColorSvgWebCodecsGraphics } from './color_codex';
-export { Color as ColorColorSvgWebCodecsGraphics } from './color';
-export { RGB as RGBColorSvgWebCodecsGraphics } from './color';
-export { RGBA as RGBAColorSvgWebCodecsGraphics } from './color';
-export { HexParser as HexParserColorSvgWebCodecsGraphics } from './hex_parser';
-export { HslaParser as HslaParserColorSvgWebCodecsGraphics } from './hsla_parser';
-export { RgbaParser as RgbaParserColorSvgWebCodecsGraphics } from './rgba_parser';
-export { SvgColorParser as SvgColorParserColorSvgWebCodecsGraphics } from './svg_color_parser';
-export { SvgColorKeys as SvgColorKeysColorSvgWebCodecsGraphics } from './svg_color_parser';
+export * as color_codex from './color_codex';
+export * as color from './color';
+export { RGB } from './color';
+export { RGBA } from './color';
+export * as hex_parser from './hex_parser';
+export * as hsla_parser from './hsla_parser';
+export * as rgba_parser from './rgba_parser';
+export * as svg_color_parser from './svg_color_parser';
+export { SvgColorKeys } from './svg_color_parser';

@@ -1,6 +1,5 @@
-export * from './value_recursive';
-export { last as last_list } from './last';
-export { Node as NodeList } from './linked_list';
-export { LinkedList as LinkedListList } from './linked_list';
-export { remove_first as remove_first_list } from './remove_first';
-export { sort_by_frequency_and_unique as sort_by_frequency_and_unique_list } from './sort_by_frequency_and_unique';
+export * as value_recursive from './value_recursive';
+export { default as last } from './last';
+export * as linked_list from './linked_list';
+export { default as remove_first } from './remove_first';
+export { default as sort_by_frequency_and_unique } from './sort_by_frequency_and_unique';

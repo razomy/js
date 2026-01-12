@@ -1,1 +1,2 @@
-export { razomy as razomyRazomy } from './razomy';
+export * as razomy from './razomy';
+export { Razomy } from './razomy';

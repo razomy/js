@@ -1,1 +1,1 @@
-export { ask as ask_genai_google } from './refactor_code';
+export * as refactor_code from './refactor_code';

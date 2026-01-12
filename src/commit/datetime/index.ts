@@ -1,3 +1,4 @@
-export * from './delta';
-export * from './vrd';
-export { DatetimeActor as DatetimeActorDatetimeCommit } from './ad';
+export * as delta from './delta';
+export * as vrd from './vrd';
+export * as ad from './ad';
+export { DatetimeActor } from './ad';

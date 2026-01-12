@@ -1,4 +1,4 @@
-import {DifferenceType} from "./difference_type";
+export type DifferenceType = 'unchanged' | 'added' | 'removed';
 
 export interface Difference<T> {
   type: DifferenceType,

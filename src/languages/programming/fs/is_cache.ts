@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import has_sub from 'razomy/array/has_sub';
+import sub_has from 'razomy/array/sub_has';
 
 export const python_cache = ['__pycache__', '.pytest_cache'];
 export const js_angular_cache = ['.angular'];
@@ -40,7 +40,7 @@ function get_path_components(path_: string): string[] {
 
 function has_sub_array(master: string[], sub: string | string[]): boolean {
   if (Array.isArray(sub)) {
-    return has_sub_array2(master, sub)
+    return sub_has(master, sub)
 
   }
   return master.includes(sub)
