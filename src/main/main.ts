@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { argv } from 'process';
 import { format_time_length } from 'razomy/dates/dates';
-import {is_} from 'razomy/async/is_';
+import is_ from 'razomy/async/is_';
 
 export function is_main(moduleUrl) {
   const module_path = fileURLToPath(moduleUrl);

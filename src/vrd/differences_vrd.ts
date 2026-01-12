@@ -1,14 +1,13 @@
 import {ChangeDifference} from "razomy/difference/difference";
 
-import {
-  vrd,
+import vrd, {
   is_vrd,
   Vrd,
   VrdOrValue
 } from "razomy/vrd/vrd";
 import {equal_} from "razomy/equal/equal";
-import {get} from "razomy/array/change/get";
-import {get_similar} from 'razomy/array/change/get_similar';
+import get from "razomy/array/change/get";
+import get_similar from 'razomy/array/change/get_similar';
 
 export interface ReplaceDifference<T> {
   type: 'replace_key',
@@ -59,7 +58,7 @@ export function differences_dict<T>(
 }
 
 
-export function differences_vrd<T>(
+function differences_vrd<T>(
   diffs: P<T>[],
   a: VrdOrValue<T>,
   b: VrdOrValue<T>,
@@ -125,3 +124,5 @@ function test() {
     console.log(equal_(result, spec[3]), result);
   }
 }
+
+export default differences_vrd;

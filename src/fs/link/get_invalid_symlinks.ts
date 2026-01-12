@@ -12,7 +12,7 @@ export class InvalidLinkException extends ArgumentException<{ link_path: string,
 }
 
 
-export function get_invalid_symlinks(catch_fn: CatchFn) {
+function get_invalid_symlinks(catch_fn: CatchFn) {
 
   function iterate_if_invalid_link({stats: entry, path: path_}) {
     if (entry.isSymbolicLink()) {
@@ -29,3 +29,5 @@ export function get_invalid_symlinks(catch_fn: CatchFn) {
 
   return {iterate_if_invalid_link};
 }
+
+export default get_invalid_symlinks;

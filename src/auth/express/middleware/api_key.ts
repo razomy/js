@@ -1,4 +1,4 @@
-export function api_key(key) {
+function api_key(key) {
   const valid_api_keys = new Set([
     key,
   ]);
@@ -13,3 +13,5 @@ export function api_key(key) {
     next();
   }
 }
+
+export default api_key;

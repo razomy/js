@@ -1,4 +1,6 @@
-export function debug(c) {
+function debug(c) {
     c;
     debugger;
 }
+
+export default debug;

@@ -1,3 +1,5 @@
-export function log(...args) {
+function log(...args) {
   console.log(args)
 }
+
+export default log;

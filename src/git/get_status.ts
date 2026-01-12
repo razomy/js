@@ -1,6 +1,6 @@
 import {exec} from 'child_process';
 import {execSync} from 'node:child_process';
-import {execute_sync} from 'razomy/shell/execute_sync';
+import execute_sync from 'razomy/shell/execute_sync';
 
 interface Status {
   local_branch: string,
@@ -70,7 +70,7 @@ export function parse_status_ref(str: string) {
   return refs;
 }
 
-export async function get_status(dir_path: string) {
+async function get_status(dir_path: string) {
   return new Promise<Status>((resolve, reject) => {
     var cmd = 'git status --porcelain -b';
     exec(cmd, {cwd: dir_path}, function (err, stdout) {
@@ -97,3 +97,5 @@ export function git_init(c: string) {
 export function git_commit(c: string) {
   execute_sync("git status", c);
 }
+
+export default get_status;

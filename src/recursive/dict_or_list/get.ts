@@ -1,4 +1,4 @@
-import {is_keys_in_dict} from "razomy/dict/is_keys_in_dict";
+import is_keys_in_dict from "razomy/dict/is_keys_in_dict";
 import {Dict} from "razomy/dict/dict";
 import {is_object} from "razomy/object/object";
 

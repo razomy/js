@@ -1,6 +1,6 @@
 import {is_vrd, Vrd, VrdOrValue} from "razomy/vrd/vrd";
 
-export function merge_vrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
+function merge_vrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
 export function merge_vrd<A, B>(a: A, b: B, empty: string): A & B ;
 export function merge_vrd<T, A, B>(a: A, b: B, empty: T): A & B {
   if (!a) {
@@ -54,3 +54,5 @@ export function merge_dict<T>(a: Vrd<T>, b: Vrd<T>, empty: T): Vrd<T> {
   }
   return a;
 }
+
+export default merge_vrd;

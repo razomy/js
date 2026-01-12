@@ -29,7 +29,7 @@ import {DirPathString, FilePathString} from 'razomy/path/string/path_string';
  * // Example 3: Spread syntax (equivalent to Array.from)
  * const [...files] = getFiles('./dist');
  */
-export function* get(dir: DirPathString): Generator<FilePathString, void, void> {
+function* get(dir: DirPathString): Generator<FilePathString, void, void> {
   const dirents: Dirent[] = readdirSync(dir, {withFileTypes: true});
 
   for (const dirent of dirents) {
@@ -42,3 +42,5 @@ export function* get(dir: DirPathString): Generator<FilePathString, void, void> 
     }
   }
 }
+
+export default get;

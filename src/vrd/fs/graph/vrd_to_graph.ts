@@ -17,7 +17,7 @@ function iterate_children<T>(
   }
 }
 
-export function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
+function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
   const graph: Graph<I> = {
     nodes: [],
     edges: []
@@ -27,3 +27,5 @@ export function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
 
   return graph;
 }
+
+export default vrd_to_graph;

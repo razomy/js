@@ -1,5 +1,5 @@
 
-import {execute_async} from "razomy/shell/execute_async";
+import execute_async from "razomy/shell/execute_async";
 import {progress} from "razomy/shell/log";
 import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/commit/datetime/delta/string/adds';
 import {write_file} from 'razomy/fs/file/write';
@@ -11,7 +11,7 @@ export async function init(dir_path: string, file_name: string) {
   await execute_async(`git add .`, {cwd: dir_path});
 }
 
-export async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
+async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {
@@ -34,3 +34,5 @@ export async function get_last_git_commit_id_or_null(ctx: { dir_path: string }) 
   }
   return null;
 }
+
+export default vcs_commits_to_git_file;

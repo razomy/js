@@ -1,6 +1,6 @@
 import {String} from "razomy/string/string";
 
-export function snake_case_string(input: String) {
+function snake_case_string(input: String) {
   let text = String(input);
 
   return text
@@ -27,3 +27,5 @@ export function snake_case_string(input: String) {
     // 6. Final lowercase
     .toLowerCase();
 }
+
+export default snake_case_string;

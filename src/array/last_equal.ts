@@ -1,4 +1,4 @@
-export function last_equal<T, T2>(as: T[], bs: T2[], is_condition: (a: T, b: T2) => boolean): [T, T2] | null {
+function last_equal<T, T2>(as: T[], bs: T2[], is_condition: (a: T, b: T2) => boolean): [T, T2] | null {
   for (let i = as.length - 1; i >= 0; i--) {
     const item_a = as[i];
     for (let j = bs.length - 1; j >= 0; j--) {
@@ -10,3 +10,5 @@ export function last_equal<T, T2>(as: T[], bs: T2[], is_condition: (a: T, b: T2)
   }
   return null;
 }
+
+export default last_equal;

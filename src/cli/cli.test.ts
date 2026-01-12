@@ -1,4 +1,4 @@
-import {cli} from "razomy/cli/cli";
+import cli from "razomy/cli/cli";
 import {Module, TerminalArgs} from "razomy/cli/module";
 
 const test_module = {

@@ -1,7 +1,7 @@
 import {DeltaString} from 'razomy/commit/datetime/delta/string/delta_string';
 import {add_index_string, remove_index_string} from 'razomy/string/index_string';
 
-export function delta_strings_to_string(prev_snapshot: string, changes: DeltaString[]): string {
+function delta_strings_to_string(prev_snapshot: string, changes: DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {
     const change = changes[j];
     if ('remove_length' in change) {
@@ -13,3 +13,5 @@ export function delta_strings_to_string(prev_snapshot: string, changes: DeltaStr
 
   return prev_snapshot;
 }
+
+export default delta_strings_to_string;

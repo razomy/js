@@ -2,7 +2,7 @@ import {OpenAiCtx, WithOpenAiCtx} from 'razomy/openai/open_ai_ctx';
 import OpenAI from 'openai';
 import Completion = OpenAI.Completion;
 
-export class language_grammar_correction {
+class language_grammar_correction {
     constructor(private ctx: WithOpenAiCtx) {
     }
 
@@ -26,4 +26,4 @@ ${text}`,
     }
 }
 
-
+export default language_grammar_correction;

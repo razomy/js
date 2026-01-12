@@ -1,4 +1,4 @@
-export function sort(object) {
+function sort(object) {
   if (object === undefined || object === null) {
     return object;
   }
@@ -17,3 +17,4 @@ export function sort(object) {
   return new_object;
 }
 
+export default sort;

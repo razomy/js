@@ -1,4 +1,4 @@
-export function first_equal<T>(list1: T[], list2: T[]) {
+function first_equal<T>(list1: T[], list2: T[]) {
   const common_strings = null;
 
   for (const item2 of list2) {
@@ -11,3 +11,5 @@ export function first_equal<T>(list1: T[], list2: T[]) {
 
   return common_strings;
 }
+
+export default first_equal;

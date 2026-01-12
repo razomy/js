@@ -2,7 +2,7 @@ import {ArgumentException} from "razomy/exceptions/argument_exception";
 import {WithChildrenDict} from "razomy/trees/dict/with_children_dict";
 import {assign} from "razomy/key/assign";
 
-export function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
+function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }
@@ -45,3 +45,5 @@ export function get_path(obj, path: string) {
 
   return [child_node, ...get_path(child_node, remaining_string)];
 }
+
+export default get;

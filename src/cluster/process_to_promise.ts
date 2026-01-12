@@ -48,7 +48,7 @@ export function worker_to_promise<T>(worker: Worker, ctx: T) {
     })
 }
 
-export function process_to_promise<T extends child.Serializable>(ctx: T, env: WorkerEnvironment): Promise<T> {
+function process_to_promise<T extends child.Serializable>(ctx: T, env: WorkerEnvironment): Promise<T> {
     if (!cluster.isPrimary) {
         throw new Error("Cluster must be primary")
     }
@@ -81,3 +81,5 @@ export function processes_to_promises<T extends child.Serializable>(ctx: T[], se
 export function processes_to_promise<T extends child.Serializable>(ctx: T[], settings: ClusterSettings): Promise<T[]> {
     return Promise.all(processes_to_promises(ctx, settings));
 }
+
+export default process_to_promise;

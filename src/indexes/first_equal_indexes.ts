@@ -1,5 +1,5 @@
 /** first index */
-export function first_equal_indexes<T>(
+function first_equal_indexes<T>(
   a: T[],
   b: T[],
   start_a = 0,
@@ -31,3 +31,5 @@ export function first_equal_indexes<T>(
   }
   return [a_index, b_index];
 }
+
+export default first_equal_indexes;

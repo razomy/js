@@ -7,7 +7,7 @@ import cors from 'cors';
 // import helmet from 'helmet';
 import {logger} from 'razomy/servers/logger';
 import {Ctx} from 'razomy/express/ctx';
-import {echo} from 'razomy/servers/echo';
+import echo from 'razomy/servers/echo';
 
 export {shutdown_function} from 'razomy/servers/shutdown_function';
 

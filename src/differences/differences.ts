@@ -1,10 +1,10 @@
 import {progress} from "razomy/shell/log";
 import {Difference} from "razomy/difference/difference";
 import {DifferenceType} from "razomy/difference/difference_type";
-import {first_equal_indexes} from "razomy/indexes/first_equal_indexes";
+import first_equal_indexes from "razomy/indexes/first_equal_indexes";
 
 /** a was, b become */
-export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
+function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
   const diffs = [] as Difference<T>[];
   let last: Difference<T> | null = null;
 
@@ -49,3 +49,5 @@ export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
 
   return diffs;
 }
+
+export default differences;

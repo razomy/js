@@ -1,7 +1,7 @@
 import {k} from "razomy/kv/kv";
 import {ak} from "razomy/kv/akv";
 
-export function create_by_path<T>(path: T[]) {
+function create_by_path<T>(path: T[]) {
   const root = k(null as T, ak<T>());
 
   let last = root;
@@ -14,3 +14,5 @@ export function create_by_path<T>(path: T[]) {
 
   return root;
 }
+
+export default create_by_path;

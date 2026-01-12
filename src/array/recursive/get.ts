@@ -25,6 +25,8 @@ export function get_item_by_path_from_value(value: RecursiveList, path: string[]
 }
 
 
-export function get(node: ListItem, path: string) {
+function get(node: ListItem, path: string) {
   return get_item_by_path(node, path.split(assign), 0);
 }
+
+export default get;

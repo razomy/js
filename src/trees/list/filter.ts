@@ -15,7 +15,7 @@ export function filter_first<T extends WithChildrenList<any>>(node: T, cb: (node
 }
 
 
-export function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
+function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
   let res: T[] = [];
 
   if (cb(node)) {
@@ -28,3 +28,5 @@ export function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) =
 
   return res;
 }
+
+export default filter;

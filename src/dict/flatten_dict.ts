@@ -17,7 +17,7 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flatten_dict<T extends object = object>(
+function flatten_dict<T extends object = object>(
   obj: T,
   parentKey = "",
   result = {} as any,
@@ -33,3 +33,5 @@ export function flatten_dict<T extends object = object>(
   });
   return result as FlattenedAndConverted<T>;
 }
+
+export default flatten_dict;

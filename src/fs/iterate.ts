@@ -15,7 +15,7 @@ const shared_node: IterateNode = {
   path: '',
 };
 
-export function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
+function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
   // 2. Use a specific stack size if known, otherwise dynamic array
   const stack: string[] = [dir_path];
 
@@ -67,3 +67,5 @@ export function iterate(dir_path: string, cb: (iterate_node: IterateNode) => voi
     }
   }
 }
+
+export default iterate;

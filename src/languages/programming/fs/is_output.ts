@@ -1,6 +1,6 @@
 import * as path from 'path';
 import {PathString} from "razomy/path/string/path_string";
-import {rename} from "razomy/fs/rename";
+import rename from "razomy/fs/rename";
 
 export const js_output = ['dist'];
 export const java_output = ['out'];

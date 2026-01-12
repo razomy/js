@@ -1,5 +1,5 @@
 import {GoogleGenAI} from '@google/genai';
-import {iterate} from 'razomy/fs/iterate';
+import iterate from 'razomy/fs/iterate';
 
 const ai = new GoogleGenAI({apiKey: ''});
 

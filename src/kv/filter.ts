@@ -2,7 +2,7 @@ import {ArrayKeyValuable, is_kv, KeyValuable, Valuable, Value} from "razomy/kv/k
 import {Function} from "razomy/function/function";
 import {ak, is_akv} from "razomy/kv/akv";
 
-export function filter<V>(
+function filter<V>(
   input: Value<V>,
   is_keep: Function<[Value<V>], boolean>
 ): Value<V>;
@@ -37,3 +37,5 @@ export function filter<K, V>(
     return value;
   }
 }
+
+export default filter;

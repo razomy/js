@@ -1,6 +1,6 @@
 import {assign as key_assign} from "razomy/key/assign";
 
-export function flatten(data: Record<string, any>): Record<string, any> {
+function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   function recurse(cur: any, prop: string, assign = key_assign) {
@@ -49,3 +49,5 @@ export function unflatten(data: Record<string, any>, assign = key_assign): Recor
   }
   return resultholder[''] || resultholder;
 }
+
+export default flatten;

@@ -1,6 +1,6 @@
 import {is_vrd, VrdOrValue} from "razomy/vrd/vrd";
 
-export function vrd_to_absolute_path<T>(
+function vrd_to_absolute_path<T>(
   input: VrdOrValue<T>,
   absolute_path: string,
   separator: string): VrdOrValue<T> {
@@ -18,3 +18,5 @@ export function vrd_to_absolute_path<T>(
     return input;
   }
 }
+
+export default vrd_to_absolute_path;

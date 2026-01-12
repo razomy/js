@@ -17,6 +17,8 @@ export function is_vrd<T>(obj: VrdOrValue<T>): obj is Vrd<T> {
   return obj instanceof Vrd;
 }
 
-export function vrd<T = unknown, T1 = object>(_: T1): Vrd<T> & T1 {
+function vrd<T = unknown, T1 = object>(_: T1): Vrd<T> & T1 {
   return new Vrd<T>(_) as Vrd<T> & T1;
 }
+
+export default vrd;

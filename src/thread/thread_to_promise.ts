@@ -35,7 +35,7 @@ export function worker_to_promise<T>(worker: Worker, ctx: T) {
     })
 }
 
-export function thread_to_promise<T>(ctx, {path, worker_id}) {
+function thread_to_promise<T>(ctx, {path, worker_id}) {
     if (!isMainThread) {
         throw new Error("Thread must be Main")
     }
@@ -62,3 +62,5 @@ export function threads_to_promises<T>(ctx, {path}) {
 export function threads_to_promise<T>(ctx, {path}) {
     return Promise.all(threads_to_promises(ctx, {path}));
 }
+
+export default thread_to_promise;

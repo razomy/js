@@ -12,7 +12,7 @@ export enum IterateBreaks {
   Break = 2,
 }
 
-export function iterate_vrd<T, C extends Iterate<T>>(
+function iterate_vrd<T, C extends Iterate<T>>(
   ctx: C,
   is_iterate_child_execute_bool: (ctx: C) => IterateBreaks,
 ): IterateBreaks {
@@ -63,3 +63,5 @@ export function iterate_skip<T, C extends Iterate<T>>(
       : IterateBreaks.Skip
   })
 }
+
+export default iterate_vrd;

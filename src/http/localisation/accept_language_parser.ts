@@ -1,4 +1,4 @@
-import {is_string} from "razomy/string/is_string";
+import is_string from "razomy/string/is_string";
 
 const regex = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
 
