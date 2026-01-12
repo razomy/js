@@ -10,19 +10,19 @@ import {ElementView} from 'razomy/graphics/elements/element_view';
 
 
 interface JsonObject {
-  ObjectResource: IObject;
+  object_resource: IObject;
 }
 
 interface JsonSizeResource {
-  SizeResource: ISizeResource;
+  size_resource: ISizeResource;
 }
 
 interface JsonPropertiesResource {
-  Properties: { [key: string]: unknown };
+  properties: { [key: string]: unknown };
 }
 
 interface JsonEntityCollection {
-  EntityCollection: { resources: (JsonObject & ResourceNode)[] };
+  entity_collection: { resources: (JsonObject & ResourceNode)[] };
 }
 
 export type ResourceNode = JsonObject
@@ -33,31 +33,31 @@ export type ResourceDescription = ResourceNode;
 
 
 const example: ResourceDescription = {
-  ObjectResource: {
+  object_resource: {
     type: 'Type',
     id: 'asd'
   },
-  SizeResource: {
+  size_resource: {
     width: 1,
     height: 1
   },
-  Properties: {
+  properties: {
     name: 'My cool app'
   },
-  EntityCollection: {
+  entity_collection: {
     resources: [
       {
-        ObjectResource: {
+        object_resource: {
           type: 'Type',
           id: 'asd'
         }
       },
       {
-        ObjectResource: {
+        object_resource: {
           type: 'Type',
           id: 'asd'
         },
-        SizeResource: {
+        size_resource: {
           width: 1,
           height: 1
         }
@@ -67,12 +67,12 @@ const example: ResourceDescription = {
 };
 
 export class JsonCodec implements ICodec<ElementView, Node> {
-  private codecFactory: any;
+  private codec_factory: any;
 
   constructor() {
-    const codecConfig: CodecConfig = new CodecConfig();
-    const encodeNodeFactory: EncodeNodeFactory = new EncodeNodeFactory(codecConfig);
-    this.codecFactory = new CodecFactory(codecConfig, encodeNodeFactory);
+    const codec_config: CodecConfig = new CodecConfig();
+    const encode_node_factory: EncodeNodeFactory = new EncodeNodeFactory(codec_config);
+    this.codec_factory = new CodecFactory(codec_config, encode_node_factory);
   }
 
   public decode(value: Node): ElementView {
@@ -84,16 +84,16 @@ export class JsonCodec implements ICodec<ElementView, Node> {
   }
 
   private iterate(value: HTMLElement): ElementView {
-    const node = this.codecFactory.create(value).decode(value);
+    const node = this.codec_factory.create(value).decode(value);
 
-    const valueChildren = value.childNodes;
-    for (let i = 0; i < valueChildren.length; i++) {
-      if (!valueChildren[i]) {
+    const value_children = value.childNodes;
+    for (let i = 0; i < value_children.length; i++) {
+      if (!value_children[i]) {
         continue;
       }
 
-      const subNode = this.iterate(valueChildren[i] as HTMLElement);
-      node.getBy(ResourceCollection).add(subNode);
+      const sub_node = this.iterate(value_children[i] as HTMLElement);
+      node.getBy(ResourceCollection).add(sub_node);
     }
 
     return node;

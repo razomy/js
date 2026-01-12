@@ -23,27 +23,27 @@ export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
     el.setAttribute('fill', HexParser.toHex(node.getBy(FillStyle).color.getSource()));
     el.setAttribute('stroke', HexParser.toHex(node.getBy(BorderStyle).color.getSource()));
     el.setAttribute('stroke-width', node.getBy(BorderStyle).width + '');
-    el.setAttribute('rx', node.getBy(RectangleRoundStyle).bottomRight + '');
-    el.setAttribute('ry', node.getBy(RectangleRoundStyle).bottomRight + '');
+    el.setAttribute('rx', node.getBy(RectangleRoundStyle).bottom_right + '');
+    el.setAttribute('ry', node.getBy(RectangleRoundStyle).bottom_right + '');
 
     return el;
   };
 
   public decode(value: SVGRectElement): RectangleShape {
-    const rectangleShape = new RectangleShape();
-    const getNumberAttribute = (key: string, def: number): number => {
+    const rectangle_shape = new RectangleShape();
+    const get_number_attribute = (key: string, def: number): number => {
       const atr = value.getAttribute(key);
       return atr ? +atr : def;
     };
 
     // Todo: ELement view
-    rectangleShape.replace(new SizeAttribute(
+    rectangle_shape.replace(new SizeAttribute(
       value.height.baseVal.value,
       value.width.baseVal.value
     ));
 
     // Todo: ELement view
-    rectangleShape.replace(new PositionAttribute(
+    rectangle_shape.replace(new PositionAttribute(
       value.x.baseVal.value,
       value.y.baseVal.value
     ));
@@ -51,19 +51,19 @@ export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
     // Todo: ELement view
     // ResourceCollection
 
-    rectangleShape.replace(new FillStyle(
+    rectangle_shape.replace(new FillStyle(
       ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')
     ));
 
-    rectangleShape.replace(new BorderStyle(
+    rectangle_shape.replace(new BorderStyle(
       ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'),
-      getNumberAttribute('stroke-width', 1)
+      get_number_attribute('stroke-width', 1)
     ));
 
-    rectangleShape.replace(new RectangleRoundStyle(
-      getNumberAttribute('rx', 0)
+    rectangle_shape.replace(new RectangleRoundStyle(
+      get_number_attribute('rx', 0)
     ));
 
-    return rectangleShape;
+    return rectangle_shape;
   }
 }

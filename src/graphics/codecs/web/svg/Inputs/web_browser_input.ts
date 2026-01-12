@@ -26,8 +26,8 @@ export enum KonvaNodeEvent {
 }
 
 export class DWebBrowserInput {
-  public isDraggable = false;
-  public isDroppable = false;
+  public is_draggable = false;
+  public is_droppable = false;
 }
 
 export class WebBrowserInput {
@@ -44,10 +44,10 @@ export class WebBrowserInput {
 }
 
 export class Move {
-  xDelta: number = 0;
-  yDelta: number = 0;
-  xForce: number = 0;
-  yForce: number = 0;
+  x_delta: number = 0;
+  y_delta: number = 0;
+  x_force: number = 0;
+  y_force: number = 0;
   x: number = 0;
   y: number = 0;
 }

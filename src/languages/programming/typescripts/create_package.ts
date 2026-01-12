@@ -4,7 +4,7 @@ import {read_file_json} from 'razomy/fs/file/read';
 import {write_file_json} from 'razomy/fs/file/write';
 
 export function create_package() {
-  const srcDir: string = path.join(__dirname, '../../../');
+  const src_dir: string = path.join(__dirname, '../../../');
   const prefix: string = 'razomy';
 
   interface PackageJson {
@@ -14,40 +14,40 @@ export function create_package() {
   }
 
 // Validate directory
-  if (!fs.existsSync(srcDir)) {
-    console.error(`Error: '${srcDir}' directory not found.`);
+  if (!fs.existsSync(src_dir)) {
+    console.error(`Error: '${src_dir}' directory not found.`);
     process.exit(1);
   }
 
-  const files = fs.readdirSync(srcDir, {withFileTypes: true})
+  const files = fs.readdirSync(src_dir, {withFileTypes: true})
     .filter((dirent: fs.Dirent) => dirent.isDirectory());
   files.forEach((folder: fs.Dirent) => {
-    const pkgPath = path.join(srcDir, folder.name, 'package.json');
-    const newName = `${prefix}.${folder.name}`;
+    const pkg_path = path.join(src_dir, folder.name, 'package.json');
+    const new_name = `${prefix}.${folder.name}`;
 
     // Default structure
-    let pkgData: PackageJson = {
-      name: newName,
+    let pkg_data: PackageJson = {
+      name: new_name,
       version: '0.0.0',
       main: 'index.js',
       license: 'MIT'
     };
 
     // Read existing
-    if (fs.existsSync(pkgPath)) {
+    if (fs.existsSync(pkg_path)) {
       try {
-        const content = fs.readFileSync(pkgPath, 'utf-8');
-        pkgData = {...JSON.parse(content), ...pkgData};
+        const content = fs.readFileSync(pkg_path, 'utf-8');
+        pkg_data = {...JSON.parse(content), ...pkg_data};
       } catch (err) {
-        console.warn(`Warning: Failed to parse ${pkgPath}, regenerating.`);
+        console.warn(`Warning: Failed to parse ${pkg_path}, regenerating.`);
       }
     }
 
     // Force update name
-    pkgData.name = newName;
+    pkg_data.name = new_name;
 
-    fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2));
-    console.log(`✓ Updated: ${folder.name} -> ${newName}`);
+    fs.writeFileSync(pkg_path, JSON.stringify(pkg_data, null, 2));
+    console.log(`✓ Updated: ${folder.name} -> ${new_name}`);
   });
   const file = read_file_json('../../../../package.json');
   file.workspaces = files.map(folder => 'src/' + folder.name)

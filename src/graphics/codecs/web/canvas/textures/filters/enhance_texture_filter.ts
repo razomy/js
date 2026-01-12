@@ -2,23 +2,23 @@ import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filt
 
 function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, toMax: any) {
   // Compute the range of the data
-  var fromRange = fromMax - fromMin,
-    toRange = toMax - toMin,
-    toValue;
+  var from_range = fromMax - fromMin,
+    to_range = toMax - toMin,
+    to_value;
 
   // If either range is 0, then the value can only be mapped to 1 value
-  if (fromRange === 0) {
-    return toMin + toRange / 2;
+  if (from_range === 0) {
+    return toMin + to_range / 2;
   }
-  if (toRange === 0) {
+  if (to_range === 0) {
     return toMin;
   }
 
   // (1) untranslate, (2) unscale, (3) rescale, (4) retranslate
-  toValue = (fromValue - fromMin) / fromRange;
-  toValue = toRange * toValue + toMin;
+  to_value = (fromValue - fromMin) / from_range;
+  to_value = to_range * to_value + toMin;
 
-  return toValue;
+  return to_value;
 }
 
 /**
@@ -51,43 +51,43 @@ export class EnhanceTextureFilter implements ITextureFilter {
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      nSubPixels = data.length,
-      rMin = data[0],
-      rMax = rMin,
+      n_sub_pixels = data.length,
+      r_min = data[0],
+      r_max = r_min,
       r,
-      gMin = data[1],
-      gMax = gMin,
+      g_min = data[1],
+      g_max = g_min,
       g,
-      bMin = data[2],
-      bMax = bMin,
+      b_min = data[2],
+      b_max = b_min,
       b,
       i;
 
     // If we are not enhancing anything - don't do any computation
-    var enhanceAmount = this.enhance;
-    if (enhanceAmount === 0) {
+    var enhance_amount = this.enhance;
+    if (enhance_amount === 0) {
       return;
     }
 
     // 1st Pass - find the min and max for each channel:
-    for (i = 0; i < nSubPixels; i += 4) {
+    for (i = 0; i < n_sub_pixels; i += 4) {
       r = data[i + 0];
-      if (r < rMin) {
-        rMin = r;
-      } else if (r > rMax) {
-        rMax = r;
+      if (r < r_min) {
+        r_min = r;
+      } else if (r > r_max) {
+        r_max = r;
       }
       g = data[i + 1];
-      if (g < gMin) {
-        gMin = g;
-      } else if (g > gMax) {
-        gMax = g;
+      if (g < g_min) {
+        g_min = g;
+      } else if (g > g_max) {
+        g_max = g;
       }
       b = data[i + 2];
-      if (b < bMin) {
-        bMin = b;
-      } else if (b > bMax) {
-        bMax = b;
+      if (b < b_min) {
+        b_min = b;
+      } else if (b > b_max) {
+        b_max = b;
       }
       //a = data[i + 3];
       //if (a < aMin) { aMin = a; } else
@@ -95,55 +95,55 @@ export class EnhanceTextureFilter implements ITextureFilter {
     }
 
     // If there is only 1 level - don't remap
-    if (rMax === rMin) {
-      rMax = 255;
-      rMin = 0;
+    if (r_max === r_min) {
+      r_max = 255;
+      r_min = 0;
     }
-    if (gMax === gMin) {
-      gMax = 255;
-      gMin = 0;
+    if (g_max === g_min) {
+      g_max = 255;
+      g_min = 0;
     }
-    if (bMax === bMin) {
-      bMax = 255;
-      bMin = 0;
+    if (b_max === b_min) {
+      b_max = 255;
+      b_min = 0;
     }
 
-    var rMid,
-      rGoalMax,
-      rGoalMin,
-      gMid,
-      gGoalMax,
-      gGoalMin,
-      bMid,
-      bGoalMax,
-      bGoalMin;
+    var r_mid,
+      r_goal_max,
+      r_goal_min,
+      g_mid,
+      g_goal_max,
+      g_goal_min,
+      b_mid,
+      b_goal_max,
+      b_goal_min;
 
     // If the enhancement is positive - stretch the histogram
-    if (enhanceAmount > 0) {
-      rGoalMax = rMax + enhanceAmount * (255 - rMax);
-      rGoalMin = rMin - enhanceAmount * (rMin - 0);
-      gGoalMax = gMax + enhanceAmount * (255 - gMax);
-      gGoalMin = gMin - enhanceAmount * (gMin - 0);
-      bGoalMax = bMax + enhanceAmount * (255 - bMax);
-      bGoalMin = bMin - enhanceAmount * (bMin - 0);
+    if (enhance_amount > 0) {
+      r_goal_max = r_max + enhance_amount * (255 - r_max);
+      r_goal_min = r_min - enhance_amount * (r_min - 0);
+      g_goal_max = g_max + enhance_amount * (255 - g_max);
+      g_goal_min = g_min - enhance_amount * (g_min - 0);
+      b_goal_max = b_max + enhance_amount * (255 - b_max);
+      b_goal_min = b_min - enhance_amount * (b_min - 0);
       // If the enhancement is negative -   compress the histogram
     } else {
-      rMid = (rMax + rMin) * 0.5;
-      rGoalMax = rMax + enhanceAmount * (rMax - rMid);
-      rGoalMin = rMin + enhanceAmount * (rMin - rMid);
-      gMid = (gMax + gMin) * 0.5;
-      gGoalMax = gMax + enhanceAmount * (gMax - gMid);
-      gGoalMin = gMin + enhanceAmount * (gMin - gMid);
-      bMid = (bMax + bMin) * 0.5;
-      bGoalMax = bMax + enhanceAmount * (bMax - bMid);
-      bGoalMin = bMin + enhanceAmount * (bMin - bMid);
+      r_mid = (r_max + r_min) * 0.5;
+      r_goal_max = r_max + enhance_amount * (r_max - r_mid);
+      r_goal_min = r_min + enhance_amount * (r_min - r_mid);
+      g_mid = (g_max + g_min) * 0.5;
+      g_goal_max = g_max + enhance_amount * (g_max - g_mid);
+      g_goal_min = g_min + enhance_amount * (g_min - g_mid);
+      b_mid = (b_max + b_min) * 0.5;
+      b_goal_max = b_max + enhance_amount * (b_max - b_mid);
+      b_goal_min = b_min + enhance_amount * (b_min - b_mid);
     }
 
     // Pass 2 - remap everything, except the alpha
-    for (i = 0; i < nSubPixels; i += 4) {
-      data[i + 0] = remap(data[i + 0], rMin, rMax, rGoalMin, rGoalMax);
-      data[i + 1] = remap(data[i + 1], gMin, gMax, gGoalMin, gGoalMax);
-      data[i + 2] = remap(data[i + 2], bMin, bMax, bGoalMin, bGoalMax);
+    for (i = 0; i < n_sub_pixels; i += 4) {
+      data[i + 0] = remap(data[i + 0], r_min, r_max, r_goal_min, r_goal_max);
+      data[i + 1] = remap(data[i + 1], g_min, g_max, g_goal_min, g_goal_max);
+      data[i + 2] = remap(data[i + 2], b_min, b_max, b_goal_min, b_goal_max);
       //data[i + 3] = remap(data[i + 3], aMin, aMax, aGoalMin, aGoalMax);
     }
   };

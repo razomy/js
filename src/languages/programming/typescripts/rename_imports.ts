@@ -1,54 +1,54 @@
 import { Project, SyntaxKind } from 'ts-morph';
 
-const toSnakeCase = (str: string) => {
+const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .toLowerCase();
 };
 
-const transformPath = (path: string) => {
+const transform_path = (path: string) => {
   // Split path by slashes to handle folders individually
   return path
     .split('/')
     .map(segment => {
       // Don't change relative path indicators
       if (segment === '.' || segment === '..') return segment;
-      return toSnakeCase(segment);
+      return to_snake_case(segment);
     })
     .join('/');
 };
 
-const renameImportPaths = async () => {
+const rename_import_paths = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
 
-  const sourceFiles = project.getSourceFiles();
+  const source_files = project.getSourceFiles();
   let count = 0;
 
-  for (const file of sourceFiles) {
+  for (const file of source_files) {
     // 1. Get all Import Declarations (import ... from '...')
     const imports = file.getImportDeclarations();
 
     // 2. Get all Export Declarations (export ... from '...')
     const exports = file.getExportDeclarations();
 
-    const allDeclarations = [...imports, ...exports];
+    const all_declarations = [...imports, ...exports];
 
-    for (const dec of allDeclarations) {
-      const moduleSpecifier = dec.getModuleSpecifierValue();
+    for (const dec of all_declarations) {
+      const module_specifier = dec.getModuleSpecifierValue();
 
       // Skip invalid or empty specifiers
-      if (!moduleSpecifier) continue;
+      if (!module_specifier) continue;
 
       // Skip external libraries (node_modules usually don't start with .)
-      if (moduleSpecifier.startsWith('.')) continue;
+      if (module_specifier.startsWith('.')) continue;
 
-      const newPath = transformPath(moduleSpecifier);
+      const new_path = transform_path(module_specifier);
 
-      if (moduleSpecifier !== newPath) {
-        dec.setModuleSpecifier(newPath);
-        console.log(`[PATH] ${moduleSpecifier} -> ${newPath}`);
+      if (module_specifier !== new_path) {
+        dec.setModuleSpecifier(new_path);
+        console.log(`[PATH] ${module_specifier} -> ${new_path}`);
         count++;
       }
     }
@@ -62,4 +62,4 @@ const renameImportPaths = async () => {
   }
 };
 
-renameImportPaths();
+rename_import_paths();

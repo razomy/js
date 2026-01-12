@@ -2,24 +2,24 @@ import * as path from 'path';
 import {PathString} from "razomy/path/string/path_string";
 import {rename} from "razomy/fs/rename";
 
-export const JS_OUTPUT = ['dist'];
-export const JAVA_OUTPUT = ['out'];
-export const PYTHON_OUTPUT = ['build'];
-export const NUXT_OUTPUT = ['.output'];
-export const RUST_OUTPUT = ['target'];
-export const E2E_OUTPUT = ['test-results'];
-export const RAZOMY_OUTPUT = ['_releases'];
-export const C_OUTPUT = ['cmake-build-debug'];
+export const js_output = ['dist'];
+export const java_output = ['out'];
+export const python_output = ['build'];
+export const nuxt_output = ['.output'];
+export const rust_output = ['target'];
+export const e2e_output = ['test-results'];
+export const razomy_output = ['_releases'];
+export const c_output = ['cmake-build-debug'];
 
-export const KNOWN_OUTPUT = [
-  ...JS_OUTPUT,
-  ...JAVA_OUTPUT,
-  ...PYTHON_OUTPUT,
-  ...RUST_OUTPUT,
-  ...RAZOMY_OUTPUT,
-  ...NUXT_OUTPUT,
-  ...C_OUTPUT,
-  ...E2E_OUTPUT,
+export const known_output = [
+  ...js_output,
+  ...java_output,
+  ...python_output,
+  ...rust_output,
+  ...razomy_output,
+  ...nuxt_output,
+  ...c_output,
+  ...e2e_output,
 ];
 
 function get_path_components(path_: string): string[] {
@@ -27,13 +27,13 @@ function get_path_components(path_: string): string[] {
 }
 
 export function is_in_output(path_: string): boolean {
-  const pathComponents = get_path_components(path_);
+  const path_components = get_path_components(path_);
 
-  return KNOWN_OUTPUT.some(outputDir => pathComponents.includes(outputDir));
+  return known_output.some(outputDir => path_components.includes(outputDir));
 }
 
 export function rename_slug_to_razomy(path_: PathString) {
   const dir = path.dirname(path_);
-  const res = path.join(dir, RAZOMY_OUTPUT[0]);
+  const res = path.join(dir, razomy_output[0]);
   rename(path_, res)
 }

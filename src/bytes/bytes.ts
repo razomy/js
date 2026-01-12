@@ -17,7 +17,7 @@ export function get_object_size_in_bytes(obj: any): number {
 }
 
 export function formatted_size_in_bytes(obj: unknown): string {
-  const sizeInBytes = get_object_size_in_bytes(obj);
-  const formattedSize = format_bytes(sizeInBytes);
-  return formattedSize;
+  const size_in_bytes = get_object_size_in_bytes(obj);
+  const formatted_size = format_bytes(size_in_bytes);
+  return formatted_size;
 }

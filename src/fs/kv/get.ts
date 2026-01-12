@@ -18,8 +18,8 @@ export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: str
     kv[1] = ak<string, Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
-      const itemPath = path.join(directory, item);
-      const child = get<[string, Buffer]>(itemPath);
+      const item_path = path.join(directory, item);
+      const child = get<[string, Buffer]>(item_path);
       kv[1].push(child)
     }
     return kv as T;

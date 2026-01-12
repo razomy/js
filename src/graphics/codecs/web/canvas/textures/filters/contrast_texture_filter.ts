@@ -27,13 +27,13 @@ export class ContrastTextureFilter implements ITextureFilter {
     var adjust = Math.pow((this.contrast + 100) / 100, 2);
 
     var data = imageData.data,
-      nPixels = data.length,
+      n_pixels = data.length,
       red = 150,
       green = 150,
       blue = 150,
       i;
 
-    for (i = 0; i < nPixels; i += 4) {
+    for (i = 0; i < n_pixels; i += 4) {
       red = data[i];
       green = data[i + 1];
       blue = data[i + 2];

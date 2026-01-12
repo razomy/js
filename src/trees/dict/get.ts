@@ -32,16 +32,16 @@ export function get_path(obj, path: string) {
     return [];
   }
 
-  const closingBracketIndex = path.indexOf(assign);
-  const slug = path.substring(0, closingBracketIndex);
+  const closing_bracket_index = path.indexOf(assign);
+  const slug = path.substring(0, closing_bracket_index);
 
-  let childNode = Object.keys(obj).find(key => key === slug);
+  let child_node = Object.keys(obj).find(key => key === slug);
 
-  if (!childNode) {
+  if (!child_node) {
     throw new Error(`Node not found path="${path}".`);
   }
 
-  const remainingString = path.substring(closingBracketIndex + 1);
+  const remaining_string = path.substring(closing_bracket_index + 1);
 
-  return [childNode, ...get_path(childNode, remainingString)];
+  return [child_node, ...get_path(child_node, remaining_string)];
 }

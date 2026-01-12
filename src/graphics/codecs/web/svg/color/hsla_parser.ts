@@ -5,7 +5,7 @@ export class HslaParser {
    * @field
    * @memberOf Color
    */
-  public static readonly reHSLa = /^hsla?\(\s*(\d{1,3})\s*,\s*(\d{1,3}\%)\s*,\s*(\d{1,3}\%)\s*(?:\s*,\s*(\d+(?:\.\d+)?)\s*)?\)$/i;
+  public static readonly re_hsla = /^hsla?\(\s*(\d{1,3})\s*,\s*(\d{1,3}\%)\s*,\s*(\d{1,3}\%)\s*(?:\s*,\s*(\d+(?:\.\d+)?)\s*)?\)$/i;
 
   /**
    * Adapted from <a href="https://rawgithub.com/mjijackson/mjijackson.github.com/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.html">https://github.com/mjijackson</a>
@@ -111,7 +111,7 @@ export class HslaParser {
    * @see http://http://www.w3.org/TR/css3-color/#hsl-color
    */
   public static sourceFromHsl(color: string): [number, number, number, number] | null {
-    const match = color.match(this.reHSLa);
+    const match = color.match(this.re_hsla);
     if (!match) {
       return null;
     }

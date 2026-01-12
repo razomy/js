@@ -10,8 +10,8 @@ function restore(source_path: SourcePathString) {
   iterate_reverse(tree[0], (node) => {
     if (node.children.length !== 0) {
       for (let child of node.children) {
-        const commitCommand = `git restore ` + child.value;
-        execSync(commitCommand, {cwd: node.value});
+        const commit_command = `git restore ` + child.value;
+        execSync(commit_command, {cwd: node.value});
       }
     }
   })

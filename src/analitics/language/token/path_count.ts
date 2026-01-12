@@ -9,16 +9,16 @@ export function path_count(file_path: FilePathString) {
 
     console.log(tokens.length);
     // Count the tokens by type
-    const tokenCountByType = {};
+    const token_count_by_type = {};
     tokens.forEach(token => {
-      if (tokenCountByType[token]) {
-        tokenCountByType[token]++;
+      if (token_count_by_type[token]) {
+        token_count_by_type[token]++;
       } else {
-        tokenCountByType[token] = 1;
+        token_count_by_type[token] = 1;
       }
     });
 
-    return tokenCountByType;
+    return token_count_by_type;
   } catch (error) {
     console.error('Error reading or parsing the file:', error);
     return null;

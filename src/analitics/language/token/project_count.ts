@@ -8,22 +8,22 @@ export function project_count(
   // Define the regex pattern to exclude certain files/directories
   excludePattern = /^\.|node_modules/) {
   // Define the token count variable
-  let tokenCount = 0;
+  let token_count = 0;
 
 
   // Recursively traverse the project directory
   function traverseDir(dir) {
     const files = fs.readdirSync(dir);
     for (const file of files) {
-      const filePath = path.join(dir, file);
-      const stats = fs.statSync(filePath);
+      const file_path = path.join(dir, file);
+      const stats = fs.statSync(file_path);
       if (stats.isDirectory() && !excludePattern.test(file)) {
-        traverseDir(filePath);
+        traverseDir(file_path);
       } else if (stats.isFile() && fileRegex.test(file)) {
         // console.log(filePath);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = fs.readFileSync(file_path, 'utf8');
         const tokens = content.split(/\s+/).filter(token => token !== '');
-        tokenCount += tokens.length;
+        token_count += tokens.length;
       }
     }
   }
@@ -32,5 +32,5 @@ export function project_count(
   traverseDir(projectDir);
 
   // Return the total token count
-  return tokenCount;
+  return token_count;
 }

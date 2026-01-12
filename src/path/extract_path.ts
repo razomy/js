@@ -3,10 +3,10 @@ import {String} from "razomy/string/string";
 
 export function sub_extract_path(file_path: String, equal_path: String): String {
   const parts: string[] = file_path.split('/');
-  const startIndex: number = parts.indexOf(equal_path);
+  const start_index: number = parts.indexOf(equal_path);
 
-  if (startIndex !== -1) {
-    const result: string = parts.slice(startIndex).join('/');
+  if (start_index !== -1) {
+    const result: string = parts.slice(start_index).join('/');
     return result;
   } else {
     throw new ArgumentException('Path not found', {file_path, equal_path});
@@ -15,10 +15,10 @@ export function sub_extract_path(file_path: String, equal_path: String): String 
 
 export function pre_extract_path(file_path: String, equal_path: String): String {
   const parts: string[] = file_path.split('/');
-  const startIndex: number = parts.indexOf(equal_path);
+  const start_index: number = parts.indexOf(equal_path);
 
-  if (startIndex !== -1) {
-    const result: string = parts.slice(0, startIndex).join('/');
+  if (start_index !== -1) {
+    const result: string = parts.slice(0, start_index).join('/');
     return result;
   } else {
     throw new ArgumentException('Path not found', {file_path, equal_path});

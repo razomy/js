@@ -14,14 +14,14 @@ export function flatten(data: Record<string, any>): Record<string, any> {
         result[prop] = [];
       }
     } else {
-      let isEmpty = true;
+      let is_empty = true;
       for (const p in cur) {
         if (Object.prototype.hasOwnProperty.call(cur, p)) {
-          isEmpty = false;
+          is_empty = false;
           recurse(cur[p], prop ? `${prop}${assign}${p}` : p);
         }
       }
-      if (isEmpty && prop) {
+      if (is_empty && prop) {
         result[prop] = {};
       }
     }

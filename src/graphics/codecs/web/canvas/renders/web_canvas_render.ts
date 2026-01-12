@@ -73,13 +73,13 @@ export class WebCanvasRender extends Render {
   private iterate(node: ElementView) {
     this.codecFactory.create(node).render(node);
 
-    const nodeChildren = node.children;
-    for (let i = 0; i < nodeChildren.length; i++) {
-      if (!nodeChildren[i]) {
+    const node_children = node.children;
+    for (let i = 0; i < node_children.length; i++) {
+      if (!node_children[i]) {
         continue;
       }
 
-      this.iterate(nodeChildren[i]);
+      this.iterate(node_children[i]);
     }
   }
 }

@@ -12,20 +12,20 @@ const rename_with_morph = async () => {
     tsConfigFilePath: '../../../../tsconfig.json',
   });
 
-  const sourceFiles = project.getSourceFiles();
+  const source_files = project.getSourceFiles();
   let count = 0;
 
-  for (const file of sourceFiles) {
-    const baseName = file.getBaseNameWithoutExtension();
+  for (const file of source_files) {
+    const base_name = file.getBaseNameWithoutExtension();
     const ext = file.getExtension();
 
-    const newName = to_snake_case(baseName);
+    const new_name = to_snake_case(base_name);
 
     // Skip if name hasn't changed
-    if (baseName === newName) continue;
+    if (base_name === new_name) continue;
 
-    file.move(`${file.getDirectory().getPath()}/${newName}${ext}`);
-    console.log(`[RENAME] ${baseName}${ext} -> ${newName}${ext}`);
+    file.move(`${file.getDirectory().getPath()}/${new_name}${ext}`);
+    console.log(`[RENAME] ${base_name}${ext} -> ${new_name}${ext}`);
     count++;
   }
 

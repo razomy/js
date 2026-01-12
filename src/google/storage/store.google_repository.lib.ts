@@ -5,45 +5,45 @@ import path from 'path';
 import {create_directory_if_not_exists} from 'razomy/fs/create';
 
 async function download_file_recursive_file(file, folderPath, destinationPath = '') {
-  const filePath = file.name.replace(folderPath, '');
+  const file_path = file.name.replace(folderPath, '');
   const dir_path = path.join(folderPath, destinationPath);
-  const destinationFile = path.join(folderPath, destinationPath, filePath);
+  const destination_file = path.join(folderPath, destinationPath, file_path);
   create_directory_if_not_exists(dir_path);
-  await file.download({ destination: destinationFile });
+  await file.download({ destination: destination_file });
 }
 
 async function download_files_recursive(bucket, folderPath, destinationPath = '') {
   const [files] = await bucket.getFiles();
 
-  const downloadPromises = files.map(async (file) => {
+  const download_promises = files.map(async (file) => {
     await download_file_recursive_file(file, folderPath, destinationPath);
     // console.log(`Downloaded ${file.name} to ${destinationFile}`);
   });
 
-  await Promise.all(downloadPromises);
+  await Promise.all(download_promises);
 }
 
 async function upload_files_recursive(bucket, folderPath, destinationPath = '') {
   const items = await fs.promises.readdir(folderPath);
 
-  const uploadPromises = items.map(async (item) => {
-    const itemPath = path.join(folderPath, item);
-    const stats = await fs.promises.stat(itemPath);
+  const upload_promises = items.map(async (item) => {
+    const item_path = path.join(folderPath, item);
+    const stats = await fs.promises.stat(item_path);
 
     if (stats.isFile()) {
-      const uploadOptions = {
+      const upload_options = {
         destination: path.join(destinationPath, item),
       };
-      await bucket.upload(itemPath, uploadOptions);
+      await bucket.upload(item_path, upload_options);
       // console.log(`Uploaded ${item} to ${bucket.name}/${uploadOptions.destination}`);
     } else if (stats.isDirectory()) {
-      const subfolderPath = path.join(folderPath, item);
-      const subfolderDestination = path.join(destinationPath, item);
-      await upload_files_recursive(bucket, subfolderPath, subfolderDestination);
+      const subfolder_path = path.join(folderPath, item);
+      const subfolder_destination = path.join(destinationPath, item);
+      await upload_files_recursive(bucket, subfolder_path, subfolder_destination);
     }
   });
 
-  await Promise.all(uploadPromises);
+  await Promise.all(upload_promises);
 }
 
 
@@ -67,12 +67,12 @@ export async function upload_file(bucketName, fileName, folderPath) {
   const storage = new Storage();
   const bucket = storage.bucket(bucketName);
 
-  const filePath = path.join(folderPath, fileName);
-  const uploadOptions = {
+  const file_path = path.join(folderPath, fileName);
+  const upload_options = {
     destination: fileName,
   };
 
-  await bucket.upload(filePath, uploadOptions);
+  await bucket.upload(file_path, upload_options);
 }
 
 export async function upload_files_to_storage(bucketName, folderPath) {

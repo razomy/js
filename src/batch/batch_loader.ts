@@ -5,26 +5,26 @@ interface QueueItem<K, V> {
 }
 
 export abstract class AbstractBatchLoader<K, V> {
-  private readonly batchDelay: number;
-  private requestQueue: QueueItem<K, V>[] = [];
-  private requestTimeout: ReturnType<typeof setTimeout> | null = null;
+  private readonly batch_delay: number;
+  private request_queue: QueueItem<K, V>[] = [];
+  private request_timeout: ReturnType<typeof setTimeout> | null = null;
 
   protected abstract performBatchRequest(keys: K[]): Promise<Map<K, V>>;
 
   constructor(batchDelay: number = 10) {
-    this.batchDelay = batchDelay;
+    this.batch_delay = batchDelay;
   }
 
   public load(key: K): Promise<V> {
     return new Promise((resolve, reject) => {
-      this.requestQueue.push({ key, resolve, reject });
+      this.request_queue.push({ key, resolve, reject });
 
-      if (this.requestTimeout) {
-        clearTimeout(this.requestTimeout);
+      if (this.request_timeout) {
+        clearTimeout(this.request_timeout);
       }
-      this.requestTimeout = setTimeout(() => {
+      this.request_timeout = setTimeout(() => {
         this.processQueue();
-      }, this.batchDelay);
+      }, this.batch_delay);
     });
   }
 
@@ -34,20 +34,20 @@ export abstract class AbstractBatchLoader<K, V> {
   }
 
   private async processQueue(): Promise<void> {
-    if (this.requestQueue.length === 0) {
+    if (this.request_queue.length === 0) {
       return;
     }
 
-    const batch = [...this.requestQueue];
-    this.requestQueue = [];
+    const batch = [...this.request_queue];
+    this.request_queue = [];
 
-    const uniqueKeys = [...new Set(batch.map((item) => item.key))];
+    const unique_keys = [...new Set(batch.map((item) => item.key))];
 
     try {
-      const resultsMap = await this.performBatchRequest(uniqueKeys);
+      const results_map = await this.performBatchRequest(unique_keys);
 
       batch.forEach(({ key, resolve, reject }) => {
-        const result = resultsMap.get(key);
+        const result = results_map.get(key);
         if (result !== undefined) {
           resolve(result);
         } else {

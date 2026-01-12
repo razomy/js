@@ -21,7 +21,7 @@ export class ColorCodex {
     let source: number[] | null = null;
 
     if (SvgColorParser.isSvgColor(color as SvgColorKeys)) {
-      color = SvgColorParser.colorNameMap[color as SvgColorKeys];
+      color = SvgColorParser.color_name_map[color as SvgColorKeys];
     }
 
     if (color === 'transparent') {
@@ -54,9 +54,9 @@ export class ColorCodex {
    * @return {Color}
    */
   public static fromSource(source: number[]): Color {
-    const oColor = new Color();
-    oColor.setSource(source);
-    return oColor;
+    const o_color = new Color();
+    o_color.setSource(source);
+    return o_color;
   };
 
 }

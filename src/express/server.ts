@@ -16,7 +16,7 @@ export function create(ctx: Ctx) {
 
   const app = express();
   ctx.app = app;
-  ctx.isProdSecure = process.env.NODE_ENV === 'production';
+  ctx.is_prod_secure = process.env.NODE_ENV === 'production';
 
 // app.use(helmet({
 //   contentSecurityPolicy: {

@@ -1,12 +1,12 @@
 export function api_key_auth(key) {
-  const validApiKeys = new Set([
+  const valid_api_keys = new Set([
     key,
   ]);
 
   return function express_middleware(req, res, next) {
-    const apiKey = req.headers['x-api-key'];
+    const api_key = req.headers['x-api-key'];
 
-    if (!apiKey || !validApiKeys.has(apiKey)) {
+    if (!api_key || !valid_api_keys.has(api_key)) {
       return res.status(401).json({error: 'Invalid API key.'});
     }
 

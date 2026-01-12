@@ -90,9 +90,9 @@ export class ArcRender {
   }
 
   _sceneFunc(context: any) {
-    const PI_OVER_180 = Math.PI / 180;
+    const pi_over_180 = Math.PI / 180;
 
-    const angle = (this.angle * PI_OVER_180);
+    const angle = (this.angle * pi_over_180);
     const clockwise = this.clockwise;
 
     context.beginPath();

@@ -23,9 +23,9 @@ export function map_branch<I, O>(
       value: input.value,
       children: {}
     };
-    for (let inputKey in input.children) {
-      const value = input[inputKey];
-      otput[inputKey] = map_branch(otput, value, leaf_value_cb)
+    for (let input_key in input.children) {
+      const value = input[input_key];
+      otput[input_key] = map_branch(otput, value, leaf_value_cb)
     }
 
     return otput;
@@ -43,9 +43,9 @@ export function map_root<I, O>(
   const otput: RootDict<O> = {
     children: {}
   };
-  for (let inputKey in input.children) {
-    const value = input[inputKey];
-    otput[inputKey] = map_branch(otput, value, leaf_value_cb)
+  for (let input_key in input.children) {
+    const value = input[input_key];
+    otput[input_key] = map_branch(otput, value, leaf_value_cb)
   }
   return otput;
 }

@@ -63,14 +63,14 @@ export class RgbTextureFilter implements ITextureFilter {
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      nPixels = data.length,
+      n_pixels = data.length,
       red = this.red,
       green = this.green,
       blue = this.blue,
       i,
       brightness;
 
-    for (i = 0; i < nPixels; i += 4) {
+    for (i = 0; i < n_pixels; i += 4) {
       brightness =
         (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255;
       data[i] = brightness * red; // r

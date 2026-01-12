@@ -1,60 +1,66 @@
 import { Project, SyntaxKind, Node } from 'ts-morph';
 
-const toSnakeCase = (str: string) => {
+const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .toLowerCase();
 };
 
-const renameVariablesAndProps = async () => {
+const rename_variables_and_props = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
 
-  const sourceFiles = project.getSourceFiles();
+  const source_files = project.getSourceFiles();
   let count = 0;
 
-  for (const file of sourceFiles) {
+  for (const file of source_files) {
     // 1. Rename Variables (const, let, var)
     // We use getDescendantsOfKind to find variables inside functions/loops too
     const vars = file.getDescendantsOfKind(SyntaxKind.VariableDeclaration);
 
     for (const v of vars) {
       const name = v.getName();
-      const newName = toSnakeCase(name);
+      const new_name = to_snake_case(name);
 
       // Skip desctructured variables (e.g. const { camelCase } = obj) to avoid breaking external refs
-      const isDestructured = Node.isObjectBindingPattern(v.getParent());
+      const is_destructured = Node.isObjectBindingPattern(v.getParent());
 
-      if (!isDestructured && name !== newName) {
-        v.rename(newName);
-        console.log(`[VAR] ${name} -> ${newName}`);
+      if (!is_destructured && name !== new_name) {
+        try {
+
+        console.log(`[VAR] ${name} -> ${new_name}`);
+        v.rename(new_name);
+        } catch (e) {
+
+          console.log(`ERROR[VAR] ${name} -> ${new_name}`);
+        }
         count++;
       }
     }
 
     // 2. Rename Interface & Type Literal Properties
-    const propSignatures = file.getDescendantsOfKind(SyntaxKind.PropertySignature);
-    for (const prop of propSignatures) {
+    const prop_signatures = file.getDescendantsOfKind(SyntaxKind.PropertySignature);
+    for (const prop of prop_signatures) {
       const name = prop.getName();
-      const newName = toSnakeCase(name);
+      const new_name = to_snake_case(name);
 
-      if (name !== newName) {
-        prop.rename(newName);
-        console.log(`[PROP-SIG] ${name} -> ${newName}`);
+      if (name !== new_name) {
+        prop.rename(new_name);
+        console.log(`[PROP-SIG] ${name} -> ${new_name}`);
         count++;
       }
     }
 
     // 3. Rename Class Properties
-    const classProps = file.getDescendantsOfKind(SyntaxKind.PropertyDeclaration);
-    for (const prop of classProps) {
+    const class_props = file.getDescendantsOfKind(SyntaxKind.PropertyDeclaration);
+    for (const prop of class_props) {
       const name = prop.getName();
-      const newName = toSnakeCase(name);
+      const new_name = to_snake_case(name);
 
-      if (name !== newName) {
-        prop.rename(newName);
-        console.log(`[PROP-CLASS] ${name} -> ${newName}`);
+      if (name !== new_name) {
+        prop.rename(new_name);
+        console.log(`[PROP-CLASS] ${name} -> ${new_name}`);
         count++;
       }
     }
@@ -68,4 +74,4 @@ const renameVariablesAndProps = async () => {
   }
 };
 
-renameVariablesAndProps();
+rename_variables_and_props();

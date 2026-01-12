@@ -1,16 +1,16 @@
 import * as path from 'path';
-import {is_exist} from "src/fs/file/read";
+import {is_exist} from "razomy/fs/file/read";
 import {ArgumentException} from "razomy/exceptions/argument_exception";
 import {PathString, Slug, WithPathString} from 'razomy/path/string/path_string';
 
-export const PYTHON_DEPENDENCIES = ['.venv'];
-export const NODEJS_DEPENDENCIES = ['node_modules'];
-export const UNITY_DEPENDENCIES = ['Library'];
+export const python_dependencies = ['.venv'];
+export const nodejs_dependencies = ['node_modules'];
+export const unity_dependencies = ['Library'];
 
-export const KNOWN_DEPENDENCIES = [
-  ...PYTHON_DEPENDENCIES,
-  ...NODEJS_DEPENDENCIES,
-  ...UNITY_DEPENDENCIES,
+export const known_dependencies = [
+  ...python_dependencies,
+  ...nodejs_dependencies,
+  ...unity_dependencies,
 ];
 
 function get_path_components(path_: string): string[] {
@@ -18,29 +18,29 @@ function get_path_components(path_: string): string[] {
 }
 
 export function is_in_packages(path_: string): boolean {
-  const pathComponents = get_path_components(path_);
-  return KNOWN_DEPENDENCIES.some(depDir => pathComponents.includes(depDir));
+  const path_components = get_path_components(path_);
+  return known_dependencies.some(depDir => path_components.includes(depDir));
 }
 
-export const GIT_SLUG = ".git";
-export const MAC_DS_STORE_FILE = ".DS_Store";
+export const git_slug = ".git";
+export const mac_ds_store_file = ".DS_Store";
 
 export function is_mac_ds_store_key(slug: Slug) {
-  return slug.endsWith(MAC_DS_STORE_FILE);
+  return slug.endsWith(mac_ds_store_file);
 }
 
 export class is_mac_ds_store_key_ArgumentException extends ArgumentException<WithPathString> {
   constructor(path: string) {
-    super(is_mac_ds_store_key.name, {pathString: path});
+    super(is_mac_ds_store_key.name, {path_string: path});
   }
 }
 
 export function is_git_key(slug: Slug) {
-  return slug === GIT_SLUG;
+  return slug === git_slug;
 }
 
 export function is_with_git(path_: PathString) {
-  return is_exist(path.join(path_, GIT_SLUG))
+  return is_exist(path.join(path_, git_slug))
 }
 
 export function is_without_git(path: PathString) {

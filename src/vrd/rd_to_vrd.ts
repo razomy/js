@@ -6,8 +6,8 @@ export function rd_to_vrd(dict: RecursiveDict, is_value: (t: RecursiveDict) => b
     return dict;
   }
   const v = new Vrd<string>();
-  for (const dictKey in (dict as object)) {
-    v[dictKey] = rd_to_vrd(dict[dictKey], is_value);
+  for (const dict_key in (dict as object)) {
+    v[dict_key] = rd_to_vrd(dict[dict_key], is_value);
   }
   return v;
 }

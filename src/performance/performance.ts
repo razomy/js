@@ -1,29 +1,29 @@
 import {performance} from 'perf_hooks';
 
 export async function performance_cb(key, callback) {
-  const startTime = performance.now();
+  const start_time = performance.now();
   const result = await callback();
-  const endTime = performance.now();
-  const executionTime = endTime - startTime;
-  console.log(`Execution time: key=${key} time=${executionTime} milliseconds`);
+  const end_time = performance.now();
+  const execution_time = end_time - start_time;
+  console.log(`Execution time: key=${key} time=${execution_time} milliseconds`);
   return result;
 }
 
 export class Performance {
-  startTime: number;
-  endTime: number;
+  start_time: number;
+  end_time: number;
 
   constructor() {
-    this.startTime = performance.now();
-    this.endTime = performance.now();
+    this.start_time = performance.now();
+    this.end_time = performance.now();
 
   }
 
   tick() {
-    this.endTime = performance.now();
-    const executionTime = this.endTime - this.startTime;
-    this.startTime = this.endTime;
-    return executionTime;
+    this.end_time = performance.now();
+    const execution_time = this.end_time - this.start_time;
+    this.start_time = this.end_time;
+    return execution_time;
   }
 
   tick_and_log(key: string = "default") {

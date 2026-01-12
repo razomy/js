@@ -14,15 +14,15 @@ export class WebSvgContext {
   }
 
   static create(): WebSvgContext {
-    const codecConfig: CodecConfig = new CodecConfig();
-    const encodeNodeFactory: EncodeNodeFactory = new EncodeNodeFactory(codecConfig);
-    const codecFactory: CodecFactory = new CodecFactory(codecConfig, encodeNodeFactory);
-    const codecRegistry: CodecRegistry = new CodecRegistry();
+    const codec_config: CodecConfig = new CodecConfig();
+    const encode_node_factory: EncodeNodeFactory = new EncodeNodeFactory(codec_config);
+    const codec_factory: CodecFactory = new CodecFactory(codec_config, encode_node_factory);
+    const codec_registry: CodecRegistry = new CodecRegistry();
     return new WebSvgContext(
-      codecConfig,
-      encodeNodeFactory,
-      codecFactory,
-      codecRegistry
+      codec_config,
+      encode_node_factory,
+      codec_factory,
+      codec_registry
     );
   }
 }

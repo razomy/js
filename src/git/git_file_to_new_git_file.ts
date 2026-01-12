@@ -1,6 +1,6 @@
 import path from 'path';
 import {execute_async} from 'razomy/shell/execute_async';
-import {read_file} from 'src/fs/file/read';
+import {read_file} from 'razomy/fs/file/read';
 import {try_async} from "razomy/async/promise";
 import {write_file} from 'razomy/fs/file/write';
 
@@ -15,12 +15,12 @@ export async function get_git_commits_id(dir_path: string, commitCount: number =
   const lines = stdout.trim().split('\n');
 
   // Create an array to store the commit information
-  let commits: { id: string, commitName: string, date: string }[] = [];
+  let commits: { id: string, commit_name: string, date: string }[] = [];
 
   // Process each line to extract the commit ID and name
   lines.forEach((line) => {
-    const [commitID, commitName, commitDate] = line.split('\t');
-    commits.push({id: commitID, commitName, date: commitDate});
+    const [commit_id, commit_name, commit_date] = line.split('\t');
+    commits.push({id: commit_id, commit_name, date: commit_date});
   });
 
   return commits.reverse();
@@ -38,17 +38,17 @@ async function git_file_to_new_git_file(
   for (const commit of commits) {
     const index = commits.indexOf(commit);
 
-    const checkoutCommand = `git checkout ${commit.id}`;
-    await try_async(execute_async(checkoutCommand, {cwd: repositoryPath}));
+    const checkout_command = `git checkout ${commit.id}`;
+    await try_async(execute_async(checkout_command, {cwd: repositoryPath}));
 
     const data = read_file(repositoryPath + fileSubPath);
     write_file(repositorynewPath + fileSubPath, data);
 
-    const commitCommand = `git add . && git commit --date "${commit.date}" -m "${commit.commitName}"`;
-    await try_async(execute_async(commitCommand, {cwd: repositorynewPath}));
+    const commit_command = `git add . && git commit --date "${commit.date}" -m "${commit.commit_name}"`;
+    await try_async(execute_async(commit_command, {cwd: repositorynewPath}));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
-    console.log(`   Commit Name: ${commit.commitName}`);
+    console.log(`   Commit Name: ${commit.commit_name}`);
     console.log(`   Commit Date: ${commit.date}`);
   }
 }

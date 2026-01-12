@@ -5,13 +5,13 @@ export function equal_(a, b) {
     return false;
   }
 
-  const keysA = Object.keys(a);
-  const keysB = Object.keys(b);
+  const keys_a = Object.keys(a);
+  const keys_b = Object.keys(b);
 
-  if (keysA.length !== keysB.length) return false;
+  if (keys_a.length !== keys_b.length) return false;
 
-  for (const key of keysA) {
-    if (!keysB.includes(key) || !equal_(a[key], b[key])) {
+  for (const key of keys_a) {
+    if (!keys_b.includes(key) || !equal_(a[key], b[key])) {
       return false;
     }
   }

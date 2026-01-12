@@ -1,6 +1,6 @@
 import { DatastoreStore } from '@google-cloud/connect-datastore';
 import { Datastore } from '@google-cloud/datastore';
-import  {google, googleTapOn } from 'razomy/google/auth/google_auth';
+import  {google, google_tap_on } from 'razomy/google/auth/google_auth';
 import session from 'express-session';
 import passport from 'passport';
 
@@ -33,7 +33,7 @@ export function google_sesion_api(ctx) {
   ctx.google = new google(ctx);
 
   ctx.app.post('/api/auth/sign/google',
-    passport.authenticate(googleTapOn, { failureRedirect: '/login' }),
+    passport.authenticate(google_tap_on, { failureRedirect: '/login' }),
     (rq, rs) => rs.redirect('/'));
 
 }

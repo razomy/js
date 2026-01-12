@@ -26,23 +26,23 @@ it('should correctly encode and decode extremely large data', () => {
   function generateRandomString(length: number): string {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
+    const characters_length = characters.length;
     for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      result += characters.charAt(Math.floor(Math.random() * characters_length));
     }
     return result;
   }
 
   // Generate a large random string
-  const largeData = generateRandomString(10000000);
+  const large_data = generateRandomString(10000000);
 
   // Encode the large data
-  const encoded = encode_json_string(largeData);
+  const encoded = encode_json_string(large_data);
 
   // Decode the encoded data
   const decoded = decode_json_string(encoded);
 
   // Verify that the decoded data matches the original large data
-  expect(decoded).toEqual(largeData);
+  expect(decoded).toEqual(large_data);
 });
 

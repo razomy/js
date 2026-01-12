@@ -2,8 +2,8 @@ import fs from "fs";
 
 function generate_random_character() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  const randomIndex = Math.floor(Math.random() * characters.length);
-  return characters.charAt(randomIndex);
+  const random_index = Math.floor(Math.random() * characters.length);
+  return characters.charAt(random_index);
 }
 
 function insert_total_count(totalCount) {
@@ -11,34 +11,34 @@ function insert_total_count(totalCount) {
 }
 
 function generate_file(filePath, fileSize) {
-  const chunkSize = 500;
-  let totalCount = 0;
+  const chunk_size = 500;
+  let total_count = 0;
 
-  const writableStream = fs.createWriteStream(filePath);
+  const writable_stream = fs.createWriteStream(filePath);
 
   function writeNextChunk() {
-    if (totalCount * chunkSize < fileSize) {
+    if (total_count * chunk_size < fileSize) {
       let chunk = '';
-      for (let i = 0; i < chunkSize; i++) {
+      for (let i = 0; i < chunk_size; i++) {
         chunk += generate_random_character();
       }
 
-      const countInfo = insert_total_count(totalCount);
-      totalCount++;
+      const count_info = insert_total_count(total_count);
+      total_count++;
 
-      if (!writableStream.write(chunk + countInfo)) {
-        writableStream.once('drain', writeNextChunk);
+      if (!writable_stream.write(chunk + count_info)) {
+        writable_stream.once('drain', writeNextChunk);
       } else {
         writeNextChunk();
       }
     } else {
-      writableStream.end(() => {
+      writable_stream.end(() => {
         console.log(`File created successfully at ${filePath}`);
       });
     }
   }
 
-  writableStream.on('error', (err) => {
+  writable_stream.on('error', (err) => {
     console.error('Error while writing the file:', err);
   });
 
@@ -46,31 +46,31 @@ function generate_file(filePath, fileSize) {
 }
 
 
-const filePath = '../../../razomy.notation.editor.web.server/output.txt';
+const file_path = '../../../razomy.notation.editor.web.server/output.txt';
 
-const Million =1e+6;
-const ten_Million =1e+7;
-const hundred_Million =1e+8;
-const Milliard =1e+9;
-const Billion =1e+12;
-const Trillion =1e+18;
-const Quadrillion =1e+24;
-const Quintillion =1e+30;
-const Sextillion =1e+36;
-const Septillion =1e+42;
-const Octillion =1e+48;
-const Nonillion =1e+54;
-const Decillion =1e+60;
-const Undecillion =1e+66;
-const Duodecillion =1e+72;
-const Tredecillion =1e+78;
-const Quattuordecillion =1e+84;
-const Quindecillion =1e+90;
-const Sexdecillion =1e+96;
-const Septendecillion =1e+102;
-const Octodecillion =1e+108;
-const Novemdecillion =1e+114;
-const Vigintillion =1e+120;
-const Centillion =1e+600;
+const million =1e+6;
+const ten_million =1e+7;
+const hundred_million =1e+8;
+const milliard =1e+9;
+const billion =1e+12;
+const trillion =1e+18;
+const quadrillion =1e+24;
+const quintillion =1e+30;
+const sextillion =1e+36;
+const septillion =1e+42;
+const octillion =1e+48;
+const nonillion =1e+54;
+const decillion =1e+60;
+const undecillion =1e+66;
+const duodecillion =1e+72;
+const tredecillion =1e+78;
+const quattuordecillion =1e+84;
+const quindecillion =1e+90;
+const sexdecillion =1e+96;
+const septendecillion =1e+102;
+const octodecillion =1e+108;
+const novemdecillion =1e+114;
+const vigintillion =1e+120;
+const centillion =1e+600;
 
-generate_file(filePath, ten_Million);
+generate_file(file_path, ten_million);

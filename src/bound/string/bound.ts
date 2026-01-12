@@ -4,50 +4,50 @@ import {WithOffset} from "razomy/offset/offest";
 
 
 export interface NodeBound {
-  fullRect: BoundY & WithOffset & WithLength;
+  full_rect: BoundY & WithOffset & WithLength;
 }
 
 export function get_places_between_nodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
-    return [{ start_y: root.fullRect.start_y, finish_y: root.fullRect.finish_y }];
+    return [{ start_y: root.full_rect.start_y, finish_y: root.full_rect.finish_y }];
   }
 
   const places: BoundY[] = [];
 
   // Add starting place
-  const firstNode = nodes[0];
-  if (firstNode.fullRect.start_y > root.fullRect.start_y) {
+  const first_node = nodes[0];
+  if (first_node.full_rect.start_y > root.full_rect.start_y) {
     places.push({
-      start_y: root.fullRect.start_y,
-      finish_y: firstNode.fullRect.start_y - 1,
+      start_y: root.full_rect.start_y,
+      finish_y: first_node.full_rect.start_y - 1,
       finish_x: 0,
       start_x: 0,
     });
   }
 
   for (let i = 0; i < nodes.length - 1; i++) {
-    const currentNode = nodes[i];
-    const nextNode = nodes[i + 1];
+    const current_node = nodes[i];
+    const next_node = nodes[i + 1];
     const place = {
-      start_y: currentNode.fullRect.finish_y,
-      finish_y: nextNode.fullRect.start_y - 1,
+      start_y: current_node.full_rect.finish_y,
+      finish_y: next_node.full_rect.start_y - 1,
       finish_x: 0,
       start_x: 0,
     };
 
     if (place.start_y < place.finish_y
-      && place.start_y > root.fullRect.start_y
-      && place.finish_y < root.fullRect.finish_y) {
+      && place.start_y > root.full_rect.start_y
+      && place.finish_y < root.full_rect.finish_y) {
       places.push(place);
     }
   }
 
   // Add finishing place
-  const lastNode = nodes[nodes.length - 1];
-  if (lastNode.fullRect.finish_y <= root.fullRect.finish_y) {
+  const last_node = nodes[nodes.length - 1];
+  if (last_node.full_rect.finish_y <= root.full_rect.finish_y) {
     places.push({
-      start_y: lastNode.fullRect.finish_y + 1,
-      finish_y: root.fullRect.finish_y,
+      start_y: last_node.full_rect.finish_y + 1,
+      finish_y: root.full_rect.finish_y,
       finish_x: 0,
       start_x: 0,
     });

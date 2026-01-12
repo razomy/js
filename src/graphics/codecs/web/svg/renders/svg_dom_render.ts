@@ -31,14 +31,14 @@ export class WebSvgRender extends Render<ElementView> {
   private iterate(node: ElementView): Node {
     const value = this.codecFactory.createByNode(node).encode(node);
     this.webSvgHighLightsRender.render(node, value);
-    const nodeChildren = node.children;
-    for (let i = 0; i < nodeChildren.length; i++) {
-      if (!nodeChildren[i]) {
+    const node_children = node.children;
+    for (let i = 0; i < node_children.length; i++) {
+      if (!node_children[i]) {
         continue;
       }
 
-      const subValue = this.iterate(nodeChildren[i]);
-      value.appendChild(subValue);
+      const sub_value = this.iterate(node_children[i]);
+      value.appendChild(sub_value);
     }
 
     return value;

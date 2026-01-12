@@ -38,13 +38,13 @@ export class ExpiringInMemoryCache<T> {
     key: string,
     factory: () => Promise<CacheEntry<T>>,
   ): Promise<T> {
-    const cachedValue = this.get(key);
-    if (cachedValue !== null) {
-      return cachedValue;
+    const cached_value = this.get(key);
+    if (cached_value !== null) {
+      return cached_value;
     }
 
-    const newValue = await factory();
-    this.set(key, newValue.value, newValue.expires);
-    return newValue.value;
+    const new_value = await factory();
+    this.set(key, new_value.value, new_value.expires);
+    return new_value.value;
   }
 }

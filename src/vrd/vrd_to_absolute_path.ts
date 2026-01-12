@@ -5,13 +5,13 @@ export function vrd_to_absolute_path<T>(
   absolute_path: string,
   separator: string): VrdOrValue<T> {
   if (is_vrd(input)) {
-    for (let inputKey in input) {
-      const value = input[inputKey];
-      delete input[inputKey];
-      const newPrefix = absolute_path
-        ? absolute_path + separator + inputKey 
-        : inputKey;
-      input[newPrefix] = vrd_to_absolute_path(value, newPrefix, separator)
+    for (let input_key in input) {
+      const value = input[input_key];
+      delete input[input_key];
+      const new_prefix = absolute_path
+        ? absolute_path + separator + input_key 
+        : input_key;
+      input[new_prefix] = vrd_to_absolute_path(value, new_prefix, separator)
     }
     return input;
   } else {

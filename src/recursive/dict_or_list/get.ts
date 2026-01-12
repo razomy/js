@@ -13,8 +13,8 @@ export function get_any(obj: Dict<any>, keys: string[]) {
       if (obj.hasOwnProperty(key)) {
         const value = obj[key];
         const children = get_any(value, keys);
-        const withKey = children.map(ckey => `${key}:` + ckey);
-        result = result.concat(withKey);
+        const with_key = children.map(ckey => `${key}:` + ckey);
+        result = result.concat(with_key);
       }
     }
     return result;
@@ -24,8 +24,8 @@ export function get_any(obj: Dict<any>, keys: string[]) {
     let result: string[] = [];
     (obj as object[]).forEach((value, index) => {
       const children = get_any(value as any, keys);
-      const withKey = children.map(ckey => `${index}` + ckey);
-      result = result.concat(withKey);
+      const with_key = children.map(ckey => `${index}` + ckey);
+      result = result.concat(with_key);
     });
     return result;
   }
@@ -45,8 +45,8 @@ export function get_any_all(obj: Dict<any>, keys: string[]) {
       if (obj.hasOwnProperty(key)) {
         const value = obj[key];
         const children = get_any_all(value, keys);
-        const withKey = children.map(ckey => `${key}:` + ckey);
-        result = result.concat(withKey);
+        const with_key = children.map(ckey => `${key}:` + ckey);
+        result = result.concat(with_key);
       }
     }
     res = res.concat(result);
@@ -57,8 +57,8 @@ export function get_any_all(obj: Dict<any>, keys: string[]) {
     let result: string[] = [];
     (obj as object[]).forEach((value, index) => {
       const children = get_any_all(value as any, keys);
-      const withKey = children.map(ckey => `${index}` + ckey);
-      result = result.concat(withKey);
+      const with_key = children.map(ckey => `${index}` + ckey);
+      result = result.concat(with_key);
     });
     res = res.concat(result);
   }

@@ -9,11 +9,11 @@ export function rename_to_snack_case_recursive(dir_path: string, must_include: s
   files = files.map(i => i.substring(dir_path.length))
   files = files.filter(i => i.includes(must_include))
   files = files.filter(i => !i.includes(must_not_include))
-  for (const filesKey of files) {
-    const snack_case = snake_case_string(filesKey);
-    if (filesKey != snack_case) {
-      console.log('rename', filesKey, snack_case);
-      fs.renameSync(path.join(dir_path, filesKey), path.join(dir_path, snack_case))
+  for (const files_key of files) {
+    const snack_case = snake_case_string(files_key);
+    if (files_key != snack_case) {
+      console.log('rename', files_key, snack_case);
+      fs.renameSync(path.join(dir_path, files_key), path.join(dir_path, snack_case))
     }
   }
 }

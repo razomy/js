@@ -6,13 +6,13 @@ export function filter_vrd<I>(input: I, is_keep: (input: VrdOrValue<I>, parent: 
 export function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> ;
 export function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> {
   if (is_vrd(input)) {
-    for (let inputKey in input) {
-      const value = input[inputKey];
-      if (!is_keep(value, inputKey)) {
-        delete input[inputKey];
+    for (let input_key in input) {
+      const value = input[input_key];
+      if (!is_keep(value, input_key)) {
+        delete input[input_key];
         continue;
       }
-      input[inputKey] = filter_vrd(value, is_keep);
+      input[input_key] = filter_vrd(value, is_keep);
     }
     return input;
   } else {

@@ -1,18 +1,18 @@
 import winston from 'winston';
 
-const isProduction = process.env.NODE_ENV === 'production';
-const consoleTransport = new winston.transports.Console({
-  level: isProduction ? 'info' : 'debug',
+const is_production = process.env.NODE_ENV === 'production';
+const console_transport = new winston.transports.Console({
+  level: is_production ? 'info' : 'debug',
 // @ts-ignore
-  prettyPrint: !isProduction,
-  colorize: !isProduction,
-  timestamp: !isProduction,
+  prettyPrint: !is_production,
+  colorize: !is_production,
+  timestamp: !is_production,
   label: 'rest-api',
 });
 
 // @ts-ignore
 export const logger = new winston.createLogger({
-  transports: [consoleTransport],
+  transports: [console_transport],
 });
 
 

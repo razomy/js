@@ -1,7 +1,7 @@
 import {cli} from "razomy/cli/cli";
 import {Module, TerminalArgs} from "razomy/cli/module";
 
-const TestModule = {
+const test_module = {
     ["test:test1"]: () => Promise.resolve(0),
     ["test:test2"]: (a: string) => Promise.resolve(0),
     ["test:test3"]: (a: string, b: string) => Promise.resolve(0),

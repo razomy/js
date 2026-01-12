@@ -29,11 +29,11 @@ export class NoiseTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {
     var amount = this.noise * 255,
       data = imageData.data,
-      nPixels = data.length,
+      n_pixels = data.length,
       half = amount / 2,
       i;
 
-    for (i = 0; i < nPixels; i += 4) {
+    for (i = 0; i < n_pixels; i += 4) {
       data[i + 0] += half - 2 * half * Math.random();
       data[i + 1] += half - 2 * half * Math.random();
       data[i + 2] += half - 2 * half * Math.random();

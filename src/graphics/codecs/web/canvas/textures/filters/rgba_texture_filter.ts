@@ -75,7 +75,7 @@ export class RgbaTextureFilter implements ITextureFilter {
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      nPixels = data.length,
+      n_pixels = data.length,
       red = this.red,
       green = this.green,
       blue = this.blue,
@@ -83,7 +83,7 @@ export class RgbaTextureFilter implements ITextureFilter {
       i,
       ia;
 
-    for (i = 0; i < nPixels; i += 4) {
+    for (i = 0; i < n_pixels; i += 4) {
       ia = 1 - alpha;
 
       data[i] = red * alpha + data[i] * ia; // r

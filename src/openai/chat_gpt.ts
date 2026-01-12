@@ -68,8 +68,8 @@ export function set_weight(ctx) {
 
 export function set_tokens(ctx) {
   const model = ctx.model || models.mild;
-  const messagesTExt = JSON.stringify(ctx.messages) + JSON.stringify(ctx.functions);
-  const max_tokens = model.token - Math.floor(messagesTExt.length / 2.5);
+  const messages_text = JSON.stringify(ctx.messages) + JSON.stringify(ctx.functions);
+  const max_tokens = model.token - Math.floor(messages_text.length / 2.5);
   const updated = { model: model.name };
   Object.assign(ctx, updated);
 
@@ -139,7 +139,7 @@ export async function get_models() {
 }
 
 export async function single_request_pro(text, model = models.expensive120000) {
-  let messageOrMessagesOrRequest = {
+  let message_or_messages_or_request = {
     messages: [
       {
         role: 'system',
@@ -148,9 +148,9 @@ export async function single_request_pro(text, model = models.expensive120000) {
     ],
     model: model,
   };
-  messageOrMessagesOrRequest = set_tokens(messageOrMessagesOrRequest);
+  message_or_messages_or_request = set_tokens(message_or_messages_or_request);
 
-  const result = await gpt_api_v2(messageOrMessagesOrRequest as any);
+  const result = await gpt_api_v2(message_or_messages_or_request as any);
   const message = result.choices[0].message.content;
   return message;
 }

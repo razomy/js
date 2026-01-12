@@ -8,7 +8,7 @@ export class RgbaParser {
    * @memberOf Color
    */
     // eslint-disable-next-line max-len
-  public static readonly reRGBa = /^rgba?\(\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*(?:\s*,\s*((?:\d*\.?\d+)?)\s*)?\)$/i;
+  public static readonly re_rgba = /^rgba?\(\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*(?:\s*,\s*((?:\d*\.?\d+)?)\s*)?\)$/i;
 
 
   /**
@@ -46,7 +46,7 @@ export class RgbaParser {
    * @return {Array} source
    */
   public static sourceFromRgb(color: string): number[] | null {
-    var match = color.match(this.reRGBa);
+    var match = color.match(this.re_rgba);
     if (match) {
       var r = parseInt(match[1], 10) / (/%$/.test(match[1]) ? 100 : 1) * (/%$/.test(match[1]) ? 255 : 1),
         g = parseInt(match[2], 10) / (/%$/.test(match[2]) ? 100 : 1) * (/%$/.test(match[2]) ? 255 : 1),

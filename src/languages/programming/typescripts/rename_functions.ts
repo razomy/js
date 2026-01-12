@@ -11,19 +11,19 @@ const rename_functions = async () => {
     tsConfigFilePath: '../../../../tsconfig.json',
   });
 
-  const sourceFiles = project.getSourceFiles();
+  const source_files = project.getSourceFiles();
   let count = 0;
 
-  for (const file of sourceFiles) {
+  for (const file of source_files) {
     // 1. Handle Function Declarations: function myFunc() {}
     for (const func of file.getFunctions()) {
       const name = func.getName();
       if (!name) continue;
 
-      const newName = to_snake_case(name);
-      if (name !== newName) {
-        func.rename(newName); // Updates references globally
-        console.log(`[FUNC] ${name} -> ${newName}`);
+      const new_name = to_snake_case(name);
+      if (name !== new_name) {
+        func.rename(new_name); // Updates references globally
+        console.log(`[FUNC] ${name} -> ${new_name}`);
         count++;
       }
     }
@@ -39,10 +39,10 @@ const rename_functions = async () => {
         (initializer.isKind(SyntaxKind.ArrowFunction) ||
           initializer.isKind(SyntaxKind.FunctionExpression))
       ) {
-        const newName = to_snake_case(name);
-        if (name !== newName) {
-          variable.rename(newName); // Updates references globally
-          console.log(`[VAR]  ${name} -> ${newName}`);
+        const new_name = to_snake_case(name);
+        if (name !== new_name) {
+          variable.rename(new_name); // Updates references globally
+          console.log(`[VAR]  ${name} -> ${new_name}`);
           count++;
         }
       }

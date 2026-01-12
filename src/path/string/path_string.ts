@@ -9,5 +9,5 @@ export type DirPathString = PathString;
 export type SourcePathString = DirPathString;
 
 export interface WithPathString {
-  pathString: PathString
+  path_string: PathString
 }

@@ -7,9 +7,9 @@ import {write_to_file_async} from 'razomy/fs/file/write';
 export async function export_files(baseDir) {
   baseDir = path.resolve(baseDir);
 
-  const {Storage} = await import('@google-cloud/storage');
+  const storage_ = await import('@google-cloud/storage');
 
-  const storage = new Storage();
+  const storage = new storage_.Storage();
 
   const bucket = await storage.bucket('notation');
   // const fileName = 'start.rn';
@@ -22,17 +22,17 @@ export async function export_files(baseDir) {
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
-    const fileName = file.name;
+    const file_name = file.name;
     const date = file.metadata.timeCreated;
-    const filePath = 'data/' + fileName;
+    const file_path = 'data/' + file_name;
 
     const [contents] = await file.download();
     const content = contents.toString();
-    const commitMessage = `Update fileName:${fileName} date:${date}`;
+    const commit_message = `Update fileName:${file_name} date:${date}`;
 
     try {
-      await write_to_file_async(path.join(baseDir, filePath), content);
-      await execute_async(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
+      await write_to_file_async(path.join(baseDir, file_path), content);
+      await execute_async(`git add ${file_path} && git commit --date ${date} -m "${commit_message}"`, {cwd: baseDir});
     } catch (e) {
       console.log(e);
     }

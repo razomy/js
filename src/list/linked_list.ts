@@ -14,16 +14,16 @@ export class LinkedList<T> {
 
   // Add a value to the end of the list
   append(value: T): void {
-    const newNode = new Node(value);
+    const new_node = new Node(value);
 
     if (this.head === null) {
-      this.head = newNode;
+      this.head = new_node;
     } else {
       let current = this.head;
       while (current.next !== null) {
         current = current.next;
       }
-      current.next = newNode;
+      current.next = new_node;
     }
 
     this.size++;
@@ -31,8 +31,8 @@ export class LinkedList<T> {
 
   // Add a value to the start of the list
   prepend(value: T): void {
-    const newNode = new Node(value, this.head);
-    this.head = newNode;
+    const new_node = new Node(value, this.head);
+    this.head = new_node;
     this.size++;
   }
 

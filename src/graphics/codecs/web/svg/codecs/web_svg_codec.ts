@@ -28,14 +28,14 @@ export class WebSvgCodec implements ICodec<ElementView, Node> {
   private iterate(value: HTMLElement): ElementView {
     const node = this.codecFactory.create(value).decode(value);
 
-    const valueChildren = value.childNodes;
-    for (let i = 0; i < valueChildren.length; i++) {
-      if (!valueChildren[i]) {
+    const value_children = value.childNodes;
+    for (let i = 0; i < value_children.length; i++) {
+      if (!value_children[i]) {
         continue;
       }
 
-      const subNode = this.iterate(<HTMLElement> valueChildren[i]);
-      node.getBy(ResourceCollection).add(subNode);
+      const sub_node = this.iterate(<HTMLElement> value_children[i]);
+      node.getBy(ResourceCollection).add(sub_node);
     }
 
     return node;

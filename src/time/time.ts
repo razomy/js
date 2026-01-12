@@ -1,9 +1,9 @@
 import { intervalToDuration } from "date-fns";
 
-export const secondMs = 1000;
-export const minuteMs = secondMs * 60;
-export const hourMs = minuteMs * 60;
-export const dayMs = hourMs * 24;
+export const second_ms = 1000;
+export const minute_ms = second_ms * 60;
+export const hour_ms = minute_ms * 60;
+export const day_ms = hour_ms * 24;
 
 export const format_duration = (durationInMs: number): string => {
   const duration = intervalToDuration({ start: 0, end: durationInMs });
@@ -27,17 +27,17 @@ export const format_duration = (durationInMs: number): string => {
 
 // converts milliseconds into a formatted string (for ex., "3h15m" or "16m").
 export const format_milliseconds = (milliseconds: number): string => {
-  const totalSeconds = Math.floor(milliseconds / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
+  const total_seconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(total_seconds / 60);
+  const seconds = total_seconds % 60;
 
   const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
+  const remaining_minutes = minutes % 60;
 
   if (hours > 0) {
-    return `${hours}h ${remainingMinutes}m`;
+    return `${hours}h ${remaining_minutes}m`;
   } else if (minutes > 0) {
-    return `${remainingMinutes}m ${seconds}s`;
+    return `${remaining_minutes}m ${seconds}s`;
   } else {
     return `${seconds}s`;
   }

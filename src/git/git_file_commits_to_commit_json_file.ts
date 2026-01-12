@@ -12,8 +12,8 @@ function get_all_commit_hashes(git) {
         return;
       }
 
-      const commitHashes = log.all.reverse();
-      resolve(commitHashes);
+      const commit_hashes = log.all.reverse();
+      resolve(commit_hashes);
     });
   });
 }
@@ -29,10 +29,10 @@ async function compare_versions(repoPath, filePath) {
   for (let i = 1; i < commits.length; i++) {
     const from = commits[i - 1];
     const to = commits[i];
-    const getPreviousContent = await git.show([`${from.hash}:${filePath}`]);
-    const getCurrentContent = await git.show([`${to.hash}:${filePath}`]);
+    const get_previous_content = await git.show([`${from.hash}:${filePath}`]);
+    const get_current_content = await git.show([`${to.hash}:${filePath}`]);
 
-    const changes = strings_to_delta_strings(getPreviousContent, getCurrentContent);
+    const changes = strings_to_delta_strings(get_previous_content, get_current_content);
 
     const commit:ActorDatetimeDeltaString = {
       datetime: to.date,
@@ -45,9 +45,9 @@ async function compare_versions(repoPath, filePath) {
 
   const snapshot1 = addss_to_string('', history.commits);
 
-  const lastCommit = await git.show([`${commits.at(-1)!.hash}:${filePath}`]);
+  const last_commit = await git.show([`${commits.at(-1)!.hash}:${filePath}`]);
 
-  if (snapshot1 !== lastCommit) {
+  if (snapshot1 !== last_commit) {
     throw 'error';
   }
 
@@ -60,20 +60,20 @@ async function git_file_commits_to_commit_json_file(
   fileSubPath: string,
 ) {
 
-  const newFFile = path.join(repositoryPathRoot, fileSubPath + '.json');
+  const new_ffile = path.join(repositoryPathRoot, fileSubPath + '.json');
   fs.writeFileSync(
-    newFFile,
+    new_ffile,
     '',
     'utf8',
   );
 
   // Usage example
   const history = await compare_versions(repositoryPathRoot, fileSubPath);
-  const historyJson = JSON.stringify(history);
+  const history_json = JSON.stringify(history);
 
   fs.writeFileSync(
-    newFFile,
-    historyJson,
+    new_ffile,
+    history_json,
     'utf8',
   );
 

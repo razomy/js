@@ -6,7 +6,7 @@ export class HexParser {
    * @field
    * @memberOf Color
    */
-  public static readonly reHex = /^#?([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i;
+  public static readonly re_hex = /^#?([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i;
 
   /**
    * Returns color representation in HEX format
@@ -14,8 +14,8 @@ export class HexParser {
    */
   public static toHex(source: number[]): string {
     const [r, g, b] = source.map(component => {
-      const hexComponent = component.toString(16);
-      return hexComponent.length === 1 ? '0' + hexComponent : hexComponent;
+      const hex_component = component.toString(16);
+      return hex_component.length === 1 ? '0' + hex_component : hex_component;
     });
 
     return '#' + r.toUpperCase() + g.toUpperCase() + b.toUpperCase();
@@ -27,9 +27,9 @@ export class HexParser {
    */
   public static toHexa(source: [number, number, number, number]): string {
     const a = Math.round(source[3] * 255).toString(16);
-    const alphaComponent = a.length === 1 ? '0' + a : a;
+    const alpha_component = a.length === 1 ? '0' + a : a;
 
-    return HexParser.toHex(source) + alphaComponent.toUpperCase();
+    return HexParser.toHex(source) + alpha_component.toUpperCase();
   }
 
   /**
@@ -51,14 +51,14 @@ export class HexParser {
    * @return {Array} source
    */
   public static sourceFromHex(color: string): [number, number, number, number] | null {
-    if (color.match(this.reHex)) {
+    if (color.match(this.re_hex)) {
       const value = color.slice(color.indexOf('#') + 1);
-      const isShortNotation = value.length === 3 || value.length === 4;
-      const isRGBa = value.length === 8 || value.length === 4;
-      const r = isShortNotation ? value.charAt(0) + value.charAt(0) : value.substring(0, 2);
-      const g = isShortNotation ? value.charAt(1) + value.charAt(1) : value.substring(2, 4);
-      const b = isShortNotation ? value.charAt(2) + value.charAt(2) : value.substring(4, 6);
-      const a = isRGBa ? (isShortNotation ? value.charAt(3) + value.charAt(3) : value.substring(6, 8)) : 'FF';
+      const is_short_notation = value.length === 3 || value.length === 4;
+      const is_rgba = value.length === 8 || value.length === 4;
+      const r = is_short_notation ? value.charAt(0) + value.charAt(0) : value.substring(0, 2);
+      const g = is_short_notation ? value.charAt(1) + value.charAt(1) : value.substring(2, 4);
+      const b = is_short_notation ? value.charAt(2) + value.charAt(2) : value.substring(4, 6);
+      const a = is_rgba ? (is_short_notation ? value.charAt(3) + value.charAt(3) : value.substring(6, 8)) : 'FF';
 
       return [
         parseInt(r, 16),

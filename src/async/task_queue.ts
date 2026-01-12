@@ -17,7 +17,7 @@ function create_task_promise<T>(task: (() => T) | (() => Promise<T>)): () => Pro
 }
 
 export class TaskQueue {
-  private isProcessing = false;
+  private is_processing = false;
   private queue: {
     id: number;
     task: () => Promise<any>;
@@ -38,12 +38,12 @@ export class TaskQueue {
 
     return new Promise<T>((resolve, reject) => {
       // 1. Wrap the task to ensure it is always a Promise
-      const wrappedTask = async () => Promise.resolve(task());
+      const wrapped_task = async () => Promise.resolve(task());
 
       // 2. Push the task AND its controller (resolve/reject) to the queue
       this.queue.push({
         id,
-        task: wrappedTask,
+        task: wrapped_task,
         resolve,
         reject
       });
@@ -55,11 +55,11 @@ export class TaskQueue {
 
   private async tryProcessQueue() {
     // If already running or empty, do nothing
-    if (this.isProcessing || this.queue.length === 0) {
+    if (this.is_processing || this.queue.length === 0) {
       return;
     }
 
-    this.isProcessing = true;
+    this.is_processing = true;
 
     // Process tasks until the queue is empty
     while (this.queue.length > 0) {
@@ -84,6 +84,6 @@ export class TaskQueue {
       }
     }
 
-    this.isProcessing = false;
+    this.is_processing = false;
   }
 }

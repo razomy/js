@@ -2,36 +2,36 @@ import {ChangeDifference, Difference, ReplaceDifference} from 'razomy/difference
 import {get_similar} from 'razomy/array/change/get_similar';
 
 export function get_string(oldArray: string[], newArray: string[]): ChangeDifference<string>[] {
-  const newSet = new Set(newArray);
-  const oldSet = new Set(oldArray);
+  const new_set = new Set(newArray);
+  const old_set = new Set(oldArray);
 
   // Identify new and deleted items
-  const newItems = newArray.filter(item => !oldSet.has(item));
-  const deletedItems = oldArray.filter(item => !newSet.has(item));
+  const new_items = newArray.filter(item => !old_set.has(item));
+  const deleted_items = oldArray.filter(item => !new_set.has(item));
 
   // Identify renamed items
-  const renamedItems: ReplaceDifference<string>[] = [];
-  const remainingNewItems = new Set(newItems);
+  const renamed_items: ReplaceDifference<string>[] = [];
+  const remaining_new_items = new Set(new_items);
 
-  deletedItems.forEach(deletedItem => {
-    let bestMatch: string | null = get_similar(deletedItem, renamedItems);
+  deleted_items.forEach(deletedItem => {
+    let best_match: string | null = get_similar(deletedItem, renamed_items);
 
-    if (bestMatch) {
-      renamedItems.push({old_value: deletedItem, value: bestMatch, type: 'replace'});
-      remainingNewItems.delete(bestMatch); // Avoid reusing the same match
+    if (best_match) {
+      renamed_items.push({old_value: deletedItem, value: best_match, type: 'replace'});
+      remaining_new_items.delete(best_match); // Avoid reusing the same match
     }
   });
 
   // Remove renamed items from new and deleted lists
-  const finalNewItems = newItems
-    .filter(item => !renamedItems.some(pair => pair.value === item))
+  const final_new_items = new_items
+    .filter(item => !renamed_items.some(pair => pair.value === item))
     .map(item => ({value: item, type: 'added'} as Difference<string>));
-  const finalDeletedItems = deletedItems
-    .filter(item => !renamedItems.some(pair => pair.old_value === item))
+  const final_deleted_items = deleted_items
+    .filter(item => !renamed_items.some(pair => pair.old_value === item))
     .map(item => ({value: item, type: 'removed'} as Difference<string>));
   return [
-    ...finalNewItems,
-    ...finalDeletedItems,
-    ...renamedItems
+    ...final_new_items,
+    ...final_deleted_items,
+    ...renamed_items
   ];
 }

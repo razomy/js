@@ -2,36 +2,36 @@ import * as path from 'path';
 
 import {has_sub_array as has_sub_array2} from 'razomy/array/has_sub_array';
 
-export const PYTHON_CACHE = ['__pycache__', '.pytest_cache'];
-export const JS_ANGULAR_CACHE = ['.angular'];
-export const CSHARP_CACHE = ['obj'];
-export const DART_CACHE = ['.dart_tool'];
-export const NEXT_CACHE = ['.next'];
-export const NX_CACHE = ['lib'];
-export const IDEA_CACHE = ['.idea'];
-export const NUXT_CACHE = ['.nuxt'];
-export const DART_FIREBASE_CACHE = [
+export const python_cache = ['__pycache__', '.pytest_cache'];
+export const js_angular_cache = ['.angular'];
+export const csharp_cache = ['obj'];
+export const dart_cache = ['.dart_tool'];
+export const next_cache = ['.next'];
+export const nx_cache = ['lib'];
+export const idea_cache = ['.idea'];
+export const nuxt_cache = ['.nuxt'];
+export const dart_firebase_cache = [
   '.firebase',
   ['flutter', 'ephemeral'],
   ['ios', '.symlinks'],
   // ios
   ['Pods'],
 ];
-export const UNITY_CACHE = ['Temp', 'Debug'];
-export const JAVA_CACHE = ['.gradle'];
+export const unity_cache = ['Temp', 'Debug'];
+export const java_cache = ['.gradle'];
 
-export const KNOWN_CACHE = [
-  ...PYTHON_CACHE,
-  ...JS_ANGULAR_CACHE,
-  ...CSHARP_CACHE,
-  ...DART_CACHE,
-  ...NEXT_CACHE,
-  ...NUXT_CACHE,
-  ...NX_CACHE,
-  ...DART_FIREBASE_CACHE,
-  ...UNITY_CACHE,
-  ...JAVA_CACHE,
-  ...IDEA_CACHE,
+export const known_cache = [
+  ...python_cache,
+  ...js_angular_cache,
+  ...csharp_cache,
+  ...dart_cache,
+  ...next_cache,
+  ...nuxt_cache,
+  ...nx_cache,
+  ...dart_firebase_cache,
+  ...unity_cache,
+  ...java_cache,
+  ...idea_cache,
 ];
 
 function get_path_components(path_: string): string[] {
@@ -47,7 +47,7 @@ function has_sub_array(master: string[], sub: string | string[]): boolean {
 }
 
 export function is_in_cache(path_: string): boolean {
-  const pathComponents = get_path_components(path_);
+  const path_components = get_path_components(path_);
 
-  return KNOWN_CACHE.some(cacheDir => has_sub_array(pathComponents, cacheDir));
+  return known_cache.some(cacheDir => has_sub_array(path_components, cacheDir));
 }

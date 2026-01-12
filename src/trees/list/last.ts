@@ -1,11 +1,11 @@
 import {WithChildrenList} from "razomy/trees/list/with_children_list";
 
 export function last<T extends WithChildrenList<any>>(node: T) {
-  const lastChild = node.children.at(-1);
-  if (!lastChild) {
+  const last_child = node.children.at(-1);
+  if (!last_child) {
     return node;
   }
 
-  return last(lastChild);
+  return last(last_child);
 }
 

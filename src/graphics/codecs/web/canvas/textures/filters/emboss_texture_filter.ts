@@ -63,11 +63,11 @@ export class EmbossTextureFilter implements ITextureFilter {
     // a max value of greyLevel yields a white emboss, and the min value yields a black
     // emboss.  Therefore, I changed greyLevel to whiteLevel
     var strength = this.embossStrength * 10,
-      greyLevel = this.embossWhiteLevel * 255,
+      grey_level = this.embossWhiteLevel * 255,
       direction = this.embossDirection,
       blend = this.embossBlend,
-      dirY = 0,
-      dirX = 0,
+      dir_y = 0,
+      dir_x = 0,
       data = imageData.data,
       w = imageData.width,
       h = imageData.height,
@@ -76,83 +76,83 @@ export class EmbossTextureFilter implements ITextureFilter {
 
     switch (direction) {
       case 'top-left':
-        dirY = -1;
-        dirX = -1;
+        dir_y = -1;
+        dir_x = -1;
         break;
       case 'top':
-        dirY = -1;
-        dirX = 0;
+        dir_y = -1;
+        dir_x = 0;
         break;
       case 'top-right':
-        dirY = -1;
-        dirX = 1;
+        dir_y = -1;
+        dir_x = 1;
         break;
       case 'right':
-        dirY = 0;
-        dirX = 1;
+        dir_y = 0;
+        dir_x = 1;
         break;
       case 'bottom-right':
-        dirY = 1;
-        dirX = 1;
+        dir_y = 1;
+        dir_x = 1;
         break;
       case 'bottom':
-        dirY = 1;
-        dirX = 0;
+        dir_y = 1;
+        dir_x = 0;
         break;
       case 'bottom-left':
-        dirY = 1;
-        dirX = -1;
+        dir_y = 1;
+        dir_x = -1;
         break;
       case 'left':
-        dirY = 0;
-        dirX = -1;
+        dir_y = 0;
+        dir_x = -1;
         break;
       default:
         throw new Error('Unknown emboss direction: ' + direction);
     }
 
     do {
-      var offsetY = (y - 1) * w4;
+      var offset_y = (y - 1) * w4;
 
-      var otherY = dirY;
-      if (y + otherY < 1) {
-        otherY = 0;
+      var other_y = dir_y;
+      if (y + other_y < 1) {
+        other_y = 0;
       }
-      if (y + otherY > h) {
-        otherY = 0;
+      if (y + other_y > h) {
+        other_y = 0;
       }
 
-      var offsetYOther = (y - 1 + otherY) * w * 4;
+      var offset_yother = (y - 1 + other_y) * w * 4;
 
       var x = w;
       do {
-        var offset = offsetY + (x - 1) * 4;
+        var offset = offset_y + (x - 1) * 4;
 
-        var otherX = dirX;
-        if (x + otherX < 1) {
-          otherX = 0;
+        var other_x = dir_x;
+        if (x + other_x < 1) {
+          other_x = 0;
         }
-        if (x + otherX > w) {
-          otherX = 0;
+        if (x + other_x > w) {
+          other_x = 0;
         }
 
-        var offsetOther = offsetYOther + (x - 1 + otherX) * 4;
+        var offset_other = offset_yother + (x - 1 + other_x) * 4;
 
-        var dR = data[offset] - data[offsetOther];
-        var dG = data[offset + 1] - data[offsetOther + 1];
-        var dB = data[offset + 2] - data[offsetOther + 2];
+        var d_r = data[offset] - data[offset_other];
+        var d_g = data[offset + 1] - data[offset_other + 1];
+        var d_b = data[offset + 2] - data[offset_other + 2];
 
-        var dif = dR;
-        var absDif = dif > 0 ? dif : -dif;
+        var dif = d_r;
+        var abs_dif = dif > 0 ? dif : -dif;
 
-        var absG = dG > 0 ? dG : -dG;
-        var absB = dB > 0 ? dB : -dB;
+        var abs_g = d_g > 0 ? d_g : -d_g;
+        var abs_b = d_b > 0 ? d_b : -d_b;
 
-        if (absG > absDif) {
-          dif = dG;
+        if (abs_g > abs_dif) {
+          dif = d_g;
         }
-        if (absB > absDif) {
-          dif = dB;
+        if (abs_b > abs_dif) {
+          dif = d_b;
         }
 
         dif *= strength;
@@ -166,7 +166,7 @@ export class EmbossTextureFilter implements ITextureFilter {
           data[offset + 1] = g > 255 ? 255 : g < 0 ? 0 : g;
           data[offset + 2] = b > 255 ? 255 : b < 0 ? 0 : b;
         } else {
-          var grey = greyLevel - dif;
+          var grey = grey_level - dif;
           if (grey < 0) {
             grey = 0;
           } else if (grey > 255) {

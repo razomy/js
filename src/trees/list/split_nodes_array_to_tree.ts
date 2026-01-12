@@ -6,38 +6,38 @@ export function split_nodes_array_to_tree(nodes: string[], leafs: string[]) {
   const root: ListTree<string> = {value: 'root', children: []};
 
   // Helper to process a single path
-  const addPathToTree = (path: string) => {
+  const add_path_to_tree = (path: string) => {
     // Split path by slash, remove empty segments (e.g., caused by leading slash)
     const parts = path.split('/').filter(part => part.length > 0);
 
-    let currentLevel = root;
+    let current_level = root;
 
     parts.forEach((part, index) => {
-      const isLastPart = index === parts.length - 1;
+      const is_last_part = index === parts.length - 1;
 
       // Check if this part already exists in the current level's children
-      let existingNode = currentLevel.children.find(child => child.value === part);
+      let existing_node = current_level.children.find(child => child.value === part);
 
-      if (existingNode) {
+      if (existing_node) {
         // If it exists, just move deeper
-        currentLevel = existingNode;
+        current_level = existing_node;
       } else {
-        const newNode: ListTree<string> = {
+        const new_node: ListTree<string> = {
           value: part,
           children: []
         };
 
-        currentLevel.children.push(newNode);
-        currentLevel = newNode;
+        current_level.children.push(new_node);
+        current_level = new_node;
       }
     });
   };
 
   // 1. Process folders (nodes) first to ensure structure exists
-  nodes.forEach(path => addPathToTree(path));
+  nodes.forEach(path => add_path_to_tree(path));
 
   // 2. Process files (leafs)
-  leafs.forEach(path => addPathToTree(path));
+  leafs.forEach(path => add_path_to_tree(path));
 
   return root.children;
 }

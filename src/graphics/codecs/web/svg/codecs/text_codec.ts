@@ -20,7 +20,7 @@ export class TextCodec implements ICodec<TextElement, SVGTextElement> {
   };
 
   public decode(value: SVGTextElement): TextElement {
-    const textElement = new TextElement();
+    const text_element = new TextElement();
     // textElement.replace(new SizeAttribute(
     //   value,
     //   value.width.baseVal.value
@@ -31,8 +31,8 @@ export class TextCodec implements ICodec<TextElement, SVGTextElement> {
     //   value.y.baseVal.value
     // ));
 
-    textElement.replace(new TextAttribute(value.textContent || ''));
+    text_element.replace(new TextAttribute(value.textContent || ''));
 
-    return textElement;
+    return text_element;
   }
 }

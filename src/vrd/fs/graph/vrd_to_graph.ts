@@ -9,8 +9,8 @@ function iterate_children<T>(
 ) {
   graph.nodes.push(branch);
   if (is_vrd(branch)) {
-    for (const entityKey in branch) {
-      const value = branch[entityKey];
+    for (const entity_key in branch) {
+      const value = branch[entity_key];
       graph.edges.push([branch, value]);
       iterate_children(graph, value)
     }

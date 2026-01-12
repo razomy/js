@@ -1,8 +1,8 @@
 
-export type SvgColorKeys = keyof typeof SvgColorParser.colorNameMap;
+export type SvgColorKeys = keyof typeof SvgColorParser.color_name_map;
 
 export class SvgColorParser {
-  public static readonly colorNameMap = {
+  public static readonly color_name_map = {
     aliceblue: '#F0F8FF',
     antiquewhite: '#FAEBD7',
     aqua: '#00FFFF',
@@ -154,6 +154,6 @@ export class SvgColorParser {
   };
 
   public static isSvgColor(color: SvgColorKeys): boolean {
-    return !!this.colorNameMap[color];
+    return !!this.color_name_map[color];
   }
 }

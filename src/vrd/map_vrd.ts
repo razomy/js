@@ -26,9 +26,9 @@ export function map_vrd<I, O>(
       }
     }
     const otput: Vrd<O> = new Vrd<O>();
-    for (let inputKey in iter) {
-      const value = iter[inputKey];
-      otput[inputKey] = map_vrd(value, leaf_value_cb, inputKey, node_cb!)
+    for (let input_key in iter) {
+      const value = iter[input_key];
+      otput[input_key] = map_vrd(value, leaf_value_cb, input_key, node_cb!)
     }
     return otput;
   } else {

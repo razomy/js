@@ -13,11 +13,11 @@ export function fs_to_vrd(directory: string, is_skip: (path) => boolean): VrdOrV
     let files: Vrd<Buffer> = new Vrd<Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
-      const itemPath = path.join(directory, item);
-      if(is_skip(itemPath)) {
+      const item_path = path.join(directory, item);
+      if(is_skip(item_path)) {
           continue
       }
-      files[item] = fs_to_vrd(itemPath, is_skip);
+      files[item] = fs_to_vrd(item_path, is_skip);
     }
     return files;
   } else {

@@ -39,12 +39,12 @@ export class Color {
 
     var result: number[] = [],
       alpha = this.getAlpha(),
-      otherAlpha = 0.5,
+      other_alpha = 0.5,
       source = this.getSource(),
-      otherSource = otherColor.getSource(), i;
+      other_source = otherColor.getSource(), i;
 
     for (i = 0; i < 3; i++) {
-      result.push(Math.round((source[i] * (1 - otherAlpha)) + (otherSource[i] * otherAlpha)));
+      result.push(Math.round((source[i] * (1 - other_alpha)) + (other_source[i] * other_alpha)));
     }
 
     result[3] = alpha;
@@ -97,8 +97,8 @@ export class Color {
   toGrayscale() {
     var source = this.getSource(),
       average = parseInt((source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0), 10),
-      currentAlpha = source[3];
-    this.setSource([average, average, average, currentAlpha]);
+      current_alpha = source[3];
+    this.setSource([average, average, average, current_alpha]);
     return this;
   }
 
@@ -110,12 +110,12 @@ export class Color {
   toBlackWhite(threshold: number) {
     var source = this.getSource(),
       average = (source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0),
-      currentAlpha = source[3];
+      current_alpha = source[3];
 
     threshold = threshold || 127;
 
-    var averageI = (Number(average) < Number(threshold)) ? 0 : 255;
-    this.setSource([averageI, averageI, averageI, currentAlpha]);
+    var average_i = (Number(average) < Number(threshold)) ? 0 : 255;
+    this.setSource([average_i, average_i, average_i, current_alpha]);
     return this;
   }
 }

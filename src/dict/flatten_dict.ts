@@ -23,12 +23,12 @@ export function flatten_dict<T extends object = object>(
   result = {} as any,
 ): FlattenedAndConverted<T> {
   forOwn(obj, (value, key) => {
-    const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
+    const new_key = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
 
     if (isPlainObject(value)) {
-      flatten_dict(value as any, newKey, result);
+      flatten_dict(value as any, new_key, result);
     } else {
-      result[newKey] = value;
+      result[new_key] = value;
     }
   });
   return result as FlattenedAndConverted<T>;

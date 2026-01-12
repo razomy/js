@@ -1,16 +1,16 @@
 export function is_date_today(inputDate: Date) {
-  const currentDate = new Date(new Date().toISOString().split('T')[0]);
-  const inputDateObj = new Date(inputDate);
+  const current_date = new Date(new Date().toISOString().split('T')[0]);
+  const input_date_obj = new Date(inputDate);
 
   return (
-    currentDate.getFullYear() === inputDateObj.getFullYear() &&
-    currentDate.getMonth() === inputDateObj.getMonth() &&
-    currentDate.getDate() === inputDateObj.getDate()
+    current_date.getFullYear() === input_date_obj.getFullYear() &&
+    current_date.getMonth() === input_date_obj.getMonth() &&
+    current_date.getDate() === input_date_obj.getDate()
   );
 }
 
 export function format_time_length(milliseconds: number) {
-  const timeUnits: string[] = [];
+  const time_units: string[] = [];
 
   const seconds = Math.floor(milliseconds / 1000);
   const years = Math.floor(seconds / (3600 * 24 * 365));
@@ -18,17 +18,17 @@ export function format_time_length(milliseconds: number) {
   const days = Math.floor((seconds % (3600 * 24 * 30)) / (3600 * 24));
   const hours = Math.floor((seconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
-  const remainingMilliseconds = milliseconds % 1000;
+  const remaining_seconds = seconds % 60;
+  const remaining_milliseconds = milliseconds % 1000;
 
-  if (years > 0) timeUnits.push(`${years}y`);
-  if (months > 0) timeUnits.push(`${months}mo`);
-  if (days > 0) timeUnits.push(`${days}d`);
-  if (hours > 0) timeUnits.push(`${hours}h`);
-  if (minutes > 0) timeUnits.push(`${minutes}m`);
-  if (remainingSeconds > 0) timeUnits.push(`${remainingSeconds}s`);
-  if (remainingMilliseconds > 0) timeUnits.push(`${remainingMilliseconds}ms`);
+  if (years > 0) time_units.push(`${years}y`);
+  if (months > 0) time_units.push(`${months}mo`);
+  if (days > 0) time_units.push(`${days}d`);
+  if (hours > 0) time_units.push(`${hours}h`);
+  if (minutes > 0) time_units.push(`${minutes}m`);
+  if (remaining_seconds > 0) time_units.push(`${remaining_seconds}s`);
+  if (remaining_milliseconds > 0) time_units.push(`${remaining_milliseconds}ms`);
 
-  const formattedTime = timeUnits.join(' ');
-  return formattedTime;
+  const formatted_time = time_units.join(' ');
+  return formatted_time;
 }

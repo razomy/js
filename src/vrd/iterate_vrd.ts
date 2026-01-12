@@ -27,9 +27,9 @@ export function iterate_vrd<T, C extends Iterate<T>>(
   const input = ctx.input;
   const parents = ctx.parents;
   if (is_vrd(input)) {
-    for (let inputKey in input) {
-      const value = input[inputKey];
-      ctx.parents = [...parents, inputKey];
+    for (let input_key in input) {
+      const value = input[input_key];
+      ctx.parents = [...parents, input_key];
       ctx.input = value;
 
       const result = iterate_vrd(ctx, is_iterate_child_execute_bool);

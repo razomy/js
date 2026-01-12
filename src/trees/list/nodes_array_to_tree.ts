@@ -1,28 +1,28 @@
 import {ListTree} from 'razomy/trees/list/list_tree';
 
 export function nodes_array_to_tree(nodes: string[], leafs: string[]) {
-  let allItems = [
+  let all_items = [
       ...nodes.map(value => ({ value, children: [] } as ListTree<string>)),
       ...leafs.map(value => ({ value, children: [] } as ListTree<string>))
     ];
 
     // 2. Sort alphabetically
     // This ensures 'src' comes before 'src/components'
-    allItems.sort((a, b) => a.value.localeCompare(b.value));
+    all_items.sort((a, b) => a.value.localeCompare(b.value));
 
     const root = [] as ListTree<string>[];
     const stack = [] as ListTree<string>[]; // Keeps track of the current parent chain
 
-    for (const item of allItems) {
+    for (const item of all_items) {
       // Unwind the stack:
       // Pop items from the stack until we find the parent of the current item.
       // We know it's a parent if current path starts with "parentPath/"
       while (stack.length > 0) {
-        const activeParent = stack[stack.length - 1];
+        const active_parent = stack[stack.length - 1];
 
         // Check if 'item' is a child of 'activeParent'
         // We add '/' to ensure "image-2" is not treated as a child of "image"
-        if (item.value.startsWith(activeParent.value)) {
+        if (item.value.startsWith(active_parent.value)) {
           break; // Found the correct parent!
         }
 

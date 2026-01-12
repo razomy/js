@@ -1,16 +1,16 @@
 import { StyleAttribute } from 'razomy/graphics/attributes/style_attribute';
 
 export class RectangleRoundStyle extends StyleAttribute {
-  public topLeft: number;
-  public topRight: number;
-  public bottomLeft: number;
-  public bottomRight: number;
+  public top_left: number;
+  public top_right: number;
+  public bottom_left: number;
+  public bottom_right: number;
 
   constructor(radius?: number) {
     super();
-    this.topLeft = radius || 0;
-    this.topRight = radius || 0;
-    this.bottomLeft = radius || 0;
-    this.bottomRight = radius || 0;
+    this.top_left = radius || 0;
+    this.top_right = radius || 0;
+    this.bottom_left = radius || 0;
+    this.bottom_right = radius || 0;
   }
 }

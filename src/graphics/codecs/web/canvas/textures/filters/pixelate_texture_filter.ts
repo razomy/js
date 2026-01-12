@@ -30,7 +30,7 @@ export class PixelateTextureFilter implements ITextureFilter {
   }
 
   public filter(imageData: any): void {
-    var pixelSize = Math.ceil(this.pixelSize),
+    var pixel_size = Math.ceil(this.pixelSize),
       width = imageData.width,
       height = imageData.height,
       x,
@@ -41,24 +41,24 @@ export class PixelateTextureFilter implements ITextureFilter {
       green,
       blue,
       alpha,
-      nBinsX = Math.ceil(width / pixelSize),
-      nBinsY = Math.ceil(height / pixelSize),
-      xBinStart,
-      xBinEnd,
-      yBinStart,
-      yBinEnd,
-      xBin,
-      yBin,
-      pixelsInBin,
+      n_bins_x = Math.ceil(width / pixel_size),
+      n_bins_y = Math.ceil(height / pixel_size),
+      x_bin_start,
+      x_bin_end,
+      y_bin_start,
+      y_bin_end,
+      x_bin,
+      y_bin,
+      pixels_in_bin,
       data = imageData.data;
 
-    if (pixelSize <= 0) {
+    if (pixel_size <= 0) {
       throw new Error('pixelSize value can not be <= 0');
       return;
     }
 
-    for (xBin = 0; xBin < nBinsX; xBin += 1) {
-      for (yBin = 0; yBin < nBinsY; yBin += 1) {
+    for (x_bin = 0; x_bin < n_bins_x; x_bin += 1) {
+      for (y_bin = 0; y_bin < n_bins_y; y_bin += 1) {
         // Initialize the color accumlators to 0
         red = 0;
         green = 0;
@@ -66,18 +66,18 @@ export class PixelateTextureFilter implements ITextureFilter {
         alpha = 0;
 
         // Determine which pixels are included in this bin
-        xBinStart = xBin * pixelSize;
-        xBinEnd = xBinStart + pixelSize;
-        yBinStart = yBin * pixelSize;
-        yBinEnd = yBinStart + pixelSize;
+        x_bin_start = x_bin * pixel_size;
+        x_bin_end = x_bin_start + pixel_size;
+        y_bin_start = y_bin * pixel_size;
+        y_bin_end = y_bin_start + pixel_size;
 
         // Add all of the pixels to this bin!
-        pixelsInBin = 0;
-        for (x = xBinStart; x < xBinEnd; x += 1) {
+        pixels_in_bin = 0;
+        for (x = x_bin_start; x < x_bin_end; x += 1) {
           if (x >= width) {
             continue;
           }
-          for (y = yBinStart; y < yBinEnd; y += 1) {
+          for (y = y_bin_start; y < y_bin_end; y += 1) {
             if (y >= height) {
               continue;
             }
@@ -86,22 +86,22 @@ export class PixelateTextureFilter implements ITextureFilter {
             green += data[i + 1];
             blue += data[i + 2];
             alpha += data[i + 3];
-            pixelsInBin += 1;
+            pixels_in_bin += 1;
           }
         }
 
         // Make sure the channels are between 0-255
-        red = red / pixelsInBin;
-        green = green / pixelsInBin;
-        blue = blue / pixelsInBin;
-        alpha = alpha / pixelsInBin;
+        red = red / pixels_in_bin;
+        green = green / pixels_in_bin;
+        blue = blue / pixels_in_bin;
+        alpha = alpha / pixels_in_bin;
 
         // Draw this bin
-        for (x = xBinStart; x < xBinEnd; x += 1) {
+        for (x = x_bin_start; x < x_bin_end; x += 1) {
           if (x >= width) {
             continue;
           }
-          for (y = yBinStart; y < yBinEnd; y += 1) {
+          for (y = y_bin_start; y < y_bin_end; y += 1) {
             if (y >= height) {
               continue;
             }

@@ -2,22 +2,22 @@ import {promises as fs} from 'fs';
 import path from 'path';
 
 async function copy_files_recursive(source, target, excludedDirs: string[] = []) {
-  const sourceStats = await fs.stat(source);
+  const source_stats = await fs.stat(source);
 
-  if (sourceStats.isDirectory()) {
+  if (source_stats.isDirectory()) {
     await fs.mkdir(target, {recursive: true});
 
-    const folderItems = await fs.readdir(source);
+    const folder_items = await fs.readdir(source);
 
-    for (const fileOrDir of folderItems) {
-      if (fileOrDir.startsWith('.') || excludedDirs.includes(fileOrDir)) {
+    for (const file_or_dir of folder_items) {
+      if (file_or_dir.startsWith('.') || excludedDirs.includes(file_or_dir)) {
         continue; // Skip files starting with a dot or excluded directories
       }
 
-      const sourcePath = path.join(source, fileOrDir);
-      const targetPath = path.join(target, fileOrDir);
+      const source_path = path.join(source, file_or_dir);
+      const target_path = path.join(target, file_or_dir);
 
-      await copy_files_recursive(sourcePath, targetPath, excludedDirs);
+      await copy_files_recursive(source_path, target_path, excludedDirs);
     }
   } else {
     await fs.mkdir(path.dirname(target), {recursive: true});
@@ -33,10 +33,10 @@ async function cli() {
     process.exit(1);
   }
 
-  const [source, target, ...excludedDirs] = args;
+  const [source, target, ...excluded_dirs] = args;
 
   try {
-    await copy_files_recursive(path.resolve(source) + '', path.resolve(target) + '', excludedDirs);
+    await copy_files_recursive(path.resolve(source) + '', path.resolve(target) + '', excluded_dirs);
     console.log('Files copied successfully.');
   } catch (error) {
     console.error('Error copying files:', error);

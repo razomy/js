@@ -15,12 +15,12 @@ export class SvgCodec implements ICodec<ViewportElement, SVGElement> {
   }
 
   public decode(value: SVGElement): ViewportElement {
-    const viewportElement = new ViewportElement();
-    viewportElement.replace(new SizeAttribute(
+    const viewport_element = new ViewportElement();
+    viewport_element.replace(new SizeAttribute(
       +value.attributes.getNamedItem('height')!.value,
       +value.attributes.getNamedItem('width')!.value
     ));
 
-    return viewportElement;
+    return viewport_element;
   }
 }

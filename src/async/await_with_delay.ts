@@ -1,7 +1,7 @@
 export async function await_with_delay<T>(request: () => Promise<T>, delay = 10000) {
-  const startTime = Date.now();
+  const start_time = Date.now();
 
-  while (Date.now() - startTime < delay) {
+  while (Date.now() - start_time < delay) {
     const response = await request();
     if (response) {
       return response;

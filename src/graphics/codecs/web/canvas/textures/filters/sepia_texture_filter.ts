@@ -14,13 +14,13 @@ import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filt
 export class SepiaTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {
     var data = imageData.data,
-      nPixels = data.length,
+      n_pixels = data.length,
       i,
       r,
       g,
       b;
 
-    for (i = 0; i < nPixels; i += 4) {
+    for (i = 0; i < n_pixels; i += 4) {
       r = data[i + 0];
       g = data[i + 1];
       b = data[i + 2];

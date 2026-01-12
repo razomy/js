@@ -10,8 +10,8 @@ function commit(source_path: SourcePathString) {
   const tree = nodes_array_to_tree(repos, files);
   iterate_reverse(tree[0], (node)=>{
     if(node.children.length !== 0){
-      const commitCommand = `git add . && git commit -m "update"`;
-      execSync(commitCommand, {cwd: node.value});
+      const commit_command = `git add . && git commit -m "update"`;
+      execSync(commit_command, {cwd: node.value});
     }
   })
 }

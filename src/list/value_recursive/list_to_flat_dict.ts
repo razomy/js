@@ -12,8 +12,8 @@ export function value_or_list_to_flat_dict(
   if (is_string(input)) {
     dict[parent] = input;
   } else {
-    for (let inputKey of input) {
-      value_or_list_to_flat_dict(dict, inputKey[1], parent + assign + inputKey[0], separator);
+    for (let input_key of input) {
+      value_or_list_to_flat_dict(dict, input_key[1], parent + assign + input_key[0], separator);
     }
   }
   return dict;
@@ -24,8 +24,8 @@ export function list_to_flat_dict(
   input: ValueRecursiveList<string>,
   separator: string
 ): Dict<string> {
-  for (let inputKey of input) {
-    value_or_list_to_flat_dict(dict, inputKey[1], inputKey[0], separator);
+  for (let input_key of input) {
+    value_or_list_to_flat_dict(dict, input_key[1], input_key[0], separator);
   }
   return dict;
 }

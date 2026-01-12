@@ -8,13 +8,13 @@ export function get(directory) {
     const items = fs.readdirSync(currentDirPath);
 
     for (const item of items) {
-      const itemPath = path.join(currentDirPath, item);
-      const stat = fs.statSync(itemPath);
+      const item_path = path.join(currentDirPath, item);
+      const stat = fs.statSync(item_path);
 
       if (stat.isFile()) {
-        files.push(itemPath);
+        files.push(item_path);
       } else if (stat.isDirectory()) {
-        walk(itemPath);
+        walk(item_path);
       }
     }
   }

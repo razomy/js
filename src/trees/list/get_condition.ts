@@ -9,11 +9,11 @@ export function get<T extends WithChildrenList<any>>(node: T, path: string[], ma
     return node;
   }
 
-  for (const childNode of node.children) {
-    const foundNode = get(childNode, path.slice(1), match);
+  for (const child_node of node.children) {
+    const found_node = get(child_node, path.slice(1), match);
 
-    if (foundNode) {
-      return foundNode;
+    if (found_node) {
+      return found_node;
     }
   }
 
@@ -25,19 +25,19 @@ export function get_all<T extends WithChildrenList<any>>(node: T, path: string[]
     return [];
   }
 
-  const [currentValue, ...remainingPath] = path;
-  let matchingNodes: T[] = [];
+  const [current_value, ...remaining_path] = path;
+  let matching_nodes: T[] = [];
 
-  if (match(node, currentValue)) {
-    if (remainingPath.length === 0) {
-      matchingNodes.push(node);
+  if (match(node, current_value)) {
+    if (remaining_path.length === 0) {
+      matching_nodes.push(node);
     } else {
-      for (const childNode of node.children) {
-        const foundNodes = get_all(childNode, remainingPath, match);
-        matchingNodes.push(...foundNodes);
+      for (const child_node of node.children) {
+        const found_nodes = get_all(child_node, remaining_path, match);
+        matching_nodes.push(...found_nodes);
       }
     }
   }
 
-  return matchingNodes;
+  return matching_nodes;
 }

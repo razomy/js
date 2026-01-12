@@ -2,26 +2,26 @@ import {differences_string} from 'razomy/string/differences_string';
 import {DeltaString} from 'razomy/commit/datetime/delta/string/delta_string';
 
 export function strings_to_delta_strings(getPreviousContent: string, getCurrentContent: string): DeltaString[] {
-  const diffResult = differences_string(getPreviousContent, getCurrentContent);
+  const diff_result = differences_string(getPreviousContent, getCurrentContent);
 
   const changes: DeltaString[] = [];
   let offset = 0;
-  for (let i = 0; i < diffResult.length; i++) {
-    const diffChange = diffResult[i];
+  for (let i = 0; i < diff_result.length; i++) {
+    const diff_change = diff_result[i];
 
-    if (diffChange.type === 'added') {
+    if (diff_change.type === 'added') {
       changes.push({
         offset,
-        addValue: diffChange.value,
+        add_value: diff_change.value,
       });
-      offset += diffChange.value.length;
-    } else if (diffChange.type === 'removed') {
+      offset += diff_change.value.length;
+    } else if (diff_change.type === 'removed') {
       changes.push({
         offset,
-        removeLength: diffChange.value.length,
+        remove_length: diff_change.value.length,
       });
     } else {
-      offset += diffChange.value.length;
+      offset += diff_change.value.length;
     }
   }
 
