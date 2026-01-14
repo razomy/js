@@ -1,1 +1,1 @@
-export * as performance from './performance';
+export { performance_cb, Performance } from './performance';

@@ -1,11 +1,5 @@
-export * as attribute_resource from './attribute_resource';
-export * as entity_resource from './entity_resource';
-export { IResourceMap } from './entity_resource';
-export { IEntityResourceMap } from './entity_resource';
-export { IEntityResource } from './entity_resource';
-export * as i_resource from './i_resource';
+export { AttributeResource } from './attribute_resource';
+export { NodeProvidedException, NodeAlreadyProvidedException, IResourceMap, IEntityResourceMap, IEntityResource, EntityResource } from './entity_resource';
 export { IResource } from './i_resource';
-export * as resource_collection from './resource_collection';
-export { INodeResourceCollection } from './resource_collection';
-export { IResourceCollection } from './resource_collection';
-export * as resource from './resource';
+export { INodeResourceCollection, IResourceCollection, ResourceCollection } from './resource_collection';
+export { Resource } from './resource';

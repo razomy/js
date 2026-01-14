@@ -1,5 +1,2 @@
 export { default as get } from './get';
-export * as type from './type';
-export { ListKey } from './type';
-export { ListItem } from './type';
-export { RecursiveList } from './type';
+export { get_key, get_value, ListKey, ListItem, RecursiveList } from './type';

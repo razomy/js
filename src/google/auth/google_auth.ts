@@ -6,7 +6,7 @@ import passport from 'passport';
 export const is_authenticated = ensureLogIn();
 export const google_tap_on = 'google-tap-on';
 
-export class google {
+export class Google {
   constructor(ctx) {
     passport.use(google_tap_on, new CustomStrategy(
       async function (this: any, req, callback) {

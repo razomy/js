@@ -1,12 +1,1 @@
-export * as xd from './xd';
-export { Path } from './xd';
-export { CompoundPath } from './xd';
-export { Rectangle } from './xd';
-export { Circle } from './xd';
-export { Ellipse } from './xd';
-export { Line } from './xd';
-export { Shape } from './xd';
-export { ShapeArtboard } from './xd';
-export { TextArtboard } from './xd';
-export { GroupArtboard } from './xd';
-export { Artboard } from './xd';
+export { Path, CompoundPath, Rectangle, Circle, Ellipse, Line, Shape, ShapeArtboard, TextArtboard, GroupArtboard, Artboard } from './xd';

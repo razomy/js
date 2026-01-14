@@ -1,11 +1,6 @@
 export { default as all } from './all';
 export { default as any } from './any';
-export * as execute from './execute';
-export { Execute } from './execute';
-export { Pipe } from './execute';
-export { ArrayPipe } from './execute';
-export { Pipeable } from './execute';
+export { Execute, Pipe, ArrayPipe, Pipeable } from './execute';
 export { default as pipeable_kv_to_pipeline } from './pipeable_kv_to_pipeline';
 export { default as while_ } from './while_';
-export * as with_execute from './with_execute';
 export { WithExecute } from './with_execute';

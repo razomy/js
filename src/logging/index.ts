@@ -1,2 +1,1 @@
-export * as logger from './logger';
-export { Logger } from './logger';
+export { Logger, NoneLogger, ConsoleLogger } from './logger';

@@ -1,5 +1,4 @@
-export * as graphic_entity from './graphic_entity';
-export * as selection_attribute from './selection_attribute';
-export * as user_entity from './user_entity';
-export * as view_graphic from './view_graphic';
-export { IViewGraphic } from './view_graphic';
+export { GraphicEntity } from './graphic_entity';
+export { SelectionAttribute } from './selection_attribute';
+export { UserEntity } from './user_entity';
+export { IViewGraphic, ViewGraphic } from './view_graphic';

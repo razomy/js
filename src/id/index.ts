@@ -1,3 +1,2 @@
-export * as guid_factory from './guid_factory';
-export * as i_guid from './i_guid';
+export { generate_guid, GuidFactory } from './guid_factory';
 export { WithId } from './i_guid';

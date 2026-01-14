@@ -1,1 +1,1 @@
-export * as cancel_exception from './cancel_exception';
+export { CancelException } from './cancel_exception';

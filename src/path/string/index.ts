@@ -1,14 +1,2 @@
-export * as path_string from './path_string';
-export { Slug } from './path_string';
-export { AbsolutePathString } from './path_string';
-export { RelativePathString } from './path_string';
-export { PathString } from './path_string';
-export { FilePathString } from './path_string';
-export { DirPathString } from './path_string';
-export { SourcePathString } from './path_string';
-export { WithPathString } from './path_string';
-export * as with_ from './with';
-export { WithDirPath } from './with';
-export { WithFileName } from './with';
-export { WithFilePath } from './with';
-export { WithSourcePath } from './with';
+export { Slug, AbsolutePathString, RelativePathString, PathString, FilePathString, DirPathString, SourcePathString, WithPathString } from './path_string';
+export { WithDirPath, WithFileName, WithFilePath, WithSourcePath } from './with';

@@ -1,7 +1,5 @@
 export * as recursive from './recursive';
-export * as dict from './dict';
-export { DictKey } from './dict';
-export { Dict } from './dict';
+export { DictKey, Dict } from './dict';
 export { default as filter_dict } from './filter_dict';
 export { default as first_key_dict } from './first_key_dict';
 export { default as flatten_dict } from './flatten_dict';
@@ -10,5 +8,4 @@ export { default as keys_in_dict } from './keys_in_dict';
 export { default as map_dict_to_array } from './map_dict_to_array';
 export { default as map_dict } from './map_dict';
 export { default as shuffle } from './shuffle';
-export * as some_of from './some_of';
 export { SomeOf } from './some_of';

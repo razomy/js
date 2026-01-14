@@ -1,3 +1,4 @@
+export * as build_packages from './build_packages';
 export * as create_index from './create_index';
 export { default as create_package } from './create_package';
 export * as rename_files from './rename_files';

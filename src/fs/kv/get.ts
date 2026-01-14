@@ -4,9 +4,9 @@ import {ArgumentException} from "razomy/exceptions/argument_exception";
 import {ArrayKeyValuable, ArrayOrKeyValuable, k, KeyValuable, Valuable, Value} from "razomy/kv/kv";
 import {ak} from "razomy/kv/akv";
 
-export function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
-export function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
-export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
+function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
+function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
+function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = k(path.basename(directory), null as any) as T;
 

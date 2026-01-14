@@ -1,9 +1,6 @@
-export * as color_codex from './color_codex';
-export * as color from './color';
-export { RGB } from './color';
-export { RGBA } from './color';
-export * as hex_parser from './hex_parser';
-export * as hsla_parser from './hsla_parser';
-export * as rgba_parser from './rgba_parser';
-export * as svg_color_parser from './svg_color_parser';
-export { SvgColorKeys } from './svg_color_parser';
+export { ColorCodex } from './color_codex';
+export { RGB, RGBA, Color } from './color';
+export { HexParser } from './hex_parser';
+export { HslaParser } from './hsla_parser';
+export { RgbaParser } from './rgba_parser';
+export { SvgColorKeys, SvgColorParser } from './svg_color_parser';

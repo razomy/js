@@ -1,5 +1,4 @@
-export * as between_nodes from './between_nodes';
-export * as bound from './bound';
+export { default as between_nodes } from './between_nodes';
 export { NodeBound } from './bound';
-export * as rect from './rect';
-export * as size from './size';
+export { default as rect } from './rect';
+export { default as size } from './size';

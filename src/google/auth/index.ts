@@ -1,1 +1,1 @@
-export * as google_auth from './google_auth';
+export { is_authenticated, google_tap_on, Google } from './google_auth';

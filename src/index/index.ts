@@ -1,4 +1,3 @@
-export * as index_ from './index_';
 export { Index } from './index_';
 export { default as is_strings_any_index } from './is_strings_any_index';
 export { default as last_index } from './last_index';

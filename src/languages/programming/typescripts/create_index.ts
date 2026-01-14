@@ -1,5 +1,4 @@
-import { Project, SyntaxKind } from 'ts-morph';
-import * as path from 'path';
+import {Project, SyntaxKind} from 'ts-morph';
 
 const to_snake_case = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
 
@@ -17,7 +16,7 @@ const get_safe_key = (name: string) => {
 };
 
 const generate_final_index = async () => {
-  const project = new Project({ tsConfigFilePath: '../../../../tsconfig.json' });
+  const project = new Project({tsConfigFilePath: '../../../../tsconfig.json'});
   // Ensure we don't accidentally process node_modules
   const root_dir = project.getDirectory('../../../../src') || project.getDirectories()[0];
   const directories = project.getDirectories();
@@ -50,42 +49,65 @@ const generate_final_index = async () => {
         const safe_key = get_safe_key(base_name);
 
         // --- Analyze Exports ---
+
+        // --- Analyze Exports ---
         const exportedDeclarations = file.getExportedDeclarations();
-        const hasDefaultExport = exportedDeclarations.has('default');
+        const defaultExportDecls = exportedDeclarations.get('default');
+        const hasDefaultExport = defaultExportDecls && defaultExportDecls.length > 0;
 
         // --- CASE A: File has a Default Export ---
-        // We assume the default export IS the main object (like your _length or _rectangle examples)
-        // We export it as a Named Export aliased to the file name.
         if (hasDefaultExport) {
-          export_entries.push(`export { default as ${safe_key} } from './${base_name}';`);
+          const decl = defaultExportDecls[0] as any;
 
-          // Note: If you have named exports ALONGSIDE default exports in these files,
-          // you might want to uncomment the line below, but usually, it's one or the other.
-          // export_entries.push(`export * from './${base_name}';`);
+          // Если это Класс -> экспортируем как название класса
+          if (decl.getKind() === SyntaxKind.ClassDeclaration) {
+            const className = decl.getName();
+            // Если класс анонимный (export default class {}), используем имя файла как fallback
+            const exportName = className || base_name;
+            export_entries.push(`export { default as ${exportName} } from './${base_name}';`);
+          }
+          // Иначе (функция, объект) -> экспортируем как название файла (snake_case)
+          else {
+            export_entries.push(`export { default as ${base_name} } from './${base_name}';`);
+          }
         }
 
-          // --- CASE B: File has only Named Exports ---
-        // We group them into an object under the filename (Namespace Import pattern)
+        // --- CASE B: File has only Named Exports ---
         else {
-          export_entries.push(`export * as ${safe_key} from './${base_name}';`);
+          let hasTypesOrClasses = false;
+          const namesToExport: string[] = [];
 
-          // --- Optional: Flatten Types ---
-          // Since we can't nest types inside the 'const' object created by 'export * as',
-          // we re-export Interfaces and Types to the top level so they are accessible.
+          // Проходимся по всем экспортам, чтобы понять состав файла
           for (const [name, decls] of exportedDeclarations) {
             const decl = decls[0];
             const kind = decl.getKind();
 
-            if (kind === SyntaxKind.InterfaceDeclaration || kind === SyntaxKind.TypeAliasDeclaration) {
-              // Prevent naming collisions if the type has the same name as the file alias
-              if (name !== safe_key) {
-                export_entries.push(`export { ${name} } from './${base_name}';`);
-              }
+            namesToExport.push(name);
+
+            // Проверяем наличие Типов, Интерфейсов или Классов
+            if (
+              kind === SyntaxKind.ClassDeclaration ||
+              kind === SyntaxKind.InterfaceDeclaration ||
+              kind === SyntaxKind.TypeAliasDeclaration ||
+              kind === SyntaxKind.EnumDeclaration
+            ) {
+              hasTypesOrClasses = true;
             }
+          }
+
+          // Если есть типы, интерфейсы или классы -> экспортируем их имена напрямую
+          if (hasTypesOrClasses) {
+            if (namesToExport.length > 0) {
+              export_entries.push(`export { ${namesToExport.join(', ')} } from './${base_name}';`);
+            }
+          }
+          // Иначе (только утилиты/константы) -> экспортируем как пространство имен (имя файла snake_case)
+          else {
+            export_entries.push(`export * as ${base_name} from './${base_name}';`);
           }
         }
 
-      } catch(r) {
+      } catch (r) {
         console.log(`Error processing ${file.getBaseName()}:`, r);
       }
     }
@@ -98,7 +120,7 @@ const generate_final_index = async () => {
       ].join('\n');
 
       const index_file_path = `${dir_path}/index.ts`;
-      project.createSourceFile(index_file_path, index_content, { overwrite: true });
+      project.createSourceFile(index_file_path, index_content, {overwrite: true});
       console.log(`[GENERATED] ${index_file_path}`);
       count++;
     }
