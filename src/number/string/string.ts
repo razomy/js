@@ -1,7 +1,7 @@
-import {String} from "razomy.string/string";
+import {String} from 'razomy.string/string';
 
-export function string(number: number): String {
+export default function string(number: number): String {
   return number.toFixed(2);
 }
 
-export default string;
+

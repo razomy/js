@@ -1,7 +1,7 @@
-import path from "path";
-import {copy_files_recursive} from './copy';
+import path from 'path';
+import copy_files_recursive from './copy';
 
-export async function cli() {
+export default async function cli() {
     const [, , ...args] = process.argv;
     if (args.length < 2) {
     console.error('Source and target files/directories are required.');

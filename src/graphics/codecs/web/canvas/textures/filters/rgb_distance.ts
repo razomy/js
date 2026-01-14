@@ -1,5 +1,5 @@
 
-export function rgb_distance(p1: number[], p2: number[]) {
+export default function rgb_distance(p1: number[], p2: number[]) {
     return Math.sqrt(
     Math.pow(p1[0] - p2[0], 2) +
     Math.pow(p1[1] - p2[1], 2) +

@@ -3,13 +3,13 @@ import {IRender} from 'razomy.graphics/renderes/i_render';
 import {Render} from 'razomy.graphics/renderes/render';
 import {TextElement} from 'razomy.graphics/elements/text_element';
 import {ViewportElement} from 'razomy.graphics/elements/viewport_element';
-import {IFactory} from 'razomy.factory/i_factory';
 import {ElementView} from 'razomy.graphics/elements/element_view';
 import {RectangleShape} from 'razomy.graphics/shapes/rectangle_shape';
 import {NotSupportedException} from 'razomy.exceptions/not_supported_exception';
 import {RectangleRender} from 'razomy.graphics/shapes/rectangle_render';
-import {ArgumentException} from "razomy.exceptions/argument_exception";
-import {UnknownTypeArgumentException} from "razomy.exceptions/unknown_type_argument_exception";
+import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
+import * as create from 'razomy.create';
 
 
 export class ViewportRender {
@@ -35,7 +35,7 @@ export class TextRender {
 export class CanvasRectangle {
 }
 
-export class RenderFactory implements IFactory<IRender<any>> {
+export class RenderFactory implements create.With<IRender<any>> {
 
   constructor(
     public ctx: CanvasRenderingContext2D

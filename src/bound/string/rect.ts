@@ -3,7 +3,7 @@ import {WithOffset} from 'razomy.offset/offest';
 import size from 'razomy.bound/string/size';
 import * as coordinates from 'razomy.coordinates';
 
-export function rect(delta: string, str: string): WithOffset & coordinates.length.With & coordinates.rectangle.Bound {
+export default function rect(delta: string, str: string): WithOffset & coordinates.length.With & coordinates.rectangle.Bound {
   const start = size(delta);
   const end = size(str);
   return {
@@ -16,4 +16,4 @@ export function rect(delta: string, str: string): WithOffset & coordinates.lengt
   };
 }
 
-export default rect;
+

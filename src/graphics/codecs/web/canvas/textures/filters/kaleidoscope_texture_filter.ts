@@ -1,7 +1,7 @@
 import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 
-export function create_canvas_element(): HTMLCanvasElement {
+export default function create_canvas_element(): HTMLCanvasElement {
   var canvas = document.createElement('canvas');
   // on some environments canvas.style is readonly
   try {

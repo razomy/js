@@ -1,6 +1,6 @@
 import {ActorDatetimeDeltaString} from './adds';
 
-export function find_repetitions(arr: ActorDatetimeDeltaString[]) {
+export default function find_repetitions(arr: ActorDatetimeDeltaString[]) {
     const frequency_map = new Map();
     for (let i = 0; i < arr.length; i++) {
     const item = arr[i];

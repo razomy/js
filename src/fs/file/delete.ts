@@ -1,5 +1,5 @@
 import fs from 'fs';
 
-export function delete_(file_path: string) {
+export default function delete_(file_path: string) {
   return fs.rmSync(file_path, {recursive: true, force: true});
 }

@@ -1,4 +1,4 @@
-export function size(str: string): { x: number, y: number } {
+export default function size(str: string): { x: number, y: number } {
   let i = 0;
   let x = 0;
   let y = 0;
@@ -20,4 +20,4 @@ export function size(str: string): { x: number, y: number } {
   return {x, y};
 }
 
-export default size;
+

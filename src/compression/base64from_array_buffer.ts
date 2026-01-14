@@ -1,5 +1,5 @@
 
-export function base64from_array_buffer(buffer: ArrayBuffer): string {
+export default function base64from_array_buffer(buffer: ArrayBuffer): string {
     const uint8array = new Uint8Array(buffer);
     let binary = '';
     const length = uint8array.byteLength;

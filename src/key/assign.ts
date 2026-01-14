@@ -1,1 +1,2 @@
-export const assign = ':';
+const assign = ':';
+export default assign;

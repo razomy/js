@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export function get(directory) {
+export default function get(directory) {
   let files: string[] = [];
 
   function walk(currentDirPath) {
@@ -23,4 +23,4 @@ export function get(directory) {
   return files;
 }
 
-export default get;
+

@@ -1,12 +1,12 @@
-import {reactive} from 'vue';
-import {Dict} from "razomy.dict/dict";
-import remove_first from "razomy.list/remove_first";
+import vue from 'vue';
+import {Dict} from 'razomy.dict/dict';
+import remove_first from 'razomy.list/remove_first';
 
 
 export class RemoteResource {
   ctx: razomy = undefined as any as razomy;
   
-  state = reactive({
+  state = vue.reactive({
     notation: null as Dict<string> | null,
     listeners: [] as (() => void)[]
   });

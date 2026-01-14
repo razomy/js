@@ -1,8 +1,8 @@
-import {BranchDictOrLeaf} from "razomy.trees/dict/dict";
-import {Graph} from "razomy.graph/graph";
+import {BranchDictOrLeaf} from 'razomy.trees/dict/dict';
+import {Graph} from 'razomy.graph/graph';
 
 
-export function iterate_children<T>(
+export default function iterate_children<T>(
   graph: Graph<BranchDictOrLeaf<T>>,
   branch: BranchDictOrLeaf<T>
 ) {

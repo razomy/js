@@ -1,6 +1,6 @@
-import {Observable} from "razomy.observable/observable";
+import {Observable} from 'razomy.observable/observable';
 
-export function promise<T>(observable: Observable<T>) {
+export default function promise<T>(observable: Observable<T>) {
   return new Promise<T>((resolve, reject) => {
     observable.next = ((data) => {
       observable.dispose();
@@ -14,4 +14,4 @@ export function promise<T>(observable: Observable<T>) {
   });
 }
 
-export default promise;
+

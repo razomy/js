@@ -1,6 +1,5 @@
-import vrd, {Vrd, VrdOrValue} from "razomy.vrd/vrd";
-
-export function kv_to_vrd<T>(arr: [key:string, value:VrdOrValue<T>, order?:number][]): Vrd<T> {
+import vrd, {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
+export default function kv_to_vrd<T>(arr: [key:string, value:VrdOrValue<T>, order?:number][]): Vrd<T> {
   const m = vrd<T>({});
   for (const [key, value] of arr) {
     m[key] = value;
@@ -8,4 +7,4 @@ export function kv_to_vrd<T>(arr: [key:string, value:VrdOrValue<T>, order?:numbe
   return m;
 }
 
-export default kv_to_vrd;
+

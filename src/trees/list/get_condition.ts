@@ -1,6 +1,6 @@
-import {WithChildrenList} from "razomy.trees/list/with_children_list";
+import {WithChildrenList} from 'razomy.trees/list/with_children_list';
 
-export function get<T extends WithChildrenList<any>>(node: T, path: string[], match) {
+export default function get<T extends WithChildrenList<any>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {
     return null;
   }
@@ -20,4 +20,4 @@ export function get<T extends WithChildrenList<any>>(node: T, path: string[], ma
   return null;
 }
 
-export * from "./get_all";
+export * from './get_all';

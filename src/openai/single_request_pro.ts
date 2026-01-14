@@ -1,8 +1,8 @@
-import { models } from "razomy.openai/models";
-import {gpt_api_v2} from './gpt_api_v2';
-import {set_tokens} from './set_tokens';
+import models from 'razomy.openai/models';
+import gpt_api_v2 from './gpt_api_v2';
+import set_tokens from './set_tokens';
 
-export async function single_request_pro(text, model = models.expensive120000) {
+export default async function single_request_pro(text, model = models.expensive120000) {
     let message_or_messages_or_request = {
             messages: [
               {

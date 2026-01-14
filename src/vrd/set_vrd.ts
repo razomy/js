@@ -1,7 +1,6 @@
-import {Vrd, VrdOrValue} from "razomy.vrd/vrd";
-import get_vrd from "razomy.vrd/get_vrd";
-
-export function set_vrd<T>(value: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {
+import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
+import get_vrd from 'razomy.vrd/get_vrd';
+export default function set_vrd<T>(value: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {
   const parent_path = path.slice(0, -1);
   let parent_node: Vrd<T>;
   if (parent_path.length !== 0) {
@@ -12,4 +11,4 @@ export function set_vrd<T>(value: VrdOrValue<T>, path: string[], newValue: VrdOr
   parent_node[path.at(-1)!] = newValue;
 }
 
-export default set_vrd;
+

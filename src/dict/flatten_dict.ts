@@ -1,33 +1,9 @@
-import {for_own} from './for_own';
-
-export function is_plain_object(value) {
-  if (typeof value !== 'object' || value === null) {
-    return false;
-  }
-
-  // Check internal [[Class]] tag
-  if (Object.prototype.toString.call(value) !== '[object Object]') {
-    return false;
-  }
-
-  // If the object has no prototype (e.g., Object.create(null)), it is plain.
-  let proto = Object.getPrototypeOf(value);
-  if (proto === null) {
-    return true;
-  }
-
-  // Iterate up the prototype chain to find the top-most prototype.
-  // In a plain object, the prototype must be Object.prototype.
-  while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto);
-  }
-
-  return Object.getPrototypeOf(value) === proto;
-}
+import for_own from './for_own';
+import is_plain_object from './is_plain_object';
 
 export type Join<K, P> = K extends string
   ? P extends string
-    ? `${K}${"" extends P ? "" : "."}${P}` // If P is empty, don't add dot
+    ? `${K}${'' extends P ? '' : "."}${P}` // If P is empty, don't add dot
     : never
   : never;
 
@@ -42,9 +18,9 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flatten_dict<T extends object = object>(
+export default function flatten_dict<T extends object = object>(
   obj: T,
-  parentKey = "",
+  parentKey = '',
   result = {} as any,
 ): FlattenedAndConverted<T> {
   for_own(obj, (value, key) => {
@@ -59,4 +35,4 @@ export function flatten_dict<T extends object = object>(
   return result as FlattenedAndConverted<T>;
 }
 
-export default flatten_dict;
+

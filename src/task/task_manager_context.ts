@@ -1,6 +1,6 @@
 // TODO:REFACTOR
-// import { Context, Contextable, Task } from "./task";
-// import { Gate } from "./file_gate";
+// import { Context, Contextable, Task } from './task';
+// import { Gate } from './file_gate';
 //
 // interface TaskManagerContextState<T> {
 //   lastCompletedTaskIndex: number;

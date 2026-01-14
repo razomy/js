@@ -1,9 +1,9 @@
-import {get_status_sync} from 'razomy.git/get_status';
+import get_status_sync from 'razomy.git/get_status_sync';
 import {SourcePathString} from 'razomy.path/string/path_string';
-import { is_with_git } from 'src/languages/programming/fs/is_with_git';
+import is_with_git from 'src/languages/programming/fs/is_with_git';
 import path from 'path';
 
-export function get_recursive_status(source_path: SourcePathString) {
+export default function get_recursive_status(source_path: SourcePathString) {
   const repos: string[] = [];
   const files: string[] = [];
   const paths = [path.join(source_path)]

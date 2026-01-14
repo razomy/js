@@ -1,1 +1,1 @@
-export { report, WithRespect, WithRespectReport } from './with_respect';
+export { default as with_respect } from './with_respect';

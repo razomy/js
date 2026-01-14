@@ -1,4 +1,4 @@
-export async function try_(fn) {
+export default async function try_(fn) {
   try {
     return await fn;
   } catch (e) {
@@ -6,4 +6,4 @@ export async function try_(fn) {
   }
 }
 
-export default try_;
+

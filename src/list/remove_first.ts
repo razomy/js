@@ -1,4 +1,4 @@
-export function remove_first<T>(arr: T[], value: T): T[] {
+export default function remove_first<T>(arr: T[], value: T): T[] {
   const index = arr.indexOf(value);
   if (index > -1) {
     arr.splice(index, 1);
@@ -6,4 +6,4 @@ export function remove_first<T>(arr: T[], value: T): T[] {
   return arr;
 }
 
-export default remove_first;
+

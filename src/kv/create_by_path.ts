@@ -1,13 +1,12 @@
-import {k} from "razomy.kv/kv";
-import {ak} from "razomy.kv/akv";
-
-export function create_by_path<T>(path: T[]) {
-  const root = k(null as T, ak<T>());
+import akv from 'razomy.kv/akv';
+import k from './k';
+export default function create_by_path<T>(path: T[]) {
+  const root = k(null as T, akv<T>());
 
   let last = root;
   for (let item of path) {
     last[0] = item;
-    let next = k(null as T, ak<T>());
+    let next = k(null as T, akv<T>());
     last[1].push(next);
     last = next;
   }
@@ -15,4 +14,4 @@ export function create_by_path<T>(path: T[]) {
   return root;
 }
 
-export default create_by_path;
+

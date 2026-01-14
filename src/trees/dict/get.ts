@@ -1,7 +1,7 @@
-import {WithChildrenDict} from "razomy.trees/dict/with_children_dict";
-import {get_value} from './get_value';
+import {WithChildrenDict} from 'razomy.trees/dict/with_children_dict';
+import get_value from './get_value';
 
-export function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
+export default function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }
@@ -9,8 +9,8 @@ export function get<T extends WithChildrenDict<T>>(node: T, path: string[], offs
   return get_value(node, path, offset)
 }
 
-export default get;
 
-export * from "./get_value";
-export * from "./get_by_string";
-export * from "./get_path";
+
+export * from './get_value';
+export * from './get_by_string';
+export * from './get_path';

@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {read_file_json} from 'razomy.fs/file/read';
-import {write_file_json} from 'razomy.fs/file/write';
+import read_file_json from 'razomy.fs/file/read_file_json';
+import write_file_json from 'razomy.fs/file/write_file_json';
 
-export function create_package() {
+export default function create_package() {
   const src_dir: string = path.join(__dirname, '../../../');
   const prefix: string = 'razomy';
 
@@ -71,4 +71,4 @@ export function create_package() {
 
 create_package()
 
-export default create_package;
+

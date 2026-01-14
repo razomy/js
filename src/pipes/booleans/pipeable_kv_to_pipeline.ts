@@ -3,15 +3,15 @@ import {
   ArrayPipe,
   Execute,
   Pipeable
-} from "razomy.pipes/booleans/execute";
+} from 'razomy.pipes/booleans/execute';
 
-import {ArgumentException} from "razomy.exceptions/argument_exception";
-import {is_kv, KeyValuable, Kv} from "razomy.kv/kv";
-import {is_akv} from "razomy.kv/akv";
+import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import is_kv, {KeyValuable, Kv} from 'razomy.kv/kv';
+import is_akv from 'razomy.kv/is_akv';
 
 export type PipeableKv<T> = KeyValuable<Pipeable<T>, Pipeable<T>>
 
-export function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<T> {
+export default function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<T> {
   if (!is_kv<Pipeable<T>, Pipeable<T>>(pipeable_kv)) {
     throw new ArgumentException('not a kv', {pipeable_kv});
   }
@@ -35,4 +35,4 @@ export function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<
   return (ctx: T) => (function_ as any)(ctx, next);
 }
 
-export default pipeable_kv_to_pipeline;
+

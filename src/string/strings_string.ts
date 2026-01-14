@@ -1,6 +1,6 @@
-import {String} from "razomy.string/string";
+import {String} from 'razomy.string/string';
 
-export function strings_string(strings: String[]) {
+export default function strings_string(strings: String[]) {
   let result: String = '';
   for (let i = 0; i < strings.length; i++) {
     result += strings[i];
@@ -9,4 +9,4 @@ export function strings_string(strings: String[]) {
   return result;
 }
 
-export default strings_string;
+

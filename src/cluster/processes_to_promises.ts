@@ -13,7 +13,7 @@ export default function processes_to_promises<T extends child.Serializable>(ctx:
         promises.push(new Promise(async (resolve) => {
             const prev_settings = cluster.settings;
             cluster.setupPrimary(settings);
-            const result = await process_to_promise(ctx[i], {worker_id: i + ""})
+            const result = await process_to_promise(ctx[i], {worker_id: i + ''})
             cluster.setupPrimary(prev_settings);
             return resolve(result);
         }));

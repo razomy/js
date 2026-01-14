@@ -111,8 +111,8 @@
       "razomy.express": [
         "./src/express"
       ],
-      "razomy.factory": [
-        "./src/factory"
+      "razomy.create": [
+        "./src/create"
       ],
       "razomy.fs": [
         "./src/fs"

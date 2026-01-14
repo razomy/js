@@ -1,7 +1,7 @@
-export function echo() {
+export default function echo() {
   return function(req, res) {
     res.send('Hello World');
   };
 }
 
-export default echo;
+

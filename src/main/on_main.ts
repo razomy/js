@@ -1,8 +1,8 @@
-import { format_time_length } from "razomy.dates/dates";
-import is_ from "razomy.async/is_";
-import {is_main} from './main';
+import format_time_length from 'razomy.dates/format_time_length';
+import is_ from 'razomy.async/is_';
+import is_main from './is_main';
 
-export async function on_main(moduleUrl, callback) {
+export default async function on_main(moduleUrl, callback) {
     const path = `${moduleUrl} onMain`;
     const start_date = Date.now();
     try {

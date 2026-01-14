@@ -1,17 +1,18 @@
-import {is_vrd, Vrd, VrdOrValue} from "razomy.vrd/vrd";
-import {is_object} from "razomy.object/object";
-import {DictKey} from "razomy.dict/dict";
+import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
+import is_object from 'razomy.object/is_object';
+import {DictKey} from 'razomy.dict/dict';
+import is_vrd from './is_vrd';
 
-export function map_vrd<I, O>(input: Vrd<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): Vrd<O>;
-export function map_vrd<I, O>(input: I, leaf_value_cb: (input: I, parent?: DictKey) => O, parent: DictKey): O;
-export function map_vrd<I, O>(input: VrdOrValue<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): VrdOrValue<O> ;
-export function map_vrd<I, O>(
+export default function map_vrd<I, O>(input: Vrd<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): Vrd<O>;
+export default function map_vrd<I, O>(input: I, leaf_value_cb: (input: I, parent?: DictKey) => O, parent: DictKey): O;
+export default function map_vrd<I, O>(input: VrdOrValue<I>, leaf_value_cb: (input: I, parent: DictKey) => O, parent: DictKey): VrdOrValue<O> ;
+export default function map_vrd<I, O>(
   input: VrdOrValue<I>,
   leaf_value_cb: (input: I, parent: DictKey) => O,
   parent: DictKey,
   node_cb: ((input: Vrd<I>, parent: DictKey) => Vrd<O> | O),
 ): VrdOrValue<O>;
-export function map_vrd<I, O>(
+export default function map_vrd<I, O>(
   input: VrdOrValue<I>,
   leaf_value_cb: (input: I, parent: DictKey) => O,
   parent: DictKey,
@@ -36,4 +37,4 @@ export function map_vrd<I, O>(
   }
 }
 
-export default map_vrd;
+

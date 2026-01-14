@@ -9,4 +9,3 @@ const config: JestConfigWithTsJest = {
     '^razomy/(.*)': '<rootDir>/src/$1',
   }
 }
-export default config;

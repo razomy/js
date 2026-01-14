@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {FilePathString} from 'razomy.path/string/path_string';
 
-export function file_path_count(file_path: FilePathString) {
+export default function file_path_count(file_path: FilePathString) {
   try {
     const code = fs.readFileSync(file_path, 'utf8');
     const matches = code.trim().match(/\b\w+\b/g) || [];
@@ -36,4 +36,4 @@ export function file_path_count(file_path: FilePathString) {
 //   console.log('Token count by type:');
 //   console.log(tokenCount);
 // }
-export default file_path_count;
+

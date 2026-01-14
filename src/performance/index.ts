@@ -1,1 +1,1 @@
-export { performance_cb, Performance } from './performance';
+export { Performance } from './performance';

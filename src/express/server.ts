@@ -9,7 +9,7 @@ import {logger} from 'razomy.servers/logger';
 import {Ctx} from 'razomy.express/ctx';
 import echo from 'razomy.servers/echo';
 
-export function create(ctx: Ctx) {
+export default function create(ctx: Ctx) {
   ctx.logger = logger;
 
   const app = express();

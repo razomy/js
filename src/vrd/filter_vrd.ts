@@ -1,10 +1,11 @@
-import {is_vrd, Vrd, VrdOrValue} from "razomy.vrd/vrd";
-import {DictKey} from "razomy.dict/dict";
+import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
+import {DictKey} from 'razomy.dict/dict';
+import is_vrd from './is_vrd';
 
-export function filter_vrd<I>(input: Vrd<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): Vrd<I>;
-export function filter_vrd<I>(input: I, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): I;
-export function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> ;
-export function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> {
+export default function filter_vrd<I>(input: Vrd<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): Vrd<I>;
+export default function filter_vrd<I>(input: I, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): I;
+export default function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> ;
+export default function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): VrdOrValue<I> {
   if (is_vrd(input)) {
     for (let input_key in input) {
       const value = input[input_key];
@@ -20,4 +21,4 @@ export function filter_vrd<I>(input: VrdOrValue<I>, is_keep: (input: VrdOrValue<
   }
 }
 
-export default filter_vrd;
+

@@ -1,9 +1,10 @@
-import simpleGit from "simple-git";
-import strings_to_delta_strings from "razomy.commit/datetime/delta/string/strings_to_delta_strings";
-import { ActorDatetimeDeltaString, addss_to_string } from "razomy.commit/datetime/delta/string/adds";
-import {get_all_commit_hashes} from './git_file_commits_to_commit_json_file';
+import simpleGit from 'simple-git'
+import strings_to_delta_strings from 'razomy.commit/datetime/delta/string/strings_to_delta_strings';
+import addss_to_string, { ActorDatetimeDeltaString } from 'razomy.commit/datetime/delta/string/adds';
 
-export async function compare_versions(repoPath, filePath) {
+import get_all_commit_hashes from './get_all_commit_hashes';
+
+export default async function compare_versions(repoPath, filePath) {
     const git = simpleGit(repoPath);
     const commits = await get_all_commit_hashes(git);
     const history = {

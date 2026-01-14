@@ -1,24 +1,24 @@
-import {ArrayKeyValuable, is_kv, KeyValuable, Valuable, Value} from "razomy.kv/kv";
-import {Function} from "razomy.function/function";
-import {ak, is_akv} from "razomy.kv/akv";
-
-export function map<IV, OV>(
+import is_kv, {ArrayKeyValuable, KeyValuable, Valuable, Value} from 'razomy.kv/kv';
+import {Function} from 'razomy.function/function';
+import is_akv from './is_akv';
+import akv from './akv';
+export default function map<IV, OV>(
   input: Value<IV>,
   map_cb: Function<[Value<IV>], Value<OV>>
 ): Value<OV>;
-export function map<K, IV, OV>(
+export default function map<K, IV, OV>(
   input: KeyValuable<K, IV>,
   map_cb: Function<[KeyValuable<K, IV>], KeyValuable<K, OV>>
 ): KeyValuable<K, OV>;
-export function map<K, IV, OV>(
+export default function map<K, IV, OV>(
   input: ArrayKeyValuable<K, IV>,
   map_cb: Function<[ArrayKeyValuable<K, IV>], ArrayKeyValuable<K, OV>>
 ): ArrayKeyValuable<K, OV>;
-export function map<K, IV, OV>(
+export default function map<K, IV, OV>(
   value: Valuable<K, IV>,
   map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV>;
-export function map<K, IV, OV>(
+export default function map<K, IV, OV>(
   value: Valuable<K, IV>,
   map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV> {
@@ -30,7 +30,7 @@ export function map<K, IV, OV>(
     const mapped = map_cb(value);
     if (is_akv(mapped)) {
       const mapped_twice = mapped.map((child) => map(child as any, map_cb) as KeyValuable<K, OV>);
-      return ak(...mapped_twice);
+      return akv(...mapped_twice);
     }
     return mapped;
   } else {
@@ -38,4 +38,4 @@ export function map<K, IV, OV>(
   }
 }
 
-export default map;
+

@@ -1,6 +1,6 @@
-import iterate from "razomy.fs/iterate";
+import iterate from 'razomy.fs/iterate';
 
-export function f(dir_path: string) {
+export default function f(dir_path: string) {
     iterate(dir_path, () => {
 
     })

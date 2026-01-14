@@ -1,7 +1,8 @@
-import fs from "fs";
-import {generate_random_character, insert_total_count} from './generate_file_for_n_length';
+import fs from 'fs';
+import generate_random_character from './generate_random_character';
+import insert_total_count from './insert_total_count';
 
-export function generate_file(filePath, fileSize) {
+export default function generate_file(filePath, fileSize) {
     const chunk_size = 500;
     let total_count = 0;
     const writable_stream = fs.createWriteStream(filePath);

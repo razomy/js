@@ -1,6 +1,6 @@
-import {generate_file} from './generate_file';
+import generate_file from './generate_file';
 
-export function generate_random_character() {
+export default function generate_random_character() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   const random_index = Math.floor(Math.random() * characters.length);
   return characters.charAt(random_index);

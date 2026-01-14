@@ -1,3 +1,3 @@
-export * as commit from './commit';
-export * as get_status from './get_status';
-export * as restore from './restore';
+export { default as commit } from './commit';
+export { default as get_status } from './get_recursive_status';
+export { default as restore } from './restore';

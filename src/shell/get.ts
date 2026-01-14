@@ -1,6 +1,6 @@
-import readline from "readline";
+import readline from 'readline';
 
-export async function get(query: string) {
+export default async function get(query: string) {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout

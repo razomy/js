@@ -1,6 +1,6 @@
 import {Dict} from 'razomy.dict/dict';
 
-export function dict_to_string<T extends string>(dict: Dict<T>) {
+export default function dict_to_string<T extends string>(dict: Dict<T>) {
   let res: string = '{';
   for (const dict_key in dict) {
     res += `${dict_key}:${dict[dict_key]};`
@@ -8,4 +8,4 @@ export function dict_to_string<T extends string>(dict: Dict<T>) {
   return res + '}';
 }
 
-export default dict_to_string;
+

@@ -1,2 +1,2 @@
-export * as get_any_all from './get_any_all';
-export * as get from './get';
+export { default as get_any_all } from './get_any_all';
+export { default as get } from './get';

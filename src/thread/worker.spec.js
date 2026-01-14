@@ -1,4 +1,4 @@
-// import {parentPort, workerData} from "worker_threads";
+// import {parentPort, workerData} from 'worker_threads';
 //
 // const send_event = (id, ctx) => parentPort.postMessage({id, ctx})
 //

@@ -1,4 +1,4 @@
-export function is_(p: any): boolean {
+export default function is_(p: any): boolean {
   if (typeof p === 'object' && typeof p.then === 'function') {
     return true;
   }
@@ -6,4 +6,4 @@ export function is_(p: any): boolean {
   return false;
 }
 
-export default is_;
+

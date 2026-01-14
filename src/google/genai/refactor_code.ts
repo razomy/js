@@ -2,7 +2,7 @@ import {GoogleGenAI} from '@google/genai';
 
 export const ai = new GoogleGenAI({apiKey: ''});
 
-export async function ask() {
+export default async function ask() {
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: 'How does AI work?',

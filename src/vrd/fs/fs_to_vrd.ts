@@ -3,7 +3,7 @@ import path from 'path';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
 
-export function fs_to_vrd(directory: string, is_skip: (path) => boolean): VrdOrValue<Buffer> {
+export default function fs_to_vrd(directory: string, is_skip: (path) => boolean): VrdOrValue<Buffer> {
   const stat = fs.statSync(directory);
 
   if (stat.isFile()) {
@@ -25,4 +25,4 @@ export function fs_to_vrd(directory: string, is_skip: (path) => boolean): VrdOrV
   }
 }
 
-export default fs_to_vrd;
+

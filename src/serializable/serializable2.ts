@@ -18,7 +18,7 @@ export interface Ctx {
   items(): { [key: string]: any };
 }
 
-export function pipe_ctx_serializable<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
+export default function pipe_ctx_serializable<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
   for (const [k, v] of Object.entries(data)) {
     if (v === null) continue;
 

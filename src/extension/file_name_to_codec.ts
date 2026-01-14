@@ -9,11 +9,11 @@ export const codecs: Record<BufferEncoding & '*', ICodec<Buffer, string>> = {
   '*': to_codec('utf-8'),
 } as const satisfies Record<BufferEncoding & '*', ICodec<Buffer, string>>;
 
-export function file_name_to_codec(file_name: string) {
+export default function file_name_to_codec(file_name: string) {
   const type = path.extname(file_name).substring(1);
   return buffer_types.hasOwnProperty(type)
     ? codecs[buffer_types[type]]
     : codecs['*'];
 }
 
-export default file_name_to_codec;
+

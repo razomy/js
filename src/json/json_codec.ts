@@ -1,8 +1,8 @@
 import {ICodec} from 'razomy.codec/i_codec';
 import {Json} from 'razomy.json/json';
-import {string_to_json} from './string_to_json';
+import string_to_json from './string_to_json';
 
-export function json_to_string(state: Json): string {
+export default function json_to_string(state: Json): string {
   return JSON.stringify(state, null, 2);
 }
 

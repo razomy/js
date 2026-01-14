@@ -1,12 +1,8 @@
-import {ChangeDifference} from "razomy.difference/type";
-
-import vrd, {
-  is_vrd,
-  Vrd,
-  VrdOrValue
-} from "razomy.vrd/vrd";
-import {equal_} from "razomy.equal/equal";
-import get_similar from 'razomy.array/difference/get_similar';
+import {ChangeDifference} from 'razomy.difference/type';
+import {VrdOrValue} from 'razomy.vrd/vrd';
+import equal_ from 'razomy.equal/equal';
+import is_vrd from './is_vrd';
+import differences_dict from './differences_dict';
 
 export interface ReplaceDifference<T> {
   type: 'replace_key',
@@ -19,45 +15,8 @@ export type P<T> = (ReplaceDifference<VrdOrValue<T>> | ChangeDifference<VrdOrVal
   path: string
 };
 
-export function differences_dict<T>(
-  diffs: P<T>[],
-  a: Vrd<T>,
-  b: Vrd<T>,
-  path,
-  separator = '/'
-): P<T>[] {
-  const a_keys = Object.keys(a);
-  let b_keys = Object.keys(b);
 
-  for (let old_key of a_keys) {
-    if (b_keys.includes(old_key)) {
-      differences_vrd(diffs, a[old_key], b[old_key], [path, old_key].filter(i => i).join(separator));
-      b_keys = b_keys.filter(i => i != old_key);
-      continue
-    }
-
-    let new_key: string | null = get_similar(old_key, b_keys);
-    if (new_key) {
-      diffs.push({
-        type: "replace_key",
-        path: path,
-        old_value: vrd({[old_key]: a[old_key]}),
-        value: vrd({[new_key]: b[new_key]})
-      });
-      b_keys = b_keys.filter(i => i != new_key);
-      continue
-    }
-
-    diffs.push({type: "removed", path: path, value: vrd({[old_key]: a[old_key]})});
-  }
-  for (let new_key of b_keys) {
-    diffs.push({type: "added", path: path, value: vrd({[new_key]: b[new_key]})});
-  }
-  return diffs;
-}
-
-
-export function differences_vrd<T>(
+export default function differences_vrd<T>(
   diffs: P<T>[],
   a: VrdOrValue<T>,
   b: VrdOrValue<T>,
@@ -94,6 +53,6 @@ export function differences_vrd<T>(
   }
 }
 
-export default differences_vrd;
 
-export * from "./test";
+
+export * from './test';

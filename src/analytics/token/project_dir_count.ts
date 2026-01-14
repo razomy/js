@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Define the function to count the tokens in the project directory
-export function project_dir_count(
+export default function project_dir_count(
   project_dir: string,
   fileRegex = /\.ts$/,
   // Define the regex pattern to exclude certain files/directories
@@ -35,4 +35,4 @@ export function project_dir_count(
   return token_count;
 }
 
-export default project_dir_count;
+

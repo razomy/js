@@ -1,13 +1,6 @@
-import {performance} from 'perf_hooks';
+import perf_hooks from 'perf_hooks';
 
-export async function performance_cb(key, callback) {
-  const start_time = performance.now();
-  const result = await callback();
-  const end_time = performance.now();
-  const execution_time = end_time - start_time;
-  console.log(`Execution time: key=${key} time=${execution_time} milliseconds`);
-  return result;
-}
+const {performance} = perf_hooks;
 
 export class Performance {
   start_time: number;
@@ -26,7 +19,7 @@ export class Performance {
     return execution_time;
   }
 
-  tick_and_log(key: string = "default") {
+  tick_and_log(key: string = 'default') {
     console.log(`Execution time: key=${key} time=${this.tick()} milliseconds`);
   }
 }

@@ -1,6 +1,6 @@
-import {Function} from "razomy.function/function";
+import {Function} from 'razomy.function/function';
 
-export async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
+export default async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
   const result_fn = async () => await cb(...req);
   if (err != null) {
     expect(result_fn).toThrow(err);
@@ -12,4 +12,4 @@ export async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, 
   }
 }
 
-export default test;
+

@@ -1,4 +1,4 @@
-export function sort_by(collection, iteratee) {
+export default function sort_by(collection, iteratee) {
     let index = 0;
     const length = collection.length;
     const result = new Array(length);

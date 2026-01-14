@@ -1,5 +1,5 @@
 import { ICodec } from 'razomy.codec/i_codec';
-import { IFactory } from 'razomy.factory/i_factory';
+import * as create from 'razomy.create';
 import { ElementView } from 'razomy.graphics/elements/element_view';
 import { RectangleShape } from 'razomy.graphics/shapes/rectangle_shape';
 import { TextElement } from 'razomy.graphics/elements/text_element';
@@ -10,10 +10,10 @@ import { RectangleCodec }  from 'razomy.graphics/codecs/web/svg/codecs/rectangle
 import { SvgCodec }  from 'razomy.graphics/codecs/web/svg/codecs/svg_codec';
 import { TextCodec }  from 'razomy.graphics/codecs/web/svg/codecs/text_codec';
 
-import {UnknownTypeArgumentException} from "razomy.exceptions/unknown_type_argument_exception";
+import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
 
 
-export class CodecFactory implements IFactory<ICodec<ElementView, any>> {
+export class CodecFactory implements create.With<ICodec<ElementView, any>> {
 
   constructor(
     private codecConfig: CodecConfig,

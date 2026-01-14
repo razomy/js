@@ -5,7 +5,7 @@ import {DirPathString} from 'razomy.path/string/path_string';
 export type StringCommand = string;
 export type ShellCommand = StringCommand;
 
-export function execute_sync(shell_command: ShellCommand, dir_path: DirPathString) {
+export default function execute_sync(shell_command: ShellCommand, dir_path: DirPathString) {
   console.log(shell_command);
   const result = execSync(shell_command, {
     cwd: path.resolve(dir_path),
@@ -15,4 +15,4 @@ export function execute_sync(shell_command: ShellCommand, dir_path: DirPathStrin
   return result;
 }
 
-export default execute_sync;
+

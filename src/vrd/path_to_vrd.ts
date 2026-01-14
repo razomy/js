@@ -1,6 +1,5 @@
-import {Vrd} from "razomy.vrd/vrd";
-
-export function path_to_vrd<T>(path: string[]) {
+import {Vrd} from 'razomy.vrd/vrd';
+export default function path_to_vrd<T>(path: string[]) {
   const res = new Vrd<T>();
 
   let last = res;
@@ -12,4 +11,4 @@ export function path_to_vrd<T>(path: string[]) {
   return res;
 }
 
-export default path_to_vrd;
+

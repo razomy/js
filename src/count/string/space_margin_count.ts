@@ -1,7 +1,7 @@
-import {String} from "razomy.string/string";
-import {Number} from "razomy.number/number";
+import {String} from 'razomy.string/string';
+import {Number} from 'razomy.number/number';
 
-export function space_margin_count(string: String): Number {
+export default function space_margin_count(string: String): Number {
   let i = 0;
   for (let chr of string) {
     if (chr == ' ') {
@@ -13,4 +13,4 @@ export function space_margin_count(string: String): Number {
   return i;
 }
 
-export default space_margin_count;
+

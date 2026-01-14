@@ -1,6 +1,6 @@
 import similarity from 'razomy.string/similarity';
 
-export function get_similar(str: string, items): string | null {
+export default function get_similar(str: string, items): string | null {
   let best_match: string | null = null;
   let best_similarity = 0;
 
@@ -18,4 +18,4 @@ export function get_similar(str: string, items): string | null {
   return null;
 }
 
-export default get_similar;
+

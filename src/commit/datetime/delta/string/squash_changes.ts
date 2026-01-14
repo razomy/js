@@ -1,6 +1,6 @@
-import { AddDeltaString, DeltaString, RemoveDeltaString } from "razomy.commit/datetime/delta/string/delta_string";
+import { AddDeltaString, DeltaString, RemoveDeltaString } from 'razomy.commit/datetime/delta/string/delta_string';
 
-export function squash_changes(changes: DeltaString[]): DeltaString[] {
+export default function squash_changes(changes: DeltaString[]): DeltaString[] {
     if (changes.length === 0) {
     return [];
     }

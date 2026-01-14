@@ -1,4 +1,4 @@
-export function try_first_equal<T>(list1: T[], list2: T[]) {
+export default function try_first_equal<T>(list1: T[], list2: T[]) {
   const common_strings = null;
 
   for (const item2 of list2) {
@@ -12,4 +12,4 @@ export function try_first_equal<T>(list1: T[], list2: T[]) {
   return common_strings;
 }
 
-export default try_first_equal;
+

@@ -1,8 +1,9 @@
-import vrd, { VrdOrValue } from "razomy.vrd/vrd";
-import { equal_ } from "razomy.equal/equal";
-import differences_vrd, {P} from './differences_vrd';
+import vrd, { VrdOrValue } from 'razomy.vrd/vrd';
+import equal from 'razomy.equal/equal';
+import {P} from './differences_vrd';
+import differences_dict from './differences_dict';
 
-export function test() {
+export default function test() {
     const specs: [any, VrdOrValue<any>, VrdOrValue<any>, P<any>[]][] = [
             [[], null, null, []],
             [[], 'a', null, [{type: 'removed', path: '', value: 'a'}],],
@@ -26,7 +27,7 @@ export function test() {
             ]],
           ];
     for (let spec of specs) {
-    const result = differences_vrd(spec[0], spec[1], spec[2], '');
-    console.log(equal_(result, spec[3]), result);
+    const result = differences_dict(spec[0], spec[1], spec[2], '');
+    console.log(equal(result, spec[3]), result);
     }
 }

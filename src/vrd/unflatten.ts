@@ -1,6 +1,5 @@
-import { assign as key_assign } from "razomy.key/assign";
-
-export function unflatten(data: Record<string, any>, assign = key_assign): Record<string, any> {
+import { default as key_assign } from 'razomy.key/assign';
+export default function unflatten(data: Record<string, any>, assign = key_assign): Record<string, any> {
     if (typeof data !== 'object' || data === null || Array.isArray(data)) {
     return data;
     }

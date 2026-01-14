@@ -30,7 +30,7 @@ export * as event from './event';
 export * as exceptions from './exceptions';
 export * as express from './express';
 export * as extension from './extension';
-export * as factory from './factory';
+export * as factory from './create';
 export * as fs from './fs';
 export * as function_ from './function';
 export * as gate from './gate';
@@ -72,7 +72,7 @@ export * as socket from './socket';
 export * as spec from './spec';
 export * as string from './string';
 export * as strings from './strings';
-export * as task from './task';
+
 export * as test from './test';
 export * as thread from './thread';
 export * as time from './time';

@@ -1,32 +1,12 @@
 import path from 'path';
 import execute_async from 'razomy.shell/execute_async';
-import {read_file} from 'razomy.fs/file/read';
-import {write_file} from 'razomy.fs/file/write';
+import read from 'razomy.fs/file/read';
+import write_file from 'razomy.fs/file/write_file';
 import try_ from 'razomy.async/try_';
+import get_git_commits_id from './get_git_commits_id';
 
 
-export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
-
-
-// Command to retrieve the last commits with commit IDs and names
-  const command = `git --git-dir=${dir_path}/.git log --pretty=format:%h%x09%s%x09%ad -n ${commitCount} --date=iso`;
-
-  const stdout = String(await execute_async(command, {}));
-  const lines = stdout.trim().split('\n');
-
-  // Create an array to store the commit information
-  let commits: { id: string, commit_name: string, date: string }[] = [];
-
-  // Process each line to extract the commit ID and name
-  lines.forEach((line) => {
-    const [commit_id, commit_name, commit_date] = line.split('\t');
-    commits.push({id: commit_id, commit_name, date: commit_date});
-  });
-
-  return commits.reverse();
-}
-
-export async function git_file_to_new_git_file(
+export default async function git_file_to_new_git_file(
   repositoryPath,
   repositorynewPath,
   fileSubPath = '/data/start.txt',
@@ -41,7 +21,7 @@ export async function git_file_to_new_git_file(
     const checkout_command = `git checkout ${commit.id}`;
     await try_(execute_async(checkout_command, {cwd: repositoryPath}));
 
-    const data = read_file(repositoryPath + fileSubPath);
+    const data = read(repositoryPath + fileSubPath);
     write_file(repositorynewPath + fileSubPath, data);
 
     const commit_command = `git add . && git commit --date "${commit.date}" -m "${commit.commit_name}"`;

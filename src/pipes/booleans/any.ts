@@ -1,6 +1,6 @@
-import {Execute} from "razomy.pipes/booleans/execute";
+import {Execute} from 'razomy.pipes/booleans/execute';
 
-export function any<T>(ctx: T, nexts: Execute<T>[]) {
+export default function any<T>(ctx: T, nexts: Execute<T>[]) {
   for (const item of nexts) {
     let is_complete = item(ctx);
     if (is_complete) {
@@ -10,4 +10,4 @@ export function any<T>(ctx: T, nexts: Execute<T>[]) {
   return false;
 }
 
-export default any;
+

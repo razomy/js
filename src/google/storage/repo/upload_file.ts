@@ -1,7 +1,7 @@
-import { Storage } from "@google-cloud/storage";
-import path from "path";
+import { Storage } from '@google-cloud/storage';
+import path from 'path';
 
-export async function upload_file(bucketName, fileName, folderPath) {
+export default async function upload_file(bucketName, fileName, folderPath) {
     const storage = new Storage();
     const bucket = storage.bucket(bucketName);
     const file_path = path.join(folderPath, fileName);

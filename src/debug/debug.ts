@@ -1,6 +1,6 @@
-export function debug(c) {
+export default function debug(c) {
     c;
     debugger;
 }
 
-export default debug;
+

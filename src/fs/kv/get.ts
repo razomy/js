@@ -1,12 +1,13 @@
-import fs from "fs";
-import path from "path";
-import {ArgumentException} from "razomy.exceptions/argument_exception";
-import {ArrayKeyValuable, ArrayOrKeyValuable, k, KeyValuable, Valuable, Value} from "razomy.kv/kv";
-import {ak} from "razomy.kv/akv";
+import fs from 'fs';
+import path from 'path';
+import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import {ArrayKeyValuable, ArrayOrKeyValuable,  KeyValuable, Valuable, Value} from 'razomy.kv/kv';
+import akv from 'razomy.kv/akv';
+import k from 'src/kv/k';
 
-export function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
-export function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
-export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
+export default function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
+export default function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
+export default function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = k(path.basename(directory), null as any) as T;
 
@@ -15,7 +16,7 @@ export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: str
     kv[1] = data;
     return kv;
   } else if (stat.isDirectory()) {
-    kv[1] = ak<string, Buffer>();
+    kv[1] = akv<string, Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
       const item_path = path.join(directory, item);
@@ -28,4 +29,4 @@ export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: str
   }
 }
 
-export default get;
+

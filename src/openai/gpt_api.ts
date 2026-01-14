@@ -1,9 +1,9 @@
-import { is_object } from "razomy.object/object";
-import is_string from "razomy.string/is_string";
-import {gpt_api_v2} from './gpt_api_v2';
-import {set_tokens} from './set_tokens';
+import is_object from 'razomy.object/is_object';
+import is_string from 'razomy.string/is_string';
+import gpt_api_v2 from './gpt_api_v2';
+import set_tokens from './set_tokens';
 
-export async function gpt_api(messageOrMessagesOrRequest) {
+export default async function gpt_api(messageOrMessagesOrRequest) {
     if (is_string(messageOrMessagesOrRequest)) {
     const req = { messages: [{ role: 'user', content: messageOrMessagesOrRequest }] };
     set_tokens(req);

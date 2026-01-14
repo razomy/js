@@ -1,14 +1,13 @@
-import {is_kv, KeyValuable, Valuable} from "razomy.kv/kv";
-import {Function} from "razomy.function/function";
-import {is_akv} from "razomy.kv/akv";
-import iterate from "razomy.kv/iterate";
-
+import is_kv, { KeyValuable, Valuable} from 'razomy.kv/kv';
+import {Function} from 'razomy.function/function';
+import is_akv from 'razomy.kv/is_akv';
+import iterate from 'razomy.kv/iterate';
 
 /**
  * true - success
  * false - break
  */
-export function value_iterate<K, V>(
+export default function value_iterate<K, V>(
   value: Valuable<K, V>,
   value_cb: Function<[KeyValuable<K, V>], boolean | undefined>
 ): boolean {
@@ -19,4 +18,4 @@ export function value_iterate<K, V>(
   });
 }
 
-export default value_iterate;
+
