@@ -1,10 +1,10 @@
-import { get_object_size_in_bytes }  from 'razomy.bytes/bytes';
+import object_to_formatted_string from './object_to_formatted_string';
 
 describe('bytes', () => {
   it('getObjectSizeInBytes', () => {
     const input = { foo: 'bar' };
 
-    const encoded = get_object_size_in_bytes(input);
+    const encoded = object_to_formatted_string(input);
     expect(encoded).toStrictEqual(13)
   });
 });

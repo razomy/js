@@ -1,1 +1,1 @@
-export { Action } from './type';
+export { Action } from './action';

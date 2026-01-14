@@ -1,6 +1,6 @@
 import similarity from 'razomy.string/similarity';
 
-function get_similar(str: string, items) {
+function get_similar(str: string, items): string | null {
   let best_match: string | null = null;
   let best_similarity = 0;
 

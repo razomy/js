@@ -1,1 +1,2 @@
-export * as rename_filename_to_case_from_dir from './rename_filename_to_case_from_dir';
+export { default as rename_to_snake_case_recursive_ts } from './rename_to_snake_case_recursive_ts';
+export { default as rename_to_snake_case_recursive } from './rename_to_snake_case_recursive';
