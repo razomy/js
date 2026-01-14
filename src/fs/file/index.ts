@@ -6,6 +6,7 @@ export { default as read_file_async } from './read_file_async';
 export { default as read_file_json } from './read_file_json';
 export { default as read } from './read';
 export { default as try_read_file_json } from './try_read_file_json';
+export { default as try_write_file } from './try_write_file';
 export { default as write_file_json } from './write_file_json';
 export { default as write_file } from './write_file';
 export { default as write_to_file_async } from './write_to_file_async';

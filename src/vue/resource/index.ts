@@ -1,5 +1,5 @@
 export * as plugin from './plugin';
-export * as ReactiveDirective from './reactive_directive';
+export { default as reactive_directive } from './reactive_directive';
 export { RemoteNode } from './remote_node';
 export { RemoteResource } from './remote_resource';
 export { Resource } from './resource';

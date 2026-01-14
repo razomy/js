@@ -1,10 +1,13 @@
 export * as fs from './fs';
+export { default as differences_dict } from './differences_dict';
+export { default as differences_vrd } from './differences_vrd';
 export { default as filter_vrd } from './filter_vrd';
 export { default as flatten } from './flatten';
 export { default as get_matches_key } from './get_matches_key';
 export { default as get_parents } from './get_parents';
 export { default as get_vrd } from './get_vrd';
 export { default as get_with_path } from './get_with_path';
+export { default as is_vrd } from './is_vrd';
 export { default as iterate_break } from './iterate_break';
 export { default as iterate_skip } from './iterate_skip';
 export { default as iterate_vrd } from './iterate_vrd';
@@ -22,4 +25,3 @@ export { default as unflatten } from './unflatten';
 export { default as vrd_to_absolute_path } from './vrd_to_absolute_path';
 export { default as vrd } from './vrd';
 export { default as vrl_to_vrd } from './vrl_to_vrd';
-export {default as differences_vrd} from './differences_dict';

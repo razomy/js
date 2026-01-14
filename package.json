@@ -160,7 +160,7 @@
     "razomy.event": "./src/event",
     "razomy.exceptions": "./src/exceptions",
     "razomy.express": "./src/express",
-    "razomy.factory": "./src/factory",
+    "razomy.create": "./src/create",
     "razomy.fs": "./src/fs",
     "razomy.function": "./src/function",
     "razomy.gate": "./src/gate",

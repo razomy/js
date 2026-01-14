@@ -1,6 +1,7 @@
-export * as build_packages from './build_packages';
+export { default as build_packages } from './build_packages';
 export * as create_index from './create_index';
 export { default as create_package } from './create_package';
+export * as rename_deafult from './rename_deafult';
 export * as rename_files from './rename_files';
 export * as rename_functions from './rename_functions';
 export * as rename_imports from './rename_imports';

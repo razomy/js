@@ -1,6 +1,5 @@
 import {OpenAiCtx, WithOpenAiCtx} from 'razomy.openai/open_ai_ctx';
-import OpenAI from 'openai';
-import Completion = OpenAI.Completion;
+import openai from 'openai';
 
 export class LanguageGrammarCorrection {
     constructor(private ctx: WithOpenAiCtx) {
@@ -21,7 +20,7 @@ ${text}`,
             logprobs: 0,
             stream: false,
         };
-        const response = await this.ctx.openai.openai.completions.create(request) as Completion;
+        const response = await this.ctx.openai.openai.completions.create(request) as openai.Completion;
         return response.choices[0].text;
     }
 }

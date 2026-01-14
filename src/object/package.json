@@ -4,6 +4,9 @@
   "main": "./index.js",
   "license": "MIT",
   "types": "./index.d.ts",
+  "dependencies": {
+    "object-sizeof": "^2.6.5"
+  },
   "files": [
     "*"
   ],

@@ -7,4 +7,3 @@ export interface OpenAiCtx {
 export interface WithOpenAiCtx {
     openai: OpenAiCtx
 }
-

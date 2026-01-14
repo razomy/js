@@ -1,2 +1,2 @@
-export { default as main } from './is_main';
-export * as on_main from './on_main';
+export { default as is_main } from './is_main';
+export { default as on_main } from './on_main';
