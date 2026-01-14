@@ -1,4 +1,4 @@
-import {IResource} from "razomy/resources/i_resource";
+import {IResource} from "razomy.resources/i_resource";
 
 export interface IGate<T extends IResource> {
     get(): T;

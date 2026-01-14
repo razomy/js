@@ -1,6 +1,13 @@
 {
   "name": "razomy.class",
   "version": "0.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "./index.js",
+  "license": "MIT",
+  "types": "./index.d.ts",
+  "files": [
+    "*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

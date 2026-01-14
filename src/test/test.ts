@@ -1,4 +1,4 @@
-import {Function} from "razomy/function/function";
+import {Function} from "razomy.function/function";
 
 async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
   const result_fn = async () => await cb(...req);

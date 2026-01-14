@@ -1,7 +1,7 @@
-import {WithOffset} from 'razomy/offset/offest';
+import {WithOffset} from 'razomy.offset/offest';
 
-import size from 'razomy/bound/string/size';
-import * as coordinates from 'razomy/coordinates';
+import size from 'razomy.bound/string/size';
+import * as coordinates from 'razomy.coordinates';
 
 function rect(delta: string, str: string): WithOffset & coordinates.length.With & coordinates.rectangle.Bound {
   const start = size(delta);

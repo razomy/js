@@ -1,9 +1,9 @@
-import {ArgumentException} from "razomy/exceptions/argument_exception";
-import {is_vrd, Vrd, VrdOrValue} from "razomy/vrd/vrd";
-import path_to_vrd from "razomy/vrd/path_to_vrd";
-import set_vrd from "razomy/vrd/set_vrd";
-import {iterate_break, iterate_skip} from 'razomy/vrd/iterate_vrd';
-import {DictKey} from "razomy/dict/dict";
+import {ArgumentException} from "razomy.exceptions/argument_exception";
+import {is_vrd, Vrd, VrdOrValue} from "razomy.vrd/vrd";
+import path_to_vrd from "razomy.vrd/path_to_vrd";
+import set_vrd from "razomy.vrd/set_vrd";
+import {iterate_break, iterate_skip} from 'razomy.vrd/iterate_vrd';
+import {DictKey} from "razomy.dict/dict";
 
 function get_vrd<T>(value_recursive: VrdOrValue<T>, path: DictKey[], path_offset: number): VrdOrValue<T> {
   for (let key in value_recursive!) {

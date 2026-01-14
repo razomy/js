@@ -38,5 +38,5 @@ describe('processes', () => {
 //     process.exit(0);
 // }, 100)
 //
-// import {execute} from "razomy/process/promise_in_process.js";
+// import {execute} from "razomy.process/promise_in_process.js";
 // console.log(await processes_to_promise([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {exec: 'worker.spec.js'}));

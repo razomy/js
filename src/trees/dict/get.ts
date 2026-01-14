@@ -1,6 +1,6 @@
-import {ArgumentException} from "razomy/exceptions/argument_exception";
-import {WithChildrenDict} from "razomy/trees/dict/with_children_dict";
-import {assign} from "razomy/key/assign";
+import {ArgumentException} from "razomy.exceptions/argument_exception";
+import {WithChildrenDict} from "razomy.trees/dict/with_children_dict";
+import {assign} from "razomy.key/assign";
 
 function get<T extends WithChildrenDict<T>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {

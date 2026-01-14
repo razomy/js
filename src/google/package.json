@@ -7,6 +7,13 @@
     "@google/genai": "^1.33.0",
     "google-auth-library": "^10.5.0"
   },
-  "main": "index.js",
-  "license": "MIT"
+  "main": "./index.js",
+  "license": "MIT",
+  "types": "./index.d.ts",
+  "files": [
+    "*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -1,4 +1,4 @@
-import {is_vrd, VrdOrValue} from 'razomy/vrd/vrd';
+import {is_vrd, VrdOrValue} from 'razomy.vrd/vrd';
 
 interface ValueChildren<T> {
   value: T,

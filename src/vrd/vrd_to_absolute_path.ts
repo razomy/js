@@ -1,4 +1,4 @@
-import {is_vrd, VrdOrValue} from "razomy/vrd/vrd";
+import {is_vrd, VrdOrValue} from "razomy.vrd/vrd";
 
 function vrd_to_absolute_path<T>(
   input: VrdOrValue<T>,

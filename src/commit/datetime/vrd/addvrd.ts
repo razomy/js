@@ -1,4 +1,4 @@
-import {VrdOrValue} from 'razomy/vrd/vrd';
+import {VrdOrValue} from 'razomy.vrd/vrd';
 
 export interface RemoveDeltaVrd {
   after_path: string[],

@@ -1,4 +1,4 @@
-import {Execute} from "razomy/pipes/booleans/execute";
+import {Execute} from "razomy.pipes/booleans/execute";
 
 function all<T>(ctx: T, nexts: Execute<T>[]) {
   for (const item of nexts) {

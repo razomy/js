@@ -1,5 +1,5 @@
-import get from "razomy/kv/get";
-import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable, Valuable} from "razomy/kv/kv";
+import get from "razomy.kv/get";
+import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable, Valuable} from "razomy.kv/kv";
 
 function set<T>(value: ArrayOrKeyValuable<T, T>, path: T[], newValue: Valuable<T, T>): void {
   const parent_path = path.slice(0, -1);

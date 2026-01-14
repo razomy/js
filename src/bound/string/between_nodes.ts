@@ -1,5 +1,5 @@
-import {NodeBound} from 'razomy/bound/string/bound';
-import {rectangle} from 'razomy/coordinates';
+import {NodeBound} from 'razomy.bound/string/bound';
+import {rectangle} from 'razomy.coordinates';
 
 function between_nodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {

@@ -5,20 +5,274 @@
     "rootDir": "src",
     "declaration": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "dom"],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noImplicitAny": false,
     "outDir": "dist",
-    //todo:remove
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "razomy": ["src/index.ts"],
-      "razomy/*": ["src/*"]
+      "razomy.action": [
+        "./src/action"
+      ],
+      "razomy.analytics": [
+        "./src/analytics"
+      ],
+      "razomy.array": [
+        "./src/array"
+      ],
+      "razomy.assert": [
+        "./src/assert"
+      ],
+      "razomy.ast": [
+        "./src/ast"
+      ],
+      "razomy.async": [
+        "./src/async"
+      ],
+      "razomy.auth": [
+        "./src/auth"
+      ],
+      "razomy.batch": [
+        "./src/batch"
+      ],
+      "razomy.bound": [
+        "./src/bound"
+      ],
+      "razomy.buffer": [
+        "./src/buffer"
+      ],
+      "razomy.bytes": [
+        "./src/bytes"
+      ],
+      "razomy.class": [
+        "./src/class"
+      ],
+      "razomy.cli": [
+        "./src/cli"
+      ],
+      "razomy.cluster": [
+        "./src/cluster"
+      ],
+      "razomy.code": [
+        "./src/code"
+      ],
+      "razomy.codec": [
+        "./src/codec"
+      ],
+      "razomy.commit": [
+        "./src/commit"
+      ],
+      "razomy.compression": [
+        "./src/compression"
+      ],
+      "razomy.console": [
+        "./src/console"
+      ],
+      "razomy.coordinates": [
+        "./src/coordinates"
+      ],
+      "razomy.count": [
+        "./src/count"
+      ],
+      "razomy.date": [
+        "./src/date"
+      ],
+      "razomy.dates": [
+        "./src/dates"
+      ],
+      "razomy.debug": [
+        "./src/debug"
+      ],
+      "razomy.dict": [
+        "./src/dict"
+      ],
+      "razomy.difference": [
+        "./src/difference"
+      ],
+      "razomy.differences": [
+        "./src/differences"
+      ],
+      "razomy.equal": [
+        "./src/equal"
+      ],
+      "razomy.event": [
+        "./src/event"
+      ],
+      "razomy.exceptions": [
+        "./src/exceptions"
+      ],
+      "razomy.express": [
+        "./src/express"
+      ],
+      "razomy.factory": [
+        "./src/factory"
+      ],
+      "razomy.fs": [
+        "./src/fs"
+      ],
+      "razomy.function": [
+        "./src/function"
+      ],
+      "razomy.gate": [
+        "./src/gate"
+      ],
+      "razomy.git": [
+        "./src/git"
+      ],
+      "razomy.google": [
+        "./src/google"
+      ],
+      "razomy.graph": [
+        "./src/graph"
+      ],
+      "razomy.graphics": [
+        "./src/graphics"
+      ],
+      "razomy.http": [
+        "./src/http"
+      ],
+      "razomy.id": [
+        "./src/id"
+      ],
+      "razomy.index": [
+        "./src/index"
+      ],
+      "razomy.indexes": [
+        "./src/indexes"
+      ],
+      "razomy.init": [
+        "./src/init"
+      ],
+      "razomy.json": [
+        "./src/json"
+      ],
+      "razomy.key": [
+        "./src/key"
+      ],
+      "razomy.kv": [
+        "./src/kv"
+      ],
+      "razomy.languages": [
+        "./src/languages"
+      ],
+      "razomy.list": [
+        "./src/list"
+      ],
+      "razomy.logging": [
+        "./src/logging"
+      ],
+      "razomy.main": [
+        "./src/main"
+      ],
+      "razomy.mock_generator": [
+        "./src/mock_generator"
+      ],
+      "razomy.number": [
+        "./src/number"
+      ],
+      "razomy.object": [
+        "./src/object"
+      ],
+      "razomy.observable": [
+        "./src/observable"
+      ],
+      "razomy.offset": [
+        "./src/offset"
+      ],
+      "razomy.openai": [
+        "./src/openai"
+      ],
+      "razomy.path": [
+        "./src/path"
+      ],
+      "razomy.performance": [
+        "./src/performance"
+      ],
+      "razomy.pipes": [
+        "./src/pipes"
+      ],
+      "razomy.random": [
+        "./src/random"
+      ],
+      "razomy.razomy": [
+        "./src/razomy"
+      ],
+      "razomy.recursive": [
+        "./src/recursive"
+      ],
+      "razomy.resources": [
+        "./src/resources"
+      ],
+      "razomy.respect": [
+        "./src/respect"
+      ],
+      "razomy.serializable": [
+        "./src/serializable"
+      ],
+      "razomy.servers": [
+        "./src/servers"
+      ],
+      "razomy.shell": [
+        "./src/shell"
+      ],
+      "razomy.shutdown": [
+        "./src/shutdown"
+      ],
+      "razomy.socket": [
+        "./src/socket"
+      ],
+      "razomy.spec": [
+        "./src/spec"
+      ],
+      "razomy.string": [
+        "./src/string"
+      ],
+      "razomy.strings": [
+        "./src/strings"
+      ],
+      "razomy.task": [
+        "./src/task"
+      ],
+      "razomy.test": [
+        "./src/test"
+      ],
+      "razomy.thread": [
+        "./src/thread"
+      ],
+      "razomy.time": [
+        "./src/time"
+      ],
+      "razomy.trees": [
+        "./src/trees"
+      ],
+      "razomy.types": [
+        "./src/types"
+      ],
+      "razomy.undefined": [
+        "./src/undefined"
+      ],
+      "razomy.value": [
+        "./src/value"
+      ],
+      "razomy.vrd": [
+        "./src/vrd"
+      ],
+      "razomy.vue": [
+        "./src/vue"
+      ],
+      "razomy": [
+        "./src"
+      ]
     }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }

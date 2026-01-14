@@ -1,6 +1,6 @@
 import cluster, {ClusterSettings, Worker} from "cluster";
 import child from "node:child_process";
-import {Event} from "razomy/event/event_to_promise";
+import {Event} from "razomy.event/event_to_promise";
 
 
 export interface WithWorkerId {

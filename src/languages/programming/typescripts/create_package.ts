@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {read_file_json} from 'razomy/fs/file/read';
-import {write_file_json} from 'razomy/fs/file/write';
+import {read_file_json} from 'razomy.fs/file/read';
+import {write_file_json} from 'razomy.fs/file/write';
 
 function create_package() {
   const src_dir: string = path.join(__dirname, '../../../');
@@ -30,11 +30,11 @@ function create_package() {
       name: new_name,
       version: '0.0.0',
       license: 'MIT',
-      main: "./dist/index.js",
-      types: "./dist/index.d.ts",
-      files: ["dist"],
+      main: './index.js',
+      types: './index.d.ts',
+      files: ['*'],
       publishConfig: {
-        access: "public"
+        access: 'public'
       }
     };
 
@@ -54,13 +54,19 @@ function create_package() {
     fs.writeFileSync(pkg_path, JSON.stringify(pkg_data, null, 2));
     console.log(`✓ Updated: ${folder.name} -> ${new_name}`);
   });
-  const file = read_file_json('../../../../package.json');
-  file.workspaces = files.map(folder => 'src/' + folder.name)
-  file.dependencies = Object.fromEntries(
+  const packageFile = read_file_json('../../../../package.json');
+  packageFile.workspaces = files.map(folder => 'src/' + folder.name)
+  packageFile.dependencies = Object.fromEntries(
     files.map(folder => ['razomy.' + folder.name, './src/' + folder.name])
   );
+  write_file_json('../../../../package.json', packageFile, true)
 
-  write_file_json('../../../../package.json', file)
+  const tsFile = read_file_json('../../../../tsconfig.json');
+  tsFile.compilerOptions.paths = Object.fromEntries(
+    files.map(folder => ['razomy.' + folder.name, ['./src/' + folder.name]])
+  );
+  tsFile.compilerOptions.paths.razomy = ['./src']
+  write_file_json('../../../../tsconfig.json', tsFile, true)
 }
 
 create_package()

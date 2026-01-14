@@ -1,5 +1,5 @@
-import {is_vrd, Vrd, VrdOrValue} from "razomy/vrd/vrd";
-import {DictKey} from "razomy/dict/dict";
+import {is_vrd, Vrd, VrdOrValue} from "razomy.vrd/vrd";
+import {DictKey} from "razomy.dict/dict";
 
 function filter_vrd<I>(input: Vrd<I>, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): Vrd<I>;
 function filter_vrd<I>(input: I, is_keep: (input: VrdOrValue<I>, parent: DictKey) => boolean): I;

@@ -1,7 +1,7 @@
-import {progress} from "razomy/shell/log";
-import {Difference} from "razomy/difference/type";
-import {DifferenceType} from "razomy/difference/type";
-import first_equal_indexes from "razomy/indexes/first_equal_indexes";
+import {progress} from "razomy.shell/log";
+import {Difference} from "razomy.difference/type";
+import {DifferenceType} from "razomy.difference/type";
+import first_equal_indexes from "razomy.indexes/first_equal_indexes";
 
 /** a was, b become */
 function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {

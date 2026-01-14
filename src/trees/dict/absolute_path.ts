@@ -1,5 +1,5 @@
-import {BranchDict, BranchDictOrLeaf, RootDict} from "razomy/trees/dict/dict";
-import {Leaf} from "razomy/trees/leaf";
+import {BranchDict, BranchDictOrLeaf, RootDict} from "razomy.trees/dict/dict";
+import {Leaf} from "razomy.trees/leaf";
 
 export interface WithAbsolutePath {
   absolute_path: string

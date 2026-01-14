@@ -1,4 +1,4 @@
-import {RemoteNode} from "razomy/vue/resource/remote_node";
+import {RemoteNode} from "razomy.vue/resource/remote_node";
 
 export const reactive_directive = {
   mounted(el, binding, vnode) {

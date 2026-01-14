@@ -1,4 +1,4 @@
-import {Dict} from "razomy/dict/dict";
+import {Dict} from "razomy.dict/dict";
 
 function filter_dict<T>(dict: Dict<T>, cb: (t: T, k: string) => boolean) {
   const res: Dict<T> = {};

@@ -1,4 +1,4 @@
-import { IFactory } from 'razomy/factory/i_factory';
+import { IFactory } from 'razomy.factory/i_factory';
 
 export function generate_guid() {
   function generatePart8(withHyphen?: boolean) {

@@ -1,4 +1,4 @@
-import {Dict} from 'razomy/dict/dict';
+import {Dict} from 'razomy.dict/dict';
 
 function dict_to_string<T extends string>(dict: Dict<T>) {
   let res: string = '{';

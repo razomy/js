@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import sub_has from 'razomy/array/sub_has';
+import sub_has from 'razomy.array/sub_has';
 
 export const python_cache = ['__pycache__', '.pytest_cache'];
 export const js_angular_cache = ['.angular'];

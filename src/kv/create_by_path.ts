@@ -1,5 +1,5 @@
-import {k} from "razomy/kv/kv";
-import {ak} from "razomy/kv/akv";
+import {k} from "razomy.kv/kv";
+import {ak} from "razomy.kv/akv";
 
 function create_by_path<T>(path: T[]) {
   const root = k(null as T, ak<T>());

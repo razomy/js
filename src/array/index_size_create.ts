@@ -1,4 +1,4 @@
-import create from 'razomy/array/create';
+import create from 'razomy.array/create';
 
 function index_size_create(ix: number, size: number): number[] {
   const arr = create(size);

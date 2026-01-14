@@ -1,4 +1,4 @@
-import {String} from "razomy/string/string";
+import {String} from "razomy.string/string";
 
 function snake_case_string(input: String) {
   let text = String(input);

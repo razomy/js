@@ -1,4 +1,4 @@
-import {WithParent} from "razomy/trees/list/parent/parent";
+import {WithParent} from "razomy.trees/list/parent/parent";
 
 function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {

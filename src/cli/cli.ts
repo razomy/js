@@ -1,6 +1,6 @@
-import {assign} from 'razomy/key/assign';
-import {Module, TerminalArgs} from 'razomy/cli/module';
-import validate_array_string_throw from 'razomy/cli/validate_array_string_throw';
+import {assign} from 'razomy.key/assign';
+import {Module, TerminalArgs} from 'razomy.cli/module';
+import validate_array_string_throw from 'razomy.cli/validate_array_string_throw';
 
 async function cli<
   Rm extends keyof Module & string>(terminalArgs: TerminalArgs<Rm> | null | undefined): Promise<number> {

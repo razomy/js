@@ -1,5 +1,5 @@
-import { ITextureFilter }  from 'razomy/graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-import { byte_slice }  from 'razomy/graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
+import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import { byte_slice }  from 'razomy.graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
 
 export function bit_slice(val: number) {
   if (val > 1) {

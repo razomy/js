@@ -1,8 +1,8 @@
 import simpleGit from 'simple-git';
 import fs from 'fs';
 import path from 'path';
-import strings_to_delta_strings from 'razomy/commit/datetime/delta/string/strings_to_delta_strings';
-import {ActorDatetimeDeltaString, addss_to_string} from 'razomy/commit/datetime/delta/string/adds';
+import strings_to_delta_strings from 'razomy.commit/datetime/delta/string/strings_to_delta_strings';
+import {ActorDatetimeDeltaString, addss_to_string} from 'razomy.commit/datetime/delta/string/adds';
 
 function get_all_commit_hashes(git) {
   return new Promise<{ hash:string, date:string, author_name:string }[]>((resolve, reject) => {

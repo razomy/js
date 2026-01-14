@@ -1,8 +1,8 @@
 import path from 'path';
-import execute_async from 'razomy/shell/execute_async';
-import {read_file} from 'razomy/fs/file/read';
-import {write_file} from 'razomy/fs/file/write';
-import try_ from 'razomy/async/try_';
+import execute_async from 'razomy.shell/execute_async';
+import {read_file} from 'razomy.fs/file/read';
+import {write_file} from 'razomy.fs/file/write';
+import try_ from 'razomy.async/try_';
 
 
 export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {

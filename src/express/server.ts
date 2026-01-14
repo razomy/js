@@ -5,9 +5,9 @@ import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 import cors from 'cors';
 // import helmet from 'helmet';
-import {logger} from 'razomy/servers/logger';
-import {Ctx} from 'razomy/express/ctx';
-import echo from 'razomy/servers/echo';
+import {logger} from 'razomy.servers/logger';
+import {Ctx} from 'razomy.express/ctx';
+import echo from 'razomy.servers/echo';
 
 export function create(ctx: Ctx) {
   ctx.logger = logger;

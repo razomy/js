@@ -1,9 +1,16 @@
 {
   "name": "razomy.time",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "./index.js",
   "license": "MIT",
   "dependencies": {
     "date-fns": "^4.1.0"
+  },
+  "types": "./index.d.ts",
+  "files": [
+    "*"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }

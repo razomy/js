@@ -1,5 +1,5 @@
 // TODO:REFACTOR
-// import {Serializable} from 'razomy/serializable/serializable';
+// import {Serializable} from 'razomy.serializable/serializable';
 //
 // export interface Context<T = any> extends Serializable {}
 //

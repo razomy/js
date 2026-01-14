@@ -1,5 +1,5 @@
-import {is_vrd, VrdOrValue} from "razomy/vrd/vrd";
-import {Execute} from "razomy/pipes/booleans/execute";
+import {is_vrd, VrdOrValue} from "razomy.vrd/vrd";
+import {Execute} from "razomy.pipes/booleans/execute";
 
 interface Iterate<T> {
   parents: string[];

@@ -1,4 +1,4 @@
-import {Serializable} from 'razomy/serializable/serializable';
+import {Serializable} from 'razomy.serializable/serializable';
 
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonObject = { [key: string]: JsonValue };

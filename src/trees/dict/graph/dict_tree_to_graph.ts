@@ -1,5 +1,5 @@
-import {BranchDictOrLeaf} from "razomy/trees/dict/dict";
-import {Graph} from "razomy/graph/graph";
+import {BranchDictOrLeaf} from "razomy.trees/dict/dict";
+import {Graph} from "razomy.graph/graph";
 
 
 function iterate_children<T>(

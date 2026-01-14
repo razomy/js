@@ -1,4 +1,4 @@
-// import { countProjectTokens } from 'razomy/analitics/language/token/count_token_from_js_project_dir';
+// import { countProjectTokens } from 'razomy.analitics/language/token/count_token_from_js_project_dir';
 
 // // Call the countProjectTokens function with the specified project directory
 // const projectDir = '../../../';

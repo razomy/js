@@ -1,4 +1,4 @@
-import {execute, Pipe} from 'razomy/pipes/pipe';
+import {execute, Pipe} from 'razomy.pipes/pipe';
 
 export interface WithCreateCtxPipes<T> {
   create_ctx_pipes: Pipe<T, T>[];

@@ -1,5 +1,5 @@
-import { StyleAttribute }  from 'razomy/graphics/attributes/style_attribute';
-import {Color} from 'razomy/graphics/codecs/web/svg/color/color';
+import { StyleAttribute }  from 'razomy.graphics/attributes/style_attribute';
+import {Color} from 'razomy.graphics/codecs/web/svg/color/color';
 
 export class TextStyle extends StyleAttribute {
   constructor(

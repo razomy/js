@@ -1,13 +1,13 @@
-import { ICodec } from 'razomy/codec/i_codec';
-import { PositionAttribute } from 'razomy/graphics/attributes/position_attribute';
-import { SizeAttribute } from 'razomy/graphics/attributes/size_attribute';
-import { BorderStyle } from 'razomy/graphics/styles/border_style';
-import { FillStyle } from 'razomy/graphics/styles/fill_style';
-import { RectangleRoundStyle } from 'razomy/graphics/shapes/rectangle_round_style';
-import { RectangleShape } from 'razomy/graphics/shapes/rectangle_shape';
-import { ColorCodex } from 'razomy/graphics/codecs/web/svg/color/color_codex';
-import { HexParser } from 'razomy/graphics/codecs/web/svg/color/hex_parser';
-import { EncodeNodeFactory }  from 'razomy/graphics/codecs/web/svg/codecs/encode_node_factory';
+import { ICodec } from 'razomy.codec/i_codec';
+import { PositionAttribute } from 'razomy.graphics/attributes/position_attribute';
+import { SizeAttribute } from 'razomy.graphics/attributes/size_attribute';
+import { BorderStyle } from 'razomy.graphics/styles/border_style';
+import { FillStyle } from 'razomy.graphics/styles/fill_style';
+import { RectangleRoundStyle } from 'razomy.graphics/shapes/rectangle_round_style';
+import { RectangleShape } from 'razomy.graphics/shapes/rectangle_shape';
+import { ColorCodex } from 'razomy.graphics/codecs/web/svg/color/color_codex';
+import { HexParser } from 'razomy.graphics/codecs/web/svg/color/hex_parser';
+import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
 
 export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
 

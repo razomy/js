@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import {ArgumentException} from 'razomy/exceptions/argument_exception';
-import {Vrd, VrdOrValue} from 'razomy/vrd/vrd';
+import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
 
 function fs_to_vrd(directory: string, is_skip: (path) => boolean): VrdOrValue<Buffer> {
   const stat = fs.statSync(directory);

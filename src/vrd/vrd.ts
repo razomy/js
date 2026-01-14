@@ -1,4 +1,4 @@
-import {Dict} from "razomy/dict/dict";
+import {Dict} from "razomy.dict/dict";
 
 export type VrdOrValue<T> = Vrd<T> | T
 

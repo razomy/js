@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
-import {models} from "razomy/openai/models";
-import {is_object} from "razomy/object/object";
-import is_string from "razomy/string/is_string";
+import {models} from "razomy.openai/models";
+import {is_object} from "razomy.object/object";
+import is_string from "razomy.string/is_string";
 
 const openai = new OpenAI();
 
