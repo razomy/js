@@ -29,8 +29,13 @@ function create_package() {
     let pkg_data: PackageJson = {
       name: new_name,
       version: '0.0.0',
-      main: 'index.js',
-      license: 'MIT'
+      license: 'MIT',
+      main: "./dist/index.js",
+      types: "./dist/index.d.ts",
+      files: ["dist"],
+      publishConfig: {
+        access: "public"
+      }
     };
 
     // Read existing

@@ -5,10 +5,7 @@
     "rootDir": "src",
     "declaration": true,
     "esModuleInterop": true,
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
+    "lib": ["ESNext", "dom"],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noImplicitAny": false,
@@ -19,15 +16,9 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "razomy": [
-        "src/index.ts"
-      ],
-      "razomy/*": [
-        "src/*"
-      ]
+      "razomy": ["src/index.ts"],
+      "razomy/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
