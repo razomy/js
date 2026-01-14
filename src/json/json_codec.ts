@@ -1,12 +1,9 @@
 import {ICodec} from 'razomy.codec/i_codec';
 import {Json} from 'razomy.json/json';
+import {string_to_json} from './string_to_json';
 
 export function json_to_string(state: Json): string {
   return JSON.stringify(state, null, 2);
-}
-
-export function string_to_json<T extends Json>(data: string): T {
-  return JSON.parse(data);
 }
 
 export class JsonCodec<T extends Json> implements ICodec<T, string> {

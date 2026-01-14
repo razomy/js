@@ -5,7 +5,7 @@ import {execSync} from 'node:child_process';
 import {SourcePathString} from 'razomy.path/string/path_string';
 import try_ from 'razomy.async/try_';
 
-function commit(source_path: SourcePathString) {
+export function commit(source_path: SourcePathString) {
   const {files, repos} = get_recursive_status(source_path)
   const tree = nodes_array_to_tree(repos, files);
   iterate_reverse(tree[0], (node)=>{

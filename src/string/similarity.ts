@@ -21,7 +21,7 @@ export function levenshtein_distance(a, b): number {
 }
 
 
-function similarity(str1: string, str2: string): number {
+export function similarity(str1: string, str2: string): number {
   const length = Math.max(str1.length, str2.length);
   const distance = levenshtein_distance(str1, str2);
   return 1 - distance / length;

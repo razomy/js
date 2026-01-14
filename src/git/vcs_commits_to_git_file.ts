@@ -11,7 +11,7 @@ export async function init(dir_path: string, file_name: string) {
   await execute_async(`git add .`, {cwd: dir_path});
 }
 
-async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
+export async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {
@@ -24,15 +24,6 @@ async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, 
   }
   progress(commits.length, commits.length);
   await execute_async('git gc', {cwd: dir_path});
-}
-
-export async function get_last_git_commit_id_or_null(ctx: { dir_path: string }) {
-  try {
-    return (await execute_async(`git log --format="%H" -n 1`, {cwd: ctx.dir_path})).toString();
-  } catch (e) {
-
-  }
-  return null;
 }
 
 export default vcs_commits_to_git_file;

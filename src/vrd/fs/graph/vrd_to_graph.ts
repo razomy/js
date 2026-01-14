@@ -1,9 +1,8 @@
-import {BranchDictOrLeaf} from "razomy.trees/dict/dict";
 import {Graph} from "razomy.graph/graph";
 import {is_vrd, VrdOrValue} from "razomy.vrd/vrd";
 
 
-function iterate_children<T>(
+export function iterate_children<T>(
   graph: Graph<VrdOrValue<T>>,
   branch: VrdOrValue<T>
 ) {
@@ -17,7 +16,7 @@ function iterate_children<T>(
   }
 }
 
-function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
+export function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
   const graph: Graph<I> = {
     nodes: [],
     edges: []

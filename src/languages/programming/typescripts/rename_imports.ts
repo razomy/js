@@ -1,12 +1,12 @@
 import { Project, SyntaxKind } from 'ts-morph';
 
-const to_snake_case = (str: string) => {
+export const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .toLowerCase();
 };
 
-const transform_path = (path: string) => {
+export const transform_path = (path: string) => {
   // Split path by slashes to handle folders individually
   return path
     .split('/')
@@ -18,7 +18,7 @@ const transform_path = (path: string) => {
     .join('/');
 };
 
-const rename_import_paths = async () => {
+export const rename_import_paths = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });

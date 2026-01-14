@@ -9,13 +9,13 @@ export interface IterateNode {
 
 // 1. Pre-allocate the object we will pass to the callback.
 // We recycle this SINGLE object for every file in the system.
-const shared_node: IterateNode = {
+export const shared_node: IterateNode = {
   stats: null as unknown as Dirent,
   slug: '',
   path: '',
 };
 
-function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
+export function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
   // 2. Use a specific stack size if known, otherwise dynamic array
   const stack: string[] = [dir_path];
 

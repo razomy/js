@@ -3,7 +3,7 @@ import * as path from 'path';
 import {read_file_json} from 'razomy.fs/file/read';
 import {write_file_json} from 'razomy.fs/file/write';
 
-function create_package() {
+export function create_package() {
   const src_dir: string = path.join(__dirname, '../../../');
   const prefix: string = 'razomy';
 

@@ -1,6 +1,6 @@
 import ms from 'ms';
 
-function string_to_date(string: string) {
+export function string_to_date(string: string) {
   return ms(string);
 }
 

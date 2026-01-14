@@ -46,7 +46,7 @@
 
 import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
-class BlurStack {
+export class BlurStack {
   public r = 0;
   public g = 0;
   public b = 0;
@@ -570,7 +570,7 @@ var shg_table = [
   24
 ];
 
-function filter_gauss_blur_rgba(imageData: any, radius: any) {
+export function filter_gauss_blur_rgba(imageData: any, radius: any) {
   var pixels = imageData.data,
     width = imageData.width,
     height = imageData.height;

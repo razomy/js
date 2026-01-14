@@ -8,7 +8,7 @@ import iterate from "razomy.kv/iterate";
  * true - success
  * false - break
  */
-function value_iterate<K, V>(
+export function value_iterate<K, V>(
   value: Valuable<K, V>,
   value_cb: Function<[KeyValuable<K, V>], boolean | undefined>
 ): boolean {

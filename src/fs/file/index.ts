@@ -1,4 +1,12 @@
 export * as recursive from './recursive';
+export * as delete_async from './delete_async';
 export * as delete from './delete';
+export * as is_exist from './is_exist';
+export * as read_file_async from './read_file_async';
+export * as read_file_json from './read_file_json';
 export * as read from './read';
+export * as try_read_file_json from './try_read_file_json';
+export * as write_file_json from './write_file_json';
+export * as write_file from './write_file';
+export * as write_to_file_async from './write_to_file_async';
 export * as write from './write';

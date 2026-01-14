@@ -1,12 +1,12 @@
 import { Project, SyntaxKind, Node } from 'ts-morph';
 
-const to_snake_case = (str: string) => {
+export const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .toLowerCase();
 };
 
-const rename_variables_and_props = async () => {
+export const rename_variables_and_props = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });

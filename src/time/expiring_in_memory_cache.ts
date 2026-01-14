@@ -1,4 +1,4 @@
-interface CacheEntry<T> {
+export interface CacheEntry<T> {
   value: T;
   /** The UNIX timestamp (in milliseconds) when the entry expires. */
   expires: number;

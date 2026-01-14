@@ -1,10 +1,14 @@
 export * as array from './array';
-export { ak, is_akv, Akv } from './akv';
+export { ak, Akv } from './akv';
 export { default as create_by_path } from './create_by_path';
 export { default as filter } from './filter';
+export * as get_parents from './get_parents';
+export * as get_with_path from './get_with_path';
 export { default as get } from './get';
+export * as is_akv from './is_akv';
 export { default as iterate } from './iterate';
-export { is_kv, k, Value, Key, KeyValuable, ArrayKeyValuable, ArrayOrKeyValuable, Valuable, Kv } from './kv';
+export * as k from './k';
+export { is_kv, Value, Key, KeyValuable, ArrayKeyValuable, ArrayOrKeyValuable, Valuable, Kv } from './kv';
 export { default as map } from './map';
 export { default as set } from './set';
 export { default as value_iterate } from './value_iterate';

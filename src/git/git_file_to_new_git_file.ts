@@ -26,7 +26,7 @@ export async function get_git_commits_id(dir_path: string, commitCount: number =
   return commits.reverse();
 }
 
-async function git_file_to_new_git_file(
+export async function git_file_to_new_git_file(
   repositoryPath,
   repositorynewPath,
   fileSubPath = '/data/start.txt',

@@ -1,7 +1,6 @@
 import {GoogleGenAI} from '@google/genai';
-import iterate from 'razomy.fs/iterate';
 
-const ai = new GoogleGenAI({apiKey: ''});
+export const ai = new GoogleGenAI({apiKey: ''});
 
 export async function ask() {
   const response = await ai.models.generateContent({
@@ -11,15 +10,9 @@ export async function ask() {
   console.log(response.text);
 }
 
-function f(dir_path: string) {
-  iterate(dir_path, () => {
-
-  })
-}
-
 ask().then();
 
-const response = {
+export const response = {
   'candidates': [
     {
       'content': {

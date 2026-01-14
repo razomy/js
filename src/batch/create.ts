@@ -1,4 +1,4 @@
-async function create<T>({batch_size, promises}: { batch_size: number, promises: Promise<T>[] }): Promise<T[]> {
+export async function create<T>({batch_size, promises}: { batch_size: number, promises: Promise<T>[] }): Promise<T[]> {
     let current_batch_start = 0;
     const result: T[] = [];
 

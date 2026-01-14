@@ -1,6 +1,6 @@
 import {get_status_sync} from 'razomy.git/get_status';
 import {SourcePathString} from 'razomy.path/string/path_string';
-import {is_with_git} from 'razomy.languages/programming/fs/is_packages';
+import { is_with_git } from 'src/languages/programming/fs/is_with_git';
 import path from 'path';
 
 export function get_recursive_status(source_path: SourcePathString) {

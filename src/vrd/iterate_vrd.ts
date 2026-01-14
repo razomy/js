@@ -1,7 +1,6 @@
 import {is_vrd, VrdOrValue} from "razomy.vrd/vrd";
-import {Execute} from "razomy.pipes/booleans/execute";
 
-interface Iterate<T> {
+export interface Iterate<T> {
   parents: string[];
   input: VrdOrValue<T>;
 }
@@ -12,7 +11,7 @@ export enum IterateBreaks {
   Break = 2,
 }
 
-function iterate_vrd<T, C extends Iterate<T>>(
+export function iterate_vrd<T, C extends Iterate<T>>(
   ctx: C,
   is_iterate_child_execute_bool: (ctx: C) => IterateBreaks,
 ): IterateBreaks {
@@ -39,29 +38,6 @@ function iterate_vrd<T, C extends Iterate<T>>(
     }
   }
   return IterateBreaks.None;
-}
-
-
-export function iterate_break<T, C extends Iterate<T>>(
-  ctx: C,
-  is_iterate_child_execute_bool: Execute<C>
-): void {
-  iterate_vrd(ctx, (c) => {
-    return is_iterate_child_execute_bool(c)
-      ? IterateBreaks.None
-      : IterateBreaks.Break
-  })
-}
-
-export function iterate_skip<T, C extends Iterate<T>>(
-  ctx: C,
-  is_iterate_child_execute_bool: Execute<C> | ((ctx: C) => void)
-): void {
-  iterate_vrd(ctx, (c) => {
-    return is_iterate_child_execute_bool(c)
-      ? IterateBreaks.None
-      : IterateBreaks.Skip
-  })
 }
 
 export default iterate_vrd;

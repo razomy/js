@@ -1,13 +1,13 @@
 import { Project } from 'ts-morph';
 
-const to_snake_case = (str: string) => {
+export const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2') // Insert _ before capitals
     .replace(/[\s-]+/g, '_')             // Replace spaces and hyphens with _
     .toLowerCase();
 };
 
-const rename_with_morph = async () => {
+export const rename_with_morph = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });

@@ -2,7 +2,7 @@ import {OpenAiCtx, WithOpenAiCtx} from 'razomy.openai/open_ai_ctx';
 import OpenAI from 'openai';
 import Completion = OpenAI.Completion;
 
-class LanguageGrammarCorrection {
+export class LanguageGrammarCorrection {
     constructor(private ctx: WithOpenAiCtx) {
     }
 

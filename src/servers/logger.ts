@@ -1,7 +1,7 @@
 import winston from 'winston';
 
-const is_production = process.env.NODE_ENV === 'production';
-const console_transport = new winston.transports.Console({
+export const is_production = process.env.NODE_ENV === 'production';
+export const console_transport = new winston.transports.Console({
   level: is_production ? 'info' : 'debug',
 // @ts-ignore
   prettyPrint: !is_production,

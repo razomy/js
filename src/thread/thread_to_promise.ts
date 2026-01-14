@@ -35,7 +35,7 @@ export function worker_to_promise<T>(worker: Worker, ctx: T) {
     })
 }
 
-function thread_to_promise<T>(ctx, {path, worker_id}) {
+export function thread_to_promise(ctx, {path, worker_id}) {
     if (!isMainThread) {
         throw new Error("Thread must be Main")
     }
@@ -44,23 +44,7 @@ function thread_to_promise<T>(ctx, {path, worker_id}) {
     return worker_to_promise(worker, ctx);
 }
 
-export function threads_to_promises<T>(ctx, {path}) {
-    if (!isMainThread) {
-        throw new Error("Thread must be Main")
-    }
-
-    const promises: Promise<T>[] = [];
-    const count = ctx.length;
-    for (let i = 0; i < count; i++) {
-        promises.push(thread_to_promise(ctx[i], {worker_id: i + "", path: path}));
-    }
-
-    return (promises);
-}
-
-
-export function threads_to_promise<T>(ctx, {path}) {
-    return Promise.all(threads_to_promises(ctx, {path}));
-}
-
 export default thread_to_promise;
+
+export * from "./threads_to_promises";
+export * from "./threads_to_promise";

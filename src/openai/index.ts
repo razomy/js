@@ -1,6 +1,18 @@
+export * as instructions from './instructions';
+export * as add_function_and_assign from './add_function_and_assign';
+export * as add_user_message from './add_user_message';
+export * as api_message from './api_message';
 export * as chat_gpt from './chat_gpt';
 export { default as Chat } from './chat';
+export * as get_models from './get_models';
+export * as gpt_api_v2 from './gpt_api_v2';
+export * as gpt_api from './gpt_api';
 export { default as LanguageGrammarCorrection } from './language_grammar_correction';
 export * as models from './models';
 export { OpenAiCtx, WithOpenAiCtx } from './open_ai_ctx';
 export { default as openai } from './openai';
+export * as set_tokens from './set_tokens';
+export * as set_weight_an_tokens from './set_weight_an_tokens';
+export * as set_weight from './set_weight';
+export * as single_request_pro from './single_request_pro';
+export * as v1 from './v1';

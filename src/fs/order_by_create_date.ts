@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 
-function order_by_create_date(directory: string, items: string[]) {
+export function order_by_create_date(directory: string, items: string[]) {
   return items
     .map(folder => {
       const full_folder_path = path.join(directory, folder);

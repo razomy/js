@@ -1,4 +1,4 @@
-interface QueueItem<K, V> {
+export interface QueueItem<K, V> {
   key: K;
   resolve: (value: V) => void;
   reject: (reason?: any) => void;

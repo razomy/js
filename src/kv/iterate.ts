@@ -8,7 +8,7 @@ import boolean_undefined from "razomy.undefined/boolean_undefined";
  * true - continue
  * false - break
  */
-function iterate<K, V>(
+export function iterate<K, V>(
   value: Valuable<K, V>,
   node_cb: Function<[KeyValuable<K, V>], boolean | undefined>
 ): boolean {

@@ -3,7 +3,7 @@ import fs from "fs";
 import {create_directory_if_not_exists} from "razomy.fs/create";
 import {is_vrd, VrdOrValue} from "razomy.vrd/vrd";
 
-function vrd_to_fs(absolute_path: string, dict: VrdOrValue<Buffer>) {
+export function vrd_to_fs(absolute_path: string, dict: VrdOrValue<Buffer>) {
   if (is_vrd(dict)) {
     create_directory_if_not_exists(absolute_path)
     for (const key in dict) {

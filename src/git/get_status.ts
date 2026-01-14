@@ -1,8 +1,6 @@
 import {exec} from 'child_process';
-import {execSync} from 'node:child_process';
-import execute_sync from 'razomy.shell/execute_sync';
 
-interface Status {
+export interface Status {
   local_branch: string,
   remote_branch: string,
   remote_diff: string,
@@ -57,20 +55,7 @@ export function parse_status(str: string): Status {
   return status;
 }
 
-export function parse_status_ref(str: string) {
-  var refs = {};
-  var lines = str.length === 0 ? [] : str.split('\n');
-  lines.forEach(function (str) {
-    str = str.trim();
-    if (str.length === 0) return;
-    var parts = str.split(/\s+/);
-    refs[parts[1]] = parts[0];
-
-  });
-  return refs;
-}
-
-async function get_status(dir_path: string) {
+export async function get_status(dir_path: string) {
   return new Promise<Status>((resolve, reject) => {
     var cmd = 'git status --porcelain -b';
     exec(cmd, {cwd: dir_path}, function (err, stdout) {
@@ -78,24 +63,6 @@ async function get_status(dir_path: string) {
       resolve(parse_status(stdout));
     });
   });
-}
-
-export function get_status_sync(dir_path: string) {
-  var cmd = 'git status --porcelain -b';
-  const stdout = execSync(cmd, {cwd: dir_path, encoding: 'utf-8'});
-  return parse_status(stdout);
-}
-
-export async function is_clean_status(dir_path: string) {
-  return (await get_status(dir_path)).clean;
-}
-
-export function git_init(c: string) {
-  execute_sync("git init", c);
-}
-
-export function git_commit(c: string) {
-  execute_sync("git status", c);
 }
 
 export default get_status;

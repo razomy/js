@@ -1,7 +1,7 @@
 import {NodeBound} from 'razomy.bound/string/bound';
 import {rectangle} from 'razomy.coordinates';
 
-function between_nodes(nodes: NodeBound[], root: NodeBound) {
+export function between_nodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
     return [{start_y: root.full_rect.start_y, finish_y: root.full_rect.finish_y}];
   }

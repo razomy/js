@@ -9,19 +9,19 @@ import {CodecConfig} from 'razomy.graphics/codecs/web/svg/codecs/codec_config';
 import {ElementView} from 'razomy.graphics/elements/element_view';
 
 
-interface JsonObject {
+export interface JsonObject {
   object_resource: IObject;
 }
 
-interface JsonSizeResource {
+export interface JsonSizeResource {
   size_resource: ISizeResource;
 }
 
-interface JsonPropertiesResource {
+export interface JsonPropertiesResource {
   properties: { [key: string]: unknown };
 }
 
-interface JsonEntityCollection {
+export interface JsonEntityCollection {
   entity_collection: { resources: (JsonObject & ResourceNode)[] };
 }
 
@@ -32,7 +32,7 @@ export type ResourceNode = JsonObject
 export type ResourceDescription = ResourceNode;
 
 
-const example: ResourceDescription = {
+export const example: ResourceDescription = {
   object_resource: {
     type: 'Type',
     id: 'asd'

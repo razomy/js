@@ -1,5 +1,5 @@
 /** first index */
-function first_equal_indexes<T>(
+export function first_equal_indexes<T>(
   a: T[],
   b: T[],
   start_a = 0,

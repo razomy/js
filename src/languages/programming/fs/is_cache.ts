@@ -1,7 +1,3 @@
-import * as path from 'path';
-
-import sub_has from 'razomy.array/sub_has';
-
 export const python_cache = ['__pycache__', '.pytest_cache'];
 export const js_angular_cache = ['.angular'];
 export const csharp_cache = ['obj'];
@@ -34,20 +30,3 @@ export const known_cache = [
   ...idea_cache,
 ];
 
-function get_path_components(path_: string): string[] {
-  return path_.split(path.sep).filter(component => component.length > 0);
-}
-
-function has_sub_array(master: string[], sub: string | string[]): boolean {
-  if (Array.isArray(sub)) {
-    return sub_has(master, sub)
-
-  }
-  return master.includes(sub)
-}
-
-export function is_in_cache(path_: string): boolean {
-  const path_components = get_path_components(path_);
-
-  return known_cache.some(cacheDir => has_sub_array(path_components, cacheDir));
-}

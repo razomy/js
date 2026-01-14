@@ -6,3 +6,4 @@ export * as rename_functions from './rename_functions';
 export * as rename_imports from './rename_imports';
 export * as rename_to_default_export from './rename_to_default_export';
 export * as rename_variables from './rename_variables';
+export * as split_functions from './split_functions';

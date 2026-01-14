@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-function check(linkPath: string) {
+export function check(linkPath: string) {
   if (fs.existsSync(linkPath)) {
     const stats = fs.lstatSync(linkPath);
 
@@ -13,7 +13,7 @@ function check(linkPath: string) {
   }
 }
 
-function create(linkPath: string, newTarget: string) {
+export function create(linkPath: string, newTarget: string) {
   try {
     let type = 'file';
     try {

@@ -2,23 +2,23 @@ import {ArrayKeyValuable, is_kv, KeyValuable, Valuable, Value} from "razomy.kv/k
 import {Function} from "razomy.function/function";
 import {ak, is_akv} from "razomy.kv/akv";
 
-function map<IV, OV>(
+export function map<IV, OV>(
   input: Value<IV>,
   map_cb: Function<[Value<IV>], Value<OV>>
 ): Value<OV>;
-function map<K, IV, OV>(
+export function map<K, IV, OV>(
   input: KeyValuable<K, IV>,
   map_cb: Function<[KeyValuable<K, IV>], KeyValuable<K, OV>>
 ): KeyValuable<K, OV>;
-function map<K, IV, OV>(
+export function map<K, IV, OV>(
   input: ArrayKeyValuable<K, IV>,
   map_cb: Function<[ArrayKeyValuable<K, IV>], ArrayKeyValuable<K, OV>>
 ): ArrayKeyValuable<K, OV>;
-function map<K, IV, OV>(
+export function map<K, IV, OV>(
   value: Valuable<K, IV>,
   map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV>;
-function map<K, IV, OV>(
+export function map<K, IV, OV>(
   value: Valuable<K, IV>,
   map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV> {

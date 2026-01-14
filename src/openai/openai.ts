@@ -1,6 +1,6 @@
 import {OpenAI} from 'openai';
 
-function openai(ctx: { openai: OpenAI }): { openai: OpenAI } {
+export function openai(ctx: { openai: OpenAI }): { openai: OpenAI } {
   ctx.openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });

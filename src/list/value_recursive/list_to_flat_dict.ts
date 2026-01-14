@@ -19,7 +19,7 @@ export function value_or_list_to_flat_dict(
   return dict;
 }
 
-function list_to_flat_dict(
+export function list_to_flat_dict(
   dict: {},
   input: ValueRecursiveList<string>,
   separator: string

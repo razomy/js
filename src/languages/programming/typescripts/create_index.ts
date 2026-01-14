@@ -1,9 +1,9 @@
 import {Project, SyntaxKind} from 'ts-morph';
 
-const to_snake_case = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+export const to_snake_case = (str: string) => str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
 
 // Safe key now only checks JS reserved keywords, not namespace collisions
-const get_safe_key = (name: string) => {
+export const get_safe_key = (name: string) => {
   const reserved = [
     'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default', 'delete',
     'do', 'else', 'enum', 'export', 'extends', 'false', 'finally', 'for', 'function', 'if',
@@ -15,7 +15,7 @@ const get_safe_key = (name: string) => {
   return reserved.includes(key) ? key + '_' : key;
 };
 
-const generate_final_index = async () => {
+export const generate_final_index = async () => {
   const project = new Project({tsConfigFilePath: '../../../../tsconfig.json'});
   // Ensure we don't accidentally process node_modules
   const root_dir = project.getDirectory('../../../../src') || project.getDirectories()[0];

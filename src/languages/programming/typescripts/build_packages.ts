@@ -2,7 +2,7 @@ import { build, type Options } from 'tsup';
 import path from 'path';
 import fs from 'fs';
 
-async function run() {
+export async function run() {
   const srcPath = path.join(process.cwd(), 'src');
   const entries: string[] = [];
 

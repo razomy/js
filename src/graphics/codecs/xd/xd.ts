@@ -44,7 +44,7 @@ export interface Line {
 
 export type Shape = Path | CompoundPath | Rectangle | Circle | Ellipse | Line;
 
-interface CommonArtboard {
+export interface CommonArtboard {
   id?: string;
   name?: string;
   type?: string;

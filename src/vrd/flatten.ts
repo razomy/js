@@ -1,6 +1,6 @@
 import {assign as key_assign} from "razomy.key/assign";
 
-function flatten(data: Record<string, any>): Record<string, any> {
+export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
   function recurse(cur: any, prop: string, assign = key_assign) {
@@ -31,23 +31,6 @@ function flatten(data: Record<string, any>): Record<string, any> {
   return result;
 }
 
-export function unflatten(data: Record<string, any>, assign = key_assign): Record<string, any> {
-  if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-    return data;
-  }
-  const regex = new RegExp(`\\${assign}?([^${assign}[\]]+)|\[(\d+)]`, 'g');
-  const resultholder: Record<string, any> = {};
-  for (const p in data) {
-    let cur = resultholder;
-    let prop = '';
-    let m;
-    while ((m = regex.exec(p))) {
-      cur = cur[prop] || (cur[prop] = m[2] ? [] : {});
-      prop = m[2] || m[1];
-    }
-    cur[prop] = data[p];
-  }
-  return resultholder[''] || resultholder;
-}
-
 export default flatten;
+
+export * from "./unflatten";

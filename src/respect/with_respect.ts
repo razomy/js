@@ -8,7 +8,7 @@ export interface WithRespectReport {
 }
 
 
-function report(report: WithRespectReport, change: WithRespect) {
+export function report(report: WithRespectReport, change: WithRespect) {
   if (change.respect > 0) {
     report.received += change.respect;
   } else {

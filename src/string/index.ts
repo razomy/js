@@ -1,3 +1,4 @@
+export * as buffer from './buffer';
 export { default as capitalize } from './capitalize';
 export { default as dict_to_string } from './dict_to_string';
 export { default as differences_string } from './differences_string';
@@ -6,6 +7,7 @@ export * as index_string from './index_string';
 export { default as is_null_or_empty } from './is_null_or_empty';
 export { default as is_string } from './is_string';
 export { default as margin_string } from './margin_string';
+export * as remove_index_string from './remove_index_string';
 export { default as replace_string } from './replace_string';
 export { default as similarity } from './similarity';
 export { default as snake_case_string } from './snake_case_string';

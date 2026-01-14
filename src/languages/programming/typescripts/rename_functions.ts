@@ -1,12 +1,12 @@
 import { Project, SyntaxKind } from 'ts-morph';
 
-const to_snake_case = (str: string) => {
+export const to_snake_case = (str: string) => {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2') // Insert _ before capitals
     .toLowerCase();
 };
 
-const rename_functions = async () => {
+export const rename_functions = async () => {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });

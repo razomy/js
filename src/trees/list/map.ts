@@ -12,7 +12,7 @@ export function map_children<I extends WithChildrenList<any>, O extends WithChil
 }
 
 
-function map<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
+export function map<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
   input: I,
   cb: (input: I) => O
 ): O {

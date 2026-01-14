@@ -12,7 +12,3 @@ export function ak<K = any, V = any>(...items: KeyValuable<K, V>[]): ArrayKeyVal
 export function ak<K, V>(...items: KeyValuable<K, V>[]): ArrayKeyValuable<K, V> {
   return new Akv(...items);
 }
-
-export function is_akv<K, V>(obj: ArrayKeyValuable<K, V> | unknown): obj is ArrayKeyValuable<K, V> {
-  return obj instanceof Akv;
-}

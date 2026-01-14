@@ -1,5 +1,12 @@
 export * as fs from './fs';
+export * as compare_versions from './compare_versions';
+export * as get_last_git_commit_id_or_null from './get_last_git_commit_id_or_null';
+export * as get_status_sync from './get_status_sync';
 export { default as get_status } from './get_status';
+export * as git_commit from './git_commit';
 export * as git_file_commits_to_commit_json_file from './git_file_commits_to_commit_json_file';
 export * as git_file_to_new_git_file from './git_file_to_new_git_file';
+export * as git_init from './git_init';
+export * as is_clean_status from './is_clean_status';
+export * as parse_status_ref from './parse_status_ref';
 export { default as vcs_commits_to_git_file } from './vcs_commits_to_git_file';

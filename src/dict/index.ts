@@ -3,6 +3,7 @@ export { DictKey, Dict } from './dict';
 export { default as filter_dict } from './filter_dict';
 export { default as first_key_dict } from './first_key_dict';
 export { default as flatten_dict } from './flatten_dict';
+export * as for_own from './for_own';
 export { default as is_keys_in_dict } from './is_keys_in_dict';
 export { default as keys_in_dict } from './keys_in_dict';
 export { default as map_dict_to_array } from './map_dict_to_array';

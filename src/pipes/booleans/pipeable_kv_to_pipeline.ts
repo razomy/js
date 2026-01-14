@@ -11,7 +11,7 @@ import {is_akv} from "razomy.kv/akv";
 
 export type PipeableKv<T> = KeyValuable<Pipeable<T>, Pipeable<T>>
 
-function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<T> {
+export function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<T> {
   if (!is_kv<Pipeable<T>, Pipeable<T>>(pipeable_kv)) {
     throw new ArgumentException('not a kv', {pipeable_kv});
   }

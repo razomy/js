@@ -4,7 +4,7 @@ import {iterate_reverse} from 'razomy.trees/list/iterate';
 import {execSync} from 'node:child_process';
 import {SourcePathString} from 'razomy.path/string/path_string';
 
-function restore(source_path: SourcePathString) {
+export function restore(source_path: SourcePathString) {
   const {files, repos} = get_recursive_status(source_path)
   const tree = nodes_array_to_tree(repos, files);
   iterate_reverse(tree[0], (node) => {

@@ -1,6 +1,6 @@
 import {OpenAiCtx, WithOpenAiCtx} from 'razomy.openai/open_ai_ctx';
 
-class Chat {
+export class Chat {
 
     constructor(private ctx: WithOpenAiCtx) {
     }
