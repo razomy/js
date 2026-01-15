@@ -1,4 +1,4 @@
-import {differences} from 'razomy.differences/differences';
+import {differences} from 'razomy.differences';
 import {separate_strings} from 'razomy.strings/separate_strings';
 import {strings_string} from 'razomy.string/strings_string';
 

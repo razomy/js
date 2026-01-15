@@ -1,13 +1,31 @@
 {
   "name": "razomy.vrd",
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "razomy.array": "../../vrd",
+    "razomy.difference": "../../vrd",
+    "razomy.equal": "../../vrd",
+    "razomy.dict": "../../vrd",
+    "razomy.key": "../../vrd",
+    "razomy.exceptions": "../../vrd",
+    "razomy.pipes": "../../vrd",
+    "razomy.object": "../../vrd",
+    "razomy.list": "../../vrd",
+    "razomy.string": "../../vrd",
+    "razomy.graph": "../../vrd"
   }
 }

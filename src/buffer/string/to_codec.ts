@@ -1,5 +1,5 @@
-import {Codec} from '../../codec/codec';
-import {to_buffer} from '../../string/to_buffer';
+import {Codec} from 'razomy.codec';
+import {to_buffer} from 'razomy.string/to_buffer';
 import {to_string} from '../to_string';
 
 export function to_codec(encoding: BufferEncoding): Codec<Buffer, string> {

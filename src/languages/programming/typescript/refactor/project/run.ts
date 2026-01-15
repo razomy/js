@@ -4,7 +4,7 @@ import {
   convert_lambdas_to_named_functions
 } from 'razomy.languages/programming/typescript/refactor/project/convert_lambdas_to_named_functions';
 import {create_index_files} from './create_index_files';
-import {create_package} from './create_package';
+import {add_dependencies, create_package, update_packages} from './create_package';
 import {rename_files} from './rename_files';
 
 
@@ -14,6 +14,8 @@ export async function run() {
   await create_index_files();
   await create_package();
   await rename_files();
+  await add_dependencies();
+  await update_packages();
   // build_packages_recursive.ts
   // split_functions.ts
 }

@@ -1,16 +1,23 @@
 {
   "name": "razomy.openai",
   "dependencies": {
-    "openai": "^4.52.7"
+    "openai": "^4.52.7",
+    "razomy.object": "../../openai",
+    "razomy.string": "../../openai"
   },
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }

@@ -1,13 +1,22 @@
 {
   "name": "razomy.class",
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "razomy.object": "../../class",
+    "razomy.types": "../../class"
   }
 }

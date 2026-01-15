@@ -1,16 +1,28 @@
 {
   "name": "razomy.languages",
   "dependencies": {
-    "ts-morph": "27.0.2"
+    "ts-morph": "27.0.2",
+    "razomy.array": "../../languages",
+    "razomy.string": "../../languages",
+    "razomy.main": "../../languages",
+    "razomy.fs": "../../languages",
+    "razomy.list": "../../languages",
+    "razomy.path": "../../languages",
+    "razomy.exceptions": "../../languages"
   },
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }

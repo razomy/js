@@ -1,16 +1,21 @@
 {
   "name": "razomy.time",
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
   "dependencies": {
     "date-fns": "^4.1.0"
   },
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }

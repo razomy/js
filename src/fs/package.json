@@ -1,13 +1,30 @@
 {
   "name": "razomy.fs",
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
+  "dependencies": {
+    "razomy.fs.extension": "../../fs",
+    "razomy.observable": "../../fs",
+    "razomy.path": "../../fs",
+    "razomy.vrd": "../../fs",
+    "razomy.exceptions": "../../fs",
+    "razomy.kv": "../../fs",
+    "razomy.gate": "../../fs",
+    "razomy.codec": "../../fs",
+    "razomy.buffer": "../../fs",
+    "razomy.shell": "../../fs"
+  },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }

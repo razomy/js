@@ -1,6 +1,6 @@
 import {progress} from 'razomy.shell/progress';
-import {Difference} from 'razomy.difference/type';
-import {DifferenceType} from 'razomy.difference/type';
+import {Difference} from 'razomy.difference';
+import {DifferenceType} from 'razomy.difference';
 import {first_equal_indexes} from 'razomy.indexes/first_equal_indexes';
 
 /** a was, b become */

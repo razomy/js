@@ -16,11 +16,15 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {
+      "razomy*": [
+        "packages/*/index.ts"
+      ]
+    }
   },
-  "include": [
-    "index.ts",
-//    todo:remove
-    "src/**/*.ts"
+  "exclude": [
+    "node_modules",
+    "**/dist"
   ]
 }

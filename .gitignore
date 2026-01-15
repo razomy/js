@@ -3,6 +3,7 @@ dist
 .idea
 razomy*.tgz
 _releases
+.changeset
 
 
 .nx/cache

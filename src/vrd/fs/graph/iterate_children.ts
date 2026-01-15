@@ -1,5 +1,5 @@
 import {Graph} from 'razomy.graph';
-import {VrdOrValue} from '../../vrd';
+import {VrdOrValue} from 'razomy.vrd';
 import {is_vrd} from '../../is_vrd';
 
 export function iterate_children<T>(

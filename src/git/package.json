@@ -1,16 +1,28 @@
 {
   "name": "razomy.git",
   "dependencies": {
-    "simple-git": "3.30.0"
+    "simple-git": "3.30.0",
+    "razomy.commit": "../../git",
+    "razomy.shell": "../../git",
+    "razomy.fs": "../../git",
+    "razomy.async": "../../git",
+    "razomy.trees": "../../git",
+    "razomy.path": "../../git",
+    "razomy.languages": "../../git"
   },
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }

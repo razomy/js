@@ -1,13 +1,32 @@
 {
   "name": "razomy.graphics",
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "@squadette/hammerjs": "^2.1.0-pre3",
+    "mousetrap": "^1.6.5",
+    "razomy.resources": "../../graphics",
+    "razomy.list": "../../graphics",
+    "razomy.codec": "../../graphics",
+    "razomy.create": "../../graphics",
+    "razomy.exceptions": "../../graphics",
+    "razomy.web": "../../graphics",
+    "razomy.renderes": "../../graphics",
+    "razomy.selection-attribute": "../../graphics",
+    "razomy.user-entity": "../../graphics",
+    "razomy.object": "../../graphics"
   }
 }

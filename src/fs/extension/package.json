@@ -2,12 +2,22 @@
   "name": "razomy.fs.extension",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "razomy.codec": "../../../fs/extension",
+    "razomy.buffer": "../../../fs/extension",
+    "razomy.fs": "../../../fs/extension"
   }
 }

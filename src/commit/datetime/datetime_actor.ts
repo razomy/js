@@ -1,5 +1,5 @@
 import {WithActor} from '../with_actor';
-import {WithDatetime} from '../../date/time/datetime';
+import {WithDatetime} from 'razomy.date/time';
 
 export interface DatetimeActor extends WithDatetime, WithActor {
   datetime: string,

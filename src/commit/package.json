@@ -1,14 +1,24 @@
 {
   "name": "razomy.commit",
-  "dependencies": {},
+  "dependencies": {
+    "razomy.date": "../../commit",
+    "razomy.vrd": "../../commit",
+    "razomy.string": "../../commit",
+    "razomy.shell": "../../commit"
+  },
   "version": "0.0.0",
-  "main": "./index.js",
+  "main": "./index.ts",
   "license": "MIT",
-  "types": "./index.d.ts",
+  "types": "./index.ts",
   "files": [
     "*"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format cjs,esm --dts"
   }
 }
