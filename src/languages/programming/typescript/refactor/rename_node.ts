@@ -6,17 +6,8 @@ import {
   PropertyDeclaration,
   VariableDeclaration
 } from 'ts-morph';
-import {to_snake_case} from 'razomy.string';
-import {reserved_names_js} from 'razomy.languages/programming/fs/reserved_names_js';
 import {is_name_taken} from 'razomy.languages/programming/typescript/refactor/is_name_taken';
-
-export function to_safe_name(name: string) {
-  let new_name = to_snake_case(name);
-  if (reserved_names_js[new_name] || new_name == '') {
-    new_name = new_name + '_';
-  }
-  return new_name;
-}
+import {to_safe_name} from './to_safe_name';
 
 export function rename_node(v: VariableDeclaration
   | PropertyDeclaration

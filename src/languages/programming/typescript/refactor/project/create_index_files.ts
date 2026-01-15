@@ -1,9 +1,9 @@
 import {Project, SyntaxKind} from 'ts-morph';
-import {to_safe_name} from 'razomy.languages/programming/typescript/refactor/rename_node';
 import {read_file_json} from 'razomy.fs/file';
 import path from 'path';
 import {file} from 'razomy.fs';
 import {if_main} from 'razomy.main';
+import {to_safe_name} from '../to_safe_name';
 
 export async function create_index_files() {
   const root = '../../../../../../'

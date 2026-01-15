@@ -3,9 +3,10 @@
   "dependencies": {
     "ts-morph": "27.0.2",
     "razomy.array": "../../languages",
+    "razomy.action": "../../languages",
     "razomy.string": "../../languages",
-    "razomy.main": "../../languages",
     "razomy.fs": "../../languages",
+    "razomy.main": "../../languages",
     "razomy.list": "../../languages",
     "razomy.path": "../../languages",
     "razomy.exceptions": "../../languages"
