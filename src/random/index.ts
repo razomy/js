@@ -1,1 +1,1 @@
-export * from './range';
+export { range } from './range';

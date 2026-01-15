@@ -9,8 +9,8 @@ export class SvgCodec implements Codec<ViewportElement, SVGElement> {
 
   public encode(node: ViewportElement): SVGElement {
     const el = this.encodeNodeFactory.create<SVGElement>('svg');
-    el.setAttribute('width', node.getBy(SizeAttribute).width + '');
-    el.setAttribute('height', node.getBy(SizeAttribute).height + '');
+    el.setAttribute('width', node.get_by(SizeAttribute).width + '');
+    el.setAttribute('height', node.get_by(SizeAttribute).height + '');
     return el;
   }
 

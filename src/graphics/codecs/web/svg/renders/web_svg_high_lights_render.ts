@@ -9,7 +9,7 @@ export class WebSvgHighLightsRender {
   }
 
   public render(view: ElementView, node: SVGElement): void {
-    if (this.user.getBy(SelectionAttribute).selection.contains(view)) {
+    if (this.user.get_by(SelectionAttribute).selection.contains(view)) {
       node.setAttribute('style', 'filter: drop-shadow(0px 3px 3px #00f);');
     }
   }

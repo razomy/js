@@ -1,1 +1,1 @@
-export * from './differences';
+export { differences } from './differences';

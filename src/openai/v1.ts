@@ -1,6 +1,6 @@
 import {openai} from './openai';
 
-export async function v1(params = { messages: [] } as any) {
+export async function v_1(params = { messages: [] } as any) {
     const prompt = params.messages.map(i => i.content).join('\n');
     delete params.messages;
     const request = {

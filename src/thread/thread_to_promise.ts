@@ -10,8 +10,3 @@ export function thread_to_promise(ctx, {path, worker_id}) {
     const worker = new Worker(path, {env: {worker_id}});
     return worker_to_promise(worker, ctx);
 }
-
-
-
-export * from './threads_to_promises';
-export * from './threads_to_promise';

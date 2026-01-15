@@ -20,4 +20,3 @@ export function get_condition<T extends WithChildrenList<any>>(node: T, path: st
   return null;
 }
 
-export * from './get_all';

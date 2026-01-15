@@ -17,10 +17,10 @@ export class ColorCodex {
    * @private
    * @param {String|Array} color Color value to parse
    */
-  public static tryParsingColor(color: string): Color {
+  public static try_parsing_color(color: string): Color {
     let source: number[] | null = null;
 
-    if (SvgColorParser.isSvgColor(color as SvgColorKeys)) {
+    if (SvgColorParser.is_svg_color(color as SvgColorKeys)) {
       color = SvgColorParser.color_name_map[color as SvgColorKeys];
     }
 
@@ -29,20 +29,20 @@ export class ColorCodex {
     }
 
     if (!source) {
-      source = HexParser.sourceFromHex(color);
+      source = HexParser.source_from_hex(color);
     }
     if (!source) {
-      source = RgbaParser.sourceFromRgb(color);
+      source = RgbaParser.source_from_rgb(color);
     }
     if (!source) {
-      source = HslaParser.sourceFromHsl(color);
+      source = HslaParser.source_from_hsl(color);
     }
     if (!source) {
       //if color is not recognized, let's make it black as the canvas does
       source = [0, 0, 0, 1];
     }
 
-    return  this.fromSource(source as any);
+    return  this.from_source(source as any);
   }
 
 
@@ -53,9 +53,9 @@ export class ColorCodex {
    * @param {Array} source
    * @return {Color}
    */
-  public static fromSource(source: number[]): Color {
+  public static from_source(source: number[]): Color {
     const o_color = new Color();
-    o_color.setSource(source);
+    o_color.set_source(source);
     return o_color;
   };
 

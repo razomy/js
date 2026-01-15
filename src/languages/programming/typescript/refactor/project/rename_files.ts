@@ -1,13 +1,8 @@
 import { Project } from 'ts-morph';
+import {to_snake_case} from 'razomy.string';
 
-export const to_snake_case = (str: string) => {
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1_$2') // Insert _ before capitals
-    .replace(/[\s-]+/g, '_')             // Replace spaces and hyphens with _
-    .toLowerCase();
-};
 
-export const rename_with_morph = async () => {
+export async function rename_with_morph () {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
@@ -35,6 +30,6 @@ export const rename_with_morph = async () => {
   } else {
     console.log('No files needed renaming.');
   }
-};
+}
 
 rename_with_morph();

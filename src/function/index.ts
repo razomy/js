@@ -1,2 +1,2 @@
 export { Function } from './function';
-export * from './is_function';
+export { is_function } from './is_function';

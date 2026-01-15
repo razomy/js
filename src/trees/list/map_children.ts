@@ -2,11 +2,11 @@ import {WithChildrenList} from './with_children_list';
 import {map} from './map';
 
 export function map_children<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
-  _children: I[],
+  children_: I[],
   cb: (input: I) => O
 ): O[] {
   const children: O[] = [];
-  for (let child of _children) {
+  for (let child of children_) {
     children.push(map(child, cb))
   }
   return children;

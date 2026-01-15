@@ -1,1 +1,1 @@
-export { Action } from './action';
+export { Action, Callback, AsyncCallback } from './action';

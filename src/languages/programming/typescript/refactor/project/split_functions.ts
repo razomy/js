@@ -1,14 +1,9 @@
 import { Project, SyntaxKind, FunctionDeclaration } from 'ts-morph';
 import * as path from 'path';
+import {to_snake_case} from 'razomy.string';
 
-// Helper to name new files (e.g. "myFunction" -> "my_function")
-export const to_snake_case = (str: string) => {
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1_$2')
-    .toLowerCase();
-};
 
-export const split_multiple_functions = async () => {
+export async function split_multiple_functions () {
   // Initialize Project
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json', // Adjust path as needed
@@ -97,6 +92,6 @@ export const split_multiple_functions = async () => {
   } else {
     console.log('\nNo files needed splitting.');
   }
-};
+}
 
 split_multiple_functions();

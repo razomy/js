@@ -153,7 +153,7 @@ export class SvgColorParser {
     yellowgreen: '#9ACD32'
   };
 
-  public static isSvgColor(color: SvgColorKeys): boolean {
+  public static is_svg_color(color: SvgColorKeys): boolean {
     return !!this.color_name_map[color];
   }
 }

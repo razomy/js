@@ -1,2 +1,2 @@
-export * from './if_main';
-export * from './is_main';
+export { if_main } from './if_main';
+export { is_main } from './is_main';

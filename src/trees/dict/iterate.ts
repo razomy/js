@@ -6,7 +6,3 @@ export function iterate<T extends WithChildrenDict<any>>(node: T, cb: (node: T) 
     iterate<T>(node.children[n], cb);
   }
 }
-
-
-
-export * from './foreach_deep_dict_optional';

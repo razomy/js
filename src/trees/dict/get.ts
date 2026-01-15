@@ -8,9 +8,3 @@ export function get<T extends WithChildrenDict<T>>(node: T, path: string[], offs
 
   return get_value(node, path, offset)
 }
-
-
-
-export * from './get_value';
-export * from './get_by_string';
-export * from './get_path';

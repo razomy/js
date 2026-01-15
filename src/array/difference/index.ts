@@ -1,2 +1,2 @@
-export * from './get_similar';
-export * from './get';
+export { get_similar } from './get_similar';
+export { get } from './get';

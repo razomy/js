@@ -73,17 +73,17 @@ export class LinkedList<T> {
   }
 
   // Get the size of the list
-  getSize(): number {
+  get_size(): number {
     return this.size;
   }
 
   // Check if the list is empty
-  isEmpty(): boolean {
+  is_empty(): boolean {
     return this.size === 0;
   }
 
   // Convert the list to an array
-  toArray(): T[] {
+  to_array(): T[] {
     const result: T[] = [];
     let current = this.head;
     while (current !== null) {
@@ -95,6 +95,6 @@ export class LinkedList<T> {
 
   // Print the list (for debugging purposes)
   print(): void {
-    console.log(this.toArray().join(' -> '));
+    console.log(this.to_array().join(' -> '));
   }
 }

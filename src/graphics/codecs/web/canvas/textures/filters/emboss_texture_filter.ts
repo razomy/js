@@ -71,7 +71,7 @@ export class EmbossTextureFilter implements ITextureFilter {
       data = imageData.data,
       w = imageData.width,
       h = imageData.height,
-      w4 = w * 4,
+      w_4 = w * 4,
       y = h;
 
     switch (direction) {
@@ -112,7 +112,7 @@ export class EmbossTextureFilter implements ITextureFilter {
     }
 
     do {
-      var offset_y = (y - 1) * w4;
+      var offset_y = (y - 1) * w_4;
 
       var other_y = dir_y;
       if (y + other_y < 1) {

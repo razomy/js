@@ -23,7 +23,7 @@ describe('compress', () => {
 
 it('should correctly encode and decode extremely large data', () => {
   // Helper function to generate a random string of specified length
-  function generateRandomString(length: number): string {
+  function generate_random_string(length: number): string {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const characters_length = characters.length;
@@ -34,7 +34,7 @@ it('should correctly encode and decode extremely large data', () => {
   }
 
   // Generate a large random string
-  const large_data = generateRandomString(10000000);
+  const large_data = generate_random_string(10000000);
 
   // Encode the large data
   const encoded = encode_json_string(large_data);

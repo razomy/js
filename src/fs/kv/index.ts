@@ -1,2 +1,2 @@
-export * from './create';
-export * from './get';
+export { create } from './create';
+export { get } from './get';

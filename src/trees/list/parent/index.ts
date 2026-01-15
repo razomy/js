@@ -1,2 +1,2 @@
-export * from './first';
+export { first } from './first';
 export { WithParent } from './parent';

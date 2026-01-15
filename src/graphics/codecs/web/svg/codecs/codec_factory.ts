@@ -35,7 +35,7 @@ export class CodecFactory implements create.With<Codec<ElementView, any>> {
     throw new UnknownTypeArgumentException(element);
   }
 
-  public createByNode(element?: ElementView): Codec<ElementView, any> {
+  public create_by_node(element?: ElementView): Codec<ElementView, any> {
     if (element instanceof RectangleShape) {
       return new RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof ViewportElement) {

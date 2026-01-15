@@ -16,7 +16,7 @@ export class RgbaParser {
    * @static
    * @return {String} ex: rgb(0-255,0-255,0-255)
    */
-  public static toRgb(source: [number, number, number]): string {
+  public static to_rgb(source: [number, number, number]): string {
     return 'rgb(' + source[0] + ',' + source[1] + ',' + source[2] + ')';
   }
 
@@ -25,7 +25,7 @@ export class RgbaParser {
    * @static
    * @return {String} ex: rgba(0-255,0-255,0-255,0-1)
    */
-  public static toRgba(source: [number, number, number, number]): string {
+  public static to_rgba(source: [number, number, number, number]): string {
     return 'rgba(' + source[0] + ',' + source[1] + ',' + source[2] + ',' + source[3] + ')';
   }
 
@@ -35,8 +35,8 @@ export class RgbaParser {
    * @param {String} color Color value ex: rgb(0-255,0-255,0-255)
    * @return {Color}
    */
-  public static fromRgb(color: string): Color {
-    return (this.sourceFromRgb(color))as any;
+  public static from_rgb(color: string): Color {
+    return (this.source_from_rgb(color))as any;
   };
 
   /**
@@ -45,7 +45,7 @@ export class RgbaParser {
    * @param {String} color Color value ex: rgb(0-255,0-255,0-255), rgb(0%-100%,0%-100%,0%-100%)
    * @return {Array} source
    */
-  public static sourceFromRgb(color: string): number[] | null {
+  public static source_from_rgb(color: string): number[] | null {
     var match = color.match(this.re_rgba);
     if (match) {
       var r = parseInt(match[1], 10) / (/%$/.test(match[1]) ? 100 : 1) * (/%$/.test(match[1]) ? 255 : 1),

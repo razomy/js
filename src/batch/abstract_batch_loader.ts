@@ -9,7 +9,7 @@ export abstract class AbstractBatchLoader<K, V> {
   private request_queue: QueueItem<K, V>[] = [];
   private request_timeout: ReturnType<typeof setTimeout> | null = null;
 
-  protected abstract performBatchRequest(keys: K[]): Promise<Map<K, V>>;
+  protected abstract perform_batch_request(keys: K[]): Promise<Map<K, V>>;
 
   constructor(batchDelay: number = 10) {
     this.batch_delay = batchDelay;
@@ -23,17 +23,17 @@ export abstract class AbstractBatchLoader<K, V> {
         clearTimeout(this.request_timeout);
       }
       this.request_timeout = setTimeout(() => {
-        this.processQueue();
+        this.process_queue();
       }, this.batch_delay);
     });
   }
 
-  public loadMany(keys: K[]): Promise<V[]> {
+  public load_many(keys: K[]): Promise<V[]> {
     const promises = keys.map((k) => this.load(k));
     return Promise.all(promises);
   }
 
-  private async processQueue(): Promise<void> {
+  private async process_queue(): Promise<void> {
     if (this.request_queue.length === 0) {
       return;
     }
@@ -44,7 +44,7 @@ export abstract class AbstractBatchLoader<K, V> {
     const unique_keys = [...new Set(batch.map((item) => item.key))];
 
     try {
-      const results_map = await this.performBatchRequest(unique_keys);
+      const results_map = await this.perform_batch_request(unique_keys);
 
       batch.forEach(({ key, resolve, reject }) => {
         const result = results_map.get(key);

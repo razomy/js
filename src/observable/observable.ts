@@ -7,7 +7,7 @@ export function throw_exception<E>(error: E): void {
 }
 
 export class Observable<T, E = CancelException> {
-  _dispose: Dispose | null = null;
+  dispose_fn: Dispose | null = null;
   next: Action<T> | undefined;
   exception: Action<E> = throw_exception;
   factory: (resolve: Action<T>) => Dispose;
@@ -17,12 +17,12 @@ export class Observable<T, E = CancelException> {
   }
 
   execute() {
-    return this._dispose = this.factory(this.next!);
+    return this.dispose_fn = this.factory(this.next!);
   }
 
   dispose() {
-    this._dispose!();
-    this._dispose = null;
+    this.dispose_fn!();
+    this.dispose_fn = null;
   }
 }
 

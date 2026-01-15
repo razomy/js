@@ -1,6 +1,6 @@
-export function is_date_today(inputDate: Date) {
+export function is_date_today(input_date: Date) {
   const current_date = new Date(new Date().toISOString().split('T')[0]);
-  const input_date_obj = new Date(inputDate);
+  const input_date_obj = new Date(input_date);
 
   return (
     current_date.getFullYear() === input_date_obj.getFullYear() &&

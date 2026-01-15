@@ -1,13 +1,13 @@
 import {ChangeDifference, Difference, ReplaceDifference} from 'razomy.difference/type';
 import {get_similar} from 'razomy.array/difference/get_similar';
 
-export function get(oldArray: string[], newArray: string[]): ChangeDifference<string>[] {
-  const new_set = new Set(newArray);
-  const old_set = new Set(oldArray);
+export function get(old_array: string[], new_array: string[]): ChangeDifference<string>[] {
+  const new_set = new Set(new_array);
+  const old_set = new Set(old_array);
 
   // Identify new and deleted items
-  const new_items = newArray.filter(item => !old_set.has(item));
-  const deleted_items = oldArray.filter(item => !new_set.has(item));
+  const new_items = new_array.filter(item => !old_set.has(item));
+  const deleted_items = old_array.filter(item => !new_set.has(item));
 
   // Identify renamed items
   const renamed_items: ReplaceDifference<string>[] = [];

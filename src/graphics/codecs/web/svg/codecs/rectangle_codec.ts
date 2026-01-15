@@ -16,25 +16,25 @@ export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
 
   public encode(node: RectangleShape): SVGRectElement {
     const el = this.encodeNodeFactory.create<SVGRectElement>('rect');
-    el.setAttribute('x', node.getBy(PositionAttribute).x + '');
-    el.setAttribute('y', node.getBy(PositionAttribute).y + '');
-    el.setAttribute('width', node.getBy(SizeAttribute).width + '');
-    el.setAttribute('height', node.getBy(SizeAttribute).height + '');
-    el.setAttribute('fill', HexParser.toHex(node.getBy(FillStyle).color.getSource()));
-    el.setAttribute('stroke', HexParser.toHex(node.getBy(BorderStyle).color.getSource()));
-    el.setAttribute('stroke-width', node.getBy(BorderStyle).width + '');
-    el.setAttribute('rx', node.getBy(RectangleRoundStyle).bottom_right + '');
-    el.setAttribute('ry', node.getBy(RectangleRoundStyle).bottom_right + '');
+    el.setAttribute('x', node.get_by(PositionAttribute).x + '');
+    el.setAttribute('y', node.get_by(PositionAttribute).y + '');
+    el.setAttribute('width', node.get_by(SizeAttribute).width + '');
+    el.setAttribute('height', node.get_by(SizeAttribute).height + '');
+    el.setAttribute('fill', HexParser.to_hex(node.get_by(FillStyle).color.get_source()));
+    el.setAttribute('stroke', HexParser.to_hex(node.get_by(BorderStyle).color.get_source()));
+    el.setAttribute('stroke-width', node.get_by(BorderStyle).width + '');
+    el.setAttribute('rx', node.get_by(RectangleRoundStyle).bottom_right + '');
+    el.setAttribute('ry', node.get_by(RectangleRoundStyle).bottom_right + '');
 
     return el;
   };
 
   public decode(value: SVGRectElement): RectangleShape {
     const rectangle_shape = new RectangleShape();
-    const get_number_attribute = (key: string, def: number): number => {
-      const atr = value.getAttribute(key);
-      return atr ? +atr : def;
-    };
+    function get_number_attribute (key: string, def: number) : number {
+            const atr = value.getAttribute(key);
+            return atr ? +atr : def;
+          }
 
     // Todo: ELement view
     rectangle_shape.replace(new SizeAttribute(
@@ -52,11 +52,11 @@ export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
     // ResourceCollection
 
     rectangle_shape.replace(new FillStyle(
-      ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')
+      ColorCodex.try_parsing_color(value.getAttribute('fill') || '#000')
     ));
 
     rectangle_shape.replace(new BorderStyle(
-      ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'),
+      ColorCodex.try_parsing_color(value.getAttribute('stroke') || '#000'),
       get_number_attribute('stroke-width', 1)
     ));
 

@@ -159,7 +159,7 @@ export const uniq_programming_buffer_name = {
 
 
 export function is_supported_file_types(path_: string) {
-  const type_ = path.extname(path_) as TypeFs;
-  return buffer_types.hasOwnProperty(type_.substring(1)) ||
+  const type = path.extname(path_) as TypeFs;
+  return buffer_types.hasOwnProperty(type.substring(1)) ||
     uniq_programming_buffer_name.hasOwnProperty(path.basename(path_));
 }

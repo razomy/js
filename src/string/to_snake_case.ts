@@ -1,7 +1,7 @@
 import {String} from 'razomy.string/string';
 
-export function snake_case_string(input: String) {
-  let text = String(input);
+export function to_snake_case(input: String) {
+  let text = input;
 
   return text
     // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'

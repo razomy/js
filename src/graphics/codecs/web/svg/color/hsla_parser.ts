@@ -15,7 +15,7 @@ export class HslaParser {
    * @param {Number} b Blue color value
    * @return {Array} Hsl color
    */
-  private static rgbToHsl(r: number, g: number, b: number): [number, number, number] {
+  private static rgb_to_hsl(r: number, g: number, b: number): [number, number, number] {
     r /= 255;
     g /= 255;
     b /= 255;
@@ -61,8 +61,8 @@ export class HslaParser {
    * Returns color representation in HSL format
    * @return {String} ex: hsl(0-360,0%-100%,0%-100%)
    */
-  public static toHsl(source: [number, number, number]): string {
-    const hsl = this.rgbToHsl(source[0], source[1], source[2]);
+  public static to_hsl(source: [number, number, number]): string {
+    const hsl = this.rgb_to_hsl(source[0], source[1], source[2]);
     return 'hsl(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%)';
   }
 
@@ -70,8 +70,8 @@ export class HslaParser {
    * Returns color representation in HSLA format
    * @return {String} ex: hsla(0-360,0%-100%,0%-100%,0-1)
    */
-  public static toHsla(source: [number, number, number, number]): string {
-    const hsl = this.rgbToHsl(source[0], source[1], source[2]);
+  public static to_hsla(source: [number, number, number, number]): string {
+    const hsl = this.rgb_to_hsl(source[0], source[1], source[2]);
     return 'hsla(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%,' + source[3] + ')';
   }
 
@@ -83,7 +83,7 @@ export class HslaParser {
    * @param {Number} t
    * @return {Number}
    */
-  private static hue2rgb(p: number, q: number, t: number): number {
+  private static hue_2_rgb(p: number, q: number, t: number): number {
     if (t < 0) {
       t += 1;
     }
@@ -110,7 +110,7 @@ export class HslaParser {
    * @return {Array} source
    * @see http://http://www.w3.org/TR/css3-color/#hsl-color
    */
-  public static sourceFromHsl(color: string): [number, number, number, number] | null {
+  public static source_from_hsl(color: string): [number, number, number, number] | null {
     const match = color.match(this.re_hsla);
     if (!match) {
       return null;
@@ -127,9 +127,9 @@ export class HslaParser {
       const q = l <= 0.5 ? l * (s + 1) : l + s - l * s;
       const p = l * 2 - q;
 
-      r = this.hue2rgb(p, q, h + 1 / 3);
-      g = this.hue2rgb(p, q, h);
-      b = this.hue2rgb(p, q, h - 1 / 3);
+      r = this.hue_2_rgb(p, q, h + 1 / 3);
+      g = this.hue_2_rgb(p, q, h);
+      b = this.hue_2_rgb(p, q, h - 1 / 3);
     }
 
     return [
@@ -146,8 +146,8 @@ export class HslaParser {
    * @memberOf Color
    * @return {Color}
    */
-  public static fromHsl(color: string): [number, number, number, number] | null {
-    return this.sourceFromHsl(color);
+  public static from_hsl(color: string): [number, number, number, number] | null {
+    return this.source_from_hsl(color);
   }
 
 }

@@ -1,4 +1,4 @@
-export function to_buffer(base64: string, encoding: BufferEncoding): Buffer {
-  return Buffer.from(base64, encoding)
+export function to_buffer(base_64: string, encoding: BufferEncoding): Buffer {
+  return Buffer.from(base_64, encoding)
 }
 

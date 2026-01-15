@@ -1,1 +1,1 @@
-export * from './to_codec';
+export { to_codec } from './to_codec';

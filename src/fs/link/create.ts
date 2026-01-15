@@ -1,17 +1,17 @@
 import fs from 'fs';
 
-export function create(linkPath: string, newTarget: string) {
+export function create(link_path: string, new_target: string) {
   try {
     let type = 'file';
     try {
-      if (fs.statSync(newTarget).isDirectory()) {
+      if (fs.statSync(new_target).isDirectory()) {
         type = 'junction';
       }
     } catch (e) {
     }
     // fs.unlinkSync(linkPath);
-    fs.symlinkSync(newTarget, linkPath, type as any);
-    console.log(`Symlink created: '${linkPath}' -> pointing to -> '${newTarget}'`);
+    fs.symlinkSync(new_target, link_path, type as any);
+    console.log(`Symlink created: '${link_path}' -> pointing to -> '${new_target}'`);
 
   } catch (err: any) {
     console.error(`Failed to set symlink: ${err.message}`);

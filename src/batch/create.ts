@@ -2,7 +2,7 @@ export async function create<T>({batch_size, promises}: { batch_size: number, pr
     let current_batch_start = 0;
     const result: T[] = [];
 
-    async function nextBatch() {
+    async function next_batch() {
         const batch_promises: Promise<void>[] = [];
         for (let i = current_batch_start; i < Math.min(current_batch_start + batch_size, promises.length); i++) {
             const worker = promises[i];
@@ -12,13 +12,13 @@ export async function create<T>({batch_size, promises}: { batch_size: number, pr
                 if (current_batch_start % batch_size !== 0) {
                     return;
                 }
-                nextBatch();
+                next_batch();
             }))
         }
         return await Promise.all(batch_promises);
     }
 
-    await nextBatch();
+    await next_batch();
 
     return result;
 }

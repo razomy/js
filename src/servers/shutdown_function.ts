@@ -1,6 +1,6 @@
 export function shutdown_function(server, callback) {
-  process.on('SIGTERM', shutDown);
-  process.on('SIGINT', shutDown);
+  process.on('SIGTERM', shut_down);
+  process.on('SIGINT', shut_down);
 
   let connections: any[] = [];
 
@@ -9,7 +9,7 @@ export function shutdown_function(server, callback) {
     connection.on('close', () => connections = connections.filter(curr => curr !== connection));
   });
 
-  async function shutDown() {
+  async function shut_down() {
 
     console.log('Received kill signal, shutting down gracefully.');
 

@@ -1,1 +1,1 @@
-export const __NUL__ = null;
+export const nul = null;

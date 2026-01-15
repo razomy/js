@@ -1,8 +1,14 @@
-import { fileURLToPath } from 'url';
-import {argv} from 'process';
+import {fileURLToPath} from 'url';
 
-export function is_main(moduleUrl) {
-  const module_path = fileURLToPath(moduleUrl);
-  const [_bin_path, main_script_path] = argv;
-  return module_path === main_script_path;
+export function is_main(import_meta_url_or_require_main: string) {
+  const current_path = fileURLToPath(import_meta_url_or_require_main);
+  if (process.argv[1] === current_path) {
+    return true;
+  }
+
+  if (require?.main?.path === current_path) {
+    return true;
+  }
+
+  return false;
 }

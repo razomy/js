@@ -20,11 +20,11 @@ export type FlattenedAndConverted<T extends object> = {
 
 export function flatten_dict<T extends object = object>(
   obj: T,
-  parentKey = '',
+  parent_key = '',
   result = {} as any,
 ): FlattenedAndConverted<T> {
   for_own(obj, (value, key) => {
-    const new_key = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
+    const new_key = parent_key && key ? `${parent_key}.${key}` : parent_key || key;
 
     if (is_plain_object(value)) {
       flatten_dict(value as any, new_key, result);

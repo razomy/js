@@ -52,7 +52,3 @@ export function differences_vrd<T>(
     return diffs;
   }
 }
-
-
-
-export * from './test';

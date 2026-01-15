@@ -5,8 +5,8 @@ export const minute_ms = second_ms * 60;
 export const hour_ms = minute_ms * 60;
 export const day_ms = hour_ms * 24;
 
-export const format_duration = (durationInMs: number): string => {
-  const duration = intervalToDuration({ start: 0, end: durationInMs });
+export function format_duration (duration_in_ms: number) : string {
+  const duration = intervalToDuration({ start: 0, end: duration_in_ms });
 
   if (duration.days && duration.days > 0) {
     return `${duration.days} day${duration.days > 1 ? "s" : ''}${
@@ -23,10 +23,10 @@ export const format_duration = (durationInMs: number): string => {
   } else {
     return `${duration.seconds} sec`; // Handle seconds explicitly
   }
-};
+}
 
 // converts milliseconds into a formatted string (for ex., "3h15m" or "16m").
-export const format_milliseconds = (milliseconds: number): string => {
+export function format_milliseconds (milliseconds: number) : string {
   const total_seconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor(total_seconds / 60);
   const seconds = total_seconds % 60;
@@ -41,4 +41,4 @@ export const format_milliseconds = (milliseconds: number): string => {
   } else {
     return `${seconds}s`;
   }
-};
+}

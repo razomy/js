@@ -17,7 +17,3 @@ export function get_vrd<T>(value_recursive: VrdOrValue<T>, path: DictKey[], path
 
   throw new ArgumentException('invalid arguments', {value_recursive, path, path_offset})
 }
-
-
-
-export * from './get_with_path';export * from './get_matches_key';export * from './get_parents';

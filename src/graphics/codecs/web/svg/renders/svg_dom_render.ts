@@ -29,7 +29,7 @@ export class WebSvgRender extends Render<ElementView> {
   }
 
   private iterate(node: ElementView): Node {
-    const value = this.codecFactory.createByNode(node).encode(node);
+    const value = this.codecFactory.create_by_node(node).encode(node);
     this.webSvgHighLightsRender.render(node, value);
     const node_children = node.children;
     for (let i = 0; i < node_children.length; i++) {

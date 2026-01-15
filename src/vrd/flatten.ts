@@ -29,7 +29,3 @@ export function flatten(data: Record<string, any>): Record<string, any> {
   recurse(data, '');
   return result;
 }
-
-
-
-export * from './unflatten';

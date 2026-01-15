@@ -1,2 +1,2 @@
-export * from './performance_cb';
-export { Performance } from './performance';
+export { performance_cb } from './performance_cb';
+export { performance, Performance } from './performance';

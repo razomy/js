@@ -3,7 +3,7 @@ export const java_output = ['out'];
 export const python_output = ['build'];
 export const nuxt_output = ['.output'];
 export const rust_output = ['target'];
-export const e2e_output = ['test-results'];
+export const e_2_e_output = ['test-results'];
 export const razomy_output = ['_releases'];
 export const c_output = ['cmake-build-debug'];
 
@@ -15,5 +15,5 @@ export const known_output = [
   ...razomy_output,
   ...nuxt_output,
   ...c_output,
-  ...e2e_output,
+  ...e_2_e_output,
 ];

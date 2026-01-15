@@ -22,7 +22,7 @@ export class TaskQueue {
 
     return new Promise<T>((resolve, reject) => {
       // 1. Wrap the task to ensure it is always a Promise
-      const wrapped_task = async () => Promise.resolve(task());
+      async function wrapped_task () { return Promise.resolve(task()); }
 
       // 2. Push the task AND its controller (resolve/reject) to the queue
       this.queue.push({
@@ -33,11 +33,11 @@ export class TaskQueue {
       });
 
       // 3. Trigger processing
-      this.tryProcessQueue();
+      this.try_process_queue();
     });
   }
 
-  private async tryProcessQueue() {
+  private async try_process_queue() {
     // If already running or empty, do nothing
     if (this.is_processing || this.queue.length === 0) {
       return;

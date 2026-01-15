@@ -8,18 +8,18 @@ export function get_package_directories() {
 }
 
 export async function build_packages_recursive() {
-  const srcPath = path.join(process.cwd());
+  const src_path = path.join(process.cwd());
   const entries: string[] = [];
 
-  const items = fs.readdirSync(srcPath);
+  const items = fs.readdirSync(src_path);
   // 3. Пробегаемся по папкам и ищем index.ts (аналог 'src/*/index.ts')
   for (const item of items) {
-    const dirPath = path.join(srcPath, item);
-    const entryPath = path.join(dirPath, 'index.ts');
+    const dir_path = path.join(src_path, item);
+    const entry_path = path.join(dir_path, 'index.ts');
 
     // Проверяем, что это папка и внутри есть index.ts
-    if (fs.statSync(dirPath).isDirectory() && fs.existsSync(entryPath)) {
-      entries.push(entryPath);
+    if (fs.statSync(dir_path).isDirectory() && fs.existsSync(entry_path)) {
+      entries.push(entry_path);
     }
   }
 

@@ -1,5 +1,5 @@
-export * from './echo';
-export * as logger from './logger';
+export { echo } from './echo';
+export { is_production, console_transport, logger } from './logger';
 export { WithServer, WithUrl } from './server';
-export * from './shutdown_function';
-export * from './static_html';
+export { shutdown_function } from './shutdown_function';
+export { static_html } from './static_html';

@@ -145,7 +145,7 @@ var from_polar = function(src: any, dst: any, opt: any) {
   // var conversion = tSize/360*180/Math.PI;
   //var conversion = tSize/360*180/Math.PI;
 
-  var x1, y1;
+  var x_1, y_1;
 
   for (x = 0; x < x_size; x += 1) {
     for (y = 0; y < y_size; y += 1) {
@@ -154,9 +154,9 @@ var from_polar = function(src: any, dst: any, opt: any) {
       radius = (Math.sqrt(dx * dx + dy * dy) * r_size) / r_max;
       theta = ((Math.atan2(dy, dx) * 180) / Math.PI + 360 + phase_shift) % 360;
       theta = (theta * t_size) / 360;
-      x1 = Math.floor(theta);
-      y1 = Math.floor(radius);
-      i = (y1 * x_size + x1) * 4;
+      x_1 = Math.floor(theta);
+      y_1 = Math.floor(radius);
+      i = (y_1 * x_size + x_1) * 4;
       r = src_pixels[i + 0];
       g = src_pixels[i + 1];
       b = src_pixels[i + 2];

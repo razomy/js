@@ -19,11 +19,11 @@ export class SolarizeTextureFilter implements ITextureFilter {
     var data = imageData.data,
       w = imageData.width,
       h = imageData.height,
-      w4 = w * 4,
+      w_4 = w * 4,
       y = h;
 
     do {
-      var offset_y = (y - 1) * w4;
+      var offset_y = (y - 1) * w_4;
       var x = w;
       do {
         var offset = offset_y + (x - 1) * 4;

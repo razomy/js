@@ -1,2 +1,2 @@
 export { CacheEntry, ExpiringInMemoryCache } from './expiring_in_memory_cache';
-export * as time from './time';
+export { format_duration, format_milliseconds, second_ms, minute_ms, hour_ms, day_ms } from './time';

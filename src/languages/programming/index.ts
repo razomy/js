@@ -1,2 +1,2 @@
 export * as fs from './fs';
-export * as typescripts from './typescript/project/refactor';
+export * as typescript from './typescript';

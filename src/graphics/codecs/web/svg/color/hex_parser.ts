@@ -12,7 +12,7 @@ export class HexParser {
    * Returns color representation in HEX format
    * @return {String} ex: FF5555
    */
-  public static toHex(source: number[]): string {
+  public static to_hex(source: number[]): string {
     const [r, g, b] = source.map(component => {
       const hex_component = component.toString(16);
       return hex_component.length === 1 ? '0' + hex_component : hex_component;
@@ -25,11 +25,11 @@ export class HexParser {
    * Returns color representation in HEXA format
    * @return {String} ex: FF5555CC
    */
-  public static toHexa(source: [number, number, number, number]): string {
+  public static to_hexa(source: [number, number, number, number]): string {
     const a = Math.round(source[3] * 255).toString(16);
     const alpha_component = a.length === 1 ? '0' + a : a;
 
-    return HexParser.toHex(source) + alpha_component.toUpperCase();
+    return HexParser.to_hex(source) + alpha_component.toUpperCase();
   }
 
   /**
@@ -39,8 +39,8 @@ export class HexParser {
    * @param {String} color Color value ex: FF5555
    * @return {Color}
    */
-  public static fromHex(color: string): any {
-    return this.sourceFromHex(color);
+  public static from_hex(color: string): any {
+    return this.source_from_hex(color);
   }
 
   /**
@@ -50,7 +50,7 @@ export class HexParser {
    * @param {String} color ex: FF5555 or FF5544CC (RGBa)
    * @return {Array} source
    */
-  public static sourceFromHex(color: string): [number, number, number, number] | null {
+  public static source_from_hex(color: string): [number, number, number, number] | null {
     if (color.match(this.re_hex)) {
       const value = color.slice(color.indexOf('#') + 1);
       const is_short_notation = value.length === 3 || value.length === 4;

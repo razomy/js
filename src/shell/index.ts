@@ -1,7 +1,7 @@
-export * from './execute_async';
-export * from './execute_sync';
-export * from './get_bool';
-export * from './get';
-export * from './log_inline';
-export * from './log';
-export * from './progress';
+export { execute_async } from './execute_async';
+export { execute_sync, StringCommand, ShellCommand } from './execute_sync';
+export { get_bool } from './get_bool';
+export { get } from './get';
+export { log_inline } from './log_inline';
+export { log } from './log';
+export { progress } from './progress';

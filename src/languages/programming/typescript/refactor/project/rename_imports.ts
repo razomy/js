@@ -1,12 +1,7 @@
 import { Project, SyntaxKind } from 'ts-morph';
+import {to_snake_case} from 'razomy.string';
 
-export const to_snake_case = (str: string) => {
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1_$2')
-    .toLowerCase();
-};
-
-export const transform_path = (path: string) => {
+export function transform_path (path: string) {
   // Split path by slashes to handle folders individually
   return path
     .split('/')
@@ -16,9 +11,9 @@ export const transform_path = (path: string) => {
       return to_snake_case(segment);
     })
     .join('/');
-};
+}
 
-export const rename_import_paths = async () => {
+export async function rename_import_paths () {
   const project = new Project({
     tsConfigFilePath: '../../../../tsconfig.json',
   });
@@ -60,6 +55,6 @@ export const rename_import_paths = async () => {
   } else {
     console.log('No import paths needed updating.');
   }
-};
+}
 
 rename_import_paths();

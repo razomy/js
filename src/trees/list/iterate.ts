@@ -6,7 +6,3 @@ export function iterate<T extends WithChildrenList<any>>(node: T, cb: (node: T) 
     iterate<T>(n, cb);
   }
 }
-
-
-
-export * from './iterate_reverse';

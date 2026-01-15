@@ -12,10 +12,10 @@ export class TextCodec implements Codec<TextElement, SVGTextElement> {
 
   public encode(node: TextElement): SVGTextElement {
     const el = this.encodeNodeFactory.create<SVGTextElement>('text');
-    el.setAttribute('x', node.getBy(PositionAttribute).x + '');
-    el.setAttribute('y', node.getBy(PositionAttribute).x + '');
-    el.setAttribute('width', node.getBy(SizeAttribute).width + '');
-    el.setAttribute('height', node.getBy(SizeAttribute).height + '');
+    el.setAttribute('x', node.get_by(PositionAttribute).x + '');
+    el.setAttribute('y', node.get_by(PositionAttribute).x + '');
+    el.setAttribute('width', node.get_by(SizeAttribute).width + '');
+    el.setAttribute('height', node.get_by(SizeAttribute).height + '');
     return el;
   };
 

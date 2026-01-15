@@ -4,11 +4,11 @@ import path from 'path';
 export function get(directory) {
   let files: string[] = [];
 
-  function walk(currentDirPath) {
-    const items = fs.readdirSync(currentDirPath);
+  function walk(current_dir_path) {
+    const items = fs.readdirSync(current_dir_path);
 
     for (const item of items) {
-      const item_path = path.join(currentDirPath, item);
+      const item_path = path.join(current_dir_path, item);
       const stat = fs.statSync(item_path);
 
       if (stat.isFile()) {

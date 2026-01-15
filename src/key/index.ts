@@ -1,1 +1,1 @@
-export * from './assign';
+export { assign } from './assign';

@@ -89,7 +89,7 @@ export class ArcRender {
   ) {
   }
 
-  _sceneFunc(context: any) {
+  scene_func(context: any) {
     const pi_over_180 = Math.PI / 180;
 
     const angle = (this.angle * pi_over_180);
@@ -102,19 +102,19 @@ export class ArcRender {
     context.fillStrokeShape(this);
   }
 
-  getWidth() {
+  get_width() {
     return this.outerRadius * 2;
   }
 
-  getHeight() {
+  get_height() {
     return this.outerRadius * 2;
   }
 
-  setWidth(width: number) {
+  set_width(width: number) {
     this.outerRadius = width / 2;
   }
 
-  setHeight(height: number) {
+  set_height(height: number) {
     this.outerRadius = height / 2;
   }
 

@@ -26,7 +26,7 @@ export interface IEntityResource {
 
   replace<T extends Resource>(obj: T): void;
 
-  getBy<T extends Resource>(objCtor: Constructor<T>): T;
+  get_by<T extends Resource>(objCtor: Constructor<T>): T;
 }
 
 export class EntityResource extends Resource implements IEntityResource {
@@ -56,7 +56,7 @@ export class EntityResource extends Resource implements IEntityResource {
     this.resources[obj.type] = obj;
   }
 
-  public getBy<T extends Resource = Resource>(objCtor: Constructor<T>): T {
+  public get_by<T extends Resource = Resource>(objCtor: Constructor<T>): T {
     const ctor: T | Resource = this.resources[objCtor.type];
 
     if (ctor === undefined) {

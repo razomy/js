@@ -1,1 +1,1 @@
-export * from './get';
+export { get } from './get';

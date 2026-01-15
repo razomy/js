@@ -9,13 +9,13 @@ export interface INodeResourceCollection {
 
 export interface IResourceCollection<T extends EntityResource> {
 
-  getAll(): T[];
+  get_all(): T[];
 
   add(node: T): void;
 
-  removeAll(): void;
+  remove_all(): void;
 
-  removeAllBy(node: Constructor<T>): void;
+  remove_all_by(node: Constructor<T>): void;
 
 }
 
@@ -46,15 +46,15 @@ export class ResourceCollection<T extends EntityResource> extends Resource imple
     this.nodes.push(node);
   }
 
-  public getAll(): T[] {
+  public get_all(): T[] {
     return this.nodes;
   }
 
-  public removeAll(): void {
+  public remove_all(): void {
     throw new NotImplementedException();
   }
 
-  public removeAllBy(node: Constructor<T>): void {
+  public remove_all_by(node: Constructor<T>): void {
     throw new NotImplementedException();
   }
 

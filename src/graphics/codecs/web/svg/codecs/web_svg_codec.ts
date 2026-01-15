@@ -35,7 +35,7 @@ export class WebSvgCodec implements Codec<ElementView, Node> {
       }
 
       const sub_node = this.iterate(<HTMLElement> value_children[i]);
-      node.getBy(ResourceCollection).add(sub_node);
+      node.get_by(ResourceCollection).add(sub_node);
     }
 
     return node;

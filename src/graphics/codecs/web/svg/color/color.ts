@@ -10,13 +10,13 @@ export interface RGBA extends RGB {
 }
 
 export class Color {
-  private _source: number[];
+  private source: number[];
 
   constructor();
   constructor(str: string);
   constructor(otherColor?: Color | string) {
     if (otherColor instanceof Color) {
-      this._source = otherColor.getSource();
+      this.source = otherColor.get_source();
       return;
     }
 
@@ -24,7 +24,7 @@ export class Color {
       throw new Error();
     }
 
-    this._source = [0, 0, 0, 1];
+    this.source = [0, 0, 0, 1];
   }
 
   /**
@@ -32,23 +32,23 @@ export class Color {
    * @param {String|Color} otherColor
    * @return {Color} thisArg
    */
-  overlayWith(otherColor: Color | string) {
+  overlay_with(otherColor: Color | string) {
     if (!(otherColor instanceof Color)) {
       otherColor = new Color(otherColor);
     }
 
     var result: number[] = [],
-      alpha = this.getAlpha(),
+      alpha = this.get_alpha(),
       other_alpha = 0.5,
-      source = this.getSource(),
-      other_source = otherColor.getSource(), i;
+      source = this.get_source(),
+      other_source = otherColor.get_source(), i;
 
     for (i = 0; i < 3; i++) {
       result.push(Math.round((source[i] * (1 - other_alpha)) + (other_source[i] * other_alpha)));
     }
 
     result[3] = alpha;
-    this.setSource(result);
+    this.set_source(result);
     return this;
   }
 
@@ -57,24 +57,24 @@ export class Color {
    * Returns source of this color (where source is an array representation; ex: [200, 200, 100, 1])
    * @return {Array}
    */
-  getSource() {
-    return this._source;
+  get_source() {
+    return this.source;
   }
 
   /**
    * Sets source of this color (where source is an array representation; ex: [200, 200, 100, 1])
    * @param {Array} source
    */
-  setSource(source: number[]) {
-    this._source = source;
+  set_source(source: number[]) {
+    this.source = source;
   }
 
   /**
    * Gets value of alpha channel for this color
    * @return {Number} 0-1
    */
-  getAlpha() {
-    return this.getSource()[3];
+  get_alpha() {
+    return this.get_source()[3];
   }
 
   /**
@@ -82,10 +82,10 @@ export class Color {
    * @param {Number} alpha Alpha value 0-1
    * @return {Color} thisArg
    */
-  setAlpha(alpha: number) {
-    var source = this.getSource();
+  set_alpha(alpha: number) {
+    var source = this.get_source();
     source[3] = alpha;
-    this.setSource(source);
+    this.set_source(source);
     return this;
   }
 
@@ -94,11 +94,11 @@ export class Color {
    * Transforms color to its grayscale representation
    * @return {Color} thisArg
    */
-  toGrayscale() {
-    var source = this.getSource(),
+  to_grayscale() {
+    var source = this.get_source(),
       average = parseInt((source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0), 10),
       current_alpha = source[3];
-    this.setSource([average, average, average, current_alpha]);
+    this.set_source([average, average, average, current_alpha]);
     return this;
   }
 
@@ -107,15 +107,15 @@ export class Color {
    * @param {Number} threshold
    * @return {Color} thisArg
    */
-  toBlackWhite(threshold: number) {
-    var source = this.getSource(),
+  to_black_white(threshold: number) {
+    var source = this.get_source(),
       average = (source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0),
       current_alpha = source[3];
 
     threshold = threshold || 127;
 
     var average_i = (Number(average) < Number(threshold)) ? 0 : 255;
-    this.setSource([average_i, average_i, average_i, current_alpha]);
+    this.set_source([average_i, average_i, average_i, current_alpha]);
     return this;
   }
 }

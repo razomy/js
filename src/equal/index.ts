@@ -1,2 +1,2 @@
-export * from './equal';
-export * from './is_array_equal';
+export { equal } from './equal';
+export { is_array_equal } from './is_array_equal';

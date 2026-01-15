@@ -1,22 +1,22 @@
 import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
-export function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, toMax: any) {
+export function remap(from_value: any, from_min: any, from_max: any, to_min: any, to_max: any) {
   // Compute the range of the data
-  var from_range = fromMax - fromMin,
-    to_range = toMax - toMin,
+  var from_range = from_max - from_min,
+    to_range = to_max - to_min,
     to_value;
 
   // If either range is 0, then the value can only be mapped to 1 value
   if (from_range === 0) {
-    return toMin + to_range / 2;
+    return to_min + to_range / 2;
   }
   if (to_range === 0) {
-    return toMin;
+    return to_min;
   }
 
   // (1) untranslate, (2) unscale, (3) rescale, (4) retranslate
-  to_value = (fromValue - fromMin) / from_range;
-  to_value = to_range * to_value + toMin;
+  to_value = (from_value - from_min) / from_range;
+  to_value = to_range * to_value + to_min;
 
   return to_value;
 }

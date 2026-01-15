@@ -12,12 +12,12 @@ export function sort_by(collection, iteratee) {
     }
 
     result.sort((a, b) => {
-    const valA = a.criteria;
-    const valB = b.criteria;
+    const val_a = a.criteria;
+    const val_b = b.criteria;
 
-    if (valA !== valB) {
-      if (valA > valB || valA === undefined) return 1;
-      if (valA < valB || valB === undefined) return -1;
+    if (val_a !== val_b) {
+      if (val_a > val_b || val_a === undefined) return 1;
+      if (val_a < val_b || val_b === undefined) return -1;
     }
 
     return a.index - b.index;
