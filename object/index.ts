@@ -1,5 +1,5 @@
-export { IObjectClone } from './i_object_clone';
-export { IObject, IObjectConstructor } from './i_object';
+export { type IObjectClone } from './i_object_clone';
+export { type IObject, type IObjectConstructor } from './i_object';
 export { is_class_constructor } from './is_class_constructor';
 export { is_object } from './is_object';
 export { object_to_bytes } from './object_to_bytes';

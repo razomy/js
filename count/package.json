@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.string": "../../count",
-    "razomy.number": "../../count"
+    "razomy.string": "../string",
+    "razomy.number": "../number"
   }
 }

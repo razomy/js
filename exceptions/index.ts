@@ -1,5 +1,5 @@
 export { ArgumentException } from './argument_exception';
-export { CatchFn, CollectException } from './collect';
+export { type CatchFn, CollectException } from './collect';
 export { Exception } from './exception';
 export { MultipleException } from './multiple_exception';
 export { NotImplementedException } from './not_implemented_exception';

@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.shell": "../../differences",
-    "razomy.difference": "../../differences",
-    "razomy.indexes": "../../differences"
+    "razomy.shell": "../shell",
+    "razomy.difference": "../difference",
+    "razomy.indexes": "../indexes"
   }
 }

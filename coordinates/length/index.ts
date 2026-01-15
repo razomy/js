@@ -1,1 +1,1 @@
-export { With } from './with';
+export { type With } from './with';

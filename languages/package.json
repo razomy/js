@@ -2,14 +2,14 @@
   "name": "razomy.languages",
   "dependencies": {
     "ts-morph": "27.0.2",
-    "razomy.array": "../../languages",
-    "razomy.action": "../../languages",
-    "razomy.string": "../../languages",
-    "razomy.fs": "../../languages",
-    "razomy.main": "../../languages",
-    "razomy.list": "../../languages",
-    "razomy.path": "../../languages",
-    "razomy.exceptions": "../../languages"
+    "razomy.array": "../array",
+    "razomy.action": "../action",
+    "razomy.string": "../string",
+    "razomy.fs": "../fs",
+    "razomy.main": "../main",
+    "razomy.list": "../list",
+    "razomy.path": "../path",
+    "razomy.exceptions": "../exceptions"
   },
   "version": "0.0.0",
   "main": "./index.ts",

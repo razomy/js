@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.codec": "../../../fs/extension",
-    "razomy.buffer": "../../../fs/extension",
-    "razomy.fs": "../../../fs/extension"
+    "razomy.codec": "../../codec",
+    "razomy.buffer": "../../buffer",
+    "razomy.fs": "../../fs"
   }
 }

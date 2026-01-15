@@ -1,7 +1,6 @@
-import * as path from 'path';
+import path from 'path';
 import {to_snake_case} from 'razomy.string';
-import {if_main} from 'razomy.main';
-import {iterate_source_files_and_save, IterateSourceFileState} from '../iterate_source_files_and_save';
+import {IterateSourceFileState} from '../iterate_source_files_and_save';
 
 
 export async function split_functions({source_file, project}: IterateSourceFileState) {
@@ -72,5 +71,3 @@ export async function split_functions({source_file, project}: IterateSourceFileS
   // Clean up imports in the original file (since we removed functions, some imports might be unused now)
   source_file.fixUnusedIdentifiers();
 }
-
-if_main(import.meta.url, () => iterate_source_files_and_save('../../../../../../', split_functions)).then();

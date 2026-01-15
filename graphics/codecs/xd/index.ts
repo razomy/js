@@ -1,1 +1,1 @@
-export { Path, CompoundPath, Rectangle, Circle, Ellipse, Line, Shape, CommonArtboard, ShapeArtboard, TextArtboard, GroupArtboard, Artboard } from './xd';
+export { type Path, type CompoundPath, type Rectangle, type Circle, type Ellipse, type Line, type Shape, type CommonArtboard, type ShapeArtboard, type TextArtboard, type GroupArtboard, type Artboard } from './xd';

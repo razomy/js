@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import {is_exist} from 'razomy.fs/file/is_exist';
 import { PathString } from 'razomy.path/string/path_string';
 import {git_slug} from './is_packages';

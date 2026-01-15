@@ -1,9 +1,9 @@
 import {Node, Project, SyntaxKind, VariableDeclarationKind} from 'ts-morph';
 import {if_main} from 'razomy.main';
 
-export async function convert_lambdas_to_named_functions() {
+export async function convert_lambdas_to_named_functions(project_path: string) {
   const project = new Project({
-    tsConfigFilePath: '../../../../../../tsconfig.json',
+    tsConfigFilePath: project_path + 'tsconfig.json',
   });
 
   const source_files = project.getSourceFiles();
@@ -82,5 +82,3 @@ export async function convert_lambdas_to_named_functions() {
 
   await project.save();
 }
-
-if_main(import.meta.url, convert_lambdas_to_named_functions).then();

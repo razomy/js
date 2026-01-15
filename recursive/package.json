@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.dict": "../../recursive",
-    "razomy.object": "../../recursive"
+    "razomy.dict": "../dict",
+    "razomy.object": "../object"
   }
 }

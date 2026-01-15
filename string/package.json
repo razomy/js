@@ -16,10 +16,10 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.dict": "../string",
-    "razomy.differences": "../../string",
-    "razomy.strings": "../../string",
-    "razomy.index": "../../string",
-    "razomy.number": "../../string"
+    "razomy.dict": "../dict",
+    "razomy.differences": "../differences",
+    "razomy.strings": "../strings",
+    "razomy.index": "../index",
+    "razomy.number": "../number"
   }
 }

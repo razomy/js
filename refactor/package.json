@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.fs": "../../refactor",
-    "razomy.string": "../../refactor"
+    "razomy.fs": "../fs",
+    "razomy.string": "../string"
   }
 }

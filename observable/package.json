@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.action": "../../observable",
-    "razomy.exceptions": "../../observable"
+    "razomy.action": "../action",
+    "razomy.exceptions": "../exceptions"
   }
 }

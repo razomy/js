@@ -10,7 +10,7 @@ export { erode_mask } from './erode_mask';
 export { GrayscaleTextureFilter } from './grayscale_texture_filter';
 export { HslTextureFilter } from './hsl_texture_filter';
 export { HsvTextureFilter } from './hsv_texture_filter';
-export { IFilter, ITextureFilter } from './i_texture_filter';
+export { type IFilter, type ITextureFilter } from './i_texture_filter';
 export { InvertTextureFilter } from './invert_texture_filter';
 export { create_canvas_element, KaleidoscopeTextureFilter } from './kaleidoscope_texture_filter';
 export { pixel_at, MaskTextureFilter } from './mask_texture_filter';

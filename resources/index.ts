@@ -1,5 +1,5 @@
 export { AttributeResource } from './attribute_resource';
-export { NodeProvidedException, NodeAlreadyProvidedException, IResourceMap, IEntityResourceMap, IEntityResource, EntityResource } from './entity_resource';
-export { IResource } from './i_resource';
-export { INodeResourceCollection, IResourceCollection, ResourceCollection } from './resource_collection';
+export { NodeProvidedException, NodeAlreadyProvidedException, type IResourceMap, type IEntityResourceMap, type IEntityResource, EntityResource } from './entity_resource';
+export { type IResource } from './i_resource';
+export { type INodeResourceCollection, type IResourceCollection, ResourceCollection } from './resource_collection';
 export { Resource } from './resource';

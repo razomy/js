@@ -3,10 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import {iterate} from 'razomy.fs';
 
-export function add_dependencies() {
-  const packages = get_all_package_jsons();
+export function add_dependencies(project_path: string) {
+  const packages = get_all_package_jsons(project_path);
 
-  const packages_dir = '../../../../../';
   const scope = 'razomy'; // Match your scope
 
 // 1. Get list of all available package names
@@ -52,7 +51,9 @@ export function add_dependencies() {
       if (depName == 'razomy.' + folder.name.replaceAll('/', '.')) {
         return
       }
-      pkg_json.dependencies[depName] = path.join(path.relative(folder.path, packages_dir), folder.name);
+      pkg_json.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../'), project_path), depName
+        .replaceAll('razomy', '')
+        .replaceAll('.', '/'));
       console.log(`[${pkg_json.name}] Added dependency: ${depName}`);
       changed = true;
     });

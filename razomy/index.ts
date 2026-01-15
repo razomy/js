@@ -1,1 +1,1 @@
-export { Razomy } from './razomy';
+export { type Razomy } from './razomy';

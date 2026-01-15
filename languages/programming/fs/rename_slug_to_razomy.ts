@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import { PathString } from 'razomy.path/string/path_string';
 import {rename} from 'razomy.fs/rename';
 import {razomy_output} from './is_output';

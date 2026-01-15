@@ -16,6 +16,6 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.value": "../../action"
+    "razomy.value": "../value"
   }
 }

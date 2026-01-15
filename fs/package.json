@@ -8,16 +8,16 @@
     "*"
   ],
   "dependencies": {
-    "razomy.fs.extension": "../../fs",
-    "razomy.observable": "../../fs",
-    "razomy.path": "../../fs",
-    "razomy.vrd": "../../fs",
-    "razomy.exceptions": "../../fs",
-    "razomy.kv": "../../fs",
-    "razomy.gate": "../../fs",
-    "razomy.codec": "../../fs",
-    "razomy.buffer": "../../fs",
-    "razomy.shell": "../../fs"
+    "razomy.fs.extension": "../fs/extension",
+    "razomy.observable": "../observable",
+    "razomy.path": "../path",
+    "razomy.vrd": "../vrd",
+    "razomy.exceptions": "../exceptions",
+    "razomy.kv": "../kv",
+    "razomy.gate": "../gate",
+    "razomy.codec": "../codec",
+    "razomy.buffer": "../buffer",
+    "razomy.shell": "../shell"
   },
   "publishConfig": {
     "access": "public",

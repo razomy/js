@@ -1,12 +1,11 @@
 import {Project} from 'ts-morph';
-import {if_main} from 'razomy.main';
 import {
   file_rename_variables_and_props_functions
 } from 'razomy.languages/programming/typescript/refactor/file_rename_variables_and_props_functions';
 
-export async function rename_variables_and_props_functions() {
+export async function rename_variables_and_props_functions(project_path: string) {
   const project = new Project({
-    tsConfigFilePath: '../../../../../../tsconfig.json',
+    tsConfigFilePath: project_path + 'tsconfig.json',
   });
 
   const source_files = project.getSourceFiles();
@@ -17,5 +16,3 @@ export async function rename_variables_and_props_functions() {
 
   await project.save();
 }
-
-if_main(import.meta.url, rename_variables_and_props_functions).then()

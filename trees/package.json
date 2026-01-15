@@ -16,11 +16,11 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.value": "../../trees",
-    "razomy.vrd": "../../trees",
-    "razomy.key": "../../trees",
-    "razomy.exceptions": "../../trees",
-    "razomy.dict": "../../trees",
-    "razomy.graph": "../../trees"
+    "razomy.value": "../value",
+    "razomy.vrd": "../vrd",
+    "razomy.key": "../key",
+    "razomy.exceptions": "../exceptions",
+    "razomy.dict": "../dict",
+    "razomy.graph": "../graph"
   }
 }

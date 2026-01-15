@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.difference": "../../array",
-    "razomy.string": "../../array"
+    "razomy.difference": "../difference",
+    "razomy.string": "../string"
   }
 }

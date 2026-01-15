@@ -1,8 +1,8 @@
 export * as recursive from 'razomy.dict.recursive';
-export { DictKey, Dict } from './dict';
+export { type DictKey, type Dict } from './dict';
 export { filter_dict } from './filter_dict';
 export { first_key_dict } from './first_key_dict';
-export { flatten_dict, Join, PathsValue, FlattenedAndConverted } from './flatten_dict';
+export { flatten_dict, type Join, type PathsValue, type FlattenedAndConverted } from './flatten_dict';
 export { for_own } from './for_own';
 export { is_keys_in_dict } from './is_keys_in_dict';
 export { is_plain_object } from './is_plain_object';
@@ -10,4 +10,4 @@ export { keys_in_dict } from './keys_in_dict';
 export { map_dict_to_array } from './map_dict_to_array';
 export { map_dict } from './map_dict';
 export { shuffle } from './shuffle';
-export { SomeOf } from './some_of';
+export { type SomeOf } from './some_of';

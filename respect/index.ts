@@ -1,1 +1,1 @@
-export { report, WithRespect, WithRespectReport } from './with_respect';
+export { report, type WithRespect, type WithRespectReport } from './with_respect';

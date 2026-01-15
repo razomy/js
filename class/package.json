@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.object": "../../class",
-    "razomy.types": "../../class"
+    "razomy.object": "../object",
+    "razomy.types": "../types"
   }
 }

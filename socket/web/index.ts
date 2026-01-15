@@ -1,1 +1,1 @@
-export { create, WithWebsocket } from './create';
+export { create, type WithWebsocket } from './create';

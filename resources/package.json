@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.exceptions": "../../resources",
-    "razomy.class": "../../resources",
-    "razomy.types": "../../resources"
+    "razomy.exceptions": "../exceptions",
+    "razomy.class": "../class",
+    "razomy.types": "../types"
   }
 }

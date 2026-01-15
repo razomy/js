@@ -2,13 +2,13 @@
   "name": "razomy.git",
   "dependencies": {
     "simple-git": "3.30.0",
-    "razomy.commit": "../../git",
-    "razomy.shell": "../../git",
-    "razomy.fs": "../../git",
-    "razomy.async": "../../git",
-    "razomy.trees": "../../git",
-    "razomy.path": "../../git",
-    "razomy.languages": "../../git"
+    "razomy.commit": "../commit",
+    "razomy.shell": "../shell",
+    "razomy.fs": "../fs",
+    "razomy.async": "../async",
+    "razomy.trees": "../trees",
+    "razomy.path": "../path",
+    "razomy.languages": "../languages"
   },
   "version": "0.0.0",
   "main": "./index.ts",

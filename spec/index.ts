@@ -1,1 +1,1 @@
-export { FunctionSpec } from './function_spec';
+export { type FunctionSpec } from './function_spec';

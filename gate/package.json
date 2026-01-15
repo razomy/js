@@ -16,6 +16,6 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.resources": "../../gate"
+    "razomy.resources": "../resources"
   }
 }

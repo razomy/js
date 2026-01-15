@@ -20,6 +20,6 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.servers": "../../socket"
+    "razomy.servers": "../servers"
   }
 }

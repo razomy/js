@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.dict": "../../list",
-    "razomy.key": "../../list",
-    "razomy.string": "../../list"
+    "razomy.dict": "../dict",
+    "razomy.key": "../key",
+    "razomy.string": "../string"
   }
 }

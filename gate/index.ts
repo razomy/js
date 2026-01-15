@@ -1,1 +1,1 @@
-export { IGate } from './i_gate';
+export { type IGate } from './i_gate';

@@ -18,15 +18,15 @@
   "dependencies": {
     "@squadette/hammerjs": "^2.1.0-pre3",
     "mousetrap": "^1.6.5",
-    "razomy.resources": "../../graphics",
-    "razomy.list": "../../graphics",
-    "razomy.codec": "../../graphics",
-    "razomy.create": "../../graphics",
-    "razomy.exceptions": "../../graphics",
-    "razomy.web": "../../graphics",
-    "razomy.renderes": "../../graphics",
-    "razomy.selection-attribute": "../../graphics",
-    "razomy.user-entity": "../../graphics",
-    "razomy.object": "../../graphics"
+    "razomy.resources": "../resources",
+    "razomy.list": "../list",
+    "razomy.codec": "../codec",
+    "razomy.create": "../create",
+    "razomy.exceptions": "../exceptions",
+    "razomy.web": "../web",
+    "razomy.renderes": "../renderes",
+    "razomy.selection-attribute": "../selection-attribute",
+    "razomy.user-entity": "../user-entity",
+    "razomy.object": "../object"
   }
 }

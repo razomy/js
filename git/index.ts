@@ -4,7 +4,7 @@ export { get_all_commit_hashes } from './get_all_commit_hashes';
 export { get_git_commits_id } from './get_git_commits_id';
 export { get_last_git_commit_id_or_null } from './get_last_git_commit_id_or_null';
 export { get_status_sync } from './get_status_sync';
-export { get_status, Status } from './get_status';
+export { get_status, type Status } from './get_status';
 export { git_commit } from './git_commit';
 export { git_file_commits_to_commit_json_file } from './git_file_commits_to_commit_json_file';
 export { git_file_to_new_git_file } from './git_file_to_new_git_file';

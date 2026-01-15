@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.serializable": "../../json",
-    "razomy.codec": "../../json"
+    "razomy.serializable": "../serializable",
+    "razomy.codec": "../codec"
   }
 }

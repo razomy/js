@@ -1,3 +1,3 @@
 export * as delta from './delta';
 export * as vrd from './vrd';
-export { DatetimeActor } from './datetime_actor';
+export { type DatetimeActor } from './datetime_actor';

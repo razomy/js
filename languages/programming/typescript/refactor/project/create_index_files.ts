@@ -2,12 +2,10 @@ import {Project, SyntaxKind} from 'ts-morph';
 import {read_file_json} from 'razomy.fs/file';
 import path from 'path';
 import {file} from 'razomy.fs';
-import {if_main} from 'razomy.main';
 import {to_safe_name} from '../to_safe_name';
 
-export async function create_index_files() {
-  const root = '../../../../../../'
-  const project = new Project({tsConfigFilePath: root + 'tsconfig.json'});
+export async function create_index_files(project_path: string) {
+  const project = new Project({tsConfigFilePath: project_path + 'tsconfig.json'});
 
   const directories = project.getDirectories();
   for (const dir of directories) {
@@ -44,19 +42,25 @@ export async function create_index_files() {
         const decl = decls[0];
         const kind = decl.getKind();
 
-        names_to_export.push(name);
-
         // Проверяем наличие Типов, Интерфейсов или Классов
         if (
           kind === SyntaxKind.ClassDeclaration ||
-          kind === SyntaxKind.InterfaceDeclaration ||
-          kind === SyntaxKind.TypeAliasDeclaration ||
           kind === SyntaxKind.FunctionDeclaration ||
           kind === SyntaxKind.VariableDeclaration ||
           kind === SyntaxKind.EnumDeclaration
         ) {
           has_types_or_classes = true;
+          names_to_export.push(name);
+
+        } else if (
+          kind === SyntaxKind.InterfaceDeclaration
+          || kind === SyntaxKind.TypeAliasDeclaration) {
+          has_types_or_classes = true;
+          names_to_export.push('type ' + name);
+        } else {
+          names_to_export.push(name);
         }
+
       }
 
       // Если есть типы, интерфейсы или классы -> экспортируем их имена напрямую
@@ -86,5 +90,3 @@ export async function create_index_files() {
 
   await project.save();
 }
-
-if_main(import.meta.url, create_index_files).then();

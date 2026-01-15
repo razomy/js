@@ -6,8 +6,8 @@
   "types": "./index.ts",
   "dependencies": {
     "object-sizeof": "^2.6.5",
-    "razomy.id": "../../object",
-    "razomy.types": "../../object"
+    "razomy.id": "../id",
+    "razomy.types": "../types"
   },
   "files": [
     "*"

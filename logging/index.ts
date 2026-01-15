@@ -1,1 +1,1 @@
-export { Logger, NoneLogger, ConsoleLogger } from './logger';
+export { type Logger, NoneLogger, ConsoleLogger } from './logger';

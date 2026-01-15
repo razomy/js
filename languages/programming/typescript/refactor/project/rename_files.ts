@@ -1,12 +1,12 @@
 import {Project} from 'ts-morph';
 import {to_snake_case} from 'razomy.string';
 import {if_main} from 'razomy.main';
-import { is_exist } from 'razomy.fs/file';
+import {is_exist} from 'razomy.fs/file';
 
 
-export async function rename_files() {
+export async function rename_files(project_path: string) {
   const project = new Project({
-    tsConfigFilePath: '../../../../../../tsconfig.json',
+    tsConfigFilePath: project_path + 'tsconfig.json',
   });
 
   const source_files = project.getSourceFiles();
@@ -30,7 +30,7 @@ export async function rename_files() {
     if (base_name === new_name) continue;
 
     const path = `${file.getDirectory().getPath()}/${new_name}${ext}`;
-    if(is_exist(path)){
+    if (is_exist(path)) {
       continue
     }
     console.log(`[RENAME] ${base_name}${ext} -> ${new_name}${ext}`);
@@ -39,5 +39,3 @@ export async function rename_files() {
 
   await project.save();
 }
-
-if_main(import.meta.url, rename_files).then();

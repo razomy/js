@@ -19,7 +19,7 @@
     "razomy": "./bin/razomy.js"
   },
   "dependencies": {
-    "razomy.key": "../../cli",
-    "razomy.exceptions": "../../cli"
+    "razomy.key": "../key",
+    "razomy.exceptions": "../exceptions"
   }
 }

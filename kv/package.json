@@ -16,10 +16,10 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.function": "../../kv",
-    "razomy.exceptions": "../../kv",
-    "razomy.path": "../../kv",
-    "razomy.undefined": "../../kv",
-    "razomy.key": "../../kv"
+    "razomy.function": "../function",
+    "razomy.exceptions": "../exceptions",
+    "razomy.path": "../path",
+    "razomy.undefined": "../undefined",
+    "razomy.key": "../key"
   }
 }

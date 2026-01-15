@@ -1,1 +1,1 @@
-export { WithDatetime } from './datetime';
+export { type WithDatetime } from './datetime';

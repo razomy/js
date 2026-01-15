@@ -1,1 +1,1 @@
-export { LateInit } from './late_init';
+export { type LateInit } from './late_init';

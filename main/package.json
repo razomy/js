@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.dates": "../../main",
-    "razomy.async": "../../main",
-    "razomy.action": "../../main"
+    "razomy.dates": "../dates",
+    "razomy.async": "../async",
+    "razomy.action": "../action"
   }
 }

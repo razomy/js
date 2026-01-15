@@ -16,7 +16,7 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.string": "../../strings",
-    "razomy.offset": "../../strings"
+    "razomy.string": "../string",
+    "razomy.offset": "../offset"
   }
 }

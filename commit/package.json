@@ -1,10 +1,10 @@
 {
   "name": "razomy.commit",
   "dependencies": {
-    "razomy.date": "../../commit",
-    "razomy.vrd": "../../commit",
-    "razomy.string": "../../commit",
-    "razomy.shell": "../../commit"
+    "razomy.date": "../date",
+    "razomy.vrd": "../vrd",
+    "razomy.string": "../string",
+    "razomy.shell": "../shell"
   },
   "version": "0.0.0",
   "main": "./index.ts",

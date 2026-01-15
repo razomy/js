@@ -3,10 +3,10 @@
   "dependencies": {
     "vue": "^3.4.36",
     "vuetify": "^3.7.0",
-    "razomy.socket": "../../vue",
-    "razomy.servers": "../../vue",
-    "razomy.dict": "../../vue",
-    "razomy.list": "../../vue"
+    "razomy.socket": "../socket",
+    "razomy.servers": "../servers",
+    "razomy.dict": "../dict",
+    "razomy.list": "../list"
   },
   "version": "0.0.0",
   "main": "./index.ts",

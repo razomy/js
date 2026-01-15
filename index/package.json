@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.number": "../../index",
-    "razomy.string": "../../index",
-    "razomy.offset": "../../index"
+    "razomy.number": "../number",
+    "razomy.string": "../string",
+    "razomy.offset": "../offset"
   }
 }

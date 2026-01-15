@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import * as path from 'path';
+import path from 'path';
 import {is_exist} from 'razomy.fs/file/is_exist';
 import {CatchFn} from 'razomy.exceptions/collect';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';

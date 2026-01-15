@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.function": "../../test",
-    "razomy.dict": "../../test",
-    "razomy.spec": "../../test"
+    "razomy.function": "../function",
+    "razomy.dict": "../dict",
+    "razomy.spec": "../spec"
   }
 }

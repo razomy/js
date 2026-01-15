@@ -6,9 +6,9 @@
     "@google-cloud/storage": "^7.18.0",
     "@google/genai": "^1.33.0",
     "google-auth-library": "^10.5.0",
-    "razomy.number": "../../google",
-    "razomy.shell": "../../google",
-    "razomy.fs": "../../google"
+    "razomy.number": "../number",
+    "razomy.shell": "../shell",
+    "razomy.fs": "../fs"
   },
   "main": "./index.ts",
   "license": "MIT",

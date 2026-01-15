@@ -16,8 +16,8 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.exceptions": "../../path",
-    "razomy.string": "../../path",
-    "razomy.kv": "../../path"
+    "razomy.exceptions": "../exceptions",
+    "razomy.string": "../string",
+    "razomy.kv": "../kv"
   }
 }

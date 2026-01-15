@@ -1,6 +1,6 @@
 export * as graph from './graph';
-export { leaf_tree_absolute_path, WithAbsolutePath, AbsolutePathDictRoot, AbsolutePathLeaf, AbsolutePathBranch, AbsolutePathDictLeafOrRoot } from './absolute_path';
-export { map_branch, BranchDict, BranchDictOrLeaf, RootOrBranchDict, RootDictOrLeaf, RootDict } from './dict';
+export { leaf_tree_absolute_path, type WithAbsolutePath, type AbsolutePathDictRoot, type AbsolutePathLeaf, type AbsolutePathBranch, type AbsolutePathDictLeafOrRoot } from './absolute_path';
+export { map_branch, type BranchDict, type BranchDictOrLeaf, type RootOrBranchDict, type RootDictOrLeaf, type RootDict } from './dict';
 export { foreach_deep_dict_optional } from './foreach_deep_dict_optional';
 export { get_by_string } from './get_by_string';
 export { get_path } from './get_path';
@@ -8,4 +8,4 @@ export { get_value } from './get_value';
 export { get } from './get';
 export { iterate } from './iterate';
 export { map_root } from './map_root';
-export { WithChildrenDict } from './with_children_dict';
+export { type WithChildrenDict } from './with_children_dict';

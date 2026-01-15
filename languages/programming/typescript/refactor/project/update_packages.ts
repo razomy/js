@@ -1,10 +1,10 @@
-import * as fs from "fs";
+import * as fs from 'fs';
 import {get_all_package_jsons} from './get_all_package_jsons';
 
-export function update_packages() {
-    const prefix: string = 'razomy';
-    const packages = get_all_package_jsons();
-    packages.forEach((folder) => {
+export function update_packages(project_path: string) {
+  const prefix: string = 'razomy';
+  const packages = get_all_package_jsons(project_path);
+  packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, 'utf-8');
 
     let pkg_data = {
@@ -27,5 +27,5 @@ export function update_packages() {
 
     fs.writeFileSync(folder.path, JSON.stringify(pkg_data, null, 2));
     console.log(`✓ Create: ${folder.name} -> ${pkg_data.name}`);
-    });
+  });
 }

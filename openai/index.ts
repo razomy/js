@@ -10,7 +10,7 @@ export { gpt_api_v_2 } from './gpt_api_v_2';
 export { gpt_api } from './gpt_api';
 export { LanguageGrammarCorrection } from './language_grammar_correction';
 export { models } from './models';
-export { OpenAiCtx, WithOpenAiCtx } from './open_ai_ctx';
+export { type OpenAiCtx, type WithOpenAiCtx } from './open_ai_ctx';
 export { openai } from './openai';
 export { set_tokens } from './set_tokens';
 export { set_weight_an_tokens } from './set_weight_an_tokens';

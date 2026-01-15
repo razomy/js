@@ -2,8 +2,8 @@
   "name": "razomy.openai",
   "dependencies": {
     "openai": "^4.52.7",
-    "razomy.object": "../../openai",
-    "razomy.string": "../../openai"
+    "razomy.object": "../object",
+    "razomy.string": "../string"
   },
   "version": "0.0.0",
   "main": "./index.ts",

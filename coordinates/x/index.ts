@@ -1,2 +1,2 @@
-export { Bound } from './bound';
-export { With } from './with';
+export { type Bound } from './bound';
+export { type With } from './with';

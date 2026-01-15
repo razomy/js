@@ -16,16 +16,16 @@
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
   "dependencies": {
-    "razomy.array": "../../vrd",
-    "razomy.difference": "../../vrd",
-    "razomy.equal": "../../vrd",
-    "razomy.dict": "../../vrd",
-    "razomy.key": "../../vrd",
-    "razomy.exceptions": "../../vrd",
-    "razomy.pipes": "../../vrd",
-    "razomy.object": "../../vrd",
-    "razomy.list": "../../vrd",
-    "razomy.string": "../../vrd",
-    "razomy.graph": "../../vrd"
+    "razomy.array": "../array",
+    "razomy.difference": "../difference",
+    "razomy.equal": "../equal",
+    "razomy.dict": "../dict",
+    "razomy.key": "../key",
+    "razomy.exceptions": "../exceptions",
+    "razomy.pipes": "../pipes",
+    "razomy.object": "../object",
+    "razomy.list": "../list",
+    "razomy.string": "../string",
+    "razomy.graph": "../graph"
   }
 }
