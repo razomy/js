@@ -3,6 +3,7 @@ import {to_safe_name} from 'razomy/languages/programming/typescript/refactor/ren
 import {read_file_json} from 'razomy/fs/file';
 import path from 'path';
 import {file} from 'razomy.fs';
+import {if_main} from 'razomy.main';
 
 export async function create_index_files() {
   const root = '../../../../../../'
@@ -11,11 +12,11 @@ export async function create_index_files() {
   const directories = project.getDirectories();
   for (const dir of directories) {
     if (dir.getPath().includes('node_modules')) continue;
-
     const dir_path = dir.getPath();
     const export_entries: string[] = [];
 
     for (const sub_dir of dir.getDirectories()) {
+      if (dir.getPath().includes('node_modules')) continue;
       const safe_key = to_safe_name(sub_dir.getBaseName());
       const child_package_json_path = path.join(sub_dir.getPath(), 'package.json');
       if (file.is_exist(child_package_json_path)) {
@@ -28,6 +29,7 @@ export async function create_index_files() {
 
     // 2. Files
     for (const file of dir.getSourceFiles()) {
+      if (dir.getPath().includes('node_modules')) continue;
       const base_name = file.getBaseNameWithoutExtension();
       // Skip index.ts and tests
       if (base_name === 'index' || file.getBaseName().match(/\.(spec|test)\./)) continue;
@@ -85,4 +87,4 @@ export async function create_index_files() {
   await project.save();
 }
 
-create_index_files();
+if_main(import.meta.url, create_index_files).then();

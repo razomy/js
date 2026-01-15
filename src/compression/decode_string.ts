@@ -1,5 +1,5 @@
 import pako from 'pako';
-import {array_buffer_from_base_64} from './array_buffer_from_base64';
+import {array_buffer_from_base_64} from './array_buffer_from_base_64';
 
 export function decode_string(encoded_str: string): string {
     const encoded_data = array_buffer_from_base_64(encoded_str);

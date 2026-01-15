@@ -1,10 +1,5 @@
-export type Serializable = string | number | boolean | null | Serializable[] | { [key: string]: Serializable };
-
-export interface ISerializable {
-  toSerializable(): Serializable;
-
-  fromSerializable(data: Serializable): void;
-}
+import {Serializable} from 'razomy/serializable/serializable';
+import {WithSerializable} from 'razomy/serializable/with_serializable';
 
 export interface Ctx {
   has(key: string): boolean;
@@ -35,7 +30,7 @@ export function pipe_ctx_serializable<T extends Ctx>(ctx: T, data: { [key: strin
     }
 
     if (typeof attribute === 'object' && 'fromSerializable' in attribute) {
-      (attribute as ISerializable).fromSerializable(v);
+      (attribute as WithSerializable).fromSerializable(v);
       continue;
     }
 

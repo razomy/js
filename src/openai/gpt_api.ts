@@ -1,6 +1,6 @@
 import {is_object} from 'razomy.object/is_object';
 import {is_string} from 'razomy.string/is_string';
-import {gpt_api_v_2} from './gpt_api_v2';
+import {gpt_api_v_2} from './gpt_api_v_2';
 import {set_tokens} from './set_tokens';
 
 export async function gpt_api(message_or_messages_or_request) {

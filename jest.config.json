@@ -1,0 +1,9 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "verbose": false,
+  "roots": ["src"],
+  "moduleNameMapper": {
+    "^razomy/(.*)": "<rootDir>/src/$1"
+  }
+}

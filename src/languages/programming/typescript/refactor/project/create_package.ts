@@ -1,74 +1,105 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {read_file_json} from 'razomy/fs/file/read_file_json';
-import {write_file_json} from 'razomy/fs/file/write_file_json';
+import {read_file_json} from 'razomy.fs/file/read_file_json';
+import {write_file_json} from 'razomy.fs/file/write_file_json';
+import {iterate} from 'razomy.fs';
+import {is_exist} from 'razomy.fs/file';
+import {sort_by} from 'razomy.list';
+import {if_main} from 'razomy.main';
 
-export function create_package() {
-  const src_dir: string = path.join(__dirname, '../../../');
+export function createPackageJsonAtChildDirs() {
+  const root_dir: string = path.join(__dirname, '../../../../../');
   const prefix: string = 'razomy';
 
-  interface PackageJson {
-    name: string;
-
-    [key: string]: any;
-  }
-
-// Validate directory
-  if (!fs.existsSync(src_dir)) {
-    console.error(`Error: '${src_dir}' directory not found.`);
-    process.exit(1);
-  }
-
-  const files = fs.readdirSync(src_dir, {withFileTypes: true})
+  const folders = fs.readdirSync(root_dir, {withFileTypes: true})
     .filter((dirent: fs.Dirent) => dirent.isDirectory());
-  files.forEach((folder: fs.Dirent) => {
-    const pkg_path = path.join(src_dir, folder.name, 'package.json');
+
+  folders.forEach((folder: fs.Dirent) => {
+    const pkg_path = path.join(root_dir, folder.name, 'package.json');
     const new_name = `${prefix}.${folder.name}`;
 
-    // Default structure
-    let pkg_data: PackageJson = {
+    let pkg_data = {
       name: new_name,
+    };
+
+    const content = fs.readFileSync(pkg_path, 'utf-8');
+    pkg_data = {...JSON.parse(content), ...pkg_data};
+
+    fs.writeFileSync(pkg_path, JSON.stringify(pkg_data, null, 2));
+    console.log(`✓ Create: ${folder.name} -> ${new_name}`);
+  });
+}
+
+export function update_packages() {
+  const prefix: string = 'razomy';
+  const packages = getAllPackageJsons();
+  packages.forEach((folder) => {
+    const content = fs.readFileSync(folder.path, 'utf-8');
+
+    let pkg_data = {
+      name: prefix + '.' + folder.name.replaceAll('/', '.'),
       version: '0.0.0',
       license: 'MIT',
       main: './index.js',
       types: './index.d.ts',
-      files: ['*'],
       publishConfig: {
         access: 'public'
       }
-    };
-
-    // Read existing
-    if (fs.existsSync(pkg_path)) {
-      try {
-        const content = fs.readFileSync(pkg_path, 'utf-8');
-        pkg_data = {...JSON.parse(content), ...pkg_data};
-      } catch (err) {
-        console.warn(`Warning: Failed to parse ${pkg_path}, regenerating.`);
-      }
     }
 
-    // Force update name
-    pkg_data.name = new_name;
+    pkg_data = {...JSON.parse(content), ...pkg_data};
 
-    fs.writeFileSync(pkg_path, JSON.stringify(pkg_data, null, 2));
-    console.log(`✓ Updated: ${folder.name} -> ${new_name}`);
+    fs.writeFileSync(folder.path, JSON.stringify(pkg_data, null, 2));
+    console.log(`✓ Create: ${folder.name} -> ${pkg_data.name}`);
   });
-  const package_file = read_file_json('../../../../package.json');
-  package_file.workspaces = files.map(folder => 'src/' + folder.name)
-  package_file.dependencies = Object.fromEntries(
-    files.map(folder => ['razomy.' + folder.name, './src/' + folder.name])
-  );
-  write_file_json('../../../../package.json', package_file, true)
-
-  const ts_file = read_file_json('../../../../tsconfig.json');
-  ts_file.compilerOptions.paths = Object.fromEntries(
-    files.map(folder => ['razomy.' + folder.name, ['./src/' + folder.name]])
-  );
-  ts_file.compilerOptions.paths.razomy = ['./src']
-  write_file_json('../../../../tsconfig.json', ts_file, true)
 }
 
-create_package()
+export function getAllPackageJsons() {
+  const root_dir: string = path.join(__dirname, '../../../../../');
+
+  const packageJsons: { path: string, name: string }[] = []
+  iterate(root_dir, (iterate_node) => {
+    if (iterate_node.path.includes('node_modules')) {
+      return true;
+    }
+    if (iterate_node.stats.isFile()) {
+      return true;
+    }
+    const tryPackageJson = path.join(iterate_node.path + '/package.json');
+    if (is_exist(tryPackageJson)) {
+      packageJsons.push({
+        path: tryPackageJson,
+        name: path.relative(root_dir, tryPackageJson)
+          .replace('/package.json', '')
+      })
+    }
+  })
+
+  return sort_by(packageJsons, i => i.name);
+}
+
+export function create_package() {
+  const root_dir: string = path.join(__dirname, '../../../../../../');
+  const packages = getAllPackageJsons();
+
+  const package_file = read_file_json(root_dir + 'package.json');
+  package_file.workspaces = packages.map(folder => 'src/' + folder.name)
+  package_file.dependencies = Object.fromEntries(
+    []
+    // packages.map(folder => ['razomy.' + folder.name.replaceAll('/', '.'), './src/' + folder.name])
+  );
+  write_file_json(root_dir + 'package.json', package_file, true)
+
+  const ts_file = read_file_json(root_dir + 'tsconfig.json');
+  ts_file.compilerOptions.paths = Object.fromEntries(
+    packages.map(folder => ['razomy.' + folder.name.replaceAll('/', '.'), ['./src/' + folder.name]])
+  );
+  ts_file.compilerOptions.paths.razomy = ['./src']
+  ts_file.compilerOptions.paths['razomy/*'] = ['./src/*']
+  write_file_json(root_dir + 'tsconfig.json', ts_file, true)
+}
+
+if_main(import.meta.url, update_packages).then();
+if_main(import.meta.url, create_package).then();
 
 

@@ -1,5 +1,5 @@
 import pako from 'pako';
-import {base_64_from_array_buffer} from './base64from_array_buffer';
+import {base_64_from_array_buffer} from './base_64_from_array_buffer';
 
 
 export function encode_string(input: string): string {

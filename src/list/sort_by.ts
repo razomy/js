@@ -1,17 +1,17 @@
-export function sort_by(collection, iteratee) {
-    let index = 0;
-    const length = collection.length;
-    const result = new Array(length);
-    for (let i = 0; i < length; i++) {
+export function sort_by<T>(collection: T[], iteratee: (t: T) => string | number): T[] {
+  let index = 0;
+  const length = collection.length;
+  const result = new Array(length);
+  for (let i = 0; i < length; i++) {
     const value = collection[i];
     result[i] = {
       value: value,
       index: index++,
       criteria: iteratee(value)
     };
-    }
+  }
 
-    result.sort((a, b) => {
+  result.sort((a, b) => {
     const val_a = a.criteria;
     const val_b = b.criteria;
 
@@ -21,10 +21,10 @@ export function sort_by(collection, iteratee) {
     }
 
     return a.index - b.index;
-    });
-    for (let i = 0; i < length; i++) {
+  });
+  for (let i = 0; i < length; i++) {
     result[i] = result[i].value;
-    }
+  }
 
-    return result;
+  return result;
 }

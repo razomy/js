@@ -1,5 +1,5 @@
 import {models} from 'razomy.openai/models';
-import {gpt_api_v_2} from './gpt_api_v2';
+import {gpt_api_v_2} from './gpt_api_v_2';
 import {set_tokens} from './set_tokens';
 
 export async function single_request_pro(text, model = models.expensive120000) {
