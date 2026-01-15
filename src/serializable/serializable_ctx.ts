@@ -1,5 +1,5 @@
 import {to_serializable_type} from './to_serializable_type';
-import {Serializable} from './pipe_ctx_serializable';
+import {Serializable} from './serializable';
 
 export function serializable_ctx(d: { [key: string]: any }): { [key: string]: Serializable } {
     const result: { [key: string]: Serializable } = {};

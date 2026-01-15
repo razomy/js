@@ -1,4 +1,4 @@
-import {Codec} from 'src/codec/codec';
+import {Codec} from 'razomy.codec/codec';
 import {Json} from 'razomy.json/json';
 import {string_to_json} from './string_to_json';
 

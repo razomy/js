@@ -1,4 +1,4 @@
-import {to_snake_case} from 'src/string/to_snake_case';
+import {to_snake_case} from 'razomy.string/to_snake_case';
 
 describe('string', () => {
   describe('snake_case_string', () => {

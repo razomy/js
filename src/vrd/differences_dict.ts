@@ -1,6 +1,6 @@
 import  { vrd,Vrd} from './vrd';
 import  { differences_vrd,P} from './differences_vrd';
-import {get_similar} from 'src/array/difference/get_similar';
+import {get_similar} from 'razomy.array/difference/get_similar';
 
 export function differences_dict<T>(
   diffs: P<T>[],

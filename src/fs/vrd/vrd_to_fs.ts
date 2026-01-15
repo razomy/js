@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import {create_directory_if_not_exists} from 'src/fs/directory/create';
+import {create_directory_if_not_exists} from 'razomy.fs/directory/create';
 import {VrdOrValue} from 'razomy.vrd/vrd';
-import {is_vrd} from 'src/vrd/is_vrd';
+import {is_vrd} from 'razomy.vrd/is_vrd';
 
 export function vrd_to_fs(absolute_path: string, dict: VrdOrValue<Buffer>) {
   if (is_vrd(dict)) {

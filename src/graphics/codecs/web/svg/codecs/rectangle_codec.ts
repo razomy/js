@@ -1,4 +1,4 @@
-import { Codec } from 'src/codec/codec';
+import { Codec } from 'razomy.codec/codec';
 import { PositionAttribute } from 'razomy.graphics/attributes/position_attribute';
 import { SizeAttribute } from 'razomy.graphics/attributes/size_attribute';
 import { BorderStyle } from 'razomy.graphics/styles/border_style';

@@ -1,6 +1,6 @@
 import {SourceFile, SyntaxKind} from 'ts-morph';
 import {flat} from 'razomy.array';
-import {rename_node} from 'razomy/languages/programming/typescript/refactor/rename_node';
+import {rename_node} from 'razomy.languages/programming/typescript/refactor/rename_node';
 
 export function file_rename_variables_and_props_functions(source_file: SourceFile) {
   const functions = source_file.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);

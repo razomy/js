@@ -1,4 +1,4 @@
-import {execute_async} from 'src/shell/execute_async';
+import {execute_async} from 'razomy.shell/execute_async';
 
 export async function get_git_commits_id(dir_path: string, commit_count: number = 100) {
 

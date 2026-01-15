@@ -1,4 +1,4 @@
-import {AsyncTask, Context} from 'razomy/task/async/async_task';
+import {AsyncTask, Context} from 'razomy.task/async/async_task';
 import {Serializable} from 'razomy.serializable';
 
 interface AsyncTaskListState<C extends Serializable, T extends Context<C>> {
@@ -10,7 +10,7 @@ export class AsyncTaskList<C extends Serializable, T extends Context<C>> {
   constructor(public ctx: AsyncTaskListState<C, T>) {
   }
 
-  public async cancelStarted(): Promise<void> {
+  public async cancel_started(): Promise<void> {
     const task = this.ctx.tasks[this.ctx.startedTaskIndex];
     await task.cancel(task.c);
   }

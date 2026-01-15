@@ -1,5 +1,5 @@
 import {VrdOrValue} from 'razomy.vrd/vrd';
-import {is_vrd} from 'src/vrd/is_vrd';
+import {is_vrd} from 'razomy.vrd/is_vrd';
 
 export interface ValueChildren<T> {
   value: T,

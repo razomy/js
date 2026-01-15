@@ -1,4 +1,4 @@
-import { Codec } from 'src/codec/codec';
+import { Codec } from 'razomy.codec/codec';
 import * as create from 'razomy.create';
 import { ElementView } from 'razomy.graphics/elements/element_view';
 import { RectangleShape } from 'razomy.graphics/shapes/rectangle_shape';

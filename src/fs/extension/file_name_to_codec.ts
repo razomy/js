@@ -1,7 +1,7 @@
 import path from 'path';
 import {Codec} from 'razomy.codec';
 import {buffer_types} from './types';
-import { to_codec } from 'src/buffer/string/to_codec';
+import { to_codec } from 'razomy.buffer/string/to_codec';
 
 export const codecs: Record<BufferEncoding & '*', Codec<Buffer, string>> = {
   'base64': to_codec('base64'),

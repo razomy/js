@@ -1,4 +1,4 @@
-import * as create from 'src/create';
+import * as create from 'razomy.create';
 
 export function generate_guid() {
   function generate_part_8(with_hyphen?: boolean) {

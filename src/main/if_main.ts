@@ -1,7 +1,7 @@
 import {format_time_length} from 'razomy.dates/format_time_length';
-import {is_promise} from 'src/async/is_promise';
+import {is_promise} from 'razomy.async/is_promise';
 import {is_main} from './is_main';
-import {AsyncCallback, Callback} from 'src/action/action';
+import {AsyncCallback, Callback} from 'razomy.action/action';
 
 export async function if_main(import_meta_url_or_module_path: string, callback: Callback | AsyncCallback) {
   const path = `${import_meta_url_or_module_path}.if_main`;

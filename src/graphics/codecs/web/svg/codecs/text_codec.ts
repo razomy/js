@@ -1,5 +1,5 @@
 import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
-import { Codec } from 'src/codec/codec';
+import { Codec } from 'razomy.codec/codec';
 import {PositionAttribute} from 'razomy.graphics/attributes/position_attribute';
 import {SizeAttribute} from 'razomy.graphics/attributes/size_attribute';
 import {TextAttribute} from 'razomy.graphics/attributes/text_attribute';

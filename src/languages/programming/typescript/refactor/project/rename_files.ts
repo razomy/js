@@ -1,7 +1,7 @@
 import {Project} from 'ts-morph';
 import {to_snake_case} from 'razomy.string';
 import {if_main} from 'razomy.main';
-import { is_exist } from 'src/fs/file';
+import { is_exist } from 'razomy.fs/file';
 
 
 export async function rename_files() {

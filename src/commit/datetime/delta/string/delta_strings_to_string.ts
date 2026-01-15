@@ -1,6 +1,6 @@
 import {DeltaString} from 'razomy.commit/datetime/delta/string/delta_string';
 import {remove_index_string} from 'razomy.string';
-import {add_index_string} from 'src/string/index_string';
+import {add_index_string} from 'razomy.string/index_string';
 
 export function delta_strings_to_string(prev_snapshot: string, changes: DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {

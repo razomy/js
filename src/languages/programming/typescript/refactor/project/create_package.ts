@@ -7,7 +7,7 @@ import {is_exist} from 'razomy.fs/file';
 import {sort_by} from 'razomy.list';
 import {if_main} from 'razomy.main';
 
-export function createPackageJsonAtChildDirs() {
+export function create_package_json_at_child_dirs() {
   const root_dir: string = path.join(__dirname, '../../../../../');
   const prefix: string = 'razomy';
 
@@ -32,7 +32,7 @@ export function createPackageJsonAtChildDirs() {
 
 export function update_packages() {
   const prefix: string = 'razomy';
-  const packages = getAllPackageJsons();
+  const packages = get_all_package_jsons();
   packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, 'utf-8');
 
@@ -54,10 +54,10 @@ export function update_packages() {
   });
 }
 
-export function getAllPackageJsons() {
+export function get_all_package_jsons() {
   const root_dir: string = path.join(__dirname, '../../../../../');
 
-  const packageJsons: { path: string, name: string }[] = []
+  const package_jsons: { path: string, name: string }[] = []
   iterate(root_dir, (iterate_node) => {
     if (iterate_node.path.includes('node_modules')) {
       return true;
@@ -65,22 +65,22 @@ export function getAllPackageJsons() {
     if (iterate_node.stats.isFile()) {
       return true;
     }
-    const tryPackageJson = path.join(iterate_node.path + '/package.json');
-    if (is_exist(tryPackageJson)) {
-      packageJsons.push({
-        path: tryPackageJson,
-        name: path.relative(root_dir, tryPackageJson)
+    const try_package_json = path.join(iterate_node.path + '/package.json');
+    if (is_exist(try_package_json)) {
+      package_jsons.push({
+        path: try_package_json,
+        name: path.relative(root_dir, try_package_json)
           .replace('/package.json', '')
       })
     }
   })
 
-  return sort_by(packageJsons, i => i.name);
+  return sort_by(package_jsons, i => i.name);
 }
 
 export function create_package() {
   const root_dir: string = path.join(__dirname, '../../../../../../');
-  const packages = getAllPackageJsons();
+  const packages = get_all_package_jsons();
 
   const package_file = read_file_json(root_dir + 'package.json');
   package_file.workspaces = packages.map(folder => 'src/' + folder.name)

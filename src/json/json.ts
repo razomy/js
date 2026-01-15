@@ -5,4 +5,4 @@ export type JsonObject = { [key: string]: JsonValue };
 export type JsonArray = JsonValue[];
 export type JsonValue = JsonPrimitive | JsonObject | JsonArray;
 
-export type Json = Serializable<JsonValue> & JsonValue
+export type Json = Serializable & JsonValue

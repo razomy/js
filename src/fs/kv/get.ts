@@ -3,7 +3,7 @@ import path from 'path';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {ArrayKeyValuable, ArrayOrKeyValuable,  KeyValuable, Valuable, Value} from 'razomy.kv/kv';
 import {akv} from 'razomy.kv/akv';
-import {k} from 'src/kv/k';
+import {k} from 'razomy.kv/k';
 
 export function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
 export function get<T = KeyValuable<string, Buffer>>(file_path: string): T;

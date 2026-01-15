@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {log_inline} from 'src/shell/log_inline';
+import {log_inline} from 'razomy.shell/log_inline';
 
 export function create_directory_if_not_exists(dir_path: string) {
   if (!fs.existsSync(dir_path)) {

@@ -1,5 +1,5 @@
 import {NotImplementedException} from 'razomy.exceptions/not_implemented_exception';
-import {Codec} from 'src/codec/codec';
+import {Codec} from 'razomy.codec/codec';
 import {IObject} from 'razomy.object/i_object';
 import {ISizeResource} from 'razomy.graphics/attributes/size_attribute';
 import {ResourceCollection} from 'razomy.resources/resource_collection';

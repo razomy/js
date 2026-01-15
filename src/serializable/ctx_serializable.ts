@@ -1,5 +1,6 @@
-import {Ctx, Serializable} from './pipe_ctx_serializable';
+import {Ctx} from './pipe_ctx_serializable';
 import {to_serializable_type} from './to_serializable_type';
+import {Serializable} from 'razomy.serializable/serializable';
 
 export function ctx_serializable(ctx: Ctx): { [key: string]: Serializable } {
     const result: { [key: string]: Serializable } = {};

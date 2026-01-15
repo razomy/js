@@ -7,8 +7,8 @@ import {
   VariableDeclaration
 } from 'ts-morph';
 import {to_snake_case} from 'razomy.string';
-import {reserved_names_js} from 'razomy/languages/programming/fs/reserved_names_js';
-import {is_name_taken} from 'razomy/languages/programming/typescript/refactor/is_name_taken';
+import {reserved_names_js} from 'razomy.languages/programming/fs/reserved_names_js';
+import {is_name_taken} from 'razomy.languages/programming/typescript/refactor/is_name_taken';
 
 export function to_safe_name(name: string) {
   let new_name = to_snake_case(name);

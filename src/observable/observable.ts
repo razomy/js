@@ -1,5 +1,5 @@
 import {Dispose} from 'razomy.observable/dispose';
-import {Action} from 'src/action/action';
+import {Action} from 'razomy.action/action';
 import {CancelException} from 'razomy.observable/exceptions/cancel_exception';
 
 export function throw_exception<E>(error: E): void {
