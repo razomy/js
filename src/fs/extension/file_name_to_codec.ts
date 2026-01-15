@@ -1,6 +1,6 @@
 import path from 'path';
-import {Codec} from '../codec/codec';
-import to_codec from '../buffer/string/to_codec';
+import {Codec} from '../../codec/codec';
+import to_codec from '../../buffer/string/to_codec';
 import {buffer_types} from './types';
 
 export const codecs: Record<BufferEncoding & '*', Codec<Buffer, string>> = {

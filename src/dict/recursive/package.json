@@ -1,5 +1,5 @@
 {
-  "name": "razomy.refactor",
+  "name": "razomy.dict.recursive",
   "version": "0.0.0",
   "main": "./index.js",
   "license": "MIT",

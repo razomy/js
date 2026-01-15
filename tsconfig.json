@@ -48,9 +48,6 @@
       "razomy.buffer": [
         "./src/buffer"
       ],
-      "razomy.bytes": [
-        "./src/bytes"
-      ],
       "razomy.class": [
         "./src/class"
       ],
@@ -59,9 +56,6 @@
       ],
       "razomy.cluster": [
         "./src/cluster"
-      ],
-      "razomy.code": [
-        "./src/code"
       ],
       "razomy.codec": [
         "./src/codec"
@@ -80,6 +74,9 @@
       ],
       "razomy.count": [
         "./src/count"
+      ],
+      "razomy.create": [
+        "./src/create"
       ],
       "razomy.date": [
         "./src/date"
@@ -110,9 +107,6 @@
       ],
       "razomy.express": [
         "./src/express"
-      ],
-      "razomy.create": [
-        "./src/create"
       ],
       "razomy.fs": [
         "./src/fs"
@@ -207,6 +201,9 @@
       "razomy.recursive": [
         "./src/recursive"
       ],
+      "razomy.refactor": [
+        "./src/refactor"
+      ],
       "razomy.resources": [
         "./src/resources"
       ],
@@ -269,6 +266,9 @@
       ],
       "razomy": [
         "./src"
+      ],
+      "razomy/*": [
+        "./src/*"
       ]
     }
   },

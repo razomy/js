@@ -10,5 +10,3 @@ export default function rd_to_vrd(dict: RecursiveDict, is_value: (t: RecursiveDi
   }
   return v;
 }
-
-

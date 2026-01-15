@@ -1,5 +1,6 @@
 export * as dict from './dict';
 export * as directory from './directory';
+export * as extension from './extension';
 export * as file from './file';
 export * as kv from './kv';
 export * as link from './link';
@@ -14,4 +15,3 @@ export { default as iterate } from './iterate';
 export { default as observe } from './observe';
 export { default as order_by_create_date } from './order_by_create_date';
 export { default as rename } from './rename';
-export { default as types } from '../extension/types';
