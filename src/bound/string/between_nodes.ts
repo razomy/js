@@ -1,4 +1,4 @@
-import {NodeBound} from 'razomy.bound/string/bound';
+import {NodeBound} from './node_bound';
 import * as coordinates from 'razomy.coordinates';
 
 export default function between_nodes(nodes: NodeBound[], root: NodeBound) {

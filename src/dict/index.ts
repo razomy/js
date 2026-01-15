@@ -1,4 +1,4 @@
-export * as recursive from './recursive';
+export * as recursive from '../dict.recursive';
 export { DictKey, Dict } from './dict';
 export { default as filter_dict } from './filter_dict';
 export { default as first_key_dict } from './first_key_dict';

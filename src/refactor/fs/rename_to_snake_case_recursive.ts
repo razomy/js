@@ -1,8 +1,8 @@
-import get from 'razomy.fs/dict/get';
+import get from 'src/fs/dict/get';
 
 import path from 'path';
 import fs from 'fs';
-import snake_case_string from 'razomy.string/snake_case_string';
+import snake_case_string from 'src/string/snake_case_string';
 
 export default function rename_to_snake_case_recursive(dir_path: string, must_include: string, must_not_include) {
   let files = get(dir_path);

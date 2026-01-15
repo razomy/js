@@ -11,7 +11,7 @@ export * as buffer from './buffer';
 export * as class_ from './class';
 export * as cli from './cli';
 export * as cluster from './cluster';
-export * as code from './code';
+export * as code from './refactor';
 export * as codec from './codec';
 export * as commit from './commit';
 export * as compression from './compression';

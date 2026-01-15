@@ -1,4 +1,4 @@
-import { ICodec } from 'razomy.codec/i_codec';
+import { Codec } from 'src/codec/codec';
 import { PositionAttribute } from 'razomy.graphics/attributes/position_attribute';
 import { SizeAttribute } from 'razomy.graphics/attributes/size_attribute';
 import { BorderStyle } from 'razomy.graphics/styles/border_style';
@@ -9,7 +9,7 @@ import { ColorCodex } from 'razomy.graphics/codecs/web/svg/color/color_codex';
 import { HexParser } from 'razomy.graphics/codecs/web/svg/color/hex_parser';
 import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
 
-export class RectangleCodec implements ICodec<RectangleShape, SVGRectElement> {
+export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
 
   constructor(private encodeNodeFactory: EncodeNodeFactory) {
   }

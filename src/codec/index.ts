@@ -1,3 +1,3 @@
-export { ICodec } from './i_codec';
-export { Decode, IDecode } from './i_decode';
-export { Encode, IEncode } from './i_encode';
+export { Codec } from './codec';
+export { Decode, WithDecode } from './with_decode';
+export { Encode, WithEncode } from './with_encode';

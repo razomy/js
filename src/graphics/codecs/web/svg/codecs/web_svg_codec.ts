@@ -4,10 +4,10 @@ import { CodecConfig }  from 'razomy.graphics/codecs/web/svg/codecs/codec_config
 import { CodecFactory }  from 'razomy.graphics/codecs/web/svg/codecs/codec_factory';
 import { CodecRegistry }  from 'razomy.graphics/codecs/web/svg/codecs/codec_registry';
 import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
-import { ICodec } from 'razomy.codec/i_codec';
+import { Codec } from 'src/codec/codec';
 import {ResourceCollection} from 'razomy.resources/resource_collection';
 
-export class WebSvgCodec implements ICodec<ElementView, Node> {
+export class WebSvgCodec implements Codec<ElementView, Node> {
 
   constructor(
     private codecConfig: CodecConfig,

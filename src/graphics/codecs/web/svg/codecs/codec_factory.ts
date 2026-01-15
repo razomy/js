@@ -1,4 +1,4 @@
-import { ICodec } from 'razomy.codec/i_codec';
+import { Codec } from 'src/codec/codec';
 import * as create from 'razomy.create';
 import { ElementView } from 'razomy.graphics/elements/element_view';
 import { RectangleShape } from 'razomy.graphics/shapes/rectangle_shape';
@@ -13,7 +13,7 @@ import { TextCodec }  from 'razomy.graphics/codecs/web/svg/codecs/text_codec';
 import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
 
 
-export class CodecFactory implements create.With<ICodec<ElementView, any>> {
+export class CodecFactory implements create.With<Codec<ElementView, any>> {
 
   constructor(
     private codecConfig: CodecConfig,
@@ -21,7 +21,7 @@ export class CodecFactory implements create.With<ICodec<ElementView, any>> {
   ) {
   }
 
-  public create(element?: HTMLElement): ICodec<ElementView, any> {
+  public create(element?: HTMLElement): Codec<ElementView, any> {
     if (element instanceof SVGRectElement) {
       return new RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof SVGElement) {
@@ -35,7 +35,7 @@ export class CodecFactory implements create.With<ICodec<ElementView, any>> {
     throw new UnknownTypeArgumentException(element);
   }
 
-  public createByNode(element?: ElementView): ICodec<ElementView, any> {
+  public createByNode(element?: ElementView): Codec<ElementView, any> {
     if (element instanceof RectangleShape) {
       return new RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof ViewportElement) {

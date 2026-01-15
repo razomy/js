@@ -1,8 +1,9 @@
-import { WithId }  from 'razomy.id/i_guid';
-import { IType }  from 'razomy.types/i_type';
+import { WithId }  from 'src/id/with_id';
 
-export interface IObject extends WithId, IType {
+import {WithType} from 'razomy.types';
+
+export interface IObject extends WithId, WithType {
 }
 
-export interface IObjectConstructor extends IType {
+export interface IObjectConstructor extends WithType {
 }

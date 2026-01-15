@@ -1,11 +1,11 @@
 import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
-import { ICodec } from 'razomy.codec/i_codec';
+import { Codec } from 'src/codec/codec';
 import {PositionAttribute} from 'razomy.graphics/attributes/position_attribute';
 import {SizeAttribute} from 'razomy.graphics/attributes/size_attribute';
 import {TextAttribute} from 'razomy.graphics/attributes/text_attribute';
 import {TextElement} from 'razomy.graphics/elements/text_element';
 
-export class TextCodec implements ICodec<TextElement, SVGTextElement> {
+export class TextCodec implements Codec<TextElement, SVGTextElement> {
 
   constructor(private encodeNodeFactory: EncodeNodeFactory) {
   }

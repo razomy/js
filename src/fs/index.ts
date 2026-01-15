@@ -14,4 +14,4 @@ export { default as iterate } from './iterate';
 export { default as observe } from './observe';
 export { default as order_by_create_date } from './order_by_create_date';
 export { default as rename } from './rename';
-export { default as types } from './types';
+export { default as types } from '../extension/types';

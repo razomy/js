@@ -1,5 +1,5 @@
 import {NotImplementedException} from 'razomy.exceptions/not_implemented_exception';
-import {ICodec} from 'razomy.codec/i_codec';
+import {Codec} from 'src/codec/codec';
 import {IObject} from 'razomy.object/i_object';
 import {ISizeResource} from 'razomy.graphics/attributes/size_attribute';
 import {ResourceCollection} from 'razomy.resources/resource_collection';
@@ -66,7 +66,7 @@ export const example: ResourceDescription = {
   }
 };
 
-export class JsonCodec implements ICodec<ElementView, Node> {
+export class JsonCodec implements Codec<ElementView, Node> {
   private codec_factory: any;
 
   constructor() {
