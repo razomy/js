@@ -15,5 +15,3 @@ export default function file_name_to_codec(file_name: string) {
     ? codecs[buffer_types[type]]
     : codecs['*'];
 }
-
-

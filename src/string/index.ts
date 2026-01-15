@@ -12,7 +12,7 @@ export { default as replace_string } from './replace_string';
 export { default as similarity } from './similarity';
 export { default as snake_case_string } from './snake_case_string';
 export { default as space_margin_string } from './space_margin_string';
-export { default as string_to_buffer } from './string_to_buffer';
+export { default as string_to_buffer } from '../fs/extension/to_buffer';
 export { String } from './string';
 export { default as strings_string } from './strings_string';
 export { default as to_buffer } from './to_buffer';
