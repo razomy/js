@@ -15,6 +15,9 @@
   "scripts": {
     "build": "tsdown index.ts --format cjs,esm --dts"
   },
+  "bin": {
+    "razomy": "./bin/razomy.js"
+  },
   "dependencies": {
     "razomy.key": "../../cli",
     "razomy.exceptions": "../../cli"
