@@ -1,10 +1,10 @@
 import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
-import merge_dict from 'razomy.vrd/merge_dict';
-import is_vrd from './is_vrd';
+import {merge_dict} from 'razomy.vrd/merge_dict';
+import {is_vrd} from './is_vrd';
 
-export default function merge_vrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
-export default function merge_vrd<A, B>(a: A, b: B, empty: string): A & B ;
-export default function merge_vrd<T, A, B>(a: A, b: B, empty: T): A & B {
+export function merge_vrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
+export function merge_vrd<A, B>(a: A, b: B, empty: string): A & B ;
+export function merge_vrd<T, A, B>(a: A, b: B, empty: T): A & B {
   if (!a) {
     return b as A & B;
   }

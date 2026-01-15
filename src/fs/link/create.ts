@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default function create(linkPath: string, newTarget: string) {
+export function create(linkPath: string, newTarget: string) {
   try {
     let type = 'file';
     try {

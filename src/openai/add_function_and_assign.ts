@@ -1,5 +1,5 @@
 
-export default function add_function_and_assign(ctx, functionTemplate) {
+export function add_function_and_assign(ctx, functionTemplate) {
     const [name, description, result, result_description] = functionTemplate.split(': ');
     const functions = ctx.functions || [];
     functions.push({

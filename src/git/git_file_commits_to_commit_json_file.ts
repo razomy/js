@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import compare_versions from './compare_versions';
+import {compare_versions} from './compare_versions';
 
-export default async function git_file_commits_to_commit_json_file(
+export async function git_file_commits_to_commit_json_file(
   repositoryPathRoot: string,
   fileSubPath: string,
 ) {

@@ -1,4 +1,4 @@
-export default function sum_arrays(...arrays: number[][]): number[] {
+export function sum_arrays(...arrays: number[][]): number[] {
   // Check if there are at least two arrays to sum
   if (arrays.length < 2) {
     throw new Error('At least two arrays are required for summation.');

@@ -1,9 +1,9 @@
-export { default as adds } from './adds';
+export * from './adds';
 export { RemoveDeltaString, AddDeltaString, DeltaString } from './delta_string';
-export { default as delta_strings_to_string } from './delta_strings_to_string';
-export { default as find_repetitions } from './find_repetitions';
-export { default as iterate_commit } from './iterate_commit';
-export { default as map_commit } from './map_commit';
-export { default as squash_changes } from './squash_changes';
-export { default as strings_to_delta_strings } from './strings_to_delta_strings';
-export { default as utils } from './utils';
+export * from './delta_strings_to_string';
+export * from './find_repetitions';
+export * from './iterate_commit';
+export * from './map_commit';
+export * from './squash_changes';
+export * from './strings_to_delta_strings';
+export * from './utils';

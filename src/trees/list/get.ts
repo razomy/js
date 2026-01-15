@@ -1,6 +1,6 @@
 import {WithChildrenList} from 'razomy.trees/list/with_children_list';
 
-export default function get<T extends WithChildrenList<any>>(node: T, path: string[], offset: number): T {
+export function get<T extends WithChildrenList<any>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }

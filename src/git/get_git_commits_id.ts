@@ -1,6 +1,6 @@
-import execute_async from 'src/shell/execute_async';
+import {execute_async} from 'src/shell/execute_async';
 
-export default async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
+export async function get_git_commits_id(dir_path: string, commitCount: number = 100) {
 
 
 // Command to retrieve the last commits with commit IDs and names

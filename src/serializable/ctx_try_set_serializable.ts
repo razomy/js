@@ -1,6 +1,6 @@
-import {Ctx, Serializable} from './serializable2';
+import {Ctx, Serializable} from './pipe_ctx_serializable';
 
-export default function ctx_try_set_serializable(ctx: Ctx, data: { [key: string]: Serializable }) {
+export function ctx_try_set_serializable(ctx: Ctx, data: { [key: string]: Serializable }) {
     for (const [k, v] of Object.entries(data)) {
     ctx.setIfDefault(k, v);
     }

@@ -1,8 +1,8 @@
 import {isMainThread, Worker} from 'worker_threads';
-import worker_to_promise from './worker_to_promise';
+import {worker_to_promise} from './worker_to_promise';
 
 
-export default function thread_to_promise(ctx, {path, worker_id}) {
+export function thread_to_promise(ctx, {path, worker_id}) {
     if (!isMainThread) {
         throw new Error("Thread must be Main")
     }

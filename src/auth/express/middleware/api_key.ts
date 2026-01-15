@@ -1,4 +1,4 @@
-export default function api_key(key) {
+export function api_key(key) {
   const valid_api_keys = new Set([
     key,
   ]);

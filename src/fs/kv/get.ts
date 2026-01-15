@@ -2,12 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {ArrayKeyValuable, ArrayOrKeyValuable,  KeyValuable, Valuable, Value} from 'razomy.kv/kv';
-import akv from 'razomy.kv/akv';
-import k from 'src/kv/k';
+import {akv} from 'razomy.kv/akv';
+import {k} from 'src/kv/k';
 
-export default function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
-export default function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
-export default function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
+export function get<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
+export function get<T = KeyValuable<string, Buffer>>(file_path: string): T;
+export function get<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = k(path.basename(directory), null as any) as T;
 

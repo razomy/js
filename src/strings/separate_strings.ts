@@ -1,7 +1,7 @@
 import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
 
-export default function separate_strings(string: String, offset: Offset, separate_string: String, strings: String[]) {
+export function separate_strings(string: String, offset: Offset, separate_string: String, strings: String[]) {
   let ix = string.indexOf(separate_string, offset);
   while (ix !== -1) {
     strings.push(string.substring(offset, ix + 1))

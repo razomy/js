@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import is_exist from 'src/fs/file/is_exist';
+import {is_exist} from 'src/fs/file/is_exist';
 import {CatchFn} from 'razomy.exceptions/collect';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 
@@ -12,7 +12,7 @@ export class InvalidLinkException extends ArgumentException<{ link_path: string,
 }
 
 
-export default function get_invalid_symlinks(catch_fn: CatchFn) {
+export function get_invalid_symlinks(catch_fn: CatchFn) {
 
   function iterate_if_invalid_link({stats: entry, path: path_}) {
     if (entry.isSymbolicLink()) {

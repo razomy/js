@@ -1,7 +1,7 @@
 import {ListTree} from 'razomy.trees/list/list_tree';
 
 
-export default function split_nodes_array_to_tree(nodes: string[], leafs: string[]) {
+export function split_nodes_array_to_tree(nodes: string[], leafs: string[]) {
   // We use a virtual root to simplify traversal logic
   const root: ListTree<string> = {value: 'root', children: []};
 

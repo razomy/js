@@ -570,7 +570,7 @@ var shg_table = [
   24
 ];
 
-export default function filter_gauss_blur_rgba(imageData: any, radius: any) {
+export function filter_gauss_blur_rgba(imageData: any, radius: any) {
   var pixels = imageData.data,
     width = imageData.width,
     height = imageData.height;

@@ -1,8 +1,8 @@
-import pixel_at from './mask_texture_filter';
-import rgb_distance from './rgb_distance';
-import rgb_mean from './rgb_mean';
+import {pixel_at} from './mask_texture_filter';
+import {rgb_distance} from './rgb_distance';
+import {rgb_mean} from './rgb_mean';
 
-export default function background_mask(idata: any, threshold: number): any {
+export function background_mask(idata: any, threshold: number): any {
     var rgbv_no = pixel_at(idata, 0, 0);
     var rgbv_ne = pixel_at(idata, idata.width - 1, 0);
     var rgbv_so = pixel_at(idata, 0, idata.height - 1);

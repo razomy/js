@@ -1,4 +1,4 @@
-export default function item_toggle<T>(arr: T[], element: T): T[] {
+export function item_toggle<T>(arr: T[], element: T): T[] {
   const index = arr.indexOf(element);
 
   if (index === -1) {

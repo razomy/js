@@ -1,6 +1,6 @@
-import is_string from 'razomy.string/is_string';
+import {is_string} from 'razomy.string/is_string';
 
-export default function accept_language_pick(supportedLanguages, acceptLanguage, options) {
+export function accept_language_pick(supportedLanguages, acceptLanguage, options) {
     options = options || {};
     if (!supportedLanguages || !supportedLanguages.length || !acceptLanguage) {
     return null;

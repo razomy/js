@@ -1,8 +1,8 @@
 import {ValueRecursiveList} from 'razomy.list/value_recursive/value';
 import {Dict} from 'razomy.dict/dict';
-import value_or_list_to_flat_dict from './value_or_list_to_flat_dict';
+import {value_or_list_to_flat_dict} from './value_or_list_to_flat_dict';
 
-export default function list_to_flat_dict(
+export function list_to_flat_dict(
   dict: {},
   input: ValueRecursiveList<string>,
   separator: string

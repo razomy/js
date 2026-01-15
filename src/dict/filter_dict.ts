@@ -1,5 +1,5 @@
 import {Dict} from 'razomy.dict/dict';
-export default function filter_dict<T>(dict: Dict<T>, cb: (t: T, k: string) => boolean) {
+export function filter_dict<T>(dict: Dict<T>, cb: (t: T, k: string) => boolean) {
   const res: Dict<T> = {};
   for (const dict_key in dict) {
     const item = cb(dict[dict_key], dict_key);

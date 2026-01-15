@@ -7,7 +7,7 @@ export function get_package_directories() {
 
 }
 
-export default async function build_packages_recursive() {
+export async function build_packages_recursive() {
   const srcPath = path.join(process.cwd());
   const entries: string[] = [];
 

@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default function check(linkPath: string) {
+export function check(linkPath: string) {
   if (fs.existsSync(linkPath)) {
     const stats = fs.lstatSync(linkPath);
 

@@ -1,7 +1,7 @@
-import to_serializable_type from './to_serializable_type';
-import {Serializable} from './serializable2';
+import {to_serializable_type} from './to_serializable_type';
+import {Serializable} from './pipe_ctx_serializable';
 
-export default function serializable_ctx(d: { [key: string]: any }): { [key: string]: Serializable } {
+export function serializable_ctx(d: { [key: string]: any }): { [key: string]: Serializable } {
     const result: { [key: string]: Serializable } = {};
     for (const [k, v] of Object.entries(d)) {
     const s = to_serializable_type(v);

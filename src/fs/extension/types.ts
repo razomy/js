@@ -158,7 +158,7 @@ export const uniq_programming_buffer_name = {
 } as const satisfies Record<string, BufferEncoding>;
 
 
-export default function is_supported_file_types(path_: string) {
+export function is_supported_file_types(path_: string) {
   const type_ = path.extname(path_) as TypeFs;
   return buffer_types.hasOwnProperty(type_.substring(1)) ||
     uniq_programming_buffer_name.hasOwnProperty(path.basename(path_));

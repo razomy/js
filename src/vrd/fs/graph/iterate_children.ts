@@ -1,8 +1,8 @@
 import {Graph} from 'razomy.graph';
 import {VrdOrValue} from '../../vrd';
-import is_vrd from '../../is_vrd';
+import {is_vrd} from '../../is_vrd';
 
-export default function iterate_children<T>(
+export function iterate_children<T>(
   graph: Graph<VrdOrValue<T>>,
   branch: VrdOrValue<T>
 ) {

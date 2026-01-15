@@ -1,8 +1,8 @@
 import {Codec} from 'src/codec/codec';
 import {Json} from 'razomy.json/json';
-import string_to_json from './string_to_json';
+import {string_to_json} from './string_to_json';
 
-export default function json_to_string(state: Json): string {
+export function json_to_string(state: Json): string {
   return JSON.stringify(state, null, 2);
 }
 

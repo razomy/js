@@ -1,4 +1,4 @@
-export default function to_formatted_string(bytes: number, decimals = 2): string {
+export function to_formatted_string(bytes: number, decimals = 2): string {
   if (bytes === 0) return '0 Bytes';
 
   const k = 1024;

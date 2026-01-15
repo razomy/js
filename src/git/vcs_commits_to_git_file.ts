@@ -1,9 +1,9 @@
-import execute_async from 'razomy.shell/execute_async';
-import progress from 'razomy.shell/progress';
-import addss_to_string, {ActorDatetimeDeltaString} from 'razomy.commit/datetime/delta/string/adds';
-import try_write_file from 'src/fs/file/try_write_file';
+import {execute_async} from 'razomy.shell/execute_async';
+import {progress} from 'razomy.shell/progress';
+import  { addss_to_string,ActorDatetimeDeltaString} from 'razomy.commit/datetime/delta/string/adds';
+import {try_write_file} from 'src/fs/file/try_write_file';
 
-export default async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
+export async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {

@@ -1,6 +1,6 @@
 import {DeltaString} from 'razomy.commit/datetime/delta/string/delta_string';
 
-export default function remove_duplicated_changes(changes: DeltaString[]): DeltaString[] {
+export function remove_duplicated_changes(changes: DeltaString[]): DeltaString[] {
   const minimized_changes: DeltaString[] = [];
 
   for (let i = 0; i < changes.length; i++) {

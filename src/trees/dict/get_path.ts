@@ -1,6 +1,6 @@
-import assign from 'razomy.key/assign';
+import {assign} from 'razomy.key/assign';
 
-export default function get_path(obj, path: string) {
+export function get_path(obj, path: string) {
   if (path === '') {
     return [];
   }

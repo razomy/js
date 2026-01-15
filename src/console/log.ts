@@ -1,4 +1,4 @@
-export default function log(...args) {
+export function log(...args) {
   console.log(args)
 }
 

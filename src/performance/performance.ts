@@ -1,6 +1,6 @@
 import perf_hooks from 'perf_hooks';
 
-const {performance} = perf_hooks;
+export const {performance} = perf_hooks;
 
 export class Performance {
   start_time: number;

@@ -1,10 +1,10 @@
 import path from 'path';
-import string from 'razomy.number/string/string';
-import execute_async from 'razomy.shell/execute_async';
-import write_to_file_async from 'razomy.fs/file/write_to_file_async';
+import {string} from 'razomy.number/string/string';
+import {execute_async} from 'razomy.shell/execute_async';
+import {write_to_file_async} from 'razomy.fs/file/write_to_file_async';
 
 
-export default async function export_files(baseDir) {
+export async function export_files(baseDir) {
   baseDir = path.resolve(baseDir);
 
   const storage_ = await import('@google-cloud/storage');

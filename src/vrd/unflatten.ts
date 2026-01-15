@@ -1,10 +1,10 @@
-import { default as key_assign } from 'razomy.key/assign';
-export default function unflatten(data: Record<string, any>, assign = key_assign): Record<string, any> {
+import { assign } from 'razomy.key/assign';
+export function unflatten(data: Record<string, any>, assign_ = assign): Record<string, any> {
     if (typeof data !== 'object' || data === null || Array.isArray(data)) {
     return data;
     }
 
-    const regex = new RegExp(`\\${assign}?([^${assign}[\]]+)|\[(\d+)]`, 'g');
+    const regex = new RegExp(`\\${assign_}?([^${assign_}[\]]+)|\[(\d+)]`, 'g');
     const resultholder: Record<string, any> = {};
     for (const p in data) {
     let cur = resultholder;

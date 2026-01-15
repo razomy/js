@@ -1,3 +1,3 @@
-export default function loop(ms: number): Promise<void> {
+export function loop(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }

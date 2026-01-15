@@ -12,7 +12,7 @@ export type RootDictOrLeaf<T> = RootDict<T> | Leaf<T>
 export interface RootDict<T, R = unknown> extends WithChildrenDict<R> {
 }
 
-export default function map_branch<I, O>(
+export function map_branch<I, O>(
   parent: RootDict<O>,
   input: BranchDictOrLeaf<I>,
   leaf_value_cb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O

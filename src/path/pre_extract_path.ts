@@ -1,7 +1,7 @@
 import { ArgumentException } from 'razomy.exceptions/argument_exception';
 import { String } from 'razomy.string/string';
 
-export default function pre_extract_path(file_path: String, equal_path: String): String {
+export function pre_extract_path(file_path: String, equal_path: String): String {
     const parts: string[] = file_path.split('/');
     const start_index: number = parts.indexOf(equal_path);
     if (start_index !== -1) {

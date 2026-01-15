@@ -1,4 +1,4 @@
-export default function log(error, stdout, stderr) {
+export function log(error, stdout, stderr) {
   if (error) {
     console.log(`error: ${error.message}`);
     return;

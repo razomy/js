@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 import path from 'path';
 
-export default async function copy_files_recursive(source, target, excludedDirs: string[] = []) {
+export async function copy_files_recursive(source, target, excludedDirs: string[] = []) {
   const source_stats = await fs.stat(source);
 
   if (source_stats.isDirectory()) {

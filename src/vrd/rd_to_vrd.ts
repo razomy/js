@@ -1,6 +1,6 @@
 import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
 import {RecursiveDict} from 'razomy.dict/recursive/recursive';
-export default function rd_to_vrd(dict: RecursiveDict, is_value: (t: RecursiveDict) => boolean): VrdOrValue<string> {
+export function rd_to_vrd(dict: RecursiveDict, is_value: (t: RecursiveDict) => boolean): VrdOrValue<string> {
   if (is_value(dict)) {
     return dict;
   }

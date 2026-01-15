@@ -1,8 +1,8 @@
-import ctx_serializable from './ctx_serializable';
-import {ISerializable, Serializable} from './serializable2';
-import ctx_serializables from './ctx_serializables';
+import {ctx_serializable} from './ctx_serializable';
+import {ISerializable, Serializable} from './pipe_ctx_serializable';
+import {ctx_serializables} from './ctx_serializables';
 
-export default function to_serializable_type(value: any): Serializable | undefined {
+export function to_serializable_type(value: any): Serializable | undefined {
     if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) {
     return value;
     } else if (Array.isArray(value)) {

@@ -1,8 +1,8 @@
 import { ArgumentException } from 'razomy.exceptions/argument_exception';
 import { WithChildrenDict } from 'razomy.trees/dict/with_children_dict';
-import get from './get';
+import {get} from './get';
 
-export default function get_value<T extends WithChildrenDict<T>>(value: T, path: string[], offset: number) {
+export function get_value<T extends WithChildrenDict<T>>(value: T, path: string[], offset: number) {
     for (let key in value.children) {
     if (key !== path[offset]) {
       continue;

@@ -1,7 +1,7 @@
 import { Leaf } from 'razomy.trees/leaf';
-import map_branch, {RootDict, RootOrBranchDict} from './dict';
+import  { map_branch,RootDict, RootOrBranchDict} from './dict';
 
-export default function map_root<I, O>(input: RootDict<I>, leaf_value_cb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O) {
+export function map_root<I, O>(input: RootDict<I>, leaf_value_cb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O) {
     const otput: RootDict<O> = {
             children: {}
           };

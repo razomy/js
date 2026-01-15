@@ -1,5 +1,5 @@
 
-export default function dilate_mask(mask: any, sw: any, sh: any) {
+export function dilate_mask(mask: any, sw: any, sh: any) {
     var weights = [1, 1, 1, 1, 1, 1, 1, 1, 1];
     var side = Math.round(Math.sqrt(weights.length));
     var half_side = Math.floor(side / 2);

@@ -1,1 +1,1 @@
-export { default as debug } from './debug';
+export * from './debug';

@@ -4,20 +4,20 @@ import { Project, SyntaxKind, SourceFile } from 'ts-morph';
  * Helper to determine the actual name of a default export in a file.
  * Returns null if the default export is anonymous (e.g., export default () => {})
  */
-const get_real_default_export_name = (file: SourceFile): string | null => {
+export const get_real_default_export_name = (file: SourceFile): string | null => {
   // 1. Check for: export default class MyClass {}
   const defClass = file.getClasses().find(c => c.isDefaultExport());
   if (defClass) {
     return defClass.getName() || null;
   }
 
-  // 2. Check for: export default function MyFunc() {}
+  // 2. Check for: export function MyFunc() {}
   const defFunc = file.getFunctions().find(f => f.isDefaultExport());
   if (defFunc) {
     return defFunc.getName() || null;
   }
 
-  // 3. Check for: export default MyVariable; OR export default { ... };
+  // 3. Check for:  OR export default { ... };
   const exportAssignment = file.getExportAssignment(d => !d.isExportEquals());
   if (exportAssignment) {
     const expression = exportAssignment.getExpression();
@@ -28,7 +28,7 @@ const get_real_default_export_name = (file: SourceFile): string | null => {
     }
 
     // Case: export default class { ... } (Expression) - usually handled by logic #1 but good safety
-    // Case: export default function () { ... } (Expression)
+    // Case: export function () { ... } (Expression)
     // If it's a direct literal or anonymous expression, we can't extract a name.
   }
 
@@ -63,7 +63,7 @@ export const fix_default_imports = async () => {
     const imports = file.getImportDeclarations();
 
     for (const importDecl of imports) {
-      // We only care about Default Imports (e.g., import X from './y')
+      // We only care about Default Imports (e.g., import {X} from './y')
       const defaultImport = importDecl.getDefaultImport();
 
       if (!defaultImport) continue;

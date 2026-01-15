@@ -1,4 +1,4 @@
-export default function size(str: string): { x: number, y: number } {
+export function size(str: string): { x: number, y: number } {
   let i = 0;
   let x = 0;
   let y = 0;

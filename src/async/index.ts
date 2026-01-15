@@ -1,7 +1,7 @@
-export { default as create_task_promise } from './create_task_promise';
-export { default as delay_await } from './delay_await';
-export { default as freeze } from './freeze';
-export { default as is_ } from './is_';
-export { default as loop } from './loop';
+export * from './create_task_promise';
+export * from './delay_await';
+export * from './freeze';
+export * from './is_';
+export * from './loop';
 export { TaskQueue } from './task_queue';
-export { default as try_ } from './try_';
+export * from './try_';

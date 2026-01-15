@@ -1,1 +1,1 @@
-export { default as string } from './string';
+export * from './string';

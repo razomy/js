@@ -1,8 +1,8 @@
-import cluster, {ClusterSettings} from 'cluster';
+import cluster, { ClusterSettings} from 'cluster';
 import child from 'node:child_process';
-import process_to_promise from './process_to_promise';
+import {process_to_promise} from './process_to_promise';
 
-export default function processes_to_promises<T extends child.Serializable>(ctx: T[], settings: ClusterSettings): Promise<T>[] {
+export function processes_to_promises<T extends child.Serializable>(ctx: T[], settings: ClusterSettings): Promise<T>[] {
     if (!cluster.isPrimary) {
         throw new Error("Cluster must be primary")
     }

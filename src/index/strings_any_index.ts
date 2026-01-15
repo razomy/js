@@ -2,7 +2,7 @@ import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
 import {Index} from 'razomy.index/index_';
 
-export default function strings_any_index(
+export function strings_any_index(
   string: String,
   equal_strings: String[],
   offset: Offset = 0,

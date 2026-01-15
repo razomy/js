@@ -1,5 +1,5 @@
 import {VrdOrValue} from 'razomy.vrd/vrd';
-import is_vrd from './is_vrd';
+import {is_vrd} from './is_vrd';
 
 export interface Iterate<T> {
   parents: string[];
@@ -12,7 +12,7 @@ export enum IterateBreaks {
   Break = 2,
 }
 
-export default function iterate_vrd<T, C extends Iterate<T>>(
+export function iterate_vrd<T, C extends Iterate<T>>(
   ctx: C,
   is_iterate_child_execute_bool: (ctx: C) => IterateBreaks,
 ): IterateBreaks {

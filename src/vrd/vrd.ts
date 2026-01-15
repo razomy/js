@@ -13,7 +13,7 @@ export class Vrd<T> implements Vrd<T> {
   }
 }
 
-export default function vrd<T = unknown, T1 = object>(_: T1): Vrd<T> & T1 {
+export function vrd<T = unknown, T1 = object>(_: T1): Vrd<T> & T1 {
   return new Vrd<T>(_) as Vrd<T> & T1;
 }
 

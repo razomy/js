@@ -1,19 +1,22 @@
-import {ExecuteAny, Pipe} from './pipe';
+import {Pipe} from './pipe';
+
+export type ExecuteAny = (input: unknown) => unknown
 
 export type Execute<I, O> = (input: I) => O
-export default function execute<I1, O1>(
+
+export function execute<I1, O1>(
   arr: [Pipe<I1, any>, ...any, Pipe<any, O1>],
   args: I1
 );
-export default function execute(
+export function execute(
   arr: ExecuteAny[],
   args?: any
 );
-export default function execute<I1, O1>(
+export function execute<I1, O1>(
   arr: Pipe<any, any>[],
   args: I1
 );
-export default function execute<I1, O1>(
+export function execute<I1, O1>(
   arr: Pipe<any, any>[],
   args: I1
 )

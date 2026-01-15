@@ -1,7 +1,7 @@
 import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-import byte_slice from 'razomy.graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
+import {byte_slice} from 'razomy.graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
 
-export default function bit_slice(val: number) {
+export function bit_slice(val: number) {
   if (val > 1) {
     return 1;
   } else if (val < 0.0001) {

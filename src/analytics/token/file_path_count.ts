@@ -1,7 +1,7 @@
 import fs from 'fs';
 import {FilePathString} from 'razomy.path/string/path_string';
 
-export default function file_path_count(file_path: FilePathString) {
+export function file_path_count(file_path: FilePathString) {
   try {
     const code = fs.readFileSync(file_path, 'utf8');
     const matches = code.trim().match(/\b\w+\b/g) || [];

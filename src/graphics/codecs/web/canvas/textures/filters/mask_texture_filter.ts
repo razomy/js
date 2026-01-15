@@ -1,11 +1,11 @@
 import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-import background_mask from './background_mask';
-import erode_mask from './erode_mask';
-import dilate_mask from './dilate_mask';
-import smooth_edge_mask from './smooth_edge_mask';
-import apply_mask from './apply_mask';
+import {background_mask} from './background_mask';
+import {erode_mask} from './erode_mask';
+import {dilate_mask} from './dilate_mask';
+import {smooth_edge_mask} from './smooth_edge_mask';
+import {apply_mask} from './apply_mask';
 
-export default function pixel_at(idata: any, x: number, y: number) {
+export function pixel_at(idata: any, x: number, y: number) {
   var idx = (y * idata.width + x) * 4;
   var d: any[] = [];
   d.push(

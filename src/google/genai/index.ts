@@ -1,2 +1,2 @@
-export { default as f } from './f';
-export { default as refactor_code } from './refactor_code';
+export * from './f';
+export * from './refactor_code';

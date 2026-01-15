@@ -1,6 +1,6 @@
 import {Status} from './get_status';
 
-export default function parse_status(str: string): Status {
+export function parse_status(str: string): Status {
   var lines;
   var branch_line;
   var branches;

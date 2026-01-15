@@ -3,7 +3,7 @@ import {Dict} from 'razomy.dict';
 import { assign } from 'razomy.key';
 import {is_string} from 'razomy.string';
 
-export default function value_or_list_to_flat_dict(
+export function value_or_list_to_flat_dict(
   dict: {},
   input: ValueListItemValue<string>,
   parent: string,

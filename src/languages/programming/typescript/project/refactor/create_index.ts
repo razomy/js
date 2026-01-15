@@ -64,11 +64,11 @@ export const generate_final_index = async () => {
             const className = decl.getName();
             // Если класс анонимный (export default class {}), используем имя файла как fallback
             const exportName = className || base_name;
-            export_entries.push(`export { default as ${exportName} } from './${base_name}';`);
+            export_entries.push(`export {  ${exportName} } from './${base_name}';`);
           }
           // Иначе (функция, объект) -> экспортируем как название файла (snake_case)
           else {
-            export_entries.push(`export { default as ${base_name} } from './${base_name}';`);
+            export_entries.push(`export {  ${base_name} } from './${base_name}';`);
           }
         }
 

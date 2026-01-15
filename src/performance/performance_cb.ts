@@ -1,4 +1,4 @@
-export default async function performance_cb(key, callback) {
+export async function performance_cb(key, callback) {
   const start_time = performance.now();
   const result = await callback();
   const end_time = performance.now();

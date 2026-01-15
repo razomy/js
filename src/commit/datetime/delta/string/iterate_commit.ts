@@ -1,7 +1,7 @@
 import { DeltaString } from 'razomy.commit/datetime/delta/string/delta_string';
-import delta_strings_to_string from 'razomy.commit/datetime/delta/string/delta_strings_to_string';
+import {delta_strings_to_string} from 'razomy.commit/datetime/delta/string/delta_strings_to_string';
 
-export default function iterate_commit(commits: DeltaString[], iter) {
+export function iterate_commit(commits: DeltaString[], iter) {
     let snapshot_ = '';
     for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];

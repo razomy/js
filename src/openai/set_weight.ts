@@ -1,5 +1,5 @@
 
-export default function set_weight(ctx) {
+export function set_weight(ctx) {
     const updated = {
             temperature: 1,
             top_p: 1,

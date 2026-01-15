@@ -1,13 +1,13 @@
-import is_kv, { KeyValuable, Valuable} from 'razomy.kv/kv';
+import  { is_kv, KeyValuable, Valuable} from 'razomy.kv/kv';
 import {Function} from 'razomy.function/function';
-import is_akv from 'razomy.kv/is_akv';
-import boolean_undefined from 'razomy.undefined/boolean_undefined';
+import {is_akv} from 'razomy.kv/is_akv';
+import {boolean_undefined} from 'razomy.undefined/boolean_undefined';
 
 /**
  * true - continue
  * false - break
  */
-export default function iterate<K, V>(
+export function iterate<K, V>(
   value: Valuable<K, V>,
   node_cb: Function<[KeyValuable<K, V>], boolean | undefined>
 ): boolean {

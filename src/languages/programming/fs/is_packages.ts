@@ -1,6 +1,6 @@
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {WithPathString} from 'razomy.path/string/path_string';
-import is_mac_ds_store_key from './is_mac_ds_store_key';
+import {is_mac_ds_store_key} from './is_mac_ds_store_key';
 
 export const python_dependencies = ['.venv'];
 export const nodejs_dependencies = ['node_modules'];

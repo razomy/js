@@ -1,6 +1,6 @@
 import {spawn, ChildProcess} from 'child_process';
 
-export default function execute_async<T = string>(command: string, options: { cwd?: string }): Promise<T> {
+export function execute_async<T = string>(command: string, options: { cwd?: string }): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const child: ChildProcess = spawn(command, {...options, shell: true});
 

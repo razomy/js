@@ -1,8 +1,8 @@
-import vrd, {Vrd} from './vrd';
-import differences_vrd, {P} from './differences_vrd';
-import get_similar from 'src/array/difference/get_similar';
+import  { vrd,Vrd} from './vrd';
+import  { differences_vrd,P} from './differences_vrd';
+import {get_similar} from 'src/array/difference/get_similar';
 
-export default function differences_dict<T>(
+export function differences_dict<T>(
   diffs: P<T>[],
   a: Vrd<T>,
   b: Vrd<T>,

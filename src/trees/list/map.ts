@@ -1,8 +1,8 @@
 import {WithChildrenList} from 'razomy.trees/list/with_children_list';
-import map_children from './map_children';
+import {map_children} from './map_children';
 
 
-export default function map<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
+export function map<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
   input: I,
   cb: (input: I) => O
 ): O {

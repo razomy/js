@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export default async function upload_files_recursive(bucket, folderPath, destinationPath = '') {
+export async function upload_files_recursive(bucket, folderPath, destinationPath = '') {
     const items = await fs.promises.readdir(folderPath);
     const upload_promises = items.map(async (item) => {
             const item_path = path.join(folderPath, item);

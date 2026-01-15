@@ -25,4 +25,4 @@ ${text}`,
     }
 }
 
-export default LanguageGrammarCorrection;
+

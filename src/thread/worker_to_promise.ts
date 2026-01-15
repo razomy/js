@@ -1,7 +1,7 @@
 import {Worker} from 'worker_threads';
 import {WorkerEvent} from 'razomy.cluster';
 
-export default function worker_to_promise<T>(worker: Worker, ctx: T) {
+export function worker_to_promise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {
     let last_ctx: T;
     let last_error: Error;

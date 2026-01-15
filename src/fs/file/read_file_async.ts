@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default function read_file_async(file_path) {
+export function read_file_async(file_path) {
     return new Promise((resolve, reject) => {
     fs.readFile(file_path, 'utf8', (err, data) => {
       if (err) {

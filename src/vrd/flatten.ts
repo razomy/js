@@ -1,8 +1,8 @@
-import {default as key_assign} from 'razomy.key/assign';
-export default function flatten(data: Record<string, any>): Record<string, any> {
+import { assign} from 'razomy.key/assign';
+export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
-  function recurse(cur: any, prop: string, assign = key_assign) {
+  function recurse(cur: any, prop: string, assign_ = assign) {
     if (typeof cur !== 'object' || cur === null) {
       result[prop] = cur;
     } else if (Array.isArray(cur)) {
@@ -17,7 +17,7 @@ export default function flatten(data: Record<string, any>): Record<string, any> 
       for (const p in cur) {
         if (Object.prototype.hasOwnProperty.call(cur, p)) {
           is_empty = false;
-          recurse(cur[p], prop ? `${prop}${assign}${p}` : p);
+          recurse(cur[p], prop ? `${prop}${assign_}${p}` : p);
         }
       }
       if (is_empty && prop) {

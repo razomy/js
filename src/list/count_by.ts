@@ -1,4 +1,4 @@
-export default function count_by(collection, iteratee = (value) => value) {
+export function count_by(collection, iteratee = (value) => value) {
     const result = {};
     if (!collection) return result;
     const values = Array.isArray(collection) ? collection : Object.values(collection);

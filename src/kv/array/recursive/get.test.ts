@@ -1,7 +1,7 @@
 import {ListItem} from 'razomy.kv/array/recursive/type';
 
-import get from './get';
-import get_item_by_path from './get_item_by_path';
+import {get} from './get';
+import {get_item_by_path} from './get_item_by_path';
 
 
 describe('list', () => {

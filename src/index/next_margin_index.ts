@@ -2,7 +2,7 @@ import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
 import {Index} from 'razomy.index/index_';
 
-export default function next_margin_index(
+export function next_margin_index(
   string: String,
   equal_string: String,
   offset: Offset = 0,

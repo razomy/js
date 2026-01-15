@@ -1,8 +1,8 @@
-import progress from 'razomy.shell/progress';
-import strings_to_delta_strings from 'razomy.commit/datetime/delta/string/strings_to_delta_strings';
-import addss_to_string, {ActorDatetimeDeltaString} from './adds';
+import {progress} from 'razomy.shell/progress';
+import {strings_to_delta_strings} from 'razomy.commit/datetime/delta/string/strings_to_delta_strings';
+import  { addss_to_string,ActorDatetimeDeltaString} from './adds';
 
-export default function map_commit(commits: ActorDatetimeDeltaString[]) {
+export function map_commit(commits: ActorDatetimeDeltaString[]) {
     let snapshot_ = '';
     const result: ActorDatetimeDeltaString[] = [];
     for (let i = 0; i < commits.length; i++) {

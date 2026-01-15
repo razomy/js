@@ -1,7 +1,7 @@
-import try_write_file from 'src/fs/file/try_write_file';
-import execute_async from 'src/shell/execute_async';
+import {try_write_file} from 'src/fs/file/try_write_file';
+import {execute_async} from 'src/shell/execute_async';
 
-export default async function init(dir_path: string, file_name: string) {
+export async function init(dir_path: string, file_name: string) {
   await execute_async('git init && git config gc.auto 0', {cwd: dir_path});
   let prev_snapshot = '';
   try_write_file(file_name, prev_snapshot);

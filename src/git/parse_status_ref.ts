@@ -1,5 +1,5 @@
 
-export default function parse_status_ref(str: string) {
+export function parse_status_ref(str: string) {
     var refs = {};
     var lines = str.length === 0 ? [] : str.split('\n');
     lines.forEach(function (str) {

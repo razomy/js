@@ -1,2 +1,2 @@
 export { Function } from './function';
-export { default as is_function } from './is_function';
+export * from './is_function';

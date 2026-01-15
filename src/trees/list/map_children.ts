@@ -1,7 +1,7 @@
 import {WithChildrenList} from './with_children_list';
-import map from './map';
+import {map} from './map';
 
-export default function map_children<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
+export function map_children<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
   _children: I[],
   cb: (input: I) => O
 ): O[] {

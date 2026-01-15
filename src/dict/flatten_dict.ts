@@ -1,5 +1,5 @@
-import for_own from './for_own';
-import is_plain_object from './is_plain_object';
+import {for_own} from './for_own';
+import {is_plain_object} from './is_plain_object';
 
 export type Join<K, P> = K extends string
   ? P extends string
@@ -18,7 +18,7 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export default function flatten_dict<T extends object = object>(
+export function flatten_dict<T extends object = object>(
   obj: T,
   parentKey = '',
   result = {} as any,

@@ -1,7 +1,7 @@
 import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
-import is_vrd from './is_vrd';
+import {is_vrd} from './is_vrd';
 
-export default function order_vrd<T, T2>(a: VrdOrValue<T>, b: VrdOrValue<T2>): VrdOrValue<T2> {
+export function order_vrd<T, T2>(a: VrdOrValue<T>, b: VrdOrValue<T2>): VrdOrValue<T2> {
   if (is_vrd(a) && is_vrd(b)) {
     const order_b = new Vrd<T2>({});
     for (let key in a) {

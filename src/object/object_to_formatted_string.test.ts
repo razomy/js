@@ -1,4 +1,4 @@
-import object_to_formatted_string from './object_to_formatted_string';
+import {object_to_formatted_string} from './object_to_formatted_string';
 
 describe('bytes', () => {
   it('getObjectSizeInBytes', () => {

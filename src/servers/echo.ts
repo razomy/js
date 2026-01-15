@@ -1,4 +1,4 @@
-export default function echo() {
+export function echo() {
   return function(req, res) {
     res.send('Hello World');
   };

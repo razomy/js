@@ -1,5 +1,5 @@
 
-export default function rgb_mean(pTab: any) {
+export function rgb_mean(pTab: any) {
     var m = [0, 0, 0];
     for (var i = 0; i < pTab.length; i++) {
     m[0] += pTab[i][0];

@@ -1,12 +1,12 @@
 import path from 'path';
-import execute_async from 'razomy.shell/execute_async';
-import read from 'razomy.fs/file/read';
-import write_file from 'razomy.fs/file/write_file';
-import try_ from 'razomy.async/try_';
-import get_git_commits_id from './get_git_commits_id';
+import {execute_async} from 'razomy.shell/execute_async';
+import {read} from 'razomy.fs/file/read';
+import {write_file} from 'razomy.fs/file/write_file';
+import {try_} from 'razomy.async/try_';
+import {get_git_commits_id} from './get_git_commits_id';
 
 
-export default async function git_file_to_new_git_file(
+export async function git_file_to_new_git_file(
   repositoryPath,
   repositorynewPath,
   fileSubPath = '/data/start.txt',

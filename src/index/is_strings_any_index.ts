@@ -1,8 +1,8 @@
 import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
-import strings_any_index from 'razomy.index/strings_any_index';
+import {strings_any_index} from 'razomy.index/strings_any_index';
 
-export default function is_strings_any_index(
+export function is_strings_any_index(
   string: String,
   equal_strings: String[],
   offset: Offset = 0,

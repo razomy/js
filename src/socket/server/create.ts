@@ -5,7 +5,7 @@ export interface WithWebsocket {
   web_socket: Server;
 }
 
-export default function create(ctx: WithServer) {
+export function create(ctx: WithServer) {
   return new Server(ctx.server);
 }
 

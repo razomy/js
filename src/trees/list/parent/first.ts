@@ -1,6 +1,6 @@
 import {WithParent} from 'razomy.trees/list/parent/parent';
 
-export default function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
+export function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {
     return node;
   }

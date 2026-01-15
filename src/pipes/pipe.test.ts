@@ -1,5 +1,5 @@
-import line from 'razomy.pipes/pipe';
-import execute from './execute';
+import {line} from 'razomy.pipes/pipe';
+import {execute} from './execute';
 
 describe('pipe', () => {
   it('pipe', () => {

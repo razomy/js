@@ -2,7 +2,7 @@ export class ArgumentError {
   constructor(public value: any) {}
 }
 
-export default function not_empty(value) {
+export function not_empty(value) {
   if (value === null || value === undefined || value === '') {
     return false;
   }

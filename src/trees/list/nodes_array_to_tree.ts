@@ -1,6 +1,6 @@
 import {ListTree} from 'razomy.trees/list/list_tree';
 
-export default function nodes_array_to_tree(nodes: string[], leafs: string[]) {
+export function nodes_array_to_tree(nodes: string[], leafs: string[]) {
   let all_items = [
       ...nodes.map(value => ({ value, children: [] } as ListTree<string>)),
       ...leafs.map(value => ({ value, children: [] } as ListTree<string>))

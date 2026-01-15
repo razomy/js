@@ -4,7 +4,7 @@ export interface WithWebsocket {
   web_socket: Socket;
 }
 
-export default function create(ctx: any) {
+export function create(ctx: any) {
   return io(ctx.url);
 }
 

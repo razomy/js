@@ -1,4 +1,4 @@
-export default function array_sort(order: string[], data: string[]) {
+export function array_sort(order: string[], data: string[]) {
   const order_map = {};
   order.forEach((id, index) => {
     order_map[id] = index;

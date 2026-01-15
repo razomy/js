@@ -1,9 +1,9 @@
 import {Graph} from 'razomy.graph/graph';
 import {VrdOrValue} from 'razomy.vrd/vrd';
-import iterate_children from './iterate_children';
+import {iterate_children} from './iterate_children';
 
 
-export default function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
+export function vrd_to_graph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
   const graph: Graph<I> = {
     nodes: [],
     edges: []

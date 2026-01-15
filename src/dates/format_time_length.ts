@@ -1,4 +1,4 @@
-export default function format_time_length(milliseconds: number) {
+export function format_time_length(milliseconds: number) {
     const time_units: string[] = [];
     const seconds = Math.floor(milliseconds / 1000);
     const years = Math.floor(seconds / (3600 * 24 * 365));

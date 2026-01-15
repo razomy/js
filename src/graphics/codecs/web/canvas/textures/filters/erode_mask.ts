@@ -1,5 +1,5 @@
 
-export default function erode_mask(mask: any, sw: number, sh: number) {
+export function erode_mask(mask: any, sw: number, sh: number) {
     var weights = [1, 1, 1, 1, 0, 1, 1, 1, 1];
     var side = Math.round(Math.sqrt(weights.length));
     var half_side = Math.floor(side / 2);

@@ -1,4 +1,4 @@
-const models = {
+export const models = {
   cheapest: {
     name: 'text-ada-001', token: 2192,
   },
@@ -22,4 +22,3 @@ const models = {
   },
 };
 
-export default models;

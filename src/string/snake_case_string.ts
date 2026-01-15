@@ -1,6 +1,6 @@
 import {String} from 'razomy.string/string';
 
-export default function snake_case_string(input: String) {
+export function snake_case_string(input: String) {
   let text = String(input);
 
   return text

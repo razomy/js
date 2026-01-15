@@ -1,4 +1,4 @@
-import fs, {Dirent} from 'fs';
+import fs, { Dirent} from 'fs';
 import path from 'path';
 
 export interface IterateNode {
@@ -15,7 +15,7 @@ export const shared_node: IterateNode = {
   path: '',
 };
 
-export default function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
+export function iterate(dir_path: string, cb: (iterate_node: IterateNode) => void | boolean) {
   // 2. Use a specific stack size if known, otherwise dynamic array
   const stack: string[] = [dir_path];
 

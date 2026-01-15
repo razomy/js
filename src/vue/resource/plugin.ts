@@ -1,4 +1,4 @@
-import ReactiveDirective from 'razomy.vue/resource/reactive_directive';
+import {ReactiveDirective} from 'razomy.vue/resource/reactive_directive';
 import {RemoteResource} from 'razomy.vue/resource/remote_resource';
 import {SocketStore} from 'razomy.vue/resource/socket';
 import {Resource} from 'razomy.vue/resource/resource';

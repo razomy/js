@@ -1,5 +1,5 @@
 
-export default function smooth_edge_mask(mask: any, sw: any, sh: any) {
+export function smooth_edge_mask(mask: any, sw: any, sh: any) {
     var weights = [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9];
     var side = Math.round(Math.sqrt(weights.length));
     var half_side = Math.floor(side / 2);

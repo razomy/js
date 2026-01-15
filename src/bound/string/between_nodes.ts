@@ -1,7 +1,7 @@
 import {NodeBound} from './node_bound';
 import * as coordinates from 'razomy.coordinates';
 
-export default function between_nodes(nodes: NodeBound[], root: NodeBound) {
+export function between_nodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
     return [{start_y: root.full_rect.start_y, finish_y: root.full_rect.finish_y}];
   }

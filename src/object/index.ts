@@ -1,7 +1,7 @@
 export { IObjectClone } from './i_object_clone';
 export { IObject, IObjectConstructor } from './i_object';
-export { default as is_class_constructor } from './is_class_constructor';
-export { default as is_object } from './is_object';
-export { default as object_to_bytes } from './object_to_bytes';
-export { default as object_to_formatted_string } from './object_to_formatted_string';
-export { default as to_formatted_string } from './to_formatted_string';
+export * from './is_class_constructor';
+export * from './is_object';
+export * from './object_to_bytes';
+export * from './object_to_formatted_string';
+export * from './to_formatted_string';
