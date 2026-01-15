@@ -1,6 +1,6 @@
 
 import path from 'path';
-import create_directory_if_not_exists from 'razomy.fs/create';
+import create_directory_if_not_exists from 'src/fs/directory/create';
 import download_file from './download_file';
 import upload_file from './upload_file';
 

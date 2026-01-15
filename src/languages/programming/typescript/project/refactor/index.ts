@@ -1,4 +1,4 @@
-export { default as build_packages } from './build_packages';
+export { default as build_packages } from './build_packages_recursive';
 export * as create_index from './create_index';
 export { default as create_package } from './create_package';
 export * as rename_deafult from './rename_deafult';

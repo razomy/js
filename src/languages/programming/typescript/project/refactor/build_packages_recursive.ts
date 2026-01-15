@@ -1,25 +1,25 @@
-import { build, type Options } from 'tsup';
+import {build, type Options} from 'tsup';
 import path from 'path';
 import fs from 'fs';
 
-export default async function run() {
-  const srcPath = path.join(process.cwd(), 'src');
+export function get_package_directories() {
+  const root = process.cwd();
+
+}
+
+export default async function build_packages_recursive() {
+  const srcPath = path.join(process.cwd());
   const entries: string[] = [];
 
-  // 1. Проверяем существование папки src
-  if (fs.existsSync(srcPath)) {
-    // 2. Читаем содержимое src
-    const items = fs.readdirSync(srcPath);
+  const items = fs.readdirSync(srcPath);
+  // 3. Пробегаемся по папкам и ищем index.ts (аналог 'src/*/index.ts')
+  for (const item of items) {
+    const dirPath = path.join(srcPath, item);
+    const entryPath = path.join(dirPath, 'index.ts');
 
-    // 3. Пробегаемся по папкам и ищем index.ts (аналог 'src/*/index.ts')
-    for (const item of items) {
-      const dirPath = path.join(srcPath, item);
-      const entryPath = path.join(dirPath, 'index.ts');
-
-      // Проверяем, что это папка и внутри есть index.ts
-      if (fs.statSync(dirPath).isDirectory() && fs.existsSync(entryPath)) {
-        entries.push(entryPath);
-      }
+    // Проверяем, что это папка и внутри есть index.ts
+    if (fs.statSync(dirPath).isDirectory() && fs.existsSync(entryPath)) {
+      entries.push(entryPath);
     }
   }
 
@@ -46,7 +46,7 @@ export default async function run() {
   console.log(`✅ Все ${entries.length} пакетов собраны!`);
 }
 
-run().catch((err) => {
+build_packages_recursive().catch((err) => {
   console.error('Ошибка при сборке:', err);
   process.exit(1);
 });

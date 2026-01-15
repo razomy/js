@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import create_directory_if_not_exists from 'razomy.fs/create';
+import create_directory_if_not_exists from 'src/fs/directory/create';
 import {VrdOrValue} from 'razomy.vrd/vrd';
 import is_vrd from 'src/vrd/is_vrd';
 

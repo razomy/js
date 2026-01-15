@@ -1,5 +1,5 @@
 import path from 'path';
-import copy_files_recursive from './copy';
+import copy_files_recursive from './file/copy';
 
 export default async function cli() {
     const [, , ...args] = process.argv;

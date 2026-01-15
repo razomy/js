@@ -1,4 +1,4 @@
-import { decode_json_string, encode_json_string }  from 'razomy.compression/gzip';
+import {decode_json_string, encode_json_string} from './index';
 
 describe('compress', () => {
   it('should encode a string using gzip compression', () => {

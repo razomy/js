@@ -19,6 +19,8 @@
     "target": "ESNext"
   },
   "include": [
-    "index.ts"
+    "index.ts",
+//    todo:remove
+    "src/**/*.ts"
   ]
 }
