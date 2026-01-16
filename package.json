@@ -8,6 +8,23 @@
     "typescript": "^5.9.3",
     "ts-jest": "^29.4.6"
   },
+  "files": [
+    "dist/razomy"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/razomy/index.d.ts",
+      "default": "./dist/razomy/index.js"
+    },
+    "./*": {
+      "types": "./dist/razomy/*.d.ts",
+      "default": "./dist/razomy/*.js"
+    }
+  },
+  "bin": {
+    "razomy": "./dist/cli/bin/razomy.js"
+  },
   "license": "Apache-2.0",
   "name": "razomy",
   "packageManager": "npm@10.8.2",
