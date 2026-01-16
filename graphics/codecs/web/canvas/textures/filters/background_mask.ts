@@ -1,4 +1,4 @@
-import {pixel_at} from './mask_texture_filter';
+import {pixel_at} from './pixel_at';
 import {rgb_distance} from './rgb_distance';
 import {rgb_mean} from './rgb_mean';
 

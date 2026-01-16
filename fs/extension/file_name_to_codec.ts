@@ -1,6 +1,6 @@
 import path from 'path';
 import {Codec} from 'razomy.codec';
-import {buffer_types} from './types';
+import {buffer_types} from './is_supported_file_types';
 import { to_codec } from 'razomy.buffer/string/to_codec';
 
 export const codecs: Record<BufferEncoding & '*', Codec<Buffer, string>> = {

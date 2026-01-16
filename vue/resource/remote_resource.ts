@@ -1,6 +1,6 @@
 import vue from 'vue';
 import {Dict} from 'razomy.dict/dict';
-import {remove_first} from 'razomy.list/remove_first';
+import {remove_first} from 'razomy.array/remove_first';
 
 
 export class RemoteResource {

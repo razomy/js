@@ -1,4 +1,4 @@
-import {ObjectExtended} from 'razomy.types/object_extended';
+import {ObjectExtended} from 'razomy.object/object_extended';
 
 export abstract class Resource extends ObjectExtended {
 }

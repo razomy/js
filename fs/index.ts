@@ -5,7 +5,6 @@ export * as file from './file';
 export * as kv from './kv';
 export * as link from './link';
 export * as vrd from './vrd';
-export { cli } from './cli';
 export { iterate, type IterateNode, shared_node } from './iterate';
 export { observe } from './observe';
 export { order_by_create_date } from './order_by_create_date';

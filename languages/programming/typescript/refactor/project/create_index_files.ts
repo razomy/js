@@ -1,5 +1,5 @@
 import {Project, SyntaxKind} from 'ts-morph';
-import {read_file_json} from 'razomy.fs/file';
+import {try_get_json} from 'razomy.fs/file';
 import path from 'path';
 import {file} from 'razomy.fs';
 import {to_safe_name} from '../to_safe_name';
@@ -10,15 +10,19 @@ export async function create_index_files(project_path: string) {
   const directories = project.getDirectories();
   for (const dir of directories) {
     if (dir.getPath().includes('node_modules')) continue;
+    if (dir.getPath().includes('dist')) continue;
+    if (dir.getPath().includes('bin')) continue;
     const dir_path = dir.getPath();
     const export_entries: string[] = [];
 
     for (const sub_dir of dir.getDirectories()) {
       if (sub_dir.getPath().includes('node_modules')) continue;
+      if (sub_dir.getPath().includes('dist')) continue;
+      if (sub_dir.getPath().includes('bin')) continue;
       const safe_key = to_safe_name(sub_dir.getBaseName());
       const child_package_json_path = path.join(sub_dir.getPath(), 'package.json');
       if (file.is_exist(child_package_json_path)) {
-        const name = read_file_json(child_package_json_path).name;
+        const name = try_get_json(child_package_json_path).name;
         export_entries.push(`export * as ${safe_key} from '${name}';`);
       } else {
         export_entries.push(`export * as ${safe_key} from './${sub_dir.getBaseName()}';`);
@@ -28,6 +32,8 @@ export async function create_index_files(project_path: string) {
     // 2. Files
     for (const file of dir.getSourceFiles()) {
       if (file.getFilePath().includes('node_modules')) continue;
+      if (file.getFilePath().includes('dist')) continue;
+      if (file.getFilePath().includes('bin')) continue;
       const base_name = file.getBaseNameWithoutExtension();
       // Skip index.ts and tests
       if (base_name === 'index' || file.getBaseName().match(/\.(spec|test)\./)) continue;

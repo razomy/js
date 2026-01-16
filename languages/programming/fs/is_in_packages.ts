@@ -1,4 +1,4 @@
-import {known_dependencies} from './is_packages';
+import {known_dependencies} from './is_mac_ds_store_key_argument_exception';
 import {is_package_get_path_components} from './is_package_get_path_components';
 
 export function is_in_packages(path: string): boolean {

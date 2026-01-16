@@ -1,33 +1,12 @@
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import { Constructor } from 'razomy.class/constructor';
-import {Resource}  from 'razomy.resources/resource';
-
-export class NodeProvidedException extends Error {
-
-}
-
-export class NodeAlreadyProvidedException extends Error {
-
-}
-
-export interface IResourceMap {
-  [key: string]: Resource;
-}
-
-export interface IEntityResourceMap {
-  resources: IResourceMap;
-}
-
-export interface IEntityResource {
-
-  add<T extends Resource>(obj: T): void;
-
-  remove<T extends Resource>(obj: T): void;
-
-  replace<T extends Resource>(obj: T): void;
-
-  get_by<T extends Resource>(objCtor: Constructor<T>): T;
-}
+import {Resource} from './resource';
+import {
+  IEntityResource,
+  IResourceMap,
+  NodeAlreadyProvidedException,
+  NodeProvidedException
+} from './node_provided_exception';
+import {Constructor} from 'razomy.class';
+import {ArgumentException} from 'razomy.exceptions';
 
 export class EntityResource extends Resource implements IEntityResource {
   protected resources: IResourceMap = {};

@@ -1,6 +1,6 @@
-import { BranchDictOrLeaf } from 'razomy.trees/dict/dict';
+import { BranchDictOrLeaf } from 'razomy.tree/dict/map_branch';
 import { Graph } from 'razomy.graph/graph';
-import {iterate_children} from './dict_tree_to_graph';
+import {iterate_children} from './iterate_children';
 
 export function dict_to_graph<T, I extends BranchDictOrLeaf<T>>(input: I): Graph<I> {
     const graph: Graph<I> = {

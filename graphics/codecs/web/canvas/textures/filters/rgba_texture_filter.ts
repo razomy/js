@@ -1,16 +1,6 @@
-import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-import {byte_slice} from 'razomy.graphics/codecs/web/canvas/textures/filters/rgb_texture_filter';
-
-export function bit_slice(val: number) {
-  if (val > 1) {
-    return 1;
-  } else if (val < 0.0001) {
-    // chrome does not honor alpha values of 0
-    return 0.0001;
-  } else {
-    return val;
-  }
-}
+import {ITextureFilter} from './i_texture_filter';
+import {bit_slice} from './bit_slice';
+import {byte_slice} from './byte_slice';
 
 /**
  * RGBA Filter

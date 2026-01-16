@@ -1,2 +1,2 @@
-export { type Bound } from './bound';
-export { type With } from './with';
+export { type BoundY } from './bound_y';
+export { type WithY } from './with_y';

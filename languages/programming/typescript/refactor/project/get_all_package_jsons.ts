@@ -1,7 +1,7 @@
 import path from 'path';
 import {iterate} from 'razomy.fs';
 import {is_exist} from 'razomy.fs/file';
-import {sort_by} from 'razomy.list';
+import {sort_by} from 'razomy.array';
 
 export function get_all_package_jsons(project_path: string) {
   const root_dir: string = path.join(__dirname, project_path);

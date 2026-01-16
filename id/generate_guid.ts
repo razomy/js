@@ -9,7 +9,7 @@ export function generate_guid() {
   return generate_part_8() + generate_part_8(true) + generate_part_8(true) + generate_part_8();
 }
 
-export class GuidFactory implements create.With<string> {
+export class GuidFactory implements create.WithCreate<string> {
   public create(): string {
     return generate_guid();
   }

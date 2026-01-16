@@ -13,7 +13,7 @@ import { TextCodec }  from 'razomy.graphics/codecs/web/svg/codecs/text_codec';
 import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
 
 
-export class CodecFactory implements create.With<Codec<ElementView, any>> {
+export class CodecFactory implements create.WithCreate<Codec<ElementView, any>> {
 
   constructor(
     private codecConfig: CodecConfig,

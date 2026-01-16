@@ -1,4 +1,4 @@
-import {Pipe} from './pipe';
+import {Pipe} from './line';
 
 export type ExecuteAny = (input: unknown) => unknown
 

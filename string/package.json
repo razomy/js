@@ -9,17 +9,17 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
-    "build": "tsdown index.ts --format cjs,esm --dts"
+    "build": "tsdown index.ts"
   },
   "dependencies": {
+    "razomy.index": "../index",
     "razomy.dict": "../dict",
     "razomy.differences": "../differences",
     "razomy.strings": "../strings",
-    "razomy.index": "../index",
     "razomy.number": "../number"
   }
 }

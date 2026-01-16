@@ -1,25 +1,5 @@
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-
-export function remap(from_value: any, from_min: any, from_max: any, to_min: any, to_max: any) {
-  // Compute the range of the data
-  var from_range = from_max - from_min,
-    to_range = to_max - to_min,
-    to_value;
-
-  // If either range is 0, then the value can only be mapped to 1 value
-  if (from_range === 0) {
-    return to_min + to_range / 2;
-  }
-  if (to_range === 0) {
-    return to_min;
-  }
-
-  // (1) untranslate, (2) unscale, (3) rescale, (4) retranslate
-  to_value = (from_value - from_min) / from_range;
-  to_value = to_range * to_value + to_min;
-
-  return to_value;
-}
+import {ITextureFilter} from './i_texture_filter';
+import {remap} from './remap';
 
 /**
  * Enhance Filter. Adjusts the colors so that they span the widest
@@ -36,7 +16,7 @@ export function remap(from_value: any, from_min: any, from_max: any, to_min: any
  * node.Filters([Konva.Filters.Enhance]);
  * node.enhance(0.4);
  */
-export class EnhanceTextureFilter implements ITextureFilter {
+export class Enhance_texture_filter implements ITextureFilter {
   constructor(
     /**
      * get/set enhance. Use with {@link Konva.Filters.Enhance} filter. -1 to 1 values

@@ -1,6 +1,6 @@
 import path from 'path';
-import {to_snake_case} from 'razomy.string';
 import {IterateSourceFileState} from '../iterate_source_files_and_save';
+import {to_safe_name} from '../to_safe_name';
 
 
 export async function split_functions({source_file, project}: IterateSourceFileState) {
@@ -24,7 +24,7 @@ export async function split_functions({source_file, project}: IterateSourceFileS
     // Skip default exports or unnamed functions
     if (!func_name) continue;
 
-    const new_filename = `${to_snake_case(func_name)}.ts`;
+    const new_filename = `${to_safe_name(func_name)}.ts`;
     const dir_path = source_file.getDirectoryPath();
     const new_file_path = path.join(dir_path, new_filename);
 
@@ -54,7 +54,7 @@ export async function split_functions({source_file, project}: IterateSourceFileS
       // 5. Add a re-export to the old file (Barrel Pattern)
       // This ensures code importing from the old file doesn't break.
       source_file.addExportDeclaration({
-        moduleSpecifier: `./${to_snake_case(func_name)}`,
+        moduleSpecifier: `./${to_safe_name(func_name)}`,
       });
 
       // 6. Clean up unused imports in both files

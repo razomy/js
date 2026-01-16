@@ -1,4 +1,4 @@
-import {ValueListItemValue} from './value';
+import {ValueListItemValue} from './get_value';
 import {Dict} from 'razomy.dict';
 import { assign } from 'razomy.key';
 import {is_string} from 'razomy.string';

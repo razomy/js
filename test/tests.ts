@@ -1,4 +1,4 @@
-import {Function} from 'razomy.function/function';
+import {Function} from 'razomy.function';
 import {Dict} from 'razomy.dict/dict';
 import {test} from 'razomy.test/test';
 import {FunctionSpec} from 'razomy.spec/function_spec';

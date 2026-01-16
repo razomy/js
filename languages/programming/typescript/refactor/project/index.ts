@@ -4,6 +4,8 @@ export { create_index_files } from './create_index_files';
 export { create_package_json_at_child_dirs } from './create_package_json_at_child_dirs';
 export { create_package } from './create_package';
 export { get_all_package_jsons } from './get_all_package_jsons';
+export { get_name_and_ext } from './get_name_and_ext';
+export { rename_file_based_on_first_child } from './rename_file_based_on_first_child';
 export { rename_files } from './rename_files';
 export { rename_variables_and_props_functions } from './rename_variables_and_props_functions';
 export { run } from './run';

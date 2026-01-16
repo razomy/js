@@ -6,7 +6,7 @@
     "razomy.shell": "../shell",
     "razomy.fs": "../fs",
     "razomy.async": "../async",
-    "razomy.trees": "../trees",
+    "razomy.tree": "../tree",
     "razomy.path": "../path",
     "razomy.languages": "../languages"
   },
@@ -19,10 +19,10 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
-    "build": "tsdown index.ts --format cjs,esm --dts"
+    "build": "tsdown index.ts"
   }
 }

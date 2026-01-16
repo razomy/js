@@ -14,17 +14,22 @@
   "private": true,
   "scripts": {
     "init": "npm install",
-    "start:dev": "tsc --project tsconfig.json --watch",
-    "build": "npm run build -ws && tsdown ./index.ts --format cjs,esm --dts",
+    "build:tsc": "tsc --project tsconfig.json",
+    "build": "npm run build -ws && tsdown ./index.ts",
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
     "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "type": "module",
   "engines": {
     "node": "24.5.0"
   },
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "version": "0.0.0",
   "workspaces": [
     "./action",

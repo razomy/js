@@ -4,9 +4,9 @@
     "vue": "^3.4.36",
     "vuetify": "^3.7.0",
     "razomy.socket": "../socket",
-    "razomy.servers": "../servers",
+    "razomy.server": "../server",
     "razomy.dict": "../dict",
-    "razomy.list": "../list"
+    "razomy.array": "../array"
   },
   "version": "0.0.0",
   "main": "./index.ts",
@@ -17,10 +17,10 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
-    "build": "tsdown index.ts --format cjs,esm --dts"
+    "build": "tsdown index.ts"
   }
 }

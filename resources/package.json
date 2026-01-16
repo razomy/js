@@ -9,15 +9,15 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
-    "build": "tsdown index.ts --format cjs,esm --dts"
+    "build": "tsdown index.ts"
   },
   "dependencies": {
-    "razomy.exceptions": "../exceptions",
     "razomy.class": "../class",
-    "razomy.types": "../types"
+    "razomy.exceptions": "../exceptions",
+    "razomy.object": "../object"
   }
 }

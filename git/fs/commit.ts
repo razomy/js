@@ -1,6 +1,6 @@
 import {get_recursive_status} from './get_recursive_status';
-import {nodes_array_to_tree} from 'razomy.trees/list/nodes_array_to_tree';
-import {iterate_reverse} from 'razomy.trees/list/iterate_reverse';
+import {nodes_array_to_tree} from 'razomy.tree/list/nodes_array_to_tree';
+import {iterate_reverse} from 'razomy.tree/list/iterate_reverse';
 import {execSync} from 'node:child_process';
 import {SourcePathString} from 'razomy.path/string/path_string';
 

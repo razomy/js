@@ -20,8 +20,8 @@
     "passport-custom": "^1.1.1",
     "winston": "^3.8.2",
     "@google-cloud/connect-datastore": "latest",
-    "razomy.google": "../google",
-    "razomy.servers": "../servers"
+    "razomy.server": "../server",
+    "razomy.google": "../google"
   },
   "overrides": {
     "@google-cloud/connect-datastore": {
@@ -37,10 +37,10 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
-    "build": "tsdown index.ts --format cjs,esm --dts"
+    "build": "tsdown index.ts"
   }
 }

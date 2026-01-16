@@ -1,6 +1,6 @@
 import { WithId }  from 'razomy.id/with_id';
 
-import {WithType} from 'razomy.types';
+import {WithType} from 'razomy.type';
 
 export interface IObject extends WithId, WithType {
 }

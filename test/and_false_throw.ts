@@ -1,4 +1,4 @@
-import {ArgumentError} from './exists';
+import {ArgumentError} from './argument_error';
 import {and} from './and';
 
 export function and_false_throw(...value: boolean[]) {

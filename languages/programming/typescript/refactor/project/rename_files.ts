@@ -1,40 +1,28 @@
 import {Project} from 'ts-morph';
-import {to_snake_case} from 'razomy.string';
-import {if_main} from 'razomy.main';
 import {is_exist} from 'razomy.fs/file';
-
+import {get_name_and_ext} from './get_name_and_ext';
+import {to_safe_name} from '../to_safe_name';
 
 export async function rename_files(project_path: string) {
   const project = new Project({
     tsConfigFilePath: project_path + 'tsconfig.json',
   });
-
   const source_files = project.getSourceFiles();
-  for (const file of source_files) {
-    let base_name = file.getBaseNameWithoutExtension();
-    let ext = file.getExtension();
-
-    if (base_name.endsWith('.test')) {
-      base_name = base_name.replace('.test', '');
-      ext = '.test' + ext;
-    }
-    if (base_name.endsWith('.spec')) {
-      base_name = base_name.replace('.spec', '');
-      ext = '.spec' + ext;
-    }
-
-    const new_name = to_snake_case(base_name);
+  for (const source_file of source_files) {
+    let {base_name, ext} = get_name_and_ext(source_file);
+    const new_name = to_safe_name(base_name);
 
     // Skip if name hasn't changed
     if (base_name === new_name) continue;
     if (base_name === new_name) continue;
 
-    const path = `${file.getDirectory().getPath()}/${new_name}${ext}`;
+    const path = `${source_file.getDirectory().getPath()}/${new_name}${ext}`;
     if (is_exist(path)) {
+      console.log(`ERROR ${base_name}${ext} -> ${new_name}${ext}`);
       continue
     }
     console.log(`[RENAME] ${base_name}${ext} -> ${new_name}${ext}`);
-    file.move(path);
+    source_file.move(path);
   }
 
   await project.save();

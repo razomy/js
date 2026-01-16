@@ -1,5 +1,5 @@
 import  { is_kv, KeyValuable, Valuable} from 'razomy.kv/kv';
-import {Function} from 'razomy.function/function';
+import {Function} from 'razomy.function';
 import {is_akv} from 'razomy.kv/is_akv';
 import {boolean_undefined} from 'razomy.undefined/boolean_undefined';
 

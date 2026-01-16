@@ -1,16 +1,8 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import path from 'path';
-import {is_exist} from 'razomy.fs/file/is_exist';
-import {CatchFn} from 'razomy.exceptions/collect';
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-
-export class InvalidLinkException extends ArgumentException<{ link_path: string, target_path: string }> {
-  constructor(public link_path: string,
-              public target_path: string) {
-    super('invalid targetPath', {link_path, target_path});
-  }
-}
-
+import {is_exist} from '../file';
+import {InvalidLinkException} from './invalid_link_exception';
+import {CatchFn} from 'razomy.exceptions';
 
 export function get_invalid_symlinks(catch_fn: CatchFn) {
 
@@ -29,5 +21,3 @@ export function get_invalid_symlinks(catch_fn: CatchFn) {
 
   return {iterate_if_invalid_link};
 }
-
-

@@ -1,5 +1,4 @@
 import {Node, Project, SyntaxKind, VariableDeclarationKind} from 'ts-morph';
-import {if_main} from 'razomy.main';
 
 export async function convert_lambdas_to_named_functions(project_path: string) {
   const project = new Project({

@@ -1,5 +1,5 @@
 import { Storage } from '@google-cloud/storage';
-import {download_file_recursive_file} from './lib';
+import {download_file_recursive_file} from './download_file_recursive_file';
 
 export async function download_file(bucket_name: string, file_path, folder_path) {
     const storage = new Storage();

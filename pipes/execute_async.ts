@@ -1,4 +1,4 @@
-import {Pipe} from './pipe';
+import {Pipe} from './line';
 
 export async function execute_async<I1, O1>(arr: [Pipe<I1, any>, ...any, Pipe<any, O1>], args: I1) {
     let next_value: any = args;

@@ -15,11 +15,11 @@ export function update_packages(project_path: string) {
       'types': './index.ts',
       publishConfig: {
         access: 'public',
-        main: './dist/index.js',
-        types: './dist/index.d.ts'
+        main: './dist/index.mjs',
+        types: './dist/index.d.mts'
       },
       'scripts': {
-        'build': 'tsdown index.ts --format cjs,esm --dts'
+        'build': 'tsdown index.ts'
       }
     }
 

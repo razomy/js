@@ -1,9 +1,15 @@
 export * as difference from './difference';
 export { array_sort } from './array_sort';
+export { count_by } from './count_by';
 export { create } from './create';
 export { flat } from './flat';
 export { index_size_create } from './index_size_create';
 export { item_toggle } from './item_toggle';
 export { last_equal } from './last_equal';
+export { last } from './last';
+export { remove_first } from './remove_first';
+export { sort_by_frequency_and_unique } from './sort_by_frequency_and_unique';
+export { sort_by } from './sort_by';
 export { sub_has } from './sub_has';
 export { try_first_equal } from './try_first_equal';
+export { uniq } from './uniq';

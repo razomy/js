@@ -6,7 +6,7 @@ export function between_nodes(nodes: NodeBound[], root: NodeBound) {
     return [{start_y: root.full_rect.start_y, finish_y: root.full_rect.finish_y}];
   }
 
-  const places: coordinates.rectangle.Bound[] = [];
+  const places: coordinates.rectangle.BoundRectangle[] = [];
 
   // Add starting place
   const first_node = nodes[0];

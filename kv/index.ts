@@ -1,4 +1,5 @@
 export * as array from './array';
+export * as fs from './fs';
 export { akv, Akv } from './akv';
 export { create_by_path } from './create_by_path';
 export { filter } from './filter';

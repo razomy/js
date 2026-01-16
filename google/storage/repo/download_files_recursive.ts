@@ -1,4 +1,4 @@
-import {download_file_recursive_file} from './lib';
+import {download_file_recursive_file} from './download_file_recursive_file';
 
 export async function download_files_recursive(bucket, folder_path, destination_path = '') {
     const [files] = await bucket.getFiles();

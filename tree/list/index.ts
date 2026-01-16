@@ -12,5 +12,5 @@ export { map_children } from './map_children';
 export { map } from './map';
 export { nodes_array_to_tree } from './nodes_array_to_tree';
 export { split_nodes_array_to_tree } from './split_nodes_array_to_tree';
-export { vrd_to_tree, type ValueChildren } from './verd_to_value_children';
+export { vrd_to_tree, type ValueChildren } from './vrd_to_tree';
 export { type WithChildrenList } from './with_children_list';

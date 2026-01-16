@@ -1,8 +1,8 @@
+export { add_index_string } from './add_index_string';
 export { capitalize } from './capitalize';
 export { dict_to_string } from './dict_to_string';
 export { differences_string } from './differences_string';
 export { escape_string } from './escape_string';
-export { add_index_string } from './index_string';
 export { is_null_or_empty } from './is_null_or_empty';
 export { is_string } from './is_string';
 export { levenshtein_distance } from './levenshtein_distance';

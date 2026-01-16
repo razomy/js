@@ -1,17 +1,18 @@
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
-
-
-export function create_canvas_element(): HTMLCanvasElement {
-  var canvas = document.createElement('canvas');
-  // on some environments canvas.style is readonly
-  try {
-    (<any> canvas).style = canvas.style || {};
-  } catch (e) {
-    throw new Error('Canva tyle is rreadonly');
-  }
-  return canvas as HTMLCanvasElement;
-}
-
+/*
+ * Kaleidoscope Filter.
+ * https://github.com/konvajs/konva
+@function
+ * @name Kaleidoscope
+ * @author ippo615
+ * @memberof Konva.Filters
+ * @example
+ * node.cache();
+ * node.Filters([Konva.Filters.Kaleidoscope]);
+ * node.kaleidoscopePower(3);
+ * node.kaleidoscopeAngle(45);
+ */
+import {ITextureFilter} from './i_texture_filter';
+import {create_canvas_element} from './create_canvas_element';
 /*
  * ToPolar Filter. Converts image data to polar coordinates. Performs
  *  w*h*4 pixel reads and w*h pixel writes. The r axis is placed along
@@ -177,19 +178,7 @@ var from_polar = function(src: any, dst: any, opt: any) {
 
 // create a temporary canvas for working - shared between multiple calls
 
-/*
- * Kaleidoscope Filter.
- * https://github.com/konvajs/konva
-@function
- * @name Kaleidoscope
- * @author ippo615
- * @memberof Konva.Filters
- * @example
- * node.cache();
- * node.Filters([Konva.Filters.Kaleidoscope]);
- * node.kaleidoscopePower(3);
- * node.kaleidoscopeAngle(45);
- */
+
 export class KaleidoscopeTextureFilter implements ITextureFilter {
 
   constructor(
@@ -296,7 +285,6 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     }
 
     // Convert back from polar coordinates
-    from_polar(scratch_data, imageData, { polarRotation: 0 });
+    from_polar(scratch_data, imageData, {polarRotation: 0});
   };
 }
-
