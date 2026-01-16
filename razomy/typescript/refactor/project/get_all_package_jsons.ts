@@ -4,7 +4,7 @@ import {is_exist} from 'razomy.fs/file';
 import {sort_by} from 'razomy.array';
 
 export function get_all_package_jsons(project_path: string) {
-  const root_dir: string = path.join(__dirname, project_path);
+  const root_dir: string = path.resolve(project_path);
   const package_jsons: { path: string, name: string }[] = [];
   iterate(root_dir, (iterate_node) => {
     if (iterate_node.path.includes('node_modules')) {

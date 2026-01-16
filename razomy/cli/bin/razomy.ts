@@ -3,4 +3,4 @@
 
 import {cli} from 'razomy.cli';
 
-cli(process.argv.slice(2)).then();
+cli(process.argv.slice(2) as any).then();

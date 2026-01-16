@@ -8,26 +8,8 @@
     "typescript": "^5.9.3",
     "ts-jest": "^29.4.6"
   },
-  "files": [
-    "dist/razomy"
-  ],
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/razomy/index.d.ts",
-      "default": "./dist/razomy/index.js"
-    },
-    "./*": {
-      "types": "./dist/razomy/*.d.ts",
-      "default": "./dist/razomy/*.js"
-    }
-  },
-  "bin": {
-    "razomy": "./dist/cli/bin/razomy.js"
-  },
   "license": "Apache-2.0",
-  "name": "razomy",
-  "packageManager": "npm@10.8.2",
+  "name": "razomy_",
   "private": true,
   "scripts": {
     "init": "npm install",
@@ -36,20 +18,11 @@
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
     "test": "jest"
   },
-  "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
-  },
-  "type": "module",
   "engines": {
     "node": "24.5.0"
   },
-  "main": "./index.ts",
-  "types": "./index.ts",
   "version": "0.0.0",
   "workspaces": [
-    "./razomy",
     "./razomy/action",
     "./razomy/analytics",
     "./razomy/array",
@@ -130,13 +103,13 @@
     "./razomy/time",
     "./razomy/tree",
     "./razomy/type",
+    "./razomy/typescript",
     "./razomy/undefined",
     "./razomy/value",
     "./razomy/vrd",
     "./razomy/vue"
   ],
   "dependencies": {
-    "razomy": "./razomy",
     "razomy.action": "./razomy/action",
     "razomy.analytics": "./razomy/analytics",
     "razomy.array": "./razomy/array",
@@ -217,6 +190,7 @@
     "razomy.time": "./razomy/time",
     "razomy.tree": "./razomy/tree",
     "razomy.type": "./razomy/type",
+    "razomy.typescript": "./razomy/typescript",
     "razomy.undefined": "./razomy/undefined",
     "razomy.value": "./razomy/value",
     "razomy.vrd": "./razomy/vrd",

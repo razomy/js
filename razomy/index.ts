@@ -76,6 +76,7 @@ export * as thread from 'razomy.thread';
 export * as time from 'razomy.time';
 export * as tree from 'razomy.tree';
 export * as type from 'razomy.type';
+export * as typescript from 'razomy.typescript';
 export * as undefined from 'razomy.undefined';
 export * as value from 'razomy.value';
 export * as vrd from 'razomy.vrd';

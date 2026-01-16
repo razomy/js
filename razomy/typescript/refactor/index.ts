@@ -3,4 +3,5 @@ export { file_rename_variables_and_props_functions } from './file_rename_variabl
 export { is_name_taken } from './is_name_taken';
 export { iterate_source_files_and_save, type IterateSourceFileState } from './iterate_source_files_and_save';
 export { rename_node } from './rename_node';
+export { rename_to_snake_case_recursive_ts } from './rename_to_snake_case_recursive_ts';
 export { to_safe_name } from './to_safe_name';

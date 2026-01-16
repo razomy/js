@@ -1,19 +1,17 @@
 {
-  "name": "razomy.languages",
+  "name": "razomy.typescript",
   "dependencies": {
-    "ts-morph": "27.0.2",
     "razomy.array": "../array",
-    "razomy.path": "../path",
-    "razomy.exceptions": "../exceptions",
-    "razomy.fs": "../fs"
+    "razomy.action": "../action",
+    "razomy.string": "../string",
+    "razomy.fs": "../fs",
+    "razomy": "..",
+    "razomy.main": "../main"
   },
   "version": "0.0.0",
-  "main": "./index.ts",
   "license": "MIT",
+  "main": "./index.ts",
   "types": "./index.ts",
-  "files": [
-    "*"
-  ],
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",

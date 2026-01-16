@@ -1,1 +1,1 @@
-export * as razomy from 'razomy';
+export * as razomy from './razomy';

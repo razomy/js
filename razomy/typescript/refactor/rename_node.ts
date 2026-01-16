@@ -6,7 +6,7 @@ import {
   PropertyDeclaration,
   VariableDeclaration
 } from 'ts-morph';
-import {is_name_taken} from 'razomy.languages/programming/typescript/refactor/is_name_taken';
+import {is_name_taken} from './is_name_taken';
 import {to_safe_name} from './to_safe_name';
 
 export function rename_node(v: VariableDeclaration

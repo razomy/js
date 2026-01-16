@@ -1,4 +1,4 @@
-import {reserved_names_js} from '../../fs';
+import {reserved_names_js} from '../../languages/programming/fs';
 import {to_snake_case} from 'razomy.string';
 
 export function to_safe_name(name: string) {

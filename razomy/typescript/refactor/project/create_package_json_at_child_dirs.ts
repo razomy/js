@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import path from 'path';
+import { file } from 'razomy/fs';
 
 export function create_package_json_at_child_dirs(project_path: string) {
-  const root_dir: string = path.join(__dirname, project_path);
+  const root_dir: string = path.resolve( project_path);
   const prefix: string = 'razomy';
   const folders = fs.readdirSync(root_dir, {withFileTypes: true})
     .filter((dirent: fs.Dirent) => dirent.isDirectory());
@@ -14,8 +15,8 @@ export function create_package_json_at_child_dirs(project_path: string) {
       name: new_name,
     };
 
-    const content = fs.readFileSync(pkg_path, 'utf-8');
-    pkg_data = {...JSON.parse(content), ...pkg_data};
+    const content = file.try_get_json(pkg_path) || {};
+    pkg_data = {...content, ...pkg_data};
 
     fs.writeFileSync(pkg_path, JSON.stringify(pkg_data, null, 2));
     console.log(`✓ Create: ${folder.name} -> ${new_name}`);
