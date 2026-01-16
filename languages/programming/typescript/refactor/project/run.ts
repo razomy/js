@@ -16,14 +16,14 @@ import {update_packages} from './update_packages';
 
 export async function run() {
   const project_path = '../../../../../';
-  // await rename_variables_and_props_functions(project_path);
-  // await convert_lambdas_to_named_functions(project_path);
+  await rename_files(project_path);
+  await create_package(project_path);
+  await add_dependencies(project_path);
   await create_index_files(project_path);
-  // await rename_files(project_path);
-  // await create_package(project_path);
-  // await add_dependencies(project_path);
-  // await update_packages(project_path);
-  // await iterate_source_files_and_save(project_path, split_functions);
+  await update_packages(project_path);
+  await iterate_source_files_and_save(project_path, split_functions);
+  await convert_lambdas_to_named_functions(project_path);
+  await rename_variables_and_props_functions(project_path);
 }
 
 if_main(import.meta.url || module.path, run).then()

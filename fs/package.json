@@ -14,7 +14,6 @@
     "razomy.vrd": "../vrd",
     "razomy.exceptions": "../exceptions",
     "razomy.kv": "../kv",
-    "razomy.gate": "../gate",
     "razomy.codec": "../codec",
     "razomy.buffer": "../buffer",
     "razomy.shell": "../shell"

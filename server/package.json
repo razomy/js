@@ -1,5 +1,5 @@
 {
-  "name": "razomy.trees",
+  "name": "razomy.server",
   "version": "0.0.0",
   "main": "./index.ts",
   "license": "MIT",
@@ -14,13 +14,5 @@
   },
   "scripts": {
     "build": "tsdown index.ts --format cjs,esm --dts"
-  },
-  "dependencies": {
-    "razomy.value": "../value",
-    "razomy.vrd": "../vrd",
-    "razomy.key": "../key",
-    "razomy.exceptions": "../exceptions",
-    "razomy.dict": "../dict",
-    "razomy.graph": "../graph"
   }
 }

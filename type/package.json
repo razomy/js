@@ -1,5 +1,5 @@
 {
-  "name": "razomy.servers",
+  "name": "razomy.type",
   "version": "0.0.0",
   "main": "./index.ts",
   "license": "MIT",
@@ -14,5 +14,9 @@
   },
   "scripts": {
     "build": "tsdown index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "razomy.object": "../object",
+    "razomy.id": "../id"
   }
 }
