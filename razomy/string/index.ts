@@ -5,7 +5,6 @@ export { differences_string } from './differences_string';
 export { escape_string } from './escape_string';
 export { is_null_or_empty } from './is_null_or_empty';
 export { is_string } from './is_string';
-export { levenshtein_distance } from './levenshtein_distance';
 export { margin_string } from './margin_string';
 export { remove_index_string } from './remove_index_string';
 export { replace_string } from './replace_string';

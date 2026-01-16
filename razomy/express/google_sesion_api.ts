@@ -11,7 +11,7 @@ export function google_sesion_api(ctx) {
     store: new DatastoreStore({
       kind: 'express-sessions',
       expirationMs: 1000 * 60 * 60 * 24 * 31,
-      dataset: new Datastore(),
+      // TODO: dataset: new Datastore(),
     }),
     saveUninitialized: true,
     resave: true,

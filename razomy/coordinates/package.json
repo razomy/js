@@ -1,5 +1,5 @@
 {
-  "name": "razomy.serializable",
+  "name": "razomy.coordinates",
   "version": "0.0.0",
   "main": "./index.ts",
   "license": "MIT",
@@ -16,6 +16,6 @@
     "build": "tsdown index.ts"
   },
   "dependencies": {
-    "razomy.serializable": "*"
+    "razomy.coordinates": "../coordinates"
   }
 }

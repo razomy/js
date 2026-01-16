@@ -10,7 +10,7 @@ export function create_package(project_path: string) {
   const package_file = get_json(root_dir + 'package.json');
   package_file.workspaces = packages.map(folder => './' + folder.name)
   package_file.dependencies = Object.fromEntries(
-    packages.map(folder => ['razomy.' + folder.name.replaceAll('/', '.'), './' + folder.name])
+    packages.map(folder => [folder.name.replaceAll('/', '.'), './' + folder.name])
   );
   set_json(root_dir + 'package.json', package_file, true)
 

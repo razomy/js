@@ -48,10 +48,10 @@ export function add_dependencies(project_path: string) {
 
     let changed = false;
     matches.forEach(depName => {
-      if (depName == 'razomy.' + folder.name.replaceAll('/', '.')) {
+      if (depName == folder.name.replaceAll('/', '.')) {
         return
       }
-      pkg_json.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../'), project_path), depName
+      pkg_json.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../../'), project_path), depName
         .replaceAll('razomy', '')
         .replaceAll('.', '/'));
       console.log(`[${pkg_json.name}] Added dependency: ${depName}`);

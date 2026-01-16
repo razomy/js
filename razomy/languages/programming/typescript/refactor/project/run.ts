@@ -16,7 +16,7 @@ import {rename_file_based_on_first_child} from './rename_file_based_on_first_chi
 
 
 export async function run() {
-  const project_path = '../../../../../';
+  const project_path = '../../../../../../';
   await rename_files(project_path);
   await iterate_source_files_and_save(project_path, rename_file_based_on_first_child);
   await create_package(project_path);

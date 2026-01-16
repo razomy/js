@@ -2,13 +2,12 @@ import * as fs from 'fs';
 import {get_all_package_jsons} from './get_all_package_jsons';
 
 export function update_packages(project_path: string) {
-  const prefix: string = 'razomy';
-  const packages = get_all_package_jsons(project_path);
+    const packages = get_all_package_jsons(project_path);
   packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, 'utf-8');
 
     let pkg_data = {
-      name: prefix + '.' + folder.name.replaceAll('/', '.'),
+      name: folder.name.replaceAll('/', '.'),
       version: '0.0.0',
       license: 'MIT',
       'main': './index.ts',

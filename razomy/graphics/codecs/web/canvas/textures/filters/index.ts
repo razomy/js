@@ -22,7 +22,6 @@ export { pixel_at } from './pixel_at';
 export { PixelateTextureFilter } from './pixelate_texture_filter';
 export { PosterizeTextureFilter } from './posterize_texture_filter';
 export { remap } from './remap';
-export { rgb_distance } from './rgb_distance';
 export { rgb_mean } from './rgb_mean';
 export { RgbTextureFilter } from './rgb_texture_filter';
 export { RgbaTextureFilter } from './rgba_texture_filter';
