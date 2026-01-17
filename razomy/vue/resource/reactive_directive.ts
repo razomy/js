@@ -1,8 +1,11 @@
 import {RemoteNode} from 'razomy.vue/resource/remote_node';
 
-export const reactive_directive = {
+export const reactiveDirective = {
   mounted(el, binding, vnode) {
-    function inject <T> (k) { return vnode.ctx.provides[k] as T; }
+    function inject<T>(k) {
+      return vnode.ctx.provides[k] as T;
+    }
+
     el.remove_node = new RemoteNode();
     el.remove_node.ctx = inject<razomy>('razomy');
     el.remove_node.key = binding.value;

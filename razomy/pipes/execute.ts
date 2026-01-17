@@ -21,10 +21,10 @@ export function execute<I1, O1>(
   args: I1
 )
   : O1 {
-  let next_value: any = args;
+  let nextValue: any = args;
   for (let i = 0; i < arr.length; i++) {
     const fn = arr[i];
-    next_value = fn(next_value);
+    nextValue = fn(nextValue);
   }
-  return next_value as O1;
+  return nextValue as O1;
 }

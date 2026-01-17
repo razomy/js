@@ -1,39 +1,39 @@
 import {Status} from './get_status';
 
-export function parse_status(str: string): Status {
+export function parseStatus(str: string): Status {
   var lines;
-  var branch_line;
+  var branchLine;
   var branches;
   var status: Status = {
-    local_branch: '',
-    remote_branch: '',
-    remote_diff: '',
+    localBranch: '',
+    remoteBranch: '',
+    remoteDiff: '',
     clean: true,
     files: [],
   };
   var result;
-  var initial_commit_rx = /^\#\# Initial commit on ([^\n]+)\s?$/;
+  var initialCommitRx = /^\#\# Initial commit on ([^\n]+)\s?$/;
 
   lines = str.trim().split('\n');
-  branch_line = lines.shift();
+  branchLine = lines.shift();
 
-  result = branch_line.match(initial_commit_rx);
+  result = branchLine.match(initialCommitRx);
 
   if (result) {
-    status.local_branch = result[1];
+    status.localBranch = result[1];
     return status;
   }
 
-  branch_line = branch_line.replace(/\#\#\s+/, '');
+  branchLine = branchLine.replace(/\#\#\s+/, '');
 
-  branches = branch_line.split('...');
-  status.local_branch = branches[0];
-  status.remote_diff = '';
+  branches = branchLine.split('...');
+  status.localBranch = branches[0];
+  status.remoteDiff = '';
   if (branches[1]) {
     result = branches[1].match(/^([^\s]+)/);
-    status.remote_branch = result[1];
+    status.remoteBranch = result[1];
     result = branches[1].match(/\[([^\]]+)\]/);
-    status.remote_diff = result ? result[1] : null;
+    status.remoteDiff = result ? result[1] : null;
   }
 
   lines.forEach(function (str) {

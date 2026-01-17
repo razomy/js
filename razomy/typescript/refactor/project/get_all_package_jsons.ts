@@ -1,26 +1,26 @@
 import path from 'path';
 import {iterate} from 'razomy.fs';
-import {is_exist} from 'razomy.fs/file';
-import {sort_by} from 'razomy.array';
+import {isExist} from 'razomy.fs/file';
+import {sortBy} from 'razomy.array';
 
-export function get_all_package_jsons(project_path: string) {
-  const root_dir: string = path.resolve(project_path);
-  const package_jsons: { path: string, name: string }[] = [];
-  iterate(root_dir, (iterate_node) => {
+export function getAllPackageJsons(projectPath: string) {
+  const rootDir: string = path.resolve(projectPath);
+  const packageJsons: { path: string, name: string }[] = [];
+  iterate(rootDir, (iterate_node) => {
     if (iterate_node.path.includes('node_modules')) {
       return true;
     }
     if (iterate_node.stats.isFile()) {
       return true;
     }
-    const try_package_json = path.join(iterate_node.path + '/package.json');
-    if (is_exist(try_package_json)) {
-      package_jsons.push({
-        path: try_package_json,
-        name: path.relative(root_dir, try_package_json)
+    const tryPackageJson = path.join(iterate_node.path + '/package.json');
+    if (isExist(tryPackageJson)) {
+      packageJsons.push({
+        path: tryPackageJson,
+        name: path.relative(rootDir, tryPackageJson)
           .replace('/package.json', '')
       })
     }
   })
-  return sort_by(package_jsons, i => i.name);
+  return sortBy(packageJsons, i => i.name);
 }

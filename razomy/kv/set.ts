@@ -1,9 +1,10 @@
 import {get} from 'razomy.kv/get';
-import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable, Valuable} from 'razomy.kv/kv';
-export function set<T>(value: ArrayOrKeyValuable<T, T>, path: T[], new_value: Valuable<T, T>): void {
-  const parent_path = path.slice(0, -1);
-  const parent_node = get(value, parent_path, 0);
-  parent_node[1] = new_value;
+import {ArrayOrKeyValuable, Valuable} from 'razomy.kv/kv';
+
+export function set<T>(value: ArrayOrKeyValuable<T, T>, path: T[], newValue: Valuable<T, T>): void {
+  const parentPath = path.slice(0, -1);
+  const parentNode = get(value, parentPath, 0);
+  parentNode[1] = newValue;
 }
 
 

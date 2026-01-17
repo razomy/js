@@ -1,7 +1,7 @@
-import  { not_empty,ArgumentError} from './argument_error';
+import {ArgumentError, notEmpty} from './argument_error';
 
-export function empty_throw(value) {
-  if (!not_empty(value)) {
+export function emptyThrow(value) {
+  if (!notEmpty(value)) {
     throw new ArgumentError(value);
   }
 

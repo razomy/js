@@ -1,26 +1,26 @@
 import fs from 'fs';
 import path from 'path';
-import { DirPathString } from 'razomy.path/string';
+import {DirPathString} from 'razomy.path/string';
 
-export function to_dict(dir_path: DirPathString) {
+export function toDict(dirPath: DirPathString) {
   let files: string[] = [];
 
-  function iterate(current_dir_path: DirPathString) {
-    const items = fs.readdirSync(current_dir_path);
+  function iterate(currentDirPath: DirPathString) {
+    const items = fs.readdirSync(currentDirPath);
 
     for (const item of items) {
-      const item_path = path.join(current_dir_path, item);
-      const stat = fs.statSync(item_path);
+      const itemPath = path.join(currentDirPath, item);
+      const stat = fs.statSync(itemPath);
 
       if (stat.isFile()) {
-        files.push(item_path);
+        files.push(itemPath);
       } else if (stat.isDirectory()) {
-        iterate(item_path);
+        iterate(itemPath);
       }
     }
   }
 
-  iterate(dir_path);
+  iterate(dirPath);
   return files;
 }
 

@@ -1,6 +1,6 @@
 import {WithChildrenList} from './with_children_list';
 
-export function filter_first<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
+export function filterFirst<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
   let res: T[] = [];
 
   if (cb(node)) {
@@ -8,7 +8,7 @@ export function filter_first<T extends WithChildrenList<any>>(node: T, cb: (node
     return res;
   }
   for (const n of node.children) {
-    res = res.concat(filter_first(n, cb));
+    res = res.concat(filterFirst(n, cb));
   }
 
   return res;

@@ -1,2 +1,2 @@
-export { type Function } from './function_';
-export { is_function } from './is_function';
+export {type Function} from './function_';
+export {isFunction} from './is_function';

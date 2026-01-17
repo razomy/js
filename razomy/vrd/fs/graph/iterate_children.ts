@@ -1,17 +1,17 @@
 import {Graph} from 'razomy.graph';
 import {VrdOrValue} from 'razomy.vrd';
-import {is_vrd} from '../../is_vrd';
+import {isVrd} from '../../is_vrd';
 
-export function iterate_children<T>(
+export function iterateChildren<T>(
   graph: Graph<VrdOrValue<T>>,
   branch: VrdOrValue<T>
 ) {
   graph.nodes.push(branch);
-  if (is_vrd(branch)) {
-    for (const entity_key in branch) {
-      const value = branch[entity_key];
+  if (isVrd(branch)) {
+    for (const entityKey in branch) {
+      const value = branch[entityKey];
       graph.edges.push([branch, value]);
-      iterate_children(graph, value)
+      iterateChildren(graph, value)
     }
   }
 }

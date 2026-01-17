@@ -1,15 +1,15 @@
-import {count_by} from './count_by';
-import {sort_by} from './sort_by';
+import {countBy} from './count_by';
+import {sortBy} from './sort_by';
 import {uniq} from './uniq';
 
-export function sort_by_frequency_and_unique(arr: []) {
-  const frequency_map = count_by(arr);
+export function sortByFrequencyAndUnique(arr: []) {
+  const frequencyMap = countBy(arr);
 
-  const unique_sorted = sort_by(uniq(arr), (item) => {
-    return -frequency_map[item];
+  const uniqueSorted = sortBy(uniq(arr), (item) => {
+    return -frequencyMap[item];
   });
 
-  return unique_sorted;
+  return uniqueSorted;
 }
 
 

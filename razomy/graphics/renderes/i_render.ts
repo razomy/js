@@ -1,4 +1,4 @@
-import { ViewGraphic } from 'razomy.graphics/graphic/view_graphic';
+import {ViewGraphic} from 'razomy.graphics/graphic/view_graphic';
 
 export interface IRender<T extends ViewGraphic> {
   render(view: T): void;

@@ -1,1 +1,1 @@
-export { plugin } from './plugin';
+export {plugin} from './plugin';

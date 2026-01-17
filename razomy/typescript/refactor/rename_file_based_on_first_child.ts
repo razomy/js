@@ -1,18 +1,18 @@
 import {IterateSourceFileState} from './iterate_source_files_and_save';
-import {SyntaxKind, VariableDeclaration, Node} from 'ts-morph';
-import {to_safe_name} from './to_safe_name';
-import {get_name_and_ext} from './get_name_and_ext';
+import {Node, SyntaxKind, VariableDeclaration} from 'ts-morph';
+import {getNameAndExt} from './get_name_and_ext';
+import {toSafeFilename} from './to_safe_filename';
 
-export async function rename_file_based_on_first_child({source_file, project}: IterateSourceFileState) {
-  const declaration = source_file.getFirstDescendant((node) => {
+export async function renameFileBasedOnFirstChild({sourceFile, project}: IterateSourceFileState) {
+  const declaration = sourceFile.getFirstDescendant((node) => {
     // 1. Check if it is the Kind we want
     const kind = node.getKind();
-    const is_target_kind =
+    const isTargetKind =
       kind === SyntaxKind.FunctionDeclaration ||
       kind === SyntaxKind.VariableDeclaration ||
       kind === SyntaxKind.ClassDeclaration;
 
-    if (!is_target_kind) return false;
+    if (!isTargetKind) return false;
 
     // 2. Check if it is Exported
     // Node.isExportable acts as a type guard so TypeScript knows .isExported() exists
@@ -26,17 +26,17 @@ export async function rename_file_based_on_first_child({source_file, project}: I
     return
   }
 
-  const name = to_safe_name((declaration as VariableDeclaration).getName() || '');
+  const name = toSafeFilename((declaration as VariableDeclaration).getName() || '');
   if (!name) {
     return
   }
-  let {base_name, ext} = get_name_and_ext(source_file);
+  let {baseName, ext} = getNameAndExt(sourceFile);
 
-  if (name == base_name) {
+  if (name == baseName) {
     return
   }
 
-  const path = `${source_file.getDirectory().getPath()}/${name}${ext}`;
-  console.log(`${source_file.getDirectory().getPath()} ${base_name} → ${name}`);
-  source_file.move(path);
+  const path = `${sourceFile.getDirectory().getPath()}/${name}${ext}`;
+  console.log(`${sourceFile.getDirectory().getPath()} ${baseName} → ${name}`);
+  sourceFile.move(path);
 }

@@ -4,5 +4,5 @@ export interface Module extends Record<string, CliFunction<string[]>> {
 }
 
 export type TerminalArgs<
-    Rm extends keyof Module & string,
+  Rm extends keyof Module & string,
 > = [Rm, ...Parameters<Module[Rm]>]

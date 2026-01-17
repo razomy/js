@@ -1,6 +1,6 @@
 import {String} from 'razomy.string/string';
 
-export function to_camel_case(input: String) {
+export function toCamelCase(input: String) {
   let text = input;
 
   // 1-5. Normalize the string using the same logic as snake_case

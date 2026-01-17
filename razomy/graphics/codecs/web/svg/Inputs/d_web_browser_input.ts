@@ -26,47 +26,55 @@ export enum KonvaNodeEvent {
 }
 
 export class DWebBrowserInput {
-  public is_draggable = false;
-  public is_droppable = false;
+  public isDraggable = false;
+  public isDroppable = false;
 }
 
 export class WebBrowserInput {
   constructor() {
     const trap = new Mousetrap(document as any);
     const ham = new Hammer(document as any);
-    trap.bind('4', function() {
+    trap.bind('4', function () {
       console.log('4');
     });
-    ham.on('tap', function() {
+    ham.on('tap', function () {
       console.log('5');
     });
   }
 }
 
 export class Move {
-  x_delta: number = 0;
-  y_delta: number = 0;
-  x_force: number = 0;
-  y_force: number = 0;
+  xDelta: number = 0;
+  yDelta: number = 0;
+  xForce: number = 0;
+  yForce: number = 0;
   x: number = 0;
   y: number = 0;
 }
 
-export class Group {}
+export class Group {
+}
 
-export class HotkeyInput {}
+export class HotkeyInput {
+}
 
-export class SSystemEvents {}
+export class SSystemEvents {
+}
 
-export class ZoomInOut {}
+export class ZoomInOut {
+}
 
-export class Log {}
+export class Log {
+}
 
-export class Drag {}
+export class Drag {
+}
 
-export class Drop {}
+export class Drop {
+}
 
-export class History {}
+export class History {
+}
 
 export class InputConfig {
   events = {

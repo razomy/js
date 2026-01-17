@@ -6,16 +6,16 @@ export class LinkedList<T> {
 
   // Add a value to the end of the list
   append(value: T): void {
-    const new_node = new Node(value);
+    const newNode = new Node(value);
 
     if (this.head === null) {
-      this.head = new_node;
+      this.head = newNode;
     } else {
       let current = this.head;
       while (current.next !== null) {
         current = current.next;
       }
-      current.next = new_node;
+      current.next = newNode;
     }
 
     this.size++;
@@ -23,8 +23,8 @@ export class LinkedList<T> {
 
   // Add a value to the start of the list
   prepend(value: T): void {
-    const new_node = new Node(value, this.head);
-    this.head = new_node;
+    const newNode = new Node(value, this.head);
+    this.head = newNode;
     this.size++;
   }
 
@@ -65,17 +65,17 @@ export class LinkedList<T> {
   }
 
   // Get the size of the list
-  get_size(): number {
+  getSize(): number {
     return this.size;
   }
 
   // Check if the list is empty
-  is_empty(): boolean {
+  isEmpty(): boolean {
     return this.size === 0;
   }
 
   // Convert the list to an array
-  to_array(): T[] {
+  toArray(): T[] {
     const result: T[] = [];
     let current = this.head;
     while (current !== null) {
@@ -87,6 +87,6 @@ export class LinkedList<T> {
 
   // Print the list (for debugging purposes)
   print(): void {
-    console.log(this.to_array().join(' -> '));
+    console.log(this.toArray().join(' -> '));
   }
 }

@@ -16,7 +16,525 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {
+      "razomy.vue/*": [
+        "./razomy/vue/*"
+      ],
+      "razomy.vue": [
+        "./razomy/vue"
+      ],
+      "razomy.vrd/*": [
+        "./razomy/vrd/*"
+      ],
+      "razomy.vrd": [
+        "./razomy/vrd"
+      ],
+      "razomy.value/*": [
+        "./razomy/value/*"
+      ],
+      "razomy.value": [
+        "./razomy/value"
+      ],
+      "razomy.undefined/*": [
+        "./razomy/undefined/*"
+      ],
+      "razomy.undefined": [
+        "./razomy/undefined"
+      ],
+      "razomy.typescript/*": [
+        "./razomy/typescript/*"
+      ],
+      "razomy.typescript": [
+        "./razomy/typescript"
+      ],
+      "razomy.type/*": [
+        "./razomy/type/*"
+      ],
+      "razomy.type": [
+        "./razomy/type"
+      ],
+      "razomy.tree/*": [
+        "./razomy/tree/*"
+      ],
+      "razomy.tree": [
+        "./razomy/tree"
+      ],
+      "razomy.time/*": [
+        "./razomy/time/*"
+      ],
+      "razomy.time": [
+        "./razomy/time"
+      ],
+      "razomy.thread/*": [
+        "./razomy/thread/*"
+      ],
+      "razomy.thread": [
+        "./razomy/thread"
+      ],
+      "razomy.test/*": [
+        "./razomy/test/*"
+      ],
+      "razomy.test": [
+        "./razomy/test"
+      ],
+      "razomy.task/*": [
+        "./razomy/task/*"
+      ],
+      "razomy.task": [
+        "./razomy/task"
+      ],
+      "razomy.strings/*": [
+        "./razomy/strings/*"
+      ],
+      "razomy.strings": [
+        "./razomy/strings"
+      ],
+      "razomy.string/*": [
+        "./razomy/string/*"
+      ],
+      "razomy.string": [
+        "./razomy/string"
+      ],
+      "razomy.spec/*": [
+        "./razomy/spec/*"
+      ],
+      "razomy.spec": [
+        "./razomy/spec"
+      ],
+      "razomy.socket/*": [
+        "./razomy/socket/*"
+      ],
+      "razomy.socket": [
+        "./razomy/socket"
+      ],
+      "razomy.shutdown/*": [
+        "./razomy/shutdown/*"
+      ],
+      "razomy.shutdown": [
+        "./razomy/shutdown"
+      ],
+      "razomy.shell/*": [
+        "./razomy/shell/*"
+      ],
+      "razomy.shell": [
+        "./razomy/shell"
+      ],
+      "razomy.server/*": [
+        "./razomy/server/*"
+      ],
+      "razomy.server": [
+        "./razomy/server"
+      ],
+      "razomy.serializable/*": [
+        "./razomy/serializable/*"
+      ],
+      "razomy.serializable": [
+        "./razomy/serializable"
+      ],
+      "razomy.respect/*": [
+        "./razomy/respect/*"
+      ],
+      "razomy.respect": [
+        "./razomy/respect"
+      ],
+      "razomy.resources/*": [
+        "./razomy/resources/*"
+      ],
+      "razomy.resources": [
+        "./razomy/resources"
+      ],
+      "razomy.refactor/*": [
+        "./razomy/refactor/*"
+      ],
+      "razomy.refactor": [
+        "./razomy/refactor"
+      ],
+      "razomy.recursive/*": [
+        "./razomy/recursive/*"
+      ],
+      "razomy.recursive": [
+        "./razomy/recursive"
+      ],
+      "razomy.razomy/*": [
+        "./razomy/razomy/*"
+      ],
+      "razomy.razomy": [
+        "./razomy/razomy"
+      ],
+      "razomy.random/*": [
+        "./razomy/random/*"
+      ],
+      "razomy.random": [
+        "./razomy/random"
+      ],
+      "razomy.pipes/*": [
+        "./razomy/pipes/*"
+      ],
+      "razomy.pipes": [
+        "./razomy/pipes"
+      ],
+      "razomy.performance/*": [
+        "./razomy/performance/*"
+      ],
+      "razomy.performance": [
+        "./razomy/performance"
+      ],
+      "razomy.path/*": [
+        "./razomy/path/*"
+      ],
+      "razomy.path": [
+        "./razomy/path"
+      ],
+      "razomy.openai/*": [
+        "./razomy/openai/*"
+      ],
+      "razomy.openai": [
+        "./razomy/openai"
+      ],
+      "razomy.offset/*": [
+        "./razomy/offset/*"
+      ],
+      "razomy.offset": [
+        "./razomy/offset"
+      ],
+      "razomy.observable/*": [
+        "./razomy/observable/*"
+      ],
+      "razomy.observable": [
+        "./razomy/observable"
+      ],
+      "razomy.object/*": [
+        "./razomy/object/*"
+      ],
+      "razomy.object": [
+        "./razomy/object"
+      ],
+      "razomy.number/*": [
+        "./razomy/number/*"
+      ],
+      "razomy.number": [
+        "./razomy/number"
+      ],
+      "razomy.mock_generator/*": [
+        "./razomy/mock_generator/*"
+      ],
+      "razomy.mock_generator": [
+        "./razomy/mock_generator"
+      ],
+      "razomy.main/*": [
+        "./razomy/main/*"
+      ],
+      "razomy.main": [
+        "./razomy/main"
+      ],
+      "razomy.logging/*": [
+        "./razomy/logging/*"
+      ],
+      "razomy.logging": [
+        "./razomy/logging"
+      ],
+      "razomy.list/*": [
+        "./razomy/list/*"
+      ],
+      "razomy.list": [
+        "./razomy/list"
+      ],
+      "razomy.languages/*": [
+        "./razomy/languages/*"
+      ],
+      "razomy.languages": [
+        "./razomy/languages"
+      ],
+      "razomy.kv/*": [
+        "./razomy/kv/*"
+      ],
+      "razomy.kv": [
+        "./razomy/kv"
+      ],
+      "razomy.key/*": [
+        "./razomy/key/*"
+      ],
+      "razomy.key": [
+        "./razomy/key"
+      ],
+      "razomy.json/*": [
+        "./razomy/json/*"
+      ],
+      "razomy.json": [
+        "./razomy/json"
+      ],
+      "razomy.init/*": [
+        "./razomy/init/*"
+      ],
+      "razomy.init": [
+        "./razomy/init"
+      ],
+      "razomy.indexes/*": [
+        "./razomy/indexes/*"
+      ],
+      "razomy.indexes": [
+        "./razomy/indexes"
+      ],
+      "razomy.index/*": [
+        "./razomy/index/*"
+      ],
+      "razomy.index": [
+        "./razomy/index"
+      ],
+      "razomy.id/*": [
+        "./razomy/id/*"
+      ],
+      "razomy.id": [
+        "./razomy/id"
+      ],
+      "razomy.http/*": [
+        "./razomy/http/*"
+      ],
+      "razomy.http": [
+        "./razomy/http"
+      ],
+      "razomy.graphics/*": [
+        "./razomy/graphics/*"
+      ],
+      "razomy.graphics": [
+        "./razomy/graphics"
+      ],
+      "razomy.graph/*": [
+        "./razomy/graph/*"
+      ],
+      "razomy.graph": [
+        "./razomy/graph"
+      ],
+      "razomy.google/*": [
+        "./razomy/google/*"
+      ],
+      "razomy.google": [
+        "./razomy/google"
+      ],
+      "razomy.git/*": [
+        "./razomy/git/*"
+      ],
+      "razomy.git": [
+        "./razomy/git"
+      ],
+      "razomy.gate/*": [
+        "./razomy/gate/*"
+      ],
+      "razomy.gate": [
+        "./razomy/gate"
+      ],
+      "razomy.function/*": [
+        "./razomy/function/*"
+      ],
+      "razomy.function": [
+        "./razomy/function"
+      ],
+      "razomy.fs.extension/*": [
+        "./razomy/fs/extension/*"
+      ],
+      "razomy.fs.extension": [
+        "./razomy/fs/extension"
+      ],
+      "razomy.fs/*": [
+        "./razomy/fs/*"
+      ],
+      "razomy.fs": [
+        "./razomy/fs"
+      ],
+      "razomy.express/*": [
+        "./razomy/express/*"
+      ],
+      "razomy.express": [
+        "./razomy/express"
+      ],
+      "razomy.exceptions/*": [
+        "./razomy/exceptions/*"
+      ],
+      "razomy.exceptions": [
+        "./razomy/exceptions"
+      ],
+      "razomy.event/*": [
+        "./razomy/event/*"
+      ],
+      "razomy.event": [
+        "./razomy/event"
+      ],
+      "razomy.equal/*": [
+        "./razomy/equal/*"
+      ],
+      "razomy.equal": [
+        "./razomy/equal"
+      ],
+      "razomy.differences/*": [
+        "./razomy/differences/*"
+      ],
+      "razomy.differences": [
+        "./razomy/differences"
+      ],
+      "razomy.difference/*": [
+        "./razomy/difference/*"
+      ],
+      "razomy.difference": [
+        "./razomy/difference"
+      ],
+      "razomy.dict.recursive/*": [
+        "./razomy/dict/recursive/*"
+      ],
+      "razomy.dict.recursive": [
+        "./razomy/dict/recursive"
+      ],
+      "razomy.dict/*": [
+        "./razomy/dict/*"
+      ],
+      "razomy.dict": [
+        "./razomy/dict"
+      ],
+      "razomy.debug/*": [
+        "./razomy/debug/*"
+      ],
+      "razomy.debug": [
+        "./razomy/debug"
+      ],
+      "razomy.dates/*": [
+        "./razomy/dates/*"
+      ],
+      "razomy.dates": [
+        "./razomy/dates"
+      ],
+      "razomy.date/*": [
+        "./razomy/date/*"
+      ],
+      "razomy.date": [
+        "./razomy/date"
+      ],
+      "razomy.create/*": [
+        "./razomy/create/*"
+      ],
+      "razomy.create": [
+        "./razomy/create"
+      ],
+      "razomy.count/*": [
+        "./razomy/count/*"
+      ],
+      "razomy.count": [
+        "./razomy/count"
+      ],
+      "razomy.coordinates/*": [
+        "./razomy/coordinates/*"
+      ],
+      "razomy.coordinates": [
+        "./razomy/coordinates"
+      ],
+      "razomy.console/*": [
+        "./razomy/console/*"
+      ],
+      "razomy.console": [
+        "./razomy/console"
+      ],
+      "razomy.compression/*": [
+        "./razomy/compression/*"
+      ],
+      "razomy.compression": [
+        "./razomy/compression"
+      ],
+      "razomy.commit/*": [
+        "./razomy/commit/*"
+      ],
+      "razomy.commit": [
+        "./razomy/commit"
+      ],
+      "razomy.codec/*": [
+        "./razomy/codec/*"
+      ],
+      "razomy.codec": [
+        "./razomy/codec"
+      ],
+      "razomy.cluster/*": [
+        "./razomy/cluster/*"
+      ],
+      "razomy.cluster": [
+        "./razomy/cluster"
+      ],
+      "razomy.cli/*": [
+        "./razomy/cli/*"
+      ],
+      "razomy.cli": [
+        "./razomy/cli"
+      ],
+      "razomy.class/*": [
+        "./razomy/class/*"
+      ],
+      "razomy.class": [
+        "./razomy/class"
+      ],
+      "razomy.buffer/*": [
+        "./razomy/buffer/*"
+      ],
+      "razomy.buffer": [
+        "./razomy/buffer"
+      ],
+      "razomy.bound/*": [
+        "./razomy/bound/*"
+      ],
+      "razomy.bound": [
+        "./razomy/bound"
+      ],
+      "razomy.batch/*": [
+        "./razomy/batch/*"
+      ],
+      "razomy.batch": [
+        "./razomy/batch"
+      ],
+      "razomy.auth/*": [
+        "./razomy/auth/*"
+      ],
+      "razomy.auth": [
+        "./razomy/auth"
+      ],
+      "razomy.async/*": [
+        "./razomy/async/*"
+      ],
+      "razomy.async": [
+        "./razomy/async"
+      ],
+      "razomy.ast/*": [
+        "./razomy/ast/*"
+      ],
+      "razomy.ast": [
+        "./razomy/ast"
+      ],
+      "razomy.assert/*": [
+        "./razomy/assert/*"
+      ],
+      "razomy.assert": [
+        "./razomy/assert"
+      ],
+      "razomy.array/*": [
+        "./razomy/array/*"
+      ],
+      "razomy.array": [
+        "./razomy/array"
+      ],
+      "razomy.analytics/*": [
+        "./razomy/analytics/*"
+      ],
+      "razomy.analytics": [
+        "./razomy/analytics"
+      ],
+      "razomy.action/*": [
+        "./razomy/action/*"
+      ],
+      "razomy.action": [
+        "./razomy/action"
+      ],
+      "razomy/*": [
+        "./razomy/*"
+      ],
+      "razomy": [
+        "./razomy"
+      ]
+    }
   },
   "exclude": [
     "**/node_modules",

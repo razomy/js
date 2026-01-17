@@ -2,14 +2,14 @@ import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
 import {Index} from 'razomy.index/index_';
 
-export function strings_any_index(
+export function stringsAnyIndex(
   string: String,
-  equal_strings: String[],
+  equalStrings: String[],
   offset: Offset = 0,
-  max_offset: Offset = string.length
+  maxOffset: Offset = string.length
 ): Index {
-  for (let i = offset; i < max_offset; i++) {
-    if (equal_strings.includes(string[i])) {
+  for (let i = offset; i < maxOffset; i++) {
+    if (equalStrings.includes(string[i])) {
       return i;
     }
   }

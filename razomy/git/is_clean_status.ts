@@ -1,5 +1,5 @@
-import {get_status} from './get_status';
+import {getStatus} from './get_status';
 
-export async function is_clean_status(dir_path: string) {
-    return (await get_status(dir_path)).clean;
+export async function isCleanStatus(dirPath: string) {
+  return (await getStatus(dirPath)).clean;
 }

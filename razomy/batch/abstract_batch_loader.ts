@@ -5,49 +5,49 @@ export interface QueueItem<K, V> {
 }
 
 export abstract class AbstractBatchLoader<K, V> {
-  private readonly batch_delay: number;
-  private request_queue: QueueItem<K, V>[] = [];
-  private request_timeout: ReturnType<typeof setTimeout> | null = null;
-
-  protected abstract perform_batch_request(keys: K[]): Promise<Map<K, V>>;
+  private readonly batchDelay: number;
+  private requestQueue: QueueItem<K, V>[] = [];
+  private requestTimeout: ReturnType<typeof setTimeout> | null = null;
 
   constructor(batchDelay: number = 10) {
-    this.batch_delay = batchDelay;
+    this.batchDelay = batchDelay;
   }
 
   public load(key: K): Promise<V> {
     return new Promise((resolve, reject) => {
-      this.request_queue.push({ key, resolve, reject });
+      this.requestQueue.push({key, resolve, reject});
 
-      if (this.request_timeout) {
-        clearTimeout(this.request_timeout);
+      if (this.requestTimeout) {
+        clearTimeout(this.requestTimeout);
       }
-      this.request_timeout = setTimeout(() => {
-        this.process_queue();
-      }, this.batch_delay);
+      this.requestTimeout = setTimeout(() => {
+        this.processQueue();
+      }, this.batchDelay);
     });
   }
 
-  public load_many(keys: K[]): Promise<V[]> {
+  public loadMany(keys: K[]): Promise<V[]> {
     const promises = keys.map((k) => this.load(k));
     return Promise.all(promises);
   }
 
-  private async process_queue(): Promise<void> {
-    if (this.request_queue.length === 0) {
+  protected abstract performBatchRequest(keys: K[]): Promise<Map<K, V>>;
+
+  private async processQueue(): Promise<void> {
+    if (this.requestQueue.length === 0) {
       return;
     }
 
-    const batch = [...this.request_queue];
-    this.request_queue = [];
+    const batch = [...this.requestQueue];
+    this.requestQueue = [];
 
-    const unique_keys = [...new Set(batch.map((item) => item.key))];
+    const uniqueKeys = [...new Set(batch.map((item) => item.key))];
 
     try {
-      const results_map = await this.perform_batch_request(unique_keys);
+      const resultsMap = await this.performBatchRequest(uniqueKeys);
 
-      batch.forEach(({ key, resolve, reject }) => {
-        const result = results_map.get(key);
+      batch.forEach(({key, resolve, reject}) => {
+        const result = resultsMap.get(key);
         if (result !== undefined) {
           resolve(result);
         } else {
@@ -55,8 +55,8 @@ export abstract class AbstractBatchLoader<K, V> {
         }
       });
     } catch (error) {
-      console.error("Batch request failed:", error);
-      batch.forEach(({ reject }) => reject(error));
+      console.error('Batch request failed:', error);
+      batch.forEach(({reject}) => reject(error));
     }
   }
 }

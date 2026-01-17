@@ -1,6 +1,6 @@
 import {WithChildrenList} from 'razomy.tree/list/with_children_list';
 
-export function get_condition<T extends WithChildrenList<any>>(node: T, path: string[], match) {
+export function getCondition<T extends WithChildrenList<any>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {
     return null;
   }
@@ -9,11 +9,11 @@ export function get_condition<T extends WithChildrenList<any>>(node: T, path: st
     return node;
   }
 
-  for (const child_node of node.children) {
-    const found_node = get_condition(child_node, path.slice(1), match);
+  for (const childNode of node.children) {
+    const foundNode = getCondition(childNode, path.slice(1), match);
 
-    if (found_node) {
-      return found_node;
+    if (foundNode) {
+      return foundNode;
     }
   }
 

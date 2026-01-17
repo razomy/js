@@ -1,10 +1,10 @@
 import fs from 'fs';
-import {get_json} from './get_json';
+import {getJson} from './get_json';
 
-export function try_get_json(file_path) {
-    if (!fs.existsSync(file_path)) {
+export function tryGetJson(filePath) {
+  if (!fs.existsSync(filePath)) {
     return null;
-    }
+  }
 
-    return get_json(file_path);
+  return getJson(filePath);
 }

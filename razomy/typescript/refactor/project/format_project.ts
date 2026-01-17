@@ -1,29 +1,29 @@
-import {if_main} from 'razomy.main';
-import {convert_lambdas_to_named_functions} from './convert_lambdas_to_named_functions';
-import {create_index_files} from './create_index_files';
-import {create_package} from './create_package';
-import {rename_files} from './rename_files';
-import {split_functions} from '../split_functions';
-import {iterate_source_files_and_save} from '../iterate_source_files_and_save';
-import {add_dependencies} from './add_dependencies';
-import {update_packages} from './update_packages';
-import {rename_file_based_on_first_child} from '../rename_file_based_on_first_child';
-import {create_package_json_at_child_dirs} from './create_package_json_at_child_dirs';
-import {file_rename_variables_and_props_functions} from '../file_rename_variables_and_props_functions';
-import {fix_broken_imports_and_exports} from './fix_broken_imports_and_exports';
+import {ifMain} from 'razomy.main';
+import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functions';
+import {createIndexFiles} from './create_index_files';
+import {createPackage} from './create_package';
+import {renameFiles} from './rename_files';
+import {splitFunctions} from '../split_functions';
+import {iterateSourceFilesAndSave} from '../iterate_source_files_and_save';
+import {addDependencies} from './add_dependencies';
+import {updatePackages} from './update_packages';
+import {renameFileBasedOnFirstChild} from '../rename_file_based_on_first_child';
+import {createPackageJsonAtChildDirs} from './create_package_json_at_child_dirs';
+import {fileRenameVariablesAndPropsFunctions} from '../file_rename_variables_and_props_functions';
+import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
 
-export async function format_project(project_path: string, prefix: string) {
-  await rename_files(project_path);
-  await iterate_source_files_and_save(project_path, rename_file_based_on_first_child);
-  await create_package_json_at_child_dirs(project_path + prefix + '/');
-  await create_package(project_path);
-  await add_dependencies(project_path);
-  await fix_broken_imports_and_exports(project_path);
-  await create_index_files(project_path);
-  await update_packages(project_path);
-  await iterate_source_files_and_save(project_path, split_functions);
-  await convert_lambdas_to_named_functions(project_path);
-  await iterate_source_files_and_save(project_path, file_rename_variables_and_props_functions);
+export async function formatProject(projectPath: string, prefix: string) {
+  await renameFiles(projectPath);
+  await iterateSourceFilesAndSave(projectPath, renameFileBasedOnFirstChild);
+  await createPackageJsonAtChildDirs(projectPath + prefix + '/');
+  await createPackage(projectPath);
+  await addDependencies(projectPath);
+  await fixBrokenImportsAndExports(projectPath);
+  await createIndexFiles(projectPath);
+  await updatePackages(projectPath);
+  await iterateSourceFilesAndSave(projectPath, splitFunctions);
+  await convertLambdasToNamedFunctions(projectPath);
+  await iterateSourceFilesAndSave(projectPath, fileRenameVariablesAndPropsFunctions);
 }
 
-if_main(import.meta.url || module.path, () => format_project('../../../../', 'razomy')).then()
+ifMain(import.meta.url || module.path, () => formatProject('../../../../', 'razomy')).then()

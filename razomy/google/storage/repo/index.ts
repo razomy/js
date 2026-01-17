@@ -1,7 +1,7 @@
-export { download_file_recursive_file, CloudFileStore } from './download_file_recursive_file';
-export { download_file } from './download_file';
-export { download_files_from_storage } from './download_files_from_storage';
-export { download_files_recursive } from './download_files_recursive';
-export { upload_file } from './upload_file';
-export { upload_files_recursive } from './upload_files_recursive';
-export { upload_files_to_storage } from './upload_files_to_storage';
+export {downloadFileRecursiveFile, CloudFileStore} from './download_file_recursive_file';
+export {downloadFile} from './download_file';
+export {downloadFilesFromStorage} from './download_files_from_storage';
+export {downloadFilesRecursive} from './download_files_recursive';
+export {uploadFile} from './upload_file';
+export {uploadFilesRecursive} from './upload_files_recursive';
+export {uploadFilesToStorage} from './upload_files_to_storage';

@@ -1,7 +1,7 @@
 import {String} from 'razomy.string/string';
 
-export function replace_string(string: String, separate_string: String, replace_string: String): String {
-  return string.split(separate_string).join(replace_string);
+export function replaceString(string: String, separateString: String, replaceString_: String): String {
+  return string.split(separateString).join(replaceString_);
 }
 
 

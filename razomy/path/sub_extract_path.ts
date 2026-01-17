@@ -1,14 +1,14 @@
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {String} from 'razomy.string/string';
 
-export function sub_extract_path(file_path: String, equal_path: String): String {
-  const parts: string[] = file_path.split('/');
-  const start_index: number = parts.indexOf(equal_path);
+export function subExtractPath(filePath: String, equalPath: String): String {
+  const parts: string[] = filePath.split('/');
+  const startIndex: number = parts.indexOf(equalPath);
 
-  if (start_index !== -1) {
-    const result: string = parts.slice(start_index).join('/');
+  if (startIndex !== -1) {
+    const result: string = parts.slice(startIndex).join('/');
     return result;
   } else {
-    throw new ArgumentException('Path not found', {file_path, equal_path});
+    throw new ArgumentException('Path not found', {filePath, equalPath});
   }
 }

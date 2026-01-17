@@ -1,11 +1,11 @@
 import {Pipe} from './line';
 
-export async function execute_async<I1, O1>(arr: [Pipe<I1, any>, ...any, Pipe<any, O1>], args: I1) {
-    let next_value: any = args;
-    for (let i = 0; i < arr.length; i++) {
+export async function executeAsync<I1, O1>(arr: [Pipe<I1, any>, ...any, Pipe<any, O1>], args: I1) {
+  let nextValue: any = args;
+  for (let i = 0; i < arr.length; i++) {
     const fn = arr[i];
-    next_value = await fn(next_value);
-    }
+    nextValue = await fn(nextValue);
+  }
 
-    return next_value as O1;
+  return nextValue as O1;
 }

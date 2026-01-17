@@ -2,7 +2,7 @@ import {Serializable} from 'razomy.serializable/serializable';
 import {WithSerializable} from 'razomy.serializable/with_serializable';
 import {Ctx} from './ctx';
 
-export function json_to_ctx<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
+export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
   for (const [k, v] of Object.entries(data)) {
     if (!ctx.has(k)) {
       ctx.set(k, v);

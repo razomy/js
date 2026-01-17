@@ -3,7 +3,7 @@ export function size(str: string): { x: number, y: number } {
   let x = 0;
   let y = 0;
 
-  loop: while (i < str.length) {
+  while (i < str.length) {
     const char = str[i];
 
 

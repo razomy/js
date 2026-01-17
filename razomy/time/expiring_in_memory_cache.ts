@@ -7,10 +7,6 @@ export interface CacheEntry<T> {
 export class ExpiringInMemoryCache<T> {
   private readonly cache = new Map<string, CacheEntry<T>>();
 
-  private is_expired(expires: number): boolean {
-    return Date.now() > expires;
-  }
-
   public get(key: string): T | null {
     const entry = this.cache.get(key);
 
@@ -18,7 +14,7 @@ export class ExpiringInMemoryCache<T> {
       return null;
     }
 
-    if (this.is_expired(entry.expires)) {
+    if (this.isExpired(entry.expires)) {
       this.cache.delete(key);
       return null;
     }
@@ -27,24 +23,28 @@ export class ExpiringInMemoryCache<T> {
   }
 
   public set(key: string, value: T, expires: number): void {
-    this.cache.set(key, { value, expires });
+    this.cache.set(key, {value, expires});
   }
 
   public delete_(key: string): boolean {
     return this.cache.delete(key);
   }
 
-  public async get_or_set(
+  public async getOrSet(
     key: string,
     factory: () => Promise<CacheEntry<T>>,
   ): Promise<T> {
-    const cached_value = this.get(key);
-    if (cached_value !== null) {
-      return cached_value;
+    const cachedValue = this.get(key);
+    if (cachedValue !== null) {
+      return cachedValue;
     }
 
-    const new_value = await factory();
-    this.set(key, new_value.value, new_value.expires);
-    return new_value.value;
+    const newValue = await factory();
+    this.set(key, newValue.value, newValue.expires);
+    return newValue.value;
+  }
+
+  private isExpired(expires: number): boolean {
+    return Date.now() > expires;
   }
 }

@@ -1,13 +1,13 @@
 import {VrdOrValue} from 'razomy.vrd/vrd';
 
 export interface RemoveDeltaVrd {
-  after_path: string[],
+  afterPath: string[],
   remove: true,
   path: number,
 }
 
 export interface AddDeltaVrd {
-  after_path: string[],
+  afterPath: string[],
   add: VrdOrValue<string>,
   path: string[],
 }

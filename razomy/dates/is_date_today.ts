@@ -1,10 +1,10 @@
-export function is_date_today(input_date: Date) {
-  const current_date = new Date(new Date().toISOString().split('T')[0]);
-  const input_date_obj = new Date(input_date);
+export function isDateToday(inputDate: Date) {
+  const currentDate = new Date(new Date().toISOString().split('T')[0]);
+  const inputDateObj = new Date(inputDate);
 
   return (
-    current_date.getFullYear() === input_date_obj.getFullYear() &&
-    current_date.getMonth() === input_date_obj.getMonth() &&
-    current_date.getDate() === input_date_obj.getDate()
+    currentDate.getFullYear() === inputDateObj.getFullYear() &&
+    currentDate.getMonth() === inputDateObj.getMonth() &&
+    currentDate.getDate() === inputDateObj.getDate()
   );
 }

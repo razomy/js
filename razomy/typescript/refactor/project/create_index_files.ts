@@ -1,31 +1,31 @@
 import {Project, SyntaxKind} from 'ts-morph';
-import {try_get_json} from 'razomy.fs/file';
+import {tryGetJson} from 'razomy.fs/file';
 import path from 'path';
 import {file} from 'razomy.fs';
-import {to_safe_name} from '../to_safe_name';
+import {toSafeName} from '../to_safe_name';
 
-export async function create_index_files(project_path: string) {
-  const project = new Project({tsConfigFilePath: project_path + 'tsconfig.json'});
+export async function createIndexFiles(projectPath: string) {
+  const project = new Project({tsConfigFilePath: projectPath + 'tsconfig.json'});
 
   const directories = project.getDirectories();
   for (const dir of directories) {
     if (dir.getPath().includes('node_modules')) continue;
     if (dir.getPath().includes('dist')) continue;
     if (dir.getPath().includes('bin')) continue;
-    const dir_path = dir.getPath();
-    const export_entries: string[] = [];
+    const dirPath = dir.getPath();
+    const exportEntries: string[] = [];
 
-    for (const sub_dir of dir.getDirectories()) {
-      if (sub_dir.getPath().includes('node_modules')) continue;
-      if (sub_dir.getPath().includes('dist')) continue;
-      if (sub_dir.getPath().includes('bin')) continue;
-      const safe_key = to_safe_name(sub_dir.getBaseName());
-      const child_package_json_path = path.join(sub_dir.getPath(), 'package.json');
-      if (file.is_exist(child_package_json_path)) {
-        const name = try_get_json(child_package_json_path).name;
-        export_entries.push(`export * as ${safe_key} from '${name}';`);
+    for (const subDir of dir.getDirectories()) {
+      if (subDir.getPath().includes('node_modules')) continue;
+      if (subDir.getPath().includes('dist')) continue;
+      if (subDir.getPath().includes('bin')) continue;
+      const safeKey = toSafeName(subDir.getBaseName());
+      const childPackageJsonPath = path.join(subDir.getPath(), 'package.json');
+      if (file.isExist(childPackageJsonPath)) {
+        const name = tryGetJson(childPackageJsonPath).name;
+        exportEntries.push(`export * as ${safeKey} from '${name}';`);
       } else {
-        export_entries.push(`export * as ${safe_key} from './${sub_dir.getBaseName()}';`);
+        exportEntries.push(`export * as ${safeKey} from './${subDir.getBaseName()}';`);
       }
     }
 
@@ -34,17 +34,17 @@ export async function create_index_files(project_path: string) {
       if (file.getFilePath().includes('node_modules')) continue;
       if (file.getFilePath().includes('dist')) continue;
       if (file.getFilePath().includes('bin')) continue;
-      const base_name = file.getBaseNameWithoutExtension();
+      const baseName = file.getBaseNameWithoutExtension();
       // Skip index.ts and tests
-      if (base_name === 'index' || file.getBaseName().match(/\.(spec|test)\./)) continue;
+      if (baseName === 'index' || file.getBaseName().match(/\.(spec|test)\./)) continue;
 
       // --- Analyze Exports ---
-      const exported_declarations = file.getExportedDeclarations();
-      let has_types_or_classes = false;
-      const names_to_export: string[] = [];
+      const exportedDeclarations = file.getExportedDeclarations();
+      let hasTypesOrClasses = false;
+      const namesToExport: string[] = [];
 
       // Проходимся по всем экспортам, чтобы понять состав файла
-      for (const [name, decls] of exported_declarations) {
+      for (const [name, decls] of exportedDeclarations) {
         const decl = decls[0];
         const kind = decl.getKind();
 
@@ -55,42 +55,42 @@ export async function create_index_files(project_path: string) {
           kind === SyntaxKind.VariableDeclaration ||
           kind === SyntaxKind.EnumDeclaration
         ) {
-          has_types_or_classes = true;
-          names_to_export.push(name);
+          hasTypesOrClasses = true;
+          namesToExport.push(name);
 
         } else if (
           kind === SyntaxKind.InterfaceDeclaration
           || kind === SyntaxKind.TypeAliasDeclaration) {
-          has_types_or_classes = true;
-          names_to_export.push('type ' + name);
+          hasTypesOrClasses = true;
+          namesToExport.push('type ' + name);
         } else {
-          names_to_export.push(name);
+          namesToExport.push(name);
         }
 
       }
 
       // Если есть типы, интерфейсы или классы -> экспортируем их имена напрямую
-      if (has_types_or_classes) {
-        if (names_to_export.length > 0) {
-          export_entries.push(`export { ${names_to_export.join(', ')} } from './${base_name}';`);
+      if (hasTypesOrClasses) {
+        if (namesToExport.length > 0) {
+          exportEntries.push(`export { ${namesToExport.join(', ')} } from './${baseName}';`);
         }
       }
       // Иначе (только утилиты/константы) -> экспортируем как пространство имен (имя файла snake_case)
       else {
-        export_entries.push(`export * as ${base_name} from './${base_name}';`);
+        exportEntries.push(`export * as ${baseName} from './${baseName}';`);
       }
     }
 
     // Only write if we have exports
-    if (export_entries.length > 0) {
-      const index_content = [
-        export_entries.join('\n'),
+    if (exportEntries.length > 0) {
+      const indexContent = [
+        exportEntries.join('\n'),
         '' // New line at end of file
       ].join('\n');
 
-      const index_file_path = `${dir_path}/index.ts`;
-      project.createSourceFile(index_file_path, index_content, {overwrite: true});
-      console.log(`[GENERATED] ${index_file_path}`);
+      const indexFilePath = `${dirPath}/index.ts`;
+      project.createSourceFile(indexFilePath, indexContent, {overwrite: true});
+      console.log(`[GENERATED] ${indexFilePath}`);
     }
   }
 

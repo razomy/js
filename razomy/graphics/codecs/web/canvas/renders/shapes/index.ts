@@ -1,1 +1,1 @@
-export { ArcRender } from './arc_render';
+export {ArcRender} from './arc_render';

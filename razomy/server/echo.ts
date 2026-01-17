@@ -1,5 +1,5 @@
 export function echo() {
-  return function(req, res) {
+  return function (req, res) {
     res.send('Hello World');
   };
 }

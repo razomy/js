@@ -1,23 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-import {is_exist} from '../file';
+import {isExist} from '../file';
 import {InvalidLinkException} from './invalid_link_exception';
 import {CatchFn} from 'razomy.exceptions';
 
-export function get_invalid_symlinks(catch_fn: CatchFn) {
+export function getInvalidSymlinks(catchFn: CatchFn) {
 
-  function iterate_if_invalid_link({stats: entry, path: path_}) {
+  function iterateIfInvalidLink({stats: entry, path: path_}) {
     if (entry.isSymbolicLink()) {
-      const target_path = fs.readlinkSync(path_);
-      const resolved_target_path = path.resolve(path.dirname(path_), target_path);
-      catch_fn(() => {
+      const targetPath = fs.readlinkSync(path_);
+      const resolvedTargetPath = path.resolve(path.dirname(path_), targetPath);
+      catchFn(() => {
 
-        if (!(is_exist(resolved_target_path))) {
-          throw new InvalidLinkException(path_, target_path);
+        if (!(isExist(resolvedTargetPath))) {
+          throw new InvalidLinkException(path_, targetPath);
         }
       });
     }
   }
 
-  return {iterate_if_invalid_link};
+  return {iterateIfInvalidLink};
 }

@@ -1,1 +1,1 @@
-export { type Offset, type WithOffset } from './offest';
+export {type Offset, type WithOffset} from './offest';

@@ -1,14 +1,14 @@
 import fs from 'fs';
-import { FilePathString } from 'razomy.path/string/path_string';
+import {FilePathString} from 'razomy.path/string/path_string';
 
-export function set_async(file_path: FilePathString, content) {
-    return new Promise((resolve, reject) => {
-    fs.writeFile(file_path, content, 'utf8', (err) => {
+export function setAsync(filePath: FilePathString, content) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(filePath, content, 'utf8', (err) => {
       if (err) {
         reject(err);
       } else {
-        resolve(file_path);
+        resolve(filePath);
       }
     });
-    });
+  });
 }

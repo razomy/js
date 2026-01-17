@@ -1,13 +1,13 @@
-export function get_all_commit_hashes(git) {
-  return new Promise<{ hash: string, date: string, author_name: string }[]>((resolve, reject) => {
+export function getAllCommitHashes(git) {
+  return new Promise<{ hash: string, date: string, authorName: string }[]>((resolve, reject) => {
     git.log((err, log) => {
       if (err) {
         reject(err);
         return;
       }
 
-      const commit_hashes = log.all.reverse();
-      resolve(commit_hashes);
+      const commitHashes = log.all.reverse();
+      resolve(commitHashes);
     });
   });
 }

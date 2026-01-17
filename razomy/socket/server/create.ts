@@ -2,7 +2,7 @@ import {Server} from 'socket.io';
 import {WithServer} from 'razomy.server/server';
 
 export interface WithWebsocket {
-  web_socket: Server;
+  webSocket: Server;
 }
 
 export function create(ctx: WithServer) {

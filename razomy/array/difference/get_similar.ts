@@ -1,19 +1,19 @@
 import {similarity} from 'razomy.string/similarity';
 
-export function get_similar(str: string, items): string | null {
-  let best_match: string | null = null;
-  let best_similarity = 0;
+export function getSimilar(str: string, items): string | null {
+  let bestMatch: string | null = null;
+  let bestSimilarity = 0;
 
   items.forEach(newItem => {
     const similarity_ = similarity(str, newItem);
-    if (similarity_ > best_similarity && similarity_ >= 0.5) { // Adjust threshold
-      best_match = newItem;
-      best_similarity = similarity_;
+    if (similarity_ > bestSimilarity && similarity_ >= 0.5) { // Adjust threshold
+      bestMatch = newItem;
+      bestSimilarity = similarity_;
     }
   });
 
-  if (best_match) {
-    return best_match;
+  if (bestMatch) {
+    return bestMatch;
   }
   return null;
 }

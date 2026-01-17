@@ -1,11 +1,11 @@
 import {Codec} from 'razomy.codec';
-import {to_buffer} from 'razomy.string/to_buffer';
-import {to_string} from '../to_string';
+import {toBuffer} from 'razomy.string/to_buffer';
+import {toString_} from '../to_string';
 
-export function to_codec(encoding: BufferEncoding): Codec<Buffer, string> {
+export function toCodec(encoding: BufferEncoding): Codec<Buffer, string> {
   return {
-    encode: (b) => to_string(b, encoding),
-    decode: (s) => to_buffer(s, encoding)
+    encode: (b) => toString_(b, encoding),
+    decode: (s) => toBuffer(s, encoding)
   }
 }
 

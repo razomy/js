@@ -1,3 +1,3 @@
 export interface IObjectClone {
-    clone<T extends object>(obj: T): T;
+  clone<T extends object>(obj: T): T;
 }

@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import {ArrayKeyValuable, ArrayOrKeyValuable,  KeyValuable, Valuable, Value} from 'razomy.kv/kv';
+import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable} from 'razomy.kv/kv';
 import {akv} from 'razomy.kv/akv';
 import {k} from 'razomy.kv/k';
 
-export function to_kv<T = ArrayKeyValuable<string, Buffer>>(dir_path: string): T;
-export function to_kv<T = KeyValuable<string, Buffer>>(file_path: string): T;
-export function to_kv<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
+export function toKv<T = ArrayKeyValuable<string, Buffer>>(dirPath: string): T;
+export function toKv<T = KeyValuable<string, Buffer>>(filePath: string): T;
+export function toKv<T extends ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = k(path.basename(directory), null as any) as T;
 
@@ -19,8 +19,8 @@ export function to_kv<T extends ArrayOrKeyValuable<string, Buffer>>(directory: s
     kv[1] = akv<string, Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
-      const item_path = path.join(directory, item);
-      const child = to_kv<[string, Buffer]>(item_path);
+      const itemPath = path.join(directory, item);
+      const child = toKv<[string, Buffer]>(itemPath);
       kv[1].push(child)
     }
     return kv as T;

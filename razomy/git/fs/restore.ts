@@ -1,17 +1,17 @@
-import {get_recursive_status} from './get_recursive_status';
-import {nodes_array_to_tree} from 'razomy.tree/list/nodes_array_to_tree';
-import {iterate_reverse} from 'razomy.tree/list/iterate_reverse';
+import {getRecursiveStatus} from './get_recursive_status';
+import {nodesArrayToTree} from 'razomy.tree/list/nodes_array_to_tree';
+import {iterateReverse} from 'razomy.tree/list/iterate_reverse';
 import {execSync} from 'node:child_process';
 import {SourcePathString} from 'razomy.path/string/path_string';
 
-export function restore(source_path: SourcePathString) {
-  const {files, repos} = get_recursive_status(source_path)
-  const tree = nodes_array_to_tree(repos, files);
-  iterate_reverse(tree[0], (node) => {
+export function restore(sourcePath: SourcePathString) {
+  const {files, repos} = getRecursiveStatus(sourcePath)
+  const tree = nodesArrayToTree(repos, files);
+  iterateReverse(tree[0], (node) => {
     if (node.children.length !== 0) {
       for (let child of node.children) {
-        const commit_command = `git restore ` + child.value;
-        execSync(commit_command, {cwd: node.value});
+        const commitCommand = `git restore ` + child.value;
+        execSync(commitCommand, {cwd: node.value});
       }
     }
   })

@@ -1,4 +1,4 @@
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value
@@ -44,7 +44,7 @@ export class HsvTextureFilter implements ITextureFilter {
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      n_pixels = data.length,
+      nPixels = data.length,
       v = Math.pow(2, this.value),
       s = Math.pow(2, this.saturation),
       h = Math.abs(this.hue + 360) % 360,
@@ -77,7 +77,7 @@ export class HsvTextureFilter implements ITextureFilter {
 
     var r, g, b, a;
 
-    for (i = 0; i < n_pixels; i += 4) {
+    for (i = 0; i < nPixels; i += 4) {
       r = data[i + 0];
       g = data[i + 1];
       b = data[i + 2];

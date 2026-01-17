@@ -1,26 +1,26 @@
-export async function create<T>({batch_size, promises}: { batch_size: number, promises: Promise<T>[] }): Promise<T[]> {
-    let current_batch_start = 0;
-    const result: T[] = [];
+export async function create<T>({batchSize, promises}: { batchSize: number, promises: Promise<T>[] }): Promise<T[]> {
+  let currentBatchStart = 0;
+  const result: T[] = [];
 
-    async function next_batch() {
-        const batch_promises: Promise<void>[] = [];
-        for (let i = current_batch_start; i < Math.min(current_batch_start + batch_size, promises.length); i++) {
-            const worker = promises[i];
-            batch_promises.push(worker.then((i) => {
-                result[promises.indexOf(worker)] = i;
-                current_batch_start += 1;
-                if (current_batch_start % batch_size !== 0) {
-                    return;
-                }
-                next_batch();
-            }))
+  async function nextBatch() {
+    const batchPromises: Promise<void>[] = [];
+    for (let i = currentBatchStart; i < Math.min(currentBatchStart + batchSize, promises.length); i++) {
+      const worker = promises[i];
+      batchPromises.push(worker.then((i) => {
+        result[promises.indexOf(worker)] = i;
+        currentBatchStart += 1;
+        if (currentBatchStart % batchSize !== 0) {
+          return;
         }
-        return await Promise.all(batch_promises);
+        nextBatch();
+      }))
     }
+    return await Promise.all(batchPromises);
+  }
 
-    await next_batch();
+  await nextBatch();
 
-    return result;
+  return result;
 }
 
 //const f_p = i => new Promise(resolve => resolve(i));

@@ -1,7 +1,7 @@
-import {file_name_to_codec} from 'razomy.fs/extension/file_name_to_codec';
+import {fileNameToCodec} from 'razomy.fs/extension/file_name_to_codec';
 
-export function to_buffer(node: string, parent: string): Buffer {
-  const codec = file_name_to_codec(parent);
+export function toBuffer(node: string, parent: string): Buffer {
+  const codec = fileNameToCodec(parent);
   return codec.decode(node)
 }
 

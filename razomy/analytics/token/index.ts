@@ -1,2 +1,2 @@
-export { file_path_count } from './file_path_count';
-export { project_dir_count } from './project_dir_count';
+export {filePathCount} from './file_path_count';
+export {projectDirCount} from './project_dir_count';

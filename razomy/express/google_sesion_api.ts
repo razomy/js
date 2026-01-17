@@ -1,13 +1,12 @@
-import { DatastoreStore } from '@google-cloud/connect-datastore';
-import { Datastore } from '@google-cloud/datastore';
-import  {Google, google_tap_on } from 'razomy.google/auth/google';
+import {DatastoreStore} from '@google-cloud/connect-datastore';
+import {Google, googleTapOn} from 'razomy.google/auth/google';
 import session from 'express-session';
 import passport from 'passport';
 
-export function google_sesion_api(ctx) {
+export function googleSesionApi(ctx) {
   ctx.app.use(session({
     proxy: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true },
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true},
     store: new DatastoreStore({
       kind: 'express-sessions',
       expirationMs: 1000 * 60 * 60 * 24 * 31,
@@ -33,7 +32,7 @@ export function google_sesion_api(ctx) {
   ctx.google = new Google(ctx);
 
   ctx.app.post('/api/auth/sign/google',
-    passport.authenticate(google_tap_on, { failureRedirect: '/login' }),
+    passport.authenticate(googleTapOn, {failureRedirect: '/login'}),
     (rq, rs) => rs.redirect('/'));
 
 }

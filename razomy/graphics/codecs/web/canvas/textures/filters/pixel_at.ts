@@ -1,4 +1,4 @@
-export function pixel_at(idata: any, x: number, y: number) {
+export function pixelAt(idata: any, x: number, y: number) {
   var idx = (y * idata.width + x) * 4;
   var d: any[] = [];
   d.push(

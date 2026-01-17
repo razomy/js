@@ -1,14 +1,14 @@
-import { Codec } from 'razomy.codec/codec';
+import {Codec} from 'razomy.codec/codec';
 import * as create from 'razomy.create';
-import { ElementView } from 'razomy.graphics/elements/element_view';
-import { RectangleShape } from 'razomy.graphics/shapes/rectangle_shape';
-import { TextElement } from 'razomy.graphics/elements/text_element';
-import { ViewportElement } from 'razomy.graphics/elements/viewport_element';
-import { CodecConfig }  from 'razomy.graphics/codecs/web/svg/codecs/codec_config';
-import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
-import { RectangleCodec }  from 'razomy.graphics/codecs/web/svg/codecs/rectangle_codec';
-import { SvgCodec }  from 'razomy.graphics/codecs/web/svg/codecs/svg_codec';
-import { TextCodec }  from 'razomy.graphics/codecs/web/svg/codecs/text_codec';
+import {ElementView} from 'razomy.graphics/elements/element_view';
+import {RectangleShape} from 'razomy.graphics/shapes/rectangle_shape';
+import {TextElement} from 'razomy.graphics/elements/text_element';
+import {ViewportElement} from 'razomy.graphics/elements/viewport_element';
+import {CodecConfig} from 'razomy.graphics/codecs/web/svg/codecs/codec_config';
+import {EncodeNodeFactory} from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
+import {RectangleCodec} from 'razomy.graphics/codecs/web/svg/codecs/rectangle_codec';
+import {SvgCodec} from 'razomy.graphics/codecs/web/svg/codecs/svg_codec';
+import {TextCodec} from 'razomy.graphics/codecs/web/svg/codecs/text_codec';
 
 import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
 
@@ -35,7 +35,7 @@ export class CodecFactory implements create.WithCreate<Codec<ElementView, any>> 
     throw new UnknownTypeArgumentException(element);
   }
 
-  public create_by_node(element?: ElementView): Codec<ElementView, any> {
+  public createByNode(element?: ElementView): Codec<ElementView, any> {
     if (element instanceof RectangleShape) {
       return new RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof ViewportElement) {

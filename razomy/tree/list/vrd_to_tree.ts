@@ -1,17 +1,17 @@
 import {VrdOrValue} from 'razomy.vrd/vrd';
-import {is_vrd} from 'razomy.vrd/is_vrd';
+import {isVrd} from 'razomy.vrd/is_vrd';
 
 export interface ValueChildren<T> {
   value: T,
   children: ValueChildren<T>[]
 }
 
-export function vrd_to_tree(vrd: VrdOrValue<string>): ValueChildren<string> | ValueChildren<string>[] {
-  if (is_vrd(vrd)) {
+export function vrdToTree(vrd: VrdOrValue<string>): ValueChildren<string> | ValueChildren<string>[] {
+  if (isVrd(vrd)) {
     return Object.keys(vrd)
       .map(value => ({
         value,
-        children: vrd_to_tree(vrd[value]) as []
+        children: vrdToTree(vrd[value]) as []
       }));
   }
   return {value: vrd as string, children: []}

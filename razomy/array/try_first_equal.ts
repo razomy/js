@@ -1,15 +1,15 @@
-export function try_first_equal<T>(list_1: T[], list_2: T[]) {
-  const common_strings = null;
+export function tryFirstEqual<T>(list1: T[], list2: T[]) {
+  const commonStrings = null;
 
-  for (const item_2 of list_2) {
-    for (const item_1 of list_1) {
-      if (item_2 === item_1) {
-        return item_2;
+  for (const item2 of list2) {
+    for (const item1 of list1) {
+      if (item2 === item1) {
+        return item2;
       }
     }
   }
 
-  return common_strings;
+  return commonStrings;
 }
 
 

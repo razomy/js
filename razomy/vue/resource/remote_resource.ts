@@ -1,11 +1,11 @@
 import vue from 'vue';
 import {Dict} from 'razomy.dict/dict';
-import {remove_first} from 'razomy.array/remove_first';
+import {removeFirst} from 'razomy.array/remove_first';
 
 
 export class RemoteResource {
   ctx: razomy = undefined as any as razomy;
-  
+
   state = vue.reactive({
     notation: null as Dict<string> | null,
     listeners: [] as (() => void)[]
@@ -40,7 +40,7 @@ export class RemoteResource {
   }
 
   off(key: string, cb) {
-    remove_first(this.state.listeners, cb);
+    removeFirst(this.state.listeners, cb);
   }
 }
 

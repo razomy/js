@@ -1,12 +1,12 @@
 import * as fs from 'fs';
-import {get_all_package_jsons} from './get_all_package_jsons';
+import {getAllPackageJsons} from './get_all_package_jsons';
 
-export function update_packages(project_path: string) {
-    const packages = get_all_package_jsons(project_path);
+export function updatePackages(projectPath: string) {
+  const packages = getAllPackageJsons(projectPath);
   packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, 'utf-8');
 
-    let pkg_data = {
+    let pkgData = {
       name: folder.name.replaceAll('/', '.'),
       version: '0.0.0',
       license: 'MIT',
@@ -22,9 +22,9 @@ export function update_packages(project_path: string) {
       }
     }
 
-    pkg_data = {...JSON.parse(content), ...pkg_data};
+    pkgData = {...JSON.parse(content), ...pkgData};
 
-    fs.writeFileSync(folder.path, JSON.stringify(pkg_data, null, 2));
-    console.log(`✓ Create: ${folder.name} -> ${pkg_data.name}`);
+    fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2));
+    console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
   });
 }

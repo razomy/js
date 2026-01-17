@@ -1,4 +1,3 @@
-
 export interface Path {
   type: 'path';
   path: string;
@@ -36,10 +35,10 @@ export interface Ellipse {
 
 export interface Line {
   type: 'line';
-  x_1: number;
-  y_1: number;
-  x_2: number;
-  y_2: number;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
 }
 
 export type Shape = Path | CompoundPath | Rectangle | Circle | Ellipse | Line;

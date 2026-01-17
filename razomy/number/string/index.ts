@@ -1,1 +1,1 @@
-export { string } from './string';
+export {string} from './string';

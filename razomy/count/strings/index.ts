@@ -1,1 +1,1 @@
-export { strings_space_margin_count } from './strings_space_margin_count';
+export {stringsSpaceMarginCount} from './strings_space_margin_count';

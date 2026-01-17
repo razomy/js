@@ -1,4 +1,4 @@
-import { WithId }  from 'razomy.id/with_id';
+import {WithId} from 'razomy.id/with_id';
 
 import {WithType} from 'razomy.type';
 

@@ -1,13 +1,11 @@
-import { WebCanvasHighLightsRender }  from 'razomy.graphics/codecs/web/canvas/renders/web_canvas_high_lights_render';
+import {WebCanvasHighLightsRender} from 'razomy.graphics/codecs/web/canvas/renders/web_canvas_high_lights_render';
 import {IRender} from 'razomy.graphics/renderes/i_render';
 import {Render} from 'razomy.graphics/renderes/render';
 import {TextElement} from 'razomy.graphics/elements/text_element';
 import {ViewportElement} from 'razomy.graphics/elements/viewport_element';
 import {ElementView} from 'razomy.graphics/elements/element_view';
 import {RectangleShape} from 'razomy.graphics/shapes/rectangle_shape';
-import {NotSupportedException} from 'razomy.exceptions/not_supported_exception';
 import {RectangleRender} from 'razomy.graphics/shapes/rectangle_render';
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {UnknownTypeArgumentException} from 'razomy.exceptions/unknown_type_argument_exception';
 import * as create from 'razomy.create';
 
@@ -73,13 +71,13 @@ export class WebCanvasRender extends Render {
   private iterate(node: ElementView) {
     this.codecFactory.create(node).render(node);
 
-    const node_children = node.children;
-    for (let i = 0; i < node_children.length; i++) {
-      if (!node_children[i]) {
+    const nodeChildren = node.children;
+    for (let i = 0; i < nodeChildren.length; i++) {
+      if (!nodeChildren[i]) {
         continue;
       }
 
-      this.iterate(node_children[i]);
+      this.iterate(nodeChildren[i]);
     }
   }
 }

@@ -1,40 +1,40 @@
-import  { vrd,Vrd} from './vrd';
-import  { differences_vrd,P} from './differences_vrd';
-import {get_similar} from 'razomy.array/difference/get_similar';
+import {vrd, Vrd} from './vrd';
+import {differencesVrd, P} from './differences_vrd';
+import {getSimilar} from 'razomy.array/difference/get_similar';
 
-export function differences_dict<T>(
+export function differencesDict<T>(
   diffs: P<T>[],
   a: Vrd<T>,
   b: Vrd<T>,
   path,
   separator = '/'
 ): P<T>[] {
-  const a_keys = Object.keys(a);
-  let b_keys = Object.keys(b);
+  const aKeys = Object.keys(a);
+  let bKeys = Object.keys(b);
 
-  for (let old_key of a_keys) {
-    if (b_keys.includes(old_key)) {
-      differences_vrd(diffs, a[old_key], b[old_key], [path, old_key].filter(i => i).join(separator));
-      b_keys = b_keys.filter(i => i != old_key);
+  for (let oldKey of aKeys) {
+    if (bKeys.includes(oldKey)) {
+      differencesVrd(diffs, a[oldKey], b[oldKey], [path, oldKey].filter(i => i).join(separator));
+      bKeys = bKeys.filter(i => i != oldKey);
       continue
     }
 
-    let new_key: string | null = get_similar(old_key, b_keys);
-    if (new_key) {
+    let newKey: string | null = getSimilar(oldKey, bKeys);
+    if (newKey) {
       diffs.push({
         type: 'replace_key',
         path: path,
-        old_value: vrd({[old_key]: a[old_key]}),
-        value: vrd({[new_key]: b[new_key]})
+        oldValue: vrd({[oldKey]: a[oldKey]}),
+        value: vrd({[newKey]: b[newKey]})
       });
-      b_keys = b_keys.filter(i => i != new_key);
+      bKeys = bKeys.filter(i => i != newKey);
       continue
     }
 
-    diffs.push({type: 'removed', path: path, value: vrd({[old_key]: a[old_key]})});
+    diffs.push({type: 'removed', path: path, value: vrd({[oldKey]: a[oldKey]})});
   }
-  for (let new_key of b_keys) {
-    diffs.push({type: 'added', path: path, value: vrd({[new_key]: b[new_key]})});
+  for (let newKey of bKeys) {
+    diffs.push({type: 'added', path: path, value: vrd({[newKey]: b[newKey]})});
   }
   return diffs;
 }

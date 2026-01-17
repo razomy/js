@@ -1,11 +1,11 @@
-import {reserved_names_js} from '../../languages/programming/fs';
-import {to_camel_case} from 'razomy.string/case';
+import {reservedNamesJs} from '../../languages/programming/fs';
+import {toCamelCase} from 'razomy.string/case';
 
-export function to_safe_name(name: string) {
-  let new_name = to_camel_case(name);
-  if (reserved_names_js[new_name] || new_name == '') {
-    new_name = new_name + '_';
+export function toSafeName(name: string) {
+  let newName = toCamelCase(name);
+  if (reservedNamesJs[newName] || newName == '') {
+    newName = newName + '_';
   }
-  return new_name;
+  return newName;
 }
 

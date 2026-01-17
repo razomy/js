@@ -1,6 +1,6 @@
-import {decode_string} from './decode_string';
+import {decodeString} from './decode_string';
 
-export function decode_json_string<T>(encoded_str: string): T {
-    const decoded_data = decode_string(encoded_str);
-    return JSON.parse(decoded_data) as T;
+export function decodeJsonString<T>(encodedStr: string): T {
+  const decodedData = decodeString(encodedStr);
+  return JSON.parse(decodedData) as T;
 }

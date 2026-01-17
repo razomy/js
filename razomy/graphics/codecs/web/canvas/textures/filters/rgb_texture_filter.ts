@@ -1,5 +1,5 @@
 import {ITextureFilter} from './i_texture_filter';
-import {byte_slice} from './byte_slice';
+import {byteSlice} from './byte_slice';
 
 /**
  * RGB Filter
@@ -47,21 +47,21 @@ export class RgbTextureFilter implements ITextureFilter {
      */
     public blue = 0
   ) {
-    this.red = byte_slice(red);
-    this.green = byte_slice(green);
-    this.blue = byte_slice(blue);
+    this.red = byteSlice(red);
+    this.green = byteSlice(green);
+    this.blue = byteSlice(blue);
   }
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      n_pixels = data.length,
+      nPixels = data.length,
       red = this.red,
       green = this.green,
       blue = this.blue,
       i,
       brightness;
 
-    for (i = 0; i < n_pixels; i += 4) {
+    for (i = 0; i < nPixels; i += 4) {
       brightness =
         (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255;
       data[i] = brightness * red; // r

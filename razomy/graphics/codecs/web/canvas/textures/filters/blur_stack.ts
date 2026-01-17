@@ -44,7 +44,7 @@
      OTHER DEALINGS IN THE SOFTWARE.
      */
 
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 export class BlurStack {
   public r = 0;
@@ -54,7 +54,7 @@ export class BlurStack {
   public next: any = null;
 }
 
-var mul_table = [
+var mulTable = [
   512,
   512,
   456,
@@ -312,7 +312,7 @@ var mul_table = [
   259
 ];
 
-var shg_table = [
+var shgTable = [
   9,
   11,
   12,
@@ -570,10 +570,10 @@ var shg_table = [
   24
 ];
 
-export function filter_gauss_blur_rgba(image_data: any, radius: any) {
-  var pixels = image_data.data,
-    width = image_data.width,
-    height = image_data.height;
+export function filterGaussBlurRgba(imageData: any, radius: any) {
+  var pixels = imageData.data,
+    width = imageData.width,
+    height = imageData.height;
 
   var x,
     y,
@@ -582,18 +582,18 @@ export function filter_gauss_blur_rgba(image_data: any, radius: any) {
     yp,
     yi,
     yw,
-    r_sum,
-    g_sum,
-    b_sum,
-    a_sum,
-    r_out_sum,
-    g_out_sum,
-    b_out_sum,
-    a_out_sum,
-    r_in_sum,
-    g_in_sum,
-    b_in_sum,
-    a_in_sum,
+    rSum,
+    gSum,
+    bSum,
+    aSum,
+    rOutSum,
+    gOutSum,
+    bOutSum,
+    aOutSum,
+    rInSum,
+    gInSum,
+    bInSum,
+    aInSum,
     pr,
     pg,
     pb,
@@ -601,45 +601,45 @@ export function filter_gauss_blur_rgba(image_data: any, radius: any) {
     rbs;
 
   var div = radius + radius + 1,
-    width_minus_1 = width - 1,
-    height_minus_1 = height - 1,
-    radius_plus_1 = radius + 1,
-    sum_factor = (radius_plus_1 * (radius_plus_1 + 1)) / 2,
-    stack_start = new BlurStack(),
-    stack_end: BlurStack = null!,
-    stack = stack_start,
-    stack_in: BlurStack = null!,
-    stack_out: BlurStack = null!,
-    mul_sum = mul_table[radius],
-    shg_sum = shg_table[radius];
+    widthMinus1 = width - 1,
+    heightMinus1 = height - 1,
+    radiusPlus1 = radius + 1,
+    sumFactor = (radiusPlus1 * (radiusPlus1 + 1)) / 2,
+    stackStart = new BlurStack(),
+    stackEnd: BlurStack = null!,
+    stack = stackStart,
+    stackIn: BlurStack = null!,
+    stackOut: BlurStack = null!,
+    mulSum = mulTable[radius],
+    shgSum = shgTable[radius];
 
   for (i = 1; i < div; i++) {
     stack = stack.next = new BlurStack();
-    if (i === radius_plus_1) {
-      stack_end = stack;
+    if (i === radiusPlus1) {
+      stackEnd = stack;
     }
   }
 
-  stack.next = stack_start;
+  stack.next = stackStart;
 
   yw = yi = 0;
 
   for (y = 0; y < height; y++) {
-    r_in_sum = g_in_sum = b_in_sum = a_in_sum = r_sum = g_sum = b_sum = a_sum = 0;
+    rInSum = gInSum = bInSum = aInSum = rSum = gSum = bSum = aSum = 0;
 
-    r_out_sum = radius_plus_1 * (pr = pixels[yi]);
-    g_out_sum = radius_plus_1 * (pg = pixels[yi + 1]);
-    b_out_sum = radius_plus_1 * (pb = pixels[yi + 2]);
-    a_out_sum = radius_plus_1 * (pa = pixels[yi + 3]);
+    rOutSum = radiusPlus1 * (pr = pixels[yi]);
+    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
+    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
+    aOutSum = radiusPlus1 * (pa = pixels[yi + 3]);
 
-    r_sum += sum_factor * pr;
-    g_sum += sum_factor * pg;
-    b_sum += sum_factor * pb;
-    a_sum += sum_factor * pa;
+    rSum += sumFactor * pr;
+    gSum += sumFactor * pg;
+    bSum += sumFactor * pb;
+    aSum += sumFactor * pa;
 
-    stack = stack_start;
+    stack = stackStart;
 
-    for (i = 0; i < radius_plus_1; i++) {
+    for (i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
@@ -647,69 +647,69 @@ export function filter_gauss_blur_rgba(image_data: any, radius: any) {
       stack = stack.next;
     }
 
-    for (i = 1; i < radius_plus_1; i++) {
-      p = yi + ((width_minus_1 < i ? width_minus_1 : i) << 2);
-      r_sum += (stack.r = pr = pixels[p]) * (rbs = radius_plus_1 - i);
-      g_sum += (stack.g = pg = pixels[p + 1]) * rbs;
-      b_sum += (stack.b = pb = pixels[p + 2]) * rbs;
-      a_sum += (stack.a = pa = pixels[p + 3]) * rbs;
+    for (i = 1; i < radiusPlus1; i++) {
+      p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+      rSum += (stack.r = pr = pixels[p]) * (rbs = radiusPlus1 - i);
+      gSum += (stack.g = pg = pixels[p + 1]) * rbs;
+      bSum += (stack.b = pb = pixels[p + 2]) * rbs;
+      aSum += (stack.a = pa = pixels[p + 3]) * rbs;
 
-      r_in_sum += pr;
-      g_in_sum += pg;
-      b_in_sum += pb;
-      a_in_sum += pa;
+      rInSum += pr;
+      gInSum += pg;
+      bInSum += pb;
+      aInSum += pa;
 
       stack = stack.next;
     }
 
-    stack_in = stack_start;
-    stack_out = stack_end;
+    stackIn = stackStart;
+    stackOut = stackEnd;
     for (x = 0; x < width; x++) {
-      pixels[yi + 3] = pa = (a_sum * mul_sum) >> shg_sum;
+      pixels[yi + 3] = pa = (aSum * mulSum) >> shgSum;
       if (pa !== 0) {
         pa = 255 / pa;
-        pixels[yi] = ((r_sum * mul_sum) >> shg_sum) * pa;
-        pixels[yi + 1] = ((g_sum * mul_sum) >> shg_sum) * pa;
-        pixels[yi + 2] = ((b_sum * mul_sum) >> shg_sum) * pa;
+        pixels[yi] = ((rSum * mulSum) >> shgSum) * pa;
+        pixels[yi + 1] = ((gSum * mulSum) >> shgSum) * pa;
+        pixels[yi + 2] = ((bSum * mulSum) >> shgSum) * pa;
       } else {
         pixels[yi] = pixels[yi + 1] = pixels[yi + 2] = 0;
       }
 
-      r_sum -= r_out_sum;
-      g_sum -= g_out_sum;
-      b_sum -= b_out_sum;
-      a_sum -= a_out_sum;
+      rSum -= rOutSum;
+      gSum -= gOutSum;
+      bSum -= bOutSum;
+      aSum -= aOutSum;
 
-      r_out_sum -= stack_in.r;
-      g_out_sum -= stack_in.g;
-      b_out_sum -= stack_in.b;
-      a_out_sum -= stack_in.a;
+      rOutSum -= stackIn.r;
+      gOutSum -= stackIn.g;
+      bOutSum -= stackIn.b;
+      aOutSum -= stackIn.a;
 
-      p = (yw + ((p = x + radius + 1) < width_minus_1 ? p : width_minus_1)) << 2;
+      p = (yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1)) << 2;
 
-      r_in_sum += stack_in.r = pixels[p];
-      g_in_sum += stack_in.g = pixels[p + 1];
-      b_in_sum += stack_in.b = pixels[p + 2];
-      a_in_sum += stack_in.a = pixels[p + 3];
+      rInSum += stackIn.r = pixels[p];
+      gInSum += stackIn.g = pixels[p + 1];
+      bInSum += stackIn.b = pixels[p + 2];
+      aInSum += stackIn.a = pixels[p + 3];
 
-      r_sum += r_in_sum;
-      g_sum += g_in_sum;
-      b_sum += b_in_sum;
-      a_sum += a_in_sum;
+      rSum += rInSum;
+      gSum += gInSum;
+      bSum += bInSum;
+      aSum += aInSum;
 
-      stack_in = stack_in.next;
+      stackIn = stackIn.next;
 
-      r_out_sum += pr = stack_out.r;
-      g_out_sum += pg = stack_out.g;
-      b_out_sum += pb = stack_out.b;
-      a_out_sum += pa = stack_out.a;
+      rOutSum += pr = stackOut.r;
+      gOutSum += pg = stackOut.g;
+      bOutSum += pb = stackOut.b;
+      aOutSum += pa = stackOut.a;
 
-      r_in_sum -= pr;
-      g_in_sum -= pg;
-      b_in_sum -= pb;
-      a_in_sum -= pa;
+      rInSum -= pr;
+      gInSum -= pg;
+      bInSum -= pb;
+      aInSum -= pa;
 
-      stack_out = stack_out!.next;
+      stackOut = stackOut!.next;
 
       yi += 4;
     }
@@ -717,22 +717,22 @@ export function filter_gauss_blur_rgba(image_data: any, radius: any) {
   }
 
   for (x = 0; x < width; x++) {
-    g_in_sum = b_in_sum = a_in_sum = r_in_sum = g_sum = b_sum = a_sum = r_sum = 0;
+    gInSum = bInSum = aInSum = rInSum = gSum = bSum = aSum = rSum = 0;
 
     yi = x << 2;
-    r_out_sum = radius_plus_1 * (pr = pixels[yi]);
-    g_out_sum = radius_plus_1 * (pg = pixels[yi + 1]);
-    b_out_sum = radius_plus_1 * (pb = pixels[yi + 2]);
-    a_out_sum = radius_plus_1 * (pa = pixels[yi + 3]);
+    rOutSum = radiusPlus1 * (pr = pixels[yi]);
+    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
+    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
+    aOutSum = radiusPlus1 * (pa = pixels[yi + 3]);
 
-    r_sum += sum_factor * pr;
-    g_sum += sum_factor * pg;
-    b_sum += sum_factor * pb;
-    a_sum += sum_factor * pa;
+    rSum += sumFactor * pr;
+    gSum += sumFactor * pg;
+    bSum += sumFactor * pb;
+    aSum += sumFactor * pa;
 
-    stack = stack_start;
+    stack = stackStart;
 
-    for (i = 0; i < radius_plus_1; i++) {
+    for (i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
@@ -745,71 +745,71 @@ export function filter_gauss_blur_rgba(image_data: any, radius: any) {
     for (i = 1; i <= radius; i++) {
       yi = (yp + x) << 2;
 
-      r_sum += (stack.r = pr = pixels[yi]) * (rbs = radius_plus_1 - i);
-      g_sum += (stack.g = pg = pixels[yi + 1]) * rbs;
-      b_sum += (stack.b = pb = pixels[yi + 2]) * rbs;
-      a_sum += (stack.a = pa = pixels[yi + 3]) * rbs;
+      rSum += (stack.r = pr = pixels[yi]) * (rbs = radiusPlus1 - i);
+      gSum += (stack.g = pg = pixels[yi + 1]) * rbs;
+      bSum += (stack.b = pb = pixels[yi + 2]) * rbs;
+      aSum += (stack.a = pa = pixels[yi + 3]) * rbs;
 
-      r_in_sum += pr;
-      g_in_sum += pg;
-      b_in_sum += pb;
-      a_in_sum += pa;
+      rInSum += pr;
+      gInSum += pg;
+      bInSum += pb;
+      aInSum += pa;
 
       stack = stack.next;
 
-      if (i < height_minus_1) {
+      if (i < heightMinus1) {
         yp += width;
       }
     }
 
     yi = x;
-    stack_in = stack_start;
-    stack_out = stack_end;
+    stackIn = stackStart;
+    stackOut = stackEnd;
     for (y = 0; y < height; y++) {
       p = yi << 2;
-      pixels[p + 3] = pa = (a_sum * mul_sum) >> shg_sum;
+      pixels[p + 3] = pa = (aSum * mulSum) >> shgSum;
       if (pa > 0) {
         pa = 255 / pa;
-        pixels[p] = ((r_sum * mul_sum) >> shg_sum) * pa;
-        pixels[p + 1] = ((g_sum * mul_sum) >> shg_sum) * pa;
-        pixels[p + 2] = ((b_sum * mul_sum) >> shg_sum) * pa;
+        pixels[p] = ((rSum * mulSum) >> shgSum) * pa;
+        pixels[p + 1] = ((gSum * mulSum) >> shgSum) * pa;
+        pixels[p + 2] = ((bSum * mulSum) >> shgSum) * pa;
       } else {
         pixels[p] = pixels[p + 1] = pixels[p + 2] = 0;
       }
 
-      r_sum -= r_out_sum;
-      g_sum -= g_out_sum;
-      b_sum -= b_out_sum;
-      a_sum -= a_out_sum;
+      rSum -= rOutSum;
+      gSum -= gOutSum;
+      bSum -= bOutSum;
+      aSum -= aOutSum;
 
-      r_out_sum -= stack_in.r;
-      g_out_sum -= stack_in.g;
-      b_out_sum -= stack_in.b;
-      a_out_sum -= stack_in.a;
+      rOutSum -= stackIn.r;
+      gOutSum -= stackIn.g;
+      bOutSum -= stackIn.b;
+      aOutSum -= stackIn.a;
 
       p =
         (x +
-          ((p = y + radius_plus_1) < height_minus_1 ? p : height_minus_1) * width) <<
+          ((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width) <<
         2;
 
-      r_sum += r_in_sum += stack_in.r = pixels[p];
-      g_sum += g_in_sum += stack_in.g = pixels[p + 1];
-      b_sum += b_in_sum += stack_in.b = pixels[p + 2];
-      a_sum += a_in_sum += stack_in.a = pixels[p + 3];
+      rSum += rInSum += stackIn.r = pixels[p];
+      gSum += gInSum += stackIn.g = pixels[p + 1];
+      bSum += bInSum += stackIn.b = pixels[p + 2];
+      aSum += aInSum += stackIn.a = pixels[p + 3];
 
-      stack_in = stack_in.next;
+      stackIn = stackIn.next;
 
-      r_out_sum += pr = stack_out.r;
-      g_out_sum += pg = stack_out.g;
-      b_out_sum += pb = stack_out.b;
-      a_out_sum += pa = stack_out.a;
+      rOutSum += pr = stackOut.r;
+      gOutSum += pg = stackOut.g;
+      bOutSum += pb = stackOut.b;
+      aOutSum += pa = stackOut.a;
 
-      r_in_sum -= pr;
-      g_in_sum -= pg;
-      b_in_sum -= pb;
-      a_in_sum -= pa;
+      rInSum -= pr;
+      gInSum -= pg;
+      bInSum -= pb;
+      aInSum -= pa;
 
-      stack_out = stack_out!.next;
+      stackOut = stackOut!.next;
 
       yi += width;
     }
@@ -843,7 +843,7 @@ export class BlurTextureFilter implements ITextureFilter {
     var radius = Math.round(this.blurRadius);
 
     if (radius > 0) {
-      filter_gauss_blur_rgba(imageData, radius);
+      filterGaussBlurRgba(imageData, radius);
     }
   };
 }

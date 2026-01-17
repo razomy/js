@@ -1,8 +1,8 @@
-export async function performance_cb(key, callback) {
-  const start_time = performance.now();
+export async function performanceCb(key, callback) {
+  const startTime = performance.now();
   const result = await callback();
-  const end_time = performance.now();
-  const execution_time = end_time - start_time;
-  console.log(`Execution time: key=${key} time=${execution_time} milliseconds`);
+  const endTime = performance.now();
+  const executionTime = endTime - startTime;
+  console.log(`Execution time: key=${key} time=${executionTime} milliseconds`);
   return result;
 }

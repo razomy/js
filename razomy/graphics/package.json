@@ -23,10 +23,6 @@
     "razomy.codec": "../codec",
     "razomy.create": "../create",
     "razomy.exceptions": "../exceptions",
-    "razomy.web": "../web",
-    "razomy.renderes": "../renderes",
-    "razomy.selection-attribute": "../selection-attribute",
-    "razomy.user-entity": "../user-entity",
     "razomy.object": "../object"
   }
 }

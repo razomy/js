@@ -2,37 +2,37 @@ import fs from 'fs';
 import path from 'path';
 
 // Define the function to count the tokens in the project directory
-export function project_dir_count(
-  project_dir: string,
-  file_regex = /\.ts$/,
+export function projectDirCount(
+  projectDir: string,
+  fileRegex = /\.ts$/,
   // Define the regex pattern to exclude certain files/directories
-  exclude_pattern = /^\.|node_modules/) {
+  excludePattern = /^\.|node_modules/) {
   // Define the token count variable
-  let token_count = 0;
+  let tokenCount = 0;
 
 
   // Recursively traverse the project directory
-  function traverse_dir(dir) {
+  function traverseDir(dir) {
     const files = fs.readdirSync(dir);
     for (const file of files) {
-      const file_path = path.join(dir, file);
-      const stats = fs.statSync(file_path);
-      if (stats.isDirectory() && !exclude_pattern.test(file)) {
-        traverse_dir(file_path);
-      } else if (stats.isFile() && file_regex.test(file)) {
+      const filePath = path.join(dir, file);
+      const stats = fs.statSync(filePath);
+      if (stats.isDirectory() && !excludePattern.test(file)) {
+        traverseDir(filePath);
+      } else if (stats.isFile() && fileRegex.test(file)) {
         // console.log(filePath);
-        const content = fs.readFileSync(file_path, 'utf8');
+        const content = fs.readFileSync(filePath, 'utf8');
         const tokens = content.split(/\s+/).filter(token => token !== '');
-        token_count += tokens.length;
+        tokenCount += tokens.length;
       }
     }
   }
 
   // Call the traverseDir function to count the tokens
-  traverse_dir(project_dir);
+  traverseDir(projectDir);
 
   // Return the total token count
-  return token_count;
+  return tokenCount;
 }
 
 

@@ -1,33 +1,28 @@
-import {
-  Pipe,
-  ArrayPipe,
-  Execute,
-  Pipeable
-} from 'razomy.pipes/booleans/execute';
+import {ArrayPipe, Execute, Pipe, Pipeable} from 'razomy.pipes/booleans/execute';
 
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import  { is_kv,KeyValuable, Kv} from 'razomy.kv/kv';
-import {is_akv} from 'razomy.kv/is_akv';
+import {isKv, KeyValuable} from 'razomy.kv/kv';
+import {isAkv} from 'razomy.kv/is_akv';
 
 export type PipeableKv<T> = KeyValuable<Pipeable<T>, Pipeable<T>>
 
-export function pipeable_kv_to_pipeline<T>(pipeable_kv: PipeableKv<T>): Execute<T> {
-  if (!is_kv<Pipeable<T>, Pipeable<T>>(pipeable_kv)) {
-    throw new ArgumentException('not a kv', {pipeable_kv});
+export function pipeableKvToPipeline<T>(pipeableKv: PipeableKv<T>): Execute<T> {
+  if (!isKv<Pipeable<T>, Pipeable<T>>(pipeableKv)) {
+    throw new ArgumentException('not a kv', {pipeableKv});
   }
 
-  let function_ = pipeable_kv[0];
-  let next = pipeable_kv[1];
+  let function_ = pipeableKv[0];
+  let next = pipeableKv[1];
 
-  if (is_kv<Pipeable<T>, PipeableKv<T>>(next)) {
-    const child = pipeable_kv_to_pipeline(next);
+  if (isKv<Pipeable<T>, PipeableKv<T>>(next)) {
+    const child = pipeableKvToPipeline(next);
     return (ctx: T) => (function_ as Pipe<T>)(ctx, child);
   }
 
-  if (is_akv(next)) {
+  if (isAkv(next)) {
     const nexts: Execute<T>[] = [];
     for (let child of next) {
-      nexts.push(pipeable_kv_to_pipeline(child));
+      nexts.push(pipeableKvToPipeline(child));
     }
     return (ctx: T) => (function_ as ArrayPipe<T>)(ctx, nexts);
   }

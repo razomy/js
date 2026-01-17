@@ -1,12 +1,12 @@
 import {String} from 'razomy.string/string';
 import {Offset} from 'razomy.offset/offest';
 
-export function separate_strings(string: String, offset: Offset, separate_string: String, strings: String[]) {
-  let ix = string.indexOf(separate_string, offset);
+export function separateStrings(string: String, offset: Offset, separateString: String, strings: String[]) {
+  let ix = string.indexOf(separateString, offset);
   while (ix !== -1) {
     strings.push(string.substring(offset, ix + 1))
     offset = ix + 1;
-    ix = string.indexOf(separate_string, offset);
+    ix = string.indexOf(separateString, offset);
   }
 
   if (offset < string.length) {

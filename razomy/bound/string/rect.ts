@@ -9,10 +9,10 @@ export function rect(delta: string, str: string): WithOffset & coordinates.lengt
   return {
     offset: delta.length,
     length: str.length,
-    finish_x: start.x + end.x,
-    finish_y: start.y + end.y,
-    start_y: start.y,
-    start_x: start.x,
+    finishX: start.x + end.x,
+    finishY: start.y + end.y,
+    startY: start.y,
+    startX: start.x,
   };
 }
 

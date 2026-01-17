@@ -1,55 +1,55 @@
-import { AddDeltaString, DeltaString, RemoveDeltaString } from 'razomy.commit/datetime/delta/string/delta_string';
+import {AddDeltaString, DeltaString, RemoveDeltaString} from 'razomy.commit/datetime/delta/string/delta_string';
 
-export function squash_changes(changes: DeltaString[]): DeltaString[] {
-    if (changes.length === 0) {
+export function squashChanges(changes: DeltaString[]): DeltaString[] {
+  if (changes.length === 0) {
     return [];
-    }
+  }
 
-    let last_add: AddDeltaString | undefined = undefined;
-    let last_remove: RemoveDeltaString | undefined = undefined;
-    let last = changes[0];
-    let pos_sshit = 1;
-    const next: DeltaString[] = [changes[0]];
-    for (let i = 1; i < changes.length; i++) {
+  let lastAdd: AddDeltaString | undefined = undefined;
+  let lastRemove: RemoveDeltaString | undefined = undefined;
+  let last = changes[0];
+  let posSshit = 1;
+  const next: DeltaString[] = [changes[0]];
+  for (let i = 1; i < changes.length; i++) {
     const current = changes[i];
 
-    if ('add_value' in current) {
-      if (last_add === undefined) {
-        last_add = last = current;
-        pos_sshit = 1;
+    if ('addValue' in current) {
+      if (lastAdd === undefined) {
+        lastAdd = last = current;
+        posSshit = 1;
         next.push(last)
         continue;
       }
 
-      if (last_add.offset + last_add.add_value.length + pos_sshit === current.offset) {
-        last_add.add_value += current.add_value;
-        pos_sshit += 1;
+      if (lastAdd.offset + lastAdd.addValue.length + posSshit === current.offset) {
+        lastAdd.addValue += current.addValue;
+        posSshit += 1;
         continue;
       }
-      last_add = last = current;
+      lastAdd = last = current;
       next.push(last)
-      pos_sshit = 1;
-    } else if ('remove_length' in current) {
-      if (last_remove === undefined) {
-        last_remove = last = current;
+      posSshit = 1;
+    } else if ('removeLength' in current) {
+      if (lastRemove === undefined) {
+        lastRemove = last = current;
         next.push(last)
-        pos_sshit = 1;
+        posSshit = 1;
         continue;
       }
 
-      if (last_add === undefined) {
+      if (lastAdd === undefined) {
         continue;
       }
 
-      if (last_remove.offset + last_add.add_value.length + pos_sshit === current.offset) {
-        last_remove.remove_length += current.remove_length;
+      if (lastRemove.offset + lastAdd.addValue.length + posSshit === current.offset) {
+        lastRemove.removeLength += current.removeLength;
         continue;
       }
-      last_remove = last = current;
-      pos_sshit = 1;
+      lastRemove = last = current;
+      posSshit = 1;
       next.push(last)
     }
-    }
+  }
 
-    return next;
+  return next;
 }

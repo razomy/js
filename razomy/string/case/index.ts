@@ -1,4 +1,4 @@
-export { capitalize } from './capitalize';
-export { to_camel_case } from './to_camel_case';
-export { to_snake_case } from './to_snake_case';
-export { to_kebab_case } from './to_kebab_case';
+export {capitalize} from './capitalize';
+export {toCamelCase} from './to_camel_case';
+export {toKebabCase} from './to_kebab_case';
+export {toSnakeCase} from './to_snake_case';

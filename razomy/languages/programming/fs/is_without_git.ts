@@ -1,6 +1,6 @@
-import { PathString } from 'razomy.path/string/path_string';
-import {is_with_git} from './is_with_git';
+import {PathString} from 'razomy.path/string/path_string';
+import {isWithGit} from './is_with_git';
 
-export function is_without_git(path: PathString) {
-    return !is_with_git(path)
+export function isWithoutGit(path: PathString) {
+  return !isWithGit(path)
 }

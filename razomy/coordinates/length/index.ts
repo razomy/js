@@ -1,1 +1,1 @@
-export { type WithLength } from './with_length';
+export {type WithLength} from './with_length';

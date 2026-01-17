@@ -1,1 +1,1 @@
-export { type WithCreate } from './with_create';
+export {type WithCreate} from './with_create';

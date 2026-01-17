@@ -1,16 +1,18 @@
 export * as array from './array';
 export * as fs from './fs';
-export { akv, Akv } from './akv';
-export { create_by_path } from './create_by_path';
-export { filter } from './filter';
-export { get_parents } from './get_parents';
-export { get_with_path } from './get_with_path';
-export { get } from './get';
-export { is_akv } from './is_akv';
-export { iterate } from './iterate';
-export { k } from './k';
-export { is_kv, type Value, type Key, type KeyValuable, type ArrayKeyValuable, type ArrayOrKeyValuable, type Valuable, Kv } from './kv';
-export { map } from './map';
-export { set } from './set';
-export { value_iterate } from './value_iterate';
-export { type WithKv } from './with_kv';
+export {akv, Akv} from './akv';
+export {createByPath} from './create_by_path';
+export {filter} from './filter';
+export {getParents} from './get_parents';
+export {getWithPath} from './get_with_path';
+export {get} from './get';
+export {isAkv} from './is_akv';
+export {iterate} from './iterate';
+export {k} from './k';
+export {
+  isKv, type Value, type Key, type KeyValuable, type ArrayKeyValuable, type ArrayOrKeyValuable, type Valuable, Kv
+} from './kv';
+export {map} from './map';
+export {set} from './set';
+export {valueIterate} from './value_iterate';
+export {type WithKv} from './with_kv';

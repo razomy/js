@@ -1,11 +1,11 @@
-import { VrdOrValue } from 'razomy.vrd/vrd';
-import {path_to_vrd} from 'razomy.vrd/path_to_vrd';
-import {set_vrd} from 'razomy.vrd/set_vrd';
-import {get_vrd} from './get_vrd';
+import {VrdOrValue} from 'razomy.vrd/vrd';
+import {pathToVrd} from 'razomy.vrd/path_to_vrd';
+import {setVrd} from 'razomy.vrd/set_vrd';
+import {getVrd} from './get_vrd';
 
-export function get_with_path<T>(value_recursive: VrdOrValue<T>, path: string[]) {
-    const pathed = path_to_vrd(path);
-    const node = get_vrd(value_recursive, path, 0);
-    set_vrd(pathed, path, node);
-    return pathed;
+export function getWithPath<T>(valueRecursive: VrdOrValue<T>, path: string[]) {
+  const pathed = pathToVrd(path);
+  const node = getVrd(valueRecursive, path, 0);
+  setVrd(pathed, path, node);
+  return pathed;
 }

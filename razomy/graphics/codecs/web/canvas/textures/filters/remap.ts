@@ -1,21 +1,21 @@
-export function remap(from_value: any, from_min: any, from_max: any, to_min: any, to_max: any) {
+export function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, toMax: any) {
   // Compute the range of the data
-  var from_range = from_max - from_min,
-    to_range = to_max - to_min,
-    to_value;
+  var fromRange = fromMax - fromMin,
+    toRange = toMax - toMin,
+    toValue;
 
   // If either range is 0, then the value can only be mapped to 1 value
-  if (from_range === 0) {
-    return to_min + to_range / 2;
+  if (fromRange === 0) {
+    return toMin + toRange / 2;
   }
-  if (to_range === 0) {
-    return to_min;
+  if (toRange === 0) {
+    return toMin;
   }
 
   // (1) untranslate, (2) unscale, (3) rescale, (4) retranslate
-  to_value = (from_value - from_min) / from_range;
-  to_value = to_range * to_value + to_min;
+  toValue = (fromValue - fromMin) / fromRange;
+  toValue = toRange * toValue + toMin;
 
-  return to_value;
+  return toValue;
 }
 

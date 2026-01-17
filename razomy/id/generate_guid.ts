@@ -1,16 +1,16 @@
 import * as create from 'razomy.create';
 
-export function generate_guid() {
-  function generate_part_8(with_hyphen?: boolean) {
+export function generateGuid() {
+  function generatePart8(withHyphen?: boolean) {
     const part = (Math.random().toString(16) + '000000000').substr(2, 8);
-    return with_hyphen ? '-' + part.substr(0, 4) + '-' + part.substr(4, 4) : part;
+    return withHyphen ? '-' + part.substr(0, 4) + '-' + part.substr(4, 4) : part;
   }
 
-  return generate_part_8() + generate_part_8(true) + generate_part_8(true) + generate_part_8();
+  return generatePart8() + generatePart8(true) + generatePart8(true) + generatePart8();
 }
 
 export class GuidFactory implements create.WithCreate<string> {
   public create(): string {
-    return generate_guid();
+    return generateGuid();
   }
 }

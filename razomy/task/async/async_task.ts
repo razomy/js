@@ -1,4 +1,3 @@
-import {Serializable} from 'razomy.serializable/serializable';
 import {WithSerializable} from 'razomy.serializable';
 
 export interface Context extends WithSerializable {
@@ -31,6 +30,6 @@ export interface AsyncTask<C extends Context>
     WithValidate<C>,
     WithAsyncCancel<C>,
     WithAsyncRollback<C> {
-  task_id: string;
+  taskId: string;
   history: C[];
 }

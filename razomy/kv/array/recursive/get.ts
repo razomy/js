@@ -1,9 +1,9 @@
 import {ListItem} from 'razomy.kv/array/recursive';
 import {assign} from 'razomy.key/assign';
-import {get_item_by_path} from './get_item_by_path';
+import {getItemByPath} from './get_item_by_path';
 
 export function get(node: ListItem, path: string) {
-  return get_item_by_path(node, path.split(assign), 0);
+  return getItemByPath(node, path.split(assign), 0);
 }
 
 

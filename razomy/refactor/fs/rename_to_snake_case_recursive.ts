@@ -1,19 +1,19 @@
-import {to_dict} from 'razomy.fs/dict/to_dict';
+import {toDict} from 'razomy.fs/dict/to_dict';
 
 import path from 'path';
 import fs from 'fs';
-import {to_snake_case} from 'razomy.string/case';
+import {toSnakeCase} from 'razomy.string/case';
 
-export function rename_to_snake_case_recursive(dir_path: string, must_include: string, must_not_include) {
-  let files = to_dict(dir_path);
-  files = files.map(i => i.substring(dir_path.length))
-  files = files.filter(i => i.includes(must_include))
-  files = files.filter(i => !i.includes(must_not_include))
-  for (const files_key of files) {
-    const snack_case = to_snake_case(files_key);
-    if (files_key != snack_case) {
-      console.log('rename', files_key, snack_case);
-      fs.renameSync(path.join(dir_path, files_key), path.join(dir_path, snack_case))
+export function renameToSnakeCaseRecursive(dirPath: string, mustInclude: string, mustNotInclude) {
+  let files = toDict(dirPath);
+  files = files.map(i => i.substring(dirPath.length))
+  files = files.filter(i => i.includes(mustInclude))
+  files = files.filter(i => !i.includes(mustNotInclude))
+  for (const filesKey of files) {
+    const snackCase = toSnakeCase(filesKey);
+    if (filesKey != snackCase) {
+      console.log('rename', filesKey, snackCase);
+      fs.renameSync(path.join(dirPath, filesKey), path.join(dirPath, snackCase))
     }
   }
 }

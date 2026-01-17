@@ -1,7 +1,7 @@
-import {set_tokens} from './set_tokens';
-import {set_weight} from './set_weight';
+import {setTokens} from './set_tokens';
+import {setWeight} from './set_weight';
 
-export function set_weight_an_tokens(request) {
-    set_weight(request);
-    set_tokens(request);
+export function setWeightAnTokens(request) {
+  setWeight(request);
+  setTokens(request);
 }

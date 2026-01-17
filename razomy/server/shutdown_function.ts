@@ -1,6 +1,6 @@
-export function shutdown_function(server, callback) {
-  process.on('SIGTERM', shut_down);
-  process.on('SIGINT', shut_down);
+export function shutdownFunction(server, callback) {
+  process.on('SIGTERM', shutDown);
+  process.on('SIGINT', shutDown);
 
   let connections: any[] = [];
 
@@ -9,7 +9,7 @@ export function shutdown_function(server, callback) {
     connection.on('close', () => connections = connections.filter(curr => curr !== connection));
   });
 
-  async function shut_down() {
+  async function shutDown() {
 
     console.log('Received kill signal, shutting down gracefully.');
 
@@ -28,6 +28,6 @@ export function shutdown_function(server, callback) {
     setTimeout(() => connections.forEach(curr => curr.destroy()), 5000);
   }
 
-};
+}
 
 

@@ -1,4 +1,4 @@
-export const reserved_names_js = {
+export const reservedNamesJs = {
   'break': true,
   'case': true,
   'catch': true,

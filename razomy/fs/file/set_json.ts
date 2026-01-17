@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { FilePathString } from 'razomy.path/string/path_string';
+import {FilePathString} from 'razomy.path/string/path_string';
 
-export function set_json(file_path: FilePathString, content, is_format: boolean = false) {
-    return fs.writeFileSync(file_path, JSON.stringify(content, null, is_format ? 2 : 0), 'utf8');
+export function setJson(filePath: FilePathString, content, isFormat: boolean = false) {
+  return fs.writeFileSync(filePath, JSON.stringify(content, null, isFormat ? 2 : 0), 'utf8');
 }

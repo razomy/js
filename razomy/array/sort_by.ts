@@ -1,4 +1,4 @@
-export function sort_by<T>(collection: T[], iteratee: (t: T) => string | number): T[] {
+export function sortBy<T>(collection: T[], iteratee: (t: T) => string | number): T[] {
   let index = 0;
   const length = collection.length;
   const result = new Array(length);
@@ -12,12 +12,12 @@ export function sort_by<T>(collection: T[], iteratee: (t: T) => string | number)
   }
 
   result.sort((a, b) => {
-    const val_a = a.criteria;
-    const val_b = b.criteria;
+    const valA = a.criteria;
+    const valB = b.criteria;
 
-    if (val_a !== val_b) {
-      if (val_a > val_b || val_a === undefined) return 1;
-      if (val_a < val_b || val_b === undefined) return -1;
+    if (valA !== valB) {
+      if (valA > valB || valA === undefined) return 1;
+      if (valA < valB || valB === undefined) return -1;
     }
 
     return a.index - b.index;

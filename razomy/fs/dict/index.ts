@@ -1,1 +1,1 @@
-export { to_dict } from './to_dict';
+export {toDict} from './to_dict';

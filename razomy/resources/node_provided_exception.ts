@@ -25,6 +25,6 @@ export interface IEntityResource {
 
   replace<T extends ObjectResource>(obj: T): void;
 
-  get_by<T extends ObjectResource>(objCtor: Constructor<T>): T;
+  getBy<T extends ObjectResource>(objCtor: Constructor<T>): T;
 }
 

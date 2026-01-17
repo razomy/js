@@ -1,4 +1,3 @@
-
 /**
  * Arc constructor
  * @constructor
@@ -89,10 +88,10 @@ export class ArcRender {
   ) {
   }
 
-  scene_func(context: any) {
-    const pi_over_180 = Math.PI / 180;
+  sceneFunc(context: any) {
+    const piOver180 = Math.PI / 180;
 
-    const angle = (this.angle * pi_over_180);
+    const angle = (this.angle * piOver180);
     const clockwise = this.clockwise;
 
     context.beginPath();
@@ -102,19 +101,19 @@ export class ArcRender {
     context.fillStrokeShape(this);
   }
 
-  get_width() {
+  getWidth() {
     return this.outerRadius * 2;
   }
 
-  get_height() {
+  getHeight() {
     return this.outerRadius * 2;
   }
 
-  set_width(width: number) {
+  setWidth(width: number) {
     this.outerRadius = width / 2;
   }
 
-  set_height(height: number) {
+  setHeight(height: number) {
     this.outerRadius = height / 2;
   }
 

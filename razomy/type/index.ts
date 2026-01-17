@@ -1,1 +1,1 @@
-export { type WithType } from './with_type';
+export {type WithType} from './with_type';

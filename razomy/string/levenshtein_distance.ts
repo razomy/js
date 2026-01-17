@@ -1,4 +1,4 @@
-export function levenshtein_distance(a, b): number {
+export function levenshteinDistance(a, b): number {
   const matrix = Array.from({length: a.length + 1}, (_, i) =>
     Array.from({length: b.length + 1}, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
   );

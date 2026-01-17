@@ -1,5 +1,5 @@
-import { ElementView } from 'razomy.graphics/elements/element_view';
-import { WebSvgHighLightsRender }  from 'razomy.graphics/codecs/web/svg/renders/web_svg_high_lights_render';
+import {ElementView} from 'razomy.graphics/elements/element_view';
+import {WebSvgHighLightsRender} from 'razomy.graphics/codecs/web/svg/renders/web_svg_high_lights_render';
 import {CodecRegistry} from 'razomy.graphics/codecs/web/svg/codecs/codec_registry';
 import {CodecFactory} from 'razomy.graphics/codecs/web/svg/codecs/codec_factory';
 import {EncodeNodeFactory} from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
@@ -29,16 +29,16 @@ export class WebSvgRender extends Render<ElementView> {
   }
 
   private iterate(node: ElementView): Node {
-    const value = this.codecFactory.create_by_node(node).encode(node);
+    const value = this.codecFactory.createByNode(node).encode(node);
     this.webSvgHighLightsRender.render(node, value);
-    const node_children = node.children;
-    for (let i = 0; i < node_children.length; i++) {
-      if (!node_children[i]) {
+    const nodeChildren = node.children;
+    for (let i = 0; i < nodeChildren.length; i++) {
+      if (!nodeChildren[i]) {
         continue;
       }
 
-      const sub_value = this.iterate(node_children[i]);
-      value.appendChild(sub_value);
+      const subValue = this.iterate(nodeChildren[i]);
+      value.appendChild(subValue);
     }
 
     return value;

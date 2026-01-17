@@ -1,7 +1,7 @@
-export function is_array_equal<T>(arr_1: T[], arr_2: T[]) {
+export function isArrayEqual<T>(arr1: T[], arr2: T[]) {
   return (
-    arr_1.length === arr_2.length &&
-    arr_1.every((val, index) => val === arr_2[index])
+    arr1.length === arr2.length &&
+    arr1.every((val, index) => val === arr2[index])
   );
 }
 

@@ -1,21 +1,21 @@
-import {format_time_length} from 'razomy.dates/format_time_length';
-import {is_promise} from 'razomy.async/is_promise';
-import {is_main} from './is_main';
+import {formatTimeLength} from 'razomy.dates/format_time_length';
+import {isPromise} from 'razomy.async/is_promise';
+import {isMain} from './is_main';
 import {AsyncCallback, Callback} from 'razomy.action/action';
 
-export async function if_main(import_meta_url_or_module_path: string, callback: Callback | AsyncCallback) {
-  const path = `${import_meta_url_or_module_path}.if_main`;
-  const start_date = Date.now();
+export async function ifMain(importMetaUrlOrModulePath: string, callback: Callback | AsyncCallback) {
+  const path = `${importMetaUrlOrModulePath}.if_main`;
+  const startDate = Date.now();
   try {
-    if (is_main(import_meta_url_or_module_path)) {
+    if (isMain(importMetaUrlOrModulePath)) {
       console.log(`${path}.start`);
-      const void_or_promise = callback();
-      if (is_promise(void_or_promise)) {
-        await void_or_promise;
+      const voidOrPromise = callback();
+      if (isPromise(voidOrPromise)) {
+        await voidOrPromise;
       }
-      const end_date = Date.now();
-      const print_date = format_time_length(end_date - start_date);
-      console.log(`${path}.finish time:${print_date}`);
+      const endDate = Date.now();
+      const printDate = formatTimeLength(endDate - startDate);
+      console.log(`${path}.finish time:${printDate}`);
     } else {
       console.log(`${path}.skip`);
     }

@@ -35,7 +35,7 @@ export class EntityResource extends ObjectResource implements IEntityResource {
     this.resources[obj.type] = obj;
   }
 
-  public get_by<T extends ObjectResource = ObjectResource>(objCtor: Constructor<T>): T {
+  public getBy<T extends ObjectResource = ObjectResource>(objCtor: Constructor<T>): T {
     const ctor: T | ObjectResource = this.resources[objCtor.type];
 
     if (ctor === undefined) {

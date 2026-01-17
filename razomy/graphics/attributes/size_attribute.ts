@@ -34,6 +34,6 @@ export class SizeAttribute extends AttributeResource implements ISizeResource {
       return;
     }
 
-    throw new ArgumentException('unknown',args);
+    throw new ArgumentException('unknown', args);
   }
 }

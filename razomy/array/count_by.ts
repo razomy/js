@@ -1,8 +1,8 @@
-export function count_by(collection, iteratee = (value) => value) {
-    const result = {};
-    if (!collection) return result;
-    const values = Array.isArray(collection) ? collection : Object.values(collection);
-    for (let i = 0; i < values.length; i++) {
+export function countBy(collection, iteratee = (value) => value) {
+  const result = {};
+  if (!collection) return result;
+  const values = Array.isArray(collection) ? collection : Object.values(collection);
+  for (let i = 0; i < values.length; i++) {
     const value = values[i];
     // Apply the iteratee function (Lodash also supports string shorthands here,
     // but this covers the function case in your snippet).
@@ -14,7 +14,7 @@ export function count_by(collection, iteratee = (value) => value) {
     } else {
       result[key] = 1;
     }
-    }
+  }
 
-    return result;
+  return result;
 }

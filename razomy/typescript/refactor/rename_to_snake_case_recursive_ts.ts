@@ -1,5 +1,5 @@
-import {rename_to_snake_case_recursive} from '../../refactor/fs/rename_to_snake_case_recursive';
+import {renameToSnakeCaseRecursive} from 'razomy.refactor/fs';
 
-export function rename_to_snake_case_recursive_ts(dir_path: string) {
-  return rename_to_snake_case_recursive(dir_path, '.ts', 'node_modules');
+export function renameToSnakeCaseRecursiveTs(dirPath: string) {
+  return renameToSnakeCaseRecursive(dirPath, '.ts', 'node_modules');
 }

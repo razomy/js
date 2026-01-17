@@ -1,18 +1,18 @@
-import {get_all_package_jsons} from './get_all_package_jsons';
+import {getAllPackageJsons} from './get_all_package_jsons';
 import fs from 'fs';
 import path from 'path';
 import {iterate} from 'razomy.fs';
 
-export function add_dependencies(project_path: string) {
-  const packages = get_all_package_jsons(project_path);
+export function addDependencies(projectPath: string) {
+  const packages = getAllPackageJsons(projectPath);
 
   const scope = 'razomy'; // Match your scope
 
 // 1. Get list of all available package names
-  const import_regex = new RegExp(`from ['"](${scope}[^'"]+)['"]`, 'g');
+  const importRegex = new RegExp(`from ['"](${scope}[^'"]+)['"]`, 'g');
 
   packages.forEach(folder => {
-    const pkg_json = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
+    const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
     let matches: string[] = []
     iterate(path.dirname(folder.path), (iterate_node) => {
       if (iterate_node.path.includes('node_modules')) {
@@ -34,16 +34,16 @@ export function add_dependencies(project_path: string) {
         return
       }
 
-      const pkg_source = fs.readFileSync(iterate_node.path, 'utf8');
+      const pkgSource = fs.readFileSync(iterate_node.path, 'utf8');
       // 2. Regex to find imports like: from '@my-org/auth'
-      const new_imports = pkg_source.matchAll(import_regex).map(m => m[1].split('/')[0]).toArray()
-      matches = [...matches, ...new_imports];
+      const newImports = pkgSource.matchAll(importRegex).map(m => m[1].split('/')[0]).toArray()
+      matches = [...matches, ...newImports];
     })
 
     // 3. Update dependencies
-    pkg_json.dependencies = pkg_json.dependencies || {};
-    Object.keys(pkg_json.dependencies).filter(i => i.startsWith('razomy')).forEach(i => {
-      delete pkg_json.dependencies[i];
+    pkgJson.dependencies = pkgJson.dependencies || {};
+    Object.keys(pkgJson.dependencies).filter(i => i.startsWith('razomy')).forEach(i => {
+      delete pkgJson.dependencies[i];
     })
 
     let changed = false;
@@ -51,15 +51,15 @@ export function add_dependencies(project_path: string) {
       if (depName == folder.name.replaceAll('/', '.')) {
         return
       }
-      pkg_json.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../../'), project_path), depName
-        .replaceAll('razomy', '')
+      pkgJson.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
+        .replace('razomy', '')
         .replaceAll('.', '/'));
-      console.log(`[${pkg_json.name}] Added dependency: ${depName}`);
+      console.log(`[${pkgJson.name}] Added dependency: ${depName}`);
       changed = true;
     });
 
     if (changed) {
-      fs.writeFileSync(folder.path, JSON.stringify(pkg_json, null, 2));
+      fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2));
     }
   });
 }

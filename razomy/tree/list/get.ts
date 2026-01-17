@@ -5,9 +5,9 @@ export function get<T extends WithChildrenList<any>>(node: T, path: string[], of
     return node;
   }
 
-  for (let child_node of node.children) {
-    if (child_node.value == path[offset]) {
-      return get(child_node, path, offset + 1);
+  for (let childNode of node.children) {
+    if (childNode.value == path[offset]) {
+      return get(childNode, path, offset + 1);
     }
   }
 

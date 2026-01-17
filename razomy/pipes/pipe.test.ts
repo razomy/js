@@ -3,11 +3,11 @@ import {execute} from './execute';
 
 describe('pipe', () => {
   it('pipe', () => {
-    const world_line = line(
+    const worldLine = line(
       (prefix: string) => prefix + ' world',
       (prefix) => prefix + '!'
     )
-    const res = execute(world_line, 'hello')
+    const res = execute(worldLine, 'hello')
     expect(res).toStrictEqual('hello world!')
   })
 });

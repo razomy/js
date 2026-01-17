@@ -5,7 +5,73 @@ export class HslaParser {
    * @field
    * @memberOf Color
    */
-  public static readonly re_hsla = /^hsla?\(\s*(\d{1,3})\s*,\s*(\d{1,3}\%)\s*,\s*(\d{1,3}\%)\s*(?:\s*,\s*(\d+(?:\.\d+)?)\s*)?\)$/i;
+  public static readonly reHsla = /^hsla?\(\s*(\d{1,3})\s*,\s*(\d{1,3}\%)\s*,\s*(\d{1,3}\%)\s*(?:\s*,\s*(\d+(?:\.\d+)?)\s*)?\)$/i;
+
+  /**
+   * Returns color representation in HSL format
+   * @return {String} ex: hsl(0-360,0%-100%,0%-100%)
+   */
+  public static toHsl(source: [number, number, number]): string {
+    const hsl = this.rgbToHsl(source[0], source[1], source[2]);
+    return 'hsl(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%)';
+  }
+
+  /**
+   * Returns color representation in HSLA format
+   * @return {String} ex: hsla(0-360,0%-100%,0%-100%,0-1)
+   */
+  public static toHsla(source: [number, number, number, number]): string {
+    const hsl = this.rgbToHsl(source[0], source[1], source[2]);
+    return 'hsla(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%,' + source[3] + ')';
+  }
+
+  /**
+   * Returns array representation (ex: [100, 100, 200, 1]) of a color that's in HSL or HSLA format.
+   * Adapted from <a href="https://rawgithub.com/mjijackson/mjijackson.github.com/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.html">https://github.com/mjijackson</a>
+   * @memberOf Color
+   * @param {String} color Color value ex: hsl(0-360,0%-100%,0%-100%) or hsla(0-360,0%-100%,0%-100%, 0-1)
+   * @return {Array} source
+   * @see http://http://www.w3.org/TR/css3-color/#hsl-color
+   */
+  public static sourceFromHsl(color: string): [number, number, number, number] | null {
+    const match = color.match(this.reHsla);
+    if (!match) {
+      return null;
+    }
+
+    const h = (((parseFloat(match[1]) % 360) + 360) % 360) / 360;
+    const s = parseFloat(match[2]) / (/%$/.test(match[2]) ? 100 : 1);
+    const l = parseFloat(match[3]) / (/%$/.test(match[3]) ? 100 : 1);
+    let r, g, b;
+
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const q = l <= 0.5 ? l * (s + 1) : l + s - l * s;
+      const p = l * 2 - q;
+
+      r = this.hue2Rgb(p, q, h + 1 / 3);
+      g = this.hue2Rgb(p, q, h);
+      b = this.hue2Rgb(p, q, h - 1 / 3);
+    }
+
+    return [
+      Math.round(r * 255),
+      Math.round(g * 255),
+      Math.round(b * 255),
+      match[4] ? parseFloat(match[4]) : 1
+    ];
+  }
+
+  /**
+   * Returns new color object, when given a color in HSL format
+   * @param {String} color Color value ex: hsl(0-260,0%-100%,0%-100%)
+   * @memberOf Color
+   * @return {Color}
+   */
+  public static fromHsl(color: string): [number, number, number, number] | null {
+    return this.sourceFromHsl(color);
+  }
 
   /**
    * Adapted from <a href="https://rawgithub.com/mjijackson/mjijackson.github.com/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.html">https://github.com/mjijackson</a>
@@ -15,7 +81,7 @@ export class HslaParser {
    * @param {Number} b Blue color value
    * @return {Array} Hsl color
    */
-  private static rgb_to_hsl(r: number, g: number, b: number): [number, number, number] {
+  private static rgbToHsl(r: number, g: number, b: number): [number, number, number] {
     r /= 255;
     g /= 255;
     b /= 255;
@@ -58,32 +124,13 @@ export class HslaParser {
   }
 
   /**
-   * Returns color representation in HSL format
-   * @return {String} ex: hsl(0-360,0%-100%,0%-100%)
-   */
-  public static to_hsl(source: [number, number, number]): string {
-    const hsl = this.rgb_to_hsl(source[0], source[1], source[2]);
-    return 'hsl(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%)';
-  }
-
-  /**
-   * Returns color representation in HSLA format
-   * @return {String} ex: hsla(0-360,0%-100%,0%-100%,0-1)
-   */
-  public static to_hsla(source: [number, number, number, number]): string {
-    const hsl = this.rgb_to_hsl(source[0], source[1], source[2]);
-    return 'hsla(' + hsl[0] + ',' + hsl[1] + '%,' + hsl[2] + '%,' + source[3] + ')';
-  }
-
-
-  /**
    * @private
    * @param {Number} p
    * @param {Number} q
    * @param {Number} t
    * @return {Number}
    */
-  private static hue_2_rgb(p: number, q: number, t: number): number {
+  private static hue2Rgb(p: number, q: number, t: number): number {
     if (t < 0) {
       t += 1;
     }
@@ -100,54 +147,6 @@ export class HslaParser {
       return p + (q - p) * (2 / 3 - t) * 6;
     }
     return p;
-  }
-
-  /**
-   * Returns array representation (ex: [100, 100, 200, 1]) of a color that's in HSL or HSLA format.
-   * Adapted from <a href="https://rawgithub.com/mjijackson/mjijackson.github.com/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.html">https://github.com/mjijackson</a>
-   * @memberOf Color
-   * @param {String} color Color value ex: hsl(0-360,0%-100%,0%-100%) or hsla(0-360,0%-100%,0%-100%, 0-1)
-   * @return {Array} source
-   * @see http://http://www.w3.org/TR/css3-color/#hsl-color
-   */
-  public static source_from_hsl(color: string): [number, number, number, number] | null {
-    const match = color.match(this.re_hsla);
-    if (!match) {
-      return null;
-    }
-
-    const h = (((parseFloat(match[1]) % 360) + 360) % 360) / 360;
-    const s = parseFloat(match[2]) / (/%$/.test(match[2]) ? 100 : 1);
-    const l = parseFloat(match[3]) / (/%$/.test(match[3]) ? 100 : 1);
-    let r, g, b;
-
-    if (s === 0) {
-      r = g = b = l;
-    } else {
-      const q = l <= 0.5 ? l * (s + 1) : l + s - l * s;
-      const p = l * 2 - q;
-
-      r = this.hue_2_rgb(p, q, h + 1 / 3);
-      g = this.hue_2_rgb(p, q, h);
-      b = this.hue_2_rgb(p, q, h - 1 / 3);
-    }
-
-    return [
-      Math.round(r * 255),
-      Math.round(g * 255),
-      Math.round(b * 255),
-      match[4] ? parseFloat(match[4]) : 1
-    ];
-  }
-
-  /**
-   * Returns new color object, when given a color in HSL format
-   * @param {String} color Color value ex: hsl(0-260,0%-100%,0%-100%)
-   * @memberOf Color
-   * @return {Color}
-   */
-  public static from_hsl(color: string): [number, number, number, number] | null {
-    return this.source_from_hsl(color);
   }
 
 }

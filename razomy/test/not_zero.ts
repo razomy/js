@@ -1,3 +1,3 @@
-export function not_zero(value) {
-    return value !== 0;
+export function notZero(value) {
+  return value !== 0;
 }

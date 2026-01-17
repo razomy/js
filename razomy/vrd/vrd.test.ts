@@ -1,9 +1,10 @@
-import {get_vrd} from 'razomy.vrd/get_vrd';
+import {getVrd} from 'razomy.vrd/get_vrd';
 import {Vrd} from 'razomy.vrd/vrd';
-import {merge_vrd} from 'razomy.vrd/merge_vrd';
+import {mergeVrd} from 'razomy.vrd/merge_vrd';
+
 describe('dict', () => {
   describe('value_recursive', () => {
-    describe(get_vrd.name, () => {
+    describe(getVrd.name, () => {
       it('value', () => {
         const node = new Vrd<string>({
           'a1': '',
@@ -16,11 +17,11 @@ describe('dict', () => {
           'a3': '',
           'a4': ''
         })
-        let result = get_vrd(node, ['a2', 'b2'], 0);
+        let result = getVrd(node, ['a2', 'b2'], 0);
         expect(result).toStrictEqual(new Vrd({'c2': ''}));
       })
     });
-    describe(merge_vrd.name, () => {
+    describe(mergeVrd.name, () => {
       it('value', () => {
         const a = new Vrd({
           'a1': '',
@@ -64,7 +65,7 @@ describe('dict', () => {
             'b1': ''
           }),
         })
-        let result = merge_vrd(a, b, '');
+        let result = mergeVrd(a, b, '');
         expect(result).toStrictEqual(c);
       })
     });

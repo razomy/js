@@ -1,8 +1,9 @@
 export class ArgumentError {
-  constructor(public value: any) {}
+  constructor(public value: any) {
+  }
 }
 
-export function not_empty(value) {
+export function notEmpty(value) {
   if (value === null || value === undefined || value === '') {
     return false;
   }

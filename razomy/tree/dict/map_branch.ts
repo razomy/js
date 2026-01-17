@@ -12,10 +12,10 @@ export type RootDictOrLeaf<T> = RootDict<T> | Leaf<T>
 export interface RootDict<T, R = unknown> extends WithChildrenDict<R> {
 }
 
-export function map_branch<I, O>(
+export function mapBranch<I, O>(
   parent: RootDict<O>,
   input: BranchDictOrLeaf<I>,
-  leaf_value_cb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O
+  leafValueCb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O
 ): BranchDictOrLeaf<O> {
   if ('children' in input) {
 
@@ -23,15 +23,15 @@ export function map_branch<I, O>(
       value: input.value,
       children: {}
     };
-    for (let input_key in input.children) {
-      const value = input[input_key];
-      otput[input_key] = map_branch(otput, value, leaf_value_cb)
+    for (let inputKey in input.children) {
+      const value = input[inputKey];
+      otput[inputKey] = mapBranch(otput, value, leafValueCb)
     }
 
     return otput;
   } else {
     return {
-      value: leaf_value_cb(input, parent)
+      value: leafValueCb(input, parent)
     }
   }
 }

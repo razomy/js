@@ -1,24 +1,24 @@
 import fs from 'fs';
 import {FilePathString} from 'razomy.path/string/path_string';
 
-export function file_path_count(file_path: FilePathString) {
+export function filePathCount(filePath: FilePathString) {
   try {
-    const code = fs.readFileSync(file_path, 'utf8');
+    const code = fs.readFileSync(filePath, 'utf8');
     const matches = code.trim().match(/\b\w+\b/g) || [];
     const tokens = matches;
 
     console.log(tokens.length);
     // Count the tokens by type
-    const token_count_by_type = {};
+    const tokenCountByType = {};
     tokens.forEach(token => {
-      if (token_count_by_type[token]) {
-        token_count_by_type[token]++;
+      if (tokenCountByType[token]) {
+        tokenCountByType[token]++;
       } else {
-        token_count_by_type[token] = 1;
+        tokenCountByType[token] = 1;
       }
     });
 
-    return token_count_by_type;
+    return tokenCountByType;
   } catch (error) {
     console.error('Error reading or parsing the file:', error);
     return null;

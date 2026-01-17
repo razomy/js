@@ -1,7 +1,7 @@
-import { String } from 'razomy.string/string';
-import { Index } from 'razomy.index/index_';
-import { Number } from 'razomy.number/number';
+import {String} from 'razomy.string/string';
+import {Index} from 'razomy.index/index_';
+import {Number} from 'razomy.number/number';
 
-export function remove_index_string(string: String, index: Index, length: Number): String {
-    return string.substring(0, index) + string.substring(index + length);
+export function removeIndexString(string: String, index: Index, length: Number): String {
+  return string.substring(0, index) + string.substring(index + length);
 }

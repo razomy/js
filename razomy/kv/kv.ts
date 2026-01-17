@@ -23,6 +23,6 @@ export class Kv<KT, VT> extends Array<any> {
   }
 }
 
-export function is_kv<KT, VT>(obj: unknown): obj is KeyValuable<KT, VT> {
+export function isKv<KT, VT>(obj: unknown): obj is KeyValuable<KT, VT> {
   return obj instanceof Kv;
 }

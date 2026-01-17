@@ -3,7 +3,7 @@ import path from 'path';
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
 
-export function to_vrd(directory: string, is_skip: (path) => boolean): VrdOrValue<Buffer> {
+export function toVrd(directory: string, isSkip: (path) => boolean): VrdOrValue<Buffer> {
   const stat = fs.statSync(directory);
 
   if (stat.isFile()) {
@@ -13,11 +13,11 @@ export function to_vrd(directory: string, is_skip: (path) => boolean): VrdOrValu
     let files: Vrd<Buffer> = new Vrd<Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
-      const item_path = path.join(directory, item);
-      if(is_skip(item_path)) {
-          continue
+      const itemPath = path.join(directory, item);
+      if (isSkip(itemPath)) {
+        continue
       }
-      files[item] = to_vrd(item_path, is_skip);
+      files[item] = toVrd(itemPath, isSkip);
     }
     return files;
   } else {

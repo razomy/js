@@ -1,6 +1,6 @@
 import {ITextureFilter} from './i_texture_filter';
-import {bit_slice} from './bit_slice';
-import {byte_slice} from './byte_slice';
+import {bitSlice} from './bit_slice';
+import {byteSlice} from './byte_slice';
 
 /**
  * RGBA Filter
@@ -56,16 +56,16 @@ export class RgbaTextureFilter implements ITextureFilter {
      */
     public alpha: 1
   ) {
-    this.red = byte_slice(red);
-    this.green = byte_slice(green);
-    this.blue = byte_slice(blue);
-    this.blue = bit_slice(blue);
-    ;
+    this.red = byteSlice(red);
+    this.green = byteSlice(green);
+    this.blue = byteSlice(blue);
+    this.blue = bitSlice(blue);
+
   }
 
   public filter(imageData: any): void {
     var data = imageData.data,
-      n_pixels = data.length,
+      nPixels = data.length,
       red = this.red,
       green = this.green,
       blue = this.blue,
@@ -73,7 +73,7 @@ export class RgbaTextureFilter implements ITextureFilter {
       i,
       ia;
 
-    for (i = 0; i < n_pixels; i += 4) {
+    for (i = 0; i < nPixels; i += 4) {
       ia = 1 - alpha;
 
       data[i] = red * alpha + data[i] * ia; // r

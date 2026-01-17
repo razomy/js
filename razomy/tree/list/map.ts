@@ -1,5 +1,5 @@
 import {WithChildrenList} from 'razomy.tree/list/with_children_list';
-import {map_children} from './map_children';
+import {mapChildren} from './map_children';
 
 
 export function map<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
@@ -7,7 +7,7 @@ export function map<I extends WithChildrenList<any>, O extends WithChildrenList<
   cb: (input: I) => O
 ): O {
   const otput = cb(input);
-  otput.children = map_children(input.children, cb);
+  otput.children = mapChildren(input.children, cb);
   return otput;
 }
 

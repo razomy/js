@@ -1,4 +1,3 @@
-
-export function insert_total_count(total_count) {
-    return `\n[Chunk:${total_count} Count:${total_count * 500}]\n`;
+export function insertTotalCount(totalCount) {
+  return `\n[Chunk:${totalCount} Count:${totalCount * 500}]\n`;
 }

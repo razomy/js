@@ -1,8 +1,8 @@
-import {to_formatted_string} from './to_formatted_string';
-import {object_to_bytes} from './object_to_bytes';
+import {toFormattedString} from './to_formatted_string';
+import {objectToBytes} from './object_to_bytes';
 
-export function object_to_formatted_string(obj: unknown): string {
-  const size_in_bytes = object_to_bytes(obj);
-  const formatted_size = to_formatted_string(size_in_bytes);
-  return formatted_size;
+export function objectToFormattedString(obj: unknown): string {
+  const sizeInBytes = objectToBytes(obj);
+  const formattedSize = toFormattedString(sizeInBytes);
+  return formattedSize;
 }

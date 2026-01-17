@@ -1,19 +1,20 @@
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {VrdOrValue} from 'razomy.vrd/vrd';
 import {DictKey} from 'razomy.dict/dict';
-export function get_vrd<T>(value_recursive: VrdOrValue<T>, path: DictKey[], path_offset: number): VrdOrValue<T> {
-  for (let key in value_recursive!) {
-    if (key !== path[path_offset]) {
+
+export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: DictKey[], pathOffset: number): VrdOrValue<T> {
+  for (let key in valueRecursive!) {
+    if (key !== path[pathOffset]) {
       continue;
     }
-    path_offset += 1;
+    pathOffset += 1;
 
-    if (path_offset >= path.length) {
-      return value_recursive[key];
+    if (pathOffset >= path.length) {
+      return valueRecursive[key];
     }
 
-    return get_vrd(value_recursive[key], path, path_offset)
+    return getVrd(valueRecursive[key], path, pathOffset)
   }
 
-  throw new ArgumentException('invalid arguments', {value_recursive, path, path_offset})
+  throw new ArgumentException('invalid arguments', {valueRecursive, path, pathOffset})
 }

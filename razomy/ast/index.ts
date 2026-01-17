@@ -1,1 +1,1 @@
-export { type Ast } from './ast';
+export {type Ast} from './ast';

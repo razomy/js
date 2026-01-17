@@ -1,6 +1,6 @@
 import {String} from '../string';
 
-export function to_kebab_case(input: String) {
+export function toKebabCase(input: String) {
   let text = input;
 
   return text

@@ -1,26 +1,26 @@
 import fs from 'fs';
 import path from 'path';
-import {compare_versions} from './compare_versions';
+import {compareVersions} from './compare_versions';
 
-export async function git_file_commits_to_commit_json_file(
-  repository_path_root: string,
-  file_sub_path: string,
+export async function gitFileCommitsToCommitJsonFile(
+  repositoryPathRoot: string,
+  fileSubPath: string,
 ) {
 
-  const new_ffile = path.join(repository_path_root, file_sub_path + '.json');
+  const newFfile = path.join(repositoryPathRoot, fileSubPath + '.json');
   fs.writeFileSync(
-    new_ffile,
+    newFfile,
     '',
     'utf8',
   );
 
   // Usage example
-  const history = await compare_versions(repository_path_root, file_sub_path);
-  const history_json = JSON.stringify(history);
+  const history = await compareVersions(repositoryPathRoot, fileSubPath);
+  const historyJson = JSON.stringify(history);
 
   fs.writeFileSync(
-    new_ffile,
-    history_json,
+    newFfile,
+    historyJson,
     'utf8',
   );
 

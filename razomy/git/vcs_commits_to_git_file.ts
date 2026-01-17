@@ -1,21 +1,21 @@
-import {execute_async} from 'razomy.shell/execute_async';
+import {executeAsync} from 'razomy.shell/execute_async';
 import {progress} from 'razomy.shell/progress';
-import  { addss_to_string,ActorDatetimeDeltaString} from 'razomy.commit/datetime/delta/string/addss_to_string';
-import {try_set} from 'razomy.fs/file/try_set';
+import {ActorDatetimeDeltaString, addssToString} from 'razomy.commit/datetime/delta/string/addss_to_string';
+import {trySet} from 'razomy.fs/file/try_set';
 
-export async function vcs_commits_to_git_file(prev_snapshot: string, dir_path: string, file_name: string, commits: ActorDatetimeDeltaString[]) {
+export async function vcsCommitsToGitFile(prevSnapshot: string, dirPath: string, fileName: string, commits: ActorDatetimeDeltaString[]) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {
       continue;
     }
-    prev_snapshot = addss_to_string(prev_snapshot, [commit]);
-    try_set(file_name, prev_snapshot);
+    prevSnapshot = addssToString(prevSnapshot, [commit]);
+    trySet(fileName, prevSnapshot);
     progress(i, commits.length);
-    await execute_async(`git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`, {cwd: dir_path});
+    await executeAsync(`git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`, {cwd: dirPath});
   }
   progress(commits.length, commits.length);
-  await execute_async('git gc', {cwd: dir_path});
+  await executeAsync('git gc', {cwd: dirPath});
 }
 
 

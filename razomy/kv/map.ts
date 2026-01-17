@@ -1,40 +1,41 @@
-import  { is_kv,ArrayKeyValuable, KeyValuable, Valuable, Value} from 'razomy.kv/kv';
+import {ArrayKeyValuable, isKv, KeyValuable, Valuable, Value} from 'razomy.kv/kv';
 import {Function} from 'razomy.function';
-import {is_akv} from './is_akv';
+import {isAkv} from './is_akv';
 import {akv} from './akv';
+
 export function map<IV, OV>(
   input: Value<IV>,
-  map_cb: Function<[Value<IV>], Value<OV>>
+  mapCb: Function<[Value<IV>], Value<OV>>
 ): Value<OV>;
 export function map<K, IV, OV>(
   input: KeyValuable<K, IV>,
-  map_cb: Function<[KeyValuable<K, IV>], KeyValuable<K, OV>>
+  mapCb: Function<[KeyValuable<K, IV>], KeyValuable<K, OV>>
 ): KeyValuable<K, OV>;
 export function map<K, IV, OV>(
   input: ArrayKeyValuable<K, IV>,
-  map_cb: Function<[ArrayKeyValuable<K, IV>], ArrayKeyValuable<K, OV>>
+  mapCb: Function<[ArrayKeyValuable<K, IV>], ArrayKeyValuable<K, OV>>
 ): ArrayKeyValuable<K, OV>;
 export function map<K, IV, OV>(
   value: Valuable<K, IV>,
-  map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
+  mapCb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV>;
 export function map<K, IV, OV>(
   value: Valuable<K, IV>,
-  map_cb: Function<[Valuable<K, IV>], Valuable<K, OV>>
+  mapCb: Function<[Valuable<K, IV>], Valuable<K, OV>>
 ): Valuable<K, OV> {
-  if (is_kv(value)) {
-    const mapped = map_cb(value);
-    mapped[1] = map(mapped[1], map_cb);
+  if (isKv(value)) {
+    const mapped = mapCb(value);
+    mapped[1] = map(mapped[1], mapCb);
     return mapped;
-  } else if (is_akv(value)) {
-    const mapped = map_cb(value);
-    if (is_akv(mapped)) {
-      const mapped_twice = mapped.map((child) => map(child as any, map_cb) as KeyValuable<K, OV>);
-      return akv(...mapped_twice);
+  } else if (isAkv(value)) {
+    const mapped = mapCb(value);
+    if (isAkv(mapped)) {
+      const mappedTwice = mapped.map((child) => map(child as any, mapCb) as KeyValuable<K, OV>);
+      return akv(...mappedTwice);
     }
     return mapped;
   } else {
-    return map_cb(value);
+    return mapCb(value);
   }
 }
 

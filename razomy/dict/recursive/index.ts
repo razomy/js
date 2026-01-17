@@ -1,1 +1,1 @@
-export { type RecursiveDict } from './recursive';
+export {type RecursiveDict} from './recursive';

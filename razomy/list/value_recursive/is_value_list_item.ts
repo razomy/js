@@ -1,5 +1,5 @@
 import {ValueListItem} from './get_value';
 
-export function is_value_list_item(node: unknown): node is ValueListItem<string> {
-    return Array.isArray(node) && node.length === 2 && typeof node[0] === 'string';
+export function isValueListItem(node: unknown): node is ValueListItem<string> {
+  return Array.isArray(node) && node.length === 2 && typeof node[0] === 'string';
 }

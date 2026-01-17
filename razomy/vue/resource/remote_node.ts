@@ -13,7 +13,7 @@ export class RemoteNode {
     this.ctx.resource.store.on(this.key, this.render);
   }
 
-  update_key(key: string) {
+  updateKey(key: string) {
     this.render(this.ctx.resource.store.get(this.key))
     this.ctx.resource.store.off(this.key, this.render);
     this.key = key;

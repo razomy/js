@@ -1,4 +1,3 @@
-
 export interface ITreeNodeAttribute {
   parent: ITreeNodeAttribute | null;
   prev: ITreeNodeAttribute | null;

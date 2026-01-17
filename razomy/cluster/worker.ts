@@ -1,7 +1,7 @@
 import {Event} from 'razomy.event/event_to_promise';
 
 export interface WithWorkerId {
-  worker_id: string;
+  workerId: string;
 }
 
 export interface WorkerEvent<T> extends Event<T> {

@@ -1,22 +1,22 @@
 import {ArgumentException} from 'razomy.exceptions/argument_exception';
 import {WithPathString} from 'razomy.path/string/path_string';
-import {is_mac_ds_store_key} from './is_mac_ds_store_key';
+import {isMacDsStoreKey} from './is_mac_ds_store_key';
 
-export const python_dependencies = ['.venv'];
-export const nodejs_dependencies = ['node_modules'];
-export const unity_dependencies = ['Library'];
+export const pythonDependencies = ['.venv'];
+export const nodejsDependencies = ['node_modules'];
+export const unityDependencies = ['Library'];
 
-export const known_dependencies = [
-  ...python_dependencies,
-  ...nodejs_dependencies,
-  ...unity_dependencies,
+export const knownDependencies = [
+  ...pythonDependencies,
+  ...nodejsDependencies,
+  ...unityDependencies,
 ];
 
-export const git_slug = '.git';
-export const mac_ds_store_file = '.DS_Store';
+export const gitSlug = '.git';
+export const macDsStoreFile = '.DS_Store';
 
 export class IsMacDsStoreKeyArgumentException extends ArgumentException<WithPathString> {
   constructor(path: string) {
-    super(is_mac_ds_store_key.name, {path_string: path});
+    super(isMacDsStoreKey.name, {pathString: path});
   }
 }

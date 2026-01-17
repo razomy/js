@@ -1,36 +1,36 @@
 import fs from 'fs';
-import {generate_random_character} from './generate_random_character';
-import {insert_total_count} from './insert_total_count';
+import {generateRandomCharacter} from './generate_random_character';
+import {insertTotalCount} from './insert_total_count';
 
-export function generate_file(file_path, file_size) {
-    const chunk_size = 500;
-    let total_count = 0;
-    const writable_stream = fs.createWriteStream(file_path);
+export function generateFile(filePath, fileSize) {
+  const chunkSize = 500;
+  let totalCount = 0;
+  const writableStream = fs.createWriteStream(filePath);
 
-    function write_next_chunk() {
-        if (total_count * chunk_size < file_size) {
-          let chunk = '';
-          for (let i = 0; i < chunk_size; i++) {
-            chunk += generate_random_character();
-          }
+  function writeNextChunk() {
+    if (totalCount * chunkSize < fileSize) {
+      let chunk = '';
+      for (let i = 0; i < chunkSize; i++) {
+        chunk += generateRandomCharacter();
+      }
 
-          const count_info = insert_total_count(total_count);
-          total_count++;
+      const countInfo = insertTotalCount(totalCount);
+      totalCount++;
 
-          if (!writable_stream.write(chunk + count_info)) {
-            writable_stream.once('drain', write_next_chunk);
-          } else {
-            write_next_chunk();
-          }
-        } else {
-          writable_stream.end(() => {
-            console.log(`File created successfully at ${file_path}`);
-          });
-        }
+      if (!writableStream.write(chunk + countInfo)) {
+        writableStream.once('drain', writeNextChunk);
+      } else {
+        writeNextChunk();
+      }
+    } else {
+      writableStream.end(() => {
+        console.log(`File created successfully at ${filePath}`);
+      });
     }
+  }
 
-    writable_stream.on('error', (err) => {
+  writableStream.on('error', (err) => {
     console.error('Error while writing the file:', err);
-    });
-    write_next_chunk();
+  });
+  writeNextChunk();
 }

@@ -1,1 +1,1 @@
-export { type Gate } from './gate';
+export {type Gate} from './gate';

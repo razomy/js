@@ -1,12 +1,13 @@
-import { assign } from 'razomy.key/assign';
-export function unflatten(data: Record<string, any>, assign_ = assign): Record<string, any> {
-    if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-    return data;
-    }
+import {assign} from 'razomy.key/assign';
 
-    const regex = new RegExp(`\\${assign_}?([^${assign_}[\]]+)|\[(\d+)]`, 'g');
-    const resultholder: Record<string, any> = {};
-    for (const p in data) {
+export function unflatten(data: Record<string, any>, assign_ = assign): Record<string, any> {
+  if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+    return data;
+  }
+
+  const regex = new RegExp(`\\${assign_}?([^${assign_}[\]]+)|\[(\d+)]`, 'g');
+  const resultholder: Record<string, any> = {};
+  for (const p in data) {
     let cur = resultholder;
     let prop = '';
     let m;
@@ -15,7 +16,7 @@ export function unflatten(data: Record<string, any>, assign_ = assign): Record<s
       prop = m[2] || m[1];
     }
     cur[prop] = data[p];
-    }
+  }
 
-    return resultholder[''] || resultholder;
+  return resultholder[''] || resultholder;
 }

@@ -1,4 +1,3 @@
-
 export class ZoomAttribute {
   step: number = 0.1;
   zoom: number = 1;

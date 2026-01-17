@@ -1,1 +1,1 @@
-export { type Constructor } from './constructor_';
+export {type Constructor} from './constructor_';

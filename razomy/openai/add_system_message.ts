@@ -1,4 +1,4 @@
-export function add_system_message(ctx, task) {
+export function addSystemMessage(ctx, task) {
   const messages = ctx.messages || [];
   messages.push(
     {

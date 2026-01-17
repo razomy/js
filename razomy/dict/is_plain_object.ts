@@ -1,4 +1,4 @@
-export function is_plain_object(value) {
+export function isPlainObject(value) {
   if (typeof value !== 'object' || value === null) {
     return false;
   }

@@ -3,18 +3,18 @@ import {Project, SourceFile} from 'ts-morph';
 
 export interface IterateSourceFileState {
   project: Project,
-  source_file: SourceFile
+  sourceFile: SourceFile
 }
 
-export async function iterate_source_files_and_save(project_path: String, action: Action<IterateSourceFileState>) {
+export async function iterateSourceFilesAndSave(projectPath: String, action: Action<IterateSourceFileState>) {
   const project = new Project({
-    tsConfigFilePath: project_path + 'tsconfig.json',
+    tsConfigFilePath: projectPath + 'tsconfig.json',
     skipAddingFilesFromTsConfig: false,
   });
 
-  const source_files = project.getSourceFiles();
-  for (const source_file of source_files) {
-    action({project, source_file})
+  const sourceFiles = project.getSourceFiles();
+  for (const sourceFile of sourceFiles) {
+    action({project, sourceFile})
   }
   await project.save();
 }

@@ -13,15 +13,15 @@ export class ElementView extends ViewGraphic {
   }
 
   public get width() {
-    return this.get_by(SizeAttribute).width;
+    return this.getBy(SizeAttribute).width;
   }
 
   public get height() {
-    return this.get_by(SizeAttribute).height;
+    return this.getBy(SizeAttribute).height;
   }
 
   public get children() {
-    return this.get_by<ResourceCollection<ElementView>>(ResourceCollection).get_all();
+    return this.getBy<ResourceCollection<ElementView>>(ResourceCollection).getAll();
   }
 
 }

@@ -2,7 +2,7 @@ import {ConsoleLogger} from 'razomy.logging/console_logger';
 import {Logger} from 'razomy.logging/none_logger';
 
 export class TaskQueue {
-  private is_processing = false;
+  private isProcessing = false;
   private queue: {
     id: number;
     task: () => Promise<any>;
@@ -11,7 +11,8 @@ export class TaskQueue {
   }[] = [];
   private id = 0;
 
-  constructor(private ctx: { logger: Logger } = { logger: new ConsoleLogger() }) {}
+  constructor(private ctx: { logger: Logger } = {logger: new ConsoleLogger()}) {
+  }
 
   /**
    * Adds a task to the queue and returns a Promise that resolves
@@ -23,28 +24,30 @@ export class TaskQueue {
 
     return new Promise<T>((resolve, reject) => {
       // 1. Wrap the task to ensure it is always a Promise
-      async function wrapped_task () { return Promise.resolve(task()); }
+      async function wrappedTask() {
+        return Promise.resolve(task());
+      }
 
       // 2. Push the task AND its controller (resolve/reject) to the queue
       this.queue.push({
         id,
-        task: wrapped_task,
+        task: wrappedTask,
         resolve,
         reject
       });
 
       // 3. Trigger processing
-      this.try_process_queue();
+      this.tryProcessQueue();
     });
   }
 
-  private async try_process_queue() {
+  private async tryProcessQueue() {
     // If already running or empty, do nothing
-    if (this.is_processing || this.queue.length === 0) {
+    if (this.isProcessing || this.queue.length === 0) {
       return;
     }
 
-    this.is_processing = true;
+    this.isProcessing = true;
 
     // Process tasks until the queue is empty
     while (this.queue.length > 0) {
@@ -69,6 +72,6 @@ export class TaskQueue {
       }
     }
 
-    this.is_processing = false;
+    this.isProcessing = false;
   }
 }

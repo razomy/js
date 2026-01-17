@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export function is_empty(path) {
+export function isEmpty(path) {
   const stats = fs.statSync(path);
   return stats.size === 0;
 }

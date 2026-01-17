@@ -1,10 +1,10 @@
 import {NotImplementedException} from 'razomy.exceptions/not_implemented_exception';
-import { ElementView } from 'razomy.graphics/elements/element_view';
-import { CodecConfig }  from 'razomy.graphics/codecs/web/svg/codecs/codec_config';
-import { CodecFactory }  from 'razomy.graphics/codecs/web/svg/codecs/codec_factory';
-import { CodecRegistry }  from 'razomy.graphics/codecs/web/svg/codecs/codec_registry';
-import { EncodeNodeFactory }  from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
-import { Codec } from 'razomy.codec/codec';
+import {ElementView} from 'razomy.graphics/elements/element_view';
+import {CodecConfig} from 'razomy.graphics/codecs/web/svg/codecs/codec_config';
+import {CodecFactory} from 'razomy.graphics/codecs/web/svg/codecs/codec_factory';
+import {CodecRegistry} from 'razomy.graphics/codecs/web/svg/codecs/codec_registry';
+import {EncodeNodeFactory} from 'razomy.graphics/codecs/web/svg/codecs/encode_node_factory';
+import {Codec} from 'razomy.codec/codec';
 import {ResourceCollection} from 'razomy.resources/resource_collection';
 
 export class WebSvgCodec implements Codec<ElementView, Node> {
@@ -18,7 +18,7 @@ export class WebSvgCodec implements Codec<ElementView, Node> {
   }
 
   decode(value: Node): ElementView {
-    return this.iterate(<HTMLElement> value);
+    return this.iterate(<HTMLElement>value);
   }
 
   public encode(node: ElementView): Node {
@@ -28,14 +28,14 @@ export class WebSvgCodec implements Codec<ElementView, Node> {
   private iterate(value: HTMLElement): ElementView {
     const node = this.codecFactory.create(value).decode(value);
 
-    const value_children = value.childNodes;
-    for (let i = 0; i < value_children.length; i++) {
-      if (!value_children[i]) {
+    const valueChildren = value.childNodes;
+    for (let i = 0; i < valueChildren.length; i++) {
+      if (!valueChildren[i]) {
         continue;
       }
 
-      const sub_node = this.iterate(<HTMLElement> value_children[i]);
-      node.get_by(ResourceCollection).add(sub_node);
+      const subNode = this.iterate(<HTMLElement>valueChildren[i]);
+      node.getBy(ResourceCollection).add(subNode);
     }
 
     return node;

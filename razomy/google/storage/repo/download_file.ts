@@ -1,9 +1,9 @@
-import { Storage } from '@google-cloud/storage';
-import {download_file_recursive_file} from './download_file_recursive_file';
+import {Storage} from '@google-cloud/storage';
+import {downloadFileRecursiveFile} from './download_file_recursive_file';
 
-export async function download_file(bucket_name: string, file_path, folder_path) {
-    const storage = new Storage();
-    const bucket = storage.bucket(bucket_name);
-    const file = await bucket.file(file_path);
-    await download_file_recursive_file(file, folder_path, '');
+export async function downloadFile(bucketName: string, filePath, folderPath) {
+  const storage = new Storage();
+  const bucket = storage.bucket(bucketName);
+  const file = await bucket.file(filePath);
+  await downloadFileRecursiveFile(file, folderPath, '');
 }

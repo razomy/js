@@ -1,15 +1,15 @@
 export interface WithDirPath {
-  dir_path: string;
+  dirPath: string;
 }
 
 export interface WithFileName {
-  file_name: string;
+  fileName: string;
 }
 
 export interface WithFilePath {
-  file_path: string;
+  filePath: string;
 }
 
 export interface WithSourcePath {
-  source_path: string;
+  sourcePath: string;
 }

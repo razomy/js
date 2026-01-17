@@ -1,9 +1,9 @@
 import {OpenAI} from 'openai';
 
 export interface OpenAiCtx {
-    openai: OpenAI
+  openai: OpenAI
 }
 
 export interface WithOpenAiCtx {
-    openai: OpenAiCtx
+  openai: OpenAiCtx
 }

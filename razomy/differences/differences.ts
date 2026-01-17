@@ -1,14 +1,13 @@
 import {progress} from 'razomy.shell/progress';
-import {Difference} from 'razomy.difference';
-import {DifferenceType} from 'razomy.difference';
-import {first_equal_indexes} from 'razomy.indexes/first_equal_indexes';
+import {Difference, DifferenceType} from 'razomy.difference';
+import {firstEqualIndexes} from 'razomy.indexes/first_equal_indexes';
 
 /** a was, b become */
 export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
   const diffs = [] as Difference<T>[];
   let last: Difference<T> | null = null;
 
-  function add_diff(type: DifferenceType, value: T) {
+  function addDiff(type: DifferenceType, value: T) {
     if (last?.type === type) {
       last.value = sum(last.value, value);
     } else {
@@ -17,34 +16,34 @@ export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
     }
   }
 
-  let a_i = 0;
-  let b_i = 0;
+  let aI = 0;
+  let bI = 0;
 
-  while (a_i < a.length && b_i < b.length) {
-    progress(b_i, b.length);
-    if (a[a_i] === b[b_i]) {
-      add_diff('unchanged', a[a_i]);
-      a_i++;
-      b_i++;
+  while (aI < a.length && bI < b.length) {
+    progress(bI, b.length);
+    if (a[aI] === b[bI]) {
+      addDiff('unchanged', a[aI]);
+      aI++;
+      bI++;
     } else {
-      let [n_a_i, n_b_i] = first_equal_indexes(a, b, a_i, b_i);
+      let [nAi, nBi] = firstEqualIndexes(a, b, aI, bI);
 
-      if (a_i < n_a_i) {
-        add_diff('removed', sum(...a.slice(a_i, n_a_i)));
-        a_i = n_a_i;
+      if (aI < nAi) {
+        addDiff('removed', sum(...a.slice(aI, nAi)));
+        aI = nAi;
       }
 
-      if (b_i < n_b_i) {
-        add_diff('added', sum(...b.slice(b_i, n_b_i)));
-        b_i = n_b_i;
+      if (bI < nBi) {
+        addDiff('added', sum(...b.slice(bI, nBi)));
+        bI = nBi;
       }
     }
   }
 
-  if (a_i < a.length) {
-    add_diff('removed', sum(...a.slice(a_i)));
-  } else if (b_i < b.length) {
-    add_diff('added', sum(...b.slice(b_i)));
+  if (aI < a.length) {
+    addDiff('removed', sum(...a.slice(aI)));
+  } else if (bI < b.length) {
+    addDiff('added', sum(...b.slice(bI)));
   }
 
   return diffs;

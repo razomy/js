@@ -3,23 +3,23 @@ import perf_hooks from 'perf_hooks';
 export const {performance} = perf_hooks;
 
 export class Performance {
-  start_time: number;
-  end_time: number;
+  startTime: number;
+  endTime: number;
 
   constructor() {
-    this.start_time = performance.now();
-    this.end_time = performance.now();
+    this.startTime = performance.now();
+    this.endTime = performance.now();
 
   }
 
   tick() {
-    this.end_time = performance.now();
-    const execution_time = this.end_time - this.start_time;
-    this.start_time = this.end_time;
-    return execution_time;
+    this.endTime = performance.now();
+    const executionTime = this.endTime - this.startTime;
+    this.startTime = this.endTime;
+    return executionTime;
   }
 
-  tick_and_log(key: string = 'default') {
+  tickAndLog(key: string = 'default') {
     console.log(`Execution time: key=${key} time=${this.tick()} milliseconds`);
   }
 }

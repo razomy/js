@@ -1,26 +1,30 @@
 import path from 'path';
-import {get_json} from 'razomy.fs/file/get_json';
-import {set_json} from 'razomy.fs/file/set_json';
-import {get_all_package_jsons} from './get_all_package_jsons';
+import {getJson} from 'razomy.fs/file/get_json';
+import {setJson} from 'razomy.fs/file/set_json';
+import {getAllPackageJsons} from './get_all_package_jsons';
+import {flat} from 'razomy.array';
 
-export function create_package(project_path: string) {
-  const root_dir: string = path.resolve(project_path);
-  const packages = get_all_package_jsons(project_path);
+export function createPackage(projectPath: string) {
+  const rootDir: string = path.resolve(projectPath);
+  const packages = getAllPackageJsons(projectPath);
 
-  const package_file = get_json(path.join(root_dir,  'package.json'));
-  package_file.workspaces = packages.map(folder => './' + folder.name)
-  package_file.dependencies = Object.fromEntries(
+  const packageFile = getJson(path.join(rootDir, 'package.json'));
+  packageFile.workspaces = packages.map(folder => './' + folder.name)
+  packageFile.dependencies = Object.fromEntries(
     packages.map(folder => [folder.name.replaceAll('/', '.'), './' + folder.name])
   );
-  set_json(path.join(root_dir,  'package.json'), package_file, true)
+  setJson(path.join(rootDir, 'package.json'), packageFile, true)
 
-  const ts_file = get_json(path.join(root_dir,  'tsconfig.json'));
-  // ts_file.compilerOptions.paths = Object.fromEntries(
-  //   packages.map(folder => ['razomy.' + folder.name.replaceAll('/', '.'), ['./src/' + folder.name]])
-  // );
-  // ts_file.compilerOptions.paths.razomy = ['./src']
-  // ts_file.compilerOptions.paths['razomy/*'] = ['./src/*']
-  set_json(path.join(root_dir,  'tsconfig.json'), ts_file, true)
+  const tsFile = getJson(path.join(rootDir, 'tsconfig.json'));
+  tsFile.compilerOptions.paths = Object.fromEntries(
+    flat(
+      packages.map(folder => [
+        [folder.name.replaceAll('/', '.'), ['./' + folder.name]],
+        [folder.name.replaceAll('/', '.') + '/*', ['./' + folder.name + '/*']]
+      ]),
+    ).reverse()
+  );
+  setJson(path.join(rootDir, 'tsconfig.json'), tsFile, true)
 }
 
 

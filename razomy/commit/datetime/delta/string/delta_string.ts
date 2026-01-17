@@ -1,10 +1,10 @@
 export interface RemoveDeltaString {
-  remove_length: number,
+  removeLength: number,
   offset: number,
 }
 
 export interface AddDeltaString {
-  add_value: string,
+  addValue: string,
   offset: number,
 }
 

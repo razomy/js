@@ -1,1 +1,1 @@
-export { separate_strings } from './separate_strings';
+export {separateStrings} from './separate_strings';

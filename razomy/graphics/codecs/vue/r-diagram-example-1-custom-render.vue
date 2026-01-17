@@ -13,16 +13,13 @@
 </style>
 
 <script lang='ts'>
-import { ElementView } from 'razomy.graphics/elements/element-view';
-import { WebCanvasHighLightsRender } from 'razomy.web/canvas/renders/web-canvas-highlights-render';
-import { RenderFactory, WebCanvasRender } from 'razomy.web/canvas/renders/web-canvas-render';
-import { WebSvgCodec } from 'razomy.web/svg/codecs/web-svg-codec';
-import { WebSvgRender } from 'razomy.web/svg/renders/svg-dom-render';
-import { WebSvgHighLightsRender } from 'razomy.web/svg/renders/web-svg-highlights-render';
-import { WebSvgContext } from 'razomy.web/svg/web-svg-context';
-import {Render} from 'razomy.renderes/render.js';
-import { SelectionAttribute } from 'razomy.selection-attribute';
-import { UserEntity } from 'razomy.user-entity';
+import {RenderFactory, WebCanvasHighLightsRender} from '../web/canvas/renders';
+import {WebSvgCodec} from '../web/svg/codecs';
+import {WebSvgHighLightsRender, WebSvgRender} from '../web/svg/renders';
+import {WebSvgContext} from '../web/svg';
+import {Render} from '../../renderes';
+import {SelectionAttribute, UserEntity} from '../../graphic';
+import {ElementView} from '../../elements';
 import { Component, Prop, Watch } from 'nuxt-property-decorator';
 import {Vue} from 'vue';
 

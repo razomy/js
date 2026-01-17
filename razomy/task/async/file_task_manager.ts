@@ -3,7 +3,7 @@ import {Gate} from 'razomy.gate';
 
 
 export class FileTaskManager<C extends Context> {
-  private current_context: C | null = null;
+  private currentContext: C | null = null;
 
   constructor(public file_gate: Gate<C>) {
   }
@@ -15,7 +15,7 @@ export class FileTaskManager<C extends Context> {
   async continue_(): Promise<void> {
     const ctx = this.file_gate.get();
     if (ctx) {
-      this.current_context = ctx;
+      this.currentContext = ctx;
       console.log('State loaded successfully.');
     } else {
       console.log('No existing state found.');
@@ -26,8 +26,8 @@ export class FileTaskManager<C extends Context> {
    * Initialize a new context if one doesn't exist
    */
   init(initialContext: C) {
-    if (!this.current_context) {
-      this.current_context = initialContext;
+    if (!this.currentContext) {
+      this.currentContext = initialContext;
     }
   }
 
@@ -35,12 +35,12 @@ export class FileTaskManager<C extends Context> {
    * Preview/Check: Validate that the task can be executed
    */
   async validate(task: AsyncTask<C>): Promise<boolean> {
-    this.ensure_context_loaded();
+    this.ensureContextLoaded();
     try {
-      await task.validate(this.current_context!);
+      await task.validate(this.currentContext!);
       return true;
     } catch (error) {
-      console.error(`Validation failed for task ${task.task_id}:`, error);
+      console.error(`Validation failed for task ${task.taskId}:`, error);
       return false;
     }
   }
@@ -49,33 +49,33 @@ export class FileTaskManager<C extends Context> {
    * Execute the task with Save-Before and Save-After logic
    */
   async execute(task: AsyncTask<C>): Promise<void> {
-    this.ensure_context_loaded();
+    this.ensureContextLoaded();
 
     // 1. Validate first
-    await task.validate(this.current_context!);
+    await task.validate(this.currentContext!);
 
     // 2. Snapshot state for history (Deep Copy)
-    const snapshot = this.deep_copy(this.current_context!);
+    const snapshot = this.deepCopy(this.currentContext!);
     task.history.push(snapshot);
 
     // 3. Save BEFORE execution (Checkpoint)
-    console.log(`Saving checkpoint before task ${task.task_id}...`);
-    await this.file_gate.set(this.current_context!);
+    console.log(`Saving checkpoint before task ${task.taskId}...`);
+    await this.file_gate.set(this.currentContext!);
 
     try {
       // 4. Execute Task
-      console.log(`Executing task ${task.task_id}...`);
-      await task.execute(this.current_context!);
+      console.log(`Executing task ${task.taskId}...`);
+      await task.execute(this.currentContext!);
 
       // Update the task's internal context reference to match new state
-      task.c = this.current_context!;
+      task.c = this.currentContext!;
 
       // 5. Save AFTER execution (Commit)
-      console.log(`Saving state after task ${task.task_id}...`);
-      await this.file_gate.set(this.current_context!);
+      console.log(`Saving state after task ${task.taskId}...`);
+      await this.file_gate.set(this.currentContext!);
 
     } catch (error) {
-      console.error(`Execution failed for task ${task.task_id}. Initiating rollback...`, error);
+      console.error(`Execution failed for task ${task.taskId}. Initiating rollback...`, error);
       await this.rollback(task);
       throw error;
     }
@@ -85,26 +85,26 @@ export class FileTaskManager<C extends Context> {
    * Rollback the specific task using its history
    */
   async rollback(task: AsyncTask<C>): Promise<void> {
-    this.ensure_context_loaded();
+    this.ensureContextLoaded();
 
     if (task.history.length === 0) {
-      console.warn(`No history available to rollback task ${task.task_id}`);
+      console.warn(`No history available to rollback task ${task.taskId}`);
       return;
     }
 
     // 1. Run custom rollback logic defined in the task
-    await task.rollback(this.current_context!);
+    await task.rollback(this.currentContext!);
 
     // 2. Restore state from history (pop the last known good state)
-    const previous_state = task.history.pop();
+    const previousState = task.history.pop();
 
-    if (previous_state) {
-      this.current_context = previous_state;
-      task.c = previous_state; // Sync task context
+    if (previousState) {
+      this.currentContext = previousState;
+      task.c = previousState; // Sync task context
 
       // 3. Persist the reverted state
-      console.log(`Persisting rolled-back state for ${task.task_id}...`);
-      await this.file_gate.set(this.current_context!);
+      console.log(`Persisting rolled-back state for ${task.taskId}...`);
+      await this.file_gate.set(this.currentContext!);
     }
   }
 
@@ -112,16 +112,16 @@ export class FileTaskManager<C extends Context> {
    * Cancel the operation
    */
   async cancel(task: AsyncTask<C>): Promise<void> {
-    this.ensure_context_loaded();
-    console.log(`Cancelling task ${task.task_id}...`);
-    await task.cancel(this.current_context!);
+    this.ensureContextLoaded();
+    console.log(`Cancelling task ${task.taskId}...`);
+    await task.cancel(this.currentContext!);
   }
 
   /**
    * Helper to ensure we have a state to work with
    */
-  private ensure_context_loaded() {
-    if (!this.current_context) {
+  private ensureContextLoaded() {
+    if (!this.currentContext) {
       throw new Error('Context is not loaded. Call \'continue()\' or \'init()\' first.');
     }
   }
@@ -129,7 +129,7 @@ export class FileTaskManager<C extends Context> {
   /**
    * Utility for deep copying Serializable objects to avoid reference issues in history
    */
-  private deep_copy(obj: C): C {
+  private deepCopy(obj: C): C {
     return JSON.parse(JSON.stringify(obj));
   }
 }

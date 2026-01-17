@@ -1,20 +1,20 @@
-import {is_keys_in_dict} from 'razomy.dict/is_keys_in_dict';
+import {isKeysInDict} from 'razomy.dict/is_keys_in_dict';
 import {Dict} from 'razomy.dict/dict';
-import {is_object} from 'razomy.object/is_object';
+import {isObject} from 'razomy.object/is_object';
 
-export function get_any(obj: Dict<any>, keys: string[]) {
-  if (is_keys_in_dict(obj, keys)) {
+export function getAny(obj: Dict<any>, keys: string[]) {
+  if (isKeysInDict(obj, keys)) {
     return [''];
   }
 
-  if (is_object(obj)) {
+  if (isObject(obj)) {
     let result: string[] = [];
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         const value = obj[key];
-        const children = get_any(value, keys);
-        const with_key = children.map(ckey => `${key}:` + ckey);
-        result = result.concat(with_key);
+        const children = getAny(value, keys);
+        const withKey = children.map(ckey => `${key}:` + ckey);
+        result = result.concat(withKey);
       }
     }
     return result;
@@ -23,9 +23,9 @@ export function get_any(obj: Dict<any>, keys: string[]) {
   if (Array.isArray(obj)) {
     let result: string[] = [];
     (obj as object[]).forEach((value, index) => {
-      const children = get_any(value as any, keys);
-      const with_key = children.map(ckey => `${index}` + ckey);
-      result = result.concat(with_key);
+      const children = getAny(value as any, keys);
+      const withKey = children.map(ckey => `${index}` + ckey);
+      result = result.concat(withKey);
     });
     return result;
   }

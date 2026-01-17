@@ -1,16 +1,16 @@
-import { ArgumentException } from 'razomy.exceptions/argument_exception';
-import  { get_key, RecursiveList } from 'razomy.kv/array/recursive/get_key';
-import {get_item_by_path} from './get_item_by_path';
+import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import {getKey, RecursiveList} from 'razomy.kv/array/recursive/get_key';
+import {getItemByPath} from './get_item_by_path';
 
-export function get_item_by_path_from_value(value: RecursiveList, path: string[], offset: number) {
-    for (let node of value) {
-    const key = get_key(node);
+export function getItemByPathFromValue(value: RecursiveList, path: string[], offset: number) {
+  for (let node of value) {
+    const key = getKey(node);
     if (key !== path[offset]) {
       continue;
     }
 
-    return get_item_by_path(node, path, offset + 1)
-    }
+    return getItemByPath(node, path, offset + 1)
+  }
 
-    throw new ArgumentException('invalid arguments', {value, path, offset})
+  throw new ArgumentException('invalid arguments', {value, path, offset})
 }

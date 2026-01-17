@@ -1,8 +1,8 @@
 import pako from 'pako';
-import {array_buffer_from_base_64} from './array_buffer_from_base_64';
+import {arrayBufferFromBase64} from './array_buffer_from_base_64';
 
-export function decode_string(encoded_str: string): string {
-    const encoded_data = array_buffer_from_base_64(encoded_str);
-    const decoded_data = pako.inflate(encoded_data, { to: 'string' });
-    return decoded_data;
+export function decodeString(encodedStr: string): string {
+  const encodedData = arrayBufferFromBase64(encodedStr);
+  const decodedData = pako.inflate(encodedData, {to: 'string'});
+  return decodedData;
 }

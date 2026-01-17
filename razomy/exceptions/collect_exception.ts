@@ -9,7 +9,7 @@ export class CollectException {
     this.errors = [] as Exception[];
   }
 
-  catch_fn(throwable_fn: () => void) {
+  catchFn(throwable_fn: () => void) {
     try {
       return throwable_fn();
     } catch (e) {

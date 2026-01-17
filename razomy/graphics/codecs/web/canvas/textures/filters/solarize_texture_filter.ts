@@ -1,4 +1,4 @@
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 /**
  * Solarize Filter
@@ -19,14 +19,14 @@ export class SolarizeTextureFilter implements ITextureFilter {
     var data = imageData.data,
       w = imageData.width,
       h = imageData.height,
-      w_4 = w * 4,
+      w4 = w * 4,
       y = h;
 
     do {
-      var offset_y = (y - 1) * w_4;
+      var offsetY = (y - 1) * w4;
       var x = w;
       do {
-        var offset = offset_y + (x - 1) * 4;
+        var offset = offsetY + (x - 1) * 4;
         var r = data[offset];
         var g = data[offset + 1];
         var b = data[offset + 2];

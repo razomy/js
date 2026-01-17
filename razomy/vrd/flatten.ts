@@ -1,4 +1,5 @@
-import { assign} from 'razomy.key/assign';
+import {assign} from 'razomy.key/assign';
+
 export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
@@ -13,14 +14,14 @@ export function flatten(data: Record<string, any>): Record<string, any> {
         result[prop] = [];
       }
     } else {
-      let is_empty = true;
+      let isEmpty = true;
       for (const p in cur) {
         if (Object.prototype.hasOwnProperty.call(cur, p)) {
-          is_empty = false;
+          isEmpty = false;
           recurse(cur[p], prop ? `${prop}${assign_}${p}` : p);
         }
       }
-      if (is_empty && prop) {
+      if (isEmpty && prop) {
         result[prop] = {};
       }
     }

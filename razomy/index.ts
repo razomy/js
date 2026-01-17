@@ -47,7 +47,7 @@ export * as languages from 'razomy.languages';
 export * as list from 'razomy.list';
 export * as logging from 'razomy.logging';
 export * as main from 'razomy.main';
-export * as mock_generator from 'razomy.mock_generator';
+export * as mockGenerator from 'razomy.mock_generator';
 export * as number from 'razomy.number';
 export * as object from 'razomy.object';
 export * as observable from 'razomy.observable';

@@ -1,16 +1,16 @@
 import {vrd, VrdOrValue} from 'razomy.vrd/vrd';
 import {equal} from 'razomy.equal/equal';
 import {P} from './differences_vrd';
-import {differences_dict} from './differences_dict';
+import {differencesDict} from './differences_dict';
 
 export function test() {
   const specs: [any, VrdOrValue<any>, VrdOrValue<any>, P<any>[]][] = [
     [[], null, null, []],
     [[], 'a', null, [{type: 'removed', path: '', value: 'a'}],],
     [[], null, 'b', [{type: 'added', path: '', value: 'b'}]],
-    [[], 'a', 'b', [{type: 'replace', path: '', old_value: 'a', value: 'b'}]],
-    [[], 'a', vrd({'b': null}), [{type: 'replace', path: '', old_value: 'a', value: {b: null}}]],
-    [[], vrd({'a': null}), 'b', [{type: 'replace', path: '', old_value: {a: null}, value: 'b'}]],
+    [[], 'a', 'b', [{type: 'replace', path: '', oldValue: 'a', value: 'b'}]],
+    [[], 'a', vrd({'b': null}), [{type: 'replace', path: '', oldValue: 'a', value: {b: null}}]],
+    [[], vrd({'a': null}), 'b', [{type: 'replace', path: '', oldValue: {a: null}, value: 'b'}]],
     // -
 
     [[], vrd({'a': null}), vrd({}), [{type: 'removed', path: '', value: vrd({a: null})}],],
@@ -27,7 +27,7 @@ export function test() {
     ]],
   ];
   for (let spec of specs) {
-    const result = differences_dict(spec[0], spec[1], spec[2], '');
+    const result = differencesDict(spec[0], spec[1], spec[2], '');
     console.log(equal(result, spec[3]), result);
   }
 }

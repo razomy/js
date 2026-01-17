@@ -1,36 +1,36 @@
-import  { is_kv,ArrayKeyValuable, KeyValuable, Valuable, Value} from 'razomy.kv/kv';
+import {ArrayKeyValuable, isKv, KeyValuable, Valuable, Value} from 'razomy.kv/kv';
 import {Function} from 'razomy.function';
 import {akv} from './akv';
-import {is_akv} from './index';
+import {isAkv} from './index';
 
 export function filter<V>(
   input: Value<V>,
-  is_keep: Function<[Value<V>], boolean>
+  isKeep: Function<[Value<V>], boolean>
 ): Value<V>;
 export function filter<K, V>(
   input: KeyValuable<K, V>,
-  is_keep: Function<[KeyValuable<K, V>], boolean>
+  isKeep: Function<[KeyValuable<K, V>], boolean>
 ): KeyValuable<K, V>;
 export function filter<K, V>(
   input: ArrayKeyValuable<K, V>,
-  is_keep: Function<[ArrayKeyValuable<K, V>], boolean>
+  isKeep: Function<[ArrayKeyValuable<K, V>], boolean>
 ): ArrayKeyValuable<K, V>;
 export function filter<K, V>(
   value: Valuable<K, V>,
-  is_keep: Function<[Valuable<K, V>], boolean>
+  isKeep: Function<[Valuable<K, V>], boolean>
 ): Valuable<K, V>;
 export function filter<K, V>(
   value: Valuable<K, V>,
-  is_keep: Function<[Valuable<K, V>], boolean>
+  isKeep: Function<[Valuable<K, V>], boolean>
 ): Valuable<K, V> {
-  if (is_kv(value)) {
-    value[1] = filter(value[1], is_keep);
+  if (isKv(value)) {
+    value[1] = filter(value[1], isKeep);
     return value;
-  } else if (is_akv<K, V>(value)) {
+  } else if (isAkv<K, V>(value)) {
     const children = akv<K, V>();
     for (let child of value) {
-      if (is_keep(child)) {
-        children.push(filter(child, is_keep));
+      if (isKeep(child)) {
+        children.push(filter(child, isKeep));
       }
     }
     return children;

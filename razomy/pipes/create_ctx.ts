@@ -2,9 +2,9 @@ import {Pipe} from 'razomy.pipes';
 import {execute} from './execute';
 
 export interface WithCreateCtxPipes<T> {
-  create_ctx_pipes: Pipe<T, T>[];
+  createCtxPipes: Pipe<T, T>[];
 }
 
-export function create_ctx<T>(ctx: WithCreateCtxPipes<T> & Partial<T>): T {
-  return execute(ctx.create_ctx_pipes, ctx);
+export function createCtx<T>(ctx: WithCreateCtxPipes<T> & Partial<T>): T {
+  return execute(ctx.createCtxPipes, ctx);
 }

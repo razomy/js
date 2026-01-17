@@ -1,43 +1,43 @@
 import {ListTree} from 'razomy.tree/list/list_tree';
 
 
-export function split_nodes_array_to_tree(nodes: string[], leafs: string[]) {
+export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
   // We use a virtual root to simplify traversal logic
   const root: ListTree<string> = {value: 'root', children: []};
 
   // Helper to process a single path
-  function add_path_to_tree (path: string) {
-        // Split path by slash, remove empty segments (e.g., caused by leading slash)
-        const parts = path.split('/').filter(part => part.length > 0);
+  function addPathToTree(path: string) {
+    // Split path by slash, remove empty segments (e.g., caused by leading slash)
+    const parts = path.split('/').filter(part => part.length > 0);
 
-        let current_level = root;
+    let currentLevel = root;
 
-        parts.forEach((part, index) => {
-          const is_last_part = index === parts.length - 1;
+    parts.forEach((part, index) => {
+      const isLastPart = index === parts.length - 1;
 
-          // Check if this part already exists in the current level's children
-          let existing_node = current_level.children.find(child => child.value === part);
+      // Check if this part already exists in the current level's children
+      let existingNode = currentLevel.children.find(child => child.value === part);
 
-          if (existing_node) {
-            // If it exists, just move deeper
-            current_level = existing_node;
-          } else {
-            const new_node: ListTree<string> = {
-              value: part,
-              children: []
-            };
+      if (existingNode) {
+        // If it exists, just move deeper
+        currentLevel = existingNode;
+      } else {
+        const newNode: ListTree<string> = {
+          value: part,
+          children: []
+        };
 
-            current_level.children.push(new_node);
-            current_level = new_node;
-          }
-        });
+        currentLevel.children.push(newNode);
+        currentLevel = newNode;
       }
+    });
+  }
 
   // 1. Process folders (nodes) first to ensure structure exists
-  nodes.forEach(path => add_path_to_tree(path));
+  nodes.forEach(path => addPathToTree(path));
 
   // 2. Process files (leafs)
-  leafs.forEach(path => add_path_to_tree(path));
+  leafs.forEach(path => addPathToTree(path));
 
   return root.children;
 }

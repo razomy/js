@@ -1,4 +1,4 @@
-import {reactive_directive} from 'razomy.vue/resource/reactive_directive';
+import {reactiveDirective} from 'razomy.vue/resource/reactive_directive';
 import {RemoteResource} from 'razomy.vue/resource/remote_resource';
 import {SocketStore} from 'razomy.vue/resource/socket_store';
 import {Resource} from 'razomy.vue/resource/resource';
@@ -9,11 +9,11 @@ declare global {
   interface razomy extends WithWebsocket, WithUrl {
     id: string;
     resource: Resource;
-    r_g: (string: string) => string;
+    rG: (string: string) => string;
   }
 }
 
-export const razomy_resource_plugin = {
+export const razomyResourcePlugin = {
   install(app, ctx: razomy) {
     ctx.resource = {
       store: new RemoteResource(),
@@ -21,7 +21,7 @@ export const razomy_resource_plugin = {
     };
     ctx.resource.store.ctx = ctx;
     ctx.resource.socket.ctx = ctx;
-    app.directive('r_r_r', reactive_directive);
-    ctx.r_g = ctx.resource.store.get.bind(ctx.resource.store);
+    app.directive('r_r_r', reactiveDirective);
+    ctx.rG = ctx.resource.store.get.bind(ctx.resource.store);
   }
 }

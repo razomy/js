@@ -1,2 +1,2 @@
-export { space_margin_count } from './space_margin_count';
-export { string_count } from './string_count';
+export {spaceMarginCount} from './space_margin_count';
+export {stringCount} from './string_count';

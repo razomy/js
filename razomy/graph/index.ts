@@ -1,1 +1,1 @@
-export { type Graph } from './graph';
+export {type Graph} from './graph';

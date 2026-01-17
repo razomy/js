@@ -1,41 +1,41 @@
-import {is_string} from 'razomy.string/is_string';
+import {isString} from 'razomy.string/is_string';
 
-export function accept_language_pick(supported_languages, accept_language, options) {
-    options = options || {};
-    if (!supported_languages || !supported_languages.length || !accept_language) {
+export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) {
+  options = options || {};
+  if (!supportedLanguages || !supportedLanguages.length || !acceptLanguage) {
     return null;
-    }
+  }
 
-    if (is_string(accept_language)) {
+  if (isString(acceptLanguage)) {
     // TODO: Unkbown parce function CODE: acceptLanguage = parse(acceptLanguage);
-    }
+  }
 
-    const supported = supported_languages.map(support => {
-            const bits = support.split('-');
-            const has_script = bits.length === 3;
+  const supported = supportedLanguages.map(support => {
+    const bits = support.split('-');
+    const hasScript = bits.length === 3;
 
-            return {
-              code: bits[0],
-              script: has_script ? bits[1] : null,
-              region: has_script ? bits[2] : bits[1],
-            };
-          });
-    for (let i = 0; i < accept_language.length; i++) {
-    const lang = accept_language[i];
-    const lang_code = lang.code.toLowerCase();
-    const lang_region = lang.region ? lang.region.toLowerCase() : lang.region;
-    const lang_script = lang.script ? lang.script.toLowerCase() : lang.script;
+    return {
+      code: bits[0],
+      script: hasScript ? bits[1] : null,
+      region: hasScript ? bits[2] : bits[1],
+    };
+  });
+  for (let i = 0; i < acceptLanguage.length; i++) {
+    const lang = acceptLanguage[i];
+    const langCode = lang.code.toLowerCase();
+    const langRegion = lang.region ? lang.region.toLowerCase() : lang.region;
+    const langScript = lang.script ? lang.script.toLowerCase() : lang.script;
     for (let j = 0; j < supported.length; j++) {
-      const supported_code = supported[j].code.toLowerCase();
-      const supported_script = supported[j].script ? supported[j].script.toLowerCase() : supported[j].script;
-      const supported_region = supported[j].region ? supported[j].region.toLowerCase() : supported[j].region;
-      if (lang_code === supported_code &&
-        (options.loose || !lang_script || lang_script === supported_script) &&
-        (options.loose || !lang_region || lang_region === supported_region)) {
-        return supported_languages[j];
+      const supportedCode = supported[j].code.toLowerCase();
+      const supportedScript = supported[j].script ? supported[j].script.toLowerCase() : supported[j].script;
+      const supportedRegion = supported[j].region ? supported[j].region.toLowerCase() : supported[j].region;
+      if (langCode === supportedCode &&
+        (options.loose || !langScript || langScript === supportedScript) &&
+        (options.loose || !langRegion || langRegion === supportedRegion)) {
+        return supportedLanguages[j];
       }
     }
-    }
+  }
 
-    return null;
+  return null;
 }

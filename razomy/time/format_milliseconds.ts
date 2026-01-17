@@ -1,15 +1,14 @@
-
-export function format_milliseconds(milliseconds: number): string {
-    const total_seconds = Math.floor(milliseconds / 1000);
-    const minutes = Math.floor(total_seconds / 60);
-    const seconds = total_seconds % 60;
-    const hours = Math.floor(minutes / 60);
-    const remaining_minutes = minutes % 60;
-    if (hours > 0) {
-    return `${hours}h ${remaining_minutes}m`;
-    } else if (minutes > 0) {
-    return `${remaining_minutes}m ${seconds}s`;
-    } else {
+export function formatMilliseconds(milliseconds: number): string {
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  if (hours > 0) {
+    return `${hours}h ${remainingMinutes}m`;
+  } else if (minutes > 0) {
+    return `${remainingMinutes}m ${seconds}s`;
+  } else {
     return `${seconds}s`;
-    }
+  }
 }

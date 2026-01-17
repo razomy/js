@@ -2,4 +2,4 @@ import {Value} from 'razomy.value/value';
 
 export type Action<T> = (value: Value<T>) => void
 export type Callback = () => void
-export type AsyncCallback =  () => Promise<void>
+export type AsyncCallback = () => Promise<void>

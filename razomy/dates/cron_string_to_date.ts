@@ -1,6 +1,6 @@
 import parser from 'cron-parser';
 
-export function cron_string_to_date(string: string): Date {
+export function cronStringToDate(string: string): Date {
   return parser.parseExpression(string, {
     currentDate: new Date(new Date().toISOString().split('T')[0]),
     utc: true,

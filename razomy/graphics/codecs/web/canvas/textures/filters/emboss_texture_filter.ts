@@ -1,4 +1,4 @@
-import { ITextureFilter }  from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
+import {ITextureFilter} from 'razomy.graphics/codecs/web/canvas/textures/filters/i_texture_filter';
 
 /**
  * Emboss Filter.
@@ -63,96 +63,96 @@ export class EmbossTextureFilter implements ITextureFilter {
     // a max value of greyLevel yields a white emboss, and the min value yields a black
     // emboss.  Therefore, I changed greyLevel to whiteLevel
     var strength = this.embossStrength * 10,
-      grey_level = this.embossWhiteLevel * 255,
+      greyLevel = this.embossWhiteLevel * 255,
       direction = this.embossDirection,
       blend = this.embossBlend,
-      dir_y = 0,
-      dir_x = 0,
+      dirY = 0,
+      dirX = 0,
       data = imageData.data,
       w = imageData.width,
       h = imageData.height,
-      w_4 = w * 4,
+      w4 = w * 4,
       y = h;
 
     switch (direction) {
       case 'top-left':
-        dir_y = -1;
-        dir_x = -1;
+        dirY = -1;
+        dirX = -1;
         break;
       case 'top':
-        dir_y = -1;
-        dir_x = 0;
+        dirY = -1;
+        dirX = 0;
         break;
       case 'top-right':
-        dir_y = -1;
-        dir_x = 1;
+        dirY = -1;
+        dirX = 1;
         break;
       case 'right':
-        dir_y = 0;
-        dir_x = 1;
+        dirY = 0;
+        dirX = 1;
         break;
       case 'bottom-right':
-        dir_y = 1;
-        dir_x = 1;
+        dirY = 1;
+        dirX = 1;
         break;
       case 'bottom':
-        dir_y = 1;
-        dir_x = 0;
+        dirY = 1;
+        dirX = 0;
         break;
       case 'bottom-left':
-        dir_y = 1;
-        dir_x = -1;
+        dirY = 1;
+        dirX = -1;
         break;
       case 'left':
-        dir_y = 0;
-        dir_x = -1;
+        dirY = 0;
+        dirX = -1;
         break;
       default:
         throw new Error('Unknown emboss direction: ' + direction);
     }
 
     do {
-      var offset_y = (y - 1) * w_4;
+      var offsetY = (y - 1) * w4;
 
-      var other_y = dir_y;
-      if (y + other_y < 1) {
-        other_y = 0;
+      var otherY = dirY;
+      if (y + otherY < 1) {
+        otherY = 0;
       }
-      if (y + other_y > h) {
-        other_y = 0;
+      if (y + otherY > h) {
+        otherY = 0;
       }
 
-      var offset_yother = (y - 1 + other_y) * w * 4;
+      var offsetYother = (y - 1 + otherY) * w * 4;
 
       var x = w;
       do {
-        var offset = offset_y + (x - 1) * 4;
+        var offset = offsetY + (x - 1) * 4;
 
-        var other_x = dir_x;
-        if (x + other_x < 1) {
-          other_x = 0;
+        var otherX = dirX;
+        if (x + otherX < 1) {
+          otherX = 0;
         }
-        if (x + other_x > w) {
-          other_x = 0;
+        if (x + otherX > w) {
+          otherX = 0;
         }
 
-        var offset_other = offset_yother + (x - 1 + other_x) * 4;
+        var offsetOther = offsetYother + (x - 1 + otherX) * 4;
 
-        var d_r = data[offset] - data[offset_other];
-        var d_g = data[offset + 1] - data[offset_other + 1];
-        var d_b = data[offset + 2] - data[offset_other + 2];
+        var dR = data[offset] - data[offsetOther];
+        var dG = data[offset + 1] - data[offsetOther + 1];
+        var dB = data[offset + 2] - data[offsetOther + 2];
 
-        var dif = d_r;
-        var abs_dif = dif > 0 ? dif : -dif;
+        var dif = dR;
+        var absDif = dif > 0 ? dif : -dif;
 
-        var abs_g = d_g > 0 ? d_g : -d_g;
-        var abs_b = d_b > 0 ? d_b : -d_b;
+        var absG = dG > 0 ? dG : -dG;
+        var absB = dB > 0 ? dB : -dB;
 
-        if (abs_g > abs_dif) {
-          dif = d_g;
+        if (absG > absDif) {
+          dif = dG;
         }
-        if (abs_b > abs_dif) {
-          dif = d_b;
+        if (absB > absDif) {
+          dif = dB;
         }
 
         dif *= strength;
@@ -166,7 +166,7 @@ export class EmbossTextureFilter implements ITextureFilter {
           data[offset + 1] = g > 255 ? 255 : g < 0 ? 0 : g;
           data[offset + 2] = b > 255 ? 255 : b < 0 ? 0 : b;
         } else {
-          var grey = grey_level - dif;
+          var grey = greyLevel - dif;
           if (grey < 0) {
             grey = 0;
           } else if (grey > 255) {
