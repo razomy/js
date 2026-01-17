@@ -1,11 +1,11 @@
 import {Serializable} from 'razomy.serializable/serializable';
 import {WithSerializable} from 'razomy.serializable';
 
-export interface Context<T extends Serializable> extends WithSerializable<T> {
+export interface Context extends WithSerializable {
 }
 
-export interface WithContext<C extends Serializable, T extends Context<C>> {
-  c: T;
+export interface WithContext<C extends Context> {
+  c: C;
 }
 
 export interface WithAsyncExecute<T> {
@@ -20,11 +20,17 @@ export interface WithAsyncRollback<T> {
   rollback: (c: T) => Promise<void>;
 }
 
-export interface AsyncTask<C extends Serializable, T extends Context<C>>
-  extends WithContext<C, T>,
-    WithAsyncExecute<T>,
-    WithAsyncCancel<T>,
-    WithAsyncRollback<T> {
+export interface WithValidate<T> {
+  validate: (c: T) => Promise<void>;
+}
+
+
+export interface AsyncTask<C extends Context>
+  extends WithContext<C>,
+    WithAsyncExecute<C>,
+    WithValidate<C>,
+    WithAsyncCancel<C>,
+    WithAsyncRollback<C> {
   task_id: string;
-  history: T[];
+  history: C[];
 }

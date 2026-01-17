@@ -1,36 +1,22 @@
 import {Serializable} from 'razomy.serializable/serializable';
 import {WithSerializable} from 'razomy.serializable/with_serializable';
+import {Ctx} from './ctx';
 
-export interface Ctx {
-  has(key: string): boolean;
-
-  get(key: string): any;
-
-  set(key: string, value: any): void;
-
-  setIfDefault(key: string, value: any): void;
-
-  items(): { [key: string]: any };
-}
-
-export function pipe_ctx_serializable<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
+export function json_to_ctx<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
   for (const [k, v] of Object.entries(data)) {
-    if (v === null) continue;
-
     if (!ctx.has(k)) {
       ctx.set(k, v);
       continue;
     }
 
     const attribute = ctx.get(k);
-
     if (attribute === null) {
       ctx.set(k, v);
       continue;
     }
 
     if (typeof attribute === 'object' && 'fromSerializable' in attribute) {
-      (attribute as WithSerializable<Serializable>).fromSerializable(v);
+      (attribute as WithSerializable).fromSerializable(v);
       continue;
     }
 

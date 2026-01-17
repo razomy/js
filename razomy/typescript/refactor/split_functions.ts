@@ -1,6 +1,6 @@
 import path from 'path';
-import { IterateSourceFileState } from '../iterate_source_files_and_save';
-import { to_safe_name } from '../to_safe_name';
+import { IterateSourceFileState } from './iterate_source_files_and_save';
+import { to_safe_name } from './to_safe_name';
 import { Node, SyntaxKind } from 'ts-morph';
 
 export async function split_functions({ source_file, project }: IterateSourceFileState) {

@@ -2,7 +2,7 @@ import {to_dict} from 'razomy.fs/dict/to_dict';
 
 import path from 'path';
 import fs from 'fs';
-import {to_snake_case} from 'razomy.string/to_snake_case';
+import {to_snake_case} from 'razomy.string/case';
 
 export function rename_to_snake_case_recursive(dir_path: string, must_include: string, must_not_include) {
   let files = to_dict(dir_path);

@@ -36,10 +36,10 @@ export interface Ellipse {
 
 export interface Line {
   type: 'line';
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
+  x_1: number;
+  y_1: number;
+  x_2: number;
+  y_2: number;
 }
 
 export type Shape = Path | CompoundPath | Rectangle | Circle | Ellipse | Line;

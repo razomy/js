@@ -1,6 +1,6 @@
 import {NotImplementedException} from 'razomy.exceptions/not_implemented_exception';
 import { Constructor } from 'razomy.class';
-import {Resource}  from 'razomy.resources/resource';
+import {ObjectResource}  from 'razomy.resources/object_resource';
 import { EntityResource }  from 'razomy.resources/entity_resource';
 
 export interface INodeResourceCollection {
@@ -19,7 +19,7 @@ export interface IResourceCollection<T extends EntityResource> {
 
 }
 
-export class ResourceCollection<T extends EntityResource> extends Resource implements IResourceCollection<T> {
+export class ResourceCollection<T extends EntityResource> extends ObjectResource implements IResourceCollection<T> {
 
   public nodes: T[];
 

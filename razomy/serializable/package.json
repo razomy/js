@@ -16,6 +16,7 @@
     "build": "tsdown index.ts"
   },
   "dependencies": {
-    "razomy.serializable": "../serializable"
+    "razomy.json": "../json",
+    "razomy.exceptions": "../exceptions"
   }
 }

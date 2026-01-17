@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import path from 'path';
-import { file } from 'razomy/fs';
+import { file } from 'razomy.fs';
 
 export function create_package_json_at_child_dirs(project_path: string) {
   const root_dir: string = path.resolve( project_path);

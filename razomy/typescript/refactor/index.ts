@@ -1,7 +1,10 @@
 export * as project from './project';
 export { file_rename_variables_and_props_functions } from './file_rename_variables_and_props_functions';
+export { get_name_and_ext } from './get_name_and_ext';
 export { is_name_taken } from './is_name_taken';
 export { iterate_source_files_and_save, type IterateSourceFileState } from './iterate_source_files_and_save';
+export { rename_file_based_on_first_child } from './rename_file_based_on_first_child';
 export { rename_node } from './rename_node';
 export { rename_to_snake_case_recursive_ts } from './rename_to_snake_case_recursive_ts';
+export { split_functions } from './split_functions';
 export { to_safe_name } from './to_safe_name';

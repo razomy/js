@@ -1,4 +1,4 @@
-import {Resource} from './resource';
+import {ObjectResource} from './object_resource';
 import {
   IEntityResource,
   IResourceMap,
@@ -8,10 +8,10 @@ import {
 import {Constructor} from 'razomy.class';
 import {ArgumentException} from 'razomy.exceptions';
 
-export class EntityResource extends Resource implements IEntityResource {
+export class EntityResource extends ObjectResource implements IEntityResource {
   protected resources: IResourceMap = {};
 
-  public add<T extends Resource>(obj: T): void {
+  public add<T extends ObjectResource>(obj: T): void {
     if (this.resources[obj.type]) {
       throw new NodeAlreadyProvidedException('Already added' + obj.type);
     }
@@ -19,7 +19,7 @@ export class EntityResource extends Resource implements IEntityResource {
     this.resources[obj.type] = obj;
   }
 
-  public remove<T extends Resource>(obj: T): void {
+  public remove<T extends ObjectResource>(obj: T): void {
     if (this.resources[obj.type] === undefined) {
       throw new NodeProvidedException('Cannot remove because Resource not exist' + obj.type);
     }
@@ -27,7 +27,7 @@ export class EntityResource extends Resource implements IEntityResource {
     delete this.resources[obj.type];
   }
 
-  public replace<T extends Resource>(obj: T): void {
+  public replace<T extends ObjectResource>(obj: T): void {
     if (this.resources[obj.type] === undefined) {
       throw new NodeProvidedException('Cannot remove because Resource not exist' + obj.type);
     }
@@ -35,8 +35,8 @@ export class EntityResource extends Resource implements IEntityResource {
     this.resources[obj.type] = obj;
   }
 
-  public get_by<T extends Resource = Resource>(objCtor: Constructor<T>): T {
-    const ctor: T | Resource = this.resources[objCtor.type];
+  public get_by<T extends ObjectResource = ObjectResource>(objCtor: Constructor<T>): T {
+    const ctor: T | ObjectResource = this.resources[objCtor.type];
 
     if (ctor === undefined) {
       throw new NodeProvidedException('Cannot get because Resource not exist' + objCtor.type);

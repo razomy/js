@@ -1,6 +1,6 @@
-import {IterateSourceFileState} from '../iterate_source_files_and_save';
+import {IterateSourceFileState} from './iterate_source_files_and_save';
 import {SyntaxKind, VariableDeclaration, Node} from 'ts-morph';
-import {to_safe_name} from '../to_safe_name';
+import {to_safe_name} from './to_safe_name';
 import {get_name_and_ext} from './get_name_and_ext';
 
 export async function rename_file_based_on_first_child({source_file, project}: IterateSourceFileState) {

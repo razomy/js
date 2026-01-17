@@ -1,5 +1,5 @@
+export * as case_ from './case';
 export { add_index_string } from './add_index_string';
-export { capitalize } from './capitalize';
 export { dict_to_string } from './dict_to_string';
 export { differences_string } from './differences_string';
 export { escape_string } from './escape_string';
@@ -13,6 +13,5 @@ export { space_margin_string } from './space_margin_string';
 export { type String } from './string';
 export { strings_string } from './strings_string';
 export { to_buffer } from './to_buffer';
-export { to_snake_case } from './to_snake_case';
 export { unescape_string } from './unescape_string';
 export { type WithString } from './with_string';

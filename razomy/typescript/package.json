@@ -5,7 +5,6 @@
     "razomy.action": "../action",
     "razomy.string": "../string",
     "razomy.fs": "../fs",
-    "razomy": "..",
     "razomy.main": "../main"
   },
   "version": "0.0.0",

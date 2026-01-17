@@ -9,7 +9,7 @@
     "ts-jest": "^29.4.6"
   },
   "license": "Apache-2.0",
-  "name": "razomy_",
+  "name": "resource",
   "private": true,
   "scripts": {
     "init": "npm install",
@@ -23,6 +23,7 @@
   },
   "version": "0.0.0",
   "workspaces": [
+    "./razomy",
     "./razomy/action",
     "./razomy/analytics",
     "./razomy/array",
@@ -110,6 +111,7 @@
     "./razomy/vue"
   ],
   "dependencies": {
+    "razomy": "./razomy",
     "razomy.action": "./razomy/action",
     "razomy.analytics": "./razomy/analytics",
     "razomy.array": "./razomy/array",

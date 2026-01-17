@@ -4,6 +4,7 @@ import {
   Node,
   ParameterDeclaration,
   PropertyDeclaration,
+  PropertySignature,
   VariableDeclaration
 } from 'ts-morph';
 import {is_name_taken} from './is_name_taken';
@@ -12,6 +13,7 @@ import {to_safe_name} from './to_safe_name';
 export function rename_node(v: VariableDeclaration
   | PropertyDeclaration
   | FunctionDeclaration
+  | PropertySignature
   | MethodDeclaration
   | ParameterDeclaration) {
   const name = v.getName();

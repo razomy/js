@@ -16,6 +16,7 @@
     "build": "tsdown index.ts"
   },
   "dependencies": {
-    "razomy.serializable": "../serializable"
+    "razomy.serializable": "../serializable",
+    "razomy.gate": "../gate"
   }
 }
