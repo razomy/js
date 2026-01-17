@@ -1,28 +1,46 @@
 {
   "name": "razomy.git",
   "dependencies": {
-    "simple-git": "3.30.0",
-    "razomy.commit": "../commit",
-    "razomy.shell": "../shell",
-    "razomy.fs": "../fs",
-    "razomy.async": "../async",
-    "razomy.tree": "../tree",
-    "razomy.path": "../path",
-    "razomy.languages": "../languages"
+    "simple-git": "3.30.0"
   },
   "version": "0.0.0",
-  "main": "./index.ts",
+  "main": "./dist/index.mjs",
   "license": "MIT",
-  "types": "./index.ts",
-  "files": [
-    "*"
-  ],
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "tsdown index.ts"
-  }
+    "build": "tsdown index.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "razomy.commit": "*",
+    "razomy.shell": "*",
+    "razomy.fs": "*",
+    "razomy.async": "*",
+    "razomy.tree": "*",
+    "razomy.path": "*",
+    "razomy.languages": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -46,12 +46,17 @@ export function addDependencies(projectPath: string) {
       delete pkgJson.dependencies[i];
     })
 
+    pkgJson.peerDependencies = pkgJson.peerDependencies || {};
+    Object.keys(pkgJson.peerDependencies).filter(i => i.startsWith('razomy')).forEach(i => {
+      delete pkgJson.peerDependencies[i];
+    })
     let changed = false;
     matches.forEach(depName => {
       if (depName == folder.name.replaceAll('/', '.')) {
         return
       }
-      pkgJson.dependencies[depName] = path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
+      pkgJson.peerDependencies[depName] = '*';
+        path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
         .replace('razomy', '')
         .replaceAll('.', '/'));
       console.log(`[${pkgJson.name}] Added dependency: ${depName}`);

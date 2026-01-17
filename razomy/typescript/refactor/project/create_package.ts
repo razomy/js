@@ -10,9 +10,9 @@ export function createPackage(projectPath: string) {
 
   const packageFile = getJson(path.join(rootDir, 'package.json'));
   packageFile.workspaces = packages.map(folder => './' + folder.name)
-  packageFile.dependencies = Object.fromEntries(
-    packages.map(folder => [folder.name.replaceAll('/', '.'), './' + folder.name])
-  );
+  // packageFile.peerDependencies = Object.fromEntries(
+  //     packages.map(folder => [folder.name.replaceAll('/', '.'), './' + folder.name])
+  //   );
   setJson(path.join(rootDir, 'package.json'), packageFile, true)
 
   const tsFile = getJson(path.join(rootDir, 'tsconfig.json'));

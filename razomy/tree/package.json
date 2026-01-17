@@ -1,26 +1,43 @@
 {
   "name": "razomy.tree",
   "version": "0.0.0",
-  "main": "./index.ts",
+  "main": "./dist/index.mjs",
   "license": "MIT",
-  "types": "./index.ts",
-  "files": [
-    "*"
-  ],
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "tsdown index.ts"
+    "build": "tsdown index.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "razomy.value": "../value",
-    "razomy.vrd": "../vrd",
-    "razomy.key": "../key",
-    "razomy.exceptions": "../exceptions",
-    "razomy.dict": "../dict",
-    "razomy.graph": "../graph"
-  }
+  "dependencies": {},
+  "peerDependencies": {
+    "razomy.value": "*",
+    "razomy.vrd": "*",
+    "razomy.key": "*",
+    "razomy.exceptions": "*",
+    "razomy.dict": "*",
+    "razomy.graph": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }

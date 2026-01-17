@@ -1,23 +1,40 @@
 {
   "name": "razomy.index",
   "version": "0.0.0",
-  "main": "./index.ts",
+  "main": "./dist/index.mjs",
   "license": "MIT",
-  "types": "./index.ts",
-  "files": [
-    "*"
-  ],
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "tsdown index.ts"
+    "build": "tsdown index.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "razomy.number": "../number",
-    "razomy.string": "../string",
-    "razomy.offset": "../offset"
-  }
+  "dependencies": {},
+  "peerDependencies": {
+    "razomy.number": "*",
+    "razomy.string": "*",
+    "razomy.offset": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }

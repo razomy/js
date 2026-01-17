@@ -2,25 +2,43 @@
   "name": "razomy.vue",
   "dependencies": {
     "vue": "^3.4.36",
-    "vuetify": "^3.7.0",
-    "razomy.socket": "../socket",
-    "razomy.server": "../server",
-    "razomy.dict": "../dict",
-    "razomy.array": "../array"
+    "vuetify": "^3.7.0"
   },
   "version": "0.0.0",
-  "main": "./index.ts",
+  "main": "./dist/index.mjs",
   "license": "MIT",
-  "types": "./index.ts",
-  "files": [
-    "*"
-  ],
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "tsdown index.ts"
-  }
+    "build": "tsdown index.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "razomy.socket": "*",
+    "razomy.server": "*",
+    "razomy.dict": "*",
+    "razomy.array": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }

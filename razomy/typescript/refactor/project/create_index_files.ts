@@ -72,7 +72,7 @@ export async function createIndexFiles(projectPath: string) {
       // Если есть типы, интерфейсы или классы -> экспортируем их имена напрямую
       if (hasTypesOrClasses) {
         if (namesToExport.length > 0) {
-          exportEntries.push(`export { ${namesToExport.join(', ')} } from './${baseName}';`);
+          exportEntries.push(`export {${namesToExport.join(', ')}} from './${baseName}';`);
         }
       }
       // Иначе (только утилиты/константы) -> экспортируем как пространство имен (имя файла snake_case)

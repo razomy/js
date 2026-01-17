@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {tryCreate} from 'razomy.fs/directory/try_create';
+import {tryCreate} from '../directory';
 import path from 'path';
 import {FilePathString} from 'razomy.path/string/path_string';
 

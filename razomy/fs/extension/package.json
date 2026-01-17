@@ -2,22 +2,39 @@
   "name": "razomy.fs.extension",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "files": [
-    "*"
-  ],
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "tsdown index.ts"
+    "build": "tsdown index.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "razomy.codec": "../../codec",
-    "razomy.buffer": "../../buffer",
-    "razomy.fs": "../../fs"
-  }
+  "dependencies": {},
+  "peerDependencies": {
+    "razomy.codec": "*",
+    "razomy.buffer": "*",
+    "razomy.fs": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ]
 }
