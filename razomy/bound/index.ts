@@ -1,1 +1,1 @@
-export * as string from './string';
+export * as string from '../bound';

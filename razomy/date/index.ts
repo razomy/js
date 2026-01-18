@@ -1,1 +1,1 @@
-export * as time from './time';
+export * as time from '../date';

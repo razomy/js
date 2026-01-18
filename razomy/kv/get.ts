@@ -1,6 +1,6 @@
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from 'razomy.kv/kv';
-import {isAkv} from 'razomy.kv/is_akv';
+import {ArgumentException} from 'razomy.exceptions';
+import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from 'razomy.kv';
+import {isAkv} from 'razomy.kv';
 
 export function get<T>(valueRecursive: ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): Valuable<T, T> {
   if (isAkv(valueRecursive)) {

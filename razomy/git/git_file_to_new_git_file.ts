@@ -1,8 +1,8 @@
 import path from 'path';
-import {executeAsync} from 'razomy.shell/execute_async';
-import {get} from 'razomy.fs/file/get';
-import {set} from 'razomy.fs/file/set';
-import {tryPromise} from 'razomy.async/try_promise';
+import {executeAsync} from 'razomy.shell';
+import {get} from 'razomy.fs.file';
+import {set} from 'razomy.fs.file';
+import {tryPromise} from 'razomy.async';
 import {getGitCommitsId} from './get_git_commits_id';
 
 

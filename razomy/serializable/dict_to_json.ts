@@ -1,6 +1,6 @@
 import {Json} from 'razomy.json';
 import {toJson} from './to_json';
-import {Serializable} from 'razomy.serializable/serializable';
+import {Serializable} from 'razomy.serializable';
 
 export function dictToJson(ctx: { [key: string]: Serializable }): Json {
   const result = {};

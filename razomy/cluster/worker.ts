@@ -1,4 +1,4 @@
-import {Event} from 'razomy.event/event_to_promise';
+import {Event} from 'razomy.event';
 
 export interface WithWorkerId {
   workerId: string;

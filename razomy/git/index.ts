@@ -1,4 +1,3 @@
-export * as fs from './fs';
 export {compareVersions} from './compare_versions';
 export {getAllCommitHashes} from './get_all_commit_hashes';
 export {getGitCommitsId} from './get_git_commits_id';

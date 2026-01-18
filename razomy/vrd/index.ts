@@ -1,4 +1,3 @@
-export * as fs from './fs';
 export {differencesDict} from './differences_dict';
 export {differencesVrd, type ReplaceDifference, type P} from './differences_vrd';
 export {filterVrd} from './filter_vrd';
@@ -23,5 +22,5 @@ export {setVrd} from './set_vrd';
 export {test} from './test';
 export {unflatten} from './unflatten';
 export {vrdToAbsolutePath} from './vrd_to_absolute_path';
-export {vrd, type VrdOrValue, type Vrd} from './vrd';
+export {vrd, type VrdOrValue, Vrd} from './vrd';
 export {vrlToVrd} from './vrl_to_vrd';

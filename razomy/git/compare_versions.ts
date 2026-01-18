@@ -1,6 +1,6 @@
 import simpleGit from 'simple-git'
-import {stringsToDeltaStrings} from 'razomy.commit/datetime/delta/string/strings_to_delta_strings';
-import {ActorDatetimeDeltaString, addssToString} from 'razomy.commit/datetime/delta/string/addss_to_string';
+import {stringsToDeltaStrings} from 'razomy.commit.datetime.delta.string';
+import {ActorDatetimeDeltaString, addssToString} from 'razomy.commit.datetime.delta.string';
 
 import {getAllCommitHashes} from './get_all_commit_hashes';
 

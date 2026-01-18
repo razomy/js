@@ -1,4 +1,4 @@
-import {assign} from 'razomy.key/assign';
+import {assign} from 'razomy.key';
 
 export function unflatten(data: Record<string, any>, assign_ = assign): Record<string, any> {
   if (typeof data !== 'object' || data === null || Array.isArray(data)) {

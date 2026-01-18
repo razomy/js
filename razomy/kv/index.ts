@@ -1,5 +1,3 @@
-export * as array from './array';
-export * as fs from './fs';
 export {akv, Akv} from './akv';
 export {createByPath} from './create_by_path';
 export {filter} from './filter';
@@ -9,9 +7,7 @@ export {get} from './get';
 export {isAkv} from './is_akv';
 export {iterate} from './iterate';
 export {k} from './k';
-export {
-  isKv, type Value, type Key, type KeyValuable, type ArrayKeyValuable, type ArrayOrKeyValuable, type Valuable, Kv
-} from './kv';
+export {isKv, type Value, type Key, type KeyValuable, type ArrayKeyValuable, type ArrayOrKeyValuable, type Valuable, Kv} from './kv';
 export {map} from './map';
 export {set} from './set';
 export {valueIterate} from './value_iterate';

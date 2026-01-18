@@ -1,4 +1,4 @@
-import {models} from 'razomy.openai/models';
+import {models} from 'razomy.openai';
 import {gptApiV2} from './gpt_api_v_2';
 import {setTokens} from './set_tokens';
 

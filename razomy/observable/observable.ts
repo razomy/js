@@ -1,7 +1,8 @@
-import {CancelException} from './exceptions';
+
 import {Dispose} from './dispose';
 import {throwException} from './throw_exception';
 import {Action} from 'razomy.action';
+import {CancelException} from './cancel_exception';
 
 export class Observable<T, E = CancelException> {
   disposeFn: Dispose | null = null;

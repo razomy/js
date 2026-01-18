@@ -1,3 +1,3 @@
-import {SerializableValue} from 'razomy.serializable/serializable';
+import {SerializableValue} from 'razomy.serializable';
 
 export type Json = SerializableValue

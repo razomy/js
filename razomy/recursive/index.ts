@@ -1,1 +1,1 @@
-export * as dictOrList from './dict_or_list';
+export * as dictOrList from '../recursive';

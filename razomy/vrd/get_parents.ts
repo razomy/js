@@ -1,6 +1,6 @@
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import {VrdOrValue} from 'razomy.vrd/vrd';
-import {DictKey} from 'razomy.dict/dict';
+import {ArgumentException} from 'razomy.exceptions';
+import {VrdOrValue} from './vrd';
+import {DictKey} from 'razomy.dict';
 
 export function getParents<T>(valueRecursive: VrdOrValue<T>, path: DictKey[], pathOffset: number): VrdOrValue<T>[] {
   for (let key in valueRecursive!) {

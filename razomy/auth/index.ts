@@ -1,1 +1,1 @@
-export * as express from './express';
+export * as express from '../auth';

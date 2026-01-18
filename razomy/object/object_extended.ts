@@ -1,5 +1,5 @@
-import {IObject} from 'razomy.object/i_object';
-import {GuidFactory} from 'razomy.id/generate_guid';
+import {IObject} from 'razomy.object';
+import {GuidFactory} from 'razomy.id';
 
 export abstract class ObjectExtended implements IObject {
 

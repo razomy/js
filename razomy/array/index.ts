@@ -1,4 +1,3 @@
-export * as difference from './difference';
 export {arraySort} from './array_sort';
 export {countBy} from './count_by';
 export {create} from './create';

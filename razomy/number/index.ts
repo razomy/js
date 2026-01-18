@@ -1,4 +1,3 @@
-export * as string from './string';
 export {Counter} from './counter';
 export {type Number} from './number';
 export {randomCode, type OutIndex, type Index, type IndexOrOut} from './random_code';

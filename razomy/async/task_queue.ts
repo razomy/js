@@ -1,5 +1,5 @@
-import {ConsoleLogger} from 'razomy.logging/console_logger';
-import {Logger} from 'razomy.logging/none_logger';
+import {ConsoleLogger} from 'razomy.logging';
+import {Logger} from 'razomy.logging';
 
 export class TaskQueue {
   private isProcessing = false;

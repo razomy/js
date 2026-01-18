@@ -1,41 +1,38 @@
 {
-  "name": "razomy.object",
-  "version": "0.0.0",
-  "main": "./dist/index.mjs",
-  "license": "MIT",
-  "types": "./dist/index.d.mts",
   "dependencies": {
     "object-sizeof": "^2.6.5"
   },
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "name": "razomy.object",
+  "peerDependencies": {
+    "razomy.id": "*",
+    "razomy.type": "*"
+  },
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
     "exports": {
       ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs"
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.mts"
       },
       "./package.json": "./package.json"
-    }
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
     "build": "tsdown index.ts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "razomy.id": "*",
-    "razomy.type": "*"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ]
+  "types": "./index.ts",
+  "version": "0.0.0"
 }

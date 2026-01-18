@@ -1,7 +1,7 @@
-import {isKv, KeyValuable, Valuable} from 'razomy.kv/kv';
+import {isKv, KeyValuable, Valuable} from 'razomy.kv';
 import {Function} from 'razomy.function';
-import {isAkv} from 'razomy.kv/is_akv';
-import {iterate} from 'razomy.kv/iterate';
+import {isAkv} from 'razomy.kv';
+import {iterate} from 'razomy.kv';
 
 /**
  * true - success

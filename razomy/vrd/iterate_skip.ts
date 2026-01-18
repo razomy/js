@@ -1,4 +1,4 @@
-import {Execute} from 'razomy.pipes/booleans/execute';
+import {Execute} from 'razomy.pipes.booleans';
 import {Iterate, IterateBreaks, iterateVrd} from './iterate_vrd';
 
 export function iterateSkip<T, C extends Iterate<T>>(ctx: C, isIterateChildExecuteBool: Execute<C> | ((ctx: C) => void)): void {

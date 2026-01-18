@@ -1,4 +1,4 @@
-import {executeAsync} from 'razomy.shell/execute_async';
+import {executeAsync} from 'razomy.shell';
 
 export async function getLastGitCommitIdOrNull(ctx: { dirPath: string }) {
   try {

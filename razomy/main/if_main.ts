@@ -1,10 +1,10 @@
-import {formatTimeLength} from 'razomy.dates/format_time_length';
-import {isPromise} from 'razomy.async/is_promise';
+import {formatTimeLength} from 'razomy.dates';
+import {isPromise} from 'razomy.async';
 import {isMain} from './is_main';
-import {AsyncCallback, Callback} from 'razomy.action/action';
+import {AsyncCallback, Callback} from 'razomy.action';
 
 export async function ifMain(importMetaUrlOrModulePath: string, callback: Callback | AsyncCallback) {
-  const path = `${importMetaUrlOrModulePath}.if_main`;
+  const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();
   try {
     if (isMain(importMetaUrlOrModulePath)) {

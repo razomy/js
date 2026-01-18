@@ -1,4 +1,4 @@
-import {Exception} from 'razomy.exceptions/exception';
+import {Exception} from 'razomy.exceptions';
 
 export class MultipleException extends Exception {
   public exceptions: Exception[];

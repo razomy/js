@@ -1,5 +1,5 @@
-import {Dict} from 'razomy.dict/dict';
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
+import {Dict} from 'razomy.dict';
+import {ArgumentException} from 'razomy.exceptions';
 
 export function firstKeyDict<T>(obj: Dict<T>): string {
   for (const key in obj) {

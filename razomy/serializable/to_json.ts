@@ -1,8 +1,8 @@
 import {dictToJson} from './dict_to_json';
 
 import {arrayToJson} from './array_to_json';
-import {WithSerializable} from 'razomy.serializable/with_serializable';
-import {Serializable} from 'razomy.serializable/serializable';
+import {WithSerializable} from 'razomy.serializable';
+import {Serializable} from 'razomy.serializable';
 import {Json} from 'razomy.json';
 import {ArgumentException} from 'razomy.exceptions';
 

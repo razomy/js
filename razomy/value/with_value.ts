@@ -1,4 +1,4 @@
-import {Value} from 'razomy.value/value';
+import {Value} from 'razomy.value';
 
 export interface WithValue<T> {
   value: Value<T>

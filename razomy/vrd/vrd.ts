@@ -1,11 +1,8 @@
-import {Dict} from 'razomy.dict/dict';
+import {Dict} from 'razomy.dict';
 
 export type VrdOrValue<T> = Vrd<T> | T
 
-export interface Vrd<T> extends Dict<VrdOrValue<T>> {
-}
-
-export class Vrd<T> implements Vrd<T> {
+export class Vrd<T> {
   [key: string]: VrdOrValue<T>;
 
   constructor(args: any = {}) {

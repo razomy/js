@@ -1,5 +1,5 @@
-import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
-import {getVrd} from 'razomy.vrd/get_vrd';
+import {Vrd, VrdOrValue} from './vrd';
+import {getVrd} from './get_vrd';
 
 export function setVrd<T>(value: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {
   const parentPath = path.slice(0, -1);

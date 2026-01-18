@@ -1,5 +1,5 @@
-import {Vrd, VrdOrValue} from 'razomy.vrd/vrd';
-import {mergeDict} from 'razomy.vrd/merge_dict';
+import {Vrd, VrdOrValue} from './vrd';
+import {mergeDict} from './merge_dict';
 import {isVrd} from './is_vrd';
 
 export function mergeVrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;

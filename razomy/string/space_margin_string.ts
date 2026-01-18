@@ -1,6 +1,6 @@
-import {String} from 'razomy.string/string';
-import {Number} from 'razomy.number/number';
-import {marginString} from 'razomy.string/margin_string';
+import {String} from 'razomy.string';
+import {Number} from 'razomy.number';
+import {marginString} from 'razomy.string';
 
 export function spaceMarginString(string: String, number: Number) {
   const margin = ' '.repeat(number)

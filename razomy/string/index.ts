@@ -1,4 +1,3 @@
-export * as case_ from './case';
 export {addIndexString} from './add_index_string';
 export {dictToString} from './dict_to_string';
 export {differencesString} from './differences_string';
@@ -14,4 +13,5 @@ export {type String} from './string';
 export {stringsString} from './strings_string';
 export {toBuffer} from './to_buffer';
 export {unescapeString} from './unescape_string';
+export {levenshteinDistance} from './levenshtein_distance';
 export {type WithString} from './with_string';

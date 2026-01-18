@@ -1,2 +1,2 @@
-export * as string from './string';
-export * as strings from './strings';
+export * as string from '../count';
+export * as strings from '../count';

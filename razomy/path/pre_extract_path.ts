@@ -1,5 +1,5 @@
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import {String} from 'razomy.string/string';
+import {ArgumentException} from 'razomy.exceptions';
+import {String} from 'razomy.string';
 
 export function preExtractPath(filePath: String, equalPath: String): String {
   const parts: string[] = filePath.split('/');

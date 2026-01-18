@@ -1,4 +1,4 @@
-import {mergeVrd} from 'razomy.vrd/merge_vrd';
+import {mergeVrd} from './merge_vrd';
 
 export function merges<A, B>(a: A, b: B): A & B;
 export function merges<A, B, C>(a: A, b: B, c: C): A & B & C ;

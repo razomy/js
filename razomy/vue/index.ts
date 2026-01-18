@@ -1,2 +1,2 @@
-export * as plugin from './plugin';
-export * as resource from './resource';
+export * as plugin from '../vue';
+export * as resource from '../vue';

@@ -1,1 +1,1 @@
-export * as token from './token';
+export * as token from '../analytics';

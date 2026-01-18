@@ -1,4 +1,3 @@
-export * as recursive from 'razomy.dict.recursive';
 export {type DictKey, type Dict} from './dict';
 export {filterDict} from './filter_dict';
 export {firstKeyDict} from './first_key_dict';

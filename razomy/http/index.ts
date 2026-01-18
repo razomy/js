@@ -1,1 +1,1 @@
-export * as localisation from './localisation';
+export * as localisation from '../http';

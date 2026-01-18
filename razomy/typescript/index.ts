@@ -1,1 +1,1 @@
-export * as refactor from './refactor';
+export * as refactor from '../typescript';

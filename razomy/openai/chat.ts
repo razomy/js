@@ -1,4 +1,4 @@
-import {WithOpenAiCtx} from 'razomy.openai/open_ai_ctx';
+import {WithOpenAiCtx} from 'razomy.openai';
 
 export class Chat {
 

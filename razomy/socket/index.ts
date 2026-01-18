@@ -1,2 +1,2 @@
-export * as server from './server';
-export * as web from './web';
+export * as server from '../socket';
+export * as web from '../socket';

@@ -1,7 +1,7 @@
-import {ArgumentException} from 'razomy.exceptions/argument_exception';
-import {Valuable} from 'razomy.kv/kv';
-import {isAkv} from 'razomy.kv/is_akv';
-import {Slug} from 'razomy.path/string/path_string';
+import {ArgumentException} from 'razomy.exceptions';
+import {Valuable} from 'razomy.kv';
+import {isAkv} from 'razomy.kv';
+import {Slug} from 'razomy.path.string';
 
 export function getParents<T>(valueRecursive: Valuable<T, T>, path: Slug[], pathOffset: number): Valuable<T, T>[] {
   if (isAkv(valueRecursive)) {

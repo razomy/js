@@ -1,7 +1,7 @@
 import {Function} from 'razomy.function';
-import {Dict} from 'razomy.dict/dict';
-import {test} from 'razomy.test/test';
-import {FunctionSpec} from 'razomy.spec/function_spec';
+import {Dict} from 'razomy.dict';
+import {test} from 'razomy.test';
+import {FunctionSpec} from 'razomy.spec';
 
 export function tests<I extends Array<any>, O>(cb: Function<I, O>, array: Dict<FunctionSpec<I, O>>) {
   for (let key in array) {

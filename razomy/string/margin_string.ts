@@ -1,4 +1,4 @@
-import {String} from 'razomy.string/string';
+import {String} from 'razomy.string';
 
 
 export function marginString(string: String, margin: String) {

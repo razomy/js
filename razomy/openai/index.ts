@@ -1,4 +1,3 @@
-export * as instructions from './instructions';
 export {addFunctionAndAssign} from './add_function_and_assign';
 export {addSystemMessage} from './add_system_message';
 export {addUserMessage} from './add_user_message';

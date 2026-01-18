@@ -1,4 +1,4 @@
-import {VrdOrValue} from 'razomy.vrd/vrd';
+import {VrdOrValue} from './vrd';
 import {isVrd} from './is_vrd';
 
 export interface Iterate<T> {

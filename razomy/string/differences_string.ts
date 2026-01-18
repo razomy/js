@@ -1,6 +1,6 @@
 import {differences} from 'razomy.differences';
-import {separateStrings} from 'razomy.strings/separate_strings';
-import {stringsString} from 'razomy.string/strings_string';
+import {separateStrings} from 'razomy.strings';
+import {stringsString} from 'razomy.string';
 
 export function differencesString(aString: string, bString: string) {
   const aLines = separateStrings(aString, 0, '\n', []);

@@ -1,6 +1,6 @@
-import {VrdOrValue} from 'razomy.vrd/vrd';
-import {pathToVrd} from 'razomy.vrd/path_to_vrd';
-import {setVrd} from 'razomy.vrd/set_vrd';
+import {VrdOrValue} from './vrd';
+import {pathToVrd} from './path_to_vrd';
+import {setVrd} from './set_vrd';
 import {getVrd} from './get_vrd';
 
 export function getWithPath<T>(valueRecursive: VrdOrValue<T>, path: string[]) {

@@ -1,5 +1,5 @@
-import {Serializable} from 'razomy.serializable/serializable';
-import {WithSerializable} from 'razomy.serializable/with_serializable';
+import {Serializable} from 'razomy.serializable';
+import {WithSerializable} from 'razomy.serializable';
 import {Ctx} from './ctx';
 
 export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {

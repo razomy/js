@@ -1,48 +1,44 @@
 {
-  "name": "razomy.vrd",
-  "version": "0.0.0",
-  "main": "./dist/index.mjs",
+  "dependencies": {},
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
-  "types": "./dist/index.d.mts",
+  "main": "./index.ts",
+  "name": "razomy.vrd",
+  "peerDependencies": {
+    "razomy.array.difference": "*",
+    "razomy.dict": "*",
+    "razomy.dict.recursive": "*",
+    "razomy.difference": "*",
+    "razomy.equal": "*",
+    "razomy.exceptions": "*",
+    "razomy.key": "*",
+    "razomy.list.value_recursive": "*",
+    "razomy.pipes.booleans": "*",
+    "razomy.string": "*"
+  },
   "publishConfig": {
     "access": "public",
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
     "exports": {
       ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs"
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.mts"
       },
       "./package.json": "./package.json"
-    }
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "scripts": {
     "build": "tsdown index.ts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {},
-  "peerDependencies": {
-    "razomy.array": "*",
-    "razomy.difference": "*",
-    "razomy.equal": "*",
-    "razomy.dict": "*",
-    "razomy.key": "*",
-    "razomy.exceptions": "*",
-    "razomy.pipes": "*",
-    "razomy.list": "*",
-    "razomy.string": "*",
-    "razomy.fs": "*",
-    "razomy.graph": "*"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ]
+  "types": "./index.ts",
+  "version": "0.0.0"
 }

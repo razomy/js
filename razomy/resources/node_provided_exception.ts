@@ -1,5 +1,5 @@
 import {Constructor} from 'razomy.class';
-import {ObjectResource} from 'razomy.resources/object_resource';
+import {ObjectResource} from 'razomy.resources';
 
 export class NodeProvidedException extends Error {
 

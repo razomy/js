@@ -1,4 +1,4 @@
-export * as exceptions from './exceptions';
+export {CancelException} from './cancel_exception';
 export {type Dispose} from './dispose';
 export {ObservableList} from './observable_list';
 export {Observable} from './observable';

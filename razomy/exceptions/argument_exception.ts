@@ -1,4 +1,4 @@
-import {Exception} from 'razomy.exceptions/exception';
+import {Exception} from './exception';
 
 export class ArgumentException<T> extends Exception {
   public arguments_: T;

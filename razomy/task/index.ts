@@ -1,1 +1,1 @@
-export * as async from './async';
+export * as async from '../task';

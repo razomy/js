@@ -1,4 +1,4 @@
-import {Exception} from 'razomy.exceptions/exception';
+import {Exception} from 'razomy.exceptions';
 
 export class NotImplementedException extends Exception {
   constructor() {

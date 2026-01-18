@@ -1,6 +1,6 @@
-import {String} from 'razomy.string/string';
-import {Offset} from 'razomy.offset/offest';
-import {stringsAnyIndex} from 'razomy.index/strings_any_index';
+import {String} from 'razomy.string';
+import {Offset} from 'razomy.offset';
+import {stringsAnyIndex} from 'razomy.index';
 
 export function isStringsAnyIndex(
   string: String,

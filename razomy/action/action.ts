@@ -1,4 +1,4 @@
-import {Value} from 'razomy.value/value';
+import {Value} from 'razomy.value';
 
 export type Action<T> = (value: Value<T>) => void
 export type Callback = () => void
