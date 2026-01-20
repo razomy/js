@@ -18,6 +18,7 @@ export {merges} from './merges';
 export {orderVrd} from './order_vrd';
 export {pathToVrd} from './path_to_vrd';
 export {rdToVrd} from './rd_to_vrd';
+export {vrdToPath} from './vrd_to_path';
 export {setVrd} from './set_vrd';
 export {test} from './test';
 export {unflatten} from './unflatten';

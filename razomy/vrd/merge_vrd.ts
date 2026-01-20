@@ -3,7 +3,7 @@ import {mergeDict} from './merge_dict';
 import {isVrd} from './is_vrd';
 
 export function mergeVrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T> ;
-export function mergeVrd<A, B>(a: A, b: B, empty: string): A & B ;
+export function mergeVrd<A, B>(a: A, b: B, empty: string | null): A & B ;
 export function mergeVrd<T, A, B>(a: A, b: B, empty: T): A & B {
   if (!a) {
     return b as A & B;
