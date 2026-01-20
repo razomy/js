@@ -29,6 +29,7 @@
     "./razomy/analytics.token",
     "./razomy/array",
     "./razomy/array.difference",
+    "./razomy/terminal",
     "./razomy/assert",
     "./razomy/ast",
     "./razomy/async",
