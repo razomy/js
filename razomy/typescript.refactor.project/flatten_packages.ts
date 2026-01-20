@@ -1,19 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { Project, SourceFile, ImportDeclaration, ExportDeclaration } from 'ts-morph';
-import { levenshteinDistance } from 'razomy.string';
-import {formatProject} from './format_project';
+import {Project, SourceFile} from 'ts-morph';
+import {levenshteinDistance} from 'razomy.string';
 import {ifMain} from 'razomy.main';
-
-// ==========================================
-// CONFIGURATION
-// ==========================================
-const tsConfigPath = './tsconfig.json';
-const targetDir = 'src'; // The root to scan (e.g. 'src')
-
-// ==========================================
-// PART 1: FOLDER FLATTENING LOGIC
-// ==========================================
 
 function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null {
   const filePath = sourceFile.getFilePath();
@@ -101,7 +90,7 @@ function findReplacementSymbol(
 ): { name: string; file: SourceFile } | null {
 
   if (exportMap.has(nameToFind)) {
-    return { name: nameToFind, file: exportMap.get(nameToFind)! };
+    return {name: nameToFind, file: exportMap.get(nameToFind)!};
   }
 
   let lowestDistance = Infinity;
@@ -201,12 +190,10 @@ async function fixBrokenImportsAndExports(project: Project) {
 // MAIN
 // ==========================================
 
-async function main() {
-  const tsConfigPath_ = '../../../../tsconfig.json'
-  const targetDir_ = 'razomy'
+export async function flattenPackages(tsConfigPath: string, targetDir: string) {
   console.log('Initializing...');
-  const project = new Project({ tsConfigFilePath: tsConfigPath_ });
-  const rootAbsPath = path.resolve(path.dirname(tsConfigPath_), targetDir_);
+  const project = new Project({tsConfigFilePath: tsConfigPath + 'tsconfig.json'});
+  const rootAbsPath = path.resolve(tsConfigPath, targetDir);
 
   // 1. Rename Folders to Package.Style
   await flattenFolders(project, rootAbsPath);
@@ -216,4 +203,5 @@ async function main() {
 
   console.log('Done.');
 }
-ifMain(import.meta.url || module.path, main).then()
+
+ifMain(import.meta.url || module.path, () => flattenPackages('../../', 'razomy')).then()
