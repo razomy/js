@@ -1,8 +1,9 @@
 import {BranchDict, BranchDictOrLeaf, RootDict} from 'razomy.tree.dict';
 import {Leaf} from 'razomy.tree';
+import {AbsolutePathString} from 'razomy.path.string';
 
 export interface WithAbsolutePath {
-  absolutePath: string
+  absolutePath: AbsolutePathString
 }
 
 export interface AbsolutePathDictRoot<T> extends RootDict<T, AbsolutePathDictRoot<T>>, WithAbsolutePath {

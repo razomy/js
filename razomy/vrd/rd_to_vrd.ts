@@ -1,7 +1,9 @@
 import {Vrd, VrdOrValue} from './vrd';
 import {RecursiveDict} from 'razomy.dict.recursive';
+import {isObject} from '../object';
 
-export function rdToVrd(dict: RecursiveDict, isValue: (t: RecursiveDict) => boolean): VrdOrValue<string> {
+export function rdToVrd(dict: RecursiveDict,
+                        isValue: (t: RecursiveDict) => boolean = (i: RecursiveDict) => !isObject(i)): VrdOrValue<string> {
   if (isValue(dict)) {
     return dict;
   }
