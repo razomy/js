@@ -8,5 +8,6 @@ export {isPlainObject} from './is_plain_object';
 export {keysInDict} from './keys_in_dict';
 export {mapDictToArray} from './map_dict_to_array';
 export {mapDict} from './map_dict';
+export {mergeDicts} from './merge_dicts';
 export {shuffle} from './shuffle';
 export {type SomeOf} from './some_of';
