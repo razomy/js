@@ -1,3 +1,5 @@
+import {vrdToPva} from './vrd_to_pva';
+
 export {differencesDict} from './differences_dict';
 export {differencesVrd, type ReplaceDifference, type P} from './differences_vrd';
 export {filterVrd} from './filter_vrd';
@@ -7,6 +9,8 @@ export {getParents} from './get_parents';
 export {getVrd} from './get_vrd';
 export {getWithPath} from './get_with_path';
 export {isVrd} from './is_vrd';
+export {pvaToVrd} from './pva_to_vrd';
+export {vrdToPva} from './vrd_to_pva';
 export {iterateBreak} from './iterate_break';
 export {iterateSkip} from './iterate_skip';
 export {iterateVrd, type Iterate, IterateBreaks} from './iterate_vrd';

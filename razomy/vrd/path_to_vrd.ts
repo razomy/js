@@ -1,14 +1,15 @@
-import {Vrd} from './vrd';
+import {Vrd, VrdOrValue} from './vrd';
 
-export function pathToVrd<T>(path: string[]) {
-  const res = new Vrd<T>();
+export function pathToVrd(path: string[]) {
+  const root = new Vrd<null>();
 
-  let last = res;
-  for (let string of path) {
+  let last: VrdOrValue<null> = root;
+  for (let i = 0; i < path.length - 1; i++) {
+    let string = path[i];
     last[string] = new Vrd();
     last = last[string];
   }
-
-  return res;
+  last[path[path.length - 1]] = null;
+  return root;
 }
 
