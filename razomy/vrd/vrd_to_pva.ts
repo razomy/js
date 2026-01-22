@@ -19,7 +19,7 @@ export function vrdToPva<T>(
       result.push({path: path, value: null as any})
     }
     for (const inputKey of keys) {
-      const vrd_or_value = vrd[inputKey];
+      const vrdOrValue = vrd[inputKey];
 
       // Calculate the new prefix
       const newPrefix = path
@@ -27,13 +27,13 @@ export function vrdToPva<T>(
         : inputKey;
 
       // If the value is a nested Vrd, push it onto the stack to process its children
-      if (isVrd(vrd_or_value)) {
+      if (isVrd(vrdOrValue)) {
         stack.push({
-          vrd: vrd_or_value,
+          vrd: vrdOrValue,
           path: newPrefix,
         });
       } else {
-        result.push({path: newPrefix, value: vrd_or_value})
+        result.push({path: newPrefix, value: vrdOrValue})
       }
     }
   }

@@ -9,5 +9,6 @@ export {keysInDict} from './keys_in_dict';
 export {mapDictToArray} from './map_dict_to_array';
 export {mapDict} from './map_dict';
 export {mergeDicts} from './merge_dicts';
+export {get} from './get';
 export {shuffle} from './shuffle';
 export {type SomeOf} from './some_of';

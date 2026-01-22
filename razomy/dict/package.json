@@ -11,7 +11,6 @@
   "main": "./index.ts",
   "name": "razomy.dict",
   "peerDependencies": {
-    "razomy.dict.recursive": "*",
     "razomy.exceptions": "*"
   },
   "publishConfig": {

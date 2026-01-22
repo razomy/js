@@ -1,3 +1,3 @@
 export * from '@inquirer/prompts';
-export {tryCommand} from './tryCommand';
-export {tryOrConfirm} from './tryOrConfirm';
+export {tryCommand} from './try_command';
+export {tryOrConfirm} from './try_or_confirm';

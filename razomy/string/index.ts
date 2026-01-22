@@ -14,5 +14,6 @@ export {stringsString} from './strings_string';
 export {toBuffer} from './to_buffer';
 export {unescapeString} from './unescape_string';
 export {levenshteinDistance} from './levenshtein_distance';
+export {join} from './join';
 export {getAbriviation} from './get_abriviation';
 export {type WithString} from './with_string';

@@ -11,7 +11,6 @@
   "main": "./index.ts",
   "name": "razomy.fs",
   "peerDependencies": {
-    "razomy.fs.extension": "*",
     "razomy.observable": "*",
     "razomy.path.string": "*"
   },

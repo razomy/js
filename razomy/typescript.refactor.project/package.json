@@ -14,6 +14,7 @@
     "razomy.array": "*",
     "razomy.fs": "*",
     "razomy.fs.file": "*",
+    "razomy.json": "*",
     "razomy.main": "*",
     "razomy.string": "*",
     "razomy.typescript.refactor": "*"

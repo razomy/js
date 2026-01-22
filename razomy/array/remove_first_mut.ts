@@ -1,9 +1,8 @@
-export function removeFirst<T>(arr: T[], value: T): T[] {
+export function removeFirstMut<T>(arr: T[], value: T): void {
   const index = arr.indexOf(value);
   if (index > -1) {
     arr.splice(index, 1);
   }
-  return arr;
 }
 
 

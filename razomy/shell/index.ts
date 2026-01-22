@@ -1,5 +1,5 @@
 export {executeAsync} from './execute_async';
-export {executeSync, type StringCommand, type ShellCommand} from './execute_sync';
+export {executeSync, type StringCommand, type ShellCommand, startDir} from './execute_sync';
 export {getBool} from './get_bool';
 export {get} from './get';
 export {logInline} from './log_inline';

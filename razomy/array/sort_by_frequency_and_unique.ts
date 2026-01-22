@@ -1,6 +1,6 @@
 import {countBy} from './count_by';
 import {sortBy} from './sort_by';
-import {getUniq} from './getUniq';
+import {getUniq} from './get_uniq';
 
 export function sortByFrequencyAndUnique(arr: []) {
   const frequencyMap = countBy(arr);

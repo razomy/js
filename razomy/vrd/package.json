@@ -19,6 +19,7 @@
     "razomy.exceptions": "*",
     "razomy.key": "*",
     "razomy.list.value_recursive": "*",
+    "razomy.path.string": "*",
     "razomy.pipes.booleans": "*",
     "razomy.string": "*"
   },

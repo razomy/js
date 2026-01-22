@@ -1,6 +1,6 @@
 import {falseThrow} from 'razomy.test';
 import {executeSync} from 'razomy.shell';
-import {tryCommand} from './tryCommand';
+import {tryCommand} from './try_command';
 import {confirm} from '@inquirer/prompts';
 
 export async function tryOrConfirm(

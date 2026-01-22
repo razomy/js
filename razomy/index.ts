@@ -140,6 +140,7 @@ export * as stringCase from 'razomy.string.case';
 export * as strings from 'razomy.strings';
 export * as task from 'razomy.task';
 export * as taskAsync from 'razomy.task.async';
+export * as terminal from 'razomy.terminal';
 export * as test from 'razomy.test';
 export * as thread from 'razomy.thread';
 export * as time from 'razomy.time';
