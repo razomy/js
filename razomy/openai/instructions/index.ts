@@ -1,0 +1,1 @@
+export const __TODO__ = 'Create import to typescript';

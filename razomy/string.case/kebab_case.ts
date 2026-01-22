@@ -1,10 +1,19 @@
-import {String} from '../string/string';
-
-export function toKebabCase(input: String) {
-  let text = input;
-
-  return text
-    // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'
+/**
+ * Convert string to kebab case.
+ * @param {string} text The text to convert.
+ * @returns {string} The kebab cased string.
+ * @example
+ * // => 'foo-bar'
+ * kebabCase('fooBar');
+ * @example
+ * // => 'foo-bar'
+ * kebabCase('Foo Bar');
+ * @example
+ * // => 'foo-bar'
+ * kebabCase('__FOO_BAR__');
+ */
+export function kebabCase(text: string): string {
+  return text   // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'
     // Looks for Capital followed by Capital+Lower
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
 

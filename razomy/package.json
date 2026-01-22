@@ -153,6 +153,7 @@
     "razomy.strings": "*",
     "razomy.task": "*",
     "razomy.task.async": "*",
+    "razomy.terminal": "*",
     "razomy.test": "*",
     "razomy.thread": "*",
     "razomy.time": "*",

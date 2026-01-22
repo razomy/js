@@ -1,14 +1,14 @@
-export function arraySort(order: string[], data: string[]) {
+export function arraySort(oldOrder: string[], newOrder: string[]) {
   const orderMap = {};
-  order.forEach((id, index) => {
+  newOrder.forEach((id, index) => {
     orderMap[id] = index;
   });
 
 // 2. Sort using the map lookup (instant access)
-  data.sort((a, b) => {
+  oldOrder.sort((a, b) => {
     return orderMap[a] - orderMap[b];
   });
-  return data
+  return oldOrder
 }
 
 

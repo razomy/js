@@ -1,9 +1,19 @@
-import {String} from 'razomy.string';
-
-export function toSnakeCase(input: String) {
-  let text = input;
-
-  return text
+/**
+ * Convert string to snake case.
+ * @param string The string to convert.
+ * @returns The snake cased string.
+ * @example
+ * // => 'foo_bar'
+ * snakeCase('fooBar');
+ * @example
+ * // => 'foo_bar'
+ * snakeCase('Foo Bar');
+ * @example
+ * // => 'foo_bar'
+ * snakeCase('FOO-BAR');
+ */
+export function snakeCase(string: string): string {
+  return string
     // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'
     // Looks for Capital followed by Capital+Lower
     .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
@@ -26,6 +36,5 @@ export function toSnakeCase(input: String) {
 
     // 6. Final lowercase
     .toLowerCase();
+    ;
 }
-
-

@@ -15,7 +15,10 @@
     "resolveJsonModule": true,
     "strict": true,
     "target": "ESNext",
-    "paths": {}
+    "paths": {
+      "razomy": ["./razomy/index.ts"],
+      "razomy.*": ["./razomy/*/index.ts"]
+    }
   },
   "exclude": [
     "**/node_modules",

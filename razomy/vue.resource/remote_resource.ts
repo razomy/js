@@ -1,6 +1,6 @@
 import vue from 'vue';
 import {Dict} from 'razomy.dict';
-import {removeFirst} from 'razomy.array';
+import {removeFirstMut} from 'razomy.array';
 
 
 export class RemoteResource {
@@ -40,7 +40,7 @@ export class RemoteResource {
   }
 
   off(key: string, cb) {
-    removeFirst(this.state.listeners, cb);
+    removeFirstMut(this.state.listeners, cb);
   }
 }
 

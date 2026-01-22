@@ -1,9 +1,19 @@
-import {String} from 'razomy.string';
-
-export function toCamelCase(input: String) {
-  let text = input;
-
-  // 1-5. Normalize the string using the same logic as snake_case
+/**
+ * Convert string to camel case.
+ * @param {string} text The text to convert.
+ * @returns {string} The camel cased string.
+ * @example
+ * // => 'fooBar'
+ * camelCase('Foo Bar');
+ * @example
+ * // => 'fooBar'
+ * camelCase('--foo-bar--');
+ * @example
+ * // => 'fooBar'
+ * camelCase('__FOO_BAR__');
+ */
+export function camelCase(text: string): string {
+    // 1-5. Normalize the string using the same logic as snake_case
   // This breaks the string into segments separated by underscores
   text = text
     // Handle Acronyms: 'JSONData' -> 'JSON_Data'
