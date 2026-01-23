@@ -1,13 +1,12 @@
-import {line} from 'razomy.pipes';
-import {execute} from './execute';
+import {pipe} from 'razomy.pipes';
 
 describe('pipe', () => {
   it('pipe', () => {
-    const worldLine = line(
+    const worldLine = pipe(
+      'hello',
       (prefix: string) => prefix + ' world',
       (prefix) => prefix + '!'
     )
-    const res = execute(worldLine, 'hello')
-    expect(res).toStrictEqual('hello world!')
+    expect(worldLine).toStrictEqual('hello world!')
   })
 });

@@ -33,6 +33,7 @@ export {substringBetween} from './substring_between';
 export {toBuffer} from './to_buffer';
 export {trim} from './trim';
 export {truncate} from './truncate';
+export {levenshteinDistance} from './levenshtein_distance';
 export {unescapeString} from './unescape_string';
 export {type WithString} from './with_string';
 export {words} from './words';
