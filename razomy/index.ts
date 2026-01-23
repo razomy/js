@@ -130,7 +130,7 @@ export * as refactor from 'razomy.refactor';
 export * as refactorFs from 'razomy.refactor.fs';
 export * as resources from 'razomy.resources';
 export * as respect from 'razomy.respect';
-export * as schema from 'razomy.schema';
+export * as pipesRules from 'razomy.pipes.rules';
 export * as serializable from 'razomy.serializable';
 export * as server from 'razomy.server';
 export * as shell from 'razomy.shell';
