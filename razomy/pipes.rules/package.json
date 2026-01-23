@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.pipes.booleans",
+  "name": "razomy.pipes.rules",
   "peerDependencies": {
     "razomy.exceptions": "*",
     "razomy.kv": "*"
