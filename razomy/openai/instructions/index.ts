@@ -1,1 +1,1 @@
-export const __TODO__ = 'Create import to typescript';
+export const todo = 'Create import to typescript';

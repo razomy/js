@@ -3,13 +3,13 @@ import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functio
 import {createIndexFiles} from './create_index_files';
 import {createPackage} from './create_package';
 import {renameFiles} from './rename_files';
-import {splitFunctions} from '../typescript.refactor/split_functions';
-import {iterateSourceFilesAndSave} from '../typescript.refactor/iterate_source_files_and_save';
+import {splitFunctions} from 'razomy.typescript.refactor';
+import {iterateSourceFilesAndSave} from 'razomy.typescript.refactor';
 import {addDependencies} from './add_dependencies';
 import {updatePackages} from './update_packages';
-import {renameFileBasedOnFirstChild} from '../typescript.refactor/rename_file_based_on_first_child';
+import {renameFileBasedOnFirstChild} from 'razomy.typescript.refactor';
 import {createPackageJsonAtChildDirs} from './create_package_json_at_child_dirs';
-import {fileRenameVariablesAndPropsFunctions} from '../typescript.refactor/file_rename_variables_and_props_functions';
+import {fileRenameVariablesAndPropsFunctions} from 'razomy.typescript.refactor';
 import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
 
 export async function formatProject(projectPath: string, prefix: string) {

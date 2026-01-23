@@ -4,7 +4,7 @@ import {stringsAnyIndex} from 'razomy.index';
 
 export function isStringsAnyIndex(
   string: String,
-  equalStrings: String[],
+  equalStrings: Set<string>,
   offset: Offset = 0,
   maxOffset: Offset = string.length
 ): boolean {
