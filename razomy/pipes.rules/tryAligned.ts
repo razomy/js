@@ -1,17 +1,29 @@
-import {Context, RuleResult} from './ctx';
+import {RuleResult} from './rule';
+import {WithTokens, WithTokenType} from './token';
+import {WithOffset} from 'razomy.offset';
 
 export interface WithDeep {
   deep: number;
 }
 
-export function tryAligned<R, T extends WithDeep>(ctx: Context<R, T>): RuleResult<T> | null {
-  const t = ctx.tokens[ctx.offset];
-  const currentIndent = ctx.stack[ctx.stack.length - 1] ?? -1;
-  // Valid if EOF or if deep >= current
-  if (!t || t.deep >= currentIndent) {
-    return {result: null, offset: 0};
-  }
-  return null;
+export interface WithStack {
+  stack: number[];
 }
 
-export type RuleAligned = [typeof tryAligned, null];
+export function tryAligned<
+  TToken extends WithTokenType<any> & WithDeep,
+  D extends object
+>(
+  ctx: WithTokens<TToken> & WithOffset & WithStack,
+  deafult_: D = {} as D
+) {
+
+  const t = ctx.tokens[ctx.offset];
+  const currentIndent = ctx.stack[ctx.stack.length - 1] ?? -1;
+
+  if (!t || t.deep >= currentIndent) {
+    return deafult_;
+  }
+
+  return null;
+}

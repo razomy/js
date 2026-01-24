@@ -1,8 +1,10 @@
-import {Context, RuleResult} from './ctx';
+import {RuleFn, RuleFnResult} from './rule';
+import {Context} from './context';
 
-export function tryOptinal<R, T>(ruleName: R, ctx: Context<R, T>): RuleResult<T> | null {
-  const res = ctx.parseRule(ruleName, ctx);
-  return res ? res : {result: null, offset: 0};
+export function tryOptinal<
+  C extends Context,
+  R extends RuleFn<C, any>,
+>(ctx: C, rule: R, deafult_ = {}): typeof deafult_ | RuleFnResult<R> {
+  const res = rule(ctx);
+  return res === null ? deafult_ : res;
 }
-
-export type TryOptinal = [typeof tryOptinal, string];
