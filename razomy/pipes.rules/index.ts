@@ -1,1 +1,0 @@
-export {tryAligned} from './tryAligned';

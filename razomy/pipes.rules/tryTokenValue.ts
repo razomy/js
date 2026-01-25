@@ -1,19 +1,20 @@
 import {WithOffset} from 'razomy.offset';
 import {WithTokens, WithTokenType} from './token';
+import {WithValue} from 'razomy.value';
 
-export function tryToken<
-  TToken extends WithTokenType<any>,
-  TSpecific extends TToken['tokenType']
+export function tryTokenValue<
+  TToken extends WithTokenType<any> & WithValue<string>,
+  TTokenType extends TToken['tokenType']
 >(
   ctx: WithTokens<TToken> & WithOffset,
-  targetType: TSpecific
+  targetType: TTokenType
 ) {
   const t = ctx.tokens[ctx.offset];
   if (!t) return null;
 
   if (t.tokenType === targetType) {
     return {
-      token: t,
+      result: t.value,
       offset: 1
     };
   }

@@ -1,10 +1,11 @@
-import {RuleFn, RuleFnResult} from './rule';
+import {RuleFn} from './rule';
 import {Context} from './context';
 
 export function tryOptinal<
   C extends Context,
-  R extends RuleFn<C, any>,
->(ctx: C, rule: R, deafult_ = {}): typeof deafult_ | RuleFnResult<R> {
+  R,
+  D
+>(ctx: C, rule: RuleFn<C, R>, default_: D): D | R {
   const res = rule(ctx);
-  return res === null ? deafult_ : res;
+  return res === null ? default_ : res;
 }

@@ -6,5 +6,5 @@ export function iterate<
   R extends RuleFn<C, any>
 >(ctx: C, rule: R): { result: RuleFnResult<R>, offset: number } {
   const result = rule(ctx);
-  return {result, offset: 0}
+  return {result: result.result, offset: 0}
 }
