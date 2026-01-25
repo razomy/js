@@ -9,13 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.json",
+  "name": "razomy.yaml",
   "peerDependencies": {
-    "razomy.codec": "*",
     "razomy.function": "*",
     "razomy.offset": "*",
     "razomy.pipes": "*",
-    "razomy.serializable": "*",
     "razomy.value": "*"
   },
   "publishConfig": {

@@ -1,4 +1,4 @@
-import {Context} from './context';
+import {Context} from './create_context';
 import {RuleFn, RuleFnResult, RuleResult} from './rule';
 
 export function tryAny<

@@ -14,8 +14,10 @@ export function testJson() {
   console.log(JSON.stringify(result, null, 2));
 }
 
-describe('', () => {
-    testJson()
+describe('s', () => {
+    test('f', () => {
+      testJson()
+    })
   }
 )
 

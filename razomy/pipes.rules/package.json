@@ -11,8 +11,9 @@
   "main": "./index.ts",
   "name": "razomy.pipes.rules",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.kv": "*"
+    "razomy.dict": "*",
+    "razomy.offset": "*",
+    "razomy.value": "*"
   },
   "publishConfig": {
     "access": "public",

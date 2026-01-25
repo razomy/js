@@ -1,8 +1,8 @@
-import {Context} from './context';
+import {Context} from './create_context';
 import {RuleFn} from './rule';
 import {WithTokens} from './token';
 import {WithOffset} from 'razomy.offset';
-import {WithStack} from './tryAligned';
+import {WithStack} from './try_aligned';
 
 
 export function tryScope<

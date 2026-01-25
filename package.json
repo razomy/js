@@ -150,15 +150,16 @@
     "./razomy/performance",
     "./razomy/pipes",
     "./razomy/pipes.booleans",
+    "./razomy/pipes.rules",
     "./razomy/random",
     "./razomy/razomy",
     "./razomy/recursive",
     "./razomy/recursive.dict_or_list",
     "./razomy/refactor",
     "./razomy/refactor.fs",
+    "./razomy/regex",
     "./razomy/resources",
     "./razomy/respect",
-    "./razomy/schema",
     "./razomy/serializable",
     "./razomy/server",
     "./razomy/shell",
@@ -193,6 +194,7 @@
     "./razomy/vrd.fs.graph",
     "./razomy/vue",
     "./razomy/vue.plugin",
-    "./razomy/vue.resource"
+    "./razomy/vue.resource",
+    "./razomy/yaml"
   ]
 }

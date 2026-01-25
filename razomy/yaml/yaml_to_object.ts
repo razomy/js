@@ -1,15 +1,15 @@
-import {tryAligned, WithDeep} from '../pipes.rules/tryAligned';
-import {tryScope} from '../pipes.rules/tryScope';
-import {createContext} from '../pipes.rules/context';
+import {tryAligned, WithDeep} from '../pipes.rules/try_aligned';
+import {tryScope} from '../pipes.rules/try_scope';
+import {createContext} from '../pipes.rules/create_context';
 import {RuleRegistry} from '../pipes.rules/rule';
-import {tryAll} from '../pipes.rules/tryAll';
-import {tryTokenValue} from '../pipes.rules/tryTokenValue';
-import {tryOptinal} from '../pipes.rules/tryOptinal';
+import {tryAll} from '../pipes.rules/try_all';
+import {tryTokenValue} from '../pipes.rules/try_token_value';
+import {tryOptinal} from '../pipes.rules/try_optinal';
 import {WithTokens, WithTokenType} from '../pipes.rules/token';
 import {WithOffset} from 'razomy.offset';
 import {WithValue} from 'razomy.value';
 import {iterate} from '../pipes.rules/iterate';
-import {tryAny} from '../pipes.rules/tryAny';
+import {tryAny} from '../pipes.rules/try_any';
 import {tryP} from 'razomy.pipes';
 import {f, fMut} from 'razomy.function';
 
@@ -42,8 +42,8 @@ export function yamlToObject(jsonTokens: JsonToken[]) {
 
   const rs = {
     root: (c) => ifR(tryScope(c, rs.line), mergeResults),
-    line: (c) => ifR(tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
-    safe_word: (c) => ifR(tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
+    line: (c) => tryP(tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
+    safe_word: (c) => tryP(tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
     aligned: (c) => tryAligned(c, {offset: 0, result: null}),
     word: (c) => (tryTokenValue(c, 'value')),
     opt_break: (c) => tryOptinal(c, rs.break, {offset: 0, result: null}),

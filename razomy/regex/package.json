@@ -1,5 +1,4 @@
 {
-  "dependencies": {},
   "exports": {
     ".": "./index.ts",
     "./package.json": "./package.json"
@@ -9,15 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.json",
-  "peerDependencies": {
-    "razomy.codec": "*",
-    "razomy.function": "*",
-    "razomy.offset": "*",
-    "razomy.pipes": "*",
-    "razomy.serializable": "*",
-    "razomy.value": "*"
-  },
+  "name": "razomy.regex",
   "publishConfig": {
     "access": "public",
     "exports": {
