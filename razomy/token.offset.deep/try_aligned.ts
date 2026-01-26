@@ -1,6 +1,6 @@
-import {RuleResult} from './rule';
-import {WithTokens, WithTokenType} from './token';
 import {WithOffset} from 'razomy.offset';
+import { ResultNull } from "razomy.result.null";
+import { WithTokens, WithTokenType } from "razomy.token";
 
 export interface WithDeep {
   deep: number;

@@ -1,10 +1,10 @@
-import {Context} from './create_context';
-import {RuleFn} from './rule';
+import {Context} from 'razomy.context';
 import {WithOffset} from 'razomy.offset';
+import { ResultNullFn } from "razomy.result.null";
 
 export function tryAll<
   C extends Context & WithOffset,
-  R extends readonly RuleFn<C,{ offset: number, result: any }>[],
+  R extends readonly ResultNullFn<C,{ offset: number, result: any }>[],
 >(ctx: C, rules: R) {
 
   let totalOffset = 0;

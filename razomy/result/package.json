@@ -1,5 +1,4 @@
 {
-  "dependencies": {},
   "exports": {
     ".": "./index.ts",
     "./package.json": "./package.json"
@@ -9,17 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.yaml",
-  "peerDependencies": {
-    "razomy.context": "*",
-    "razomy.offset": "*",
-    "razomy.pipes": "*",
-    "razomy.result.null": "*",
-    "razomy.token": "*",
-    "razomy.token.offset": "*",
-    "razomy.token.offset.deep": "*",
-    "razomy.value": "*"
-  },
+  "name": "razomy.result",
   "publishConfig": {
     "access": "public",
     "exports": {

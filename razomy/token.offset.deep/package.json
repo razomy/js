@@ -9,11 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.pipes.rules",
+  "name": "razomy.token.offset.deep",
   "peerDependencies": {
-    "razomy.dict": "*",
+    "razomy.context": "*",
     "razomy.offset": "*",
-    "razomy.value": "*"
+    "razomy.result.null": "*",
+    "razomy.token": "*"
   },
   "publishConfig": {
     "access": "public",

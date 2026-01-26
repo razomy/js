@@ -9,15 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.yaml",
+  "name": "razomy.token.offset",
   "peerDependencies": {
     "razomy.context": "*",
     "razomy.offset": "*",
-    "razomy.pipes": "*",
     "razomy.result.null": "*",
     "razomy.token": "*",
-    "razomy.token.offset": "*",
-    "razomy.token.offset.deep": "*",
     "razomy.value": "*"
   },
   "publishConfig": {
