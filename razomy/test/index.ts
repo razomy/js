@@ -5,4 +5,5 @@ export {emptyThrow} from './empty_throw';
 export {falseThrow} from './false_throw';
 export {notZero} from './not_zero';
 export {test} from './test';
+export {testSync} from './testSync';
 export {tests} from './tests';
