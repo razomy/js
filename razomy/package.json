@@ -136,7 +136,6 @@
     "razomy.performance": "*",
     "razomy.pipes": "*",
     "razomy.pipes.booleans": "*",
-    "razomy.pipes.tasks": "*",
     "razomy.random": "*",
     "razomy.razomy": "*",
     "razomy.recursive": "*",

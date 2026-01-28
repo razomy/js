@@ -1,4 +1,4 @@
-import {toThrow, toStrictEqual} from './expect';
+import {toThrow, toStrictEqual} from './matches_error';
 import {Function} from 'razomy.function';
 
 export function testSync<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
