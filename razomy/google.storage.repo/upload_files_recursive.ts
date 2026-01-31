@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 
 export async function uploadFilesRecursive(bucket, folderPath, destinationPath = '') {
   const items = await fs.promises.readdir(folderPath);

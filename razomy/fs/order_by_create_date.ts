@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import fs from 'fs';
 
 export function orderByCreateDate(directory: string, items: string[]) {

@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import {iterate} from 'razomy.fs';
 import {isExist} from 'razomy.fs.file';
 import {sortBy} from 'razomy.array';

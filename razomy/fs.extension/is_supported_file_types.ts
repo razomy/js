@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 
 export const textBufferTypes = {
   'rnt': 'utf-8', // TODO: remove after v2 migrate

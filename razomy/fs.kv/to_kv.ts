@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import {ArgumentException} from 'razomy.exceptions';
 import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable} from 'razomy.kv';
 import {akv} from 'razomy.kv';

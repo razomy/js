@@ -1,6 +1,6 @@
 import {toDict} from 'razomy.fs.dict';
 
-import path from 'path';
+import * as path from 'path';
 import fs from 'fs';
 import {snakeCase} from 'razomy.string.case';
 

@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import {executeAsync} from 'razomy.shell';
 import {get} from 'razomy.fs.file';
 import {set} from 'razomy.fs.file';

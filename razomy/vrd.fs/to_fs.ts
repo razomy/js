@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import fs from 'fs';
 import {tryCreate} from 'razomy.fs.directory';
 import {VrdOrValue} from 'razomy.vrd';

@@ -1,6 +1,6 @@
 import {Project, SyntaxKind} from 'ts-morph';
 import {tryGetJson} from 'razomy.fs.file';
-import path from 'path';
+import * as path from 'path';
 import * as file from 'razomy.fs.file';
 import {toSafeName} from 'razomy.typescript.refactor';
 

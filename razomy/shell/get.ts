@@ -1,4 +1,4 @@
-import readline from 'readline';
+import * as readline from 'readline';
 
 export async function get(query: string) {
   const rl = readline.createInterface({

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {tryCreate} from 'razomy.fs.directory';
-import path from 'path';
+import * as path from 'path';
 import {FilePathString} from 'razomy.path.string';
 
 export function trySet(filePath: FilePathString, content) {

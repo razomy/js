@@ -1,10 +1,10 @@
 export {andFalseThrow} from './and_false_throw';
-export {and} from './and';
 export {notEmpty, ArgumentError} from './argument_error';
+export {assertDeepEqual} from './assert_deep_equal';
 export {emptyThrow} from './empty_throw';
 export {falseThrow} from './false_throw';
-export {matchesError, toStrictEqual, toThrow} from './matches_error';
+export {matchesError} from './matches_error';
 export {notZero} from './not_zero';
 export {testSync} from './test_sync';
-export {test} from './test';
-export {tests} from './tests';
+export {toStrictEqual} from './to_strict_equal';
+export {toThrow} from './to_throw';

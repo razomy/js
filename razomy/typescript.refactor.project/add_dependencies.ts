@@ -1,6 +1,6 @@
 import {getAllPackageJsons} from './get_all_package_jsons';
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import {iterate} from 'razomy.fs';
 
 export function addDependencies(projectPath: string) {

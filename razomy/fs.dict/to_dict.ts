@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import {DirPathString} from 'razomy.path.string';
 
 export function toDict(dirPath: DirPathString) {

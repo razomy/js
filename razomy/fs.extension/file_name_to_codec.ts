@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import {Codec} from 'razomy.codec';
 import {bufferTypes} from './is_supported_file_types';
 import {toCodec} from 'razomy.buffer.string';

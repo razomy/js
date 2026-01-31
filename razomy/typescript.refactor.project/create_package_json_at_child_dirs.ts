@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import {tryGetJson} from 'razomy.fs.file';
 
 export function createPackageJsonAtChildDirs(projectPath: string) {

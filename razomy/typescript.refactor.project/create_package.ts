@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import {getJson} from 'razomy.fs.file';
 import {setJson} from 'razomy.fs.file';
 import {getAllPackageJsons} from './get_all_package_jsons';

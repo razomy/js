@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import {compareVersions} from './compare_versions';
 
 export async function gitFileCommitsToCommitJsonFile(

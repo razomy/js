@@ -1,5 +1,5 @@
 import {promises as fs} from 'fs';
-import path from 'path';
+import * as path from 'path';
 
 export async function copy(source, target, excludedDirs: string[] = []) {
   const sourceStats = await fs.stat(source);

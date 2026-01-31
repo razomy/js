@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 
 // Define the function to count the tokens in the project directory
 export function projectDirCount(

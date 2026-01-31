@@ -1,5 +1,5 @@
 import fs, {Dirent} from 'fs';
-import path from 'path';
+import * as path from 'path';
 
 export interface IterateNode {
   stats: Dirent;
