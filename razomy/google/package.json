@@ -15,11 +15,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/google",
-  "peerDependencies": {
-    "@razomy/fs": "*",
-    "@razomy/number": "*",
-    "@razomy/shell": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

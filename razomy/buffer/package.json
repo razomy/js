@@ -10,10 +10,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/buffer",
-  "peerDependencies": {
-    "@razomy/codec": "*",
-    "@razomy/string": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

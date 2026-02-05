@@ -13,8 +13,7 @@
   "peerDependencies": {
     "@razomy/dict": "*",
     "@razomy/function": "*",
-    "@razomy/spec": "*",
-    "@razomy/test": "*"
+    "@razomy/spec": "*"
   },
   "publishConfig": {
     "access": "public",

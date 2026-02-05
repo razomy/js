@@ -2,13 +2,14 @@ import {getAllPackageJsons} from './get_all_package_jsons';
 import fs from 'fs';
 import * as path from 'path';
 import {iterate} from '@razomy/fs';
+import {sort} from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
   const packages = getAllPackageJsons(projectPath);
 
   const scope = '@' + prefix
 // 1. Get list of all available package names
-  const importRegex = new RegExp(`from ['"](${scope}[^'"]+)['"]`, 'g');
+  const importRegex = new RegExp(`from ['"](\\@${prefix}[^'"]+)['"]`, 'g');
 
   packages.forEach(folder => {
     const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
@@ -35,35 +36,32 @@ export function addDependencies(projectPath: string, prefix) {
 
       const pkgSource = fs.readFileSync(iterate_node.path, 'utf8');
       // 2. Regex to find imports like: from '@my-org/auth'
-      const newImports = pkgSource.matchAll(importRegex).map(m => m[1].split('/')[0]).toArray()
+      const newImports = pkgSource.matchAll(importRegex).map(m => m[1]).toArray()
       matches = [...matches, ...newImports];
     })
 
     // 3. Update dependencies
     pkgJson.dependencies = pkgJson.dependencies || {};
-    Object.keys(pkgJson.dependencies).filter(i => i.startsWith(prefix)).forEach(i => {
+    Object.keys(pkgJson.dependencies).filter(i => i.startsWith(scope)).forEach(i => {
       delete pkgJson.dependencies[i];
     })
 
     pkgJson.peerDependencies = pkgJson.peerDependencies || {};
-    Object.keys(pkgJson.peerDependencies).filter(i => i.startsWith(prefix)).forEach(i => {
+    Object.keys(pkgJson.peerDependencies).filter(i => i.startsWith(scope)).forEach(i => {
       delete pkgJson.peerDependencies[i];
     })
-    let changed = false;
     matches.forEach(depName => {
-      if (depName == folder.name.replaceAll('/', '.')) {
+      if (depName === folder.name.replaceAll('/', '.').replace(prefix + '.', scope + '/')) {
         return
       }
       pkgJson.peerDependencies[depName] = '*';
-      path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
-        .replace(prefix, '')
-        .replaceAll('.', '/'));
+      // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
+      //   .replace(prefix, '')
+      //   .replaceAll('.', '/'));
       console.log(`[${pkgJson.name}] Added dependency: ${depName}`);
-      changed = true;
     });
+    pkgJson.peerDependencies = sort(pkgJson.peerDependencies);
 
-    if (changed) {
-      fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2));
-    }
+    fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2));
   });
 }

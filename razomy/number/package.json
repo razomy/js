@@ -10,9 +10,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/number",
-  "peerDependencies": {
-    "@razomy/string": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

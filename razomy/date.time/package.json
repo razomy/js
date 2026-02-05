@@ -1,4 +1,5 @@
 {
+  "dependencies": {},
   "exports": {
     ".": "./index.ts",
     "./package.json": "./package.json"
@@ -9,6 +10,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/date.time",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

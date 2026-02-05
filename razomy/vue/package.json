@@ -13,12 +13,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/vue",
-  "peerDependencies": {
-    "@razomy/array": "*",
-    "@razomy/dict": "*",
-    "@razomy/server": "*",
-    "@razomy/socket": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

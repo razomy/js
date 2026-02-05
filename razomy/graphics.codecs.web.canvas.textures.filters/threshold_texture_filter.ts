@@ -1,4 +1,4 @@
-import {ITextureFilter} from '@razomy/graphics.codecs.web.canvas.textures.filters';
+import {ITextureFilter} from './i_texture_filter';
 
 /**
  * Threshold Filter. Pushes any value above the mid point to

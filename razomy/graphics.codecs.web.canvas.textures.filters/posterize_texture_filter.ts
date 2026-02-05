@@ -1,4 +1,4 @@
-import {ITextureFilter} from '@razomy/graphics.codecs.web.canvas.textures.filters';
+import {ITextureFilter} from './i_texture_filter';
 
 /**
  * Posterize Filter. Adjusts the channels so that there are no more

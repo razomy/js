@@ -10,14 +10,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/typescript",
-  "peerDependencies": {
-    "@razomy/action": "*",
-    "@razomy/array": "*",
-    "@razomy/fs": "*",
-    "@razomy/main": "*",
-    "@razomy/refactor": "*",
-    "@razomy/string": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

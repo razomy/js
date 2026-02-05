@@ -1,4 +1,4 @@
-import {ITextureFilter} from '@razomy/graphics.codecs.web.canvas.textures.filters';
+import {ITextureFilter} from './i_texture_filter';
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 

@@ -1,7 +1,5 @@
 {
-  "dependencies": {
-    "@razomy/resources": "../resources"
-  },
+  "dependencies": {},
   "exports": {
     ".": "./index.ts",
     "./package.json": "./package.json"
@@ -12,6 +10,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/gate",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

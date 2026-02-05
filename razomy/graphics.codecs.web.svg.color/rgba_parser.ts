@@ -1,4 +1,4 @@
-import {Color} from '@razomy/graphics.codecs.web.svg.color';
+import {Color} from './color';
 
 export class RgbaParser {
   /**

@@ -1,5 +1,5 @@
 /*eslint-disable max-depth */
-import {ITextureFilter} from '@razomy/graphics.codecs.web.canvas.textures.filters';
+import {ITextureFilter} from './i_texture_filter';
 
 /**
  * Pixelate Filter. Averages groups of pixels and redraws

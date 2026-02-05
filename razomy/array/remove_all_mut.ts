@@ -18,7 +18,7 @@
  * const list = [1, 1, 2];
  * removeAllMut(list, [1]);
  */
-import {removeFirstMut} from '@razomy/array';
+import {removeFirstMut} from './remove_first_mut';
 
 export function removeAllMut<T>(array: T[], values: T[]): void {
   for (const value of values) {

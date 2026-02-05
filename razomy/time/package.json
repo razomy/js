@@ -12,6 +12,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/time",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public",
     "exports": {

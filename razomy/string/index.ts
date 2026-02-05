@@ -32,6 +32,7 @@ export {substringBefore} from './substring_before';
 export {substringBetween} from './substring_between';
 export {toBuffer} from './to_buffer';
 export {trim} from './trim';
+export {levenshteinDistance} from './levenshtein_distance';
 export {truncate} from './truncate';
 export {unescapeString} from './unescape_string';
 export {type WithString} from './with_string';
