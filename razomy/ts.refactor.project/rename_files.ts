@@ -1,7 +1,7 @@
 import {Project} from 'ts-morph';
 import {isExist} from '@razomy/fs.file';
-import {getNameAndExt} from '../typescript.refactor/get_name_and_ext';
-import {toSafeFilename} from '../typescript.refactor/to_safe_filename';
+import {getNameAndExt} from '../ts.refactor/get_name_and_ext';
+import {toSafeFilename} from '../ts.refactor/to_safe_filename';
 
 export async function renameFiles(projectPath: string) {
   const project = new Project({

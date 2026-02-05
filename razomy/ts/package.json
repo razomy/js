@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "@razomy/mock_generator",
+  "name": "@razomy/ts",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public",

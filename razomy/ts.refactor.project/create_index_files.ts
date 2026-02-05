@@ -2,7 +2,7 @@ import {Project, SyntaxKind} from 'ts-morph';
 import {tryGetJson} from '@razomy/fs.file';
 import * as path from 'path';
 import * as file from '@razomy/fs.file';
-import {toSafeName} from '@razomy/typescript.refactor';
+import {toSafeName} from '../ts.refactor';
 
 export async function createIndexFiles(projectPath: string) {
   const project = new Project({tsConfigFilePath: projectPath + 'tsconfig.json'});

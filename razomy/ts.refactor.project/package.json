@@ -9,15 +9,14 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "@razomy/typescript.refactor.project",
+  "name": "@razomy/ts.refactor.project",
   "peerDependencies": {
     "@razomy/array": "*",
     "@razomy/fs": "*",
     "@razomy/fs.file": "*",
     "@razomy/json": "*",
     "@razomy/main": "*",
-    "@razomy/string": "*",
-    "@razomy/typescript.refactor": "*"
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",
