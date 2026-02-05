@@ -25,6 +25,7 @@
   "workspaces": [
     "./razomy",
     "./razomy/action",
+    "./razomy/alias",
     "./razomy/analytics",
     "./razomy/analytics.token",
     "./razomy/array",

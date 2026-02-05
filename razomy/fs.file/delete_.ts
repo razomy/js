@@ -1,5 +1,5 @@
 import fs from 'fs';
 
-export function delete_(filePath: string) {
-  return fs.rmSync(filePath, {recursive: true, force: true});
+export async function delete_(filePath: string) {
+  return await fs.rmSync(filePath, {recursive: true, force: true});
 }

@@ -1,6 +1,4 @@
-// @ts-ignore
 import {Hammer} from '@squadette/hammerjs';
-// @ts-ignore
 import {Mousetrap} from 'mousetrap';
 
 export enum KonvaNodeEvent {

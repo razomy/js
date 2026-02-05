@@ -10,7 +10,9 @@
   "license": "MIT",
   "main": "./index.ts",
   "name": "@razomy/pipes",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/alias": "*"
+  },
   "publishConfig": {
     "access": "public",
     "exports": {

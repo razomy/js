@@ -1,4 +1,4 @@
-import { pipe } from './pipe';
+import { pipeSync } from './pipe_sync';
 
 export type Unary<T, R> = (arg: T) => R;
 
@@ -11,7 +11,7 @@ export function functionPipe<A , B, C, D, E, F, G>(fn1: Unary<A, B>, fn2: Unary<
 export function functionPipe<A , B, C, D, E, F, G, H>(fn1: Unary<A, B>, fn2: Unary<B, C>, fn3: Unary<C, D>, fn4: Unary<D, E>, fn5: Unary<E, F>, fn6: Unary<F, G>, fn7: Unary<G, H>): (a: A) => H;
 export function functionPipe<A , B, C, D, E, F, G, H, I>(fn1: Unary<A, B>, fn2: Unary<B, C>, fn3: Unary<C, D>, fn4: Unary<D, E>, fn5: Unary<E, F>, fn6: Unary<F, G>, fn7: Unary<G, H>, fn8: Unary<H, I>): (a: A) => I;
 export function functionPipe<C, I>(...fns: Unary<any, any>[]): (initial: C) => I {
-  return (initial) => (pipe as any)(initial, ...fns);
+  return (initial) => (pipeSync as any)(initial, ...fns);
 }
 
 export const fP = functionPipe;

@@ -1,4 +1,5 @@
 export * as action from '@razomy/action';
+export * as alias from '@razomy/alias';
 export * as analytics from '@razomy/analytics';
 export * as analyticsToken from '@razomy/analytics.token';
 export * as array from '@razomy/array';

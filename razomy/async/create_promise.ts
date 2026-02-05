@@ -1,4 +1,4 @@
-export function createTaskPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
+export function createPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
   return () => new Promise(async (resolve, reject) => {
     try {
       if (task instanceof Promise) {

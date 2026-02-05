@@ -1,4 +1,4 @@
-import {executeAsync} from '@razomy/shell';
+import {execute} from '@razomy/shell';
 import {progress} from '@razomy/shell';
 import {ActorDatetimeDeltaString, addssToString} from '@razomy/commit.datetime.delta.string';
 import {trySet} from '@razomy/fs.file';
@@ -12,10 +12,10 @@ export async function vcsCommitsToGitFile(prevSnapshot: string, dirPath: string,
     prevSnapshot = addssToString(prevSnapshot, [commit]);
     trySet(fileName, prevSnapshot);
     progress(i, commits.length);
-    await executeAsync(`git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`, {cwd: dirPath});
+    await execute(`git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`, {cwd: dirPath});
   }
   progress(commits.length, commits.length);
-  await executeAsync('git gc', {cwd: dirPath});
+  await execute('git gc', {cwd: dirPath});
 }
 
 

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import {string} from '@razomy/number.string';
-import {executeAsync} from '@razomy/shell';
-import {setAsync} from '@razomy/fs.file';
+import {execute} from '@razomy/shell';
+import {set} from '@razomy/fs.file';
 
 
 export async function exportFiles(baseDir) {
@@ -31,8 +31,8 @@ export async function exportFiles(baseDir) {
     const commitMessage = `Update fileName:${fileName} date:${date}`;
 
     try {
-      await setAsync(path.join(baseDir, filePath), content);
-      await executeAsync(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
+      await set(path.join(baseDir, filePath), content);
+      await execute(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
     } catch (e) {
       console.log(e);
     }

@@ -1,20 +1,20 @@
-export type Pipe<T, R> = (arg: T) => R;
+import {Alias} from '@razomy/alias';
 
-export function pipe<T, A>(arg: T, ...f1: [Pipe<T, A>]): A;
-export function pipe<T, A, B>(arg: T, f1: Pipe<T, A>, f2: Pipe<A, B>): B;
-export function pipe<T, A, B, C>(arg: T, f1: Pipe<T, A>, f2: Pipe<A, B>, f3: Pipe<B, C>): C;
-export function pipe<T, A, B, C, D>(arg: T, f1: Pipe<T, A>, f2: Pipe<A, B>, f3: Pipe<B, C>, f4: Pipe<C, D>): D;
-export function pipe<T, A, B, C, D, E>(arg: T, f1: Pipe<T, A>, f2: Pipe<A, B>, f3: Pipe<B, C>, f4: Pipe<C, D>, f5: Pipe<D, E>): E;
-export function pipe<T, A, B, C, D, E, F>(arg: T, f1: Pipe<T, A>, f2: Pipe<A, B>, f3: Pipe<B, C>, f4: Pipe<C, D>, f5: Pipe<D, E>, f6: Pipe<E, F>): F;
-// export function pipe<T, F>(arg: T, ...fns: [Pipe<T, any>, ...Pipe<any, any>[], Pipe<any, F>]): F;
-export function pipe<T, A, F>(arg: T, ...fns: [Pipe<T, A>, Pipe<A, F>]): F;
-export function pipe<C, I>(arg: C, ...fns: [Pipe<C, I>]): I ;
-export function pipe(initialValue: any, ...fns: Pipe<any, any>[]): any {
+export type PipeAsync<T, R> = (arg: T) => R | Promise<R>;
+
+export async function pipe<T, A>(arg: T, f1: PipeAsync<T, A>): Promise<A>;
+export async function pipe<T, A, B>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>): Promise<B>;
+export async function pipe<T, A, B, C>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>, f3: PipeAsync<B, C>): Promise<C>;
+export async function pipe<T, A, B, C, D>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>, f3: PipeAsync<B, C>, f4: PipeAsync<C, D>): Promise<D>;
+export async function pipe<T, A, B, C, D, E>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>, f3: PipeAsync<B, C>, f4: PipeAsync<C, D>, f5: PipeAsync<D, E>): Promise<E>;
+export async function pipe<T, A, B, C, D, E, F>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>, f3: PipeAsync<B, C>, f4: PipeAsync<C, D>, f5: PipeAsync<D, E>, f6: PipeAsync<E, F>): Promise<F>;
+export async function pipe<T, F>(arg: T, ...fns: [PipeAsync<T, any>, ...PipeAsync<any, any>[], PipeAsync<any, F>]): Promise<F>;
+export async function pipe(initialValue: any, ...fns: PipeAsync<any, any>[]): Promise<any> {
   let result = initialValue;
   for (const fn of fns) {
-    result = fn(result);
+    result = await fn(result);
   }
   return result;
 }
 
-export const p = pipe;
+export const p: Alias<typeof pipe> = pipe;

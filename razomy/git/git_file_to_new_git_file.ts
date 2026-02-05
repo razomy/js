@@ -1,7 +1,7 @@
 import * as path from 'path';
-import {executeAsync} from '@razomy/shell';
-import {get} from '@razomy/fs.file';
-import {set} from '@razomy/fs.file';
+import {execute} from '@razomy/shell';
+import {getSync} from '@razomy/fs.file';
+import {setSync} from '@razomy/fs.file';
 import {tryPromise} from '@razomy/async';
 import {getGitCommitsId} from './get_git_commits_id';
 
@@ -19,13 +19,13 @@ export async function gitFileToNewGitFile(
     const index = commits.indexOf(commit);
 
     const checkoutCommand = `git checkout ${commit.id}`;
-    await tryPromise(executeAsync(checkoutCommand, {cwd: repositoryPath}));
+    await tryPromise(execute(checkoutCommand, {cwd: repositoryPath}));
 
-    const data = get(repositoryPath + fileSubPath);
-    set(repositorynewPath + fileSubPath, data);
+    const data = getSync(repositoryPath + fileSubPath);
+    setSync(repositorynewPath + fileSubPath, data);
 
     const commitCommand = `git add . && git commit --date "${commit.date}" -m "${commit.commitName}"`;
-    await tryPromise(executeAsync(commitCommand, {cwd: repositorynewPath}));
+    await tryPromise(execute(commitCommand, {cwd: repositorynewPath}));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
     console.log(`   Commit Name: ${commit.commitName}`);
