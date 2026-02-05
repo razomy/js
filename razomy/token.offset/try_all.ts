@@ -1,6 +1,6 @@
-import {Context} from 'razomy.context';
-import {WithOffset} from 'razomy.offset';
-import { ResultNullFn } from "razomy.result.null";
+import {Context} from '@razomy/context';
+import {WithOffset} from '@razomy/offset';
+import { ResultNullFn } from "@razomy/result.null";
 
 export function tryAll<
   C extends Context & WithOffset,

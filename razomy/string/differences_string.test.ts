@@ -1,4 +1,4 @@
-import {differencesString} from 'razomy.string';
+import {differencesString} from '@razomy/string';
 
 describe(`string`, () => {
   describe(`differences_string.name`, () => {

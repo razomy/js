@@ -1,4 +1,4 @@
-import {IoElement} from 'razomy.graphics.inputs';
+import {IoElement} from '@razomy/graphics.inputs';
 
 export class ControlElement extends IoElement {
 

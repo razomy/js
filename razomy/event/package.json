@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.event",
+  "name": "@razomy/event",
   "publishConfig": {
     "access": "public",
     "exports": {

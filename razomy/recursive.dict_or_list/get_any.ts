@@ -1,6 +1,6 @@
-import {isKeysInDict} from 'razomy.dict';
-import {Dict} from 'razomy.dict';
-import {isObject} from 'razomy.object';
+import {isKeysInDict} from '@razomy/dict';
+import {Dict} from '@razomy/dict';
+import {isObject} from '@razomy/object';
 
 export function getAny(obj: Dict<any>, keys: string[]) {
   if (isKeysInDict(obj, keys)) {

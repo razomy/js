@@ -9,13 +9,13 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.tree.dict",
+  "name": "@razomy/tree.dict",
   "peerDependencies": {
-    "razomy.dict": "*",
-    "razomy.exceptions": "*",
-    "razomy.key": "*",
-    "razomy.path.string": "*",
-    "razomy.tree": "*"
+    "@razomy/dict": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/key": "*",
+    "@razomy/path.string": "*",
+    "@razomy/tree": "*"
   },
   "publishConfig": {
     "access": "public",

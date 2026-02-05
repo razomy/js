@@ -1,5 +1,5 @@
-import {Context} from 'razomy.context';
-import {ResultNullFn} from 'razomy.result.null';
+import {Context} from '@razomy/context';
+import {ResultNullFn} from '@razomy/result.null';
 
 export function any<
   C extends Context,

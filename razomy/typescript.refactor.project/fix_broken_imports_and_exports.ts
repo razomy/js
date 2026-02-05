@@ -1,4 +1,4 @@
-import {levenshteinDistance} from 'razomy.string';
+import {levenshteinDistance} from '@razomy/string';
 import {ExportDeclaration, ImportDeclaration, Project, SourceFile} from 'ts-morph';
 
 /**

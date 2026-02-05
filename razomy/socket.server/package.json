@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.socket.server",
+  "name": "@razomy/socket.server",
   "peerDependencies": {
-    "razomy.server": "*"
+    "@razomy/server": "*"
   },
   "publishConfig": {
     "access": "public",

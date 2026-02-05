@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.tree.dict.graph",
+  "name": "@razomy/tree.dict.graph",
   "peerDependencies": {
-    "razomy.graph": "*",
-    "razomy.tree.dict": "*"
+    "@razomy/graph": "*",
+    "@razomy/tree.dict": "*"
   },
   "publishConfig": {
     "access": "public",

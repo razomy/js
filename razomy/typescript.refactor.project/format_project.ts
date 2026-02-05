@@ -1,15 +1,15 @@
-import {ifMain} from 'razomy.main';
+import {ifMain} from '@razomy/main';
 import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functions';
 import {createIndexFiles} from './create_index_files';
 import {createPackage} from './create_package';
 import {renameFiles} from './rename_files';
-import {splitFunctions} from 'razomy.typescript.refactor';
-import {iterateSourceFilesAndSave} from 'razomy.typescript.refactor';
+import {splitFunctions} from '@razomy/typescript.refactor';
+import {iterateSourceFilesAndSave} from '@razomy/typescript.refactor';
 import {addDependencies} from './add_dependencies';
 import {updatePackages} from './update_packages';
-import {renameFileBasedOnFirstChild} from 'razomy.typescript.refactor';
+import {renameFileBasedOnFirstChild} from '@razomy/typescript.refactor';
 import {createPackageJsonAtChildDirs} from './create_package_json_at_child_dirs';
-import {fileRenameVariablesAndPropsFunctions} from 'razomy.typescript.refactor';
+import {fileRenameVariablesAndPropsFunctions} from '@razomy/typescript.refactor';
 import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
 
 export async function formatProject(projectPath: string, prefix: string) {

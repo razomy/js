@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.kv",
+  "name": "@razomy/kv",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.function": "*",
-    "razomy.path.string": "*",
-    "razomy.undefined": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/function": "*",
+    "@razomy/path.string": "*",
+    "@razomy/undefined": "*"
   },
   "publishConfig": {
     "access": "public",

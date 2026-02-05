@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.token",
+  "name": "@razomy/token",
   "publishConfig": {
     "access": "public",
     "exports": {

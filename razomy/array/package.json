@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.array",
+  "name": "@razomy/array",
   "peerDependencies": {
-    "razomy.difference": "*",
-    "razomy.string": "*"
+    "@razomy/difference": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

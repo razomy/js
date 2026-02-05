@@ -1,4 +1,4 @@
-import {Dict} from 'razomy.dict';
+import {Dict} from '@razomy/dict';
 
 export function mapDict<I, O>(obj: Dict<I>, cb: (t: I) => O): Dict<O> {
   const entities = Object.entries(obj);

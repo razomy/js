@@ -1,6 +1,6 @@
-import {WithOffset} from 'razomy.offset';
-import {WithValue} from 'razomy.value';
-import { WithTokens, WithTokenType } from "razomy.token";
+import {WithOffset} from '@razomy/offset';
+import {WithValue} from '@razomy/value';
+import { WithTokens, WithTokenType } from "@razomy/token";
 
 export function tryTokenValue<
   TToken extends WithTokenType<any> & WithValue<string>,

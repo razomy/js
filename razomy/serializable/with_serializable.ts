@@ -1,4 +1,4 @@
-import {Serializable} from 'razomy.serializable';
+import {Serializable} from '@razomy/serializable';
 
 export interface WithSerializable {
   toSerializable(): Serializable;

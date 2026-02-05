@@ -11,10 +11,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.object",
+  "name": "@razomy/object",
   "peerDependencies": {
-    "razomy.id": "*",
-    "razomy.type": "*"
+    "@razomy/id": "*",
+    "@razomy/type": "*"
   },
   "publishConfig": {
     "access": "public",

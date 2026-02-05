@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.class",
+  "name": "@razomy/class",
   "peerDependencies": {
-    "razomy.object": "*"
+    "@razomy/object": "*"
   },
   "publishConfig": {
     "access": "public",

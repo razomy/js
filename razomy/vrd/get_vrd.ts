@@ -1,6 +1,6 @@
-import {ArgumentException} from 'razomy.exceptions';
+import {ArgumentException} from '@razomy/exceptions';
 import {VrdOrValue} from './vrd';
-import {DictKey} from 'razomy.dict';
+import {DictKey} from '@razomy/dict';
 
 export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: DictKey[], pathOffset: number): VrdOrValue<T> {
   for (let key in valueRecursive!) {

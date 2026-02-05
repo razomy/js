@@ -1,4 +1,4 @@
-import {PathString} from 'razomy.path.string';
+import {PathString} from '@razomy/path.string';
 import {isWithGit} from './is_with_git';
 
 export function isWithoutGit(path: PathString) {

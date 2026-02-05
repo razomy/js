@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.commit.datetime.delta.string",
+  "name": "@razomy/commit.datetime.delta.string",
   "peerDependencies": {
-    "razomy.shell": "*",
-    "razomy.string": "*"
+    "@razomy/shell": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

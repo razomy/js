@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import {Project, SourceFile} from 'ts-morph';
-import {levenshteinDistance} from 'razomy.string';
-import {ifMain} from 'razomy.main';
+import {levenshteinDistance} from '@razomy/string';
+import {ifMain} from '@razomy/main';
 
 function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null {
   const filePath = sourceFile.getFilePath();

@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "razomy.id": "../id",
-    "razomy.object": "../object"
+    "@razomy/id": "../id",
+    "@razomy/object": "../object"
   },
   "exports": {
     ".": "./index.ts",
@@ -12,7 +12,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.type",
+  "name": "@razomy/type",
   "publishConfig": {
     "access": "public",
     "exports": {

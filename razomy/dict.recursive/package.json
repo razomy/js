@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.dict.recursive",
+  "name": "@razomy/dict.recursive",
   "peerDependencies": {
-    "razomy.dict": "*"
+    "@razomy/dict": "*"
   },
   "publishConfig": {
     "access": "public",

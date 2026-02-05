@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {Gate} from 'razomy.gate';
+import {Gate} from '@razomy/gate';
 
 export class FileGate<T extends string> implements Gate<T> {
   constructor(private readonly file_path: string) {

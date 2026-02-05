@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.key",
+  "name": "@razomy/key",
   "peerDependencies": {
-    "razomy.char": "*"
+    "@razomy/char": "*"
   },
   "publishConfig": {
     "access": "public",

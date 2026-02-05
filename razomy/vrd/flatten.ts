@@ -1,4 +1,4 @@
-import {assign} from 'razomy.key';
+import {assign} from '@razomy/key';
 
 export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};

@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.regex",
+  "name": "@razomy/regex",
   "publishConfig": {
     "access": "public",
     "exports": {

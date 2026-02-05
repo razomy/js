@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.commit",
+  "name": "@razomy/commit",
   "peerDependencies": {
-    "razomy.date": "*",
-    "razomy.shell": "*",
-    "razomy.string": "*",
-    "razomy.vrd": "*"
+    "@razomy/date": "*",
+    "@razomy/shell": "*",
+    "@razomy/string": "*",
+    "@razomy/vrd": "*"
   },
   "publishConfig": {
     "access": "public",

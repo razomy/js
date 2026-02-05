@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.fs.link",
+  "name": "@razomy/fs.link",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.fs.file": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/fs.file": "*"
   },
   "publishConfig": {
     "access": "public",

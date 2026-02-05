@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.index",
+  "name": "@razomy/index",
   "peerDependencies": {
-    "razomy.number": "*",
-    "razomy.offset": "*",
-    "razomy.string": "*"
+    "@razomy/number": "*",
+    "@razomy/offset": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

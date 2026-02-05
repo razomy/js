@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.git.fs",
+  "name": "@razomy/git.fs",
   "peerDependencies": {
-    "razomy.git": "*",
-    "razomy.languages.programming.fs": "*",
-    "razomy.path.string": "*",
-    "razomy.tree.list": "*"
+    "@razomy/git": "*",
+    "@razomy/languages.programming.fs": "*",
+    "@razomy/path.string": "*",
+    "@razomy/tree.list": "*"
   },
   "publishConfig": {
     "access": "public",

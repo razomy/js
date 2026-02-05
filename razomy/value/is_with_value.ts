@@ -1,5 +1,5 @@
-import {ArgumentException} from 'razomy.exceptions';
-import {WithValue} from 'razomy.value';
+import {ArgumentException} from '@razomy/exceptions';
+import {WithValue} from '@razomy/value';
 
 export function isWithValue<T extends WithValue<T>>(node: T): node is T {
   if ('value' in node) {

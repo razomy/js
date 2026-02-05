@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.debug",
+  "name": "@razomy/debug",
   "publishConfig": {
     "access": "public",
     "exports": {

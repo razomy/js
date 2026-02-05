@@ -11,10 +11,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.terminal",
+  "name": "@razomy/terminal",
   "peerDependencies": {
-    "razomy.shell": "*",
-    "razomy.test": "*"
+    "@razomy/shell": "*",
+    "@razomy/test": "*"
   },
   "publishConfig": {
     "access": "public",

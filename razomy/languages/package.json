@@ -11,12 +11,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.languages",
+  "name": "@razomy/languages",
   "peerDependencies": {
-    "razomy.array": "*",
-    "razomy.exceptions": "*",
-    "razomy.fs": "*",
-    "razomy.path": "*"
+    "@razomy/array": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/fs": "*",
+    "@razomy/path": "*"
   },
   "publishConfig": {
     "access": "public",

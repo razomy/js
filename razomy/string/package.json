@@ -9,13 +9,13 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.string",
+  "name": "@razomy/string",
   "peerDependencies": {
-    "razomy.dict": "*",
-    "razomy.differences": "*",
-    "razomy.index": "*",
-    "razomy.number": "*",
-    "razomy.strings": "*"
+    "@razomy/dict": "*",
+    "@razomy/differences": "*",
+    "@razomy/index": "*",
+    "@razomy/number": "*",
+    "@razomy/strings": "*"
   },
   "publishConfig": {
     "access": "public",

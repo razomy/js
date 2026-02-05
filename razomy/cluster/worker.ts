@@ -1,4 +1,4 @@
-import {Event} from 'razomy.event';
+import {Event} from '@razomy/event';
 
 export interface WithWorkerId {
   workerId: string;

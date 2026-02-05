@@ -1,5 +1,5 @@
-import {String} from 'razomy.string';
-import {Number} from 'razomy.number';
+import {String} from '@razomy/string';
+import {Number} from '@razomy/number';
 
 export function spaceMarginCount(string: String): Number {
   let i = 0;

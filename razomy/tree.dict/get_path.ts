@@ -1,4 +1,4 @@
-import {assign} from 'razomy.key';
+import {assign} from '@razomy/key';
 
 export function getPath(obj, path: string) {
   if (path === '') {

@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.fs",
+  "name": "@razomy/fs",
   "peerDependencies": {
-    "razomy.observable": "*",
-    "razomy.path.string": "*"
+    "@razomy/observable": "*",
+    "@razomy/path.string": "*"
   },
   "publishConfig": {
     "access": "public",

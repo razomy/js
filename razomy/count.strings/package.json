@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.count.strings",
+  "name": "@razomy/count.strings",
   "peerDependencies": {
-    "razomy.count.string": "*",
-    "razomy.number": "*",
-    "razomy.string": "*"
+    "@razomy/count.string": "*",
+    "@razomy/number": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

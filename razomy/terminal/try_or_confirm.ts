@@ -1,5 +1,5 @@
-import {falseThrow} from 'razomy.test';
-import {executeSync} from 'razomy.shell';
+import {falseThrow} from '@razomy/test';
+import {executeSync} from '@razomy/shell';
 import {tryCommand} from './try_command';
 import {confirm} from '@inquirer/prompts';
 

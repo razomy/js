@@ -1,5 +1,5 @@
 import {NodeBound} from './node_bound';
-import * as rectangle from 'razomy.coordinates.rectangle';
+import * as rectangle from '@razomy/coordinates.rectangle';
 
 export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {

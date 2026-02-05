@@ -9,13 +9,13 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.languages.programming.fs",
+  "name": "@razomy/languages.programming.fs",
   "peerDependencies": {
-    "razomy.array": "*",
-    "razomy.exceptions": "*",
-    "razomy.fs": "*",
-    "razomy.fs.file": "*",
-    "razomy.path.string": "*"
+    "@razomy/array": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/fs": "*",
+    "@razomy/fs.file": "*",
+    "@razomy/path.string": "*"
   },
   "publishConfig": {
     "access": "public",

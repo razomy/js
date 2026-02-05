@@ -1,5 +1,5 @@
-import {String} from 'razomy.string';
-import {Number} from 'razomy.number';
+import {String} from '@razomy/string';
+import {Number} from '@razomy/number';
 
 export function stringCount(string: String, equalString: String, offset: Number, maxOffset: Number): Number {
   let result = 0;

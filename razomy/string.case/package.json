@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.string.case",
+  "name": "@razomy/string.case",
   "peerDependencies": {
-    "razomy.string": "*"
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

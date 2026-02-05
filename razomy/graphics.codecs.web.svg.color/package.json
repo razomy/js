@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.svg.color",
+  "name": "@razomy/graphics.codecs.web.svg.color",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public",

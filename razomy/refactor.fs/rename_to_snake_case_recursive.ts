@@ -1,8 +1,8 @@
-import {toDict} from 'razomy.fs.dict';
+import {toDict} from '@razomy/fs.dict';
 
 import * as path from 'path';
 import fs from 'fs';
-import {snakeCase} from 'razomy.string.case';
+import {snakeCase} from '@razomy/string.case';
 
 export function renameToSnakeCaseRecursive(dirPath: string, mustInclude: string, mustNotInclude) {
   let files = toDict(dirPath);

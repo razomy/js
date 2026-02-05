@@ -12,7 +12,7 @@
 - class, type, interface, enum PascalCase
 - same name everywhere, instant, filename, property
 - priority to export default - export defaul not supported in a right way so we exprot one iterm perfile
-- import is 'razomy....'
+- import is '@razomy/...'
 - no i prefix
 - Mut for mutable
 - [action][noun?] - for function hame

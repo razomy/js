@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.test.jest",
+  "name": "@razomy/test.jest",
   "peerDependencies": {
-    "razomy.dict": "*",
-    "razomy.function": "*",
-    "razomy.spec": "*",
-    "razomy.test": "*"
+    "@razomy/dict": "*",
+    "@razomy/function": "*",
+    "@razomy/spec": "*",
+    "@razomy/test": "*"
   },
   "publishConfig": {
     "access": "public",

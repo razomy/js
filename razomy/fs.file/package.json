@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.fs.file",
+  "name": "@razomy/fs.file",
   "peerDependencies": {
-    "razomy.fs.directory": "*",
-    "razomy.gate": "*",
-    "razomy.path.string": "*"
+    "@razomy/fs.directory": "*",
+    "@razomy/gate": "*",
+    "@razomy/path.string": "*"
   },
   "publishConfig": {
     "access": "public",

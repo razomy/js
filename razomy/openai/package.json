@@ -11,10 +11,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.openai",
+  "name": "@razomy/openai",
   "peerDependencies": {
-    "razomy.object": "*",
-    "razomy.string": "*"
+    "@razomy/object": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

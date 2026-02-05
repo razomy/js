@@ -1,6 +1,6 @@
-import {ChangeDifference} from 'razomy.difference';
+import {ChangeDifference} from '@razomy/difference';
 import {VrdOrValue} from './vrd';
-import {equal} from 'razomy.equal';
+import {equal} from '@razomy/equal';
 import {isVrd} from './is_vrd';
 import {differencesDict} from './differences_dict';
 

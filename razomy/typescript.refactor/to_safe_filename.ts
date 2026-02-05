@@ -1,5 +1,5 @@
-import {snakeCase} from 'razomy.string.case';
-import {reservedNamesJs} from 'razomy.languages.programming.fs';
+import {snakeCase} from '@razomy/string.case';
+import {reservedNamesJs} from '@razomy/languages.programming.fs';
 
 export function toSafeFilename(name: string) {
   let newName = snakeCase(name);

@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.svg",
+  "name": "@razomy/graphics.codecs.web.svg",
   "peerDependencies": {
-    "razomy.graphics.codecs.web.svg.codecs": "*"
+    "@razomy/graphics.codecs.web.svg.codecs": "*"
   },
   "publishConfig": {
     "access": "public",

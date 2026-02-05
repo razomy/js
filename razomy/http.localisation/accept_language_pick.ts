@@ -1,4 +1,4 @@
-import {isString} from 'razomy.string';
+import {isString} from '@razomy/string';
 
 export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) {
   options = options || {};

@@ -1,16 +1,16 @@
-import {Codec} from 'razomy.codec';
-import * as create from 'razomy.create';
-import {ElementView} from 'razomy.graphics.elements';
-import {RectangleShape} from 'razomy.graphics.shapes';
-import {TextElement} from 'razomy.graphics.elements';
-import {ViewportElement} from 'razomy.graphics.elements';
-import {CodecConfig} from 'razomy.graphics.codecs.web.svg.codecs';
-import {EncodeNodeFactory} from 'razomy.graphics.codecs.web.svg.codecs';
-import {RectangleCodec} from 'razomy.graphics.codecs.web.svg.codecs';
-import {SvgCodec} from 'razomy.graphics.codecs.web.svg.codecs';
-import {TextCodec} from 'razomy.graphics.codecs.web.svg.codecs';
+import {Codec} from '@razomy/codec';
+import * as create from '@razomy/create';
+import {ElementView} from '@razomy/graphics.elements';
+import {RectangleShape} from '@razomy/graphics.shapes';
+import {TextElement} from '@razomy/graphics.elements';
+import {ViewportElement} from '@razomy/graphics.elements';
+import {CodecConfig} from '@razomy/graphics.codecs.web.svg.codecs';
+import {EncodeNodeFactory} from '@razomy/graphics.codecs.web.svg.codecs';
+import {RectangleCodec} from '@razomy/graphics.codecs.web.svg.codecs';
+import {SvgCodec} from '@razomy/graphics.codecs.web.svg.codecs';
+import {TextCodec} from '@razomy/graphics.codecs.web.svg.codecs';
 
-import {UnknownTypeArgumentException} from 'razomy.exceptions';
+import {UnknownTypeArgumentException} from '@razomy/exceptions';
 
 
 export class CodecFactory implements create.WithCreate<Codec<ElementView, any>> {

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "razomy.exceptions": "../exceptions"
+    "@razomy/exceptions": "../exceptions"
   },
   "exports": {
     ".": "./index.ts",
@@ -11,7 +11,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.exceptions",
+  "name": "@razomy/exceptions",
   "publishConfig": {
     "access": "public",
     "exports": {

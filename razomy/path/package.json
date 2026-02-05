@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.path",
+  "name": "@razomy/path",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.string": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

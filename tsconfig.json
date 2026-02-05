@@ -17,7 +17,7 @@
     "target": "ESNext",
     "paths": {
       "razomy": ["./razomy/index.ts"],
-      "razomy.*": ["./razomy/*/index.ts"]
+      "@razomy/*": ["./razomy/*/index.ts"]
     }
   },
   "exclude": [

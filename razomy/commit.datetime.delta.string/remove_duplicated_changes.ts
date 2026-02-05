@@ -1,4 +1,4 @@
-import {DeltaString} from 'razomy.commit.datetime.delta.string';
+import {DeltaString} from '@razomy/commit.datetime.delta.string';
 
 export function removeDuplicatedChanges(changes: DeltaString[]): DeltaString[] {
   const minimizedChanges: DeltaString[] = [];

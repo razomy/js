@@ -1,7 +1,7 @@
-import {EncodeNodeFactory} from 'razomy.graphics.codecs.web.svg.codecs';
-import {Codec} from 'razomy.codec';
-import {SizeAttribute} from 'razomy.graphics.attributes';
-import {ViewportElement} from 'razomy.graphics.elements';
+import {EncodeNodeFactory} from '@razomy/graphics.codecs.web.svg.codecs';
+import {Codec} from '@razomy/codec';
+import {SizeAttribute} from '@razomy/graphics.attributes';
+import {ViewportElement} from '@razomy/graphics.elements';
 
 export class SvgCodec implements Codec<ViewportElement, SVGElement> {
   constructor(private encodeNodeFactory: EncodeNodeFactory) {

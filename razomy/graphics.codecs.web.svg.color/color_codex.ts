@@ -1,8 +1,8 @@
-import {Color} from 'razomy.graphics.codecs.web.svg.color';
-import {HexParser} from 'razomy.graphics.codecs.web.svg.color';
-import {HslaParser} from 'razomy.graphics.codecs.web.svg.color';
-import {RgbaParser} from 'razomy.graphics.codecs.web.svg.color';
-import {SvgColorKeys, SvgColorParser} from 'razomy.graphics.codecs.web.svg.color';
+import {Color} from '@razomy/graphics.codecs.web.svg.color';
+import {HexParser} from '@razomy/graphics.codecs.web.svg.color';
+import {HslaParser} from '@razomy/graphics.codecs.web.svg.color';
+import {RgbaParser} from '@razomy/graphics.codecs.web.svg.color';
+import {SvgColorKeys, SvgColorParser} from '@razomy/graphics.codecs.web.svg.color';
 
 
 /**

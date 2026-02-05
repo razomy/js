@@ -1,4 +1,4 @@
-import {akv} from 'razomy.kv';
+import {akv} from '@razomy/kv';
 import {k} from './k';
 
 export function createByPath<T>(path: T[]) {

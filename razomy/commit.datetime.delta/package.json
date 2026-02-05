@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.commit.datetime.delta",
+  "name": "@razomy/commit.datetime.delta",
   "publishConfig": {
     "access": "public",
     "exports": {

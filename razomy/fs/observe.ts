@@ -1,4 +1,4 @@
-import {Observable} from 'razomy.observable';
+import {Observable} from '@razomy/observable';
 import fs from 'fs';
 import * as path from 'path';
 

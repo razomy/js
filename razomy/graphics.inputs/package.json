@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.inputs",
+  "name": "@razomy/graphics.inputs",
   "peerDependencies": {
-    "razomy.graphics.elements": "*"
+    "@razomy/graphics.elements": "*"
   },
   "publishConfig": {
     "access": "public",

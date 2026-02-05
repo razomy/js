@@ -1,8 +1,8 @@
-import {Context} from 'razomy.context';
-import {WithOffset} from 'razomy.offset';
+import {Context} from '@razomy/context';
+import {WithOffset} from '@razomy/offset';
 import {WithStack} from './try_aligned';
-import { ResultNullFn } from "razomy.result.null";
-import { WithTokens } from "razomy.token";
+import { ResultNullFn } from "@razomy/result.null";
+import { WithTokens } from "@razomy/token";
 
 export function tryScope<
   C extends Context & WithTokens<any> & WithOffset & WithStack,

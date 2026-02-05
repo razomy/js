@@ -1,5 +1,5 @@
-import {ResultNullFn} from 'razomy.result.null';
-import {Context} from 'razomy.context';
+import {ResultNullFn} from '@razomy/result.null';
+import {Context} from '@razomy/context';
 
 export function optinal<
   C extends Context,

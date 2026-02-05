@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.svg.renders",
+  "name": "@razomy/graphics.codecs.web.svg.renders",
   "peerDependencies": {
-    "razomy.graphics.codecs.web.svg.codecs": "*",
-    "razomy.graphics.elements": "*",
-    "razomy.graphics.graphic": "*",
-    "razomy.graphics.renderes": "*"
+    "@razomy/graphics.codecs.web.svg.codecs": "*",
+    "@razomy/graphics.elements": "*",
+    "@razomy/graphics.graphic": "*",
+    "@razomy/graphics.renderes": "*"
   },
   "publishConfig": {
     "access": "public",

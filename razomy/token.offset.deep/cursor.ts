@@ -1,5 +1,5 @@
-import {assign, break_, seperate} from 'razomy.key';
-import {backtick, newline} from 'razomy.char';
+import {assign, break_, seperate} from '@razomy/key';
+import {backtick, newline} from '@razomy/char';
 
 export enum TokenType {
   VALUE = 'VALUE',

@@ -29,10 +29,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.express",
+  "name": "@razomy/express",
   "peerDependencies": {
-    "razomy.google.auth": "*",
-    "razomy.server": "*"
+    "@razomy/google.auth": "*",
+    "@razomy/server": "*"
   },
   "publishConfig": {
     "access": "public",

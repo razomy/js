@@ -1,4 +1,4 @@
-import {WithChildrenList} from 'razomy.tree.list';
+import {WithChildrenList} from '@razomy/tree.list';
 import {mapChildren} from './map_children';
 
 

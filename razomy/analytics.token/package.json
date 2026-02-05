@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.analytics.token",
+  "name": "@razomy/analytics.token",
   "peerDependencies": {
-    "razomy.path.string": "*"
+    "@razomy/path.string": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -1,4 +1,4 @@
-import {Observable} from 'razomy.observable';
+import {Observable} from '@razomy/observable';
 
 export function observe() {
   return new Observable((resolve) => {

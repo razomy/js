@@ -1,5 +1,5 @@
-import {AttributeResource} from 'razomy.resources';
-import {ArgumentException} from 'razomy.exceptions';
+import {AttributeResource} from '@razomy/resources';
+import {ArgumentException} from '@razomy/exceptions';
 
 export class TextAttribute extends AttributeResource {
   public text: string;

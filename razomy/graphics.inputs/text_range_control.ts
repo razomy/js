@@ -1,4 +1,4 @@
-import {ControlElement} from 'razomy.graphics.inputs';
+import {ControlElement} from '@razomy/graphics.inputs';
 
 export class TextRangeControl extends ControlElement {
 }

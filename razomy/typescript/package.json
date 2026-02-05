@@ -9,14 +9,14 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.typescript",
+  "name": "@razomy/typescript",
   "peerDependencies": {
-    "razomy.action": "*",
-    "razomy.array": "*",
-    "razomy.fs": "*",
-    "razomy.main": "*",
-    "razomy.refactor": "*",
-    "razomy.string": "*"
+    "@razomy/action": "*",
+    "@razomy/array": "*",
+    "@razomy/fs": "*",
+    "@razomy/main": "*",
+    "@razomy/refactor": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

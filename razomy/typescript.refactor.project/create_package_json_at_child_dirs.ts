@@ -1,15 +1,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {tryGetJson} from 'razomy.fs.file';
+import {tryGetJson} from '@razomy/fs.file';
 
-export function createPackageJsonAtChildDirs(projectPath: string) {
+export function createPackageJsonAtChildDirs(projectPath: string, prefix) {
   const rootDir: string = path.resolve(projectPath);
-  const prefix: string = 'razomy';
   const folders = fs.readdirSync(rootDir, {withFileTypes: true})
     .filter((dirent: fs.Dirent) => dirent.isDirectory());
   folders.forEach((folder: fs.Dirent) => {
     const pkgPath = path.join(rootDir, folder.name, 'package.json');
-    const newName = `${prefix}.${folder.name}`;
+    const scope = '@' + prefix
+    const newName = `${scope}/${folder.name}`;
 
     let pkgData = {
       name: newName,

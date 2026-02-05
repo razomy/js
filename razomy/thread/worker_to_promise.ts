@@ -1,5 +1,5 @@
 import {Worker} from 'worker_threads';
-import {WorkerEvent} from 'razomy.cluster';
+import {WorkerEvent} from '@razomy/cluster';
 
 export function workerToPromise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {

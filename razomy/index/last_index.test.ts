@@ -1,4 +1,4 @@
-import {lastIndex} from 'razomy.index';
+import {lastIndex} from '@razomy/index';
 
 describe(`index`, () => {
   describe(lastIndex.name, () => {

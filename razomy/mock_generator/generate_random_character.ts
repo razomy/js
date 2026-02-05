@@ -6,7 +6,7 @@ export function generateRandomCharacter() {
   return characters.charAt(randomIndex);
 }
 
-export const filePath = '../../../razomy.notation.editor.web.server/output.txt';
+export const filePath = '../../../@razomy/notation.editor.web.server/output.txt';
 
 export const million = 1e+6;
 export const tenMillion = 1e+7;

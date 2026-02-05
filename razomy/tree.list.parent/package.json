@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.tree.list.parent",
+  "name": "@razomy/tree.list.parent",
   "peerDependencies": {
-    "razomy.tree": "*"
+    "@razomy/tree": "*"
   },
   "publishConfig": {
     "access": "public",

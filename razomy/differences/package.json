@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.differences",
+  "name": "@razomy/differences",
   "peerDependencies": {
-    "razomy.difference": "*",
-    "razomy.indexes": "*",
-    "razomy.shell": "*"
+    "@razomy/difference": "*",
+    "@razomy/indexes": "*",
+    "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -1,7 +1,7 @@
 import {ValueListItemValue} from './get_value';
-import {Dict} from 'razomy.dict';
-import {assign} from 'razomy.key';
-import {isString} from 'razomy.string';
+import {Dict} from '@razomy/dict';
+import {assign} from '@razomy/key';
+import {isString} from '@razomy/string';
 
 export function valueOrListToFlatDict(
   dict: {},

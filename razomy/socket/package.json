@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.socket",
+  "name": "@razomy/socket",
   "peerDependencies": {
-    "razomy.server": "*",
+    "@razomy/server": "*",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
   },

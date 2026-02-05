@@ -5,8 +5,8 @@ import {
   NodeAlreadyProvidedException,
   NodeProvidedException
 } from './node_provided_exception';
-import {Constructor} from 'razomy.class';
-import {ArgumentException} from 'razomy.exceptions';
+import {Constructor} from '@razomy/class';
+import {ArgumentException} from '@razomy/exceptions';
 
 export class EntityResource extends ObjectResource implements IEntityResource {
   protected resources: IResourceMap = {};

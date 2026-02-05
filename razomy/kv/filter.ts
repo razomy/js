@@ -1,5 +1,5 @@
-import {ArrayKeyValuable, isKv, KeyValuable, Valuable, Value} from 'razomy.kv';
-import {Function} from 'razomy.function';
+import {ArrayKeyValuable, isKv, KeyValuable, Valuable, Value} from '@razomy/kv';
+import {Function} from '@razomy/function';
 import {akv} from './akv';
 import {isAkv} from './index';
 

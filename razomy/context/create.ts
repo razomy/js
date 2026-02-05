@@ -1,4 +1,4 @@
-import {mergeDicts} from 'razomy.dict';
+import {mergeDicts} from '@razomy/dict';
 
 export interface Context {
 }

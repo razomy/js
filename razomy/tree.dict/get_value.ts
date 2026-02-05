@@ -1,5 +1,5 @@
-import {ArgumentException} from 'razomy.exceptions';
-import {WithChildrenDict} from 'razomy.tree.dict';
+import {ArgumentException} from '@razomy/exceptions';
+import {WithChildrenDict} from '@razomy/tree.dict';
 import {get} from './get';
 
 export function getValue<T extends WithChildrenDict<T>>(value: T, path: string[], offset: number) {

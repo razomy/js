@@ -9,12 +9,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.vue.resource",
+  "name": "@razomy/vue.resource",
   "peerDependencies": {
-    "razomy.array": "*",
-    "razomy.dict": "*",
-    "razomy.server": "*",
-    "razomy.socket.web": "*"
+    "@razomy/array": "*",
+    "@razomy/dict": "*",
+    "@razomy/server": "*",
+    "@razomy/socket.web": "*"
   },
   "publishConfig": {
     "access": "public",

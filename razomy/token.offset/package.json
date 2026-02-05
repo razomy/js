@@ -9,13 +9,13 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.token.offset",
+  "name": "@razomy/token.offset",
   "peerDependencies": {
-    "razomy.context": "*",
-    "razomy.offset": "*",
-    "razomy.result.null": "*",
-    "razomy.token": "*",
-    "razomy.value": "*"
+    "@razomy/context": "*",
+    "@razomy/offset": "*",
+    "@razomy/result.null": "*",
+    "@razomy/token": "*",
+    "@razomy/value": "*"
   },
   "publishConfig": {
     "access": "public",

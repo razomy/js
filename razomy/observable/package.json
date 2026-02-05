@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.observable",
+  "name": "@razomy/observable",
   "peerDependencies": {
-    "razomy.action": "*",
-    "razomy.exceptions": "*"
+    "@razomy/action": "*",
+    "@razomy/exceptions": "*"
   },
   "publishConfig": {
     "access": "public",

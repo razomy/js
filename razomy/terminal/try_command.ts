@@ -1,4 +1,4 @@
-import {executeSync} from 'razomy.shell';
+import {executeSync} from '@razomy/shell';
 
 export function tryCommand(commandName: string) {
   try {

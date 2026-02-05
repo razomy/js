@@ -1,4 +1,4 @@
-import {WithChildrenList} from 'razomy.tree.list';
+import {WithChildrenList} from '@razomy/tree.list';
 
 export function getCondition<T extends WithChildrenList<any>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {

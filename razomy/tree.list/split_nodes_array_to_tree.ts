@@ -1,4 +1,4 @@
-import {ListTree} from 'razomy.tree.list';
+import {ListTree} from '@razomy/tree.list';
 
 
 export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {

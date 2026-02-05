@@ -1,5 +1,5 @@
-import {DeltaString} from 'razomy.commit.datetime.delta.string';
-import {deltaStringsToString} from 'razomy.commit.datetime.delta.string';
+import {DeltaString} from '@razomy/commit.datetime.delta.string';
+import {deltaStringsToString} from '@razomy/commit.datetime.delta.string';
 
 export interface ActorDatetimeDeltaString {
   datetime: string,

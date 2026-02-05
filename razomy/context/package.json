@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.context",
+  "name": "@razomy/context",
   "peerDependencies": {
-    "razomy.dict": "*"
+    "@razomy/dict": "*"
   },
   "publishConfig": {
     "access": "public",

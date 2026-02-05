@@ -1,4 +1,4 @@
-import {ElementView} from 'razomy.graphics.elements';
+import {ElementView} from '@razomy/graphics.elements';
 
 export interface IViewport {
 }

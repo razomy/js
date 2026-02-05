@@ -1,4 +1,4 @@
-import {WithChildrenDict} from 'razomy.tree.dict';
+import {WithChildrenDict} from '@razomy/tree.dict';
 
 export function foreachDeepDictOptional<T extends WithChildrenDict<any>>(node: T, cb: (node: T) => void) {
   cb(node);

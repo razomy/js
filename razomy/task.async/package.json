@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.task.async",
+  "name": "@razomy/task.async",
   "peerDependencies": {
-    "razomy.gate": "*",
-    "razomy.serializable": "*"
+    "@razomy/gate": "*",
+    "@razomy/serializable": "*"
   },
   "publishConfig": {
     "access": "public",

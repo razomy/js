@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.codec",
+  "name": "@razomy/codec",
   "publishConfig": {
     "access": "public",
     "exports": {

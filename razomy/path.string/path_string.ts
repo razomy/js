@@ -1,4 +1,4 @@
-import {Key} from 'razomy.kv';
+import {Key} from '@razomy/kv';
 
 export type Slug = Key<string>;
 export type AbsolutePathString = Slug;

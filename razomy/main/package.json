@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.main",
+  "name": "@razomy/main",
   "peerDependencies": {
-    "razomy.action": "*",
-    "razomy.async": "*",
-    "razomy.dates": "*"
+    "@razomy/action": "*",
+    "@razomy/async": "*",
+    "@razomy/dates": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -1,13 +1,12 @@
 import {getAllPackageJsons} from './get_all_package_jsons';
 import fs from 'fs';
 import * as path from 'path';
-import {iterate} from 'razomy.fs';
+import {iterate} from '@razomy/fs';
 
-export function addDependencies(projectPath: string) {
+export function addDependencies(projectPath: string, prefix) {
   const packages = getAllPackageJsons(projectPath);
 
-  const scope = 'razomy'; // Match your scope
-
+  const scope = '@' + prefix
 // 1. Get list of all available package names
   const importRegex = new RegExp(`from ['"](${scope}[^'"]+)['"]`, 'g');
 
@@ -42,12 +41,12 @@ export function addDependencies(projectPath: string) {
 
     // 3. Update dependencies
     pkgJson.dependencies = pkgJson.dependencies || {};
-    Object.keys(pkgJson.dependencies).filter(i => i.startsWith('razomy')).forEach(i => {
+    Object.keys(pkgJson.dependencies).filter(i => i.startsWith(prefix)).forEach(i => {
       delete pkgJson.dependencies[i];
     })
 
     pkgJson.peerDependencies = pkgJson.peerDependencies || {};
-    Object.keys(pkgJson.peerDependencies).filter(i => i.startsWith('razomy')).forEach(i => {
+    Object.keys(pkgJson.peerDependencies).filter(i => i.startsWith(prefix)).forEach(i => {
       delete pkgJson.peerDependencies[i];
     })
     let changed = false;
@@ -56,8 +55,8 @@ export function addDependencies(projectPath: string) {
         return
       }
       pkgJson.peerDependencies[depName] = '*';
-        path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
-        .replace('razomy', '')
+      path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
+        .replace(prefix, '')
         .replaceAll('.', '/'));
       console.log(`[${pkgJson.name}] Added dependency: ${depName}`);
       changed = true;

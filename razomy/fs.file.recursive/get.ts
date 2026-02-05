@@ -1,6 +1,6 @@
 import {type Dirent, readdirSync} from 'node:fs';
 import {resolve} from 'node:path';
-import {DirPathString, FilePathString} from 'razomy.path.string';
+import {DirPathString, FilePathString} from '@razomy/path.string';
 
 /**
  * Recursively scans a directory and yields absolute file paths using a synchronous generator.

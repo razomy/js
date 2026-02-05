@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.commit.datetime",
+  "name": "@razomy/commit.datetime",
   "peerDependencies": {
-    "razomy.commit": "*",
-    "razomy.date.time": "*"
+    "@razomy/commit": "*",
+    "@razomy/date.time": "*"
   },
   "publishConfig": {
     "access": "public",

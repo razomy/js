@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.assert",
+  "name": "@razomy/assert",
   "publishConfig": {
     "access": "public",
     "exports": {

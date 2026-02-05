@@ -1,5 +1,5 @@
 import {vrd, VrdOrValue} from './vrd';
-import {equal} from 'razomy.equal';
+import {equal} from '@razomy/equal';
 import {P} from './differences_vrd';
 import {differencesDict} from './differences_dict';
 

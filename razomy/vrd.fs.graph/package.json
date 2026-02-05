@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.vrd.fs.graph",
+  "name": "@razomy/vrd.fs.graph",
   "peerDependencies": {
-    "razomy.graph": "*",
-    "razomy.vrd": "*"
+    "@razomy/graph": "*",
+    "@razomy/vrd": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {FilePathString} from 'razomy.path.string';
+import {FilePathString} from '@razomy/path.string';
 
 export function filePathCount(filePath: FilePathString) {
   try {
@@ -25,7 +25,7 @@ export function filePathCount(filePath: FilePathString) {
   }
 }
 
-// const filePath = '/Users/kamensky/Documents/_razomy.games/c.r.g.battlefield/razomy.Razomy.Ai/ChatGpt/code_refactor/from.txt';
+// const filePath = '/Users/kamensky/Documents/_@razomy/games/c.r.g.battlefield/@razomy/@razomy/Ai/ChatGpt/code_refactor/from.txt';
 // if (!filePath) {
 //   console.error('Please provide the path to the JavaScript file as an argument.');
 //   process.exit(1);

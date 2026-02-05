@@ -1,6 +1,6 @@
 import vue from 'vue';
-import {Dict} from 'razomy.dict';
-import {removeFirstMut} from 'razomy.array';
+import {Dict} from '@razomy/dict';
+import {removeFirstMut} from '@razomy/array';
 
 
 export class RemoteResource {

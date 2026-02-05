@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.canvas.textures",
+  "name": "@razomy/graphics.codecs.web.canvas.textures",
   "publishConfig": {
     "access": "public",
     "exports": {

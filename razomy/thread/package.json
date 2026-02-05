@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.thread",
+  "name": "@razomy/thread",
   "peerDependencies": {
-    "razomy.cluster": "*"
+    "@razomy/cluster": "*"
   },
   "publishConfig": {
     "access": "public",

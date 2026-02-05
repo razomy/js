@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.fs.vrd",
+  "name": "@razomy/fs.vrd",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.vrd": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/vrd": "*"
   },
   "publishConfig": {
     "access": "public",

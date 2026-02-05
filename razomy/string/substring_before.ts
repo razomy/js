@@ -5,7 +5,7 @@
  * @returns {string} The substring before the separator or the original string if not found.
  * @example
  * // => 'razomy'
- * substringBefore('razomy.string', '.');
+ * substringBefore('@razomy/string', '.');
  * @example
  * // => 'user'
  * substringBefore('user@example.com', '@');

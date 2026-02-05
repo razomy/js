@@ -1,9 +1,9 @@
-import {reactiveDirective} from 'razomy.vue.resource';
-import {RemoteResource} from 'razomy.vue.resource';
-import {SocketStore} from 'razomy.vue.resource';
-import {Resource} from 'razomy.vue.resource';
-import {WithWebsocket} from 'razomy.socket.web';
-import {WithUrl} from 'razomy.server';
+import {reactiveDirective} from '@razomy/vue.resource';
+import {RemoteResource} from '@razomy/vue.resource';
+import {SocketStore} from '@razomy/vue.resource';
+import {Resource} from '@razomy/vue.resource';
+import {WithWebsocket} from '@razomy/socket.web';
+import {WithUrl} from '@razomy/server';
 
 declare global {
   interface razomy extends WithWebsocket, WithUrl {

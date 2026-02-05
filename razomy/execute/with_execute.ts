@@ -1,4 +1,4 @@
-import {Function} from 'razomy.function';
+import {Function} from '@razomy/function';
 
 export type Execute<I extends any[], O> = Function<I, O>
 

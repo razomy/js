@@ -1,5 +1,5 @@
 import {DatastoreStore} from '@google-cloud/connect-datastore';
-import {Google, googleTapOn} from 'razomy.google.auth';
+import {Google, googleTapOn} from '@razomy/google.auth';
 import session from 'express-session';
 import passport from 'passport';
 

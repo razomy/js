@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.shutdown",
+  "name": "@razomy/shutdown",
   "peerDependencies": {
-    "razomy.observable": "*"
+    "@razomy/observable": "*"
   },
   "publishConfig": {
     "access": "public",

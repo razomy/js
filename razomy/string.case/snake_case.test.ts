@@ -1,4 +1,4 @@
-import {snakeCase} from 'razomy.string.case';
+import {snakeCase} from '@razomy/string.case';
 
 describe('string', () => {
   describe('snake_case_string', () => {

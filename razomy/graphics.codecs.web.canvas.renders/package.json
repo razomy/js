@@ -9,15 +9,15 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.canvas.renders",
+  "name": "@razomy/graphics.codecs.web.canvas.renders",
   "peerDependencies": {
-    "razomy.create": "*",
-    "razomy.exceptions": "*",
-    "razomy.graphics.attributes": "*",
-    "razomy.graphics.elements": "*",
-    "razomy.graphics.graphic": "*",
-    "razomy.graphics.renderes": "*",
-    "razomy.graphics.shapes": "*"
+    "@razomy/create": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/graphics.attributes": "*",
+    "@razomy/graphics.elements": "*",
+    "@razomy/graphics.graphic": "*",
+    "@razomy/graphics.renderes": "*",
+    "@razomy/graphics.shapes": "*"
   },
   "publishConfig": {
     "access": "public",

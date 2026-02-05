@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.canvas.textures.filters",
+  "name": "@razomy/graphics.codecs.web.canvas.textures.filters",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public",

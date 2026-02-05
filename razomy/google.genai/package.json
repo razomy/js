@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.google.genai",
+  "name": "@razomy/google.genai",
   "peerDependencies": {
-    "razomy.fs": "*"
+    "@razomy/fs": "*"
   },
   "publishConfig": {
     "access": "public",

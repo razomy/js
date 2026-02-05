@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.kv.array.recursive",
+  "name": "@razomy/kv.array.recursive",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.key": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/key": "*"
   },
   "publishConfig": {
     "access": "public",

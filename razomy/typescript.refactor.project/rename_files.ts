@@ -1,5 +1,5 @@
 import {Project} from 'ts-morph';
-import {isExist} from 'razomy.fs.file';
+import {isExist} from '@razomy/fs.file';
 import {getNameAndExt} from '../typescript.refactor/get_name_and_ext';
 import {toSafeFilename} from '../typescript.refactor/to_safe_filename';
 

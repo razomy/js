@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.coordinates.length",
+  "name": "@razomy/coordinates.length",
   "publishConfig": {
     "access": "public",
     "exports": {

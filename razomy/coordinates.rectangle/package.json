@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.coordinates.rectangle",
+  "name": "@razomy/coordinates.rectangle",
   "peerDependencies": {
-    "razomy.coordinates.x": "*",
-    "razomy.coordinates.y": "*"
+    "@razomy/coordinates.x": "*",
+    "@razomy/coordinates.y": "*"
   },
   "publishConfig": {
     "access": "public",

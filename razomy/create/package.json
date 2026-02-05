@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.create",
+  "name": "@razomy/create",
   "publishConfig": {
     "access": "public",
     "exports": {

@@ -1,8 +1,8 @@
 import fs from 'fs';
 import * as path from 'path';
-import {isExist} from 'razomy.fs.file';
+import {isExist} from '@razomy/fs.file';
 import {InvalidLinkException} from './invalid_link_exception';
-import {CatchFn} from 'razomy.exceptions';
+import {CatchFn} from '@razomy/exceptions';
 
 export function getInvalidSymlinks(catchFn: CatchFn) {
 

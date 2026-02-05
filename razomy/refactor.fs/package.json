@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.refactor.fs",
+  "name": "@razomy/refactor.fs",
   "peerDependencies": {
-    "razomy.fs.dict": "*",
-    "razomy.string.case": "*"
+    "@razomy/fs.dict": "*",
+    "@razomy/string.case": "*"
   },
   "publishConfig": {
     "access": "public",

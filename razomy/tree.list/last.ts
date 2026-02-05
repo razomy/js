@@ -1,4 +1,4 @@
-import {WithChildrenList} from 'razomy.tree.list';
+import {WithChildrenList} from '@razomy/tree.list';
 
 export function last<T extends WithChildrenList<any>>(node: T) {
   const lastChild = node.children.at(-1);

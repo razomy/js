@@ -1,4 +1,4 @@
-import {WithChildrenList} from 'razomy.tree.list';
+import {WithChildrenList} from '@razomy/tree.list';
 
 
 export function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {

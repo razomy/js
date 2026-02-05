@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.serializable",
+  "name": "@razomy/serializable",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.json": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/json": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {tryCreate} from 'razomy.fs.directory';
+import {tryCreate} from '@razomy/fs.directory';
 import {downloadFile} from './download_file';
 import {uploadFile} from './upload_file';
 

@@ -1,7 +1,7 @@
-import {CodecConfig} from 'razomy.graphics.codecs.web.svg.codecs';
-import {CodecFactory} from 'razomy.graphics.codecs.web.svg.codecs';
-import {CodecRegistry} from 'razomy.graphics.codecs.web.svg.codecs';
-import {EncodeNodeFactory} from 'razomy.graphics.codecs.web.svg.codecs';
+import {CodecConfig} from '@razomy/graphics.codecs.web.svg.codecs';
+import {CodecFactory} from '@razomy/graphics.codecs.web.svg.codecs';
+import {CodecRegistry} from '@razomy/graphics.codecs.web.svg.codecs';
+import {EncodeNodeFactory} from '@razomy/graphics.codecs.web.svg.codecs';
 
 export class WebSvgContext {
 

@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.attributes",
+  "name": "@razomy/graphics.attributes",
   "peerDependencies": {
-    "razomy.exceptions": "*",
-    "razomy.graphics.codecs.web.svg.color": "*",
-    "razomy.resources": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/graphics.codecs.web.svg.color": "*",
+    "@razomy/resources": "*"
   },
   "publishConfig": {
     "access": "public",

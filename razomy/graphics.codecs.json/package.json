@@ -9,15 +9,15 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.json",
+  "name": "@razomy/graphics.codecs.json",
   "peerDependencies": {
-    "razomy.codec": "*",
-    "razomy.exceptions": "*",
-    "razomy.graphics.attributes": "*",
-    "razomy.graphics.codecs.web.svg.codecs": "*",
-    "razomy.graphics.elements": "*",
-    "razomy.object": "*",
-    "razomy.resources": "*"
+    "@razomy/codec": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/graphics.attributes": "*",
+    "@razomy/graphics.codecs.web.svg.codecs": "*",
+    "@razomy/graphics.elements": "*",
+    "@razomy/object": "*",
+    "@razomy/resources": "*"
   },
   "publishConfig": {
     "access": "public",

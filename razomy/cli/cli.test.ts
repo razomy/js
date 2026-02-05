@@ -1,5 +1,5 @@
-import {cli} from 'razomy.cli';
-import {Module, TerminalArgs} from 'razomy.cli';
+import {cli} from '@razomy/cli';
+import {Module, TerminalArgs} from '@razomy/cli';
 
 export const testModule = {
   ['test:test1']: () => Promise.resolve(0),

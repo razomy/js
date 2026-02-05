@@ -1,4 +1,4 @@
-import {Offset, WithPrevOffset} from 'razomy.offset';
+import {Offset, WithPrevOffset} from '@razomy/offset';
 
 export function defaultPrevOffset<T extends WithPrevOffset>(
   ctx: T) {

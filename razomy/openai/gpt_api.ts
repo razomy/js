@@ -1,5 +1,5 @@
-import {isObject} from 'razomy.object';
-import {isString} from 'razomy.string';
+import {isObject} from '@razomy/object';
+import {isString} from '@razomy/string';
 import {gptApiV2} from './gpt_api_v_2';
 import {setTokens} from './set_tokens';
 

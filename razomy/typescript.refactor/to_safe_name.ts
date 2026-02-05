@@ -1,5 +1,5 @@
 import {reservedNamesJs} from '../languages.programming.fs';
-import {camelCase} from 'razomy.string.case';
+import {camelCase} from '@razomy/string.case';
 
 export function toSafeName(name: string) {
   let newName = camelCase(name);

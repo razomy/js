@@ -1,13 +1,13 @@
-import {WebCanvasHighLightsRender} from 'razomy.graphics.codecs.web.canvas.renders';
-import {IRender} from 'razomy.graphics.renderes';
-import {Render} from 'razomy.graphics.renderes';
-import {TextElement} from 'razomy.graphics.elements';
-import {ViewportElement} from 'razomy.graphics.elements';
-import {ElementView} from 'razomy.graphics.elements';
-import {RectangleShape} from 'razomy.graphics.shapes';
-import {RectangleRender} from 'razomy.graphics.shapes';
-import {UnknownTypeArgumentException} from 'razomy.exceptions';
-import * as create from 'razomy.create';
+import {WebCanvasHighLightsRender} from '@razomy/graphics.codecs.web.canvas.renders';
+import {IRender} from '@razomy/graphics.renderes';
+import {Render} from '@razomy/graphics.renderes';
+import {TextElement} from '@razomy/graphics.elements';
+import {ViewportElement} from '@razomy/graphics.elements';
+import {ElementView} from '@razomy/graphics.elements';
+import {RectangleShape} from '@razomy/graphics.shapes';
+import {RectangleRender} from '@razomy/graphics.shapes';
+import {UnknownTypeArgumentException} from '@razomy/exceptions';
+import * as create from '@razomy/create';
 
 
 export class ViewportRender {

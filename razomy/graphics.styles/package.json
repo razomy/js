@@ -9,10 +9,10 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.styles",
+  "name": "@razomy/graphics.styles",
   "peerDependencies": {
-    "razomy.graphics.attributes": "*",
-    "razomy.graphics.codecs.web.svg.color": "*"
+    "@razomy/graphics.attributes": "*",
+    "@razomy/graphics.codecs.web.svg.color": "*"
   },
   "publishConfig": {
     "access": "public",

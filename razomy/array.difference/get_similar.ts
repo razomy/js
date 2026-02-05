@@ -1,4 +1,4 @@
-import {similarity} from 'razomy.string';
+import {similarity} from '@razomy/string';
 
 export function getSimilar(str: string, items): string | null {
   let bestMatch: string | null = null;

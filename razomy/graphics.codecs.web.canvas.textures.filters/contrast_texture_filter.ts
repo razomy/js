@@ -1,4 +1,4 @@
-import {ITextureFilter} from 'razomy.graphics.codecs.web.canvas.textures.filters';
+import {ITextureFilter} from '@razomy/graphics.codecs.web.canvas.textures.filters';
 
 /**
  * Contrast Filter.

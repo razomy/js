@@ -12,9 +12,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.cli.bin",
+  "name": "@razomy/cli.bin",
   "peerDependencies": {
-    "razomy.cli": "*"
+    "@razomy/cli": "*"
   },
   "publishConfig": {
     "access": "public",

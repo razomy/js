@@ -1,4 +1,4 @@
-import {models} from 'razomy.openai';
+import {models} from '@razomy/openai';
 
 export function setTokens(ctx) {
   const model = ctx.model || models.mild;

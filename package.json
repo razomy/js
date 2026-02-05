@@ -9,7 +9,7 @@
     "ts-jest": "^29.4.6"
   },
   "license": "Apache-2.0",
-  "name": "razomy.code.javascript.chunk",
+  "name": "@razomy/code.javascript.chunk",
   "private": true,
   "scripts": {
     "init": "npm install",

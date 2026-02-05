@@ -1,9 +1,9 @@
-import {EncodeNodeFactory} from 'razomy.graphics.codecs.web.svg.codecs';
-import {Codec} from 'razomy.codec';
-import {PositionAttribute} from 'razomy.graphics.attributes';
-import {SizeAttribute} from 'razomy.graphics.attributes';
-import {TextAttribute} from 'razomy.graphics.attributes';
-import {TextElement} from 'razomy.graphics.elements';
+import {EncodeNodeFactory} from '@razomy/graphics.codecs.web.svg.codecs';
+import {Codec} from '@razomy/codec';
+import {PositionAttribute} from '@razomy/graphics.attributes';
+import {SizeAttribute} from '@razomy/graphics.attributes';
+import {TextAttribute} from '@razomy/graphics.attributes';
+import {TextElement} from '@razomy/graphics.elements';
 
 export class TextCodec implements Codec<TextElement, SVGTextElement> {
 

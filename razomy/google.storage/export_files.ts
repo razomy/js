@@ -1,7 +1,7 @@
 import * as path from 'path';
-import {string} from 'razomy.number.string';
-import {executeAsync} from 'razomy.shell';
-import {setAsync} from 'razomy.fs.file';
+import {string} from '@razomy/number.string';
+import {executeAsync} from '@razomy/shell';
+import {setAsync} from '@razomy/fs.file';
 
 
 export async function exportFiles(baseDir) {

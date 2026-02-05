@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.vue.plugin",
+  "name": "@razomy/vue.plugin",
   "publishConfig": {
     "access": "public",
     "exports": {

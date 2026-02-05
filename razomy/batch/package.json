@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.batch",
+  "name": "@razomy/batch",
   "publishConfig": {
     "access": "public",
     "exports": {

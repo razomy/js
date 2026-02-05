@@ -1,4 +1,4 @@
-import {Pipe} from 'razomy.pipes';
+import {Pipe} from '@razomy/pipes';
 
 export interface WithPipes<T> {
   pipes: Pipe<T, T>[];

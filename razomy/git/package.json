@@ -11,12 +11,12 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.git",
+  "name": "@razomy/git",
   "peerDependencies": {
-    "razomy.async": "*",
-    "razomy.commit.datetime.delta.string": "*",
-    "razomy.fs.file": "*",
-    "razomy.shell": "*"
+    "@razomy/async": "*",
+    "@razomy/commit.datetime.delta.string": "*",
+    "@razomy/fs.file": "*",
+    "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public",

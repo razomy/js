@@ -1,5 +1,5 @@
-import {ChangeDifference, Difference, ReplaceDifference} from 'razomy.difference';
-import {getSimilar} from 'razomy.array.difference';
+import {ChangeDifference, Difference, ReplaceDifference} from '@razomy/difference';
+import {getSimilar} from '@razomy/array.difference';
 
 export function get(oldArray: string[], newArray: string[]): ChangeDifference<string>[] {
   const newSet = new Set(newArray);

@@ -1,8 +1,8 @@
 import * as path from 'path';
-import {getJson} from 'razomy.fs.file';
-import {setJson} from 'razomy.fs.file';
+import {getJson} from '@razomy/fs.file';
+import {setJson} from '@razomy/fs.file';
 import {getAllPackageJsons} from './get_all_package_jsons';
-import {flat} from 'razomy.array';
+import {flat} from '@razomy/array';
 
 export function createPackage(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);

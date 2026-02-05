@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.http",
+  "name": "@razomy/http",
   "peerDependencies": {
-    "razomy.string": "*"
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public",

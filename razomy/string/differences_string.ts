@@ -1,6 +1,6 @@
-import {differences} from 'razomy.differences';
-import {separateStrings} from 'razomy.strings';
-import {stringsString} from 'razomy.string';
+import {differences} from '@razomy/differences';
+import {separateStrings} from '@razomy/strings';
+import {stringsString} from '@razomy/string';
 
 /**
  * Calculate the differences between two strings line by line.

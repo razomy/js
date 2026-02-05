@@ -1,15 +1,15 @@
 import * as fs from 'fs';
 import {getAllPackageJsons} from './get_all_package_jsons';
-import {sort} from 'razomy.json';
+import {sort} from '@razomy/json';
 
-export function updatePackages(projectPath: string) {
+export function updatePackages(projectPath: string, prefix) {
   const packages = getAllPackageJsons(projectPath);
   packages.forEach((folder) => {
       const content = fs.readFileSync(folder.path, 'utf-8');
 
       let pkgData = {
         // general
-        name: folder.name.replaceAll('/', '.'),
+        name: folder.name.replaceAll('/', '.').replace(prefix + '.', `@${prefix}/`),
         version: '0.0.0',
         license: 'MIT',
         // scripts

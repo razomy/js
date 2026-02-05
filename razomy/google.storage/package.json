@@ -9,11 +9,11 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.google.storage",
+  "name": "@razomy/google.storage",
   "peerDependencies": {
-    "razomy.fs.file": "*",
-    "razomy.number.string": "*",
-    "razomy.shell": "*"
+    "@razomy/fs.file": "*",
+    "@razomy/number.string": "*",
+    "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public",

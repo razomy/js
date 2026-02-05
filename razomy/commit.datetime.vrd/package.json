@@ -9,9 +9,9 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.commit.datetime.vrd",
+  "name": "@razomy/commit.datetime.vrd",
   "peerDependencies": {
-    "razomy.vrd": "*"
+    "@razomy/vrd": "*"
   },
   "publishConfig": {
     "access": "public",

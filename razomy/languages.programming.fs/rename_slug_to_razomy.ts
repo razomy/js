@@ -1,6 +1,6 @@
 import * as path from 'path';
-import {PathString} from 'razomy.path.string';
-import {rename} from 'razomy.fs';
+import {PathString} from '@razomy/path.string';
+import {rename} from '@razomy/fs';
 import {razomyOutput} from './is_output';
 
 export function renameSlugToRazomy(path_: PathString) {

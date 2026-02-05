@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "razomy.graphics.codecs.web.canvas.renders.shapes",
+  "name": "@razomy/graphics.codecs.web.canvas.renders.shapes",
   "publishConfig": {
     "access": "public",
     "exports": {
