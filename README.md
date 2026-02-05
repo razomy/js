@@ -23,7 +23,10 @@
     - [ ] Use `with` for interface extensions.
     - [ ] No `I` prefix for Interfaces.
 - [ ] **Suffixes:** Use `Mut` for mutable types.
-- [ ] **Functions:** Follow pattern `[arguments?][action][result?]` (e.g.,`get`, `fileUrlGet`, `getString`).
+- [ ] **Functions:** 
+- Follow pattern `[arguments?][action][result?]` (e.g.,`get`, `fileUrlGet`, `getString`).
+- Async: No `Async` suffix by default.
+- Conflict: If Sync and Async exist, use `Sync` suffix for the synchronous version (e.g., `read` vs `readSync`).
 - [ ] **Abbreviations:** Preferred over full words (e.g., `js` > `javascript`).
 
 **Logic**
