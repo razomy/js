@@ -38,7 +38,12 @@ export function updatePackages(projectPath: string, prefix) {
             './package.json': './package.json'
           }
         },
-        files: ['dist']
+        files: ['dist'],
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/razomy/js.git",
+          "directory": folder.name
+        }
       }
 
       const current = JSON.parse(content);
@@ -47,6 +52,8 @@ export function updatePackages(projectPath: string, prefix) {
           bin: current.bin,
           dependencies: current.dependencies,
           peerDependencies: current.peerDependencies,
+          devDependencies: current.devDependencies,
+          overrides: current.overrides,
         },
         ...pkgData,
       };

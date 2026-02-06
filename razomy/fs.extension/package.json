@@ -1,7 +1,13 @@
 {
   "dependencies": {},
   "exports": {
-    ".": "./index.ts",
+    ".": {
+      "vue": "./index.browser.ts",
+      "browser": "./index.browser.ts",
+      "node": "./index.ts",
+      "import": "./index.ts",
+      "default": "./index.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -11,23 +17,29 @@
   "main": "./index.ts",
   "name": "@razomy/fs.extension",
   "peerDependencies": {
-    "@razomy/buffer.string": "*",
-    "@razomy/codec": "*"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
       ".": {
+        "vue": "./dist/index.browser.mjs",
+        "browser": "./dist/index.browser.mjs",
+        "node": "./dist/index.mjs",
         "import": "./dist/index.mjs",
-        "types": "./dist/index.d.mts"
+        "default": "./dist/index.mjs"
       },
       "./package.json": "./package.json"
     },
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts"
   },
+  "repository": {
+    "directory": "razomy/fs.extension",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
   "scripts": {
-    "build": "tsdown index.ts",
+    "build": "tsdown index.ts index.browser.ts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },

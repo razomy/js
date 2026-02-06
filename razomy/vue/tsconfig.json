@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true,       // <--- REQUIRED
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.build.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

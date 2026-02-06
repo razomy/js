@@ -8,3 +8,5 @@ _releases
 
 .nx/cache
 .nx/workspace-data
+
+.nuxt

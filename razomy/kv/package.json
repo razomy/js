@@ -28,6 +28,11 @@
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts"
   },
+  "repository": {
+    "directory": "razomy/kv",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
   "scripts": {
     "build": "tsdown index.ts",
     "dev": "tsdown index.ts --watch",

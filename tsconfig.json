@@ -16,12 +16,19 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "razomy": ["./razomy/index.ts"],
-      "@razomy/*": ["./razomy/*/index.ts"]
+      "razomy": [
+        "./razomy/index.ts"
+      ],
+      "@razomy/*": [
+        "./razomy/*/index.ts"
+      ]
     }
   },
   "exclude": [
     "**/node_modules",
-    "**/dist"
-  ]
+    "**/dist",
+    "razomy/vue",
+    "razomy/vue.nuxt"
+  ],
+  "references": []
 }

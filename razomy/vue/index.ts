@@ -1,2 +1,9 @@
-export * as plugin from '../vue';
-export * as resource from '../vue';
+import {type App} from 'vue';
+
+// Export default install function
+export default {
+  install(app: App) {
+    // app.component('rzm-icon', Icon);
+    // app.component('rzm-products', Products);
+  },
+};

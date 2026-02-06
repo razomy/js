@@ -1,0 +1,46 @@
+{
+  "dependencies": {},
+  "exports": {
+    ".": {
+      "node": "./index.ts",
+      "import": "./index.ts",
+      "default": "./index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "name": "@razomy/fs.extensions",
+  "peerDependencies": {
+    "@razomy/buffer.string": "*",
+    "@razomy/codec": "*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+       "node": "./dist/index.mjs",
+        "import": "./dist/index.mjs",
+        "default": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+  },
+  "repository": {
+    "directory": "razomy/fs.extensions",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts index.browser.ts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "types": "./index.ts",
+  "version": "0.0.0"
+}

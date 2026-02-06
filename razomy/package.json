@@ -20,6 +20,7 @@
     "@razomy/assert": "*",
     "@razomy/ast": "*",
     "@razomy/async": "*",
+    "@razomy/audios": "*",
     "@razomy/auth": "*",
     "@razomy/auth.express": "*",
     "@razomy/auth.express.middleware": "*",
@@ -59,6 +60,7 @@
     "@razomy/dict.recursive": "*",
     "@razomy/difference": "*",
     "@razomy/differences": "*",
+    "@razomy/documents": "*",
     "@razomy/equal": "*",
     "@razomy/event": "*",
     "@razomy/exceptions": "*",
@@ -108,6 +110,7 @@
     "@razomy/http": "*",
     "@razomy/http.localisation": "*",
     "@razomy/id": "*",
+    "@razomy/images": "*",
     "@razomy/index": "*",
     "@razomy/indexes": "*",
     "@razomy/init": "*",
@@ -149,6 +152,7 @@
     "@razomy/respect": "*",
     "@razomy/result": "*",
     "@razomy/result.null": "*",
+    "@razomy/schema": "*",
     "@razomy/serializable": "*",
     "@razomy/server": "*",
     "@razomy/shell": "*",
@@ -182,10 +186,12 @@
     "@razomy/type": "*",
     "@razomy/undefined": "*",
     "@razomy/value": "*",
+    "@razomy/videos": "*",
     "@razomy/vrd": "*",
     "@razomy/vrd.fs": "*",
     "@razomy/vrd.fs.graph": "*",
     "@razomy/vue": "*",
+    "@razomy/vue.nuxt": "*",
     "@razomy/vue.plugin": "*",
     "@razomy/vue.resource": "*",
     "@razomy/yaml": "*"
@@ -201,6 +207,11 @@
     },
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts"
+  },
+  "repository": {
+    "directory": "razomy",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
     "build": "tsdown index.ts",

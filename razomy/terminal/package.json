@@ -1,7 +1,5 @@
 {
-  "dependencies": {
-    "@inquirer/prompts": "^8.2.0"
-  },
+  "dependencies": {},
   "exports": {
     ".": "./index.ts",
     "./package.json": "./package.json"
@@ -13,6 +11,7 @@
   "main": "./index.ts",
   "name": "@razomy/terminal",
   "peerDependencies": {
+    "@inquirer/prompts": "^8.2.0",
     "@razomy/shell": "*",
     "@razomy/test": "*"
   },
@@ -27,6 +26,11 @@
     },
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts"
+  },
+  "repository": {
+    "directory": "razomy/terminal",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
     "build": "tsdown index.ts",

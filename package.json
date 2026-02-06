@@ -4,22 +4,24 @@
     "@types/jest": "30.0.0",
     "@types/node": "24.10.1",
     "jest": "30.2.0",
+    "ts-jest": "^29.4.6",
     "tsdown": "^0.19.0",
-    "typescript": "^5.9.3",
-    "ts-jest": "^29.4.6"
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "24.5.0"
   },
   "license": "Apache-2.0",
   "name": "@razomy/code.js.chunk",
+  "packageManager": "npm@11.5.1",
   "private": true,
   "scripts": {
     "init": "npm install",
     "build:tsc": "tsc --project tsconfig.json",
     "build": "npm run build --workspaces && tsdown ./index.ts",
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
-    "test": "jest"
-  },
-  "engines": {
-    "node": "24.5.0"
+    "test": "jest",
+    "publish": "changeset publish --dry-run --access public"
   },
   "version": "0.0.0",
   "workspaces": [
@@ -33,6 +35,7 @@
     "./razomy/assert",
     "./razomy/ast",
     "./razomy/async",
+    "./razomy/audios",
     "./razomy/auth",
     "./razomy/auth.express",
     "./razomy/auth.express.middleware",
@@ -74,6 +77,7 @@
     "./razomy/difference",
     "./razomy/differences",
     "./razomy/dist",
+    "./razomy/documents",
     "./razomy/equal",
     "./razomy/event",
     "./razomy/exceptions",
@@ -123,6 +127,7 @@
     "./razomy/http",
     "./razomy/http.localisation",
     "./razomy/id",
+    "./razomy/images",
     "./razomy/index",
     "./razomy/indexes",
     "./razomy/init",
@@ -164,6 +169,7 @@
     "./razomy/respect",
     "./razomy/result",
     "./razomy/result.null",
+    "./razomy/schema",
     "./razomy/serializable",
     "./razomy/server",
     "./razomy/shell",
@@ -197,10 +203,12 @@
     "./razomy/type",
     "./razomy/undefined",
     "./razomy/value",
+    "./razomy/videos",
     "./razomy/vrd",
     "./razomy/vrd.fs",
     "./razomy/vrd.fs.graph",
     "./razomy/vue",
+    "./razomy/vue.nuxt",
     "./razomy/vue.plugin",
     "./razomy/vue.resource",
     "./razomy/yaml"

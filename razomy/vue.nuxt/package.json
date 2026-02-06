@@ -1,0 +1,72 @@
+{
+  "devDependencies": {
+    "@nuxt/devtools": "^3.1.1",
+    "@nuxt/eslint-config": "^1.13.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.3.0",
+    "@types/node": "latest",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.39.2",
+    "nuxt": "^4.3.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18",
+    "vue-tsc": "^3.2.4"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/module.ts",
+      "types": "./src/module.ts"
+    },
+    "./runtime/components/*": "./src/runtime/components/*",
+    "./runtime/functions": {
+      "import": "./src/runtime/functions/index.ts",
+      "types": "./src/runtime/functions/index.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/module.mjs",
+        "types": "./dist/module.d.mts"
+      },
+      "./runtime/components/*": "./dist/runtime/components/*",
+      "./runtime/functions": {
+        "import": "./dist/runtime/functions/index.js",
+        "types": "./dist/runtime/functions/index.d.ts"
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "main": "./dist/module.mjs",
+  "name": "@razomy/vue.nuxt",
+  "peerDependencies": {
+    "@nuxt/kit": "^4.3.0",
+    "@razomy/vue": "*"
+  },
+  "repository": {
+    "directory": "razomy/vue.nuxt",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "nuxt-module-build build",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "start": "nuxt-module-build build --stub && nuxt-module-build prepare"
+  },
+  "type": "module",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/module.d.mts"
+      ]
+    }
+  },
+  "version": "1.0.0"
+}
