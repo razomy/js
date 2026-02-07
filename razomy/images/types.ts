@@ -1,4 +1,4 @@
-import {type FileExtension} from '@razomy/fs.extension';
+import {type FileFormat} from '@razomy/fs.file.format';
 
 // Список форматов, в которые Sharp умеет СОХРАНЯТЬ
 const imageWriteTargets = [
@@ -11,26 +11,26 @@ const imageWriteTargets = [
 function getConversions (currentExt: string) { return imageWriteTargets.filter(t => t !== currentExt); }
 
 
-export const images: FileExtension[] = [
+export const images: FileFormat[] = [
   // --- РАСПРОСТРАНЕННЫЕ (Чтение и Запись) ---
-  {ext: 'jpg', mime: 'image/jpeg', category: 'image', icon: 'mdi-file-image', conversions: getConversions('jpg')},
-  {ext: 'jpeg', mime: 'image/jpeg', category: 'image', icon: 'mdi-file-image', conversions: getConversions('jpeg')},
-  {ext: 'png', mime: 'image/png', category: 'image', icon: 'mdi-file-image', conversions: getConversions('png')},
-  {ext: 'webp', mime: 'image/webp', category: 'image', icon: 'mdi-file-image', conversions: getConversions('webp')},
-  {ext: 'gif', mime: 'image/gif', category: 'image', icon: 'mdi-file-gif-box', conversions: getConversions('gif')},
+  {fileExtensionType: 'jpg', mediaType: 'image/jpeg', fileCategory: 'image', iconUrl: 'mdi-file-image', conversions: getConversions('jpg')},
+  {fileExtensionType: 'jpeg', mediaType: 'image/jpeg', fileCategory: 'image', iconUrl: 'mdi-file-image', conversions: getConversions('jpeg')},
+  {fileExtensionType: 'png', mediaType: 'image/png', fileCategory: 'image', iconUrl: 'mdi-file-image', conversions: getConversions('png')},
+  {fileExtensionType: 'webp', mediaType: 'image/webp', fileCategory: 'image', iconUrl: 'mdi-file-image', conversions: getConversions('webp')},
+  {fileExtensionType: 'gif', mediaType: 'image/gif', fileCategory: 'image', iconUrl: 'mdi-file-gif-box', conversions: getConversions('gif')},
 
   // --- СОВРЕМЕННЫЕ (Чтение и Запись) ---
-  {ext: 'avif', mime: 'image/avif', category: 'image', icon: 'mdi-star-face', conversions: getConversions('avif')},
-  // TODO: not working {ext: 'heic', mime: 'image/heic', category: 'image', icon: 'mdi-cellphone', conversions: getConversions('heic')},
-  // TODO: not working {ext: 'heif', mime: 'image/heif', category: 'image', icon: 'mdi-cellphone', conversions: getConversions('heif')},
-  {ext: 'tiff', mime: 'image/tiff', category: 'image', icon: 'mdi-printer', conversions: getConversions('tiff')},
-  {ext: 'tif', mime: 'image/tiff', category: 'image', icon: 'mdi-printer', conversions: getConversions('tif')},
+  {fileExtensionType: 'avif', mediaType: 'image/avif', fileCategory: 'image', iconUrl: 'mdi-star-face', conversions: getConversions('avif')},
+  // TODO: not working {fileExtensionType: 'heic', mediaType: 'image/heic', fileCategory: 'image', icon: 'mdi-cellphone', conversions: getConversions('heic')},
+  // TODO: not working {fileExtensionType: 'heif', mediaType: 'image/heif', fileCategory: 'image', icon: 'mdi-cellphone', conversions: getConversions('heif')},
+  {fileExtensionType: 'tiff', mediaType: 'image/tiff', fileCategory: 'image', iconUrl: 'mdi-printer', conversions: getConversions('tiff')},
+  {fileExtensionType: 'tif', mediaType: 'image/tiff', fileCategory: 'image', iconUrl: 'mdi-printer', conversions: getConversions('tif')},
 
   // --- СПЕЦИФИЧНЫЕ (В них можно сохранять с оговорками) ---
-  {ext: 'ico', mime: 'image/x-icon', category: 'image', icon: 'mdi-emoticon', conversions: getConversions('ico')},
+  {fileExtensionType: 'ico', mediaType: 'image/x-icon', fileCategory: 'image', iconUrl: 'mdi-emoticon', conversions: getConversions('ico')},
 
   // --- ТОЛЬКО ЧТЕНИЕ (Sharp открывает их, но сохраняет только в растр) ---
   // Мы не можем конвертировать PNG -> SVG, но можем SVG -> PNG
-  {ext: 'svg', mime: 'image/svg+xml', category: 'image', icon: 'mdi-vector-curve', conversions: imageWriteTargets},
-  {ext: 'bmp', mime: 'image/bmp', category: 'image', icon: 'mdi-image-filter-black-white', conversions: imageWriteTargets},
+  {fileExtensionType: 'svg', mediaType: 'image/svg+xml', fileCategory: 'image', iconUrl: 'mdi-vector-curve', conversions: imageWriteTargets},
+  {fileExtensionType: 'bmp', mediaType: 'image/bmp', fileCategory: 'image', iconUrl: 'mdi-image-filter-black-white', conversions: imageWriteTargets},
 ] as const;

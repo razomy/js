@@ -1,5 +1,5 @@
 import ffmpeg from 'fluent-ffmpeg';
-import {type FileExtensionResult} from '@razomy/fs.extension';
+import {type ExtensionResult} from '@razomy/fs.file.format';
 import {videos} from './types';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -32,7 +32,7 @@ const formatAliases: Record<string, string> = {
 
 // ... exports videos и audios (оставляем как были) ...
 
-export async function toVideoByFormat(inputPath: string, format: string): Promise<FileExtensionResult> {
+export async function toVideoByFormat(inputPath: string, format: string): Promise<ExtensionResult> {
   const outputPath = path.join('/tmp', `out_${Date.now()}.${format}`);
   function cleanupInput () { return fs.unlink(inputPath, () => {}); }
 
@@ -222,8 +222,8 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
     fs.unlink(outputPath, () => {});
   });
 
-  const mimeType = videos.find(v => v.ext === format)?.mime
+  const mimeType = videos.find(v => v.fileExtensionType === format)?.mediaType
     || 'application/octet-stream';
 
-  return {stream: fileStream, mime: mimeType, ext: format};
+  return {stream: fileStream, mediaType: mimeType, fileExtensionType: format};
 }

@@ -4,10 +4,10 @@ import {globSync} from 'glob';
 
 
 // Colors for console output
-const RESET = '\x1b[0m';
-const GREEN = '\x1b[32m';
-const DIM = '\x1b[2m';
-const CYAN = '\x1b[36m';
+const reset = '\x1b[0m';
+const green = '\x1b[32m';
+const dim = '\x1b[2m';
+const cyan = '\x1b[36m';
 
 interface Workspace {
   name: string;
@@ -16,26 +16,26 @@ interface Workspace {
 }
 
 // 1. MAP WORKSPACES
-function getWorkspaceMap(ROOT_DIR): Map<string, Workspace> {
+function getWorkspaceMap(rootDir): Map<string, Workspace> {
   const map = new Map<string, Workspace>();
   const allPackageNames = new Set<string>();
 
   // A. Find workspace patterns from root package.json
-  const rootPkg = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'package.json'), 'utf-8'));
+  const rootPkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
   const patterns = Array.isArray(rootPkg.workspaces)
     ? rootPkg.workspaces
     : rootPkg.workspaces?.packages || ['packages/*', 'apps/*'];
 
   // B. Locate all package.json files
   const files = patterns.flatMap((ptn: string) =>
-    globSync(`${ptn}/package.json`, {cwd: ROOT_DIR, ignore: '**/node_modules/**'})
+    globSync(`${ptn}/package.json`, {cwd: rootDir, ignore: '**/node_modules/**'})
   );
 
   // C. First pass: Collect all names
   const tempConfigs: { name: string; path: string; allDeps: string[] }[] = [];
 
   files.forEach(file => {
-    const json = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, file), 'utf-8'));
+    const json = JSON.parse(fs.readFileSync(path.join(rootDir, file), 'utf-8'));
     allPackageNames.add(json.name);
 
     tempConfigs.push({
@@ -78,7 +78,7 @@ function printTree(
   const isCircular = visitedStack.has(pkgName);
 
   // Print current node
-  console.log(`${DIM}${prefix}${marker}${RESET}${GREEN}${pkgName}${RESET}${isCircular ? ` ${CYAN}(circular)${RESET}` : ''}`);
+  console.log(`${dim}${prefix}${marker}${reset}${green}${pkgName}${reset}${isCircular ? ` ${cyan}(circular)${reset}` : ''}`);
 
   if (isCircular) return; // Stop recursion
 
@@ -97,27 +97,27 @@ function printTree(
 export function printProjectPackage() {
 
 // --- CONFIG ---
-  const ROOT_DIR = path.resolve(process.cwd());
+  const rootDir = path.resolve(process.cwd());
 // const TARGET_PACKAGE = process.argv[2];
-  const TARGET_PACKAGE = '@razomy/images'; // Pass package name as CLI argument
+  const targetPackage = '@razomy/images'; // Pass package name as CLI argument
 
 // 3. EXECUTION
-  if (!TARGET_PACKAGE) {
+  if (!targetPackage) {
     console.log('Usage: npx ts-node scripts/tree-deps.ts <package-name>');
     process.exit(1);
   }
 
-  const workspaces = getWorkspaceMap(ROOT_DIR);
+  const workspaces = getWorkspaceMap(rootDir);
 
-  if (!workspaces.has(TARGET_PACKAGE)) {
-    console.error(`❌ Package "${TARGET_PACKAGE}" not found in workspaces.`);
+  if (!workspaces.has(targetPackage)) {
+    console.error(`❌ Package "${targetPackage}" not found in workspaces.`);
     process.exit(1);
   }
 
-  console.log(`\n📦 Dependency Tree for: ${CYAN}${TARGET_PACKAGE}${RESET}\n`);
+  console.log(`\n📦 Dependency Tree for: ${cyan}${targetPackage}${reset}\n`);
 // Start recursion
 // We create a "root" call manually to format the top level nicely
-  printTree(TARGET_PACKAGE, workspaces, '', true);
+  printTree(targetPackage, workspaces, '', true);
   console.log('');
 
 }

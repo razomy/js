@@ -1,4 +1,4 @@
-import {type FileExtension} from '@razomy/fs.extension';
+import {type FileFormat} from '@razomy/fs.file.format';
 import {allAudioTargets} from '@razomy/audios';
 
 // Списки целевых форматов (куда мы можем кодировать)
@@ -10,39 +10,39 @@ export const allVideoTargets = [
 
 export const videoConversions = [...allVideoTargets, ...allAudioTargets];
 
-export const videos: FileExtension[] = [
+export const videos: FileFormat[] = [
   // --- WEB & MODERN ---
-  {ext: 'mp4', mime: 'video/mp4', category: 'video', icon: 'mdi-video', conversions: videoConversions.filter(c => c !== 'mp4')},
-  {ext: 'webm', mime: 'video/webm', category: 'video', icon: 'mdi-video', conversions: videoConversions.filter(c => c !== 'webm')},
-  {ext: 'mov', mime: 'video/quicktime', category: 'video', icon: 'mdi-filmstrip', conversions: videoConversions.filter(c => c !== 'mov')},
-  {ext: 'mkv', mime: 'video/x-matroska', category: 'video', icon: 'mdi-video-outline', conversions: videoConversions.filter(c => c !== 'mkv')},
+  {fileExtensionType: 'mp4', mediaType: 'video/mp4', fileCategory: 'video', iconUrl: 'mdi-video', conversions: videoConversions.filter(c => c !== 'mp4')},
+  {fileExtensionType: 'webm', mediaType: 'video/webm', fileCategory: 'video', iconUrl: 'mdi-video', conversions: videoConversions.filter(c => c !== 'webm')},
+  {fileExtensionType: 'mov', mediaType: 'video/quicktime', fileCategory: 'video', iconUrl: 'mdi-filmstrip', conversions: videoConversions.filter(c => c !== 'mov')},
+  {fileExtensionType: 'mkv', mediaType: 'video/x-matroska', fileCategory: 'video', iconUrl: 'mdi-video-outline', conversions: videoConversions.filter(c => c !== 'mkv')},
 
   // --- PC & LEGACY ---
-  {ext: 'avi', mime: 'video/x-msvideo', category: 'video', icon: 'mdi-video-outline', conversions: videoConversions.filter(c => c !== 'avi')},
-  {ext: 'wmv', mime: 'video/x-ms-wmv', category: 'video', icon: 'mdi-windows', conversions: videoConversions.filter(c => c !== 'wmv')},
-  {ext: 'asf', mime: 'video/x-ms-asf', category: 'video', icon: 'mdi-windows', conversions: videoConversions.filter(c => c !== 'asf')}, // Предшественник WMV
-  {ext: 'flv', mime: 'video/x-flv', category: 'video', icon: 'mdi-flash', conversions: videoConversions.filter(c => c !== 'flv')},
-  {ext: 'swf', mime: 'application/x-shockwave-flash', category: 'video', icon: 'mdi-flash-outline', conversions: videoConversions.filter(c => c !== 'swf')}, // Flash
+  {fileExtensionType: 'avi', mediaType: 'video/x-msvideo', fileCategory: 'video', iconUrl: 'mdi-video-outline', conversions: videoConversions.filter(c => c !== 'avi')},
+  {fileExtensionType: 'wmv', mediaType: 'video/x-ms-wmv', fileCategory: 'video', iconUrl: 'mdi-windows', conversions: videoConversions.filter(c => c !== 'wmv')},
+  {fileExtensionType: 'asf', mediaType: 'video/x-ms-asf', fileCategory: 'video', iconUrl: 'mdi-windows', conversions: videoConversions.filter(c => c !== 'asf')}, // Предшественник WMV
+  {fileExtensionType: 'flv', mediaType: 'video/x-flv', fileCategory: 'video', iconUrl: 'mdi-flash', conversions: videoConversions.filter(c => c !== 'flv')},
+  {fileExtensionType: 'swf', mediaType: 'application/x-shockwave-flash', fileCategory: 'video', iconUrl: 'mdi-flash-outline', conversions: videoConversions.filter(c => c !== 'swf')}, // Flash
 
   // --- MOBILE & APPLE ---
-  {ext: 'm4v', mime: 'video/x-m4v', category: 'video', icon: 'mdi-apple', conversions: videoConversions.filter(c => c !== 'm4v')},
-  {ext: '3gp', mime: 'video/3gpp', category: 'video', icon: 'mdi-cellphone', conversions: videoConversions.filter(c => c !== '3gp')},
-  {ext: '3g2', mime: 'video/3gpp2', category: 'video', icon: 'mdi-cellphone', conversions: videoConversions.filter(c => c !== '3g2')},
+  {fileExtensionType: 'm4v', mediaType: 'video/x-m4v', fileCategory: 'video', iconUrl: 'mdi-apple', conversions: videoConversions.filter(c => c !== 'm4v')},
+  {fileExtensionType: '3gp', mediaType: 'video/3gpp', fileCategory: 'video', iconUrl: 'mdi-cellphone', conversions: videoConversions.filter(c => c !== '3gp')},
+  {fileExtensionType: '3g2', mediaType: 'video/3gpp2', fileCategory: 'video', iconUrl: 'mdi-cellphone', conversions: videoConversions.filter(c => c !== '3g2')},
 
   // --- DISC & BROADCAST (DVD, BluRay, TV) ---
-  {ext: 'vob', mime: 'video/mpeg', category: 'video', icon: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'vob')}, // DVD
-  {ext: 'mpg', mime: 'video/mpeg', category: 'video', icon: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'mpg')},
-  {ext: 'mpeg', mime: 'video/mpeg', category: 'video', icon: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'mpeg')},
-  {ext: 'm2ts', mime: 'video/mp2t', category: 'video', icon: 'mdi-disc-player', conversions: videoConversions.filter(c => c !== 'm2ts')}, // Blu-ray
-  {ext: 'mts', mime: 'video/mp2t', category: 'video', icon: 'mdi-camcorder', conversions: videoConversions.filter(c => c !== 'mts')}, // AVCHD Camcorders
-  {ext: 'ts', mime: 'video/mp2t', category: 'video', icon: 'mdi-satellite-uplink', conversions: videoConversions.filter(c => c !== 'ts')}, // IPTV Stream
-  {ext: 'mxf', mime: 'application/mxf', category: 'video', icon: 'mdi-television-box', conversions: videoConversions.filter(c => c !== 'mxf')}, // Профессиональное ТВ
+  {fileExtensionType: 'vob', mediaType: 'video/mpeg', fileCategory: 'video', iconUrl: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'vob')}, // DVD
+  {fileExtensionType: 'mpg', mediaType: 'video/mpeg', fileCategory: 'video', iconUrl: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'mpg')},
+  {fileExtensionType: 'mpeg', mediaType: 'video/mpeg', fileCategory: 'video', iconUrl: 'mdi-disc', conversions: videoConversions.filter(c => c !== 'mpeg')},
+  {fileExtensionType: 'm2ts', mediaType: 'video/mp2t', fileCategory: 'video', iconUrl: 'mdi-disc-player', conversions: videoConversions.filter(c => c !== 'm2ts')}, // Blu-ray
+  {fileExtensionType: 'mts', mediaType: 'video/mp2t', fileCategory: 'video', iconUrl: 'mdi-camcorder', conversions: videoConversions.filter(c => c !== 'mts')}, // AVCHD Camcorders
+  {fileExtensionType: 'ts', mediaType: 'video/mp2t', fileCategory: 'video', iconUrl: 'mdi-satellite-uplink', conversions: videoConversions.filter(c => c !== 'ts')}, // IPTV Stream
+  {fileExtensionType: 'mxf', mediaType: 'application/mxf', fileCategory: 'video', iconUrl: 'mdi-television-box', conversions: videoConversions.filter(c => c !== 'mxf')}, // Профессиональное ТВ
 
   // --- OTHERS ---
-  {ext: 'ogv', mime: 'video/ogg', category: 'video', icon: 'mdi-video', conversions: videoConversions.filter(c => c !== 'ogv')},
-  {ext: 'rm', mime: 'application/vnd.rn-realmedia', category: 'video', icon: 'mdi-history', conversions: videoConversions.filter(c => c !== 'rm')}, // RealMedia (90s)
-  {ext: 'rmvb', mime: 'application/vnd.rn-realmedia-vbr', category: 'video', icon: 'mdi-history', conversions: videoConversions.filter(c => c !== 'rmvb')},
-  {ext: 'dv', mime: 'video/x-dv', category: 'video', icon: 'mdi-camcorder-off', conversions: videoConversions.filter(c => c !== 'dv')}, // Digital Video (MiniDV cassettes)
+  {fileExtensionType: 'ogv', mediaType: 'video/ogg', fileCategory: 'video', iconUrl: 'mdi-video', conversions: videoConversions.filter(c => c !== 'ogv')},
+  {fileExtensionType: 'rm', mediaType: 'application/vnd.rn-realmedia', fileCategory: 'video', iconUrl: 'mdi-history', conversions: videoConversions.filter(c => c !== 'rm')}, // RealMedia (90s)
+  {fileExtensionType: 'rmvb', mediaType: 'application/vnd.rn-realmedia-vbr', fileCategory: 'video', iconUrl: 'mdi-history', conversions: videoConversions.filter(c => c !== 'rmvb')},
+  {fileExtensionType: 'dv', mediaType: 'video/x-dv', fileCategory: 'video', iconUrl: 'mdi-camcorder-off', conversions: videoConversions.filter(c => c !== 'dv')}, // Digital Video (MiniDV cassettes)
 ] as const;
 
-export const videoExtensions = new Set(videos.map(i => i.ext));
+export const videoExtensions = new Set(videos.map(i => i.fileExtensionType));

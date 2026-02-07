@@ -4,7 +4,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import ffmpegPath from 'ffmpeg-static';
 import {Readable} from 'node:stream';
 import {images} from './types';
-import {type FileExtensionResult} from '@razomy/fs.extension';
+import {type ExtensionResult} from '@razomy/fs.file.format';
 
 ffmpeg.setFfmpegPath(ffmpegPath!);
 
@@ -17,7 +17,7 @@ ffmpeg.setFfmpegPath(ffmpegPath!);
 type SharpOutputFormat = 'jpg' | 'jpeg' | 'png' | 'webp' | 'gif' | 'avif' | 'tiff' | 'heif' | 'heic';
 
 // --- SHARP (Images) ---
-export async function toImageByFormat(inputPath: string, format: string): Promise<FileExtensionResult> {
+export async function toImageByFormat(inputPath: string, format: string): Promise<ExtensionResult> {
   let pipeline = sharp(inputPath, { failOnError: false }); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)
@@ -114,7 +114,7 @@ export async function toImageByFormat(inputPath: string, format: string): Promis
 
   // Определяем итоговый MIME и расширение
   const outExt = format === 'ico' ? 'ico' : format;
-  const outMime = images.find(a => a.ext === outExt)?.mime || 'application/octet-stream';
+  const outMime = images.find(a => a.fileExtensionType === outExt)?.mediaType || 'application/octet-stream';
 
-  return { stream, mime: outMime, ext: outExt };
+  return { stream, mediaType: outMime, fileExtensionType: outExt };
 }

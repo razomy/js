@@ -1,22 +1,22 @@
-import type {FileExtension} from '@razomy/fs.extension';
+import {type FileFormat} from '@razomy/fs.file.format';
 
-export const documents: FileExtension[] = [
-  {ext: 'pdf', mime: 'application/pdf', category: 'document', icon: 'mdi-file-pdf-box', conversions: ['docx', 'jpg', 'png']},
+export const documents: FileFormat[] = [
+  {fileExtensionType: 'pdf', mediaType: 'application/pdf', fileCategory: 'document', iconUrl: 'mdi-file-pdf-box', conversions: ['docx', 'jpg', 'png']},
   {
-    ext: 'docx',
-    mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    category: 'document',
-    icon: 'mdi-file-word',
+    fileExtensionType: 'docx',
+    mediaType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    fileCategory: 'document',
+    iconUrl: 'mdi-file-word',
     conversions: ['pdf', 'txt', 'html']
   },
-  {ext: 'html', mime: 'text/html', category: 'document', icon: 'mdi-language-html5', conversions: ['pdf', 'txt']},
-  {ext: 'txt', mime: 'text/plain', category: 'document', icon: 'mdi-file-document-text', conversions: ['pdf', 'docx']},
-  {ext: 'csv', mime: 'text/csv', category: 'document', icon: 'mdi-file-table', conversions: ['xlsx', 'pdf', 'txt']},
+  {fileExtensionType: 'html', mediaType: 'text/html', fileCategory: 'document', iconUrl: 'mdi-language-html5', conversions: ['pdf', 'txt']},
+  {fileExtensionType: 'txt', mediaType: 'text/plain', fileCategory: 'document', iconUrl: 'mdi-file-document-text', conversions: ['pdf', 'docx']},
+  {fileExtensionType: 'csv', mediaType: 'text/csv', fileCategory: 'document', iconUrl: 'mdi-file-table', conversions: ['xlsx', 'pdf', 'txt']},
   {
-    ext: 'xlsx',
-    mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    category: 'document',
-    icon: 'mdi-file-excel',
+    fileExtensionType: 'xlsx',
+    mediaType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    fileCategory: 'document',
+    iconUrl: 'mdi-file-excel',
     conversions: ['csv', 'pdf']
   },
 ] as const;
