@@ -7,14 +7,22 @@ export function updatePackages(projectPath: string, prefix) {
   packages.forEach((folder) => {
       const content = fs.readFileSync(folder.path, 'utf-8');
 
-      let pkgData = {
+      const rawPkgData = {
         // general
         name: folder.name.replaceAll('/', '.').replace(prefix + '.', `@${prefix}/`),
         version: '0.0.0',
         license: 'MIT',
+        type: 'module',
+        description: '',
+        author: {
+          'name': 'Yevhenii Kamenskyi',
+          'email': 'yevhenii.kamenskyi+js@razomy.org',
+          'url': 'https://id.razomy.org/yevhenii.kamenskyi'
+        },
+        sideEffects: false,
         // scripts
         'scripts': {
-          'build': 'tsdown index.ts',
+          'build': 'tsdown index.ts index.browser.ts --format esm,cjs --dts',
           'dev': 'tsdown index.ts --watch',
           'prepublishOnly': 'npm run build'
         },
@@ -22,32 +30,60 @@ export function updatePackages(projectPath: string, prefix) {
         'main': './index.ts',
         'types': './index.ts',
         'exports': {
-          '.': './index.ts',
+          '.': {
+            'types': {
+              'vue': './index.browser.ts',
+              'browser': './index.browser.ts',
+              'default': './index.ts'
+            },
+            'vue': './index.browser.ts',
+            'browser': './index.browser.ts',
+            'node': './index.ts',
+            'import': './index.ts',
+            'default': './index.ts'
+          },
           './package.json': './package.json',
         },
         // deploy
         'publishConfig': {
           'access': 'public',
-          'main': './dist/index.mjs',
-          'types': './dist/index.d.mts',
+          main: './dist/index.cjs',     // Fallback для старых CJS систем
+          module: './dist/index.mjs',   // Для бандлеров
+          types: './dist/index.d.ts',
           'exports': {
             '.': {
+              'types': {
+                'vue': './dist/index.browser.d.ts',
+                'browser': './dist/index.browser.d.ts',
+                'default': './dist/index.d.ts'
+              },
+              'vue': './dist/index.browser.mjs',
+              'browser': './dist/index.browser.mjs',
+              'node': {
+                'import': './dist/index.mjs',
+                'require': './dist/index.cjs'
+              },
               'import': './dist/index.mjs',
-              'types': './dist/index.d.mts',
+              'require': './dist/index.cjs',
+              'default': './dist/index.mjs'
             },
             './package.json': './package.json'
           }
         },
         files: ['dist'],
-        "repository": {
-          "type": "git",
-          "url": "git+https://github.com/razomy/js.git",
-          "directory": folder.name
+        'repository': {
+          'type': 'git',
+          'url': 'git+https://github.com/razomy/js.git',
+          'directory': folder.name
+        },
+        // 6. Engines (хорошая практика)
+        engines: {
+          'node': '>=18'
         }
       }
 
       const current = JSON.parse(content);
-      pkgData = {
+      let pkgData = {
         ...{
           bin: current.bin,
           dependencies: current.dependencies,
@@ -55,9 +91,11 @@ export function updatePackages(projectPath: string, prefix) {
           devDependencies: current.devDependencies,
           overrides: current.overrides,
         },
-        ...pkgData,
+        ...rawPkgData,
       };
       pkgData = sort(pkgData)
+      // pkgData.exports = rawPkgData.exports
+      // pkgData.publishConfig.exports = rawPkgData.publishConfig.exports;
       fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2));
       console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
     }

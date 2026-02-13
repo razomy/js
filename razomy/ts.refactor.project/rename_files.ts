@@ -14,8 +14,8 @@ export async function renameFiles(projectPath: string) {
 
     // Skip if name hasn't changed
     if (baseName === newName) continue;
-    if (baseName === 'index.ts') continue;
-    if (baseName === 'index.browser.ts') continue;
+    if (baseName === 'index') continue;
+    if (baseName === 'index.browser') continue;
 
     const path = `${sourceFile.getDirectory().getPath()}/${newName}${ext}`;
     if (isExist(path)) {

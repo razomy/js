@@ -78,7 +78,7 @@ async function runTests() {
   console.log('🚀 ЗАПУСК ТЕСТОВ GAMBAR (SHARP)...\n');
 
   for (const imgConfig of images) {
-    const inputExt = imgConfig.ext;
+    const inputExt = imgConfig.fileExtensionType;
     const inputFilename = `source_test.${inputExt}`;
     const inputPath = path.join(outDir, inputFilename);
 

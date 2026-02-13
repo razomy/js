@@ -1,7 +1,7 @@
 import {locales} from './locales'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export const defaultNuxtConfig = (c) => ({
+export const defaultNuxtConfig = (c:any) => ({
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
   site: {

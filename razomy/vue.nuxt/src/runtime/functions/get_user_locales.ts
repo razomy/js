@@ -2,7 +2,7 @@ import { H3Event, getCookie, getQuery} from 'h3';
 import { z } from "@razomy/schema";
 import {getQueryFrom} from './get_query_from';
 
-export function getUserLocales(c, event: H3Event){
+export function getUserLocales(c:any, event: H3Event){
     let responses = getQueryFrom(c,
             event,
             z.object({

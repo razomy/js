@@ -90,6 +90,8 @@ export async function createIndexFiles(projectPath: string) {
 
       const indexFilePath = `${dirPath}/index.ts`;
       project.createSourceFile(indexFilePath, indexContent, {overwrite: true});
+      const indexFilePath2 = `${dirPath}/index.browser.ts`;
+      project.createSourceFile(indexFilePath2, indexContent, {overwrite: true});
       console.log(`[GENERATED] ${indexFilePath}`);
     }
   }

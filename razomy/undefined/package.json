@@ -1,7 +1,27 @@
 {
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii.kamenskyi"
+  },
   "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
   "exports": {
-    ".": "./index.ts",
+    ".": {
+      "browser": "./index.browser.ts",
+      "default": "./index.ts",
+      "import": "./index.ts",
+      "node": "./index.ts",
+      "types": {
+        "browser": "./index.browser.ts",
+        "default": "./index.ts",
+        "vue": "./index.browser.ts"
+      },
+      "vue": "./index.browser.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -15,13 +35,26 @@
     "access": "public",
     "exports": {
       ".": {
+        "browser": "./dist/index.browser.mjs",
+        "default": "./dist/index.mjs",
         "import": "./dist/index.mjs",
-        "types": "./dist/index.d.mts"
+        "node": {
+          "import": "./dist/index.mjs",
+          "require": "./dist/index.cjs"
+        },
+        "require": "./dist/index.cjs",
+        "types": {
+          "browser": "./dist/index.browser.d.ts",
+          "default": "./dist/index.d.ts",
+          "vue": "./dist/index.browser.d.ts"
+        },
+        "vue": "./dist/index.browser.mjs"
       },
       "./package.json": "./package.json"
     },
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
   },
   "repository": {
     "directory": "razomy/undefined",
@@ -29,10 +62,12 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts",
+    "build": "tsdown index.ts index.browser.ts --format esm,cjs --dts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },
+  "sideEffects": false,
+  "type": "module",
   "types": "./index.ts",
   "version": "0.0.0"
 }

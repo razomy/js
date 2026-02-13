@@ -26,7 +26,7 @@ async function runTests() {
   // --- ТЕСТ АУДИО ---
   console.log('\n--- 🎵 ТЕСТИРУЕМ АУДИО ФОРМАТЫ ---');
   for (const fmt of audios) {
-    const targetFormat = fmt.ext;
+    const targetFormat = fmt.fileExtensionType;
     try {
       const tempInput = path.join(outDir, `temp_input_${Date.now()}.mp3`);
       fs.copyFileSync(sourceAudio, tempInput);

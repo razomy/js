@@ -1,4 +1,11 @@
 {
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii.kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
   "devDependencies": {
     "@nuxt/devtools": "^3.1.1",
     "@nuxt/eslint-config": "^1.13.0",
@@ -12,39 +19,30 @@
     "vitest": "^4.0.18",
     "vue-tsc": "^3.2.4"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "exports": {
     ".": {
-      "import": "./src/module.ts",
-      "types": "./src/module.ts"
+      "import": "./dist/module.mjs",
+      "types": "./dist/module.d.mts"
     },
-    "./runtime/components/*": "./src/runtime/components/*",
+    "./runtime/components/*": "./dist/runtime/components/*",
     "./runtime/functions": {
-      "import": "./src/runtime/functions/index.ts",
-      "types": "./src/runtime/functions/index.ts"
-    }
+      "import": "./dist/runtime/functions/index.js",
+      "types": "./dist/runtime/functions/index.d.ts"
+    },
+    "./package.json": "./package.json"
   },
   "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "import": "./dist/module.mjs",
-        "types": "./dist/module.d.mts"
-      },
-      "./runtime/components/*": "./dist/runtime/components/*",
-      "./runtime/functions": {
-        "import": "./dist/runtime/functions/index.js",
-        "types": "./dist/runtime/functions/index.d.ts"
-      },
-      "./package.json": "./package.json"
-    },
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "access": "public"
   },
   "files": [
     "dist"
   ],
   "license": "MIT",
-  "main": "./dist/module.mjs",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "name": "@razomy/vue.nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.0",
