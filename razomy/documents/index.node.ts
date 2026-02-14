@@ -1,0 +1,1 @@
+export {documents} from './types';

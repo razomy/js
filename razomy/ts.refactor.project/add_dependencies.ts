@@ -51,7 +51,7 @@ export function addDependencies(projectPath: string, prefix) {
       delete pkgJson.peerDependencies[i];
     })
     matches.forEach(depName => {
-      if (depName === folder.name.replaceAll('/', '.').replace(prefix + '.', scope + '/')) {
+      if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
         return
       }
       pkgJson.peerDependencies[depName] = '*';

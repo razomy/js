@@ -22,7 +22,7 @@ export function updatePackages(projectPath: string, prefix) {
         sideEffects: false,
         // scripts
         'scripts': {
-          'build': 'tsdown index.ts index.browser.ts --format esm,cjs --dts',
+          'build': 'tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts',
           'dev': 'tsdown index.ts --watch',
           'prepublishOnly': 'npm run build'
         },
@@ -38,10 +38,12 @@ export function updatePackages(projectPath: string, prefix) {
             },
             'vue': './index.browser.ts',
             'browser': './index.browser.ts',
-            'node': './index.ts',
+            'node': './index.node.ts',
             'import': './index.ts',
             'default': './index.ts'
           },
+          './browser': './index.browser.ts',
+          './node': './index.node.ts',
           './package.json': './package.json',
         },
         // deploy
@@ -60,13 +62,15 @@ export function updatePackages(projectPath: string, prefix) {
               'vue': './dist/index.browser.mjs',
               'browser': './dist/index.browser.mjs',
               'node': {
-                'import': './dist/index.mjs',
-                'require': './dist/index.cjs'
+                'import': './dist/index.node.mjs',
+                'require': './dist/index.node.cjs'
               },
               'import': './dist/index.mjs',
               'require': './dist/index.cjs',
               'default': './dist/index.mjs'
             },
+            './browser': './index.browser.mjs',
+            './node': './index.node.mjs',
             './package.json': './package.json'
           }
         },
