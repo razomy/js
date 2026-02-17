@@ -1,4 +1,4 @@
-import {reservedNamesJs} from '../languages.programming.fs';
+import {reservedNamesJs} from '@razomy/languages-programming-fs';
 import {camelCase} from '@razomy/string-case';
 
 export function toSafeName(name: string) {

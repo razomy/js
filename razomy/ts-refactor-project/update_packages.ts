@@ -17,7 +17,7 @@ export function updatePackages(projectPath: string, prefix) {
         author: {
           'name': 'Yevhenii Kamenskyi',
           'email': 'yevhenii.kamenskyi+js@razomy.org',
-          'url': 'https://id.razomy.org/yevhenii.kamenskyi'
+          'url': 'https://id.razomy.org/yevhenii-kamenskyi'
         },
         sideEffects: false,
         // scripts

@@ -27,8 +27,8 @@
   "exclude": [
     "**/node_modules",
     "**/dist",
-    "razomy/vue",
-    "@razomy/vue-nuxt"
+    "./razomy/vue",
+    "./razomy/vue-nuxt"
   ],
   "references": []
 }

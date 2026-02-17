@@ -2,7 +2,7 @@ import { Project, SyntaxKind, SourceFile } from 'ts-morph';
 import { tryGetJson } from '@razomy/fs-file';
 import * as path from 'path';
 import * as file from '@razomy/fs-file';
-import { toSafeName } from '../ts.refactor';
+import { toSafeName } from '@razomy/ts-refactor';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';

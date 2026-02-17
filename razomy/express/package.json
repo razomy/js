@@ -2,7 +2,7 @@
   "author": {
     "email": "yevhenii.kamenskyi+js@razomy.org",
     "name": "Yevhenii Kamenskyi",
-    "url": "https://id.razomy.org/yevhenii.kamenskyi"
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {
     "@google-cloud/connect-datastore": "^7.0.1",

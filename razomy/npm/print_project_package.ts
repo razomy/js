@@ -97,7 +97,7 @@ function printTree(
 export function printProjectPackage() {
 
 // --- CONFIG ---
-  const rootDir = path.resolve(process.cwd());
+  const rootDir = path.resolve(process.cwd(), '../../');
 // const TARGET_PACKAGE = process.argv[2];
   const targetPackage = '@razomy/images'; // Pass package name as CLI argument
 
@@ -122,4 +122,4 @@ export function printProjectPackage() {
 
 }
 
-printProjectPackage();
+// printProjectPackage();
