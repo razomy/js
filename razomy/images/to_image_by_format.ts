@@ -1,24 +1,13 @@
 import * as fs from 'node:fs';
 import sharp from 'sharp';
-import ffmpeg from 'fluent-ffmpeg';
-import ffmpegPath from 'ffmpeg-static';
-import {Readable} from 'node:stream';
-import {images} from './types';
+import {images, OnlyReadImageFileExtensionType, ReadAndWriteImageFileExtensionType} from './types';
 import {type ExtensionResult} from '@razomy/fs-file-format';
 
-ffmpeg.setFfmpegPath(ffmpegPath!);
-
-// --- SHARP (Images) ---
-
-
-ffmpeg.setFfmpegPath(ffmpegPath!);
-
 // Форматы, которые sharp умеет ЗАПИСЫВАТЬ
-type SharpOutputFormat = 'jpg' | 'jpeg' | 'png' | 'webp' | 'gif' | 'avif' | 'tiff' | 'heif' | 'heic';
 
 // --- SHARP (Images) ---
-export async function toImageByFormat(inputPath: string, format: string): Promise<ExtensionResult> {
-  let pipeline = sharp(inputPath, { failOnError: false }); // failOnError: false позволяет открывать частично битые файлы
+export async function toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult> {
+  let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)
   pipeline = pipeline.rotate().withMetadata();
