@@ -33,45 +33,13 @@
   "main": "./index.ts",
   "name": "@razomy/audios",
   "peerDependencies": {
-    "@razomy/fs-file-format": "0.0.1-alpha.0",
+    "@razomy/fs-file-format": "0.0.1-alpha.2",
     "@types/fluent-ffmpeg": "^2.1.3",
     "ffmpeg-static": "^5.3.0",
     "fluent-ffmpeg": "^2.1.3"
   },
-  "peerDependenciesMeta": {
-    "fluent-static": {
-      "optional": true
-    },
-    "fluent-ffmpeg": {
-      "optional": true
-    }
-  },
   "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "browser": "./dist/index.browser.mjs",
-        "default": "./dist/index.mjs",
-        "import": "./dist/index.mjs",
-        "node": {
-          "import": "./dist/index.node.mjs",
-          "require": "./dist/index.node.cjs"
-        },
-        "require": "./dist/index.cjs",
-        "types": {
-          "browser": "./dist/index.browser.d.ts",
-          "default": "./dist/index.d.ts",
-          "vue": "./dist/index.browser.d.ts"
-        },
-        "vue": "./dist/index.browser.mjs"
-      },
-      "./browser": "./index.browser.mjs",
-      "./node": "./index.node.mjs",
-      "./package.json": "./package.json"
-    },
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "access": "public"
   },
   "repository": {
     "directory": "razomy/audios",
@@ -86,5 +54,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.2"
 }

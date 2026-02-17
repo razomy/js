@@ -10,7 +10,7 @@ export function updatePackages(projectPath: string, prefix) {
       const rawPkgData = {
         // general
         name: folder.name.replaceAll('/', '-').replace(prefix + '-', `@${prefix}/`),
-        version: '0.0.0',
+        version: '0.0.1-alpha.0',
         license: 'MIT',
         type: 'module',
         description: '',
@@ -48,31 +48,7 @@ export function updatePackages(projectPath: string, prefix) {
         },
         // deploy
         'publishConfig': {
-          'access': 'public',
-          main: './dist/index.cjs',     // Fallback для старых CJS систем
-          module: './dist/index.mjs',   // Для бандлеров
-          types: './dist/index.d.ts',
-          'exports': {
-            '.': {
-              'types': {
-                'vue': './dist/index.browser.d.ts',
-                'browser': './dist/index.browser.d.ts',
-                'default': './dist/index.d.ts'
-              },
-              'vue': './dist/index.browser.mjs',
-              'browser': './dist/index.browser.mjs',
-              'node': {
-                'import': './dist/index.node.mjs',
-                'require': './dist/index.node.cjs'
-              },
-              'import': './dist/index.mjs',
-              'require': './dist/index.cjs',
-              'default': './dist/index.mjs'
-            },
-            './browser': './index.browser.mjs',
-            './node': './index.node.mjs',
-            './package.json': './package.json'
-          }
+          'access': 'public'
         },
         files: ['dist'],
         'repository': {
