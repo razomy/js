@@ -33,13 +33,13 @@
   "main": "./index.ts",
   "name": "@razomy/ts-refactor-project",
   "peerDependencies": {
-    "@razomy/array": "*",
-    "@razomy/fs": "*",
-    "@razomy/fs-file": "*",
-    "@razomy/json": "*",
-    "@razomy/main": "*",
-    "@razomy/string": "*",
-    "@razomy/ts-refactor": "*"
+    "@razomy/array": "0.0.1-alpha.0",
+    "@razomy/fs": "0.0.1-alpha.0",
+    "@razomy/fs-file": "0.0.1-alpha.0",
+    "@razomy/json": "0.0.1-alpha.0",
+    "@razomy/main": "0.0.1-alpha.0",
+    "@razomy/string": "0.0.1-alpha.0",
+    "@razomy/ts-refactor": "0.0.1-alpha.0"
   },
   "publishConfig": {
     "access": "public",
@@ -81,5 +81,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }

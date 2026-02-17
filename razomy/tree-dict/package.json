@@ -33,11 +33,11 @@
   "main": "./index.ts",
   "name": "@razomy/tree-dict",
   "peerDependencies": {
-    "@razomy/dict": "*",
-    "@razomy/exceptions": "*",
-    "@razomy/key": "*",
-    "@razomy/path-string": "*",
-    "@razomy/tree": "*"
+    "@razomy/dict": "0.0.1-alpha.0",
+    "@razomy/exceptions": "0.0.1-alpha.0",
+    "@razomy/key": "0.0.1-alpha.0",
+    "@razomy/path-string": "0.0.1-alpha.0",
+    "@razomy/tree": "0.0.1-alpha.0"
   },
   "publishConfig": {
     "access": "public",
@@ -79,5 +79,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }

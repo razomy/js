@@ -33,18 +33,18 @@
   "main": "./index.ts",
   "name": "@razomy/json",
   "peerDependencies": {
-    "@razomy/codec": "*",
-    "@razomy/context": "*",
-    "@razomy/function": "*",
-    "@razomy/offset": "*",
-    "@razomy/pipes": "*",
-    "@razomy/result": "*",
-    "@razomy/result-null": "*",
-    "@razomy/serializable": "*",
-    "@razomy/token": "*",
-    "@razomy/token-offset": "*",
-    "@razomy/token-offset-deep": "*",
-    "@razomy/value": "*"
+    "@razomy/codec": "0.0.1-alpha.0",
+    "@razomy/context": "0.0.1-alpha.0",
+    "@razomy/function": "0.0.1-alpha.0",
+    "@razomy/offset": "0.0.1-alpha.0",
+    "@razomy/pipes": "0.0.1-alpha.0",
+    "@razomy/result": "0.0.1-alpha.0",
+    "@razomy/result-null": "0.0.1-alpha.0",
+    "@razomy/serializable": "0.0.1-alpha.0",
+    "@razomy/token": "0.0.1-alpha.0",
+    "@razomy/token-offset": "0.0.1-alpha.0",
+    "@razomy/token-offset-deep": "0.0.1-alpha.0",
+    "@razomy/value": "0.0.1-alpha.0"
   },
   "publishConfig": {
     "access": "public",
@@ -86,5 +86,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }

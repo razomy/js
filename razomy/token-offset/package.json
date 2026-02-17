@@ -33,11 +33,11 @@
   "main": "./index.ts",
   "name": "@razomy/token-offset",
   "peerDependencies": {
-    "@razomy/context": "*",
-    "@razomy/offset": "*",
-    "@razomy/result-null": "*",
-    "@razomy/token": "*",
-    "@razomy/value": "*"
+    "@razomy/context": "0.0.1-alpha.0",
+    "@razomy/offset": "0.0.1-alpha.0",
+    "@razomy/result-null": "0.0.1-alpha.0",
+    "@razomy/token": "0.0.1-alpha.0",
+    "@razomy/value": "0.0.1-alpha.0"
   },
   "publishConfig": {
     "access": "public",
@@ -79,5 +79,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }

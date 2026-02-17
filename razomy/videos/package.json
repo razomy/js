@@ -33,8 +33,8 @@
   "main": "./index.ts",
   "name": "@razomy/videos",
   "peerDependencies": {
-    "@razomy/audios": "*",
-    "@razomy/fs-file-format": "*",
+    "@razomy/audios": "0.0.1-alpha.0",
+    "@razomy/fs-file-format": "0.0.1-alpha.0",
     "@types/fluent-ffmpeg": "^2.1.3",
     "fluent-ffmpeg": "^2.1.3"
   },
@@ -78,5 +78,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }

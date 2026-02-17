@@ -33,13 +33,13 @@
   "main": "./index.ts",
   "name": "@razomy/graphics-codecs-json",
   "peerDependencies": {
-    "@razomy/codec": "*",
-    "@razomy/exceptions": "*",
-    "@razomy/graphics-attributes": "*",
-    "@razomy/graphics-codecs-web-svg-codecs": "*",
-    "@razomy/graphics-elements": "*",
-    "@razomy/object": "*",
-    "@razomy/resources": "*"
+    "@razomy/codec": "0.0.1-alpha.0",
+    "@razomy/exceptions": "0.0.1-alpha.0",
+    "@razomy/graphics-attributes": "0.0.1-alpha.0",
+    "@razomy/graphics-codecs-web-svg-codecs": "0.0.1-alpha.0",
+    "@razomy/graphics-elements": "0.0.1-alpha.0",
+    "@razomy/object": "0.0.1-alpha.0",
+    "@razomy/resources": "0.0.1-alpha.0"
   },
   "publishConfig": {
     "access": "public",
@@ -81,5 +81,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }
