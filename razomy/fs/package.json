@@ -34,7 +34,7 @@
   "name": "@razomy/fs",
   "peerDependencies": {
     "@razomy/observable": "*",
-    "@razomy/path.string": "*"
+    "@razomy/path-string": "*"
   },
   "publishConfig": {
     "access": "public",

@@ -4,7 +4,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import ffmpegPath from 'ffmpeg-static';
 import {Readable} from 'node:stream';
 import {images} from './types';
-import {type ExtensionResult} from '@razomy/fs.file.format';
+import {type ExtensionResult} from '@razomy/fs-file-format';
 
 ffmpeg.setFfmpegPath(ffmpegPath!);
 

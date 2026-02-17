@@ -43,13 +43,13 @@
   "license": "MIT",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
-  "name": "@razomy/vue.nuxt",
+  "name": "@razomy/vue-nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.0",
     "@razomy/vue": "*"
   },
   "repository": {
-    "directory": "razomy/vue.nuxt",
+    "directory": "razomy/vue-nuxt",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

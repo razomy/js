@@ -34,7 +34,7 @@
   "name": "@razomy/videos",
   "peerDependencies": {
     "@razomy/audios": "*",
-    "@razomy/fs.file.format": "*",
+    "@razomy/fs-file-format": "*",
     "@types/fluent-ffmpeg": "^2.1.3",
     "fluent-ffmpeg": "^2.1.3"
   },

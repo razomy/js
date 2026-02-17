@@ -1,4 +1,4 @@
-import {type FileFormat} from '@razomy/fs.file.format';
+import {type FileFormat} from '@razomy/fs-file-format';
 
 export const allAudioTargets = [
   'mp3', 'wav', 'ogg', 'm4a', 'aac', 'flac', 'wma', 'opus', 'aiff', 'ac3', 'dts', 'amr', 'voc'

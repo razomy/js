@@ -1,4 +1,4 @@
-import {type FileFormat} from '@razomy/fs.file.format';
+import {type FileFormat} from '@razomy/fs-file-format';
 import {allAudioTargets} from '@razomy/audios';
 
 // Списки целевых форматов (куда мы можем кодировать)

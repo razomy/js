@@ -1,4 +1,4 @@
-import {type FileFormat} from '@razomy/fs.file.format';
+import {type FileFormat} from '@razomy/fs-file-format';
 
 export const documents: FileFormat[] = [
   {fileExtensionType: 'pdf', mediaType: 'application/pdf', fileCategory: 'document', iconUrl: 'mdi-file-pdf-box', conversions: ['docx', 'jpg', 'png']},

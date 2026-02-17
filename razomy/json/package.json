@@ -39,11 +39,11 @@
     "@razomy/offset": "*",
     "@razomy/pipes": "*",
     "@razomy/result": "*",
-    "@razomy/result.null": "*",
+    "@razomy/result-null": "*",
     "@razomy/serializable": "*",
     "@razomy/token": "*",
-    "@razomy/token.offset": "*",
-    "@razomy/token.offset.deep": "*",
+    "@razomy/token-offset": "*",
+    "@razomy/token-offset-deep": "*",
     "@razomy/value": "*"
   },
   "publishConfig": {

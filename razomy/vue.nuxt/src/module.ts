@@ -6,7 +6,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@razomy/vue.nuxt',
+    name: '@razomy/vue-nuxt',
     // configKey: 'myModule',
   },
   // Default configuration options of the Nuxt module
@@ -14,7 +14,7 @@ export default defineNuxtModule<ModuleOptions>({
   setup(_options, _nuxt) {
     const resolver = createResolver(import.meta.url)
 
-    _nuxt.options.alias['@razomy/vue.nuxt/runtime/functions'] = resolver.resolve('./runtime/functions/index')
+    _nuxt.options.alias['@razomy/vue-nuxt/runtime/functions'] = resolver.resolve('./runtime/functions/index')
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
 

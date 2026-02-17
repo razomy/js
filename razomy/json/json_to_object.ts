@@ -2,10 +2,10 @@ import {WithOffset} from '@razomy/offset';
 import {WithValue} from '@razomy/value';
 import {tryP} from '@razomy/pipes';
 import {f} from '@razomy/function';
-import {tryScope, WithDeep} from '@razomy/token.offset.deep';
-import {tryAll, tryTokenValue} from '@razomy/token.offset';
+import {tryScope, WithDeep} from '@razomy/token-offset-deep';
+import {tryAll, tryTokenValue} from '@razomy/token-offset';
 import {WithTokens, WithTokenType} from '@razomy/token';
-import {any, optinal, ResultNullRegistry} from '@razomy/result.null';
+import {any, optinal, ResultNullRegistry} from '@razomy/result-null';
 import {fMutResult} from '@razomy/result';
 import {create} from '@razomy/context';
 

@@ -36,8 +36,8 @@
   "name": "@razomy/git",
   "peerDependencies": {
     "@razomy/async": "*",
-    "@razomy/commit.datetime.delta.string": "*",
-    "@razomy/fs.file": "*",
+    "@razomy/commit-datetime-delta-string": "*",
+    "@razomy/fs-file": "*",
     "@razomy/shell": "*"
   },
   "publishConfig": {

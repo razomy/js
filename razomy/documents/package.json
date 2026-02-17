@@ -33,7 +33,7 @@
   "main": "./index.ts",
   "name": "@razomy/documents",
   "peerDependencies": {
-    "@razomy/fs.file.format": "*"
+    "@razomy/fs-file-format": "*"
   },
   "publishConfig": {
     "access": "public",

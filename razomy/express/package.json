@@ -53,7 +53,7 @@
   "main": "./index.ts",
   "name": "@razomy/express",
   "peerDependencies": {
-    "@razomy/google.auth": "*",
+    "@razomy/google-auth": "*",
     "@razomy/server": "*"
   },
   "publishConfig": {

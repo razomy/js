@@ -1,5 +1,5 @@
 import {VrdOrValue} from './vrd';
-import {AbsolutePathString} from '@razomy/path.string';
+import {AbsolutePathString} from '@razomy/path-string';
 import {isVrd} from './is_vrd';
 
 export function vrdToPva<T>(

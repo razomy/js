@@ -1,5 +1,5 @@
 import ffmpeg from 'fluent-ffmpeg';
-import {type ExtensionResult} from '@razomy/fs.file.format';
+import {type ExtensionResult} from '@razomy/fs-file-format';
 import {audios} from './types';
 import path from 'node:path';
 import fs from 'node:fs';

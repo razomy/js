@@ -33,7 +33,7 @@
   "main": "./index.ts",
   "name": "@razomy/shell",
   "peerDependencies": {
-    "@razomy/path.string": "*"
+    "@razomy/path-string": "*"
   },
   "publishConfig": {
     "access": "public",

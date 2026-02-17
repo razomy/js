@@ -28,7 +28,7 @@
     "**/node_modules",
     "**/dist",
     "razomy/vue",
-    "razomy/vue.nuxt"
+    "@razomy/vue-nuxt"
   ],
   "references": []
 }

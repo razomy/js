@@ -35,7 +35,7 @@
   "peerDependencies": {
     "@razomy/exceptions": "*",
     "@razomy/function": "*",
-    "@razomy/path.string": "*",
+    "@razomy/path-string": "*",
     "@razomy/undefined": "*"
   },
   "publishConfig": {

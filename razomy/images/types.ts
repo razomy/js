@@ -1,4 +1,4 @@
-import {type FileFormat} from '@razomy/fs.file.format';
+import {type FileFormat} from '@razomy/fs-file-format';
 
 // Список форматов, в которые Sharp умеет СОХРАНЯТЬ
 const imageWriteTargets = [

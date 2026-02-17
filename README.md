@@ -51,7 +51,7 @@ We follow strict architectural rules to keep the system reliable.
 - [ ] **Imports:**
   - External: `@razomy/...`
   - Domain: `./...`
-  - Prefer (e.g., `import * as packageName from '@razomy/package.name`) named syntax.
+  - Prefer (e.g., `import * as packageName from '@razomy/package-name`) named syntax.
 - [ ] **Exports:** Prefer named exports.
 
 **Feature Workflow**

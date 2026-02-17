@@ -63,7 +63,7 @@ export const defaultNuxtConfig = (c:any) => ({
     '@vueuse/nuxt',
     'vuetify-nuxt-module',
     '@nuxtjs/robots',
-    '@razomy/vue.nuxt',
+    '@razomy/vue-nuxt',
     'nuxt-zod-i18n',
   ],
 
