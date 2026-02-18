@@ -90,7 +90,7 @@
     "@razomy/fs-directory": "0.0.1-alpha.3",
     "@razomy/fs-file": "0.0.1-alpha.3",
     "@razomy/fs-file-extensions": "0.0.1-alpha.3",
-    "@razomy/fs-file-format": "0.0.1-alpha.2",
+    "@razomy/fs-file-format": "0.0.1-alpha.3",
     "@razomy/fs-file-recursive": "0.0.1-alpha.3",
     "@razomy/fs-kv": "0.0.1-alpha.3",
     "@razomy/fs-link": "0.0.1-alpha.3",
