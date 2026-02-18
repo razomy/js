@@ -33,9 +33,9 @@
   "main": "./index.ts",
   "name": "@razomy/index",
   "peerDependencies": {
-    "@razomy/number": "0.0.1-alpha.0",
-    "@razomy/offset": "0.0.1-alpha.0",
-    "@razomy/string": "0.0.1-alpha.0"
+    "@razomy/number": "0.0.1-alpha.3",
+    "@razomy/offset": "0.0.1-alpha.3",
+    "@razomy/string": "0.0.1-alpha.3"
   },
   "publishConfig": {
     "access": "public"
@@ -53,5 +53,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.3"
 }

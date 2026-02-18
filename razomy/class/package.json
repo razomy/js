@@ -33,7 +33,7 @@
   "main": "./index.ts",
   "name": "@razomy/class",
   "peerDependencies": {
-    "@razomy/object": "0.0.1-alpha.0"
+    "@razomy/object": "0.0.1-alpha.3"
   },
   "publishConfig": {
     "access": "public"
@@ -51,5 +51,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.3"
 }

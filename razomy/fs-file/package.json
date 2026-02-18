@@ -33,9 +33,9 @@
   "main": "./index.ts",
   "name": "@razomy/fs-file",
   "peerDependencies": {
-    "@razomy/fs-directory": "0.0.1-alpha.0",
-    "@razomy/gate": "0.0.1-alpha.0",
-    "@razomy/path-string": "0.0.1-alpha.0"
+    "@razomy/fs-directory": "0.0.1-alpha.3",
+    "@razomy/gate": "0.0.1-alpha.3",
+    "@razomy/path-string": "0.0.1-alpha.3"
   },
   "publishConfig": {
     "access": "public"
@@ -53,5 +53,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.3"
 }

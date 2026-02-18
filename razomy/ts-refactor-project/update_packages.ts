@@ -10,7 +10,7 @@ export function updatePackages(projectPath: string, prefix) {
       const rawPkgData = {
         // general
         name: folder.name.replaceAll('/', '-').replace(prefix + '-', `@${prefix}/`),
-        version: '0.0.1-alpha.0',
+        version: '0.0.1-alpha.3',
         license: 'MIT',
         type: 'module',
         description: '',

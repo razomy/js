@@ -46,7 +46,7 @@
   "name": "@razomy/vue-nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.0",
-    "@razomy/vue": "0.0.1-alpha.0"
+    "@razomy/vue": "0.0.1-alpha.3"
   },
   "repository": {
     "directory": "razomy/vue-nuxt",
@@ -66,5 +66,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.3"
 }

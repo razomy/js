@@ -33,9 +33,9 @@
   "main": "./index.ts",
   "name": "@razomy/main",
   "peerDependencies": {
-    "@razomy/action": "0.0.1-alpha.0",
-    "@razomy/async": "0.0.1-alpha.0",
-    "@razomy/dates": "0.0.1-alpha.0"
+    "@razomy/action": "0.0.1-alpha.3",
+    "@razomy/async": "0.0.1-alpha.3",
+    "@razomy/dates": "0.0.1-alpha.3"
   },
   "publishConfig": {
     "access": "public"
@@ -53,5 +53,5 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
-  "version": "0.0.1-alpha.0"
+  "version": "0.0.1-alpha.3"
 }
