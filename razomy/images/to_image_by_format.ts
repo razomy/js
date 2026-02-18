@@ -3,8 +3,6 @@ import sharp from 'sharp';
 import {images, OnlyReadImageFileExtensionType, ReadAndWriteImageFileExtensionType} from './types';
 import {type ExtensionResult} from '@razomy/fs-file-format';
 
-// Форматы, которые sharp умеет ЗАПИСЫВАТЬ
-
 // --- SHARP (Images) ---
 export async function toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult> {
   let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы

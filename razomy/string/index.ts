@@ -15,7 +15,6 @@ export {join} from './join';
 export {marginString} from './margin_string';
 export {padEnd} from './pad_end';
 export {padStart} from './pad_start';
-export {randomString} from './random_string';
 export {removeIndexString} from './remove_index_string';
 export {repeat} from './repeat';
 export {replaceString} from './replace_string';
