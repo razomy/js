@@ -18,6 +18,7 @@
   "scripts": {
     "init": "npm install",
     "build:tsc": "tsc --project tsconfig.json",
+    "dev": "tsc --project tsconfig.json --watch",
     "build": "npm run build --workspaces && tsdown ./index.ts",
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
     "test": "jest",

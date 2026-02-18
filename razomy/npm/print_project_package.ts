@@ -94,12 +94,12 @@ function printTree(
   });
 }
 
-export function printProjectPackage() {
+export function printProjectPackage(targetPackage) {
 
 // --- CONFIG ---
   const rootDir = path.resolve(process.cwd(), '../../');
 // const TARGET_PACKAGE = process.argv[2];
-  const targetPackage = '@razomy/images'; // Pass package name as CLI argument
+//   const targetPackage = '@razomy/images'; // Pass package name as CLI argument
 
 // 3. EXECUTION
   if (!targetPackage) {
@@ -122,4 +122,4 @@ export function printProjectPackage() {
 
 }
 
-// printProjectPackage();
+// printProjectPackage("@razomy/vue-nuxt");
