@@ -14,15 +14,21 @@
     <v-app>
       <!-- Сайдбар -->
       <rzm-sidebar v-model="drawer"/>
-
-      <!--        <landing-header>-->
-      <!--          <v-app-bar-nav-icon @click="drawer = !drawer"/>-->
-      <!--        </landing-header>-->
-
       <v-main>
-        <rzm-breadcrumbs>
-          <v-app-bar-nav-icon @click="drawer = !drawer"/>
-        </rzm-breadcrumbs>
+<!--        <rzm-default-header>-->
+<!--          <template v-slot:start>-->
+<!--            <v-icon-btn @click="drawer = !drawer">-->
+<!--              <v-icon :icon="drawer ? 'mdi-close': 'mdi-menu'"></v-icon>-->
+<!--            </v-icon-btn>-->
+<!--            <rzm-language-dropdown-icon></rzm-language-dropdown-icon>-->
+<!--            <slot name="header-start"></slot>-->
+<!--            <rzm-breadcrumbs></rzm-breadcrumbs>-->
+<!--            <slot name="header-finish"></slot>-->
+<!--          </template>-->
+<!--          <template v-slot:end>-->
+<!--            <v-btn color="primary">Login/Up</v-btn>-->
+<!--          </template>-->
+<!--        </rzm-default-header>-->
         <!-- Контент -->
         <slot/>
         <rzm-default-footer></rzm-default-footer>

@@ -1,0 +1,1 @@
+export default defineI18nLocale(async locale => await $fetch(`/api/translate?locale=${locale}`));

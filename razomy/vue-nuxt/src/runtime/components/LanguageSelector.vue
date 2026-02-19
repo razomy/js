@@ -6,8 +6,7 @@
               item-title='name'
               item-value='code'
               density='compact'
-              variant='outlined'
-
+              variant="plain"
     >
       <template v-slot:item='{ props, item }'>
         <v-list-item @click.prevent.stop='setLocale(item.value)'
@@ -17,13 +16,10 @@
     </v-select>
   </div>
 </template>
-
 <script setup lang='ts'>
-
-const { locale, locales, setLocale } = useI18n();
+const {locale, locales, setLocale} = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 </script>
-
 <style scoped>
 </style>
