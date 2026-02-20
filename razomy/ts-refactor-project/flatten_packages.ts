@@ -204,4 +204,4 @@ export async function flattenPackages(tsConfigPath: string, targetDir: string) {
   console.log('Done.');
 }
 
-ifMain(import.meta.url || module.path, () => flattenPackages('../../', 'razomy')).then()
+// ifMain(import.meta.url || module.path, () => flattenPackages('../../', 'razomy')).then()

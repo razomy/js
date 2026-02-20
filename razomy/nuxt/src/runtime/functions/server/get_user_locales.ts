@@ -1,5 +1,5 @@
 import {getCookie, H3Event} from 'h3';
-import {localeSchema} from '@razomy/schemas';
+import {withLocaleSchema} from '@razomy/schemas';
 import {tryGetQueryFrom} from './get_query_from';
 import {type RazomyVueNuxtConfig} from '../default_nuxt_config';
 
@@ -7,7 +7,7 @@ export function getUserLocales(c: RazomyVueNuxtConfig, event: H3Event) {
   // TODO: use whitelist enum instead
   let responses = tryGetQueryFrom(c,
     event,
-    localeSchema,
+    withLocaleSchema,
   );
   if (responses?.locale) {
     return responses.locale || 'en';

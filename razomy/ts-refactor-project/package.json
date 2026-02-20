@@ -11,26 +11,58 @@
   },
   "exports": {
     ".": {
-      "browser": "./index.browser.ts",
-      "default": "./index.ts",
-      "import": "./index.ts",
-      "node": "./index.node.ts",
-      "types": {
-        "browser": "./index.browser.ts",
-        "default": "./index.ts",
-        "vue": "./index.browser.ts"
+      "browser": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
       },
-      "vue": "./index.browser.ts"
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "edge": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "require": "./index.ts",
+        "types": "./index.ts"
+      },
+      "node": {
+        "import": "./index.node.ts",
+        "require": "./index.node.ts",
+        "types": "./index.node.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "vue": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
+      }
     },
-    "./browser": "./index.browser.ts",
-    "./node": "./index.node.ts",
+    "./browser": {
+      "import": "./index.browser.ts",
+      "require": "./index.browser.ts",
+      "types": "./index.browser.ts"
+    },
+    "./node": {
+      "import": "./index.node.ts",
+      "require": "./index.node.ts",
+      "types": "./index.node.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "*"
   ],
   "license": "MIT",
   "main": "./index.ts",
+  "module": "./index.ts",
   "name": "@razomy/ts-refactor-project",
   "peerDependencies": {
     "@razomy/array": "0.0.1-alpha.3",
@@ -57,5 +89,12 @@
   "sideEffects": false,
   "type": "module",
   "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
   "version": "0.0.1-alpha.3"
 }

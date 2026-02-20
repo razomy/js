@@ -9,11 +9,12 @@
     ],
     "module": "ESNext",
     "moduleResolution": "Node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "dist",
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
+    "verbatimModuleSyntax": true,
     "target": "ESNext",
     "paths": {
       "razomy": [

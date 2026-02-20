@@ -141,6 +141,7 @@
     "./razomy/npm",
     "./razomy/number",
     "./razomy/number-string",
+    "./razomy/nuxt",
     "./razomy/object",
     "./razomy/observable",
     "./razomy/offset",
@@ -203,7 +204,6 @@
     "./razomy/vrd-fs",
     "./razomy/vrd-fs-graph",
     "./razomy/vue",
-    "./razomy/nuxt",
     "./razomy/vue-plugin",
     "./razomy/vue-resource",
     "./razomy/yaml"

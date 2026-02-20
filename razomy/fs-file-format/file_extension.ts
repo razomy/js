@@ -16,5 +16,5 @@ export interface FileFormat {
 export interface ExtensionResult {
   stream: Readable;
   mediaType: MediaType;
-  fileExtensionType: string;
+  fileExtensionType: FileExtensionType;
 }

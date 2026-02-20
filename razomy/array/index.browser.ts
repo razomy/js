@@ -18,6 +18,7 @@ export {includes} from './includes';
 export {indexSizeCreate} from './index_size_create';
 export {insertMut} from './insert_mut';
 export {intersection} from './intersection';
+export {isArray} from './is_array';
 export {isEmpty} from './is_empty';
 export {itemToggle} from './item_toggle';
 export {join} from './join';

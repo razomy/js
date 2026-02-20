@@ -6,7 +6,7 @@ export function isMain(importMetaUrlOrRequireMain: string) {
     return true;
   }
 
-  if (require?.main?.path === currentPath) {
+  if (typeof require !== 'undefined' && require?.main?.path === currentPath) {
     return true;
   }
 
