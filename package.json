@@ -2,17 +2,17 @@
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
     "@types/jest": "30.0.0",
-    "@types/node": "24.10.1",
-    "jest": "30.2.0",
+    "@types/node": "25.3.0",
+    "jest": "^30.2.0",
     "ts-jest": "^29.4.6",
-    "tsdown": "^0.19.0",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3"
   },
   "engines": {
     "node": "24.5.0"
   },
   "license": "Apache-2.0",
-  "name": "@razomy/code-js-chunk",
+  "name": "@razomy/code-js",
   "packageManager": "npm@11.5.1",
   "private": true,
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "version": "0.0.0",
   "workspaces": [
-    "./razomy",
+    "./razomy/_razomy",
     "./razomy/action",
     "./razomy/alias",
     "./razomy/analytics",
@@ -48,6 +48,7 @@
     "./razomy/class",
     "./razomy/cli",
     "./razomy/cli-bin",
+    "./razomy/clouds",
     "./razomy/cluster",
     "./razomy/codec",
     "./razomy/commit",
@@ -163,8 +164,10 @@
     "./razomy/result",
     "./razomy/result-null",
     "./razomy/schema",
+    "./razomy/schemas",
     "./razomy/serializable",
     "./razomy/server",
+    "./razomy/severless",
     "./razomy/shell",
     "./razomy/shutdown",
     "./razomy/socket",
@@ -190,7 +193,6 @@
     "./razomy/tree-dict_or_list",
     "./razomy/tree-list",
     "./razomy/tree-list-parent",
-    "./razomy/ts",
     "./razomy/ts-refactor",
     "./razomy/ts-refactor-project",
     "./razomy/type",

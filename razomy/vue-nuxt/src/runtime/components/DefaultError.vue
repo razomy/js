@@ -1,7 +1,7 @@
 <template>
 <!--  <v-parallax src='/images/404.png'>-->
     <div class='d-flex flex-column fill-height justify-center align-center text-white'>
-      <h1 v-if='error.statusCode === 404'>{{t('error.404.title')}}</h1>
+      <h1 v-if='error.statusCode === 404'>{{t('vue-nuxt.error.404.title')}}</h1>
       <p v-else>
         {{ error }}
       </p>

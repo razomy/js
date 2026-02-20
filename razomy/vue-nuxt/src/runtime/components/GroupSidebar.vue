@@ -24,7 +24,7 @@
                :active="group.key === groupSlug"
                color="secondary">
           <v-icon size="18" :icon="group.iconName"></v-icon>
-          {{ t(group.labelKey) }}
+          {{ t(group.labelText) }}
         </v-tab>
       </v-tabs>
     </template>
@@ -33,7 +33,6 @@
       v-if="isMobile"
       color="secondary"
       horizontal
-      :active="groupSlug"
       class="overflow-x-auto"
   >
     <v-btn v-for="group in groupedFormats"
@@ -45,7 +44,7 @@
            :active="group.key === groupSlug"
            color="secondary">
       <v-icon size="18" :icon="group.iconName"></v-icon>
-      {{ t(group.labelKey) }}
+      {{ t(group.labelText) }}
     </v-btn>
   </v-bottom-navigation>
 </template>

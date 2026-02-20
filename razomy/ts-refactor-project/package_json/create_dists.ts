@@ -3,11 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {execSync} from 'child_process';
 
-export function generate_packge_json(path_) {
+export function createDists(path_) {
 
   const jsonPath = path.join(path_, './package.json');
 // Read root package.json
-  const pkg = JSON.parse(fs.readFileSync(jsonPath), 'utf-8');
+  const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
 // Create the production config (remove dev stuff, fix paths)
   const distPkg = {
@@ -39,6 +39,30 @@ export function generate_packge_json(path_) {
     },
     'scripts': {},
   };
+  // todo: add nuxt
+  //   "exports": {
+  //   ".": {
+  //     "import": "./src/module.ts",
+  //       "types": "./src/module.ts"
+  //   },
+  //   "./runtime/locales/*": "./src/runtime/locales/*",
+  //     "./runtime/components/*": "./src/runtime/components/*",
+  //     "./runtime/functions": "./src/runtime/functions/index.ts",
+  //     "./package.json": "./package.json"
+  // }
+  //   "main": "./dist/module.ts",
+  //   "types": "./dist/module.ts",
+  //   "name": "@razomy/vue-nuxt",
+  //   "type": "module",
+  //   "typesVersions": {
+  //   "*": {
+  //     ".": [
+  //       "./dist/module.d.mts"
+  //     ]
+  //   }
+  // },
+
+
   execSync('npm run build', {cwd: path.resolve(path_)});
   // Write to dist/package.json
   fs.writeFileSync(path.join(path_, '/dist/package.json'), JSON.stringify(distPkg, null, 2));

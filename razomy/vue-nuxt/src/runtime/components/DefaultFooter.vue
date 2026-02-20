@@ -30,11 +30,11 @@
                rounded="xl"
                color="pink"
                variant="outlined">
-          {{t('footer.donate')}}
+          {{t('vue-nuxt.footer.donate')}}
         </v-btn>
 
         <v-col class='text-center' cols='12'>
-          2023-{{ new Date().getFullYear() }} — <span>{{ t('footer.company-name') }}</span>
+          2023-{{ new Date().getFullYear() }} — <span>{{ t('vue-nuxt.footer.company-name') }}</span>
         </v-col>
       </v-row>
     </v-footer>

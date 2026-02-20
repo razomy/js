@@ -3,8 +3,8 @@
     <template v-slot:activator="{ props }">
       <v-list density="compact" v-bind="props" class="pa-0">
         <v-list-item density="compact" class="flex flex-col text-center">
-          <img class="d-flex mx-auto v-icon" :src="currentCategory.iconUrl" :alt="t(currentCategory.labelKey)"/>
-          <div>{{ t(currentCategory.labelKey) }}</div>
+          <img class="d-flex mx-auto v-icon" :src="currentCategory.iconUrl" :alt="t(currentCategory.labelText)"/>
+          <div>{{ t(currentCategory.labelText) }}</div>
           <!--          <rzm-icon class="d-flex mx-auto"></rzm-icon>-->
           <!--            <v-icon name="mdi-chevron-down"></v-icon>-->
 
@@ -15,7 +15,7 @@
 
     <v-list nav class="rounded-lg">
       <!--      <v-list-subheader class="text-uppercase font-weight-bold text-caption">-->
-      <!--        {{ $t('breadcrumb.select_category') }}-->
+      <!--        {{ $t('vue-nuxt.breadcrumb.select_category') }}-->
       <!--      </v-list-subheader>-->
 
       <!-- Loop through the computed menuList -->
@@ -27,8 +27,8 @@
           color="primary"
           :value="item.key"
       >
-        <img :src="item.iconUrl" :alt="item.name" class="v-icon"/>
-        {{ t(item.labelKey) }}
+        <img :src="item.iconUrl" :alt="item.labelText" class="v-icon"/>
+        {{ t(item.labelText) }}
       </v-list-item>
     </v-list>
   </v-menu>
@@ -41,12 +41,12 @@ const {t} = useI18n();
 
 interface CategoryItem {
   key: string; // The translation key (e.g., 'nav.dashboard')
-  labelKey: string; // The translation key (e.g., 'nav.dashboard')
+  labelText: string; // The translation key (e.g., 'nav.dashboard')
   iconUrl: string;     // The MDI icon class
   url: string;      // The destination path
 }
 
-const currentCategory = c.products.find(i => i.key === 'io');
+const currentCategory = c.products.find(i => i.key === 'io')!;
 const menuList = computed(() => {
   return c.products;
 });

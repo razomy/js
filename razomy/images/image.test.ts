@@ -111,7 +111,7 @@ async function runTests() {
         fs.copyFileSync(inputPath, tempInput);
 
         // Запуск твоей функции
-        const result = await toImageByFormat(tempInput, targetFormat);
+        const result = await toImageByFormat(tempInput, targetFormat as any);
 
         // Сохранение результата
         const outputFilename = `result_from_${inputExt}.${targetFormat}`;

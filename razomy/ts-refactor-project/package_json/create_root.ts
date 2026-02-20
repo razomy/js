@@ -1,12 +1,12 @@
 import * as path from 'path';
 import {getJson} from '@razomy/fs-file';
 import {setJson} from '@razomy/fs-file';
-import {getAllPackageJsons} from './get_all_package_jsons';
+import {getAll} from './get_all';
 import {flat} from '@razomy/array';
 
-export function createPackage(projectPath: string) {
+export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);
-  const packages = getAllPackageJsons(projectPath);
+  const packages = getAll(projectPath);
 
   const packageFile = getJson(path.join(rootDir, 'package.json'));
   packageFile.workspaces = packages.map(folder => './' + folder.name)

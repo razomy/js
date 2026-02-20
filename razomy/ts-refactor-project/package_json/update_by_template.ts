@@ -1,9 +1,9 @@
 import * as fs from 'fs';
-import {getAllPackageJsons} from './get_all_package_jsons';
+import {getAll} from './get_all';
 import {sort} from '@razomy/json';
 
-export function updatePackages(projectPath: string, prefix) {
-  const packages = getAllPackageJsons(projectPath);
+export function updateByTemplate(projectPath: string, prefix) {
+  const packages = getAll(projectPath);
   packages.forEach((folder) => {
       const content = fs.readFileSync(folder.path, 'utf-8');
 

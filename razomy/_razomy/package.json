@@ -195,7 +195,6 @@
     "@razomy/tree-dict_or_list": "0.0.1-alpha.3",
     "@razomy/tree-list": "0.0.1-alpha.3",
     "@razomy/tree-list-parent": "0.0.1-alpha.3",
-    "@razomy/ts": "0.0.1-alpha.3",
     "@razomy/ts-refactor": "0.0.1-alpha.3",
     "@razomy/ts-refactor-project": "0.0.1-alpha.3",
     "@razomy/type": "0.0.1-alpha.3",
@@ -205,7 +204,6 @@
     "@razomy/vrd": "0.0.1-alpha.3",
     "@razomy/vrd-fs": "0.0.1-alpha.3",
     "@razomy/vrd-fs-graph": "0.0.1-alpha.3",
-    "@razomy/vue-nuxt": "0.0.1-alpha.3",
     "@razomy/vue-plugin": "0.0.1-alpha.3",
     "@razomy/vue-resource": "0.0.1-alpha.3",
     "@razomy/yaml": "0.0.1-alpha.3"
@@ -214,7 +212,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy",
+    "directory": "razomy/_razomy",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

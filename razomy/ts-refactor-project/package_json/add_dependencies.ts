@@ -1,11 +1,11 @@
-import {getAllPackageJsons} from './get_all_package_jsons';
+import {getAll} from './get_all';
 import fs from 'fs';
 import * as path from 'path';
 import {iterate} from '@razomy/fs';
 import {sort} from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
-  const packages = getAllPackageJsons(projectPath);
+  const packages = getAll(projectPath);
 
   const scope = '@' + prefix
 // 1. Get list of all available package names
@@ -54,7 +54,7 @@ export function addDependencies(projectPath: string, prefix) {
       if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
         return
       }
-      pkgJson.peerDependencies[depName] = '*';
+      pkgJson.peerDependencies[depName] = '0.0.1-alpha.3';
       // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
       //   .replace(prefix, '')
       //   .replaceAll('.', '/'));

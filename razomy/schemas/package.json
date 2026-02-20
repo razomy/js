@@ -31,13 +31,15 @@
   ],
   "license": "MIT",
   "main": "./index.ts",
-  "name": "@razomy/ts",
-  "peerDependencies": {},
+  "name": "@razomy/schemas",
+  "peerDependencies": {
+    "@razomy/schema": "0.0.1-alpha.3"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/ts",
+    "directory": "razomy/schemas",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

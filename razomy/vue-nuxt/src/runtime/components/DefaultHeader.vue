@@ -17,7 +17,7 @@
     <!--      <v-avatar>-->
     <!--        &lt;!&ndash;        <v-img src='/images/favicon/logo.png'></v-img>&ndash;&gt;-->
     <!--      </v-avatar>-->
-    <!--      <span v-if='!isTablet'>{{ t('header.company-name') }}</span>-->
+    <!--      <span v-if='!isTablet'>{{ t('vue-nuxt.header.company-name') }}</span>-->
     <!--    </v-btn>-->
 
     <!--    <v-app-bar-nav-icon-->

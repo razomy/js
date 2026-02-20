@@ -1,14 +1,14 @@
 import {ifMain} from '@razomy/main';
 import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functions';
 import {createIndexFiles} from './create_index_files';
-import {createPackage} from './create_package';
+import {createRoot} from './package_json/create_root';
 import {renameFiles} from './rename_files';
 import {splitFunctions} from '@razomy/ts-refactor';
 import {iterateSourceFilesAndSave} from '@razomy/ts-refactor';
-import {addDependencies} from './add_dependencies';
-import {updatePackages} from './update_packages';
+import {addDependencies} from './package_json/add_dependencies';
+import {updateByTemplate} from './package_json/update_by_template';
 import {renameFileBasedOnFirstChild} from '@razomy/ts-refactor';
-import {createPackageJsonAtChildDirs} from './create_package_json_at_child_dirs';
+import {createAtChildDirs} from './package_json/create_at_child_dirs';
 import {fileRenameVariablesAndPropsFunctions} from '@razomy/ts-refactor';
 import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
 
@@ -18,9 +18,9 @@ export async function formatProject(projectPath: string, prefix: string) {
   console.info('iterateSourceFilesAndSave.start');
   await iterateSourceFilesAndSave(projectPath, renameFileBasedOnFirstChild);
   console.info('createPackageJsonAtChildDirs.start');
-  await createPackageJsonAtChildDirs(projectPath + prefix + '/', prefix);
+  await createAtChildDirs(projectPath + prefix + '/', prefix);
   console.info('createPackage.start');
-  await createPackage(projectPath);
+  await createRoot(projectPath);
   console.info('addDependencies.start');
   await addDependencies(projectPath, prefix);
   console.info('fixBrokenImportsAndExports.start');
@@ -28,7 +28,7 @@ export async function formatProject(projectPath: string, prefix: string) {
   console.info('createIndexFiles.start');
   await createIndexFiles(projectPath);
   console.info('updatePackages.start');
-  await updatePackages(projectPath, prefix);
+  await updateByTemplate(projectPath, prefix);
   console.info('iterateSourceFilesAndSave.start');
   await iterateSourceFilesAndSave(projectPath, splitFunctions);
   console.info('convertLambdasToNamedFunctions.start');

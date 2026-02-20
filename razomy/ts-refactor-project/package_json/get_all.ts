@@ -3,11 +3,12 @@ import {iterate} from '@razomy/fs';
 import {isExist} from '@razomy/fs-file';
 import {sortBy} from '@razomy/array';
 
-export function getAllPackageJsons(projectPath: string) {
+export function getAll(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);
   const packageJsons: { path: string, name: string }[] = [];
   iterate(rootDir, (iterate_node) => {
-    if (iterate_node.path.includes('node_modules')) {
+    if (iterate_node.path.includes('node_modules')
+      || iterate_node.path.includes('dist')) {
       return true;
     }
     if (iterate_node.stats.isFile()) {

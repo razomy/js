@@ -17,7 +17,7 @@
       <div class="text-center">
         <v-progress-circular indeterminate color="primary" size="64" width="6" />
         <h3 class="text-h6 mt-4 font-weight-bold text-white">
-          {{ isScanning ? 'Сканирование папок...' : $t('dropzone.converting') + '...' }}
+          {{ isScanning ? 'Сканирование папок...' : t('vue-nuxt.dropzone.converting') + '...' }}
         </h3>
       </div>
     </v-overlay>
@@ -37,7 +37,7 @@
           <v-icon icon="mdi-folder-multiple-outline" size="64" color="primary" />
         </div>
         <h2 class="text-h5 font-weight-bold text-grey-darken-3 text-center">
-          {{ $t('dropzone.drop_title') || 'Перетащите файлы или папки' }}
+          {{ t('vue-nuxt.dropzone.drop_title') || 'Перетащите файлы или папки' }}
         </h2>
         <p class="text-body-1 text-grey-darken-1 mt-2 mb-6 text-center">
           Мы поддерживаем вложенные папки
@@ -127,7 +127,7 @@
               class="flex-grow-1 text-subtitle-1 font-weight-bold"
               @click="$emit('convert')"
           >
-            {{ $t('dropzone.convert_now') }}
+            {{ t('vue-nuxt.dropzone.convert_now') }}
             <v-icon end icon="mdi-arrow-right" />
           </v-btn>
         </div>
@@ -160,6 +160,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+const {t} = useI18n();
 
 // ВАЖНО: modelValue теперь массив файлов
 const props = defineProps<{
@@ -229,7 +230,7 @@ const onDrop = async (e: DragEvent) => {
     // Используем Promise.all для параллельной обработки элементов верхнего уровня
     const promises = []
     for (let i = 0; i < items.length; i++) {
-      const item = items[i].webkitGetAsEntry() // Получаем FileSystemEntry
+      const item = items[i]!.webkitGetAsEntry() // Получаем FileSystemEntry
       if (item) {
         promises.push(traverseFileTree(item))
       }

@@ -12,8 +12,8 @@
     <div class="pa-1 sticky-top z-index-10 border-b">
       <v-text-field
           v-model="search"
-          :label="t('sidebar.search')"
-          :placeholder="t('sidebar.search')"
+          :label="t('vue-nuxt.sidebar.search')"
+          :placeholder="t('vue-nuxt.sidebar.search')"
           prepend-inner-icon="mdi-magnify"
           variant="plain"
           class="bg-surface-light"
@@ -30,7 +30,7 @@
 
       <template v-if="search?.length">
         <div class="text-caption text-medium-emphasis mb-2 ml-2">
-          {{ t('sidebar.results_for') }} "{{ search }}"
+          {{ t('vue-nuxt.sidebar.results_for') }} "{{ search }}"
         </div>
 
         <!-- Added density="compact" -->
@@ -54,7 +54,7 @@
         </v-list-item>
 
         <div v-if="searchResults?.length === 0" class="text-center py-4 text-grey">
-          {{ t('sidebar.no_results') }}
+          {{ t('vue-nuxt.sidebar.no_results') }}
         </div>
       </template>
 
@@ -70,7 +70,7 @@
               :key="category"
               density="compact"
               :value="category"
-              :active="category === inputSlug"
+              :active="category === input1Slug"
           >
             <template v-slot:activator="{ props }">
               <!-- Added density="compact" and pl-4 for visual hierarchy -->
@@ -80,7 +80,7 @@
                   :to="localePath(`/${group.key}/${category}`)"
                   color="secondary"
                   density="compact"
-                  :active="category === inputSlug"
+                  :active="category === input1Slug"
               />
             </template>
 
@@ -110,11 +110,12 @@
       fixed
       app
       class="z-index-10"
-      ></v-fab>
+  ></v-fab>
 </template>
 
 <script setup lang="ts">
 import {c} from '~~/content/context';
+import {computed, ref, watch} from 'vue';
 
 const {xs: isMobile, sm: isTablet} = useDisplay();
 
@@ -133,31 +134,31 @@ if (isMobile) {
   model.value = false;
 }
 
-const groupSlug = ref<string>('');
-const inputSlug = ref<string>('');
+const input0Slug = ref<string>('');
+const input1Slug = ref<string>('');
 const outputSlug = ref<string>('');
 watch(() => route.params, (route) => {
-  groupSlug.value = route.group as string;
-  inputSlug.value = route.input as string;
+  input0Slug.value = route.input0 as string;
+  input1Slug.value = route.input1 as string;
   outputSlug.value = route.output as string;
 }, {immediate: true, deep: true});
 
 
 const groups = computed(() => {
-  const set = {}
+  const set: Record<string, { key: string, categories: string[], items: string[][] }> = {}
   c.categories
       .filter(i => {
-        if (groupSlug) {
-          return i[0] === groupSlug.value;
+        if (input0Slug) {
+          return i[0] === input0Slug.value;
         }
         return true;
       })
       .forEach(i => {
-        const key = i[0];
+        const key = i[0]!;
         if (set[key]) {
           set[key].items.push(i);
-          if (!set[key].categories.includes(i[1])) {
-            set[key].categories.push(i[1]);
+          if (!set[key].categories.includes(i[1]!)) {
+            set[key].categories.push(i[1]!);
           }
         } else {
           set[key] = {key, categories: [], items: [i]}
