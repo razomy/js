@@ -65,8 +65,8 @@
   "module": "./index.ts",
   "name": "@razomy/vrd-fs-graph",
   "peerDependencies": {
-    "@razomy/graph": "0.0.1-alpha.3",
-    "@razomy/vrd": "0.0.1-alpha.3"
+    "@razomy/graph": "0.0.1-alpha.4",
+    "@razomy/vrd": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -91,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

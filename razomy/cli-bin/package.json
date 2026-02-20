@@ -68,7 +68,7 @@
   "module": "./index.ts",
   "name": "@razomy/cli-bin",
   "peerDependencies": {
-    "@razomy/cli": "0.0.1-alpha.3"
+    "@razomy/cli": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -93,5 +93,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

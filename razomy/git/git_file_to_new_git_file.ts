@@ -18,13 +18,13 @@ export async function gitFileToNewGitFile(
     const index = commits.indexOf(commit);
 
     const checkoutCommand = `git checkout ${commit.id}`;
-    await tryPromise(execute(checkoutCommand, {cwd: repositoryPath}));
+    await tryPromise(execute(checkoutCommand, repositoryPath));
 
     const data = getSync(repositoryPath + fileSubPath);
     setSync(repositorynewPath + fileSubPath, data);
 
     const commitCommand = `git add . && git commit --date "${commit.date}" -m "${commit.commitName}"`;
-    await tryPromise(execute(commitCommand, {cwd: repositorynewPath}));
+    await tryPromise(execute(commitCommand, repositorynewPath));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
     console.log(`   Commit Name: ${commit.commitName}`);

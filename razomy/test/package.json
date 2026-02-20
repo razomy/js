@@ -65,8 +65,8 @@
   "module": "./index.ts",
   "name": "@razomy/test",
   "peerDependencies": {
-    "@razomy/boolean": "0.0.1-alpha.3",
-    "@razomy/function": "0.0.1-alpha.3"
+    "@razomy/boolean": "0.0.1-alpha.4",
+    "@razomy/function": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -91,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

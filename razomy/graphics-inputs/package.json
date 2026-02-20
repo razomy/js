@@ -65,7 +65,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-inputs",
   "peerDependencies": {
-    "@razomy/graphics-elements": "0.0.1-alpha.3"
+    "@razomy/graphics-elements": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -90,5 +90,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

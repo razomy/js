@@ -32,7 +32,7 @@ export async function exportFiles(baseDir) {
 
     try {
       await set(path.join(baseDir, filePath), content);
-      await execute(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, {cwd: baseDir});
+      await execute(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`,  baseDir);
     } catch (e) {
       console.log(e);
     }

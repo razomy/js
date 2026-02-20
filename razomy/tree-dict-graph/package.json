@@ -65,8 +65,8 @@
   "module": "./index.ts",
   "name": "@razomy/tree-dict-graph",
   "peerDependencies": {
-    "@razomy/graph": "0.0.1-alpha.3",
-    "@razomy/tree-dict": "0.0.1-alpha.3"
+    "@razomy/graph": "0.0.1-alpha.4",
+    "@razomy/tree-dict": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -91,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

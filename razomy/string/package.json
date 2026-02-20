@@ -65,11 +65,11 @@
   "module": "./index.ts",
   "name": "@razomy/string",
   "peerDependencies": {
-    "@razomy/dict": "0.0.1-alpha.3",
-    "@razomy/differences": "0.0.1-alpha.3",
-    "@razomy/index": "0.0.1-alpha.3",
-    "@razomy/number": "0.0.1-alpha.3",
-    "@razomy/strings": "0.0.1-alpha.3"
+    "@razomy/dict": "0.0.1-alpha.4",
+    "@razomy/differences": "0.0.1-alpha.4",
+    "@razomy/index": "0.0.1-alpha.4",
+    "@razomy/number": "0.0.1-alpha.4",
+    "@razomy/strings": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -94,5 +94,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

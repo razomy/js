@@ -65,10 +65,10 @@
   "module": "./index.ts",
   "name": "@razomy/vue-resource",
   "peerDependencies": {
-    "@razomy/array": "0.0.1-alpha.3",
-    "@razomy/dict": "0.0.1-alpha.3",
-    "@razomy/server": "0.0.1-alpha.3",
-    "@razomy/socket-web": "0.0.1-alpha.3"
+    "@razomy/array": "0.0.1-alpha.4",
+    "@razomy/dict": "0.0.1-alpha.4",
+    "@razomy/server": "0.0.1-alpha.4",
+    "@razomy/socket-web": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -93,5 +93,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

@@ -65,9 +65,9 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-elements",
   "peerDependencies": {
-    "@razomy/graphics-attributes": "0.0.1-alpha.3",
-    "@razomy/graphics-graphic": "0.0.1-alpha.3",
-    "@razomy/resources": "0.0.1-alpha.3"
+    "@razomy/graphics-attributes": "0.0.1-alpha.4",
+    "@razomy/graphics-graphic": "0.0.1-alpha.4",
+    "@razomy/resources": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -92,5 +92,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

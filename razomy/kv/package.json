@@ -65,10 +65,10 @@
   "module": "./index.ts",
   "name": "@razomy/kv",
   "peerDependencies": {
-    "@razomy/exceptions": "0.0.1-alpha.3",
-    "@razomy/function": "0.0.1-alpha.3",
-    "@razomy/path-string": "0.0.1-alpha.3",
-    "@razomy/undefined": "0.0.1-alpha.3"
+    "@razomy/exceptions": "0.0.1-alpha.4",
+    "@razomy/function": "0.0.1-alpha.4",
+    "@razomy/path-string": "0.0.1-alpha.4",
+    "@razomy/undefined": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -93,5 +93,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

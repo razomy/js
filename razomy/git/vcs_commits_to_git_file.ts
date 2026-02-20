@@ -14,7 +14,7 @@ export async function vcsCommitsToGitFile(prevSnapshot: string, dirPath: string,
     await execute(`git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`, {cwd: dirPath});
   }
   progress(commits.length, commits.length);
-  await execute('git gc', {cwd: dirPath});
+  await execute('git gc', dirPath);
 }
 
 

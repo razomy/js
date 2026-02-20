@@ -23,69 +23,32 @@
     "node": ">=18"
   },
   "exports": {
-    ".": {
-      "browser": {
-        "import": "./src/index.browser.ts",
-        "require": "./src/index.browser.ts",
-        "types": "./src/index.browser.ts"
-      },
-      "default": {
-        "default": "./src/index.ts",
-        "types": "./src/index.ts"
-      },
-      "edge": {
-        "import": "./src/index.browser.ts",
-        "require": "./src/index.browser.ts",
-        "types": "./src/index.browser.ts"
-      },
-      "import": {
-        "default": "./src/index.ts",
-        "require": "./src/index.ts",
-        "types": "./src/index.ts"
-      },
-      "node": {
-        "import": "./src/index.node.ts",
-        "require": "./src/index.node.ts",
-        "types": "./src/index.node.ts"
-      },
-      "require": {
-        "default": "./src/index.ts",
-        "types": "./src/index.ts"
-      },
-      "vue": {
-        "import": "./src/index.browser.ts",
-        "require": "./src/index.browser.ts",
-        "types": "./src/index.browser.ts"
-      }
+    "./module": {
+      "import": "./src/module.ts",
+      "types": "./src/module.ts"
     },
-    "./browser": {
-      "import": "./src/index.browser.ts",
-      "require": "./src/index.browser.ts",
-      "types": "./src/index.browser.ts"
-    },
-    "./node": {
-      "import": "./src/index.node.ts",
-      "require": "./src/index.node.ts",
-      "types": "./src/index.node.ts"
-    },
-    "./module": "./src/module.ts",
-    "./runtime/locales/*": "./src/runtime/locales/*",
+    "./locales/*": "./locales/*",
     "./runtime/components/*": "./src/runtime/components/*",
-    "./runtime/functions": "./src/runtime/functions/index.ts",
-    "./runtime/functions/server": "./src/runtime/functions/server/index.ts",
+    "./runtime/functions": {
+      "import": "./src/runtime/functions/index.ts",
+      "types": "./src/runtime/functions/index.ts"
+    },
+    "./runtime/functions/server": {
+      "import": "./src/runtime/functions/server/index.ts",
+      "types": "./src/runtime/functions/server/index.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
-    "src"
+    "src",
+    "locales"
   ],
   "license": "MIT",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
   "name": "@razomy/nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.1",
-    "@razomy/schema": "0.0.1-alpha.3",
-    "@razomy/schemas": "0.0.1-alpha.3",
+    "@razomy/schema": "0.0.1-alpha.4",
+    "@razomy/schemas": "0.0.1-alpha.4",
     "vue-i18n": "11.2.8",
     "vuetify": "3.11.8"
   },
@@ -98,19 +61,11 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "nuxt-module-build build",
+    "build": "nuxt-module-build build && cp -r ./locales ./dist/locales",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "start": "nuxt-module-build build --stub && nuxt-module-build prepare"
   },
   "sideEffects": false,
   "type": "module",
-  "types": "./src/index.ts",
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./src/index.ts"
-      ]
-    }
-  },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

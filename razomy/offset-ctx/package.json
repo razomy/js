@@ -65,9 +65,9 @@
   "module": "./index.ts",
   "name": "@razomy/offset-ctx",
   "peerDependencies": {
-    "@razomy/index": "0.0.1-alpha.3",
-    "@razomy/offset": "0.0.1-alpha.3",
-    "@razomy/string": "0.0.1-alpha.3"
+    "@razomy/index": "0.0.1-alpha.4",
+    "@razomy/offset": "0.0.1-alpha.4",
+    "@razomy/string": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -92,5 +92,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

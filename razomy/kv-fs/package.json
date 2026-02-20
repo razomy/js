@@ -65,8 +65,8 @@
   "module": "./index.ts",
   "name": "@razomy/kv-fs",
   "peerDependencies": {
-    "@razomy/fs-directory": "0.0.1-alpha.3",
-    "@razomy/kv": "0.0.1-alpha.3"
+    "@razomy/fs-directory": "0.0.1-alpha.4",
+    "@razomy/kv": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"
@@ -91,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }

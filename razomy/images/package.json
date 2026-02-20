@@ -65,7 +65,7 @@
   "module": "./index.ts",
   "name": "@razomy/images",
   "peerDependencies": {
-    "@razomy/fs-file-format": "0.0.1-alpha.3",
+    "@razomy/fs-file-format": "0.0.1-alpha.4",
     "sharp": "^0.34.5"
   },
   "publishConfig": {
@@ -91,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.3"
+  "version": "0.0.1-alpha.4"
 }
