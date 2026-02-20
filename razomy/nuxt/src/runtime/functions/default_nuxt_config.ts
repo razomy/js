@@ -151,7 +151,7 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     '@vueuse/nuxt',
     'vuetify-nuxt-module',
     '@nuxtjs/robots',
-    '@razomy/vue-nuxt',
+    '@razomy/nuxt',
     'nuxt-zod-i18n',
   ],
 } as any as NuxtConfig)

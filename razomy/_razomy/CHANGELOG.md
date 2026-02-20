@@ -178,7 +178,7 @@
   - @razomy/vrd@0.0.1-alpha.0
   - @razomy/vrd-fs@0.0.1-alpha.0
   - @razomy/vrd-fs-graph@0.0.1-alpha.0
-  - @razomy/vue-nuxt@0.0.1-alpha.0
+  - @razomy/nuxt@0.0.1-alpha.0
   - @razomy/vue-plugin@0.0.1-alpha.0
   - @razomy/vue-resource@0.0.1-alpha.0
   - @razomy/yaml@0.0.1-alpha.0

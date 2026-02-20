@@ -1,4 +1,4 @@
-# @razomy/vue-nuxt
+# @razomy/nuxt
 
 ## 0.0.1-alpha.0
 

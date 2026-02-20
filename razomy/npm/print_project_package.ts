@@ -122,4 +122,4 @@ export function printProjectPackage(targetPackage) {
 
 }
 
-// printProjectPackage("@razomy/vue-nuxt");
+// printProjectPackage("@razomy/nuxt");

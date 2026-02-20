@@ -52,7 +52,7 @@ export function createDists(path_) {
   // }
   //   "main": "./dist/module.ts",
   //   "types": "./dist/module.ts",
-  //   "name": "@razomy/vue-nuxt",
+  //   "name": "@razomy/nuxt",
   //   "type": "module",
   //   "typesVersions": {
   //   "*": {

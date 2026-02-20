@@ -203,7 +203,7 @@
     "./razomy/vrd-fs",
     "./razomy/vrd-fs-graph",
     "./razomy/vue",
-    "./razomy/vue-nuxt",
+    "./razomy/nuxt",
     "./razomy/vue-plugin",
     "./razomy/vue-resource",
     "./razomy/yaml"
