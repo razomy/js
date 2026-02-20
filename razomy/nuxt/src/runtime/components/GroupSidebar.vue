@@ -1,11 +1,11 @@
 <template>
   <v-navigation-drawer
       v-if="!isMobile"
-      app
-      permanent
-      border="1"
       :width="90"
+      app
+      border="1"
       class="bg-surface-light sidebar"
+      permanent
   >
     <template v-slot:prepend>
       <rzm-navbar-products/>
@@ -16,14 +16,14 @@
       <v-tabs direction="vertical">
         <v-tab v-for="group in groupedFormats"
                :key="group.key"
-               stacked
-               class="w-full justify-center px-0 py-8"
-               align-tabs="center"
-               :value="group.key"
-               :to="localePath(`/${group.key}`)"
                :active="group.key === groupSlug"
-               color="secondary">
-          <v-icon size="18" :icon="group.iconName"></v-icon>
+               :to="localePath(`/${group.key}`)"
+               :value="group.key"
+               align-tabs="center"
+               class="w-full justify-center px-0 py-8"
+               color="secondary"
+               stacked>
+          <v-icon :icon="group.iconName" size="18"></v-icon>
           {{ t(group.labelText) }}
         </v-tab>
       </v-tabs>
@@ -31,26 +31,27 @@
   </v-navigation-drawer>
   <v-bottom-navigation
       v-if="isMobile"
+      class="overflow-x-auto"
       color="secondary"
       horizontal
-      class="overflow-x-auto"
   >
     <v-btn v-for="group in groupedFormats"
            :key="group.key"
-           stacked
-           align-tabs="center"
-           :value="group.key"
-           :to="localePath(`/${group.key}`)"
            :active="group.key === groupSlug"
-           color="secondary">
-      <v-icon size="18" :icon="group.iconName"></v-icon>
+           :to="localePath(`/${group.key}`)"
+           :value="group.key"
+           align-tabs="center"
+           color="secondary"
+           stacked>
+      <v-icon :icon="group.iconName" size="18"></v-icon>
       {{ t(group.labelText) }}
     </v-btn>
   </v-bottom-navigation>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {c} from '~~/content/context';
+
 const {xs: isMobile} = useDisplay();
 
 const {t} = useI18n();

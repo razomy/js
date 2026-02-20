@@ -1,4 +1,4 @@
-import {WithChildrenList} from '@razomy/tree-list';
+import type {WithChildrenList} from '@razomy/tree-list';
 
 export function iterate<T extends WithChildrenList<any>>(node: T, cb: (node: T) => void) {
   cb(node);

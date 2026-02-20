@@ -1,5 +1,5 @@
-import {Worker} from 'cluster';
-import {WorkerEvent} from './worker';
+import type {Worker} from 'cluster';
+import type {WorkerEvent} from './worker';
 
 export function workerToPromise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {

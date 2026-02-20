@@ -1,4 +1,4 @@
-import {Status} from './get_status';
+import type {Status} from './get_status';
 
 export function parseStatus(str: string): Status {
   var lines;

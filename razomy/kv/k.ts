@@ -1,4 +1,4 @@
-import {Key, KeyValuable, Kv, Valuable} from './kv';
+import {type Key, type KeyValuable, Kv, type  Valuable} from './kv';
 
 // export function k<T>(key: T, value: T): KeyValuable<T, T>;
 export function k<T>(key: T, value: T): [T, T];

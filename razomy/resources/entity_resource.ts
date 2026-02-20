@@ -1,11 +1,11 @@
 import {ObjectResource} from './object_resource';
 import {
-  IEntityResource,
-  IResourceMap,
+  type  IEntityResource,
+  type IResourceMap,
   NodeAlreadyProvidedException,
   NodeProvidedException
 } from './node_provided_exception';
-import {Constructor} from '@razomy/class';
+import type {Constructor} from '@razomy/class';
 import {ArgumentException} from '@razomy/exceptions';
 
 export class EntityResource extends ObjectResource implements IEntityResource {

@@ -1,4 +1,4 @@
-import {WithOpenAiCtx} from '@razomy/openai';
+import type {WithOpenAiCtx} from '@razomy/openai';
 import openai from 'openai';
 
 export class LanguageGrammarCorrection {

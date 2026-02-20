@@ -1,14 +1,14 @@
-import { Project, SyntaxKind, SourceFile } from 'ts-morph';
-import { tryGetJson } from '@razomy/fs-file';
-import * as path from 'path';
+import {Project, SourceFile, SyntaxKind} from 'ts-morph';
 import * as file from '@razomy/fs-file';
-import { toSafeName } from '@razomy/ts-refactor';
+import {tryGetJson} from '@razomy/fs-file';
+import * as path from 'path';
+import {toSafeName} from '@razomy/ts-refactor';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';
 
 export async function createIndexFiles(projectPath: string) {
-  const project = new Project({ tsConfigFilePath: projectPath + 'tsconfig.json' });
+  const project = new Project({tsConfigFilePath: projectPath + 'tsconfig.json'});
 
   const directories = project.getDirectories();
 
@@ -40,8 +40,9 @@ export async function createIndexFiles(projectPath: string) {
       if (shouldIgnorePath(sourceFile.getFilePath())) continue;
 
       const baseName = sourceFile.getBaseNameWithoutExtension();
+      const fullName = sourceFile.getBaseName();
       // Пропускаем index файлы и тесты
-      if (baseName.startsWith('index') || sourceFile.getBaseName().match(/\.(spec|test)\./)) continue;
+      if (fullName.startsWith('index.') || fullName.match(/\.(spec|test)\./)) continue;
 
       // Получаем строку экспорта (export { ... } или export * as ...)
       const exportLine = generateFileExport(sourceFile, baseName);
@@ -94,7 +95,7 @@ export async function createIndexFiles(projectPath: string) {
  * Проверка путей, которые нужно игнорировать
  */
 function shouldIgnorePath(p: string): boolean {
-  return p.includes('node_modules') || p.includes('dist') || p.includes('bin');
+  return p.includes('/node_modules') || p.includes('/dist') || p.includes('/bin');
 }
 
 /**
@@ -178,6 +179,6 @@ function saveIndexFile(project: Project, filePath: string, lines: string[]) {
     '' // пустая строка в конце
   ].join('\n');
 
-  project.createSourceFile(filePath, content, { overwrite: true });
+  project.createSourceFile(filePath, content, {overwrite: true});
   console.log(`[GENERATED] ${filePath}`);
 }

@@ -1,4 +1,4 @@
-import {WithChildrenList} from './with_children_list';
+import type {WithChildrenList} from './with_children_list';
 
 export function filterFirst<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
   let res: T[] = [];

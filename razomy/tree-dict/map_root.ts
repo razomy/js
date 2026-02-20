@@ -1,5 +1,5 @@
-import {Leaf} from '@razomy/tree';
-import {mapBranch, RootDict, RootOrBranchDict} from './map_branch';
+import type {Leaf} from '@razomy/tree';
+import {mapBranch, type RootDict, type RootOrBranchDict} from './map_branch';
 
 export function mapRoot<I, O>(input: RootDict<I>, leafValueCb: (input: Leaf<I>, parent: RootOrBranchDict<I>) => O) {
   const otput: RootDict<O> = {

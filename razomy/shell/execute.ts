@@ -1,4 +1,4 @@
-import {ChildProcess, spawn} from 'child_process';
+import {type ChildProcess, spawn} from 'child_process';
 
 export function execute<T = string>(command: string, options: { cwd?: string }): Promise<T> {
   return new Promise<T>((resolve, reject) => {

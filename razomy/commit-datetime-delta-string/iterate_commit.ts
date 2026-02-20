@@ -1,4 +1,4 @@
-import {DeltaString} from '@razomy/commit-datetime-delta-string';
+import type {DeltaString} from '@razomy/commit-datetime-delta-string';
 import {deltaStringsToString} from '@razomy/commit-datetime-delta-string';
 
 export function iterateCommit(commits: DeltaString[], iter) {

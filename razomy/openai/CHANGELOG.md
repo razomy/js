@@ -6,5 +6,5 @@
 
 - Init
 - Updated dependencies
-  - @razomy/object@0.0.1-alpha.0
-  - @razomy/string@0.0.1-alpha.0
+    - @razomy/object@0.0.1-alpha.0
+    - @razomy/string@0.0.1-alpha.0

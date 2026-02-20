@@ -1,5 +1,5 @@
-import {Vrd, VrdOrValue} from './vrd';
-import {DictKey} from '@razomy/dict';
+import {Vrd, type VrdOrValue} from './vrd';
+import type {DictKey} from '@razomy/dict';
 import {isVrd} from './is_vrd';
 
 export function mapVrd<I, O>(input: Vrd<I>, leafValueCb: (input: I, parent: DictKey) => O, parent: DictKey): Vrd<O>;

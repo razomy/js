@@ -21,8 +21,7 @@
     "dev": "tsc --project tsconfig.json --watch",
     "build": "npm run build --workspaces && tsdown ./index.ts",
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
-    "test": "jest",
-    "publish": "changeset publish --dry-run --access public"
+    "test": "jest"
   },
   "version": "0.0.0",
   "workspaces": [

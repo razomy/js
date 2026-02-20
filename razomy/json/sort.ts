@@ -1,4 +1,4 @@
-import {Json} from './json';
+import type {Json} from './json';
 
 export function sort<T extends Json>(object: T): T {
   if (object === undefined || object === null) {
@@ -8,7 +8,7 @@ export function sort<T extends Json>(object: T): T {
     return object;
   }
   if (object instanceof Array) {
-    return [...object.map((i) => sort(i))]  as T;
+    return [...object.map((i) => sort(i))] as T;
   }
   var keys = Object.keys(object);
   keys.sort();

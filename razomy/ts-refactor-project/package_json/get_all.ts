@@ -22,6 +22,7 @@ export function getAll(projectPath: string) {
           .replace('/package.json', '')
       })
     }
+    return undefined;
   })
   return sortBy(packageJsons, i => i.name);
 }

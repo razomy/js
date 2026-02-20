@@ -1,11 +1,11 @@
-import {WithOffset} from '@razomy/offset';
-import {WithValue} from '@razomy/value';
+import type {WithOffset} from '@razomy/offset';
+import type {WithValue} from '@razomy/value';
 import {tryP} from '@razomy/pipes';
 import {f} from '@razomy/function';
-import {tryScope, WithDeep} from '@razomy/token-offset-deep';
+import {tryScope, type WithDeep} from '@razomy/token-offset-deep';
 import {tryAll, tryTokenValue} from '@razomy/token-offset';
-import {WithTokens, WithTokenType} from '@razomy/token';
-import {any, optinal, ResultNullRegistry} from '@razomy/result-null';
+import type {WithTokens, WithTokenType} from '@razomy/token';
+import {any, optinal, type ResultNullRegistry} from '@razomy/result-null';
 import {fMutResult} from '@razomy/result';
 import {create} from '@razomy/context';
 
@@ -20,7 +20,6 @@ export function jsonToObject(jsonTokens: JsonToken[]) {
     {stack: [] as number[]},
     {deep: 0},
   ) satisfies WithTokens<JsonToken> & WithOffset;
-  type C = typeof c;
   const rs = {
     // Primitives
     key: c => tryP(c, f(tryTokenValue, 'value')),

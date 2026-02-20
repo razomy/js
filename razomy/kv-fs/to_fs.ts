@@ -1,8 +1,7 @@
 import * as path from 'path';
 import fs from 'fs';
 import {tryCreate} from '@razomy/fs-directory';
-import {isKv, Valuable} from '@razomy/kv';
-import {isAkv} from '@razomy/kv';
+import {isAkv, isKv, type Valuable} from '@razomy/kv';
 
 export function toFs(absolutePath: string, dict: Valuable<string, Buffer>) {
   if (isAkv(dict)) {

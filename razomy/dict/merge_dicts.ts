@@ -12,7 +12,7 @@ export function mergeDicts<T extends readonly Record<PropertyKey, unknown>[]>(
   array: [...T]
 ) {
   return array.reduce(
-    (acc, current) => ({ ...acc, ...current }),
+    (acc, current) => ({...acc, ...current}),
     {} as Prettify<UnionToIntersection<T[number]>>
   );
 }

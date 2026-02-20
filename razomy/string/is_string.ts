@@ -1,4 +1,4 @@
-import {String} from '@razomy/string';
+import type {String} from '@razomy/string';
 
 /**
  * Check if the value is a string.

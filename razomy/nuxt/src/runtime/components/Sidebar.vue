@@ -3,7 +3,7 @@
   <rzm-search-sidebar v-model="model"></rzm-search-sidebar>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {computed} from 'vue';
 
 const props = defineProps<{ modelValue: boolean }>();

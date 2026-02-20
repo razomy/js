@@ -1,6 +1,6 @@
-import {VrdOrValue} from './vrd';
+import type {VrdOrValue} from './vrd';
 import {iterateSkip} from './iterate_skip';
-import {DictKey} from '@razomy/dict';
+import type {DictKey} from '@razomy/dict';
 
 export function getMatchesKey<T>(valueRecursive: VrdOrValue<T>, keys: string[]) {
   const matches = [] as DictKey[][];

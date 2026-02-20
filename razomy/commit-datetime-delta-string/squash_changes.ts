@@ -1,4 +1,4 @@
-import {AddDeltaString, DeltaString, RemoveDeltaString} from '@razomy/commit-datetime-delta-string';
+import type {AddDeltaString, DeltaString, RemoveDeltaString} from '@razomy/commit-datetime-delta-string';
 
 export function squashChanges(changes: DeltaString[]): DeltaString[] {
   if (changes.length === 0) {

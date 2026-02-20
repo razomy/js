@@ -1,4 +1,4 @@
-import {ListItem} from '@razomy/kv-array-recursive';
+import type {ListItem} from '@razomy/kv-array-recursive';
 import {assign} from '@razomy/key';
 import {getItemByPath} from './get_item_by_path';
 

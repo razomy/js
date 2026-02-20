@@ -1,5 +1,5 @@
-import {String} from '@razomy/string';
-import {Offset} from '@razomy/offset';
+import type {String} from '@razomy/string';
+import type {Offset} from '@razomy/offset';
 
 export function separateStrings(string: String, offset: Offset, separateString: String, strings: String[]) {
   let ix = string.indexOf(separateString, offset);

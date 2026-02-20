@@ -31,13 +31,14 @@ export function addDependencies(projectPath: string, prefix) {
       }
 
       if (iterate_node.stats.isDirectory()) {
-        return
+        return undefined;
       }
 
       const pkgSource = fs.readFileSync(iterate_node.path, 'utf8');
       // 2. Regex to find imports like: from '@my-org/auth'
       const newImports = pkgSource.matchAll(importRegex).map(m => m[1]).toArray()
       matches = [...matches, ...newImports];
+      return undefined;
     })
 
     // 3. Update dependencies

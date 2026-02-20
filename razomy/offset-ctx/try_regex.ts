@@ -1,5 +1,5 @@
-import {WithOffset} from '@razomy/offset';
-import {WithString} from '@razomy/string';
+import type {WithOffset} from '@razomy/offset';
+import type {WithString} from '@razomy/string';
 
 export function tryRegex(ctx: WithString & WithOffset, regex: RegExp) {
   regex.lastIndex = ctx.offset;

@@ -1,7 +1,7 @@
 // scripts/build-package.js
 import fs from 'node:fs';
 import path from 'node:path';
-import {Dict, mapDict} from '@razomy/dict';
+import {type Dict, mapDict} from '@razomy/dict';
 import {isObject} from '@razomy/object';
 import * as array from '@razomy/array';
 
@@ -11,10 +11,21 @@ export function createDist(path_) {
 // Read root package.json
   const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-  function cj (t: string) { return t.replace('.ts', '.cjs'); }
-  function mj (t: string) { return t.replace('.ts', '.mjs'); }
-  function dmj (t: string) { return t.replace('.ts', '.d.mts'); }
-  function dcj (t: string) { return t.replace('.ts', '.d.cts'); }
+  function cj(t: string) {
+    return t.replace('.ts', '.cjs');
+  }
+
+  function mj(t: string) {
+    return t.replace('.ts', '.mjs');
+  }
+
+  function dmj(t: string) {
+    return t.replace('.ts', '.d.mts');
+  }
+
+  function dcj(t: string) {
+    return t.replace('.ts', '.d.cts');
+  }
 
   function mD(v1: Dict<string> | string | undefined, k2, k1 = '') {
     if (!v1) {

@@ -1,4 +1,4 @@
-import cluster, {ClusterSettings} from 'cluster';
+import cluster, {type ClusterSettings} from 'cluster';
 import child from 'node:child_process';
 import {processToPromise} from './process_to_promise';
 

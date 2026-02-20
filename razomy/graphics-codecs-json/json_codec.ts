@@ -1,11 +1,9 @@
 import {NotImplementedException} from '@razomy/exceptions';
-import {Codec} from '@razomy/codec';
-import {IObject} from '@razomy/object';
-import {ISizeResource} from '@razomy/graphics-attributes';
+import type {Codec} from '@razomy/codec';
+import type {IObject} from '@razomy/object';
+import type {ISizeResource} from '@razomy/graphics-attributes';
 import {ResourceCollection} from '@razomy/resources';
-import {CodecFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import {EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import {CodecConfig} from '@razomy/graphics-codecs-web-svg-codecs';
+import {CodecConfig, CodecFactory, EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
 import {ElementView} from '@razomy/graphics-elements';
 
 
@@ -72,7 +70,7 @@ export class JsonCodec implements Codec<ElementView, Node> {
   constructor() {
     const codecConfig: CodecConfig = new CodecConfig();
     const encodeNodeFactory: EncodeNodeFactory = new EncodeNodeFactory(codecConfig);
-    this.codecFactory = new CodecFactory(codecConfig, encodeNodeFactory);
+    this.codecFactory = new CodecFactory(encodeNodeFactory);
   }
 
   public decode(value: Node): ElementView {

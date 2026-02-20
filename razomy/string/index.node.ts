@@ -12,6 +12,7 @@ export {isAlphanumeric} from './is_alphanumeric';
 export {isNullOrEmpty} from './is_null_or_empty';
 export {isString} from './is_string';
 export {join} from './join';
+export {levenshteinDistance} from './levenshtein_distance';
 export {marginString} from './margin_string';
 export {padEnd} from './pad_end';
 export {padStart} from './pad_start';

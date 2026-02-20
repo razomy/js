@@ -1,4 +1,4 @@
-import {Dict} from '@razomy/dict';
+import type {Dict} from '@razomy/dict';
 import {ArgumentException} from '@razomy/exceptions';
 
 export function firstKeyDict<T>(obj: Dict<T>): string {

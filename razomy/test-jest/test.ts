@@ -1,4 +1,4 @@
-import {Function} from '@razomy/function';
+import type {Function} from '@razomy/function';
 
 export async function test<I extends Array<any>, O>(
   cb: Function<I, O>,

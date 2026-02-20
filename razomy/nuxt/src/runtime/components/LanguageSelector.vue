@@ -3,20 +3,20 @@
     <v-select id='select-language'
               v-model='locale'
               :items='locales'
+              density='compact'
               item-title='name'
               item-value='code'
-              density='compact'
               variant="plain"
     >
       <template v-slot:item='{ props, item }'>
-        <v-list-item @click.prevent.stop='setLocale(item.value)'
+        <v-list-item :to='switchLocalePath(item.value)'
                      v-bind='props'
-                     :to='switchLocalePath(item.value)'></v-list-item>
+                     @click.prevent.stop='setLocale(item.value)'></v-list-item>
       </template>
     </v-select>
   </div>
 </template>
-<script setup lang='ts'>
+<script lang='ts' setup>
 const {locale, locales, setLocale} = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();

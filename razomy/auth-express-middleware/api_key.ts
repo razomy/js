@@ -1,9 +1,9 @@
-export function apiKey(key) {
+export function apiKey(key: any) {
   const validApiKeys = new Set([
     key,
   ]);
 
-  return function express_middleware(req, res, next) {
+  return function express_middleware(req: any, res: any, next: any) {
     const apiKey = req.headers['x-api-key'];
 
     if (!apiKey || !validApiKeys.has(apiKey)) {

@@ -1,4 +1,4 @@
-import {ListTree} from '@razomy/tree-list';
+import type {ListTree} from '@razomy/tree-list';
 
 export function nodesArrayToTree(nodes: string[], leafs: string[]) {
   let allItems = [

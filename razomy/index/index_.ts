@@ -1,3 +1,3 @@
-import {Number} from '@razomy/number';
+import type {Number} from '@razomy/number';
 
 export type Index = Number;

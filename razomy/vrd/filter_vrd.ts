@@ -1,5 +1,5 @@
-import {Vrd, VrdOrValue} from './vrd';
-import {DictKey} from '@razomy/dict';
+import {Vrd, type VrdOrValue} from './vrd';
+import type {DictKey} from '@razomy/dict';
 import {isVrd} from './is_vrd';
 
 export function filterVrd<I>(input: Vrd<I>, isKeep: (input: VrdOrValue<I>, parent: DictKey) => boolean): Vrd<I>;

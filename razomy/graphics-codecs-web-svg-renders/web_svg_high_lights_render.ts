@@ -1,6 +1,6 @@
 import {ElementView} from '@razomy/graphics-elements';
+import type {UserEntity} from '@razomy/graphics-graphic';
 import {SelectionAttribute} from '@razomy/graphics-graphic';
-import {UserEntity} from '@razomy/graphics-graphic';
 
 export class WebSvgHighLightsRender {
   constructor(

@@ -1,11 +1,11 @@
-import {WithOffset} from '@razomy/offset';
-import {WithValue} from '@razomy/value';
+import type {WithOffset} from '@razomy/offset';
+import type {WithValue} from '@razomy/value';
 import {tryP} from '@razomy/pipes';
-import {tryAligned, tryScope, WithDeep} from '@razomy/token-offset-deep';
+import {tryAligned, tryScope, type WithDeep} from '@razomy/token-offset-deep';
 import {tryAll, tryTokenValue} from '@razomy/token-offset';
-import {WithTokens, WithTokenType} from '@razomy/token';
+import type {WithTokens, WithTokenType} from '@razomy/token';
 import {create} from '@razomy/context';
-import {optinal, ResultNullRegistry} from '@razomy/result-null';
+import {optinal, type ResultNullRegistry} from '@razomy/result-null';
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = WithTokenType<JsonTokenType> & WithValue<string> & WithDeep;

@@ -1,5 +1,4 @@
-import {PositionAttribute} from '@razomy/graphics-attributes';
-import {SizeAttribute} from '@razomy/graphics-attributes';
+import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
 import {ResourceCollection} from '@razomy/resources';
 import {ViewGraphic} from '@razomy/graphics-graphic';
 

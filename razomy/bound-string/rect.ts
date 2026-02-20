@@ -1,4 +1,4 @@
-import {WithOffset} from '@razomy/offset';
+import type {WithOffset} from '@razomy/offset';
 
 import {size} from '@razomy/bound-string';
 import * as rectangle from '@razomy/coordinates-rectangle';

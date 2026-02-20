@@ -3,13 +3,15 @@ import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functio
 import {createIndexFiles} from './create_index_files';
 import {createRoot} from './package_json/create_root';
 import {renameFiles} from './rename_files';
-import {splitFunctions} from '@razomy/ts-refactor';
-import {iterateSourceFilesAndSave} from '@razomy/ts-refactor';
+import {
+  fileRenameVariablesAndPropsFunctions,
+  iterateSourceFilesAndSave,
+  renameFileBasedOnFirstChild,
+  splitFunctions
+} from '@razomy/ts-refactor';
 import {addDependencies} from './package_json/add_dependencies';
 import {updateByTemplate} from './package_json/update_by_template';
-import {renameFileBasedOnFirstChild} from '@razomy/ts-refactor';
 import {createAtChildDirs} from './package_json/create_at_child_dirs';
-import {fileRenameVariablesAndPropsFunctions} from '@razomy/ts-refactor';
 import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
 
 export async function formatProject(projectPath: string, prefix: string) {

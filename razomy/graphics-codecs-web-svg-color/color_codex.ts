@@ -2,7 +2,7 @@ import {Color} from './color';
 import {HexParser} from './hex_parser';
 import {HslaParser} from './hsla_parser';
 import {RgbaParser} from './rgba_parser';
-import {SvgColorKeys, SvgColorParser} from './svg_color_parser';
+import {type  SvgColorKeys, SvgColorParser} from './svg_color_parser';
 
 
 /**

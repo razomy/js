@@ -1,4 +1,4 @@
-import {ListTree} from '@razomy/tree-list';
+import type {ListTree} from '@razomy/tree-list';
 
 
 export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
@@ -13,8 +13,6 @@ export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
     let currentLevel = root;
 
     parts.forEach((part, index) => {
-      const isLastPart = index === parts.length - 1;
-
       // Check if this part already exists in the current level's children
       let existingNode = currentLevel.children.find(child => child.value === part);
 

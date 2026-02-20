@@ -1,7 +1,6 @@
 import {NotImplementedException} from '@razomy/exceptions';
-import {Constructor} from '@razomy/class';
-import {ObjectResource} from '@razomy/resources';
-import {EntityResource} from '@razomy/resources';
+import {type Constructor} from '@razomy/class';
+import {EntityResource, ObjectResource} from '@razomy/resources';
 
 export interface INodeResourceCollection {
   nodes?: EntityResource[];

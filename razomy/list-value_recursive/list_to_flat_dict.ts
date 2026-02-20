@@ -1,5 +1,5 @@
-import {ValueRecursiveList} from '@razomy/list-value_recursive';
-import {Dict} from '@razomy/dict';
+import type {ValueRecursiveList} from '@razomy/list-value_recursive';
+import type {Dict} from '@razomy/dict';
 import {valueOrListToFlatDict} from './value_or_list_to_flat_dict';
 
 export function listToFlatDict(

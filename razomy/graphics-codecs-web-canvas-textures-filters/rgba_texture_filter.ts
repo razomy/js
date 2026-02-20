@@ -1,4 +1,4 @@
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 import {bitSlice} from './bit_slice';
 import {byteSlice} from './byte_slice';
 

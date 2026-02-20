@@ -1,4 +1,4 @@
-import {SourceFile} from 'ts-morph';
+import type {SourceFile} from 'ts-morph';
 
 export function getNameAndExt(sourceFile: SourceFile) {
   let baseName = sourceFile.getBaseNameWithoutExtension();

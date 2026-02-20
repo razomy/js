@@ -1,7 +1,5 @@
-import {isKv, KeyValuable, Valuable} from '@razomy/kv';
-import {Function} from '@razomy/function';
-import {isAkv} from '@razomy/kv';
-import {iterate} from '@razomy/kv';
+import {isAkv, isKv, iterate, type KeyValuable, type Valuable} from '@razomy/kv';
+import type {Function} from '@razomy/function';
 
 /**
  * true - success
@@ -15,6 +13,7 @@ export function valueIterate<K, V>(
     if (!isKv(kv[0]) && !isAkv(kv[0])) {
       return valueCb(kv);
     }
+    return false;
   });
 }
 

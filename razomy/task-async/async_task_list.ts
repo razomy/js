@@ -1,4 +1,4 @@
-import {AsyncTask, Context} from '@razomy/task-async';
+import type {AsyncTask, Context} from '@razomy/task-async';
 
 interface AsyncTaskListState<C extends Context> {
   startedTaskIndex: number;

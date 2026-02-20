@@ -1,4 +1,4 @@
-import {Dict} from '@razomy/dict';
+import type {Dict} from '@razomy/dict';
 
 /**
  * Converts a dictionary to a specific string format.

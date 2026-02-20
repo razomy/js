@@ -7,12 +7,12 @@ import {videos} from './types'; // <-- Поправь путь
 const sourceVideo = './source_video.mp4'; // Файл из Шага 1
 const outDir = './test_results';
 
-const prepare = `
+export const prepare = `
 # Создать тестовое видео (5 секунд, таймер на экране, звук писк)
 ffmpeg -f lavfi -i testsrc=duration=5:size=1280x720:rate=30 -f lavfi -i sine=frequency=1000:duration=5 -c:v libx264 -c:a aac -shortest source_video.mp4
 `
 
-const test = `
+export const test = `
 # В терминале в папке с результатами
 for f in *.*; do ffprobe -v error -i "$f" && echo "OK: $f" || echo "FAIL: $f"; done
 `

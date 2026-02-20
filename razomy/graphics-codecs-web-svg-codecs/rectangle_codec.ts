@@ -1,12 +1,8 @@
-import {Codec} from '@razomy/codec';
-import {PositionAttribute} from '@razomy/graphics-attributes';
-import {SizeAttribute} from '@razomy/graphics-attributes';
-import {BorderStyle} from '@razomy/graphics-styles';
-import {FillStyle} from '@razomy/graphics-styles';
-import {RectangleRoundStyle} from '@razomy/graphics-shapes';
-import {RectangleShape} from '@razomy/graphics-shapes';
-import {ColorCodex} from '@razomy/graphics-codecs-web-svg-color';
-import {HexParser} from '@razomy/graphics-codecs-web-svg-color';
+import type {Codec} from '@razomy/codec';
+import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
+import {BorderStyle, FillStyle} from '@razomy/graphics-styles';
+import {RectangleRoundStyle, RectangleShape} from '@razomy/graphics-shapes';
+import {ColorCodex, HexParser} from '@razomy/graphics-codecs-web-svg-color';
 import {EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
 
 export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {

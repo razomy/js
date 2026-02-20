@@ -1,9 +1,8 @@
 import fs from 'fs';
 import * as path from 'path';
 import {ArgumentException} from '@razomy/exceptions';
-import {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable} from '@razomy/kv';
-import {akv} from '@razomy/kv';
-import {k} from '@razomy/kv';
+import type {ArrayKeyValuable, ArrayOrKeyValuable, KeyValuable} from '@razomy/kv';
+import {akv, k} from '@razomy/kv';
 
 export function toKv<T = ArrayKeyValuable<string, Buffer>>(dirPath: string): T;
 export function toKv<T = KeyValuable<string, Buffer>>(filePath: string): T;

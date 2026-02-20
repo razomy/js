@@ -1,6 +1,6 @@
-import {vrd, VrdOrValue} from './vrd';
+import {vrd, type VrdOrValue} from './vrd';
 import {equal} from '@razomy/equal';
-import {P} from './differences_vrd';
+import type {P} from './differences_vrd';
 import {differencesDict} from './differences_dict';
 
 export function test() {

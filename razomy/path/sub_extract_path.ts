@@ -1,5 +1,5 @@
 import {ArgumentException} from '@razomy/exceptions';
-import {String} from '@razomy/string';
+import type {String} from '@razomy/string';
 
 export function subExtractPath(filePath: String, equalPath: String): String {
   const parts: string[] = filePath.split('/');

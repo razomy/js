@@ -1,4 +1,4 @@
-import {SchemaType} from './schema';
+import type {SchemaType} from './schema';
 
 export type object_<T> = { [key: string]: SchemaType<T> };
 export type array_<T> = SchemaType<T>[];

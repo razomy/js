@@ -3,6 +3,7 @@ export {getNameAndExt} from './get_name_and_ext';
 export {isNameTaken} from './is_name_taken';
 export {iterateSourceFilesAndSave, type IterateSourceFileState} from './iterate_source_files_and_save';
 export {renameFileBasedOnFirstChild} from './rename_file_based_on_first_child';
+export {renameFoldersRecursively} from './rename_folders_recursively';
 export {renameNode} from './rename_node';
 export {renameToSnakeCaseRecursiveTs} from './rename_to_snake_case_recursive_ts';
 export {splitFunctions} from './split_functions';

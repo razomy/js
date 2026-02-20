@@ -1,4 +1,4 @@
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value

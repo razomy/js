@@ -1,8 +1,7 @@
 import {getRecursiveStatus} from './get_recursive_status';
-import {nodesArrayToTree} from '@razomy/tree-list';
-import {iterateReverse} from '@razomy/tree-list';
+import {iterateReverse, nodesArrayToTree} from '@razomy/tree-list';
 import {execSync} from 'node:child_process';
-import {SourcePathString} from '@razomy/path-string';
+import type {SourcePathString} from '@razomy/path-string';
 
 export function restore(sourcePath: SourcePathString) {
   const {files, repos} = getRecursiveStatus(sourcePath)

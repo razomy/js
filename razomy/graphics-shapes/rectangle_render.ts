@@ -1,8 +1,7 @@
 import {PositionAttribute} from '@razomy/graphics-attributes';
-import {BorderStyle} from '@razomy/graphics-styles';
+import {BorderStyle, FillStyle} from '@razomy/graphics-styles';
 import {RectangleShape} from '@razomy/graphics-shapes';
 import {HexParser} from '@razomy/graphics-codecs-web-svg-color';
-import {FillStyle} from '@razomy/graphics-styles';
 
 export class RectangleRender {
   constructor(

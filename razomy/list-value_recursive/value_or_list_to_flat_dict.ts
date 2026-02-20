@@ -1,5 +1,5 @@
-import {ValueListItemValue} from './get_value';
-import {Dict} from '@razomy/dict';
+import type {ValueListItemValue} from './get_value';
+import type {Dict} from '@razomy/dict';
 import {assign} from '@razomy/key';
 import {isString} from '@razomy/string';
 

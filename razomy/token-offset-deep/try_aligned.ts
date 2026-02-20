@@ -1,6 +1,5 @@
-import {WithOffset} from '@razomy/offset';
-import { ResultNull } from "@razomy/result-null";
-import { WithTokens, WithTokenType } from "@razomy/token";
+import type {WithOffset} from '@razomy/offset';
+import type {WithTokens, WithTokenType} from '@razomy/token';
 
 export interface WithDeep {
   deep: number;

@@ -11,7 +11,7 @@
  * node.kaleidoscopePower(3);
  * node.kaleidoscopeAngle(45);
  */
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 import {createCanvasElement} from './create_canvas_element';
 /*
  * ToPolar Filter. Converts image data to polar coordinates. Performs

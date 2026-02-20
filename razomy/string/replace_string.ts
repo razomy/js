@@ -14,7 +14,7 @@
  * // => 'foo'
  * replaceString('foo', 'bar', 'baz');
  */
-import {String} from '@razomy/string';
+import type {String} from '@razomy/string';
 
 export function replaceString(text: String, separator: String, replacement: String): String {
   return text.split(separator).join(replacement);

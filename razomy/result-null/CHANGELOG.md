@@ -6,4 +6,4 @@
 
 - Init
 - Updated dependencies
-  - @razomy/context@0.0.1-alpha.0
+    - @razomy/context@0.0.1-alpha.0

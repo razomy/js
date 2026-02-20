@@ -6,4 +6,4 @@
 
 - Init
 - Updated dependencies
-  - @razomy/graphics-elements@0.0.1-alpha.0
+    - @razomy/graphics-elements@0.0.1-alpha.0

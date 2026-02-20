@@ -1,8 +1,7 @@
-import {ArrayBoolPipe, BoolExecute, BoolPipe, BoolPipeable} from '@razomy/pipes-booleans';
+import type {ArrayBoolPipe, BoolExecute, BoolPipe, BoolPipeable} from '@razomy/pipes-booleans';
 
 import {ArgumentException} from '@razomy/exceptions';
-import {isKv, KeyValuable} from '@razomy/kv';
-import {isAkv} from '@razomy/kv';
+import {isAkv, isKv, type KeyValuable} from '@razomy/kv';
 
 export type PipeableKv<T> = KeyValuable<BoolPipeable<T>, BoolPipeable<T>>
 

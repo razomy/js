@@ -1,4 +1,4 @@
-import {Logger} from './none_logger';
+import type {Logger} from './none_logger';
 
 export class ConsoleLogger implements Logger {
   info(message: string) {

@@ -1,4 +1,4 @@
-import {Module, TerminalArgs} from '@razomy/cli';
+import type {Module, TerminalArgs} from '@razomy/cli';
 import {validateArrayStringThrow} from '@razomy/cli';
 
 export async function cli<

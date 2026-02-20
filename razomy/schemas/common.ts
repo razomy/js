@@ -1,4 +1,4 @@
-import {i64} from './primitives';
+import {type i64} from './primitives';
 
 export type address_line1 = string; //	Expects the first line of the street address
 export type address_line2 = string; //	Expects the second line of the street address

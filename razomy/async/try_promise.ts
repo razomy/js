@@ -1,4 +1,4 @@
-export async function tryPromise(fn) {
+export async function tryPromise(fn: any) {
   try {
     return await fn;
   } catch (e) {

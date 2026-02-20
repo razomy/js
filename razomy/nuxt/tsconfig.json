@@ -5,7 +5,10 @@
     "playground"
   ],
   "compilerOptions": {
-    "composite": true,       // <--- REQUIRED
+    "composite": true
+    // <--- REQUIRED
   },
-  "include": ["src/module.ts"]
+  "include": [
+    "src/module.ts"
+  ]
 }

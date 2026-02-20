@@ -6,4 +6,4 @@
 
 - Init
 - Updated dependencies
-  - @razomy/alias@0.0.1-alpha.0
+    - @razomy/alias@0.0.1-alpha.0

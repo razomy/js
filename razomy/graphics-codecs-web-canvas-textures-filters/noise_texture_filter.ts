@@ -1,4 +1,4 @@
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 
 /**
  * Noise Filter. Randomly adds or substracts to the color channels

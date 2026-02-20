@@ -1,4 +1,4 @@
-import {WithChildrenList} from './with_children_list';
+import type {WithChildrenList} from './with_children_list';
 import {map} from './map';
 
 export function mapChildren<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(

@@ -1,4 +1,4 @@
-import {VrdOrValue} from './vrd';
+import type {VrdOrValue} from './vrd';
 import {pathToVrd} from './path_to_vrd';
 import {setVrd} from './set_vrd';
 import {getVrd} from './get_vrd';

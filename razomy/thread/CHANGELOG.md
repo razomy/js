@@ -6,4 +6,4 @@
 
 - Init
 - Updated dependencies
-  - @razomy/cluster@0.0.1-alpha.0
+    - @razomy/cluster@0.0.1-alpha.0

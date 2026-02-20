@@ -1,5 +1,5 @@
 import {ArgumentException} from '@razomy/exceptions';
-import {getKey, RecursiveList} from '@razomy/kv-array-recursive';
+import {getKey, type RecursiveList} from '@razomy/kv-array-recursive';
 import {getItemByPath} from './get_item_by_path';
 
 export function getItemByPathFromValue(value: RecursiveList, path: string[], offset: number) {

@@ -34,7 +34,11 @@ const formatAliases: Record<string, string> = {
 
 export async function toVideoByFormat(inputPath: string, format: string): Promise<ExtensionResult> {
   const outputPath = path.join('/tmp', `out_${Date.now()}.${format}`);
-  function cleanupInput () { return fs.unlink(inputPath, () => {}); }
+
+  function cleanupInput() {
+    return fs.unlink(inputPath, () => {
+    });
+  }
 
   // Определяем правильный формат для FFmpeg (-f flag)
   // Если алиаса нет, используем само расширение
@@ -219,7 +223,8 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
   const fileStream = fs.createReadStream(outputPath);
   fileStream.on('close', () => {
-    fs.unlink(outputPath, () => {});
+    fs.unlink(outputPath, () => {
+    });
   });
 
   const mimeType = videos.find(v => v.fileExtensionType === format)?.mediaType

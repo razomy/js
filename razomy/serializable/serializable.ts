@@ -1,4 +1,4 @@
-import {WithSerializable} from './with_serializable';
+import type {WithSerializable} from './with_serializable';
 
 export type SerializablePrimitive = string | number | boolean | null;
 

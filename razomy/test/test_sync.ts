@@ -1,4 +1,4 @@
-import {Function} from '@razomy/function';
+import type {Function} from '@razomy/function';
 import {toStrictEqual} from './to_strict_equal';
 import {toThrow} from './to_throw';
 

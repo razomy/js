@@ -1,4 +1,4 @@
-import {ListItem} from './get_key';
+import type {ListItem} from './get_key';
 import {getItemByPathFromValue} from './get_item_by_path_from_value';
 import {getValue} from './get_value';
 

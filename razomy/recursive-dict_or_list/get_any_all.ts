@@ -1,5 +1,5 @@
+import type {Dict} from '@razomy/dict';
 import {isKeysInDict} from '@razomy/dict';
-import {Dict} from '@razomy/dict';
 import {isObject} from '@razomy/object';
 
 export function getAnyAll(obj: Dict<any>, keys: string[]) {

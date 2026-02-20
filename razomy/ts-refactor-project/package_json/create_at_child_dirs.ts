@@ -7,6 +7,9 @@ export function createAtChildDirs(projectPath: string, prefix) {
   const folders = fs.readdirSync(rootDir, {withFileTypes: true})
     .filter((dirent: fs.Dirent) => dirent.isDirectory());
   folders.forEach((folder: fs.Dirent) => {
+    if (folder.name.startsWith('_')) {
+      return;
+    }
     const pkgPath = path.join(rootDir, folder.name, 'package.json');
     const scope = '@' + prefix
     const newName = `${scope}/${folder.name}`;

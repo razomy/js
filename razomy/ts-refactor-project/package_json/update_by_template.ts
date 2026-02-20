@@ -22,7 +22,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         },
         sideEffects: false,
         // scripts
-        'scripts': {
+        'scripts': current.scripts || {
           'build': 'tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts',
           'dev': 'tsdown index.ts --watch',
           'prepublishOnly': 'npm run build'
@@ -90,7 +90,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         'publishConfig': {
           'access': 'public'
         },
-        files: ['*'],
+        files: current.files || ['*'],
         'repository': {
           'type': 'git',
           'url': 'git+https://github.com/razomy/js.git',

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {FilePathString} from '@razomy/path-string';
+import type {FilePathString} from '@razomy/path-string';
 
 export function set(filePath: FilePathString, content) {
   return new Promise((resolve, reject) => {

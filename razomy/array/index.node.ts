@@ -15,6 +15,7 @@ export {getLast} from './get_last';
 export {getUniq} from './get_uniq';
 export {groupBy} from './group_by';
 export {includes} from './includes';
+export {indexSizeCreate} from './index_size_create';
 export {insertMut} from './insert_mut';
 export {intersection} from './intersection';
 export {isArray} from './is_array';

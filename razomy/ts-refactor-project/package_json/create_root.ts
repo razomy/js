@@ -1,8 +1,6 @@
 import * as path from 'path';
-import {getJson} from '@razomy/fs-file';
-import {setJson} from '@razomy/fs-file';
+import {getJson, setJson} from '@razomy/fs-file';
 import {getAll} from './get_all';
-import {flat} from '@razomy/array';
 
 export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);

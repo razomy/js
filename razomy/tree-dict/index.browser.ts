@@ -4,7 +4,16 @@ export {getPath} from './get_path';
 export {getValue} from './get_value';
 export {get} from './get';
 export {iterate} from './iterate';
-export {leafTreeAbsolutePath, type WithAbsolutePath, type AbsolutePathDictRoot, type AbsolutePathLeaf, type AbsolutePathBranch, type AbsolutePathDictLeafOrRoot} from './leaf_tree_absolute_path';
-export {mapBranch, type BranchDict, type BranchDictOrLeaf, type RootOrBranchDict, type RootDictOrLeaf, type RootDict} from './map_branch';
+export {
+  leafTreeAbsolutePath,
+  type WithAbsolutePath,
+  type AbsolutePathDictRoot,
+  type AbsolutePathLeaf,
+  type AbsolutePathBranch,
+  type AbsolutePathDictLeafOrRoot
+} from './leaf_tree_absolute_path';
+export {
+  mapBranch, type BranchDict, type BranchDictOrLeaf, type RootOrBranchDict, type RootDictOrLeaf, type RootDict
+} from './map_branch';
 export {mapRoot} from './map_root';
 export {type WithChildrenDict} from './with_children_dict';

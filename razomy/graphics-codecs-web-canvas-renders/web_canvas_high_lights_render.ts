@@ -1,11 +1,9 @@
-import {RenderFactory} from '@razomy/graphics-codecs-web-canvas-renders';
+import type {RenderFactory} from '@razomy/graphics-codecs-web-canvas-renders';
+import type {UserEntity} from '@razomy/graphics-graphic';
 import {SelectionAttribute} from '@razomy/graphics-graphic';
-import {UserEntity} from '@razomy/graphics-graphic';
-import {SizeAttribute} from '@razomy/graphics-attributes';
-import {PositionAttribute} from '@razomy/graphics-attributes';
+import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
 import {ElementView} from '@razomy/graphics-elements';
-import {RectangleShape} from '@razomy/graphics-shapes';
-import {RectangleRender} from '@razomy/graphics-shapes';
+import {RectangleRender, RectangleShape} from '@razomy/graphics-shapes';
 
 export class WebCanvasHighLightsRender {
   constructor(

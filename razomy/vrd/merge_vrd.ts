@@ -1,4 +1,4 @@
-import {Vrd, VrdOrValue} from './vrd';
+import {Vrd, type VrdOrValue} from './vrd';
 import {mergeDict} from './merge_dict';
 import {isVrd} from './is_vrd';
 

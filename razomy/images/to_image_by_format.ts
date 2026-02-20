@@ -1,11 +1,11 @@
 import * as fs from 'node:fs';
 import sharp from 'sharp';
-import {images, OnlyReadImageFileExtensionType, ReadAndWriteImageFileExtensionType} from './types';
+import {images, type OnlyReadImageFileExtensionType, type  ReadAndWriteImageFileExtensionType} from './types';
 import {type ExtensionResult} from '@razomy/fs-file-format';
 
 // --- SHARP (Images) ---
 export async function toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult> {
-  let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы
+  let pipeline = sharp(inputPath, {failOn: 'error'}); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)
   pipeline = pipeline.rotate().withMetadata();
@@ -73,7 +73,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       // ХАК: Браузеры понимают PNG переименованный в ICO.
       // Настоящий ICO sharp делать не умеет, но этот метод работает для фавиконок.
       pipeline = pipeline
-        .resize({ width: 256, height: 256, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .resize({width: 256, height: 256, fit: 'contain', background: {r: 0, g: 0, b: 0, alpha: 0}})
         .toFormat('png');
       break;
 
@@ -91,7 +91,11 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
 
   // Удаление входного файла после завершения стрима
   const stream = pipeline;
-  function cleanup () { return fs.unlink(inputPath, () => {}); }
+
+  function cleanup() {
+    return fs.unlink(inputPath, () => {
+    });
+  }
 
   stream.on('end', cleanup);
   stream.on('error', (err) => {
@@ -103,5 +107,5 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
   const outExt = format === 'ico' ? 'ico' : format;
   const outMime = images.find(a => a.fileExtensionType === outExt)?.mediaType || 'application/octet-stream';
 
-  return { stream, mediaType: outMime, fileExtensionType: outExt };
+  return {stream, mediaType: outMime, fileExtensionType: outExt};
 }

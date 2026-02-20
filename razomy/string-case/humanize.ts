@@ -1,4 +1,4 @@
-import { capitalize } from './capitalize';
+import {capitalize} from './capitalize';
 
 /**
  * Convert a string to a human-readable form.

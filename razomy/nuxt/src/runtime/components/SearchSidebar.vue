@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer
       v-model="model"
-      :permanent="!isMobile"
       :floating="isMobile"
+      :permanent="!isMobile"
       app
       border="1"
       class="bordere-1 bg-surface-light sidebar"
@@ -14,18 +14,18 @@
           v-model="search"
           :label="t('vue-nuxt.sidebar.search')"
           :placeholder="t('vue-nuxt.sidebar.search')"
-          prepend-inner-icon="mdi-magnify"
-          variant="plain"
           class="bg-surface-light"
-          rounded="lg"
           clearable
+          prepend-inner-icon="mdi-magnify"
+          rounded="lg"
+          variant="plain"
       />
     </div>
 
     <v-list
+        density="compact"
         nav
         open-strategy="single"
-        density="compact"
     >
 
       <template v-if="search?.length">
@@ -38,13 +38,13 @@
             v-for="item in searchResults"
             :key="`${item.from}-${item.to}`"
             :to="localePath(`/${item.category}/${item.from}/${item.to}`)"
-            color="primary"
-            rounded="lg"
             class="mb-1"
+            color="primary"
             density="compact"
+            rounded="lg"
         >
           <template v-slot:prepend>
-            <v-icon size="small" icon="mdi-swap-horizontal" color="grey"/>
+            <v-icon color="grey" icon="mdi-swap-horizontal" size="small"/>
           </template>
           <v-list-item-title class="font-weight-medium">
             <span class="text-uppercase">{{ item.from }}</span>
@@ -68,19 +68,19 @@
           <v-list-group
               v-for="category in group.categories"
               :key="category"
-              density="compact"
-              :value="category"
               :active="category === input1Slug"
+              :value="category"
+              density="compact"
           >
             <template v-slot:activator="{ props }">
               <!-- Added density="compact" and pl-4 for visual hierarchy -->
               <v-list-item
-                  v-bind="props"
+                  :active="category === input1Slug"
                   :title="category"
                   :to="localePath(`/${group.key}/${category}`)"
                   color="secondary"
                   density="compact"
-                  :active="category === input1Slug"
+                  v-bind="props"
               />
             </template>
 
@@ -88,12 +88,12 @@
             <v-list-item
                 v-for="output in group.items.filter(i=>i[1]===category)"
                 :key="output.at(-1)"
-                class="pa-0"
+                :active="output.at(-1) === outputSlug"
                 :title="`${output.at(-1)}`"
                 :to="localePath(`/${group.key}/${category}/${output.at(-1)}`)"
-                density="compact"
+                class="pa-0"
                 color="secondary"
-                :active="output.at(-1) === outputSlug"
+                density="compact"
             />
           </v-list-group>
         </div>
@@ -104,16 +104,16 @@
   </v-navigation-drawer>
   <!--  v-if="isMobile && !model"-->
   <v-fab
-      @click="model=!model"
-      icon="mdi-magnify"
       v-if="!model"
-      fixed
       app
       class="z-index-10"
+      fixed
+      icon="mdi-magnify"
+      @click="model=!model"
   ></v-fab>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {c} from '~~/content/context';
 import {computed, ref, watch} from 'vue';
 

@@ -1,4 +1,4 @@
-import {WithChildrenDict} from '@razomy/tree-dict';
+import type {WithChildrenDict} from '@razomy/tree-dict';
 import {get} from './get';
 
 export function getByString<T extends WithChildrenDict<T>>(node: T, path: string, separator: string) {

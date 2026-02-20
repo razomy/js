@@ -1,4 +1,4 @@
-import {Vrd, VrdOrValue} from './vrd';
+import {Vrd, type VrdOrValue} from './vrd';
 import {getVrd} from './get_vrd';
 
 export function setVrd<T>(root: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {

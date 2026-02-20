@@ -1,5 +1,5 @@
 import vue from 'vue';
-import {Dict} from '@razomy/dict';
+import type {Dict} from '@razomy/dict';
 import {removeFirstMut} from '@razomy/array';
 
 
@@ -35,11 +35,11 @@ export class RemoteResource {
     this.ctx.resource.socket.off(this.ctx.id, this.set);
   }
 
-  on(key: string, cb) {
+  on(key: string, cb: any) {
     this.state.listeners.push(cb);
   }
 
-  off(key: string, cb) {
+  off(key: string, cb: any) {
     removeFirstMut(this.state.listeners, cb);
   }
 }

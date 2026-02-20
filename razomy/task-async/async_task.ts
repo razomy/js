@@ -1,4 +1,4 @@
-import {WithSerializable} from '@razomy/serializable';
+import type {WithSerializable} from '@razomy/serializable';
 
 export interface Context extends WithSerializable {
 }

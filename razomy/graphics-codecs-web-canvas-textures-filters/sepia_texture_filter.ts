@@ -1,4 +1,4 @@
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 

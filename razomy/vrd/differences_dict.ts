@@ -1,5 +1,5 @@
 import {vrd, Vrd} from './vrd';
-import {differencesVrd, P} from './differences_vrd';
+import {differencesVrd, type P} from './differences_vrd';
 import {getSimilar} from '@razomy/array-difference';
 
 export function differencesDict<T>(

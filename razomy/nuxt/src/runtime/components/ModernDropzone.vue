@@ -1,21 +1,21 @@
 <template>
   <v-card
       class="mx-auto global-soft-card2 rounded-xl overflow-hidden"
-      variant="elevated"
-      max-width="800"
       color="surface"
+      max-width="800"
+      variant="elevated"
   >
     <!-- Оверлей загрузки/обработки -->
     <v-overlay
         :model-value="isProcessing || isScanning"
         class="align-center justify-center"
         contained
-        persistent
         opacity="0.9"
+        persistent
         z-index="5"
     >
       <div class="text-center">
-        <v-progress-circular indeterminate color="primary" size="64" width="6" />
+        <v-progress-circular color="primary" indeterminate size="64" width="6"/>
         <h3 class="text-h6 mt-4 font-weight-bold text-white">
           {{ isScanning ? 'Сканирование папок...' : t('vue-nuxt.dropzone.converting') + '...' }}
         </h3>
@@ -24,8 +24,8 @@
 
     <!-- Зона Drag & Drop -->
     <div
-        class="dropzone-area rounded-xl bg-surface position-relative d-flex flex-column align-center justify-center pa-6"
         :class="{ 'dragging': isDragging, 'has-files': modelValue.length > 0 }"
+        class="dropzone-area rounded-xl bg-surface position-relative d-flex flex-column align-center justify-center pa-6"
         @dragover.prevent="isDragging = true"
         @dragleave.prevent="isDragging = false"
         @drop.prevent="onDrop"
@@ -34,7 +34,7 @@
       <!-- Сценарий 1: Файлы еще не выбраны -->
       <template v-if="modelValue.length === 0">
         <div class="bg-primary-lighten-5 rounded-circle pa-6 mb-4 transition-swing">
-          <v-icon icon="mdi-folder-multiple-outline" size="64" color="primary" />
+          <v-icon color="primary" icon="mdi-folder-multiple-outline" size="64"/>
         </div>
         <h2 class="text-h5 font-weight-bold text-grey-darken-3 text-center">
           {{ t('vue-nuxt.dropzone.drop_title') || 'Перетащите файлы или папки' }}
@@ -46,11 +46,11 @@
         <div class="d-flex gap-4">
           <!-- Кнопка выбора файлов -->
           <v-btn
-              size="large"
-              rounded="pill"
               color="primary"
-              variant="tonal"
               prepend-icon="mdi-file-document-multiple"
+              rounded="pill"
+              size="large"
+              variant="tonal"
               @click="triggerFileInput"
           >
             Выбрать файлы
@@ -58,11 +58,11 @@
 
           <!-- Кнопка выбора папки -->
           <v-btn
-              size="large"
-              rounded="pill"
               color="secondary"
-              variant="tonal"
               prepend-icon="mdi-folder-open"
+              rounded="pill"
+              size="large"
+              variant="tonal"
               @click="triggerFolderInput"
           >
             Выбрать папку
@@ -80,7 +80,7 @@
               Общий размер: {{ totalSize }}
             </span>
           </div>
-          <v-btn size="small" variant="text" color="error" @click="clearAll">
+          <v-btn color="error" size="small" variant="text" @click="clearAll">
             Очистить все
           </v-btn>
         </div>
@@ -90,17 +90,17 @@
           <v-list-item
               v-for="(file, index) in modelValue"
               :key="index"
-              :title="file.name"
               :subtitle="getFilePath(file)"
+              :title="file.name"
               lines="two"
           >
             <template v-slot:prepend>
-              <v-icon icon="mdi-file-outline" color="primary" />
+              <v-icon color="primary" icon="mdi-file-outline"/>
             </template>
 
             <template v-slot:append>
               <span class="text-caption mr-4 text-grey">{{ formatSize(file.size) }}</span>
-              <v-btn icon="mdi-close" size="small" variant="text" color="error" @click.stop="removeFile(index)" />
+              <v-btn color="error" icon="mdi-close" size="small" variant="text" @click.stop="removeFile(index)"/>
             </template>
           </v-list-item>
         </v-list>
@@ -109,26 +109,27 @@
         <div class="d-flex gap-4 mt-6 w-100">
           <!-- Добавить еще -->
           <v-btn
-              variant="outlined"
-              rounded="xl"
-              height="50"
               class="flex-grow-1"
+              height="50"
+              rounded="xl"
+              variant="outlined"
               @click="triggerFileInput"
           >
-            <v-icon start icon="mdi-plus" /> Добавить файлы
+            <v-icon icon="mdi-plus" start/>
+            Добавить файлы
           </v-btn>
 
           <!-- Конвертировать -->
           <v-btn
-              variant="elevated"
-              color="primary"
-              rounded="xl"
-              height="50"
               class="flex-grow-1 text-subtitle-1 font-weight-bold"
+              color="primary"
+              height="50"
+              rounded="xl"
+              variant="elevated"
               @click="$emit('convert')"
           >
             {{ t('vue-nuxt.dropzone.convert_now') }}
-            <v-icon end icon="mdi-arrow-right" />
+            <v-icon end icon="mdi-arrow-right"/>
           </v-btn>
         </div>
       </template>
@@ -137,10 +138,10 @@
       <!-- 1. Для обычных файлов (multiple) -->
       <input
           ref="fileInput"
-          type="file"
-          multiple
-          class="d-none"
           :accept="accept"
+          class="d-none"
+          multiple
+          type="file"
           @change="onFileChange"
       />
 
@@ -148,18 +149,19 @@
       <!-- @ts-ignore: webkitdirectory is not standard in types yet -->
       <input
           ref="folderInput"
-          type="file"
-          multiple
-          webkitdirectory
           class="d-none"
+          multiple
+          type="file"
+          webkitdirectory
           @change="onFileChange"
       />
     </div>
   </v-card>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from 'vue'
+<script lang="ts" setup>
+import {computed, ref} from 'vue'
+
 const {t} = useI18n();
 
 // ВАЖНО: modelValue теперь массив файлов
@@ -242,7 +244,7 @@ const onDrop = async (e: DragEvent) => {
 
     addFiles(files)
   } catch (err) {
-    console.error("Ошибка при чтении папок:", err)
+    console.error('Ошибка при чтении папок:', err)
   } finally {
     isScanning.value = false
   }

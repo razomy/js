@@ -8,7 +8,7 @@ export const idSchema = s.object({
   ),
 });
 
-export const withLocaleSchema= s.object({
+export const withLocaleSchema = s.object({
   locale: s.pipe(
     s.string(),
     s.length(2)

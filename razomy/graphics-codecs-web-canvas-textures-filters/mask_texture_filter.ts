@@ -1,4 +1,4 @@
-import {ITextureFilter} from './i_texture_filter';
+import type {ITextureFilter} from './i_texture_filter';
 import {backgroundMask} from './background_mask';
 import {erodeMask} from './erode_mask';
 import {dilateMask} from './dilate_mask';

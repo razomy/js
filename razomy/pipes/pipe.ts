@@ -1,4 +1,4 @@
-import {Alias} from '@razomy/alias';
+import type {Alias} from '@razomy/alias';
 
 export type PipeAsync<T, R> = (arg: T) => R | Promise<R>;
 

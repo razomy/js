@@ -1,6 +1,6 @@
 import {progress} from '@razomy/shell';
 import {stringsToDeltaStrings} from '@razomy/commit-datetime-delta-string';
-import {ActorDatetimeDeltaString, addssToString} from './addss_to_string';
+import {type ActorDatetimeDeltaString, addssToString} from './addss_to_string';
 
 export function mapCommit(commits: ActorDatetimeDeltaString[]) {
   let snapshot = '';

@@ -1,4 +1,4 @@
-import {ChangeDifference, Difference, ReplaceDifference} from '@razomy/difference';
+import type {ChangeDifference, Difference, ReplaceDifference} from '@razomy/difference';
 import {getSimilar} from '@razomy/array-difference';
 
 export function get(oldArray: string[], newArray: string[]): ChangeDifference<string>[] {

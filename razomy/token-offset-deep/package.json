@@ -65,9 +65,7 @@
   "module": "./index.ts",
   "name": "@razomy/token-offset-deep",
   "peerDependencies": {
-    "@razomy/char": "0.0.1-alpha.3",
     "@razomy/context": "0.0.1-alpha.3",
-    "@razomy/key": "0.0.1-alpha.3",
     "@razomy/offset": "0.0.1-alpha.3",
     "@razomy/result-null": "0.0.1-alpha.3",
     "@razomy/token": "0.0.1-alpha.3"

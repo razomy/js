@@ -1,5 +1,5 @@
-import {Graph} from '@razomy/graph';
-import {VrdOrValue} from '@razomy/vrd';
+import type {Graph} from '@razomy/graph';
+import type {VrdOrValue} from '@razomy/vrd';
 import {iterateChildren} from './iterate_children';
 
 

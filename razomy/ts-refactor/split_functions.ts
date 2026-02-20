@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {IterateSourceFileState} from './iterate_source_files_and_save';
+import type {IterateSourceFileState} from './iterate_source_files_and_save';
 import {Node, SyntaxKind} from 'ts-morph';
 import {toSafeFilename} from './to_safe_filename';
 

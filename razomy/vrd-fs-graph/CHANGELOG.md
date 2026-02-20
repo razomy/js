@@ -6,5 +6,5 @@
 
 - Init
 - Updated dependencies
-  - @razomy/graph@0.0.1-alpha.0
-  - @razomy/vrd@0.0.1-alpha.0
+    - @razomy/graph@0.0.1-alpha.0
+    - @razomy/vrd@0.0.1-alpha.0

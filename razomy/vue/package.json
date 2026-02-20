@@ -67,7 +67,7 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "*"
+    "src/*"
   ],
   "license": "MIT",
   "main": "./src/index.ts",

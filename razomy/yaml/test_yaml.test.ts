@@ -1,4 +1,4 @@
-import {JsonToken, yamlToObject} from './yaml_to_object';
+import {type JsonToken, yamlToObject} from './yaml_to_object';
 
 export function testYaml() {
   const tokens: JsonToken[] = [

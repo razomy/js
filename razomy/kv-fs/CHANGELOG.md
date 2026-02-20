@@ -6,5 +6,5 @@
 
 - Init
 - Updated dependencies
-  - @razomy/fs-directory@0.0.1-alpha.0
-  - @razomy/kv@0.0.1-alpha.0
+    - @razomy/fs-directory@0.0.1-alpha.0
+    - @razomy/kv@0.0.1-alpha.0

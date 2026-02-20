@@ -1,4 +1,4 @@
-import {IterateSourceFileState} from './iterate_source_files_and_save';
+import type {IterateSourceFileState} from './iterate_source_files_and_save';
 import {Node, SyntaxKind, VariableDeclaration} from 'ts-morph';
 import {getNameAndExt} from './get_name_and_ext';
 import {toSafeFilename} from './to_safe_filename';

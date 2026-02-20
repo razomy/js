@@ -1,5 +1,4 @@
-import {ObjectResource} from '@razomy/resources';
-import {AttributeResource} from '@razomy/resources';
+import {AttributeResource, ObjectResource} from '@razomy/resources';
 import {LinkedList} from '@razomy/list';
 
 

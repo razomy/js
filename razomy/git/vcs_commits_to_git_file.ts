@@ -1,6 +1,5 @@
-import {execute} from '@razomy/shell';
-import {progress} from '@razomy/shell';
-import {ActorDatetimeDeltaString, addssToString} from '@razomy/commit-datetime-delta-string';
+import {execute, progress} from '@razomy/shell';
+import {type ActorDatetimeDeltaString, addssToString} from '@razomy/commit-datetime-delta-string';
 import {trySet} from '@razomy/fs-file';
 
 export async function vcsCommitsToGitFile(prevSnapshot: string, dirPath: string, fileName: string, commits: ActorDatetimeDeltaString[]) {

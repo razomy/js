@@ -6,5 +6,5 @@
 
 - Init
 - Updated dependencies
-  - @razomy/shell@0.0.1-alpha.0
-  - @razomy/test@0.0.1-alpha.0
+    - @razomy/shell@0.0.1-alpha.0
+    - @razomy/test@0.0.1-alpha.0

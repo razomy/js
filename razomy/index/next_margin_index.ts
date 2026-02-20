@@ -1,6 +1,6 @@
-import {String} from '@razomy/string';
-import {Offset} from '@razomy/offset';
-import {Index} from '@razomy/index';
+import type {String} from '@razomy/string';
+import type {Offset} from '@razomy/offset';
+import type {Index} from '@razomy/index';
 
 export function nextMarginIndex(
   string: String,

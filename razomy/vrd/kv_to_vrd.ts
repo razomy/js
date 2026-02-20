@@ -1,4 +1,4 @@
-import {vrd, Vrd, VrdOrValue} from './vrd';
+import {vrd, Vrd, type VrdOrValue} from './vrd';
 
 export function kvToVrd<T>(arr: [key: string, value: VrdOrValue<T>, order?: number][]): Vrd<T> {
   const m = vrd<T>({});

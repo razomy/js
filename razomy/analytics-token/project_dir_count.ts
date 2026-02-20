@@ -12,7 +12,7 @@ export function projectDirCount(
 
 
   // Recursively traverse the project directory
-  function traverseDir(dir) {
+  function traverseDir(dir: string) {
     const files = fs.readdirSync(dir);
     for (const file of files) {
       const filePath = path.join(dir, file);

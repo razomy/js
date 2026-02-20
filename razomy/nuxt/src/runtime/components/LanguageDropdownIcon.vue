@@ -17,8 +17,8 @@
       <v-list-item
           v-for="item in locales"
           :key="item.code"
-          :value="item.code"
           :to="switchLocalePath(item.code)"
+          :value="item.code"
           @click="setLocale(item.code)"
       >
         <v-list-item-title>{{ item.name }}</v-list-item-title>
@@ -26,7 +26,7 @@
     </v-list>
   </v-menu>
 </template>
-<script setup lang='ts'>
+<script lang='ts' setup>
 const {locale, locales, setLocale} = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();

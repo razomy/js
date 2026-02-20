@@ -1,5 +1,5 @@
-import {WithOffset} from '@razomy/offset';
-import {WithString} from '@razomy/string';
+import type {WithOffset} from '@razomy/offset';
+import type {WithString} from '@razomy/string';
 import {getOffsetChar} from '@razomy/offset-ctx';
 
 export function tryAnyOfChar(ctx: WithString & WithOffset, chars: Set<string>) {

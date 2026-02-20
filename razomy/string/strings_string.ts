@@ -12,7 +12,7 @@
  * // => ''
  * stringsString([]);
  */
-import {String} from '@razomy/string';
+import type {String} from '@razomy/string';
 
 export function stringsString(strings: String[]): String {
   let result: String = '';

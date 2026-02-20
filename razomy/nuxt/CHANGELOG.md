@@ -6,4 +6,4 @@
 
 - Init
 - Updated dependencies
-  - @razomy/vue@0.0.1-alpha.0
+    - @razomy/vue@0.0.1-alpha.0

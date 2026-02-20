@@ -1,7 +1,6 @@
 import * as path from 'path';
 import {execute} from '@razomy/shell';
-import {getSync} from '@razomy/fs-file';
-import {setSync} from '@razomy/fs-file';
+import {getSync, setSync} from '@razomy/fs-file';
 import {tryPromise} from '@razomy/async';
 import {getGitCommitsId} from './get_git_commits_id';
 

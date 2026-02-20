@@ -1,4 +1,4 @@
-import {JsonToken, jsonToObject} from './json_to_object';
+import {type JsonToken, jsonToObject} from './json_to_object';
 
 export function testJson() {
   const tokens: JsonToken[] = [

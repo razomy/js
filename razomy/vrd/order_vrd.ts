@@ -1,4 +1,4 @@
-import {Vrd, VrdOrValue} from './vrd';
+import {Vrd, type VrdOrValue} from './vrd';
 import {isVrd} from './is_vrd';
 
 export function orderVrd<T, T2>(a: VrdOrValue<T>, b: VrdOrValue<T2>): VrdOrValue<T2> {

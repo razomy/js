@@ -1,32 +1,25 @@
 import {WebCanvasHighLightsRender} from '@razomy/graphics-codecs-web-canvas-renders';
-import {IRender} from '@razomy/graphics-renderes';
+import type {IRender} from '@razomy/graphics-renderes';
 import {Render} from '@razomy/graphics-renderes';
-import {TextElement} from '@razomy/graphics-elements';
-import {ViewportElement} from '@razomy/graphics-elements';
-import {ElementView} from '@razomy/graphics-elements';
-import {RectangleShape} from '@razomy/graphics-shapes';
-import {RectangleRender} from '@razomy/graphics-shapes';
+import {ElementView, TextElement, ViewportElement} from '@razomy/graphics-elements';
+import {RectangleRender, RectangleShape} from '@razomy/graphics-shapes';
 import {UnknownTypeArgumentException} from '@razomy/exceptions';
 import * as create from '@razomy/create';
 
 
 export class ViewportRender {
-  constructor(
-    private ctx: CanvasRenderingContext2D
-  ) {
+  constructor() {
   }
 
-  render(node: ViewportElement): void {
+  render(): void {
   }
 }
 
 export class TextRender {
-  constructor(
-    private ctx: CanvasRenderingContext2D
-  ) {
+  constructor() {
   }
 
-  render(node: TextElement): void {
+  render(): void {
   }
 }
 
@@ -44,9 +37,9 @@ export class RenderFactory implements create.WithCreate<IRender<any>> {
     if (element instanceof RectangleShape) {
       return new RectangleRender(this.ctx);
     } else if (element instanceof ViewportElement) {
-      return new ViewportRender(this.ctx);
+      return new ViewportRender();
     } else if (element instanceof TextElement) {
-      return new TextRender(this.ctx);
+      return new TextRender();
     }
 
     throw new UnknownTypeArgumentException('un');

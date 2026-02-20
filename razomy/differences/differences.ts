@@ -1,5 +1,5 @@
 import {progress} from '@razomy/shell';
-import {Difference, DifferenceType} from '@razomy/difference';
+import type {Difference, DifferenceType} from '@razomy/difference';
 import {firstEqualIndexes} from '@razomy/indexes';
 
 /** a was, b become */

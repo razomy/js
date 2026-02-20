@@ -1,6 +1,6 @@
 import {stringsAnyIndex} from '@razomy/index';
-import {WithOffset} from '@razomy/offset';
-import {WithString} from '@razomy/string';
+import type {WithOffset} from '@razomy/offset';
+import type {WithString} from '@razomy/string';
 
 export function tryBeforeAnyOfChar(ctx: WithString & WithOffset, chars: Set<string>) {
   const match = stringsAnyIndex(ctx.string, chars, ctx.offset);

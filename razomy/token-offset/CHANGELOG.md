@@ -6,8 +6,8 @@
 
 - Init
 - Updated dependencies
-  - @razomy/context@0.0.1-alpha.0
-  - @razomy/offset@0.0.1-alpha.0
-  - @razomy/result-null@0.0.1-alpha.0
-  - @razomy/token@0.0.1-alpha.0
-  - @razomy/value@0.0.1-alpha.0
+    - @razomy/context@0.0.1-alpha.0
+    - @razomy/offset@0.0.1-alpha.0
+    - @razomy/result-null@0.0.1-alpha.0
+    - @razomy/token@0.0.1-alpha.0
+    - @razomy/value@0.0.1-alpha.0

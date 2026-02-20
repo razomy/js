@@ -1,5 +1,5 @@
-export function countBy(collection, iteratee = (value) => value) {
-  const result = {};
+export function countBy(collection: any, iteratee = (value: any) => value) {
+  const result: Record<string, any> = {};
   if (!collection) return result;
   const values = Array.isArray(collection) ? collection : Object.values(collection);
   for (let i = 0; i < values.length; i++) {

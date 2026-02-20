@@ -1,5 +1,5 @@
-import {String} from '@razomy/string';
-import {Index} from '@razomy/index';
+import type {String} from '@razomy/string';
+import type {Index} from '@razomy/index';
 
 /**
  * Insert a string into another string at a specific index.

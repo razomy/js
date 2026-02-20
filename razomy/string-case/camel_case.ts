@@ -13,7 +13,7 @@
  * camelCase('__FOO_BAR__');
  */
 export function camelCase(text: string): string {
-    // 1-5. Normalize the string using the same logic as snake_case
+  // 1-5. Normalize the string using the same logic as snake_case
   // This breaks the string into segments separated by underscores
   text = text
     // Handle Acronyms: 'JSONData' -> 'JSON_Data'

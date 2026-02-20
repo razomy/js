@@ -1,6 +1,4 @@
-import {getVrd} from '@razomy/vrd';
-import {Vrd} from '@razomy/vrd';
-import {mergeVrd} from '@razomy/vrd';
+import {getVrd, mergeVrd, Vrd} from '@razomy/vrd';
 
 describe('dict', () => {
   describe('value_recursive', () => {

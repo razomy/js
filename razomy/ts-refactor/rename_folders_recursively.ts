@@ -4,7 +4,7 @@ import fs from 'fs';
 
 // Configuration
 
-function renameFoldersRecursively(currentDir: string) {
+export function renameFoldersRecursively(currentDir: string) {
   let entries;
 
   try {

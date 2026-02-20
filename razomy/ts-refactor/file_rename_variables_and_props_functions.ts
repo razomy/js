@@ -1,7 +1,7 @@
 import {SyntaxKind} from 'ts-morph';
 import {flat} from '@razomy/array';
 import {renameNode} from './rename_node';
-import {IterateSourceFileState} from './iterate_source_files_and_save';
+import type {IterateSourceFileState} from './iterate_source_files_and_save';
 
 export function fileRenameVariablesAndPropsFunctions({sourceFile, project}: IterateSourceFileState) {
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);

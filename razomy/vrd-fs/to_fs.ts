@@ -1,7 +1,7 @@
 import * as path from 'path';
 import fs from 'fs';
 import {tryCreate} from '@razomy/fs-directory';
-import {VrdOrValue} from '@razomy/vrd';
+import type {VrdOrValue} from '@razomy/vrd';
 import {isVrd} from '@razomy/vrd';
 
 export function toFs(absolutePath: string, dict: VrdOrValue<Buffer>) {

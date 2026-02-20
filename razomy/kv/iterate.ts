@@ -1,6 +1,5 @@
-import {isKv, KeyValuable, Valuable} from '@razomy/kv';
-import {Function} from '@razomy/function';
-import {isAkv} from '@razomy/kv';
+import {isAkv, isKv, type KeyValuable, type Valuable} from '@razomy/kv';
+import type {Function} from '@razomy/function';
 import {booleanUndefined} from '@razomy/undefined';
 
 /**

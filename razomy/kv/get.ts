@@ -1,5 +1,5 @@
 import {ArgumentException} from '@razomy/exceptions';
-import {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from '@razomy/kv';
+import type {ArrayKeyValuable, ArrayOrKeyValuable, Valuable} from '@razomy/kv';
 import {isAkv} from '@razomy/kv';
 
 export function get<T>(valueRecursive: ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): Valuable<T, T> {

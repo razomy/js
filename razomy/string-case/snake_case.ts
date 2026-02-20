@@ -36,5 +36,5 @@ export function snakeCase(string: string): string {
 
     // 6. Final lowercase
     .toLowerCase();
-    ;
+
 }

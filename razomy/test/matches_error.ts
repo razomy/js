@@ -1,5 +1,3 @@
-import {assertDeepEqual} from './assert_deep_equal';
-
 /**
  * Checks if a thrown error matches the expected criteria.
  */
