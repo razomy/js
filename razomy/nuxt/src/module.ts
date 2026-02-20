@@ -13,7 +13,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   setup(_options, _nuxt) {
     const resolver = createResolver(import.meta.url)
-
+    _nuxt.options.build.transpile.push(resolver.resolve('./runtime/components'))
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
 

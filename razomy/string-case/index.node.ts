@@ -1,3 +1,4 @@
+export {abriviation} from './abriviation';
 export {camelCase} from './camel_case';
 export {capitalize} from './capitalize';
 export {humanize} from './humanize';
@@ -6,6 +7,7 @@ export {isUpperCase} from './is_upper_case';
 export {kebabCase} from './kebab_case';
 export {lowerCase} from './lower_case';
 export {pascalCase} from './pascal_case';
+export {reverse} from './reverse';
 export {slugify} from './slugify';
 export {snakeCase} from './snake_case';
 export {titleCase} from './title_case';

@@ -5,7 +5,7 @@ export interface RazomyVueNuxtConfig {
   url: string,
   i18n: {
     en: {
-      ['vue-nuxt']: {
+      nuxt: {
         product: {
           name: string,
           description: string
@@ -102,7 +102,7 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
             dark: true,
             colors: {
               primary: '#FCB60D',
-              secondary: '#5243C2',
+              secondary: '#6D59FF',
               background: '#121212', // Standard dark
               surface: '#1E1E1E',
             },
@@ -134,8 +134,8 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
   },
   site: {
     url: c.url,
-    name: c.i18n.en['vue-nuxt'].product.name,
-    description: c.i18n.en['vue-nuxt'].product.description,
+    name: c.i18n.en.nuxt.product.name,
+    description: c.i18n.en.nuxt.product.description,
     defaultLocale: 'en',
   },
   nitro: {
@@ -152,6 +152,5 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     'vuetify-nuxt-module',
     '@nuxtjs/robots',
     '@razomy/nuxt',
-    'nuxt-zod-i18n',
   ],
 } as any as NuxtConfig)

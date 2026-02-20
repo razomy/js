@@ -29,7 +29,7 @@
   <!--      -->
   <!--      <v-list density="compact" nav class="rounded-lg" elevation="4">-->
   <!--        <v-list-subheader class="  text-caption">-->
-  <!--          {{ $t('vue-nuxt.breadcrumb.select_category') }}-->
+  <!--          {{ $t('nuxt.breadcrumb.select_category') }}-->
   <!--        </v-list-subheader>-->
   <!--        <v-list-item-->
   <!--            v-for="groupKey in categories"-->
@@ -64,7 +64,7 @@
 
   <!--        <v-list density="compact" nav class="rounded-lg elevation-4">-->
   <!--          <v-list-subheader class="  text-caption">-->
-  <!--            {{ $t('vue-nuxt.breadcrumb.select_source') }}-->
+  <!--            {{ $t('nuxt.breadcrumb.select_source') }}-->
   <!--          </v-list-subheader>-->
 
   <!--          <v-list-item-->
@@ -100,7 +100,7 @@
   <!--        </template>-->
   <!--        <v-list density="compact" nav class="rounded-lg elevation-4">-->
   <!--          <v-list-subheader class="  text-caption">-->
-  <!--            {{ $t('vue-nuxt.breadcrumb.select_target') }}-->
+  <!--            {{ $t('nuxt.breadcrumb.select_target') }}-->
   <!--          </v-list-subheader>-->
 
   <!--          <v-list-item-->

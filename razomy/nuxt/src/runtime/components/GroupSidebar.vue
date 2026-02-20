@@ -14,17 +14,17 @@
     </template>
     <template v-slot:default>
       <v-tabs direction="vertical">
-        <v-tab v-for="group in groupedFormats"
-               :key="group.key"
-               :active="group.key === groupSlug"
-               :to="localePath(`/${group.key}`)"
-               :value="group.key"
+        <v-tab v-for="category in categories0Formats"
+               :key="category.key"
+               :active="category.key === categorySlug"
+               :to="localePath(`/${category.key}`)"
+               :value="category.key"
                align-tabs="center"
                class="w-full justify-center px-0 py-8"
                color="secondary"
                stacked>
-          <v-icon :icon="group.iconName" size="18"></v-icon>
-          {{ t(group.labelText) }}
+          <v-icon :icon="category.iconName" size="18"></v-icon>
+          {{ t(category.labelText) }}
         </v-tab>
       </v-tabs>
     </template>
@@ -35,21 +35,22 @@
       color="secondary"
       horizontal
   >
-    <v-btn v-for="group in groupedFormats"
-           :key="group.key"
-           :active="group.key === groupSlug"
-           :to="localePath(`/${group.key}`)"
-           :value="group.key"
+    <v-btn v-for="category in categories0Formats"
+           :key="category.key"
+           :active="category.key === categorySlug"
+           :to="localePath(`/${category.key}`)"
+           :value="category.key"
            align-tabs="center"
            color="secondary"
            stacked>
-      <v-icon :icon="group.iconName" size="18"></v-icon>
-      {{ t(group.labelText) }}
+      <v-icon :icon="category.iconName" size="18"></v-icon>
+      {{ t(category.labelText) }}
     </v-btn>
   </v-bottom-navigation>
 </template>
 
 <script lang="ts" setup>
+import { useDisplay, useI18n, computed, ref, useLocalePath } from '#imports';
 import {c} from '~~/content/context';
 
 const {xs: isMobile} = useDisplay();
@@ -57,10 +58,10 @@ const {xs: isMobile} = useDisplay();
 const {t} = useI18n();
 const localePath = useLocalePath();
 
-const groupSlug = ref<string>('');
+const categorySlug = ref<string>('');
 
-const groupedFormats = computed(() => {
-  return c.groups;
+const categories0Formats = computed(() => {
+  return c.categories;
 });
 
 </script>

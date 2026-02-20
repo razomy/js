@@ -17,7 +17,7 @@
       <div class="text-center">
         <v-progress-circular color="primary" indeterminate size="64" width="6"/>
         <h3 class="text-h6 mt-4 font-weight-bold text-white">
-          {{ isScanning ? 'Сканирование папок...' : t('vue-nuxt.dropzone.converting') + '...' }}
+          {{ isScanning ? 'Сканирование папок...' : t('nuxt.dropzone.converting') + '...' }}
         </h3>
       </div>
     </v-overlay>
@@ -37,7 +37,7 @@
           <v-icon color="primary" icon="mdi-folder-multiple-outline" size="64"/>
         </div>
         <h2 class="text-h5 font-weight-bold text-grey-darken-3 text-center">
-          {{ t('vue-nuxt.dropzone.drop_title') || 'Перетащите файлы или папки' }}
+          {{ t('nuxt.dropzone.drop_title') || 'Перетащите файлы или папки' }}
         </h2>
         <p class="text-body-1 text-grey-darken-1 mt-2 mb-6 text-center">
           Мы поддерживаем вложенные папки
@@ -128,7 +128,7 @@
               variant="elevated"
               @click="$emit('convert')"
           >
-            {{ t('vue-nuxt.dropzone.convert_now') }}
+            {{ t('nuxt.dropzone.convert_now') }}
             <v-icon end icon="mdi-arrow-right"/>
           </v-btn>
         </div>
@@ -160,18 +160,16 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref} from 'vue'
+import {computed, ref, useI18n} from '#imports';
 
-const {t} = useI18n();
-
-// ВАЖНО: modelValue теперь массив файлов
 const props = defineProps<{
   modelValue: File[], // Было File | null
   accept?: string,
   isProcessing: boolean
 }>()
-
 const emit = defineEmits(['update:modelValue', 'convert'])
+
+const {t} = useI18n();
 
 const isDragging = ref(false)
 const isScanning = ref(false) // Состояние для отображения процесса обхода папок

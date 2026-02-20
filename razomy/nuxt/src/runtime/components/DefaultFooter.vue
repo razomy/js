@@ -30,17 +30,18 @@
                href="https://donate.stripe.com/28o9CS6Px6QwaQMbIN"
                rounded="xl"
                variant="outlined">
-          {{ t('vue-nuxt.footer.donate') }}
+          {{ t('nuxt.footer.donate') }}
         </v-btn>
 
         <v-col class='text-center' cols='12'>
-          2023-{{ new Date().getFullYear() }} — <span>{{ t('vue-nuxt.footer.company-name') }}</span>
+          2023-{{ new Date().getFullYear() }} — <span>{{ t('nuxt.footer.company-name') }}</span>
         </v-col>
       </v-row>
     </v-footer>
   </v-container>
 </template>
 <script lang='ts' setup>
+import {  useI18n, useLocalePath } from '#imports';
 import {c} from '~~/content/context';
 
 const localePath = useLocalePath();

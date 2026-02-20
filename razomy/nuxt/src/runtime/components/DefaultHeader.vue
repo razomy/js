@@ -17,7 +17,7 @@
     <!--      <v-avatar>-->
     <!--        &lt;!&ndash;        <v-img src='/images/favicon/logo.png'></v-img>&ndash;&gt;-->
     <!--      </v-avatar>-->
-    <!--      <span v-if='!isTablet'>{{ t('vue-nuxt.header.company-name') }}</span>-->
+    <!--      <span v-if='!isTablet'>{{ t('nuxt.header.company-name') }}</span>-->
     <!--    </v-btn>-->
 
     <!--    <v-app-bar-nav-icon-->
@@ -36,8 +36,7 @@
   </v-app-bar>
 </template>
 <script lang='ts' setup>
-import {useDisplay} from 'vuetify';
-import {createReusableTemplate} from '@vueuse/core';
+import {  useI18n, useLocalePath, useRouter, ref , useDisplay, createReusableTemplate} from '#imports';
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate();
 const goHome = () => router.push(localePath('/'));

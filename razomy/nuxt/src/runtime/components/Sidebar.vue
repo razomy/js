@@ -1,6 +1,5 @@
 <template>
   <rzm-group-sidebar></rzm-group-sidebar>
-  <rzm-search-sidebar v-model="model"></rzm-search-sidebar>
 </template>
 
 <script lang="ts" setup>
@@ -12,6 +11,7 @@ const model = computed({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val)
 });
+
 </script>
 
 <style scoped>

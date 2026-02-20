@@ -13,7 +13,10 @@
     <Body>
     <v-app>
       <!-- Сайдбар -->
-      <rzm-sidebar v-model="drawer"/>
+      <rzm-sidebar v-model="drawer"></rzm-sidebar>
+      <slot  :modelValue="drawer"
+             :updateModelValue="(val) => drawer = val"
+             name="sidebar"></slot>
       <v-main>
         <!--        <rzm-default-header>-->
         <!--          <template v-slot:start>-->
@@ -41,12 +44,14 @@
 </template>
 <script lang='ts' setup>
 import {c} from '~~/content/context';
+import {  useI18n, useRoute, useCookie, useLocaleHead , computed, ref, useDisplay} from '#imports';
 
 const {locale} = useI18n();
 const route = useRoute();
-const {t} = useI18n();
+// const {t} = useI18n();
+const {xs: isMobile} = useDisplay();
 
-const drawer = ref(true); // По умолчанию открыт на больших экранах
+const drawer = ref(!isMobile); // По умолчанию открыт на больших экранах
 const cookie_session_locale = useCookie(c.cookie.session.locale);
 cookie_session_locale.value = cookie_session_locale.value || locale.value;
 

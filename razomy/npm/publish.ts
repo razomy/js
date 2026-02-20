@@ -7,7 +7,8 @@ export async function publish(path_: string) {
   await execute('npm run build', path.resolve(path_));
   packageJson.createDist(path.resolve(path_));
   const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'))
-  console.log(`cd ${path.resolve(path_, 'dist')} && npm publish . --tag alpha --otp= && npm dist-tag add ${pkg.name}@${pkg.version} --otp= latest`)
+  const npmPublshKey = ''
+  console.log(`cd ${path.resolve(path_, 'dist')} && npm publish . --tag alpha --otp=${npmPublshKey} && npm dist-tag add ${pkg.name}@${pkg.version} latest --otp=${npmPublshKey}`)
 }
 
 // publish('../fs-file-format');
@@ -16,4 +17,5 @@ export async function publish(path_: string) {
 // publish('../audios');
 // publish('../schema');
 // publish('../schemas');
+// publish('../string-case');
 // publish('../nuxt');

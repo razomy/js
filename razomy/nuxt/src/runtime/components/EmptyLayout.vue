@@ -20,6 +20,7 @@
 </template>
 <script lang='ts' setup>
 import {c} from '~~/content/context';
+import {useCookie, useI18n, useLocaleHead, useRoute, computed} from '#imports';
 
 const {locale} = useI18n();
 
@@ -27,7 +28,7 @@ const cookie_session_locale = useCookie(c.cookie.session.locale);
 cookie_session_locale.value = cookie_session_locale.value || locale.value;
 
 const route = useRoute();
-const {t} = useI18n();
+// const {t} = useI18n();
 const head = useLocaleHead({
   dir: true,
   lang: true,
