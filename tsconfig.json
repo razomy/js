@@ -38,5 +38,9 @@
     "./razomy/vue",
     "./razomy/nuxt"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "./razomy/nuxt/tsconfig.json"
+    }
+  ]
 }

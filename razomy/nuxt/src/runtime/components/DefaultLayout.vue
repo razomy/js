@@ -13,10 +13,8 @@
     <Body>
     <v-app>
       <!-- Сайдбар -->
-      <rzm-sidebar v-model="drawer"></rzm-sidebar>
-      <slot  :modelValue="drawer"
-             :updateModelValue="(val) => drawer = val"
-             name="sidebar"></slot>
+      <rzm-sidebar></rzm-sidebar>
+      <slot name="sidebar"></slot>
       <v-main>
         <!--        <rzm-default-header>-->
         <!--          <template v-slot:start>-->
@@ -35,6 +33,7 @@
         <!-- Контент -->
         <slot/>
         <rzm-default-footer></rzm-default-footer>
+        <rzm-breadcrumbs :navigationRoot="c.navigationRoot"></rzm-breadcrumbs>
       </v-main>
 
     </v-app>
@@ -44,14 +43,13 @@
 </template>
 <script lang='ts' setup>
 import {c} from '~~/content/context';
-import {  useI18n, useRoute, useCookie, useLocaleHead , computed, ref, useDisplay} from '#imports';
+import {computed, useCookie, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme} from '#imports';
+import {watchEffect, onMounted} from 'vue'
 
 const {locale} = useI18n();
 const route = useRoute();
 // const {t} = useI18n();
-const {xs: isMobile} = useDisplay();
 
-const drawer = ref(!isMobile); // По умолчанию открыт на больших экранах
 const cookie_session_locale = useCookie(c.cookie.session.locale);
 cookie_session_locale.value = cookie_session_locale.value || locale.value;
 
@@ -63,4 +61,11 @@ const head = useLocaleHead({
 
 const title = computed(() => route.meta.title);
 
+const theme = useTheme()
+const isDark = usePreferredDark() // Автоматически следит за темой ОС
+onMounted(() => {
+  watchEffect(() => {
+    theme.change(isDark.value ? 'dark' : 'light');
+  })
+})
 </script>

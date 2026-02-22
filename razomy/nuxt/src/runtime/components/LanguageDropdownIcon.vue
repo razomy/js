@@ -1,9 +1,11 @@
 <template>
-  <v-menu class="w-100">
+  <v-menu :class="isVertical?'':'w-100'">
     <!-- The Button that opens the menu -->
     <template v-slot:activator="{ props }">
       <v-btn
+          align-tabs="center"
           v-bind="props"
+          :class="isVertical?'':'w-100'"
           variant="text"
       >
         <!-- Display current locale name or code -->
@@ -27,7 +29,11 @@
   </v-menu>
 </template>
 <script lang='ts' setup>
-import {  useI18n, useLocalePath, useSwitchLocalePath } from '#imports';
+import {useI18n, useLocalePath, useSwitchLocalePath} from '#imports';
+
+const {isVertical = false} = defineProps<{
+  isVertical?: boolean
+}>();
 
 const {locale, locales, setLocale} = useI18n();
 const switchLocalePath = useSwitchLocalePath();

@@ -1,16 +1,15 @@
 <template>
-  <v-menu location="bottom center" transition="slide-y-transition">
+  <v-menu
+      location="bottom center"
+      transition="slide-y-transition">
     <template v-slot:activator="{ props }">
-      <v-list class="pa-0" density="compact" v-bind="props">
-        <v-list-item class="flex flex-col text-center" density="compact">
-          <img :alt="t(currentCategory.labelText)" :src="currentCategory.iconName" class="d-flex mx-auto v-icon"/>
-          <div>{{ t(currentCategory.labelText) }}</div>
-          <!--          <rzm-icon class="d-flex mx-auto"></rzm-icon>-->
-          <!--            <v-icon name="mdi-chevron-down"></v-icon>-->
-
-          <!--          {{ currentCategoryLabel }}-->
-        </v-list-item>
-      </v-list>
+      <v-btn density="compact"
+             :class="isVertical?'':'text-center w-100'"
+             v-bind="props"
+             stacked>
+        <img :alt="t(currentNavigationNode.meta.labelText)" :src="currentNavigationNode.meta.iconName" class="d-flex mx-auto v-icon"/>
+        <div>{{ t(currentNavigationNode.meta.labelText) }}</div>
+      </v-btn>
     </template>
 
     <v-list class="rounded-lg" nav>
@@ -18,30 +17,32 @@
       <!--        {{ $t('nuxt.breadcrumb.select_category') }}-->
       <!--      </v-list-subheader>-->
 
-      <!-- Loop through the computed menuList -->
+      <!-- Loop through the computed navigationNodes -->
       <v-list-item
-          v-for="item in menuList"
-          :key="item.key"
-          :active="item === currentCategory"
-          :href="item.url"
-          :value="item.key"
+          v-for="navigationNode in navigationNodes"
+          :key="navigationNode.meta.key"
+          :active="navigationNode === currentNavigationNode"
+          :href="navigationNode.meta.url"
+          :value="navigationNode.meta.key"
           color="primary"
       >
-        <img :alt="item.labelText" :src="item.iconName" class="v-icon"/>
-        {{ t(item.labelText) }}
+        <img :alt="navigationNode.meta.labelText" :src="navigationNode.meta.iconName" class="v-icon"/>
+        {{ t(navigationNode.meta.labelText) }}
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
 <script lang="ts" setup>
 import {c} from '~~/content/context';
-import { computed, useI18n } from '#imports';
+import {computed, useI18n} from '#imports';
+
+const {isVertical = false} = defineProps<{
+  isVertical?: boolean
+}>();
 
 const {t} = useI18n();
 
-const currentCategory = c.products.find(i => i.key === 'io')!;
-const menuList = computed(() => {
-  return c.products;
-});
+const navigationNodes =  c.externalNavigationRoot.children;
+const currentNavigationNode = navigationNodes.find(i => i.meta.key === 'io')!;
 
 </script>

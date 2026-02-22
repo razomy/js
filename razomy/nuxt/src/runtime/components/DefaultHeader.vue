@@ -45,7 +45,7 @@ const router = useRouter();
 const localePath = useLocalePath();
 const {t} = useI18n();
 const isDrawerOpen = ref(false);
-const {xs: isMobile, sm: isTablet} = useDisplay();
+const {mobile: isMobile, sm: isTablet} = useDisplay();
 </script>
 <style>
 

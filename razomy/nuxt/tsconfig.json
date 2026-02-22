@@ -5,10 +5,29 @@
     "playground"
   ],
   "compilerOptions": {
-    "composite": true
-    // <--- REQUIRED
+    "composite": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "rootDir": ".",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "paths": {
+      // Tool for testing types
+//      "#imports": [
+//        "./src/mock.ts"
+//      ],
+//      "~~/content/context": [
+//        "./src/mock.ts"
+//      ],
+//      "@razomy/nuxt/runtime/functions": [
+//        "./src/runtime/functions/index.ts"
+//      ]
+    }
   },
   "include": [
-    "src/module.ts"
+    "src/module.ts",
+    "src/**/*.ts",
+    "src/**/*.vue"
   ]
 }

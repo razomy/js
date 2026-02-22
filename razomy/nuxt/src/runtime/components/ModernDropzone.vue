@@ -2,6 +2,7 @@
   <v-card
       class="mx-auto global-soft-card2 rounded-xl overflow-hidden"
       color="surface"
+      border="0"
       max-width="800"
       variant="elevated"
   >
@@ -17,7 +18,7 @@
       <div class="text-center">
         <v-progress-circular color="primary" indeterminate size="64" width="6"/>
         <h3 class="text-h6 mt-4 font-weight-bold text-white">
-          {{ isScanning ? 'Сканирование папок...' : t('nuxt.dropzone.converting') + '...' }}
+          {{ isScanning ? t('nuxt.dropzone.scanning_folders') + '...' : t('nuxt.dropzone.converting') + '...' }}
         </h3>
       </div>
     </v-overlay>
@@ -34,39 +35,45 @@
       <!-- Сценарий 1: Файлы еще не выбраны -->
       <template v-if="modelValue.length === 0">
         <div class="bg-primary-lighten-5 rounded-circle pa-6 mb-4 transition-swing">
-          <v-icon color="primary" icon="mdi-folder-multiple-outline" size="64"/>
+          <v-icon color="accent" icon="mdi-folder-multiple-outline" size="64"/>
         </div>
-        <h2 class="text-h5 font-weight-bold text-grey-darken-3 text-center">
-          {{ t('nuxt.dropzone.drop_title') || 'Перетащите файлы или папки' }}
+        <h2 class="text-h5 font-weight-bold text-darken-3 text-center">
+          {{ t('nuxt.dropzone.drop_title') }}
         </h2>
-        <p class="text-body-1 text-grey-darken-1 mt-2 mb-6 text-center">
-          Мы поддерживаем вложенные папки
+        <p class="text-body-1 text-darken-1 mt-2 mb-6 text-center">
+          {{ t('nuxt.dropzone.support_nested_folders') }}
         </p>
-
-        <div class="d-flex gap-4">
-          <!-- Кнопка выбора файлов -->
-          <v-btn
-              color="primary"
-              prepend-icon="mdi-file-document-multiple"
-              rounded="pill"
-              size="large"
-              variant="tonal"
-              @click="triggerFileInput"
-          >
-            Выбрать файлы
-          </v-btn>
-
-          <!-- Кнопка выбора папки -->
-          <v-btn
-              color="secondary"
-              prepend-icon="mdi-folder-open"
-              rounded="pill"
-              size="large"
-              variant="tonal"
-              @click="triggerFolderInput"
-          >
-            Выбрать папку
-          </v-btn>
+        <div>
+          <v-row>
+            <!-- Кнопка выбора файлов -->
+            <v-col :cols="12" :md="6">
+              <v-btn
+                  color="primary"
+                  class="w-100 w-md-initial"
+                  prepend-icon="mdi-file-document-multiple"
+                  rounded="pill"
+                  size="large"
+                  variant="tonal"
+                  @click="triggerFileInput"
+              >
+                {{ t('nuxt.dropzone.select_files') }}
+              </v-btn>
+            </v-col>
+            <!-- Кнопка выбора папки -->
+            <v-col :cols="12" :md="6">
+              <v-btn
+                  color="primary"
+                  class="w-100 w-md-initial"
+                  prepend-icon="mdi-folder-open"
+                  rounded="pill"
+                  size="large"
+                  variant="outlined"
+                  @click="triggerFolderInput"
+              >
+                {{ t('nuxt.dropzone.select_folder') }}
+              </v-btn>
+            </v-col>
+          </v-row>
         </div>
       </template>
 
@@ -75,13 +82,13 @@
         <!-- Заголовок списка -->
         <div class="d-flex justify-space-between align-center w-100 mb-4 px-2">
           <div>
-            <h4 class="text-h6 font-weight-bold">Выбрано файлов: {{ modelValue.length }}</h4>
+            <h4 class="text-h6 font-weight-bold">{{ t('nuxt.dropzone.selected_files') }}: {{ modelValue.length }}</h4>
             <span class="text-caption text-medium-emphasis">
-              Общий размер: {{ totalSize }}
+              {{ t('nuxt.dropzone.total_size') }}: {{ totalSize }}
             </span>
           </div>
           <v-btn color="error" size="small" variant="text" @click="clearAll">
-            Очистить все
+            {{ t('nuxt.dropzone.clear_all') }}
           </v-btn>
         </div>
 
@@ -95,11 +102,11 @@
               lines="two"
           >
             <template v-slot:prepend>
-              <v-icon color="primary" icon="mdi-file-outline"/>
+              <v-icon color="accent" icon="mdi-file-outline"/>
             </template>
 
             <template v-slot:append>
-              <span class="text-caption mr-4 text-grey">{{ formatSize(file.size) }}</span>
+              <span class="text-caption mr-4">{{ formatSize(file.size) }}</span>
               <v-btn color="error" icon="mdi-close" size="small" variant="text" @click.stop="removeFile(index)"/>
             </template>
           </v-list-item>
@@ -116,7 +123,7 @@
               @click="triggerFileInput"
           >
             <v-icon icon="mdi-plus" start/>
-            Добавить файлы
+            {{ t('nuxt.dropzone.add_files') }}
           </v-btn>
 
           <!-- Конвертировать -->
@@ -124,12 +131,12 @@
               class="flex-grow-1 text-subtitle-1 font-weight-bold"
               color="primary"
               height="50"
+              prepend-icon="mdi-auto-fix"
               rounded="xl"
               variant="elevated"
               @click="$emit('convert')"
           >
-            {{ t('nuxt.dropzone.convert_now') }}
-            <v-icon end icon="mdi-arrow-right"/>
+            {{ t('nuxt.dropzone.convert') }}
           </v-btn>
         </div>
       </template>
@@ -325,9 +332,7 @@ const clearAll = () => {
 }
 
 .dropzone-area.has-files {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(var(--v-theme-border), 0.5);
+  border-width: 0;
   justify-content: flex-start !important; /* Чтобы список начинался сверху */
 }
 

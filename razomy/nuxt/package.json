@@ -47,10 +47,21 @@
   "name": "@razomy/nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.1",
+    "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/robots": "^5.7.0",
+    "@nuxtjs/sitemap": "^7.6.0",
     "@razomy/schema": "0.0.1-alpha.4",
     "@razomy/schemas": "0.0.1-alpha.4",
+    "@vite-pwa/nuxt": "^1.1.1",
+    "@vueuse/core": "^14.2.0",
+    "@vueuse/nuxt": "^14.2.0",
+    "nuxt": "^4.3.0",
+    "nuxt-gtag": "^4.1.0",
+    "vue": "^3.5.27",
     "vue-i18n": "11.2.8",
-    "vuetify": "3.11.8"
+    "vue-router": "^5.0.1",
+    "vuetify": "3.11.8",
+    "vuetify-nuxt-module": "^0.19.5"
   },
   "publishConfig": {
     "access": "public"
@@ -67,5 +78,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.0.1-alpha.6"
+  "version": "0.0.1-alpha.7"
 }

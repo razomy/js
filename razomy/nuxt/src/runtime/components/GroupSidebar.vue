@@ -4,65 +4,70 @@
       :width="90"
       app
       border="1"
-      class="bg-surface-light sidebar"
+      class="bg-background sidebar"
       permanent
   >
     <template v-slot:prepend>
       <rzm-navbar-products/>
-      <v-divider></v-divider>
+      <v-divider class="mx-2"></v-divider>
       <rzm-language-dropdown-icon></rzm-language-dropdown-icon>
     </template>
     <template v-slot:default>
       <v-tabs direction="vertical">
-        <v-tab v-for="category in categories0Formats"
-               :key="category.key"
-               :active="category.key === categorySlug"
-               :to="localePath(`/${category.key}`)"
-               :value="category.key"
+        <v-tab v-for="navigationNode in navigationNodes1Formats"
+               :key="navigationNode.meta.key"
+               :active="navigationNode.meta.key === routeNodeKey"
+               :to="localePath(navigationNode.meta.url)"
+               :value="navigationNode.meta.key"
                align-tabs="center"
                class="w-full justify-center px-0 py-8"
                color="secondary"
                stacked>
-          <v-icon :icon="category.iconName" size="18"></v-icon>
-          {{ t(category.labelText) }}
+          <v-icon :icon="navigationNode.meta.iconName" size="18"></v-icon>
+          {{ t(navigationNode.meta.labelText) }}
         </v-tab>
       </v-tabs>
     </template>
   </v-navigation-drawer>
   <v-bottom-navigation
       v-if="isMobile"
-      class="overflow-x-auto"
+      class="overflow-x-auto w-100"
       color="secondary"
       horizontal
   >
-    <v-btn v-for="category in categories0Formats"
-           :key="category.key"
-           :active="category.key === categorySlug"
-           :to="localePath(`/${category.key}`)"
-           :value="category.key"
+    <rzm-navbar-products :isVertical="true"/>
+
+    <v-divider vertical class="my-2"></v-divider>
+
+    <rzm-language-dropdown-icon :isVertical="true"></rzm-language-dropdown-icon>
+
+    <v-btn v-for="navigationNode in navigationNodes1Formats"
+           :key="navigationNode.meta.key"
+           :active="navigationNode.meta.key === routeNodeKey"
+           :to="localePath(navigationNode.meta.url)"
+           :value="navigationNode.meta.key"
            align-tabs="center"
            color="secondary"
            stacked>
-      <v-icon :icon="category.iconName" size="18"></v-icon>
-      {{ t(category.labelText) }}
+      <v-icon :icon="navigationNode.meta.iconName" size="18"></v-icon>
+      {{ t(navigationNode.meta.labelText) }}
     </v-btn>
   </v-bottom-navigation>
 </template>
 
 <script lang="ts" setup>
-import { useDisplay, useI18n, computed, ref, useLocalePath } from '#imports';
+import {computed, ref, useDisplay, useI18n, useLocalePath} from '#imports';
 import {c} from '~~/content/context';
 
-const {xs: isMobile} = useDisplay();
+const {xs} = useDisplay();
+const isMobile = computed(() => xs.value);
 
 const {t} = useI18n();
 const localePath = useLocalePath();
 
-const categorySlug = ref<string>('');
+const routeNodeKey = ref<string>('');
 
-const categories0Formats = computed(() => {
-  return c.categories;
-});
+const navigationNodes1Formats = c.navigationRoot.children;
 
 </script>
 <style scoped>

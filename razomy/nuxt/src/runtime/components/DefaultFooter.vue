@@ -2,25 +2,25 @@
   <v-container class='my-12'>
     <v-footer class='rounded-xl py-6'>
       <v-row justify='center' no-gutters>
-        <template v-for='link in c.footerLinks'>
+        <template v-for='navigationNodes in c.footerNavigationNodes'>
           <v-btn
-              v-if="link.url.startsWith('https://')"
-              :href='link.url'
+              v-if="navigationNodes.meta.url.startsWith('https://')"
+              :href='navigationNodes.meta.url'
               class='mx-2'
               rounded='xl'
               variant='text'
           >
-            {{ t(link.text) }}
+            {{ t(navigationNodes.meta.labelText) }}
             <v-icon icon="mdi-open-in-new" size="16"></v-icon>
           </v-btn>
           <v-btn
               v-else
-              :to='localePath(link.url)'
+              :to='localePath(navigationNodes.meta.url)'
               class='mx-2'
               rounded='xl'
               variant='text'
           >
-            {{ t(link.text) }}
+            {{ t(navigationNodes.meta.labelText) }}
           </v-btn>
         </template>
         <rzm-language-selector></rzm-language-selector>
@@ -34,7 +34,7 @@
         </v-btn>
 
         <v-col class='text-center' cols='12'>
-          2023-{{ new Date().getFullYear() }} — <span>{{ t('nuxt.footer.company-name') }}</span>
+          <span>{{ t('nuxt.footer.start_year') }}</span>-{{ new Date().getFullYear() }} — <span>{{ t('nuxt.footer.company_name') }}</span>
         </v-col>
       </v-row>
     </v-footer>

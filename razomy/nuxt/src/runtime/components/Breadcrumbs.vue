@@ -1,155 +1,148 @@
 <template>
-  <!--  <div class="d-flex align-center flex-wrap justify-start">-->
-  <!--    <slot></slot>-->
-  <!--    &lt;!&ndash; 1. HOME &ndash;&gt;-->
-  <!--    <v-icon-btn-->
-  <!--        :to="localePath('/')"-->
-  <!--        density="compact"-->
-  <!--    >-->
-  <!--      <v-icon icon="mdi-home"></v-icon>-->
-  <!--    </v-icon-btn>-->
+  <div class="d-flex align-center flex-wrap justify-start gap-1">
+    <slot></slot>
 
-  <!--    <v-icon icon="mdi-chevron-right" opacity="50" size="small"/>-->
-  <!--    -->
-  <!--    &lt;!&ndash; 2. CATEGORY DROPDOWN &ndash;&gt;-->
-  <!--    <v-menu location="bottom center" transition="slide-y-transition">-->
-  <!--      <template v-slot:activator="{ props }">-->
-  <!--        <v-btn-->
-  <!--            v-if="groupSlug"-->
-  <!--            v-bind="props"-->
-  <!--            variant="text"-->
-  <!--            density="compact"-->
-  <!--            class="text-capitalize px-2"-->
-  <!--            append-icon="mdi-chevron-down"-->
-  <!--        >-->
-  <!--          {{ groups[groupSlug]?.labelKey }}-->
-  <!--        </v-btn>-->
-  <!--        <v-icon-btn v-bind="props" v-else icon="mdi-plus"></v-icon-btn>-->
-  <!--      </template>-->
-  <!--      -->
-  <!--      <v-list density="compact" nav class="rounded-lg" elevation="4">-->
-  <!--        <v-list-subheader class="  text-caption">-->
-  <!--          {{ $t('nuxt.breadcrumb.select_category') }}-->
-  <!--        </v-list-subheader>-->
-  <!--        <v-list-item-->
-  <!--            v-for="groupKey in categories"-->
-  <!--            :key="groupKey"-->
-  <!--            :title="$t(groups[groupKey]?.labelKey || groupKey)"-->
-  <!--            :prepend-icon="groups[groupKey]?.icon"-->
-  <!--            :to="localePath(`/${groupKey}`)"-->
-  <!--            :active="groupKey === groupSlug"-->
-  <!--            color="primary"-->
-  <!--        />-->
-  <!--      </v-list>-->
-  <!--    </v-menu>-->
+    <v-btn
+        :to="localePath('/')"
+        density="compact"
+        icon="mdi-home"
+        variant="text"
+    />
 
-  <!--    &lt;!&ndash; 3. SOURCE DROPDOWN (If category selected) &ndash;&gt;-->
-  <!--    <template v-if="groupSlug">-->
-  <!--      <v-icon icon="mdi-chevron-right" opacity="50" size="small"/>-->
+    <!-- 2. DYNAMIC BREADCRUMB LEVELS -->
+    <template v-for="(level, index) in breadcrumbLevels" :key="index">
 
-  <!--      <v-menu location="bottom center" transition="slide-y-transition" max-height="300">-->
-  <!--        <template v-slot:activator="{ props }">-->
-  <!--          <v-btn-->
-  <!--              v-if="inputSlug"-->
-  <!--              v-bind="props"-->
-  <!--              density="compact"-->
-  <!--              variant="text"-->
-  <!--              class=" px-2"-->
-  <!--              append-icon="mdi-chevron-down"-->
-  <!--          >-->
-  <!--            .{{ inputSlug }}-->
-  <!--          </v-btn>-->
-  <!--          <v-icon-btn v-bind="props" v-else icon="mdi-plus"></v-icon-btn>-->
-  <!--        </template>-->
+      <!-- Separator -->
+      <v-icon icon="mdi-chevron-right" opacity="50" size="small" class="mx-1"/>
 
-  <!--        <v-list density="compact" nav class="rounded-lg elevation-4">-->
-  <!--          <v-list-subheader class="  text-caption">-->
-  <!--            {{ $t('nuxt.breadcrumb.select_source') }}-->
-  <!--          </v-list-subheader>-->
+      <!-- MENU 1: SWITCH CURRENT (Route Exists) -->
+      <v-menu v-if="level.selectedNavigationNode"
+              location="bottom center"
+              transition="slide-y-transition"
+              max-height="350">
+        <template v-slot:activator="{ props }">
+          <v-btn
+              v-bind="props"
+              variant="text"
+              density="compact"
+              class="text-none px-2"
+              append-icon="mdi-chevron-down"
+          >
+            {{ t(level.selectedNavigationNode.meta.labelText) }}
+          </v-btn>
+        </template>
 
-  <!--          <v-list-item-->
-  <!--              v-for="inputKey in formatsInCategory"-->
-  <!--              :key="inputKey"-->
-  <!--              :title="`.${inputKey.toUpperCase()}`"-->
-  <!--              :to="localePath(`/${groupSlug}/${inputKey}`)"-->
-  <!--              :active="inputKey === inputSlug"-->
-  <!--              color="primary"-->
-  <!--          />-->
-  <!--        </v-list>-->
-  <!--      </v-menu>-->
-  <!--    </template>-->
+        <!-- Dropdown List to Switch to a Sibling NavigationNode -->
+        <v-list density="compact" nav class="rounded-lg elevation-4 min-w-150">
+          <v-list-item
+              v-for="navigationNode in level.navigationNodes"
+              :key="navigationNode.meta.key"
+              :title="t(navigationNode.meta.labelText)"
+              :prepend-icon="navigationNode.meta.iconName"
+              :to="localePath(navigationNode.meta.url)"
+              :active="level.selectedNavigationNode.meta.key === navigationNode.meta.key"
+              color="primary"
+          />
+        </v-list>
+      </v-menu>
 
-  <!--    &lt;!&ndash; 4. TARGET DROPDOWN (If source selected) &ndash;&gt;-->
-  <!--    <template v-if="inputSlug">-->
-  <!--      <v-icon icon="mdi-chevron-right" opacity="50" size="small"/>-->
+      <!-- MENU 2: ADD CHILD (Route Not Exists / PLUS Button) -->
+      <v-menu v-else location="bottom center" transition="slide-y-transition" max-height="350">
+        <template v-slot:activator="{ props }">
+          <v-btn
+              v-bind="props"
+              variant="text"
+              color="primary"
+              density="comfortable"
+              icon="mdi-plus"
+              size="small"
+              class="mx-1"
+          />
+        </template>
 
-  <!--      <v-menu location="bottom center" transition="slide-y-transition">-->
-  <!--        <template v-slot:activator="{ props }">-->
-  <!--          <v-btn-->
-  <!--              v-if="outputSlug"-->
-  <!--              v-bind="props"-->
-  <!--              density="compact"-->
-  <!--              variant="text"-->
-  <!--              class="px-2"-->
-  <!--              append-icon="mdi-chevron-down"-->
-  <!--          >-->
-  <!--            {{ outputSlug }}-->
-  <!--          </v-btn>-->
-  <!--          <v-icon-btn v-bind="props" v-else icon="mdi-plus"></v-icon-btn>-->
+        <!-- Dropdown List of Child Categories to Add Sub-Route -->
+        <v-list density="compact" nav class="rounded-lg elevation-4 min-w-150">
+          <v-list-item
+              v-for="navigationNode in level.navigationNodes"
+              :key="navigationNode.meta.key"
+              :title="t(navigationNode.meta.labelText)"
+              :prepend-icon="navigationNode.meta.iconName"
+              :to="localePath(navigationNode.meta.url)"
+              color="primary"
+          />
+        </v-list>
+      </v-menu>
 
-  <!--        </template>-->
-  <!--        <v-list density="compact" nav class="rounded-lg elevation-4">-->
-  <!--          <v-list-subheader class="  text-caption">-->
-  <!--            {{ $t('nuxt.breadcrumb.select_target') }}-->
-  <!--          </v-list-subheader>-->
-
-  <!--          <v-list-item-->
-  <!--              v-for="outputKey in availableTargets"-->
-  <!--              :key="outputKey"-->
-  <!--              :title="`To ${outputKey.toUpperCase()}`"-->
-  <!--              :to="localePath(`/${groupSlug}/${inputSlug}/${outputKey}`)"-->
-  <!--              :active="outputKey === outputSlug"-->
-  <!--              prepend-icon="mdi-arrow-right"-->
-  <!--              color="primary"-->
-  <!--          />-->
-  <!--        </v-list>-->
-  <!--      </v-menu>-->
-  <!--    </template>-->
-
-  <!--  </div>-->
+    </template>
+  </div>
 </template>
 
-<!--<script setup lang="ts">-->
-<!--import {EXT_TO_EXTS_MAP, groups, EXT_TO_GROUP_MAP} from '~~/content/context';-->
+<script setup lang="ts">
+import {computed} from 'vue';
+import {useI18n, useLocalePath, useRoute} from '#imports';
+import type {NavigationNode} from '@razomy/nuxt/runtime/functions';
 
-<!--const route = useRoute();-->
-<!--const localePath = useLocalePath();-->
-<!--const {t} = useI18n();-->
+const {navigationRoot} = defineProps<{
+  navigationRoot: NavigationNode
+}>();
 
-<!--// 1. Текущие параметры из URL-->
-<!--const groupSlug = computed(() => (route.params.group as string)?.toLowerCase());-->
-<!--const inputSlug = computed(() => (route.params.input as string)?.toLowerCase());-->
-<!--const outputSlug = computed(() => (route.params.output as string)?.toLowerCase());-->
+const route = useRoute();
+const localePath = useLocalePath();
+const {t} = useI18n();
 
-<!--// 3. Списки для меню-->
-<!--const categories = computed(() => Object.keys(groups));-->
+/**
+ * Normalizes paths by removing trailing slashes to ensure accurate comparisons
+ */
+const normalizePath = (path: string) => path.replace(/\/$/, '');
 
-<!--const formatsInCategory = computed(() => {-->
-<!--  // Фильтруем все форматы, которые принадлежат текущей категории-->
-<!--  return Object.keys(EXT_TO_EXTS_MAP).filter(fmt =>-->
-<!--      (EXT_TO_GROUP_MAP[fmt] || 'other') === groupSlug.value-->
-<!--  );-->
-<!--});-->
 
-<!--const availableTargets = computed(() => {-->
-<!--  if (!inputSlug.value) return [];-->
-<!--  return EXT_TO_EXTS_MAP[inputSlug.value as keyof typeof EXT_TO_EXTS_MAP] || [];-->
-<!--});-->
+/**
+ * Dynamically traverses the tree and calculates breadcrumb levels
+ */
+const breadcrumbLevels = computed(() => {
+  const levels: {
+    navigationNodes: NavigationNode[],
+    selectedNavigationNode: NavigationNode | null
+  }[] = [];
 
-<!--</script>-->
+  let currentNavigationNodes = [navigationRoot];
+  const currentPath = normalizePath(route.path);
 
-<!--<style scoped>-->
-<!--.gap-1 {-->
-<!--  gap: 4px;-->
-<!--}-->
-<!--</style>-->
+// debugger;
+  // Traverse down as long as there are child navigationNodes available
+  while (currentNavigationNodes.length > 0) {
+    // 1. Try to find a matched route in Categories
+    let matchedItem = currentNavigationNodes.find(opt => {
+      const optPath = normalizePath(localePath(opt.meta.url));
+      return currentPath === optPath || currentPath.startsWith(optPath + '/');
+    });
+
+    // 2. Push the level state to the UI array
+    levels.push({
+      navigationNodes: currentNavigationNodes,
+      selectedNavigationNode: matchedItem || null
+    });
+
+    // 3. If we found a match, dig deeper into its children for the next iteration
+    if (matchedItem) {
+      currentNavigationNodes = matchedItem.children;
+    } else {
+      // Reached the end of the matched URL.
+      // The currently pushed level has `selectedNavigationNode: null` so it will render the PLUS button (MENU 2).
+      break;
+    }
+  }
+
+  return levels;
+});
+</script>
+
+<style scoped>
+.gap-1 {
+  gap: 4px;
+}
+
+.min-w-150 {
+  min-width: 150px;
+}
+</style>

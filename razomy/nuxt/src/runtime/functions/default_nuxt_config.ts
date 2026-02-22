@@ -1,27 +1,9 @@
 import type {NuxtConfig} from 'nuxt/config';
 import {locales} from './locales';
-
-export interface RazomyVueNuxtConfig {
-  url: string,
-  i18n: {
-    en: {
-      nuxt: {
-        product: {
-          name: string,
-          description: string
-        }
-      }
-    }
-  },
-  cookie: {
-    session: {
-      locale: string
-    }
-  }
-}
+import {type RzmNuxtConfig} from './interfaces';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
+export const defaultNuxtConfig = (c: RzmNuxtConfig) => ({
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
   typescript: {
@@ -75,35 +57,26 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
           elevation: 0,
         },
       },
-
-      // 2. THEME COLORS: Soft, airy palette
       theme: {
-        defaultTheme: 'system',
+        defaultTheme: 'dark',
         themes: {
           light: {
             dark: false,
             colors: {
-              // Your Brand Colors (slightly softened)
-              primary: '#FCB60D',
-              secondary: '#5243C2',
-
-              // THE "SOFT" UI BASE
-              // background: '#F5F5F7', // The "Apple Store" light gray background
-              surface: '#FFFFFF',    // Pure white for cards/elements
-              'surface-light': '#FFFFFF',    // Pure white for cards/elements
-              // 'surface-light': '#F5F5F7',    // Pure white for cards/elements
-
-              // Text colors for better contrast without harsh black
-              'on-background': '#1D1D1F', // Dark grey (Apple style) instead of #000
-              'on-surface': '#1D1D1F',
+              primary: '#5aa55a',
+              secondary: '#004EC2',
+              accent: '#F5AD49',
+              background: '#F9F9F9',
+              surface: '#FFFFFF',
             },
           },
           dark: {
             dark: true,
             colors: {
-              primary: '#FCB60D',
-              secondary: '#6D59FF',
-              background: '#121212', // Standard dark
+              primary: '#5aa55a',
+              secondary: '#005CE6',
+              accent: '#F5AD49',
+              background: '#121212',
               surface: '#1E1E1E',
             },
           },
@@ -116,7 +89,6 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     locales,
     detectBrowserLanguage: {
       useCookie: true,
-      alwaysRedirect: true,
       cookieKey: c.cookie.session.locale,
     },
     defaultLocale: 'en',
@@ -124,12 +96,10 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     baseUrl: c.url,
   },
   sitemap: {
-    xsl: false,
+    // xsl: false,
     xslTips: false,
-    // TODO: not working with google search
-    sitemaps: false,
     sources: [
-      '/api/__sitemap__/urls',
+      '/api/__sitemap__/urls'
     ]
   },
   site: {
@@ -144,6 +114,14 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     //   routes: c.routes
     // },
   },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: c.i18n.en.nuxt.product.name,
+      short_name: c.i18n.en.nuxt.product.name,
+      theme_color: '#1E1E1E'
+    },
+  },
   modules: [
     ['nuxt-gtag', {id: process.env.NUXT_PUBLIC_GTAG_ID}],
     '@nuxtjs/sitemap',
@@ -152,5 +130,6 @@ export const defaultNuxtConfig = (c: RazomyVueNuxtConfig): NuxtConfig => ({
     'vuetify-nuxt-module',
     '@nuxtjs/robots',
     '@razomy/nuxt',
+    '@vite-pwa/nuxt'
   ],
-} as any as NuxtConfig)
+} as const satisfies NuxtConfig & any);
