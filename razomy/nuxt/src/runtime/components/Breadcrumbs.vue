@@ -13,60 +13,60 @@
     <template v-for="(level, index) in breadcrumbLevels" :key="index">
 
       <!-- Separator -->
-      <v-icon icon="mdi-chevron-right" opacity="50" size="small" class="mx-1"/>
+      <v-icon class="mx-1" icon="mdi-chevron-right" opacity="50" size="small"/>
 
       <!-- MENU 1: SWITCH CURRENT (Route Exists) -->
       <v-menu v-if="level.selectedNavigationNode"
               location="bottom center"
-              transition="slide-y-transition"
-              max-height="350">
+              max-height="350"
+              transition="slide-y-transition">
         <template v-slot:activator="{ props }">
           <v-btn
+              append-icon="mdi-chevron-down"
+              class="text-none px-2"
+              density="compact"
               v-bind="props"
               variant="text"
-              density="compact"
-              class="text-none px-2"
-              append-icon="mdi-chevron-down"
           >
             {{ t(level.selectedNavigationNode.meta.labelText) }}
           </v-btn>
         </template>
 
         <!-- Dropdown List to Switch to a Sibling NavigationNode -->
-        <v-list density="compact" nav class="rounded-lg elevation-4 min-w-150">
+        <v-list class="rounded-lg elevation-4 min-w-150" density="compact" nav>
           <v-list-item
               v-for="navigationNode in level.navigationNodes"
               :key="navigationNode.meta.key"
-              :title="t(navigationNode.meta.labelText)"
-              :prepend-icon="navigationNode.meta.iconName"
-              :to="localePath(navigationNode.meta.url)"
               :active="level.selectedNavigationNode.meta.key === navigationNode.meta.key"
+              :prepend-icon="navigationNode.meta.iconName"
+              :title="t(navigationNode.meta.labelText)"
+              :to="localePath(navigationNode.meta.url)"
               color="primary"
           />
         </v-list>
       </v-menu>
 
       <!-- MENU 2: ADD CHILD (Route Not Exists / PLUS Button) -->
-      <v-menu v-else location="bottom center" transition="slide-y-transition" max-height="350">
+      <v-menu v-else location="bottom center" max-height="350" transition="slide-y-transition">
         <template v-slot:activator="{ props }">
           <v-btn
-              v-bind="props"
-              variant="text"
+              class="mx-1"
               color="primary"
               density="comfortable"
               icon="mdi-plus"
               size="small"
-              class="mx-1"
+              v-bind="props"
+              variant="text"
           />
         </template>
 
         <!-- Dropdown List of Child Categories to Add Sub-Route -->
-        <v-list density="compact" nav class="rounded-lg elevation-4 min-w-150">
+        <v-list class="rounded-lg elevation-4 min-w-150" density="compact" nav>
           <v-list-item
               v-for="navigationNode in level.navigationNodes"
               :key="navigationNode.meta.key"
-              :title="t(navigationNode.meta.labelText)"
               :prepend-icon="navigationNode.meta.iconName"
+              :title="t(navigationNode.meta.labelText)"
               :to="localePath(navigationNode.meta.url)"
               color="primary"
           />
@@ -77,7 +77,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {computed} from 'vue';
 import {useI18n, useLocalePath, useRoute} from '#imports';
 import type {NavigationNode} from '@razomy/nuxt/runtime/functions';

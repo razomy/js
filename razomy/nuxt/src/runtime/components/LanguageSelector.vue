@@ -17,7 +17,7 @@
   </div>
 </template>
 <script lang='ts' setup>
-import {  useI18n, useLocalePath, useSwitchLocalePath } from '#imports';
+import {useI18n, useLocalePath, useSwitchLocalePath} from '#imports';
 
 const {locale, locales, setLocale} = useI18n();
 const switchLocalePath = useSwitchLocalePath();

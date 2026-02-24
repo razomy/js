@@ -37,7 +37,7 @@
   >
     <rzm-navbar-products :isVertical="true"/>
 
-    <v-divider vertical class="my-2"></v-divider>
+    <v-divider class="my-2" vertical></v-divider>
 
     <rzm-language-dropdown-icon :isVertical="true"></rzm-language-dropdown-icon>
 

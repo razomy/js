@@ -4,12 +4,12 @@
     <p v-else>
       {{ error }}
     </p>
-    <v-btn :to="localePath('/')" color='primary' variant='elevated'>{{t('nuxt.error.404.back_btn')}}</v-btn>
+    <v-btn :to="localePath('/')" color='primary' variant='elevated'>{{ t('nuxt.error.404.back_btn') }}</v-btn>
   </div>
   <!--  </v-parallax>-->
 </template>
 <script lang='ts' setup>
-import { useI18n, useLocalePath } from '#imports';
+import {useI18n, useLocalePath} from '#imports';
 
 const {error} = defineProps<{
   error: { statusCode: number },

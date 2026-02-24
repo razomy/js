@@ -3,14 +3,17 @@
  * @param text The string to check.
  * @returns True if the string is lower case, false otherwise.
  * @example
- * // => true
- * isLowerCase('razomy');
+ * ```ts
+ * isLowerCase('razomy'); // => true
+ * ```
  * @example
- * // => false
- * isLowerCase('Razomy');
+ * ```ts
+ * isLowerCase('Razomy'); // => false
+ * ```
  * @example
- * // => true
- * isLowerCase('string with 123');
+ * ```ts
+ * isLowerCase('string with 123'); // => true
+ * ```
  */
 export function isLowerCase(text: string): boolean {
   return text === text.toLowerCase();

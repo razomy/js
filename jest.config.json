@@ -4,6 +4,14 @@
   "verbose": false,
   "roots": ["razomy"],
   "moduleNameMapper": {
-    "^razomy/(.*)": "<rootDir>/razomy/$1"
+    "^@razomy/(.*)": "<rootDir>/razomy/$1"
+  },
+  "transform": {
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.spec.json"
+      }
+    ]
   }
 }

@@ -1,16 +1,19 @@
 /**
  * Convert string to title case.
- * @param {string} text The input string.
- * @returns {string} The title cased string.
+ * @param text The input string.
+ * @returns The title cased string.
  * @example
- * // => 'Foo Bar'
- * titleCase('foo bar');
+ * ```ts
+ * titleCase('foo bar'); // => 'Foo Bar'
+ * ```
  * @example
- * // => 'Hello World'
- * titleCase('HELLO WORLD');
+ * ```ts
+ * titleCase('HELLO WORLD'); // => 'Hello World'
+ * ```
  * @example
- * // => 'One-two'
- * titleCase('one-two');
+ * ```ts
+ * titleCase('one-two'); // => 'One-two'
+ * ```
  */
 export function titleCase(text: string): string {
   return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());

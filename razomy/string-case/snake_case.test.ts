@@ -1,7 +1,7 @@
 import {snakeCase} from '@razomy/string-case';
 
 describe('string', () => {
-  describe('snake_case_string', () => {
+  describe('snake_case', () => {
 
     // 1. Standard casing styles
     it('converts camelCase', () => {

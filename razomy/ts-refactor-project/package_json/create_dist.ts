@@ -84,10 +84,10 @@ export function createDist(path_) {
   if (pkg.exports) pkg.exports = mD(pkg.exports, 'exports');
   if (pkg.typesVersions) pkg.typesVersions = mDt(pkg.typesVersions, 'typesVersions');
 
-  let res  = JSON.stringify(pkg, null, 2);
+  let res = JSON.stringify(pkg, null, 2);
   // WORKAROUND: nuxt not comple child import.ts
   const isNuxt = pkg.name.includes('nuxt');
-  if(isNuxt){
+  if (isNuxt) {
     res = res.replaceAll('/index.d.mts', '/index.d.ts')
       .replaceAll('/index.mjs', '/index.js')
   }

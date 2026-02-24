@@ -34,14 +34,15 @@
         </v-btn>
 
         <v-col class='text-center' cols='12'>
-          <span>{{ t('nuxt.footer.start_year') }}</span>-{{ new Date().getFullYear() }} — <span>{{ t('nuxt.footer.company_name') }}</span>
+          <span>{{ t('nuxt.footer.start_year') }}</span>-{{ new Date().getFullYear() }} —
+          <span>{{ t('nuxt.footer.company_name') }}</span>
         </v-col>
       </v-row>
     </v-footer>
   </v-container>
 </template>
 <script lang='ts' setup>
-import {  useI18n, useLocalePath } from '#imports';
+import {useI18n, useLocalePath} from '#imports';
 import {c} from '~~/content/context';
 
 const localePath = useLocalePath();

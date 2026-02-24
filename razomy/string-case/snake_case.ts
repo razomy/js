@@ -3,14 +3,17 @@
  * @param string The string to convert.
  * @returns The snake cased string.
  * @example
- * // => 'foo_bar'
- * snakeCase('fooBar');
+ * ```ts
+ * snakeCase('fooBar'); // => 'foo_bar'
+ * ```
  * @example
- * // => 'foo_bar'
- * snakeCase('Foo Bar');
+ * ```ts
+ * snakeCase('Foo Bar'); // => 'foo_bar'
+ * ```
  * @example
- * // => 'foo_bar'
- * snakeCase('FOO-BAR');
+ * ```ts
+ * snakeCase('FOO-BAR'); // => 'foo_bar'
+ * ```
  */
 export function snakeCase(string: string): string {
   return string

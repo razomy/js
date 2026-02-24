@@ -3,14 +3,17 @@
  * @param input - The string to convert.
  * @returns The lower cased string.
  * @example
- * // => 'razomy'
- * lowerCase('RAZOMY');
+ * ```ts
+ * lowerCase('RAZOMY'); // => 'razomy'
+ * ```
  * @example
- * // => 'test'
- * lowerCase('Test');
+ * ```ts
+ * lowerCase('Test'); // => 'test'
+ * ```
  * @example
- * // => 'foo bar'
- * lowerCase('FOO Bar');
+ * ```ts
+ * lowerCase('FOO Bar'); // => 'foo bar'
+ * ```
  */
 export function lowerCase(input: string): string {
   return input.toLowerCase();

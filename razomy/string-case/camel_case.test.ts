@@ -1,7 +1,7 @@
 import {camelCase} from '@razomy/string-case';
 
 describe('string', () => {
-  describe('camel_case_string', () => {
+  describe('camel_case', () => {
 
     // 1. Standard casing styles
     it('keeps camelCase', () => {

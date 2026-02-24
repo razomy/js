@@ -3,14 +3,17 @@
  * @param text The input string.
  * @returns The upper cased string.
  * @example
- * // => 'TEST'
- * upperCase('test');
+ * ```ts
+ * upperCase('test'); // => 'TEST'
+ * ```
  * @example
- * // => 'HELLO WORLD'
- * upperCase('Hello World');
+ * ```ts
+ * upperCase('Hello World'); // => 'HELLO WORLD'
+ * ```
  * @example
- * // => 'RAZOMY'
- * upperCase('razomy');
+ * ```ts
+ * upperCase('razomy'); // => 'RAZOMY'
+ * ```
  */
 export function upperCase(text: string): string {
   return text.toUpperCase();

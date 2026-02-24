@@ -1,18 +1,21 @@
 /**
  * Get abbreviation from string.
- * @param {string} fullName The full name string.
- * @returns {string} The abbreviation joined by hyphens.
+ * @param fullName The full name string.
+ * @returns The abbreviation joined by hyphens.
  * @example
- * // => 'HW'
- * getAbriviation('Hello World');
+ * ```ts
+ * getAbbreviation('Hello World'); // => 'HW'
+ * ```
  * @example
- * // => 'npm'
- * getAbbreviation('node package manager', false);
+ * ```ts
+ * getAbbreviation('node package manager'); // => 'npm'
+ * ```
  * @example
- * // => 'ROM'
+ * ```ts
  * getAbbreviation('Read-Only_Memory'); // => 'ROM'
+ * ```
  */
-export function abriviation(fullName: string): string {
+export function getAbbreviation(fullName: string): string {
   // Split by spaces, hyphens, or underscores, filter out empty strings
   const words = fullName.split(/[\s_-]+/).filter(Boolean);
 

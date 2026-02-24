@@ -44,7 +44,7 @@
 <script lang='ts' setup>
 import {c} from '~~/content/context';
 import {computed, useCookie, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme} from '#imports';
-import {watchEffect, onMounted} from 'vue'
+import {onMounted, watchEffect} from 'vue'
 
 const {locale} = useI18n();
 const route = useRoute();

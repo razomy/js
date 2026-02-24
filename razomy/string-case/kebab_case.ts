@@ -1,16 +1,19 @@
 /**
  * Convert string to kebab case.
- * @param {string} text The text to convert.
- * @returns {string} The kebab cased string.
+ * @param text The text to convert.
+ * @returns The kebab cased string.
  * @example
- * // => 'foo-bar'
- * kebabCase('fooBar');
+ * ```ts
+ * kebabCase('fooBar'); // => 'foo-bar'
+ * ```
  * @example
- * // => 'foo-bar'
- * kebabCase('Foo Bar');
+ * ```ts
+ * kebabCase('Foo Bar'); // => 'foo-bar'
+ * ```
  * @example
- * // => 'foo-bar'
- * kebabCase('__FOO_BAR__');
+ * ```ts
+ * kebabCase('__FOO_BAR__'); // => 'foo-bar'
+ * ```
  */
 export function kebabCase(text: string): string {
   return text   // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'

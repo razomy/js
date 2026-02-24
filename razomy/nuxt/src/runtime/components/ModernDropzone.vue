@@ -1,8 +1,8 @@
 <template>
   <v-card
+      border="0"
       class="mx-auto global-soft-card2 rounded-xl overflow-hidden"
       color="surface"
-      border="0"
       max-width="800"
       variant="elevated"
   >
@@ -48,8 +48,8 @@
             <!-- Кнопка выбора файлов -->
             <v-col :cols="12" :md="6">
               <v-btn
-                  color="primary"
                   class="w-100 w-md-initial"
+                  color="primary"
                   prepend-icon="mdi-file-document-multiple"
                   rounded="pill"
                   size="large"
@@ -62,8 +62,8 @@
             <!-- Кнопка выбора папки -->
             <v-col :cols="12" :md="6">
               <v-btn
-                  color="primary"
                   class="w-100 w-md-initial"
+                  color="primary"
                   prepend-icon="mdi-folder-open"
                   rounded="pill"
                   size="large"

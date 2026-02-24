@@ -1,16 +1,19 @@
 /**
  * Convert string to url friendly slug.
- * @param {string} text The text to slugify.
- * @returns {string} The slugified string.
+ * @param text The text to slugify.
+ * @returns The slugified string.
  * @example
- * // => 'hello-world'
- * slugify('Hello World');
+ * ```ts
+ * slugify('Hello World'); // => 'hello-world'
+ * ```
  * @example
- * // => 'foo-bar'
- * slugify('Foo & Bar');
+ * ```ts
+ * slugify('Foo & Bar'); // => 'foo-bar'
+ * ```
  * @example
- * // => 'creme-brulee'
- * slugify('Crème Brûlée');
+ * ```ts
+ * slugify('Crème Brûlée'); // => 'creme-brulee'
+ * ```
  */
 export function slugify(text: string): string {
   return text

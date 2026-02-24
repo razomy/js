@@ -1,13 +1,16 @@
 import * as fs from 'fs';
+import * as stringCase from '@razomy/string-case';
 import {getAll} from './get_all';
 import {sort} from '@razomy/json';
+import {getPackageFunctions} from '../../ts-refactor/get_package_functions';
 
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = getAll(projectPath);
   packages.forEach((folder) => {
       const content = fs.readFileSync(folder.path, `utf-8`);
-      const current = JSON.parse(content);
-      const srcPrefix = current.files[0] === `*` ? `` : `src/`;
+      const currentPackageJson = JSON.parse(content);
+      const srcPrefix = currentPackageJson.files[0] === `*` ? `` : `src/`;
+      const functions = getPackageFunctions(folder.path).filter(d => d);
       const rawPkgData = {
         // general
         name: folder.name.replaceAll(`/`, `-`).replace(prefix + `-`, `@${prefix}/`),
@@ -15,6 +18,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         license: `MIT`,
         type: `module`,
         description: ``,
+        keywords: [...currentPackageJson.name.split(/[\/\-]/g), ...functions.map(stringCase.camelCase)],
         author: {
           name: `Yevhenii Kamenskyi`,
           email: `yevhenii.kamenskyi+js@razomy.org`,
@@ -22,7 +26,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         },
         sideEffects: false,
         // scripts
-        'scripts': current.scripts || {
+        'scripts': currentPackageJson.scripts || {
           'build': 'tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts',
           'dev': 'tsdown index.ts --watch',
           'prepublishOnly': 'npm run build'
@@ -90,7 +94,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         'publishConfig': {
           'access': 'public'
         },
-        files: current.files || ['*'],
+        files: currentPackageJson.files || ['*'],
         'repository': {
           'type': 'git',
           'url': 'git+https://github.com/razomy/js.git',
@@ -104,11 +108,11 @@ export function updateByTemplate(projectPath: string, prefix) {
 
       let pkgData = {
         ...{
-          bin: current.bin,
-          dependencies: current.dependencies,
-          peerDependencies: current.peerDependencies,
-          devDependencies: current.devDependencies,
-          overrides: current.overrides,
+          bin: currentPackageJson.bin,
+          dependencies: currentPackageJson.dependencies,
+          peerDependencies: currentPackageJson.peerDependencies,
+          devDependencies: currentPackageJson.devDependencies,
+          overrides: currentPackageJson.overrides,
         },
         ...rawPkgData,
       };

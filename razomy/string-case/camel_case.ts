@@ -1,16 +1,19 @@
 /**
- * Convert string to camel case.
- * @param {string} text The text to convert.
- * @returns {string} The camel cased string.
+ * Converts a string to camel case.
+ * @param text - The text to convert.
+ * @returns The camel cased string.
  * @example
- * // => 'fooBar'
- * camelCase('Foo Bar');
+ * ```ts
+ * camelCase('Foo Bar'); // => 'fooBar'
+ * ```
  * @example
- * // => 'fooBar'
- * camelCase('--foo-bar--');
+ * ```ts
+ * camelCase('--foo-bar--'); // => 'fooBar'
+ * ```
  * @example
- * // => 'fooBar'
- * camelCase('__FOO_BAR__');
+ * ```ts
+ * camelCase('__FOO_BAR__'); // => 'fooBar'
+ * ```
  */
 export function camelCase(text: string): string {
   // 1-5. Normalize the string using the same logic as snake_case

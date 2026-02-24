@@ -3,14 +3,17 @@
  * @param value The string to reverse.
  * @returns The reversed string.
  * @example
- * // => 'cba'
- * reverse('abc');
+ * ```ts
+ * reverse('abc'); // => 'cba'
+ * ```
  * @example
- * // => 'ytrewq'
- * reverse('qwerty');
+ * ```ts
+ * reverse('qwerty'); // => 'ytrewq'
+ * ```
  * @example
- * // => '321'
- * reverse('123');
+ * ```ts
+ * reverse('123'); // => '321'
+ * ```
  */
 export function reverse(value: string): string {
   return [...value].reverse().join('');

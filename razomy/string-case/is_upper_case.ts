@@ -1,16 +1,19 @@
 /**
  * Check if a string is upper case.
- * @param {string} text The string to check.
- * @returns {boolean} True if the string is upper case.
+ * @param text The string to check.
+ * @returns True if the string is upper case.
  * @example
- * // => true
- * isUpperCase('HELLO');
+ * ```ts
+ * isUpperCase('HELLO'); // => true
+ * ```
  * @example
- * // => false
- * isUpperCase('Hello');
+ * ```ts
+ * isUpperCase('Hello'); // => false
+ * ```
  * @example
- * // => false
- * isUpperCase('hello');
+ * ```ts
+ * isUpperCase('hello'); // => false
+ * ```
  */
 export function isUpperCase(text: string): boolean {
   return text === text.toUpperCase();

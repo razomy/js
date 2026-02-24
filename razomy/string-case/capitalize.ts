@@ -1,16 +1,19 @@
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
- * @param {string} text The string to capitalize.
- * @returns {string} The capitalized string.
+ * @param text The string to capitalize.
+ * @returns The capitalized string.
  * @example
- * // => 'Razomy'
- * capitalize('razomy');
+ * ```ts
+ * capitalize('razomy'); // => 'Razomy'
+ * ```
  * @example
- * // => 'Razomy'
- * capitalize('RAZOMY');
+ * ```ts
+ * capitalize('RAZOMY'); // => 'Razomy'
+ * ```
  * @example
- * // => 'Razomy'
- * capitalize('rAZOMY');
+ * ```ts
+ * capitalize('rAZOMY'); // => 'Razomy'
+ * ```
  */
 export function capitalize(text: string): string {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();

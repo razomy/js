@@ -14,15 +14,15 @@
     "jsxImportSource": "vue",
     "paths": {
       // Tool for testing types
-//      "#imports": [
-//        "./src/mock.ts"
-//      ],
-//      "~~/content/context": [
-//        "./src/mock.ts"
-//      ],
-//      "@razomy/nuxt/runtime/functions": [
-//        "./src/runtime/functions/index.ts"
-//      ]
+      //      "#imports": [
+      //        "./src/mock.ts"
+      //      ],
+      //      "~~/content/context": [
+      //        "./src/mock.ts"
+      //      ],
+      //      "@razomy/nuxt/runtime/functions": [
+      //        "./src/runtime/functions/index.ts"
+      //      ]
     }
   },
   "include": [

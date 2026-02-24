@@ -20,7 +20,7 @@
 </template>
 <script lang='ts' setup>
 import {c} from '~~/content/context';
-import {useCookie, useI18n, useLocaleHead, useRoute, computed} from '#imports';
+import {computed, useCookie, useI18n, useLocaleHead, useRoute} from '#imports';
 
 const {locale} = useI18n();
 

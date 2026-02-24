@@ -5,14 +5,17 @@ import {capitalize} from './capitalize';
  * @param input The string to humanize.
  * @returns The humanized string.
  * @example
- * // => 'Camel case'
- * humanize('camelCase');
+ * ```ts
+ * humanize('camelCase'); // => 'Camel case'
+ * ```
  * @example
- * // => 'Snake case string'
- * humanize('snake_case_string');
+ * ```ts
+ * humanize('snake_case_string'); // => 'Snake case string'
+ * ```
  * @example
- * // => 'Kebab case string'
- * humanize('kebab-case-string');
+ * ```ts
+ * humanize('kebab-case-string'); // => 'Kebab case string'
+ * ```
  */
 export function humanize(input: string): string {
   const separated = input

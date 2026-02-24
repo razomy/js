@@ -3,9 +3,9 @@
     <!-- The Button that opens the menu -->
     <template v-slot:activator="{ props }">
       <v-btn
+          :class="isVertical?'':'w-100'"
           align-tabs="center"
           v-bind="props"
-          :class="isVertical?'':'w-100'"
           variant="text"
       >
         <!-- Display current locale name or code -->

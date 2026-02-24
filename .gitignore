@@ -4,7 +4,7 @@ dist
 razomy*.tgz
 _releases
 .changeset
-
+coverage
 
 .nx/cache
 .nx/workspace-data

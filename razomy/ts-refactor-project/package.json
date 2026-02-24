@@ -71,6 +71,7 @@
     "@razomy/json": "0.0.1-alpha.4",
     "@razomy/main": "0.0.1-alpha.4",
     "@razomy/string": "0.0.1-alpha.4",
+    "@razomy/string-case": "0.0.1-alpha.4",
     "@razomy/ts-refactor": "0.0.1-alpha.4"
   },
   "publishConfig": {

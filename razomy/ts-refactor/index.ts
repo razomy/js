@@ -1,5 +1,8 @@
+export {createDistReadme} from './create_dist_readme';
+export {createDistSpecifications} from './create_dist_specifications';
 export {fileRenameVariablesAndPropsFunctions} from './file_rename_variables_and_props_functions';
 export {getNameAndExt} from './get_name_and_ext';
+export {getPackageFunctions, extracyForIo, type FunctionSpecification} from './get_package_functions';
 export {isNameTaken} from './is_name_taken';
 export {iterateSourceFilesAndSave, type IterateSourceFileState} from './iterate_source_files_and_save';
 export {renameFileBasedOnFirstChild} from './rename_file_based_on_first_child';

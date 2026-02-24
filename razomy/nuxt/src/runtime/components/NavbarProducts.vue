@@ -3,11 +3,12 @@
       location="bottom center"
       transition="slide-y-transition">
     <template v-slot:activator="{ props }">
-      <v-btn density="compact"
-             :class="isVertical?'':'text-center w-100'"
-             v-bind="props"
-             stacked>
-        <img :alt="t(currentNavigationNode.meta.labelText)" :src="currentNavigationNode.meta.iconName" class="d-flex mx-auto v-icon"/>
+      <v-btn :class="isVertical?'':'text-center w-100'"
+             density="compact"
+             stacked
+             v-bind="props">
+        <img :alt="t(currentNavigationNode.meta.labelText)" :src="currentNavigationNode.meta.iconName"
+             class="d-flex mx-auto v-icon"/>
         <div>{{ t(currentNavigationNode.meta.labelText) }}</div>
       </v-btn>
     </template>
@@ -34,7 +35,7 @@
 </template>
 <script lang="ts" setup>
 import {c} from '~~/content/context';
-import {computed, useI18n} from '#imports';
+import {useI18n} from '#imports';
 
 const {isVertical = false} = defineProps<{
   isVertical?: boolean
@@ -42,7 +43,7 @@ const {isVertical = false} = defineProps<{
 
 const {t} = useI18n();
 
-const navigationNodes =  c.externalNavigationRoot.children;
+const navigationNodes = c.externalNavigationRoot.children;
 const currentNavigationNode = navigationNodes.find(i => i.meta.key === c.externalNavigationRoot.meta.key)!;
 
 </script>

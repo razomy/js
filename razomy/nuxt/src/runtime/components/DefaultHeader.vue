@@ -36,7 +36,7 @@
   </v-app-bar>
 </template>
 <script lang='ts' setup>
-import {  useI18n, useLocalePath, useRouter, ref , useDisplay, createReusableTemplate} from '#imports';
+import {createReusableTemplate, ref, useDisplay, useI18n, useLocalePath, useRouter} from '#imports';
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate();
 const goHome = () => router.push(localePath('/'));
