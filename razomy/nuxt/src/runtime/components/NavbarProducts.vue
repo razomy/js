@@ -43,6 +43,6 @@ const {isVertical = false} = defineProps<{
 const {t} = useI18n();
 
 const navigationNodes =  c.externalNavigationRoot.children;
-const currentNavigationNode = navigationNodes.find(i => i.meta.key === 'io')!;
+const currentNavigationNode = navigationNodes.find(i => i.meta.key === c.externalNavigationRoot.meta.key)!;
 
 </script>
