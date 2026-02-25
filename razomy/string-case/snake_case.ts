@@ -1,6 +1,6 @@
 /**
  * Convert string to snake case.
- * @param string The string to convert.
+ * @param text The string to convert.
  * @returns The snake cased string.
  * @example
  * ```ts
@@ -15,9 +15,9 @@
  * snakeCase('FOO-BAR'); // => 'foo_bar'
  * ```
  */
-export function snakeCase(string: string): string {
+export function snakeCase(text: string): string {
   return (
-    string
+    text
       // 1. Handle Acronyms: 'JSONData' -> 'JSON_Data'
       // Looks for Capital followed by Capital+Lower
       .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')

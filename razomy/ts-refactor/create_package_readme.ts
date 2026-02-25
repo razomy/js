@@ -2,12 +2,12 @@ import { camelCase } from '@razomy/string-case';
 import * as fss from '@razomy/fss';
 import type { FunctionSpecification } from './get_package_functions';
 
-export function createDistReadme(packageJson, specs: FunctionSpecification[]) {
+export function createPackageReadme(packageJson, specs: FunctionSpecification[]) {
   // ![npm bundle size](https://img.shields.io/bundlephobia/min/${packageJson.name})
   // ![github](https://img.shields.io/github/${packageJson.name})
 
   const vision = `
-### 🕊️Vision
+## 🕊️Vision
 
 > "Razomy" means Together—you and me.  
 > We act as catalysts, turning natural chaos into clarity through open collaboration.  
@@ -26,20 +26,20 @@ ${packageJson.description}
 `.trim();
 
   const donate = `
-### 💖Support Us
+## 💖Support Us
 
 If you find this library helpful, please consider supporting the Razomy JS team!
 
 `.trim();
 
   const install = `
-### Install
+#### Install
 \`\`\`sh
 npm i ${packageJson.name}
 \`\`\`
 `.trim();
   const imports = `
-### Import
+#### Import
 \`\`\`ts
 import {${specs[0].name}} from "${packageJson.name}";
 // or
@@ -48,7 +48,7 @@ import * as ${camelCase(packageJson.name.replace('@razomy/', ''))} from "${packa
   `.trim();
 
   const examples = `
-## 📚 Documentation
+## 📚Documentation
 ${specs
   .sort((a, b) => {
     const aLower = a.name.toLowerCase();
@@ -63,7 +63,7 @@ ${specs
   })
   .map(
     (s) => `
-### ${s.name}(${s.parameters.map((i) => i.name).join(', ')})
+#### ${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')})
 ${s.description}
 ###### Examples
 ${s.examples
@@ -84,7 +84,7 @@ ${e.code} // ${e.expected}
   const readme = `
 ${title}
 
-## 🚀 Start
+## 🚀Start
 ${install}
 
 ${imports}
@@ -95,5 +95,6 @@ ${vision}
 
 ${donate}
 `.trim();
+  fss.file.set('../string-case/README.md', readme);
   fss.file.set('../string-case/dist/README.md', readme);
 }

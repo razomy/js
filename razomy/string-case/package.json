@@ -55,6 +55,7 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
+    "./specifications.json": "./specifications.json",
     "./package.json": "./package.json"
   },
   "files": [
@@ -114,5 +115,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.4"
+  "version": "0.0.1-beta.1"
 }

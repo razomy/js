@@ -35,7 +35,7 @@ export function kebabCase(text: string): string {
       // This collapses multiple separators (e.g. ' - ' becomes '-')
       .replace(/[ |_\-\.]+/g, '-')
       // from _text_ -> text
-      .replace(/^_+|_+$/g, '')
+      .replace(/^[_-]+|[_-]+$/g, '')
 
       // 6. Final lowercase
       .toLowerCase()

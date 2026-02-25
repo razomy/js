@@ -1,4 +1,4 @@
-export { createDistReadme } from './create_dist_readme';
+export { createPackageReadme } from './create_package_readme';
 export { createDistSpecifications } from './create_dist_specifications';
 export { extracyForIo } from './extracy_for_io';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';

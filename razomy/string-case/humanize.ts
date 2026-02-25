@@ -2,7 +2,7 @@ import { capitalize } from './capitalize';
 
 /**
  * Convert a string to a human-readable form.
- * @param input The string to humanize.
+ * @param text The string to humanize.
  * @returns The humanized string.
  * @example
  * ```ts
@@ -17,8 +17,8 @@ import { capitalize } from './capitalize';
  * humanize('kebab-case-string'); // => 'Kebab case string'
  * ```
  */
-export function humanize(input: string): string {
-  const separated = input
+export function humanize(text: string): string {
+  const separated = text
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/[_-]+/g, ' ')
     .replace(/\s+/g, ' ')

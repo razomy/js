@@ -14,10 +14,15 @@
  */
 export function alternatingCase(text: string): string {
   return text
-    .split('')
-    .map((char, index) => {
-      // Четные индексы - строчные, нечетные - заглавные
-      return index % 2 === 0 ? char.toLowerCase() : char.toUpperCase();
-    })
+    .split(/([\s-]+)/)
+    .map((word) =>
+      word
+        .split('')
+        .map((char, index) => {
+          // Четные индексы - строчные, нечетные - заглавные
+          return index % 2 === 0 ? char.toLowerCase() : char.toUpperCase();
+        })
+        .join(''),
+    )
     .join('');
 }

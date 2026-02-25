@@ -87,6 +87,7 @@ export function updateByTemplate(projectPath: string, prefix) {
           import: `./${srcPrefix}index.node.ts`,
           require: `./${srcPrefix}index.node.ts`,
         },
+        './specifications.json': './specifications.json',
         './package.json': './package.json',
       },
       // deploy

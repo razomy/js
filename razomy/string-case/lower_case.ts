@@ -1,6 +1,6 @@
 /**
  * Converts a string to lower case.
- * @param input - The string to convert.
+ * @param text - The string to convert.
  * @returns The lower cased string.
  * @example
  * ```ts
@@ -15,6 +15,6 @@
  * lowerCase('FOO Bar'); // => 'foo bar'
  * ```
  */
-export function lowerCase(input: string): string {
-  return input.toLowerCase();
+export function lowerCase(text: string): string {
+  return text.toLowerCase();
 }

@@ -23,7 +23,8 @@
     "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
     "lint": "node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js",
     "format": "prettier --write .",
-    "test": "jest razomy/string-case --coverage --collectCoverageFrom='razomy/string-case/**/*.{js,jsx,ts,tsx,vue}'"
+    "test": "jest razomy/string-case --coverage --collectCoverageFrom='razomy/string-case/**/*.{js,jsx,ts,tsx,vue}'",
+    "release": "tsx razomy/npm/publish.ts"
   },
   "type": "module",
   "version": "0.0.0",
