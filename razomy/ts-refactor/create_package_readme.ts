@@ -63,7 +63,7 @@ ${specs
   })
   .map(
     (s) => `
-#### ${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')})
+#### ${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.returns.type};
 ${s.description}
 ###### Examples
 ${s.examples

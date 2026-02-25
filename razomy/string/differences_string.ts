@@ -8,12 +8,15 @@ import { stringsString } from '@razomy/string';
  * @param {string} bString The compared string.
  * @returns {string} The string representation of differences.
  * @example
+ * ```ts
  * // => 'same'
  * differencesString('same', 'same');
  * @example
+ * ```ts
  * // => '-old\n+new'
  * differencesString('old', 'new');
  * @example
+ * ```ts
  * // => ' line1\n-line2\n+line3'
  * differencesString('line1\nline2', 'line1\nline3');
  */

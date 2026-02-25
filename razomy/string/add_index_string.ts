@@ -8,12 +8,15 @@ import type { Index } from '@razomy/index';
  * @param {string} insertion The string to insert.
  * @returns {String} The resulting string with the insertion.
  * @example
+ * ```ts
  * // => 'prefix-text'
  * addIndexString('-text', 0, 'prefix');
  * @example
+ * ```ts
  * // => 'hello world'
  * addIndexString('hello ', 6, 'world');
  * @example
+ * ```ts
  * // => 'foo bar baz'
  * addIndexString('foo baz', 4, 'bar ');
  */

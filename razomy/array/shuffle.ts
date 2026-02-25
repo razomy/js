@@ -1,16 +1,19 @@
 /**
  * Creates a new array with elements shuffled using Fisher-Yates algorithm.
- * @param {T[]} array The source array.
- * @returns {T[]} A new shuffled array.
+ * @param array The source array.
+ * @returns A new shuffled array.
  * @example
- * // => [2, 3, 1]
- * shuffle([1, 2, 3]);
+ * ```ts
+ * shuffle([1, 2, 3]); // => [2, 3, 1]
+ * ```
  * @example
- * // => ['c', 'a', 'b']
- * shuffle(['a', 'b', 'c']);
+ * ```ts
+ * shuffle(['a', 'b', 'c']); // => ['c', 'a', 'b']
+ * ```
  * @example
- * // => []
- * shuffle([]);
+ * ```ts
+ * shuffle([]); // => []
+ * ```
  */
 export function shuffle<T>(array: T[]): T[] {
   const shuffled = [...array];

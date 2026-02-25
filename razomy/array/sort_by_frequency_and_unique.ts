@@ -4,17 +4,20 @@ import { getUniq } from './get_uniq';
 
 /**
  * Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
- * @param {T[]} array The array to process.
- * @returns {T[]} The new array of unique, sorted values.
+ * @param array The array to process.
+ * @returns The new array of unique, sorted values.
  * @example
- * // => [2, 1]
- * sortByFrequencyAndUnique([1, 2, 2, 2, 1]);
+ * ```ts
+ * sortByFrequencyAndUnique([1, 2, 2, 2, 1]); // => [2, 1]
+ * ```
  * @example
- * // => ['a', 'b', 'c']
- * sortByFrequencyAndUnique(['a', 'a', 'a', 'b', 'b', 'c']);
+ * ```ts
+ * sortByFrequencyAndUnique(['a', 'a', 'a', 'b', 'b', 'c']); // => ['a', 'b', 'c']
+ * ```
  * @example
- * // => [10, 20]
- * sortByFrequencyAndUnique([10, 20, 10, 10, 20]);
+ * ```ts
+ * sortByFrequencyAndUnique([10, 20, 10, 10, 20]); // => [10, 20]
+ * ```
  */
 export function sortByFrequencyAndUnique<T>(array: T[]): T[] {
   const frequencies = countBy(array);

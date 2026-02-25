@@ -4,12 +4,15 @@
  * @param {string} separator The string to search for.
  * @returns {string} The substring before the separator or the original string if not found.
  * @example
+ * ```ts
  * // => 'razomy'
  * substringBefore('@razomy/string', '.');
  * @example
+ * ```ts
  * // => 'user'
  * substringBefore('user@example.com', '@');
  * @example
+ * ```ts
  * // => 'atomic'
  * substringBefore('atomic', ' ');
  */

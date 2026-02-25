@@ -4,12 +4,15 @@
  * @param characters The set of characters to generate from.
  * @returns The generated random string.
  * @example
+ * ```ts
  * // => 'X7z'
  * randomString(3);
  * @example
+ * ```ts
  * // => '10101'
  * randomString(5, '01');
  * @example
+ * ```ts
  * // => 'aaaa'
  * randomString(4, 'a');
  */

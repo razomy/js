@@ -5,12 +5,15 @@
  * @param {String} replacement The substring to join the parts with.
  * @returns {String} The modified string.
  * @example
+ * ```ts
  * // => 'a-b-c'
  * replaceString('a b c', ' ', '-');
  * @example
+ * ```ts
  * // => '12345'
  * replaceString('1,2,3,4,5', ',', '');
  * @example
+ * ```ts
  * // => 'foo'
  * replaceString('foo', 'bar', 'baz');
  */

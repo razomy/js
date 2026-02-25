@@ -4,14 +4,19 @@
  * @param iteratee The function invoked per iteration.
  * @returns A new array with the transformed elements.
  * @example
- * // => [2, 4, 6]
+ * ```ts
  * map([1, 2, 3], (n) => n * 2);
+ * // => [2, 4, 6]
+ * ```
  * @example
- * // => ['1', '2', '3']
- * map([1, 2, 3], String);
+ * ```ts
+ * map([1, 2, 3], String); // => ['1', '2', '3']
+ * ```
  * @example
- * // => ['a0', 'b1']
+ * ```ts
  * map(['a', 'b'], (char, index) => char + index);
+ * // => ['a0', 'b1']
+ * ```
  */
 export function map<T, U>(array: T[], iteratee: (element: T, index: number, array: T[]) => U): U[] {
   const length = array.length;

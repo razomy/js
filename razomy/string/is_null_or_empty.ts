@@ -3,12 +3,15 @@
  * @param {string | null | undefined} str The string to check.
  * @returns {boolean} True if the string is null, undefined, or empty.
  * @example
+ * ```ts
  * // => true
  * isNullOrEmpty(null);
  * @example
+ * ```ts
  * // => true
  * isNullOrEmpty('   ');
  * @example
+ * ```ts
  * // => false
  * isNullOrEmpty('razomy');
  */

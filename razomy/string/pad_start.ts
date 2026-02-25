@@ -5,12 +5,15 @@
  * @param chars The string to pad with. Defaults to space.
  * @returns The padded string.
  * @example
+ * ```ts
  * // => '  a'
  * padStart('a', 3);
  * @example
+ * ```ts
  * // => '00a'
  * padStart('a', 3, '0');
  * @example
+ * ```ts
  * // => 'abc'
  * padStart('abc', 2);
  */

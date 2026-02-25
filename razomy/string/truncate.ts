@@ -5,12 +5,15 @@
  * @param omission The string to indicate text is omitted.
  * @returns The truncated string.
  * @example
+ * ```ts
  * // => 'he...'
  * truncate('hello world', 5);
  * @example
+ * ```ts
  * // => 'hello'
  * truncate('hello', 10);
  * @example
+ * ```ts
  * // => 'hello..'
  * truncate('hello world', 7, '..');
  */

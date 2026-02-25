@@ -4,14 +4,19 @@
  * @param separator The string used to separate the elements.
  * @returns The joined string.
  * @example
- * // => 'a-b-c'
+ * ```ts
  * join(['a', 'b', 'c'], '-');
+ * // => 'a-b-c'
+ * ```
  * @example
- * // => '1, 2, 3'
- * join([1, 2, 3], ', ');
+ * ```ts
+ * join([1, 2, 3], ', '); // => '1, 2, 3'
+ * ```
  * @example
- * // => ''
+ * ```ts
  * join([], '/');
+ * // => ''
+ * ```
  */
 export function join<T>(array: T[], separator: string): string {
   return array.join(separator);

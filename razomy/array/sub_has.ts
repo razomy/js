@@ -1,17 +1,20 @@
 /**
  * Check if the master array contains all elements of the sub array in the same relative order.
- * @param {T[]} master The array to search in.
- * @param {T[]} sub The sequence of elements to look for.
- * @returns {boolean} True if the subsequence exists.
+ * @param master The array to search in.
+ * @param sub The sequence of elements to look for.
+ * @returns True if the subsequence exists.
  * @example
- * // => true
- * subHas([1, 2, 3, 4], [2, 4]);
+ * ```ts
+ * subHas([1, 2, 3, 4], [2, 4]); // => true
+ * ```
  * @example
- * // => false
- * subHas(['a', 'b', 'c'], ['c', 'a']);
+ * ```ts
+ * subHas(['a', 'b', 'c'], ['c', 'a']); // => false
+ * ```
  * @example
- * // => true
- * subHas([true, false], []);
+ * ```ts
+ * subHas([true, false], []); // => true
+ * ```
  */
 export function subHas<T>(master: T[], sub: T[]): boolean {
   let offset = 0;

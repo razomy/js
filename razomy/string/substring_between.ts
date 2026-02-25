@@ -6,12 +6,15 @@
  * @returns The extracted substring.
  * @throws Error if the start or end delimiters are not found.
  * @example
+ * ```ts
  * // => 'brown'
  * substringBetween('The quick brown fox', 'quick ', ' fox');
  * @example
+ * ```ts
  * // => 'value'
  * substringBetween('key="value";', '"', '"');
  * @example
+ * ```ts
  * // => 'content'
  * substringBetween('<div>content</div>', '<div>', '</div>');
  */

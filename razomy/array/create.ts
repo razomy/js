@@ -1,17 +1,20 @@
 /**
  * Create an array of specific size filled with a value.
- * @param {number} size The size of the array.
- * @param {T} value The value to fill the array with.
- * @returns {T[]} The created array.
+ * @param size The size of the array.
+ * @param value The value to fill the array with.
+ * @returns The created array.
  * @example
- * // => [0, 0, 0]
- * create(3, 0);
+ * ```ts
+ * create(3, 0); // => [0, 0, 0]
+ * ```
  * @example
- * // => ['x', 'x']
- * create(2, 'x');
+ * ```ts
+ * create(2, 'x'); // => ['x', 'x']
+ * ```
  * @example
- * // => [true, true, true, true]
- * create(4, true);
+ * ```ts
+ * create(4, true); // => [true, true, true, true]
+ * ```
  */
 export function create<T>(size: number, value: T): T[] {
   return new Array(size).fill(value);

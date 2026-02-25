@@ -5,14 +5,18 @@
  * @param item The item to insert.
  * @returns The mutated array.
  * @example
- * // => [1, 2, 3]
- * insertMut([1, 3], 1, 2);
+ * ```ts
+ * insertMut([1, 3], 1, 2); // => [1, 2, 3]
+ * ```
  * @example
- * // => ['a', 'b', 'c']
- * insertMut(['a', 'c'], 1, 'b');
+ * ```ts
+ * insertMut(['a', 'c'], 1, 'b'); // => ['a', 'b', 'c']
+ * ```
  * @example
- * // => [{ id: 1 }, { id: 2 }]
+ * ```ts
  * insertMut([{ id: 1 }], 1, { id: 2 });
+ * // => [{ id: 1 }, { id: 2 }]
+ * ```
  */
 export function insertMut<T>(array: T[], index: number, item: T): T[] {
   array.splice(index, 0, item);

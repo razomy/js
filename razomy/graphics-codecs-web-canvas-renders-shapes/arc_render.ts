@@ -11,6 +11,7 @@
  * @@shapeParams
  * @@nodeParams
  * @example
+ * ```ts
  * // draw a Arc that's pointing downwards
  * var arc = new Konva.Arc({
  *   innerRadius: 40,

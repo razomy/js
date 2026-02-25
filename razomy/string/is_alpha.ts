@@ -3,12 +3,15 @@
  * @param text The string to check.
  * @returns True if the string is alphabetic.
  * @example
+ * ```ts
  * // => true
  * isAlpha('Razomy');
  * @example
+ * ```ts
  * // => false
  * isAlpha('R4zomy');
  * @example
+ * ```ts
  * // => false
  * isAlpha('');
  */

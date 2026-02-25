@@ -1,18 +1,22 @@
 /**
  * Retrieves the last element of an array or an element relative to the end.
  * Returns null if the index is out of bounds.
- * @param {T[]} arr The input array.
- * @param {number} deltaIndex The offset from the end (defaults to 0).
+ * @param arr The input array.
+ * @param deltaIndex The offset from the end (defaults to 0).
  * @returns {T | null} The element or null.
  * @example
- * // => 'c'
- * tryGetLast(['a', 'b', 'c']);
+ * ```ts
+ * tryGetLast(['a', 'b', 'c']); // => 'c'
+ * ```
  * @example
- * // => 'b'
+ * ```ts
  * tryGetLast(['a', 'b', 'c'], -1);
+ * // => 'b'
+ * ```
  * @example
- * // => null
- * tryGetLast([]);
+ * ```ts
+ * tryGetLast([]); // => null
+ * ```
  */
 export function tryGetLast<T>(arr: T[], deltaIndex: number = 0): T | null {
   return arr.at(-1 + deltaIndex) ?? null;

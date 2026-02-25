@@ -4,12 +4,15 @@
  * @param separator The separator to look for.
  * @returns The substring after the separator, or the original string if separator is not found.
  * @example
+ * ```ts
  * // => 'bar'
  * substringAfter('foo.bar', '.');
  * @example
+ * ```ts
  * // => 'baz'
  * substringAfter('foo.bar.baz', '.bar.');
  * @example
+ * ```ts
  * // => 'foo'
  * substringAfter('foo', ',');
  */

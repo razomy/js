@@ -3,14 +3,19 @@
  * @param {Array<Array<T>>} arrays The arrays to inspect.
  * @returns {Array<T>} The new array of combined values.
  * @example
+ * ```ts
  * // => [2, 1]
  * union([2], [1, 2]);
+ * ```
  * @example
+ * ```ts
  * // => ['a', 'b']
  * union(['a'], ['b'], ['a']);
+ * ```
  * @example
- * // => [1, 2, 3]
- * union([1, 2], [2, 3]);
+ * ```ts
+ * union([1, 2], [2, 3]); // => [1, 2, 3]
+ * ```
  */
 export function union<T>(...arrays: T[][]): T[] {
   return Array.from(new Set(arrays.flat()));

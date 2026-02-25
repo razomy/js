@@ -1,18 +1,21 @@
 /**
  * Toggles the presence of an item in an array.
  * If the item exists, it is removed. Otherwise, it is appended.
- * @param {T[]} array The source array.
- * @param {T} item The item to toggle.
- * @returns {T[]} A new array with the item toggled.
+ * @param array The source array.
+ * @param item The item to toggle.
+ * @returns A new array with the item toggled.
  * @example
- * // => [1, 2, 3]
- * itemToggle([1, 2], 3);
+ * ```ts
+ * itemToggle([1, 2], 3); // => [1, 2, 3]
+ * ```
  * @example
- * // => ['a', 'c']
- * itemToggle(['a', 'b', 'c'], 'b');
+ * ```ts
+ * itemToggle(['a', 'b', 'c'], 'b'); // => ['a', 'c']
+ * ```
  * @example
- * // => [true]
- * itemToggle([], true);
+ * ```ts
+ * itemToggle([], true); // => [true]
+ * ```
  */
 export function itemToggle<T>(array: T[], item: T): T[] {
   const index = array.indexOf(item);

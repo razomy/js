@@ -1,18 +1,24 @@
 /**
  * Creates a new array of elements sorted in ascending order by the results of running an iteratee on each element.
  * This function performs a stable sort and does not mutate the original array.
- * @param {T[]} array The array to sort.
+ * @param array The array to sort.
  * @param {(item: T) => string | number} iteratee The function invoked per iteration to generate the sorting criteria.
- * @returns {T[]} Returns the new sorted array.
+ * @returns Returns the new sorted array.
  * @example
- * // => [1, 2, 3]
+ * ```ts
  * sortBy([3, 1, 2], (n) => n);
+ * // => [1, 2, 3]
+ * ```
  * @example
- * // => ['a', 'bb', 'ccc']
+ * ```ts
  * sortBy(['bb', 'ccc', 'a'], (s) => s.length);
+ * // => ['a', 'bb', 'ccc']
+ * ```
  * @example
- * // => [{ user: 'barney', age: 36 }, { user: 'fred', age: 40 }]
+ * ```ts
  * sortBy([{ user: 'fred', age: 40 }, { user: 'barney', age: 36 }], (u) => u.age);
+ * // => [{ user: 'barney', age: 36 }, { user: 'fred', age: 40 }]
+ * ```
  */
 export function sortBy<T>(array: T[], iteratee: (item: T) => string | number): T[] {
   const length = array.length;

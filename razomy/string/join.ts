@@ -4,12 +4,15 @@
  * @param separator The string to use as a separator.
  * @returns The joined string.
  * @example
+ * ```ts
  * // => 'a-b-c'
  * join(['a', 'b', 'c'], '-');
  * @example
+ * ```ts
  * // => 'hello world'
  * join(['hello', 'world'], ' ');
  * @example
+ * ```ts
  * // => 'one'
  * join(['one'], ',');
  */

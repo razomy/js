@@ -4,12 +4,15 @@
  * @param {number} size The size of the space margin.
  * @returns {string} The string with space margin.
  * @example
+ * ```ts
  * // => ' a '
  * spaceMarginString('a', 1);
  * @example
+ * ```ts
  * // => '  b  '
  * spaceMarginString('b', 2);
  * @example
+ * ```ts
  * // => 'c'
  * spaceMarginString('c', 0);
  */

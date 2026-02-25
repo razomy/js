@@ -3,12 +3,15 @@
  * @param {string} value The string to process.
  * @returns {string[]} The array of words.
  * @example
+ * ```ts
  * // => ['fred', 'barney', 'pebbles']
  * words('fred, barney, & pebbles');
  * @example
+ * ```ts
  * // => ['camel', 'Case']
  * words('camelCase');
  * @example
+ * ```ts
  * // => ['nested', 'snake', 'case']
  * words('nested_snake_case');
  */

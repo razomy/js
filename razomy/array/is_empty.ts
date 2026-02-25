@@ -3,14 +3,17 @@
  * @param array The array to check.
  * @returns True if array is empty.
  * @example
- * // => true
- * isEmpty([]);
+ * ```ts
+ * isEmpty([]); // => true
+ * ```
  * @example
- * // => false
- * isEmpty([1]);
+ * ```ts
+ * isEmpty([1]); // => false
+ * ```
  * @example
- * // => false
- * isEmpty(['a', 'b']);
+ * ```ts
+ * isEmpty(['a', 'b']); // => false
+ * ```
  */
 export function isEmpty<T>(array: ReadonlyArray<T>): boolean {
   return array.length === 0;

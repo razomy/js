@@ -5,12 +5,15 @@
  * @param position The position to search up to.
  * @returns Returns true if string ends with target, else false.
  * @example
+ * ```ts
  * // => true
  * endsWith('abc', 'c');
  * @example
+ * ```ts
  * // => false
  * endsWith('abc', 'b');
  * @example
+ * ```ts
  * // => true
  * endsWith('abc', 'b', 2);
  */

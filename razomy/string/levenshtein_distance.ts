@@ -4,12 +4,15 @@
  * @param {string} b The second string.
  * @returns {number} The number of edits (insertions, deletions, or substitutions) required to transform one string into the other.
  * @example
+ * ```ts
  * // => 3
  * levenshteinDistance('kitten', 'sitting');
  * @example
+ * ```ts
  * // => 1
  * levenshteinDistance('test', 'text');
  * @example
+ * ```ts
  * // => 0
  * levenshteinDistance('razomy', 'razomy');
  */

@@ -6,14 +6,20 @@
  * @param predicate The comparison function to determine equality or condition match.
  * @returns A tuple containing the matched elements from both arrays, or null if no match is found.
  * @example
- * // => [3, 3]
+ * ```ts
  * tryLastEqual([1, 2, 3], [3, 4, 5], (a, b) => a === b);
+ * // => [3, 3]
+ * ```
  * @example
- * // => ['b', 'B']
+ * ```ts
  * tryLastEqual(['a', 'b'], ['A', 'B'], (a, b) => a.toUpperCase() === b);
+ * // => ['b', 'B']
+ * ```
  * @example
- * // => null
+ * ```ts
  * tryLastEqual([1, 2], [3, 4], (a, b) => a === b);
+ * // => null
+ * ```
  */
 export function tryLastEqual<T, U>(arrayA: T[], arrayB: U[], predicate: (itemA: T, itemB: U) => boolean): [T, U] | null {
   for (let i = arrayA.length - 1; i >= 0; i--) {

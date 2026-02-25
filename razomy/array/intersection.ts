@@ -1,17 +1,20 @@
 /**
  * Create an array of unique values that are included in both given arrays.
- * @param {T[]} source The array to inspect.
- * @param {T[]} target The values to include.
- * @returns {T[]} The new array of intersecting values.
+ * @param source The array to inspect.
+ * @param target The values to include.
+ * @returns The new array of intersecting values.
  * @example
- * // => [2]
- * intersection([1, 2], [2, 3]);
+ * ```ts
+ * intersection([1, 2], [2, 3]); // => [2]
+ * ```
  * @example
- * // => ['a']
- * intersection(['a', 'b'], ['a', 'c']);
+ * ```ts
+ * intersection(['a', 'b'], ['a', 'c']); // => ['a']
+ * ```
  * @example
- * // => []
- * intersection([1, 2], [3, 4]);
+ * ```ts
+ * intersection([1, 2], [3, 4]); // => []
+ * ```
  */
 export function intersection<T>(source: T[], target: T[]): T[] {
   const targetSet = new Set(target);

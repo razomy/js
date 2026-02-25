@@ -4,12 +4,15 @@
  * @param separateString The specific string sequence to unescape.
  * @returns The unescaped string.
  * @example
+ * ```ts
  * // => 'Content "quoted"'
  * unescapeString('Content \\"quoted"', '"');
  * @example
+ * ```ts
  * // => 'a:b'
  * unescapeString('a\\:b', ':');
  * @example
+ * ```ts
  * // => 'key=value'
  * unescapeString('key\\=value', '=');
  */

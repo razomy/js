@@ -3,12 +3,15 @@
  * @param text The text to check.
  * @returns True if the string is alphanumeric.
  * @example
+ * ```ts
  * // => true
  * isAlphanumeric('Razomy1');
  * @example
+ * ```ts
  * // => false
  * isAlphanumeric('Razomy-String');
  * @example
+ * ```ts
  * // => false
  * isAlphanumeric(' ');
  */

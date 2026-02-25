@@ -2,19 +2,25 @@
  * Find an item in an array that matches the predicate.
  * Throws an error if no item is found.
  * @template T
- * @param {T[]} array The array to search.
- * @param {Function} predicate The function invoked per iteration.
- * @returns {T} The found item.
+ * @param array The array to search.
+ * @param predicate The function invoked per iteration.
+ * @returns The found item.
  * @throws {Error} If the item is not found.
  * @example
- * // => 2
+ * ```ts
  * find([1, 2, 3], (n) => n === 2);
+ * // => 2
+ * ```
  * @example
- * // => { id: 1 }
+ * ```ts
  * find([{ id: 1 }, { id: 2 }], (o) => o.id === 1);
+ * // => { id: 1 }
+ * ```
  * @example
- * // => Error: Item not found.
+ * ```ts
  * find([1, 2, 3], (n) => n === 4);
+ * // => Error: Item not found.
+ * ```
  */
 export function find<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T {
   const index = array.findIndex(predicate);

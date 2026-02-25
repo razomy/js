@@ -3,12 +3,15 @@
  * @param text - The string to trim.
  * @returns The trimmed string.
  * @example
+ * ```ts
  * // => 'foo'
  * trim('  foo  ');
  * @example
+ * ```ts
  * // => 'bar'
  * trim('\nbar\t');
  * @example
+ * ```ts
  * // => ''
  * trim('   ');
  */

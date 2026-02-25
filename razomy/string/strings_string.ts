@@ -3,12 +3,15 @@
  * @param {String[]} strings The array of strings to concatenate.
  * @returns {String} The concatenated string.
  * @example
+ * ```ts
  * // => 'abc'
  * stringsString(['a', 'b', 'c']);
  * @example
+ * ```ts
  * // => 'razomy'
  * stringsString(['ra', 'zo', 'my']);
  * @example
+ * ```ts
  * // => ''
  * stringsString([]);
  */

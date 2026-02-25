@@ -5,12 +5,15 @@ import type { Dict } from '@razomy/dict';
  * @param dict The dictionary object.
  * @returns The formatted string.
  * @example
+ * ```ts
  * // => '{}'
  * dictToString({});
  * @example
+ * ```ts
  * // => '{a:b;}'
  * dictToString({ a: 'b' });
  * @example
+ * ```ts
  * // => '{k:v;id:1;}'
  * dictToString({ k: 'v', id: '1' });
  */

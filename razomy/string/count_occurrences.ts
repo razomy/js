@@ -4,12 +4,15 @@
  * @param {string} substring The substring to count.
  * @returns {number} The number of occurrences.
  * @example
+ * ```ts
  * // => 3
  * countOccurrences('hello world', 'l');
  * @example
+ * ```ts
  * // => 2
  * countOccurrences('aaaa', 'aa');
  * @example
+ * ```ts
  * // => 0
  * countOccurrences('apple', 'z');
  */

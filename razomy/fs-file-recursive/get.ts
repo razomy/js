@@ -13,21 +13,25 @@ import type { DirPathString, FilePathString } from '@razomy/path-string';
  * @returns A synchronous generator that yields the absolute path of each file found.
  *
  * @example
+ * ```ts
  * // Example 1: Iterate through files one by one (memory efficient)
  * for (const filePath of getFiles('./src')) {
  *   if (filePath.endsWith('.ts')) {
  *     console.log('Found TypeScript file:', filePath);
  *   }
  * }
- *
+ * ```
  * @example
+ * ```ts
  * // Example 2: Convert to a standard Array
  * const allImages = Array.from(getFiles('./public/images'));
  * console.log(`Found ${allImages.length} images`);
- *
+ * ```
  * @example
+ * ```ts
  * // Example 3: Spread syntax (equivalent to Array.from)
  * const [...files] = getFiles('./dist');
+ * ```
  */
 export function* get(dir: DirPathString): Generator<FilePathString, void, void> {
   const dirents: Dirent[] = readdirSync(dir, { withFileTypes: true });

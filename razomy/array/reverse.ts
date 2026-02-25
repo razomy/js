@@ -3,14 +3,17 @@
  * @param array The input array.
  * @returns A new reversed array.
  * @example
- * // => [3, 2, 1]
- * reverse([1, 2, 3]);
+ * ```ts
+ * reverse([1, 2, 3]); // => [3, 2, 1]
+ * ```
  * @example
- * // => ['z', 'y']
- * reverse(['y', 'z']);
+ * ```ts
+ * reverse(['y', 'z']); // => ['z', 'y']
+ * ```
  * @example
- * // => []
- * reverse([]);
+ * ```ts
+ * reverse([]); // => []
+ * ```
  */
 export function reverse<T>(array: T[]): T[] {
   return [...array].reverse();

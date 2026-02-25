@@ -4,14 +4,17 @@
  * @returns The first element.
  * @throws {Error} If the array is empty.
  * @example
- * // => 1
- * getFirst([1, 2, 3]);
+ * ```ts
+ * getFirst([1, 2, 3]); // => 1
+ * ```
  * @example
- * // => 'a'
- * getFirst(['a', 'b', 'c']);
+ * ```ts
+ * getFirst(['a', 'b', 'c']); // => 'a'
+ * ```
  * @example
- * // => Error: Array is empty
- * getFirst([]);
+ * ```ts
+ * getFirst([]); // => Error: Array is empty
+ * ```
  */
 export function getFirst<T>(array: T[]): T {
   if (array.length === 0) {

@@ -4,14 +4,20 @@
  * @param predicate The function to test for each element.
  * @returns True if all elements pass the test, otherwise false.
  * @example
- * // => true
+ * ```ts
  * every([2, 4, 6], (n) => n % 2 === 0);
- * @example
- * // => false
- * every([2, 4, 7], (n) => n % 2 === 0);
- * @example
  * // => true
+ * ```
+ * @example
+ * ```ts
+ * every([2, 4, 7], (n) => n % 2 === 0);
+ * // => false
+ * ```
+ * @example
+ * ```ts
  * every([], (n) => n > 5);
+ * // => true
+ * ```
  */
 export function every<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean {
   for (let index = 0; index < array.length; index++) {

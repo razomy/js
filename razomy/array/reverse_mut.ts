@@ -1,19 +1,19 @@
 /**
  * Reverses an array in place.
- * @param {T[]} array The array to reverse.
- * @returns {T[]} The reversed array.
+ * @param array The array to reverse.
+ * @returns The reversed array.
  * @example
+ * ```ts
  * const array = [1, 2, 3];
- * // => [3, 2, 1]
  * reverseMut(array);
+ * array; // => [3, 2, 1]
+ * ```
  * @example
+ * ```ts
  * const array = ['a', 'b'];
  * reverseMut(array);
- * // => ['b', 'a']
- * array;
- * @example
- * // => []
- * reverseMut([]);
+ * array; // => ['b', 'a']
+ * ```
  */
 export function reverseMut<T>(array: T[]): T[] {
   return array.reverse();

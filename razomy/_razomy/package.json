@@ -212,7 +212,7 @@
     "@razomy/socket-web": "0.0.1-alpha.4",
     "@razomy/spec": "0.0.1-alpha.4",
     "@razomy/string": "0.0.1-alpha.4",
-    "@razomy/string-case": "0.0.1-alpha.4",
+    "@razomy/string-case": "0.0.1-beta.1",
     "@razomy/strings": "0.0.1-alpha.4",
     "@razomy/task": "0.0.1-alpha.4",
     "@razomy/task-async": "0.0.1-alpha.4",

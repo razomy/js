@@ -4,12 +4,15 @@
  * @param {BufferEncoding} encoding The encoding of the string.
  * @returns {Buffer} The resulting buffer.
  * @example
+ * ```ts
  * // => <Buffer 61 62 63>
  * toBuffer('abc', 'utf8');
  * @example
+ * ```ts
  * // => <Buffer 61 62 63>
  * toBuffer('YWJj', 'base64');
  * @example
+ * ```ts
  * // => <Buffer 61 62 63>
  * toBuffer('616263', 'hex');
  */

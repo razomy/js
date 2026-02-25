@@ -4,18 +4,21 @@
  * The order of elements in the result is determined by the order in the first array.
  *
  * @template T The type of elements in the arrays.
- * @param {T[]} source The array to compare against.
- * @param {T[]} other The array to subtract from the source.
- * @returns {T[]} A new array containing elements unique to the source array.
+ * @param source The array to compare against.
+ * @param other The array to subtract from the source.
+ * @returns A new array containing elements unique to the source array.
  * @example
- * // => [1, 3]
- * difference([1, 2, 3], [2, 4]);
+ * ```ts
+ * difference([1, 2, 3], [2, 4]); // => [1, 3]
+ * ```
  * @example
- * // => ['apple', 'banana']
- * difference(['apple', 'banana', 'orange'], ['orange', 'grape']);
+ * ```ts
+ * difference(['apple', 'banana', 'orange'], ['orange', 'grape']); // => ['apple', 'banana']
+ * ```
  * @example
- * // => [1, 5]
- * difference([1, 2, 3, 4, 5], [2, 3, 4]);
+ * ```ts
+ * difference([1, 2, 3, 4, 5], [2, 3, 4]); // => [1, 5]
+ * ```
  */
 export function difference<T>(source: T[], other: T[]): T[] {
   const otherSet = new Set(other);

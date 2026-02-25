@@ -5,12 +5,15 @@
  * @param position The position to search from.
  * @returns Returns true if string starts with target, else false.
  * @example
+ * ```ts
  * // => true
  * startsWith('razomy', 'r');
  * @example
+ * ```ts
  * // => false
  * startsWith('razomy', 'z');
  * @example
+ * ```ts
  * // => true
  * startsWith('razomy', 'z', 2);
  */

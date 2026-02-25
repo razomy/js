@@ -4,12 +4,15 @@
  * @param count The number of times to repeat the string.
  * @returns A new string containing the specified number of copies.
  * @example
+ * ```ts
  * // => 'aaa'
  * repeat('a', 3);
  * @example
+ * ```ts
  * // => 'razomyrazomy'
  * repeat('razomy', 2);
  * @example
+ * ```ts
  * // => ''
  * repeat('test', 0);
  */
