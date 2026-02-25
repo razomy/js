@@ -60,6 +60,17 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "serializable",
+    "arrayToJson",
+    "ctx",
+    "dictToJson",
+    "jsonToCtx",
+    "toJson",
+    "tryJsonToCtx",
+    "withSerializable"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

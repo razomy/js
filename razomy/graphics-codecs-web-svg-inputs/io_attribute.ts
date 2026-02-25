@@ -1,10 +1,6 @@
-export interface IInputAttribute {
+export interface IInputAttribute {}
 
-}
-
-export interface IOutputAttribute {
-
-}
+export interface IOutputAttribute {}
 
 export interface IIoAttribute {
   inputs: IInputAttribute[];

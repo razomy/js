@@ -60,6 +60,26 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "ts",
+    "refactor",
+    "createDistReadme",
+    "createDistSpecifications",
+    "extracyForIo",
+    "fileRenameVariablesAndPropsFunctions",
+    "getNameAndExt",
+    "getPackageFunctions",
+    "isNameTaken",
+    "iterateSourceFilesAndSave",
+    "renameFileBasedOnFirstChild",
+    "renameFoldersRecursively",
+    "renameNode",
+    "renameToSnakeCaseRecursiveTs",
+    "splitFunctions",
+    "toSafeFilename",
+    "toSafeName"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
@@ -67,6 +87,7 @@
   "peerDependencies": {
     "@razomy/action": "0.0.1-alpha.4",
     "@razomy/array": "0.0.1-alpha.4",
+    "@razomy/fs-directory": "0.0.1-alpha.4",
     "@razomy/fss": "0.0.1-alpha.4",
     "@razomy/languages-programming-fs": "0.0.1-alpha.4",
     "@razomy/refactor-fs": "0.0.1-alpha.4",

@@ -1,12 +1,9 @@
-import {ElementView} from '@razomy/graphics-elements';
-import type {UserEntity} from '@razomy/graphics-graphic';
-import {SelectionAttribute} from '@razomy/graphics-graphic';
+import { ElementView } from '@razomy/graphics-elements';
+import type { UserEntity } from '@razomy/graphics-graphic';
+import { SelectionAttribute } from '@razomy/graphics-graphic';
 
 export class WebSvgHighLightsRender {
-  constructor(
-    public user: UserEntity
-  ) {
-  }
+  constructor(public user: UserEntity) {}
 
   public render(view: ElementView, node: SVGElement): void {
     if (this.user.getBy(SelectionAttribute).selection.contains(view)) {

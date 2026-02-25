@@ -32,5 +32,5 @@ export {
   exclamation,
   question,
   hash,
-  dollar
+  dollar,
 } from './chars';

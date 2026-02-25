@@ -1,4 +1,4 @@
-import {get} from './get';
+import { get } from './get';
 
 export async function getBool(query: string) {
   const r = await get(query);

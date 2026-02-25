@@ -1,19 +1,18 @@
 import vue from 'vue';
-import type {Dict} from '@razomy/dict';
-import {removeFirstMut} from '@razomy/array';
-
+import type { Dict } from '@razomy/dict';
+import { removeFirstMut } from '@razomy/array';
 
 export class RemoteResource {
   ctx: razomy = undefined as any as razomy;
 
   state = vue.reactive({
     notation: null as Dict<string> | null,
-    listeners: [] as (() => void)[]
+    listeners: [] as (() => void)[],
   });
 
   set(notation: Dict<string>) {
     this.state.notation = notation;
-    this.state.listeners.forEach(i => i());
+    this.state.listeners.forEach((i) => i());
   }
 
   get(key: string) {
@@ -21,9 +20,9 @@ export class RemoteResource {
   }
 
   async load() {
-    return await fetch(`${this.ctx.url}/api/get?path=${this.ctx.id}`, {method: 'GET'})
-      .then(i => i.json())
-      .then(data => this.set(data));
+    return await fetch(`${this.ctx.url}/api/get?path=${this.ctx.id}`, { method: 'GET' })
+      .then((i) => i.json())
+      .then((data) => this.set(data));
   }
 
   async start() {
@@ -43,4 +42,3 @@ export class RemoteResource {
     removeFirstMut(this.state.listeners, cb);
   }
 }
-

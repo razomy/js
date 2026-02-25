@@ -17,4 +17,3 @@
 export function endsWith(text: string, target: string, position?: number): boolean {
   return text.endsWith(target, position);
 }
-

@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Threshold Filter. Pushes any value above the mid point to
@@ -25,9 +25,8 @@ export class ThresholdTextureFilter implements ITextureFilter {
      * @param {Number} threshold
      * @returns {Number}
      */
-    public threshold = 0.5
-  ) {
-  }
+    public threshold = 0.5,
+  ) {}
 
   public filter(imageData: any): void {
     var level = this.threshold * 255,
@@ -38,6 +37,5 @@ export class ThresholdTextureFilter implements ITextureFilter {
     for (i = 0; i < len; i += 1) {
       data[i] = data[i] < level ? 0 : 255;
     }
-  };
+  }
 }
-

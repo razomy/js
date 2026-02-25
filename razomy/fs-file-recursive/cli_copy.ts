@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {copy} from './copy';
+import { copy } from './copy';
 
 export async function cliCopy() {
   const [, , ...args] = process.argv;

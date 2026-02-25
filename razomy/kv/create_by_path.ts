@@ -1,5 +1,5 @@
-import {akv} from '@razomy/kv';
-import {k} from './k';
+import { akv } from '@razomy/kv';
+import { k } from './k';
 
 export function createByPath<T>(path: T[]) {
   const root = k(null as T, akv<T>());
@@ -14,5 +14,3 @@ export function createByPath<T>(path: T[]) {
 
   return root;
 }
-
-

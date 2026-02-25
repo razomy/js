@@ -10,5 +10,3 @@ export async function delayAwait<T>(request: () => Promise<T>, delay = 10000) {
   }
   throw new Error('Out of time');
 }
-
-

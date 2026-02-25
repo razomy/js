@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "directory",
+    "get",
+    "isDirEmpty",
+    "tryCreate"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

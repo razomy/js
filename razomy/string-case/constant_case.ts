@@ -17,13 +17,15 @@
  */
 export function constantCase(text: string): string {
   if (!text) return '';
-  return text
-    // Вставляем пробел между маленькой и большой буквой (camelCase -> camel Case)
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    // Заменяем все не буквенно-цифровые символы на пробелы
-    .replace(/[^a-zA-Z0-9]+/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .map((word) => word.toUpperCase())
-    .join('_');
+  return (
+    text
+      // Вставляем пробел между маленькой и большой буквой (camelCase -> camel Case)
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      // Заменяем все не буквенно-цифровые символы на пробелы
+      .replace(/[^a-zA-Z0-9]+/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.toUpperCase())
+      .join('_')
+  );
 }

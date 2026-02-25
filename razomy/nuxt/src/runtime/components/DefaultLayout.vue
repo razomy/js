@@ -1,52 +1,51 @@
 <template>
   <div>
-    <Html :dir='head.htmlAttrs.dir' :lang='head.htmlAttrs.lang'>
-    <Head>
-      <Title>{{ title }}</Title>
-      <template v-for='link in head.link' :key='link.id'>
-        <Link :id='link.id' :href='link.href' :hreflang='link.hreflang' :rel='link.rel'/>
-      </template>
-      <template v-for='meta in head.meta' :key='meta.id'>
-        <Meta :id='meta.id' :content='meta.content' :property='meta.property'/>
-      </template>
-    </Head>
-    <Body>
-    <v-app>
-      <!-- Сайдбар -->
-      <rzm-sidebar></rzm-sidebar>
-      <slot name="sidebar"></slot>
-      <v-main>
-        <!--        <rzm-default-header>-->
-        <!--          <template v-slot:start>-->
-        <!--            <v-icon-btn @click="drawer = !drawer">-->
-        <!--              <v-icon :icon="drawer ? 'mdi-close': 'mdi-menu'"></v-icon>-->
-        <!--            </v-icon-btn>-->
-        <!--            <rzm-language-dropdown-icon></rzm-language-dropdown-icon>-->
-        <!--            <slot name="header-start"></slot>-->
-        <!--            <rzm-breadcrumbs></rzm-breadcrumbs>-->
-        <!--            <slot name="header-finish"></slot>-->
-        <!--          </template>-->
-        <!--          <template v-slot:end>-->
-        <!--            <v-btn color="primary">Login/Up</v-btn>-->
-        <!--          </template>-->
-        <!--        </rzm-default-header>-->
-        <!-- Контент -->
-        <slot/>
-        <rzm-default-footer></rzm-default-footer>
-        <rzm-breadcrumbs :navigationRoot="c.navigationRoot"></rzm-breadcrumbs>
-      </v-main>
-
-    </v-app>
-    </Body>
+    <Html :dir="head.htmlAttrs.dir" :lang="head.htmlAttrs.lang">
+      <Head>
+        <Title>{{ title }}</Title>
+        <template v-for="link in head.link" :key="link.id">
+          <Link :id="link.id" :href="link.href" :hreflang="link.hreflang" :rel="link.rel" />
+        </template>
+        <template v-for="meta in head.meta" :key="meta.id">
+          <Meta :id="meta.id" :content="meta.content" :property="meta.property" />
+        </template>
+      </Head>
+      <Body>
+        <v-app>
+          <!-- Сайдбар -->
+          <rzm-sidebar></rzm-sidebar>
+          <slot name="sidebar"></slot>
+          <v-main>
+            <!--        <rzm-default-header>-->
+            <!--          <template v-slot:start>-->
+            <!--            <v-icon-btn @click="drawer = !drawer">-->
+            <!--              <v-icon :icon="drawer ? 'mdi-close': 'mdi-menu'"></v-icon>-->
+            <!--            </v-icon-btn>-->
+            <!--            <rzm-language-dropdown-icon></rzm-language-dropdown-icon>-->
+            <!--            <slot name="header-start"></slot>-->
+            <!--            <rzm-breadcrumbs></rzm-breadcrumbs>-->
+            <!--            <slot name="header-finish"></slot>-->
+            <!--          </template>-->
+            <!--          <template v-slot:end>-->
+            <!--            <v-btn color="primary">Login/Up</v-btn>-->
+            <!--          </template>-->
+            <!--        </rzm-default-header>-->
+            <!-- Контент -->
+            <slot />
+            <rzm-default-footer></rzm-default-footer>
+            <rzm-breadcrumbs :navigationRoot="c.navigationRoot"></rzm-breadcrumbs>
+          </v-main>
+        </v-app>
+      </Body>
     </Html>
   </div>
 </template>
-<script lang='ts' setup>
-import {c} from '~~/content/context';
-import {computed, useCookie, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme} from '#imports';
-import {onMounted, watchEffect} from 'vue'
+<script lang="ts" setup>
+import { c } from '~~/content/context';
+import { computed, useCookie, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme } from '#imports';
+import { onMounted, watchEffect } from 'vue';
 
-const {locale} = useI18n();
+const { locale } = useI18n();
 const route = useRoute();
 // const {t} = useI18n();
 
@@ -61,11 +60,11 @@ const head = useLocaleHead({
 
 const title = computed(() => route.meta.title);
 
-const theme = useTheme()
-const isDark = usePreferredDark() // Автоматически следит за темой ОС
+const theme = useTheme();
+const isDark = usePreferredDark(); // Автоматически следит за темой ОС
 onMounted(() => {
   watchEffect(() => {
     theme.change(isDark.value ? 'dark' : 'light');
-  })
-})
+  });
+});
 </script>

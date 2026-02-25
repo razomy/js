@@ -4,5 +4,5 @@ export function fMut<C, A extends any[]>(f: (c: C, ...args: A) => any, ...args: 
   return (c: C) => {
     f(c, ...args);
     return c;
-  }
+  };
 }

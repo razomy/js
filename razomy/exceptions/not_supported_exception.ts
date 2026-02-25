@@ -1,4 +1,3 @@
-import {Exception} from './exception';
+import { Exception } from './exception';
 
-export class NotSupportedException extends Exception {
-}
+export class NotSupportedException extends Exception {}

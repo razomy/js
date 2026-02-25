@@ -1,4 +1,4 @@
-export * from '@razomy/fs';
+// export * as fs from '@razomy/fs';
 export * as dict from '@razomy/fs-dict';
 export * as directory from '@razomy/fs-directory';
 export * as file from '@razomy/fs-file';

@@ -60,6 +60,22 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "commit",
+    "datetime",
+    "delta",
+    "string",
+    "addssToString",
+    "deltaString",
+    "deltaStringsToString",
+    "findRepetitions",
+    "iterateCommit",
+    "mapCommit",
+    "removeDuplicatedChanges",
+    "squashChanges",
+    "stringsToDeltaStrings"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

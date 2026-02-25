@@ -60,6 +60,15 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "pipes",
+    "functionPipe",
+    "pipe",
+    "pipeSync",
+    "tryP",
+    "withPipes"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -9,7 +9,7 @@ export function renameFoldersRecursively(currentDir: string) {
 
   try {
     // Get all items in the current directory
-    entries = fs.readdirSync(currentDir, {withFileTypes: true});
+    entries = fs.readdirSync(currentDir, { withFileTypes: true });
   } catch (err: any) {
     console.error(`Skipping access to ${currentDir}: ${err.message}`);
     return;
@@ -27,7 +27,6 @@ export function renameFoldersRecursively(currentDir: string) {
       // 2. CHECK AND RENAME
       // Check if folder name contains a dot
       if (entry.name.includes('.')) {
-
         // Replace ALL dots with dashes
         const newName = entry.name.replace(/\./g, '-');
         const newPath = path.join(currentDir, newName);

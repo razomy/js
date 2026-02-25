@@ -1,4 +1,4 @@
-import type {Json} from './json';
+import type { Json } from './json';
 
 export function sort<T extends Json>(object: T): T {
   if (object === undefined || object === null) {
@@ -18,5 +18,3 @@ export function sort<T extends Json>(object: T): T {
   }
   return newObject as T;
 }
-
-

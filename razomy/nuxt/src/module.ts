@@ -1,8 +1,7 @@
-import {addComponentsDir, addPlugin, createResolver, defineNuxtModule} from '@nuxt/kit'
+import { addComponentsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit';
 
 // Module options TypeScript interface definition
-export interface ModuleOptions {
-}
+export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -12,15 +11,15 @@ export default defineNuxtModule<ModuleOptions>({
   // Default configuration options of the Nuxt module
   defaults: {},
   setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url)
-    _nuxt.options.build.transpile.push(resolver.resolve('./runtime/components'))
+    const resolver = createResolver(import.meta.url);
+    _nuxt.options.build.transpile.push(resolver.resolve('./runtime/components'));
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    addPlugin(resolver.resolve('./runtime/plugin'));
 
     addComponentsDir({
       path: resolver.resolve('./runtime/components'),
       prefix: 'rzm',
       pathPrefix: false,
-    })
+    });
   },
-})
+});

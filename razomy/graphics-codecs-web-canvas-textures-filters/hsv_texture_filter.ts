@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value
@@ -37,10 +37,8 @@ export class HsvTextureFilter implements ITextureFilter {
      * @param {Number} value 0 is no change, -1.0 halves the value, 1.0 doubles, etc..
      * @returns {Number}
      */
-    public value = 0
-  ) {
-  }
-
+    public value = 0,
+  ) {}
 
   public filter(imageData: any): void {
     var data = imageData.data,
@@ -88,5 +86,5 @@ export class HsvTextureFilter implements ITextureFilter {
       data[i + 2] = br * r + bg * g + bb * b;
       data[i + 3] = a; // alpha
     }
-  };
+  }
 }

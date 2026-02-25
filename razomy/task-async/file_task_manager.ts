@@ -1,12 +1,10 @@
-import type {AsyncTask, Context} from './async_task';
-import type {Gate} from '@razomy/gate';
-
+import type { AsyncTask, Context } from './async_task';
+import type { Gate } from '@razomy/gate';
 
 export class FileTaskManager<C extends Context> {
   private currentContext: C | null = null;
 
-  constructor(public file_gate: Gate<C>) {
-  }
+  constructor(public file_gate: Gate<C>) {}
 
   /**
    * 1. Load state if exists (Continue)
@@ -73,7 +71,6 @@ export class FileTaskManager<C extends Context> {
       // 5. Save AFTER execution (Commit)
       console.log(`Saving state after task ${task.taskId}...`);
       await this.file_gate.set(this.currentContext!);
-
     } catch (error) {
       console.error(`Execution failed for task ${task.taskId}. Initiating rollback...`, error);
       await this.rollback(task);
@@ -122,7 +119,7 @@ export class FileTaskManager<C extends Context> {
    */
   private ensureContextLoaded() {
     if (!this.currentContext) {
-      throw new Error('Context is not loaded. Call \'continue()\' or \'init()\' first.');
+      throw new Error("Context is not loaded. Call 'continue()' or 'init()' first.");
     }
   }
 

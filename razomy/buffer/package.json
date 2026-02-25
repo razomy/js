@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "buffer",
+    "toString",
+    "withBuffer"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

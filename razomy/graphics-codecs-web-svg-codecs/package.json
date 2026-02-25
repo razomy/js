@@ -60,6 +60,21 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "web",
+    "svg",
+    "codecConfig",
+    "codecFactory",
+    "codecRegistry",
+    "encodeNodeFactory",
+    "rectangleCodec",
+    "svgCodec",
+    "textCodec",
+    "webSvgCodec"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

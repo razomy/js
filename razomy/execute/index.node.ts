@@ -1,1 +1,1 @@
-export {type Execute, type WithExecute} from './with_execute';
+export { type Execute, type WithExecute } from './with_execute';

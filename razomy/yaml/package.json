@@ -60,6 +60,11 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "yaml",
+    "yamlToObject"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

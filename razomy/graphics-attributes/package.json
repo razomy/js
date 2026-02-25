@@ -60,6 +60,17 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "attributes",
+    "positionAttribute",
+    "sizeAttribute",
+    "styleAttribute",
+    "textAttribute",
+    "textStyle",
+    "treeNodeAttribute"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

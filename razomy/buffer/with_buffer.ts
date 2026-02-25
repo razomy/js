@@ -1,3 +1,3 @@
 export interface WithBuffer {
-  buffer: Buffer
+  buffer: Buffer;
 }

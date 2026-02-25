@@ -1,1 +1,1 @@
-export {isAuthenticated, googleTapOn, Google} from './google';
+export { isAuthenticated, googleTapOn, Google } from './google';

@@ -1,9 +1,9 @@
-import type {ITextureFilter} from './i_texture_filter';
-import {backgroundMask} from './background_mask';
-import {erodeMask} from './erode_mask';
-import {dilateMask} from './dilate_mask';
-import {smoothEdgeMask} from './smooth_edge_mask';
-import {applyMask} from './apply_mask';
+import type { ITextureFilter } from './i_texture_filter';
+import { backgroundMask } from './background_mask';
+import { erodeMask } from './erode_mask';
+import { dilateMask } from './dilate_mask';
+import { smoothEdgeMask } from './smooth_edge_mask';
+import { applyMask } from './apply_mask';
 
 /**
  * Mask Filter
@@ -18,10 +18,7 @@ import {applyMask} from './apply_mask';
  * node.threshold(200);
  */
 export class MaskTextureFilter implements ITextureFilter {
-  constructor(
-    public threshold = 0,
-  ) {
-  }
+  constructor(public threshold = 0) {}
 
   public filter(imageData: any): void {
     // Detect pixels close to the background color
@@ -42,5 +39,5 @@ export class MaskTextureFilter implements ITextureFilter {
     }
 
     return imageData;
-  };
+  }
 }

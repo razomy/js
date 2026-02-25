@@ -18,4 +18,3 @@ export function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, to
 
   return toValue;
 }
-

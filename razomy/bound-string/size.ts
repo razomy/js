@@ -1,11 +1,10 @@
-export function size(str: string): { x: number, y: number } {
+export function size(str: string): { x: number; y: number } {
   let i = 0;
   let x = 0;
   let y = 0;
 
   while (i < str.length) {
     const char = str[i];
-
 
     switch (char) {
       case '\n':
@@ -17,7 +16,5 @@ export function size(str: string): { x: number, y: number } {
     i++;
   }
 
-  return {x, y};
+  return { x, y };
 }
-
-

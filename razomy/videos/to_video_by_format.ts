@@ -1,6 +1,6 @@
 import ffmpeg from 'fluent-ffmpeg';
-import {type ExtensionResult} from '@razomy/fs-file-format';
-import {videos} from './types';
+import { type ExtensionResult } from '@razomy/fs-file-format';
+import { videos } from './types';
 import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
@@ -11,23 +11,23 @@ if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);
 // --- ИСПРАВЛЕННАЯ КАРТА АЛИАСОВ ---
 // FFmpeg требует указывать внутреннее имя формата (muxer), а не расширение файла
 const formatAliases: Record<string, string> = {
-  'm4v': 'mp4',        // <--- ГЛАВНОЕ ИСПРАВЛЕНИЕ: M4V пишем через MP4 muxer
-  'mkv': 'matroska',
-  'avi': 'avi',
-  'mov': 'mov',
-  'm4a': 'ipod',       // Audio-only MP4 часто требует формат 'ipod' или 'mp4'
-  'aac': 'adts',       // Raw AAC stream
-  'ts': 'mpegts',
-  'mts': 'mpegts',
-  'm2ts': 'mpegts',
-  'mpg': 'mpeg',
-  'wmv': 'asf',        // WMV упаковывается в ASF
-  'wma': 'asf',
-  'alac': 'ipod',
-  'amr': 'amr',
-  '3g2': '3g2',        // У 3g2 есть свой muxer
-  'rmvb': 'rm',    // <--- Добавить это
-  'dv': 'dv',      // Явно указываем
+  m4v: 'mp4', // <--- ГЛАВНОЕ ИСПРАВЛЕНИЕ: M4V пишем через MP4 muxer
+  mkv: 'matroska',
+  avi: 'avi',
+  mov: 'mov',
+  m4a: 'ipod', // Audio-only MP4 часто требует формат 'ipod' или 'mp4'
+  aac: 'adts', // Raw AAC stream
+  ts: 'mpegts',
+  mts: 'mpegts',
+  m2ts: 'mpegts',
+  mpg: 'mpeg',
+  wmv: 'asf', // WMV упаковывается в ASF
+  wma: 'asf',
+  alac: 'ipod',
+  amr: 'amr',
+  '3g2': '3g2', // У 3g2 есть свой muxer
+  rmvb: 'rm', // <--- Добавить это
+  dv: 'dv', // Явно указываем
 };
 
 // ... exports videos и audios (оставляем как были) ...
@@ -36,8 +36,7 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
   const outputPath = path.join('/tmp', `out_${Date.now()}.${format}`);
 
   function cleanupInput() {
-    return fs.unlink(inputPath, () => {
-    });
+    return fs.unlink(inputPath, () => {});
   }
 
   // Определяем правильный формат для FFmpeg (-f flag)
@@ -53,63 +52,37 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
     // 1. MP4 / MOV / M4V
     if (['mp4', 'm4v', 'mov'].includes(format)) {
-      command = command
-        .videoCodec('libx264')
-        .audioCodec('aac')
-        .outputOptions([
-          '-preset', 'fast',
-          '-crf', '23',
-          '-movflags', '+faststart',
-          '-pix_fmt', 'yuv420p'
-        ]);
+      command = command.videoCodec('libx264').audioCodec('aac').outputOptions(['-preset', 'fast', '-crf', '23', '-movflags', '+faststart', '-pix_fmt', 'yuv420p']);
     }
 
     // 2. WebM
     else if (format === 'webm') {
-      command = command
-        .videoCodec('libvpx-vp9')
-        .audioCodec('libopus')
-        .outputOptions(['-b:v', '0', '-crf', '30', '-row-mt', '1']);
+      command = command.videoCodec('libvpx-vp9').audioCodec('libopus').outputOptions(['-b:v', '0', '-crf', '30', '-row-mt', '1']);
     }
 
     // 3. AVI
     else if (format === 'avi') {
-      command = command
-        .videoCodec('libxvid')
-        .audioCodec('libmp3lame')
-        .outputOptions(['-qscale:v', '3']);
+      command = command.videoCodec('libxvid').audioCodec('libmp3lame').outputOptions(['-qscale:v', '3']);
     }
 
     // 4. MKV
     else if (format === 'mkv') {
-      command = command
-        .videoCodec('libx264')
-        .audioCodec('aac');
+      command = command.videoCodec('libx264').audioCodec('aac');
     }
 
     // 5. WMV / ASF
     else if (['wmv', 'asf'].includes(format)) {
-      command = command
-        .videoCodec('wmv2')
-        .audioCodec('wmav2')
-        .outputOptions(['-b:v', '2M']);
+      command = command.videoCodec('wmv2').audioCodec('wmav2').outputOptions(['-b:v', '2M']);
     }
 
     // 6. FLV
     else if (format === 'flv') {
-      command = command
-        .videoCodec('flv')
-        .audioCodec('libmp3lame')
-        .audioFrequency(44100)
-        .outputOptions(['-ar', '44100']);
+      command = command.videoCodec('flv').audioCodec('libmp3lame').audioFrequency(44100).outputOptions(['-ar', '44100']);
     }
 
     // 7. OGV
     else if (format === 'ogv') {
-      command = command
-        .videoCodec('libtheora')
-        .audioCodec('libvorbis')
-        .outputOptions(['-q:v', '7', '-q:a', '4']);
+      command = command.videoCodec('libtheora').audioCodec('libvorbis').outputOptions(['-q:v', '7', '-q:a', '4']);
     }
 
     // 8. 3GP / 3G2 (Строгие ограничения!)
@@ -117,7 +90,7 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
       command = command
         .videoCodec('h263')
         .audioCodec('aac')
-        .size('352x288')     // CIF разрешение
+        .size('352x288') // CIF разрешение
         .fps(20)
         .audioChannels(1)
         .audioFrequency(8000)
@@ -126,22 +99,19 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
     // 9. VOB / MPEG / MPG
     else if (['vob', 'mpg', 'mpeg'].includes(format)) {
-      command = command
-        .videoCodec('mpeg2video')
-        .audioCodec('ac3')
-        .outputOptions([
-          '-b:v', '5000k', // Стандартный битрейт DVD
-          '-maxrate', '8000k',
-          '-bufsize', '1835k'
-        ]);
+      command = command.videoCodec('mpeg2video').audioCodec('ac3').outputOptions([
+        '-b:v',
+        '5000k', // Стандартный битрейт DVD
+        '-maxrate',
+        '8000k',
+        '-bufsize',
+        '1835k',
+      ]);
     }
 
     // 10. TS / MTS / M2TS
     else if (['ts', 'mts', 'm2ts'].includes(format)) {
-      command = command
-        .videoCodec('libx264')
-        .audioCodec('aac')
-        .outputOptions(['-bsf:v', 'h264_mp4toannexb']);
+      command = command.videoCodec('libx264').audioCodec('aac').outputOptions(['-bsf:v', 'h264_mp4toannexb']);
     }
 
     // 11. MXF
@@ -150,16 +120,22 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
         .videoCodec('mpeg2video')
         .audioCodec('pcm_s16le')
         .audioFrequency(48000) // Обязательно: MXF требует 48kHz
-        .audioChannels(2)      // Обязательно: Стерео
+        .audioChannels(2) // Обязательно: Стерео
         .outputOptions([
-          '-pix_fmt', 'yuv422p', // Цветовая субдискретизация 4:2:2
-          '-b:v', '50M',         // Битрейт 50 Мбит/с
-          '-minrate', '50M',
-          '-maxrate', '50M',
-          '-bufsize', '36M',
+          '-pix_fmt',
+          'yuv422p', // Цветовая субдискретизация 4:2:2
+          '-b:v',
+          '50M', // Битрейт 50 Мбит/с
+          '-minrate',
+          '50M',
+          '-maxrate',
+          '50M',
+          '-bufsize',
+          '36M',
           // ВАЖНО: Принудительно масштабируем в 1920x1080 (черные поля если не влезает),
           // так как этот формат не поддерживает произвольные разрешения.
-          '-vf', 'scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2'
+          '-vf',
+          'scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2',
         ]);
     }
 
@@ -169,30 +145,30 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
         .videoCodec('dvvideo')
         .audioCodec('pcm_s16le')
         .audioFrequency(48000) // Строго 48kHz
-        .audioChannels(2)      // Строго Стерео
+        .audioChannels(2) // Строго Стерео
         .outputOptions([
-          '-f', 'dv',          // Явно формат dv
-          '-pix_fmt', 'yuv420p', // Стандарт для PAL DV
-          '-s', '720x576',       // Строгое разрешение PAL
-          '-r', '25',            // Строго 25 кадров/сек
+          '-f',
+          'dv', // Явно формат dv
+          '-pix_fmt',
+          'yuv420p', // Стандарт для PAL DV
+          '-s',
+          '720x576', // Строгое разрешение PAL
+          '-r',
+          '25', // Строго 25 кадров/сек
           // Если видео не 4:3, добавляем черные полосы, чтобы не растягивало
-          '-vf', 'scale=720:576:force_original_aspect_ratio=decrease,pad=720:576:(ow-iw)/2:(oh-ih)/2'
+          '-vf',
+          'scale=720:576:force_original_aspect_ratio=decrease,pad=720:576:(ow-iw)/2:(oh-ih)/2',
         ]);
     }
 
     // 13. GIF
     else if (format === 'gif') {
-      command = command.complexFilter([
-        'fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse'
-      ]);
+      command = command.complexFilter(['fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse']);
     }
 
     // 14. SWF (Flash)
     else if (format === 'swf') {
-      command = command
-        .videoCodec('flv')
-        .audioCodec('libmp3lame')
-        .outputOptions(['-ar', '44100']);
+      command = command.videoCodec('flv').audioCodec('libmp3lame').outputOptions(['-ar', '44100']);
     }
 
     // 15. RM (RealMedia) - Только контейнер
@@ -223,12 +199,10 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
   const fileStream = fs.createReadStream(outputPath);
   fileStream.on('close', () => {
-    fs.unlink(outputPath, () => {
-    });
+    fs.unlink(outputPath, () => {});
   });
 
-  const mimeType = videos.find(v => v.fileExtensionType === format)?.mediaType
-    || 'application/octet-stream';
+  const mimeType = videos.find((v) => v.fileExtensionType === format)?.mediaType || 'application/octet-stream';
 
-  return {stream: fileStream, mediaType: mimeType, fileExtensionType: format};
+  return { stream: fileStream, mediaType: mimeType, fileExtensionType: format };
 }

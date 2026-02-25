@@ -1,5 +1,5 @@
-import type {ITextureFilter} from './i_texture_filter';
-import {remap} from './remap';
+import type { ITextureFilter } from './i_texture_filter';
+import { remap } from './remap';
 
 /**
  * Enhance Filter. Adjusts the colors so that they span the widest
@@ -25,9 +25,8 @@ export class Enhance_texture_filter implements ITextureFilter {
      * @param {Float} amount
      * @returns {Float}
      */
-    public enhance = 0
-  ) {
-  }
+    public enhance = 0,
+  ) {}
 
   public filter(imageData: any): void {
     var data = imageData.data,
@@ -88,15 +87,7 @@ export class Enhance_texture_filter implements ITextureFilter {
       bMin = 0;
     }
 
-    var rMid,
-      rGoalMax,
-      rGoalMin,
-      gMid,
-      gGoalMax,
-      gGoalMin,
-      bMid,
-      bGoalMax,
-      bGoalMin;
+    var rMid, rGoalMax, rGoalMin, gMid, gGoalMax, gGoalMin, bMid, bGoalMax, bGoalMin;
 
     // If the enhancement is positive - stretch the histogram
     if (enhanceAmount > 0) {
@@ -126,5 +117,5 @@ export class Enhance_texture_filter implements ITextureFilter {
       data[i + 2] = remap(data[i + 2], bMin, bMax, bGoalMin, bGoalMax);
       //data[i + 3] = remap(data[i + 3], aMin, aMax, aGoalMin, aGoalMax);
     }
-  };
+  }
 }

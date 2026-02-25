@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "images",
+    "toImageByFormat",
+    "types"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

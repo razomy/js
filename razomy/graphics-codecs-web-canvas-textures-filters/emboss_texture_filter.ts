@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Emboss Filter.
@@ -18,7 +18,6 @@ import type {ITextureFilter} from './i_texture_filter';
  * node.embossBlend(true);
  */
 export class EmbossTextureFilter implements ITextureFilter {
-
   constructor(
     /**
      * get/set emboss strength. Use with {@link Konva.Filters.Emboss} filter.
@@ -53,9 +52,8 @@ export class EmbossTextureFilter implements ITextureFilter {
      * @param {Boolean} embossBlend
      * @returns {Boolean}
      */
-    public embossBlend = false
-  ) {
-  }
+    public embossBlend = false,
+  ) {}
 
   public filter(imageData: any): void {
     // pixastic strength is between 0 and 10.  I want it between 0 and 1
@@ -177,5 +175,5 @@ export class EmbossTextureFilter implements ITextureFilter {
         }
       } while (--x);
     } while (--y);
-  };
+  }
 }

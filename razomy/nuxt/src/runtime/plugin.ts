@@ -1,4 +1,3 @@
-import {defineNuxtPlugin} from '#app';
+import { defineNuxtPlugin } from '#app';
 
-export default defineNuxtPlugin((_nuxtApp: any) => {
-})
+export default defineNuxtPlugin((_nuxtApp: any) => {});

@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "kv",
+    "toKv"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

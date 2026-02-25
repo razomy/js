@@ -5,5 +5,3 @@ export function isPromise(p: any): boolean {
 
   return false;
 }
-
-

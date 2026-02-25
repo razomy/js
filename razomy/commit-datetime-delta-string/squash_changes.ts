@@ -1,4 +1,4 @@
-import type {AddDeltaString, DeltaString, RemoveDeltaString} from '@razomy/commit-datetime-delta-string';
+import type { AddDeltaString, DeltaString, RemoveDeltaString } from '@razomy/commit-datetime-delta-string';
 
 export function squashChanges(changes: DeltaString[]): DeltaString[] {
   if (changes.length === 0) {
@@ -17,7 +17,7 @@ export function squashChanges(changes: DeltaString[]): DeltaString[] {
       if (lastAdd === undefined) {
         lastAdd = last = current;
         posSshit = 1;
-        next.push(last)
+        next.push(last);
         continue;
       }
 
@@ -27,12 +27,12 @@ export function squashChanges(changes: DeltaString[]): DeltaString[] {
         continue;
       }
       lastAdd = last = current;
-      next.push(last)
+      next.push(last);
       posSshit = 1;
     } else if ('removeLength' in current) {
       if (lastRemove === undefined) {
         lastRemove = last = current;
-        next.push(last)
+        next.push(last);
         posSshit = 1;
         continue;
       }
@@ -47,7 +47,7 @@ export function squashChanges(changes: DeltaString[]): DeltaString[] {
       }
       lastRemove = last = current;
       posSshit = 1;
-      next.push(last)
+      next.push(last);
     }
   }
 

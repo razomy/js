@@ -60,6 +60,24 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "file",
+    "delete",
+    "deleteSync",
+    "fileGate",
+    "get",
+    "getJson",
+    "getSync",
+    "isEmpty",
+    "isExist",
+    "set",
+    "setJson",
+    "setSync",
+    "tryGetJson",
+    "trySet"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

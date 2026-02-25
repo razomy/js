@@ -60,6 +60,26 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "tree",
+    "list",
+    "filter",
+    "filterFirst",
+    "get",
+    "getAll",
+    "getCondition",
+    "iterate",
+    "iterateReverse",
+    "last",
+    "listTree",
+    "map",
+    "mapChildren",
+    "nodesArrayToTree",
+    "splitNodesArrayToTree",
+    "vrdToTree",
+    "withChildrenList"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import type {FilePathString} from '@razomy/path-string';
+import type { FilePathString } from '@razomy/path-string';
 
 export function filePathCount(filePath: FilePathString) {
   try {
@@ -10,7 +10,7 @@ export function filePathCount(filePath: FilePathString) {
     console.log(tokens.length);
     // Count the tokens by type
     const tokenCountByType: Record<string, number> = {};
-    tokens.forEach(token => {
+    tokens.forEach((token) => {
       if (tokenCountByType[token]) {
         tokenCountByType[token]++;
       } else {
@@ -36,4 +36,3 @@ export function filePathCount(filePath: FilePathString) {
 //   console.log('Token count by type:');
 //   console.log(tokenCount);
 // }
-

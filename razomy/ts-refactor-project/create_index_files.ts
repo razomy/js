@@ -1,14 +1,14 @@
-import {Project, SourceFile, SyntaxKind} from 'ts-morph';
+import { Project, SourceFile, SyntaxKind } from 'ts-morph';
 import * as file from '@razomy/fs-file';
-import {tryGetJson} from '@razomy/fs-file';
+import { tryGetJson } from '@razomy/fs-file';
 import * as path from 'path';
-import {toSafeName} from '@razomy/ts-refactor';
+import { toSafeName } from '@razomy/ts-refactor';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';
 
 export async function createIndexFiles(projectPath: string) {
-  const project = new Project({tsConfigFilePath: projectPath + 'tsconfig.json'});
+  const project = new Project({ tsConfigFilePath: projectPath + 'tsconfig.json' });
 
   const directories = project.getDirectories();
 
@@ -21,9 +21,9 @@ export async function createIndexFiles(projectPath: string) {
     // Списки для хранения строк экспорта
     const exports = {
       universal: [] as string[], // Попадает во все файлы
-      node: [] as string[],      // Только для index.ts (как default/node)
-      browser: [] as string[],   // Только для index.browser.ts
-      remote: [] as string[],    // Только для index.remote.ts
+      node: [] as string[], // Только для index.ts (как default/node)
+      browser: [] as string[], // Только для index.browser.ts
+      remote: [] as string[], // Только для index.remote.ts
     };
 
     // 1. Обработка подпапок (Sub-directories)
@@ -138,18 +138,10 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
     const decl = decls[0];
     const kind = decl.getKind();
 
-    if (
-      kind === SyntaxKind.ClassDeclaration ||
-      kind === SyntaxKind.FunctionDeclaration ||
-      kind === SyntaxKind.VariableDeclaration ||
-      kind === SyntaxKind.EnumDeclaration
-    ) {
+    if (kind === SyntaxKind.ClassDeclaration || kind === SyntaxKind.FunctionDeclaration || kind === SyntaxKind.VariableDeclaration || kind === SyntaxKind.EnumDeclaration) {
       hasTypesOrClasses = true;
       namesToExport.push(name);
-    } else if (
-      kind === SyntaxKind.InterfaceDeclaration ||
-      kind === SyntaxKind.TypeAliasDeclaration
-    ) {
+    } else if (kind === SyntaxKind.InterfaceDeclaration || kind === SyntaxKind.TypeAliasDeclaration) {
       hasTypesOrClasses = true;
       namesToExport.push('type ' + name);
     } else {
@@ -176,9 +168,9 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
 function saveIndexFile(project: Project, filePath: string, lines: string[]) {
   const content = [
     lines.join('\n'),
-    '' // пустая строка в конце
+    '', // пустая строка в конце
   ].join('\n');
 
-  project.createSourceFile(filePath, content, {overwrite: true});
+  project.createSourceFile(filePath, content, { overwrite: true });
   console.log(`[GENERATED] ${filePath}`);
 }

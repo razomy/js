@@ -10,5 +10,5 @@ export {
   type ShapeArtboard,
   type TextArtboard,
   type GroupArtboard,
-  type Artboard
+  type Artboard,
 } from './xd';

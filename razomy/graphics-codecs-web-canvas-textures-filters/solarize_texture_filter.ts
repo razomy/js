@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Solarize Filter
@@ -46,5 +46,5 @@ export class SolarizeTextureFilter implements ITextureFilter {
         data[offset + 2] = b;
       } while (--x);
     } while (--y);
-  };
+  }
 }

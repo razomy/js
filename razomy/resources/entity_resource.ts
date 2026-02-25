@@ -1,12 +1,7 @@
-import {ObjectResource} from './object_resource';
-import {
-  type  IEntityResource,
-  type IResourceMap,
-  NodeAlreadyProvidedException,
-  NodeProvidedException
-} from './node_provided_exception';
-import type {Constructor} from '@razomy/class';
-import {ArgumentException} from '@razomy/exceptions';
+import { ObjectResource } from './object_resource';
+import { type IEntityResource, type IResourceMap, NodeAlreadyProvidedException, NodeProvidedException } from './node_provided_exception';
+import type { Constructor } from '@razomy/class';
+import { ArgumentException } from '@razomy/exceptions';
 
 export class EntityResource extends ObjectResource implements IEntityResource {
   protected resources: IResourceMap = {};
@@ -48,5 +43,4 @@ export class EntityResource extends ObjectResource implements IEntityResource {
 
     throw new ArgumentException('unknown', ctor);
   }
-
 }

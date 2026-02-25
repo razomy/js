@@ -1,3 +1,1 @@
-export interface Resource {
-}
-
+export interface Resource {}

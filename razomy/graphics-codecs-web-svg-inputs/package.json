@@ -63,6 +63,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "web",
+    "svg",
+    "inputs",
+    "dWebBrowserInput",
+    "ioAttribute"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

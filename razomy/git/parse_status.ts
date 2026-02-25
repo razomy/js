@@ -1,4 +1,4 @@
-import type {Status} from './get_status';
+import type { Status } from './get_status';
 
 export function parseStatus(str: string): Status {
   var lines;
@@ -38,8 +38,8 @@ export function parseStatus(str: string): Status {
 
   lines.forEach(function (str) {
     if (str.match(/\S/)) {
-      const [type, ...path] = str.trim().split(' ')
-      status.files.push({type, path: path.join(' ')});
+      const [type, ...path] = str.trim().split(' ');
+      status.files.push({ type, path: path.join(' ') });
     }
   });
 

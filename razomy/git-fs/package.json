@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "git",
+    "fs",
+    "commit",
+    "getRecursiveStatus",
+    "restore"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

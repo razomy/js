@@ -1,8 +1,7 @@
 import * as path from 'path';
-import {string} from '@razomy/number-string';
-import {execute} from '@razomy/shell';
-import {set} from '@razomy/fs-file';
-
+import { string } from '@razomy/number-string';
+import { execute } from '@razomy/shell';
+import { set } from '@razomy/fs-file';
 
 export async function exportFiles(baseDir) {
   baseDir = path.resolve(baseDir);
@@ -36,7 +35,7 @@ export async function exportFiles(baseDir) {
     } catch (e) {
       console.log(e);
     }
-    console.log(`Add ${i} of ${files.length} ${string(i / files.length * 100)} %`);
+    console.log(`Add ${i} of ${files.length} ${string((i / files.length) * 100)} %`);
     // return;
   }
 }

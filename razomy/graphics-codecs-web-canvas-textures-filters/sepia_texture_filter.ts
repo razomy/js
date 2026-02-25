@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 
@@ -29,5 +29,5 @@ export class SepiaTextureFilter implements ITextureFilter {
       data[i + 1] = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
       data[i + 2] = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
     }
-  };
+  }
 }

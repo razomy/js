@@ -62,6 +62,25 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "git",
+    "compareVersions",
+    "getAllCommitHashes",
+    "getGitCommitsId",
+    "getLastGitCommitIdOrNull",
+    "getStatus",
+    "getStatusSync",
+    "gitCommit",
+    "gitFileCommitsToCommitJsonFile",
+    "gitFileToNewGitFile",
+    "gitInit",
+    "init",
+    "isCleanStatus",
+    "parseStatus",
+    "parseStatusRef",
+    "vcsCommitsToGitFile"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

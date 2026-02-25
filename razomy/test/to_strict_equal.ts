@@ -1,4 +1,4 @@
-import {assertDeepEqual} from './assert_deep_equal';
+import { assertDeepEqual } from './assert_deep_equal';
 
 export function toStrictEqual<T>(actual: T, expected: T) {
   assertDeepEqual(actual, expected);

@@ -63,6 +63,11 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "cli",
+    "bin"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

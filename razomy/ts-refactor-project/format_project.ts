@@ -1,18 +1,13 @@
-import {ifMain} from '@razomy/main';
-import {convertLambdasToNamedFunctions} from './convert_lambdas_to_named_functions';
-import {createIndexFiles} from './create_index_files';
-import {createRoot} from './package_json/create_root';
-import {renameFiles} from './rename_files';
-import {
-  fileRenameVariablesAndPropsFunctions,
-  iterateSourceFilesAndSave,
-  renameFileBasedOnFirstChild,
-  splitFunctions
-} from '@razomy/ts-refactor';
-import {addDependencies} from './package_json/add_dependencies';
-import {updateByTemplate} from './package_json/update_by_template';
-import {createAtChildDirs} from './package_json/create_at_child_dirs';
-import {fixBrokenImportsAndExports} from './fix_broken_imports_and_exports';
+import { ifMain } from '@razomy/main';
+import { convertLambdasToNamedFunctions } from './convert_lambdas_to_named_functions';
+import { createIndexFiles } from './create_index_files';
+import { createRoot } from './package_json/create_root';
+import { renameFiles } from './rename_files';
+import { fileRenameVariablesAndPropsFunctions, iterateSourceFilesAndSave, renameFileBasedOnFirstChild, splitFunctions } from '@razomy/ts-refactor';
+import { addDependencies } from './package_json/add_dependencies';
+import { updateByTemplate } from './package_json/update_by_template';
+import { createAtChildDirs } from './package_json/create_at_child_dirs';
+import { fixBrokenImportsAndExports } from './fix_broken_imports_and_exports';
 
 export async function formatProject(projectPath: string, prefix: string) {
   console.info('renameFiles.start');
@@ -39,4 +34,4 @@ export async function formatProject(projectPath: string, prefix: string) {
   await iterateSourceFilesAndSave(projectPath, fileRenameVariablesAndPropsFunctions);
 }
 
-ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then()
+ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then();

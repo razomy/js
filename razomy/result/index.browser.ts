@@ -1,1 +1,1 @@
-export {fMutResult} from './f_mut_result';
+export { fMutResult } from './f_mut_result';

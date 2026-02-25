@@ -60,6 +60,19 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "google",
+    "storage",
+    "repo",
+    "downloadFile",
+    "downloadFileRecursiveFile",
+    "downloadFilesFromStorage",
+    "downloadFilesRecursive",
+    "uploadFile",
+    "uploadFilesRecursive",
+    "uploadFilesToStorage"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

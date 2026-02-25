@@ -8,4 +8,3 @@ export function createCanvasElement(): HTMLCanvasElement {
   }
   return canvas as HTMLCanvasElement;
 }
-

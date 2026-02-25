@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "resources",
+    "attributeResource",
+    "entityResource",
+    "nodeProvidedException",
+    "objectResource",
+    "resource",
+    "resourceCollection"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

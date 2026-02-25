@@ -14,11 +14,7 @@
  * // => [2, 4, 6]
  * reduce([1, 2, 3], (acc, val) => { acc.push(val * 2); return acc; }, []);
  */
-export function reduce<T, A>(
-  array: T[],
-  reducer: (accumulator: A, value: T, index: number, array: T[]) => A,
-  initialValue: A
-): A {
+export function reduce<T, A>(array: T[], reducer: (accumulator: A, value: T, index: number, array: T[]) => A, initialValue: A): A {
   let accumulator = initialValue;
   for (let i = 0; i < array.length; i++) {
     accumulator = reducer(accumulator, array[i], i, array);

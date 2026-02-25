@@ -1,5 +1,5 @@
-import type {Logger} from '@razomy/logging';
-import {ConsoleLogger} from '@razomy/logging';
+import type { Logger } from '@razomy/logging';
+import { ConsoleLogger } from '@razomy/logging';
 
 export class TaskQueue {
   private isProcessing = false;
@@ -11,8 +11,7 @@ export class TaskQueue {
   }[] = [];
   private id = 0;
 
-  constructor(private ctx: { logger: Logger } = {logger: new ConsoleLogger()}) {
-  }
+  constructor(private ctx: { logger: Logger } = { logger: new ConsoleLogger() }) {}
 
   /**
    * Adds a task to the queue and returns a Promise that resolves
@@ -33,7 +32,7 @@ export class TaskQueue {
         id,
         task: wrappedTask,
         resolve,
-        reject
+        reject,
       });
 
       // 3. Trigger processing

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import {Project, SourceFile} from 'ts-morph';
-import {levenshteinDistance} from '@razomy/string';
+import { Project, SourceFile } from 'ts-morph';
+import { levenshteinDistance } from '@razomy/string';
 
 function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null {
   const filePath = sourceFile.getFilePath();
@@ -10,7 +10,7 @@ function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null 
   const relativePath = path.relative(rootDir, filePath);
 
   const directoryName = path.dirname(relativePath); // "users/auth"
-  const fileName = path.basename(relativePath);     // "login.ts"
+  const fileName = path.basename(relativePath); // "login.ts"
 
   // If the file is already at the root or just one level deep,
   // and doesn't contain separators, we might not need to move it.
@@ -82,14 +82,9 @@ async function flattenFolders(project: Project, rootDir: string) {
 
 type ExportIndex = Map<string, SourceFile>;
 
-function findReplacementSymbol(
-  nameToFind: string,
-  exportMap: ExportIndex,
-  allExportNames: string[]
-): { name: string; file: SourceFile } | null {
-
+function findReplacementSymbol(nameToFind: string, exportMap: ExportIndex, allExportNames: string[]): { name: string; file: SourceFile } | null {
   if (exportMap.has(nameToFind)) {
-    return {name: nameToFind, file: exportMap.get(nameToFind)!};
+    return { name: nameToFind, file: exportMap.get(nameToFind)! };
   }
 
   let lowestDistance = Infinity;
@@ -108,7 +103,7 @@ function findReplacementSymbol(
     console.log(`    -> Fuzzy match: '${nameToFind}' replaced with '${currentBestCandidate}'`);
     return {
       name: currentBestCandidate,
-      file: exportMap.get(currentBestCandidate)!
+      file: exportMap.get(currentBestCandidate)!,
     };
   }
   return null;
@@ -134,8 +129,7 @@ async function fixBrokenImportsAndExports(project: Project) {
 
   for (const file of sourceFiles) {
     // Fix Imports
-    const brokenImports = file.getImportDeclarations()
-      .filter(i => i.isModuleSpecifierRelative() && !i.getModuleSpecifierSourceFile());
+    const brokenImports = file.getImportDeclarations().filter((i) => i.isModuleSpecifierRelative() && !i.getModuleSpecifierSourceFile());
 
     if (brokenImports.length > 0) {
       console.log(`Fixing IMPORTS in ${file.getBaseName()}...`);
@@ -143,15 +137,15 @@ async function fixBrokenImportsAndExports(project: Project) {
         for (const named of importDecl.getNamedImports()) {
           const match = findReplacementSymbol(named.getName(), exportMap, allExportNames);
           if (match) {
-            const existing = file.getImportDeclaration(i => i.getModuleSpecifierSourceFile() === match.file);
+            const existing = file.getImportDeclaration((i) => i.getModuleSpecifierSourceFile() === match.file);
             if (existing) {
-              if (!existing.getNamedImports().some(n => n.getName() === match.name)) {
+              if (!existing.getNamedImports().some((n) => n.getName() === match.name)) {
                 existing.addNamedImport(match.name);
               }
             } else {
               file.addImportDeclaration({
                 namedImports: [match.name],
-                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file)
+                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file),
               });
             }
           }
@@ -161,8 +155,7 @@ async function fixBrokenImportsAndExports(project: Project) {
     }
 
     // Fix Exports (re-exports)
-    const brokenExports = file.getExportDeclarations()
-      .filter(e => e.isModuleSpecifierRelative() && !e.getModuleSpecifierSourceFile());
+    const brokenExports = file.getExportDeclarations().filter((e) => e.isModuleSpecifierRelative() && !e.getModuleSpecifierSourceFile());
 
     if (brokenExports.length > 0) {
       console.log(`Fixing EXPORTS in ${file.getBaseName()}...`);
@@ -173,7 +166,7 @@ async function fixBrokenImportsAndExports(project: Project) {
             // ... logic to re-add export ...
             file.addExportDeclaration({
               namedExports: [match.name],
-              moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file)
+              moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file),
             });
           }
         }
@@ -191,7 +184,7 @@ async function fixBrokenImportsAndExports(project: Project) {
 
 export async function flattenPackages(tsConfigPath: string, targetDir: string) {
   console.log('Initializing...');
-  const project = new Project({tsConfigFilePath: tsConfigPath + 'tsconfig.json'});
+  const project = new Project({ tsConfigFilePath: tsConfigPath + 'tsconfig.json' });
   const rootAbsPath = path.resolve(tsConfigPath, targetDir);
 
   // 1. Rename Folders to Package.Style

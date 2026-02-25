@@ -1,10 +1,7 @@
-import type {Context} from '@razomy/context';
-import type {ResultNullFn} from '@razomy/result-null';
+import type { Context } from '@razomy/context';
+import type { ResultNullFn } from '@razomy/result-null';
 
-export function any<
-  C extends Context,
-  R = any
->(ctx: C, rules: ResultNullFn<C, R>[]) {
+export function any<C extends Context, R = any>(ctx: C, rules: ResultNullFn<C, R>[]) {
   for (const rule of rules) {
     const res = rule(ctx);
     if (res) return res;

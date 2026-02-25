@@ -3,7 +3,7 @@ import winston from 'winston';
 export const isProduction = process.env.NODE_ENV === 'production';
 export const consoleTransport = new winston.transports.Console({
   level: isProduction ? 'info' : 'debug',
-// @ts-ignore
+  // @ts-ignore
   prettyPrint: !isProduction,
   colorize: !isProduction,
   timestamp: !isProduction,
@@ -14,6 +14,3 @@ export const consoleTransport = new winston.transports.Console({
 export const logger = new winston.createLogger({
   transports: [consoleTransport],
 });
-
-
-

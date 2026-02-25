@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "tree",
+    "dict_or_list",
+    "withChildrenDictOrList"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

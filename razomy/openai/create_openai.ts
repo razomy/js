@@ -1,4 +1,4 @@
-import {OpenAI} from 'openai';
+import { OpenAI } from 'openai';
 
 export function createOpenai(ctx: { openai: OpenAI }): { openai: OpenAI } {
   ctx.openai = new OpenAI({
@@ -6,5 +6,3 @@ export function createOpenai(ctx: { openai: OpenAI }): { openai: OpenAI } {
   });
   return ctx;
 }
-
-

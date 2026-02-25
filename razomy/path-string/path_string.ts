@@ -1,4 +1,4 @@
-import type {Key} from '@razomy/kv';
+import type { Key } from '@razomy/kv';
 
 export type Slug = Key<string>;
 export type AbsolutePathString = Slug;
@@ -9,5 +9,5 @@ export type DirPathString = PathString;
 export type SourcePathString = DirPathString;
 
 export interface WithPathString {
-  pathString: PathString
+  pathString: PathString;
 }

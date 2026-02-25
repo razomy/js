@@ -1,15 +1,10 @@
 import * as path from 'path';
-import {execute} from '@razomy/shell';
-import {getSync, setSync} from '@razomy/fs-file';
-import {tryPromise} from '@razomy/async';
-import {getGitCommitsId} from './get_git_commits_id';
+import { execute } from '@razomy/shell';
+import { getSync, setSync } from '@razomy/fs-file';
+import { tryPromise } from '@razomy/async';
+import { getGitCommitsId } from './get_git_commits_id';
 
-
-export async function gitFileToNewGitFile(
-  repositoryPath,
-  repositorynewPath,
-  fileSubPath = '/data/start.txt',
-) {
+export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fileSubPath = '/data/start.txt') {
   repositoryPath = path.resolve(repositoryPath);
   repositorynewPath = path.resolve(repositorynewPath);
 

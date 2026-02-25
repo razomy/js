@@ -1,9 +1,8 @@
-import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
-import {ResourceCollection} from '@razomy/resources';
-import {ViewGraphic} from '@razomy/graphics-graphic';
+import { PositionAttribute, SizeAttribute } from '@razomy/graphics-attributes';
+import { ResourceCollection } from '@razomy/resources';
+import { ViewGraphic } from '@razomy/graphics-graphic';
 
 export class ElementView extends ViewGraphic {
-
   constructor() {
     super();
     this.resources[SizeAttribute.type] = new SizeAttribute(0, 0);
@@ -22,5 +21,4 @@ export class ElementView extends ViewGraphic {
   public get children() {
     return this.getBy<ResourceCollection<ElementView>>(ResourceCollection).getAll();
   }
-
 }

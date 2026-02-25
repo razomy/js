@@ -13,8 +13,7 @@ declare module '@vue/runtime-core' {
 }
 
 declare module 'vue' {
-  interface GlobalComponents {
-  }
+  interface GlobalComponents {}
 
   interface ComponentCustomProperties {
     razomy: razomy;
@@ -27,5 +26,5 @@ export const plugin = {
     window.r = window.razomy = app.config.globalProperties.razomy = razomy;
     app.provide('razomy', razomy);
     app.provide('r', razomy);
-  }
-}
+  },
+};

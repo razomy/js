@@ -1,5 +1,5 @@
-import type {Worker} from 'cluster';
-import type {WorkerEvent} from './worker';
+import type { Worker } from 'cluster';
+import type { WorkerEvent } from './worker';
 
 export function workerToPromise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {
@@ -7,26 +7,24 @@ export function workerToPromise<T>(worker: Worker, ctx: T) {
     let lastError: Error;
 
     function errorHandle(error: Error) {
-      return lastError = error;
+      return (lastError = error);
     }
 
     function ctxHandle(data: WorkerEvent<T>) {
       if (data.id === 'set') {
-        lastCtx = data.ctx
+        lastCtx = data.ctx;
       } else if (data.id === 'get') {
-        worker.send({id: 'get', ctx});
+        worker.send({ id: 'get', ctx });
       } else {
         throw new Error('Unknown event type' + data.id);
       }
     }
 
-    worker.on('error', errorHandle)
+    worker.on('error', errorHandle);
     worker.on('message', ctxHandle);
 
     worker.on('exit', (code) => {
-      if (code !== 0)
-        reject(new Error(
-          `Stopped the Worker Thread with the exit code: ${code}`));
+      if (code !== 0) reject(new Error(`Stopped the Worker Thread with the exit code: ${code}`));
 
       worker.off('error', errorHandle);
       worker.off('message', ctxHandle);
@@ -34,6 +32,6 @@ export function workerToPromise<T>(worker: Worker, ctx: T) {
         return reject(lastError);
       }
       return resolve(lastCtx);
-    })
-  })
+    });
+  });
 }

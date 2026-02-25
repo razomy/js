@@ -1,6 +1,6 @@
 import perf_hooks from 'perf_hooks';
 
-export const {performance} = perf_hooks;
+export const { performance } = perf_hooks;
 
 export class Performance {
   startTime: number;
@@ -9,7 +9,6 @@ export class Performance {
   constructor() {
     this.startTime = performance.now();
     this.endTime = performance.now();
-
   }
 
   tick() {

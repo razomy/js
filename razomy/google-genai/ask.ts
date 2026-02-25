@@ -1,6 +1,6 @@
-import {GoogleGenAI} from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 
-export const ai = new GoogleGenAI({apiKey: ''});
+export const ai = new GoogleGenAI({ apiKey: '' });
 
 export async function ask() {
   const response = await ai.models.generateContent({
@@ -13,31 +13,31 @@ export async function ask() {
 ask().then();
 
 export const response = {
-  'candidates': [
+  candidates: [
     {
-      'content': {
-        'parts': [
+      content: {
+        parts: [
           {
-            'text': '..........'
-          }
+            text: '..........',
+          },
         ],
-        'role': 'model'
+        role: 'model',
       },
-      'finishReason': 'STOP',
-      'index': 0
-    }
+      finishReason: 'STOP',
+      index: 0,
+    },
   ],
-  'modelVersion': 'gemini-2.5-flash',
-  'usageMetadata': {
-    'promptTokenCount': 6,
-    'candidatesTokenCount': 1282,
-    'totalTokenCount': 2579,
-    'promptTokensDetails': [
+  modelVersion: 'gemini-2.5-flash',
+  usageMetadata: {
+    promptTokenCount: 6,
+    candidatesTokenCount: 1282,
+    totalTokenCount: 2579,
+    promptTokensDetails: [
       {
-        'modality': 'TEXT',
-        'tokenCount': 6
-      }
+        modality: 'TEXT',
+        tokenCount: 6,
+      },
     ],
-    'thoughtsTokenCount': 1291
-  }
-}
+    thoughtsTokenCount: 1291,
+  },
+};

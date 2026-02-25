@@ -3,10 +3,7 @@
     "allowJs": false,
     "declaration": true,
     "esModuleInterop": true,
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
+    "lib": ["ESNext", "dom"],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noImplicitAny": false,
@@ -24,20 +21,11 @@
     "verbatimModuleSyntax": true,
     "target": "ESNext",
     "paths": {
-      "razomy": [
-        "./razomy/index.ts"
-      ],
-      "@razomy/*": [
-        "./razomy/*/index.ts"
-      ]
+      "razomy": ["./razomy/index.ts"],
+      "@razomy/*": ["./razomy/*/index.ts"]
     }
   },
-  "exclude": [
-    "**/node_modules",
-    "**/dist",
-    "./razomy/vue",
-    "./razomy/nuxt"
-  ],
+  "exclude": ["**/node_modules", "**/dist", "**/coverage", "./razomy/vue", "./razomy/nuxt"],
   "references": [
     {
       "path": "./razomy/nuxt/tsconfig.json"

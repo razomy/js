@@ -1,9 +1,6 @@
-import type {WithPrevOffset} from '@razomy/offset';
+import type { WithPrevOffset } from '@razomy/offset';
 
-export function defaultPrevOffset<T extends WithPrevOffset>(
-  ctx: T) {
+export function defaultPrevOffset<T extends WithPrevOffset>(ctx: T) {
   ctx.prevOffset = 0;
   return ctx;
 }
-
-

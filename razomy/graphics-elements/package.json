@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "elements",
+    "elementView",
+    "layoutElement",
+    "textElement",
+    "viewportElement",
+    "zoomAttribute"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

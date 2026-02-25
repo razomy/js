@@ -62,6 +62,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "compression",
+    "arrayBufferFromBase64",
+    "base64FromArrayBuffer",
+    "decodeJsonString",
+    "decodeString",
+    "encodeJsonString",
+    "encodeString"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

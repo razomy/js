@@ -1,1 +1,1 @@
-export {toVrd} from './to_vrd';
+export { toVrd } from './to_vrd';

@@ -1,8 +1,8 @@
-import {Project} from 'ts-morph';
-import type {FunctionSpecification} from './get_package_functions';
+import { Project } from 'ts-morph';
+import type { FunctionSpecification } from './get_package_functions';
 
-export function createDistSpecifications(project: Project, path_: string, name: string) {
-  const sourceFile = project.getSourceFileOrThrow(path_);
+export function createDistSpecifications(project: Project, path: string, name: string) {
+  const sourceFile = project.getSourceFileOrThrow(path);
 
   const func = sourceFile.getFunctionOrThrow(name);
 
@@ -12,9 +12,9 @@ export function createDistSpecifications(project: Project, path_: string, name: 
     parameters: [] as any[],
     returns: {
       type: func.getReturnType().getText(),
-      description: ''
+      description: '',
     },
-    examples: [] as any[]
+    examples: [] as any[],
   } as FunctionSpecification;
 
   const jsDocs = func.getJsDocs();
@@ -26,11 +26,11 @@ export function createDistSpecifications(project: Project, path_: string, name: 
   spec.description = doc.getDescription().trim();
 
   // --- Извлекаем параметры ---
-  spec.parameters = func.getParameters().map(param => {
+  spec.parameters = func.getParameters().map((param) => {
     const name = param.getName();
     const type = param.getType().getText();
 
-    const paramTag = doc.getTags().find(t => t.getTagName() === 'param' && t.getText().includes(name));
+    const paramTag = doc.getTags().find((t) => t.getTagName() === 'param' && t.getText().includes(name));
     let description = '';
     if (paramTag) {
       // Используем getCommentText(), который в новых версиях ts-morph возвращает чистый текст описания
@@ -41,24 +41,25 @@ export function createDistSpecifications(project: Project, path_: string, name: 
       }
     }
 
-    return {name, type, description};
+    return { name, type, description };
   });
 
   // --- Извлекаем Returns ---
-  const returnsTag = doc.getTags().find(t => t.getTagName() === 'returns');
+  const returnsTag = doc.getTags().find((t) => t.getTagName() === 'returns');
   if (returnsTag) {
     // Очищаем сырой текст от JSDoc звездочек и тега @returns
-    const cleanText = returnsTag.getText()
-      .replace(/@returns\s*/, '')      // Убираем само слово @returns
-      .replace(/^\s*\*\s?/gm, '')      // Убираем пробелы и звездочки в начале каждой строки
+    const cleanText = returnsTag
+      .getText()
+      .replace(/@returns\s*/, '') // Убираем само слово @returns
+      .replace(/^\s*\*\s?/gm, '') // Убираем пробелы и звездочки в начале каждой строки
       .trim();
 
     spec.returns.description = cleanText;
   }
 
   // --- Извлекаем примеры (Examples) ---
-  const exampleTags = doc.getTags().filter(t => t.getTagName() === 'example');
-  exampleTags.forEach(tag => {
+  const exampleTags = doc.getTags().filter((t) => t.getTagName() === 'example');
+  exampleTags.forEach((tag) => {
     // 1. Очищаем текст тега от звездочек форматирования JSDoc
     const cleanText = tag.getText().replace(/^\s*\*\s?/gm, '');
 
@@ -72,7 +73,7 @@ export function createDistSpecifications(project: Project, path_: string, name: 
       if (parts.length === 2) {
         spec.examples.push({
           code: parts[0].trim(),
-          expected: parts[1].replace(/['"]/g, '').trim()
+          expected: parts[1].replace(/['"]/g, '').trim(),
         });
       }
     }

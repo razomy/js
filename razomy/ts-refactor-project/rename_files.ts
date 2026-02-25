@@ -1,6 +1,6 @@
-import {Project} from 'ts-morph';
-import {isExist} from '@razomy/fs-file';
-import {getNameAndExt, toSafeFilename} from '@razomy/ts-refactor';
+import { Project } from 'ts-morph';
+import { isExist } from '@razomy/fs-file';
+import { getNameAndExt, toSafeFilename } from '@razomy/ts-refactor';
 
 export async function renameFiles(projectPath: string) {
   const project = new Project({
@@ -8,7 +8,7 @@ export async function renameFiles(projectPath: string) {
   });
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
-    let {baseName, ext} = getNameAndExt(sourceFile);
+    let { baseName, ext } = getNameAndExt(sourceFile);
     const newName = toSafeFilename(baseName);
 
     // Skip if name hasn't changed
@@ -20,7 +20,7 @@ export async function renameFiles(projectPath: string) {
     const path = `${sourceFile.getDirectory().getPath()}/${newName}${ext}`;
     if (isExist(path)) {
       console.log(`ERROR ${baseName}${ext} -> ${newName}${ext}`);
-      continue
+      continue;
     }
     console.log(`[RENAME] ${baseName}${ext} -> ${newName}${ext}`);
     sourceFile.move(path);

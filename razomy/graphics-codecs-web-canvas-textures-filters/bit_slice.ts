@@ -8,4 +8,3 @@ export function bitSlice(val: number) {
     return val;
   }
 }
-

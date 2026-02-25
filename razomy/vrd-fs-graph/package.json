@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "vrd",
+    "fs",
+    "graph",
+    "iterateChildren",
+    "vrdToGraph"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

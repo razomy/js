@@ -1,4 +1,4 @@
-import {Node, Project, SyntaxKind, VariableDeclarationKind} from 'ts-morph';
+import { Node, Project, SyntaxKind, VariableDeclarationKind } from 'ts-morph';
 
 export async function convertLambdasToNamedFunctions(projectPath: string) {
   const project = new Project({
@@ -40,8 +40,8 @@ export async function convertLambdasToNamedFunctions(projectPath: string) {
       const functionName = variableDecl.getName();
       const isAsync = initializer.isAsync();
       const isExported = variableStatement.isExported();
-      const typeParams = initializer.getTypeParameters().map(t => t.getText());
-      const params = initializer.getParameters().map(p => p.getText());
+      const typeParams = initializer.getTypeParameters().map((t) => t.getText());
+      const params = initializer.getParameters().map((p) => p.getText());
       const returnType = initializer.getReturnTypeNode()?.getText();
 
       // 5. Handle the Body

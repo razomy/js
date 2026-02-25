@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "vrd",
+    "toVrd"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

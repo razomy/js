@@ -1,4 +1,4 @@
-import {isString} from '@razomy/string';
+import { isString } from '@razomy/string';
 
 export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) {
   options = options || {};
@@ -10,7 +10,7 @@ export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) 
     // TODO: Unkbown parce function CODE: acceptLanguage = parse(acceptLanguage);
   }
 
-  const supported = supportedLanguages.map(support => {
+  const supported = supportedLanguages.map((support) => {
     const bits = support.split('-');
     const hasScript = bits.length === 3;
 
@@ -29,9 +29,7 @@ export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) 
       const supportedCode = supported[j].code.toLowerCase();
       const supportedScript = supported[j].script ? supported[j].script.toLowerCase() : supported[j].script;
       const supportedRegion = supported[j].region ? supported[j].region.toLowerCase() : supported[j].region;
-      if (langCode === supportedCode &&
-        (options.loose || !langScript || langScript === supportedScript) &&
-        (options.loose || !langRegion || langRegion === supportedRegion)) {
+      if (langCode === supportedCode && (options.loose || !langScript || langScript === supportedScript) && (options.loose || !langRegion || langRegion === supportedRegion)) {
         return supportedLanguages[j];
       }
     }

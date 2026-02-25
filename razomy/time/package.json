@@ -62,6 +62,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "time",
+    "expiringInMemoryCache",
+    "formatDuration",
+    "formatMilliseconds"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

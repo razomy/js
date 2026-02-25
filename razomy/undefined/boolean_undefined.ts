@@ -4,5 +4,3 @@ export function booleanUndefined(value: boolean | undefined): boolean {
   }
   return value;
 }
-
-

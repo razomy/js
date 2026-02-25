@@ -1,1 +1,1 @@
-export type Value<T> = T
+export type Value<T> = T;

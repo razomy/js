@@ -1,1 +1,1 @@
-export {toFs} from './to_fs';
+export { toFs } from './to_fs';

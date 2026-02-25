@@ -1,4 +1,3 @@
-import {AttributeResource} from '@razomy/resources';
+import { AttributeResource } from '@razomy/resources';
 
-export class StyleAttribute extends AttributeResource {
-}
+export class StyleAttribute extends AttributeResource {}

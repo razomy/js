@@ -5,5 +5,3 @@ export type IndexOrOut = Index | OutIndex;
 export function randomCode() {
   return Math.random().toString(36).substr(2);
 }
-
-

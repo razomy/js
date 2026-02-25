@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "web",
+    "canvas",
+    "renders",
+    "viewportRender",
+    "webCanvasHighLightsRender"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

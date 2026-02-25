@@ -1,8 +1,7 @@
-import {BorderStyle, FillStyle} from '@razomy/graphics-styles';
-import {RectangleRoundStyle, ShapeElement} from '@razomy/graphics-shapes';
+import { BorderStyle, FillStyle } from '@razomy/graphics-styles';
+import { RectangleRoundStyle, ShapeElement } from '@razomy/graphics-shapes';
 
-export interface IRectangleShape {
-}
+export interface IRectangleShape {}
 
 export class RectangleShape extends ShapeElement {
   constructor() {

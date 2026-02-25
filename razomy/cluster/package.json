@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "cluster",
+    "processToPromise",
+    "processesToPromise",
+    "processesToPromises",
+    "workerSpec",
+    "worker",
+    "workerToPromise"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

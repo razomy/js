@@ -1,5 +1,5 @@
 /*eslint-disable max-depth */
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Pixelate Filter. Averages groups of pixels and redraws
@@ -16,7 +16,6 @@ import type {ITextureFilter} from './i_texture_filter';
  * node.pixelSize(10);
  */
 export class PixelateTextureFilter implements ITextureFilter {
-
   constructor(
     /**
      * get/set pixel size. Use with {@link Konva.Filters.Pixelate} filter.
@@ -25,9 +24,8 @@ export class PixelateTextureFilter implements ITextureFilter {
      * @param {Integer} pixelSize
      * @returns {Integer}
      */
-    public pixelSize = 8
-  ) {
-  }
+    public pixelSize = 8,
+  ) {}
 
   public filter(imageData: any): void {
     var pixelSize = Math.ceil(this.pixelSize),
@@ -114,5 +112,5 @@ export class PixelateTextureFilter implements ITextureFilter {
         }
       }
     }
-  };
+  }
 }

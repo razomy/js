@@ -5,7 +5,7 @@
   <!--           :to='localePath(link.url)'> {{ t(link.text) }}</v-btn>-->
   <!--  </DefineTemplate>-->
 
-  <v-app-bar border="0" density='compact'>
+  <v-app-bar border="0" density="compact">
     <!-- :collapse='isMobile && !isDrawerOpen' :class='{-->
     <!--    "app-bar-desktop rounded-xl mt-2": !isMobile,-->
     <!--    "app-bar-mobile-drawer-open rounded-br-xl": isMobile && isDrawerOpen,-->
@@ -35,20 +35,19 @@
     </template>
   </v-app-bar>
 </template>
-<script lang='ts' setup>
-import {createReusableTemplate, ref, useDisplay, useI18n, useLocalePath, useRouter} from '#imports';
+<script lang="ts" setup>
+import { createReusableTemplate, ref, useDisplay, useI18n, useLocalePath, useRouter } from '#imports';
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate();
 const goHome = () => router.push(localePath('/'));
 const router = useRouter();
 
 const localePath = useLocalePath();
-const {t} = useI18n();
+const { t } = useI18n();
 const isDrawerOpen = ref(false);
-const {mobile: isMobile, sm: isTablet} = useDisplay();
+const { mobile: isMobile, sm: isTablet } = useDisplay();
 </script>
 <style>
-
 .app-bar-desktop {
   width: fit-content !important;
   left: calc(-50vw + 50%);
@@ -62,11 +61,10 @@ const {mobile: isMobile, sm: isTablet} = useDisplay();
 }
 
 .rounded-br-xl {
-  border-bottom-right-radius: 4 *6px;
+  border-bottom-right-radius: 4 * 6px;
 }
 
 .d-grid {
   display: grid;
 }
-
 </style>

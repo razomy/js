@@ -1,5 +1,5 @@
-export type DictKey = string
+export type DictKey = string;
 
 export interface Dict<T> {
-  [key: DictKey]: T
+  [key: DictKey]: T;
 }

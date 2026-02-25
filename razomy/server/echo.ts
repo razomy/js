@@ -3,5 +3,3 @@ export function echo() {
     res.send('Hello World');
   };
 }
-
-

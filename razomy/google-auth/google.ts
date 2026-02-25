@@ -1,6 +1,6 @@
-import {OAuth2Client} from 'google-auth-library';
-import {ensureLoggedIn as ensureLogIn} from 'connect-ensure-login';
-import {Strategy as CustomStrategy} from 'passport-custom';
+import { OAuth2Client } from 'google-auth-library';
+import { ensureLoggedIn as ensureLogIn } from 'connect-ensure-login';
+import { Strategy as CustomStrategy } from 'passport-custom';
 import passport from 'passport';
 
 export const isAuthenticated = ensureLogIn();
@@ -8,8 +8,9 @@ export const googleTapOn = 'google-tap-on';
 
 export class Google {
   constructor(ctx) {
-    passport.use(googleTapOn, new CustomStrategy(
-      async function (this: any, req, callback) {
+    passport.use(
+      googleTapOn,
+      new CustomStrategy(async function (this: any, req, callback) {
         const csrfTokenCookie = req.cookies.g_csrf_token;
         if (!csrfTokenCookie) {
           this.fail(400, 'No CSRF token in Cookie.');
@@ -38,8 +39,8 @@ export class Google {
           email: res.email,
           picture: res.picture,
         });
-      },
-    ));
+      }),
+    );
 
     passport.serializeUser(function (user, done: any) {
       done(null, user);
@@ -48,7 +49,6 @@ export class Google {
     passport.deserializeUser(function (user, done: any) {
       done(null, user);
     });
-
   }
 
   async auth(req, res) {
@@ -59,7 +59,7 @@ export class Google {
 
     const ticket = await client.verifyIdToken({
       idToken: csrfTokenCookie,
-      audience: clientId,  // Specify the CLIENT_ID of the app that accesses the backend
+      audience: clientId, // Specify the CLIENT_ID of the app that accesses the backend
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });

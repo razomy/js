@@ -1,13 +1,9 @@
-import type {Constructor} from '@razomy/class';
-import {ObjectResource} from '@razomy/resources';
+import type { Constructor } from '@razomy/class';
+import { ObjectResource } from '@razomy/resources';
 
-export class NodeProvidedException extends Error {
+export class NodeProvidedException extends Error {}
 
-}
-
-export class NodeAlreadyProvidedException extends Error {
-
-}
+export class NodeAlreadyProvidedException extends Error {}
 
 export interface IResourceMap {
   [key: string]: ObjectResource;
@@ -18,7 +14,6 @@ export interface IEntityResourceMap {
 }
 
 export interface IEntityResource {
-
   add<T extends ObjectResource>(obj: T): void;
 
   remove<T extends ObjectResource>(obj: T): void;
@@ -27,4 +22,3 @@ export interface IEntityResource {
 
   getBy<T extends ObjectResource>(objCtor: Constructor<T>): T;
 }
-

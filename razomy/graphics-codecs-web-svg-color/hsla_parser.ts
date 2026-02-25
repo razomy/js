@@ -55,12 +55,7 @@ export class HslaParser {
       b = this.hue2Rgb(p, q, h - 1 / 3);
     }
 
-    return [
-      Math.round(r * 255),
-      Math.round(g * 255),
-      Math.round(b * 255),
-      match[4] ? parseFloat(match[4]) : 1
-    ];
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255), match[4] ? parseFloat(match[4]) : 1];
   }
 
   /**
@@ -116,11 +111,7 @@ export class HslaParser {
       h /= 6;
     }
 
-    return [
-      Math.round(h * 360),
-      Math.round(s * 100),
-      Math.round(l * 100)
-    ];
+    return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
   }
 
   /**
@@ -148,5 +139,4 @@ export class HslaParser {
     }
     return p;
   }
-
 }

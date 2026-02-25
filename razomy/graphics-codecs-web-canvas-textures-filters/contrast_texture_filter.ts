@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Contrast Filter.
@@ -20,8 +20,7 @@ export class ContrastTextureFilter implements ITextureFilter {
    * @param {Number} contrast value between -100 and 100
    * @returns {Number}
    */
-  constructor(public contrast = 0) {
-  }
+  constructor(public contrast = 0) {}
 
   public filter(imageData: any): void {
     var adjust = Math.pow((this.contrast + 100) / 100, 2);
@@ -67,6 +66,5 @@ export class ContrastTextureFilter implements ITextureFilter {
       data[i + 1] = green;
       data[i + 2] = blue;
     }
-  };
+  }
 }
-

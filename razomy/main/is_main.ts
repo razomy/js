@@ -1,4 +1,4 @@
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 
 export function isMain(importMetaUrlOrRequireMain: string) {
   const currentPath = fileURLToPath(importMetaUrlOrRequireMain);

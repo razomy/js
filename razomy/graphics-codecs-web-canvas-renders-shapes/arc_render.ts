@@ -23,7 +23,6 @@
  * });
  */
 export class ArcRender {
-
   constructor(
     /**
      * get/set innerRadius
@@ -84,14 +83,13 @@ export class ArcRender {
      * arc.clockwise(true);
      */
 
-    public clockwise = false
-  ) {
-  }
+    public clockwise = false,
+  ) {}
 
   sceneFunc(context: any) {
     const piOver180 = Math.PI / 180;
 
-    const angle = (this.angle * piOver180);
+    const angle = this.angle * piOver180;
     const clockwise = this.clockwise;
 
     context.beginPath();
@@ -116,5 +114,4 @@ export class ArcRender {
   setHeight(height: number) {
     this.outerRadius = height / 2;
   }
-
 }

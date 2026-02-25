@@ -60,6 +60,21 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "offset",
+    "ctx",
+    "defaultOffset",
+    "defaultPrevOffset",
+    "getNextOffsetChar",
+    "getOffsetChar",
+    "getPrevOffsetChar",
+    "isEnd",
+    "setPrevOffset",
+    "tryAnyOfChar",
+    "tryBeforeAnyOfChar",
+    "tryRegex"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

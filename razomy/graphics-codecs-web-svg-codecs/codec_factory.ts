@@ -1,18 +1,13 @@
-import type {Codec} from '@razomy/codec';
+import type { Codec } from '@razomy/codec';
 import * as create from '@razomy/create';
-import {ElementView, TextElement, ViewportElement} from '@razomy/graphics-elements';
-import {RectangleShape} from '@razomy/graphics-shapes';
-import {EncodeNodeFactory, RectangleCodec, SvgCodec, TextCodec} from '@razomy/graphics-codecs-web-svg-codecs';
+import { ElementView, TextElement, ViewportElement } from '@razomy/graphics-elements';
+import { RectangleShape } from '@razomy/graphics-shapes';
+import { EncodeNodeFactory, RectangleCodec, SvgCodec, TextCodec } from '@razomy/graphics-codecs-web-svg-codecs';
 
-import {UnknownTypeArgumentException} from '@razomy/exceptions';
-
+import { UnknownTypeArgumentException } from '@razomy/exceptions';
 
 export class CodecFactory implements create.WithCreate<Codec<ElementView, any>> {
-
-  constructor(
-    private encodeNodeFactory: EncodeNodeFactory
-  ) {
-  }
+  constructor(private encodeNodeFactory: EncodeNodeFactory) {}
 
   public create(element?: HTMLElement): Codec<ElementView, any> {
     if (element instanceof SVGRectElement) {

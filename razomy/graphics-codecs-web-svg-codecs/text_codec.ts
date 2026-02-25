@@ -1,12 +1,10 @@
-import {EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import type {Codec} from '@razomy/codec';
-import {PositionAttribute, SizeAttribute, TextAttribute} from '@razomy/graphics-attributes';
-import {TextElement} from '@razomy/graphics-elements';
+import { EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
+import type { Codec } from '@razomy/codec';
+import { PositionAttribute, SizeAttribute, TextAttribute } from '@razomy/graphics-attributes';
+import { TextElement } from '@razomy/graphics-elements';
 
 export class TextCodec implements Codec<TextElement, SVGTextElement> {
-
-  constructor(private encodeNodeFactory: EncodeNodeFactory) {
-  }
+  constructor(private encodeNodeFactory: EncodeNodeFactory) {}
 
   public encode(node: TextElement): SVGTextElement {
     const el = this.encodeNodeFactory.create<SVGTextElement>('text');
@@ -15,7 +13,7 @@ export class TextCodec implements Codec<TextElement, SVGTextElement> {
     el.setAttribute('width', node.getBy(SizeAttribute).width + '');
     el.setAttribute('height', node.getBy(SizeAttribute).height + '');
     return el;
-  };
+  }
 
   public decode(value: SVGTextElement): TextElement {
     const textElement = new TextElement();

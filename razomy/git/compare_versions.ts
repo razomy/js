@@ -1,11 +1,7 @@
-import simpleGit from 'simple-git'
-import {
-  type ActorDatetimeDeltaString,
-  addssToString,
-  stringsToDeltaStrings
-} from '@razomy/commit-datetime-delta-string';
+import simpleGit from 'simple-git';
+import { type ActorDatetimeDeltaString, addssToString, stringsToDeltaStrings } from '@razomy/commit-datetime-delta-string';
 
-import {getAllCommitHashes} from './get_all_commit_hashes';
+import { getAllCommitHashes } from './get_all_commit_hashes';
 
 export async function compareVersions(repoPath, filePath) {
   const git = simpleGit(repoPath);

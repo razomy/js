@@ -1,22 +1,9 @@
 <template>
-  <v-card
-      border="0"
-      class="mx-auto global-soft-card2 rounded-xl overflow-hidden"
-      color="surface"
-      max-width="800"
-      variant="elevated"
-  >
+  <v-card border="0" class="mx-auto global-soft-card2 rounded-xl overflow-hidden" color="surface" max-width="800" variant="elevated">
     <!-- Оверлей загрузки/обработки -->
-    <v-overlay
-        :model-value="isProcessing || isScanning"
-        class="align-center justify-center"
-        contained
-        opacity="0.9"
-        persistent
-        z-index="5"
-    >
+    <v-overlay :model-value="isProcessing || isScanning" class="align-center justify-center" contained opacity="0.9" persistent z-index="5">
       <div class="text-center">
-        <v-progress-circular color="primary" indeterminate size="64" width="6"/>
+        <v-progress-circular color="primary" indeterminate size="64" width="6" />
         <h3 class="text-h6 mt-4 font-weight-bold text-white">
           {{ isScanning ? t('nuxt.dropzone.scanning_folders') + '...' : t('nuxt.dropzone.converting') + '...' }}
         </h3>
@@ -25,17 +12,16 @@
 
     <!-- Зона Drag & Drop -->
     <div
-        :class="{ 'dragging': isDragging, 'has-files': modelValue.length > 0 }"
-        class="dropzone-area rounded-xl bg-surface position-relative d-flex flex-column align-center justify-center pa-6"
-        @dragover.prevent="isDragging = true"
-        @dragleave.prevent="isDragging = false"
-        @drop.prevent="onDrop"
+      :class="{ dragging: isDragging, 'has-files': modelValue.length > 0 }"
+      class="dropzone-area rounded-xl bg-surface position-relative d-flex flex-column align-center justify-center pa-6"
+      @dragover.prevent="isDragging = true"
+      @dragleave.prevent="isDragging = false"
+      @drop.prevent="onDrop"
     >
-
       <!-- Сценарий 1: Файлы еще не выбраны -->
       <template v-if="modelValue.length === 0">
         <div class="bg-primary-lighten-5 rounded-circle pa-6 mb-4 transition-swing">
-          <v-icon color="accent" icon="mdi-folder-multiple-outline" size="64"/>
+          <v-icon color="accent" icon="mdi-folder-multiple-outline" size="64" />
         </div>
         <h2 class="text-h5 font-weight-bold text-darken-3 text-center">
           {{ t('nuxt.dropzone.drop_title') }}
@@ -47,29 +33,13 @@
           <v-row>
             <!-- Кнопка выбора файлов -->
             <v-col :cols="12" :md="6">
-              <v-btn
-                  class="w-100 w-md-initial"
-                  color="primary"
-                  prepend-icon="mdi-file-document-multiple"
-                  rounded="pill"
-                  size="large"
-                  variant="tonal"
-                  @click="triggerFileInput"
-              >
+              <v-btn class="w-100 w-md-initial" color="primary" prepend-icon="mdi-file-document-multiple" rounded="pill" size="large" variant="tonal" @click="triggerFileInput">
                 {{ t('nuxt.dropzone.select_files') }}
               </v-btn>
             </v-col>
             <!-- Кнопка выбора папки -->
             <v-col :cols="12" :md="6">
-              <v-btn
-                  class="w-100 w-md-initial"
-                  color="primary"
-                  prepend-icon="mdi-folder-open"
-                  rounded="pill"
-                  size="large"
-                  variant="outlined"
-                  @click="triggerFolderInput"
-              >
+              <v-btn class="w-100 w-md-initial" color="primary" prepend-icon="mdi-folder-open" rounded="pill" size="large" variant="outlined" @click="triggerFolderInput">
                 {{ t('nuxt.dropzone.select_folder') }}
               </v-btn>
             </v-col>
@@ -83,9 +53,7 @@
         <div class="d-flex justify-space-between align-center w-100 mb-4 px-2">
           <div>
             <h4 class="text-h6 font-weight-bold">{{ t('nuxt.dropzone.selected_files') }}: {{ modelValue.length }}</h4>
-            <span class="text-caption text-medium-emphasis">
-              {{ t('nuxt.dropzone.total_size') }}: {{ totalSize }}
-            </span>
+            <span class="text-caption text-medium-emphasis"> {{ t('nuxt.dropzone.total_size') }}: {{ totalSize }} </span>
           </div>
           <v-btn color="error" size="small" variant="text" @click="clearAll">
             {{ t('nuxt.dropzone.clear_all') }}
@@ -94,20 +62,14 @@
 
         <!-- Скроллируемый список файлов -->
         <v-list class="w-100 bg-transparent rounded-lg border overflow-y-auto" max-height="300">
-          <v-list-item
-              v-for="(file, index) in modelValue"
-              :key="index"
-              :subtitle="getFilePath(file)"
-              :title="file.name"
-              lines="two"
-          >
+          <v-list-item v-for="(file, index) in modelValue" :key="index" :subtitle="getFilePath(file)" :title="file.name" lines="two">
             <template v-slot:prepend>
-              <v-icon color="accent" icon="mdi-file-outline"/>
+              <v-icon color="accent" icon="mdi-file-outline" />
             </template>
 
             <template v-slot:append>
               <span class="text-caption mr-4">{{ formatSize(file.size) }}</span>
-              <v-btn color="error" icon="mdi-close" size="small" variant="text" @click.stop="removeFile(index)"/>
+              <v-btn color="error" icon="mdi-close" size="small" variant="text" @click.stop="removeFile(index)" />
             </template>
           </v-list-item>
         </v-list>
@@ -115,27 +77,13 @@
         <!-- Кнопки действий -->
         <div class="d-flex gap-4 mt-6 w-100">
           <!-- Добавить еще -->
-          <v-btn
-              class="flex-grow-1"
-              height="50"
-              rounded="xl"
-              variant="outlined"
-              @click="triggerFileInput"
-          >
-            <v-icon icon="mdi-plus" start/>
+          <v-btn class="flex-grow-1" height="50" rounded="xl" variant="outlined" @click="triggerFileInput">
+            <v-icon icon="mdi-plus" start />
             {{ t('nuxt.dropzone.add_files') }}
           </v-btn>
 
           <!-- Конвертировать -->
-          <v-btn
-              class="flex-grow-1 text-subtitle-1 font-weight-bold"
-              color="primary"
-              height="50"
-              prepend-icon="mdi-auto-fix"
-              rounded="xl"
-              variant="elevated"
-              @click="$emit('convert')"
-          >
+          <v-btn class="flex-grow-1 text-subtitle-1 font-weight-bold" color="primary" height="50" prepend-icon="mdi-auto-fix" rounded="xl" variant="elevated" @click="$emit('convert')">
             {{ t('nuxt.dropzone.convert') }}
           </v-btn>
         </div>
@@ -143,117 +91,103 @@
 
       <!-- Скрытые инпуты -->
       <!-- 1. Для обычных файлов (multiple) -->
-      <input
-          ref="fileInput"
-          :accept="accept"
-          class="d-none"
-          multiple
-          type="file"
-          @change="onFileChange"
-      />
+      <input ref="fileInput" :accept="accept" class="d-none" multiple type="file" @change="onFileChange" />
 
       <!-- 2. Для выбора папки (webkitdirectory) -->
       <!-- @ts-ignore: webkitdirectory is not standard in types yet -->
-      <input
-          ref="folderInput"
-          class="d-none"
-          multiple
-          type="file"
-          webkitdirectory
-          @change="onFileChange"
-      />
+      <input ref="folderInput" class="d-none" multiple type="file" webkitdirectory @change="onFileChange" />
     </div>
   </v-card>
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, useI18n} from '#imports';
+import { computed, ref, useI18n } from '#imports';
 
 const props = defineProps<{
-  modelValue: File[], // Было File | null
-  accept?: string,
-  isProcessing: boolean
-}>()
-const emit = defineEmits(['update:modelValue', 'convert'])
+  modelValue: File[]; // Было File | null
+  accept?: string;
+  isProcessing: boolean;
+}>();
+const emit = defineEmits(['update:modelValue', 'convert']);
 
-const {t} = useI18n();
+const { t } = useI18n();
 
-const isDragging = ref(false)
-const isScanning = ref(false) // Состояние для отображения процесса обхода папок
-const fileInput = ref<HTMLInputElement | null>(null)
-const folderInput = ref<HTMLInputElement | null>(null)
+const isDragging = ref(false);
+const isScanning = ref(false); // Состояние для отображения процесса обхода папок
+const fileInput = ref<HTMLInputElement | null>(null);
+const folderInput = ref<HTMLInputElement | null>(null);
 
 // --- Вычисляемые свойства ---
 
 const totalSize = computed(() => {
-  const bytes = props.modelValue.reduce((acc, file) => acc + file.size, 0)
-  return formatSize(bytes)
-})
+  const bytes = props.modelValue.reduce((acc, file) => acc + file.size, 0);
+  return formatSize(bytes);
+});
 
 // --- Форматирование ---
 
 const formatSize = (bytes: number) => {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
 
 // Получаем путь файла (если папка, путь будет длинный, иначе просто имя)
 const getFilePath = (file: File & { webkitRelativePath?: string }) => {
   // webkitRelativePath заполняется браузером при выборе папки
   // Для Drag&Drop мы можем хранить путь в кастомном свойстве, если нужно
-  return file.webkitRelativePath || file.name
-}
+  return file.webkitRelativePath || file.name;
+};
 
 // --- Управление инпутами ---
 
-const triggerFileInput = () => fileInput.value?.click()
-const triggerFolderInput = () => folderInput.value?.click()
+const triggerFileInput = () => fileInput.value?.click();
+const triggerFolderInput = () => folderInput.value?.click();
 
 // Обработка стандартного выбора через диалог
 const onFileChange = (e: Event) => {
-  const target = e.target as HTMLInputElement
+  const target = e.target as HTMLInputElement;
   if (target.files && target.files.length > 0) {
-    addFiles(Array.from(target.files))
+    addFiles(Array.from(target.files));
   }
   // Сбрасываем value, чтобы можно было выбрать те же файлы повторно
-  target.value = ''
-}
+  target.value = '';
+};
 
 // --- Логика Drag & Drop (Самая сложная часть) ---
 
 const onDrop = async (e: DragEvent) => {
-  isDragging.value = false
-  const items = e.dataTransfer?.items
+  isDragging.value = false;
+  const items = e.dataTransfer?.items;
 
-  if (!items) return
+  if (!items) return;
 
-  isScanning.value = true
+  isScanning.value = true;
   try {
-    const files: File[] = []
+    const files: File[] = [];
 
     // Используем Promise.all для параллельной обработки элементов верхнего уровня
-    const promises = []
+    const promises = [];
     for (let i = 0; i < items.length; i++) {
-      const item = items[i]!.webkitGetAsEntry() // Получаем FileSystemEntry
+      const item = items[i]!.webkitGetAsEntry(); // Получаем FileSystemEntry
       if (item) {
-        promises.push(traverseFileTree(item))
+        promises.push(traverseFileTree(item));
       }
     }
 
-    const results = await Promise.all(promises)
+    const results = await Promise.all(promises);
     // Объединяем результаты рекурсии в один плоский массив
-    results.forEach(fileArray => files.push(...fileArray))
+    results.forEach((fileArray) => files.push(...fileArray));
 
-    addFiles(files)
+    addFiles(files);
   } catch (err) {
-    console.error('Ошибка при чтении папок:', err)
+    console.error('Ошибка при чтении папок:', err);
   } finally {
-    isScanning.value = false
+    isScanning.value = false;
   }
-}
+};
 
 // Рекурсивная функция обхода дерева файлов
 const traverseFileTree = (item: any, path = ''): Promise<File[]> => {
@@ -263,56 +197,56 @@ const traverseFileTree = (item: any, path = ''): Promise<File[]> => {
       item.file((file: File) => {
         // Опционально: можно записать полный путь в объект файла, если нужно для API
         // Object.defineProperty(file, 'fullPath', { value: path + file.name });
-        resolve([file])
-      })
+        resolve([file]);
+      });
     } else if (item.isDirectory) {
       // Это папка
-      const dirReader = item.createReader()
-      const entries: File[] = []
+      const dirReader = item.createReader();
+      const entries: File[] = [];
 
       const readEntries = () => {
         dirReader.readEntries(async (result: any[]) => {
           if (result.length === 0) {
             // Чтение папки завершено
-            resolve(entries)
+            resolve(entries);
           } else {
             // Рекурсивно обрабатываем содержимое
-            const promises = result.map(entry => traverseFileTree(entry, path + item.name + '/'))
-            const subResults = await Promise.all(promises)
-            subResults.forEach(files => entries.push(...files))
+            const promises = result.map((entry) => traverseFileTree(entry, path + item.name + '/'));
+            const subResults = await Promise.all(promises);
+            subResults.forEach((files) => entries.push(...files));
 
             // Продолжаем читать (нужно для больших папок, браузер отдает частями)
-            readEntries()
+            readEntries();
           }
-        })
-      }
-      readEntries()
+        });
+      };
+      readEntries();
     } else {
-      resolve([])
+      resolve([]);
     }
-  })
-}
+  });
+};
 
 // --- Управление состоянием ---
 
 const addFiles = (newFiles: File[]) => {
   // Добавляем новые файлы к старым (или заменяем, зависит от логики, тут добавляем)
   // Можно добавить фильтрацию дубликатов здесь
-  const updatedList = [...props.modelValue, ...newFiles]
-  emit('update:modelValue', updatedList)
-}
+  const updatedList = [...props.modelValue, ...newFiles];
+  emit('update:modelValue', updatedList);
+};
 
 const removeFile = (index: number) => {
-  const updatedList = [...props.modelValue]
-  updatedList.splice(index, 1)
-  emit('update:modelValue', updatedList)
-}
+  const updatedList = [...props.modelValue];
+  updatedList.splice(index, 1);
+  emit('update:modelValue', updatedList);
+};
 
 const clearAll = () => {
-  emit('update:modelValue', [])
-  if (fileInput.value) fileInput.value.value = ''
-  if (folderInput.value) folderInput.value.value = ''
-}
+  emit('update:modelValue', []);
+  if (fileInput.value) fileInput.value.value = '';
+  if (folderInput.value) folderInput.value.value = '';
+};
 </script>
 
 <style scoped>

@@ -20,7 +20,7 @@ export function getAbbreviation(fullName: string): string {
   const words = fullName.split(/[\s_-]+/).filter(Boolean);
 
   // Get the first letter of each word
-  const shortName = words.map(word => word[0]).join('');
+  const shortName = words.map((word) => word[0]).join('');
 
   return shortName;
 }

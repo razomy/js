@@ -1,16 +1,11 @@
-import type {String} from '@razomy/string';
-import type {Offset} from '@razomy/offset';
-import type {Index} from '@razomy/index';
+import type { String } from '@razomy/string';
+import type { Offset } from '@razomy/offset';
+import type { Index } from '@razomy/index';
 
-export function nextMarginIndex(
-  string: String,
-  equalString: String,
-  offset: Offset = 0,
-  maxOffset: Offset = string.length): Index {
+export function nextMarginIndex(string: String, equalString: String, offset: Offset = 0, maxOffset: Offset = string.length): Index {
   let i = offset;
   for (; i < maxOffset; i++) {
     if (equalString == string[i]) {
-
     } else {
       return i;
     }
@@ -18,5 +13,3 @@ export function nextMarginIndex(
 
   return i;
 }
-
-

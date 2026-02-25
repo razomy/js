@@ -1,5 +1,5 @@
-import {ArgumentException} from '@razomy/exceptions';
-import type {String} from '@razomy/string';
+import { ArgumentException } from '@razomy/exceptions';
+import type { String } from '@razomy/string';
 
 export function preExtractPath(filePath: String, equalPath: String): String {
   const parts: string[] = filePath.split('/');
@@ -8,6 +8,6 @@ export function preExtractPath(filePath: String, equalPath: String): String {
     const result: string = parts.slice(0, startIndex).join('/');
     return result;
   } else {
-    throw new ArgumentException('Path not found', {filePath, equalPath});
+    throw new ArgumentException('Path not found', { filePath, equalPath });
   }
 }

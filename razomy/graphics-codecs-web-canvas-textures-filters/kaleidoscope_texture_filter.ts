@@ -11,8 +11,8 @@
  * node.kaleidoscopePower(3);
  * node.kaleidoscopeAngle(45);
  */
-import type {ITextureFilter} from './i_texture_filter';
-import {createCanvasElement} from './create_canvas_element';
+import type { ITextureFilter } from './i_texture_filter';
+import { createCanvasElement } from './create_canvas_element';
 /*
  * ToPolar Filter. Converts image data to polar coordinates. Performs
  *  w*h*4 pixel reads and w*h pixel writes. The r axis is placed along
@@ -29,7 +29,6 @@ import {createCanvasElement} from './create_canvas_element';
  * @param {Number} [opt.polarCenterY] vertical location for the center of the circle,
  *  default is in the middle
  */
-
 
 var toPolar = function (src: any, dst: any, opt: any) {
   var srcPixels = src.data,
@@ -178,9 +177,7 @@ var fromPolar = function (src: any, dst: any, opt: any) {
 
 // create a temporary canvas for working - shared between multiple calls
 
-
 export class KaleidoscopeTextureFilter implements ITextureFilter {
-
   constructor(
     /**
      * get/set kaleidoscope power. Use with {@link Konva.Filters.Kaleidoscope} filter.
@@ -198,9 +195,8 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
      * @returns {Integer}
      */
 
-    public kaleidoscopeAngle = 0
-  ) {
-  }
+    public kaleidoscopeAngle = 0,
+  ) {}
 
   public filter(imageData: any): void {
     var xSize = imageData.width,
@@ -224,7 +220,7 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     // Convert thhe original to polar coordinates
     toPolar(imageData, scratchData, {
       polarCenterX: xSize / 2,
-      polarCenterY: ySize / 2
+      polarCenterY: ySize / 2,
     });
 
     // Determine how big each section will be, if it's too small
@@ -285,6 +281,6 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     }
 
     // Convert back from polar coordinates
-    fromPolar(scratchData, imageData, {polarRotation: 0});
-  };
+    fromPolar(scratchData, imageData, { polarRotation: 0 });
+  }
 }

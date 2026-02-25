@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Noise Filter. Randomly adds or substracts to the color channels
@@ -22,9 +22,8 @@ export class NoiseTextureFilter implements ITextureFilter {
      * @param {Number} noise
      * @returns {Number}
      */
-    public noise = 0.2
-  ) {
-  }
+    public noise = 0.2,
+  ) {}
 
   public filter(imageData: any): void {
     var amount = this.noise * 255,
@@ -38,6 +37,5 @@ export class NoiseTextureFilter implements ITextureFilter {
       data[i + 1] += half - 2 * half * Math.random();
       data[i + 2] += half - 2 * half * Math.random();
     }
-  };
+  }
 }
-

@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "task",
+    "async",
+    "asyncTask",
+    "asyncTaskList",
+    "fileTaskManager"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

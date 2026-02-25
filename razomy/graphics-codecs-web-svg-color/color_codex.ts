@@ -1,15 +1,13 @@
-import {Color} from './color';
-import {HexParser} from './hex_parser';
-import {HslaParser} from './hsla_parser';
-import {RgbaParser} from './rgba_parser';
-import {type  SvgColorKeys, SvgColorParser} from './svg_color_parser';
-
+import { Color } from './color';
+import { HexParser } from './hex_parser';
+import { HslaParser } from './hsla_parser';
+import { RgbaParser } from './rgba_parser';
+import { type SvgColorKeys, SvgColorParser } from './svg_color_parser';
 
 /**
  * @Source https://github.com/fabricjs/js/blob/master/src/color.class
  */
 export class ColorCodex {
-
   /**
    * @private
    * @param {String|Array} color Color value to parse
@@ -42,7 +40,6 @@ export class ColorCodex {
     return this.fromSource(source as any);
   }
 
-
   /**
    * Returns a new color object when given a color in array representation (ex: [200, 100, 100, 0.5])
    * @static
@@ -54,6 +51,5 @@ export class ColorCodex {
     const oColor = new Color();
     oColor.setSource(source);
     return oColor;
-  };
-
+  }
 }

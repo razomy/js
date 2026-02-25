@@ -60,6 +60,19 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "web",
+    "svg",
+    "color",
+    "colorCodex",
+    "hexParser",
+    "hslaParser",
+    "rgbaParser",
+    "svgColorParser"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

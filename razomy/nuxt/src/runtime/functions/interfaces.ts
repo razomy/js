@@ -11,73 +11,72 @@ export interface NavigationNode extends NAryTreeNode {
     url: string;
     labelText: string;
     iconName: string;
-  }
+  };
 }
 
 export interface RzmNuxtTranslate {
   nuxt: {
     product: {
-      name: string,
-      description: string
-    }
+      name: string;
+      description: string;
+    };
     footer: {
-      donate: string,
-      start_year: string,
-      company_name: string
-    },
+      donate: string;
+      start_year: string;
+      company_name: string;
+    };
     dropzone: {
-      converting: string,
-      scanning_folders: string,
-      drop_title: string,
-      support_nested_folders: string,
-      select_files: string,
-      select_folder: string,
-      selected_files: string,
-      total_size: string,
-      clear_all: string,
-      add_files: string,
-      convert: string
-    },
+      converting: string;
+      scanning_folders: string;
+      drop_title: string;
+      support_nested_folders: string;
+      select_files: string;
+      select_folder: string;
+      selected_files: string;
+      total_size: string;
+      clear_all: string;
+      add_files: string;
+      convert: string;
+    };
     error: {
       404: {
-        title: string,
-        back_btn: string
-      },
-    },
-  }
+        title: string;
+        back_btn: string;
+      };
+    };
+  };
 }
 
 export interface RzmNuxtConfig {
-  url: string,
+  url: string;
   i18n: {
-    en: RzmNuxtTranslate
-  },
-  navigationRoot: NavigationNode,
-  externalNavigationRoot: NavigationNode,
-  footerNavigationNodes: NavigationNode[],
-  headerNavigationNodes: NavigationNode[],
+    en: RzmNuxtTranslate;
+  };
+  navigationRoot: NavigationNode;
+  externalNavigationRoot: NavigationNode;
+  footerNavigationNodes: NavigationNode[];
+  headerNavigationNodes: NavigationNode[];
   cookie: {
     session: {
-      locale: string
-    }
-  }
+      locale: string;
+    };
+  };
 }
 
 // 1. Utility type that generates ALL paths (leafs and nodes)
 export type PathGenerator<T> = T extends object
   ? {
-    [K in keyof T & (string | number)]: T[K] extends object
-      ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
-      : `${K}`; // Stop at primitives
-  }[keyof T & (string | number)]
+      [K in keyof T & (string | number)]: T[K] extends object
+        ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
+        : `${K}`; // Stop at primitives
+    }[keyof T & (string | number)]
   : never;
-
 
 // 2. Utility type that generates ONLY absolute end/leaf paths
 export type LeafPathGenerator<T> = T extends object
   ? {
-    [K in keyof T & (string | number)]: T[K] extends object
-      ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
-      : `${K}`; // Stop at primitives
-  }[keyof T & (string | number)]
+      [K in keyof T & (string | number)]: T[K] extends object
+        ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
+        : `${K}`; // Stop at primitives
+    }[keyof T & (string | number)]
   : never;

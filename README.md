@@ -9,4 +9,3 @@
 ### 📦 Product
 
 Razomy js is a scalable TypeScript Monorepo.
-

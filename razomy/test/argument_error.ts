@@ -1,6 +1,5 @@
 export class ArgumentError {
-  constructor(public value: any) {
-  }
+  constructor(public value: any) {}
 }
 
 export function notEmpty(value) {

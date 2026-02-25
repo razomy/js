@@ -1,6 +1,6 @@
-import {setWeightAnTokens} from './set_weight_an_tokens';
+import { setWeightAnTokens } from './set_weight_an_tokens';
 
-import {openai} from './openai';
+import { openai } from './openai';
 
 export async function apiMessage(request) {
   setWeightAnTokens(request);

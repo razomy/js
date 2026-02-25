@@ -14,9 +14,6 @@
  * // => -1
  * findIndex([1, 2, 3], (x) => x > 5);
  */
-export function findIndex<T>(
-  array: T[],
-  predicate: (item: T, index: number, array: T[]) => boolean
-): number {
+export function findIndex<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): number {
   return array.findIndex(predicate);
 }

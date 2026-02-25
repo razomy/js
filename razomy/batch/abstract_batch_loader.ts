@@ -15,7 +15,7 @@ export abstract class AbstractBatchLoader<K, V> {
 
   public load(key: K): Promise<V> {
     return new Promise((resolve, reject) => {
-      this.requestQueue.push({key, resolve, reject});
+      this.requestQueue.push({ key, resolve, reject });
 
       if (this.requestTimeout) {
         clearTimeout(this.requestTimeout);
@@ -46,7 +46,7 @@ export abstract class AbstractBatchLoader<K, V> {
     try {
       const resultsMap = await this.performBatchRequest(uniqueKeys);
 
-      batch.forEach(({key, resolve, reject}) => {
+      batch.forEach(({ key, resolve, reject }) => {
         const result = resultsMap.get(key);
         if (result !== undefined) {
           resolve(result);
@@ -56,7 +56,7 @@ export abstract class AbstractBatchLoader<K, V> {
       });
     } catch (error) {
       console.error('Batch request failed:', error);
-      batch.forEach(({reject}) => reject(error));
+      batch.forEach(({ reject }) => reject(error));
     }
   }
 }

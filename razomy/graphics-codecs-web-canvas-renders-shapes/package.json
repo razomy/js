@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "web",
+    "canvas",
+    "renders",
+    "shapes",
+    "arcRender"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

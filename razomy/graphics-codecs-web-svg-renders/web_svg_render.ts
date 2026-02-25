@@ -1,18 +1,17 @@
-import {ElementView} from '@razomy/graphics-elements';
-import type {WebSvgHighLightsRender} from '@razomy/graphics-codecs-web-svg-renders';
-import type {CodecRegistry} from '@razomy/graphics-codecs-web-svg-codecs';
-import {CodecConfig, CodecFactory, EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import {Render} from '@razomy/graphics-renderes';
+import { ElementView } from '@razomy/graphics-elements';
+import type { WebSvgHighLightsRender } from '@razomy/graphics-codecs-web-svg-renders';
+import type { CodecRegistry } from '@razomy/graphics-codecs-web-svg-codecs';
+import { CodecConfig, CodecFactory, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
+import { Render } from '@razomy/graphics-renderes';
 
 export class WebSvgRender extends Render<ElementView> {
-
   constructor(
     public codecConfig: CodecConfig,
     public encodeNodeFactory: EncodeNodeFactory,
     public codecFactory: CodecFactory,
     public codecRegistry: CodecRegistry,
     public rootNode: Node,
-    public webSvgHighLightsRender: WebSvgHighLightsRender
+    public webSvgHighLightsRender: WebSvgHighLightsRender,
   ) {
     super();
   }

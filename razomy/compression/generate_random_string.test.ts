@@ -1,8 +1,8 @@
-import {decodeJsonString, encodeJsonString} from './index';
+import { decodeJsonString, encodeJsonString } from './index';
 
 describe('compress', () => {
   it('should encode a string using gzip compression', () => {
-    const input = {foo: 'bar'};
+    const input = { foo: 'bar' };
 
     const encoded = encodeJsonString(input);
     const decoded = decodeJsonString(encoded);
@@ -19,7 +19,6 @@ describe('compress', () => {
     expect(decoded).toEqual(input);
   });
 });
-
 
 it('should correctly encode and decode extremely large data', () => {
   // Helper function to generate a random string of specified length
@@ -45,4 +44,3 @@ it('should correctly encode and decode extremely large data', () => {
   // Verify that the decoded data matches the original large data
   expect(decoded).toEqual(largeData);
 });
-

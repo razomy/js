@@ -16,7 +16,5 @@
 export function substringAfter(text: string, separator: string): string {
   const index = text.indexOf(separator);
 
-  return index === -1
-    ? text
-    : text.slice(index + separator.length);
+  return index === -1 ? text : text.slice(index + separator.length);
 }

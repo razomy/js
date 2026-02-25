@@ -1,4 +1,4 @@
-import {matchesError} from './matches_error';
+import { matchesError } from './matches_error';
 
 export function toThrow<T extends Function>(actual: T, expected?: Error) {
   let threw = false;

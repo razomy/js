@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "google",
+    "genai",
+    "ask",
+    "f"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

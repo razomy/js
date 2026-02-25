@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "number",
+    "counter",
+    "randomCode",
+    "sumArray",
+    "sumArrays"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

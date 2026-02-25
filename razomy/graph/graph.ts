@@ -1,4 +1,4 @@
 export interface Graph<N, E = N> {
-  nodes: N[],
-  edges: [E, E][],
+  nodes: N[];
+  edges: [E, E][];
 }

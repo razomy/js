@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "mocks",
+    "generateFile",
+    "generateRandomCharacter",
+    "insertTotalCount"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

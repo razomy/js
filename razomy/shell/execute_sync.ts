@@ -1,6 +1,6 @@
-import {execSync} from 'node:child_process';
+import { execSync } from 'node:child_process';
 import * as path from 'path';
-import type {DirPathString} from '@razomy/path-string';
+import type { DirPathString } from '@razomy/path-string';
 
 export type StringCommand = string;
 export type ShellCommand = StringCommand;
@@ -8,7 +8,7 @@ export type ShellCommand = StringCommand;
 export const startDir = path.resolve(process.argv[1], '../');
 
 export function executeSync(shellCommand: ShellCommand, dirPath: DirPathString = startDir) {
-  const path_ = path.resolve(dirPath)
+  const path_ = path.resolve(dirPath);
   console.info(startDir, shellCommand);
   const result = execSync(shellCommand, {
     cwd: path_,
@@ -17,5 +17,3 @@ export function executeSync(shellCommand: ShellCommand, dirPath: DirPathString =
   console.info(result);
   return result;
 }
-
-

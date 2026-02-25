@@ -13,10 +13,7 @@
  * // => true
  * every([], (n) => n > 5);
  */
-export function every<T>(
-  array: T[],
-  predicate: (item: T, index: number, array: T[]) => boolean
-): boolean {
+export function every<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean {
   for (let index = 0; index < array.length; index++) {
     if (!predicate(array[index], index, array)) {
       return false;

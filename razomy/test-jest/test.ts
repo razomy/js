@@ -1,9 +1,6 @@
-import type {Function} from '@razomy/function';
+import type { Function } from '@razomy/function';
 
-export async function test<I extends Array<any>, O>(
-  cb: Function<I, O>,
-  req: I,
-  res: O | null = null, err: Error | null = null) {
+export async function test<I extends Array<any>, O>(cb: Function<I, O>, req: I, res: O | null = null, err: Error | null = null) {
   async function resultFn() {
     return await cb(...req);
   }
@@ -17,5 +14,3 @@ export async function test<I extends Array<any>, O>(
     expect(resultFn).toThrow(err);
   }
 }
-
-

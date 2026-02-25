@@ -62,6 +62,18 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "object",
+    "iObject",
+    "iObjectClone",
+    "isClassConstructor",
+    "isObject",
+    "objectExtended",
+    "objectToBytes",
+    "objectToFormattedString",
+    "toFormattedString"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

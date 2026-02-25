@@ -1,4 +1,4 @@
-import {Vrd, type VrdOrValue} from './vrd';
+import { Vrd, type VrdOrValue } from './vrd';
 
 export function pathToVrd(path: string[]) {
   const root = new Vrd<null>();
@@ -12,4 +12,3 @@ export function pathToVrd(path: string[]) {
   last[path[path.length - 1]] = null;
   return root;
 }
-

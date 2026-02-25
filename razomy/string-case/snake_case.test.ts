@@ -1,8 +1,7 @@
-import {snakeCase} from '@razomy/string-case';
+import { snakeCase } from '@razomy/string-case';
 
 describe('string', () => {
   describe('snake_case', () => {
-
     // 1. Standard casing styles
     it('converts camelCase', () => {
       expect(snakeCase('camelCase')).toBe('camel_case');
@@ -69,7 +68,7 @@ describe('string', () => {
     it('handles single characters', () => {
       expect(snakeCase('A')).toBe('a');
     });
-// 1. Data Preservation (The fix for your concern)
+    // 1. Data Preservation (The fix for your concern)
     it('preserves special characters (non-destructive)', () => {
       expect(snakeCase('C#Project')).toBe('c#project');
       expect(snakeCase('user@email.com')).toBe('user@email_com');

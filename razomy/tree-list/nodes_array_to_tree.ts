@@ -1,10 +1,7 @@
-import type {ListTree} from '@razomy/tree-list';
+import type { ListTree } from '@razomy/tree-list';
 
 export function nodesArrayToTree(nodes: string[], leafs: string[]) {
-  let allItems = [
-    ...nodes.map(value => ({value, children: []} as ListTree<string>)),
-    ...leafs.map(value => ({value, children: []} as ListTree<string>))
-  ];
+  let allItems = [...nodes.map((value) => ({ value, children: [] } as ListTree<string>)), ...leafs.map((value) => ({ value, children: [] } as ListTree<string>))];
 
   // 2. Sort alphabetically
   // This ensures 'src' comes before 'src/components'
@@ -45,5 +42,3 @@ export function nodesArrayToTree(nodes: string[], leafs: string[]) {
 
   return root;
 }
-
-

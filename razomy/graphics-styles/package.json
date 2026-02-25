@@ -60,6 +60,15 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "styles",
+    "borderStyle",
+    "fillStyle",
+    "shadowStyle",
+    "themeStyle"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,4 +1,4 @@
-import type {AsyncTask, Context} from '@razomy/task-async';
+import type { AsyncTask, Context } from '@razomy/task-async';
 
 interface AsyncTaskListState<C extends Context> {
   startedTaskIndex: number;
@@ -6,8 +6,7 @@ interface AsyncTaskListState<C extends Context> {
 }
 
 export class AsyncTaskList<C extends Context> {
-  constructor(public ctx: AsyncTaskListState<C>) {
-  }
+  constructor(public ctx: AsyncTaskListState<C>) {}
 
   public async cancelStarted(): Promise<void> {
     const task = this.ctx.tasks[this.ctx.startedTaskIndex];

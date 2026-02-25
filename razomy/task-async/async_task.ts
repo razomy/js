@@ -1,7 +1,6 @@
-import type {WithSerializable} from '@razomy/serializable';
+import type { WithSerializable } from '@razomy/serializable';
 
-export interface Context extends WithSerializable {
-}
+export interface Context extends WithSerializable {}
 
 export interface WithContext<C extends Context> {
   c: C;
@@ -23,13 +22,7 @@ export interface WithValidate<T> {
   validate: (c: T) => Promise<void>;
 }
 
-
-export interface AsyncTask<C extends Context>
-  extends WithContext<C>,
-    WithAsyncExecute<C>,
-    WithValidate<C>,
-    WithAsyncCancel<C>,
-    WithAsyncRollback<C> {
+export interface AsyncTask<C extends Context> extends WithContext<C>, WithAsyncExecute<C>, WithValidate<C>, WithAsyncCancel<C>, WithAsyncRollback<C> {
   taskId: string;
   history: C[];
 }

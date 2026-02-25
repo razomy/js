@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "iterate",
+    "observe",
+    "orderByCreateDate",
+    "rename"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

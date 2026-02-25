@@ -1,4 +1,4 @@
-import {ArgumentError, notEmpty} from './argument_error';
+import { ArgumentError, notEmpty } from './argument_error';
 
 export function emptyThrow(value) {
   if (!notEmpty(value)) {

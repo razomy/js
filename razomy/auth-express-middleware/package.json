@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "auth",
+    "express",
+    "middleware",
+    "apiKey"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

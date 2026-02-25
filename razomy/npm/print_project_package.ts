@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {globSync} from 'glob';
-
+import { globSync } from 'glob';
 
 // Colors for console output
 const reset = '\x1b[0m';
@@ -22,19 +21,15 @@ function getWorkspaceMap(rootDir): Map<string, Workspace> {
 
   // A. Find workspace patterns from root package.json
   const rootPkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
-  const patterns = Array.isArray(rootPkg.workspaces)
-    ? rootPkg.workspaces
-    : rootPkg.workspaces?.packages || ['packages/*', 'apps/*'];
+  const patterns = Array.isArray(rootPkg.workspaces) ? rootPkg.workspaces : rootPkg.workspaces?.packages || ['packages/*', 'apps/*'];
 
   // B. Locate all package.json files
-  const files = patterns.flatMap((ptn: string) =>
-    globSync(`${ptn}/package.json`, {cwd: rootDir, ignore: '**/node_modules/**'})
-  );
+  const files = patterns.flatMap((ptn: string) => globSync(`${ptn}/package.json`, { cwd: rootDir, ignore: '**/node_modules/**' }));
 
   // C. First pass: Collect all names
   const tempConfigs: { name: string; path: string; allDeps: string[] }[] = [];
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const json = JSON.parse(fs.readFileSync(path.join(rootDir, file), 'utf-8'));
     allPackageNames.add(json.name);
 
@@ -44,18 +39,18 @@ function getWorkspaceMap(rootDir): Map<string, Workspace> {
       allDeps: [
         ...Object.keys(json.dependencies || {}),
         ...Object.keys(json.devDependencies || {}),
-        ...Object.keys(json.peerDependencies || {}) // Optional: include peers if desired
-      ]
+        ...Object.keys(json.peerDependencies || {}), // Optional: include peers if desired
+      ],
     });
   });
 
   // D. Second pass: Filter dependencies to ONLY keep local workspaces
-  tempConfigs.forEach(config => {
+  tempConfigs.forEach((config) => {
     map.set(config.name, {
       name: config.name,
       path: config.path,
       // Filter: Keep dep ONLY if it exists in our monorepo
-      localDeps: config.allDeps.filter(dep => allPackageNames.has(dep))
+      localDeps: config.allDeps.filter((dep) => allPackageNames.has(dep)),
     });
   });
 
@@ -63,13 +58,7 @@ function getWorkspaceMap(rootDir): Map<string, Workspace> {
 }
 
 // 2. RECURSIVE PRINT
-function printTree(
-  pkgName: string,
-  map: Map<string, Workspace>,
-  prefix: string = '',
-  isLast: boolean = true,
-  visitedStack: Set<string> = new Set()
-) {
+function printTree(pkgName: string, map: Map<string, Workspace>, prefix: string = '', isLast: boolean = true, visitedStack: Set<string> = new Set()) {
   const workspace = map.get(pkgName);
   if (!workspace) return; // Should not happen given our filter
 
@@ -95,13 +84,12 @@ function printTree(
 }
 
 export function printProjectPackage(targetPackage) {
-
-// --- CONFIG ---
+  // --- CONFIG ---
   const rootDir = path.resolve(process.cwd(), '../../');
-// const TARGET_PACKAGE = process.argv[2];
-//   const targetPackage = '@razomy/images'; // Pass package name as CLI argument
+  // const TARGET_PACKAGE = process.argv[2];
+  //   const targetPackage = '@razomy/images'; // Pass package name as CLI argument
 
-// 3. EXECUTION
+  // 3. EXECUTION
   if (!targetPackage) {
     console.log('Usage: npx ts-node scripts/tree-deps.ts <package-name>');
     process.exit(1);
@@ -115,11 +103,10 @@ export function printProjectPackage(targetPackage) {
   }
 
   console.log(`\n📦 Dependency Tree for: ${cyan}${targetPackage}${reset}\n`);
-// Start recursion
-// We create a "root" call manually to format the top level nicely
+  // Start recursion
+  // We create a "root" call manually to format the top level nicely
   printTree(targetPackage, workspaces, '', true);
   console.log('');
-
 }
 
 // printProjectPackage("@razomy/nuxt");

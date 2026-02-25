@@ -63,6 +63,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "dates",
+    "cronStringToDate",
+    "formatTimeLength",
+    "isDateToday",
+    "stringToDate"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

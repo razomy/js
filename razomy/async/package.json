@@ -60,6 +60,17 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "async",
+    "createPromise",
+    "delayAwait",
+    "freeze",
+    "isPromise",
+    "loop",
+    "taskQueue",
+    "tryPromise"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

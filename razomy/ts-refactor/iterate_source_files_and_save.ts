@@ -1,9 +1,9 @@
-import type {Action} from '@razomy/action';
-import {Project, SourceFile} from 'ts-morph';
+import type { Action } from '@razomy/action';
+import { Project, SourceFile } from 'ts-morph';
 
 export interface IterateSourceFileState {
-  project: Project,
-  sourceFile: SourceFile
+  project: Project;
+  sourceFile: SourceFile;
 }
 
 export async function iterateSourceFilesAndSave(projectPath: String, action: Action<IterateSourceFileState>) {
@@ -14,7 +14,7 @@ export async function iterateSourceFilesAndSave(projectPath: String, action: Act
 
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
-    action({project, sourceFile})
+    action({ project, sourceFile });
   }
   await project.save();
 }

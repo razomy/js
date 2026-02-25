@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "pipes",
+    "booleans",
+    "all",
+    "any",
+    "boolExecute",
+    "pipeableKvToPipeline",
+    "while"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

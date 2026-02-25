@@ -1,4 +1,3 @@
-import {ObjectExtended} from '@razomy/object';
+import { ObjectExtended } from '@razomy/object';
 
-export abstract class ObjectResource extends ObjectExtended {
-}
+export abstract class ObjectResource extends ObjectExtended {}

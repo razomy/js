@@ -1,6 +1,6 @@
-import {camelCase} from '@razomy/string-case';
+import { camelCase } from '@razomy/string-case';
 import * as fss from '@razomy/fss';
-import type {FunctionSpecification} from './get_package_functions';
+import type { FunctionSpecification } from './get_package_functions';
 
 export function createDistReadme(packageJson, specs: FunctionSpecification[]) {
   // ![npm bundle size](https://img.shields.io/bundlephobia/min/${packageJson.name})
@@ -50,28 +50,36 @@ import * as ${camelCase(packageJson.name.replace('@razomy/', ''))} from "${packa
   const examples = `
 ## 📚 Documentation
 ${specs
-    .sort((a, b) => {
-      const aLower = a.name.toLowerCase();
-      const bLower = b.name.toLowerCase();
-      if (aLower < bLower) {
-        return -1;
-      }
-      if (aLower > bLower) {
-        return 1;
-      }
-      return 0;
-    })
-    .map(s => `
-### ${s.name}(${s.parameters.map(i => i.name).join(', ')})
+  .sort((a, b) => {
+    const aLower = a.name.toLowerCase();
+    const bLower = b.name.toLowerCase();
+    if (aLower < bLower) {
+      return -1;
+    }
+    if (aLower > bLower) {
+      return 1;
+    }
+    return 0;
+  })
+  .map(
+    (s) => `
+### ${s.name}(${s.parameters.map((i) => i.name).join(', ')})
 ${s.description}
 ###### Examples
-${s.examples.map(e => `
+${s.examples
+  .map((e) =>
+    `
 \`\`\`ts
 ${e.code} // ${e.expected}
 \`\`\`
-`.trim()).join('\n\n')}
-`).join('\n').trim()}
-`.trim()
+`.trim(),
+  )
+  .join('\n\n')}
+`,
+  )
+  .join('\n')
+  .trim()}
+`.trim();
 
   const readme = `
 ${title}
@@ -86,6 +94,6 @@ ${examples}
 ${vision}
 
 ${donate}
-`.trim()
+`.trim();
   fss.file.set('../string-case/dist/README.md', readme);
 }

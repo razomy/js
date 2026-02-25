@@ -1,4 +1,4 @@
-import fs, {Dirent} from 'fs';
+import fs, { Dirent } from 'fs';
 import * as path from 'path';
 
 export interface IterateNode {
@@ -35,7 +35,7 @@ export function iterate(dirPath: string, cb: (iterate_node: IterateNode) => void
     try {
       // 5. readdirSync is faster than opendirSync for raw throughput
       // because it crosses the C++ to JS boundary once per folder, not per file.
-      entries = fs.readdirSync(currentPath, {withFileTypes: true});
+      entries = fs.readdirSync(currentPath, { withFileTypes: true });
     } catch (e) {
       continue; // Skip folders we don't have permission for
     }
@@ -67,5 +67,3 @@ export function iterate(dirPath: string, cb: (iterate_node: IterateNode) => void
     }
   }
 }
-
-

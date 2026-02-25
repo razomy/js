@@ -1,4 +1,4 @@
-import type {String} from '@razomy/string';
+import type { String } from '@razomy/string';
 
 /**
  * Interface defining an object structure containing a string property.

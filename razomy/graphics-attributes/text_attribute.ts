@@ -1,12 +1,12 @@
-import {AttributeResource} from '@razomy/resources';
-import {ArgumentException} from '@razomy/exceptions';
+import { AttributeResource } from '@razomy/resources';
+import { ArgumentException } from '@razomy/exceptions';
 
 export class TextAttribute extends AttributeResource {
   public text: string;
 
   constructor();
-  constructor(text: string)
-  constructor(text: TextAttribute)
+  constructor(text: string);
+  constructor(text: TextAttribute);
   constructor(...args: any) {
     super();
 

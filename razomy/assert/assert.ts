@@ -3,5 +3,3 @@ export function assert(condition: boolean, message = 'Assertion failed') {
     throw new Error(message);
   }
 }
-
-

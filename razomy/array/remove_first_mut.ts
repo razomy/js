@@ -4,5 +4,3 @@ export function removeFirstMut<T>(arr: T[], value: T): void {
     arr.splice(index, 1);
   }
 }
-
-

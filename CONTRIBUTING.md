@@ -29,6 +29,7 @@ If you have questions about the usage of the library or the codebase, please che
 ### Prerequisites
 
 You will need the following tools installed on your machine:
+
 - [Node.js](https://nodejs.org/) (Version [18.0.0] or higher)
 - [npm/yarn/pnpm]
 
@@ -57,13 +58,13 @@ You will need the following tools installed on your machine:
    ```bash
    npm run dev
    ```
-   *Make sure you do not have any TypeScript errors before committing.*
+   _Make sure you do not have any TypeScript errors before committing._
 
 ### Testing and Linting
 
 We use **ESLint** for linting and **[Jest/Mocha/Vitest]** for testing.
 
-- ~~**Run Linter**: Ensure your code follows our style guide.~~
+- **Run Linter**: Ensure your code follows our style guide.
   ```bash
   npm run lint
   ```
@@ -79,14 +80,14 @@ We use **ESLint** for linting and **[Jest/Mocha/Vitest]** for testing.
 
 ## Pull Request Process
 
-1. Ensure that ~~`npm run lint`~~, ~~`npm run typecheck`~~, and `npm test` all pass.
+1. Ensure that `npm run lint`, ~~`npm run typecheck`~~, and `npm test` all pass.
 2. Update the `README.md` with details of changes to the interface, if applicable.
 3. Open a Pull Request against the `main` branch.
 4. The PR title should follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `fix: resolve timeout issue` or `feat: add user logging`).
 
 ## Style Guide
 
-- ~~We use **Prettier** for code formatting. Please run `npm run format` before committing.~~
+- We use **Prettier** for code formatting. Please run `npm run format` before committing.
 - Do not use `any` types unless absolutely necessary.
 - Prefer `interface` over `type` for public API definitions.
 
@@ -95,46 +96,50 @@ We use **ESLint** for linting and **[Jest/Mocha/Vitest]** for testing.
 We follow systematic architectural rules to keep the system reliable.
 
 **Structure**
+
 - [ ] **Packages:** Maintained in a single layer.
 - [ ] **Granularity:** One technical element per file.
 - [ ] **Organization:** One domain per folder.
 - [ ] **Ordering:**
-    - Abstract → Concrete (e.g., `object/car`).
-    - Source → Target (e.g., `png/pdf`).
+  - Abstract → Concrete (e.g., `object/car`).
+  - Source → Target (e.g., `png/pdf`).
 
 **Naming**
+
 - [ ] **Atomic:** Names must be atomic concepts.
 - [ ] **Extendable:** Names are extended via prefixes, suffixes, and other names (composition).
 - [ ] **Pluralization:**
-    - Singular for single items.
-    - Plural (`s`) **only** for group operations or grouping.
+  - Singular for single items.
+  - Plural (`s`) **only** for group operations or grouping.
 - [ ] **Casing:**
-    - `PascalCase` for types/classes.
-    - `camelCase` for vars/functions.
+  - `PascalCase` for types/classes.
+  - `camelCase` for vars/functions.
 - [ ] **Consistency:** File name matches instance name, property name, and type.
 - [ ] **Prefixes:**
-    - Use `try` for nullable returns (e.g., `tryGet`).
-    - Use `with` for interface extensions.
-    - **No** `I` prefix for Interfaces.
+  - Use `try` for nullable returns (e.g., `tryGet`).
+  - Use `with` for interface extensions.
+  - **No** `I` prefix for Interfaces.
 - [ ] **Suffixes:** Use `Mut` for mutable types.
 - [ ] **Functions:**
-    - Follow pattern: `[action][result?]["By"+ arguments?]` (e.g., `get`, `getString`, `getStringByIndex`).
-    - Async: No `Async` suffix by default.
-    - Conflict: If Sync and Async exist, use `Sync` suffix for the synchronous version.
+  - Follow pattern: `[action][result?]["By"+ arguments?]` (e.g., `get`, `getString`, `getStringByIndex`).
+  - Async: No `Async` suffix by default.
+  - Conflict: If Sync and Async exist, use `Sync` suffix for the synchronous version.
 - [ ] **Abbreviations:** Preferred over full words (e.g., `js` > `javascript`).
 
 **Logic**
+
 - [ ] **Strictness:**
-    - Always throw on error (no silent fails).
-    - **No input validation** (code assumes valid input; logic responsibility lies with the caller). Use `@razomy/schema` for data validation.
-    - **No optional execution** (code must be deterministic).
+  - Always throw on error (no silent fails).
+  - **No input validation** (code assumes valid input; logic responsibility lies with the caller). Use `@razomy/schema` for data validation.
+  - **No optional execution** (code must be deterministic).
 - [ ] **Imports:**
-    - External: `@razomy/...`
-    - Domain: `./...`
-    - Prefer (e.g., `import * as packageName from '@razomy/package-name`) named syntax.
+  - External: `@razomy/...`
+  - Domain: `./...`
+  - Prefer (e.g., `import * as packageName from '@razomy/package-name`) named syntax.
 - [ ] **Exports:** Prefer named exports.
 
 **Feature Workflow**
+
 - [ ] **One change per commit:** Describe the reason and the solution.
 - [ ] **Identity:** Sign commits with a proper name and a permanent email address (one you plan to keep for years).
 - [ ] **Cleanliness:** One change type or one solid feature per merge request.

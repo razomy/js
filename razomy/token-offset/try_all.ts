@@ -1,17 +1,13 @@
-import type {Context} from '@razomy/context';
-import type {WithOffset} from '@razomy/offset';
-import type {ResultNullFn} from '@razomy/result-null';
+import type { Context } from '@razomy/context';
+import type { WithOffset } from '@razomy/offset';
+import type { ResultNullFn } from '@razomy/result-null';
 
-export function tryAll<
-  C extends Context & WithOffset,
-  R extends readonly ResultNullFn<C, { offset: number, result: any }>[],
->(ctx: C, rules: R) {
-
+export function tryAll<C extends Context & WithOffset, R extends readonly ResultNullFn<C, { offset: number; result: any }>[]>(ctx: C, rules: R) {
   let totalOffset = 0;
   const results: [...{ [K in keyof R]: NonNullable<ReturnType<R[K]>>['result'] }] = [] as any;
 
   for (const rule of rules) {
-    const res = rule({...ctx, offset: ctx.offset + totalOffset});
+    const res = rule({ ...ctx, offset: ctx.offset + totalOffset });
     if (!res) return null;
 
     totalOffset += res.offset;
@@ -19,7 +15,7 @@ export function tryAll<
       results.push(res.result);
     }
   }
-  return {results: results, offset: totalOffset};
+  return { results: results, offset: totalOffset };
 }
 
 //

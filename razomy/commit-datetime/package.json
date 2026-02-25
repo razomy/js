@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "commit",
+    "datetime",
+    "datetimeActor"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

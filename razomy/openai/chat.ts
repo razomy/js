@@ -1,9 +1,7 @@
-import type {WithOpenAiCtx} from '@razomy/openai';
+import type { WithOpenAiCtx } from '@razomy/openai';
 
 export class Chat {
-
-  constructor(private ctx: WithOpenAiCtx) {
-  }
+  constructor(private ctx: WithOpenAiCtx) {}
 
   public async query(message) {
     try {
@@ -11,8 +9,8 @@ export class Chat {
         model: 'gpt-3.5-turbo-16k',
         messages: [
           {
-            'role': 'user',
-            'content': `${message}`,
+            role: 'user',
+            content: `${message}`,
           },
         ],
         temperature: 1,
@@ -22,12 +20,9 @@ export class Chat {
         presence_penalty: 0,
       });
       return response?.choices[0]?.message?.content;
-
     } catch (e) {
       console.error(e);
       return 500;
     }
   }
 }
-
-

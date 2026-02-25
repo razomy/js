@@ -12,7 +12,7 @@ export class HexParser {
    * @return {String} ex: FF5555
    */
   public static toHex(source: number[]): string {
-    const [r, g, b] = source.map(component => {
+    const [r, g, b] = source.map((component) => {
       const hexComponent = component.toString(16);
       return hexComponent.length === 1 ? '0' + hexComponent : hexComponent;
     });
@@ -59,12 +59,7 @@ export class HexParser {
       const b = isShortNotation ? value.charAt(2) + value.charAt(2) : value.substring(4, 6);
       const a = isRgba ? (isShortNotation ? value.charAt(3) + value.charAt(3) : value.substring(6, 8)) : 'FF';
 
-      return [
-        parseInt(r, 16),
-        parseInt(g, 16),
-        parseInt(b, 16),
-        parseFloat((parseInt(a, 16) / 255).toFixed(2))
-      ];
+      return [parseInt(r, 16), parseInt(g, 16), parseInt(b, 16), parseFloat((parseInt(a, 16) / 255).toFixed(2))];
     }
 
     return null;

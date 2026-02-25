@@ -1,5 +1,5 @@
-import type {ITextureFilter} from './i_texture_filter';
-import {byteSlice} from './byte_slice';
+import type { ITextureFilter } from './i_texture_filter';
+import { byteSlice } from './byte_slice';
 
 /**
  * RGB Filter
@@ -16,8 +16,6 @@ import {byteSlice} from './byte_slice';
  * node.green(200);
  */
 export class RgbTextureFilter implements ITextureFilter {
-
-
   constructor(
     /**
      * get/set filter red value. Use with {@link Konva.Filters.RGB} filter.
@@ -45,7 +43,7 @@ export class RgbTextureFilter implements ITextureFilter {
      * @param {Integer} blue value between 0 and 255
      * @returns {Integer}
      */
-    public blue = 0
+    public blue = 0,
   ) {
     this.red = byteSlice(red);
     this.green = byteSlice(green);
@@ -62,12 +60,11 @@ export class RgbTextureFilter implements ITextureFilter {
       brightness;
 
     for (i = 0; i < nPixels; i += 4) {
-      brightness =
-        (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255;
+      brightness = (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255;
       data[i] = brightness * red; // r
       data[i + 1] = brightness * green; // g
       data[i + 2] = brightness * blue; // b
       data[i + 3] = data[i + 3]; // alpha
     }
-  };
+  }
 }

@@ -5,11 +5,11 @@ export function sumArrays(...arrays: number[][]): number[] {
   }
   // Check if all input arrays have the same length
   const firstArrayLength = arrays[0].length;
-  if (!arrays.every(arr => arr.length === firstArrayLength)) {
+  if (!arrays.every((arr) => arr.length === firstArrayLength)) {
     throw new Error('Input arrays must have the same length.');
   }
   // Initialize an empty array to store the result
-  const result = Array.from({length: firstArrayLength}, () => 0);
+  const result = Array.from({ length: firstArrayLength }, () => 0);
   // Iterate through the arrays and sum corresponding elements
   for (const arr of arrays) {
     for (let i = 0; i < firstArrayLength; i++) {
@@ -18,5 +18,3 @@ export function sumArrays(...arrays: number[][]): number[] {
   }
   return result;
 }
-
-

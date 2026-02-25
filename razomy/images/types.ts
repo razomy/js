@@ -1,33 +1,16 @@
-import {type FileFormat} from '@razomy/fs-file-format';
+import { type FileFormat } from '@razomy/fs-file-format';
 
-export type ReadAndWriteImageFileExtensionType =
-  'jpg'
-  | 'jpeg'
-  | 'png'
-  | 'webp'
-  | 'gif'
-  | 'avif'
-  | 'tiff'
-  | 'tif'
-  | 'ico'
-  | 'heif'
-  | 'heic'
-  ;
+export type ReadAndWriteImageFileExtensionType = 'jpg' | 'jpeg' | 'png' | 'webp' | 'gif' | 'avif' | 'tiff' | 'tif' | 'ico' | 'heif' | 'heic';
 // Список форматов, в которые Sharp умеет СОХРАНЯТЬ
-export const imageWriteTargets: ReadAndWriteImageFileExtensionType[] = [
-  'jpg', 'jpeg', 'png', 'webp', 'gif', 'avif', 'tiff', 'tif', 'ico', 'heif', 'heic'
-];
+export const imageWriteTargets: ReadAndWriteImageFileExtensionType[] = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif', 'tiff', 'tif', 'ico', 'heif', 'heic'];
 export type OnlyReadImageFileExtensionType = 'svg' | 'bmp';
-
 
 export type AllImageFileExtensionType = ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType;
 
-
 // Генератор списка конвертаций (исключает самого себя)
 function getConversions(currentExt: string) {
-  return imageWriteTargets.filter(t => t !== currentExt);
+  return imageWriteTargets.filter((t) => t !== currentExt);
 }
-
 
 export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionType })[] = [
   // --- РАСПРОСТРАНЕННЫЕ (Чтение и Запись) ---
@@ -36,35 +19,35 @@ export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionTyp
     mediaType: 'image/jpeg',
     fileCategory: 'image',
     iconUrl: 'mdi-file-image',
-    conversions: getConversions('jpg')
+    conversions: getConversions('jpg'),
   },
   {
     fileExtensionType: 'jpeg',
     mediaType: 'image/jpeg',
     fileCategory: 'image',
     iconUrl: 'mdi-file-image',
-    conversions: getConversions('jpeg')
+    conversions: getConversions('jpeg'),
   },
   {
     fileExtensionType: 'png',
     mediaType: 'image/png',
     fileCategory: 'image',
     iconUrl: 'mdi-file-image',
-    conversions: getConversions('png')
+    conversions: getConversions('png'),
   },
   {
     fileExtensionType: 'webp',
     mediaType: 'image/webp',
     fileCategory: 'image',
     iconUrl: 'mdi-file-image',
-    conversions: getConversions('webp')
+    conversions: getConversions('webp'),
   },
   {
     fileExtensionType: 'gif',
     mediaType: 'image/gif',
     fileCategory: 'image',
     iconUrl: 'mdi-file-gif-box',
-    conversions: getConversions('gif')
+    conversions: getConversions('gif'),
   },
 
   // --- СОВРЕМЕННЫЕ (Чтение и Запись) ---
@@ -73,7 +56,7 @@ export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionTyp
     mediaType: 'image/avif',
     fileCategory: 'image',
     iconUrl: 'mdi-star-face',
-    conversions: getConversions('avif')
+    conversions: getConversions('avif'),
   },
   // TODO: not working {fileExtensionType: 'heic', mediaType: 'image/heic', fileCategory: 'image', icon: 'mdi-cellphone', conversions: getConversions('heic')},
   // TODO: not working {fileExtensionType: 'heif', mediaType: 'image/heif', fileCategory: 'image', icon: 'mdi-cellphone', conversions: getConversions('heif')},
@@ -82,14 +65,14 @@ export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionTyp
     mediaType: 'image/tiff',
     fileCategory: 'image',
     iconUrl: 'mdi-printer',
-    conversions: getConversions('tiff')
+    conversions: getConversions('tiff'),
   },
   {
     fileExtensionType: 'tif',
     mediaType: 'image/tiff',
     fileCategory: 'image',
     iconUrl: 'mdi-printer',
-    conversions: getConversions('tif')
+    conversions: getConversions('tif'),
   },
 
   // --- СПЕЦИФИЧНЫЕ (В них можно сохранять с оговорками) ---
@@ -98,7 +81,7 @@ export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionTyp
     mediaType: 'image/x-icon',
     fileCategory: 'image',
     iconUrl: 'mdi-emoticon',
-    conversions: getConversions('ico')
+    conversions: getConversions('ico'),
   },
 
   // --- ТОЛЬКО ЧТЕНИЕ (Sharp открывает их, но сохраняет только в растр) ---
@@ -108,13 +91,13 @@ export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionTyp
     mediaType: 'image/svg+xml',
     fileCategory: 'image',
     iconUrl: 'mdi-vector-curve',
-    conversions: imageWriteTargets
+    conversions: imageWriteTargets,
   },
   {
     fileExtensionType: 'bmp',
     mediaType: 'image/bmp',
     fileCategory: 'image',
     iconUrl: 'mdi-image-filter-black-white',
-    conversions: imageWriteTargets
+    conversions: imageWriteTargets,
   },
 ] as const;

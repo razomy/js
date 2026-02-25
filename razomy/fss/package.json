@@ -1,7 +1,73 @@
 {
-  "name": "@razomy/fss",
-  "version": "0.0.1-alpha.4",
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
   "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "browser": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
+      },
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "edge": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "require": "./index.ts",
+        "types": "./index.ts"
+      },
+      "node": {
+        "import": "./index.node.ts",
+        "require": "./index.node.ts",
+        "types": "./index.node.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "vue": {
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
+      }
+    },
+    "./browser": {
+      "import": "./index.browser.ts",
+      "require": "./index.browser.ts",
+      "types": "./index.browser.ts"
+    },
+    "./node": {
+      "import": "./index.node.ts",
+      "require": "./index.node.ts",
+      "types": "./index.node.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*"
+  ],
+  "keywords": [
+    "razomy",
+    "fss"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/fss",
   "peerDependencies": {
     "@razomy/fs": "0.0.1-alpha.4",
     "@razomy/fs-dict": "0.0.1-alpha.4",
@@ -13,5 +79,29 @@
     "@razomy/fs-kv": "0.0.1-alpha.4",
     "@razomy/fs-link": "0.0.1-alpha.4",
     "@razomy/fs-vrd": "0.0.1-alpha.4"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/fss",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
 }

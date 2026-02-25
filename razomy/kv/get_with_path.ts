@@ -1,6 +1,6 @@
-import type {ArrayKeyValuable} from '@razomy/kv';
-import {createByPath, set} from '@razomy/kv';
-import {get} from './get';
+import type { ArrayKeyValuable } from '@razomy/kv';
+import { createByPath, set } from '@razomy/kv';
+import { get } from './get';
 
 export function getWithPath<T>(valueRecursive: ArrayKeyValuable<T, T>, path: T[]) {
   const pathed = createByPath(path) as ArrayKeyValuable<T, T>;

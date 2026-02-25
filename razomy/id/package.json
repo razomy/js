@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "id",
+    "generateGuid",
+    "withId"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,9 +1,9 @@
-import type {NodeBound} from './node_bound';
+import type { NodeBound } from './node_bound';
 import * as rectangle from '@razomy/coordinates-rectangle';
 
 export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
-    return [{start_y: root.fullRect.startY, finish_y: root.fullRect.finishY}];
+    return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }
 
   const places: rectangle.BoundRectangle[] = [];
@@ -29,9 +29,7 @@ export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
       startX: 0,
     };
 
-    if (place.startY < place.finishY
-      && place.startY > root.fullRect.startY
-      && place.finishY < root.fullRect.finishY) {
+    if (place.startY < place.finishY && place.startY > root.fullRect.startY && place.finishY < root.fullRect.finishY) {
       places.push(place);
     }
   }
@@ -49,5 +47,3 @@ export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
 
   return places;
 }
-
-

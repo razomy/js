@@ -1,4 +1,4 @@
-import {logInline} from './log_inline';
+import { logInline } from './log_inline';
 
 export function progress(progress: number, total: number, message: string = 'Loading') {
   const percent = (progress / total) * 100;

@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "analytics",
+    "token",
+    "filePathCount",
+    "projectDirCountSpec",
+    "projectDirCount"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,4 +1,4 @@
-import type {ActorDatetimeDeltaString} from './addss_to_string';
+import type { ActorDatetimeDeltaString } from './addss_to_string';
 
 export function findRepetitions(arr: ActorDatetimeDeltaString[]) {
   const frequencyMap = new Map();
@@ -13,7 +13,6 @@ export function findRepetitions(arr: ActorDatetimeDeltaString[]) {
           frequencyMap.set(change.addValue, 1);
         }
       }
-
     }
   }
 

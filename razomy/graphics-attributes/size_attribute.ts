@@ -1,5 +1,5 @@
-import {AttributeResource} from '@razomy/resources';
-import {ArgumentException} from '@razomy/exceptions';
+import { AttributeResource } from '@razomy/resources';
+import { ArgumentException } from '@razomy/exceptions';
 
 export interface ISizeResource {
   height: number;
@@ -11,7 +11,7 @@ export class SizeAttribute extends AttributeResource implements ISizeResource {
   public width: number;
 
   constructor();
-  constructor(height: number, width: number)
+  constructor(height: number, width: number);
   constructor(size: ISizeResource);
   constructor(...args: any) {
     super();

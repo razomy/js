@@ -1,2 +1,1 @@
-export interface Razomy {
-}
+export interface Razomy {}

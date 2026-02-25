@@ -7,4 +7,3 @@ export class Node<T> {
     this.next = next;
   }
 }
-

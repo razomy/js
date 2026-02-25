@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "tree",
+    "dict",
+    "graph",
+    "dictToGraph",
+    "iterateChildren"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -60,6 +60,23 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "dict",
+    "filterDict",
+    "firstKeyDict",
+    "flattenDict",
+    "forOwn",
+    "get",
+    "isKeysInDict",
+    "isPlainObject",
+    "keysInDict",
+    "mapDict",
+    "mapDictToArray",
+    "mergeDicts",
+    "shuffle",
+    "someOf"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

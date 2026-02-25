@@ -1,10 +1,10 @@
-import type {DeltaString} from '@razomy/commit-datetime-delta-string';
-import {deltaStringsToString} from '@razomy/commit-datetime-delta-string';
+import type { DeltaString } from '@razomy/commit-datetime-delta-string';
+import { deltaStringsToString } from '@razomy/commit-datetime-delta-string';
 
 export interface ActorDatetimeDeltaString {
-  datetime: string,
-  actor: string,
-  deltas: DeltaString[],
+  datetime: string;
+  actor: string;
+  deltas: DeltaString[];
 }
 
 export function addssToString(prevSnapshot: string, commits: ActorDatetimeDeltaString[]): string {
@@ -15,4 +15,3 @@ export function addssToString(prevSnapshot: string, commits: ActorDatetimeDeltaS
 
   return prevSnapshot;
 }
-

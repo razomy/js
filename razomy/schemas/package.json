@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "schemas",
+    "common",
+    "primitives",
+    "recursives",
+    "schema",
+    "validator",
+    "validators"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

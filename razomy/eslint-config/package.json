@@ -1,0 +1,105 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-unicorn": "^63.0.0",
+    "globals": "^17.3.0",
+    "typescript-eslint": "^8.56.1",
+    "eslint-import-resolver-typescript": "^4.4.4"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "browser": {
+        "import": "./index.browser.js",
+        "require": "./index.browser.js",
+        "types": "./index.browser.js"
+      },
+      "default": {
+        "default": "./index.js",
+        "types": "./index.js"
+      },
+      "edge": {
+        "import": "./index.browser.js",
+        "require": "./index.browser.js",
+        "types": "./index.browser.js"
+      },
+      "import": {
+        "default": "./index.js",
+        "require": "./index.js",
+        "types": "./index.js"
+      },
+      "node": {
+        "import": "./index.node.js",
+        "require": "./index.node.js",
+        "types": "./index.node.js"
+      },
+      "require": {
+        "default": "./index.js",
+        "types": "./index.js"
+      },
+      "vue": {
+        "import": "./index.browser.js",
+        "require": "./index.browser.js",
+        "types": "./index.browser.js"
+      }
+    },
+    "./browser": {
+      "import": "./index.browser.js",
+      "require": "./index.browser.js",
+      "types": "./index.browser.js"
+    },
+    "./node": {
+      "import": "./index.node.js",
+      "require": "./index.node.js",
+      "types": "./index.node.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*"
+  ],
+  "keywords": [
+    "razomy",
+    "eslint",
+    "config"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "name": "@razomy/eslint-config",
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/eslint-config",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

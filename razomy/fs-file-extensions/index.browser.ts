@@ -1,4 +1,4 @@
-export {fileNameToCodec, codecs} from './file_name_to_codec';
+export { fileNameToCodec, codecs } from './file_name_to_codec';
 export {
   isSupportedFileTypes,
   textBufferTypes,
@@ -11,7 +11,7 @@ export {
   videoBufferTypes,
   bufferTypes,
   type TypeFs,
-  uniqProgrammingBufferName
+  uniqProgrammingBufferName,
 } from './is_supported_file_types';
-export {toBuffer} from './to_buffer';
-export {toString_} from './to_string';
+export { toBuffer } from './to_buffer';
+export { toString_ } from './to_string';

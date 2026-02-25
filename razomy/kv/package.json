@@ -60,6 +60,23 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "kv",
+    "akv",
+    "createByPath",
+    "filter",
+    "get",
+    "getParents",
+    "getWithPath",
+    "isAkv",
+    "iterate",
+    "k",
+    "map",
+    "set",
+    "valueIterate",
+    "withKv"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

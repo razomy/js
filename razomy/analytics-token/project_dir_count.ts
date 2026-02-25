@@ -6,10 +6,10 @@ export function projectDirCount(
   projectDir: string,
   fileRegex = /\.ts$/,
   // Define the regex pattern to exclude certain files/directories
-  excludePattern = /^\.|node_modules/) {
+  excludePattern = /^\.|node_modules/,
+) {
   // Define the token count variable
   let tokenCount = 0;
-
 
   // Recursively traverse the project directory
   function traverseDir(dir: string) {
@@ -22,7 +22,7 @@ export function projectDirCount(
       } else if (stats.isFile() && fileRegex.test(file)) {
         // console.log(filePath);
         const content = fs.readFileSync(filePath, 'utf8');
-        const tokens = content.split(/\s+/).filter(token => token !== '');
+        const tokens = content.split(/\s+/).filter((token) => token !== '');
         tokenCount += tokens.length;
       }
     }
@@ -34,5 +34,3 @@ export function projectDirCount(
   // Return the total token count
   return tokenCount;
 }
-
-

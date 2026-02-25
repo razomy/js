@@ -12,8 +12,6 @@
  * // => false
  * isNullOrEmpty('razomy');
  */
-export function isNullOrEmpty(
-  str: string | null | undefined,
-): str is null | undefined | '' {
+export function isNullOrEmpty(str: string | null | undefined): str is null | undefined | '' {
   return str == null || str.trim() === '';
 }

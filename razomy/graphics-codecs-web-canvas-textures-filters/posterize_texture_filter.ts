@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Posterize Filter. Adjusts the channels so that there are no more
@@ -16,7 +16,6 @@ import type {ITextureFilter} from './i_texture_filter';
  * node.levels(0.8); // between 0 and 1
  */
 export class PosterizeTextureFilter implements ITextureFilter {
-
   constructor(
     /**
      * get/set levels.  Must be a number between 0 and 1.  Use with {@link Konva.Filters.Posterize} filter.
@@ -25,9 +24,8 @@ export class PosterizeTextureFilter implements ITextureFilter {
      * @param {Number} level between 0 and 1
      * @returns {Number}
      */
-    public levels = 0.5
-  ) {
-  }
+    public levels = 0.5,
+  ) {}
 
   public filter(imageData: any): void {
     // level must be between 1 and 255
@@ -40,5 +38,5 @@ export class PosterizeTextureFilter implements ITextureFilter {
     for (i = 0; i < len; i += 1) {
       data[i] = Math.floor(data[i] / scale) * scale;
     }
-  };
+  }
 }

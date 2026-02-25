@@ -5,5 +5,3 @@ export async function tryPromise(fn: any) {
     console.log(e);
   }
 }
-
-

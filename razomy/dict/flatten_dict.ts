@@ -1,5 +1,5 @@
-import {forOwn} from './for_own';
-import {isPlainObject} from './is_plain_object';
+import { forOwn } from './for_own';
+import { isPlainObject } from './is_plain_object';
 
 export type Join<K, P> = K extends string
   ? P extends string
@@ -9,20 +9,16 @@ export type Join<K, P> = K extends string
 
 export type PathsValue<T, PrevK extends string | number | symbol> = T extends object
   ? {
-    // Iterate over object keys
-    [K in keyof T]-?: PathsValue<T[K], Join<PrevK, K>>; // Recurse for nested objects, otherwise create a leaf path-value object // -? makes keys non-optional for the iteration
-  }[keyof T] // This produces a union of all path-value objects
+      // Iterate over object keys
+      [K in keyof T]-?: PathsValue<T[K], Join<PrevK, K>>; // Recurse for nested objects, otherwise create a leaf path-value object // -? makes keys non-optional for the iteration
+    }[keyof T] // This produces a union of all path-value objects
   : { [K in PrevK]: T }; // Leaf node: T is not an object
 
 export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flattenDict<T extends object = object>(
-  obj: T,
-  parentKey = '',
-  result = {} as any,
-): FlattenedAndConverted<T> {
+export function flattenDict<T extends object = object>(obj: T, parentKey = '', result = {} as any): FlattenedAndConverted<T> {
   forOwn(obj, (value, key) => {
     const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
 
@@ -34,5 +30,3 @@ export function flattenDict<T extends object = object>(
   });
   return result as FlattenedAndConverted<T>;
 }
-
-

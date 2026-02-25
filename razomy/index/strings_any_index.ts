@@ -1,13 +1,8 @@
-import type {String} from '@razomy/string';
-import type {Offset} from '@razomy/offset';
-import type {Index} from '@razomy/index';
+import type { String } from '@razomy/string';
+import type { Offset } from '@razomy/offset';
+import type { Index } from '@razomy/index';
 
-export function stringsAnyIndex(
-  string: String,
-  chars: Set<string>,
-  offset: Offset = 0,
-  maxOffset: Offset = string.length
-): Index {
+export function stringsAnyIndex(string: String, chars: Set<string>, offset: Offset = 0, maxOffset: Offset = string.length): Index {
   for (let i = offset; i < maxOffset; i++) {
     if (chars.has(string[i])) {
       return i;
@@ -16,5 +11,3 @@ export function stringsAnyIndex(
 
   return -1;
 }
-
-

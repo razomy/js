@@ -11,5 +11,3 @@ export function tryFirstEqual<T>(list1: T[], list2: T[]) {
 
   return commonStrings;
 }
-
-

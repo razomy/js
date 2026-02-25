@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "codecs",
+    "xd"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,13 +1,11 @@
-import {SyntaxKind} from 'ts-morph';
-import {flat} from '@razomy/array';
-import {renameNode} from './rename_node';
-import type {IterateSourceFileState} from './iterate_source_files_and_save';
+import { SyntaxKind } from 'ts-morph';
+import { flat } from '@razomy/array';
+import { renameNode } from './rename_node';
+import type { IterateSourceFileState } from './iterate_source_files_and_save';
 
-export function fileRenameVariablesAndPropsFunctions({sourceFile, project}: IterateSourceFileState) {
+export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: IterateSourceFileState) {
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);
-  const parameters = flat(
-    functions.map(decl => decl.getParameters()))
-    .filter(i => !!i);
+  const parameters = flat(functions.map((decl) => decl.getParameters())).filter((i) => !!i);
   const files = [
     ...sourceFile.getDescendantsOfKind(SyntaxKind.VariableDeclaration),
     ...sourceFile.getDescendantsOfKind(SyntaxKind.PropertyDeclaration),
@@ -15,11 +13,11 @@ export function fileRenameVariablesAndPropsFunctions({sourceFile, project}: Iter
     ...functions,
     ...parameters,
     ...sourceFile.getDescendantsOfKind(SyntaxKind.MethodDeclaration),
-  ]
+  ];
   for (let variableDeclaration of files) {
     if (variableDeclaration.wasForgotten()) {
-      continue
+      continue;
     }
-    renameNode(variableDeclaration)
+    renameNode(variableDeclaration);
   }
 }

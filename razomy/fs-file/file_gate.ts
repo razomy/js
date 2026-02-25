@@ -1,9 +1,8 @@
 import fs from 'fs';
-import type {Gate} from '@razomy/gate';
+import type { Gate } from '@razomy/gate';
 
 export class FileGate<T extends string> implements Gate<T> {
-  constructor(private readonly file_path: string) {
-  }
+  constructor(private readonly file_path: string) {}
 
   get(): T {
     if (fs.existsSync(this.file_path)) {

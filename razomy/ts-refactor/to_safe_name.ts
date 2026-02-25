@@ -1,5 +1,5 @@
-import {reservedNamesJs} from '@razomy/languages-programming-fs';
-import {camelCase} from '@razomy/string-case';
+import { reservedNamesJs } from '@razomy/languages-programming-fs';
+import { camelCase } from '@razomy/string-case';
 
 export function toSafeName(name: string) {
   let newName = camelCase(name);
@@ -8,4 +8,3 @@ export function toSafeName(name: string) {
   }
   return newName;
 }
-

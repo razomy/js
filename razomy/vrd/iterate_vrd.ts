@@ -1,5 +1,5 @@
-import type {VrdOrValue} from './vrd';
-import {isVrd} from './is_vrd';
+import type { VrdOrValue } from './vrd';
+import { isVrd } from './is_vrd';
 
 export interface Iterate<T> {
   parents: string[];
@@ -12,10 +12,7 @@ export enum IterateBreaks {
   Break = 2,
 }
 
-export function iterateVrd<T, C extends Iterate<T>>(
-  ctx: C,
-  isIterateChildExecuteBool: (ctx: C) => IterateBreaks,
-): IterateBreaks {
+export function iterateVrd<T, C extends Iterate<T>>(ctx: C, isIterateChildExecuteBool: (ctx: C) => IterateBreaks): IterateBreaks {
   const result = isIterateChildExecuteBool(ctx);
   if (result === IterateBreaks.Skip) {
     return result;
@@ -40,5 +37,3 @@ export function iterateVrd<T, C extends Iterate<T>>(
   }
   return IterateBreaks.None;
 }
-
-

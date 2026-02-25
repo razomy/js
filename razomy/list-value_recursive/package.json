@@ -60,6 +60,15 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "list",
+    "value_recursive",
+    "getValue",
+    "isValueListItem",
+    "listToFlatDict",
+    "valueOrListToFlatDict"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

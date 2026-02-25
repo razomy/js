@@ -1,5 +1,5 @@
 <template>
-  <div ref='razomy-diagram-container' class='razomy-diagram-container'> {{ 'Razomy diagram not loaded!' }}</div>
+  <div ref="razomy-diagram-container" class="razomy-diagram-container">{{ 'Razomy diagram not loaded!' }}</div>
 </template>
 
 <style>
@@ -11,22 +11,22 @@
 }
 </style>
 
-<script lang='ts'>
-import type {RenderFactory, WebCanvasHighLightsRender} from '../web/canvas/renders';
-import type {WebSvgCodec} from '../web/svg/codecs';
-import type {WebSvgHighLightsRender, WebSvgRender} from '../web/svg/renders';
-import type {WebSvgContext} from '../web/svg';
-import {Render} from '../../renderes';
-import {SelectionAttribute, UserEntity} from '../../graphic';
-import {ElementView} from '../../elements';
-import {Component, Prop, Watch} from 'nuxt-property-decorator';
-import type {Vue} from 'vue';
+<script lang="ts">
+import type { RenderFactory, WebCanvasHighLightsRender } from '../web/canvas/renders';
+import type { WebSvgCodec } from '../web/svg/codecs';
+import type { WebSvgHighLightsRender, WebSvgRender } from '../web/svg/renders';
+import type { WebSvgContext } from '../web/svg';
+import { Render } from '../../renderes';
+import { SelectionAttribute, UserEntity } from '../../graphic';
+import { ElementView } from '../../elements';
+import { Component, Prop, Watch } from 'nuxt-property-decorator';
+import type { Vue } from 'vue';
 
 @Component
 export class RazomyDiagram extends Vue {
-  @Prop({default: ''}) public value: string;
-  @Prop({default: 'svg'}) public renderStrategy: 'svg' | 'canvas';
-  @Prop({default: 'svg'}) public parseStrategy: 'svg' | 'json';
+  @Prop({ default: '' }) public value: string;
+  @Prop({ default: 'svg' }) public renderStrategy: 'svg' | 'canvas';
+  @Prop({ default: 'svg' }) public parseStrategy: 'svg' | 'json';
 
   private socket: any;
   private user: UserEntity;
@@ -60,24 +60,19 @@ export class RazomyDiagram extends Vue {
 
     this.user = new UserEntity();
     const webSvgContext = WebSvgContext.create();
-    this.webSvgCodec = new WebSvgCodec(
-        webSvgContext.codecConfig,
-        webSvgContext.encodeNodeFactory,
-        webSvgContext.codecFactory,
-        webSvgContext.codecRegistry
-    );
+    this.webSvgCodec = new WebSvgCodec(webSvgContext.codecConfig, webSvgContext.encodeNodeFactory, webSvgContext.codecFactory, webSvgContext.codecRegistry);
 
     this.clearRoot();
     if (this.renderStrategy === 'svg') {
       const webSvgHighLightsRender = new WebSvgHighLightsRender(this.user);
 
       this.render = new WebSvgRender(
-          webSvgContext.codecConfig,
-          webSvgContext.encodeNodeFactory,
-          webSvgContext.codecFactory,
-          webSvgContext.codecRegistry,
-          this.$refs['razomy-diagram-container'] as Node,
-          webSvgHighLightsRender
+        webSvgContext.codecConfig,
+        webSvgContext.encodeNodeFactory,
+        webSvgContext.codecFactory,
+        webSvgContext.codecRegistry,
+        this.$refs['razomy-diagram-container'] as Node,
+        webSvgHighLightsRender,
       );
     } else {
       const canvas = document.createElement('canvas') as HTMLCanvasElement;
@@ -114,11 +109,7 @@ export class RazomyDiagram extends Vue {
       const ctx = canvas.getContext('2d');
       const rf = new RenderFactory(ctx);
       const webCanvasHighLightsRender = new WebCanvasHighLightsRender(this.user, ctx, rf);
-      this.render = new WebCanvasRender(
-          new RenderFactory(ctx),
-          ctx,
-          webCanvasHighLightsRender
-      );
+      this.render = new WebCanvasRender(new RenderFactory(ctx), ctx, webCanvasHighLightsRender);
     }
 
     this.onValueChange();

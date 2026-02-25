@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "value",
+    "isWithValue",
+    "withValue"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

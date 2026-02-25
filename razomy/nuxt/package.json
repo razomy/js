@@ -43,6 +43,10 @@
     "src",
     "locales"
   ],
+  "keywords": [
+    "razomy",
+    "nuxt"
+  ],
   "license": "MIT",
   "name": "@razomy/nuxt",
   "peerDependencies": {

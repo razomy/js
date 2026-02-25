@@ -1,3 +1,3 @@
 export interface WithDatetime {
-  datetime: string
+  datetime: string;
 }

@@ -4,13 +4,12 @@ export function shutdownFunction(server, callback) {
 
   let connections: any[] = [];
 
-  server.on('connection', connection => {
+  server.on('connection', (connection) => {
     connections.push(connection);
-    connection.on('close', () => connections = connections.filter(curr => curr !== connection));
+    connection.on('close', () => (connections = connections.filter((curr) => curr !== connection)));
   });
 
   async function shutDown() {
-
     console.log('Received kill signal, shutting down gracefully.');
 
     await callback();
@@ -24,10 +23,7 @@ export function shutdownFunction(server, callback) {
       process.exit(1);
     }, 10000);
 
-    connections.forEach(curr => curr.end());
-    setTimeout(() => connections.forEach(curr => curr.destroy()), 5000);
+    connections.forEach((curr) => curr.end());
+    setTimeout(() => connections.forEach((curr) => curr.destroy()), 5000);
   }
-
 }
-
-

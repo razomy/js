@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as path from 'path';
-import type {DirPathString} from '@razomy/path-string';
+import type { DirPathString } from '@razomy/path-string';
 
 export function toDict(dirPath: DirPathString) {
   let files: string[] = [];
@@ -23,5 +23,3 @@ export function toDict(dirPath: DirPathString) {
   iterate(dirPath);
   return files;
 }
-
-

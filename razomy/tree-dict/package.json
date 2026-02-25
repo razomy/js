@@ -60,6 +60,21 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "tree",
+    "dict",
+    "foreachDeepDictOptional",
+    "get",
+    "getByString",
+    "getPath",
+    "getValue",
+    "iterate",
+    "leafTreeAbsolutePath",
+    "mapBranch",
+    "mapRoot",
+    "withChildrenDict"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

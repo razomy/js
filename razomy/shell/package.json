@@ -60,6 +60,17 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "shell",
+    "execute",
+    "executeSync",
+    "get",
+    "getBool",
+    "log",
+    "logInline",
+    "progress"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

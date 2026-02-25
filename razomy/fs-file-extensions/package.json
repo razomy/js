@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "fs",
+    "file",
+    "extensions",
+    "fileNameToCodec",
+    "isSupportedFileTypes",
+    "toBuffer",
+    "toString"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

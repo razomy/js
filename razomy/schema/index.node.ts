@@ -722,5 +722,5 @@ export {
   variantAsync,
   void,
   void_,
-  words
+  words,
 } from './valibot';

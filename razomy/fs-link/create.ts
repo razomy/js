@@ -7,12 +7,10 @@ export function create(linkPath: string, newTarget: string) {
       if (fs.statSync(newTarget).isDirectory()) {
         type = 'junction';
       }
-    } catch (e) {
-    }
+    } catch (e) {}
     // fs.unlinkSync(linkPath);
     fs.symlinkSync(newTarget, linkPath, type as any);
     console.log(`Symlink created: '${linkPath}' -> pointing to -> '${newTarget}'`);
-
   } catch (err: any) {
     console.error(`Failed to set symlink: ${err.message}`);
   }

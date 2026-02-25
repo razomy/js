@@ -62,6 +62,27 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "openai",
+    "addFunctionAndAssign",
+    "addSystemMessage",
+    "addUserMessage",
+    "apiMessage",
+    "chat",
+    "createOpenai",
+    "getModels",
+    "gptApi",
+    "gptApiV2",
+    "languageGrammarCorrection",
+    "models",
+    "openAiCtx",
+    "setTokens",
+    "setWeight",
+    "setWeightAnTokens",
+    "singleRequestPro",
+    "v1"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

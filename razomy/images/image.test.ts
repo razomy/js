@@ -1,16 +1,16 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import sharp from 'sharp';
-import {pipeline} from 'node:stream/promises';
-import {images} from './types';
-import {toImageByFormat} from './to_image_by_format';
+import { pipeline } from 'node:stream/promises';
+import { images } from './types';
+import { toImageByFormat } from './to_image_by_format';
 // 👇 УКАЖИ ПРАВИЛЬНЫЙ ПУТЬ К ТВОЕМУ ФАЙЛУ
 
 const outDir = './test_images_out';
 
 // Создаем папку для тестов
 if (fs.existsSync(outDir)) {
-  fs.rmSync(outDir, {recursive: true, force: true});
+  fs.rmSync(outDir, { recursive: true, force: true });
 }
 fs.mkdirSync(outDir);
 
@@ -42,13 +42,14 @@ async function createSourceImage(ext: string, filePath: string) {
       width: width,
       height: height,
       channels: 4,
-      background: {r: 255, g: 0, b: 0, alpha: 1}
-    }
-  })
-    .composite([{
+      background: { r: 255, g: 0, b: 0, alpha: 1 },
+    },
+  }).composite([
+    {
       input: Buffer.from(`<svg><circle cx="50" cy="50" r="40" fill="blue"/></svg>`),
-      blend: 'over'
-    }]);
+      blend: 'over',
+    },
+  ]);
 
   // Настройки сохранения для капризных форматов
   if (ext === 'jpg' || ext === 'jpeg') {
@@ -64,7 +65,7 @@ async function createSourceImage(ext: string, filePath: string) {
   } else if (ext === 'avif') {
     await img.avif().toFile(filePath);
   } else if (ext === 'heic' || ext === 'heif') {
-    await img.heif({compression: 'av1'}).toFile(filePath);
+    await img.heif({ compression: 'av1' }).toFile(filePath);
   } else if (ext === 'ico') {
     // Sharp не умеет писать .ico нативно, сохраняем как png (тест пропустит это)
     throw new Error('SKIP_ICO_SOURCE');
@@ -127,7 +128,6 @@ async function runTests() {
         } else {
           console.error(`   ❌ FAIL: -> .${targetFormat} (Файл пустой)`);
         }
-
       } catch (err: any) {
         console.error(`   ❌ ERROR: -> .${targetFormat}`, err.message);
       }
@@ -139,4 +139,4 @@ async function runTests() {
   console.log(`\n🏁 Тесты завершены. Результаты в папке ${outDir}`);
 }
 
-runTests().catch(err => console.error('FATAL:', err));
+runTests().catch((err) => console.error('FATAL:', err));

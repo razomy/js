@@ -1,6 +1,3 @@
 export class ObservableList<T> {
-  constructor(
-    public readonly list: T[]
-  ) {
-  }
+  constructor(public readonly list: T[]) {}
 }

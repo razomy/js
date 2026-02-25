@@ -1,8 +1,8 @@
-import {Vrd, vrd} from './vrd';
+import { Vrd, vrd } from './vrd';
 
-export function pvaToVrd(rootPath: string, rows: { path: string, value: string }[]) {
+export function pvaToVrd(rootPath: string, rows: { path: string; value: string }[]) {
   if (rows.length === 1 && rows[0].path === rootPath) {
-    return rows[0].value
+    return rows[0].value;
   }
 
   const rootLevel = rootPath.split('.').length;

@@ -1,6 +1,6 @@
 import fs from 'fs';
-import {generateRandomCharacter} from './generate_random_character';
-import {insertTotalCount} from './insert_total_count';
+import { generateRandomCharacter } from './generate_random_character';
+import { insertTotalCount } from './insert_total_count';
 
 export function generateFile(filePath, fileSize) {
   const chunkSize = 500;

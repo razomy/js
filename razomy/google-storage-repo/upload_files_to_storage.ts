@@ -1,5 +1,5 @@
-import {Storage} from '@google-cloud/storage';
-import {uploadFilesRecursive} from './upload_files_recursive';
+import { Storage } from '@google-cloud/storage';
+import { uploadFilesRecursive } from './upload_files_recursive';
 
 export async function uploadFilesToStorage(bucketName, folderPath) {
   const storage = new Storage();

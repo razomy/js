@@ -7,13 +7,9 @@ export interface Logger {
 }
 
 export class NoneLogger implements Logger {
-  info(message: string) {
-  }
+  info(message: string) {}
 
-  debug(message: string) {
-  }
+  debug(message: string) {}
 
-  error(message: string) {
-  }
+  error(message: string) {}
 }
-

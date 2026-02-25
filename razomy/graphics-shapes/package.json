@@ -60,6 +60,15 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "shapes",
+    "rectangleRender",
+    "rectangleRoundStyle",
+    "rectangleShape",
+    "shapeElement"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "coordinates",
+    "y",
+    "boundY",
+    "withY"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,4 +1,4 @@
-import {ArgumentError} from './argument_error';
+import { ArgumentError } from './argument_error';
 
 export function falseThrow(value: boolean) {
   if (!value) {

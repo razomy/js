@@ -1,5 +1,5 @@
-import {Hammer} from '@squadette/hammerjs';
-import {Mousetrap} from 'mousetrap';
+import { Hammer } from '@squadette/hammerjs';
+import { Mousetrap } from 'mousetrap';
 
 export enum KonvaNodeEvent {
   mouseover = 'mouseover',
@@ -50,29 +50,21 @@ export class Move {
   y: number = 0;
 }
 
-export class Group {
-}
+export class Group {}
 
-export class HotkeyInput {
-}
+export class HotkeyInput {}
 
-export class SSystemEvents {
-}
+export class SSystemEvents {}
 
-export class ZoomInOut {
-}
+export class ZoomInOut {}
 
-export class Log {
-}
+export class Log {}
 
-export class Drag {
-}
+export class Drag {}
 
-export class Drop {
-}
+export class Drop {}
 
-export class History {
-}
+export class History {}
 
 export class InputConfig {
   events = {
@@ -107,18 +99,18 @@ export class InputConfig {
     'Ctrl+Shift+]': 'Bring to Front',
     'Ctrl+Shift+[': 'Send to Back',
     // 6. Tools
-    'V': 'Move',
-    'C': 'Add/Show Comments',
-    'P': 'Pen',
+    V: 'Move',
+    C: 'Add/Show Comments',
+    P: 'Pen',
     'Shift+P': 'Pencil',
-    'R': 'Rectangle',
-    'O': 'Ellipse',
-    'L': 'Line',
-    'F': 'Frame',
-    'S': 'Slice',
-    'I': 'Pick Color',
+    R: 'Rectangle',
+    O: 'Ellipse',
+    L: 'Line',
+    F: 'Frame',
+    S: 'Slice',
+    I: 'Pick Color',
     // 7. Text
-    'T': 'Text',
+    T: 'Text',
     '_Ctrl+Shift+V': 'Paste and Match Style',
     'Ctrl+B': 'Bold',
     'Ctrl+I': 'Italic',

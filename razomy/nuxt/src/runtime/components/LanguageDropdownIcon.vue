@@ -1,13 +1,8 @@
 <template>
-  <v-menu :class="isVertical?'':'w-100'">
+  <v-menu :class="isVertical ? '' : 'w-100'">
     <!-- The Button that opens the menu -->
     <template v-slot:activator="{ props }">
-      <v-btn
-          :class="isVertical?'':'w-100'"
-          align-tabs="center"
-          v-bind="props"
-          variant="text"
-      >
+      <v-btn :class="isVertical ? '' : 'w-100'" align-tabs="center" v-bind="props" variant="text">
         <!-- Display current locale name or code -->
         {{ locale }}
         <v-icon end>mdi-chevron-down</v-icon>
@@ -16,28 +11,21 @@
 
     <!-- The List of Languages -->
     <v-list density="compact">
-      <v-list-item
-          v-for="item in locales"
-          :key="item.code"
-          :to="switchLocalePath(item.code)"
-          :value="item.code"
-          @click="setLocale(item.code)"
-      >
+      <v-list-item v-for="item in locales" :key="item.code" :to="switchLocalePath(item.code)" :value="item.code" @click="setLocale(item.code)">
         <v-list-item-title>{{ item.name }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
-<script lang='ts' setup>
-import {useI18n, useLocalePath, useSwitchLocalePath} from '#imports';
+<script lang="ts" setup>
+import { useI18n, useLocalePath, useSwitchLocalePath } from '#imports';
 
-const {isVertical = false} = defineProps<{
-  isVertical?: boolean
+const { isVertical = false } = defineProps<{
+  isVertical?: boolean;
 }>();
 
-const {locale, locales, setLocale} = useI18n();
+const { locale, locales, setLocale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 </script>
-<style scoped>
-</style>
+<style scoped></style>

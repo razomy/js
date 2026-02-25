@@ -1,17 +1,14 @@
-import type {Graph} from '@razomy/graph';
-import type {VrdOrValue} from '@razomy/vrd';
-import {isVrd} from '../vrd/is_vrd';
+import type { Graph } from '@razomy/graph';
+import type { VrdOrValue } from '@razomy/vrd';
+import { isVrd } from '../vrd/is_vrd';
 
-export function iterateChildren<T>(
-  graph: Graph<VrdOrValue<T>>,
-  branch: VrdOrValue<T>
-) {
+export function iterateChildren<T>(graph: Graph<VrdOrValue<T>>, branch: VrdOrValue<T>) {
   graph.nodes.push(branch);
   if (isVrd(branch)) {
     for (const entityKey in branch) {
       const value = branch[entityKey];
       graph.edges.push([branch, value]);
-      iterateChildren(graph, value)
+      iterateChildren(graph, value);
     }
   }
 }

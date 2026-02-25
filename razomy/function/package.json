@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "function",
+    "f",
+    "fMut",
+    "isFunction"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

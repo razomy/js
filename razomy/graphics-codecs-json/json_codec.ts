@@ -1,11 +1,10 @@
-import {NotImplementedException} from '@razomy/exceptions';
-import type {Codec} from '@razomy/codec';
-import type {IObject} from '@razomy/object';
-import type {ISizeResource} from '@razomy/graphics-attributes';
-import {ResourceCollection} from '@razomy/resources';
-import {CodecConfig, CodecFactory, EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import {ElementView} from '@razomy/graphics-elements';
-
+import { NotImplementedException } from '@razomy/exceptions';
+import type { Codec } from '@razomy/codec';
+import type { IObject } from '@razomy/object';
+import type { ISizeResource } from '@razomy/graphics-attributes';
+import { ResourceCollection } from '@razomy/resources';
+import { CodecConfig, CodecFactory, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
+import { ElementView } from '@razomy/graphics-elements';
 
 export interface JsonObject {
   objectResource: IObject;
@@ -23,45 +22,41 @@ export interface JsonEntityCollection {
   entityCollection: { resources: (JsonObject & ResourceNode)[] };
 }
 
-export type ResourceNode = JsonObject
-  | JsonSizeResource
-  | JsonPropertiesResource
-  | JsonEntityCollection;
+export type ResourceNode = JsonObject | JsonSizeResource | JsonPropertiesResource | JsonEntityCollection;
 export type ResourceDescription = ResourceNode;
-
 
 export const example: ResourceDescription = {
   objectResource: {
     type: 'Type',
-    id: 'asd'
+    id: 'asd',
   },
   sizeResource: {
     width: 1,
-    height: 1
+    height: 1,
   },
   properties: {
-    name: 'My cool app'
+    name: 'My cool app',
   },
   entityCollection: {
     resources: [
       {
         objectResource: {
           type: 'Type',
-          id: 'asd'
-        }
+          id: 'asd',
+        },
       },
       {
         objectResource: {
           type: 'Type',
-          id: 'asd'
+          id: 'asd',
         },
         sizeResource: {
           width: 1,
-          height: 1
-        }
-      }
-    ]
-  }
+          height: 1,
+        },
+      },
+    ],
+  },
 };
 
 export class JsonCodec implements Codec<ElementView, Node> {

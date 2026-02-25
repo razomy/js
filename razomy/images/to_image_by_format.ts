@@ -1,11 +1,11 @@
 import * as fs from 'node:fs';
 import sharp from 'sharp';
-import {images, type OnlyReadImageFileExtensionType, type  ReadAndWriteImageFileExtensionType} from './types';
-import {type ExtensionResult} from '@razomy/fs-file-format';
+import { images, type OnlyReadImageFileExtensionType, type ReadAndWriteImageFileExtensionType } from './types';
+import { type ExtensionResult } from '@razomy/fs-file-format';
 
 // --- SHARP (Images) ---
 export async function toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult> {
-  let pipeline = sharp(inputPath, {failOn: 'error'}); // failOnError: false позволяет открывать частично битые файлы
+  let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)
   pipeline = pipeline.rotate().withMetadata();
@@ -17,7 +17,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       pipeline = pipeline.jpeg({
         mozjpeg: true,
         quality: 80,
-        chromaSubsampling: '4:4:4' // Лучшее качество цвета
+        chromaSubsampling: '4:4:4', // Лучшее качество цвета
       });
       break;
 
@@ -25,7 +25,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       pipeline = pipeline.png({
         compressionLevel: 8,
         palette: true, // Создает 8-битную палитру (сильно меньше вес)
-        effort: 7      // Максимальное сжатие
+        effort: 7, // Максимальное сжатие
       });
       break;
 
@@ -33,7 +33,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       pipeline = pipeline.webp({
         quality: 80,
         effort: 4,
-        lossless: false
+        lossless: false,
       });
       break;
 
@@ -41,7 +41,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       pipeline = pipeline.avif({
         quality: 60, // AVIF держит качество даже на низких значениях
         effort: 4,
-        lossless: false
+        lossless: false,
       });
       break;
 
@@ -49,7 +49,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
     case 'tif':
       pipeline = pipeline.tiff({
         compression: 'lzw', // Сжатие без потерь
-        quality: 80
+        quality: 80,
       });
       break;
 
@@ -57,7 +57,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
     case 'heic':
       pipeline = pipeline.heif({
         compression: 'av1',
-        quality: 65
+        quality: 65,
       });
       break;
 
@@ -65,16 +65,14 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
       // Sharp умеет сохранять анимированные GIF (требует libvips >= 8.11.0)
       pipeline = pipeline.gif({
         loop: 0,
-        effort: 7
+        effort: 7,
       });
       break;
 
     case 'ico':
       // ХАК: Браузеры понимают PNG переименованный в ICO.
       // Настоящий ICO sharp делать не умеет, но этот метод работает для фавиконок.
-      pipeline = pipeline
-        .resize({width: 256, height: 256, fit: 'contain', background: {r: 0, g: 0, b: 0, alpha: 0}})
-        .toFormat('png');
+      pipeline = pipeline.resize({ width: 256, height: 256, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).toFormat('png');
       break;
 
     // Внимание: Sharp НЕ умеет сохранять в BMP или PDF.
@@ -93,8 +91,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
   const stream = pipeline;
 
   function cleanup() {
-    return fs.unlink(inputPath, () => {
-    });
+    return fs.unlink(inputPath, () => {});
   }
 
   stream.on('end', cleanup);
@@ -105,7 +102,7 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
 
   // Определяем итоговый MIME и расширение
   const outExt = format === 'ico' ? 'ico' : format;
-  const outMime = images.find(a => a.fileExtensionType === outExt)?.mediaType || 'application/octet-stream';
+  const outMime = images.find((a) => a.fileExtensionType === outExt)?.mediaType || 'application/octet-stream';
 
-  return {stream, mediaType: outMime, fileExtensionType: outExt};
+  return { stream, mediaType: outMime, fileExtensionType: outExt };
 }

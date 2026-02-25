@@ -1,17 +1,12 @@
-import type {RenderFactory} from '@razomy/graphics-codecs-web-canvas-renders';
-import type {UserEntity} from '@razomy/graphics-graphic';
-import {SelectionAttribute} from '@razomy/graphics-graphic';
-import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
-import {ElementView} from '@razomy/graphics-elements';
-import {RectangleRender, RectangleShape} from '@razomy/graphics-shapes';
+import type { RenderFactory } from '@razomy/graphics-codecs-web-canvas-renders';
+import type { UserEntity } from '@razomy/graphics-graphic';
+import { SelectionAttribute } from '@razomy/graphics-graphic';
+import { PositionAttribute, SizeAttribute } from '@razomy/graphics-attributes';
+import { ElementView } from '@razomy/graphics-elements';
+import { RectangleRender, RectangleShape } from '@razomy/graphics-shapes';
 
 export class WebCanvasHighLightsRender {
-  constructor(
-    public user: UserEntity,
-    public ctx: CanvasRenderingContext2D,
-    public codecFactory: RenderFactory
-  ) {
-  }
+  constructor(public user: UserEntity, public ctx: CanvasRenderingContext2D, public codecFactory: RenderFactory) {}
 
   public render(view: ElementView): void {
     this.iterate(view);

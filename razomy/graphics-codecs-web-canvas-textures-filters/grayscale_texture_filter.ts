@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * Grayscale Filter
@@ -26,5 +26,5 @@ export class GrayscaleTextureFilter implements ITextureFilter {
       // blue
       data[i + 2] = brightness;
     }
-  };
+  }
 }

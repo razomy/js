@@ -1,4 +1,4 @@
-import {Storage} from '@google-cloud/storage';
+import { Storage } from '@google-cloud/storage';
 import * as path from 'path';
 
 export async function uploadFile(bucketName, fileName, folderPath) {

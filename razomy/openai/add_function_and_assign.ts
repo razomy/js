@@ -7,13 +7,13 @@ export function addFunctionAndAssign(ctx, functionTemplate) {
     parameters: {
       type: 'object',
       properties: {
-        [result]: {type: 'string', description: resultDescription},
+        [result]: { type: 'string', description: resultDescription },
       },
       required: [],
     },
   });
   const updated = {
-    function_call: functions.length > 1 ? 'auto' : {name: name},
+    function_call: functions.length > 1 ? 'auto' : { name: name },
     functions,
   };
   Object.assign(ctx, updated);

@@ -1,4 +1,3 @@
-import {ObjectResource} from '@razomy/resources';
+import { ObjectResource } from '@razomy/resources';
 
-export abstract class AttributeResource extends ObjectResource {
-}
+export abstract class AttributeResource extends ObjectResource {}

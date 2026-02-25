@@ -1,4 +1,4 @@
-export {generateFile} from './generate_file';
+export { generateFile } from './generate_file';
 export {
   generateRandomCharacter,
   filePath,
@@ -25,6 +25,6 @@ export {
   octodecillion,
   novemdecillion,
   vigintillion,
-  centillion
+  centillion,
 } from './generate_random_character';
-export {insertTotalCount} from './insert_total_count';
+export { insertTotalCount } from './insert_total_count';

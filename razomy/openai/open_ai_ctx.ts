@@ -1,9 +1,9 @@
-import type {OpenAI} from 'openai';
+import type { OpenAI } from 'openai';
 
 export interface OpenAiCtx {
-  openai: OpenAI
+  openai: OpenAI;
 }
 
 export interface WithOpenAiCtx {
-  openai: OpenAiCtx
+  openai: OpenAiCtx;
 }

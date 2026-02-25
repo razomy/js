@@ -1,21 +1,23 @@
-import {DatastoreStore} from '@google-cloud/connect-datastore';
-import {Google, googleTapOn} from '@razomy/google-auth';
+import { DatastoreStore } from '@google-cloud/connect-datastore';
+import { Google, googleTapOn } from '@razomy/google-auth';
 import session from 'express-session';
 import passport from 'passport';
 
 export function googleSesionApi(ctx) {
-  ctx.app.use(session({
-    proxy: true,
-    cookie: {maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true},
-    store: new DatastoreStore({
-      kind: 'express-sessions',
-      expirationMs: 1000 * 60 * 60 * 24 * 31,
-      // TODO: dataset: new Datastore(),
+  ctx.app.use(
+    session({
+      proxy: true,
+      cookie: { maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true },
+      store: new DatastoreStore({
+        kind: 'express-sessions',
+        expirationMs: 1000 * 60 * 60 * 24 * 31,
+        // TODO: dataset: new Datastore(),
+      }),
+      saveUninitialized: true,
+      resave: true,
+      secret: 'keyboard cat 6 12',
     }),
-    saveUninitialized: true,
-    resave: true,
-    secret: 'keyboard cat 6 12',
-  }));
+  );
 
   ctx.app.use(passport.initialize());
   ctx.app.use(passport.session());
@@ -27,12 +29,8 @@ export function googleSesionApi(ctx) {
     return res.sendStatus(403);
   });
 
-
-// API section
+  // API section
   ctx.google = new Google(ctx);
 
-  ctx.app.post('/api/auth/sign/google',
-    passport.authenticate(googleTapOn, {failureRedirect: '/login'}),
-    (rq, rs) => rs.redirect('/'));
-
+  ctx.app.post('/api/auth/sign/google', passport.authenticate(googleTapOn, { failureRedirect: '/login' }), (rq, rs) => rs.redirect('/'));
 }

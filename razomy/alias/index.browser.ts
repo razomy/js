@@ -1,1 +1,1 @@
-export {type Alias} from './alias';
+export { type Alias } from './alias';

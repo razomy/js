@@ -1,4 +1,4 @@
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 /**
  * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)
@@ -36,9 +36,8 @@ export class HslTextureFilter implements ITextureFilter {
      * @param {Number} value from -1 to 1
      * @returns {Number}
      */
-    public luminance = 0
-  ) {
-  }
+    public luminance = 0,
+  ) {}
 
   public filter(imageData: any): void {
     var data = imageData.data,
@@ -87,5 +86,5 @@ export class HslTextureFilter implements ITextureFilter {
       data[i + 2] = br * r + bg * g + bb * b + l;
       data[i + 3] = a; // alpha
     }
-  };
+  }
 }

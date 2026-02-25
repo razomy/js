@@ -10,7 +10,7 @@
  * node.Filters([Konva.Filters.Brighten]);
  * node.brightness(0.8);
  */
-import type {ITextureFilter} from './i_texture_filter';
+import type { ITextureFilter } from './i_texture_filter';
 
 export class BrightenTextureFilter implements ITextureFilter {
   /**
@@ -22,8 +22,7 @@ export class BrightenTextureFilter implements ITextureFilter {
    * @param {Number} brightness value between -1 and 1
    * @returns {Number}
    */
-  constructor(public brightness: number = 0) {
-  }
+  constructor(public brightness: number = 0) {}
 
   public filter(imageData: any): void {
     var brightness = this.brightness * 255,

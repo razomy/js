@@ -5,5 +5,5 @@ export interface WithServer {
 }
 
 export interface WithUrl {
-  url: string
+  url: string;
 }

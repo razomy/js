@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "inputs",
+    "controlElement",
+    "ioElement",
+    "textRangeControl"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

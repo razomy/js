@@ -1,1 +1,1 @@
-export {and} from './and';
+export { and } from './and';

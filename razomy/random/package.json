@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "random",
+    "randomString",
+    "range"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

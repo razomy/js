@@ -60,6 +60,20 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "test",
+    "andFalseThrow",
+    "argumentError",
+    "assertDeepEqual",
+    "emptyThrow",
+    "falseThrow",
+    "matchesError",
+    "notZero",
+    "testSync",
+    "toStrictEqual",
+    "toThrow"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

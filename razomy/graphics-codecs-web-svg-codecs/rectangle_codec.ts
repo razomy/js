@@ -1,14 +1,12 @@
-import type {Codec} from '@razomy/codec';
-import {PositionAttribute, SizeAttribute} from '@razomy/graphics-attributes';
-import {BorderStyle, FillStyle} from '@razomy/graphics-styles';
-import {RectangleRoundStyle, RectangleShape} from '@razomy/graphics-shapes';
-import {ColorCodex, HexParser} from '@razomy/graphics-codecs-web-svg-color';
-import {EncodeNodeFactory} from '@razomy/graphics-codecs-web-svg-codecs';
+import type { Codec } from '@razomy/codec';
+import { PositionAttribute, SizeAttribute } from '@razomy/graphics-attributes';
+import { BorderStyle, FillStyle } from '@razomy/graphics-styles';
+import { RectangleRoundStyle, RectangleShape } from '@razomy/graphics-shapes';
+import { ColorCodex, HexParser } from '@razomy/graphics-codecs-web-svg-color';
+import { EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
 
 export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
-
-  constructor(private encodeNodeFactory: EncodeNodeFactory) {
-  }
+  constructor(private encodeNodeFactory: EncodeNodeFactory) {}
 
   public encode(node: RectangleShape): SVGRectElement {
     const el = this.encodeNodeFactory.create<SVGRectElement>('rect');
@@ -23,7 +21,7 @@ export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
     el.setAttribute('ry', node.getBy(RectangleRoundStyle).bottomRight + '');
 
     return el;
-  };
+  }
 
   public decode(value: SVGRectElement): RectangleShape {
     const rectangleShape = new RectangleShape();
@@ -34,32 +32,19 @@ export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
     }
 
     // Todo: ELement view
-    rectangleShape.replace(new SizeAttribute(
-      value.height.baseVal.value,
-      value.width.baseVal.value
-    ));
+    rectangleShape.replace(new SizeAttribute(value.height.baseVal.value, value.width.baseVal.value));
 
     // Todo: ELement view
-    rectangleShape.replace(new PositionAttribute(
-      value.x.baseVal.value,
-      value.y.baseVal.value
-    ));
+    rectangleShape.replace(new PositionAttribute(value.x.baseVal.value, value.y.baseVal.value));
 
     // Todo: ELement view
     // ResourceCollection
 
-    rectangleShape.replace(new FillStyle(
-      ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')
-    ));
+    rectangleShape.replace(new FillStyle(ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')));
 
-    rectangleShape.replace(new BorderStyle(
-      ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'),
-      getNumberAttribute('stroke-width', 1)
-    ));
+    rectangleShape.replace(new BorderStyle(ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'), getNumberAttribute('stroke-width', 1)));
 
-    rectangleShape.replace(new RectangleRoundStyle(
-      getNumberAttribute('rx', 0)
-    ));
+    rectangleShape.replace(new RectangleRoundStyle(getNumberAttribute('rx', 0)));
 
     return rectangleShape;
   }

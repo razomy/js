@@ -40,17 +40,17 @@ export class Color {
       alpha = this.getAlpha(),
       otherAlpha = 0.5,
       source = this.getSource(),
-      otherSource = otherColor.getSource(), i;
+      otherSource = otherColor.getSource(),
+      i;
 
     for (i = 0; i < 3; i++) {
-      result.push(Math.round((source[i] * (1 - otherAlpha)) + (otherSource[i] * otherAlpha)));
+      result.push(Math.round(source[i] * (1 - otherAlpha) + otherSource[i] * otherAlpha));
     }
 
     result[3] = alpha;
     this.setSource(result);
     return this;
   }
-
 
   /**
    * Returns source of this color (where source is an array representation; ex: [200, 200, 100, 1])
@@ -88,7 +88,6 @@ export class Color {
     return this;
   }
 
-
   /**
    * Transforms color to its grayscale representation
    * @return {Color} thisArg
@@ -113,7 +112,7 @@ export class Color {
 
     threshold = threshold || 127;
 
-    var averageI = (Number(average) < Number(threshold)) ? 0 : 255;
+    var averageI = Number(average) < Number(threshold) ? 0 : 255;
     this.setSource([averageI, averageI, averageI, currentAlpha]);
     return this;
   }

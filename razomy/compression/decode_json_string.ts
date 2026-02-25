@@ -1,4 +1,4 @@
-import {decodeString} from './decode_string';
+import { decodeString } from './decode_string';
 
 export function decodeJsonString<T>(encodedStr: string): T {
   const decodedData = decodeString(encodedStr);

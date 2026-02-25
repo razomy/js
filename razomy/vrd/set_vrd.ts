@@ -1,5 +1,5 @@
-import {Vrd, type VrdOrValue} from './vrd';
-import {getVrd} from './get_vrd';
+import { Vrd, type VrdOrValue } from './vrd';
+import { getVrd } from './get_vrd';
 
 export function setVrd<T>(root: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {
   const parentPath = path.slice(0, -1);
@@ -11,5 +11,3 @@ export function setVrd<T>(root: VrdOrValue<T>, path: string[], newValue: VrdOrVa
   }
   parentNode[path.at(-1)!] = newValue;
 }
-
-

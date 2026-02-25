@@ -1,10 +1,10 @@
-import {defineConfig} from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import {resolve} from 'path';
+import { resolve } from 'path';
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), dts({rollupTypes: true, tsconfigPath: './tsconfig.build.json',}) as any],
+  plugins: [vue(), dts({ rollupTypes: true, tsconfigPath: './tsconfig.build.json' }) as any],
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
@@ -26,4 +26,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

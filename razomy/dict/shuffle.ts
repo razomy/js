@@ -6,5 +6,3 @@ export function shuffle(array: any[]): any[] {
 
   return array;
 }
-
-

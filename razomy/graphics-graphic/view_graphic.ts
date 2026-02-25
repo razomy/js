@@ -1,7 +1,5 @@
-import {GraphicEntity} from '@razomy/graphics-graphic';
+import { GraphicEntity } from '@razomy/graphics-graphic';
 
-export interface IViewGraphic {
-}
+export interface IViewGraphic {}
 
-export class ViewGraphic extends GraphicEntity implements IViewGraphic {
-}
+export class ViewGraphic extends GraphicEntity implements IViewGraphic {}

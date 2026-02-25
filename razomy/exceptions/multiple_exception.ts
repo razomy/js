@@ -1,4 +1,4 @@
-import {Exception} from './exception';
+import { Exception } from './exception';
 
 export class MultipleException extends Exception {
   public exceptions: Exception[];

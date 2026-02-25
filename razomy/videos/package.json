@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "videos",
+    "toVideoByFormat",
+    "types"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

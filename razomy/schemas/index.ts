@@ -62,7 +62,7 @@ export {
   type date_,
   type blob_,
   type file_,
-  type AllSpecific
+  type AllSpecific,
 } from './common';
 export {
   type null_,
@@ -92,9 +92,9 @@ export {
   type FloatPrimitive,
   type NumberPrimitive,
   type StringPrimitive,
-  type AllPrimitive
+  type AllPrimitive,
 } from './primitives';
-export {type object_, type array_, type tuple_, type AllRecusive} from './recursives';
-export {type SchemaType} from './schema';
-export {type Trowable, type Validator, type Transformer} from './validator';
-export {idSchema, withLocaleSchema} from './validators';
+export { type object_, type array_, type tuple_, type AllRecusive } from './recursives';
+export { type SchemaType } from './schema';
+export { type Trowable, type Validator, type Transformer } from './validator';
+export { idSchema, withLocaleSchema } from './validators';

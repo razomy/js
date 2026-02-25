@@ -1,4 +1,4 @@
-import type {Dict} from '@razomy/dict';
+import type { Dict } from '@razomy/dict';
 
 export function filterDict<T>(dict: Dict<T>, cb: (t: T, k: string) => boolean) {
   const res: Dict<T> = {};
@@ -10,5 +10,3 @@ export function filterDict<T>(dict: Dict<T>, cb: (t: T, k: string) => boolean) {
   }
   return res;
 }
-
-

@@ -1,10 +1,7 @@
-import {ElementView} from '@razomy/graphics-elements';
+import { ElementView } from '@razomy/graphics-elements';
 
-export class ShapeElement extends ElementView {
-}
+export class ShapeElement extends ElementView {}
 
-export class PointShape extends ShapeElement {
-}
+export class PointShape extends ShapeElement {}
 
-export class LineShape extends ShapeElement {
-}
+export class LineShape extends ShapeElement {}

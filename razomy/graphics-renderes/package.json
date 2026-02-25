@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "graphics",
+    "renderes",
+    "iRender",
+    "render"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

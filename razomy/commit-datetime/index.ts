@@ -1,1 +1,1 @@
-export {type DatetimeActor} from './datetime_actor';
+export { type DatetimeActor } from './datetime_actor';

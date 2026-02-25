@@ -1,7 +1,5 @@
-import type {String} from '@razomy/string';
+import type { String } from '@razomy/string';
 
 export function string(number: number): String {
   return number.toFixed(2);
 }
-
-

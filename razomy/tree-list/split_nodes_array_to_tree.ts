@@ -1,20 +1,19 @@
-import type {ListTree} from '@razomy/tree-list';
-
+import type { ListTree } from '@razomy/tree-list';
 
 export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
   // We use a virtual root to simplify traversal logic
-  const root: ListTree<string> = {value: 'root', children: []};
+  const root: ListTree<string> = { value: 'root', children: [] };
 
   // Helper to process a single path
   function addPathToTree(path: string) {
     // Split path by slash, remove empty segments (e.g., caused by leading slash)
-    const parts = path.split('/').filter(part => part.length > 0);
+    const parts = path.split('/').filter((part) => part.length > 0);
 
     let currentLevel = root;
 
     parts.forEach((part, index) => {
       // Check if this part already exists in the current level's children
-      let existingNode = currentLevel.children.find(child => child.value === part);
+      let existingNode = currentLevel.children.find((child) => child.value === part);
 
       if (existingNode) {
         // If it exists, just move deeper
@@ -22,7 +21,7 @@ export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
       } else {
         const newNode: ListTree<string> = {
           value: part,
-          children: []
+          children: [],
         };
 
         currentLevel.children.push(newNode);
@@ -32,12 +31,10 @@ export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
   }
 
   // 1. Process folders (nodes) first to ensure structure exists
-  nodes.forEach(path => addPathToTree(path));
+  nodes.forEach((path) => addPathToTree(path));
 
   // 2. Process files (leafs)
-  leafs.forEach(path => addPathToTree(path));
+  leafs.forEach((path) => addPathToTree(path));
 
   return root.children;
 }
-
-

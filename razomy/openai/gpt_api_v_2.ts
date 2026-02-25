@@ -1,6 +1,6 @@
-import {openai} from './openai';
+import { openai } from './openai';
 
-export async function gptApiV2(params = {messages: []}) {
+export async function gptApiV2(params = { messages: [] }) {
   const request = {
     temperature: 1,
     top_p: 1,

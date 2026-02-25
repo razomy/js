@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "http",
+    "localisation",
+    "acceptLanguageParse",
+    "acceptLanguagePick"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

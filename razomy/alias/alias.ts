@@ -1,1 +1,1 @@
-export type Alias<T> = T
+export type Alias<T> = T;

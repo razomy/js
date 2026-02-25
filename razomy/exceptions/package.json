@@ -60,6 +60,18 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "exceptions",
+    "argumentException",
+    "collectException",
+    "exception",
+    "multipleException",
+    "notImplementedException",
+    "notSupportedException",
+    "pathException",
+    "unknownTypeArgumentException"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

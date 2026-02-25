@@ -60,6 +60,12 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "refactor",
+    "fs",
+    "renameToSnakeCaseRecursive"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -1,4 +1,4 @@
-import {create} from './create';
+import { create } from './create';
 
 /**
  * Create an array of a specific size with the value 1 at the specified index.

@@ -1,1 +1,1 @@
-export {type Leaf} from './leaf';
+export { type Leaf } from './leaf';

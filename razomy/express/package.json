@@ -80,6 +80,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "express",
+    "create",
+    "ctx",
+    "googleSesionApi"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

@@ -8,7 +8,7 @@ export function tryP(initialValue: any, ...fns: NotNullPipe<any, any>[]) {
   for (const fn of fns) {
     result = fn(result);
     if (result == null) {
-      return null
+      return null;
     }
   }
   return result;

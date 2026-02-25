@@ -60,6 +60,17 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "kv",
+    "array",
+    "recursive",
+    "get",
+    "getItemByPath",
+    "getItemByPathFromValue",
+    "getKey",
+    "getValue"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

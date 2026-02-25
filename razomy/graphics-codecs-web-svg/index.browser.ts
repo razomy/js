@@ -1,1 +1,1 @@
-export {WebSvgContext} from './web_svg_context';
+export { WebSvgContext } from './web_svg_context';

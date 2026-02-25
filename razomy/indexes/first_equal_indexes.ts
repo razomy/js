@@ -1,10 +1,5 @@
 /** first index */
-export function firstEqualIndexes<T>(
-  a: T[],
-  b: T[],
-  startA = 0,
-  startB = 0
-) {
+export function firstEqualIndexes<T>(a: T[], b: T[], startA = 0, startB = 0) {
   let aIndex = a.length;
   let bIndex = b.length;
   let potentialIndex = aIndex + bIndex;
@@ -31,5 +26,3 @@ export function firstEqualIndexes<T>(
   }
   return [aIndex, bIndex];
 }
-
-

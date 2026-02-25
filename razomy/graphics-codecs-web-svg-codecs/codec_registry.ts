@@ -1,5 +1,4 @@
 export class CodecRegistry {
-
   // public has(): boolean;
   //
   // public get<T>(): T;
@@ -7,5 +6,4 @@ export class CodecRegistry {
   // public add(): void;
   //
   // public remove(): void;
-
 }

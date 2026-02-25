@@ -60,6 +60,13 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "token",
+    "offset",
+    "tryAll",
+    "tryTokenValue"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

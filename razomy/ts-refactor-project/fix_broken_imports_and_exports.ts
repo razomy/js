@@ -1,5 +1,5 @@
-import {levenshteinDistance} from '@razomy/string';
-import {ExportDeclaration, ImportDeclaration, Project, SourceFile} from 'ts-morph';
+import { levenshteinDistance } from '@razomy/string';
+import { ExportDeclaration, ImportDeclaration, Project, SourceFile } from 'ts-morph';
 
 /**
  * Index of all exported symbols in the project.
@@ -11,15 +11,10 @@ type ExportIndex = Map<string, SourceFile>;
  * Helper to find the best match for a missing symbol.
  * Checks exact match first, then fuzzy match.
  */
-function findReplacementSymbol(
-  nameToFind: string,
-  exportMap: ExportIndex,
-  allExportNames: string[]
-): { name: string; file: SourceFile } | null {
-
+function findReplacementSymbol(nameToFind: string, exportMap: ExportIndex, allExportNames: string[]): { name: string; file: SourceFile } | null {
   // 1. Try Exact Match
   if (exportMap.has(nameToFind)) {
-    return {name: nameToFind, file: exportMap.get(nameToFind)!};
+    return { name: nameToFind, file: exportMap.get(nameToFind)! };
   }
 
   // 2. Try Fuzzy Match
@@ -39,7 +34,7 @@ function findReplacementSymbol(
     console.log(`    -> Fuzzy match found: '${nameToFind}' replaced with '${currentBestCandidate}' (Distance: ${lowestDistance})`);
     return {
       name: currentBestCandidate,
-      file: exportMap.get(currentBestCandidate)!
+      file: exportMap.get(currentBestCandidate)!,
     };
   }
 
@@ -75,7 +70,6 @@ export async function fixBrokenImportsAndExports(projectPath: string) {
   // PHASE 2: SCAN & FIX FILES
   // ==========================================
   for (const file of sourceFiles) {
-
     // --- PART A: FIX IMPORTS ---
     const brokenImports: ImportDeclaration[] = [];
     for (const importDecl of file.getImportDeclarations()) {
@@ -95,17 +89,15 @@ export async function fixBrokenImportsAndExports(projectPath: string) {
 
           if (match) {
             // Check if we already have an import statement for this file
-            const existingImport = file.getImportDeclaration(
-              i => i.getModuleSpecifierSourceFile() === match.file
-            );
+            const existingImport = file.getImportDeclaration((i) => i.getModuleSpecifierSourceFile() === match.file);
 
             if (existingImport) {
-              const alreadyHasName = existingImport.getNamedImports().some(n => n.getName() === match.name);
+              const alreadyHasName = existingImport.getNamedImports().some((n) => n.getName() === match.name);
               if (!alreadyHasName) existingImport.addNamedImport(match.name);
             } else {
               file.addImportDeclaration({
                 namedImports: [match.name],
-                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file)
+                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file),
               });
             }
             console.log(`    -> Fixed Import: ${match.name} from ${match.file.getBaseName()}`);
@@ -137,17 +129,15 @@ export async function fixBrokenImportsAndExports(projectPath: string) {
 
           if (match) {
             // Check if we already have an export statement for this file
-            const existingExport = file.getExportDeclaration(
-              e => e.getModuleSpecifierSourceFile() === match.file
-            );
+            const existingExport = file.getExportDeclaration((e) => e.getModuleSpecifierSourceFile() === match.file);
 
             if (existingExport) {
-              const alreadyHasName = existingExport.getNamedExports().some(n => n.getName() === match.name);
+              const alreadyHasName = existingExport.getNamedExports().some((n) => n.getName() === match.name);
               if (!alreadyHasName) existingExport.addNamedExport(match.name);
             } else {
               file.addExportDeclaration({
                 namedExports: [match.name],
-                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file)
+                moduleSpecifier: file.getRelativePathAsModuleSpecifierTo(match.file),
               });
             }
             console.log(`    -> Fixed Export: ${match.name} from ${match.file.getBaseName()}`);

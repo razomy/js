@@ -60,6 +60,16 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "vue",
+    "resource",
+    "plugin",
+    "reactiveDirective",
+    "remoteNode",
+    "remoteResource",
+    "socketStore"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

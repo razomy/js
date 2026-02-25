@@ -1,11 +1,11 @@
 import * as path from 'path';
-import type {IterateSourceFileState} from './iterate_source_files_and_save';
-import {Node, SyntaxKind} from 'ts-morph';
-import {toSafeFilename} from './to_safe_filename';
+import type { IterateSourceFileState } from './iterate_source_files_and_save';
+import { Node, SyntaxKind } from 'ts-morph';
+import { toSafeFilename } from './to_safe_filename';
 
-export async function splitFunctions({sourceFile, project}: IterateSourceFileState) {
+export async function splitFunctions({ sourceFile, project }: IterateSourceFileState) {
   // We only care about exported functions at the top level
-  const exportedFunctions = sourceFile.getFunctions().filter(f => f.isExported());
+  const exportedFunctions = sourceFile.getFunctions().filter((f) => f.isExported());
 
   if (exportedFunctions.length <= 1) {
     return;
@@ -113,7 +113,6 @@ export async function splitFunctions({sourceFile, project}: IterateSourceFileSta
       await newSourceFile.save(); // It's good practice to save intermediate steps if processing is heavy
 
       console.log(`  [MOVED] ${funcName} -> ${newFilename} (copied ${dependenciesCode.length} deps)`);
-
     } catch (e) {
       console.error(`  [ERROR] Could not move ${funcName}:`, e);
       // Clean up the failed file creation

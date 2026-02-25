@@ -1,14 +1,13 @@
 // scripts/build-package.js
 import fs from 'node:fs';
 import path from 'node:path';
-import {type Dict, mapDict} from '@razomy/dict';
-import {isObject} from '@razomy/object';
+import { type Dict, mapDict } from '@razomy/dict';
+import { isObject } from '@razomy/object';
 import * as array from '@razomy/array';
 
 export function createDist(path_) {
-
   const jsonPath = path.join(path_, './package.json');
-// Read root package.json
+  // Read root package.json
   const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
   function cj(t: string) {
@@ -58,7 +57,7 @@ export function createDist(path_) {
     if (v1.endsWith('.wasm')) return v1.replace('src/', '');
     if (v1.endsWith('.svg')) return v1.replace('src/', '');
     if (v1.endsWith('.ts')) return dmj(v1);
-    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`)
+    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`);
   }
 
   function mDt(v1: Dict<string> | string | undefined, k2, k1 = '') {
@@ -73,7 +72,7 @@ export function createDist(path_) {
     }
     if (v1.endsWith('/*')) return v1;
     if (v1.endsWith('.ts')) return dmj(v1);
-    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`)
+    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`);
   }
 
   if (pkg.files) pkg.files = ['*'];
@@ -88,8 +87,7 @@ export function createDist(path_) {
   // WORKAROUND: nuxt not comple child import.ts
   const isNuxt = pkg.name.includes('nuxt');
   if (isNuxt) {
-    res = res.replaceAll('/index.d.mts', '/index.d.ts')
-      .replaceAll('/index.mjs', '/index.js')
+    res = res.replaceAll('/index.d.mts', '/index.d.ts').replaceAll('/index.mjs', '/index.js');
   }
 
   fs.writeFileSync(path.join(path_, 'dist/package.json'), res);

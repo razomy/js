@@ -1,13 +1,12 @@
-import type {Event} from '@razomy/event';
+import type { Event } from '@razomy/event';
 
 export interface WithWorkerId {
   workerId: string;
 }
 
 export interface WorkerEvent<T> extends Event<T> {
-  id: 'get' | 'set',
-  ctx: T
+  id: 'get' | 'set';
+  ctx: T;
 }
 
-export interface WorkerEnvironment extends WithWorkerId {
-}
+export interface WorkerEnvironment extends WithWorkerId {}

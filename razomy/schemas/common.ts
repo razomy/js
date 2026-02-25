@@ -1,4 +1,4 @@
-import {type i64} from './primitives';
+import { type i64 } from './primitives';
 
 export type address_line1 = string; //	Expects the first line of the street address
 export type address_line2 = string; //	Expects the second line of the street address
@@ -55,61 +55,61 @@ export type tel_local_suffix = string; //	Expects the local suffix of the phone 
 export type tel_extension = string; //	Expects the extension code of the phone number
 export type impp = string; //	Expects the url of an instant messaging protocol endpoint
 
-export type AllAutofill = address_line1 |
-  address_line2 |
-  address_line3 |
-  address_level1 |
-  address_level2 |
-  address_level3 |
-  address_level4 |
-  street_address |
-  country |
-  country_name |
-  postal_code |
-  name |
-  additional_name |
-  family_name |
-  given_name |
-  honoric_prefix |
-  honoric_suffix |
-  nickname |
-  organization_title |
-  username |
-  new_password |
-  current_password |
-  bday |
-  bday_day |
-  bday_month |
-  bday_year |
-  sex |
-  one_time_code |
-  organization |
-  cc_name |
-  cc_given_name |
-  cc_additional_name |
-  cc_family_name |
-  cc_number |
-  cc_exp |
-  cc_exp_month |
-  cc_exp_year |
-  cc_csc |
-  cc_type |
-  transaction_currency |
-  transaction_amount |
-  language |
-  url |
-  email |
-  photo |
-  tel |
-  tel_country_code |
-  tel_national |
-  tel_area_code |
-  tel_local |
-  tel_local_prefix |
-  tel_local_suffix |
-  tel_extension |
-  impp;
-
+export type AllAutofill =
+  | address_line1
+  | address_line2
+  | address_line3
+  | address_level1
+  | address_level2
+  | address_level3
+  | address_level4
+  | street_address
+  | country
+  | country_name
+  | postal_code
+  | name
+  | additional_name
+  | family_name
+  | given_name
+  | honoric_prefix
+  | honoric_suffix
+  | nickname
+  | organization_title
+  | username
+  | new_password
+  | current_password
+  | bday
+  | bday_day
+  | bday_month
+  | bday_year
+  | sex
+  | one_time_code
+  | organization
+  | cc_name
+  | cc_given_name
+  | cc_additional_name
+  | cc_family_name
+  | cc_number
+  | cc_exp
+  | cc_exp_month
+  | cc_exp_year
+  | cc_csc
+  | cc_type
+  | transaction_currency
+  | transaction_amount
+  | language
+  | url
+  | email
+  | photo
+  | tel
+  | tel_country_code
+  | tel_national
+  | tel_area_code
+  | tel_local
+  | tel_local_prefix
+  | tel_local_suffix
+  | tel_extension
+  | impp;
 
 export type timestamp = i64;
 export type dateString = string;
@@ -119,14 +119,4 @@ export type color = string;
 export type date_ = Date;
 export type blob_ = Blob;
 export type file_ = File;
-export type AllSpecific =
-  date_
-  | timestamp
-  | blob_
-  | file_
-  | dateIsoString
-  | dateString
-  | datetimeString
-  | email
-  | url
-  | color;
+export type AllSpecific = date_ | timestamp | blob_ | file_ | dateIsoString | dateString | datetimeString | email | url | color;

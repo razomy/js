@@ -1,4 +1,4 @@
-import {io, Socket} from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 export interface WithWebsocket {
   webSocket: Socket;
@@ -7,5 +7,3 @@ export interface WithWebsocket {
 export function create(ctx: any) {
   return io(ctx.url);
 }
-
-

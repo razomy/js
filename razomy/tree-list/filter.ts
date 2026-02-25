@@ -1,5 +1,4 @@
-import type {WithChildrenList} from '@razomy/tree-list';
-
+import type { WithChildrenList } from '@razomy/tree-list';
 
 export function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
   let res: T[] = [];
@@ -14,5 +13,3 @@ export function filter<T extends WithChildrenList<any>>(node: T, cb: (node: T) =
 
   return res;
 }
-
-

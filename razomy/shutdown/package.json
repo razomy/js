@@ -60,6 +60,11 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "shutdown",
+    "observe"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

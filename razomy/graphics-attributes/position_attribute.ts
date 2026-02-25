@@ -1,5 +1,5 @@
-import {AttributeResource} from '@razomy/resources';
-import {ArgumentException} from '@razomy/exceptions';
+import { AttributeResource } from '@razomy/resources';
+import { ArgumentException } from '@razomy/exceptions';
 
 export interface IPositionAttribute {
   x: number;
@@ -11,7 +11,7 @@ export class PositionAttribute extends AttributeResource implements IPositionAtt
   public y: number;
 
   constructor();
-  constructor(height: number, width: number)
+  constructor(height: number, width: number);
   constructor(position: IPositionAttribute);
   constructor(...args: any) {
     super();

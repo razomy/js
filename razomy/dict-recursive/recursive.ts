@@ -1,4 +1,3 @@
-import type {Dict} from '@razomy/dict';
+import type { Dict } from '@razomy/dict';
 
-export interface RecursiveDict extends Dict<RecursiveDict> {
-}
+export interface RecursiveDict extends Dict<RecursiveDict> {}

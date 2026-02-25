@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "index",
+    "isStringsAnyIndex",
+    "lastIndex",
+    "nextMarginIndex",
+    "stringsAnyIndex"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

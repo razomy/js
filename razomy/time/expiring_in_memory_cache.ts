@@ -23,17 +23,14 @@ export class ExpiringInMemoryCache<T> {
   }
 
   public set(key: string, value: T, expires: number): void {
-    this.cache.set(key, {value, expires});
+    this.cache.set(key, { value, expires });
   }
 
   public delete_(key: string): boolean {
     return this.cache.delete(key);
   }
 
-  public async getOrSet(
-    key: string,
-    factory: () => Promise<CacheEntry<T>>,
-  ): Promise<T> {
+  public async getOrSet(key: string, factory: () => Promise<CacheEntry<T>>): Promise<T> {
     const cachedValue = this.get(key);
     if (cachedValue !== null) {
       return cachedValue;

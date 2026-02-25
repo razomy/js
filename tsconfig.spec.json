@@ -1,9 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "jest"
-    ],
+    "types": ["jest"],
     "verbatimModuleSyntax": false,
     "module": "CommonJS"
   }

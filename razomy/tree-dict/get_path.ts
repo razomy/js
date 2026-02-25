@@ -1,4 +1,4 @@
-import {assign} from '@razomy/key';
+import { assign } from '@razomy/key';
 
 export function getPath(obj, path: string) {
   if (path === '') {
@@ -7,7 +7,7 @@ export function getPath(obj, path: string) {
 
   const closingBracketIndex = path.indexOf(assign);
   const slug = path.substring(0, closingBracketIndex);
-  let childNode = Object.keys(obj).find(key => key === slug);
+  let childNode = Object.keys(obj).find((key) => key === slug);
   if (!childNode) {
     throw new Error(`Node not found path="${path}".`);
   }

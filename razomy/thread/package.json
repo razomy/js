@@ -60,6 +60,14 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "thread",
+    "threadToPromise",
+    "threadsToPromise",
+    "threadsToPromises",
+    "workerToPromise"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

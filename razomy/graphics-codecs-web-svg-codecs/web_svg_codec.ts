@@ -1,15 +1,11 @@
-import {NotImplementedException} from '@razomy/exceptions';
-import {ElementView} from '@razomy/graphics-elements';
-import {CodecFactory} from '@razomy/graphics-codecs-web-svg-codecs';
-import type {Codec} from '@razomy/codec';
-import {ResourceCollection} from '@razomy/resources';
+import { NotImplementedException } from '@razomy/exceptions';
+import { ElementView } from '@razomy/graphics-elements';
+import { CodecFactory } from '@razomy/graphics-codecs-web-svg-codecs';
+import type { Codec } from '@razomy/codec';
+import { ResourceCollection } from '@razomy/resources';
 
 export class WebSvgCodec implements Codec<ElementView, Node> {
-
-  constructor(
-    private codecFactory: CodecFactory,
-  ) {
-  }
+  constructor(private codecFactory: CodecFactory) {}
 
   decode(value: Node): ElementView {
     return this.iterate(<HTMLElement>value);

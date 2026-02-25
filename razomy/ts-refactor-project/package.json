@@ -60,6 +60,18 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "ts",
+    "refactor",
+    "project",
+    "convertLambdasToNamedFunctions",
+    "createIndexFiles",
+    "fixBrokenImportsAndExports",
+    "flattenPackages",
+    "formatProject",
+    "renameFiles"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

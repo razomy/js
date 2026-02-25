@@ -1,4 +1,4 @@
-import {Exception} from './exception';
+import { Exception } from './exception';
 
 export type CatchFn = (throwable_fn: () => void) => void;
 
@@ -16,7 +16,7 @@ export class CollectException {
       if (e instanceof Exception) {
         this.errors.push(e);
       } else {
-        throw e
+        throw e;
       }
     }
   }

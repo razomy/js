@@ -60,6 +60,28 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "languages",
+    "programming",
+    "fs",
+    "isCache",
+    "isCacheGetPathComponents",
+    "isCacheHasSubArray",
+    "isCacheIsInCache",
+    "isGitKey",
+    "isInOutput",
+    "isInPackages",
+    "isMacDsStoreKey",
+    "isMacDsStoreKeyArgumentException",
+    "isOutput",
+    "isOutputGetPathComponents",
+    "isPackageGetPathComponents",
+    "isWithGit",
+    "isWithoutGit",
+    "renameSlugToRazomy",
+    "reservedNamesJs"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

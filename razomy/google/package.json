@@ -65,6 +65,10 @@
   "files": [
     "*"
   ],
+  "keywords": [
+    "razomy",
+    "google"
+  ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",

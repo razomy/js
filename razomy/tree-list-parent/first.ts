@@ -1,4 +1,4 @@
-import type {WithParent} from '@razomy/tree-list-parent';
+import type { WithParent } from '@razomy/tree-list-parent';
 
 export function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {
@@ -11,5 +11,3 @@ export function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
 
   return first(node.parent, cb);
 }
-
-

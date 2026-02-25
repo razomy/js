@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import {pipeline} from 'node:stream/promises';
-import {toAudioByFormat} from './to_audio_by_format'; // <-- Поправь путь
-import {audios} from './types'; // <-- Поправь путь
+import { pipeline } from 'node:stream/promises';
+import { toAudioByFormat } from './to_audio_by_format'; // <-- Поправь путь
+import { audios } from './types'; // <-- Поправь путь
 
 const sourceAudio = './source_audio.mp3'; // Файл из Шага 1
 const outDir = './test_results';
@@ -10,12 +10,12 @@ const outDir = './test_results';
 export const prepare = `
 # Создать тестовое аудио (5 секунд, синусоида)
 ffmpeg -f lavfi -i sine=frequency=440:duration=5 -c:a libmp3lame source_audio.mp3
-`
+`;
 
 export const test = `
 # В терминале в папке с результатами
 for f in *.*; do ffprobe -v error -i "$f" && echo "OK: $f" || echo "FAIL: $f"; done
-`
+`;
 
 // Создаем папку для результатов
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);

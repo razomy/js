@@ -7,4 +7,3 @@ export function byteSlice(val: number): number {
     return Math.round(val);
   }
 }
-

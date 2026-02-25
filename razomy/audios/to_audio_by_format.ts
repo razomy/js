@@ -1,6 +1,6 @@
 import ffmpeg from 'fluent-ffmpeg';
-import {type ExtensionResult} from '@razomy/fs-file-format';
-import {audios} from './types';
+import { type ExtensionResult } from '@razomy/fs-file-format';
+import { audios } from './types';
 import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
@@ -11,23 +11,23 @@ if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);
 // --- ИСПРАВЛЕННАЯ КАРТА АЛИАСОВ ---
 // FFmpeg требует указывать внутреннее имя формата (muxer), а не расширение файла
 const formatAliases: Record<string, string> = {
-  'm4v': 'mp4',        // <--- ГЛАВНОЕ ИСПРАВЛЕНИЕ: M4V пишем через MP4 muxer
-  'mkv': 'matroska',
-  'avi': 'avi',
-  'mov': 'mov',
-  'm4a': 'ipod',       // Audio-only MP4 часто требует формат 'ipod' или 'mp4'
-  'aac': 'adts',       // Raw AAC stream
-  'ts': 'mpegts',
-  'mts': 'mpegts',
-  'm2ts': 'mpegts',
-  'mpg': 'mpeg',
-  'wmv': 'asf',        // WMV упаковывается в ASF
-  'wma': 'asf',
-  'alac': 'ipod',
-  'amr': 'amr',
-  '3g2': '3g2',        // У 3g2 есть свой muxer
-  'rmvb': 'rm',    // <--- Добавить это
-  'dv': 'dv',      // Явно указываем
+  m4v: 'mp4', // <--- ГЛАВНОЕ ИСПРАВЛЕНИЕ: M4V пишем через MP4 muxer
+  mkv: 'matroska',
+  avi: 'avi',
+  mov: 'mov',
+  m4a: 'ipod', // Audio-only MP4 часто требует формат 'ipod' или 'mp4'
+  aac: 'adts', // Raw AAC stream
+  ts: 'mpegts',
+  mts: 'mpegts',
+  m2ts: 'mpegts',
+  mpg: 'mpeg',
+  wmv: 'asf', // WMV упаковывается в ASF
+  wma: 'asf',
+  alac: 'ipod',
+  amr: 'amr',
+  '3g2': '3g2', // У 3g2 есть свой muxer
+  rmvb: 'rm', // <--- Добавить это
+  dv: 'dv', // Явно указываем
 };
 
 // ... exports videos и audios (оставляем как были) ...
@@ -36,8 +36,7 @@ export async function toAudioByFormat(inputPath: string, format: string): Promis
   const outputPath = path.join('/tmp', `out_${Date.now()}.${format}`);
 
   function cleanupInput() {
-    return fs.unlink(inputPath, () => {
-    });
+    return fs.unlink(inputPath, () => {});
   }
 
   // Определяем правильный формат для FFmpeg (-f flag)
@@ -89,9 +88,7 @@ export async function toAudioByFormat(inputPath: string, format: string): Promis
         .audioFrequency(8000)
         .outputOptions(['-ar', '8000']);
     } else if (format === 'dts') {
-      command = command
-        .audioCodec('dca')
-        .outputOptions(['-strict', '-2']);
+      command = command.audioCodec('dca').outputOptions(['-strict', '-2']);
     }
 
     // ==========================================
@@ -114,12 +111,10 @@ export async function toAudioByFormat(inputPath: string, format: string): Promis
 
   const fileStream = fs.createReadStream(outputPath);
   fileStream.on('close', () => {
-    fs.unlink(outputPath, () => {
-    });
+    fs.unlink(outputPath, () => {});
   });
 
-  const mimeType = audios.find(a => a.fileExtensionType === format)?.mediaType
-    || 'application/octet-stream';
+  const mimeType = audios.find((a) => a.fileExtensionType === format)?.mediaType || 'application/octet-stream';
 
-  return {stream: fileStream, mediaType: mimeType, fileExtensionType: format};
+  return { stream: fileStream, mediaType: mimeType, fileExtensionType: format };
 }

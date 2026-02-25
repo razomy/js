@@ -6,7 +6,6 @@ export function parseStatusRef(str: string) {
     if (str.length === 0) return;
     var parts = str.split(/\s+/);
     refs[parts[1]] = parts[0];
-
   });
   return refs;
 }

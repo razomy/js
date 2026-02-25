@@ -1,5 +1,5 @@
-import type {String} from '@razomy/string';
-import type {Number} from '@razomy/number';
+import type { String } from '@razomy/string';
+import type { Number } from '@razomy/number';
 
 export function stringCount(string: String, equalString: String, offset: Number, maxOffset: Number): Number {
   let result = 0;
@@ -10,5 +10,3 @@ export function stringCount(string: String, equalString: String, offset: Number,
   }
   return result;
 }
-
-
