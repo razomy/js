@@ -18,8 +18,19 @@ export function createPackageReadme(packageJson, specs: FunctionSpecification[])
 
   const title = `
   # ${packageJson.name}
-![npm version](https://img.shields.io/npm/v/${packageJson.name})
-![License](https://img.shields.io/npm/l/${packageJson.name})
+[![License](https://img.shields.io/npm/l/${packageJson.name})](https://github.com/razomy/js/blob/main/LICENSE)
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/${packageJson.name})](https://bundlephobia.com/package/${packageJson.name})
+[![TypeScript](https://img.shields.io/npm/types/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![Node.js Version](https://img.shields.io/node/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![npm version](https://img.shields.io/npm/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![npm downloads](https://img.shields.io/npm/dw/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+
+
+[Npm](https://www.npmjs.com/package/${packageJson.name}}),
+[GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}),
+[Io](https://io.razomy.org/${packageJson.repository.directory.replace('-', '/').replace('/razomy', '')})
 
 ${packageJson.description}
 

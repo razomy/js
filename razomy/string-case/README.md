@@ -1,6 +1,17 @@
 # @razomy/string-case
-![npm version](https://img.shields.io/npm/v/@razomy/string-case)
-![License](https://img.shields.io/npm/l/@razomy/string-case)
+[![License](https://img.shields.io/npm/l/@razomy/string-case)](https://github.com/razomy/js/blob/main/LICENSE)
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/string-case)](https://bundlephobia.com/package/@razomy/string-case)
+[![TypeScript](https://img.shields.io/npm/types/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+[![Node.js Version](https://img.shields.io/node/v/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+[![npm version](https://img.shields.io/npm/v/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+[![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+
+
+[Npm](https://www.npmjs.com/package/@razomy/string-case}),
+[GitHub](https://github.com/razomy/js/tree/main/razomy/string-case),
+[Io](https://io.razomy.org//string/case)
 
 A lightweight, zero-dependency TypeScript library for advanced string case conversions and manipulations.
 
@@ -18,7 +29,7 @@ import * as stringCase from "@razomy/string-case";
 ```
 
 ## 📚Documentation
-#### alternatingCase(text: string)
+#### alternatingCase(text: string): string;
 Convert string to aLtErNaTiNg cAsE (SpongeBob case).
 Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
 ###### Examples
@@ -31,7 +42,7 @@ alternatingCase('typescript'); // tYpEsCrIpT
 ```
 
 
-#### camelCase(text: string)
+#### camelCase(text: string): string;
 Converts a string to camel case.
 ###### Examples
 ```ts
@@ -47,7 +58,7 @@ camelCase('__FOO_BAR__'); // fooBar
 ```
 
 
-#### capitalize(text: string)
+#### capitalize(text: string): string;
 Converts the first character of string to upper case and the remaining to lower case.
 ###### Examples
 ```ts
@@ -63,7 +74,7 @@ capitalize('rAZOMY'); // Razomy
 ```
 
 
-#### constantCase(text: string)
+#### constantCase(text: string): string;
 Convert string to CONSTANT_CASE (macro case).
 ###### Examples
 ```ts
@@ -79,7 +90,7 @@ constantCase('kebab-case-test'); // KEBAB_CASE_TEST
 ```
 
 
-#### dotCase(text: string)
+#### dotCase(text: string): string;
 Convert string to dot.case.
 ###### Examples
 ```ts
@@ -95,7 +106,7 @@ dotCase('foo_bar'); // foo.bar
 ```
 
 
-#### getAbbreviation(text: string)
+#### getAbbreviation(text: string): string;
 Get abbreviation from string.
 ###### Examples
 ```ts
@@ -111,7 +122,7 @@ getAbbreviation('Read-Only_Memory'); // ROM
 ```
 
 
-#### headerCase(text: string)
+#### headerCase(text: string): string;
 Convert string to Header-Case (Train-Case).
 ###### Examples
 ```ts
@@ -127,7 +138,7 @@ headerCase('session_id'); // Session-Id
 ```
 
 
-#### humanize(text: string)
+#### humanize(text: string): string;
 Convert a string to a human-readable form.
 ###### Examples
 ```ts
@@ -143,7 +154,7 @@ humanize('kebab-case-string'); // Kebab case string
 ```
 
 
-#### isLowerCase(text: string)
+#### isLowerCase(text: string): boolean;
 Checks if the string is lower case.
 ###### Examples
 ```ts
@@ -159,7 +170,7 @@ isLowerCase('string with 123'); // true
 ```
 
 
-#### isUpperCase(text: string)
+#### isUpperCase(text: string): boolean;
 Check if a string is upper case.
 ###### Examples
 ```ts
@@ -175,7 +186,7 @@ isUpperCase('hello'); // false
 ```
 
 
-#### kebabCase(text: string)
+#### kebabCase(text: string): string;
 Convert string to kebab case.
 ###### Examples
 ```ts
@@ -191,7 +202,7 @@ kebabCase('__FOO_BAR__'); // foo-bar
 ```
 
 
-#### lowerCase(text: string)
+#### lowerCase(text: string): string;
 Converts a string to lower case.
 ###### Examples
 ```ts
@@ -207,7 +218,7 @@ lowerCase('FOO Bar'); // foo bar
 ```
 
 
-#### pascalCase(text: string)
+#### pascalCase(text: string): string;
 Convert string to pascal case.
 ###### Examples
 ```ts
@@ -223,7 +234,7 @@ pascalCase('FOO BAR'); // FooBar
 ```
 
 
-#### pathCase(text: string)
+#### pathCase(text: string): string;
 Convert string to path/case.
 ###### Examples
 ```ts
@@ -239,7 +250,7 @@ pathCase('foo_bar'); // foo/bar
 ```
 
 
-#### reverse(text: string)
+#### reverse(text: string): string;
 Reverses the given string.
 ###### Examples
 ```ts
@@ -255,7 +266,7 @@ reverse('123'); // 321
 ```
 
 
-#### sentenceCase(text: string)
+#### sentenceCase(text: string): string;
 Convert string to Sentence case.
 Only the first letter of the result is capitalized, the rest is lowercase.
 ###### Examples
@@ -272,7 +283,7 @@ sentenceCase('foo_bar_baz'); // Foo bar baz
 ```
 
 
-#### slugify(text: string)
+#### slugify(text: string): string;
 Convert string to url friendly slug.
 ###### Examples
 ```ts
@@ -288,7 +299,7 @@ slugify('Crème Brûlée'); // creme-brulee
 ```
 
 
-#### snakeCase(text: string)
+#### snakeCase(text: string): string;
 Convert string to snake case.
 ###### Examples
 ```ts
@@ -304,7 +315,7 @@ snakeCase('FOO-BAR'); // foo_bar
 ```
 
 
-#### swapCase(text: string)
+#### swapCase(text: string): string;
 Convert string by swapping the case of every character.
 Uppercase becomes lowercase, and lowercase becomes uppercase.
 ###### Examples
@@ -321,7 +332,7 @@ swapCase('123 ABC xyz'); // 123 abc XYZ
 ```
 
 
-#### titleCase(text: string)
+#### titleCase(text: string): string;
 Convert string to title case.
 ###### Examples
 ```ts
@@ -337,7 +348,7 @@ titleCase('one-two'); // One-two
 ```
 
 
-#### upperCase(text: string)
+#### upperCase(text: string): string;
 Convert string to upper case.
 ###### Examples
 ```ts
