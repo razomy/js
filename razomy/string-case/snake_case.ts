@@ -14,6 +14,8 @@
  * ```ts
  * snakeCase('FOO-BAR'); // => 'foo_bar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function snakeCase(text: string): string {
   return (

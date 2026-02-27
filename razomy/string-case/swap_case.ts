@@ -15,6 +15,8 @@
  * ```ts
  * swapCase('123 ABC xyz'); // => '123 abc XYZ'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function swapCase(text: string): string {
   return text.replace(/[a-zA-Z]/g, (char) => {

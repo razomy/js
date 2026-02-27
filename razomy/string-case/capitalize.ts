@@ -14,6 +14,8 @@
  * ```ts
  * capitalize('rAZOMY'); // => 'Razomy'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function capitalize(text: string): string {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();

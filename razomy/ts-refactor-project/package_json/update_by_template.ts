@@ -20,6 +20,7 @@ export function updateByTemplate(projectPath: string, prefix) {
       type: `module`,
       description: ``,
       keywords: new Set([...currentPackageJson.name.split(/[@\/\-]/g), ...functions.map(stringCase.camelCase)]).values().toArray().filter(Boolean),
+      homepage: `https://github.com/razomy/js${folder.name}#readme`,
       author: {
         name: `Yevhenii Kamenskyi`,
         email: `yevhenii.kamenskyi+js@razomy.org`,

@@ -14,6 +14,8 @@
  * ```ts
  * headerCase('session_id'); // => 'Session-Id'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function headerCase(text: string): string {
   if (!text) return '';

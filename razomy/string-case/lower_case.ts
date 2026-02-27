@@ -14,6 +14,8 @@
  * ```ts
  * lowerCase('FOO Bar'); // => 'foo bar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function lowerCase(text: string): string {
   return text.toLowerCase();

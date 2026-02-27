@@ -16,6 +16,8 @@ import { capitalize } from './capitalize';
  * ```ts
  * humanize('kebab-case-string'); // => 'Kebab case string'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function humanize(text: string): string {
   const separated = text

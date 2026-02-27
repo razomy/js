@@ -14,6 +14,8 @@
  * ```ts
  * dotCase('foo_bar'); // => 'foo.bar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function dotCase(text: string): string {
   if (!text) return '';

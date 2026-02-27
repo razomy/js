@@ -14,6 +14,8 @@
  * ```ts
  * pascalCase('FOO BAR'); // => 'FooBar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function pascalCase(text: string): string {
   return (text.match(/[A-Z][a-z]+|[A-Z]+(?=[A-Z][a-z])|[A-Z]+|[a-z]+|[0-9]+/g) ?? [])

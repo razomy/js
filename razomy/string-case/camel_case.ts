@@ -14,6 +14,8 @@
  * ```ts
  * camelCase('__FOO_BAR__'); // => 'fooBar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function camelCase(text: string): string {
   // 1-5. Normalize the string using the same logic as snake_case

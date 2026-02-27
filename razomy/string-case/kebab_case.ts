@@ -14,6 +14,8 @@
  * ```ts
  * kebabCase('__FOO_BAR__'); // => 'foo-bar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function kebabCase(text: string): string {
   return (

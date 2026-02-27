@@ -11,6 +11,8 @@
  * ```ts
  * alternatingCase('typescript'); // => 'tYpEsCrIpT'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function alternatingCase(text: string): string {
   return text

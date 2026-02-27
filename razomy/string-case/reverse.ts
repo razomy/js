@@ -14,6 +14,8 @@
  * ```ts
  * reverse('123'); // => '321'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function reverse(text: string): string {
   return [...text].reverse().join('');

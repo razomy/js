@@ -14,6 +14,8 @@
  * ```ts
  * isUpperCase('hello'); // => false
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isUpperCase(text: string): boolean {
   return text === text.toUpperCase();

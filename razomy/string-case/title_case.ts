@@ -14,6 +14,8 @@
  * ```ts
  * titleCase('one-two'); // => 'One-two'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function titleCase(text: string): string {
   return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());

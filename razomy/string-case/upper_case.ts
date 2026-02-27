@@ -14,6 +14,8 @@
  * ```ts
  * upperCase('razomy'); // => 'RAZOMY'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function upperCase(text: string): string {
   return text.toUpperCase();

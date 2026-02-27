@@ -80,7 +80,7 @@ const breadcrumbLevels = computed(() => {
     selectedNavigationNode: NavigationNode | null;
   }[] = [];
 
-  let currentNavigationNodes = [navigationRoot];
+  let currentNavigationNodes = navigationRoot.children;
   const currentPath = normalizePath(route.path);
 
   // debugger;

@@ -1,5 +1,6 @@
 import { camelCase } from '@razomy/string-case';
 import * as directory from '@razomy/fs-directory';
+import type { PerformanceRecord } from '../performance/weighted_moving_average_recorder';
 
 export interface FunctionSpecification {
   name: string;
@@ -12,6 +13,11 @@ export interface FunctionSpecification {
   returns: {
     type: string;
     description: string;
+  };
+  performance: {
+    timeDataSizeComplexityFn: string;
+    memoryDataSizeComplexityFn: string;
+    history: PerformanceRecord[];
   };
   examples: {
     code: string;

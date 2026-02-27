@@ -14,6 +14,8 @@
  * ```ts
  * pathCase('foo_bar'); // => 'foo/bar'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function pathCase(text: string): string {
   if (!text) return '';

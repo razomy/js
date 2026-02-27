@@ -11,7 +11,7 @@
 
 [Npm](https://www.npmjs.com/package/@razomy/string-case}),
 [GitHub](https://github.com/razomy/js/tree/main/razomy/string-case),
-[Io](https://io.razomy.org//string/case)
+[Io](https://io.razomy.org/string/case)
 
 A lightweight, zero-dependency TypeScript library for advanced string case conversions and manipulations.
 

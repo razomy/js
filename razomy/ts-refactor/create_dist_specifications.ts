@@ -1,10 +1,14 @@
-import { Project } from 'ts-morph';
-import type { FunctionSpecification } from './get_package_functions';
+import {Project} from 'ts-morph';
+import type {FunctionSpecification} from './get_package_functions';
+import {n_string_testCases_record_performance, record_performance} from '../test-jest/record_performance';
 
-export function createDistSpecifications(project: Project, path: string, name: string) {
+export async function createDistSpecifications(project: Project, path: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path);
 
   const func = sourceFile.getFunctionOrThrow(name);
+
+  const fn = await import(path).then(c => c[name]);
+  const history = await record_performance(fn, n_string_testCases_record_performance());
 
   const spec = {
     name: func.getName(),
@@ -13,6 +17,11 @@ export function createDistSpecifications(project: Project, path: string, name: s
     returns: {
       type: func.getReturnType().getText(),
       description: '',
+    },
+    performance: {
+      history: history.exportState(),
+      memoryDataSizeComplexityFn: '',
+      timeDataSizeComplexityFn: ''
     },
     examples: [] as any[],
   } as FunctionSpecification;
@@ -41,7 +50,7 @@ export function createDistSpecifications(project: Project, path: string, name: s
       }
     }
 
-    return { name, type, description };
+    return {name, type, description};
   });
 
   // --- Извлекаем Returns ---
@@ -77,6 +86,30 @@ export function createDistSpecifications(project: Project, path: string, name: s
         });
       }
     }
+  });
+
+  // --- Извлекаем complexity (Examples) ---
+  const complexityTags = doc.getTags().filter((t) => t.getTagName() === 'complexity');
+  complexityTags.forEach((tag) => {
+    // 1. Очищаем текст тега от звездочек форматирования JSDoc
+    const cleanText = tag.getCommentText()?.split(' ')!;
+
+    // 2. Ищем Markdown блок с кодом (теперь он чистый)
+    const tagMatch = cleanText[0];
+    const codeMatch = cleanText[1];
+
+    if (!codeMatch || !tagMatch) {
+      throw new Error('Invalid Doc no complexity ' + path);
+    }
+    if (tagMatch === 'time') {
+      spec.performance.timeDataSizeComplexityFn = codeMatch;
+      return
+    }
+    if (tagMatch === 'memory') {
+      spec.performance.memoryDataSizeComplexityFn = codeMatch;
+      return
+    }
+    throw new Error('Invalid Doc invalid complexity ' + path);
   });
 
   return spec;

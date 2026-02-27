@@ -5,6 +5,7 @@ razomy*.tgz
 _releases
 .changeset
 coverage
+reports
 
 .nx/cache
 .nx/workspace-data

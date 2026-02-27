@@ -15,6 +15,8 @@
  * ```ts
  * sentenceCase('foo_bar_baz'); // => 'Foo bar baz'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function sentenceCase(text: string): string {
   if (!text) return '';

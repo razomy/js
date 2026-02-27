@@ -14,6 +14,8 @@
  * ```ts
  * getAbbreviation('Read-Only_Memory'); // => 'ROM'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function getAbbreviation(text: string): string {
   // Split by spaces, hyphens, or underscores, filter out empty strings

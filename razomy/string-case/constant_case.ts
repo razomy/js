@@ -14,6 +14,8 @@
  * ```ts
  * constantCase('kebab-case-test'); // => 'KEBAB_CASE_TEST'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function constantCase(text: string): string {
   if (!text) return '';

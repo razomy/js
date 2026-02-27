@@ -30,7 +30,7 @@ export function createPackageReadme(packageJson, specs: FunctionSpecification[])
 
 [Npm](https://www.npmjs.com/package/${packageJson.name}}),
 [GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}),
-[Io](https://io.razomy.org/${packageJson.repository.directory.replace('-', '/').replace('/razomy', '')})
+[Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('razomy', '')})
 
 ${packageJson.description}
 

@@ -14,6 +14,8 @@
  * ```ts
  * slugify('Crème Brûlée'); // => 'creme-brulee'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function slugify(text: string): string {
   return text

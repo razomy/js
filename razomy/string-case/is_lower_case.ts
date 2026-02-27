@@ -14,6 +14,8 @@
  * ```ts
  * isLowerCase('string with 123'); // => true
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isLowerCase(text: string): boolean {
   return text === text.toLowerCase();
