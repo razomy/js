@@ -106,19 +106,19 @@ dotCase('foo_bar'); // foo.bar
 ```
 
 
-#### getAbbreviation(text: string): string;
+#### abbreviation(text: string): string;
 Get abbreviation from string.
 ###### Examples
 ```ts
-getAbbreviation('Hello World'); // HW
+abbreviation('Hello World'); // HW
 ```
 
 ```ts
-getAbbreviation('node package manager'); // npm
+abbreviation('node package manager'); // npm
 ```
 
 ```ts
-getAbbreviation('Read-Only_Memory'); // ROM
+abbreviation('Read-Only_Memory'); // ROM
 ```
 
 

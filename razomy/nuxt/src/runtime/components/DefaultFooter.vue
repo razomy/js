@@ -4,11 +4,11 @@
       <v-row justify="center" no-gutters>
         <template v-for="navigationNodes in c.footerNavigationNodes">
           <v-btn v-if="navigationNodes.meta.url.startsWith('https://')" :href="navigationNodes.meta.url" class="mx-2" rounded="xl" variant="text">
-            {{ t(navigationNodes.meta.labelText) }}
+            {{ t(navigationNodes.meta.nameTk) }}
             <v-icon icon="mdi-open-in-new" size="16"></v-icon>
           </v-btn>
           <v-btn v-else :to="localePath(navigationNodes.meta.url)" class="mx-2" rounded="xl" variant="text">
-            {{ t(navigationNodes.meta.labelText) }}
+            {{ t(navigationNodes.meta.nameTk) }}
           </v-btn>
         </template>
         <rzm-language-selector></rzm-language-selector>
@@ -16,7 +16,7 @@
           {{ t('nuxt.footer.donate') }}
         </v-btn>
 
-        <v-col class="text-center" cols="12">
+        <v-col class="text-center mt-2" cols="12">
           <span>{{ t('nuxt.footer.start_year') }}</span
           >-{{ new Date().getFullYear() }} —
           <span>{{ t('nuxt.footer.company_name') }}</span>

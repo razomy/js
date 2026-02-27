@@ -13,7 +13,7 @@
       <v-menu v-if="level.selectedNavigationNode" location="bottom center" max-height="350" transition="slide-y-transition">
         <template v-slot:activator="{ props }">
           <v-btn append-icon="mdi-chevron-down" class="text-none px-2" density="compact" v-bind="props" variant="text">
-            {{ t(level.selectedNavigationNode.meta.labelText) }}
+            {{ t(level.selectedNavigationNode.meta.nameTk) }}
           </v-btn>
         </template>
 
@@ -21,10 +21,10 @@
         <v-list class="rounded-lg elevation-4 min-w-150" density="compact" nav>
           <v-list-item
             v-for="navigationNode in level.navigationNodes"
-            :key="navigationNode.meta.key"
-            :active="level.selectedNavigationNode.meta.key === navigationNode.meta.key"
+            :key="navigationNode.id"
+            :active="level.selectedNavigationNode.id === navigationNode.id"
             :prepend-icon="navigationNode.meta.iconName"
-            :title="t(navigationNode.meta.labelText)"
+            :title="t(navigationNode.meta.nameTk)"
             :to="localePath(navigationNode.meta.url)"
             color="primary"
           />
@@ -41,9 +41,9 @@
         <v-list class="rounded-lg elevation-4 min-w-150" density="compact" nav>
           <v-list-item
             v-for="navigationNode in level.navigationNodes"
-            :key="navigationNode.meta.key"
+            :key="navigationNode.id"
             :prepend-icon="navigationNode.meta.iconName"
-            :title="t(navigationNode.meta.labelText)"
+            :title="t(navigationNode.meta.nameTk)"
             :to="localePath(navigationNode.meta.url)"
             color="primary"
           />

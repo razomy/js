@@ -1,9 +1,9 @@
 <template>
   <v-menu location="bottom center" transition="slide-y-transition">
     <template v-slot:activator="{ props }">
-      <v-btn :class="isVertical ? '' : 'text-center w-100'" density="compact" stacked v-bind="props">
-        <img :alt="t(currentNavigationNode.meta.labelText)" :src="currentNavigationNode.meta.iconName" class="d-flex mx-auto v-icon" />
-        <div>{{ t(currentNavigationNode.meta.labelText) }}</div>
+      <v-btn :class="isVertical ? '' : 'text-center w-100'" variant="plain" density="compact" stacked v-bind="props">
+        <img :alt="t(currentNavigationNode.meta.nameTk)" :src="currentNavigationNode.meta.iconName" class="d-flex mx-auto v-icon" />
+        <div>{{ t(currentNavigationNode.meta.nameTk) }}</div>
       </v-btn>
     </template>
 
@@ -15,14 +15,14 @@
       <!-- Loop through the computed navigationNodes -->
       <v-list-item
         v-for="navigationNode in navigationNodes"
-        :key="navigationNode.meta.key"
+        :key="navigationNode.id"
         :active="navigationNode === currentNavigationNode"
         :href="navigationNode.meta.url"
-        :value="navigationNode.meta.key"
+        :value="navigationNode.id"
         color="primary"
       >
-        <img :alt="navigationNode.meta.labelText" :src="navigationNode.meta.iconName" class="v-icon" />
-        {{ t(navigationNode.meta.labelText) }}
+        <img :alt="t(navigationNode.meta.nameTk)" :src="navigationNode.meta.iconName" class="v-icon" />
+        {{ t(navigationNode.meta.nameTk) }}
       </v-list-item>
     </v-list>
   </v-menu>
@@ -38,5 +38,5 @@ const { isVertical = false } = defineProps<{
 const { t } = useI18n();
 
 const navigationNodes = c.externalNavigationRoot.children;
-const currentNavigationNode = navigationNodes.find((i) => i.meta.key === c.externalNavigationRoot.meta.key)!;
+const currentNavigationNode = navigationNodes.find((i) => i.id === c.externalNavigationRoot.id)!;
 </script>

@@ -17,6 +17,14 @@ export const defaultNuxtConfig = (c: RzmNuxtConfig) =>
     },
     vuetify: {
       moduleOptions: {
+        ssrClientHints: {
+          reloadOnFirstRequest: false,
+          prefersColorScheme: true,
+          prefersColorSchemeOptions: {
+            useBrowserThemeOnly: true,
+          },
+          viewportSize: true,
+        },
         /* module specific options */
       },
       vuetifyOptions: {
@@ -59,7 +67,7 @@ export const defaultNuxtConfig = (c: RzmNuxtConfig) =>
           },
         },
         theme: {
-          defaultTheme: 'dark',
+          defaultTheme: 'light',
           themes: {
             light: {
               dark: false,

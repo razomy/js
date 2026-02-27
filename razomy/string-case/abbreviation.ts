@@ -4,20 +4,20 @@
  * @returns The abbreviation joined by hyphens.
  * @example
  * ```ts
- * getAbbreviation('Hello World'); // => 'HW'
+ * abbreviation('Hello World'); // => 'HW'
  * ```
  * @example
  * ```ts
- * getAbbreviation('node package manager'); // => 'npm'
+ * abbreviation('node package manager'); // => 'npm'
  * ```
  * @example
  * ```ts
- * getAbbreviation('Read-Only_Memory'); // => 'ROM'
+ * abbreviation('Read-Only_Memory'); // => 'ROM'
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function getAbbreviation(text: string): string {
+export function abbreviation(text: string): string {
   // Split by spaces, hyphens, or underscores, filter out empty strings
   const words = text.split(/[\s_-]+/).filter(Boolean);
 

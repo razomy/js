@@ -4,7 +4,7 @@
     <template v-slot:activator="{ props }">
       <v-btn :class="isVertical ? '' : 'w-100'" align-tabs="center" v-bind="props" variant="text">
         <!-- Display current locale name or code -->
-        {{ locale }}
+        <span class="text-truncate" style="max-width:60px;">{{ currentLocaleMeta?.name }}</span>
         <v-icon end>mdi-chevron-down</v-icon>
       </v-btn>
     </template>
@@ -18,13 +18,15 @@
   </v-menu>
 </template>
 <script lang="ts" setup>
-import { useI18n, useLocalePath, useSwitchLocalePath } from '#imports';
+import { useI18n, useLocalePath, useSwitchLocalePath, computed } from '#imports';
 
 const { isVertical = false } = defineProps<{
   isVertical?: boolean;
 }>();
 
 const { locale, locales, setLocale } = useI18n();
+const currentLocaleMeta = computed(()=> (locales.value as Array<any>).find(i => i.code === locale.value));
+
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 </script>

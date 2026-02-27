@@ -70,7 +70,7 @@
     "capitalize",
     "constantCase",
     "dotCase",
-    "getAbbreviation",
+    "abbreviation",
     "headerCase",
     "humanize",
     "isLowerCase",

@@ -3,7 +3,7 @@ export { camelCase } from './camel_case';
 export { capitalize } from './capitalize';
 export { constantCase } from './constant_case';
 export { dotCase } from './dot_case';
-export { getAbbreviation } from './get_abbreviation';
+export { abbreviation } from './abbreviation';
 export { headerCase } from './header_case';
 export { humanize } from './humanize';
 export { isLowerCase } from './is_lower_case';

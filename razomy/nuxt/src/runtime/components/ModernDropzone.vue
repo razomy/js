@@ -1,5 +1,5 @@
 <template>
-  <v-card border="0" class="mx-auto global-soft-card2 rounded-xl overflow-hidden" color="surface" max-width="800" variant="elevated">
+  <v-card border="0" class="mx-auto global-soft-card2 rounded-xl overflow-hidden" color="surface" variant="elevated">
     <!-- Оверлей загрузки/обработки -->
     <v-overlay :model-value="isProcessing || isScanning" class="align-center justify-center" contained opacity="0.9" persistent z-index="5">
       <div class="text-center">
