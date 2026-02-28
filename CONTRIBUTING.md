@@ -93,6 +93,7 @@ We use **ESLint** for linting and **[Jest/Mocha/Vitest]** for testing.
 
 ### 🤝 Contribution Checklist
 
+Feel free to skip them.
 We follow systematic architectural rules to keep the system reliable.
 
 **Structure**
@@ -116,14 +117,20 @@ We follow systematic architectural rules to keep the system reliable.
   - `camelCase` for vars/functions.
 - [ ] **Consistency:** File name matches instance name, property name, and type.
 - [ ] **Prefixes:**
+  - Use `is` for check (e.g., `isArray`).
+  - Use `has` for include (e.g., `hasItem`).
   - Use `try` for nullable returns (e.g., `tryGet`).
   - Use `with` for interface extensions.
+  - Use `to` for copping and converting. `toNumber`
+  - Use `get` for receiving. `getAge`
+  - Use `set` for assign. `setAge`
   - **No** `I` prefix for Interfaces.
-- [ ] **Suffixes:** Use `Mut` for mutable types.
+- [ ] **Suffixes:** 
+  - Use `Mut` for mutable types. `addMut`
 - [ ] **Functions:**
   - Follow pattern: `[action][result?]["By"+ arguments?]` (e.g., `get`, `getString`, `getStringByIndex`).
   - Async: No `Async` suffix by default.
-  - Conflict: If Sync and Async exist, use `Sync` suffix for the synchronous version.
+    - Conflict: If Sync and Async exist, use `Sync` suffix for the synchronous version.
 - [ ] **Abbreviations:** Preferred over full words (e.g., `js` > `javascript`).
 
 **Logic**
