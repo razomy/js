@@ -55,15 +55,18 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/equal#readme",
   "keywords": [
     "razomy",
     "equal",
-    "isArrayEqual"
+    "isArrayEqual",
+    "isEqual"
   ],
   "license": "MIT",
   "main": "./index.ts",

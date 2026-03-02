@@ -64,11 +64,13 @@
       "require": "./src/index.node.ts",
       "types": "./src/index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "src/*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/vue#readme",
   "keywords": [
     "razomy",
     "vue",

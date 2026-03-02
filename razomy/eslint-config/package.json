@@ -7,11 +7,11 @@
   "dependencies": {
     "@eslint/js": "^10.0.1",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import-x": "^4.16.1",
     "eslint-plugin-unicorn": "^63.0.0",
     "globals": "^17.3.0",
-    "typescript-eslint": "^8.56.1",
-    "eslint-import-resolver-typescript": "^4.4.4"
+    "typescript-eslint": "^8.56.1"
   },
   "description": "",
   "engines": {
@@ -20,62 +20,64 @@
   "exports": {
     ".": {
       "browser": {
-        "import": "./index.browser.js",
-        "require": "./index.browser.js",
-        "types": "./index.browser.js"
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
       },
       "default": {
-        "default": "./index.js",
-        "types": "./index.js"
+        "default": "./index.ts",
+        "types": "./index.ts"
       },
       "edge": {
-        "import": "./index.browser.js",
-        "require": "./index.browser.js",
-        "types": "./index.browser.js"
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
       },
       "import": {
-        "default": "./index.js",
-        "require": "./index.js",
-        "types": "./index.js"
+        "default": "./index.ts",
+        "require": "./index.ts",
+        "types": "./index.ts"
       },
       "node": {
-        "import": "./index.node.js",
-        "require": "./index.node.js",
-        "types": "./index.node.js"
+        "import": "./index.node.ts",
+        "require": "./index.node.ts",
+        "types": "./index.node.ts"
       },
       "require": {
-        "default": "./index.js",
-        "types": "./index.js"
+        "default": "./index.ts",
+        "types": "./index.ts"
       },
       "vue": {
-        "import": "./index.browser.js",
-        "require": "./index.browser.js",
-        "types": "./index.browser.js"
+        "import": "./index.browser.ts",
+        "require": "./index.browser.ts",
+        "types": "./index.browser.ts"
       }
     },
     "./browser": {
-      "import": "./index.browser.js",
-      "require": "./index.browser.js",
-      "types": "./index.browser.js"
+      "import": "./index.browser.ts",
+      "require": "./index.browser.ts",
+      "types": "./index.browser.ts"
     },
     "./node": {
-      "import": "./index.node.js",
-      "require": "./index.node.js",
-      "types": "./index.node.js"
+      "import": "./index.node.ts",
+      "require": "./index.node.ts",
+      "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/eslint-config#readme",
   "keywords": [
     "razomy",
     "eslint",
     "config"
   ],
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "./index.ts",
+  "module": "./index.ts",
   "name": "@razomy/eslint-config",
   "peerDependencies": {},
   "publishConfig": {

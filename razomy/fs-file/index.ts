@@ -1,3 +1,4 @@
+export { appendSync } from './append_sync';
 export { delete_ } from './delete_';
 export { deleteSync } from './delete_sync';
 export { FileGate } from './file_gate';
@@ -7,7 +8,7 @@ export { get } from './get';
 export { isEmpty } from './is_empty';
 export { isExist } from './is_exist';
 export { setJson } from './set_json';
-export { setSync, appendSync } from './set_sync';
+export { setSync } from './set_sync';
 export { set } from './set';
 export { tryGetJson } from './try_get_json';
 export { trySet } from './try_set';

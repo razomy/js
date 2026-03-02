@@ -1,7 +1,7 @@
-import { mergeDicts } from '@razomy/dict';
+import { merge } from '@razomy/dict';
 
 export interface Context {}
 
 export function create<T extends readonly Record<PropertyKey, unknown>[]>(...array: [...T]) {
-  return mergeDicts(array);
+  return merge(array);
 }

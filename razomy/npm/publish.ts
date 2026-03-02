@@ -19,7 +19,7 @@ export async function publish(path_: string) {
 // publish('../audios');
 // publish('../schema');
 // publish('../schemas');
-// publish('../string-case');
 // publish('../array');
 // publish('../string');
+// publish('../string-case');
 // publish('../nuxt');

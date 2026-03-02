@@ -1,5 +1,4 @@
-import {WeightedMovingAverageRecorder} from './weighted_moving_average_recorder';
-
+import { WeightedMovingAverageRecorder } from './weighted_moving_average_recorder';
 
 /**
  * Декоратор, который оборачивает функцию в измеритель
@@ -7,10 +6,7 @@ import {WeightedMovingAverageRecorder} from './weighted_moving_average_recorder'
  * @param sizeCalculator Функция, которая принимает аргументы исходной функции и возвращает timeDataSize (наш n^2)
  * @param memoryCalculator Функция, которая принимает аргументы исходной функции и возвращает memoryDataSize (наш n^2)
  */
-export function MeasureComplexity<T extends any[]>(myRecorder: WeightedMovingAverageRecorder,
-                                                   sizeCalculator: (...args: T) => number,
-                                                   memoryCalculator: (...args: T) => number
-) {
+export function measureComplexity<T extends any[]>(myRecorder: WeightedMovingAverageRecorder, sizeCalculator: (...args: T) => number, memoryCalculator: (...args: T) => number) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 

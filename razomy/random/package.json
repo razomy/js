@@ -55,16 +55,19 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/random#readme",
   "keywords": [
     "razomy",
     "random",
     "randomString",
-    "range"
+    "range",
+    "shuffle"
   ],
   "license": "MIT",
   "main": "./index.ts",

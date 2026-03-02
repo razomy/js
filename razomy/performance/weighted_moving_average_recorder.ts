@@ -1,7 +1,7 @@
-import {performance} from 'perf_hooks';
-import {formatTime} from './format_time';
-import {formatMemory} from './format_memory';
-import {estimate} from './estimate';
+import { performance } from 'perf_hooks';
+import { formatTime } from './format_time';
+import { formatMemory } from './format_memory';
+import { estimate } from './estimate';
 
 export interface PerformanceRecord {
   // Abstract linear measurement system of function complexity for space

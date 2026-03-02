@@ -1,6 +1,6 @@
-import {formatTime} from './format_time';
-import {formatMemory} from './format_memory';
-import type {PerformanceRecord, Prediction} from './weighted_moving_average_recorder';
+import { formatTime } from './format_time';
+import { formatMemory } from './format_memory';
+import type { PerformanceRecord, Prediction } from './weighted_moving_average_recorder';
 
 /**
  * Get a time and RAM prediction using Weighted Moving Average (WMA).
@@ -46,8 +46,8 @@ export function estimate(history: PerformanceRecord[], timeDataSize: number, mem
   }
 
   // Защита от деления на ноль, если в истории не было валидных данных
-  const avgTimeRatio = totalTimeWeight > 0 ? (weightedTimeSum / totalTimeWeight) : 0;
-  const avgMemoryRatio = totalMemoryWeight > 0 ? (weightedMemorySum / totalMemoryWeight) : 0;
+  const avgTimeRatio = totalTimeWeight > 0 ? weightedTimeSum / totalTimeWeight : 0;
+  const avgMemoryRatio = totalMemoryWeight > 0 ? weightedMemorySum / totalMemoryWeight : 0;
 
   // Прогнозируем, умножая средний коэффициент на текущие размеры данных
   const predictedTimeMs = timeDataSize * avgTimeRatio;

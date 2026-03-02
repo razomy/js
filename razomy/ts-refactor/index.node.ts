@@ -1,5 +1,5 @@
-export { createPackageReadme } from './create_package_readme';
 export { createDistSpecifications } from './create_dist_specifications';
+export { createPackageReadme } from './create_package_readme';
 export { extracyForIo } from './extracy_for_io';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
 export { getNameAndExt } from './get_name_and_ext';

@@ -57,11 +57,13 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/npm#readme",
   "keywords": [
     "razomy",
     "npm",
@@ -75,6 +77,7 @@
   "peerDependencies": {
     "@razomy/fs-file": "0.0.1-alpha.4",
     "@razomy/shell": "0.0.1-alpha.4",
+    "@razomy/ts-refactor": "0.0.1-alpha.4",
     "@razomy/ts-refactor-project": "0.0.1-alpha.4"
   },
   "publishConfig": {

@@ -1,4 +1,4 @@
-import { iterate } from './for_own';
+import { iterate } from './iterate';
 import { isPlainObject } from './is_plain_object';
 
 export type Join<K, P> = K extends string

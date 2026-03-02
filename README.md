@@ -13,5 +13,5 @@ Razomy js is a scalable TypeScript Monorepo.
 #### Packages
 
 | npm                                                                      | directory                                   |
-|--------------------------------------------------------------------------|---------------------------------------------|
+| ------------------------------------------------------------------------ | ------------------------------------------- |
 | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case) | [./razomy/string-case](/razomy/string-case) |

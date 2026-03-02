@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "A lightweight, zero-dependency TypeScript library for advanced string case conversions and manipulations.",
+  "description": "",
   "engines": {
     "node": ">=18"
   },
@@ -55,22 +55,23 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./specifications.json": "./specifications.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/string-case#readme",
   "keywords": [
     "razomy",
     "string",
     "case",
+    "abbreviation",
     "alternatingCase",
     "camelCase",
     "capitalize",
     "constantCase",
     "dotCase",
-    "abbreviation",
     "headerCase",
     "humanize",
     "isLowerCase",
@@ -115,5 +116,5 @@
       ]
     }
   },
-  "version": "0.0.1-beta.2"
+  "version": "0.0.1-alpha.4"
 }

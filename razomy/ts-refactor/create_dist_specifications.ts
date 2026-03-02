@@ -1,14 +1,15 @@
-import {Project} from 'ts-morph';
-import type {FunctionSpecification} from './get_package_functions';
-import {n_string_testCases_record_performance, record_performance} from '../test-jest/record_performance';
+import { Project } from 'ts-morph';
+import type { FunctionSpecification } from './get_package_functions';
+import { recordPerformance } from '../performance/record_performance';
+import { nStringTestCasesRecordPerformance } from '@razomy/performance';
 
 export async function createDistSpecifications(project: Project, path: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path);
 
   const func = sourceFile.getFunctionOrThrow(name);
 
-  const fn = await import(path).then(c => c[name]);
-  const history = await record_performance(fn, n_string_testCases_record_performance());
+  const fn = await import(path).then((c) => c[name]);
+  const history = await recordPerformance(fn, nStringTestCasesRecordPerformance());
 
   const spec = {
     name: func.getName(),
@@ -21,7 +22,7 @@ export async function createDistSpecifications(project: Project, path: string, n
     performance: {
       history: history.exportState(),
       memoryDataSizeComplexityFn: '',
-      timeDataSizeComplexityFn: ''
+      timeDataSizeComplexityFn: '',
     },
     examples: [] as any[],
   } as FunctionSpecification;
@@ -50,7 +51,7 @@ export async function createDistSpecifications(project: Project, path: string, n
       }
     }
 
-    return {name, type, description};
+    return { name, type, description };
   });
 
   // --- Извлекаем Returns ---
@@ -103,11 +104,11 @@ export async function createDistSpecifications(project: Project, path: string, n
     }
     if (tagMatch === 'time') {
       spec.performance.timeDataSizeComplexityFn = codeMatch;
-      return
+      return;
     }
     if (tagMatch === 'memory') {
       spec.performance.memoryDataSizeComplexityFn = codeMatch;
-      return
+      return;
     }
     throw new Error('Invalid Doc invalid complexity ' + path);
   });

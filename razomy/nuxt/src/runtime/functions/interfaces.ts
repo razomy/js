@@ -7,7 +7,7 @@ export interface NAryTreeNode {
 export interface NavigationNodeMeta {
   url: string;
   // Short uniq(locally) human indicator
-  nameTk: TranslateKey,
+  nameTk: TranslateKey;
   // short exampled name
   // titleTk: TranslateKey,
   // full exampled name
@@ -73,17 +73,17 @@ export interface RzmNuxtConfig {
 // 1. Utility type that generates ALL paths (leafs and nodes)
 export type PathGenerator<T> = T extends object
   ? {
-    [K in keyof T & (string | number)]: T[K] extends object
-      ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
-      : `${K}`; // Stop at primitives
-  }[keyof T & (string | number)]
+      [K in keyof T & (string | number)]: T[K] extends object
+        ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
+        : `${K}`; // Stop at primitives
+    }[keyof T & (string | number)]
   : never;
 
 // 2. Utility type that generates ONLY absolute end/leaf paths
 export type LeafPathGenerator<T> = T extends object
   ? {
-    [K in keyof T & (string | number)]: T[K] extends object
-      ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
-      : `${K}`; // Stop at primitives
-  }[keyof T & (string | number)]
+      [K in keyof T & (string | number)]: T[K] extends object
+        ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
+        : `${K}`; // Stop at primitives
+    }[keyof T & (string | number)]
   : never;

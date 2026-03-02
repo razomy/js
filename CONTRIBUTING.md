@@ -125,7 +125,7 @@ We follow systematic architectural rules to keep the system reliable.
   - Use `get` for receiving. `getAge`
   - Use `set` for assign. `setAge`
   - **No** `I` prefix for Interfaces.
-- [ ] **Suffixes:** 
+- [ ] **Suffixes:**
   - Use `Mut` for mutable types. `addMut`
 - [ ] **Functions:**
   - Follow pattern: `[action][result?]["By"+ arguments?]` (e.g., `get`, `getString`, `getStringByIndex`).

@@ -55,17 +55,19 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/ts-refactor#readme",
   "keywords": [
     "razomy",
     "ts",
     "refactor",
-    "createDistReadme",
     "createDistSpecifications",
+    "createPackageReadme",
     "extracyForIo",
     "fileRenameVariablesAndPropsFunctions",
     "getNameAndExt",
@@ -91,7 +93,7 @@
     "@razomy/fss": "0.0.1-alpha.4",
     "@razomy/languages-programming-fs": "0.0.1-alpha.4",
     "@razomy/refactor-fs": "0.0.1-alpha.4",
-    "@razomy/string-case": "0.0.1-beta.2"
+    "@razomy/string-case": "0.0.1-alpha.4"
   },
   "publishConfig": {
     "access": "public"

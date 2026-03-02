@@ -7,8 +7,9 @@ import { toSafeName } from '@razomy/ts-refactor';
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';
 
-export async function createIndexFiles(projectPath: string) {
-  const project = new Project({ tsConfigFilePath: projectPath + 'tsconfig.json' });
+export async function createIndexFiles(projectPath_: string) {
+  const projectPath = path.resolve(projectPath_);
+  const project = new Project({ tsConfigFilePath: path.join(projectPath, 'tsconfig.json') });
 
   const directories = project.getDirectories();
 
@@ -16,7 +17,7 @@ export async function createIndexFiles(projectPath: string) {
     const dirPath = dir.getPath();
 
     // Фильтры игнорируемых папок
-    if (shouldIgnorePath(dirPath)) continue;
+    if (shouldIgnorePath(dirPath, projectPath)) continue;
 
     // Списки для хранения строк экспорта
     const exports = {
@@ -29,7 +30,7 @@ export async function createIndexFiles(projectPath: string) {
     // 1. Обработка подпапок (Sub-directories)
     // Обычно подпапки считаются универсальными модулями
     for (const subDir of dir.getDirectories()) {
-      if (shouldIgnorePath(subDir.getPath())) continue;
+      if (shouldIgnorePath(subDir.getPath(), projectPath)) continue;
 
       const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName());
       exports.universal.push(exportLine);
@@ -37,7 +38,7 @@ export async function createIndexFiles(projectPath: string) {
 
     // 2. Обработка файлов (Files)
     for (const sourceFile of dir.getSourceFiles()) {
-      if (shouldIgnorePath(sourceFile.getFilePath())) continue;
+      if (shouldIgnorePath(sourceFile.getFilePath(), projectPath)) continue;
 
       const baseName = sourceFile.getBaseNameWithoutExtension();
       const fullName = sourceFile.getBaseName();
@@ -94,8 +95,8 @@ export async function createIndexFiles(projectPath: string) {
 /**
  * Проверка путей, которые нужно игнорировать
  */
-function shouldIgnorePath(p: string): boolean {
-  return p.includes('/node_modules') || p.includes('/dist') || p.includes('/bin');
+function shouldIgnorePath(p: string, projectPath: string): boolean {
+  return p.includes('/node_modules') || p.includes('/dist') || p.includes('/bin') || p === projectPath || p === projectPath + '/razomy';
 }
 
 /**

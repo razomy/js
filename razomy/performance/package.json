@@ -55,15 +55,24 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/performance#readme",
   "keywords": [
     "razomy",
     "performance",
-    "performanceCb"
+    "estimate",
+    "formatMemory",
+    "formatTime",
+    "measureComplexity",
+    "nStringTestCasesRecordPerformance",
+    "performanceCb",
+    "recordPerformance",
+    "weightedMovingAverageRecorder"
   ],
   "license": "MIT",
   "main": "./index.ts",

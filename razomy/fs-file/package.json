@@ -55,15 +55,18 @@
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
   },
   "files": [
     "*"
   ],
+  "homepage": "https://github.com/razomy/js/razomy/fs-file#readme",
   "keywords": [
     "razomy",
     "fs",
     "file",
+    "appendSync",
     "delete",
     "deleteSync",
     "fileGate",
