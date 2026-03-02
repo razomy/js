@@ -4,7 +4,7 @@
                        app
                        border="0"
                        color=""
-                       class="bg-background mx-2"
+                       class="content-0 mx-2"
                        permanent>
     <template v-slot:prepend>
       <rzm-navbar-products/>

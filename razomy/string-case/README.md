@@ -23,12 +23,28 @@ npm i @razomy/string-case
 
 #### Import
 ```ts
-import {alternatingCase} from "@razomy/string-case";
+import {abbreviation} from "@razomy/string-case";
 // or
 import * as stringCase from "@razomy/string-case";
 ```
 
 ## 📚Documentation
+#### abbreviation(text: string): string;
+Get abbreviation from string.
+###### Examples
+```ts
+abbreviation('Hello World'); // HW
+```
+
+```ts
+abbreviation('node package manager'); // npm
+```
+
+```ts
+abbreviation('Read-Only_Memory'); // ROM
+```
+
+
 #### alternatingCase(text: string): string;
 Convert string to aLtErNaTiNg cAsE (SpongeBob case).
 Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
@@ -103,22 +119,6 @@ dotCase('camelCaseString'); // camel.case.string
 
 ```ts
 dotCase('foo_bar'); // foo.bar
-```
-
-
-#### abbreviation(text: string): string;
-Get abbreviation from string.
-###### Examples
-```ts
-abbreviation('Hello World'); // HW
-```
-
-```ts
-abbreviation('node package manager'); // npm
-```
-
-```ts
-abbreviation('Read-Only_Memory'); // ROM
 ```
 
 

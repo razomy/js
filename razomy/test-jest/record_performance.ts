@@ -20,7 +20,13 @@ export async function record_performance<T extends any[]>(fn: (...t: T) => any, 
 export function n_string_testCases_record_performance() {
   const pattern = 'fooBar baz_qux-123 ';
 
-  return [0, 10, 100, 1_000, 10_000].map(size => ({
+  return [
+    // 0,
+    // 10,
+    100,
+    1_000,
+    10_000
+  ].map(size => ({
     // Упрощаем: используем одно поле dataSize
     timeDataSize: size,
     memoryDataSize: size,

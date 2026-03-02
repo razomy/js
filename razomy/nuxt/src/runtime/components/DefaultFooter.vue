@@ -1,6 +1,6 @@
 <template>
   <v-container class="my-12">
-    <v-footer class="rounded-xl py-6">
+    <v-footer class="content-0 py-6">
       <v-row justify="center" no-gutters>
         <template v-for="navigationNodes in c.footerNavigationNodes">
           <v-btn v-if="navigationNodes.meta.url.startsWith('https://')" :href="navigationNodes.meta.url" class="mx-2" rounded="xl" variant="text">
