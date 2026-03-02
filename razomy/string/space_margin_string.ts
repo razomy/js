@@ -16,7 +16,7 @@
  * spaceMargin('c', 0); // => 'c'
  * ```
  */
-import { margin } from '@razomy/string';
+import { spaceMargin } from '@razomy/string';
 
 export function spaceMargin(value: string, size: number): string {
   const margin = ' '.repeat(size);

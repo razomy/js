@@ -1,7 +1,7 @@
 import type { String } from '@razomy/string';
 import type { Number } from '@razomy/number';
 
-export function spaceMarginCount(string: String): Number {
+export function countSpaceMargin(string: String): Number {
   let i = 0;
   for (let chr of string) {
     if (chr == ' ') {

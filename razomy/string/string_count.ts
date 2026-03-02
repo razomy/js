@@ -1,7 +1,7 @@
 import type { String } from '@razomy/string';
 import type { Number } from '@razomy/number';
 
-export function stringCount(string: String, equalString: String, offset: Number, maxOffset: Number): Number {
+export function countString(string: String, equalString: String, offset: Number, maxOffset: Number): Number {
   let result = 0;
   for (let i = offset; i < maxOffset; i++) {
     if (string[i] === equalString) {
