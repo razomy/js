@@ -1,7 +1,7 @@
 // scripts/build-package.js
 import fs from 'node:fs';
 import path from 'node:path';
-import { type Dict, mapDict } from '@razomy/dict';
+import * as dict from '@razomy/dict';
 import { isObject } from '@razomy/object';
 import * as array from '@razomy/array';
 
@@ -26,7 +26,7 @@ export function createDist(path_) {
     return t.replace('.ts', '.d.cts').replace('src/', '');
   }
 
-  function mD(v1: Dict<string> | string | undefined, k2, k1 = '') {
+  function mD(v1: dict.Dict<string> | string | undefined, k2, k1 = '') {
     if (!v1) {
       return v1;
     }
@@ -34,7 +34,7 @@ export function createDist(path_) {
       return array.map(v1, (v2, k3) => mD(v2, k3, k2));
     }
     if (isObject(v1)) {
-      return mapDict(v1, (v2, k3) => mD(v2, k3, k2));
+      return dict.map(v1, (v2, k3) => mD(v2, k3, k2));
     }
     if (k2 === 'vue' && k1 === 'types') return dmj(v1);
     if (k2 === 'browser' && k1 === 'types') return dmj(v1);
@@ -60,7 +60,7 @@ export function createDist(path_) {
     throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`);
   }
 
-  function mDt(v1: Dict<string> | string | undefined, k2, k1 = '') {
+  function mDt(v1: dict.Dict<string> | string | undefined, k2, k1 = '') {
     if (!v1) {
       return v1;
     }
@@ -68,7 +68,7 @@ export function createDist(path_) {
       return array.map(v1, (v2, k3) => mDt(v2, k3, k2));
     }
     if (isObject(v1)) {
-      return mapDict(v1, (v2, k3) => mDt(v2, k3, k2));
+      return dict.map(v1, (v2, k3) => mDt(v2, k3, k2));
     }
     if (v1.endsWith('/*')) return v1;
     if (v1.endsWith('.ts')) return dmj(v1);

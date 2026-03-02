@@ -26,6 +26,7 @@ export { repeat } from './repeat';
 export { replace } from './replace';
 export { similarity } from './similarity';
 export { spaceMargin } from './space_margin';
+export { split } from './split';
 export { splitLines } from './split_lines';
 export { stripTags } from './strip_tags';
 export { substringAfter } from './substring_after';

@@ -1,10 +1,11 @@
 import type { Dict } from '@razomy/dict';
-import { isKeysInDict } from '@razomy/dict';
+import { isKeys } from '@razomy/dict';
 import { isObject } from '@razomy/object';
 
-export function getAny(obj: Dict<any>, keys: string[]) {
-  if (isKeysInDict(obj, keys)) {
-    return [''];
+export function getAnyAll(obj: Dict<any>, keys: string[]) {
+  let res: string[] = [];
+  if (isKeys(obj, keys)) {
+    res.push('');
   }
 
   if (isObject(obj)) {
@@ -12,23 +13,23 @@ export function getAny(obj: Dict<any>, keys: string[]) {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         const value = obj[key];
-        const children = getAny(value, keys);
+        const children = getAnyAll(value, keys);
         const withKey = children.map((ckey) => `${key}:` + ckey);
         result = result.concat(withKey);
       }
     }
-    return result;
+    res = res.concat(result);
   }
 
   if (Array.isArray(obj)) {
     let result: string[] = [];
     (obj as object[]).forEach((value, index) => {
-      const children = getAny(value as any, keys);
+      const children = getAnyAll(value as any, keys);
       const withKey = children.map((ckey) => `${index}` + ckey);
       result = result.concat(withKey);
     });
-    return result;
+    res = res.concat(result);
   }
 
-  return [];
+  return res;
 }

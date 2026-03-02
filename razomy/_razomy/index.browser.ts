@@ -1,3 +1,5 @@
+export {fp} from './chain';
+
 export * as action from '@razomy/action';
 export * as alias from '@razomy/alias';
 export * as analytics from '@razomy/analytics';
@@ -32,9 +34,6 @@ export * as coordinatesLength from '@razomy/coordinates-length';
 export * as coordinatesRectangle from '@razomy/coordinates-rectangle';
 export * as coordinatesX from '@razomy/coordinates-x';
 export * as coordinatesY from '@razomy/coordinates-y';
-export * as count from '@razomy/count';
-export * as countString from '@razomy/count-string';
-export * as countStrings from '@razomy/count-strings';
 export * as create from '@razomy/create';
 export * as date from '@razomy/date';
 export * as dateTime from '@razomy/date-time';
@@ -124,7 +123,6 @@ export * as pipesBooleans from '@razomy/pipes-booleans';
 export * as random from '@razomy/random';
 export * as razomy from '@razomy/razomy';
 export * as recursive from '@razomy/recursive';
-export * as recursiveDictOrList from '@razomy/recursive-dict_or_list';
 export * as refactor from '@razomy/refactor';
 export * as refactorFs from '@razomy/refactor-fs';
 export * as regex from '@razomy/regex';

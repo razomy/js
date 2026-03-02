@@ -22,4 +22,6 @@ export async function publish(path_: string) {
 // publish('../array');
 // publish('../string');
 // publish('../string-case');
+// publish('../async');
+// publish('../pipes');
 // publish('../nuxt');

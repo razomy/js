@@ -1,9 +1,10 @@
-import { escapeString, unescapeByString } from '@razomy/string';
+import { unescapeByString } from '@razomy/string';
+import { escapeByString } from '@razomy/string';
 
 describe(`string`, () => {
-  describe(escapeString.name, () => {
+  describe(escapeByString.name, () => {
     it('`', () => {
-      const result = escapeString('`', '`');
+      const result = escapeByString('`', '`');
       expect(result).toStrictEqual('\\`');
     });
     it('\\`', () => {
