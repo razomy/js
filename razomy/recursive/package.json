@@ -61,18 +61,20 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/recursive-dict_or_list#readme",
+  "homepage": "https://github.com/razomy/js/razomy/recursive#readme",
   "keywords": [
     "razomy",
     "recursive",
-    "dict_or_list",
+    "deleteByPath",
     "getAny",
-    "getAnyAll"
+    "getAnyAll",
+    "getByPath",
+    "setByPath"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/recursive-dict_or_list",
+  "name": "@razomy/recursive",
   "peerDependencies": {
     "@razomy/dict": "0.0.1-alpha.4",
     "@razomy/object": "0.0.1-alpha.4"
@@ -81,7 +83,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/recursive-dict_or_list",
+    "directory": "razomy/recursive",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

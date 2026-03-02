@@ -93,6 +93,7 @@
     "replace",
     "similarity",
     "spaceMargin",
+    "split",
     "splitLines",
     "stripTags",
     "substringAfter",

@@ -65,8 +65,8 @@
   "keywords": [
     "razomy",
     "async",
-    "createPromise",
-    "delayAwait",
+    "create",
+    "delay",
     "freeze",
     "isPromise",
     "loop",

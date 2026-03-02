@@ -61,17 +61,20 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/fs-dict#readme",
+  "homepage": "https://github.com/razomy/js/razomy/fs-recursive#readme",
   "keywords": [
     "razomy",
     "fs",
-    "dict",
+    "recursive",
+    "cliCopy",
+    "copy",
+    "get",
     "toDict"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/fs-dict",
+  "name": "@razomy/fs-recursive",
   "peerDependencies": {
     "@razomy/path-string": "0.0.1-alpha.4"
   },
@@ -79,7 +82,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/fs-dict",
+    "directory": "razomy/fs-recursive",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

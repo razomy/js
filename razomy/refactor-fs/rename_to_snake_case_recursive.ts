@@ -1,4 +1,4 @@
-import { toDict } from '@razomy/fs-dict';
+import { toDict } from '@razomy/fs-recursive';
 
 import * as path from 'path';
 import fs from 'fs';

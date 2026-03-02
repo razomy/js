@@ -76,6 +76,7 @@
     "map",
     "mapToArray",
     "merge",
+    "recursive",
     "shuffle",
     "someOf",
     "toString"

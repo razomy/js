@@ -65,6 +65,7 @@
   "keywords": [
     "razomy",
     "pipes",
+    "chainRegistry",
     "functionPipe",
     "pipe",
     "pipeSync",

@@ -17,9 +17,6 @@
  * split('One', ''); // => ['O','n','e']
  * ```
  */
-export function split(text: string,
-                      splitter: string | RegExp,
-                      limit?: number
-): string[] {
+export function split(text: string, splitter: string | RegExp, limit?: number): string[] {
   return text.split(splitter, limit);
 }

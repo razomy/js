@@ -10,6 +10,7 @@ export { iterate } from './iterate';
 export { mapToArray } from './map_to_array';
 export { map } from './map';
 export { merge, type UnionToIntersection, type Prettify } from './merge';
+export { type RecursiveDict } from './recursive';
 export { shuffle } from './shuffle';
 export { type SomeOf } from './some_of';
 export { toString_ } from './to_string';

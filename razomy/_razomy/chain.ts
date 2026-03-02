@@ -1,4 +1,4 @@
-import {type Chain, type Chainable, ChainRegistry} from '@razomy/pipes';
+import { type Chain, type Chainable, ChainRegistry } from '@razomy/pipes';
 
 import * as string from '@razomy/string';
 import * as stringCase from '@razomy/string-case';
@@ -7,10 +7,7 @@ import * as dict from '@razomy/dict';
 import * as object from '@razomy/object';
 
 declare module '@razomy/pipes' {
-  interface StringChainMethods
-    extends Chainable<typeof string>,
-      Chainable<typeof stringCase> {
-  }
+  interface StringChainMethods extends Chainable<typeof string>, Chainable<typeof stringCase> {}
 
   interface ArrayChainMethods<V extends any[]> extends Omit<Omit<Chainable<typeof array & typeof dict>, 'filter'>, 'map'> {
     filter(predicate: (item: V[number], index: number) => boolean): Chain<V>;
@@ -21,7 +18,7 @@ declare module '@razomy/pipes' {
 
 // RUNTIME REGISTRATION
 export const registry = new ChainRegistry();
-registry.register((val) => string.isString(val), {...string, ...stringCase});
+registry.register((val) => string.isString(val), { ...string, ...stringCase });
 registry.register((val) => array.isArray(val), array);
 registry.register((val) => object.isObject(val), dict);
 
