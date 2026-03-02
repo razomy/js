@@ -1,4 +1,4 @@
-export function createPromise<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
+export function create<T>(task: (() => T) | (() => Promise<T>)): () => Promise<T> {
   return () =>
     new Promise(async (resolve, reject) => {
       try {

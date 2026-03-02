@@ -1,4 +1,4 @@
-export async function delayAwait<T>(request: () => Promise<T>, delay = 10000) {
+export async function delay<T>(request: () => Promise<T>, delay = 10000) {
   const startTime = Date.now();
 
   while (Date.now() - startTime < delay) {
