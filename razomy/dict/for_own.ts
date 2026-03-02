@@ -1,4 +1,4 @@
-export function forOwn(object, iteratee) {
+export function iterate(object, iteratee) {
   object = Object(object);
   const keys = Object.keys(object);
   for (let i = 0; i < keys.length; i++) {

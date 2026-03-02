@@ -1,4 +1,4 @@
-import { forOwn } from './for_own';
+import { iterate } from './for_own';
 import { isPlainObject } from './is_plain_object';
 
 export type Join<K, P> = K extends string
@@ -18,12 +18,12 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flattenDict<T extends object = object>(obj: T, parentKey = '', result = {} as any): FlattenedAndConverted<T> {
-  forOwn(obj, (value, key) => {
+export function flatten<T extends object = object>(obj: T, parentKey = '', result = {} as any): FlattenedAndConverted<T> {
+  iterate(obj, (value, key) => {
     const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
 
     if (isPlainObject(value)) {
-      flattenDict(value as any, newKey, result);
+      flatten(value as any, newKey, result);
     } else {
       result[newKey] = value;
     }

@@ -4,6 +4,6 @@ export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
-export function mergeDicts<T extends readonly Record<PropertyKey, unknown>[]>(array: [...T]) {
+export function merge<T extends readonly Record<PropertyKey, unknown>[]>(array: [...T]) {
   return array.reduce((acc, current) => ({ ...acc, ...current }), {} as Prettify<UnionToIntersection<T[number]>>);
 }

@@ -17,7 +17,7 @@ import type { Dict } from '@razomy/dict';
  * dictToString({ k: 'v', id: '1' }); // => '{k:v;id:1;}'
  * ```
  */
-export function dictToString<T extends string>(dict: Dict<T>): string {
+export function toString<T extends string>(dict: Dict<T>): string {
   let result: string = '{';
   for (const key in dict) {
     result += `${key}:${dict[key]};`;
