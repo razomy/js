@@ -6,18 +6,18 @@
  * @returns A new array with the item toggled.
  * @example
  * ```ts
- * itemToggle([1, 2], 3); // => [1, 2, 3]
+ * toggle([1, 2], 3); // => [1, 2, 3]
  * ```
  * @example
  * ```ts
- * itemToggle(['a', 'b', 'c'], 'b'); // => ['a', 'c']
+ * toggle(['a', 'b', 'c'], 'b'); // => ['a', 'c']
  * ```
  * @example
  * ```ts
- * itemToggle([], true); // => [true]
+ * toggle([], true); // => [true]
  * ```
  */
-export function itemToggle<T>(array: T[], item: T): T[] {
+export function toggle<T>(array: T[], item: T): T[] {
   const index = array.indexOf(item);
 
   if (index === -1) {

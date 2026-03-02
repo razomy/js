@@ -1,4 +1,4 @@
-export function arraySort(oldOrder: string[], newOrder: string[]) {
+export function sortByArrayMut(oldOrder: string[], newOrder: string[]) {
   const orderMap: Record<string, any> = {};
   newOrder.forEach((id, index) => {
     orderMap[id] = index;

@@ -1,8 +1,8 @@
 /**
  * Groups the elements of an array according to the result of the iteratee function.
  * @param array The array to iterate over.
- * @param {(item: T) => K} iteratee The function invoked per iteration to generate the key.
- * @returns {Record<K, T[]>} The object with grouped arrays.
+ * @param iteratee The function invoked per iteration to generate the key.
+ * @returns The object with grouped arrays.
  * @example
  * ```ts
  * groupBy([6.1, 4.2, 6.3], Math.floor);
