@@ -4,18 +4,18 @@
  * @returns {string[]} The array of words.
  * @example
  * ```ts
- * // => ['fred', 'barney', 'pebbles']
- * words('fred, barney, & pebbles');
+ * words('fred, barney, & pebbles'); // => ['fred', 'barney', 'pebbles']
+ * ```
  * @example
  * ```ts
- * // => ['camel', 'Case']
- * words('camelCase');
+ * words('camelCase'); // => ['camel', 'Case']
+ * ```
  * @example
  * ```ts
- * // => ['nested', 'snake', 'case']
- * words('nested_snake_case');
+ * words('nested_snake_case'); // => ['nested', 'snake', 'case']
+ * ```
  */
-export function words(value: string): string[] {
+export function getWords(value: string): string[] {
   const wordPattern = /[A-Z]{2,}(?=[A-Z][a-z]+|\b)|[A-Z]?[a-z]+|[A-Z]+|\d+/g;
   return value.match(wordPattern) || [];
 }

@@ -9,16 +9,16 @@ import type { Index } from '@razomy/index';
  * @returns {String} The resulting string with the insertion.
  * @example
  * ```ts
- * // => 'prefix-text'
- * addIndexString('-text', 0, 'prefix');
+ * addIndexString('-text', 0, 'prefix'); // => 'prefix-text'
+ * ```
  * @example
  * ```ts
- * // => 'hello world'
- * addIndexString('hello ', 6, 'world');
+ * addIndexString('hello ', 6, 'world'); // => 'hello world'
+ * ```
  * @example
  * ```ts
- * // => 'foo bar baz'
- * addIndexString('foo baz', 4, 'bar ');
+ * addIndexString('foo baz', 4, 'bar '); // => 'foo bar baz'
+ * ```
  */
 export function addIndexString(text: String, index: Index, insertion: string): String {
   return text.substring(0, index) + insertion + text.substring(index);

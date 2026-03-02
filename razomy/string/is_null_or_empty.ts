@@ -4,16 +4,16 @@
  * @returns {boolean} True if the string is null, undefined, or empty.
  * @example
  * ```ts
- * // => true
- * isNullOrEmpty(null);
+ * isNullOrEmpty(null); // => true
+ * ```
  * @example
  * ```ts
- * // => true
- * isNullOrEmpty('   ');
+ * isNullOrEmpty('   '); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * isNullOrEmpty('razomy');
+ * isNullOrEmpty('razomy'); // => false
+ * ```
  */
 export function isNullOrEmpty(str: string | null | undefined): str is null | undefined | '' {
   return str == null || str.trim() === '';

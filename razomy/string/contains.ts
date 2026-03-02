@@ -5,16 +5,16 @@
  * @returns True if the string contains the substring, false otherwise.
  * @example
  * ```ts
- * // => true
- * contains('razomy', 'zo');
+ * contains('razomy', 'zo'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * contains('razomy', 'bar');
+ * contains('razomy', 'bar'); // => false
+ * ```
  * @example
  * ```ts
- * // => true
- * contains('hello world', 'hello');
+ * contains('hello world', 'hello'); // => true
+ * ```
  */
 export function contains(text: string, search: string): boolean {
   return text.includes(search);

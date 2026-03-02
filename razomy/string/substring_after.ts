@@ -5,16 +5,16 @@
  * @returns The substring after the separator, or the original string if separator is not found.
  * @example
  * ```ts
- * // => 'bar'
- * substringAfter('foo.bar', '.');
+ * substringAfter('foo.bar', '.'); // => 'bar'
+ * ```
  * @example
  * ```ts
- * // => 'baz'
- * substringAfter('foo.bar.baz', '.bar.');
+ * substringAfter('foo.bar.baz', '.bar.'); // => 'baz'
+ * ```
  * @example
  * ```ts
- * // => 'foo'
- * substringAfter('foo', ',');
+ * substringAfter('foo', ','); // => 'foo'
+ * ```
  */
 export function substringAfter(text: string, separator: string): string {
   const index = text.indexOf(separator);

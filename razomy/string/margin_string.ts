@@ -5,18 +5,18 @@
  * @returns {string} The text with margin applied.
  * @example
  * ```ts
- * // => '  Hello'
- * marginString('Hello', '  ');
+ * marginString('Hello', '  '); // => '  Hello'
+ * ```
  * @example
  * ```ts
- * // => '> Line 1\n> Line 2'
- * marginString('Line 1\nLine 2', '> ');
+ * marginString('Line 1\nLine 2', '> '); // => '> Line 1\n> Line 2'
+ * ```
  * @example
  * ```ts
- * // => '\tCode'
- * marginString('Code', '\t');
+ * marginString('Code', '\t'); // => '\tCode'
+ * ```
  */
-export function marginString(text: string, margin: string): string {
+export function margin(text: string, margin: string): string {
   const lines = text.split('\n');
   const shiftedLines = lines.map((line) => margin + line);
   return shiftedLines.join('\n');

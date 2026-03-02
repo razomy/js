@@ -1,4 +1,4 @@
-import { escapeString, unescapeString } from '@razomy/string';
+import { escapeString, unescapeByString } from '@razomy/string';
 
 describe(`string`, () => {
   describe(escapeString.name, () => {
@@ -7,7 +7,7 @@ describe(`string`, () => {
       expect(result).toStrictEqual('\\`');
     });
     it('\\`', () => {
-      expect(unescapeString('\\`', '`')).toStrictEqual('`');
+      expect(unescapeByString('\\`', '`')).toStrictEqual('`');
     });
   });
 });

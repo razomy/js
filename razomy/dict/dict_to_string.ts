@@ -6,16 +6,16 @@ import type { Dict } from '@razomy/dict';
  * @returns The formatted string.
  * @example
  * ```ts
- * // => '{}'
- * dictToString({});
+ * dictToString({}); // => '{}'
+ * ```
  * @example
  * ```ts
- * // => '{a:b;}'
- * dictToString({ a: 'b' });
+ * dictToString({ a: 'b' }); // => '{a:b;}'
+ * ```
  * @example
  * ```ts
- * // => '{k:v;id:1;}'
- * dictToString({ k: 'v', id: '1' });
+ * dictToString({ k: 'v', id: '1' }); // => '{k:v;id:1;}'
+ * ```
  */
 export function dictToString<T extends string>(dict: Dict<T>): string {
   let result: string = '{';

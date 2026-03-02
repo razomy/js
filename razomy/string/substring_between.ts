@@ -7,16 +7,16 @@
  * @throws Error if the start or end delimiters are not found.
  * @example
  * ```ts
- * // => 'brown'
- * substringBetween('The quick brown fox', 'quick ', ' fox');
+ * substringBetween('The quick brown fox', 'quick ', ' fox'); // => 'brown'
+ * ```
  * @example
  * ```ts
- * // => 'value'
- * substringBetween('key="value";', '"', '"');
+ * substringBetween('key="value";', '"', '"'); // => 'value'
+ * ```
  * @example
  * ```ts
- * // => 'content'
- * substringBetween('<div>content</div>', '<div>', '</div>');
+ * substringBetween('<div>content</div>', '<div>', '</div>'); // => 'content'
+ * ```
  */
 export function substringBetween(text: string, start: string, end: string): string {
   const startIndex = text.indexOf(start);

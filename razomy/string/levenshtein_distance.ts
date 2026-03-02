@@ -5,16 +5,16 @@
  * @returns {number} The number of edits (insertions, deletions, or substitutions) required to transform one string into the other.
  * @example
  * ```ts
- * // => 3
- * levenshteinDistance('kitten', 'sitting');
+ * levenshteinDistance('kitten', 'sitting'); // => 3
+ * ```
  * @example
  * ```ts
- * // => 1
- * levenshteinDistance('test', 'text');
+ * levenshteinDistance('test', 'text'); // => 1
+ * ```
  * @example
  * ```ts
- * // => 0
- * levenshteinDistance('razomy', 'razomy');
+ * levenshteinDistance('razomy', 'razomy'); // => 0
+ * ```
  */
 export function levenshteinDistance(a: string, b: string): number {
   if (a.length === 0) {

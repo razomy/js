@@ -4,18 +4,18 @@
  * @returns {string} The string representation of the value.
  * @example
  * ```ts
- * // => '100'
- * string(100);
+ * string(100); // => '100'
+ * ```
  * @example
  * ```ts
- * // => 'true'
- * string(true);
+ * string(true); // => 'true'
+ * ```
  * @example
  * ```ts
- * // => 'null'
- * string(null);
+ * string(null); // => 'null'
+ * ```
  */
-export function string(value: unknown): string {
+export function create(value: unknown): string {
   return String(value);
 }
 

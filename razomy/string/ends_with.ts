@@ -6,17 +6,17 @@
  * @returns Returns true if string ends with target, else false.
  * @example
  * ```ts
- * // => true
- * endsWith('abc', 'c');
+ * isEndsWith('abc', 'c'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * endsWith('abc', 'b');
+ * isEndsWith('abc', 'b'); // => false
+ * ```
  * @example
  * ```ts
- * // => true
- * endsWith('abc', 'b', 2);
+ * isEndsWith('abc', 'b', 2); // => true
+ * ```
  */
-export function endsWith(text: string, target: string, position?: number): boolean {
+export function isEndsWith(text: string, target: string, position?: number): boolean {
   return text.endsWith(target, position);
 }

@@ -4,16 +4,16 @@
  * @returns An array of lines.
  * @example
  * ```ts
- * // => ['Line 1', 'Line 2']
- * splitLines('Line 1\nLine 2');
+ * splitLines('Line 1\nLine 2'); // => ['Line 1', 'Line 2']
+ * ```
  * @example
  * ```ts
- * // => ['A', 'B', 'C']
- * splitLines('A\r\nB\nC');
+ * splitLines('A\r\nB\nC'); // => ['A', 'B', 'C']
+ * ```
  * @example
  * ```ts
- * // => ['One']
- * splitLines('One');
+ * splitLines('One'); // => ['One']
+ * ```
  */
 export function splitLines(text: string): string[] {
   return text.split(/\r\n|\r|\n/);

@@ -6,16 +6,16 @@ import type { String } from '@razomy/string';
  * @returns True if the value is a string.
  * @example
  * ```ts
- * // => true
- * isString('razomy');
+ * isString('razomy'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * isString(123);
+ * isString(123); // => false
+ * ```
  * @example
  * ```ts
- * // => false
- * isString(null);
+ * isString(null); // => false
+ * ```
  */
 export function isString(value: unknown): value is String {
   return typeof value === 'string';

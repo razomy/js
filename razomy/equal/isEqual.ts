@@ -1,4 +1,4 @@
-export function equal(a, b) {
+export function isEqual(a, b) {
   if (a.equals(b)) return true;
 
   if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) {
@@ -11,7 +11,7 @@ export function equal(a, b) {
   if (keysA.length !== keysB.length) return false;
 
   for (const key of keysA) {
-    if (!keysB.includes(key) || !equal(a[key], b[key])) {
+    if (!keysB.includes(key) || !isEqual(a[key], b[key])) {
       return false;
     }
   }

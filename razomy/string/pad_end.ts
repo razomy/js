@@ -6,16 +6,16 @@
  * @returns The padded string.
  * @example
  * ```ts
- * // => 'abc   '
- * padEnd('abc', 6);
+ * padEnd('abc', 6); // => 'abc   '
+ * ```
  * @example
  * ```ts
- * // => 'abc000'
- * padEnd('abc', 6, '0');
+ * padEnd('abc', 6, '0'); // => 'abc000'
+ * ```
  * @example
  * ```ts
- * // => 'abc'
- * padEnd('abc', 2);
+ * padEnd('abc', 2); // => 'abc'
+ * ```
  */
 export function padEnd(input: string, length: number, chars: string = ' '): string {
   return input.padEnd(length, chars);

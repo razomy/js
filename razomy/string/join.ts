@@ -5,16 +5,16 @@
  * @returns The joined string.
  * @example
  * ```ts
- * // => 'a-b-c'
- * join(['a', 'b', 'c'], '-');
+ * join(['a', 'b', 'c'], '-'); // => 'a-b-c'
+ * ```
  * @example
  * ```ts
- * // => 'hello world'
- * join(['hello', 'world'], ' ');
+ * join(['hello', 'world'], ' '); // => 'hello world'
+ * ```
  * @example
  * ```ts
- * // => 'one'
- * join(['one'], ',');
+ * join(['one'], ','); // => 'one'
+ * ```
  */
 export function join(items: string[], separator: string): string {
   return items.join(separator);

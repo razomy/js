@@ -5,16 +5,16 @@
  * @returns {number} The number of occurrences.
  * @example
  * ```ts
- * // => 3
- * countOccurrences('hello world', 'l');
+ * countOccurrences('hello world', 'l'); // => 3
+ * ```
  * @example
  * ```ts
- * // => 2
- * countOccurrences('aaaa', 'aa');
+ * countOccurrences('aaaa', 'aa'); // => 2
+ * ```
  * @example
  * ```ts
- * // => 0
- * countOccurrences('apple', 'z');
+ * countOccurrences('apple', 'z'); // => 0
+ * ```
  */
 export function countOccurrences(text: string, substring: string): number {
   return text.split(substring).length - 1;

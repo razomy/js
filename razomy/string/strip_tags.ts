@@ -4,16 +4,16 @@
  * @returns The string without HTML tags.
  * @example
  * ```ts
- * // => 'Hello world'
- * stripTags('<p>Hello world</p>');
+ * stripTags('<p>Hello world</p>'); // => 'Hello world'
+ * ```
  * @example
  * ```ts
- * // => 'Link'
- * stripTags('<a href="https://example.com">Link</a>');
+ * stripTags('<a href="https://example.com">Link</a>'); // => 'Link'
+ * ```
  * @example
  * ```ts
- * // => 'content'
- * stripTags('<div><span>content</span></div>');
+ * stripTags('<div><span>content</span></div>'); // => 'content'
+ * ```
  */
 export function stripTags(content: string): string {
   return content.replace(/<[^>]*>/g, '');

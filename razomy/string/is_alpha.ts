@@ -4,16 +4,16 @@
  * @returns True if the string is alphabetic.
  * @example
  * ```ts
- * // => true
- * isAlpha('Razomy');
+ * isAlpha('Razomy'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * isAlpha('R4zomy');
+ * isAlpha('R4zomy'); // => false
+ * ```
  * @example
  * ```ts
- * // => false
- * isAlpha('');
+ * isAlpha(''); // => false
+ * ```
  */
 export function isAlpha(text: string): boolean {
   return /^[a-zA-Z]+$/.test(text);

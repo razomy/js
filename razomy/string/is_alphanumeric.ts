@@ -4,16 +4,16 @@
  * @returns True if the string is alphanumeric.
  * @example
  * ```ts
- * // => true
- * isAlphanumeric('Razomy1');
+ * isAlphanumeric('Razomy1'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * isAlphanumeric('Razomy-String');
+ * isAlphanumeric('Razomy-String'); // => false
+ * ```
  * @example
  * ```ts
- * // => false
- * isAlphanumeric(' ');
+ * isAlphanumeric(' '); // => false
+ * ```
  */
 export function isAlphanumeric(text: string): boolean {
   return /^[a-z0-9]+$/i.test(text);

@@ -4,20 +4,20 @@
  * @returns {String} The concatenated string.
  * @example
  * ```ts
- * // => 'abc'
- * stringsString(['a', 'b', 'c']);
+ * merge(['a', 'b', 'c']); // => 'abc'
+ * ```
  * @example
  * ```ts
- * // => 'razomy'
- * stringsString(['ra', 'zo', 'my']);
+ * merge(['ra', 'zo', 'my']); // => 'razomy'
+ * ```
  * @example
  * ```ts
- * // => ''
- * stringsString([]);
+ * merge([]); // => ''
+ * ```
  */
 import type { String } from '@razomy/string';
 
-export function stringsString(strings: String[]): String {
+export function merge(strings: String[]): String {
   let result: String = '';
 
   for (let i = 0; i < strings.length; i++) {

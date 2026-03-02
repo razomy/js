@@ -6,19 +6,19 @@
  * @returns {String} The modified string.
  * @example
  * ```ts
- * // => 'a-b-c'
- * replaceString('a b c', ' ', '-');
+ * replace('a b c', ' ', '-'); // => 'a-b-c'
+ * ```
  * @example
  * ```ts
- * // => '12345'
- * replaceString('1,2,3,4,5', ',', '');
+ * replace('1,2,3,4,5', ',', ''); // => '12345'
+ * ```
  * @example
  * ```ts
- * // => 'foo'
- * replaceString('foo', 'bar', 'baz');
+ * replace('foo', 'bar', 'baz'); // => 'foo'
+ * ```
  */
 import type { String } from '@razomy/string';
 
-export function replaceString(text: String, separator: String, replacement: String): String {
+export function replace(text: String, separator: String, replacement: String): String {
   return text.split(separator).join(replacement);
 }

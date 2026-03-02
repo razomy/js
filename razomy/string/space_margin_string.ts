@@ -5,20 +5,20 @@
  * @returns {string} The string with space margin.
  * @example
  * ```ts
- * // => ' a '
- * spaceMarginString('a', 1);
+ * spaceMargin('a', 1); // => ' a '
+ * ```
  * @example
  * ```ts
- * // => '  b  '
- * spaceMarginString('b', 2);
+ * spaceMargin('b', 2); // => '  b  '
+ * ```
  * @example
  * ```ts
- * // => 'c'
- * spaceMarginString('c', 0);
+ * spaceMargin('c', 0); // => 'c'
+ * ```
  */
-import { marginString } from '@razomy/string';
+import { margin } from '@razomy/string';
 
-export function spaceMarginString(value: string, size: number): string {
+export function spaceMargin(value: string, size: number): string {
   const margin = ' '.repeat(size);
-  return marginString(value, margin);
+  return margin(value, margin);
 }

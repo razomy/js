@@ -5,16 +5,16 @@
  * @returns A new string containing the specified number of copies.
  * @example
  * ```ts
- * // => 'aaa'
- * repeat('a', 3);
+ * repeat('a', 3); // => 'aaa'
+ * ```
  * @example
  * ```ts
- * // => 'razomyrazomy'
- * repeat('razomy', 2);
+ * repeat('razomy', 2); // => 'razomyrazomy'
+ * ```
  * @example
  * ```ts
- * // => ''
- * repeat('test', 0);
+ * repeat('test', 0); // => ''
+ * ```
  */
 export function repeat(content: string, count: number): string {
   return content.repeat(count);

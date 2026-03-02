@@ -6,16 +6,16 @@
  * @returns The padded string.
  * @example
  * ```ts
- * // => '  a'
- * padStart('a', 3);
+ * padStart('a', 3); // => '  a'
+ * ```
  * @example
  * ```ts
- * // => '00a'
- * padStart('a', 3, '0');
+ * padStart('a', 3, '0'); // => '00a'
+ * ```
  * @example
  * ```ts
- * // => 'abc'
- * padStart('abc', 2);
+ * padStart('abc', 2); // => 'abc'
+ * ```
  */
 export function padStart(input: string, length: number, chars: string = ' '): string {
   return input.padStart(length, chars);

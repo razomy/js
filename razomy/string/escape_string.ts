@@ -1,6 +1,6 @@
 import type { String } from '@razomy/string';
-import { replaceString } from '@razomy/string';
+import { replace } from '@razomy/string';
 
-export function escapeString(string: String, separateString: String): String {
-  return replaceString(string, separateString, '\\' + separateString);
+export function escapeByString(string: String, separateString: String): String {
+  return replace(string, separateString, '\\' + separateString);
 }

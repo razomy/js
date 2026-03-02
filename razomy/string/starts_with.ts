@@ -6,17 +6,17 @@
  * @returns Returns true if string starts with target, else false.
  * @example
  * ```ts
- * // => true
- * startsWith('razomy', 'r');
+ * isStartsWith('razomy', 'r'); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * startsWith('razomy', 'z');
+ * isStartsWith('razomy', 'z'); // => false
+ * ```
  * @example
  * ```ts
- * // => true
- * startsWith('razomy', 'z', 2);
+ * isStartsWith('razomy', 'z', 2); // => true
+ * ```
  */
-export function startsWith(string: string, target: string, position: number = 0): boolean {
+export function isStartsWith(string: string, target: string, position: number = 0): boolean {
   return string.startsWith(target, position);
 }

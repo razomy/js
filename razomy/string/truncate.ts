@@ -6,16 +6,16 @@
  * @returns The truncated string.
  * @example
  * ```ts
- * // => 'he...'
- * truncate('hello world', 5);
+ * truncate('hello world', 5); // => 'he...'
+ * ```
  * @example
  * ```ts
- * // => 'hello'
- * truncate('hello', 10);
+ * truncate('hello', 10); // => 'hello'
+ * ```
  * @example
  * ```ts
- * // => 'hello..'
- * truncate('hello world', 7, '..');
+ * truncate('hello world', 7, '...'); // => 'hello...'
+ * ```
  */
 export function truncate(text: string, length: number, omission: string = '...'): string {
   if (text.length <= length) {

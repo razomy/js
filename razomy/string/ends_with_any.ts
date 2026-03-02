@@ -6,17 +6,17 @@
  * @returns Returns true if string ends with any of the targets, else false.
  * @example
  * ```ts
- * // => true
- * endsWithAny('image.jpg', ['.jpg', '.png']);
+ * isEndsWithAny('image.jpg', ['.jpg', '.png']); // => true
+ * ```
  * @example
  * ```ts
- * // => false
- * endsWithAny('image.gif', ['.jpg', '.png']);
+ * isEndsWithAny('image.gif', ['.jpg', '.png']); // => false
+ * ```
  * @example
  * ```ts
- * // => true
- * endsWithAny('abc', ['a', 'b'], 2);
+ * isEndsWithAny('abc', ['a', 'b'], 2); // => true
+ * ```
  */
-export function endsWithAny(text: string, targets: string[], position?: number): boolean {
+export function isEndsWithAny(text: string, targets: string[], position?: number): boolean {
   return targets.some((target) => text.endsWith(target, position));
 }

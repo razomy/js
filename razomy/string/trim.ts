@@ -4,16 +4,16 @@
  * @returns The trimmed string.
  * @example
  * ```ts
- * // => 'foo'
- * trim('  foo  ');
+ * trim('  foo  '); // => 'foo'
+ * ```
  * @example
  * ```ts
- * // => 'bar'
- * trim('\nbar\t');
+ * trim('\nbar\t'); // => 'bar'
+ * ```
  * @example
  * ```ts
- * // => ''
- * trim('   ');
+ * trim('   '); // => ''
+ * ```
  */
 export function trim(text: string): string {
   return text.trim();

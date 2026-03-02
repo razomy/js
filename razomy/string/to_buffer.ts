@@ -5,16 +5,16 @@
  * @returns {Buffer} The resulting buffer.
  * @example
  * ```ts
- * // => <Buffer 61 62 63>
- * toBuffer('abc', 'utf8');
+ * toBuffer('abc', 'utf8'); // => <Buffer 61 62 63>
+ * ```
  * @example
  * ```ts
- * // => <Buffer 61 62 63>
- * toBuffer('YWJj', 'base64');
+ * toBuffer('YWJj', 'base64'); // => <Buffer 61 62 63>
+ * ```
  * @example
  * ```ts
- * // => <Buffer 61 62 63>
- * toBuffer('616263', 'hex');
+ * toBuffer('616263', 'hex'); // => <Buffer 61 62 63>
+ * ```
  */
 export function toBuffer(value: string, encoding: BufferEncoding): Buffer {
   return Buffer.from(value, encoding);
