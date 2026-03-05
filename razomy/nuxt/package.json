@@ -28,6 +28,9 @@
       "types": "./src/module.ts"
     },
     "./locales/*": "./locales/*",
+    "./runtime/pages/*": "./src/runtime/pages/*",
+    "./runtime/apps/*": "./src/runtime/apps/*",
+    "./runtime/layouts/*": "./src/runtime/layouts/*",
     "./runtime/components/*": "./src/runtime/components/*",
     "./runtime/functions": {
       "import": "./src/runtime/functions/index.ts",
