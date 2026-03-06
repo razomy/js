@@ -1,5 +1,5 @@
 /**
- * Converts a string to lower case.
+ * @summary Converts a string to lower case.
  * @param text - The string to convert.
  * @returns The lower cased string.
  * @example

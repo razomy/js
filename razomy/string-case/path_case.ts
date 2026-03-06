@@ -1,5 +1,5 @@
 /**
- * Convert string to path/case.
+ * @summary Convert string to path/case.
  * @param text The text to convert.
  * @returns The path cased string.
  * @example

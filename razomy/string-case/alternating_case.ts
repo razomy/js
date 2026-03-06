@@ -1,6 +1,6 @@
 /**
- * Convert string to aLtErNaTiNg cAsE (SpongeBob case).
- * Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
+ * @summary Convert string to aLtErNaTiNg cAsE (SpongeBob case).
+ * @description Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
  * @param text The text to convert.
  * @returns The alternating cased string.
  * @example

@@ -1,5 +1,5 @@
 /**
- * Get abbreviation from string.
+ * @summary Get abbreviation from string.
  * @param text The full name string.
  * @returns The abbreviation joined by hyphens.
  * @example

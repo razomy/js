@@ -1,6 +1,6 @@
 /**
- * Convert string by swapping the case of every character.
- * Uppercase becomes lowercase, and lowercase becomes uppercase.
+ * @summary Convert string by swapping the case of every character.
+ * @description Uppercase becomes lowercase, and lowercase becomes uppercase.
  * @param text The text to convert.
  * @returns The swapped case string.
  * @example

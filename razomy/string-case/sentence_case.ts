@@ -1,6 +1,6 @@
 /**
- * Convert string to Sentence case.
- * Only the first letter of the result is capitalized, the rest is lowercase.
+ * @summary Convert string to Sentence case.
+ * @description Only the first letter of the result is capitalized, the rest is lowercase.
  * @param text The text to convert.
  * @returns The sentence cased string.
  * @example

@@ -1,5 +1,5 @@
 /**
- * Convert string to dot.case.
+ * @summary Convert string to dot.case.
  * @param text The text to convert.
  * @returns The dot cased string.
  * @example

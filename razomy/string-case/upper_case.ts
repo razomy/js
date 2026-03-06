@@ -1,7 +1,7 @@
 /**
- * Convert string to upper case.
+ * @summary Convert string to upper case.
  * @param text The input string.
- * @returns The upper cased string.
+ * @returns The upper-cased string.
  * @example
  * ```ts
  * upperCase('test'); // => 'TEST'

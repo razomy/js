@@ -1,5 +1,5 @@
 /**
- * Convert string to kebab case.
+ * @summary Convert string to kebab case.
  * @param text The text to convert.
  * @returns The kebab cased string.
  * @example

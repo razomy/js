@@ -1,5 +1,5 @@
 /**
- * Convert string to url friendly slug.
+ * @summary Convert string to url friendly slug.
  * @param text The text to slugify.
  * @returns The slugified string.
  * @example

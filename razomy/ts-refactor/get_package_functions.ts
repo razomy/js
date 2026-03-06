@@ -4,6 +4,7 @@ import type { PerformanceRecord } from '../performance/weighted_moving_average_r
 
 export interface FunctionSpecification {
   name: string;
+  title: string;
   description: string;
   parameters: {
     name: string;

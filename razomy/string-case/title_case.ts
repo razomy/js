@@ -1,5 +1,5 @@
 /**
- * Convert string to title case.
+ * @summary Convert string to title case.
  * @param text The input string.
  * @returns The title cased string.
  * @example

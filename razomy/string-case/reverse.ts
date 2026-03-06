@@ -1,5 +1,5 @@
 /**
- * Reverses the given string.
+ * @summary Reverses the given string.
  * @param text The string to reverse.
  * @returns The reversed string.
  * @example

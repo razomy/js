@@ -13,6 +13,8 @@ export async function createDistSpecifications(project: Project, path: string, n
 
   const spec = {
     name: func.getName(),
+    path: '',
+    title: '',
     description: '',
     parameters: [] as any[],
     returns: {
@@ -87,6 +89,29 @@ export async function createDistSpecifications(project: Project, path: string, n
         });
       }
     }
+  });
+
+  // --- Извлекаем complexity (Examples) ---
+  const titleTags = doc.getTags().filter((t) => t.getTagName() === 'summary');
+  titleTags.forEach((tag) => {
+    // 1. Очищаем текст тега от звездочек форматирования JSDoc
+    const cleanText = tag.getCommentText();
+
+    if (!cleanText) {
+      throw new Error('Invalid Doc no summary ' + path);
+    }
+    spec.title = cleanText;
+  });
+
+  const descriptionTags = doc.getTags().filter((t) => t.getTagName() === 'description');
+  descriptionTags.forEach((tag) => {
+    // 1. Очищаем текст тега от звездочек форматирования JSDoc
+    const cleanText = tag.getCommentText();
+
+    if (!cleanText) {
+      throw new Error('Invalid Doc no description ' + path);
+    }
+    spec.description = cleanText;
   });
 
   // --- Извлекаем complexity (Examples) ---

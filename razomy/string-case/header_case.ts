@@ -1,5 +1,5 @@
 /**
- * Convert string to Header-Case (Train-Case).
+ * @summary Convert string to Header-Case (Train-Case).
  * @param text The text to convert.
  * @returns The header cased string.
  * @example

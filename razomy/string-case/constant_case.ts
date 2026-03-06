@@ -1,5 +1,5 @@
 /**
- * Convert string to CONSTANT_CASE (macro case).
+ * @summary Convert string to CONSTANT_CASE (macro case).
  * @param text The text to convert.
  * @returns The constant cased string.
  * @example

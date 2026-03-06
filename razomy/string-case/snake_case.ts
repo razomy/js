@@ -1,5 +1,5 @@
 /**
- * Convert string to snake case.
+ * @summary Convert string to snake case.
  * @param text The string to convert.
  * @returns The snake cased string.
  * @example

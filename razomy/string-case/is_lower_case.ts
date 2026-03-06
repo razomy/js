@@ -1,5 +1,5 @@
 /**
- * Checks if the string is lower case.
+ * @summary Checks if the string is lower case.
  * @param text The string to check.
  * @returns True if the string is lower case, false otherwise.
  * @example

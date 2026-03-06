@@ -1,5 +1,5 @@
 /**
- * Convert string to pascal case.
+ * @summary Convert string to pascal case.
  * @param text The string.
  * @returns The pascal cased string.
  * @example

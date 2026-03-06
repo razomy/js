@@ -1,5 +1,5 @@
 /**
- * Check if a string is upper case.
+ * @summary Check if a string is upper case.
  * @param text The string to check.
  * @returns True if the string is upper case.
  * @example

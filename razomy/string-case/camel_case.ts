@@ -1,5 +1,5 @@
 /**
- * Converts a string to camel case.
+ * @summary Converts a string to camel case.
  * @param text - The text to convert.
  * @returns The camel cased string.
  * @example

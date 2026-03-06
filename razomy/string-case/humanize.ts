@@ -1,7 +1,7 @@
 import { capitalize } from './capitalize';
 
 /**
- * Convert a string to a human-readable form.
+ * @summary Convert a string to a human-readable form.
  * @param text The string to humanize.
  * @returns The humanized string.
  * @example
