@@ -13,7 +13,12 @@ export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = WithTokenType<JsonTokenType> & WithValue<string> & WithDeep;
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
-  const c = create({ tokens: jsonTokens }, { offset: 0 }, { stack: [] as number[] }, { deep: 0 }) satisfies WithTokens<JsonToken> & WithOffset;
+  const c = create(
+    { tokens: jsonTokens },
+    { offset: 0 },
+    { stack: [] as number[] },
+    { deep: 0 },
+  ) satisfies WithTokens<JsonToken> & WithOffset;
   const rs = {
     // Primitives
     key: (c) => tryP(c, f(tryTokenValue, 'value')),

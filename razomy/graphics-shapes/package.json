@@ -65,11 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "shapes",
-    "rectangleRender",
-    "rectangleRoundStyle",
-    "rectangleShape",
-    "shapeElement"
+    "shapes"
   ],
   "license": "MIT",
   "main": "./index.ts",

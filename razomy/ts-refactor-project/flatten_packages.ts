@@ -82,7 +82,11 @@ async function flattenFolders(project: Project, rootDir: string) {
 
 type ExportIndex = Map<string, SourceFile>;
 
-function findReplacementSymbol(nameToFind: string, exportMap: ExportIndex, allExportNames: string[]): { name: string; file: SourceFile } | null {
+function findReplacementSymbol(
+  nameToFind: string,
+  exportMap: ExportIndex,
+  allExportNames: string[],
+): { name: string; file: SourceFile } | null {
   if (exportMap.has(nameToFind)) {
     return { name: nameToFind, file: exportMap.get(nameToFind)! };
   }
@@ -129,7 +133,9 @@ async function fixBrokenImportsAndExports(project: Project) {
 
   for (const file of sourceFiles) {
     // Fix Imports
-    const brokenImports = file.getImportDeclarations().filter((i) => i.isModuleSpecifierRelative() && !i.getModuleSpecifierSourceFile());
+    const brokenImports = file
+      .getImportDeclarations()
+      .filter((i) => i.isModuleSpecifierRelative() && !i.getModuleSpecifierSourceFile());
 
     if (brokenImports.length > 0) {
       console.log(`Fixing IMPORTS in ${file.getBaseName()}...`);
@@ -155,7 +161,9 @@ async function fixBrokenImportsAndExports(project: Project) {
     }
 
     // Fix Exports (re-exports)
-    const brokenExports = file.getExportDeclarations().filter((e) => e.isModuleSpecifierRelative() && !e.getModuleSpecifierSourceFile());
+    const brokenExports = file
+      .getExportDeclarations()
+      .filter((e) => e.isModuleSpecifierRelative() && !e.getModuleSpecifierSourceFile());
 
     if (brokenExports.length > 0) {
       console.log(`Fixing EXPORTS in ${file.getBaseName()}...`);

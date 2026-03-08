@@ -68,12 +68,7 @@
     "codecs",
     "web",
     "svg",
-    "color",
-    "colorCodex",
-    "hexParser",
-    "hslaParser",
-    "rgbaParser",
-    "svgColorParser"
+    "color"
   ],
   "license": "MIT",
   "main": "./index.ts",

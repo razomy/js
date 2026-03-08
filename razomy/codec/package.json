@@ -64,9 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/codec#readme",
   "keywords": [
     "razomy",
-    "codec",
-    "withDecode",
-    "withEncode"
+    "codec"
   ],
   "license": "MIT",
   "main": "./index.ts",

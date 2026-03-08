@@ -66,8 +66,8 @@
     "razomy",
     "recursive",
     "deleteByPath",
-    "getAny",
     "getAnyAll",
+    "getAny",
     "getByPath",
     "setByPath"
   ],

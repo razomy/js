@@ -96,7 +96,13 @@ export async function createIndexFiles(projectPath_: string) {
  * Проверка путей, которые нужно игнорировать
  */
 function shouldIgnorePath(p: string, projectPath: string): boolean {
-  return p.includes('/node_modules') || p.includes('/dist') || p.includes('/bin') || p === projectPath || p === projectPath + '/razomy';
+  return (
+    p.includes('/node_modules') ||
+    p.includes('/dist') ||
+    p.includes('/bin') ||
+    p === projectPath ||
+    p === projectPath + '/razomy'
+  );
 }
 
 /**
@@ -139,7 +145,12 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
     const decl = decls[0];
     const kind = decl.getKind();
 
-    if (kind === SyntaxKind.ClassDeclaration || kind === SyntaxKind.FunctionDeclaration || kind === SyntaxKind.VariableDeclaration || kind === SyntaxKind.EnumDeclaration) {
+    if (
+      kind === SyntaxKind.ClassDeclaration ||
+      kind === SyntaxKind.FunctionDeclaration ||
+      kind === SyntaxKind.VariableDeclaration ||
+      kind === SyntaxKind.EnumDeclaration
+    ) {
       hasTypesOrClasses = true;
       namesToExport.push(name);
     } else if (kind === SyntaxKind.InterfaceDeclaration || kind === SyntaxKind.TypeAliasDeclaration) {
@@ -152,8 +163,13 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
 
   // Логика выбора стиля экспорта
   if (hasTypesOrClasses) {
+
     if (namesToExport.length > 0) {
-      return `export {${namesToExport.join(', ')}} from './${baseName}';`;
+      const def = `export { ${namesToExport.join(', ')} } from './${baseName}';`;
+      if (def.length > 120) {
+        return `export {\n  ${namesToExport.join(',\n  ')},\n} from './${baseName}';`;
+      }
+      return def;
     }
   } else {
     // Если только утилиты/константы -> экспортируем как пространство имен

@@ -65,11 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "styles",
-    "borderStyle",
-    "fillStyle",
-    "shadowStyle",
-    "themeStyle"
+    "styles"
   ],
   "license": "MIT",
   "main": "./index.ts",

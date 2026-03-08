@@ -65,9 +65,7 @@
   "keywords": [
     "razomy",
     "coordinates",
-    "y",
-    "boundY",
-    "withY"
+    "y"
   ],
   "license": "MIT",
   "main": "./index.ts",

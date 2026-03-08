@@ -64,15 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/exceptions#readme",
   "keywords": [
     "razomy",
-    "exceptions",
-    "argumentException",
-    "collectException",
-    "exception",
-    "multipleException",
-    "notImplementedException",
-    "notSupportedException",
-    "pathException",
-    "unknownTypeArgumentException"
+    "exceptions"
   ],
   "license": "MIT",
   "main": "./index.ts",

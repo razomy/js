@@ -70,7 +70,6 @@
     "freeze",
     "isPromise",
     "loop",
-    "taskQueue",
     "tryPromise"
   ],
   "license": "MIT",

@@ -67,7 +67,9 @@
     "google",
     "genai",
     "ask",
-    "f"
+    "f",
+    "ai",
+    "response"
   ],
   "license": "MIT",
   "main": "./index.ts",

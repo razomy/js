@@ -1,5 +1,9 @@
 import simpleGit from 'simple-git';
-import { type ActorDatetimeDeltaString, addssToString, stringsToDeltaStrings } from '@razomy/commit-datetime-delta-string';
+import {
+  type ActorDatetimeDeltaString,
+  addssToString,
+  stringsToDeltaStrings,
+} from '@razomy/commit-datetime-delta-string';
 
 import { getAllCommitHashes } from './get_all_commit_hashes';
 

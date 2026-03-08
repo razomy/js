@@ -65,12 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "elements",
-    "elementView",
-    "layoutElement",
-    "textElement",
-    "viewportElement",
-    "zoomAttribute"
+    "elements"
   ],
   "license": "MIT",
   "main": "./index.ts",

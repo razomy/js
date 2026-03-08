@@ -64,9 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/list#readme",
   "keywords": [
     "razomy",
-    "list",
-    "linkedList",
-    "node"
+    "list"
   ],
   "license": "MIT",
   "main": "./index.ts",

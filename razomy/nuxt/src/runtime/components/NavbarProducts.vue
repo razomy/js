@@ -2,7 +2,11 @@
   <v-menu location="bottom center" transition="slide-y-transition">
     <template v-slot:activator="{ props }">
       <v-btn :class="isVertical ? '' : 'text-center w-100'" variant="plain" density="compact" stacked v-bind="props">
-        <img :alt="t(currentNavigationNode.meta.nameTk)" :src="currentNavigationNode.meta.iconName" class="d-flex mx-auto v-icon" />
+        <img
+          :alt="t(currentNavigationNode.meta.nameTk)"
+          :src="currentNavigationNode.meta.iconName"
+          class="d-flex mx-auto v-icon"
+        />
         <div>{{ t(currentNavigationNode.meta.nameTk) }}</div>
       </v-btn>
     </template>

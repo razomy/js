@@ -15,7 +15,12 @@ export class SvgCodec implements Codec<ViewportElement, SVGElement> {
 
   public decode(value: SVGElement): ViewportElement {
     const viewportElement = new ViewportElement();
-    viewportElement.replace(new SizeAttribute(+value.attributes.getNamedItem('height')!.value, +value.attributes.getNamedItem('width')!.value));
+    viewportElement.replace(
+      new SizeAttribute(
+        +value.attributes.getNamedItem('height')!.value,
+        +value.attributes.getNamedItem('width')!.value,
+      ),
+    );
 
     return viewportElement;
   }

@@ -65,8 +65,7 @@
   "keywords": [
     "razomy",
     "tree",
-    "dict_or_list",
-    "withChildrenDictOrList"
+    "dict_or_list"
   ],
   "license": "MIT",
   "main": "./index.ts",

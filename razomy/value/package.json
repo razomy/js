@@ -65,8 +65,7 @@
   "keywords": [
     "razomy",
     "value",
-    "isWithValue",
-    "withValue"
+    "isWithValue"
   ],
   "license": "MIT",
   "main": "./index.ts",

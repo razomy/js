@@ -65,13 +65,14 @@
   "keywords": [
     "razomy",
     "shell",
-    "execute",
     "executeSync",
-    "get",
+    "execute",
     "getBool",
-    "log",
+    "get",
     "logInline",
-    "progress"
+    "log",
+    "progress",
+    "startDir"
   ],
   "license": "MIT",
   "main": "./index.ts",

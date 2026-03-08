@@ -65,10 +65,7 @@
   "keywords": [
     "razomy",
     "task",
-    "async",
-    "asyncTask",
-    "asyncTaskList",
-    "fileTaskManager"
+    "async"
   ],
   "license": "MIT",
   "main": "./index.ts",

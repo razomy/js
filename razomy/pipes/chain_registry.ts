@@ -9,10 +9,14 @@ export interface StringChainMethods {}
 export interface ArrayChainMethods<V extends any[]> {}
 
 // 3. The Magic: Conditional Type that applies methods based on V's type
-export type Chain<V> = BaseChain<V> & (V extends string ? StringChainMethods : unknown) & (V extends any[] ? ArrayChainMethods<V> : unknown);
+export type Chain<V> = BaseChain<V> &
+  (V extends string ? StringChainMethods : unknown) &
+  (V extends any[] ? ArrayChainMethods<V> : unknown);
 
 // 4. Utility to strip first argument and return the new Chain<Type>
-export type StripFirstArg<F, T = any> = F extends (first: T, ...args: infer P) => infer R ? (...args: P) => Chain<R> : never;
+export type StripFirstArg<F, T = any> = F extends (first: T, ...args: infer P) => infer R
+  ? (...args: P) => Chain<R>
+  : never;
 
 export type Chainable<T, T2 = any> = {
   [K in keyof T]: T[K] extends (...args: any[]) => any ? StripFirstArg<T[K], T2> : never;

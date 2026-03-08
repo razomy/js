@@ -119,4 +119,14 @@ export type color = string;
 export type date_ = Date;
 export type blob_ = Blob;
 export type file_ = File;
-export type AllSpecific = date_ | timestamp | blob_ | file_ | dateIsoString | dateString | datetimeString | email | url | color;
+export type AllSpecific =
+  | date_
+  | timestamp
+  | blob_
+  | file_
+  | dateIsoString
+  | dateString
+  | datetimeString
+  | email
+  | url
+  | color;

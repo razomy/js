@@ -12,7 +12,10 @@ export enum IterateBreaks {
   Break = 2,
 }
 
-export function iterateVrd<T, C extends Iterate<T>>(ctx: C, isIterateChildExecuteBool: (ctx: C) => IterateBreaks): IterateBreaks {
+export function iterateVrd<T, C extends Iterate<T>>(
+  ctx: C,
+  isIterateChildExecuteBool: (ctx: C) => IterateBreaks,
+): IterateBreaks {
   const result = isIterateChildExecuteBool(ctx);
   if (result === IterateBreaks.Skip) {
     return result;

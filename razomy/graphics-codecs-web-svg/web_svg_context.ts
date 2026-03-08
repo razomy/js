@@ -1,7 +1,12 @@
 import { CodecConfig, CodecFactory, CodecRegistry, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
 
 export class WebSvgContext {
-  constructor(public codecConfig: CodecConfig, public encodeNodeFactory: EncodeNodeFactory, public codecFactory: CodecFactory, public codecRegistry: CodecRegistry) {}
+  constructor(
+    public codecConfig: CodecConfig,
+    public encodeNodeFactory: EncodeNodeFactory,
+    public codecFactory: CodecFactory,
+    public codecRegistry: CodecRegistry,
+  ) {}
 
   static create(): WebSvgContext {
     const codecConfig: CodecConfig = new CodecConfig();

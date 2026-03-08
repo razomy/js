@@ -13,7 +13,9 @@ export function toThrow<T extends Function>(actual: T, expected?: Error) {
   }
 
   if (!threw) {
-    throw new Error(`Assertion Failed: Function expected to throw, but it did not. With result: ${JSON.stringify(result)}.`);
+    throw new Error(
+      `Assertion Failed: Function expected to throw, but it did not. With result: ${JSON.stringify(result)}.`,
+    );
   }
 
   console.log(`✅ expect(${JSON.stringify(expected?.message)}).toThrow passed`);

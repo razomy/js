@@ -1,8 +1,31 @@
 import { type FileFormat } from '@razomy/fs-file-format';
 
-export type ReadAndWriteImageFileExtensionType = 'jpg' | 'jpeg' | 'png' | 'webp' | 'gif' | 'avif' | 'tiff' | 'tif' | 'ico' | 'heif' | 'heic';
+export type ReadAndWriteImageFileExtensionType =
+  | 'jpg'
+  | 'jpeg'
+  | 'png'
+  | 'webp'
+  | 'gif'
+  | 'avif'
+  | 'tiff'
+  | 'tif'
+  | 'ico'
+  | 'heif'
+  | 'heic';
 // Список форматов, в которые Sharp умеет СОХРАНЯТЬ
-export const imageWriteTargets: ReadAndWriteImageFileExtensionType[] = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif', 'tiff', 'tif', 'ico', 'heif', 'heic'];
+export const imageWriteTargets: ReadAndWriteImageFileExtensionType[] = [
+  'jpg',
+  'jpeg',
+  'png',
+  'webp',
+  'gif',
+  'avif',
+  'tiff',
+  'tif',
+  'ico',
+  'heif',
+  'heic',
+];
 export type OnlyReadImageFileExtensionType = 'svg' | 'bmp';
 
 export type AllImageFileExtensionType = ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType;

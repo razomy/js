@@ -66,8 +66,8 @@
     "razomy",
     "array",
     "difference",
-    "get",
-    "getSimilar"
+    "getSimilar",
+    "get"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -1,7 +1,9 @@
 import type { Module, TerminalArgs } from '@razomy/cli';
 import { validateArrayStringThrow } from '@razomy/cli';
 
-export async function cli<Rm extends keyof Module & string>(terminalArgs: TerminalArgs<Rm> | null | undefined): Promise<number> {
+export async function cli<Rm extends keyof Module & string>(
+  terminalArgs: TerminalArgs<Rm> | null | undefined,
+): Promise<number> {
   terminalArgs = validateArrayStringThrow(terminalArgs, 'terminalArgs');
   console.debug('razomy:js:cli:start');
 

@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/execute#readme",
   "keywords": [
     "razomy",
-    "execute",
-    "withExecute"
+    "execute"
   ],
   "license": "MIT",
   "main": "./index.ts",

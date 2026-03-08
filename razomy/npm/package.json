@@ -76,8 +76,8 @@
   "name": "@razomy/npm",
   "peerDependencies": {
     "@razomy/fs-file": "0.0.1-alpha.4",
+    "@razomy/main": "0.0.1-alpha.4",
     "@razomy/shell": "0.0.1-alpha.4",
-    "@razomy/ts-refactor": "0.0.1-alpha.4",
     "@razomy/ts-refactor-project": "0.0.1-alpha.4"
   },
   "publishConfig": {

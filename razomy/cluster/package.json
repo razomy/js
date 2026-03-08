@@ -68,8 +68,6 @@
     "processToPromise",
     "processesToPromise",
     "processesToPromises",
-    "workerSpec",
-    "worker",
     "workerToPromise"
   ],
   "license": "MIT",

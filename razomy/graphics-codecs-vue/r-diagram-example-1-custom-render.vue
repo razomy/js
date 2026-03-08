@@ -60,7 +60,12 @@ export class RazomyDiagram extends Vue {
 
     this.user = new UserEntity();
     const webSvgContext = WebSvgContext.create();
-    this.webSvgCodec = new WebSvgCodec(webSvgContext.codecConfig, webSvgContext.encodeNodeFactory, webSvgContext.codecFactory, webSvgContext.codecRegistry);
+    this.webSvgCodec = new WebSvgCodec(
+      webSvgContext.codecConfig,
+      webSvgContext.encodeNodeFactory,
+      webSvgContext.codecFactory,
+      webSvgContext.codecRegistry,
+    );
 
     this.clearRoot();
     if (this.renderStrategy === 'svg') {

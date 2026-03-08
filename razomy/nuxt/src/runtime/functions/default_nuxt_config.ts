@@ -129,5 +129,14 @@ export const defaultNuxtConfig = (c: RzmNuxtConfig) =>
         theme_color: '#1E1E1E',
       },
     },
-    modules: [['nuxt-gtag', { id: process.env.NUXT_PUBLIC_GTAG_ID }], '@nuxtjs/sitemap', '@nuxtjs/i18n', '@vueuse/nuxt', 'vuetify-nuxt-module', '@nuxtjs/robots', '@razomy/nuxt', '@vite-pwa/nuxt'],
+    modules: [
+      ['nuxt-gtag', { id: process.env.NUXT_PUBLIC_GTAG_ID }],
+      '@nuxtjs/sitemap',
+      '@nuxtjs/i18n',
+      '@vueuse/nuxt',
+      'vuetify-nuxt-module',
+      '@nuxtjs/robots',
+      '@razomy/nuxt',
+      '@vite-pwa/nuxt',
+    ],
   } as const satisfies NuxtConfig & any);

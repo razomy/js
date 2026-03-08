@@ -65,8 +65,7 @@
   "keywords": [
     "razomy",
     "id",
-    "generateGuid",
-    "withId"
+    "generateGuid"
   ],
   "license": "MIT",
   "main": "./index.ts",

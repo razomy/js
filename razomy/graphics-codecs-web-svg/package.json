@@ -67,8 +67,7 @@
     "graphics",
     "codecs",
     "web",
-    "svg",
-    "webSvgContext"
+    "svg"
   ],
   "license": "MIT",
   "main": "./index.ts",

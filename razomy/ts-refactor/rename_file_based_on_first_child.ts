@@ -7,7 +7,10 @@ export async function renameFileBasedOnFirstChild({ sourceFile, project }: Itera
   const declaration = sourceFile.getFirstDescendant((node) => {
     // 1. Check if it is the Kind we want
     const kind = node.getKind();
-    const isTargetKind = kind === SyntaxKind.FunctionDeclaration || kind === SyntaxKind.VariableDeclaration || kind === SyntaxKind.ClassDeclaration;
+    const isTargetKind =
+      kind === SyntaxKind.FunctionDeclaration ||
+      kind === SyntaxKind.VariableDeclaration ||
+      kind === SyntaxKind.ClassDeclaration;
 
     if (!isTargetKind) return false;
 

@@ -21,7 +21,11 @@
  * // => null
  * ```
  */
-export function tryLastEqual<T, U>(arrayA: T[], arrayB: U[], predicate: (itemA: T, itemB: U) => boolean): [T, U] | null {
+export function tryLastEqual<T, U>(
+  arrayA: T[],
+  arrayB: U[],
+  predicate: (itemA: T, itemB: U) => boolean,
+): [T, U] | null {
   for (let i = arrayA.length - 1; i >= 0; i--) {
     const itemA = arrayA[i];
     for (let j = arrayB.length - 1; j >= 0; j--) {

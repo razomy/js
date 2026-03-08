@@ -65,10 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "inputs",
-    "controlElement",
-    "ioElement",
-    "textRangeControl"
+    "inputs"
   ],
   "license": "MIT",
   "main": "./index.ts",

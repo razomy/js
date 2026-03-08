@@ -67,15 +67,14 @@
     "tree",
     "dict",
     "foreachDeepDictOptional",
-    "get",
     "getByString",
     "getPath",
     "getValue",
+    "get",
     "iterate",
     "leafTreeAbsolutePath",
     "mapBranch",
-    "mapRoot",
-    "withChildrenDict"
+    "mapRoot"
   ],
   "license": "MIT",
   "main": "./index.ts",

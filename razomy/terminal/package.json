@@ -65,9 +65,18 @@
   "keywords": [
     "razomy",
     "terminal",
-    "commands",
     "tryCommand",
-    "tryOrConfirm"
+    "tryOrConfirm",
+    "checkbox",
+    "confirm",
+    "number",
+    "input",
+    "editor",
+    "search",
+    "password",
+    "expand",
+    "select",
+    "rawlist"
   ],
   "license": "MIT",
   "main": "./index.ts",

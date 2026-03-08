@@ -18,7 +18,11 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flatten<T extends object = object>(obj: T, parentKey = '', result = {} as any): FlattenedAndConverted<T> {
+export function flatten<T extends object = object>(
+  obj: T,
+  parentKey = '',
+  result = {} as any,
+): FlattenedAndConverted<T> {
   iterate(obj, (value, key) => {
     const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
 

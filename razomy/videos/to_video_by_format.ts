@@ -52,12 +52,18 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
     // 1. MP4 / MOV / M4V
     if (['mp4', 'm4v', 'mov'].includes(format)) {
-      command = command.videoCodec('libx264').audioCodec('aac').outputOptions(['-preset', 'fast', '-crf', '23', '-movflags', '+faststart', '-pix_fmt', 'yuv420p']);
+      command = command
+        .videoCodec('libx264')
+        .audioCodec('aac')
+        .outputOptions(['-preset', 'fast', '-crf', '23', '-movflags', '+faststart', '-pix_fmt', 'yuv420p']);
     }
 
     // 2. WebM
     else if (format === 'webm') {
-      command = command.videoCodec('libvpx-vp9').audioCodec('libopus').outputOptions(['-b:v', '0', '-crf', '30', '-row-mt', '1']);
+      command = command
+        .videoCodec('libvpx-vp9')
+        .audioCodec('libopus')
+        .outputOptions(['-b:v', '0', '-crf', '30', '-row-mt', '1']);
     }
 
     // 3. AVI
@@ -77,7 +83,11 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
     // 6. FLV
     else if (format === 'flv') {
-      command = command.videoCodec('flv').audioCodec('libmp3lame').audioFrequency(44100).outputOptions(['-ar', '44100']);
+      command = command
+        .videoCodec('flv')
+        .audioCodec('libmp3lame')
+        .audioFrequency(44100)
+        .outputOptions(['-ar', '44100']);
     }
 
     // 7. OGV
@@ -163,7 +173,9 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
 
     // 13. GIF
     else if (format === 'gif') {
-      command = command.complexFilter(['fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse']);
+      command = command.complexFilter([
+        'fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse',
+      ]);
     }
 
     // 14. SWF (Flash)

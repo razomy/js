@@ -65,11 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "graphic",
-    "graphicEntity",
-    "selectionAttribute",
-    "userEntity",
-    "viewGraphic"
+    "graphic"
   ],
   "license": "MIT",
   "main": "./index.ts",

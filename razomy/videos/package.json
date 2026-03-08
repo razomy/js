@@ -66,7 +66,9 @@
     "razomy",
     "videos",
     "toVideoByFormat",
-    "types"
+    "allVideoTargets",
+    "videoConversions",
+    "videoExtensions"
   ],
   "license": "MIT",
   "main": "./index.ts",

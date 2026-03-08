@@ -65,13 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "attributes",
-    "positionAttribute",
-    "sizeAttribute",
-    "styleAttribute",
-    "textAttribute",
-    "textStyle",
-    "treeNodeAttribute"
+    "attributes"
   ],
   "license": "MIT",
   "main": "./index.ts",

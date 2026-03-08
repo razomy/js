@@ -73,8 +73,7 @@
   "homepage": "https://github.com/razomy/js/razomy/vue#readme",
   "keywords": [
     "razomy",
-    "vue",
-    "viteConfig"
+    "vue"
   ],
   "license": "MIT",
   "main": "./src/index.ts",

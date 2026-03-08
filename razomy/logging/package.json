@@ -64,9 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/logging#readme",
   "keywords": [
     "razomy",
-    "logging",
-    "consoleLogger",
-    "noneLogger"
+    "logging"
   ],
   "license": "MIT",
   "main": "./index.ts",

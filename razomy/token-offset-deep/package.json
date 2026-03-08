@@ -67,7 +67,6 @@
     "token",
     "offset",
     "deep",
-    "cursor",
     "tryAligned",
     "tryScope"
   ],

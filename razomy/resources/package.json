@@ -64,13 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/resources#readme",
   "keywords": [
     "razomy",
-    "resources",
-    "attributeResource",
-    "entityResource",
-    "nodeProvidedException",
-    "objectResource",
-    "resource",
-    "resourceCollection"
+    "resources"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -67,11 +67,11 @@
     "kv",
     "array",
     "recursive",
-    "get",
-    "getItemByPath",
     "getItemByPathFromValue",
+    "getItemByPath",
     "getKey",
-    "getValue"
+    "getValue",
+    "get"
   ],
   "license": "MIT",
   "main": "./index.ts",

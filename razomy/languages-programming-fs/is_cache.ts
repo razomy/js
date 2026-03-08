@@ -16,4 +16,16 @@ export const dartFirebaseCache = [
 export const unityCache = ['Temp', 'Debug'];
 export const javaCache = ['.gradle'];
 
-export const knownCache = [...pythonCache, ...jsAngularCache, ...csharpCache, ...dartCache, ...nextCache, ...nuxtCache, ...nxCache, ...dartFirebaseCache, ...unityCache, ...javaCache, ...ideaCache];
+export const knownCache = [
+  ...pythonCache,
+  ...jsAngularCache,
+  ...csharpCache,
+  ...dartCache,
+  ...nextCache,
+  ...nuxtCache,
+  ...nxCache,
+  ...dartFirebaseCache,
+  ...unityCache,
+  ...javaCache,
+  ...ideaCache,
+];

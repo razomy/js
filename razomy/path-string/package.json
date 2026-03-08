@@ -65,9 +65,7 @@
   "keywords": [
     "razomy",
     "path",
-    "string",
-    "pathString",
-    "withPath"
+    "string"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -4,8 +4,14 @@ import { akv } from './akv';
 import { isAkv } from './index';
 
 export function filter<V>(input: Value<V>, isKeep: Function<[Value<V>], boolean>): Value<V>;
-export function filter<K, V>(input: KeyValuable<K, V>, isKeep: Function<[KeyValuable<K, V>], boolean>): KeyValuable<K, V>;
-export function filter<K, V>(input: ArrayKeyValuable<K, V>, isKeep: Function<[ArrayKeyValuable<K, V>], boolean>): ArrayKeyValuable<K, V>;
+export function filter<K, V>(
+  input: KeyValuable<K, V>,
+  isKeep: Function<[KeyValuable<K, V>], boolean>,
+): KeyValuable<K, V>;
+export function filter<K, V>(
+  input: ArrayKeyValuable<K, V>,
+  isKeep: Function<[ArrayKeyValuable<K, V>], boolean>,
+): ArrayKeyValuable<K, V>;
 export function filter<K, V>(value: Valuable<K, V>, isKeep: Function<[Valuable<K, V>], boolean>): Valuable<K, V>;
 export function filter<K, V>(value: Valuable<K, V>, isKeep: Function<[Valuable<K, V>], boolean>): Valuable<K, V> {
   if (isKv(value)) {

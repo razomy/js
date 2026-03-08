@@ -37,7 +37,11 @@ export class RenderFactory implements create.WithCreate<IRender<any>> {
 }
 
 export class WebCanvasRender extends Render {
-  constructor(public codecFactory: RenderFactory, public crx: CanvasRenderingContext2D, public webSvgHighLightsRender: WebCanvasHighLightsRender) {
+  constructor(
+    public codecFactory: RenderFactory,
+    public crx: CanvasRenderingContext2D,
+    public webSvgHighLightsRender: WebCanvasHighLightsRender,
+  ) {
     super();
   }
 

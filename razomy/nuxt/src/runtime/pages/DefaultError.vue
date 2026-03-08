@@ -10,16 +10,14 @@
 </template>
 <script lang="ts" setup>
 import { useI18n, useLocalePath, clearError } from '#imports';
-import type { NuxtError } from '#app'
+import type { NuxtError } from '#app';
 
 const props = defineProps({
   error: Object as () => NuxtError,
-})
+});
 
 const localePath = useLocalePath();
 const { t } = useI18n();
 
-
-const handleError = () => clearError({ redirect: localePath('/') })
-
+const handleError = () => clearError({ redirect: localePath('/') });
 </script>

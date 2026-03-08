@@ -8,7 +8,8 @@ export class RgbaParser {
    * @memberOf Color
    */
   // eslint-disable-next-line max-len
-  public static readonly reRgba = /^rgba?\(\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*(?:\s*,\s*((?:\d*\.?\d+)?)\s*)?\)$/i;
+  public static readonly reRgba =
+    /^rgba?\(\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*,\s*(\d{1,3}(?:\.\d+)?\%?)\s*(?:\s*,\s*((?:\d*\.?\d+)?)\s*)?\)$/i;
 
   /**
    * Returns color representation in RGB format
@@ -51,7 +52,12 @@ export class RgbaParser {
         g = (parseInt(match[2], 10) / (/%$/.test(match[2]) ? 100 : 1)) * (/%$/.test(match[2]) ? 255 : 1),
         b = (parseInt(match[3], 10) / (/%$/.test(match[3]) ? 100 : 1)) * (/%$/.test(match[3]) ? 255 : 1);
 
-      return [parseInt(r as any, 10), parseInt(g as any, 10), parseInt(b as any, 10), match[4] ? parseFloat(match[4]) : 1];
+      return [
+        parseInt(r as any, 10),
+        parseInt(g as any, 10),
+        parseInt(b as any, 10),
+        match[4] ? parseFloat(match[4]) : 1,
+      ];
     }
 
     return null;

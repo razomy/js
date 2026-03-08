@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/tree#readme",
   "keywords": [
     "razomy",
-    "tree",
-    "leaf"
+    "tree"
   ],
   "license": "MIT",
   "main": "./index.ts",

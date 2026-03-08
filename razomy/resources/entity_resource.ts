@@ -1,5 +1,10 @@
 import { ObjectResource } from './object_resource';
-import { type IEntityResource, type IResourceMap, NodeAlreadyProvidedException, NodeProvidedException } from './node_provided_exception';
+import {
+  type IEntityResource,
+  type IResourceMap,
+  NodeAlreadyProvidedException,
+  NodeProvidedException,
+} from './node_provided_exception';
 import type { Constructor } from '@razomy/class';
 import { ArgumentException } from '@razomy/exceptions';
 

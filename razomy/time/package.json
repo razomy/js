@@ -67,9 +67,12 @@
   "keywords": [
     "razomy",
     "time",
-    "expiringInMemoryCache",
     "formatDuration",
-    "formatMilliseconds"
+    "formatMilliseconds",
+    "secondMs",
+    "minuteMs",
+    "hourMs",
+    "dayMs"
   ],
   "license": "MIT",
   "main": "./index.ts",

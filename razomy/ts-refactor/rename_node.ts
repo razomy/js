@@ -1,8 +1,25 @@
-import { BindingElement, FunctionDeclaration, MethodDeclaration, Node, ParameterDeclaration, PropertyDeclaration, PropertySignature, VariableDeclaration } from 'ts-morph';
-import { isNameTaken } from './is_name_taken';
+import {
+  BindingElement,
+  FunctionDeclaration,
+  MethodDeclaration,
+  Node,
+  ParameterDeclaration,
+  PropertyDeclaration,
+  PropertySignature,
+  VariableDeclaration,
+} from 'ts-morph';
 import { toSafeName } from './to_safe_name';
+import { isNameTaken } from './is_name_taken';
 
-export function renameNode(v: VariableDeclaration | PropertyDeclaration | FunctionDeclaration | PropertySignature | MethodDeclaration | ParameterDeclaration) {
+export function renameNode(
+  v:
+    | VariableDeclaration
+    | PropertyDeclaration
+    | FunctionDeclaration
+    | PropertySignature
+    | MethodDeclaration
+    | ParameterDeclaration,
+) {
   const nameNode = v.getNameNode();
 
   // 1. Handle Destructuring (Object or Array binding patterns)

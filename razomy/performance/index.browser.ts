@@ -7,4 +7,8 @@ export { nStringTestCasesRecordPerformance } from './n_string_test_cases_record_
 export { performanceCb } from './performance_cb';
 export { performance, Performance } from './performance';
 export { recordPerformance } from './record_performance';
-export { type PerformanceRecord, type Prediction, WeightedMovingAverageRecorder } from './weighted_moving_average_recorder';
+export {
+  type PerformanceRecord,
+  type Prediction,
+  WeightedMovingAverageRecorder,
+} from './weighted_moving_average_recorder';

@@ -4,7 +4,10 @@ import { images, type OnlyReadImageFileExtensionType, type ReadAndWriteImageFile
 import { type ExtensionResult } from '@razomy/fs-file-format';
 
 // --- SHARP (Images) ---
-export async function toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult> {
+export async function toImageByFormat(
+  inputPath: string,
+  format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType,
+): Promise<ExtensionResult> {
   let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)
@@ -72,7 +75,9 @@ export async function toImageByFormat(inputPath: string, format: ReadAndWriteIma
     case 'ico':
       // ХАК: Браузеры понимают PNG переименованный в ICO.
       // Настоящий ICO sharp делать не умеет, но этот метод работает для фавиконок.
-      pipeline = pipeline.resize({ width: 256, height: 256, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).toFormat('png');
+      pipeline = pipeline
+        .resize({ width: 256, height: 256, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .toFormat('png');
       break;
 
     // Внимание: Sharp НЕ умеет сохранять в BMP или PDF.

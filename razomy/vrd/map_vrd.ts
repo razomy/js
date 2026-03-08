@@ -4,8 +4,17 @@ import { isVrd } from './is_vrd';
 
 export function mapVrd<I, O>(input: Vrd<I>, leafValueCb: (input: I, parent: DictKey) => O, parent: DictKey): Vrd<O>;
 export function mapVrd<I, O>(input: I, leafValueCb: (input: I, parent?: DictKey) => O, parent: DictKey): O;
-export function mapVrd<I, O>(input: VrdOrValue<I>, leafValueCb: (input: I, parent: DictKey) => O, parent: DictKey): VrdOrValue<O>;
-export function mapVrd<I, O>(input: VrdOrValue<I>, leafValueCb: (input: I, parent: DictKey) => O, parent: DictKey, nodeCb: (input: Vrd<I>, parent: DictKey) => Vrd<O> | O): VrdOrValue<O>;
+export function mapVrd<I, O>(
+  input: VrdOrValue<I>,
+  leafValueCb: (input: I, parent: DictKey) => O,
+  parent: DictKey,
+): VrdOrValue<O>;
+export function mapVrd<I, O>(
+  input: VrdOrValue<I>,
+  leafValueCb: (input: I, parent: DictKey) => O,
+  parent: DictKey,
+  nodeCb: (input: Vrd<I>, parent: DictKey) => Vrd<O> | O,
+): VrdOrValue<O>;
 export function mapVrd<I, O>(
   input: VrdOrValue<I>,
   leafValueCb: (input: I, parent: DictKey) => O,

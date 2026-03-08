@@ -71,8 +71,7 @@
     "measureComplexity",
     "nStringTestCasesRecordPerformance",
     "performanceCb",
-    "recordPerformance",
-    "weightedMovingAverageRecorder"
+    "recordPerformance"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -68,8 +68,7 @@
     "link",
     "check",
     "create",
-    "getInvalidSymlinks",
-    "invalidLinkException"
+    "getInvalidSymlinks"
   ],
   "license": "MIT",
   "main": "./index.ts",

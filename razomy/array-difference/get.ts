@@ -23,7 +23,11 @@ export function get(oldArray: string[], newArray: string[]): ChangeDifference<st
   });
 
   // Remove renamed items from new and deleted lists
-  const finalNewItems = newItems.filter((item) => !renamedItems.some((pair) => pair.value === item)).map((item) => ({ value: item, type: 'added' } as Difference<string>));
-  const finalDeletedItems = deletedItems.filter((item) => !renamedItems.some((pair) => pair.oldValue === item)).map((item) => ({ value: item, type: 'removed' } as Difference<string>));
+  const finalNewItems = newItems
+    .filter((item) => !renamedItems.some((pair) => pair.value === item))
+    .map((item) => ({ value: item, type: 'added' } as Difference<string>));
+  const finalDeletedItems = deletedItems
+    .filter((item) => !renamedItems.some((pair) => pair.oldValue === item))
+    .map((item) => ({ value: item, type: 'removed' } as Difference<string>));
   return [...finalNewItems, ...finalDeletedItems, ...renamedItems];
 }

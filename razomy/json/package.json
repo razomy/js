@@ -65,7 +65,6 @@
   "keywords": [
     "razomy",
     "json",
-    "jsonCodec",
     "jsonToObject",
     "jsonToString",
     "sort",

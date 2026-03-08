@@ -65,12 +65,8 @@
   "keywords": [
     "razomy",
     "schemas",
-    "common",
-    "primitives",
-    "recursives",
-    "schema",
-    "validator",
-    "validators"
+    "idSchema",
+    "withLocaleSchema"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -66,9 +66,11 @@
     "razomy",
     "server",
     "echo",
-    "logger",
     "shutdownFunction",
-    "staticHtml"
+    "staticHtml",
+    "isProduction",
+    "consoleTransport",
+    "logger"
   ],
   "license": "MIT",
   "main": "./index.ts",

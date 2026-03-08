@@ -68,9 +68,7 @@
     "codecs",
     "web",
     "canvas",
-    "renders",
-    "viewportRender",
-    "webCanvasHighLightsRender"
+    "renders"
   ],
   "license": "MIT",
   "main": "./index.ts",

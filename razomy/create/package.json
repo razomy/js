@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/create#readme",
   "keywords": [
     "razomy",
-    "create",
-    "withCreate"
+    "create"
   ],
   "license": "MIT",
   "main": "./index.ts",

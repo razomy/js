@@ -29,7 +29,11 @@ export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) 
       const supportedCode = supported[j].code.toLowerCase();
       const supportedScript = supported[j].script ? supported[j].script.toLowerCase() : supported[j].script;
       const supportedRegion = supported[j].region ? supported[j].region.toLowerCase() : supported[j].region;
-      if (langCode === supportedCode && (options.loose || !langScript || langScript === supportedScript) && (options.loose || !langRegion || langRegion === supportedRegion)) {
+      if (
+        langCode === supportedCode &&
+        (options.loose || !langScript || langScript === supportedScript) &&
+        (options.loose || !langRegion || langRegion === supportedRegion)
+      ) {
         return supportedLanguages[j];
       }
     }

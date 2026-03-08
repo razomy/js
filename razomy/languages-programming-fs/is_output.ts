@@ -7,4 +7,13 @@ export const e2EOutput = ['test-results'];
 export const razomyOutput = ['_releases'];
 export const cOutput = ['cmake-build-debug'];
 
-export const knownOutput = [...jsOutput, ...javaOutput, ...pythonOutput, ...rustOutput, ...razomyOutput, ...nuxtOutput, ...cOutput, ...e2EOutput];
+export const knownOutput = [
+  ...jsOutput,
+  ...javaOutput,
+  ...pythonOutput,
+  ...rustOutput,
+  ...razomyOutput,
+  ...nuxtOutput,
+  ...cOutput,
+  ...e2EOutput,
+];

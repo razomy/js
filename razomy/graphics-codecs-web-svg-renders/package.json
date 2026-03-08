@@ -68,9 +68,7 @@
     "codecs",
     "web",
     "svg",
-    "renders",
-    "webSvgHighLightsRender",
-    "webSvgRender"
+    "renders"
   ],
   "license": "MIT",
   "main": "./index.ts",

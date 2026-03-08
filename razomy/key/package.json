@@ -65,7 +65,9 @@
   "keywords": [
     "razomy",
     "key",
-    "assign"
+    "assign",
+    "seperate",
+    "break"
   ],
   "license": "MIT",
   "main": "./index.ts",

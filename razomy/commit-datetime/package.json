@@ -65,8 +65,7 @@
   "keywords": [
     "razomy",
     "commit",
-    "datetime",
-    "datetimeActor"
+    "datetime"
   ],
   "license": "MIT",
   "main": "./index.ts",

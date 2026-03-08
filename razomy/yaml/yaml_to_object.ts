@@ -27,7 +27,13 @@ function resultsToFirstResult<T extends { results: D[] }, D = any>(res: T) {
 }
 
 export function yamlToObject(jsonTokens: JsonToken[]) {
-  const c = create({ tokens: jsonTokens }, { offset: 0 }, { stack: [] as number[] }, { deep: 0 }, { children: [] as any }) satisfies WithTokens<JsonToken> & WithOffset;
+  const c = create(
+    { tokens: jsonTokens },
+    { offset: 0 },
+    { stack: [] as number[] },
+    { deep: 0 },
+    { children: [] as any },
+  ) satisfies WithTokens<JsonToken> & WithOffset;
 
   const rs = {
     root: (c) => ifR(tryScope(c, rs.line), mergeResults),

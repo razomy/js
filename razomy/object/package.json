@@ -67,11 +67,8 @@
   "keywords": [
     "razomy",
     "object",
-    "iObject",
-    "iObjectClone",
     "isClassConstructor",
     "isObject",
-    "objectExtended",
     "objectToBytes",
     "objectToFormattedString",
     "toFormattedString"

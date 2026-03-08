@@ -65,7 +65,6 @@
   "keywords": [
     "razomy",
     "cli",
-    "module",
     "validateArrayStringThrow"
   ],
   "license": "MIT",

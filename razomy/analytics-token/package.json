@@ -67,7 +67,6 @@
     "analytics",
     "token",
     "filePathCount",
-    "projectDirCountSpec",
     "projectDirCount"
   ],
   "license": "MIT",

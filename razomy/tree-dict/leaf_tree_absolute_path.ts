@@ -14,8 +14,14 @@ export type AbsolutePathDictLeafOrRoot<T> = AbsolutePathBranch<T> | AbsolutePath
 
 export function leafTreeAbsolutePath<T>(input: Leaf<T>, absolutePath: string): AbsolutePathLeaf<T>;
 export function leafTreeAbsolutePath<T>(input: BranchDict<T>, absolutePath: string): AbsolutePathBranch<T>;
-export function leafTreeAbsolutePath<T>(input: BranchDictOrLeaf<T>, absolutePath: string): AbsolutePathDictLeafOrRoot<T>;
-export function leafTreeAbsolutePath<T>(input: BranchDictOrLeaf<T>, absolutePath: string): AbsolutePathDictLeafOrRoot<T> {
+export function leafTreeAbsolutePath<T>(
+  input: BranchDictOrLeaf<T>,
+  absolutePath: string,
+): AbsolutePathDictLeafOrRoot<T>;
+export function leafTreeAbsolutePath<T>(
+  input: BranchDictOrLeaf<T>,
+  absolutePath: string,
+): AbsolutePathDictLeafOrRoot<T> {
   if ('children' in input) {
     const otput: AbsolutePathBranch<T> = { ...input, absolutePath, children: {}, value: input.value };
     for (let inputKey in input.children) {

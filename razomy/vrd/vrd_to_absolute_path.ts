@@ -2,7 +2,11 @@ import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
 import type { AbsolutePathString } from '@razomy/path-string';
 
-export function vrdToAbsolutePath<T>(input: VrdOrValue<T>, absolutePath: AbsolutePathString, separator: string): VrdOrValue<T> {
+export function vrdToAbsolutePath<T>(
+  input: VrdOrValue<T>,
+  absolutePath: AbsolutePathString,
+  separator: string,
+): VrdOrValue<T> {
   if (isVrd(input)) {
     for (let inputKey in input) {
       const value = input[inputKey];

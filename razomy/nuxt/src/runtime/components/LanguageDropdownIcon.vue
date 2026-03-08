@@ -11,7 +11,13 @@
 
     <!-- The List of Languages -->
     <v-list density="compact">
-      <v-list-item v-for="item in locales" :key="item.code" :to="switchLocalePath(item.code)" :value="item.code" @click="setLocale(item.code)">
+      <v-list-item
+        v-for="item in locales"
+        :key="item.code"
+        :to="switchLocalePath(item.code)"
+        :value="item.code"
+        @click="setLocale(item.code)"
+      >
         <v-list-item-title>{{ item.name }}</v-list-item-title>
       </v-list-item>
     </v-list>

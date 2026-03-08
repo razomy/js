@@ -66,12 +66,10 @@
     "razomy",
     "serializable",
     "arrayToJson",
-    "ctx",
     "dictToJson",
     "jsonToCtx",
     "toJson",
-    "tryJsonToCtx",
-    "withSerializable"
+    "tryJsonToCtx"
   ],
   "license": "MIT",
   "main": "./index.ts",

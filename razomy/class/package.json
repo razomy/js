@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/class#readme",
   "keywords": [
     "razomy",
-    "class",
-    "constructor"
+    "class"
   ],
   "license": "MIT",
   "main": "./index.ts",

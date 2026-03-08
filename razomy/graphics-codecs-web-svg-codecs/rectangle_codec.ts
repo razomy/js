@@ -42,7 +42,12 @@ export class RectangleCodec implements Codec<RectangleShape, SVGRectElement> {
 
     rectangleShape.replace(new FillStyle(ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')));
 
-    rectangleShape.replace(new BorderStyle(ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'), getNumberAttribute('stroke-width', 1)));
+    rectangleShape.replace(
+      new BorderStyle(
+        ColorCodex.tryParsingColor(value.getAttribute('stroke') || '#000'),
+        getNumberAttribute('stroke-width', 1),
+      ),
+    );
 
     rectangleShape.replace(new RectangleRoundStyle(getNumberAttribute('rx', 0)));
 

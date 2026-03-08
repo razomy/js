@@ -67,15 +67,7 @@
     "graphics",
     "codecs",
     "web",
-    "svg",
-    "codecConfig",
-    "codecFactory",
-    "codecRegistry",
-    "encodeNodeFactory",
-    "rectangleCodec",
-    "svgCodec",
-    "textCodec",
-    "webSvgCodec"
+    "svg"
   ],
   "license": "MIT",
   "main": "./index.ts",

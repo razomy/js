@@ -71,9 +71,7 @@
     "codecs",
     "web",
     "svg",
-    "inputs",
-    "dWebBrowserInput",
-    "ioAttribute"
+    "inputs"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -65,12 +65,14 @@
   "keywords": [
     "razomy",
     "pipes",
-    "chainRegistry",
+    "fp",
     "functionPipe",
-    "pipe",
     "pipeSync",
+    "pipe",
     "tryP",
-    "withPipes"
+    "fP",
+    "pS",
+    "p"
   ],
   "license": "MIT",
   "main": "./index.ts",

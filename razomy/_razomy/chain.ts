@@ -9,7 +9,8 @@ import * as object from '@razomy/object';
 declare module '@razomy/pipes' {
   interface StringChainMethods extends Chainable<typeof string>, Chainable<typeof stringCase> {}
 
-  interface ArrayChainMethods<V extends any[]> extends Omit<Omit<Chainable<typeof array & typeof dict>, 'filter'>, 'map'> {
+  interface ArrayChainMethods<V extends any[]>
+    extends Omit<Omit<Chainable<typeof array & typeof dict>, 'filter'>, 'map'> {
     filter(predicate: (item: V[number], index: number) => boolean): Chain<V>;
 
     map<U>(mapper: (item: V[number], index: number) => U): Chain<U[]>;

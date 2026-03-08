@@ -16,7 +16,10 @@
  * // => 'aaaa'
  * randomString(4, 'a');
  */
-export function randomString(length: number, characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string {
+export function randomString(
+  length: number,
+  characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+): string {
   let result: string = '';
   const charactersLength: number = characters.length;
   for (let i: number = 0; i < length; i++) {

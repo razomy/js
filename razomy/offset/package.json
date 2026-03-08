@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/offset#readme",
   "keywords": [
     "razomy",
-    "offset",
-    "offest"
+    "offset"
   ],
   "license": "MIT",
   "main": "./index.ts",

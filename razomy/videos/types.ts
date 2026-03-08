@@ -3,7 +3,28 @@ import { allAudioTargets } from '@razomy/audios';
 
 // Списки целевых форматов (куда мы можем кодировать)
 // Внимание: кодировать В realmedia (.rm) или swf ffmpeg делает плохо, поэтому их лучше оставить только на вход.
-export const allVideoTargets = ['mp4', 'webm', 'mov', 'mkv', 'avi', 'wmv', 'flv', 'm4v', '3gp', 'mpg', 'mpeg', 'ogv', 'gif', 'vob', 'm2ts', 'mts', 'ts', 'asf', 'dv', 'mxf'];
+export const allVideoTargets = [
+  'mp4',
+  'webm',
+  'mov',
+  'mkv',
+  'avi',
+  'wmv',
+  'flv',
+  'm4v',
+  '3gp',
+  'mpg',
+  'mpeg',
+  'ogv',
+  'gif',
+  'vob',
+  'm2ts',
+  'mts',
+  'ts',
+  'asf',
+  'dv',
+  'mxf',
+];
 
 export const videoConversions = [...allVideoTargets, ...allAudioTargets];
 

@@ -4,7 +4,11 @@ import type { WithStack } from './try_aligned';
 import type { ResultNullFn } from '@razomy/result-null';
 import type { WithTokens } from '@razomy/token';
 
-export function tryScope<C extends Context & WithTokens<any> & WithOffset & WithStack, T extends { offset: number; result: R2 } | null, R2 = any>(ctx: C, rule: ResultNullFn<C, T>) {
+export function tryScope<
+  C extends Context & WithTokens<any> & WithOffset & WithStack,
+  T extends { offset: number; result: R2 } | null,
+  R2 = any,
+>(ctx: C, rule: ResultNullFn<C, T>) {
   const trigger = ctx.tokens[ctx.offset];
   const parentIndent = ctx.stack[ctx.stack.length - 1] ?? -1;
 

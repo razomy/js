@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/commit#readme",
   "keywords": [
     "razomy",
-    "commit",
-    "withActor"
+    "commit"
   ],
   "license": "MIT",
   "main": "./index.ts",

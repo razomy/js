@@ -65,7 +65,6 @@
   "keywords": [
     "razomy",
     "batch",
-    "abstractBatchLoader",
     "create"
   ],
   "license": "MIT",

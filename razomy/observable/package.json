@@ -65,9 +65,6 @@
   "keywords": [
     "razomy",
     "observable",
-    "cancelException",
-    "dispose",
-    "observableList",
     "promise",
     "throwException"
   ],

@@ -10,7 +10,12 @@
       <v-icon class="mx-1" icon="mdi-chevron-right" opacity="50" size="small" />
 
       <!-- MENU 1: SWITCH CURRENT (Route Exists) -->
-      <v-menu v-if="level.selectedNavigationNode" location="bottom center" max-height="350" transition="slide-y-transition">
+      <v-menu
+        v-if="level.selectedNavigationNode"
+        location="bottom center"
+        max-height="350"
+        transition="slide-y-transition"
+      >
         <template v-slot:activator="{ props }">
           <v-btn append-icon="mdi-chevron-down" class="text-none px-2" density="compact" v-bind="props" variant="text">
             {{ t(level.selectedNavigationNode.meta.nameTk) }}
@@ -34,7 +39,15 @@
       <!-- MENU 2: ADD CHILD (Route Not Exists / PLUS Button) -->
       <v-menu v-else location="bottom center" max-height="350" transition="slide-y-transition">
         <template v-slot:activator="{ props }">
-          <v-btn class="mx-1" color="primary" density="comfortable" icon="mdi-plus" size="small" v-bind="props" variant="text" />
+          <v-btn
+            class="mx-1"
+            color="primary"
+            density="comfortable"
+            icon="mdi-plus"
+            size="small"
+            v-bind="props"
+            variant="text"
+          />
         </template>
 
         <!-- Dropdown List of Child Categories to Add Sub-Route -->

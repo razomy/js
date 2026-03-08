@@ -4,12 +4,13 @@ import { snakeCase } from '@razomy/string-case';
 import * as fss from '@razomy/fss';
 import { createDistSpecifications } from './create_dist_specifications';
 import { createPackageReadme } from './create_package_readme';
-import { getPackageFunctions } from './get_package_functions';
+import { getExportedFunctions } from './get_exported_functions';
 
 export async function extracyForIo(dirPath) {
-  const functionsFiles = getPackageFunctions(dirPath);
-  console.log(functionsFiles);
   const project = new Project({ tsConfigFilePath: '../../' + 'tsconfig.json' });
+  const sources = getFilteredSourceFiles(project, dirPath);
+  const functionsFiles = getExportedFunctions(sources);
+  console.log(functionsFiles);
 
   async function createDistSpecificationsCb(n) {
     return await createDistSpecifications(project, path.resolve(`${dirPath}/${snakeCase(n)}.ts`), n);
@@ -21,5 +22,3 @@ export async function extracyForIo(dirPath) {
   createPackageReadme(fss.file.getJson(dirPath + '/package.json'), files);
   return files;
 }
-
-// console.log(JSON.stringify(extracyForIo('../string-case/'), null, 2));

@@ -11,7 +11,11 @@ type ExportIndex = Map<string, SourceFile>;
  * Helper to find the best match for a missing symbol.
  * Checks exact match first, then fuzzy match.
  */
-function findReplacementSymbol(nameToFind: string, exportMap: ExportIndex, allExportNames: string[]): { name: string; file: SourceFile } | null {
+function findReplacementSymbol(
+  nameToFind: string,
+  exportMap: ExportIndex,
+  allExportNames: string[],
+): { name: string; file: SourceFile } | null {
   // 1. Try Exact Match
   if (exportMap.has(nameToFind)) {
     return { name: nameToFind, file: exportMap.get(nameToFind)! };
@@ -31,7 +35,9 @@ function findReplacementSymbol(nameToFind: string, exportMap: ExportIndex, allEx
   }
 
   if (lowestDistance <= maxDistanceThreshold) {
-    console.log(`    -> Fuzzy match found: '${nameToFind}' replaced with '${currentBestCandidate}' (Distance: ${lowestDistance})`);
+    console.log(
+      `    -> Fuzzy match found: '${nameToFind}' replaced with '${currentBestCandidate}' (Distance: ${lowestDistance})`,
+    );
     return {
       name: currentBestCandidate,
       file: exportMap.get(currentBestCandidate)!,

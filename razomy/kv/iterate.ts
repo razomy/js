@@ -6,7 +6,10 @@ import { booleanUndefined } from '@razomy/undefined';
  * true - continue
  * false - break
  */
-export function iterate<K, V>(value: Valuable<K, V>, nodeCb: Function<[KeyValuable<K, V>], boolean | undefined>): boolean {
+export function iterate<K, V>(
+  value: Valuable<K, V>,
+  nodeCb: Function<[KeyValuable<K, V>], boolean | undefined>,
+): boolean {
   if (isKv(value)) {
     const res = booleanUndefined(nodeCb(value));
     // break

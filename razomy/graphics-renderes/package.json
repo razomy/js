@@ -65,9 +65,7 @@
   "keywords": [
     "razomy",
     "graphics",
-    "renderes",
-    "iRender",
-    "render"
+    "renderes"
   ],
   "license": "MIT",
   "main": "./index.ts",

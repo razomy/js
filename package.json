@@ -193,6 +193,7 @@
     "./razomy/tree-dict_or_list",
     "./razomy/tree-list",
     "./razomy/tree-list-parent",
+    "./razomy/ts-ast",
     "./razomy/ts-refactor",
     "./razomy/ts-refactor-project",
     "./razomy/type",

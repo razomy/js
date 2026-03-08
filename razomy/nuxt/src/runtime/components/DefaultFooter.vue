@@ -3,7 +3,13 @@
     <v-footer class="content-0 py-6">
       <v-row justify="center" no-gutters>
         <template v-for="navigationNodes in c.footerNavigationNodes">
-          <v-btn v-if="navigationNodes.meta.url.startsWith('https://')" :href="navigationNodes.meta.url" class="mx-2" rounded="xl" variant="text">
+          <v-btn
+            v-if="navigationNodes.meta.url.startsWith('https://')"
+            :href="navigationNodes.meta.url"
+            class="mx-2"
+            rounded="xl"
+            variant="text"
+          >
             {{ t(navigationNodes.meta.nameTk) }}
             <v-icon icon="mdi-open-in-new" size="16"></v-icon>
           </v-btn>
@@ -12,7 +18,14 @@
           </v-btn>
         </template>
         <rzm-language-selector></rzm-language-selector>
-        <v-btn append-icon="mdi-heart-outline" class="mx-2" color="pink" href="https://donate.stripe.com/28o9CS6Px6QwaQMbIN" rounded="xl" variant="outlined">
+        <v-btn
+          append-icon="mdi-heart-outline"
+          class="mx-2"
+          color="pink"
+          href="https://donate.stripe.com/28o9CS6Px6QwaQMbIN"
+          rounded="xl"
+          variant="outlined"
+        >
           {{ t('nuxt.footer.donate') }}
         </v-btn>
 

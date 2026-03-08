@@ -66,7 +66,7 @@
     "razomy",
     "images",
     "toImageByFormat",
-    "types"
+    "imageWriteTargets"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -66,11 +66,8 @@
     "razomy",
     "vue",
     "resource",
-    "plugin",
-    "reactiveDirective",
-    "remoteNode",
-    "remoteResource",
-    "socketStore"
+    "razomyResourcePlugin",
+    "reactiveDirective"
   ],
   "license": "MIT",
   "main": "./index.ts",

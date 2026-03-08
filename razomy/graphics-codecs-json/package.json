@@ -67,7 +67,7 @@
     "graphics",
     "codecs",
     "json",
-    "jsonCodec"
+    "example"
   ],
   "license": "MIT",
   "main": "./index.ts",

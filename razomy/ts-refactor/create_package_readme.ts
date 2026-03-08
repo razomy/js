@@ -1,9 +1,9 @@
 import { camelCase } from '@razomy/string-case';
 import * as fss from '@razomy/fss';
-import type { FunctionSpecification } from './get_package_functions';
+import type { FunctionSpecification } from '../function/function_specification';
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createPackageReadme(packageJson: any, specs: FunctionSpecification[], targetDir: string) {
+export function createPackageReadme(packageJson: any, specs: FunctionSpecification[]) {
   const scopeName = camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
@@ -38,9 +38,13 @@ When reporting a bug, please include:
 
 [![License](https://img.shields.io/npm/l/${packageJson.name})](https://github.com/razomy/js/blob/main/LICENSE)
 [![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/${packageJson.name})](https://bundlephobia.com/package/${packageJson.name})
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/${packageJson.name})](https://bundlephobia.com/package/${
+    packageJson.name
+  })
 [![TypeScript](https://img.shields.io/npm/types/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
-[![Node.js Version](https://img.shields.io/node/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![Node.js Version](https://img.shields.io/node/v/${packageJson.name})](https://www.npmjs.com/package/${
+    packageJson.name
+  })
 [![npm version](https://img.shields.io/npm/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
 [![npm downloads](https://img.shields.io/npm/dw/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
@@ -100,8 +104,8 @@ ${sortedSpecs.map((s) => `- [${s.name}](#${s.name.toLowerCase()})`).join('\n')}
 ## 📚 Documentation
 ### Functions
 ${sortedSpecs
-    .map(
-      (s) => `
+  .map(
+    (s) => `
 #### ${s.name}
 
 \`${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.returns.type}\`
@@ -111,18 +115,18 @@ ${s.description}
 
 Examples
 ${s.examples
-        .map((e) =>
-          `
+  .map((e) =>
+    `
 \`\`\`ts
 ${e.code} // ${e.expected}
 \`\`\`
 `.trim(),
-        )
-        .join('\n\n')}
+  )
+  .join('\n\n')}
 `,
-    )
-    .join('\n\n') // Added a horizontal rule between functions for better readability
-    .trim()}
+  )
+  .join('\n\n') // Added a horizontal rule between functions for better readability
+  .trim()}
 `.trim();
 
   const licenseAndContributing = `

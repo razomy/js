@@ -32,5 +32,7 @@ export function googleSesionApi(ctx) {
   // API section
   ctx.google = new Google(ctx);
 
-  ctx.app.post('/api/auth/sign/google', passport.authenticate(googleTapOn, { failureRedirect: '/login' }), (rq, rs) => rs.redirect('/'));
+  ctx.app.post('/api/auth/sign/google', passport.authenticate(googleTapOn, { failureRedirect: '/login' }), (rq, rs) =>
+    rs.redirect('/'),
+  );
 }

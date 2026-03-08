@@ -2,7 +2,12 @@ import type { String } from '@razomy/string';
 import type { Offset } from '@razomy/offset';
 import type { Index } from '@razomy/index';
 
-export function lastIndex(string: String, equalString: String, offset: Offset = 0, maxOffset: Offset = string.length): Index {
+export function lastIndex(
+  string: String,
+  equalString: String,
+  offset: Offset = 0,
+  maxOffset: Offset = string.length,
+): Index {
   for (let i = maxOffset - 1; i >= offset; i--) {
     if (string[i] === equalString) {
       return i;

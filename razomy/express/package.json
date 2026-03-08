@@ -86,7 +86,6 @@
     "razomy",
     "express",
     "create",
-    "ctx",
     "googleSesionApi"
   ],
   "license": "MIT",

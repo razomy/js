@@ -68,7 +68,8 @@
     "iterate",
     "observe",
     "orderByCreateDate",
-    "rename"
+    "rename",
+    "sharedNode"
   ],
   "license": "MIT",
   "main": "./index.ts",

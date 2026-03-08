@@ -66,8 +66,7 @@
     "razomy",
     "commit",
     "datetime",
-    "vrd",
-    "addvrd"
+    "vrd"
   ],
   "license": "MIT",
   "main": "./index.ts",

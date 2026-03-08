@@ -22,7 +22,12 @@ export interface WithValidate<T> {
   validate: (c: T) => Promise<void>;
 }
 
-export interface AsyncTask<C extends Context> extends WithContext<C>, WithAsyncExecute<C>, WithValidate<C>, WithAsyncCancel<C>, WithAsyncRollback<C> {
+export interface AsyncTask<C extends Context>
+  extends WithContext<C>,
+    WithAsyncExecute<C>,
+    WithValidate<C>,
+    WithAsyncCancel<C>,
+    WithAsyncRollback<C> {
   taskId: string;
   history: C[];
 }

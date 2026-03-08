@@ -65,8 +65,7 @@
   "keywords": [
     "razomy",
     "buffer",
-    "toString",
-    "withBuffer"
+    "toString"
   ],
   "license": "MIT",
   "main": "./index.ts",

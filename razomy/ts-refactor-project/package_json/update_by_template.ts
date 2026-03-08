@@ -3,23 +3,38 @@ import * as path from 'path';
 import * as stringCase from '@razomy/string-case';
 import { getAll } from './get_all';
 import { sort } from '@razomy/json';
-import { getPackageFunctions } from '../../ts-refactor/get_package_functions';
+import { getExportedFunctions } from '../../ts-refactor/get_exported_functions';
+import { getExportedConstants } from '../../ts-refactor/get_exported_constants';
+import { Project } from 'ts-morph';
+import { getFilteredSourceFiles } from '../../ts-refactor/get_filtered_source_files';
 
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = getAll(projectPath);
+  const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
+
   packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, `utf-8`);
     const currentPackageJson = JSON.parse(content);
-    const srcPrefix = currentPackageJson.files[0] === `*` ? `` : `src/`;
-    const functions = getPackageFunctions(path.dirname(folder.path));
+    const srcPrefix = (currentPackageJson.files || ['*'])[0] === `*` ? `` : `src/`;
+    const sources = getFilteredSourceFiles(project, path.dirname(folder.path));
+    const functions = getExportedFunctions(sources);
+    const consts = getExportedConstants(sources);
     const rawPkgData = {
       // general
       name: folder.name.replaceAll(`/`, `-`).replace(prefix + `-`, `@${prefix}/`),
       version: `0.0.1-alpha.4`,
       license: `MIT`,
       type: `module`,
-      description: ``,
-      keywords: new Set([...currentPackageJson.name.split(/[@\/\-]/g), ...functions.map(stringCase.camelCase)]).values().toArray().filter(Boolean),
+      description: currentPackageJson.description || ``,
+      keywords: new Set([
+        ...currentPackageJson.name.split(/[@\/\-]/g),
+        ...functions.map(stringCase.camelCase),
+        ...consts.map(stringCase.camelCase),
+      ])
+        .values()
+        .toArray()
+        .filter(Boolean),
+
       homepage: `https://github.com/razomy/js/${folder.name}#readme`,
       author: {
         name: `Yevhenii Kamenskyi`,
@@ -120,7 +135,7 @@ export function updateByTemplate(projectPath: string, prefix) {
     pkgData = sort(pkgData);
     // pkgData.exports = rawPkgData.exports
     // pkgData.publishConfig.exports = rawPkgData.publishConfig.exports;
-    fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2));
+    fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2) + '\n');
     console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
   });
 }

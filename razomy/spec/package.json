@@ -64,8 +64,7 @@
   "homepage": "https://github.com/razomy/js/razomy/spec#readme",
   "keywords": [
     "razomy",
-    "spec",
-    "functionSpec"
+    "spec"
   ],
   "license": "MIT",
   "main": "./index.ts",

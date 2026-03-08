@@ -21,10 +21,14 @@ function getWorkspaceMap(rootDir): Map<string, Workspace> {
 
   // A. Find workspace patterns from root package.json
   const rootPkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
-  const patterns = Array.isArray(rootPkg.workspaces) ? rootPkg.workspaces : rootPkg.workspaces?.packages || ['packages/*', 'apps/*'];
+  const patterns = Array.isArray(rootPkg.workspaces)
+    ? rootPkg.workspaces
+    : rootPkg.workspaces?.packages || ['packages/*', 'apps/*'];
 
   // B. Locate all package.json files
-  const files = patterns.flatMap((ptn: string) => globSync(`${ptn}/package.json`, { cwd: rootDir, ignore: '**/node_modules/**' }));
+  const files = patterns.flatMap((ptn: string) =>
+    globSync(`${ptn}/package.json`, { cwd: rootDir, ignore: '**/node_modules/**' }),
+  );
 
   // C. First pass: Collect all names
   const tempConfigs: { name: string; path: string; allDeps: string[] }[] = [];
@@ -58,7 +62,13 @@ function getWorkspaceMap(rootDir): Map<string, Workspace> {
 }
 
 // 2. RECURSIVE PRINT
-function printTree(pkgName: string, map: Map<string, Workspace>, prefix: string = '', isLast: boolean = true, visitedStack: Set<string> = new Set()) {
+function printTree(
+  pkgName: string,
+  map: Map<string, Workspace>,
+  prefix: string = '',
+  isLast: boolean = true,
+  visitedStack: Set<string> = new Set(),
+) {
   const workspace = map.get(pkgName);
   if (!workspace) return; // Should not happen given our filter
 
@@ -67,7 +77,9 @@ function printTree(pkgName: string, map: Map<string, Workspace>, prefix: string 
   const isCircular = visitedStack.has(pkgName);
 
   // Print current node
-  console.log(`${dim}${prefix}${marker}${reset}${green}${pkgName}${reset}${isCircular ? ` ${cyan}(circular)${reset}` : ''}`);
+  console.log(
+    `${dim}${prefix}${marker}${reset}${green}${pkgName}${reset}${isCircular ? ` ${cyan}(circular)${reset}` : ''}`,
+  );
 
   if (isCircular) return; // Stop recursion
 

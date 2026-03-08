@@ -65,15 +65,17 @@
   "keywords": [
     "razomy",
     "function",
-    "f",
     "fMut",
+    "f",
     "isFunction"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/function",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/performance": "0.0.1-alpha.4"
+  },
   "publishConfig": {
     "access": "public"
   },

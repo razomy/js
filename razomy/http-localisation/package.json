@@ -67,7 +67,8 @@
     "http",
     "localisation",
     "acceptLanguageParse",
-    "acceptLanguagePick"
+    "acceptLanguagePick",
+    "regex"
   ],
   "license": "MIT",
   "main": "./index.ts",
