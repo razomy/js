@@ -1,5 +1,5 @@
 /**
- * Checks if string starts with the given target string.
+ * @summary Checks if string starts with the given target string.
  * @param string The string to inspect.
  * @param target The string to search for.
  * @param position The position to search from.
@@ -16,6 +16,8 @@
  * ```ts
  * isStartsWith('razomy', 'z', 2); // => true
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isStartsWith(string: string, target: string, position: number = 0): boolean {
   return string.startsWith(target, position);

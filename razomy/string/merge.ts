@@ -1,7 +1,7 @@
 /**
- * Concatenate an array of strings into a single string.
- * @param {String[]} strings The array of strings to concatenate.
- * @returns {String} The concatenated string.
+ * @summary Concatenate an array of strings into a single string.
+ * @param strings The array of strings to concatenate.
+ * @returns The concatenated string.
  * @example
  * ```ts
  * merge(['a', 'b', 'c']); // => 'abc'
@@ -14,6 +14,8 @@
  * ```ts
  * merge([]); // => ''
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 import type { String } from '@razomy/string';
 

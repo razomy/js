@@ -1,8 +1,8 @@
 import type { String } from '@razomy/string';
 
 /**
- * Interface defining an object structure containing a string property.
- * @property {String} string The string instance.
+ * @summary Interface defining an object structure containing a string property.
+ * @property string The string instance.
  * @example
  * ```ts
  * // Object literal implementation
@@ -24,6 +24,8 @@ import type { String } from '@razomy/string';
  *   console.log(entity.string);
  * }
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export interface WithString {
   string: String;

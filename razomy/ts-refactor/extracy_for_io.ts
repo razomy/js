@@ -5,6 +5,7 @@ import * as fss from '@razomy/fss';
 import { createDistSpecifications } from './create_dist_specifications';
 import { createPackageReadme } from './create_package_readme';
 import { getExportedFunctions } from './get_exported_functions';
+import {getFilteredSourceFiles} from './get_filtered_source_files';
 
 export async function extracyForIo(dirPath) {
   const project = new Project({ tsConfigFilePath: '../../' + 'tsconfig.json' });

@@ -1,9 +1,9 @@
 /**
- * Replace all occurrences of a separator within a string with a replacement.
- * @param {String} text The input text.
- * @param {String} separator The substring to find and separate by.
- * @param {String} replacement The substring to join the parts with.
- * @returns {String} The modified string.
+ * @summary Replace all occurrences of a separator within a string with a replacement.
+ * @param text The input text.
+ * @param separator The substring to find and separate by.
+ * @param replacement The substring to join the parts with.
+ * @returns The modified string.
  * @example
  * ```ts
  * replace('a b c', ' ', '-'); // => 'a-b-c'
@@ -16,6 +16,8 @@
  * ```ts
  * replace('foo', 'bar', 'baz'); // => 'foo'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 import type { String } from '@razomy/string';
 

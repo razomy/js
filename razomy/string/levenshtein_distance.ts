@@ -1,7 +1,7 @@
 /**
- * Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
- * @param {string} a The first string.
- * @param {string} b The second string.
+ * @summary Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
+ * @param a The first string.
+ * @param b The second string.
  * @returns {number} The number of edits (insertions, deletions, or substitutions) required to transform one string into the other.
  * @example
  * ```ts
@@ -15,6 +15,8 @@
  * ```ts
  * levenshteinDistance('razomy', 'razomy'); // => 0
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function levenshteinDistance(a: string, b: string): number {
   if (a.length === 0) {

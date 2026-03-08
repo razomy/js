@@ -1,5 +1,5 @@
 /**
- * Joins an array of strings into a single string using a separator.
+ * @summary Joins an array of strings into a single string using a separator.
  * @param items The array of strings to join.
  * @param separator The string to use as a separator.
  * @returns The joined string.
@@ -15,6 +15,8 @@
  * ```ts
  * join(['one'], ','); // => 'one'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function join(items: string[], separator: string): string {
   return items.join(separator);

@@ -1,8 +1,8 @@
 /**
- * Add margin to every line of the string.
- * @param {string} text The input text.
- * @param {string} margin The margin string to prepend.
- * @returns {string} The text with margin applied.
+ * @summary Add margin to every line of the string.
+ * @param text The input text.
+ * @param margin The margin string to prepend.
+ * @returns The text with margin applied.
  * @example
  * ```ts
  * marginString('Hello', '  '); // => '  Hello'
@@ -15,6 +15,8 @@
  * ```ts
  * marginString('Code', '\t'); // => '\tCode'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function margin(text: string, margin: string): string {
   const lines = text.split('\n');

@@ -1,5 +1,5 @@
 /**
- * Unescapes a specific string sequence by removing the preceding backslash.
+ * @summary Unescapes a specific string sequence by removing the preceding backslash.
  * @param string The string to process.
  * @param separateString The specific string sequence to unescape.
  * @returns The unescaped string.
@@ -15,6 +15,8 @@
  * ```ts
  * unescapeString('key\\=value', '='); // => 'key=value'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 import type { String } from '@razomy/string';
 import { replace } from '@razomy/string';

@@ -1,8 +1,8 @@
 /**
- * Add space margin to the string.
- * @param {string} value The string to process.
- * @param {number} size The size of the space margin.
- * @returns {string} The string with space margin.
+ * @summary Add space margin to the string.
+ * @param value The string to process.
+ * @param size The size of the space margin.
+ * @returns The string with space margin.
  * @example
  * ```ts
  * spaceMargin('a', 1); // => ' a '
@@ -15,6 +15,8 @@
  * ```ts
  * spaceMargin('c', 0); // => 'c'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 import { margin } from '@razomy/string';
 

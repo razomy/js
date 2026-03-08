@@ -1,7 +1,7 @@
 import type { String } from '@razomy/string';
 
 /**
- * Check if the value is a string.
+ * @summary Check if the value is a string.
  * @param value The value to check.
  * @returns True if the value is a string.
  * @example
@@ -16,6 +16,8 @@ import type { String } from '@razomy/string';
  * ```ts
  * isString(null); // => false
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isString(value: unknown): value is String {
   return typeof value === 'string';

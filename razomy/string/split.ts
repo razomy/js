@@ -1,5 +1,5 @@
 /**
- * Split string by splitter characters.
+ * @summary Split string by splitter characters.
  * @param text - The string to split.
  * @param splitter
  * @param limit
@@ -16,6 +16,8 @@
  * ```ts
  * split('One', ''); // => ['O','n','e']
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function split(text: string, splitter: string | RegExp, limit?: number): string[] {
   return text.split(splitter, limit);

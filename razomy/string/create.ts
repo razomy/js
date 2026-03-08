@@ -1,7 +1,7 @@
 /**
- * Convert any value to a string.
+ * @summary Convert any value to a string.
  * @param {unknown} value The value to convert.
- * @returns {string} The string representation of the value.
+ * @returns The string representation of the value.
  * @example
  * ```ts
  * string(100); // => '100'
@@ -14,6 +14,8 @@
  * ```ts
  * string(null); // => 'null'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function create(value: unknown): string {
   return String(value);

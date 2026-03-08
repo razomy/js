@@ -1,8 +1,8 @@
 /**
- * Gets the substring before the first occurrence of a separator.
- * @param {string} text The input string.
- * @param {string} separator The string to search for.
- * @returns {string} The substring before the separator or the original string if not found.
+ * @summary Gets the substring before the first occurrence of a separator.
+ * @param text The input string.
+ * @param separator The string to search for.
+ * @returns The substring before the separator or the original string if not found.
  * @example
  * ```ts
  * substringBefore('@razomy/string', '.'); // => 'razomy'
@@ -15,6 +15,8 @@
  * ```ts
  * substringBefore('atomic', ' '); // => 'atomic'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function substringBefore(text: string, separator: string): string {
   const index = text.indexOf(separator);

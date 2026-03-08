@@ -1,5 +1,5 @@
 /**
- * Checks if the string contains only alphabetic characters.
+ * @summary Checks if the string contains only alphabetic characters.
  * @param text The string to check.
  * @returns True if the string is alphabetic.
  * @example
@@ -14,6 +14,8 @@
  * ```ts
  * isAlpha(''); // => false
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isAlpha(text: string): boolean {
   return /^[a-zA-Z]+$/.test(text);

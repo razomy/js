@@ -1,8 +1,8 @@
 /**
- * Convert string to buffer using specified encoding.
- * @param {string} value The string to convert.
- * @param {BufferEncoding} encoding The encoding of the string.
- * @returns {Buffer} The resulting buffer.
+ * @summary Convert string to buffer using specified encoding.
+ * @param value The string to convert.
+ * @param encoding The encoding of the string.
+ * @returns The resulting buffer.
  * @example
  * ```ts
  * toBuffer('abc', 'utf8'); // => <Buffer 61 62 63>
@@ -15,6 +15,8 @@
  * ```ts
  * toBuffer('616263', 'hex'); // => <Buffer 61 62 63>
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function toBuffer(value: string, encoding: BufferEncoding): Buffer {
   return Buffer.from(value, encoding);

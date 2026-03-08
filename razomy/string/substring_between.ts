@@ -1,5 +1,5 @@
 /**
- * Extracts a substring found between a start string and an end string.
+ * @summary Extracts a substring found between a start string and an end string.
  * @param text The source text to search within.
  * @param start The string marking the beginning of the extraction.
  * @param end The string marking the end of the extraction.
@@ -17,6 +17,8 @@
  * ```ts
  * substringBetween('<div>content</div>', '<div>', '</div>'); // => 'content'
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function substringBetween(text: string, start: string, end: string): string {
   const startIndex = text.indexOf(start);

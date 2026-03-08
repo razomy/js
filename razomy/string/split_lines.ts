@@ -1,5 +1,5 @@
 /**
- * Split string by newline characters.
+ * @summary Split string by newline characters.
  * @param text - The string to split.
  * @returns An array of lines.
  * @example
@@ -14,6 +14,8 @@
  * ```ts
  * splitLines('One'); // => ['One']
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function splitLines(text: string): string[] {
   return text.split(/\r\n|\r|\n/);
