@@ -4,7 +4,11 @@
     "name": "Yevhenii Kamenskyi",
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@prisma/client": "^7.4.2",
+    "@types/pg": "^8.18.0",
+    "prisma": "^7.4.2"
+  },
   "description": "",
   "engines": {
     "node": ">=18"
@@ -61,51 +65,27 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/ts-refactor#readme",
+  "homepage": "https://github.com/razomy/js/razomy/models-prisma#readme",
   "keywords": [
     "razomy",
-    "ts",
-    "refactor",
-    "createDistSpecifications",
-    "createPackageReadme",
-    "extracyForIo",
-    "fileRenameVariablesAndPropsFunctions",
-    "getExportedConstants",
-    "getExportedFunctions",
-    "getFilteredSourceFiles",
-    "getNameAndExt",
-    "isNameTaken",
-    "iterateSourceFilesAndSave",
-    "renameFileBasedOnFirstChild",
-    "renameFoldersRecursively",
-    "renameNode",
-    "renameToSnakeCaseRecursiveTs",
-    "splitFunctions",
-    "toSafeFilename",
-    "toSafeName"
+    "models",
+    "prisma"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/ts-refactor",
-  "peerDependencies": {
-    "@razomy/action": "0.0.1-alpha.4",
-    "@razomy/array": "0.0.1-alpha.4",
-    "@razomy/fss": "0.0.1-alpha.4",
-    "@razomy/languages-programming-fs": "0.0.1-alpha.4",
-    "@razomy/refactor-fs": "0.0.1-alpha.4",
-    "@razomy/string-case": "0.0.1-beta.2"
-  },
+  "name": "@razomy/models-prisma",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/ts-refactor",
+    "directory": "razomy/models-prisma",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts",
+    "build": "npx prisma generate --schema prisma && tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },

@@ -1,0 +1,16 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "./generated"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  schemas  = ["public", "users_db", "fss_db", "auths_db", "acls_db", "ids_db"]
+}
+
+enum crdb_internal_region {
+  gcp_us_central1 @map("gcp-us-central1")
+
+  @@schema("public")
+}

@@ -1,0 +1,32 @@
+// fs
+enum FsNodeType {
+  None
+  FileJson // Stores structured text/data in content_json
+  FileStorageUrl // Stores an S3/Cloud URL in the content_url column content_json {url:string}
+  FileBinary // Stores raw file data in content_binary
+  Directory // Acts as a folder (uses the parent/child relations)
+
+  @@map("fs_node_type")
+  @@schema("fss_db")
+}
+
+model FsNode {
+  id             String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String     @db.String(255)
+  type           FsNodeType
+  content_json   Json?
+  content_binary Bytes?
+
+  // Настройка рекурсивной связи (Self-relation)
+  parentId  String?  @map("parent_id") @db.Uuid
+  ancestors String[] @db.Uuid
+
+  parent   FsNode?  @relation("FileToFile", fields: [parentId], references: [id])
+  children FsNode[] @relation("FileToFile")
+
+  @@unique([name, parentId], name: "unique_name_in_folder")
+  // Создаем инвертированный (GIN) индекс для массива ancestors
+  @@index([ancestors], type: Gin, name: "idx_ancestors")
+  @@map("fs_node")
+  @@schema("fss_db")
+}

@@ -1,0 +1,46 @@
+// Абстрагируем провайдеров. Теперь Firebase — лишь один из вариантов.
+model Account {
+  id     String @id @default(uuid())
+  userId String
+
+  // 'firebase', 'google', 'credentials', 'apple', 'github'
+  provider String
+
+  // Уникальный ID со стороны провайдера (твой бывший firebaseUid)
+  providerAccountId String
+
+  // Опциональные поля для OAuth или локальных паролей
+  passwordHash String? // Если решишь добавить вход по паролю
+  refreshToken String? // Для OAuth
+  accessToken  String? // Для OAuth
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Один провайдер не может иметь два одинаковых аккаунта
+  @@unique([provider, providerAccountId])
+  @@schema("auths_db")
+}
+
+// ==========================================
+// 3. УПРАВЛЕНИЕ СЕССИЯМИ (Security & Scaling)
+// ==========================================
+// Позволяет смотреть "Активные устройства" и принудительно разлогинивать
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  sessionToken String   @unique // Токен сессии (JWT или opaque token)
+  expiresAt    DateTime // Когда сессия протухает
+
+  // Метаданные для безопасности
+  ipAddress String?
+  userAgent String? // Браузер/телефон
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@schema("auths_db")
+}

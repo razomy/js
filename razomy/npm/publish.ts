@@ -18,16 +18,25 @@ export async function publish(path_: string) {
 }
 
 ifMain(import.meta.url, () => {
+  // publish('../string-case');
+  // publish('../array');
+  // publish('../string');
+  // publish('../dict');
+  // publish('../recursive');
+  // publish('../json');
+  // publish('../tree');
+  // publish('../async');
+  // publish('../random');
+
+
   // publish('../fs-file-format');
   // publish('../images');
   // publish('../videos');
   // publish('../audios');
+
   // publish('../schema');
   // publish('../schemas');
-  // publish('../array');
-  // publish('../string');
-  // publish('../string-case');
-  // publish('../async');
+
   // publish('../pipes');
   // publish('../nuxt');
 });

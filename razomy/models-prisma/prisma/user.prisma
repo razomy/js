@@ -1,0 +1,10 @@
+model User {
+  id       String      @id @default(uuid())
+  // Связи
+  ids      Indentity[] // Способы входа (Firebase, Google, etc.)
+  accounts Account[] // Способы входа (Firebase, Google, etc.)
+  sessions Session[] // Активные сессии (устройства)
+  roles    UserRole[] // Роли пользователя (RBAC)
+
+  @@schema("users_db")
+}

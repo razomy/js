@@ -1,0 +1,49 @@
+// ==========================================
+// 4. АВТОРИЗАЦИЯ И ДОСТУПЫ (RBAC - Role Based Access Control)
+// ==========================================
+// Масштабируемая система прав (можно сделать админов, модераторов, VIP и т.д.)
+model Role {
+  id          String  @id @default(uuid())
+  name        String  @unique // 'SUPER_ADMIN', 'USER', 'MANAGER'
+  description String?
+
+  users       UserRole[]
+  permissions RolePermission[] // Права, привязанные к роли
+
+  @@schema("acls_db")
+}
+
+// Связующая таблица Многие-ко-Многим (Пользователь <-> Роль)
+model UserRole {
+  userId String
+  roleId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId]) // Композитный первичный ключ
+  @@schema("acls_db")
+}
+
+// Конкретные действия (например: 'DELETE_USERS', 'EDIT_POSTS')
+model Permission {
+  id          String  @id @default(uuid())
+  action      String  @unique // Название права
+  description String?
+
+  roles RolePermission[]
+
+  @@schema("acls_db")
+}
+
+// Связующая таблица Многие-ко-Многим (Роль <-> Право)
+model RolePermission {
+  roleId       String
+  permissionId String
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@schema("acls_db")
+}
