@@ -1,6 +1,6 @@
 /**
- * Creates a duplicate-free version of an array.
- * @param {readonly T[]} array The array to inspect.
+ * @summary Creates a duplicate-free version of an array.
+ * @param array The array to inspect.
  * @returns The new duplicate-free array.
  * @example
  * ```ts

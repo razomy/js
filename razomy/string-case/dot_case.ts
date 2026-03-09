@@ -18,7 +18,6 @@
  * @complexity memory O(n)
  */
 export function dotCase(text: string): string {
-  if (!text) return '';
   return text
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/[^a-zA-Z0-9]+/g, ' ')

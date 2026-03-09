@@ -1,5 +1,5 @@
 /**
- * Creates a new array populated with the results of calling a provided function on every element in the input array.
+ * @summary Creates a new array populated with the results of calling a provided function on every element in the input array.
  * @param array The array to iterate over.
  * @param iteratee The function invoked per iteration.
  * @returns A new array with the transformed elements.

@@ -1,5 +1,5 @@
 /**
- * Checks if all elements in the array satisfy the provided testing function.
+ * @summary Checks if all elements in the array satisfy the provided testing function.
  * @param array The array to iterate over.
  * @param predicate The function to test for each element.
  * @returns True if all elements pass the test, otherwise false.

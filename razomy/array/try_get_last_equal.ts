@@ -1,6 +1,6 @@
 /**
- * Returns the last pair of elements from two arrays that satisfy the provided predicate.
- * Iterates through both arrays in reverse order.
+ * @summary Returns the last pair of elements from two arrays that satisfy the provided predicate.
+ * @description Iterates through both arrays in reverse order.
  * @param arrayA The first array.
  * @param arrayB The second array.
  * @param predicate The comparison function to determine equality or condition match.
@@ -21,7 +21,7 @@
  * // => null
  * ```
  */
-export function tryLastEqual<T, U>(
+export function tryGetLastEqual<T, U>(
   arrayA: T[],
   arrayB: U[],
   predicate: (itemA: T, itemB: U) => boolean,

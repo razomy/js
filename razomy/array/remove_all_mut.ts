@@ -1,7 +1,6 @@
 /**
- * Removes the specified values from the array.
- * Note: This operation mutates the original array.
- * It iterates through the provided values and removes the first matching instance in the target array for each.
+ * @summary Removes the specified values from the array.
+ * @description It iterates through the provided values and removes the first matching instance in the target array for each.
  * @param array The array to modify.
  * @param values The values to remove from the array.
  * @returns

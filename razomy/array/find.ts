@@ -1,5 +1,5 @@
 /**
- * Find an item in an array that matches the predicate.
+ * @summary Find an item in an array that matches the predicate.
  * Throws an error if no item is found.
  * @template T
  * @param array The array to search.

@@ -1,8 +1,8 @@
 /**
- * Checks if value is in array.
+ * @summary Checks if value is in array.
  * @param array The array to query.
  * @param value The value to search for.
- * @param [fromIndex] The index to search from.
+ * @param fromIndex The index to search from.
  * @returns True if value is found, else false.
  * @example
  * ```ts

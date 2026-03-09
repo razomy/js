@@ -18,7 +18,6 @@
  * @complexity memory O(n)
  */
 export function constantCase(text: string): string {
-  if (!text) return '';
   return (
     text
       // Вставляем пробел между маленькой и большой буквой (camelCase -> camel Case)

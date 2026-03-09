@@ -1,8 +1,8 @@
 /**
- * Returns the index of the first element in the array that satisfies the provided testing function.
+ * @summary Returns the index of the first element in the array that satisfies the provided testing function.
  * @template T
  * @param array The array to search.
- * @param {(item: T, index: number, array: T[]) => boolean} predicate The function to execute on each value.
+ * @param predicate The function to execute on each value.
  * @returns The index of the first element that passes the test, otherwise -1.
  * @example
  * ```ts

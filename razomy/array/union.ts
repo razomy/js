@@ -1,16 +1,16 @@
 /**
- * Create an array of unique values, in order, from all given arrays.
+ * @summary Create an array of unique values, in order, from all given arrays.
  * @param {Array<Array<T>>} arrays The arrays to inspect.
  * @returns {Array<T>} The new array of combined values.
  * @example
  * ```ts
- * // => [2, 1]
  * union([2], [1, 2]);
+ * // => [2, 1]
  * ```
  * @example
  * ```ts
- * // => ['a', 'b']
  * union(['a'], ['b'], ['a']);
+ * // => ['a', 'b']
  * ```
  * @example
  * ```ts

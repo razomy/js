@@ -1,7 +1,6 @@
 /**
- * Splits an array into smaller arrays (chunks) of a specified size.
- * The last chunk may be smaller than the `size`.
- *
+ * @summary Splits an array into smaller arrays (chunks) of a specified size.
+ * @description The last chunk may be smaller than the `size`.
  * @param array The array to process.
  * @param size The length of each chunk. Must be a positive integer.
  * @returns A new array of chunked arrays.

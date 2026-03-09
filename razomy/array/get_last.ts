@@ -1,10 +1,10 @@
 /**
- * Retrieves the last element of an array.
- * Optionally accepts an offset to retrieve preceding elements.
+ * @summary Retrieves the last element of an array.
+ * @description Optionally accepts an offset to retrieve preceding elements.
  * Throws an error if the element is not found (e.g., empty array or out of bounds).
  * @template T The type of elements in the array.
  * @param array The input array.
- * @param [offset=0] The zero-based offset from the end (0 is the last item, 1 is the second to last).
+ * @param offset The zero-based offset from the end (0 is the last item, 1 is the second to last).
  * @returns The element at the calculated position.
  * @throws {Error} If the element does not exist.
  * @example

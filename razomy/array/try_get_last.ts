@@ -1,6 +1,6 @@
 /**
- * Retrieves the last element of an array or an element relative to the end.
- * Returns null if the index is out of bounds.
+ * @summary Retrieves the last element of an array or an element relative to the end.
+ * @description Returns null if the index is out of bounds.
  * @param arr The input array.
  * @param deltaIndex The offset from the end (defaults to 0).
  * @returns {T | null} The element or null.

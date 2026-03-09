@@ -1,6 +1,6 @@
 /**
- * Toggles the presence of an item in an array.
- * If the item exists, it is removed. Otherwise, it is appended.
+ * @summary Toggles the presence of an item in an array.
+ * @description If the item exists, it is removed. Otherwise, it is appended.
  * @param array The source array.
  * @param item The item to toggle.
  * @returns A new array with the item toggled.

@@ -1,18 +1,16 @@
 /**
- * Creates a new array of elements sorted in ascending order by the results of running an iteratee on each element.
- * This function performs a stable sort and does not mutate the original array.
+ * @summary This function performs a stable sort and does not mutate the original array.
+ * @description Creates a new array of elements sorted in ascending order by the results of running an iteratee on each element.
  * @param array The array to sort.
  * @param {(item: T) => string | number} iteratee The function invoked per iteration to generate the sorting criteria.
  * @returns Returns the new sorted array.
  * @example
  * ```ts
- * sortBy([3, 1, 2], (n) => n);
- * // => [1, 2, 3]
+ * sortBy([3, 1, 2], (n) => n); // => [1, 2, 3]
  * ```
  * @example
  * ```ts
- * sortBy(['bb', 'ccc', 'a'], (s) => s.length);
- * // => ['a', 'bb', 'ccc']
+ * sortBy(['bb', 'ccc', 'a'], (s) => s.length); // => ['a', 'bb', 'ccc']
  * ```
  * @example
  * ```ts

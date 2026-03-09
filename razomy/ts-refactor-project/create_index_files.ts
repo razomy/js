@@ -163,7 +163,6 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
 
   // Логика выбора стиля экспорта
   if (hasTypesOrClasses) {
-
     if (namesToExport.length > 0) {
       const def = `export { ${namesToExport.join(', ')} } from './${baseName}';`;
       if (def.length > 120) {

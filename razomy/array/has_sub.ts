@@ -1,5 +1,5 @@
 /**
- * Check if the master array contains all elements of the sub array in the same relative order.
+ * @summary Check if the master array contains all elements of the sub array in the same relative order.
  * @param master The array to search in.
  * @param sub The sequence of elements to look for.
  * @returns True if the subsequence exists.
@@ -16,7 +16,7 @@
  * subHas([true, false], []); // => true
  * ```
  */
-export function subHas<T>(master: T[], sub: T[]): boolean {
+export function hasSub<T>(master: T[], sub: T[]): boolean {
   let offset = 0;
 
   for (const item of sub) {

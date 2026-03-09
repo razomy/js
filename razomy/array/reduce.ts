@@ -1,7 +1,7 @@
 /**
- * Executes a reducer function on each element of the array, resulting in a single output value.
+ * @summary Executes a reducer function on each element of the array, resulting in a single output value.
  * @param array The array to process.
- * @param {(accumulator: A, value: T, index: number, array: T[]) => A} reducer The function to execute on each element.
+ * @param reducer The function to execute on each element.
  * @param initialValue The initial value of the accumulator.
  * @returns The accumulated result.
  * @example

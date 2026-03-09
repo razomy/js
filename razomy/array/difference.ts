@@ -1,8 +1,7 @@
 /**
- * Computes the difference between two arrays.
- * Returns a new array with elements that are in the first array but not in the second array.
+ * @summary Computes the difference between two arrays.
+ * @description Returns a new array with elements that are in the first array but not in the second array.
  * The order of elements in the result is determined by the order in the first array.
- *
  * @template T The type of elements in the arrays.
  * @param source The array to compare against.
  * @param other The array to subtract from the source.

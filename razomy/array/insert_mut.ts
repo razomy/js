@@ -1,5 +1,5 @@
 /**
- * Inserts an item into an array at the specified index by mutating the array.
+ * @summary Inserts an item into an array at the specified index by mutating the array.
  * @param array The array to mutate.
  * @param index The index at which to insert the item.
  * @param item The item to insert.
