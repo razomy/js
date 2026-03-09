@@ -1,0 +1,27 @@
+development {
+create package checklist {
+js {
+function
+ name
+ documentation
+  summary
+  description
+  params
+  return
+  examples
+   with ```ts
+   return startsWith // =>
+ tests
+  boundaries
+   any data
+   null
+   dimensional
+    zeo
+    lowest
+    largest
+    outrange left
+    outrange right
+readme
+ documentation
+specification
+ performance

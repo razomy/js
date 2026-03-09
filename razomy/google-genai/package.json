@@ -66,17 +66,15 @@
     "razomy",
     "google",
     "genai",
-    "ask",
-    "f",
     "ai",
-    "response"
+    "models"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/google-genai",
   "peerDependencies": {
-    "@razomy/fs": "0.0.1-alpha.4"
+    "@google/genai": "^1.44.0"
   },
   "publishConfig": {
     "access": "public"

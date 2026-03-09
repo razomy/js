@@ -1,2 +1,2 @@
-export { ask, ai, response } from './ask';
-export { f } from './f';
+export * as batch from './batch';
+export { ai, models } from './client';
