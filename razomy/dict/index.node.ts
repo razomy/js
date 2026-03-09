@@ -1,7 +1,7 @@
 export { type DictKey, type Dict } from './dict';
 export { filter } from './filter';
 export { firstKey } from './first_key';
-export { flat, type Join, type PathsValue, type FlattenedAndConverted } from '../dict-recursive/flat';
+export { flat, type Join, type PathsValue, type FlattenedAndConverted } from '../recursive-dict/flat';
 export { getKeys } from './get_keys';
 export { get } from './get';
 export { isKeys } from './is_keys';
@@ -10,7 +10,6 @@ export { iterate } from './iterate';
 export { mapToArray } from './map_to_array';
 export { map } from './map';
 export { merge, type UnionToIntersection, type Prettify } from './merge';
-export { type RecursiveDict } from '../dict-recursive/recursive';
-export { shuffle } from './shuffle';
+export { type RecursiveDict } from '../recursive-dict/recursive';
 export { type SomeOf } from './some_of';
 export { toString_ } from './to_string';

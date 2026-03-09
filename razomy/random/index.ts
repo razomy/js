@@ -1,3 +1,3 @@
-export { randomString } from './random_string';
-export { range } from './range';
+export { createString } from './random_string';
 export { shuffle } from './shuffle';
+export {createFloatRange} from './createFloatRange';

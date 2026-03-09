@@ -1,3 +1,5 @@
+import {createFloat} from './createFloat';
+
 /**
  * Generates a random string of specified length using optional custom characters.
  * @param length The length of the resulting string.
@@ -16,14 +18,14 @@
  * // => 'aaaa'
  * randomString(4, 'a');
  */
-export function randomString(
+export function createString(
   length: number,
   characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 ): string {
   let result: string = '';
   const charactersLength: number = characters.length;
   for (let i: number = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    result += characters.charAt(Math.floor(createFloat() * charactersLength));
   }
   return result;
 }

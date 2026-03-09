@@ -1,25 +1,27 @@
+import {createInt} from './createInt';
+
 /**
  * Creates a new array with elements shuffled using Fisher-Yates algorithm.
  * @param array The source array.
  * @returns A new shuffled array.
  * @example
  * ```ts
- * shuffle([1, 2, 3]); // => [2, 3, 1]
+ * shuffleArray([1, 2, 3]); // => [2, 3, 1]
  * ```
  * @example
  * ```ts
- * shuffle(['a', 'b', 'c']); // => ['c', 'a', 'b']
+ * shuffleArray(['a', 'b', 'c']); // => ['c', 'a', 'b']
  * ```
  * @example
  * ```ts
- * shuffle([]); // => []
+ * shuffleArray([]); // => []
  * ```
  */
-export function shuffle<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+export const shuffleArray = <T>(array: T[]): T[] => {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = createInt(0, i);
+    [result[i], result[j]] = [result[j], result[i]];
   }
-  return shuffled;
-}
+  return result;
+};
