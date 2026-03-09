@@ -9,19 +9,19 @@ import type { Index } from '@razomy/index';
  * @returns The resulting string with the insertion.
  * @example
  * ```ts
- * addIndexString('-text', 0, 'prefix'); // => 'prefix-text'
+ * addByIndexString('-text', 0, 'prefix'); // => 'prefix-text'
  * ```
  * @example
  * ```ts
- * addIndexString('hello ', 6, 'world'); // => 'hello world'
+ * addByIndexString('hello ', 6, 'world'); // => 'hello world'
  * ```
  * @example
  * ```ts
- * addIndexString('foo baz', 4, 'bar '); // => 'foo bar baz'
+ * addByIndexString('foo baz', 4, 'bar '); // => 'foo bar baz'
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function addIndexString(text: String, index: Index, insertion: string): String {
+export function addByIndexString(text: String, index: Index, insertion: string): String {
   return text.substring(0, index) + insertion + text.substring(index);
 }

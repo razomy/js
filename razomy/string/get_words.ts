@@ -4,15 +4,15 @@
  * @returns The array of words.
  * @example
  * ```ts
- * words('fred, barney, & pebbles'); // => ['fred', 'barney', 'pebbles']
+ * getWords('fred, barney, & pebbles'); // => ['fred', 'barney', 'pebbles']
  * ```
  * @example
  * ```ts
- * words('camelCase'); // => ['camel', 'Case']
+ * getWords('camelCase'); // => ['camel', 'Case']
  * ```
  * @example
  * ```ts
- * words('nested_snake_case'); // => ['nested', 'snake', 'case']
+ * getWords('nested_snake_case'); // => ['nested', 'snake', 'case']
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)

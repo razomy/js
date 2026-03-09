@@ -1,5 +1,5 @@
 import type { DeltaString } from '@razomy/commit-datetime-delta-string';
-import { addIndexString, removeIndex } from '@razomy/string';
+import { addByIndexString, removeIndex } from '@razomy/string';
 
 export function deltaStringsToString(prevSnapshot: string, changes: DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {
@@ -7,7 +7,7 @@ export function deltaStringsToString(prevSnapshot: string, changes: DeltaString[
     if ('removeLength' in change) {
       prevSnapshot = removeIndex(prevSnapshot, change.offset, change.removeLength);
     } else {
-      prevSnapshot = addIndexString(prevSnapshot, change.offset, change.addValue!);
+      prevSnapshot = addByIndexString(prevSnapshot, change.offset, change.addValue!);
     }
   }
 

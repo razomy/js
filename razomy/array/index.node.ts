@@ -12,7 +12,7 @@ export { find } from './find';
 export { flat } from './flat';
 export { getFirst } from './get_first';
 export { getLast } from './get_last';
-export { getUniq } from './get_uniq';
+export { uniq } from './get_uniq';
 export { groupBy } from './group_by';
 export { hasSub } from './has_sub';
 export { includes } from './includes';

@@ -7,20 +7,20 @@
  * @throws Error if the start or end delimiters are not found.
  * @example
  * ```ts
- * substringBetween('The quick brown fox', 'quick ', ' fox'); // => 'brown'
+ * takeBetween('The quick brown fox', 'quick ', ' fox'); // => 'brown'
  * ```
  * @example
  * ```ts
- * substringBetween('key="value";', '"', '"'); // => 'value'
+ * takeBetween('key="value";', '"', '"'); // => 'value'
  * ```
  * @example
  * ```ts
- * substringBetween('<div>content</div>', '<div>', '</div>'); // => 'content'
+ * takeBetween('<div>content</div>', '<div>', '</div>'); // => 'content'
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function substringBetween(text: string, start: string, end: string): string {
+export function takeBetween(text: string, start: string, end: string): string {
   const startIndex = text.indexOf(start);
 
   if (startIndex === -1) {

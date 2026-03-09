@@ -5,20 +5,20 @@
  * @returns The substring before the separator or the original string if not found.
  * @example
  * ```ts
- * substringBefore('@razomy/string', '.'); // => 'razomy'
+ * takeBefore('@razomy/string', '.'); // => 'razomy'
  * ```
  * @example
  * ```ts
- * substringBefore('user@example.com', '@'); // => 'user'
+ * takeBefore('user@example.com', '@'); // => 'user'
  * ```
  * @example
  * ```ts
- * substringBefore('atomic', ' '); // => 'atomic'
+ * takeBefore('atomic', ' '); // => 'atomic'
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function substringBefore(text: string, separator: string): string {
+export function takeBefore(text: string, separator: string): string {
   const index = text.indexOf(separator);
 
   if (index === -1) {

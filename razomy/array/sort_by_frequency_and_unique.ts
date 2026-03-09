@@ -1,6 +1,6 @@
 import { countBy } from './count_by';
 import { sortBy } from './sort_by';
-import { getUniq } from './get_uniq';
+import { uniq } from './get_uniq';
 
 /**
  * @summary Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
@@ -21,7 +21,7 @@ import { getUniq } from './get_uniq';
  */
 export function sortByFrequencyAndUnique<T>(array: T[]): T[] {
   const frequencies = countBy(array);
-  const distinctItems = getUniq(array);
+  const distinctItems = uniq(array);
 
   return sortBy(distinctItems, (item: T) => {
     return -frequencies[item as any];
