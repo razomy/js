@@ -10,6 +10,6 @@ declare global {
 
 export const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
 export const models = {
-  cheap: 'gemini-2.5-flash',
+  cheap: 'gemini-3.1-flash-lite-preview',
   expensive: 'gemini-3.1-pro-preview',
 }

@@ -10,8 +10,7 @@ export async function asks(texts: string[], systemText: string) {
     .map((text) => {
       return {
         contents: [
-          {parts: [{text: systemText}], role: 'system'},
-          {parts: [{text}], role: 'user'},
+          {parts: [{text: systemText + '\n\n' + text}], role: 'user'},
         ],
       } as InlinedRequest;
     });
