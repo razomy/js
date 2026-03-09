@@ -1,7 +1,7 @@
 import type { Logger } from '@razomy/logging';
 import { ConsoleLogger } from '@razomy/logging';
 
-export class TaskQueue {
+export class AsyncQueue {
   private isProcessing = false;
   private queue: {
     id: number;
