@@ -1,4 +1,4 @@
-export function deleteByPath(obj, path: string) {
+export function delete_(obj, path: string) {
   const keys = path.split('.');
   const lastKey = keys.pop();
   let current = obj;

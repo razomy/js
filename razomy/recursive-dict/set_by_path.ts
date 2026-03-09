@@ -1,4 +1,4 @@
-export function setByPath(obj, path: string, value) {
+export function set(obj, path: string, value) {
   const keys = path.split('.');
   const lastKey = keys.pop();
   let current = obj;

@@ -1,5 +1,5 @@
-import { iterate } from './iterate';
-import { isPlainObject } from './is_plain_object';
+import { iterate } from '../dict/iterate';
+import { isPlainObject } from '../dict/is_plain_object';
 
 export type Join<K, P> = K extends string
   ? P extends string
@@ -18,7 +18,7 @@ export type FlattenedAndConverted<T extends object> = {
   [K in keyof T]-?: PathsValue<T[K], K>;
 }[keyof T];
 
-export function flatten<T extends object = object>(
+export function flat<T extends object = object>(
   obj: T,
   parentKey = '',
   result = {} as any,
@@ -27,7 +27,7 @@ export function flatten<T extends object = object>(
     const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
 
     if (isPlainObject(value)) {
-      flatten(value as any, newKey, result);
+      flat(value as any, newKey, result);
     } else {
       result[newKey] = value;
     }
