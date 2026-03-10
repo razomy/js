@@ -1,4 +1,4 @@
-import type { RecursiveDict } from '@razomy/dict';
+import type { RecursiveDict } from '@razomy/recursive-dict';
 import { isObject } from '@razomy/object';
 
 export type DiffCreated = { type: 'CREATED'; newValue: any };

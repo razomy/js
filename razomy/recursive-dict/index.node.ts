@@ -1,10 +1,8 @@
-export { delete_ } from './delete_';
-export { deleteByPath } from './delete_by_path';
+export { deleteByPathMut } from './delete_by_path';
 export { flat, type Join, type PathsValue, type FlattenedAndConverted } from './flat';
 export { getAnyAll } from './get_any_all';
 export { getAny } from './get_any';
 export { getByPath } from './get_by_path';
-export { moveByPath } from './move_by_path';
+export { moveByPathMut } from './move_by_path';
 export { type RecursiveDict } from './recursive';
-export { setByPath } from './set_by_path';
-export { set } from './set';
+export { setByPathMut } from './set_by_path';

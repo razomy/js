@@ -31,7 +31,7 @@ export function createDist(path_) {
       return v1;
     }
     if (array.isArray(v1)) {
-      return array.map(v1, (v2, k3) => mD(v2, k3, k2));
+      return array.map(v1, (v2, k3) => mD(v2 as any, k3, k2));
     }
     if (isObject(v1)) {
       return dict.map(v1, (v2, k3) => mD(v2, k3, k2));
@@ -65,7 +65,7 @@ export function createDist(path_) {
       return v1;
     }
     if (array.isArray(v1)) {
-      return array.map(v1, (v2, k3) => mDt(v2, k3, k2));
+      return array.map(v1, (v2, k3) => mDt(v2 as any, k3, k2));
     }
     if (isObject(v1)) {
       return dict.map(v1, (v2, k3) => mDt(v2, k3, k2));

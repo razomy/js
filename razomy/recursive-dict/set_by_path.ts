@@ -45,5 +45,5 @@ export function setByPathMut(obj: RecursiveDict, path: string, value: unknown): 
     return acc[part] as RecursiveDict;
   }, obj);
 
-  target[last] = value;
+  target[last!] = value as any;
 }

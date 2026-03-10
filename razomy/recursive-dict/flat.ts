@@ -37,7 +37,7 @@ export type FlattenedAndConverted<T extends object> = {
  * @complexity time O(n) where n is the total number of leaf values
  * @complexity memory O(n)
  */
-export function flat<T extends object = object>(
+export function flat<T extends Record<string, unknown> = Record<string, unknown>>(
   obj: T,
   parentKey: string = '',
   result: Record<string, unknown> = {},
@@ -46,7 +46,7 @@ export function flat<T extends object = object>(
     const newKey: string = parentKey ? `${parentKey}.${key}` : key;
 
     if (isPlainObject(value)) {
-      flat(value as object, newKey, result);
+      flat(value, newKey, result);
     } else {
       result[newKey] = value;
     }

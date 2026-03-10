@@ -202,16 +202,16 @@ export interface PriorityQueue<T> extends AbstractDataType<T> {
   enqueue: (item: T, priority: number) => void;
   dequeueHighestPriority: () => T;
 }
-//
-// export interface DictionaryMap<K, V> extends AbstractDataType<V> {
-//   underlyingStructure: HashTable<K, V> | BalancedTree<V>;
-//   set: (key: K, value: V) => void;
-//   get: (key: K) => V;
-//   has: (key: K) => boolean;
-// }
-//
-// export interface Set<T> extends AbstractDataType<T> {
-//   underlyingStructure: HashTable<T, boolean> | BalancedTree<T>;
-//   add: (item: T) => void;
-//   has: (item: T) => boolean;
-// }
+
+export interface DictionaryMap<K, V> extends AbstractDataType<V> {
+  underlyingStructure: HashTable<K, V> | BalancedTree<V>;
+  set: (key: K, value: V) => void;
+  get: (key: K) => V;
+  has: (key: K) => boolean;
+}
+
+export interface Set<T> extends AbstractDataType<T> {
+  underlyingStructure: HashTable<T, boolean> | BalancedTree<T>;
+  add: (item: T) => void;
+  has: (item: T) => boolean;
+}

@@ -1,4 +1,4 @@
-import { differencesString } from '@razomy/string';
+import { differencesString } from '@razomy/strings';
 import type { DeltaString } from '@razomy/commit-datetime-delta-string';
 
 export function stringsToDeltaStrings(getPreviousContent: string, getCurrentContent: string): DeltaString[] {

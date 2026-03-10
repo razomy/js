@@ -1,10 +1,11 @@
-import type { Dict } from '@razomy/dict';
-import { assign } from '@razomy/key';
-import { isString } from '@razomy/string';
+import type {Dict} from '@razomy/dict';
+import {assign} from '@razomy/key';
+import {isString} from '@razomy/string';
+import type {Kv} from './kv';
 
 export function valueOrListToFlatDict(
   dict: {},
-  input: ValueListItemValue<string>,
+  input: Kv<string, string>,
   parent: string,
   separator: string,
 ): Dict<string> {
