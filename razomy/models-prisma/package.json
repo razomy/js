@@ -4,11 +4,6 @@
     "name": "Yevhenii Kamenskyi",
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "dependencies": {
-    "@prisma/client": "^7.4.2",
-    "@types/pg": "^8.18.0",
-    "prisma": "^7.4.2"
-  },
   "description": "",
   "engines": {
     "node": ">=18"
@@ -75,7 +70,12 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/models-prisma",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "@types/pg": "^8.18.0",
+    "prisma": "^7.4.2"
+  },
   "publishConfig": {
     "access": "public"
   },
