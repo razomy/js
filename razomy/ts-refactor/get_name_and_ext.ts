@@ -12,5 +12,17 @@ export function getNameAndExt(sourceFile: SourceFile) {
     baseName = baseName.replace('.spec', '');
     ext = '.spec' + ext;
   }
+  if (baseName.endsWith('.node')) {
+    baseName = baseName.replace('.node', '');
+    ext = '.node' + ext;
+  }
+  if (baseName.endsWith('.browser')) {
+    baseName = baseName.replace('.browser', '');
+    ext = '.browser' + ext;
+  }
+  if (baseName.endsWith('.config')) {
+    baseName = baseName.replace('.config', '');
+    ext = '.config' + ext;
+  }
   return { baseName, ext };
 }

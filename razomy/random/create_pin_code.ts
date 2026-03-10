@@ -1,9 +1,6 @@
-import {createInt} from './createInt';
+import {createInt} from './create_int';
 
-/**
- * Генерирует пин-код без идущих подряд одинаковых цифр
- */
-export const createPinCode = (length: number = 6): string => {
+export function createPinCode (length: number = 6) : string {
   let pin = '';
   let lastDigit = -1;
 
@@ -16,4 +13,4 @@ export const createPinCode = (length: number = 6): string => {
     lastDigit = newDigit;
   }
   return pin;
-};
+}

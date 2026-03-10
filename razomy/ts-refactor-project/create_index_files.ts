@@ -3,6 +3,7 @@ import * as file from '@razomy/fs-file';
 import { tryGetJson } from '@razomy/fs-file';
 import * as path from 'path';
 import { toSafeName } from '@razomy/ts-refactor';
+import {camelCase} from '@razomy/string-case';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';
@@ -172,7 +173,7 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
     }
   } else {
     // Если только утилиты/константы -> экспортируем как пространство имен
-    return `export * as ${baseName} from './${baseName}';`;
+    return `export * as ${camelCase(baseName)} from './${baseName}';`;
   }
 
   return null;

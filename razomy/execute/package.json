@@ -71,7 +71,7 @@
   "module": "./index.ts",
   "name": "@razomy/execute",
   "peerDependencies": {
-    "@razomy/function": "0.0.1-alpha.4"
+    "@razomy/function": "*"
   },
   "publishConfig": {
     "access": "public"

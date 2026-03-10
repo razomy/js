@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { toAudioByFormat } from './to_audio_by_format'; // <-- Поправь путь
+import { toAudioByFormat } from './to_audio_by_format.node'; // <-- Поправь путь
 import { audios } from './types'; // <-- Поправь путь
 
 const sourceAudio = './source_audio.mp3'; // Файл из Шага 1

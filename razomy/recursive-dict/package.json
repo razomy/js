@@ -61,29 +61,34 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/recursive#readme",
+  "homepage": "https://github.com/razomy/js/razomy/recursive-dict#readme",
   "keywords": [
     "razomy",
     "recursive",
+    "dict",
+    "delete",
     "deleteByPath",
+    "flat",
     "getAnyAll",
     "getAny",
     "getByPath",
-    "setByPath"
+    "moveByPath",
+    "setByPath",
+    "set"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/recursive",
+  "name": "@razomy/recursive-dict",
   "peerDependencies": {
-    "@razomy/dict": "0.0.1-alpha.4",
-    "@razomy/object": "0.0.1-alpha.4"
+    "@razomy/dict": "*",
+    "@razomy/object": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/recursive",
+    "directory": "razomy/recursive-dict",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

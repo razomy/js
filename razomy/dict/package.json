@@ -67,7 +67,6 @@
     "dict",
     "filter",
     "firstKey",
-    "flatten",
     "getKeys",
     "get",
     "isKeys",
@@ -76,7 +75,7 @@
     "mapToArray",
     "map",
     "merge",
-    "shuffle",
+    "take",
     "toString"
   ],
   "license": "MIT",
@@ -84,7 +83,7 @@
   "module": "./index.ts",
   "name": "@razomy/dict",
   "peerDependencies": {
-    "@razomy/exceptions": "0.0.1-alpha.4"
+    "@razomy/exceptions": "*"
   },
   "publishConfig": {
     "access": "public"

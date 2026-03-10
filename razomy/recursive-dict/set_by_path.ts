@@ -1,13 +1,13 @@
-export function set(obj, path: string, value) {
-  const keys = path.split('.');
-  const lastKey = keys.pop();
-  let current = obj;
-  for (const key of keys) {
-    if (!current[key] || typeof current[key] !== 'object') {
-      current[key] = {}; // Create nested object if it doesn't exist
-    }
-    current = current[key];
-  }
+import type { RecursiveDict } from "./recursive";
+import { isObject } from "@razomy/object";
 
-  current[lastKey!] = value;
+export function setByPath(obj: RecursiveDict, path: string, value: any): void {
+    const parts = path.split('.');
+    const last = parts.pop();
+    if (!last) return;
+    const target = parts.reduce((acc, part) => {
+            if (!acc[part] || !isObject(acc[part])) acc[part] = {};
+            return acc[part];
+          }, obj);
+    target[last] = value;
 }

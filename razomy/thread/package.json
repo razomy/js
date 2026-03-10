@@ -75,7 +75,7 @@
   "module": "./index.ts",
   "name": "@razomy/thread",
   "peerDependencies": {
-    "@razomy/cluster": "0.0.1-alpha.4"
+    "@razomy/cluster": "*"
   },
   "publishConfig": {
     "access": "public"

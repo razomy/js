@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/context",
   "peerDependencies": {
-    "@razomy/dict": "0.0.1-alpha.4"
+    "@razomy/dict": "*"
   },
   "publishConfig": {
     "access": "public"

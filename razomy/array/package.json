@@ -79,7 +79,6 @@
     "flat",
     "getFirst",
     "getLast",
-    "getUniq",
     "groupBy",
     "hasSub",
     "includes",
@@ -107,6 +106,7 @@
     "tryGetLastEqual",
     "tryGetLast",
     "union",
+    "uniq",
     "zip"
   ],
   "license": "MIT",

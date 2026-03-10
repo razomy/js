@@ -75,9 +75,9 @@
   "module": "./index.ts",
   "name": "@razomy/index",
   "peerDependencies": {
-    "@razomy/number": "0.0.1-alpha.4",
-    "@razomy/offset": "0.0.1-alpha.4",
-    "@razomy/string": "0.0.1-alpha.4"
+    "@razomy/number": "*",
+    "@razomy/offset": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-inputs",
   "peerDependencies": {
-    "@razomy/graphics-elements": "0.0.1-alpha.4"
+    "@razomy/graphics-elements": "*"
   },
   "publishConfig": {
     "access": "public"

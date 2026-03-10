@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-renderes",
   "peerDependencies": {
-    "@razomy/graphics-graphic": "0.0.1-alpha.4"
+    "@razomy/graphics-graphic": "*"
   },
   "publishConfig": {
     "access": "public"

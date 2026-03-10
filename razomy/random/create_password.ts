@@ -1,10 +1,7 @@
-import {createInt} from './createInt';
-import {shuffleArray} from './splitIntoGroups';
+import {createInt} from './create_int';
+import {shuffleArray} from './shuffle_array';
 
-/**
- * Генерирует надежный криптографический пароль
- */
-export const createPassword = (length: number = 16): string => {
+export function createPassword (length: number = 16) : string {
   const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const lower = 'abcdefghijklmnopqrstuvwxyz';
   const numbers = '0123456789';
@@ -25,4 +22,4 @@ export const createPassword = (length: number = 16): string => {
 
   // Перемешиваем пароль
   return shuffleArray(password.split('')).join('');
-};
+}

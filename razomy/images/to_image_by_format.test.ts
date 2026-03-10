@@ -3,7 +3,7 @@ import * as path from 'node:path';
 import sharp from 'sharp';
 import { pipeline } from 'node:stream/promises';
 import { images } from './types';
-import { toImageByFormat } from './to_image_by_format';
+import { toImageByFormat } from './to_image_by_format.node';
 // 👇 УКАЖИ ПРАВИЛЬНЫЙ ПУТЬ К ТВОЕМУ ФАЙЛУ
 
 const outDir = './test_images_out';

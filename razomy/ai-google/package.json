@@ -61,26 +61,26 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/google-genai#readme",
+  "homepage": "https://github.com/razomy/js/razomy/ai-google#readme",
   "keywords": [
     "razomy",
-    "google",
-    "genai",
     "ai",
+    "google",
     "models"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/google-genai",
+  "name": "@razomy/ai-google",
   "peerDependencies": {
-    "@google/genai": "^1.44.0"
+    "@google/genai": "^1.44.0",
+    "@razomy/fs-file": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/google-genai",
+    "directory": "razomy/ai-google",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

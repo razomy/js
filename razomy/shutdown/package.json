@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/shutdown",
   "peerDependencies": {
-    "@razomy/observable": "0.0.1-alpha.4"
+    "@razomy/observable": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -71,9 +71,9 @@
   "module": "./index.ts",
   "name": "@razomy/resources",
   "peerDependencies": {
-    "@razomy/class": "0.0.1-alpha.4",
-    "@razomy/exceptions": "0.0.1-alpha.4",
-    "@razomy/object": "0.0.1-alpha.4"
+    "@razomy/class": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/object": "*"
   },
   "publishConfig": {
     "access": "public"

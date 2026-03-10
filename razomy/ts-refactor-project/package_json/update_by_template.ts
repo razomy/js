@@ -9,7 +9,7 @@ import { Project } from 'ts-morph';
 import { getFilteredSourceFiles } from '../../ts-refactor/get_filtered_source_files';
 
 export function updateByTemplate(projectPath: string, prefix) {
-  const packages = getAll(projectPath);
+  const packages = getAll(projectPath) .filter(i => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
   const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
 
   packages.forEach((folder) => {

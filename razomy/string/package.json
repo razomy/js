@@ -65,18 +65,15 @@
   "keywords": [
     "razomy",
     "string",
-    "addIndexString",
+    "addByIndexString",
     "contains",
     "countOccurrences",
     "countSpaceMarginByArray",
     "countSpaceMargin",
     "countString",
     "create",
-    "differencesString",
     "escapeByString",
     "getWords",
-    "isAlpha",
-    "isAlphanumeric",
     "isEndsWithAny",
     "isEndsWith",
     "isNullOrEmpty",
@@ -96,9 +93,9 @@
     "splitLines",
     "split",
     "stripTags",
-    "substringAfter",
-    "substringBefore",
-    "substringBetween",
+    "takeAfter",
+    "takeBefore",
+    "takeBetween",
     "toBuffer",
     "trim",
     "truncate",
@@ -109,10 +106,8 @@
   "module": "./index.ts",
   "name": "@razomy/string",
   "peerDependencies": {
-    "@razomy/differences": "0.0.1-alpha.4",
-    "@razomy/index": "0.0.1-alpha.4",
-    "@razomy/number": "0.0.1-alpha.4",
-    "@razomy/strings": "0.0.1-alpha.4"
+    "@razomy/index": "*",
+    "@razomy/number": "*"
   },
   "publishConfig": {
     "access": "public"

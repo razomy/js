@@ -74,7 +74,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-codecs-web-svg",
   "peerDependencies": {
-    "@razomy/graphics-codecs-web-svg-codecs": "0.0.1-alpha.4"
+    "@razomy/graphics-codecs-web-svg-codecs": "*"
   },
   "publishConfig": {
     "access": "public"

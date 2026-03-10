@@ -1,3 +1,4 @@
+export * as parent from './parent';
 export { filterFirst } from './filter_first';
 export { filter } from './filter';
 export { getAll } from './get_all';

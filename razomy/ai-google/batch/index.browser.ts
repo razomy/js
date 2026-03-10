@@ -1,4 +1,4 @@
-export { askAtFiles } from './askAtFiles';
+export { askAtFiles } from './ask_at_files';
 export { asksWithCache } from './asks_with_cache';
 export { asks } from './asks';
 export { cancel } from './cancel';

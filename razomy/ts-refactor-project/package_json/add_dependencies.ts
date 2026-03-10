@@ -5,7 +5,8 @@ import { iterate } from '@razomy/fs';
 import { sort } from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
-  const packages = getAll(projectPath);
+  const packages = getAll(projectPath)
+    .filter(i => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names
@@ -62,7 +63,7 @@ export function addDependencies(projectPath: string, prefix) {
       if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
         return;
       }
-      pkgJson.peerDependencies[depName] = '0.0.1-alpha.4';
+      pkgJson.peerDependencies[depName] = 'latest';
       // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
       //   .replace(prefix, '')
       //   .replaceAll('.', '/'));
@@ -70,6 +71,6 @@ export function addDependencies(projectPath: string, prefix) {
     });
     pkgJson.peerDependencies = sort(pkgJson.peerDependencies);
 
-    fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2));
+    fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2) + '\n');
   });
 }

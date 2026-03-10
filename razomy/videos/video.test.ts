@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { toVideoByFormat } from './to_video_by_format'; // <-- Поправь путь
+import { toVideoByFormat } from './to_video_by_format.node'; // <-- Поправь путь
 import { videos } from './types'; // <-- Поправь путь
 
 const sourceVideo = './source_video.mp4'; // Файл из Шага 1

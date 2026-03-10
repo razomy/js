@@ -76,7 +76,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-recursive",
   "peerDependencies": {
-    "@razomy/path-string": "0.0.1-alpha.4"
+    "@razomy/path-string": "*"
   },
   "publishConfig": {
     "access": "public"

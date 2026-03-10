@@ -72,8 +72,8 @@
   "module": "./index.ts",
   "name": "@razomy/commit-datetime",
   "peerDependencies": {
-    "@razomy/commit": "0.0.1-alpha.4",
-    "@razomy/date-time": "0.0.1-alpha.4"
+    "@razomy/commit": "*",
+    "@razomy/date-time": "*"
   },
   "publishConfig": {
     "access": "public"

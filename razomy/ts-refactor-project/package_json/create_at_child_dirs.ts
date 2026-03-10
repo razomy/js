@@ -20,7 +20,7 @@ export function createAtChildDirs(projectPath: string, prefix) {
     const content = tryGetJson(pkgPath) || {};
     pkgData = { ...content, ...pkgData };
 
-    fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2));
+    fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2) + '\n');
     console.log(`✓ Create: ${folder.name} -> ${newName}`);
   });
 }

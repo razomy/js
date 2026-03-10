@@ -1,9 +1,6 @@
-import {shuffleArray} from './shuffle';
+import {shuffleArray} from './shuffle_array';
 
-/**
- * Разбивает список на случайные команды
- */
-export const splitIntoGroups = <T>(array: T[], groupsCount: number): T[][] => {
+export function splitIntoGroups <T> (array: T[], groupsCount: number) : T[][] {
   const shuffled = shuffleArray(array);
   const groups: T[][] = Array.from({ length: groupsCount }, () => []);
 
@@ -12,6 +9,6 @@ export const splitIntoGroups = <T>(array: T[], groupsCount: number): T[][] => {
   });
 
   return groups;
-};
+}
 
 

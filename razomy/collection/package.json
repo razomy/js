@@ -61,21 +61,21 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/list#readme",
+  "homepage": "https://github.com/razomy/js/razomy/collection#readme",
   "keywords": [
     "razomy",
-    "list"
+    "collection"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/list",
+  "name": "@razomy/collection",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/list",
+    "directory": "razomy/collection",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

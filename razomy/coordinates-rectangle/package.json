@@ -72,8 +72,8 @@
   "module": "./index.ts",
   "name": "@razomy/coordinates-rectangle",
   "peerDependencies": {
-    "@razomy/coordinates-x": "0.0.1-alpha.4",
-    "@razomy/coordinates-y": "0.0.1-alpha.4"
+    "@razomy/coordinates-x": "*",
+    "@razomy/coordinates-y": "*"
   },
   "publishConfig": {
     "access": "public"

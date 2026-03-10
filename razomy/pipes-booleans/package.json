@@ -76,8 +76,8 @@
   "module": "./index.ts",
   "name": "@razomy/pipes-booleans",
   "peerDependencies": {
-    "@razomy/exceptions": "0.0.1-alpha.4",
-    "@razomy/kv": "0.0.1-alpha.4"
+    "@razomy/exceptions": "*",
+    "@razomy/kv": "*"
   },
   "publishConfig": {
     "access": "public"

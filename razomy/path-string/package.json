@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/path-string",
   "peerDependencies": {
-    "@razomy/kv": "0.0.1-alpha.4"
+    "@razomy/kv": "*"
   },
   "publishConfig": {
     "access": "public"

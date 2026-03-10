@@ -75,8 +75,8 @@
   "module": "./index.ts",
   "name": "@razomy/fs-link",
   "peerDependencies": {
-    "@razomy/exceptions": "0.0.1-alpha.4",
-    "@razomy/fs-file": "0.0.1-alpha.4"
+    "@razomy/exceptions": "*",
+    "@razomy/fs-file": "*"
   },
   "publishConfig": {
     "access": "public"

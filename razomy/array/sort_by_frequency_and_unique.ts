@@ -1,6 +1,6 @@
 import { countBy } from './count_by';
 import { sortBy } from './sort_by';
-import { uniq } from './get_uniq';
+import { uniq } from './uniq';
 
 /**
  * @summary Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.

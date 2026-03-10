@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/id",
   "peerDependencies": {
-    "@razomy/create": "0.0.1-alpha.4"
+    "@razomy/create": "*"
   },
   "publishConfig": {
     "access": "public"

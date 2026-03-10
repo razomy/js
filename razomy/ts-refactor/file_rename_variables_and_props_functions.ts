@@ -1,7 +1,7 @@
-import { SyntaxKind } from 'ts-morph';
-import { flat } from '@razomy/array';
-import { renameNode } from './rename_node';
-import type { IterateSourceFileState } from './iterate_source_files_and_save';
+import {ts,SyntaxKind} from 'ts-morph';
+import {flat} from '@razomy/array';
+import {renameNode} from './rename_node';
+import type {IterateSourceFileState} from './iterate_source_files_and_save';
 
 export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: IterateSourceFileState) {
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);
@@ -18,6 +18,10 @@ export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: It
     if (variableDeclaration.wasForgotten()) {
       continue;
     }
+    if (variableDeclaration.getParentIfKind(SyntaxKind.InterfaceDeclaration)?.getFullText().includes('ProcessEnv')) {
+      continue;
+    }
+
     renameNode(variableDeclaration);
   }
 }

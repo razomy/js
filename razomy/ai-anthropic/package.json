@@ -61,18 +61,16 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/google-genai#readme",
+  "homepage": "https://github.com/razomy/js/razomy/ai-anthropic#readme",
   "keywords": [
     "razomy",
-    "google",
-    "genai",
     "ai",
-    "models"
+    "anthropic"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/google-genai",
+  "name": "@razomy/ai-anthropic",
   "peerDependencies": {
     "@anthropic-ai/sdk": "^0.78.0"
   },
@@ -80,7 +78,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/google-genai",
+    "directory": "razomy/ai-anthropic",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

@@ -75,10 +75,10 @@
   "module": "./index.ts",
   "name": "@razomy/npm",
   "peerDependencies": {
-    "@razomy/fs-file": "0.0.1-alpha.4",
-    "@razomy/main": "0.0.1-alpha.4",
-    "@razomy/shell": "0.0.1-alpha.4",
-    "@razomy/ts-refactor-project": "0.0.1-alpha.4"
+    "@razomy/fs-file": "*",
+    "@razomy/main": "*",
+    "@razomy/shell": "*",
+    "@razomy/ts-refactor-project": "*"
   },
   "publishConfig": {
     "access": "public"

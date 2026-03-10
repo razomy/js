@@ -6,6 +6,8 @@ export { constantCase } from './constant_case';
 export { dotCase } from './dot_case';
 export { headerCase } from './header_case';
 export { humanize } from './humanize';
+export { isAlpha } from './is_alpha';
+export { isAlphanumeric } from './is_alphanumeric';
 export { isLowerCase } from './is_lower_case';
 export { isUpperCase } from './is_upper_case';
 export { kebabCase } from './kebab_case';

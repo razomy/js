@@ -73,7 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/commit-datetime-vrd",
   "peerDependencies": {
-    "@razomy/vrd": "0.0.1-alpha.4"
+    "@razomy/vrd": "*"
   },
   "publishConfig": {
     "access": "public"

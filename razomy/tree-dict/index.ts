@@ -1,8 +1,10 @@
+export { dictToGraph } from './dict_to_graph';
 export { foreachDeepDictOptional } from './foreach_deep_dict_optional';
 export { getByString } from './get_by_string';
 export { getPath } from './get_path';
 export { getValue } from './get_value';
 export { get } from './get';
+export { iterateChildren } from './iterate_children';
 export { iterate } from './iterate';
 export {
   leafTreeAbsolutePath,

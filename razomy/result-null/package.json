@@ -74,7 +74,7 @@
   "module": "./index.ts",
   "name": "@razomy/result-null",
   "peerDependencies": {
-    "@razomy/context": "0.0.1-alpha.4"
+    "@razomy/context": "*"
   },
   "publishConfig": {
     "access": "public"

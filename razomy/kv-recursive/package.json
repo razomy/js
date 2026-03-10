@@ -61,11 +61,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/kv-array-recursive#readme",
+  "homepage": "https://github.com/razomy/js/razomy/kv-recursive#readme",
   "keywords": [
     "razomy",
     "kv",
-    "array",
     "recursive",
     "getItemByPathFromValue",
     "getItemByPath",
@@ -76,16 +75,17 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/kv-array-recursive",
+  "name": "@razomy/kv-recursive",
   "peerDependencies": {
-    "@razomy/exceptions": "0.0.1-alpha.4",
-    "@razomy/key": "0.0.1-alpha.4"
+    "@razomy/exceptions": "*",
+    "@razomy/key": "*",
+    "@razomy/kv-array-recursive": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/kv-array-recursive",
+    "directory": "razomy/kv-recursive",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

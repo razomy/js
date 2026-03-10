@@ -89,12 +89,12 @@
   "module": "./index.ts",
   "name": "@razomy/ts-refactor",
   "peerDependencies": {
-    "@razomy/action": "0.0.1-alpha.4",
-    "@razomy/array": "0.0.1-alpha.4",
-    "@razomy/fss": "0.0.1-alpha.4",
-    "@razomy/languages-programming-fs": "0.0.1-alpha.4",
-    "@razomy/refactor-fs": "0.0.1-alpha.4",
-    "@razomy/string-case": "0.0.1-beta.2"
+    "@razomy/action": "*",
+    "@razomy/array": "*",
+    "@razomy/fss": "*",
+    "@razomy/languages-programming-fs": "*",
+    "@razomy/refactor-fs": "*",
+    "@razomy/string-case": "*"
   },
   "publishConfig": {
     "access": "public"

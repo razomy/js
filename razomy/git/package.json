@@ -88,10 +88,10 @@
   "module": "./index.ts",
   "name": "@razomy/git",
   "peerDependencies": {
-    "@razomy/async": "0.0.1-alpha.4",
-    "@razomy/commit-datetime-delta-string": "0.0.1-alpha.4",
-    "@razomy/fs-file": "0.0.1-alpha.4",
-    "@razomy/shell": "0.0.1-alpha.4"
+    "@razomy/async": "*",
+    "@razomy/commit-datetime-delta-string": "*",
+    "@razomy/fs-file": "*",
+    "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public"

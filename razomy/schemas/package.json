@@ -73,7 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/schemas",
   "peerDependencies": {
-    "@razomy/schema": "0.0.1-alpha.4"
+    "@razomy/schema": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -74,10 +74,10 @@
   "module": "./index.ts",
   "name": "@razomy/vue-resource",
   "peerDependencies": {
-    "@razomy/array": "0.0.1-alpha.4",
-    "@razomy/dict": "0.0.1-alpha.4",
-    "@razomy/server": "0.0.1-alpha.4",
-    "@razomy/socket-web": "0.0.1-alpha.4"
+    "@razomy/array": "*",
+    "@razomy/dict": "*",
+    "@razomy/server": "*",
+    "@razomy/socket-web": "*"
   },
   "publishConfig": {
     "access": "public"

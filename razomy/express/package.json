@@ -93,8 +93,8 @@
   "module": "./index.ts",
   "name": "@razomy/express",
   "peerDependencies": {
-    "@razomy/google-auth": "0.0.1-alpha.4",
-    "@razomy/server": "0.0.1-alpha.4"
+    "@razomy/google-auth": "*",
+    "@razomy/server": "*"
   },
   "publishConfig": {
     "access": "public"

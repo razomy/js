@@ -73,8 +73,8 @@
   "module": "./index.ts",
   "name": "@razomy/observable",
   "peerDependencies": {
-    "@razomy/action": "0.0.1-alpha.4",
-    "@razomy/exceptions": "0.0.1-alpha.4"
+    "@razomy/action": "*",
+    "@razomy/exceptions": "*"
   },
   "publishConfig": {
     "access": "public"

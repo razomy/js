@@ -1,11 +1,9 @@
-export function delete_(obj, path: string) {
-  const keys = path.split('.');
-  const lastKey = keys.pop();
-  let current = obj;
-  for (const key of keys) {
-    if (!current[key]) return; // Stop if path doesn't exist
-    current = current[key];
-  }
+import type { RecursiveDict } from "./recursive";
 
-  delete current[lastKey!];
+export function deleteByPath(obj: RecursiveDict, path: string): void {
+    const parts = path.split('.');
+    const last = parts.pop();
+    if (!last) return;
+    const target = parts.reduce((acc, part) => acc && acc[part], obj);
+    if (target) delete target[last];
 }
