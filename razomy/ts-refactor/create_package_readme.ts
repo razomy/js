@@ -3,7 +3,7 @@ import * as fss from '@razomy/fss';
 import type { FunctionSpecification } from '../function/function_specification';
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createPackageReadme(packageJson: any, specs: FunctionSpecification[]) {
+export function createPackageReadme(path: string, packageJson: any, specs: FunctionSpecification[]) {
   const scopeName = camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
@@ -161,6 +161,6 @@ ${licenseAndContributing}
 
 ${report}
 `.trim();
-  fss.file.set('../string-case/README.md', readme);
-  fss.file.set('../string-case/dist/README.md', readme);
+  fss.file.set(`${path}/README.md`, readme);
+  fss.file.set(`${path}/dist/README.md`, readme);
 }

@@ -24,7 +24,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org' # Нужно для публикации в npm
 
       - name: Install Dependencies
-        run: npm ci # В монорепозитории установит зависимости для всех воркспейсов
+        run: npm install # В монорепозитории установит зависимости для всех воркспейсов
 
       - name: Run Tests
         # Запускает тесты во всех воркспейсах (убедись, что в корневом package.json есть скрипт "test")

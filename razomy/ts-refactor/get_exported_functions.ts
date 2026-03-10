@@ -1,4 +1,4 @@
-import { Node, SourceFile, VariableDeclarationKind } from 'ts-morph';
+import { Node, SourceFile } from 'ts-morph';
 
 /**
  * 2. Get all exported functions from the specified directory.

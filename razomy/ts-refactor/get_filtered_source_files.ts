@@ -1,10 +1,4 @@
-import { Project, type SourceFile } from 'ts-morph';
-import path from 'path';
-import { snakeCase } from '@razomy/string-case';
-import * as fss from '@razomy/fss';
-import { createDistSpecifications } from './create_dist_specifications';
-import { createPackageReadme } from './create_package_readme';
-import { getExportedFunctions } from './get_exported_functions';
+import {Project, type SourceFile} from 'ts-morph';
 
 /**
  * 1. Helper to get files, applying your original filters.

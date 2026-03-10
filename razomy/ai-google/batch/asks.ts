@@ -1,4 +1,4 @@
-import { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
+import type {BatchJobSourceUnion, InlinedRequest} from '@google/genai';
 import { ai, models } from '../client';
 import { wait } from './wait';
 import { getResult } from './get_result';
@@ -17,10 +17,10 @@ export async function asks(texts: string[], systemText: string) {
     src: inlinedRequests,
   });
   console.log(response.name);
-  const jobId = response.name;
+  const jobId = response.name!;
   await wait(jobId);
-  const result = await getResult(jobId);
-  printPrice(result);
+  const result = await getResult(jobId)!;
+  printPrice(result!);
   await delete_(jobId);
   return result;
 }

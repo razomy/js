@@ -1,32 +1,56 @@
-import { iterate } from '../dict/iterate';
-import { isPlainObject } from '../dict/is_plain_object';
+import { iterate } from '@razomy/dict';
+import { isPlainObject } from '@razomy/dict';
 
-export type Join<K, P> = K extends string
-  ? P extends string
-    ? `${K}${'' extends P ? '' : '.'}${P}` // If P is empty, don't add dot
-    : never
-  : never;
+export type Join<K, P> = K extends string ? (P extends string ? `${K}${'' extends P ? '' : '.'}${P}` : never) : never;
 
 export type PathsValue<T, PrevK extends string | number | symbol> = T extends object
   ? {
-      // Iterate over object keys
-      [K in keyof T]-?: PathsValue<T[K], Join<PrevK, K>>; // Recurse for nested objects, otherwise create a leaf path-value object // -? makes keys non-optional for the iteration
-    }[keyof T] // This produces a union of all path-value objects
-  : { [K in PrevK]: T }; // Leaf node: T is not an object
+      [K in keyof T]-?: PathsValue<T[K], Join<PrevK, K & string>>;
+    }[keyof T]
+  : { [K in PrevK]: T };
 
 export type FlattenedAndConverted<T extends object> = {
-  [K in keyof T]-?: PathsValue<T[K], K>;
+  [K in keyof T]-?: PathsValue<T[K], K & string>;
 }[keyof T];
 
-export function flat<T extends object = object>(obj: T, parentKey = '', result = {} as any): FlattenedAndConverted<T> {
-  iterate(obj, (value, key) => {
-    const newKey = parentKey && key ? `${parentKey}.${key}` : parentKey || key;
+/**
+ * @summary Flatten a nested object into a single-level object with dot-separated keys.
+ * @description Recursively traverses a nested plain object and produces a flat object
+ * where each key is a dot-delimited path representing the original nesting structure.
+ * Non-plain-object values are preserved as leaf values.
+ * @param obj The nested object to flatten.
+ * @param parentKey The prefix for keys (used internally for recursion).
+ * @param result The accumulator object (used internally for recursion).
+ * @returns A flat object with dot-separated keys.
+ * @example
+ * ```ts
+ * flat({ a: 1, b: 2 }); // => { a: 1, b: 2 }
+ * ```
+ * @example
+ * ```ts
+ * flat({ a: { b: { c: 3 } } }); // => { 'a.b.c': 3 }
+ * ```
+ * @example
+ * ```ts
+ * flat({ x: { y: 1 }, z: [2, 3] }); // => { 'x.y': 1, z: [2, 3] }
+ * ```
+ * @complexity time O(n) where n is the total number of leaf values
+ * @complexity memory O(n)
+ */
+export function flat<T extends object = object>(
+  obj: T,
+  parentKey: string = '',
+  result: Record<string, unknown> = {},
+): FlattenedAndConverted<T> {
+  iterate(obj, (value: unknown, key: string) => {
+    const newKey: string = parentKey ? `${parentKey}.${key}` : key;
 
     if (isPlainObject(value)) {
-      flat(value as any, newKey, result);
+      flat(value as object, newKey, result);
     } else {
       result[newKey] = value;
     }
   });
+
   return result as FlattenedAndConverted<T>;
 }

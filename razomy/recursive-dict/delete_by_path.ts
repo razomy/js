@@ -1,9 +1,53 @@
 import type { RecursiveDict } from './recursive';
 
-export function deleteByPath(obj: RecursiveDict, path: string): void {
-  const parts = path.split('.');
-  const last = parts.pop();
-  if (!last) return;
-  const target = parts.reduce((acc, part) => acc && acc[part], obj);
-  if (target) delete target[last];
+/**
+ * @summary Delete a nested property from a recursive dictionary by dot-separated path.
+ * @description Traverses a recursive dictionary using a dot-separated path string
+ * and deletes the property at the final key. If any intermediate segment does not
+ * exist or is not a nested dictionary, the operation is a no-op.
+ * @param obj The recursive dictionary to mutate.
+ * @param path The dot-separated path to the property to delete.
+ * @throws {Error} If the path is empty.
+ * @example
+ * ```ts
+ * const obj = { a: { b: { c: 1 } } };
+ * deleteByPathMut(obj, 'a.b.c');
+ * // obj => { a: { b: {} } }
+ * ```
+ * @example
+ * ```ts
+ * const obj = { x: { y: 2 }, z: 3 };
+ * deleteByPathMut(obj, 'z');
+ * // obj => { x: { y: 2 } }
+ * ```
+ * @example
+ * ```ts
+ * const obj = { a: { b: 1 } };
+ * deleteByPathMut(obj, 'a.nonexistent');
+ * // obj => { a: { b: 1 } } (no change)
+ * ```
+ * @complexity time O(n) where n is the number of path segments
+ * @complexity memory O(n)
+ */
+export function deleteByPathMut(obj: RecursiveDict, path: string): void {
+  if (path === '') {
+    throw new Error('Path must not be empty');
+  }
+
+  const parts: string[] = path.split('.');
+  const last: string = parts.pop()!;
+
+  let target: RecursiveDict = obj;
+
+  for (const part of parts) {
+    const next: unknown = target[part];
+
+    if (next === null || next === undefined || typeof next !== 'object') {
+      return;
+    }
+
+    target = next as RecursiveDict;
+  }
+
+  delete target[last];
 }

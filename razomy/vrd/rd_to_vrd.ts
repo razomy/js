@@ -1,5 +1,5 @@
 import { Vrd, type VrdOrValue } from './vrd';
-import type { RecursiveDict } from '@razomy/dict';
+import type { RecursiveDict } from '@razomy/recursive-dict';
 import { isObject } from '../object';
 
 export function rdToVrd(

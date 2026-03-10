@@ -41,15 +41,15 @@ export type HardwareLimitation =
   | 'MemoryFootprint'
   | 'CacheLocality';
 
----
+
 
 
 export type OptimizationTradeoff = {
-  read: BigO;
-  search: BigO;
-  insertDelete: BigO;
-  memory: 'High' | 'Medium' | 'Low';
-  cacheLocality: 'Excellent' | 'Poor' | 'Random';
+//   read: BigO;
+//   search: BigO;
+//   insertDelete: BigO;
+//   memory: 'High' | 'Medium' | 'Low';
+//   cacheLocality: 'Excellent' | 'Poor' | 'Random';
 };
 
 // ==========================================
@@ -77,7 +77,7 @@ export interface DataStructure<T> {
   rawValue: T;
   memoryLayout: PhysicalMemoryLayout;
   topology: LogicalTopology;
-  tradeoff: OptimizationTradeoff;
+  // tradeoff: OptimizationTradeoff;
 }
 
 // ==========================================
@@ -130,7 +130,7 @@ export interface Graph<T> extends DataStructure<T> {
 // ==========================================
 // LEVEL 5: SPECIFIC OPTIMIZATION ALGORITHMS
 // ==========================================
-export interface BinaryTree<T> extends Tree<T> {
+export interface BinaryTree<T> {
   children: [BinaryTree<T> | null, BinaryTree<T> | null];
 }
 
@@ -160,12 +160,12 @@ export interface QuadTree<T> extends DataStructure<T> {
   bounds: { x: number; y: number; width: number; height: number };
 }
 
-export interface GraphAdjacencyMatrix<T> extends Graph<T> {
+export interface GraphAdjacencyMatrix<T>  {
   memoryLayout: 'Contiguous';
   matrix: number[][];
 }
 
-export interface GraphAdjacencyList<T> extends Graph<T> {
+export interface GraphAdjacencyList<T> {
   memoryLayout: 'Pointer';
   adjacencyMap: HashTable<T, LinkedList<T>>;
 }
@@ -202,16 +202,16 @@ export interface PriorityQueue<T> extends AbstractDataType<T> {
   enqueue: (item: T, priority: number) => void;
   dequeueHighestPriority: () => T;
 }
-
-export interface DictionaryMap<K, V> extends AbstractDataType<V> {
-  underlyingStructure: HashTable<K, V> | BalancedTree<V>;
-  set: (key: K, value: V) => void;
-  get: (key: K) => V;
-  has: (key: K) => boolean;
-}
-
-export interface Set<T> extends AbstractDataType<T> {
-  underlyingStructure: HashTable<T, boolean> | BalancedTree<T>;
-  add: (item: T) => void;
-  has: (item: T) => boolean;
-}
+//
+// export interface DictionaryMap<K, V> extends AbstractDataType<V> {
+//   underlyingStructure: HashTable<K, V> | BalancedTree<V>;
+//   set: (key: K, value: V) => void;
+//   get: (key: K) => V;
+//   has: (key: K) => boolean;
+// }
+//
+// export interface Set<T> extends AbstractDataType<T> {
+//   underlyingStructure: HashTable<T, boolean> | BalancedTree<T>;
+//   add: (item: T) => void;
+//   has: (item: T) => boolean;
+// }

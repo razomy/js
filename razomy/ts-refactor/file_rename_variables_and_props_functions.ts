@@ -1,4 +1,4 @@
-import { ts, SyntaxKind } from 'ts-morph';
+import { SyntaxKind } from 'ts-morph';
 import { flat } from '@razomy/array';
 import { renameNode } from './rename_node';
 import type { IterateSourceFileState } from './iterate_source_files_and_save';

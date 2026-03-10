@@ -14,7 +14,7 @@ export async function getResult(jobName: string) {
         console.log(`Results are in file: ${resultFileName}`);
 
         console.log('Downloading result file content...');
-        const fileContentBuffer = await ai.files.download({ file: resultFileName });
+        await ai.files.download({ file: resultFileName, downloadPath: '.' });
 
         // Process fileContentBuffer (Buffer) as needed
         // console.log(fileContentBuffer.toString('utf-8'));
@@ -33,20 +33,20 @@ export async function getResult(jobName: string) {
               // console.log(inlineResponse.response.text);
               result.push({
                 tokens: {
-                  in_: inlineResponse.response.usageMetadata.promptTokenCount,
+                  in_: inlineResponse.response.usageMetadata!.promptTokenCount!,
                   out:
-                    inlineResponse.response.usageMetadata.thoughtsTokenCount +
-                    inlineResponse.response.usageMetadata.candidatesTokenCount,
+                    inlineResponse.response.usageMetadata!.thoughtsTokenCount! +
+                    inlineResponse.response.usageMetadata!.candidatesTokenCount!,
                 },
                 text: inlineResponse.response.text,
               });
             } else if (inlineResponse.response.candidates?.[0]?.content?.parts?.[0]?.text) {
               result.push({
                 tokens: {
-                  in_: inlineResponse.response.usageMetadata.promptTokenCount,
+                  in_: inlineResponse.response.usageMetadata!.promptTokenCount!,
                   out:
-                    inlineResponse.response.usageMetadata.thoughtsTokenCount +
-                    inlineResponse.response.usageMetadata.candidatesTokenCount,
+                    inlineResponse.response!.usageMetadata!.thoughtsTokenCount! +
+                    inlineResponse.response!.usageMetadata!.candidatesTokenCount!,
                 },
                 text: inlineResponse.response.candidates[0].content?.parts[0].text,
               });
@@ -92,4 +92,5 @@ export async function getResult(jobName: string) {
     console.error(`An error occurred while processing job ${jobName}:`, error);
     throw error;
   }
+  return []
 }

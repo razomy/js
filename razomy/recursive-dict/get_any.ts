@@ -2,31 +2,57 @@ import type { Dict } from '@razomy/dict';
 import { isKeys } from '@razomy/dict';
 import { isObject } from '@razomy/object';
 
-export function getAny(obj: Dict<any>, keys: string[]) {
-  if (isKeys(obj, keys)) {
+/**
+ * @summary Recursively find all paths in a nested dict that contain the specified keys.
+ * @description Traverses a nested dictionary (objects and arrays) and returns an array of
+ * colon-separated paths leading to nodes that contain all of the specified keys.
+ * @param dict The nested dictionary to search.
+ * @param keys The keys to match against each node.
+ * @returns An array of colon-separated path strings pointing to matching nodes.
+ * @example
+ * ```ts
+ * getAny({ a: { name: 'x', id: 1 } }, ['name', 'id']);
+ * // => ['a:']
+ * ```
+ * @example
+ * ```ts
+ * getAny({ a: { b: { name: 'x', id: 1 } } }, ['name', 'id']);
+ * // => ['a:b:']
+ * ```
+ * @example
+ * ```ts
+ * getAny({ a: 'hello', b: { name: 'y' } }, ['name']);
+ * // => ['b:']
+ * ```
+ * @complexity time O(n) where n is the total number of nodes in the nested structure
+ * @complexity memory O(d) where d is the maximum depth of the nested structure
+ */
+export function getAny(dict: Dict<unknown>, keys: string[]): string[] {
+  if (isKeys(dict, keys)) {
     return [''];
   }
 
-  if (isObject(obj)) {
-    let result: string[] = [];
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        const value = obj[key];
-        const children = getAny(value, keys);
-        const withKey = children.map((ckey) => `${key}:` + ckey);
-        result = result.concat(withKey);
+  if (Array.isArray(dict)) {
+    const result: string[] = [];
+    for (let index = 0; index < dict.length; index++) {
+      const children = getAny(dict[index] as Dict<unknown>, keys);
+      for (const child of children) {
+        result.push(`${index}:${child}`);
       }
     }
     return result;
   }
 
-  if (Array.isArray(obj)) {
-    let result: string[] = [];
-    (obj as object[]).forEach((value, index) => {
-      const children = getAny(value as any, keys);
-      const withKey = children.map((ckey) => `${index}` + ckey);
-      result = result.concat(withKey);
-    });
+  if (isObject(dict)) {
+    const result: string[] = [];
+    for (const key in dict) {
+      if (Object.prototype.hasOwnProperty.call(dict, key)) {
+        const children = getAny(dict[key] as Dict<unknown>, keys);
+        for (const child of children) {
+          result.push(`${key}:${child}`);
+        }
+      }
+    }
     return result;
   }
 

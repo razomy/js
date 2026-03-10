@@ -1,5 +1,5 @@
 import { createInt } from './create_int';
-import { shuffleArrayMut } from './shuffle_array_mut';
+import { shuffleArray } from './shuffle_array';
 
 const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const LOWER = 'abcdefghijklmnopqrstuvwxyz';
@@ -35,7 +35,7 @@ export function createPassword(length: number = 16): string {
     throw new RangeError(`Password length must be at least ${MIN_LENGTH}, got ${length}`);
   }
 
-  const chars: string[] = [
+  let chars: string[] = [
     UPPER[createInt(0, UPPER.length - 1)],
     LOWER[createInt(0, LOWER.length - 1)],
     DIGITS[createInt(0, DIGITS.length - 1)],
@@ -46,7 +46,7 @@ export function createPassword(length: number = 16): string {
     chars.push(ALL[createInt(0, ALL.length - 1)]);
   }
 
-  shuffleArrayMut(chars);
+  chars = shuffleArray(chars);
 
   return chars.join('');
 }
