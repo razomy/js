@@ -1,4 +1,4 @@
-# @razomy/recursive-dict_or_list
+# @razomy/dict-recursive
 
 ## 0.0.1-alpha.0
 

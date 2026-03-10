@@ -156,7 +156,7 @@
     "./razomy/pipes-booleans",
     "./razomy/random",
     "./razomy/razomy",
-    "./razomy/recursive-dict",
+    "./razomy/dict-recursive",
     "./razomy/refactor",
     "./razomy/refactor-fs",
     "./razomy/regex",

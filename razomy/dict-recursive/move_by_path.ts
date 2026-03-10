@@ -1,4 +1,4 @@
-import type { RecursiveDict } from './recursive';
+import type { DictRecursive } from './recursive';
 import { getByPath } from './get_by_path';
 import { setByPathMut } from './set_by_path';
 import { deleteByPathMut } from './delete_by_path';
@@ -32,7 +32,7 @@ import { deleteByPathMut } from './delete_by_path';
  * @complexity time O(d) where d is the depth of the longest path
  * @complexity memory O(d)
  */
-export function moveByPathMut(dict: RecursiveDict, oldPath: string, newPath: string): void {
+export function moveByPathMut(dict: DictRecursive, oldPath: string, newPath: string): void {
   const value = getByPath(dict, oldPath);
 
   if (value === undefined) {

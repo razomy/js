@@ -1,4 +1,4 @@
-import type { RecursiveDict } from './recursive';
+import type { DictRecursive } from './recursive';
 
 /**
  * @summary Get a value from a nested dictionary by dot-separated path.
@@ -22,7 +22,7 @@ import type { RecursiveDict } from './recursive';
  * @complexity time O(n) where n is the number of segments in the path
  * @complexity memory O(1)
  */
-export function getByPath(dict: RecursiveDict, path: string): unknown {
+export function getByPath(dict: DictRecursive, path: string): unknown {
   let current: unknown = dict;
 
   const segments: string[] = path.split('.');
@@ -32,7 +32,7 @@ export function getByPath(dict: RecursiveDict, path: string): unknown {
       return undefined;
     }
 
-    current = (current as RecursiveDict)[segments[i]];
+    current = (current as DictRecursive)[segments[i]];
   }
 
   return current;

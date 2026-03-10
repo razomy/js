@@ -1,4 +1,4 @@
-import type { RecursiveDict } from './recursive';
+import type { DictRecursive } from './recursive';
 import { isObject } from '@razomy/object';
 
 /**
@@ -11,26 +11,26 @@ import { isObject } from '@razomy/object';
  * @throws {Error} If the path is empty.
  * @example
  * ```ts
- * const obj: RecursiveDict = {};
+ * const obj: DictRecursive = {};
  * setByPathMut(obj, 'a.b.c', 42);
  * // obj => { a: { b: { c: 42 } } }
  * ```
  * @example
  * ```ts
- * const obj: RecursiveDict = { x: { y: 1 } };
+ * const obj: DictRecursive = { x: { y: 1 } };
  * setByPathMut(obj, 'x.y', 2);
  * // obj => { x: { y: 2 } }
  * ```
  * @example
  * ```ts
- * const obj: RecursiveDict = { a: 'old' };
+ * const obj: DictRecursive = { a: 'old' };
  * setByPathMut(obj, 'a', 'new');
  * // obj => { a: 'new' }
  * ```
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n) for intermediate objects created along the path
  */
-export function setByPathMut(obj: RecursiveDict, path: string, value: unknown): void {
+export function setByPathMut(obj: DictRecursive, path: string, value: unknown): void {
   const parts: string[] = path.split('.');
   const last: string | undefined = parts.pop();
 
@@ -38,11 +38,11 @@ export function setByPathMut(obj: RecursiveDict, path: string, value: unknown): 
     throw new Error('Path must be a non-empty string');
   }
 
-  const target: RecursiveDict = parts.reduce<RecursiveDict>((acc, part) => {
+  const target: DictRecursive = parts.reduce<DictRecursive>((acc, part) => {
     if (!acc[part] || !isObject(acc[part])) {
       acc[part] = {};
     }
-    return acc[part] as RecursiveDict;
+    return acc[part] as DictRecursive;
   }, obj);
 
   target[last!] = value as any;

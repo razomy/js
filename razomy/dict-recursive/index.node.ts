@@ -4,6 +4,5 @@ export { getAnyAll } from './get_any_all';
 export { getAny } from './get_any';
 export { getByPath } from './get_by_path';
 export { moveByPathMut } from './move_by_path';
-export { type RecursiveDict } from './recursive';
+export { type DictRecursive } from './recursive';
 export { setByPathMut } from './set_by_path';
-

@@ -23,11 +23,11 @@ export async function publish(path_: string) {
 
 ifMain(import.meta.url, () => {
   publish('../string-case');
-  publish('../string');
   publish('../array');
+  publish('../string');
   publish('../dict');
   publish('../random');
-  publish('../recursive-dict');
+  publish('../dict-recursive');
   // publish('../json');
   // publish('../tree');
   // publish('../async');

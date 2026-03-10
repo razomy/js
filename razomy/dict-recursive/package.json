@@ -61,7 +61,7 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/recursive-dict#readme",
+  "homepage": "https://github.com/razomy/js/razomy/dict-recursive#readme",
   "keywords": [
     "razomy",
     "recursive",
@@ -79,7 +79,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/recursive-dict",
+  "name": "@razomy/dict-recursive",
   "peerDependencies": {
     "@razomy/dict": "*",
     "@razomy/object": "*"
@@ -88,7 +88,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/recursive-dict",
+    "directory": "razomy/dict-recursive",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
