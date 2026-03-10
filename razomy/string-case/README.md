@@ -44,6 +44,8 @@ import { abbreviation } from '@razomy/string-case';
 - [dotCase](#dotcase)
 - [headerCase](#headercase)
 - [humanize](#humanize)
+- [isAlpha](#isalpha)
+- [isAlphanumeric](#isalphanumeric)
 - [isLowerCase](#islowercase)
 - [isUpperCase](#isuppercase)
 - [kebabCase](#kebabcase)
@@ -88,8 +90,7 @@ abbreviation('Read-Only_Memory'); // ROM
 
 Convert string to aLtErNaTiNg cAsE (SpongeBob case).
 
-Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates
-strictly by character position).
+Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
 
 Examples
 
@@ -219,6 +220,46 @@ humanize('snake_case_string'); // Snake case string
 
 ```ts
 humanize('kebab-case-string'); // Kebab case string
+```
+
+#### isAlpha
+
+`isAlpha(text: string): boolean`
+
+Checks if the string contains only alphabetic characters.
+
+Examples
+
+```ts
+isAlpha('Razomy'); // true
+```
+
+```ts
+isAlpha('R4zomy'); // false
+```
+
+```ts
+isAlpha(''); // false
+```
+
+#### isAlphanumeric
+
+`isAlphanumeric(text: string): boolean`
+
+Check if the string contains only alphanumeric characters.
+
+Examples
+
+```ts
+isAlphanumeric('Razomy1'); // true
+```
+
+```ts
+isAlphanumeric('Razomy-String'); // false
+```
+
+```ts
+isAlphanumeric(' '); // false
 ```
 
 #### isLowerCase
@@ -523,8 +564,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:

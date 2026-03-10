@@ -28,9 +28,7 @@ export function sortByArrayMut<T extends string>(oldOrder: T[], newOrder: T[]): 
     orderMap.set(newOrder[i], i);
   }
 
-  oldOrder.sort((a, b) =>
-    (orderMap.get(a) ?? Infinity) - (orderMap.get(b) ?? Infinity)
-  );
+  oldOrder.sort((a, b) => (orderMap.get(a) ?? Infinity) - (orderMap.get(b) ?? Infinity));
 
   return oldOrder;
 }

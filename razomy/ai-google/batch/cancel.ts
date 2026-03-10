@@ -1,5 +1,5 @@
-import {ai} from '../client';
+import { ai } from '../client';
 
 export async function cancel(name: string) {
-  await ai.batches.cancel({name: name});
+  await ai.batches.cancel({ name: name });
 }

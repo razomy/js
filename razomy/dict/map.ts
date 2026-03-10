@@ -20,7 +20,5 @@
  * @complexity memory O(n)
  */
 export function map<I, O>(obj: Record<string, I>, cb: (value: I, key: string) => O): Record<string, O> {
-  return Object.fromEntries(
-    Object.entries(obj).map(([key, value]) => [key, cb(value, key)])
-  );
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, cb(value, key)]));
 }

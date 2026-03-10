@@ -3,7 +3,7 @@ import * as file from '@razomy/fs-file';
 import { tryGetJson } from '@razomy/fs-file';
 import * as path from 'path';
 import { toSafeName } from '@razomy/ts-refactor';
-import {camelCase} from '@razomy/string-case';
+import { camelCase } from '@razomy/string-case';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';

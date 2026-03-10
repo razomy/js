@@ -5,8 +5,7 @@ import { iterate } from '@razomy/fs';
 import { sort } from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
-  const packages = getAll(projectPath)
-    .filter(i => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+  const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names

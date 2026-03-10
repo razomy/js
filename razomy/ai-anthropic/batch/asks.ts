@@ -5,7 +5,7 @@ const anthropic = new Anthropic();
 export const models = {
   cheap: 'claude-sonnet-4-6',
   expensive: 'claude-opus-4-6',
-}
+};
 
 const m = 1_000_000;
 const batchSale = 2;
@@ -56,8 +56,8 @@ export async function asks(texts: string[], systemText: string) {
       params: {
         model: models.expensive,
         max_tokens: 1024,
-        system: systemText,          // Anthropic system prompts go here
-        messages: [{role: 'user', content: text}],
+        system: systemText, // Anthropic system prompts go here
+        messages: [{ role: 'user', content: text }],
       },
     };
   });
@@ -70,7 +70,7 @@ export async function asks(texts: string[], systemText: string) {
   const jobId = response.id;
   console.log(`Created Job ID: ${jobId}`);
 
-  return await continue_(jobId)
+  return await continue_(jobId);
 }
 
 async function wait(messageBatchId: string) {
@@ -131,7 +131,7 @@ async function delete_(jobId: string) {
 export async function get() {
   // Automatically fetches more pages as needed.
   for await (const messageBatch of anthropic.messages.batches.list({
-    limit: 20
+    limit: 20,
   })) {
     console.log(`${messageBatch.id} - ${messageBatch.processing_status}`);
   }
@@ -150,5 +150,5 @@ export async function continue_(jobId: string) {
   // 6. Cleanup (Placeholder)
   await delete_(jobId);
 
-  return result.map(c => ({text: c.result.message.content[0]['text']}));
+  return result.map((c) => ({ text: c.result.message.content[0]['text'] }));
 }

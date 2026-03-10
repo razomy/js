@@ -3,11 +3,12 @@ import { ifMain } from '@razomy/main';
 import path from 'node:path';
 import { packageJson } from '@razomy/ts-refactor-project';
 import * as fs from '@razomy/fs-file';
+import { extracyForIo } from '@razomy/ts-refactor';
 
 export async function publish(path_: string) {
   await execute('npm run build', path.resolve(path_));
   packageJson.createDist(path.resolve(path_));
-  // await extracyForIo(path.resolve(path_));
+  await extracyForIo(path.resolve(path_));
   const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
   const npmPublshKey = '';
   console.log(
@@ -19,15 +20,15 @@ export async function publish(path_: string) {
 
 ifMain(import.meta.url, () => {
   // publish('../string-case');
+  publish('../string');
   // publish('../array');
-  // publish('../string');
   // publish('../dict');
+  // publish('../random');
+
   // publish('../recursive');
   // publish('../json');
   // publish('../tree');
   // publish('../async');
-  // publish('../random');
-
 
   // publish('../fs-file-format');
   // publish('../images');

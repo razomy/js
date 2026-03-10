@@ -23,10 +23,7 @@ export type SomeOf<T> = {
  * @complexity time O(k) where k is number of keys
  * @complexity memory O(k)
  */
-export function take<T extends object, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Pick<T, K> {
+export function take<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
     result[key] = obj[key];

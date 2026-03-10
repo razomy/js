@@ -17,7 +17,7 @@
 #### Packages
 
 | directory                                         | npm                                                                            |
-|---------------------------------------------------|--------------------------------------------------------------------------------|
+| ------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [./razomy/string-case](/razomy/string-case)       | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case)       |
 | [./razomy/string](/razomy/string)                 | [@razomy/string](https://www.npmjs.com/package/@razomy/string)                 |
 | [./razomy/dict](/razomy/dict)                     | [@razomy/dict](https://www.npmjs.com/package/@razomy/dict)                     |

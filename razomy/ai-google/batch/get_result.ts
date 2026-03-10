@@ -1,8 +1,8 @@
-import {ai} from '../client';
+import { ai } from '../client';
 
 export async function getResult(jobName: string) {
   try {
-    const batchJob = await ai.batches.get({name: jobName});
+    const batchJob = await ai.batches.get({ name: jobName });
 
     if (batchJob.state === 'JOB_STATE_SUCCEEDED') {
       // console.log('Found completed batch:', batchJob.displayName);
@@ -14,7 +14,7 @@ export async function getResult(jobName: string) {
         console.log(`Results are in file: ${resultFileName}`);
 
         console.log('Downloading result file content...');
-        const fileContentBuffer = await ai.files.download({file: resultFileName});
+        const fileContentBuffer = await ai.files.download({ file: resultFileName });
 
         // Process fileContentBuffer (Buffer) as needed
         // console.log(fileContentBuffer.toString('utf-8'));
@@ -22,7 +22,7 @@ export async function getResult(jobName: string) {
 
       // If batch job was created with inline responses
       else if (batchJob.dest?.inlinedResponses) {
-        const result: ({ tokens: { in_: number, out: number }, text: string } | null)[] = []
+        const result: ({ tokens: { in_: number; out: number }; text: string } | null)[] = [];
         // console.log('Results are inline:');
         for (let i = 0; i < batchJob.dest.inlinedResponses.length; i++) {
           const inlineResponse = batchJob.dest.inlinedResponses[i];
@@ -34,25 +34,28 @@ export async function getResult(jobName: string) {
               result.push({
                 tokens: {
                   in_: inlineResponse.response.usageMetadata.promptTokenCount,
-                  out: inlineResponse.response.usageMetadata.thoughtsTokenCount + inlineResponse.response.usageMetadata.candidatesTokenCount
+                  out:
+                    inlineResponse.response.usageMetadata.thoughtsTokenCount +
+                    inlineResponse.response.usageMetadata.candidatesTokenCount,
                 },
-                text: inlineResponse.response.text
-              })
+                text: inlineResponse.response.text,
+              });
             } else if (inlineResponse.response.candidates?.[0]?.content?.parts?.[0]?.text) {
               result.push({
                 tokens: {
                   in_: inlineResponse.response.usageMetadata.promptTokenCount,
-                  out: inlineResponse.response.usageMetadata.thoughtsTokenCount + inlineResponse.response.usageMetadata.candidatesTokenCount
+                  out:
+                    inlineResponse.response.usageMetadata.thoughtsTokenCount +
+                    inlineResponse.response.usageMetadata.candidatesTokenCount,
                 },
-                text: inlineResponse.response.candidates[0].content?.parts[0].text
-              })
+                text: inlineResponse.response.candidates[0].content?.parts[0].text,
+              });
             } else {
-              result.push(null)
+              result.push(null);
             }
           } else if (inlineResponse.error) {
             console.error(`Error: ${inlineResponse.error}`);
-            result.push(null)
-
+            result.push(null);
           }
         }
         return result;
@@ -76,7 +79,13 @@ export async function getResult(jobName: string) {
     } else {
       console.log(`Job did not succeed. Final state: ${batchJob.state}`);
       if (batchJob.error) {
-        console.error(`Error: ${typeof batchJob.error === 'string' ? batchJob.error : batchJob.error.message || JSON.stringify(batchJob.error)}`);
+        console.error(
+          `Error: ${
+            typeof batchJob.error === 'string'
+              ? batchJob.error
+              : batchJob.error.message || JSON.stringify(batchJob.error)
+          }`,
+        );
       }
     }
   } catch (error) {

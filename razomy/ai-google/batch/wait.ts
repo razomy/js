@@ -1,4 +1,4 @@
-import {ai} from '../client';
+import { ai } from '../client';
 
 export async function wait(name: string) {
   let batchJob;
@@ -10,13 +10,13 @@ export async function wait(name: string) {
   ]);
 
   try {
-    batchJob = await ai.batches.get({name: name});
+    batchJob = await ai.batches.get({ name: name });
     let i = 0;
     while (!completedStates.has(batchJob.state)) {
       console.log(`Current state: ${batchJob.state} ${++i}`);
       // Wait for 30 seconds before polling again
-      await new Promise(resolve => setTimeout(resolve, 30000));
-      batchJob = await ai.batches.get({name: batchJob.name});
+      await new Promise((resolve) => setTimeout(resolve, 30000));
+      batchJob = await ai.batches.get({ name: batchJob.name });
     }
     console.log(`Job finished with state: ${batchJob.state}`);
     if (batchJob.state === 'JOB_STATE_FAILED') {

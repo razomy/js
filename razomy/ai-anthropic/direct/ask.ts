@@ -1,16 +1,15 @@
 import Anthropic from '@anthropic-ai/sdk';
-import {models} from '../batch/asks';
+import { models } from '../batch/asks';
 
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      ANTHROPIC_API_KEY: string
+      ANTHROPIC_API_KEY: string;
     }
   }
 }
 
-const anthropic = new Anthropic({apiKey: process.env.ANTHROPIC_API_KEY});
-
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 export async function ask(req: string) {
   const msg = await anthropic.messages.create({
@@ -19,9 +18,9 @@ export async function ask(req: string) {
     messages: [
       {
         role: 'user',
-        content: req
-      }
-    ]
+        content: req,
+      },
+    ],
   });
   console.log(msg);
 }

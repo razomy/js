@@ -1,4 +1,4 @@
-import {createFloat} from './create_float';
+import { createFloat } from './create_float';
 
 /**
  * Generates a random string of specified length using optional custom characters.
