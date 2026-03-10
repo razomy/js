@@ -13,10 +13,7 @@ export async function splitFunctions({ sourceFile, project }: IterateSourceFileS
 
   console.log(`Processing: ${sourceFile.getBaseName()} (${exportedFunctions.length} functions found)`);
 
-  // Keep the first function, move the rest
-  const functionsToMove = exportedFunctions.slice(1);
-
-  for (const func of functionsToMove) {
+  for (const func of exportedFunctions) {
     const funcName = func.getName();
     if (!funcName) continue;
 
