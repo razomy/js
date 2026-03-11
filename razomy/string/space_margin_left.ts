@@ -5,11 +5,11 @@
  * @returns The string with space margin.
  * @example
  * ```ts
- * spaceMargin('a', 1); // => ' a '
+ * spaceMargin('a', 1); // => ' a'
  * ```
  * @example
  * ```ts
- * spaceMargin('b', 2); // => '  b  '
+ * spaceMargin('b', 2); // => '  b'
  * ```
  * @example
  * ```ts
@@ -18,9 +18,9 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-import { margin } from '@razomy/string';
+import { marginLeft } from '@razomy/string';
 
-export function spaceMargin(value: string, size: number): string {
+export function spaceMarginLeft(value: string, size: number): string {
   const margin_ = ' '.repeat(size);
-  return margin(value, margin_);
+  return marginLeft(value, margin_);
 }
