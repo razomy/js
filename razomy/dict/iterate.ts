@@ -8,21 +8,18 @@
  * @returns The original dictionary.
  * @example
  * ```ts
- * iterate({ a: 1, b: 2 }, (value, key) => { console.log(key, value); });
- * // logs: "a" 1, "b" 2
+ * const logs = [];
+ * iterate({ a: 1, b: 2 }, (value, key) => { logs.push([key, value]); });
+ * logs; // => [["a", 1], ["b", 2]]
  * ```
  * @example
  * ```ts
+ * const logs = [];
  * iterate({ x: 10, y: 20, z: 30 }, (value) => {
  *   if (value >= 20) return false;
- *   console.log(value);
+ *   logs.push(value);
  * });
- * // logs: 10
- * ```
- * @example
- * ```ts
- * const result = iterate({ name: 'Alice' }, () => {});
- * // result === { name: 'Alice' }
+ * logs; // => [10]
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)

@@ -12,19 +12,19 @@ import type { DictRecursive } from './recursive';
  * ```ts
  * const obj = { a: { b: { c: 1 } } };
  * deleteByPathMut(obj, 'a.b.c');
- * // obj => { a: { b: {} } }
+ * obj; // => { a: { b: {} } }
  * ```
  * @example
  * ```ts
  * const obj = { x: { y: 2 }, z: 3 };
  * deleteByPathMut(obj, 'z');
- * // obj => { x: { y: 2 } }
+ * obj; // => { x: { y: 2 } }
  * ```
  * @example
  * ```ts
  * const obj = { a: { b: 1 } };
  * deleteByPathMut(obj, 'a.nonexistent');
- * // obj => { a: { b: 1 } } (no change)
+ * obj; // => { a: { b: 1 } } (no change)
  * ```
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n)

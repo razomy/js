@@ -5,7 +5,7 @@ export { getKeys } from './get_keys';
 export { get } from './get';
 export { isKeys } from './is_keys';
 export { isPlainObject } from './is_plain_object';
-export { iterate } from './iterate';
+export {default as iterate} from './iterate'
 export { mapToArray } from './map_to_array';
 export { map } from './map';
 export { merge, type UnionToIntersection, type Prettify } from './merge';
