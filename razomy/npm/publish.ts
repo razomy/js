@@ -15,7 +15,7 @@ export async function publish(path_: string) {
       + ` && npm publish . --tag latest`
       + ` && npm dist-tag add ${pkg.name}@${pkg.version} latest`
     console.log(publishCommand);
-    await execute(publishCommand, path.resolve(path_, 'dist'));
+    // await execute(publishCommand, path.resolve(path_, 'dist'));
   } catch (e) {
     console.error(e);
   }
@@ -25,8 +25,8 @@ ifMain(import.meta.url, () => {
   publish('../string-case');
   publish('../array');
   publish('../string');
-  publish('../dict');
   publish('../random');
+  publish('../dict');
   publish('../dict-recursive');
   // publish('../json');
   // publish('../tree');

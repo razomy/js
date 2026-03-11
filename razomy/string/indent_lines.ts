@@ -18,9 +18,9 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-import { marginLeft } from '@razomy/string';
+import { prefixLines } from '@razomy/string';
 
-export function spaceMarginLeft(value: string, size: number): string {
+export function indentLines(value: string, size: number): string {
   const margin_ = ' '.repeat(size);
-  return marginLeft(value, margin_);
+  return prefixLines(value, margin_);
 }
