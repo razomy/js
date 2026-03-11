@@ -22,3 +22,19 @@ export class Performance {
     console.log(`Execution time: key=${key} time=${this.tick()} milliseconds`);
   }
 }
+
+
+export type HardwareLimitation =
+  | 'Read_ByIndex'
+  | 'Search_ByValue'
+  | 'InsertDelete'
+  | 'MemoryFootprint'
+  | 'CacheLocality';
+
+export type OptimizationTradeoff = {
+  //   read: BigO;
+  //   search: BigO;
+  //   insertDelete: BigO;
+  //   memory: 'High' | 'Medium' | 'Low';
+  //   cacheLocality: 'Excellent' | 'Poor' | 'Random';
+};
