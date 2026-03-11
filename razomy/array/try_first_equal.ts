@@ -1,9 +1,9 @@
 /**
- * @summary Find the first element in list2 that also exists in list1.
- * @description Iterates through list2 and for each element checks if it exists in list1 using strict equality. Returns the first matching element, or null if no match is found.
- * @param list1 The reference array to match against.
- * @param list2 The array to search through in order.
- * @returns The first element from list2 found in list1, or null if none match.
+ * @summary Find the first element in array2 that also exists in array1.
+ * @description Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first matching element, or null if no match is found.
+ * @param array1 The reference array to match against.
+ * @param array2 The array to search through in order.
+ * @returns The first element from array2 found in array1, or null if none match.
  * @example
  * ```ts
  * tryFirstEqual([1, 2, 3], [4, 2, 3]); // => 2
@@ -19,9 +19,9 @@
  * @complexity time O(n * m)
  * @complexity memory O(1)
  */
-export function tryFirstEqual<T>(list1: T[], list2: T[]): T | null {
-  for (const item2 of list2) {
-    for (const item1 of list1) {
+export function tryFirstEqual<T>(array1: T[], array2: T[]): T | null {
+  for (const item2 of array2) {
+    for (const item1 of array1) {
       if (item2 === item1) {
         return item2;
       }

@@ -5,19 +5,18 @@
  * @returns True if all elements pass the test, otherwise false.
  * @example
  * ```ts
- * every([2, 4, 6], (n) => n % 2 === 0);
- * // => true
+ * every([2, 4, 6], (n) => n % 2 === 0); // => true
  * ```
  * @example
  * ```ts
- * every([2, 4, 7], (n) => n % 2 === 0);
- * // => false
+ * every([2, 4, 7], (n) => n % 2 === 0); // => false
  * ```
  * @example
  * ```ts
- * every([], (n) => n > 5);
- * // => true
+ * every([], (n) => n > 5); // => true
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function every<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean {
   for (let index = 0; index < array.length; index++) {

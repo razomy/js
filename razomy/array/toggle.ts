@@ -16,6 +16,8 @@
  * ```ts
  * toggle([], true); // => [true]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function toggle<T>(array: T[], item: T): T[] {
   const index = array.indexOf(item);

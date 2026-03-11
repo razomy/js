@@ -13,7 +13,7 @@ export { flat } from './flat';
 export { getFirst } from './get_first';
 export { getLast } from './get_last';
 export { groupBy } from './group_by';
-export { hasSub } from './has_sub';
+export { hasArray } from './has_array';
 export { includes } from './includes';
 export { insertMut } from './insert_mut';
 export { intersection } from './intersection';

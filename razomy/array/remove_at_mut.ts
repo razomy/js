@@ -6,21 +6,20 @@
  * @example
  * ```ts
  * const items = ['a', 'b', 'c'];
- * removeAtMut(items, 1);
- * // => 'b'
+ * removeAtMut(items, 1); // => 'b'
  * ```
  * @example
  * ```ts
  * const numbers = [10, 20, 30];
- * removeAtMut(numbers, -1);
- * // => 30
+ * removeAtMut(numbers, -1); // => 30
  * ```
  * @example
  * ```ts
  * const empty = [];
- * removeAtMut(empty, 0);
- * // => undefined
+ * removeAtMut(empty, 0); // => undefined
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function removeAtMut<T>(array: T[], index: number): T | undefined {
   return array.splice(index, 1)[0];

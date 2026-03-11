@@ -16,6 +16,8 @@
  * ```ts
  * includes(['a', 'b', 'c'], 'c', 1); // => true
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function includes<T>(array: T[], value: T, fromIndex?: number): boolean {
   return array.includes(value, fromIndex);

@@ -15,6 +15,8 @@
  * ```ts
  * some(['a', 'bc', 'd'], (s) => s.length > 1);// => true
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function some<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean {
   return array.some(predicate);

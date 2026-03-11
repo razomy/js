@@ -14,9 +14,10 @@
  * ```
  * @example
  * ```ts
- * insertMut([{ id: 1 }], 1, { id: 2 });
- * // => [{ id: 1 }, { id: 2 }]
+ * insertMut([{ id: 1 }], 1, { id: 2 }); // => [{ id: 1 }, { id: 2 }]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function insertMut<T>(array: T[], index: number, item: T): T[] {
   array.splice(index, 0, item);

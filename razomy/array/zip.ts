@@ -14,6 +14,8 @@
  * ```ts
  * zip([], [1, 2]); // => []
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function zip<T>(...arrays: T[][]): T[][] {
   const lengths = arrays.map((array) => array.length);

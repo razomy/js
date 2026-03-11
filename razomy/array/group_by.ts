@@ -18,6 +18,8 @@
  * groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k);
  * // => { 'a': [{ k: 'a', v: 1 }], 'b': [{ k: 'b', v: 2 }] }
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function groupBy<T, K extends PropertyKey>(array: T[], iteratee: (item: T) => K): Record<K, T[]> {
   return array.reduce((result, item) => {

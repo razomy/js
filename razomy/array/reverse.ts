@@ -14,6 +14,8 @@
  * ```ts
  * reverse([]); // => []
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function reverse<T>(array: T[]): T[] {
   return [...array].reverse();

@@ -7,9 +7,9 @@ export const models = {
   expensive: 'claude-opus-4-6',
 };
 
-const m = 1_000_000;
-const batchSale = 2;
-const pricing = {
+export const m = 1_000_000;
+export const batchSale = 2;
+export const pricing = {
   cheap: {
     in_: 3 / m,
     out_: 15 / m,
@@ -48,6 +48,10 @@ export function printPrice(results: any[]) {
   console.log('Total $' + p.toFixed(5));
 }
 
+export async function cancel(id) {
+  await anthropic.messages.batches.cancel(id)
+}
+
 export async function asks(texts: string[], systemText: string) {
   // 1. Prepare requests mapping to the Anthropic batch format
   const requests: Anthropic.Messages.Batches.BatchCreateParams.Request[] = texts.map((text, index) => {
@@ -55,9 +59,9 @@ export async function asks(texts: string[], systemText: string) {
       custom_id: `req-${index + 1}`, // custom_ids must be unique per item in the batch
       params: {
         model: models.expensive,
-        max_tokens: 1024,
+        max_tokens: 5024,
         system: systemText, // Anthropic system prompts go here
-        messages: [{ role: 'user', content: text }],
+        messages: [{role: 'user', content: text}],
       },
     };
   });
@@ -73,7 +77,7 @@ export async function asks(texts: string[], systemText: string) {
   return await continue_(jobId);
 }
 
-async function wait(messageBatchId: string) {
+export async function wait(messageBatchId: string) {
   let messageBatch;
   while (true) {
     messageBatch = await anthropic.messages.batches.retrieve(messageBatchId);
@@ -94,7 +98,7 @@ async function wait(messageBatchId: string) {
   console.log('Batch finished processing.');
 }
 
-async function getResult(jobId: string) {
+export async function getResult(jobId: string) {
   const results: (any | null)[] = [];
 
   // Stream results file in memory-efficient chunks, processing one at a time
@@ -122,7 +126,7 @@ async function getResult(jobId: string) {
   return results; // Return the array so printPrice can use it
 }
 
-async function delete_(jobId: string) {
+export async function delete_(jobId: string) {
   // Note: Anthropic retains batch results for 29 days and does not expose
   // a manual DELETE endpoint. This is kept here to match your required code structure.
   console.log(`Cleanup Job reference called for: ${jobId}`);
@@ -150,5 +154,5 @@ export async function continue_(jobId: string) {
   // 6. Cleanup (Placeholder)
   await delete_(jobId);
 
-  return result.map((c) => ({ text: c.result.message.content[0]['text'] }));
+  return result.map((c) => ({text: c.result.message.content[0]['text']}));
 }

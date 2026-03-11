@@ -10,13 +10,14 @@
  * ```
  * @example
  * ```ts
- * tryGetLast(['a', 'b', 'c'], -1);
- * // => 'b'
+ * tryGetLast(['a', 'b', 'c'], -1); // => 'b'
  * ```
  * @example
  * ```ts
  * tryGetLast([]); // => null
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function tryGetLast<T>(arr: T[], deltaIndex: number = 0): T | null {
   return arr.at(-1 + deltaIndex) ?? null;

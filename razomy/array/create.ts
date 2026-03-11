@@ -15,6 +15,8 @@
  * ```ts
  * create(4, true); // => [true, true, true, true]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function create<T>(size: number, value: T): T[] {
   return new Array(size).fill(value);

@@ -6,22 +6,24 @@
  * @returns
  * @example
  * ```ts
- * const list = [1, 2, 3, 4];
- * removeAllMut(list, [1, 3]);
- * // => [2, 4]
+ * const array = [1, 2, 3, 4];
+ * removeAllMut(array, [1, 3]);
+ * array; // => [2, 4]
  * ```
  * @example
  * ```ts
- * const list = ['a', 'b', 'b', 'c'];
- * removeAllMut(list, ['b', 'b']);
- * // => ['a', 'c']
+ * const array = ['a', 'b', 'b', 'c'];
+ * removeAllMut(array, ['b', 'b']);
+ * array; // => ['a', 'c']
  * ```
  * @example
  * ```ts
- * const list = [1, 1, 2];
- * removeAllMut(list, [1]);
- * // => [1, 2]
+ * const array = [1, 1, 2];
+ * removeAllMut(array, [1]);
+ * array; // => [1, 2]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 import { removeFirstMut } from './remove_first_mut';
 

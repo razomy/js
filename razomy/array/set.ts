@@ -18,6 +18,8 @@
  * ```ts
  * set([0, 1, 0], 1, 0); // => [0, 0, 0]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function set<T>(array: readonly T[], index: number, value: T): T[] {
   return array.with(index, value);

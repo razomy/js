@@ -7,16 +7,18 @@ import { create } from './create';
  * @returns An array containing 1 at the specified index.
  * @example
  * ```ts
- * createByIndexAndSize(0, 2); // => [1, undefined]
+ * createByIndexAndSize(0, 2); // => [1, 0]
  * ```
  * @example
  * ```ts
- * createByIndexAndSize(1, 3); // => [undefined, 1, undefined]
+ * createByIndexAndSize(1, 3); // => [0, 1, 0]
  * ```
  * @example
  * ```ts
- * createByIndexAndSize(3, 4); // => [undefined, undefined, undefined, 1]
+ * createByIndexAndSize(3, 4); // => [0, 0, 0, 1]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function createByIndexAndSize(index: number, size: number): number[] {
   const array = create(size, 0);

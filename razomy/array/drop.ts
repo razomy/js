@@ -15,6 +15,8 @@
  * ```ts
  * drop([1, 2, 3], 5); // => []
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function drop<T>(array: T[], count: number): T[] {
   return array.slice(count);

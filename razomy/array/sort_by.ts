@@ -17,6 +17,8 @@
  * sortBy([{ user: 'fred', age: 40 }, { user: 'barney', age: 36 }], (u) => u.age);
  * // => [{ user: 'barney', age: 36 }, { user: 'fred', age: 40 }]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function sortBy<T>(array: T[], iteratee: (item: T) => string | number): T[] {
   const length = array.length;

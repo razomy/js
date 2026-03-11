@@ -15,6 +15,8 @@
  * ```ts
  * getFirst([]); // => Error: Array is empty
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function getFirst<T>(array: T[]): T {
   if (array.length === 0) {

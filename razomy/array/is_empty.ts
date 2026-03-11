@@ -14,6 +14,8 @@
  * ```ts
  * isEmpty(['a', 'b']); // => false
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function isEmpty<T>(array: ReadonlyArray<T>): boolean {
   return array.length === 0;

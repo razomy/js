@@ -19,6 +19,8 @@
  * reduce([1, 2, 3], (acc, val) => { acc.push(val * 2); return acc; }, []);
  * // => [2, 4, 6]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function reduce<T, A>(
   array: T[],

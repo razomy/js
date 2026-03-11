@@ -15,6 +15,8 @@
  * ```ts
  * intersection([1, 2], [3, 4]); // => []
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function intersection<T>(source: T[], target: T[]): T[] {
   const targetSet = new Set(target);

@@ -15,6 +15,8 @@
  * ```ts
  * take([1, 2, 3], 5); // => [1, 2, 3]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function take<T>(array: T[], n: number): T[] {
   return array.slice(0, n);

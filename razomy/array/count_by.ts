@@ -19,7 +19,7 @@
  * @complexity time O(n)
  * @complexity memory O(k) where k is the number of unique keys
  */
-export function countBy<T>(array: readonly T[], predicate: (value: T) => T = v => v): Record<string, number> {
+export function countBy<T>(array: readonly T[], predicate: (value: T) => any = v => v): Record<string, number> {
   const result: Record<string, number> = {};
 
   for (let i = 0; i < array.length; i++) {

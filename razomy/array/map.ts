@@ -5,8 +5,7 @@
  * @returns A new array with the transformed elements.
  * @example
  * ```ts
- * map([1, 2, 3], (n) => n * 2);
- * // => [2, 4, 6]
+ * map([1, 2, 3], (n) => n * 2); // => [2, 4, 6]
  * ```
  * @example
  * ```ts
@@ -14,9 +13,10 @@
  * ```
  * @example
  * ```ts
- * map(['a', 'b'], (char, index) => char + index);
- * // => ['a0', 'b1']
+ * map(['a', 'b'], (char, index) => char + index); // => ['a0', 'b1']
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function map<T, U>(array: T[], iteratee: (element: T, index: number, array: T[]) => U): U[] {
   const length = array.length;

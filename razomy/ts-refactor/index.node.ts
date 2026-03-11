@@ -1,6 +1,6 @@
 export { createDistSpecifications } from './create_dist_specifications';
 export { createPackageReadme } from './create_package_readme';
-export { extracyForIo } from './extracy_for_io';
+export { createReadmeAndSpecifications } from './create_readme_and_specifications';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
 export { getExportedConstants } from './get_exported_constants';
 export { getExportedFunctions } from './get_exported_functions';

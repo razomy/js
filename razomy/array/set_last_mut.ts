@@ -14,9 +14,10 @@
  * ```
  * @example
  * ```ts
- * setLastMut([1, 2, 3], 5, -1);
- * // => [1, 5, 3]
+ * setLastMut([1, 2, 3], 5, -1); // => [1, 5, 3]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function setLastMut<T>(array: T[], value: T, offset: number = 0): T[] {
   array[array.length - 1 + offset] = value;

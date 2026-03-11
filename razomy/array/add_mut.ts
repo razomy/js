@@ -5,20 +5,24 @@
  * @returns The modified array.
  * @example
  * ```ts
- * const list = [1, 2];
- * addMut(list, 3);
- * // => [1, 2, 3]
+ * const array = [1, 2];
+ * addMut(array, 3);
+ * array; // => [1, 2, 3]
  * ```
  * @example
  * ```ts
- * addMut(['a'], 'b'); // => ['a', 'b']
+ * const array = ['a']
+ * addMut(array, 'b');
+ * array; // => ['a', 'b']
  * ```
  * @example
  * ```ts
- * const refs = [{ id: 1 }];
- * addMut(refs, { id: 2 });
- * // => [{ id: 1 }, { id: 2 }]
+ * const array = [{ id: 1 }];
+ * addMut(array, { id: 2 });
+ * array; // => [{ id: 1 }, { id: 2 }]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function addMut<T>(array: T[], value: T): T[] {
   array.push(value);

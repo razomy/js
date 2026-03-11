@@ -93,8 +93,8 @@ Add an element to the end of an array, modifying the original array.
 Examples
 
 ```ts
-const list = [1, 2];
-addMut(list, 3); // [1, 2, 3]
+const array = [1, 2];
+addMut(array, 3); // [1, 2, 3]
 ```
 
 ```ts
@@ -859,11 +859,11 @@ toggle([], true); // [true]
 
 #### tryFirstEqual
 
-`tryFirstEqual(list1: T[], list2: T[]): T | null`
+`tryFirstEqual(array1: T[], array2: T[]): T | null`
 
-Find the first element in list2 that also exists in list1.
+Find the first element in array2 that also exists in array1.
 
-Iterates through list2 and for each element checks if it exists in list1 using strict equality. Returns the first matching element, or null if no match is found.
+Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first matching element, or null if no match is found.
 
 Examples
 

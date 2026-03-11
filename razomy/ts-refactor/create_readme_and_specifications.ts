@@ -7,7 +7,7 @@ import { createPackageReadme } from './create_package_readme';
 import { getExportedFunctions } from './get_exported_functions';
 import { getFilteredSourceFiles } from './get_filtered_source_files';
 
-export async function extracyForIo(dirPath) {
+export async function createReadmeAndSpecifications(dirPath) {
   const project = new Project({ tsConfigFilePath: '../../' + 'tsconfig.json' });
   const sources = getFilteredSourceFiles(project, dirPath);
   const functionsFiles = getExportedFunctions(sources);

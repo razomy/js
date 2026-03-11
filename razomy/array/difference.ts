@@ -18,6 +18,8 @@
  * ```ts
  * difference([1, 2, 3, 4, 5], [2, 3, 4]); // => [1, 5]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function difference<T>(source: T[], other: T[]): T[] {
   const otherSet = new Set(other);

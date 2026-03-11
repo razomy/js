@@ -19,6 +19,8 @@
  * ```ts
  * getLast([1, 2, 3], 10); // => Error: Element at offset 10 does not exist.
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function getLast<T>(array: T[], offset: number = 0): T {
   const item = array.at(-1 - offset);

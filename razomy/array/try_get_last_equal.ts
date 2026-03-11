@@ -20,6 +20,8 @@
  * tryLastEqual([1, 2], [3, 4], (a, b) => a === b);
  * // => null
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function tryGetLastEqual<T, U>(
   arrayA: T[],

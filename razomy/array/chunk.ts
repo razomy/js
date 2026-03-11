@@ -16,6 +16,8 @@
  * ```ts
  * chunk([true, false], 5); // => [[true, false]]
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function chunk<T>(array: T[], size: number): T[][] {
   const result: T[][] = [];

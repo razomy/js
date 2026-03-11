@@ -14,6 +14,8 @@
  * ```ts
  * flat([['a'], 'b']); // => ['a', 'b']
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function flat<T>(array: readonly (T | readonly T[])[]): T[] {
   return array.flat(1) as T[];

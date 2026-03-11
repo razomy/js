@@ -14,6 +14,8 @@
  * reverseMut(array);
  * array; // => ['b', 'a']
  * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
  */
 export function reverseMut<T>(array: T[]): T[] {
   return array.reverse();
