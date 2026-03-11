@@ -1,4 +1,4 @@
-import {Project, type SourceFile} from 'ts-morph';
+import { Project, type SourceFile } from 'ts-morph';
 
 /**
  * 1. Helper to get files, applying your original filters.

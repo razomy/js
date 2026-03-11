@@ -1,7 +1,7 @@
 import type { DictRecursive } from './recursive';
 import { getByPath } from './get_by_path';
-import { setByPathMut } from './set_by_path';
-import { deleteByPathMut } from './delete_by_path';
+import { setByPathMut } from './set_by_path_mut';
+import { deleteByPathMut } from './delete_by_path_mut';
 
 /**
  * @summary Move a value from one path to another within a recursive dictionary.

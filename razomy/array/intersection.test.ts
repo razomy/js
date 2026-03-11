@@ -1,4 +1,4 @@
-import {intersection} from './intersection';
+import { intersection } from './intersection';
 
 describe('array', () => {
   describe('intersection', () => {
@@ -65,14 +65,14 @@ describe('array', () => {
 
     // 6. Complex data types (reference equality)
     it('works with object references', () => {
-      const obj1 = {id: 1};
-      const obj2 = {id: 2};
-      const obj3 = {id: 3};
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+      const obj3 = { id: 3 };
       expect(intersection([obj1, obj2], [obj2, obj3])).toEqual([obj2]);
     });
 
     it('does not match objects with same shape but different references', () => {
-      expect(intersection([{id: 1}], [{id: 1}])).toEqual([]);
+      expect(intersection([{ id: 1 }], [{ id: 1 }])).toEqual([]);
     });
 
     // 7. Mixed types (if applicable)

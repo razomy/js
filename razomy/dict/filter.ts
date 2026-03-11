@@ -1,4 +1,4 @@
-import type { Dict } from '@razomy/dict';
+import type { Dict } from './dict';
 
 /**
  * @summary Filter entries of a dictionary by a predicate.

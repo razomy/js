@@ -19,7 +19,7 @@
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-import type { Dict } from '@razomy/dict';
+import type { Dict } from './dict';
 import { ArgumentException } from '@razomy/exceptions';
 
 export function firstKey<T>(obj: Dict<T>): string {

@@ -1,4 +1,4 @@
-import {sortBy} from './sort_by';
+import { sortBy } from './sort_by';
 
 describe('array', () => {
   describe('sortBy', () => {
@@ -14,14 +14,14 @@ describe('array', () => {
     it('sorts objects by a numeric property', () => {
       const result = sortBy(
         [
-          {user: 'fred', age: 40},
-          {user: 'barney', age: 36},
+          { user: 'fred', age: 40 },
+          { user: 'barney', age: 36 },
         ],
         (u) => u.age,
       );
       expect(result).toEqual([
-        {user: 'barney', age: 36},
-        {user: 'fred', age: 40},
+        { user: 'barney', age: 36 },
+        { user: 'fred', age: 40 },
       ]);
     });
 
@@ -53,32 +53,32 @@ describe('array', () => {
     // 6. Stable sort - preserves order of equal elements
     it('preserves the relative order of elements with equal sort criteria (stable sort)', () => {
       const items = [
-        {name: 'Alice', age: 30},
-        {name: 'Bob', age: 25},
-        {name: 'Charlie', age: 30},
-        {name: 'Dave', age: 25},
+        { name: 'Alice', age: 30 },
+        { name: 'Bob', age: 25 },
+        { name: 'Charlie', age: 30 },
+        { name: 'Dave', age: 25 },
       ];
       const result = sortBy(items, (item) => item.age);
       expect(result).toEqual([
-        {name: 'Bob', age: 25},
-        {name: 'Dave', age: 25},
-        {name: 'Alice', age: 30},
-        {name: 'Charlie', age: 30},
+        { name: 'Bob', age: 25 },
+        { name: 'Dave', age: 25 },
+        { name: 'Alice', age: 30 },
+        { name: 'Charlie', age: 30 },
       ]);
     });
 
     // 7. Sorting by string criteria
     it('sorts by string criteria in ascending order', () => {
       const items = [
-        {name: 'Charlie', age: 30},
-        {name: 'Alice', age: 25},
-        {name: 'Bob', age: 35},
+        { name: 'Charlie', age: 30 },
+        { name: 'Alice', age: 25 },
+        { name: 'Bob', age: 35 },
       ];
       const result = sortBy(items, (item) => item.name);
       expect(result).toEqual([
-        {name: 'Alice', age: 25},
-        {name: 'Bob', age: 35},
-        {name: 'Charlie', age: 30},
+        { name: 'Alice', age: 25 },
+        { name: 'Bob', age: 35 },
+        { name: 'Charlie', age: 30 },
       ]);
     });
 

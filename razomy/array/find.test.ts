@@ -1,4 +1,4 @@
-import {find} from './find';
+import { find } from './find';
 
 describe('array', () => {
   describe('find', () => {
@@ -30,13 +30,13 @@ describe('array', () => {
 
     // 3. Complex data types
     it('works correctly with arrays of objects', () => {
-      const items = [{id: 1}, {id: 2}, {id: 3}];
-      expect(find(items, (o) => o.id === 1)).toEqual({id: 1});
+      const items = [{ id: 1 }, { id: 2 }, { id: 3 }];
+      expect(find(items, (o) => o.id === 1)).toEqual({ id: 1 });
     });
 
     it('returns the exact reference of the found object', () => {
-      const obj1 = {id: 1};
-      const obj2 = {id: 2};
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
       const items = [obj1, obj2];
       expect(find(items, (o) => o.id === 2)).toBe(obj2);
     });

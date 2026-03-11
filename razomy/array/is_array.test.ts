@@ -1,4 +1,4 @@
-import {isArray} from './is_array';
+import { isArray } from './is_array';
 
 describe('array', () => {
   describe('isArray', () => {
@@ -20,7 +20,12 @@ describe('array', () => {
     });
 
     it('returns true for nested arrays', () => {
-      expect(isArray([[1, 2], [3, 4]])).toBe(true);
+      expect(
+        isArray([
+          [1, 2],
+          [3, 4],
+        ]),
+      ).toBe(true);
     });
 
     // 2. Standard cases - non-arrays
@@ -38,7 +43,7 @@ describe('array', () => {
     });
 
     it('returns false for an object', () => {
-      expect(isArray({a: 1, b: 2})).toBe(false);
+      expect(isArray({ a: 1, b: 2 })).toBe(false);
     });
 
     it('returns false for null', () => {
@@ -57,7 +62,7 @@ describe('array', () => {
     });
 
     it('returns false for a NodeList-like object (array-like)', () => {
-      const arrayLike = {0: 'a', 1: 'b', length: 2};
+      const arrayLike = { 0: 'a', 1: 'b', length: 2 };
       expect(isArray(arrayLike)).toBe(false);
     });
 
@@ -75,8 +80,7 @@ describe('array', () => {
 
     // 4. Edge cases - other primitives and special values
     it('returns false for a function', () => {
-      expect(isArray(() => {
-      })).toBe(false);
+      expect(isArray(() => {})).toBe(false);
     });
 
     it('returns false for a symbol', () => {

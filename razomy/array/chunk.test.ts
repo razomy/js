@@ -8,7 +8,10 @@ describe('array', () => {
     });
 
     it('splits an array into even chunks when size divides evenly', () => {
-      expect(chunk(['a', 'b', 'c', 'd', 'e', 'f'], 3)).toEqual([['a', 'b', 'c'], ['d', 'e', 'f']]);
+      expect(chunk(['a', 'b', 'c', 'd', 'e', 'f'], 3)).toEqual([
+        ['a', 'b', 'c'],
+        ['d', 'e', 'f'],
+      ]);
     });
 
     it('returns the entire array as a single chunk when size is larger than array length', () => {
@@ -69,7 +72,10 @@ describe('array', () => {
 
     // 10. Mixed types
     it('works with mixed-type arrays', () => {
-      expect(chunk([1, 'a', true, null], 2)).toEqual([[1, 'a'], [true, null]]);
+      expect(chunk([1, 'a', true, null], 2)).toEqual([
+        [1, 'a'],
+        [true, null],
+      ]);
     });
   });
 });

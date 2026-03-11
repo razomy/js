@@ -41,34 +41,23 @@ export type HardwareLimitation =
   | 'MemoryFootprint'
   | 'CacheLocality';
 
-
-
-
 export type OptimizationTradeoff = {
-//   read: BigO;
-//   search: BigO;
-//   insertDelete: BigO;
-//   memory: 'High' | 'Medium' | 'Low';
-//   cacheLocality: 'Excellent' | 'Poor' | 'Random';
+  //   read: BigO;
+  //   search: BigO;
+  //   insertDelete: BigO;
+  //   memory: 'High' | 'Medium' | 'Low';
+  //   cacheLocality: 'Excellent' | 'Poor' | 'Random';
 };
 
 // ==========================================
 // LEVEL 1: MEMORY PHYSICS (RAM LAYOUT)
 // ==========================================
-export type PhysicalMemoryLayout =
-  | 'Contiguous'
-  | 'Pointer'
-  | 'Hashed'
-  | 'Composite';
+export type PhysicalMemoryLayout = 'Contiguous' | 'Pointer' | 'Hashed' | 'Composite';
 
 // ==========================================
 // LEVEL 2: TOPOLOGY (CONNECTION CARDINALITY)
 // ==========================================
-export type LogicalTopology =
-  | '1:1_Linear'
-  | '1:N_Hierarchical'
-  | 'N:M_Network'
-  | 'Spatial_Grid';
+export type LogicalTopology = '1:1_Linear' | '1:N_Hierarchical' | 'N:M_Network' | 'Spatial_Grid';
 
 // ==========================================
 // LEVEL 3: FUNDAMENTAL BASE TYPE
@@ -160,7 +149,7 @@ export interface QuadTree<T> extends DataStructure<T> {
   bounds: { x: number; y: number; width: number; height: number };
 }
 
-export interface GraphAdjacencyMatrix<T>  {
+export interface GraphAdjacencyMatrix<T> {
   memoryLayout: 'Contiguous';
   matrix: number[][];
 }

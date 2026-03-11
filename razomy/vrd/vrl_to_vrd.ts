@@ -1,6 +1,6 @@
 import { Vrd, type VrdOrValue } from './vrd';
 import { isString } from '@razomy/string';
-import {Kv} from '@razomy/kv';
+import { Kv } from '@razomy/kv';
 
 export function vrlToVrd(dict: Kv<string, string> | string): VrdOrValue<string> {
   if (isString(dict)) {

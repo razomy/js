@@ -92,5 +92,5 @@ export async function getResult(jobName: string) {
     console.error(`An error occurred while processing job ${jobName}:`, error);
     throw error;
   }
-  return []
+  return [];
 }

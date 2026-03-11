@@ -1,10 +1,13 @@
-import {zip} from './zip';
+import { zip } from './zip';
 
 describe('array', () => {
   describe('zip', () => {
     // 1. Standard cases
     it('zips two arrays of equal length', () => {
-      expect(zip(['a', 'b'], ['1', '2'])).toEqual([['a', '1'], ['b', '2']]);
+      expect(zip(['a', 'b'], ['1', '2'])).toEqual([
+        ['a', '1'],
+        ['b', '2'],
+      ]);
     });
 
     it('zips three arrays of equal length', () => {
@@ -61,18 +64,22 @@ describe('array', () => {
 
     // 7. Complex data types
     it('works with arrays of objects', () => {
-      const a = [{name: 'Alice'}, {name: 'Bob'}];
-      const b = [{age: '30'}, {age: '25'}];
+      const a = [{ name: 'Alice' }, { name: 'Bob' }];
+      const b = [{ age: '30' }, { age: '25' }];
       expect(zip<object>(a, b)).toEqual([
-        [{name: 'Alice'}, {age: '30'}],
-        [{name: 'Bob'}, {age: '25'}],
+        [{ name: 'Alice' }, { age: '30' }],
+        [{ name: 'Bob' }, { age: '25' }],
       ]);
     });
 
     // 8. Mixed types
     it('works with mixed types in a single zip', () => {
-      const result = zip(['a', 'b', 'c'], ['1','2', '3']);
-      expect(result).toEqual([['a', '1'], ['b', '2'], ['c', '3']]);
+      const result = zip(['a', 'b', 'c'], ['1', '2', '3']);
+      expect(result).toEqual([
+        ['a', '1'],
+        ['b', '2'],
+        ['c', '3'],
+      ]);
     });
 
     // 9. Does not mutate input arrays

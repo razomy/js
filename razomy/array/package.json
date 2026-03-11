@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A lightweight, zero-dependency TypeScript library for advanced array manipulations.",
   "engines": {
     "node": ">=18"
   },
@@ -80,7 +80,7 @@
     "getFirst",
     "getLast",
     "groupBy",
-    "hasSub",
+    "hasArray",
     "includes",
     "insertMut",
     "intersection",

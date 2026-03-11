@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/array) | 
 [Io](https://io.razomy.org/array)
 
->
+> A lightweight, zero-dependency TypeScript library for advanced array manipulations.
 
 ## 🚀 Start
 ### Install
@@ -1091,10 +1091,10 @@ Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
-* [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
-* [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
-* [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
-* [🚀 Beacon of Excellence](https://donate.stripe.com/6oU9AS0UX8EFerQc2d0Jq07)
+- [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
+- [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
+- [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
+- [🚀 Beacon of Excellence](https://donate.stripe.com/6oU9AS0UX8EFerQc2d0Jq07)
 
 ## 🤝 Contributing
 
@@ -1114,6 +1114,6 @@ Before opening a new issue, please check if your problem has already been report
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
-* A brief description of the issue.
-* Steps to reproduce the bug.
-* Your current environment (Node version, OS, etc.).
+- A brief description of the issue.
+- Steps to reproduce the bug.
+- Your current environment (Node version, OS, etc.).

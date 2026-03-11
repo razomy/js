@@ -101,11 +101,12 @@
   "peerDependencies": {
     "@razomy/array-difference": "*",
     "@razomy/dict": "*",
+    "@razomy/dict-recursive": "*",
     "@razomy/difference": "*",
     "@razomy/equal": "*",
     "@razomy/exceptions": "*",
     "@razomy/key": "*",
-    "@razomy/list-value_recursive": "*",
+    "@razomy/kv": "*",
     "@razomy/path-string": "*",
     "@razomy/pipes-booleans": "*",
     "@razomy/string": "*"

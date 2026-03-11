@@ -1,4 +1,4 @@
-import type {DiffEntry} from './get_detailed_diff';
+import type { DiffEntry } from './get_detailed_diff';
 
 export function getValueFromDiff(diff: DiffEntry): any {
   if (diff.type === 'CREATED') {

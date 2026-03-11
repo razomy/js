@@ -1,4 +1,4 @@
-import {removeAllMut} from './remove_all_mut';
+import { removeAllMut } from './remove_all_mut';
 
 describe('array', () => {
   describe('removeAllMut', () => {
@@ -85,9 +85,9 @@ describe('array', () => {
 
     // 8. Complex data types with reference equality
     it('works with object references', () => {
-      const obj1 = {id: 1};
-      const obj2 = {id: 2};
-      const obj3 = {id: 3};
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+      const obj3 = { id: 3 };
       const array = [obj1, obj2, obj3];
       removeAllMut(array, [obj1, obj3]);
       expect(array).toEqual([obj2]);

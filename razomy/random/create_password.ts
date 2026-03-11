@@ -1,13 +1,13 @@
 import { createInt } from './create_int';
 import { shuffleArray } from './shuffle_array';
 
-const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const LOWER = 'abcdefghijklmnopqrstuvwxyz';
-const DIGITS = '0123456789';
-const SPECIALS = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
-const ALL = UPPER + LOWER + DIGITS + SPECIALS;
+const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lower = 'abcdefghijklmnopqrstuvwxyz';
+const digits = '0123456789';
+const specials = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+const all = upper + lower + digits + specials;
 
-const MIN_LENGTH = 4;
+const minLength = 4;
 
 /**
  * @summary Create a random password.
@@ -31,19 +31,19 @@ const MIN_LENGTH = 4;
  * @complexity memory O(n)
  */
 export function createPassword(length: number = 16): string {
-  if (length < MIN_LENGTH) {
-    throw new RangeError(`Password length must be at least ${MIN_LENGTH}, got ${length}`);
+  if (length < minLength) {
+    throw new RangeError(`Password length must be at least ${minLength}, got ${length}`);
   }
 
   let chars: string[] = [
-    UPPER[createInt(0, UPPER.length - 1)],
-    LOWER[createInt(0, LOWER.length - 1)],
-    DIGITS[createInt(0, DIGITS.length - 1)],
-    SPECIALS[createInt(0, SPECIALS.length - 1)],
+    upper[createInt(0, upper.length - 1)],
+    lower[createInt(0, lower.length - 1)],
+    digits[createInt(0, digits.length - 1)],
+    specials[createInt(0, specials.length - 1)],
   ];
 
   for (let i = chars.length; i < length; i++) {
-    chars.push(ALL[createInt(0, ALL.length - 1)]);
+    chars.push(all[createInt(0, all.length - 1)]);
   }
 
   chars = shuffleArray(chars);

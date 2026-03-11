@@ -1,7 +1,7 @@
-import type {Dict} from '@razomy/dict';
-import {assign} from '@razomy/key';
-import {isString} from '@razomy/string';
-import type {Kv} from './kv';
+import type { Dict } from '@razomy/dict';
+import { assign } from '@razomy/key';
+import { isString } from '@razomy/string';
+import type { Kv } from './kv';
 
 export function valueOrListToFlatDict(
   dict: {},

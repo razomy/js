@@ -1,4 +1,4 @@
-import {reduce} from './reduce';
+import { reduce } from './reduce';
 
 describe('array', () => {
   describe('reduce', () => {
@@ -9,11 +9,14 @@ describe('array', () => {
 
     it('converts an array of tuples into an object', () => {
       const result = reduce(
-        [['a', 1], ['b', 2]] as [string, number][],
-        (acc, [key, val]) => ({...acc, [key]: val}),
+        [
+          ['a', 1],
+          ['b', 2],
+        ] as [string, number][],
+        (acc, [key, val]) => ({ ...acc, [key]: val }),
         {} as Record<string, number>,
       );
-      expect(result).toEqual({a: 1, b: 2});
+      expect(result).toEqual({ a: 1, b: 2 });
     });
 
     it('maps values by pushing into an accumulator array', () => {
@@ -34,7 +37,7 @@ describe('array', () => {
     });
 
     it('returns the initial value (object) for an empty array', () => {
-      const initial = {count: 0};
+      const initial = { count: 0 };
       expect(reduce([], (acc) => acc, initial)).toBe(initial);
     });
 
@@ -74,7 +77,7 @@ describe('array', () => {
         },
         {} as Record<string, number>,
       );
-      expect(result).toEqual({x: 0, y: 1, z: 2});
+      expect(result).toEqual({ x: 0, y: 1, z: 2 });
     });
 
     // 6. String concatenation
@@ -98,8 +101,7 @@ describe('array', () => {
         },
         {} as Record<string, number>,
       );
-      expect(result).toEqual({a: 3, b: 2, c: 1});
+      expect(result).toEqual({ a: 3, b: 2, c: 1 });
     });
   });
 });
-

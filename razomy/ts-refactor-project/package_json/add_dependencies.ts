@@ -62,7 +62,7 @@ export function addDependencies(projectPath: string, prefix) {
       if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
         return;
       }
-      pkgJson.peerDependencies[depName] = 'latest';
+      pkgJson.peerDependencies[depName] = '*';
       // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
       //   .replace(prefix, '')
       //   .replaceAll('.', '/'));

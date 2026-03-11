@@ -68,7 +68,7 @@
     "refactor",
     "createDistSpecifications",
     "createPackageReadme",
-    "extracyForIo",
+    "createReadmeAndSpecifications",
     "fileRenameVariablesAndPropsFunctions",
     "getExportedConstants",
     "getExportedFunctions",

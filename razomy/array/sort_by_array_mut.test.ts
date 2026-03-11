@@ -1,4 +1,4 @@
-import {sortByArrayMut} from './sort_by_array_mut';
+import { sortByArrayMut } from './sort_by_array_mut';
 
 describe('array', () => {
   describe('sortByArrayMut', () => {

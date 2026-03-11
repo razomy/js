@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { models } from '../batch/asks';
+import { models } from '../batch/print_price';
 
 declare global {
   namespace NodeJS {

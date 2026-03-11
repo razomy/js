@@ -1,4 +1,4 @@
-import type {BatchJobSourceUnion, InlinedRequest} from '@google/genai';
+import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
 import { ai, models } from '../client';
 import { wait } from './wait';
 import { getResult } from './get_result';

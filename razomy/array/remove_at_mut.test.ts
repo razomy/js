@@ -1,4 +1,4 @@
-import {removeAtMut} from './remove_at_mut';
+import { removeAtMut } from './remove_at_mut';
 
 describe('array', () => {
   describe('removeAtMut', () => {

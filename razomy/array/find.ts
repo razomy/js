@@ -1,4 +1,4 @@
-import {findIndex} from './find_index';
+import { findIndex } from './find_index';
 
 /**
  * @summary Find an item in an array that matches the predicate.

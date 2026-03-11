@@ -1,4 +1,4 @@
-import {set} from './set';
+import { set } from './set';
 
 describe('array', () => {
   describe('set', () => {
@@ -66,10 +66,10 @@ describe('array', () => {
 
     // 6. Complex data types
     it('works with arrays of objects', () => {
-      const obj1 = {name: 'Alice'};
-      const obj2 = {name: 'Bob'};
-      const obj3 = {name: 'Charlie'};
-      const newObj = {name: 'Dave'};
+      const obj1 = { name: 'Alice' };
+      const obj2 = { name: 'Bob' };
+      const obj3 = { name: 'Charlie' };
+      const newObj = { name: 'Dave' };
 
       expect(set([obj1, obj2, obj3], 1, newObj)).toEqual([obj1, newObj, obj3]);
     });

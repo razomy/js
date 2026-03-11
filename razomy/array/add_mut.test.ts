@@ -77,7 +77,10 @@ describe('array', () => {
     it('works with nested arrays as values', () => {
       const array: number[][] = [[1, 2]];
       addMut(array, [3, 4]);
-      expect(array).toEqual([[1, 2], [3, 4]]);
+      expect(array).toEqual([
+        [1, 2],
+        [3, 4],
+      ]);
     });
   });
 });

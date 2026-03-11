@@ -46,7 +46,10 @@ describe('object', () => {
 
     it('supports returning arrays from the callback', () => {
       const result = mapToArray({ a: 1, b: 2 }, (k, v) => [k, v]);
-      expect(result).toEqual([['a', 1], ['b', 2]]);
+      expect(result).toEqual([
+        ['a', 1],
+        ['b', 2],
+      ]);
     });
 
     // 5. Complex value types

@@ -1,4 +1,4 @@
-import {removeLast} from './remove_last';
+import { removeLast } from './remove_last';
 
 describe('array', () => {
   describe('removeLast', () => {
@@ -73,8 +73,8 @@ describe('array', () => {
 
     // 8. Complex data types
     it('works with arrays of objects', () => {
-      const arr = [{id: 1}, {id: 2}, {id: 3}];
-      expect(removeLast(arr)).toEqual([{id: 1}, {id: 2}]);
+      const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+      expect(removeLast(arr)).toEqual([{ id: 1 }, { id: 2 }]);
     });
 
     it('works with arrays of strings', () => {

@@ -1,4 +1,4 @@
-import {tryGetLastEqual} from './try_get_last_equal';
+import { tryGetLastEqual } from './try_get_last_equal';
 
 describe('array', () => {
   describe('tryGetLastEqual', () => {
@@ -52,10 +52,10 @@ describe('array', () => {
 
     // 5. Complex data types
     it('works with objects using a custom predicate', () => {
-      const arrayA = [{id: 1}, {id: 2}, {id: 3}];
-      const arrayB = [{id: 2}, {id: 3}, {id: 4}];
+      const arrayA = [{ id: 1 }, { id: 2 }, { id: 3 }];
+      const arrayB = [{ id: 2 }, { id: 3 }, { id: 4 }];
       const result = tryGetLastEqual(arrayA, arrayB, (a, b) => a.id === b.id);
-      expect(result).toEqual([{id: 3}, {id: 3}]);
+      expect(result).toEqual([{ id: 3 }, { id: 3 }]);
     });
 
     // 6. Different types for arrayA and arrayB

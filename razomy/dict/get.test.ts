@@ -36,7 +36,9 @@ describe('dictionary', () => {
     });
 
     it('returns a function value', () => {
-      const fn = () => 42;
+      function fn() {
+        return 42;
+      }
       expect(get({ action: fn }, 'action')).toBe(fn);
     });
 

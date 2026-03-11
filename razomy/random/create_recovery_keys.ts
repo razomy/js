@@ -19,12 +19,12 @@
  * ```
  */
 export function createRecoveryKeys(count: number = 10, blocks: number = 4, blockLength: number = 4): string[] {
-  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  const maxIndex = CHARS.length - 1;
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const maxIndex = chars.length - 1;
 
   return Array.from({ length: count }, () =>
     Array.from({ length: blocks }, () =>
-      Array.from({ length: blockLength }, () => CHARS[createInt(0, maxIndex)]).join(''),
+      Array.from({ length: blockLength }, () => chars[createInt(0, maxIndex)]).join(''),
     ).join('-'),
   );
 }

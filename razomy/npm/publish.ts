@@ -1,9 +1,9 @@
-import {execute} from '@razomy/shell';
-import {ifMain} from '@razomy/main';
+import { execute } from '@razomy/shell';
+import { ifMain } from '@razomy/main';
 import path from 'node:path';
-import {packageJson} from '@razomy/ts-refactor-project';
+import { packageJson } from '@razomy/ts-refactor-project';
 import * as fs from '@razomy/fs-file';
-import {createReadmeAndSpecifications} from '@razomy/ts-refactor';
+import { createReadmeAndSpecifications } from '@razomy/ts-refactor';
 
 export async function publish(path_: string) {
   try {
@@ -11,9 +11,9 @@ export async function publish(path_: string) {
     packageJson.createDist(path.resolve(path_));
     await createReadmeAndSpecifications(path.resolve(path_));
     const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
-    const publishCommand = `cd ${path.resolve(path_, 'dist')}`
-      + ` && npm publish . --tag latest`
-      + ` && npm dist-tag add ${pkg.name}@${pkg.version} latest`
+    const publishCommand =
+      `cd ${path.resolve(path_, 'dist')}` +
+      ` && npm publish . --tag latest`;
     console.log(publishCommand);
     // await execute(publishCommand, path.resolve(path_, 'dist'));
   } catch (e) {
@@ -22,12 +22,14 @@ export async function publish(path_: string) {
 }
 
 ifMain(import.meta.url, () => {
-  publish('../string-case');
-  publish('../array');
-  publish('../string');
-  publish('../random');
-  publish('../dict');
-  publish('../dict-recursive');
+  // publish('../string-case');
+  // publish('../array');
+  // publish('../exceptions');
+  // publish('../string');
+  // publish('../random');
+
+  // publish('../dict');
+  // publish('../dict-recursive');
   // publish('../json');
   // publish('../tree');
   // publish('../async');

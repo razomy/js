@@ -1,7 +1,7 @@
-import {Project} from 'ts-morph';
-import {recordPerformance} from '../performance/record_performance';
-import {nStringTestCasesRecordPerformance} from '@razomy/performance';
-import type {FunctionSpecification} from '../function/function_specification';
+import { Project } from 'ts-morph';
+import { recordPerformance } from '../performance/record_performance';
+import { nStringTestCasesRecordPerformance } from '@razomy/performance';
+import type { FunctionSpecification } from '../function/function_specification';
 
 export async function createDistSpecifications(project: Project, path: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path);
@@ -37,7 +37,7 @@ export async function createDistSpecifications(project: Project, path: string, n
   // --- Извлекаем параметры ---
   spec.parameters = func.getParameters().map((param) => {
     const name = param.getName();
-    const type = param.getType().getText();
+    const type = param.getType().getText(param);
 
     const paramTag = doc.getTags().find((t) => t.getTagName() === 'param' && t.getText().includes(name));
     let description = '';
@@ -50,7 +50,7 @@ export async function createDistSpecifications(project: Project, path: string, n
       }
     }
 
-    return {name, type, description};
+    return { name, type, description };
   });
 
   // --- Извлекаем Returns ---
@@ -135,8 +135,7 @@ export async function createDistSpecifications(project: Project, path: string, n
     throw new Error('Invalid Doc invalid complexity ' + path);
   });
 
-
-  if (spec.parameters[0].type === 'string') {
+  if (spec.parameters.length === 1 && spec.parameters[0].type === 'string') {
     const fn = await import(path).then((c) => c[name]);
     const history = await recordPerformance(fn, nStringTestCasesRecordPerformance());
     spec.performance.history = history.exportState();

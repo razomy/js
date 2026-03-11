@@ -36,26 +36,24 @@ describe('string', () => {
     // 4. Error cases
     it('throws an error when start delimiter is not found', () => {
       expect(() => takeBetween('hello world', 'xyz', 'world')).toThrow(
-        "Start substring 'xyz' not found in the source text."
+        "Start substring 'xyz' not found in the source text.",
       );
     });
 
     it('throws an error when end delimiter is not found after start', () => {
       expect(() => takeBetween('hello world', 'hello', 'xyz')).toThrow(
-        "End substring 'xyz' not found after the start substring."
+        "End substring 'xyz' not found after the start substring.",
       );
     });
 
     it('throws an error when both delimiters are not found', () => {
-      expect(() => takeBetween('hello', 'abc', 'def')).toThrow(
-        "Start substring 'abc' not found in the source text."
-      );
+      expect(() => takeBetween('hello', 'abc', 'def')).toThrow("Start substring 'abc' not found in the source text.");
     });
 
     // 5. End delimiter exists before start but not after
     it('throws if end delimiter only appears before start delimiter', () => {
       expect(() => takeBetween('end...start', 'start', 'end')).toThrow(
-        "End substring 'end' not found after the start substring."
+        "End substring 'end' not found after the start substring.",
       );
     });
 

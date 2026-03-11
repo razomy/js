@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A lightweight, zero-dependency TypeScript library for advanced recursive dict manipulations.",
   "engines": {
     "node": ">=18"
   },
@@ -64,17 +64,16 @@
   "homepage": "https://github.com/razomy/js/razomy/dict-recursive#readme",
   "keywords": [
     "razomy",
-    "recursive",
     "dict",
-    "delete",
-    "deleteByPath",
+    "recursive",
+    "deleteByPathMut",
     "flat",
     "getAnyAll",
     "getAny",
     "getByPath",
-    "moveByPath",
-    "setByPath",
-    "set"
+    "mergeDeepMut",
+    "moveByPathMut",
+    "setByPathMut"
   ],
   "license": "MIT",
   "main": "./index.ts",

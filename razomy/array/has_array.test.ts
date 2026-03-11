@@ -1,4 +1,4 @@
-import {hasArray} from './has_array';
+import { hasArray } from './has_array';
 
 describe('array', () => {
   describe('hasArray', () => {
@@ -82,5 +82,3 @@ describe('array', () => {
     });
   });
 });
-
-    

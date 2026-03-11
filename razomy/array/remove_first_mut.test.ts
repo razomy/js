@@ -1,4 +1,4 @@
-import {removeFirstMut} from './remove_first_mut';
+import { removeFirstMut } from './remove_first_mut';
 
 describe('array', () => {
   describe('removeFirstMut', () => {
@@ -58,19 +58,19 @@ describe('array', () => {
 
     // 7. Reference types
     it('works with reference types using strict equality', () => {
-      const obj1 = {id: 1};
-      const obj2 = {id: 2};
-      const obj3 = {id: 3};
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+      const obj3 = { id: 3 };
       const array = [obj1, obj2, obj3];
       removeFirstMut(array, obj2);
       expect(array).toEqual([obj1, obj3]);
     });
 
     it('does not remove an object with the same shape but different reference', () => {
-      const obj1 = {id: 1};
-      const obj2 = {id: 2};
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
       const array = [obj1, obj2];
-      removeFirstMut(array, {id: 1} as any);
+      removeFirstMut(array, { id: 1 } as any);
       expect(array).toEqual([obj1, obj2]);
     });
 

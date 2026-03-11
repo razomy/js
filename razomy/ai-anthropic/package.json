@@ -65,7 +65,8 @@
   "keywords": [
     "razomy",
     "ai",
-    "anthropic"
+    "anthropic",
+    "client"
   ],
   "license": "MIT",
   "main": "./index.ts",

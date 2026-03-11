@@ -86,7 +86,9 @@ describe('dictionary', () => {
 
     // 9. Handles undefined/null values
     it('handles undefined and null values correctly', () => {
-      const result = map({ a: undefined, b: null } as Record<string, unknown>, (v) => v === null ? 'null' : 'undefined');
+      const result = map({ a: undefined, b: null } as Record<string, unknown>, (v) =>
+        v === null ? 'null' : 'undefined',
+      );
       expect(result).toEqual({ a: 'undefined', b: 'null' });
     });
 

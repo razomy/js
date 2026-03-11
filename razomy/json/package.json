@@ -70,7 +70,6 @@
     "isObject",
     "jsonToObject",
     "jsonToString",
-    "mergeDeep",
     "sort",
     "stringToJson"
   ],
@@ -82,7 +81,7 @@
     "@razomy/array": "*",
     "@razomy/codec": "*",
     "@razomy/context": "*",
-    "@razomy/dict": "*",
+    "@razomy/dict-recursive": "*",
     "@razomy/function": "*",
     "@razomy/object": "*",
     "@razomy/offset": "*",

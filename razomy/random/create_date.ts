@@ -27,7 +27,9 @@ export function createDate(startYear: number = 2000, endYear: number = 2026): st
   const end: number = new Date(endYear, 11, 31, 23, 59, 59, 999).getTime();
   const date: Date = new Date(start + createFloat() * (end - start));
 
-  const pad = (n: number): string => n.toString().padStart(2, '0');
+  function pad(n: number): string {
+    return n.toString().padStart(2, '0');
+  }
 
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(
     date.getMinutes(),

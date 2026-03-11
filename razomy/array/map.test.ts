@@ -85,12 +85,7 @@ describe('array', () => {
 
     // 10. Handles undefined/null values in array
     it('handles arrays with undefined and null values', () => {
-      expect(map([undefined, null, 0, ''], (val) => String(val))).toEqual([
-        'undefined',
-        'null',
-        '0',
-        '',
-      ]);
+      expect(map([undefined, null, 0, ''], (val) => String(val))).toEqual(['undefined', 'null', '0', '']);
     });
   });
 });

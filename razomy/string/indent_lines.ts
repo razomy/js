@@ -21,6 +21,6 @@
 import { prefixLines } from '@razomy/string';
 
 export function indentLines(value: string, size: number): string {
-  const margin_ = ' '.repeat(size);
-  return prefixLines(value, margin_);
+  const margin = ' '.repeat(size);
+  return prefixLines(value, margin);
 }

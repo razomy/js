@@ -4,7 +4,12 @@ describe('array', () => {
   describe('flat', () => {
     // 1. Standard cases
     it('flattens an array of nested arrays by one level', () => {
-      expect(flat([[1, 2], [3, 4]])).toEqual([1, 2, 3, 4]);
+      expect(
+        flat([
+          [1, 2],
+          [3, 4],
+        ]),
+      ).toEqual([1, 2, 3, 4]);
     });
 
     it('flattens mixed elements and nested arrays by one level', () => {
@@ -31,7 +36,10 @@ describe('array', () => {
 
     // 4. Only one level of flattening
     it('only flattens one level deep', () => {
-      expect(flat([[[1, 2]], [[3, 4]]])).toEqual([[1, 2], [3, 4]]);
+      expect(flat([[[1, 2]], [[3, 4]]])).toEqual([
+        [1, 2],
+        [3, 4],
+      ]);
     });
 
     it('does not flatten deeply nested arrays', () => {
@@ -68,8 +76,14 @@ describe('array', () => {
 
     // 8. Does not mutate the original array
     it('does not mutate the original array', () => {
-      const original = [[1, 2], [3, 4]];
-      const copy = [[1, 2], [3, 4]];
+      const original = [
+        [1, 2],
+        [3, 4],
+      ];
+      const copy = [
+        [1, 2],
+        [3, 4],
+      ];
       flat(original);
       expect(original).toEqual(copy);
     });

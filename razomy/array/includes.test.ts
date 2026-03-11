@@ -1,4 +1,4 @@
-import {includes} from './includes';
+import { includes } from './includes';
 
 describe('array', () => {
   describe('includes', () => {
@@ -57,10 +57,10 @@ describe('array', () => {
     });
 
     it('works with arrays of objects using reference equality', () => {
-      const obj = {a: 1};
-      const arr = [obj, {b: 2}];
+      const obj = { a: 1 };
+      const arr = [obj, { b: 2 }];
       expect(includes(arr, obj)).toBe(true);
-      expect(includes(arr, {a: 1})).toBe(false);
+      expect(includes(arr, { a: 1 })).toBe(false);
     });
 
     it('works with boolean values', () => {

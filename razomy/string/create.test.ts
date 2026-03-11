@@ -89,7 +89,7 @@ describe('string', () => {
 
     // 9. Functions
     it('converts a function to its string representation', () => {
-      const fn = () => {};
+      function fn() {}
       expect(create(fn)).toContain('=>');
     });
   });

@@ -83,7 +83,8 @@
   "name": "@razomy/commit-datetime-delta-string",
   "peerDependencies": {
     "@razomy/shell": "*",
-    "@razomy/string": "*"
+    "@razomy/string": "*",
+    "@razomy/strings": "*"
   },
   "publishConfig": {
     "access": "public"

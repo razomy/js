@@ -1,4 +1,4 @@
-import {sortByFrequencyAndUnique} from './sort_by_frequency_and_unique';
+import { sortByFrequencyAndUnique } from './sort_by_frequency_and_unique';
 
 describe('array', () => {
   describe('sortByFrequencyAndUnique', () => {

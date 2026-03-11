@@ -12,7 +12,7 @@ describe('array', () => {
     });
 
     it('counts occurrences grouped by boolean value', () => {
-      expect(countBy([true, false, true, true], (v) => v)).toEqual({ 'true': 3, 'false': 1 });
+      expect(countBy([true, false, true, true], (v) => v)).toEqual({ true: 3, false: 1 });
     });
 
     // 2. Empty array
@@ -37,7 +37,7 @@ describe('array', () => {
 
     // 6. Default predicate (identity)
     it('uses identity as the default predicate when none is provided', () => {
-      expect(countBy(['a', 'b', 'a', 'c', 'b', 'a'])).toEqual({ 'a': 3, 'b': 2, 'c': 1 });
+      expect(countBy(['a', 'b', 'a', 'c', 'b', 'a'])).toEqual({ a: 3, b: 2, c: 1 });
     });
 
     // 7. Complex data types (objects)
@@ -49,17 +49,17 @@ describe('array', () => {
         { name: 'Dave', role: 'user' },
         { name: 'Eve', role: 'user' },
       ];
-      expect(countBy(users, (u) => u.role)).toEqual({ 'admin': 2, 'user': 3 });
+      expect(countBy(users, (u) => u.role)).toEqual({ admin: 2, user: 3 });
     });
 
     // 8. Keys are coerced to strings
     it('coerces keys to strings', () => {
-      expect(countBy([null, undefined, null], (v) => v)).toEqual({ 'null': 2, 'undefined': 1 });
+      expect(countBy([null, undefined, null], (v) => v)).toEqual({ null: 2, undefined: 1 });
     });
 
     // 9. Predicate returning mixed types that stringify the same
     it('groups values whose predicate results stringify to the same key', () => {
-      expect(countBy([0, false, '', null], (v) => (v ? 'truthy' : 'falsy'))).toEqual({ 'falsy': 4 });
+      expect(countBy([0, false, '', null], (v) => (v ? 'truthy' : 'falsy'))).toEqual({ falsy: 4 });
     });
 
     // 10. Numeric keys

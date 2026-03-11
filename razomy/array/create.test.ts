@@ -45,7 +45,10 @@ describe('array', () => {
     it('creates an array filled with an array reference', () => {
       const arr = [1, 2];
       const result = create(2, arr);
-      expect(result).toEqual([[1, 2], [1, 2]]);
+      expect(result).toEqual([
+        [1, 2],
+        [1, 2],
+      ]);
       expect(result[0]).toBe(result[1]);
     });
 

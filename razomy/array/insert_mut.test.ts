@@ -1,4 +1,4 @@
-import {insertMut} from './insert_mut';
+import { insertMut } from './insert_mut';
 
 describe('array', () => {
   describe('insertMut', () => {
@@ -12,7 +12,7 @@ describe('array', () => {
     });
 
     it('inserts an object at the end of the array', () => {
-      expect(insertMut([{id: 1}], 1, {id: 2})).toEqual([{id: 1}, {id: 2}]);
+      expect(insertMut([{ id: 1 }], 1, { id: 2 })).toEqual([{ id: 1 }, { id: 2 }]);
     });
 
     // 2. Inserting at the beginning
@@ -70,9 +70,9 @@ describe('array', () => {
 
     // 10. Complex data types
     it('works correctly with arrays of objects', () => {
-      const obj1 = {name: 'Alice'};
-      const obj2 = {name: 'Bob'};
-      const obj3 = {name: 'Charlie'};
+      const obj1 = { name: 'Alice' };
+      const obj2 = { name: 'Bob' };
+      const obj3 = { name: 'Charlie' };
       const arr = [obj1, obj3];
       insertMut(arr, 1, obj2);
       expect(arr).toEqual([obj1, obj2, obj3]);

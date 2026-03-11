@@ -78,8 +78,7 @@
   "name": "@razomy/kv-recursive",
   "peerDependencies": {
     "@razomy/exceptions": "*",
-    "@razomy/key": "*",
-    "@razomy/kv-array-recursive": "*"
+    "@razomy/key": "*"
   },
   "publishConfig": {
     "access": "public"

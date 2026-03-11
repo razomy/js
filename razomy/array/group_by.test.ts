@@ -1,4 +1,4 @@
-import {groupBy} from './group_by';
+import { groupBy } from './group_by';
 
 describe('array', () => {
   describe('groupBy', () => {
@@ -19,12 +19,12 @@ describe('array', () => {
 
     it('groups objects by a property value', () => {
       const items = [
-        {k: 'a', v: 1},
-        {k: 'b', v: 2},
+        { k: 'a', v: 1 },
+        { k: 'b', v: 2 },
       ];
       expect(groupBy(items, (o) => o.k)).toEqual({
-        a: [{k: 'a', v: 1}],
-        b: [{k: 'b', v: 2}],
+        a: [{ k: 'a', v: 1 }],
+        b: [{ k: 'b', v: 2 }],
       });
     });
 
@@ -35,7 +35,7 @@ describe('array', () => {
 
     // 3. Single element
     it('returns a single group for a single-element array', () => {
-      expect(groupBy([42], (n) => n % 2 === 0 ? 'even' : 'odd')).toEqual({
+      expect(groupBy([42], (n) => (n % 2 === 0 ? 'even' : 'odd'))).toEqual({
         even: [42],
       });
     });
