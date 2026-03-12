@@ -75,11 +75,11 @@
   "name": "@razomy/graphics-codecs-json",
   "peerDependencies": {
     "@razomy/abstracts/domains": "*",
+    "@razomy/abstracts/patterns": "*",
     "@razomy/exceptions": "*",
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-codecs-web-svg-codecs": "*",
     "@razomy/graphics-elements": "*",
-    "@razomy/object": "*",
     "@razomy/resources": "*"
   },
   "publishConfig": {

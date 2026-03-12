@@ -1,9 +1,9 @@
 import type { BranchDictOrLeaf } from '@razomy/tree-dict';
-import type { Graph } from '@razomy/abstracts/domains';
+import type { EdgeListGraph } from '@razomy/abstracts/domains';
 import { iterateChildren } from './iterate_children';
 
-export function dictToGraph<T, I extends BranchDictOrLeaf<T>>(input: I): Graph<I> {
-  const graph: Graph<I> = {
+export function dictToGraph<T, I extends BranchDictOrLeaf<T>>(input: I): EdgeListGraph<I> {
+  const graph: EdgeListGraph<I> = {
     nodes: [],
     edges: [],
   };

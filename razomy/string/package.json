@@ -106,7 +106,7 @@
   "module": "./index.ts",
   "name": "@razomy/string",
   "peerDependencies": {
-    "@razomy/index": "*"
+    "@razomy/abstracts/arrays": "*"
   },
   "publishConfig": {
     "access": "public"

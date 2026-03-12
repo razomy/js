@@ -75,9 +75,10 @@
   "module": "./index.ts",
   "name": "@razomy/git-fs",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/abstracts/graphs": "*",
     "@razomy/git": "*",
     "@razomy/languages-programming-fs": "*",
-    "@razomy/path-string": "*",
     "@razomy/tree-list": "*"
   },
   "publishConfig": {

@@ -1,9 +1,9 @@
-import type { Graph } from '@razomy/abstracts/domains';
+import type { EdgeListGraph } from '@razomy/abstracts/domains';
 import type { VrdOrValue } from '@razomy/vrd';
 import { iterateChildren } from './iterate_children';
 
-export function vrdToGraph<T, I extends VrdOrValue<T>>(input: I): Graph<I> {
-  const graph: Graph<I> = {
+export function vrdToGraph<T, I extends VrdOrValue<T>>(input: I): EdgeListGraph<I> {
+  const graph: EdgeListGraph<I> = {
     nodes: [],
     edges: [],
   };

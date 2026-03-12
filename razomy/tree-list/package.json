@@ -85,7 +85,7 @@
   "module": "./index.ts",
   "name": "@razomy/tree-list",
   "peerDependencies": {
-    "@razomy/value": "*",
+    "@razomy/abstracts": "*",
     "@razomy/vrd": "*"
   },
   "publishConfig": {

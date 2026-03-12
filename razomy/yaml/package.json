@@ -72,14 +72,14 @@
   "module": "./index.ts",
   "name": "@razomy/yaml",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/context": "*",
     "@razomy/offset": "*",
     "@razomy/pipes": "*",
     "@razomy/result-null": "*",
     "@razomy/token": "*",
     "@razomy/token-offset": "*",
-    "@razomy/token-offset-deep": "*",
-    "@razomy/value": "*"
+    "@razomy/token-offset-deep": "*"
   },
   "publishConfig": {
     "access": "public"

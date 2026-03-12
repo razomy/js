@@ -1,6 +1,6 @@
 import { NotImplementedException } from '@razomy/exceptions';
-import type { Codec } from '@razomy/abstracts/domains';
-import type { IObject } from '@razomy/object';
+import type { Codec } from '@razomy/abstracts/patterns';
+import type { IObject } from '@razomy/abstracts/domains';
 import type { ISizeResource } from '@razomy/graphics-attributes';
 import { ResourceCollection } from '@razomy/resources';
 import { CodecConfig, CodecFactory, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';

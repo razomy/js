@@ -24,7 +24,7 @@
   </v-menu>
 </template>
 <script lang="ts" setup>
-import { useI18n, useLocalePath, useSwitchLocalePath, computed } from '#imports';
+import { computed, useI18n, useLocalePath, useSwitchLocalePath } from '#imports';
 
 const { isVertical = false } = defineProps<{
   isVertical?: boolean;

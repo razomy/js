@@ -78,7 +78,7 @@
   "module": "./index.ts",
   "name": "@razomy/json",
   "peerDependencies": {
-    "@razomy/abstracts/domains": "*",
+    "@razomy/abstracts/patterns": "*",
     "@razomy/array": "*",
     "@razomy/context": "*",
     "@razomy/dict-recursive": "*",

@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-if="!isMobile" :width="100" app border="0" color="" class="content-0 mx-2" permanent>
+  <v-navigation-drawer v-if="!isMobile" :width="100" app border="0" class="content-0 mx-2" color="" permanent>
     <template v-slot:prepend>
       <rzm-navbar-products />
       <v-divider class="mx-2"></v-divider>
@@ -10,8 +10,8 @@
         <v-tab
           v-for="navigationNode in navigationNodes1"
           :key="navigationNode.id"
-          :value="navigationNode.id"
           :to="localePath(navigationNode.meta.url)"
+          :value="navigationNode.id"
           align-tabs="center"
           class="w-full justify-center px-0 py-8"
           color="secondary"

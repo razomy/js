@@ -113,11 +113,11 @@
   "module": "./index.ts",
   "name": "@razomy/languages-programming-fs",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/array": "*",
     "@razomy/exceptions": "*",
     "@razomy/fs": "*",
-    "@razomy/fs-file": "*",
-    "@razomy/path-string": "*"
+    "@razomy/fs-file": "*"
   },
   "publishConfig": {
     "access": "public"

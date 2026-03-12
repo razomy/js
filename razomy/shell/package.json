@@ -79,7 +79,7 @@
   "module": "./index.ts",
   "name": "@razomy/shell",
   "peerDependencies": {
-    "@razomy/path-string": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

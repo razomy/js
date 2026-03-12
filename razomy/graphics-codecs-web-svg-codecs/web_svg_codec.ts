@@ -1,7 +1,7 @@
 import { NotImplementedException } from '@razomy/exceptions';
 import { ElementView } from '@razomy/graphics-elements';
 import { CodecFactory } from '@razomy/graphics-codecs-web-svg-codecs';
-import type { Codec } from '@razomy/abstracts/domains';
+import type { Codec } from '@razomy/abstracts/patterns';
 import { ResourceCollection } from '@razomy/resources';
 
 export class WebSvgCodec implements Codec<ElementView, Node> {

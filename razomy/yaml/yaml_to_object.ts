@@ -1,5 +1,5 @@
 import type { WithOffset } from '@razomy/offset';
-import type { WithValue } from '@razomy/value';
+import type { WithValue } from '@razomy/abstracts/domains';
 import { tryP } from '@razomy/pipes';
 import { tryAligned, tryScope, type WithDeep } from '@razomy/token-offset-deep';
 import { tryAll, tryTokenValue } from '@razomy/token-offset';

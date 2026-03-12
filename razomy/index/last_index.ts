@@ -1,6 +1,6 @@
 import type { String } from '@razomy/string';
 import type { Offset } from '@razomy/offset';
-import type { Index } from '@razomy/index';
+import type { Index } from '@razomy/abstracts/arrays';
 
 export function lastIndex(
   string: String,

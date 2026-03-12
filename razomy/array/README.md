@@ -9,28 +9,33 @@
 [![npm downloads](https://img.shields.io/npm/dw/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
 
-[Npm](https://www.npmjs.com/package/@razomy/array) | 
-[Npmx](https://npmx.dev/package/@razomy/array) | 
-[GitHub](https://github.com/razomy/js/tree/main/razomy/array) | 
+[Npm](https://www.npmjs.com/package/@razomy/array) |
+[Npmx](https://npmx.dev/package/@razomy/array) |
+[GitHub](https://github.com/razomy/js/tree/main/razomy/array) |
 [Io](https://io.razomy.org/array)
 
 > A lightweight, zero-dependency TypeScript library for advanced array manipulations.
 
 ## 🚀 Start
+
 ### Install
+
 ```sh
 npm i @razomy/array
 ```
 
 ### Import
+
 ```ts
-import * as array from "@razomy/array";
+import * as array from '@razomy/array';
 // or
-import { addMut } from "@razomy/array";
+import { addMut } from '@razomy/array';
 ```
 
 ## 📑 Table of Contents
+
 **Functions**
+
 - [addMut](#addmut)
 - [chunk](#chunk)
 - [countBy](#countby)
@@ -76,16 +81,17 @@ import { addMut } from "@razomy/array";
 - [zip](#zip)
 
 ## 📚 Documentation
+
 ### Functions
+
 #### addMut
 
 `addMut(array: T[], value: T): T[]`
 
 Add an element to the end of an array, modifying the original array.
 
-
-
 Examples
+
 ```ts
 const array = [1, 2];
 addMut(array, 3);
@@ -93,7 +99,7 @@ array; // [1, 2, 3]
 ```
 
 ```ts
-const array = ['a']
+const array = ['a'];
 addMut(array, 'b');
 array; // [a, b]
 ```
@@ -104,8 +110,6 @@ addMut(array, { id: 2 });
 array; // [{ id: 1 }, { id: 2 }]
 ```
 
-
-
 #### chunk
 
 `chunk(array: T[], size: number): T[][]`
@@ -115,6 +119,7 @@ Splits an array into smaller arrays (chunks) of a specified size.
 The last chunk may be smaller than the `size`.
 
 Examples
+
 ```ts
 chunk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
 ```
@@ -127,8 +132,6 @@ chunk(['a', 'b', 'c', 'd', 'e', 'f'], 3); // [[a, b, c], [d, e, f]]
 chunk([true, false], 5); // [[true, false]]
 ```
 
-
-
 #### countBy
 
 `countBy(array: readonly T[], predicate: (value: T) => any): Record<string, number>`
@@ -138,6 +141,7 @@ Count occurrences of elements grouped by a predicate.
 Groups array elements by the result of a predicate function and counts occurrences of each group key.
 
 Examples
+
 ```ts
 countBy([6.1, 4.2, 6.3], Math.floor); // { 4: 1, 6: 2 }
 ```
@@ -150,17 +154,14 @@ countBy(['one', 'two', 'three'], (v) => v.length); // { 3: 2, 5: 1 }
 countBy([true, false, true, true], (v) => v); // { true: 3, false: 1 }
 ```
 
-
-
 #### create
 
 `create(size: number, value: T): T[]`
 
 Create an array of specific size filled with a value.
 
-
-
 Examples
+
 ```ts
 create(3, 0); // [0, 0, 0]
 ```
@@ -173,17 +174,14 @@ create(2, 'x'); // [x, x]
 create(4, true); // [true, true, true, true]
 ```
 
-
-
 #### createByIndexAndSize
 
 `createByIndexAndSize(index: number, size: number): number[]`
 
 Create an array of a specific size with the value 1 at the specified index.
 
-
-
 Examples
+
 ```ts
 createByIndexAndSize(0, 2); // [1, 0]
 ```
@@ -196,8 +194,6 @@ createByIndexAndSize(1, 3); // [0, 1, 0]
 createByIndexAndSize(3, 4); // [0, 0, 0, 1]
 ```
 
-
-
 #### difference
 
 `difference(source: T[], other: T[]): T[]`
@@ -208,6 +204,7 @@ Returns a new array with elements that are in the first array but not in the sec
 The order of elements in the result is determined by the order in the first array.
 
 Examples
+
 ```ts
 difference([1, 2, 3], [2, 4]); // [1, 3]
 ```
@@ -220,17 +217,14 @@ difference(['apple', 'banana', 'orange'], ['orange', 'grape']); // [apple, banan
 difference([1, 2, 3, 4, 5], [2, 3, 4]); // [1, 5]
 ```
 
-
-
 #### drop
 
 `drop(array: T[], count: number): T[]`
 
 Creates a slice of array with n elements dropped from the beginning.
 
-
-
 Examples
+
 ```ts
 drop([1, 2, 3], 1); // [2, 3]
 ```
@@ -243,17 +237,14 @@ drop([1, 2, 3], 2); // [3]
 drop([1, 2, 3], 5); // []
 ```
 
-
-
 #### every
 
 `every(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
 
 Checks if all elements in the array satisfy the provided testing function.
 
-
-
 Examples
+
 ```ts
 every([2, 4, 6], (n) => n % 2 === 0); // true
 ```
@@ -266,17 +257,14 @@ every([2, 4, 7], (n) => n % 2 === 0); // false
 every([], (n) => n > 5); // true
 ```
 
-
-
 #### filter
 
 `filter(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T[]`
 
 Creates a new array with all elements that pass the test implemented by the provided function.
 
-
-
 Examples
+
 ```ts
 filter([1, 2, 3, 4], (n) => n % 2 === 0); // [2, 4]
 ```
@@ -289,8 +277,6 @@ filter([{ id: 1 }, { id: 2 }], (item) => item.id === 1); // [{ id: 1 }]
 filter(['a', 'b', 'c'], (_, index) => index !== 1); // [a, c]
 ```
 
-
-
 #### find
 
 `find(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T`
@@ -298,9 +284,8 @@ filter(['a', 'b', 'c'], (_, index) => index !== 1); // [a, c]
 Find an item in an array that matches the predicate.
 Throws an error if no item is found.
 
-
-
 Examples
+
 ```ts
 find([1, 2, 3], (n) => n === 2); // 2
 ```
@@ -313,17 +298,14 @@ find([{ id: 1 }, { id: 2 }], (o) => o.id === 1); // { id: 1 }
 find([1, 2, 3], (n) => n === 4); // Error: Item not found.
 ```
 
-
-
 #### findIndex
 
 `findIndex(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): number`
 
 Returns the index of the first element in the array that satisfies the provided testing function.
 
-
-
 Examples
+
 ```ts
 findIndex([1, 2, 3], (x) => x === 2); // 1
 ```
@@ -336,19 +318,19 @@ findIndex(['a', 'b', 'c'], (x) => x !== 'b'); // 0
 findIndex([1, 2, 3], (x) => x > 5); // -1
 ```
 
-
-
 #### flat
 
 `flat(array: readonly (T | readonly T[])[]): T[]`
 
 Flattens an array of nested arrays by one level.
 
-
-
 Examples
+
 ```ts
-flat([[1, 2], [3, 4]]); // [1, 2, 3, 4]
+flat([
+  [1, 2],
+  [3, 4],
+]); // [1, 2, 3, 4]
 ```
 
 ```ts
@@ -359,17 +341,14 @@ flat([1, 2, [3, [4]]]); // [1, 2, 3, [4]]
 flat([['a'], 'b']); // [a, b]
 ```
 
-
-
 #### getFirst
 
 `getFirst(array: T[]): T`
 
 Get the first element of an array.
 
-
-
 Examples
+
 ```ts
 getFirst([1, 2, 3]); // 1
 ```
@@ -382,8 +361,6 @@ getFirst(['a', 'b', 'c']); // a
 getFirst([]); // Error: Array is empty
 ```
 
-
-
 #### getLast
 
 `getLast(array: T[], offset: number): T`
@@ -394,6 +371,7 @@ Optionally accepts an offset to retrieve preceding elements.
 Throws an error if the element is not found (e.g., empty array or out of bounds).
 
 Examples
+
 ```ts
 getLast([1, 2, 3]); // 3
 ```
@@ -406,17 +384,14 @@ getLast(['a', 'b', 'c'], 1); // b
 getLast([1, 2, 3], 10); // Error: Element at offset 10 does not exist.
 ```
 
-
-
 #### groupBy
 
 `groupBy(array: T[], iteratee: (item: T) => K): Record<K, T[]>`
 
 Groups the elements of an array according to the result of the iteratee function.
 
-
-
 Examples
+
 ```ts
 groupBy([6.1, 4.2, 6.3], Math.floor); // { 4: [4.2], 6: [6.1, 6.3] }
 ```
@@ -426,10 +401,14 @@ groupBy(['one', 'two', 'three'], (s) => s.length); // { 3: [one, two], 5: [three
 ```
 
 ```ts
-groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k); // { a: [{ k: a, v: 1 }], b: [{ k: b, v: 2 }] }
+groupBy(
+  [
+    { k: 'a', v: 1 },
+    { k: 'b', v: 2 },
+  ],
+  (o) => o.k,
+); // { a: [{ k: a, v: 1 }], b: [{ k: b, v: 2 }] }
 ```
-
-
 
 #### hasArray
 
@@ -437,9 +416,8 @@ groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k); // { a: [{ k: a, v: 1
 
 Check if the source array contains all elements of the sub array in the same relative order.
 
-
-
 Examples
+
 ```ts
 hasArray([1, 2, 3, 4], [2, 4]); // true
 ```
@@ -452,17 +430,14 @@ hasArray(['a', 'b', 'c'], ['c', 'a']); // false
 hasArray([true, false], []); // true
 ```
 
-
-
 #### includes
 
 `includes(array: T[], value: T, fromIndex: number | undefined): boolean`
 
 Checks if value is in array.
 
-
-
 Examples
+
 ```ts
 includes([1, 2, 3], 1); // true
 ```
@@ -475,17 +450,14 @@ includes([1, 2, 3], 4); // false
 includes(['a', 'b', 'c'], 'c', 1); // true
 ```
 
-
-
 #### insertMut
 
 `insertMut(array: T[], index: number, item: T): T[]`
 
 Inserts an item into an array at the specified index by mutating the array.
 
-
-
 Examples
+
 ```ts
 insertMut([1, 3], 1, 2); // [1, 2, 3]
 ```
@@ -498,17 +470,14 @@ insertMut(['a', 'c'], 1, 'b'); // [a, b, c]
 insertMut([{ id: 1 }], 1, { id: 2 }); // [{ id: 1 }, { id: 2 }]
 ```
 
-
-
 #### intersection
 
 `intersection(source: T[], target: T[]): T[]`
 
 Create an array of unique values that are included in both given arrays.
 
-
-
 Examples
+
 ```ts
 intersection([1, 2], [2, 3]); // [2]
 ```
@@ -521,8 +490,6 @@ intersection(['a', 'b'], ['a', 'c']); // [a]
 intersection([1, 2], [3, 4]); // []
 ```
 
-
-
 #### isArray
 
 `isArray(value: unknown): boolean`
@@ -532,6 +499,7 @@ Check if a value is an array.
 Determines whether the provided value is an array using `Array.isArray`.
 
 Examples
+
 ```ts
 isArray([1, 2, 3]); // true
 ```
@@ -544,17 +512,14 @@ isArray('hello'); // false
 isArray([]); // true
 ```
 
-
-
 #### isEmpty
 
 `isEmpty(array: readonly T[]): boolean`
 
 Check if array is empty.
 
-
-
 Examples
+
 ```ts
 isEmpty([]); // true
 ```
@@ -567,17 +532,14 @@ isEmpty([1]); // false
 isEmpty(['a', 'b']); // false
 ```
 
-
-
 #### map
 
 `map(array: T[], iteratee: (element: T, index: number, array: T[]) => U): U[]`
 
 Creates a new array populated with the results of calling a provided function on every element in the input array.
 
-
-
 Examples
+
 ```ts
 map([1, 2, 3], (n) => n * 2); // [2, 4, 6]
 ```
@@ -590,42 +552,45 @@ map([1, 2, 3], String); // [1, 2, 3]
 map(['a', 'b'], (char, index) => char + index); // [a0, b1]
 ```
 
-
-
 #### reduce
 
 `reduce(array: T[], reducer: (accumulator: A, value: T, index: number, array: T[]) => A, initialValue: A): A`
 
 Executes a reducer function on each element of the array, resulting in a single output value.
 
-
-
 Examples
+
 ```ts
 reduce([1, 2, 3, 4], (acc, val) => acc + val, 0); // 10
 ```
 
 ```ts
-reduce([['a', 1], ['b', 2]], (acc, [key, val]) => ({ ...acc, [key]: val }), {}); // { a: 1, b: 2 }
+reduce(
+  [
+    ['a', 1],
+    ['b', 2],
+  ],
+  (acc, [key, val]) => ({ ...acc, [key]: val }),
+  {},
+); // { a: 1, b: 2 }
 ```
 
 ```ts
-reduce([1, 2, 3], (acc, val) => { acc.push(val * 2); return acc; }, []); // [2, 4, 6]
+reduce(
+  [1, 2, 3],
+  (acc, val) => {
+    acc.push(val * 2);
+    return acc;
+  },
+  [],
+); // [2, 4, 6]
 ```
-
-
 
 #### removeAllMut
 
 `removeAllMut(): void`
 
-
-
-
 Examples
-
-
-
 
 #### removeAtMut
 
@@ -633,9 +598,8 @@ Examples
 
 Remove an element at a specific index from an array in place.
 
-
-
 Examples
+
 ```ts
 const items = ['a', 'b', 'c'];
 removeAtMut(items, 1); // b
@@ -651,17 +615,17 @@ const empty = [];
 removeAtMut(empty, 0); // undefined
 ```
 
-
-
 #### removeFirstMut
 
 `removeFirstMut(array: T[], value: T): void`
 
 Remove the first occurrence of a value from an array in place.
 
-Mutates the given array by removing the first element that matches the provided value using strict equality. If the value is not found, the array remains unchanged.
+Mutates the given array by removing the first element that matches the provided value using strict equality. If the
+value is not found, the array remains unchanged.
 
 Examples
+
 ```ts
 const array = [1, 2, 3, 2];
 removeFirstMut(array, 2);
@@ -680,17 +644,17 @@ removeFirstMut(array, 99);
 array; // [1, 2, 3]
 ```
 
-
-
 #### removeLast
 
 `removeLast(arr: readonly T[], deltaIndex: number): T[]`
 
 Remove elements from the end of an array.
 
-Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
+Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept
+relative to removing just the last one.
 
 Examples
+
 ```ts
 removeLast([1, 2, 3]); // [1, 2]
 ```
@@ -703,17 +667,14 @@ removeLast([1, 2, 3], -1); // [1]
 removeLast(['a', 'b', 'c', 'd'], 0); // [a, b, c]
 ```
 
-
-
 #### reverse
 
 `reverse(array: T[]): T[]`
 
 Creates a new array with the elements in reverse order.
 
-
-
 Examples
+
 ```ts
 reverse([1, 2, 3]); // [3, 2, 1]
 ```
@@ -726,17 +687,14 @@ reverse(['y', 'z']); // [z, y]
 reverse([]); // []
 ```
 
-
-
 #### reverseMut
 
 `reverseMut(array: T[]): T[]`
 
 Reverses an array in place.
 
-
-
 Examples
+
 ```ts
 const array = [1, 2, 3];
 reverseMut(array);
@@ -749,17 +707,14 @@ reverseMut(array);
 array; // [b, a]
 ```
 
-
-
 #### set
 
 `set(array: readonly T[], index: number, value: T): T[]`
 
 Creates a new array with the element at the specified index replaced with the given value.
 
-
-
 Examples
+
 ```ts
 set(['a', 'b', 'c'], 1, 'x'); // [a, x, c]
 ```
@@ -772,17 +727,14 @@ set([1, 2, 3], -1, 99); // [1, 2, 99]
 set([0, 1, 0], 1, 0); // [0, 0, 0]
 ```
 
-
-
 #### setLastMut
 
 `setLastMut(array: T[], value: T, offset: number): T[]`
 
 Sets the value of the last element of an array mutably, with an optional offset.
 
-
-
 Examples
+
 ```ts
 setLastMut([1, 2, 3], 4); // [1, 2, 4]
 ```
@@ -795,17 +747,14 @@ setLastMut(['a', 'b'], 'c'); // [a, c]
 setLastMut([1, 2, 3], 5, -1); // [1, 5, 3]
 ```
 
-
-
 #### some
 
 `some(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
 
 Checks if at least one element in the array satisfies the provided testing function.
 
-
-
 Examples
+
 ```ts
 some([1, 2, 3, 4], (n) => n % 2 === 0); // true
 ```
@@ -818,8 +767,6 @@ some([1, 3, 5, 7], (n) => n % 2 === 0); // false
 some(['a', 'bc', 'd'], (s) => s.length > 1); // true
 ```
 
-
-
 #### sortBy
 
 `sortBy(array: T[], iteratee: (item: T) => string | number): T[]`
@@ -829,6 +776,7 @@ This function performs a stable sort and does not mutate the original array.
 Creates a new array of elements sorted in ascending order by the results of running an iteratee on each element.
 
 Examples
+
 ```ts
 sortBy([3, 1, 2], (n) => n); // [1, 2, 3]
 ```
@@ -838,10 +786,14 @@ sortBy(['bb', 'ccc', 'a'], (s) => s.length); // [a, bb, ccc]
 ```
 
 ```ts
-sortBy([{ user: 'fred', age: 40 }, { user: 'barney', age: 36 }], (u) => u.age); // [{ user: barney, age: 36 }, { user: fred, age: 40 }]
+sortBy(
+  [
+    { user: 'fred', age: 40 },
+    { user: 'barney', age: 36 },
+  ],
+  (u) => u.age,
+); // [{ user: barney, age: 36 }, { user: fred, age: 40 }]
 ```
-
-
 
 #### sortByArrayMut
 
@@ -854,6 +806,7 @@ relative order as they do in `newOrder`. Elements not found in `newOrder` are
 pushed to the end in their original relative order (via `Infinity` fallback).
 
 Examples
+
 ```ts
 sortByArrayMut(['c', 'b', 'a'], ['a', 'b', 'c']); // [a, b, c]
 ```
@@ -866,17 +819,14 @@ sortByArrayMut(['x', 'y', 'z'], ['z', 'x', 'y']); // [z, x, y]
 sortByArrayMut(['d', 'a', 'b'], ['b', 'a']); // [b, a, d]
 ```
 
-
-
 #### sortByFrequencyAndUnique
 
 `sortByFrequencyAndUnique(array: T[]): T[]`
 
 Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
 
-
-
 Examples
+
 ```ts
 sortByFrequencyAndUnique([1, 2, 2, 2, 1]); // [2, 1]
 ```
@@ -889,17 +839,14 @@ sortByFrequencyAndUnique(['a', 'a', 'a', 'b', 'b', 'c']); // [a, b, c]
 sortByFrequencyAndUnique([10, 20, 10, 10, 20]); // [10, 20]
 ```
 
-
-
 #### take
 
 `take(array: T[], n: number): T[]`
 
 Creates a slice of array with n elements taken from the beginning.
 
-
-
 Examples
+
 ```ts
 take([1, 2, 3], 1); // [1]
 ```
@@ -912,8 +859,6 @@ take([1, 2, 3], 2); // [1, 2]
 take([1, 2, 3], 5); // [1, 2, 3]
 ```
 
-
-
 #### toggle
 
 `toggle(array: T[], item: T): T[]`
@@ -923,6 +868,7 @@ Toggles the presence of an item in an array.
 If the item exists, it is removed. Otherwise, it is appended.
 
 Examples
+
 ```ts
 toggle([1, 2], 3); // [1, 2, 3]
 ```
@@ -935,17 +881,17 @@ toggle(['a', 'b', 'c'], 'b'); // [a, c]
 toggle([], true); // [true]
 ```
 
-
-
 #### tryFirstEqual
 
 `tryFirstEqual(array1: T[], array2: T[]): T | null`
 
 Find the first element in array2 that also exists in array1.
 
-Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first matching element, or null if no match is found.
+Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first
+matching element, or null if no match is found.
 
 Examples
+
 ```ts
 tryFirstEqual([1, 2, 3], [4, 2, 3]); // 2
 ```
@@ -958,8 +904,6 @@ tryFirstEqual(['a', 'b'], ['c', 'd']); // null
 tryFirstEqual([10, 20, 30], [30, 20, 10]); // 30
 ```
 
-
-
 #### tryGetLast
 
 `tryGetLast(arr: T[], deltaIndex: number): T | null`
@@ -969,6 +913,7 @@ Retrieves the last element of an array or an element relative to the end.
 Returns null if the index is out of bounds.
 
 Examples
+
 ```ts
 tryGetLast(['a', 'b', 'c']); // c
 ```
@@ -981,8 +926,6 @@ tryGetLast(['a', 'b', 'c'], -1); // b
 tryGetLast([]); // null
 ```
 
-
-
 #### tryGetLastEqual
 
 `tryGetLastEqual(arrayA: T[], arrayB: U[], predicate: (itemA: T, itemB: U) => boolean): [T, U] | null`
@@ -992,6 +935,7 @@ Returns the last pair of elements from two arrays that satisfy the provided pred
 Iterates through both arrays in reverse order.
 
 Examples
+
 ```ts
 tryLastEqual([1, 2, 3], [3, 4, 5], (a, b) => a === b); // [3, 3]
 ```
@@ -1004,17 +948,14 @@ tryLastEqual(['a', 'b'], ['A', 'B'], (a, b) => a.toUpperCase() === b); // [b, B]
 tryLastEqual([1, 2], [3, 4], (a, b) => a === b); // null
 ```
 
-
-
 #### union
 
 `union(arrays: T[][]): T[]`
 
 Create an array of unique values, in order, from all given arrays.
 
-
-
 Examples
+
 ```ts
 union([2], [1, 2]); // [2, 1]
 ```
@@ -1027,17 +968,14 @@ union(['a'], ['b'], ['a']); // [a, b]
 union([1, 2], [2, 3]); // [1, 2, 3]
 ```
 
-
-
 #### uniq
 
 `uniq(array: readonly T[]): T[]`
 
 Creates a duplicate-free version of an array.
 
-
-
 Examples
+
 ```ts
 uniq([1, 2, 1]); // [1, 2]
 ```
@@ -1050,17 +988,15 @@ uniq(['a', 'b', 'a']); // [a, b]
 uniq([1, '1', 1]); // [1, 1]
 ```
 
-
-
 #### zip
 
 `zip(arrays: T[][]): T[][]`
 
-Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
-
-
+Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of
+which contains the second elements of the given arrays, and so on.
 
 Examples
+
 ```ts
 zip(['a', 'b'], [1, 2]); // [[a, 1], [b, 2]]
 ```
@@ -1085,12 +1021,13 @@ zip([], [1, 2]); // []
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
+
 - [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
 - [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
 - [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
@@ -1108,12 +1045,14 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 ## 🐛 Reporting Issues
 
-We use GitHub Issues as the official bug tracker for this project. 
+We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
+issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
+
 - A brief description of the issue.
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).

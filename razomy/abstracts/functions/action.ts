@@ -1,4 +1,4 @@
-import type { Value } from '@razomy/value';
+import type { Value } from '../domains/value';
 
 export type Action<T> = (value: Value<T>) => void;
 export type Callback = () => void;

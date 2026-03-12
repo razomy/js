@@ -1,5 +1,5 @@
-import type { Codec } from '@razomy/abstracts/domains';
-import * as create from '@razomy/abstracts/domains';
+import type { Codec } from '@razomy/abstracts/patterns';
+import * as create from '@razomy/abstracts/patterns';
 import { ElementView, TextElement, ViewportElement } from '@razomy/graphics-elements';
 import { RectangleShape } from '@razomy/graphics-shapes';
 import { EncodeNodeFactory, RectangleCodec, SvgCodec, TextCodec } from '@razomy/graphics-codecs-web-svg-codecs';

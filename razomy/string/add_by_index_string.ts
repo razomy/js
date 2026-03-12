@@ -1,5 +1,5 @@
 import type { String } from '@razomy/string';
-import type { Index } from '@razomy/index';
+import type { Index } from '@razomy/abstracts/arrays';
 
 /**
  * @summary Insert a string into another string at a specific index.

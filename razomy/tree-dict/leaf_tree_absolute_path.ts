@@ -1,6 +1,6 @@
 import type { BranchDict, BranchDictOrLeaf, RootDict } from '@razomy/tree-dict';
-import type { Leaf } from '@razomy/tree';
-import type { AbsolutePathString } from '@razomy/path-string';
+import type { Leaf } from '@razomy/abstracts/graphs';
+import type { AbsolutePathString } from '@razomy/abstracts/graphs';
 
 export interface WithAbsolutePath {
   absolutePath: AbsolutePathString;

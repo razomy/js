@@ -9,30 +9,35 @@
 [![npm downloads](https://img.shields.io/npm/dw/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
 
-[Npm](https://www.npmjs.com/package/@razomy/exceptions) | 
-[Npmx](https://npmx.dev/package/@razomy/exceptions) | 
-[GitHub](https://github.com/razomy/js/tree/main/razomy/exceptions) | 
+[Npm](https://www.npmjs.com/package/@razomy/exceptions) |
+[Npmx](https://npmx.dev/package/@razomy/exceptions) |
+[GitHub](https://github.com/razomy/js/tree/main/razomy/exceptions) |
 [Io](https://io.razomy.org/exceptions)
 
 >
 
 ## 🚀 Start
+
 ### Install
+
 ```sh
 npm i @razomy/exceptions
 ```
 
 ### Import
+
 ```ts
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 // or
-import { functionName } from "@razomy/exceptions";
+import { functionName } from '@razomy/exceptions';
 ```
 
 ## 📑 Table of Contents
+
 **Functions**
 
 ## 📚 Documentation
+
 ### Functions
 
 ## 🕊️ Vision
@@ -47,12 +52,13 @@ import { functionName } from "@razomy/exceptions";
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
+
 - [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
 - [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
 - [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
@@ -70,12 +76,14 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 ## 🐛 Reporting Issues
 
-We use GitHub Issues as the official bug tracker for this project. 
+We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
+issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
+
 - A brief description of the issue.
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).

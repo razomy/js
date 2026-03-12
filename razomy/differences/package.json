@@ -72,7 +72,7 @@
   "name": "@razomy/differences",
   "peerDependencies": {
     "@razomy/difference": "*",
-    "@razomy/indexes": "*",
+    "@razomy/index": "*",
     "@razomy/shell": "*"
   },
   "publishConfig": {

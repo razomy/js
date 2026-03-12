@@ -4,7 +4,7 @@ import { Render } from '@razomy/graphics-renderes';
 import { ElementView, TextElement, ViewportElement } from '@razomy/graphics-elements';
 import { RectangleRender, RectangleShape } from '@razomy/graphics-shapes';
 import { UnknownTypeArgumentException } from '@razomy/exceptions';
-import * as create from '@razomy/abstracts/domains';
+import * as create from '@razomy/abstracts/patterns';
 
 export class ViewportRender {
   constructor() {}

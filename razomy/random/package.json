@@ -78,6 +78,7 @@
     "createRecoveryKeys",
     "createString",
     "createUuid",
+    "generateGuid",
     "isYesOrNo",
     "pickItem",
     "rollDice",

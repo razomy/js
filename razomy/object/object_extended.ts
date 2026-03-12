@@ -1,5 +1,5 @@
-import type { IObject } from '@razomy/object';
-import { GuidFactory } from '@razomy/id';
+import type { IObject } from '@razomy/abstracts/domains';
+import { GuidFactory } from '@razomy/random';
 
 export abstract class ObjectExtended implements IObject {
   public readonly id: string = new GuidFactory().create();

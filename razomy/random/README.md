@@ -9,28 +9,33 @@
 [![npm downloads](https://img.shields.io/npm/dw/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
 
-[Npm](https://www.npmjs.com/package/@razomy/random) | 
-[Npmx](https://npmx.dev/package/@razomy/random) | 
-[GitHub](https://github.com/razomy/js/tree/main/razomy/random) | 
+[Npm](https://www.npmjs.com/package/@razomy/random) |
+[Npmx](https://npmx.dev/package/@razomy/random) |
+[GitHub](https://github.com/razomy/js/tree/main/razomy/random) |
 [Io](https://io.razomy.org/random)
 
 > A lightweight, zero-dependency TypeScript library for advanced random manipulations.
 
 ## 🚀 Start
+
 ### Install
+
 ```sh
 npm i @razomy/random
 ```
 
 ### Import
+
 ```ts
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 // or
-import { createCssGradient } from "@razomy/random";
+import { createCssGradient } from '@razomy/random';
 ```
 
 ## 📑 Table of Contents
+
 **Functions**
+
 - [createCssGradient](#createcssgradient)
 - [createDate](#createdate)
 - [createFloat](#createfloat)
@@ -51,30 +56,20 @@ import { createCssGradient } from "@razomy/random";
 - [splitIntoGroups](#splitintogroups)
 
 ## 📚 Documentation
+
 ### Functions
+
 #### createCssGradient
 
 `createCssGradient(): string`
 
-
-
-
 Examples
-
-
-
 
 #### createDate
 
 `createDate(): string`
 
-
-
-
 Examples
-
-
-
 
 #### createFloat
 
@@ -86,6 +81,7 @@ Generates a random floating-point number between 0 (inclusive) and 1 (exclusive)
 using the Web Crypto API for cryptographic randomness.
 
 Examples
+
 ```ts
 createFloat(); // 0.7382194561
 ```
@@ -98,55 +94,29 @@ createFloat(); // 0.0231587943
 createFloat(); // 0.9481726350
 ```
 
-
-
 #### createFloatRange
 
 `createFloatRange(): number`
 
-
-
-
 Examples
-
-
-
 
 #### createInt
 
 `createInt(): number`
 
-
-
-
 Examples
-
-
-
 
 #### createIpv4
 
 `createIpv4(): string`
 
-
-
-
 Examples
-
-
-
 
 #### createLightHexColor
 
 `createLightHexColor(): string`
 
-
-
-
 Examples
-
-
-
 
 #### createMac
 
@@ -157,6 +127,7 @@ Create a random MAC address.
 Generates a random MAC address string in uppercase with colon-separated octets.
 
 Examples
+
 ```ts
 createMac(); // A3:4F:B2:00:CC:91
 ```
@@ -169,17 +140,17 @@ createMac(); // 0E:7D:3A:F1:58:C4
 createMac(); // FF:12:9B:6E:D0:47
 ```
 
-
-
 #### createPassword
 
 `createPassword(length: number): string`
 
 Create a random password.
 
-Generates a random password of the specified length containing at least one uppercase letter, one lowercase letter, one digit, and one special character. The result is shuffled to avoid predictable positions.
+Generates a random password of the specified length containing at least one uppercase letter, one lowercase letter, one
+digit, and one special character. The result is shuffled to avoid predictable positions.
 
 Examples
+
 ```ts
 createPassword(); // aG3!xK9@mNq#pR7& (16 characters)
 ```
@@ -192,19 +163,11 @@ createPassword(4); // k2A! (4 characters, one from each group)
 createPassword(32); // xP4!rQ8@wN2#mK7&jL5$tH9^yB1*zF6+ (32 characters)
 ```
 
-
-
 #### createPinCode
 
 `createPinCode(): string`
 
-
-
-
 Examples
-
-
-
 
 #### createRecoveryKeys
 
@@ -215,6 +178,7 @@ Create an array of recovery keys.
 Generates a list of recovery keys, each composed of uppercase alphanumeric blocks separated by dashes.
 
 Examples
+
 ```ts
 createRecoveryKeys(1, 2, 3); // [A7K-9BZ]
 ```
@@ -227,19 +191,13 @@ createRecoveryKeys(2); // [AXRF-K9B2-QLMZ-7TYP, JN3W-8DVE-0HCS-4FRA]
 createRecoveryKeys(3, 3, 5); // [AX7RF-K9BQ2-LMZTK, JN3W8-DVE0H-CS4FR, PL9YT-QWE3R-ZXC7V]
 ```
 
-
-
 #### createString
 
 `createString(length: number, characters: string): string`
 
-
 Generates a random string of specified length using optional custom characters.
 
 Examples
-
-
-
 
 #### createUuid
 
@@ -250,6 +208,7 @@ Create a UUID v4 string.
 Generates a cryptographically random UUID v4 string using the Web Crypto API.
 
 Examples
+
 ```ts
 createUuid(); // a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
 ```
@@ -263,31 +222,17 @@ const id = createUuid();
 id.length; // 36
 ```
 
-
-
 #### isYesOrNo
 
 `isYesOrNo(): boolean`
 
-
-
-
 Examples
-
-
-
 
 #### pickItem
 
 `pickItem(): T`
 
-
-
-
 Examples
-
-
-
 
 #### rollDice
 
@@ -295,9 +240,11 @@ Examples
 
 Roll one or more dice and return the results.
 
-Simulates rolling a specified number of dice, each with a given number of sides, returning an array of random integer results.
+Simulates rolling a specified number of dice, each with a given number of sides, returning an array of random integer
+results.
 
 Examples
+
 ```ts
 rollDice(); // [3, 5] (two six-sided dice)
 ```
@@ -310,19 +257,11 @@ rollDice(1, 20); // [14] (one twenty-sided die)
 rollDice(4, 6); // [2, 6, 1, 4] (four six-sided dice)
 ```
 
-
-
 #### shuffleArray
 
 `shuffleArray(): T[]`
 
-
-
-
 Examples
-
-
-
 
 #### splitIntoGroups
 
@@ -330,9 +269,11 @@ Examples
 
 Split an array into a specified number of groups with randomly distributed elements.
 
-Shuffles the input array and distributes elements round-robin into the specified number of groups. The original array is not mutated.
+Shuffles the input array and distributes elements round-robin into the specified number of groups. The original array is
+not mutated.
 
 Examples
+
 ```ts
 splitIntoGroups([1, 2, 3, 4], 2); // e.g. [[3, 1], [4, 2]]
 ```
@@ -357,12 +298,13 @@ splitIntoGroups([10, 20, 30, 40, 50], 2); // e.g. [[30, 50, 10], [20, 40]]
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
+
 - [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
 - [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
 - [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
@@ -380,12 +322,14 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 ## 🐛 Reporting Issues
 
-We use GitHub Issues as the official bug tracker for this project. 
+We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
+issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
+
 - A brief description of the issue.
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).

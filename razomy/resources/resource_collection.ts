@@ -1,5 +1,5 @@
 import { NotImplementedException } from '@razomy/exceptions';
-import { type Constructor } from '@razomy/abstracts/codes';
+import { type Constructor } from '@razomy/abstracts/domains';
 import { EntityResource, ObjectResource } from '@razomy/resources';
 
 export interface INodeResourceCollection {

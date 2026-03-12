@@ -1,5 +1,5 @@
 import type { AsyncTask, Context } from './async_task';
-import type { Gate } from '@razomy/abstracts/domains';
+import type { Gate } from '@razomy/abstracts/patterns';
 
 export class FileTaskManager<C extends Context> {
   private currentContext: C | null = null;

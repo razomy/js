@@ -1,4 +1,4 @@
-import type { Alias } from '@razomy/abstracts/codes';
+import type { Alias } from '@razomy/abstracts/ts';
 
 export type PipeAsync<T, R> = (arg: T) => R | Promise<R>;
 

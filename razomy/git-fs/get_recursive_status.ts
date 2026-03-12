@@ -1,5 +1,5 @@
 import { getStatusSync } from '@razomy/git';
-import type { SourcePathString } from '@razomy/path-string';
+import type { SourcePathString } from '@razomy/abstracts/graphs';
 import { isWithGit } from '@razomy/languages-programming-fs';
 import * as path from 'path';
 

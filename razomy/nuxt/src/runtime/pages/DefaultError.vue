@@ -4,12 +4,12 @@
     <p v-else>
       {{ error }}
     </p>
-    <v-btn @click="handleError" color="primary" variant="elevated">{{ t('nuxt.error.404.back_btn') }}</v-btn>
+    <v-btn color="primary" variant="elevated" @click="handleError">{{ t('nuxt.error.404.back_btn') }}</v-btn>
   </div>
   <!--  </v-parallax>-->
 </template>
 <script lang="ts" setup>
-import { useI18n, useLocalePath, clearError } from '#imports';
+import { clearError, useI18n, useLocalePath } from '#imports';
 import type { NuxtError } from '#app';
 
 const props = defineProps({

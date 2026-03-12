@@ -1,5 +1,5 @@
 import { ArgumentException } from '@razomy/exceptions';
-import type { WithPathString } from '@razomy/path-string';
+import type { WithPathString } from '@razomy/abstracts/graphs';
 import { isMacDsStoreKey } from './is_mac_ds_store_key';
 
 export const pythonDependencies = ['.venv'];

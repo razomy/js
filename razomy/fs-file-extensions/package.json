@@ -88,7 +88,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-file-extensions",
   "peerDependencies": {
-    "@razomy/abstracts/domains": "*",
+    "@razomy/abstracts/patterns": "*",
     "@razomy/buffer-string": "*"
   },
   "publishConfig": {

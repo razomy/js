@@ -1,7 +1,7 @@
 <template>
   <v-menu location="bottom center" transition="slide-y-transition">
     <template v-slot:activator="{ props }">
-      <v-btn :class="isVertical ? '' : 'text-center w-100'" variant="plain" density="compact" stacked v-bind="props">
+      <v-btn :class="isVertical ? '' : 'text-center w-100'" density="compact" stacked v-bind="props" variant="plain">
         <img
           :alt="t(currentNavigationNode.meta.nameTk)"
           :src="currentNavigationNode.meta.iconName"

@@ -76,8 +76,8 @@
   "module": "./index.ts",
   "name": "@razomy/fs",
   "peerDependencies": {
-    "@razomy/observable": "*",
-    "@razomy/path-string": "*"
+    "@razomy/abstracts/graphs": "*",
+    "@razomy/observable": "*"
   },
   "publishConfig": {
     "access": "public"

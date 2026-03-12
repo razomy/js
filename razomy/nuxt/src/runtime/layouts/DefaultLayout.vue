@@ -33,7 +33,7 @@
             <!-- Контент -->
             <slot />
             <rzm-default-footer></rzm-default-footer>
-            <rzm-breadcrumbs class="mx-4" :navigationRoot="c.navigationRoot"></rzm-breadcrumbs>
+            <rzm-breadcrumbs :navigationRoot="c.navigationRoot" class="mx-4"></rzm-breadcrumbs>
           </v-main>
         </v-app>
       </Body>

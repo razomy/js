@@ -1,5 +1,5 @@
 import type { WithChildrenDict } from '@razomy/tree-dict';
-import type { Leaf } from '@razomy/tree';
+import type { Leaf } from '@razomy/abstracts/graphs';
 
 export interface BranchDict<T, R = BranchDictOrLeaf<T>> extends RootDict<T, R> {
   value: string;

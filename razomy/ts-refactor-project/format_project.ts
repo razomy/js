@@ -1,7 +1,7 @@
 import { ifMain } from '@razomy/main';
 import { convertLambdasToNamedFunctions } from './convert_lambdas_to_named_functions';
 import { createIndexFiles } from './create_index_files';
-import { createRoot } from './package_json';
+import { addDependencies, createAtChildDirs, createRoot, updateByTemplate } from './package_json';
 import { renameFiles } from './rename_files';
 import {
   fileRenameVariablesAndPropsFunctions,
@@ -9,9 +9,6 @@ import {
   renameFileBasedOnFirstChild,
   splitFunctions,
 } from '@razomy/ts-refactor';
-import { addDependencies } from './package_json';
-import { updateByTemplate } from './package_json';
-import { createAtChildDirs } from './package_json';
 import { fixBrokenImportsAndExports } from './fix_broken_imports_and_exports';
 
 export async function formatProject(projectPath: string, prefix: string) {

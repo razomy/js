@@ -1,5 +1,5 @@
 import * as path from 'path';
-import type { PathString } from '@razomy/path-string';
+import type { PathString } from '@razomy/abstracts/graphs';
 import { rename } from '@razomy/fs';
 import { razomyOutput } from './is_output';
 

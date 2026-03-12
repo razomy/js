@@ -1,7 +1,7 @@
 import { getRecursiveStatus } from './get_recursive_status';
 import { iterateReverse, nodesArrayToTree } from '@razomy/tree-list';
 import { execSync } from 'node:child_process';
-import type { SourcePathString } from '@razomy/path-string';
+import type { SourcePathString } from '@razomy/abstracts/graphs';
 
 export function commit(sourcePath: SourcePathString) {
   const { files, repos } = getRecursiveStatus(sourcePath);

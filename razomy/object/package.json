@@ -78,8 +78,7 @@
   "module": "./index.ts",
   "name": "@razomy/object",
   "peerDependencies": {
-    "@razomy/id": "*",
-    "@razomy/type": "*"
+    "@razomy/random": "*"
   },
   "publishConfig": {
     "access": "public"

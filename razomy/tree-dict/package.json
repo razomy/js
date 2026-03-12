@@ -83,11 +83,11 @@
   "module": "./index.ts",
   "name": "@razomy/tree-dict",
   "peerDependencies": {
-    "@razomy/abstracts/domains": "*",
+    "@razomy/abstracts": "*",
+    "@razomy/abstracts/patterns": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
     "@razomy/key": "*",
-    "@razomy/path-string": "*",
     "@razomy/tree": "*"
   },
   "publishConfig": {

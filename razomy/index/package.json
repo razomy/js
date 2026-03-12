@@ -65,6 +65,7 @@
   "keywords": [
     "razomy",
     "index",
+    "firstEqualIndexes",
     "isStringsAnyIndex",
     "lastIndex",
     "nextMarginIndex",
@@ -75,7 +76,7 @@
   "module": "./index.ts",
   "name": "@razomy/index",
   "peerDependencies": {
-    "@razomy/number": "*",
+    "@razomy/abstracts/arrays": "*",
     "@razomy/offset": "*",
     "@razomy/string": "*"
   },

@@ -74,7 +74,7 @@
   "module": "./index.ts",
   "name": "@razomy/analytics-token",
   "peerDependencies": {
-    "@razomy/abstracts/path_string": "*"
+    "@razomy/abstracts/graphs": "*"
   },
   "publishConfig": {
     "access": "public"

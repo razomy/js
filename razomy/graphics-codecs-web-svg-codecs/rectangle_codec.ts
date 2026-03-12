@@ -1,4 +1,4 @@
-import type { Codec } from '@razomy/abstracts/domains';
+import type { Codec } from '@razomy/abstracts/patterns';
 import { PositionAttribute, SizeAttribute } from '@razomy/graphics-attributes';
 import { BorderStyle, FillStyle } from '@razomy/graphics-styles';
 import { RectangleRoundStyle, RectangleShape } from '@razomy/graphics-shapes';

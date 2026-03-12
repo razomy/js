@@ -75,7 +75,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-directory",
   "peerDependencies": {
-    "@razomy/path-string": "*",
+    "@razomy/abstracts/graphs": "*",
     "@razomy/shell": "*"
   },
   "publishConfig": {

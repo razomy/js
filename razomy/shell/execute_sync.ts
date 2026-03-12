@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 import * as path from 'path';
-import type { DirPathString } from '@razomy/path-string';
+import type { DirPathString } from '@razomy/abstracts/graphs';
 
 export type StringCommand = string;
 export type ShellCommand = StringCommand;

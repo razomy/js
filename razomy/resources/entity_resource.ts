@@ -5,7 +5,7 @@ import {
   NodeAlreadyProvidedException,
   NodeProvidedException,
 } from './node_provided_exception';
-import type { Constructor } from '@razomy/abstracts/codes';
+import type { Constructor } from '@razomy/abstracts/domains';
 import { ArgumentException } from '@razomy/exceptions';
 
 export class EntityResource extends ObjectResource implements IEntityResource {

@@ -95,6 +95,7 @@ describe('isPlainObject', () => {
 
   it('returns false for a class constructor', () => {
     class Foo {}
+
     expect(isPlainObject(Foo)).toBe(false);
   });
 
@@ -103,12 +104,15 @@ describe('isPlainObject', () => {
     class MyClass {
       x = 1;
     }
+
     expect(isPlainObject(new MyClass())).toBe(false);
   });
 
   it('returns false for an instance of a subclass', () => {
     class Base {}
+
     class Child extends Base {}
+
     expect(isPlainObject(new Child())).toBe(false);
   });
 
@@ -145,6 +149,7 @@ describe('isPlainObject', () => {
       // eslint-disable-next-line prefer-rest-params
       return isPlainObject(arguments);
     }
+
     expect(test()).toBe(false);
   });
 });

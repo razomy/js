@@ -1,4 +1,4 @@
-import type { Dispose } from '../abstracts/dispose';
+import type { Dispose } from '../abstracts/functions/dispose';
 import { throwException } from './throw_exception';
 import type { Action } from '@razomy/abstracts/functions';
 import type { CancelException } from './cancel_exception';

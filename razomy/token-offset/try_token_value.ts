@@ -1,5 +1,5 @@
 import type { WithOffset } from '@razomy/offset';
-import type { WithValue } from '@razomy/value';
+import type { WithValue } from '@razomy/abstracts/domains';
 import { type WithTokens, type WithTokenType } from '@razomy/token';
 
 export function tryTokenValue<

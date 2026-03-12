@@ -71,10 +71,10 @@
   "module": "./index.ts",
   "name": "@razomy/abstracts",
   "peerDependencies": {
+    "@razomy/abstracts/domains": "*",
     "@razomy/function": "*",
     "@razomy/kv": "*",
-    "@razomy/object": "*",
-    "@razomy/value": "*"
+    "@razomy/object": "*"
   },
   "publishConfig": {
     "access": "public"

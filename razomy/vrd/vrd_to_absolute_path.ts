@@ -1,6 +1,6 @@
 import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import type { AbsolutePathString } from '@razomy/path-string';
+import type { AbsolutePathString } from '@razomy/abstracts/graphs';
 
 export function vrdToAbsolutePath<T>(
   input: VrdOrValue<T>,

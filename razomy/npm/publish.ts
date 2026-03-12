@@ -11,9 +11,7 @@ export async function publish(path_: string) {
     packageJson.createDist(path.resolve(path_));
     await createReadmeAndSpecifications(path.resolve(path_));
     // const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
-    const publishCommand =
-      `cd ${path.resolve(path_, 'dist')}` +
-      ` && npm publish . --tag latest`;
+    const publishCommand = `cd ${path.resolve(path_, 'dist')}` + ` && npm publish . --tag latest`;
     console.log(publishCommand);
     // await execute(publishCommand, path.resolve(path_, 'dist'));
   } catch (e) {
@@ -27,7 +25,6 @@ ifMain(import.meta.url, () => {
   // publish('../exceptions');
   // publish('../string');
   // publish('../random');
-
   // publish('../dict');
   // publish('../dict-recursive');
   // publish('../json');

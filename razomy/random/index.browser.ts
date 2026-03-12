@@ -11,6 +11,7 @@ export { createPinCode } from './create_pin_code';
 export { createRecoveryKeys } from './create_recovery_keys';
 export { createString } from './create_string';
 export { createUuid } from './create_uuid';
+export { generateGuid, GuidFactory } from './generate_guid';
 export { isYesOrNo } from './is_yes_or_no';
 export { pickItem } from './pick_item';
 export { rollDice } from './roll_dice';

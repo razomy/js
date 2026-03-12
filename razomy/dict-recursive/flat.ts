@@ -1,5 +1,4 @@
-import { iterate } from '@razomy/dict';
-import { isPlainObject } from '@razomy/dict';
+import { isPlainObject, iterate } from '@razomy/dict';
 
 export type Join<K, P> = K extends string ? (P extends string ? `${K}${'' extends P ? '' : '.'}${P}` : never) : never;
 

@@ -23,7 +23,6 @@ export class Performance {
   }
 }
 
-
 export type HardwareLimitation =
   | 'Read_ByIndex'
   | 'Search_ByValue'

@@ -39,6 +39,7 @@ describe('dictionary', () => {
       function fn() {
         return 42;
       }
+
       expect(get({ action: fn }, 'action')).toBe(fn);
     });
 

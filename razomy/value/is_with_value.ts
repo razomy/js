@@ -1,5 +1,5 @@
 import { ArgumentException } from '@razomy/exceptions';
-import type { WithValue } from '@razomy/value';
+import type { WithValue } from '@razomy/abstracts/domains';
 
 export function isWithValue<T extends WithValue<T>>(node: T): node is T {
   if ('value' in node) {

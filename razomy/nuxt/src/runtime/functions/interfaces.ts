@@ -1,4 +1,5 @@
 export type TranslateKey = string;
+
 export interface NAryTreeNode {
   id: string;
   children: NAryTreeNode[];
