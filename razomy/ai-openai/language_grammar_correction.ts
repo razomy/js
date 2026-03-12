@@ -1,8 +1,8 @@
-import type { WithOpenAiCtx } from '@razomy/ai-openai';
 import openai from 'openai';
+import * as aiOpenai from "@razomy/ai-openai";
 
 export class LanguageGrammarCorrection {
-  constructor(private ctx: WithOpenAiCtx) {}
+  constructor(private ctx: aiOpenai.WithOpenAiCtx) {}
 
   async get(text) {
     const request = {

@@ -1,9 +1,8 @@
-import { ArgumentException } from '@razomy/exceptions';
-import type { ArrayKeyValuable, ArrayOrKeyValuable, Valuable } from '@razomy/kv';
-import { isAkv } from '@razomy/kv';
+import * as exceptions from "@razomy/exceptions";
+import * as kv from "@razomy/kv";
 
-export function get<T>(valueRecursive: ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): Valuable<T, T> {
-  if (isAkv(valueRecursive)) {
+export function get<T>(valueRecursive: kv.ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): kv.Valuable<T, T> {
+  if (kv.isAkv(valueRecursive)) {
     for (let [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
         continue;
@@ -14,9 +13,9 @@ export function get<T>(valueRecursive: ArrayOrKeyValuable<T, T>, path: T[], path
         return value;
       }
 
-      return get(value as ArrayKeyValuable<T, T>, path, pathOffset);
+      return get(value as kv.ArrayKeyValuable<T, T>, path, pathOffset);
     }
   }
 
-  throw new ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
+  throw new exceptions.ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
 }

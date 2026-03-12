@@ -1,5 +1,5 @@
-import { type FileFormat } from '@razomy/fs-file-format';
-import { allAudioTargets } from '@razomy/audios';
+import * as fsFileFormat from "@razomy/fs-file-format";
+import * as audios from "@razomy/audios";
 
 // Списки целевых форматов (куда мы можем кодировать)
 // Внимание: кодировать В realmedia (.rm) или swf ffmpeg делает плохо, поэтому их лучше оставить только на вход.
@@ -26,9 +26,9 @@ export const allVideoTargets = [
   'mxf',
 ];
 
-export const videoConversions = [...allVideoTargets, ...allAudioTargets];
+export const videoConversions = [...allVideoTargets, ...audios.allAudioTargets];
 
-export const videos: FileFormat[] = [
+export const videos: fsFileFormat.FileFormat[] = [
   // --- WEB & MODERN ---
   {
     fileExtensionType: 'mp4',

@@ -1,6 +1,6 @@
-import type { Slug } from '@razomy/abstracts/graphs';
 import { macDsStoreFile } from './is_mac_ds_store_key_argument_exception';
+import * as abstracts from "@razomy/abstracts";
 
-export function isMacDsStoreKey(slug: Slug) {
+export function isMacDsStoreKey(slug: abstracts.graphs.Slug) {
   return slug.endsWith(macDsStoreFile);
 }

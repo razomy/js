@@ -1,14 +1,14 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithValue } from '@razomy/abstracts/domains';
-import { tryP } from '@razomy/pipes';
-import { tryAligned, tryScope, type WithDeep } from '@razomy/token-offset-deep';
-import { tryAll, tryTokenValue } from '@razomy/token-offset';
-import type { WithTokens, WithTokenType } from '@razomy/token';
-import { create } from '@razomy/context';
-import { optinal, type ResultNullRegistry } from '@razomy/result-null';
+import * as offset from "@razomy/offset";
+import * as abstracts from "@razomy/abstracts";
+import * as pipes from "@razomy/pipes";
+import * as tokenOffsetDeep from "@razomy/token-offset-deep";
+import * as tokenOffset from "@razomy/token-offset";
+import * as token from "@razomy/token";
+import * as context from "@razomy/context";
+import * as resultNull from "@razomy/result-null";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = WithTokenType<JsonTokenType> & WithValue<string> & WithDeep;
+export type JsonToken = token.WithTokenType<JsonTokenType> & abstracts.domains.WithValue<string> & tokenOffsetDeep.WithDeep;
 
 function ifR<T, r2>(res: T, fn: (r: NonNullable<T>) => NonNullable<r2>) {
   if (res != null) {
@@ -27,23 +27,23 @@ function resultsToFirstResult<T extends { results: D[] }, D = any>(res: T) {
 }
 
 export function yamlToObject(jsonTokens: JsonToken[]) {
-  const c = create(
+  const c = context.create(
     { tokens: jsonTokens },
     { offset: 0 },
     { stack: [] as number[] },
     { deep: 0 },
     { children: [] as any },
-  ) satisfies WithTokens<JsonToken> & WithOffset;
+  ) satisfies token.WithTokens<JsonToken> & offset.WithOffset;
 
   const rs = {
-    root: (c) => ifR(tryScope(c, rs.line), mergeResults),
-    line: (c) => tryP(tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
-    safe_word: (c) => tryP(tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
-    aligned: (c) => tryAligned(c, { offset: 0, result: null }),
-    word: (c) => tryTokenValue(c, 'value'),
-    opt_break: (c) => optinal(c, rs.break, { offset: 0, result: null }),
-    break: (c) => tryTokenValue(c, 'break'),
-  } satisfies ResultNullRegistry<typeof c>;
+    root: (c) => ifR(tokenOffsetDeep.tryScope(c, rs.line), mergeResults),
+    line: (c) => pipes.tryP(tokenOffset.tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
+    safe_word: (c) => pipes.tryP(tokenOffset.tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
+    aligned: (c) => tokenOffsetDeep.tryAligned(c, { offset: 0, result: null }),
+    word: (c) => tokenOffset.tryTokenValue(c, 'value'),
+    opt_break: (c) => resultNull.optinal(c, rs.break, { offset: 0, result: null }),
+    break: (c) => tokenOffset.tryTokenValue(c, 'break'),
+  } satisfies resultNull.ResultNullRegistry<typeof c>;
 
   const rootRes = rs.root(c);
   return rootRes ? rootRes.result : null;

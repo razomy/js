@@ -1,11 +1,11 @@
 import fs from 'fs';
 import * as path from 'path';
-import type { DirPathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
-export function toDict(dirPath: DirPathString) {
+export function toDict(dirPath: abstracts.graphs.DirPathString) {
   let files: string[] = [];
 
-  function iterate(currentDirPath: DirPathString) {
+  function iterate(currentDirPath: abstracts.graphs.DirPathString) {
     const items = fs.readdirSync(currentDirPath);
 
     for (const item of items) {

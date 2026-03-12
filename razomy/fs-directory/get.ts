@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { DirPathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
-export function get(dirPath: DirPathString): string[] {
+export function get(dirPath: abstracts.graphs.DirPathString): string[] {
   return fs.readdirSync(dirPath);
 }

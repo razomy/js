@@ -1,5 +1,4 @@
-import type { Logger } from '@razomy/logging';
-import { ConsoleLogger } from '@razomy/logging';
+import * as logging from "@razomy/logging";
 
 export class AsyncQueue {
   private isProcessing = false;
@@ -11,7 +10,7 @@ export class AsyncQueue {
   }[] = [];
   private id = 0;
 
-  constructor(private ctx: { logger: Logger } = { logger: new ConsoleLogger() }) {}
+  constructor(private ctx: { logger: logging.Logger } = { logger: new logging.ConsoleLogger() }) {}
 
   /**
    * Adds a task to the queue and returns a Promise that resolves

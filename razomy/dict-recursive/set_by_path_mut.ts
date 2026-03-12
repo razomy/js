@@ -1,5 +1,5 @@
 import type { DictRecursive } from './recursive';
-import { isObject } from '@razomy/object';
+import * as object_ from "@razomy/object";
 
 /**
  * @summary Set a value in a nested dictionary by dot-separated path.
@@ -39,7 +39,7 @@ export function setByPathMut(obj: DictRecursive, path: string, value: unknown): 
   }
 
   const target: DictRecursive = parts.reduce<DictRecursive>((acc, part) => {
-    if (!acc[part] || !isObject(acc[part])) {
+    if (!acc[part] || !object_.isObject(acc[part])) {
       acc[part] = {};
     }
     return acc[part] as DictRecursive;

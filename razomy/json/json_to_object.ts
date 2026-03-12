@@ -1,62 +1,62 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithValue } from '@razomy/abstracts/domains';
-import { tryP } from '@razomy/pipes';
-import { f } from '@razomy/function';
-import { tryScope, type WithDeep } from '@razomy/token-offset-deep';
-import { tryAll, tryTokenValue } from '@razomy/token-offset';
-import type { WithTokens, WithTokenType } from '@razomy/token';
-import { any, optinal, type ResultNullRegistry } from '@razomy/result-null';
-import { fMutResult } from '@razomy/result';
-import { create } from '@razomy/context';
+import * as offset from "@razomy/offset";
+import * as abstracts from "@razomy/abstracts";
+import * as pipes from "@razomy/pipes";
+import * as function_ from "@razomy/function";
+import * as tokenOffsetDeep from "@razomy/token-offset-deep";
+import * as tokenOffset from "@razomy/token-offset";
+import * as token from "@razomy/token";
+import * as resultNull from "@razomy/result-null";
+import * as result from "@razomy/result";
+import * as context from "@razomy/context";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = WithTokenType<JsonTokenType> & WithValue<string> & WithDeep;
+export type JsonToken = token.WithTokenType<JsonTokenType> & abstracts.domains.WithValue<string> & tokenOffsetDeep.WithDeep;
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
-  const c = create(
+  const c = context.create(
     { tokens: jsonTokens },
     { offset: 0 },
     { stack: [] as number[] },
     { deep: 0 },
-  ) satisfies WithTokens<JsonToken> & WithOffset;
+  ) satisfies token.WithTokens<JsonToken> & offset.WithOffset;
   const rs = {
     // Primitives
-    key: (c) => tryP(c, f(tryTokenValue, 'value')),
-    scalar: (c) => tryP(c, f(tryTokenValue, 'value')),
-    assign: (c) => tryP(c, f(tryTokenValue, 'assign')),
-    break_: (c) => tryP(c, f(tryTokenValue, 'break')),
-    optBreak: (c) => tryP(c, f(optinal, rs.break_, { offset: 0, result: null })),
+    key: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'value')),
+    scalar: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'value')),
+    assign: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'assign')),
+    break_: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'break')),
+    optBreak: (c) => pipes.tryP(c, function_.f(resultNull.optinal, rs.break_, { offset: 0, result: null })),
     // Recursion / Alternatives
-    tail: (c) => tryP(c, f(any, [rs.inlineEntry, rs.scalar])),
+    tail: (c) => pipes.tryP(c, function_.f(resultNull.any, [rs.inlineEntry, rs.scalar])),
     nestedBlock: (c) =>
-      tryP(
+      pipes.tryP(
         c,
-        f(tryScope, rs.statement),
-        fMutResult((c, ...results) => Object.assign({}, ...results)),
+        function_.f(tokenOffsetDeep.tryScope, rs.statement),
+        result.fMutResult((c, ...results) => Object.assign({}, ...results)),
       ),
     // Sequences
     inlineEntry: (c) =>
-      tryP(
+      pipes.tryP(
         c,
-        f(tryAll, [rs.key, rs.assign, rs.tail, rs.optBreak]),
-        fMutResult((c, [key, a, tail]) => ({ [key]: tail })),
+        function_.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.tail, rs.optBreak]),
+        result.fMutResult((c, [key, a, tail]) => ({ [key]: tail })),
       ),
     blockEntry: (c) =>
-      tryP(
+      pipes.tryP(
         c,
-        f(tryAll, [rs.key, rs.assign, rs.break_, rs.nestedBlock]),
-        fMutResult((c, [key, a, b, blk]) => ({ [key]: blk })),
+        function_.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.break_, rs.nestedBlock]),
+        result.fMutResult((c, [key, a, b, blk]) => ({ [key]: blk })),
       ),
     // region
-    statement: (c) => tryP(c, f(any, [rs.inlineEntry, rs.blockEntry])),
+    statement: (c) => pipes.tryP(c, function_.f(resultNull.any, [rs.inlineEntry, rs.blockEntry])),
     // start
     root: (c) =>
-      tryP(
+      pipes.tryP(
         c,
-        f(tryScope, rs.statement),
-        fMutResult((c, ...results) => Object.assign({}, ...results)),
+        function_.f(tokenOffsetDeep.tryScope, rs.statement),
+        result.fMutResult((c, ...results) => Object.assign({}, ...results)),
       ),
-  } satisfies ResultNullRegistry<typeof c>;
+  } satisfies resultNull.ResultNullRegistry<typeof c>;
 
   const rootRes = rs.root(c);
   return rootRes ? rootRes.result : null;

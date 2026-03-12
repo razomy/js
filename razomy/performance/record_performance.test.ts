@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { WeightedMovingAverageRecorder } from '@razomy/performance';
 import { recordPerformance } from './record_performance';
+import * as performance from "@razomy/performance";
 
 // Mock function that uses CPU time AND allocates memory
 async function alternatingCaseAndHeavyMemoryAsync(str: string): Promise<string> {
@@ -61,7 +61,7 @@ describe('SmartResourceEstimator (Time & RAM)', () => {
     expect(fs.existsSync(reportFilePath)).toBe(true);
 
     // 6. Test Import capability for RAM & Time
-    const newEstimator = new WeightedMovingAverageRecorder();
+    const newEstimator = new performance.WeightedMovingAverageRecorder();
 
     // Load state from file
     const loadedReport = JSON.parse(fs.readFileSync(reportFilePath, 'utf8'));

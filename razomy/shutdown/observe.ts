@@ -1,7 +1,7 @@
-import { Observable } from '@razomy/observable';
+import * as observable from "@razomy/observable";
 
 export function observe() {
-  return new Observable((resolve) => {
+  return new observable.Observable((resolve) => {
     process.on('SIGINT', resolve);
     return () => process.off('SIGINT', resolve);
   });

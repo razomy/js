@@ -1,4 +1,4 @@
-import type { PerformanceRecord } from '@razomy/performance';
+import * as performance from "@razomy/performance";
 
 export interface FunctionSpecification {
   name: string;
@@ -16,7 +16,7 @@ export interface FunctionSpecification {
   performance: {
     timeDataSizeComplexityFn: string;
     memoryDataSizeComplexityFn: string;
-    history: PerformanceRecord[];
+    history: performance.PerformanceRecord[];
   };
   examples: {
     code: string;

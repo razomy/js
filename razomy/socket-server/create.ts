@@ -1,10 +1,10 @@
 import { Server } from 'socket.io';
-import type { WithServer } from '@razomy/server';
+import * as server from "@razomy/server";
 
 export interface WithWebsocket {
   webSocket: Server;
 }
 
-export function create(ctx: WithServer) {
+export function create(ctx: server.WithServer) {
   return new Server(ctx.server);
 }

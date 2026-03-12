@@ -1,8 +1,8 @@
-import { StyleAttribute } from '@razomy/graphics-attributes';
-import { Color } from '@razomy/graphics-codecs-web-svg-color';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
 
-export class TextStyle extends StyleAttribute {
-  constructor(public color: Color, public size: number, public fontFamily: string) {
+export class TextStyle extends graphicsAttributes.StyleAttribute {
+  constructor(public color: graphicsCodecsWebSvgColor.Color, public size: number, public fontFamily: string) {
     super();
   }
 }

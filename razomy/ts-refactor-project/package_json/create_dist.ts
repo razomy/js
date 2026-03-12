@@ -2,8 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as dict from '@razomy/dict';
-import { isObject } from '@razomy/object';
 import * as array from '@razomy/array';
+import * as object_ from "@razomy/object";
 
 export function createDist(path_) {
   const jsonPath = path.join(path_, './package.json');
@@ -33,7 +33,7 @@ export function createDist(path_) {
     if (array.isArray(v1)) {
       return array.map(v1, (v2, k3) => mD(v2 as any, k3, k2));
     }
-    if (isObject(v1)) {
+    if (object_.isObject(v1)) {
       return dict.map(v1, (v2, k3) => mD(v2, k3, k2));
     }
     if (k2 === 'vue' && k1 === 'types') return dmj(v1);
@@ -67,7 +67,7 @@ export function createDist(path_) {
     if (array.isArray(v1)) {
       return array.map(v1, (v2, k3) => mDt(v2 as any, k3, k2));
     }
-    if (isObject(v1)) {
+    if (object_.isObject(v1)) {
       return dict.map(v1, (v2, k3) => mDt(v2, k3, k2));
     }
     if (v1.endsWith('/*')) return v1;

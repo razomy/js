@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { Project, SourceFile } from 'ts-morph';
-import { levenshteinDistance } from '@razomy/string';
+import * as string from "@razomy/string";
 
 function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null {
   const filePath = sourceFile.getFilePath();
@@ -96,7 +96,7 @@ function findReplacementSymbol(
   const maxDistanceThreshold = 3;
 
   for (const candidate of allExportNames) {
-    const distance = levenshteinDistance(nameToFind, candidate);
+    const distance = string.levenshteinDistance(nameToFind, candidate);
     if (distance < lowestDistance) {
       lowestDistance = distance;
       currentBestCandidate = candidate;

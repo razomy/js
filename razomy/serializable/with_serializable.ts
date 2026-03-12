@@ -1,7 +1,7 @@
-import type { Serializable } from '@razomy/serializable';
+import * as serializable from "@razomy/serializable";
 
 export interface WithSerializable {
-  toSerializable(): Serializable;
+  toSerializable(): serializable.Serializable;
 
-  fromSerializable(data: Serializable): void;
+  fromSerializable(data: serializable.Serializable): void;
 }

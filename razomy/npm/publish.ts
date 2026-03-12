@@ -1,15 +1,16 @@
-import { execute } from '@razomy/shell';
-import { ifMain } from '@razomy/main';
 import path from 'node:path';
-import { packageJson } from '@razomy/ts-refactor-project';
+import * as shell from "@razomy/shell";
+import * as main from "@razomy/main";
+import * as tsRefactorProject from "@razomy/ts-refactor-project";
+import * as tsRefactor from "@razomy/ts-refactor";
+
 // import * as fs from '@razomy/fs-file';
-import { createReadmeAndSpecifications } from '@razomy/ts-refactor';
 
 export async function publish(path_: string) {
   try {
-    await execute('npm run build', path.resolve(path_));
-    packageJson.createDist(path.resolve(path_));
-    await createReadmeAndSpecifications(path.resolve(path_));
+    await shell.execute('npm run build', path.resolve(path_));
+    tsRefactorProject.packageJson.createDist(path.resolve(path_));
+    await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
     // const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
     const publishCommand = `cd ${path.resolve(path_, 'dist')}` + ` && npm publish . --tag latest`;
     console.log(publishCommand);
@@ -19,7 +20,7 @@ export async function publish(path_: string) {
   }
 }
 
-ifMain(import.meta.url, () => {
+main.ifMain(import.meta.url, () => {
   // publish('../string-case');
   // publish('../array');
   // publish('../exceptions');

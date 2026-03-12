@@ -1,12 +1,12 @@
 import * as path from 'path';
-import { iterate } from '@razomy/fs';
-import { isExist } from '@razomy/fs-file';
-import { sortBy } from '@razomy/array';
+import * as fs from "@razomy/fs";
+import * as fsFile from "@razomy/fs-file";
+import * as array from "@razomy/array";
 
 export function getAll(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);
   const packageJsons: { path: string; name: string }[] = [];
-  iterate(rootDir, (iterate_node) => {
+  fs.iterate(rootDir, (iterate_node) => {
     if (iterate_node.path.includes('node_modules') || iterate_node.path.includes('dist')) {
       return true;
     }
@@ -14,7 +14,7 @@ export function getAll(projectPath: string) {
       return true;
     }
     const tryPackageJson = path.join(iterate_node.path + '/package.json');
-    if (isExist(tryPackageJson)) {
+    if (fsFile.isExist(tryPackageJson)) {
       packageJsons.push({
         path: tryPackageJson,
         name: path.relative(rootDir, tryPackageJson).replace('/package.json', ''),
@@ -22,5 +22,5 @@ export function getAll(projectPath: string) {
     }
     return undefined;
   });
-  return sortBy(packageJsons, (i) => i.name);
+  return array.sortBy(packageJsons, (i) => i.name);
 }

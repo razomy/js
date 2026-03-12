@@ -1,24 +1,24 @@
-import { PositionAttribute, SizeAttribute } from '@razomy/graphics-attributes';
-import { ResourceCollection } from '@razomy/resources';
-import { ViewGraphic } from '@razomy/graphics-graphic';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as resources from "@razomy/resources";
+import * as graphicsGraphic from "@razomy/graphics-graphic";
 
-export class ElementView extends ViewGraphic {
+export class ElementView extends graphicsGraphic.ViewGraphic {
   constructor() {
     super();
-    this.resources[SizeAttribute.type] = new SizeAttribute(0, 0);
-    this.resources[PositionAttribute.type] = new PositionAttribute(0, 0);
-    this.resources[ResourceCollection.type] = new ResourceCollection<ElementView>([]);
+    this.resources[graphicsAttributes.SizeAttribute.type] = new graphicsAttributes.SizeAttribute(0, 0);
+    this.resources[graphicsAttributes.PositionAttribute.type] = new graphicsAttributes.PositionAttribute(0, 0);
+    this.resources[resources.ResourceCollection.type] = new resources.ResourceCollection<ElementView>([]);
   }
 
   public get width() {
-    return this.getBy(SizeAttribute).width;
+    return this.getBy(graphicsAttributes.SizeAttribute).width;
   }
 
   public get height() {
-    return this.getBy(SizeAttribute).height;
+    return this.getBy(graphicsAttributes.SizeAttribute).height;
   }
 
   public get children() {
-    return this.getBy<ResourceCollection<ElementView>>(ResourceCollection).getAll();
+    return this.getBy<resources.ResourceCollection<ElementView>>(resources.ResourceCollection).getAll();
   }
 }

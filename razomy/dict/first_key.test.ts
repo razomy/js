@@ -1,5 +1,5 @@
 import { firstKey } from './first_key';
-import { ArgumentException } from '@razomy/exceptions';
+import * as exceptions from "@razomy/exceptions";
 
 describe('dict', () => {
   describe('firstKey', () => {
@@ -14,7 +14,7 @@ describe('dict', () => {
 
     // 2. Empty dictionary
     it('throws ArgumentException for an empty dictionary', () => {
-      expect(() => firstKey({})).toThrow(ArgumentException);
+      expect(() => firstKey({})).toThrow(exceptions.ArgumentException);
       expect(() => firstKey({})).toThrow('no keys in object');
     });
 
@@ -41,7 +41,7 @@ describe('dict', () => {
       const parent = { inherited: 'yes' };
       const child = Object.create(parent);
 
-      expect(() => firstKey(child)).toThrow(ArgumentException);
+      expect(() => firstKey(child)).toThrow(exceptions.ArgumentException);
     });
 
     // 5. Numeric-like keys

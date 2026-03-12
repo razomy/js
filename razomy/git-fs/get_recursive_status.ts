@@ -1,16 +1,16 @@
-import { getStatusSync } from '@razomy/git';
-import type { SourcePathString } from '@razomy/abstracts/graphs';
-import { isWithGit } from '@razomy/languages-programming-fs';
 import * as path from 'path';
+import * as git from "@razomy/git";
+import * as abstracts from "@razomy/abstracts";
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
-export function getRecursiveStatus(sourcePath: SourcePathString) {
+export function getRecursiveStatus(sourcePath: abstracts.graphs.SourcePathString) {
   const repos: string[] = [];
   const files: string[] = [];
   const paths = [path.join(sourcePath)];
   while (paths.length) {
     const path_ = paths.pop()!;
-    if (isWithGit(path_)) {
-      const status = getStatusSync(path_);
+    if (languagesProgrammingFs.isWithGit(path_)) {
+      const status = git.getStatusSync(path_);
       const nextFiles = status.files.map((i) => path.join(path_, i.path));
       paths.push(...nextFiles);
       repos.push(path_);

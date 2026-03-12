@@ -1,4 +1,4 @@
-import { RemoteNode } from '@razomy/vue-resource';
+import * as vueResource from "@razomy/vue-resource";
 
 export const reactiveDirective = {
   mounted(el, binding, vnode) {
@@ -6,7 +6,7 @@ export const reactiveDirective = {
       return vnode.ctx.provides[k] as T;
     }
 
-    el.remove_node = new RemoteNode();
+    el.remove_node = new vueResource.RemoteNode();
     el.remove_node.ctx = inject<razomy>('razomy');
     el.remove_node.key = binding.value;
     el.remove_node.render = (value) => {

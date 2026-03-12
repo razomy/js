@@ -1,7 +1,7 @@
 import { toJson } from './to_json';
 import type { Serializable } from './serializable';
-import type { Json } from '@razomy/json';
+import * as json from "@razomy/json";
 
-export function arrayToJson(data: Serializable[]): Json {
+export function arrayToJson(data: Serializable[]): json.Json {
   return data.map(toJson);
 }

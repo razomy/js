@@ -1,8 +1,8 @@
 import { getAll } from './get_all';
 import fs from 'fs';
 import * as path from 'path';
-import { iterate } from '@razomy/fs';
-import { sort } from '@razomy/json';
+import * as fs_ from "@razomy/fs";
+import * as json from "@razomy/json";
 
 export function addDependencies(projectPath: string, prefix) {
   const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
@@ -14,7 +14,7 @@ export function addDependencies(projectPath: string, prefix) {
   packages.forEach((folder) => {
     const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
     let matches: string[] = [];
-    iterate(path.dirname(folder.path), (iterate_node) => {
+    fs_.iterate(path.dirname(folder.path), (iterate_node) => {
       if (iterate_node.path.includes('node_modules')) {
         return true;
       }
@@ -68,7 +68,7 @@ export function addDependencies(projectPath: string, prefix) {
       //   .replaceAll('.', '/'));
       console.log(`[${pkgJson.name}] Added dependency: ${depName}`);
     });
-    pkgJson.peerDependencies = sort(pkgJson.peerDependencies);
+    pkgJson.peerDependencies = json.sort(pkgJson.peerDependencies);
 
     fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2) + '\n');
   });

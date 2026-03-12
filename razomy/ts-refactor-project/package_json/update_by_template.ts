@@ -2,11 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as stringCase from '@razomy/string-case';
 import { getAll } from './get_all';
-import { sort } from '@razomy/json';
 import { getExportedFunctions } from '../../ts-refactor/get_exported_functions';
 import { getExportedConstants } from '../../ts-refactor/get_exported_constants';
 import { Project } from 'ts-morph';
 import { getFilteredSourceFiles } from '../../ts-refactor/get_filtered_source_files';
+import * as json from "@razomy/json";
 
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
@@ -132,7 +132,7 @@ export function updateByTemplate(projectPath: string, prefix) {
       },
       ...rawPkgData,
     };
-    pkgData = sort(pkgData);
+    pkgData = json.sort(pkgData);
     // pkgData.exports = rawPkgData.exports
     // pkgData.publishConfig.exports = rawPkgData.publishConfig.exports;
     fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2) + '\n');

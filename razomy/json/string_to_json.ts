@@ -1,5 +1,5 @@
-import type { Json } from '@razomy/json';
+import * as json from "@razomy/json";
 
-export function stringToJson<T extends Json>(data: string): T {
+export function stringToJson<T extends json.Json>(data: string): T {
   return JSON.parse(data);
 }

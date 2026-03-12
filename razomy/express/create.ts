@@ -4,12 +4,13 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 import cors from 'cors';
-// import helmet from 'helmet';
-import { echo, logger } from '@razomy/server';
-import type { Ctx } from '@razomy/express';
+import * as server from "@razomy/server";
+import * as express_ from "@razomy/express";
 
-export function create(ctx: Ctx) {
-  ctx.logger = logger;
+// import helmet from 'helmet';
+
+export function create(ctx: express_.Ctx) {
+  ctx.logger = server.logger;
 
   const app = express();
   ctx.app = app;
@@ -49,12 +50,12 @@ export function create(ctx: Ctx) {
 
   ctx.server = app.listen(8080);
 
-  app.get('/api/echo', echo());
+  app.get('/api/echo', server.echo());
 
   // app.use(express.static('public'));
 
   app.use((err, req, res, next) => {
-    logger.error(err.stack);
+    server.logger.error(err.stack);
     res.status(500).send('System error!');
   });
   return ctx;

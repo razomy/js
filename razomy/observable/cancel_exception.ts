@@ -1,3 +1,3 @@
-import { Exception } from '@razomy/exceptions';
+import * as exceptions from "@razomy/exceptions";
 
-export class CancelException extends Exception {}
+export class CancelException extends exceptions.Exception {}

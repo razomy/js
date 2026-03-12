@@ -1,4 +1,4 @@
-import { isPlainObject, iterate } from '@razomy/dict';
+import * as  dict  from '@razomy/dict';
 
 export type Join<K, P> = K extends string ? (P extends string ? `${K}${'' extends P ? '' : '.'}${P}` : never) : never;
 
@@ -41,10 +41,10 @@ export function flat<T extends Record<string, unknown> = Record<string, unknown>
   parentKey: string = '',
   result: Record<string, unknown> = {},
 ): FlattenedAndConverted<T> {
-  iterate(obj, (value: unknown, key: string) => {
+  dict.iterate(obj, (value: unknown, key: string) => {
     const newKey: string = parentKey ? `${parentKey}.${key}` : key;
 
-    if (isPlainObject(value)) {
+    if (dict.isPlainObject(value)) {
       flat(value, newKey, result);
     } else {
       result[newKey] = value;

@@ -1,21 +1,21 @@
-import { NotImplementedException } from '@razomy/exceptions';
-import { ElementView } from '@razomy/graphics-elements';
-import { CodecFactory } from '@razomy/graphics-codecs-web-svg-codecs';
-import type { Codec } from '@razomy/abstracts/patterns';
-import { ResourceCollection } from '@razomy/resources';
+import * as exceptions from "@razomy/exceptions";
+import * as graphicsElements from "@razomy/graphics-elements";
+import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as abstracts from "@razomy/abstracts";
+import * as resources from "@razomy/resources";
 
-export class WebSvgCodec implements Codec<ElementView, Node> {
-  constructor(private codecFactory: CodecFactory) {}
+export class WebSvgCodec implements abstracts.patterns.Codec<graphicsElements.ElementView, Node> {
+  constructor(private codecFactory: graphicsCodecsWebSvgCodecs.CodecFactory) {}
 
-  decode(value: Node): ElementView {
+  decode(value: Node): graphicsElements.ElementView {
     return this.iterate(<HTMLElement>value);
   }
 
-  public encode(node: ElementView): Node {
-    throw new NotImplementedException();
+  public encode(node: graphicsElements.ElementView): Node {
+    throw new exceptions.NotImplementedException();
   }
 
-  private iterate(value: HTMLElement): ElementView {
+  private iterate(value: HTMLElement): graphicsElements.ElementView {
     const node = this.codecFactory.create(value).decode(value);
 
     const valueChildren = value.childNodes;
@@ -25,7 +25,7 @@ export class WebSvgCodec implements Codec<ElementView, Node> {
       }
 
       const subNode = this.iterate(<HTMLElement>valueChildren[i]);
-      node.getBy(ResourceCollection).add(subNode);
+      node.getBy(resources.ResourceCollection).add(subNode);
     }
 
     return node;

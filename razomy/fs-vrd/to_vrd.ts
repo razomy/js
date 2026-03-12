@@ -1,16 +1,16 @@
 import fs from 'fs';
 import * as path from 'path';
-import { ArgumentException } from '@razomy/exceptions';
-import { Vrd, type VrdOrValue } from '@razomy/vrd';
+import * as exceptions from "@razomy/exceptions";
+import * as vrd from "@razomy/vrd";
 
-export function toVrd(directory: string, isSkip: (path) => boolean): VrdOrValue<Buffer> {
+export function toVrd(directory: string, isSkip: (path) => boolean): vrd.VrdOrValue<Buffer> {
   const stat = fs.statSync(directory);
 
   if (stat.isFile()) {
     const data = fs.readFileSync(directory);
     return data;
   } else if (stat.isDirectory()) {
-    let files: Vrd<Buffer> = new Vrd<Buffer>();
+    let files: vrd.Vrd<Buffer> = new vrd.Vrd<Buffer>();
     const items = fs.readdirSync(directory);
     for (const item of items) {
       const itemPath = path.join(directory, item);
@@ -21,6 +21,6 @@ export function toVrd(directory: string, isSkip: (path) => boolean): VrdOrValue<
     }
     return files;
   } else {
-    throw new ArgumentException('unkown file type', directory);
+    throw new exceptions.ArgumentException('unkown file type', directory);
   }
 }

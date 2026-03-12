@@ -1,8 +1,8 @@
-import type { EdgeListGraph } from '@razomy/abstracts/domains';
-import type { VrdOrValue } from '@razomy/vrd';
 import { isVrd } from '../vrd/is_vrd';
+import * as abstracts from "@razomy/abstracts";
+import * as vrd from "@razomy/vrd";
 
-export function iterateChildren<T>(graph: EdgeListGraph<VrdOrValue<T>>, branch: VrdOrValue<T>) {
+export function iterateChildren<T>(graph: abstracts.domains.EdgeListGraph<vrd.VrdOrValue<T>>, branch: vrd.VrdOrValue<T>) {
   graph.nodes.push(branch);
   if (isVrd(branch)) {
     for (const entityKey in branch) {

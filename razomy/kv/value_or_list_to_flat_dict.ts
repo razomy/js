@@ -1,19 +1,19 @@
-import type { Dict } from '@razomy/dict';
-import { assign } from '@razomy/key';
-import { isString } from '@razomy/string';
 import type { Kv } from './kv';
+import * as dict from "@razomy/dict";
+import * as key from "@razomy/key";
+import * as string from "@razomy/string";
 
 export function valueOrListToFlatDict(
   dict: {},
   input: Kv<string, string>,
   parent: string,
   separator: string,
-): Dict<string> {
-  if (isString(input)) {
+): dict.Dict<string> {
+  if (string.isString(input)) {
     dict[parent] = input;
   } else {
     for (let inputKey of input) {
-      valueOrListToFlatDict(dict, inputKey[1], parent + assign + inputKey[0], separator);
+      valueOrListToFlatDict(dict, inputKey[1], parent + key.assign + inputKey[0], separator);
     }
   }
   return dict;

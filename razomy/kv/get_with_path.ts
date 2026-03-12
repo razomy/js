@@ -1,10 +1,9 @@
-import type { ArrayKeyValuable } from '@razomy/kv';
-import { createByPath, set } from '@razomy/kv';
 import { get } from './get';
+import * as kv from "@razomy/kv";
 
-export function getWithPath<T>(valueRecursive: ArrayKeyValuable<T, T>, path: T[]) {
-  const pathed = createByPath(path) as ArrayKeyValuable<T, T>;
+export function getWithPath<T>(valueRecursive: kv.ArrayKeyValuable<T, T>, path: T[]) {
+  const pathed = kv.createByPath(path) as kv.ArrayKeyValuable<T, T>;
   const node = get(valueRecursive, path, 0);
-  set(pathed, path, node);
+  kv.set(pathed, path, node);
   return pathed;
 }

@@ -1,6 +1,6 @@
-import type { BoolExecute } from '@razomy/pipes-booleans';
+import * as pipesBooleans from "@razomy/pipes-booleans";
 
-export function while_<T>(ctx: T, next: BoolExecute<T>) {
+export function while_<T>(ctx: T, next: pipesBooleans.BoolExecute<T>) {
   while (next(ctx)) {}
   return false;
 }

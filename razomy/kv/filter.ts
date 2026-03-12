@@ -1,20 +1,20 @@
-import { type ArrayKeyValuable, isKv, type KeyValuable, type Valuable, type Value } from '@razomy/kv';
-import type { Function } from '@razomy/function';
 import { akv } from './akv';
 import { isAkv } from './index';
+import * as kv from "@razomy/kv";
+import * as function_ from "@razomy/function";
 
-export function filter<V>(input: Value<V>, isKeep: Function<[Value<V>], boolean>): Value<V>;
+export function filter<V>(input: kv.Value<V>, isKeep: function_.Function<[kv.Value<V>], boolean>): kv.Value<V>;
 export function filter<K, V>(
-  input: KeyValuable<K, V>,
-  isKeep: Function<[KeyValuable<K, V>], boolean>,
-): KeyValuable<K, V>;
+  input: kv.KeyValuable<K, V>,
+  isKeep: function_.Function<[kv.KeyValuable<K, V>], boolean>,
+): kv.KeyValuable<K, V>;
 export function filter<K, V>(
-  input: ArrayKeyValuable<K, V>,
-  isKeep: Function<[ArrayKeyValuable<K, V>], boolean>,
-): ArrayKeyValuable<K, V>;
-export function filter<K, V>(value: Valuable<K, V>, isKeep: Function<[Valuable<K, V>], boolean>): Valuable<K, V>;
-export function filter<K, V>(value: Valuable<K, V>, isKeep: Function<[Valuable<K, V>], boolean>): Valuable<K, V> {
-  if (isKv(value)) {
+  input: kv.ArrayKeyValuable<K, V>,
+  isKeep: function_.Function<[kv.ArrayKeyValuable<K, V>], boolean>,
+): kv.ArrayKeyValuable<K, V>;
+export function filter<K, V>(value: kv.Valuable<K, V>, isKeep: function_.Function<[kv.Valuable<K, V>], boolean>): kv.Valuable<K, V>;
+export function filter<K, V>(value: kv.Valuable<K, V>, isKeep: function_.Function<[kv.Valuable<K, V>], boolean>): kv.Valuable<K, V> {
+  if (kv.isKv(value)) {
     value[1] = filter(value[1], isKeep);
     return value;
   } else if (isAkv<K, V>(value)) {

@@ -1,6 +1,5 @@
-import type { Dict } from '@razomy/dict';
-import { isKeys } from '@razomy/dict';
-import { isObject } from '@razomy/object';
+import * as dict_ from "@razomy/dict";
+import * as object_ from "@razomy/object";
 
 /**
  * @summary Recursively find all paths in a nested dict where the specified keys exist.
@@ -25,24 +24,24 @@ import { isObject } from '@razomy/object';
  * @complexity time O(n * k) where n is total number of nodes and k is length of keys
  * @complexity memory O(n * d) where d is max depth of nesting
  */
-export function getAnyAll(dict: Dict<unknown>, keys: string[]): string[] {
+export function getAnyAll(dict: dict_.Dict<unknown>, keys: string[]): string[] {
   const result: string[] = [];
 
-  if (isKeys(dict, keys)) {
+  if (dict_.isKeys(dict, keys)) {
     result.push('');
   }
 
   if (Array.isArray(dict)) {
     for (let i = 0; i < dict.length; i++) {
-      const children = getAnyAll(dict[i] as Dict<unknown>, keys);
+      const children = getAnyAll(dict[i] as dict_.Dict<unknown>, keys);
       for (const child of children) {
         result.push(`${i}${child}`);
       }
     }
-  } else if (isObject(dict)) {
+  } else if (object_.isObject(dict)) {
     for (const key in dict) {
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
-        const children = getAnyAll(dict[key] as Dict<unknown>, keys);
+        const children = getAnyAll(dict[key] as dict_.Dict<unknown>, keys);
         for (const child of children) {
           result.push(`${key}:${child}`);
         }

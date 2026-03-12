@@ -1,7 +1,7 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithString } from '@razomy/string';
+import * as offset from "@razomy/offset";
+import * as string from "@razomy/string";
 
-export function tryRegex(ctx: WithString & WithOffset, regex: RegExp) {
+export function tryRegex(ctx: string.WithString & offset.WithOffset, regex: RegExp) {
   regex.lastIndex = ctx.offset;
   const match = regex.exec(ctx.string);
   if (match) {

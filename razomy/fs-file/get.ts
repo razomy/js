@@ -1,7 +1,7 @@
 import fs from 'fs';
-import type { FilePathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
-export function get(filePath: FilePathString) {
+export function get(filePath: abstracts.graphs.FilePathString) {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {

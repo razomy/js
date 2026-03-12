@@ -1,14 +1,14 @@
-import type { Context } from '@razomy/context';
-import type { WithOffset } from '@razomy/offset';
 import type { WithStack } from './try_aligned';
-import type { ResultNullFn } from '@razomy/result-null';
-import type { WithTokens } from '@razomy/token';
+import * as context from "@razomy/context";
+import * as offset from "@razomy/offset";
+import * as resultNull from "@razomy/result-null";
+import * as token from "@razomy/token";
 
 export function tryScope<
-  C extends Context & WithTokens<any> & WithOffset & WithStack,
+  C extends context.Context & token.WithTokens<any> & offset.WithOffset & WithStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
->(ctx: C, rule: ResultNullFn<C, T>) {
+>(ctx: C, rule: resultNull.ResultNullFn<C, T>) {
   const trigger = ctx.tokens[ctx.offset];
   const parentIndent = ctx.stack[ctx.stack.length - 1] ?? -1;
 

@@ -1,8 +1,8 @@
-import type { ListTree } from '@razomy/tree-list';
+import * as treeList from "@razomy/tree-list";
 
 export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
   // We use a virtual root to simplify traversal logic
-  const root: ListTree<string> = { value: 'root', children: [] };
+  const root: treeList.ListTree<string> = { value: 'root', children: [] };
 
   // Helper to process a single path
   function addPathToTree(path: string) {
@@ -19,7 +19,7 @@ export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
         // If it exists, just move deeper
         currentLevel = existingNode;
       } else {
-        const newNode: ListTree<string> = {
+        const newNode: treeList.ListTree<string> = {
           value: part,
           children: [],
         };

@@ -1,13 +1,13 @@
-import type { String } from '@razomy/string';
-import type { Offset } from '@razomy/offset';
-import type { Index } from '@razomy/abstracts/arrays';
+import * as string from "@razomy/string";
+import * as offset from "@razomy/offset";
+import * as abstracts from "@razomy/abstracts";
 
 export function stringsAnyIndex(
-  string: String,
+  string: string.String,
   chars: Set<string>,
-  offset: Offset = 0,
-  maxOffset: Offset = string.length,
-): Index {
+  offset: offset.Offset = 0,
+  maxOffset: offset.Offset = string.length,
+): abstracts.arrays.Index {
   for (let i = offset; i < maxOffset; i++) {
     if (chars.has(string[i])) {
       return i;

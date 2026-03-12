@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { tryGetJson } from '@razomy/fs-file';
+import * as fsFile from "@razomy/fs-file";
 
 export function createAtChildDirs(projectPath: string, prefix) {
   const rootDir: string = path.resolve(projectPath);
@@ -17,7 +17,7 @@ export function createAtChildDirs(projectPath: string, prefix) {
       name: newName,
     };
 
-    const content = tryGetJson(pkgPath) || {};
+    const content = fsFile.tryGetJson(pkgPath) || {};
     pkgData = { ...content, ...pkgData };
 
     fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2) + '\n');

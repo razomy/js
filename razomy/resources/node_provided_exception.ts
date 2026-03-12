@@ -1,12 +1,12 @@
-import type { Constructor } from '@razomy/abstracts/domains';
-import { ObjectResource } from '@razomy/resources';
+import * as abstracts from "@razomy/abstracts";
+import * as resources from "@razomy/resources";
 
 export class NodeProvidedException extends Error {}
 
 export class NodeAlreadyProvidedException extends Error {}
 
 export interface IResourceMap {
-  [key: string]: ObjectResource;
+  [key: string]: resources.ObjectResource;
 }
 
 export interface IEntityResourceMap {
@@ -14,11 +14,11 @@ export interface IEntityResourceMap {
 }
 
 export interface IEntityResource {
-  add<T extends ObjectResource>(obj: T): void;
+  add<T extends resources.ObjectResource>(obj: T): void;
 
-  remove<T extends ObjectResource>(obj: T): void;
+  remove<T extends resources.ObjectResource>(obj: T): void;
 
-  replace<T extends ObjectResource>(obj: T): void;
+  replace<T extends resources.ObjectResource>(obj: T): void;
 
-  getBy<T extends ObjectResource>(objCtor: Constructor<T>): T;
+  getBy<T extends resources.ObjectResource>(objCtor: abstracts.domains.Constructor<T>): T;
 }

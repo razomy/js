@@ -1,4 +1,4 @@
-import { type I64 } from '@razomy/abstracts/primitives';
+import * as abstracts from "@razomy/abstracts";
 
 export type address_line1 = string; //	Expects the first line of the street address
 export type address_line2 = string; //	Expects the second line of the street address
@@ -111,7 +111,7 @@ export type AllAutofill =
   | tel_extension
   | impp;
 
-export type timestamp = I64;
+export type timestamp = abstracts.primitives.I64;
 export type dateString = string;
 export type datetimeString = string;
 export type dateIsoString = string;

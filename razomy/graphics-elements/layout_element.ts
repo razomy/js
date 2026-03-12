@@ -1,3 +1,3 @@
-import { ElementView } from '@razomy/graphics-elements';
+import * as graphicsElements from "@razomy/graphics-elements";
 
-export class LayoutElement extends ElementView {}
+export class LayoutElement extends graphicsElements.ElementView {}

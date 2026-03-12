@@ -1,4 +1,4 @@
-import { type FileFormat } from '@razomy/fs-file-format';
+import * as fsFileFormat from "@razomy/fs-file-format";
 
 export const allAudioTargets = [
   'mp3',
@@ -18,7 +18,7 @@ export const allAudioTargets = [
 
 export const audioConversions = [...allAudioTargets];
 
-export const audios: FileFormat[] = [
+export const audios: fsFileFormat.FileFormat[] = [
   // --- COMMON ---
   {
     fileExtensionType: 'mp3',

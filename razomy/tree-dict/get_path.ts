@@ -1,11 +1,11 @@
-import { assign } from '@razomy/key';
+import * as key from "@razomy/key";
 
 export function getPath(obj, path: string) {
   if (path === '') {
     return [];
   }
 
-  const closingBracketIndex = path.indexOf(assign);
+  const closingBracketIndex = path.indexOf(key.assign);
   const slug = path.substring(0, closingBracketIndex);
   let childNode = Object.keys(obj).find((key) => key === slug);
   if (!childNode) {

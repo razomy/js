@@ -1,6 +1,6 @@
-import type { RemoteResource, SocketStore } from '@razomy/vue-resource';
+import * as vueResource from "@razomy/vue-resource";
 
 export interface Resource {
-  store: RemoteResource;
-  socket: SocketStore;
+  store: vueResource.RemoteResource;
+  socket: vueResource.SocketStore;
 }

@@ -1,13 +1,13 @@
 import * as path from 'path';
-import { tryCreate } from '@razomy/fs-directory';
 import { downloadFile } from './download_file';
 import { uploadFile } from './upload_file';
+import * as fsDirectory from "@razomy/fs-directory";
 
 export async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');
   const dirPath = path.join(folderPath, destinationPath);
   const destinationFile = path.join(folderPath, destinationPath, filePath);
-  tryCreate(dirPath);
+  fsDirectory.tryCreate(dirPath);
   await file.download({ destination: destinationFile });
 }
 

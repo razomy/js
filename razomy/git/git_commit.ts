@@ -1,5 +1,5 @@
-import { executeSync } from '@razomy/shell';
+import * as shell from "@razomy/shell";
 
 export function gitCommit(c: string) {
-  executeSync('git status', c);
+  shell.executeSync('git status', c);
 }

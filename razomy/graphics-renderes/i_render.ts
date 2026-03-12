@@ -1,5 +1,5 @@
-import { ViewGraphic } from '@razomy/graphics-graphic';
+import * as graphicsGraphic from "@razomy/graphics-graphic";
 
-export interface IRender<T extends ViewGraphic> {
+export interface IRender<T extends graphicsGraphic.ViewGraphic> {
   render(view: T): void;
 }

@@ -1,10 +1,10 @@
-import { differencesString } from '@razomy/strings';
+import * as strings from "@razomy/strings";
 
 describe(`string`, () => {
   describe(`differences_string.name`, () => {
     it('1', () => {
       expect(
-        differencesString(
+        strings.differencesString(
           [
             'a\n', //
             'b\n', //
@@ -40,7 +40,7 @@ describe(`string`, () => {
 
     it('2', () => {
       expect(
-        differencesString(
+        strings.differencesString(
           [
             'a\n', //
             'b\n', //-

@@ -1,4 +1,4 @@
-import { shuffleArray } from '@razomy/random';
+import * as random from "@razomy/random";
 
 /**
  * @summary Split an array into a specified number of groups with randomly distributed elements.
@@ -27,7 +27,7 @@ export function splitIntoGroups<T>(array: T[], groupsCount: number): T[][] {
     throw new RangeError('groupsCount must be at least 1');
   }
 
-  const shuffled: T[] = shuffleArray(array);
+  const shuffled: T[] = random.shuffleArray(array);
   const groups: T[][] = Array.from({ length: groupsCount }, (): T[] => []);
 
   for (let i = 0; i < shuffled.length; i++) {

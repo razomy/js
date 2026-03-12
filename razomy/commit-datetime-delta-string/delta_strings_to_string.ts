@@ -1,13 +1,13 @@
-import type { DeltaString } from '@razomy/commit-datetime-delta-string';
-import { addByIndexString, removeIndex } from '@razomy/string';
+import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
+import * as string from "@razomy/string";
 
-export function deltaStringsToString(prevSnapshot: string, changes: DeltaString[]): string {
+export function deltaStringsToString(prevSnapshot: string, changes: commitDatetimeDeltaString.DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {
     const change = changes[j];
     if ('removeLength' in change) {
-      prevSnapshot = removeIndex(prevSnapshot, change.offset, change.removeLength);
+      prevSnapshot = string.removeIndex(prevSnapshot, change.offset, change.removeLength);
     } else {
-      prevSnapshot = addByIndexString(prevSnapshot, change.offset, change.addValue!);
+      prevSnapshot = string.addByIndexString(prevSnapshot, change.offset, change.addValue!);
     }
   }
 

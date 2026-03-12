@@ -1,13 +1,13 @@
-import { StyleAttribute } from '@razomy/graphics-attributes';
-import { Color } from '@razomy/graphics-codecs-web-svg-color';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
 
-export class BorderStyle extends StyleAttribute {
-  public color: Color;
+export class BorderStyle extends graphicsAttributes.StyleAttribute {
+  public color: graphicsCodecsWebSvgColor.Color;
   public width: number;
 
-  constructor(color?: Color, width?: number) {
+  constructor(color?: graphicsCodecsWebSvgColor.Color, width?: number) {
     super();
-    this.color = color || new Color();
+    this.color = color || new graphicsCodecsWebSvgColor.Color();
     this.width = width || 0;
   }
 }

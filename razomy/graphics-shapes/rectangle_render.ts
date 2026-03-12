@@ -1,23 +1,23 @@
-import { PositionAttribute } from '@razomy/graphics-attributes';
-import { BorderStyle, FillStyle } from '@razomy/graphics-styles';
-import { RectangleShape } from '@razomy/graphics-shapes';
-import { HexParser } from '@razomy/graphics-codecs-web-svg-color';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as graphicsStyles from "@razomy/graphics-styles";
+import * as graphicsShapes from "@razomy/graphics-shapes";
+import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
 
 export class RectangleRender {
   constructor(private ctx: CanvasRenderingContext2D) {}
 
-  render(node: RectangleShape): void {
+  render(node: graphicsShapes.RectangleShape): void {
     this.ctx.save();
     this.ctx.beginPath();
 
-    this.ctx.rect(node.getBy(PositionAttribute).x, node.getBy(PositionAttribute).y, node.width, node.height);
+    this.ctx.rect(node.getBy(graphicsAttributes.PositionAttribute).x, node.getBy(graphicsAttributes.PositionAttribute).y, node.width, node.height);
 
-    this.ctx.fillStyle = HexParser.toHex(node.getBy(FillStyle).color.getSource());
+    this.ctx.fillStyle = graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.FillStyle).color.getSource());
 
-    this.ctx.strokeStyle = HexParser.toHex(node.getBy(BorderStyle).color.getSource());
-    this.ctx.lineWidth = node.getBy(BorderStyle).width;
+    this.ctx.strokeStyle = graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.BorderStyle).color.getSource());
+    this.ctx.lineWidth = node.getBy(graphicsStyles.BorderStyle).width;
 
-    this.ctx.strokeRect(node.getBy(PositionAttribute).x, node.getBy(PositionAttribute).y, node.width, node.height);
+    this.ctx.strokeRect(node.getBy(graphicsAttributes.PositionAttribute).x, node.getBy(graphicsAttributes.PositionAttribute).y, node.width, node.height);
 
     this.ctx.fill();
     this.ctx.restore();

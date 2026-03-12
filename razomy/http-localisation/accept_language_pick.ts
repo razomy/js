@@ -1,4 +1,4 @@
-import { isString } from '@razomy/string';
+import * as string from "@razomy/string";
 
 export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) {
   options = options || {};
@@ -6,7 +6,7 @@ export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) 
     return null;
   }
 
-  if (isString(acceptLanguage)) {
+  if (string.isString(acceptLanguage)) {
     // TODO: Unkbown parce function CODE: acceptLanguage = parse(acceptLanguage);
   }
 

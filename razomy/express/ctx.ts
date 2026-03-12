@@ -1,11 +1,11 @@
 import winston from 'winston';
 import type { Express } from 'express';
-import type { Google } from '@razomy/google-auth';
-import type { WithServer, WithUrl } from '@razomy/server';
+import * as googleAuth from "@razomy/google-auth";
+import * as server from "@razomy/server";
 
-export interface Ctx extends WithServer, WithUrl {
+export interface Ctx extends server.WithServer, server.WithUrl {
   isProdSecure: boolean;
-  google: Google;
+  google: googleAuth.Google;
   app: Express;
   logger: winston.Logger;
 }

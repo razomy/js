@@ -1,6 +1,6 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithString } from '@razomy/string';
+import * as offset from "@razomy/offset";
+import * as string from "@razomy/string";
 
-export function getNextOffsetChar(ctx: WithString & WithOffset) {
+export function getNextOffsetChar(ctx: string.WithString & offset.WithOffset) {
   return ctx.string[ctx.offset + 1];
 }

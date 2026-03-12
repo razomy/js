@@ -1,7 +1,7 @@
-import type { WithOpenAiCtx } from '@razomy/ai-openai';
+import * as aiOpenai from "@razomy/ai-openai";
 
 export class Chat {
-  constructor(private ctx: WithOpenAiCtx) {}
+  constructor(private ctx: aiOpenai.WithOpenAiCtx) {}
 
   public async query(message) {
     try {

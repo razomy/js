@@ -1,3 +1,3 @@
-import { IoElement } from '@razomy/graphics-inputs';
+import * as graphicsInputs from "@razomy/graphics-inputs";
 
-export class ControlElement extends IoElement {}
+export class ControlElement extends graphicsInputs.IoElement {}

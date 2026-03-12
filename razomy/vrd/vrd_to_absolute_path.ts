@@ -1,10 +1,10 @@
 import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import type { AbsolutePathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
 export function vrdToAbsolutePath<T>(
   input: VrdOrValue<T>,
-  absolutePath: AbsolutePathString,
+  absolutePath: abstracts.graphs.AbsolutePathString,
   separator: string,
 ): VrdOrValue<T> {
   if (isVrd(input)) {

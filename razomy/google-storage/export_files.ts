@@ -1,7 +1,7 @@
 import * as path from 'path';
-import { string } from '@razomy/number-string';
-import { execute } from '@razomy/shell';
-import { set } from '@razomy/fs-file';
+import * as numberString from "@razomy/number-string";
+import * as shell from "@razomy/shell";
+import * as fsFile from "@razomy/fs-file";
 
 export async function exportFiles(baseDir) {
   baseDir = path.resolve(baseDir);
@@ -32,12 +32,12 @@ export async function exportFiles(baseDir) {
     const commitMessage = `Update fileName:${fileName} date:${date}`;
 
     try {
-      await set(path.join(baseDir, filePath), content);
-      await execute(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, baseDir);
+      await fsFile.set(path.join(baseDir, filePath), content);
+      await shell.execute(`git add ${filePath} && git commit --date ${date} -m "${commitMessage}"`, baseDir);
     } catch (e) {
       console.log(e);
     }
-    console.log(`Add ${i} of ${files.length} ${string((i / files.length) * 100)} %`);
+    console.log(`Add ${i} of ${files.length} ${numberString.string((i / files.length) * 100)} %`);
     // return;
   }
 }

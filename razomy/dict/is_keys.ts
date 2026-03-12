@@ -1,4 +1,4 @@
-import type { Dict } from '@razomy/dict';
+import * as dict from "@razomy/dict";
 
 /**
  * @summary Check if a dictionary contains any of the specified keys.
@@ -21,6 +21,6 @@ import type { Dict } from '@razomy/dict';
  * @complexity time O(n)
  * @complexity memory O(1)
  */
-export function isKeys<T>(dict: Dict<T>, keys: readonly string[]): boolean {
+export function isKeys<T>(dict: dict.Dict<T>, keys: readonly string[]): boolean {
   return keys.some((key) => key in dict);
 }

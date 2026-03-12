@@ -1,13 +1,13 @@
-import { progress } from '@razomy/shell';
-import type { Difference, DifferenceType } from '@razomy/difference';
-import { firstEqualIndexes } from '@razomy/index';
+import * as shell from "@razomy/shell";
+import * as difference from "@razomy/difference";
+import * as index from "@razomy/index";
 
 /** a was, b become */
 export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
-  const diffs = [] as Difference<T>[];
-  let last: Difference<T> | null = null;
+  const diffs = [] as difference.Difference<T>[];
+  let last: difference.Difference<T> | null = null;
 
-  function addDiff(type: DifferenceType, value: T) {
+  function addDiff(type: difference.DifferenceType, value: T) {
     if (last?.type === type) {
       last.value = sum(last.value, value);
     } else {
@@ -20,13 +20,13 @@ export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
   let bI = 0;
 
   while (aI < a.length && bI < b.length) {
-    progress(bI, b.length);
+    shell.progress(bI, b.length);
     if (a[aI] === b[bI]) {
       addDiff('unchanged', a[aI]);
       aI++;
       bI++;
     } else {
-      let [nAi, nBi] = firstEqualIndexes(a, b, aI, bI);
+      let [nAi, nBi] = index.firstEqualIndexes(a, b, aI, bI);
 
       if (aI < nAi) {
         addDiff('removed', sum(...a.slice(aI, nAi)));

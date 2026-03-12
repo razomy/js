@@ -1,5 +1,5 @@
-import type { Dict } from '@razomy/dict';
+import * as dict from "@razomy/dict";
 
 export interface WithChildrenDict<T> {
-  children: Dict<T>;
+  children: dict.Dict<T>;
 }

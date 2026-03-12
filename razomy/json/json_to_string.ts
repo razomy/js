@@ -1,5 +1,5 @@
-import type { Json } from '@razomy/json';
+import * as json from "@razomy/json";
 
-export function jsonToString(state: Json): string {
+export function jsonToString(state: json.Json): string {
   return JSON.stringify(state, null, 2);
 }

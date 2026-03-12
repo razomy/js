@@ -1,10 +1,10 @@
 import * as path from 'path';
-import type { PathString } from '@razomy/abstracts/graphs';
-import { rename } from '@razomy/fs';
 import { razomyOutput } from './is_output';
+import * as abstracts from "@razomy/abstracts";
+import * as fs from "@razomy/fs";
 
-export function renameSlugToRazomy(path_: PathString) {
+export function renameSlugToRazomy(path_: abstracts.graphs.PathString) {
   const dir = path.dirname(path_);
   const res = path.join(dir, razomyOutput[0]);
-  rename(path_, res);
+  fs.rename(path_, res);
 }

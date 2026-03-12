@@ -1,5 +1,5 @@
-import { colon, comma, semicolon } from '@razomy/char';
+import * as char from "@razomy/char";
 
-export const assign = colon;
-export const seperate = comma;
-export const break_ = semicolon;
+export const assign = char.colon;
+export const seperate = char.comma;
+export const break_ = char.semicolon;

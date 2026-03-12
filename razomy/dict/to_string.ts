@@ -1,4 +1,4 @@
-import type { Dict } from '@razomy/dict';
+import * as dict from "@razomy/dict";
 
 /**
  * Converts a dictionary to a specific string format.
@@ -17,7 +17,7 @@ import type { Dict } from '@razomy/dict';
  * dictToString({ k: 'v', id: '1' }); // => '{k:v;id:1;}'
  * ```
  */
-export function toString_<T extends string>(dict: Dict<T>): string {
+export function toString_<T extends string>(dict: dict.Dict<T>): string {
   let result: string = '{';
   for (const key in dict) {
     result += `${key}:${dict[key]};`;

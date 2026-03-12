@@ -1,6 +1,6 @@
 import type { IObjectConstructor } from './i_object';
-import { ObjectExtended } from '@razomy/object';
+import * as object_ from "@razomy/object";
 
-export interface Constructor<T extends ObjectExtended> extends IObjectConstructor {
+export interface Constructor<T extends object_.ObjectExtended> extends IObjectConstructor {
   new (...args: any[]): T;
 }

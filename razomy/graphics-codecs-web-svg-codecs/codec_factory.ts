@@ -1,37 +1,36 @@
-import type { Codec } from '@razomy/abstracts/patterns';
 import * as create from '@razomy/abstracts/patterns';
-import { ElementView, TextElement, ViewportElement } from '@razomy/graphics-elements';
-import { RectangleShape } from '@razomy/graphics-shapes';
-import { EncodeNodeFactory, RectangleCodec, SvgCodec, TextCodec } from '@razomy/graphics-codecs-web-svg-codecs';
+import * as abstracts from "@razomy/abstracts";
+import * as graphicsElements from "@razomy/graphics-elements";
+import * as graphicsShapes from "@razomy/graphics-shapes";
+import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as exceptions from "@razomy/exceptions";
 
-import { UnknownTypeArgumentException } from '@razomy/exceptions';
+export class CodecFactory implements create.WithCreate<abstracts.patterns.Codec<graphicsElements.ElementView, any>> {
+  constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
 
-export class CodecFactory implements create.WithCreate<Codec<ElementView, any>> {
-  constructor(private encodeNodeFactory: EncodeNodeFactory) {}
-
-  public create(element?: HTMLElement): Codec<ElementView, any> {
+  public create(element?: HTMLElement): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
     if (element instanceof SVGRectElement) {
-      return new RectangleCodec(this.encodeNodeFactory);
+      return new graphicsCodecsWebSvgCodecs.RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof SVGElement) {
-      return new SvgCodec(this.encodeNodeFactory);
+      return new graphicsCodecsWebSvgCodecs.SvgCodec(this.encodeNodeFactory);
     } else if (element instanceof SVGTextElement) {
-      return new TextCodec(this.encodeNodeFactory);
+      return new graphicsCodecsWebSvgCodecs.TextCodec(this.encodeNodeFactory);
     } else if (element instanceof Text) {
-      return new TextCodec(this.encodeNodeFactory);
+      return new graphicsCodecsWebSvgCodecs.TextCodec(this.encodeNodeFactory);
     }
 
-    throw new UnknownTypeArgumentException(element);
+    throw new exceptions.UnknownTypeArgumentException(element);
   }
 
-  public createByNode(element?: ElementView): Codec<ElementView, any> {
-    if (element instanceof RectangleShape) {
-      return new RectangleCodec(this.encodeNodeFactory);
-    } else if (element instanceof ViewportElement) {
-      return new SvgCodec(this.encodeNodeFactory);
-    } else if (element instanceof TextElement) {
-      return new TextCodec(this.encodeNodeFactory);
+  public createByNode(element?: graphicsElements.ElementView): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
+    if (element instanceof graphicsShapes.RectangleShape) {
+      return new graphicsCodecsWebSvgCodecs.RectangleCodec(this.encodeNodeFactory);
+    } else if (element instanceof graphicsElements.ViewportElement) {
+      return new graphicsCodecsWebSvgCodecs.SvgCodec(this.encodeNodeFactory);
+    } else if (element instanceof graphicsElements.TextElement) {
+      return new graphicsCodecsWebSvgCodecs.TextCodec(this.encodeNodeFactory);
     }
 
-    throw new UnknownTypeArgumentException(element);
+    throw new exceptions.UnknownTypeArgumentException(element);
   }
 }

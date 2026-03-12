@@ -1,15 +1,15 @@
-import type { AddDeltaString, DeltaString, RemoveDeltaString } from '@razomy/commit-datetime-delta-string';
+import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
 
-export function squashChanges(changes: DeltaString[]): DeltaString[] {
+export function squashChanges(changes: commitDatetimeDeltaString.DeltaString[]): commitDatetimeDeltaString.DeltaString[] {
   if (changes.length === 0) {
     return [];
   }
 
-  let lastAdd: AddDeltaString | undefined = undefined;
-  let lastRemove: RemoveDeltaString | undefined = undefined;
+  let lastAdd: commitDatetimeDeltaString.AddDeltaString | undefined = undefined;
+  let lastRemove: commitDatetimeDeltaString.RemoveDeltaString | undefined = undefined;
   let last = changes[0];
   let posSshit = 1;
-  const next: DeltaString[] = [changes[0]];
+  const next: commitDatetimeDeltaString.DeltaString[] = [changes[0]];
   for (let i = 1; i < changes.length; i++) {
     const current = changes[i];
 

@@ -1,9 +1,8 @@
 import { Project, SourceFile, SyntaxKind } from 'ts-morph';
-import * as file from '@razomy/fs-file';
-import { tryGetJson } from '@razomy/fs-file';
+import * as fsFile from '@razomy/fs-file';
 import * as path from 'path';
-import { toSafeName } from '@razomy/ts-refactor';
-import { camelCase } from '@razomy/string-case';
+import * as tsRefactor from "@razomy/ts-refactor";
+import * as stringCase from "@razomy/string-case";
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';
@@ -121,11 +120,11 @@ function getFilePlatform(fileName: string): Platform {
  * Генерирует строку экспорта для папки (учитывая package.json если есть)
  */
 function generateDirExport(fullPath: string, baseName: string): string {
-  const safeKey = toSafeName(baseName);
+  const safeKey = tsRefactor.toSafeName(baseName);
   const childPackageJsonPath = path.join(fullPath, 'package.json');
 
-  if (file.isExist(childPackageJsonPath)) {
-    const name = tryGetJson(childPackageJsonPath).name;
+  if (fsFile.isExist(childPackageJsonPath)) {
+    const name = fsFile.tryGetJson(childPackageJsonPath).name;
     return `export * as ${safeKey} from '${name}';`;
   } else {
     return `export * as ${safeKey} from './${baseName}';`;
@@ -173,7 +172,7 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
     }
   } else {
     // Если только утилиты/константы -> экспортируем как пространство имен
-    return `export * as ${camelCase(baseName)} from './${baseName}';`;
+    return `export * as ${stringCase.camelCase(baseName)} from './${baseName}';`;
   }
 
   return null;

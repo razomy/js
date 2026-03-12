@@ -1,9 +1,9 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithString } from '@razomy/string';
-import { getOffsetChar } from '@razomy/offset-ctx';
+import * as offset from "@razomy/offset";
+import * as string from "@razomy/string";
+import * as offsetCtx from "@razomy/offset-ctx";
 
-export function tryAnyOfChar(ctx: WithString & WithOffset, chars: Set<string>) {
-  if (chars.has(getOffsetChar(ctx))) {
+export function tryAnyOfChar(ctx: string.WithString & offset.WithOffset, chars: Set<string>) {
+  if (chars.has(offsetCtx.getOffsetChar(ctx))) {
     ctx.offset += 1;
     return true;
   }

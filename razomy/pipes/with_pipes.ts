@@ -1,5 +1,5 @@
-import type { Pipe } from '@razomy/pipes';
+import * as pipes from "@razomy/pipes";
 
 export interface WithPipes<T> {
-  pipes: Pipe<T, T>[];
+  pipes: pipes.Pipe<T, T>[];
 }

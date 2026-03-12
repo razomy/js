@@ -1,9 +1,9 @@
-import { assign } from '@razomy/key';
+import * as key from "@razomy/key";
 
 export function flatten(data: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
 
-  function recurse(cur: any, prop: string, assign_ = assign) {
+  function recurse(cur: any, prop: string, assign_ = key.assign) {
     if (typeof cur !== 'object' || cur === null) {
       result[prop] = cur;
     } else if (Array.isArray(cur)) {

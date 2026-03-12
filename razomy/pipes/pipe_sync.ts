@@ -1,4 +1,4 @@
-import type { Alias } from '@razomy/abstracts/ts';
+import * as abstracts from "@razomy/abstracts";
 
 export type Pipe<T, R> = (arg: T) => R;
 
@@ -34,4 +34,4 @@ export function pipeSync(initialValue: any, ...fns: Pipe<any, any>[]): any {
   return result;
 }
 
-export const pS: Alias<typeof pipeSync> = pipeSync;
+export const pS: abstracts.ts.Alias<typeof pipeSync> = pipeSync;

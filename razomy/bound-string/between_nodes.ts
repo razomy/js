@@ -1,12 +1,12 @@
-import type { rectangle } from '@razomy/coordinates';
 import type { NodeBound } from './node_bound';
+import * as coordinates from "@razomy/coordinates";
 
 export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }
 
-  const places: rectangle.BoundRectangle[] = [];
+  const places: coordinates.rectangle.BoundRectangle[] = [];
 
   // Add starting place
   const firstNode = nodes[0];

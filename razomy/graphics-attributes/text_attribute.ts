@@ -1,7 +1,7 @@
-import { AttributeResource } from '@razomy/resources';
-import { ArgumentException } from '@razomy/exceptions';
+import * as resources from "@razomy/resources";
+import * as exceptions from "@razomy/exceptions";
 
-export class TextAttribute extends AttributeResource {
+export class TextAttribute extends resources.AttributeResource {
   public text: string;
 
   constructor();
@@ -25,6 +25,6 @@ export class TextAttribute extends AttributeResource {
       return;
     }
 
-    throw new ArgumentException('unknown', args);
+    throw new exceptions.ArgumentException('unknown', args);
   }
 }

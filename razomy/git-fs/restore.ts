@@ -1,12 +1,12 @@
 import { getRecursiveStatus } from './get_recursive_status';
-import { iterateReverse, nodesArrayToTree } from '@razomy/tree-list';
 import { execSync } from 'node:child_process';
-import type { SourcePathString } from '@razomy/abstracts/graphs';
+import * as treeList from "@razomy/tree-list";
+import * as abstracts from "@razomy/abstracts";
 
-export function restore(sourcePath: SourcePathString) {
+export function restore(sourcePath: abstracts.graphs.SourcePathString) {
   const { files, repos } = getRecursiveStatus(sourcePath);
-  const tree = nodesArrayToTree(repos, files);
-  iterateReverse(tree[0], (node) => {
+  const tree = treeList.nodesArrayToTree(repos, files);
+  treeList.iterateReverse(tree[0], (node) => {
     if (node.children.length !== 0) {
       for (let child of node.children) {
         const commitCommand = `git restore ` + child.value;

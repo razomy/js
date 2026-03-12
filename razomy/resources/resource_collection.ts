@@ -1,22 +1,22 @@
-import { NotImplementedException } from '@razomy/exceptions';
-import { type Constructor } from '@razomy/abstracts/domains';
-import { EntityResource, ObjectResource } from '@razomy/resources';
+import * as exceptions from "@razomy/exceptions";
+import * as abstracts from "@razomy/abstracts";
+import * as resources from "@razomy/resources";
 
 export interface INodeResourceCollection {
-  nodes?: EntityResource[];
+  nodes?: resources.EntityResource[];
 }
 
-export interface IResourceCollection<T extends EntityResource> {
+export interface IResourceCollection<T extends resources.EntityResource> {
   getAll(): T[];
 
   add(node: T): void;
 
   removeAll(): void;
 
-  removeAllBy(node: Constructor<T>): void;
+  removeAllBy(node: abstracts.domains.Constructor<T>): void;
 }
 
-export class ResourceCollection<T extends EntityResource> extends ObjectResource implements IResourceCollection<T> {
+export class ResourceCollection<T extends resources.EntityResource> extends resources.ObjectResource implements IResourceCollection<T> {
   public nodes: T[];
 
   constructor();
@@ -47,10 +47,10 @@ export class ResourceCollection<T extends EntityResource> extends ObjectResource
   }
 
   public removeAll(): void {
-    throw new NotImplementedException();
+    throw new exceptions.NotImplementedException();
   }
 
-  public removeAllBy(node: Constructor<T>): void {
-    throw new NotImplementedException();
+  public removeAllBy(node: abstracts.domains.Constructor<T>): void {
+    throw new exceptions.NotImplementedException();
   }
 }

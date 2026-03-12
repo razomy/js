@@ -1,6 +1,6 @@
-import type { BoolExecute } from '@razomy/pipes-booleans';
+import * as pipesBooleans from "@razomy/pipes-booleans";
 
-export function all<T>(ctx: T, nexts: BoolExecute<T>[]) {
+export function all<T>(ctx: T, nexts: pipesBooleans.BoolExecute<T>[]) {
   for (const item of nexts) {
     let isComplete = item(ctx);
     if (!isComplete) {

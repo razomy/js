@@ -1,9 +1,9 @@
 import fs from 'fs';
-import { tryCreate } from '@razomy/fs-directory';
 import * as path from 'path';
-import type { FilePathString } from '@razomy/abstracts/graphs';
+import * as fsDirectory from "@razomy/fs-directory";
+import * as abstracts from "@razomy/abstracts";
 
-export function trySet(filePath: FilePathString, content) {
-  tryCreate(path.dirname(filePath));
+export function trySet(filePath: abstracts.graphs.FilePathString, content) {
+  fsDirectory.tryCreate(path.dirname(filePath));
   return fs.writeFileSync(filePath, content, 'utf8');
 }

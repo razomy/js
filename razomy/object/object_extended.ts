@@ -1,8 +1,8 @@
-import type { IObject } from '@razomy/abstracts/domains';
-import { GuidFactory } from '@razomy/random';
+import * as abstracts from "@razomy/abstracts";
+import * as random from "@razomy/random";
 
-export abstract class ObjectExtended implements IObject {
-  public readonly id: string = new GuidFactory().create();
+export abstract class ObjectExtended implements abstracts.domains.IObject {
+  public readonly id: string = new random.GuidFactory().create();
 
   public static get type() {
     return this.name;

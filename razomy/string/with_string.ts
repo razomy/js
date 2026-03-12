@@ -1,4 +1,4 @@
-import type { String } from '@razomy/string';
+import * as string from "@razomy/string";
 
 /**
  * @summary Interface defining an object structure containing a string property.
@@ -28,5 +28,5 @@ import type { String } from '@razomy/string';
  * @complexity memory O(n)
  */
 export interface WithString {
-  string: String;
+  string: string.String;
 }

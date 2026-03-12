@@ -1,7 +1,7 @@
-import type { Serializable, WithSerializable } from '@razomy/serializable';
 import type { Ctx } from './ctx';
+import * as serializable from "@razomy/serializable";
 
-export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: Serializable }): T {
+export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: serializable.Serializable }): T {
   for (const [k, v] of Object.entries(data)) {
     if (!ctx.has(k)) {
       ctx.set(k, v);
@@ -15,7 +15,7 @@ export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: Serializ
     }
 
     if (typeof attribute === 'object' && 'fromSerializable' in attribute) {
-      (attribute as WithSerializable).fromSerializable(v);
+      (attribute as serializable.WithSerializable).fromSerializable(v);
       continue;
     }
 

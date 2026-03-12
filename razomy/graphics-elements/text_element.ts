@@ -1,9 +1,9 @@
-import { TextAttribute } from '@razomy/graphics-attributes';
-import { ElementView } from '@razomy/graphics-elements';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as graphicsElements from "@razomy/graphics-elements";
 
-export class TextElement extends ElementView {
+export class TextElement extends graphicsElements.ElementView {
   constructor() {
     super();
-    this.resources[TextAttribute.type] = new TextAttribute('');
+    this.resources[graphicsAttributes.TextAttribute.type] = new graphicsAttributes.TextAttribute('');
   }
 }

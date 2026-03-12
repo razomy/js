@@ -1,6 +1,6 @@
-import { differences } from '@razomy/differences';
-import { separateStrings } from '@razomy/strings';
-import { merge } from '@razomy/string';
+import * as differences from "@razomy/differences";
+import * as strings from "@razomy/strings";
+import * as string from "@razomy/string";
 
 /**
  * @summary Calculate the differences between two strings line by line.
@@ -23,7 +23,7 @@ import { merge } from '@razomy/string';
  * @complexity memory O(n)
  */
 export function differencesString(aString: string, bString: string) {
-  const aLines = separateStrings(aString, 0, '\n', []);
-  const bLines = separateStrings(bString, 0, '\n', []);
-  return differences(aLines, bLines, (...as) => merge(as));
+  const aLines = strings.separateStrings(aString, 0, '\n', []);
+  const bLines = strings.separateStrings(bString, 0, '\n', []);
+  return differences.differences(aLines, bLines, (...as) => string.merge(as));
 }

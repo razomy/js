@@ -1,4 +1,4 @@
-import type { VrdOrValue } from '@razomy/vrd';
+import * as vrd from "@razomy/vrd";
 
 export interface RemoveDeltaVrd {
   afterPath: string[];
@@ -8,7 +8,7 @@ export interface RemoveDeltaVrd {
 
 export interface AddDeltaVrd {
   afterPath: string[];
-  add: VrdOrValue<string>;
+  add: vrd.VrdOrValue<string>;
   path: string[];
 }
 

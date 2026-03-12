@@ -1,9 +1,9 @@
 import ffmpeg from 'fluent-ffmpeg';
-import { type ExtensionResult } from '@razomy/fs-file-format';
 import { audios } from './types';
 import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
+import * as fsFileFormat from "@razomy/fs-file-format";
 
 // Явно указываем путь к бинарнику
 if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);
@@ -32,7 +32,7 @@ const formatAliases: Record<string, string> = {
 
 // ... exports videos и audios (оставляем как были) ...
 
-export async function toAudioByFormat(inputPath: string, format: string): Promise<ExtensionResult> {
+export async function toAudioByFormat(inputPath: string, format: string): Promise<fsFileFormat.ExtensionResult> {
   const outputPath = path.join('/tmp', `out_${Date.now()}.${format}`);
 
   function cleanupInput() {

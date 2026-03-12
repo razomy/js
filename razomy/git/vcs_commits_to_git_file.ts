@@ -1,26 +1,26 @@
-import { execute, progress } from '@razomy/shell';
-import { type ActorDatetimeDeltaString, addssToString } from '@razomy/commit-datetime-delta-string';
-import { trySet } from '@razomy/fs-file';
+import * as shell from "@razomy/shell";
+import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
+import * as fsFile from "@razomy/fs-file";
 
 export async function vcsCommitsToGitFile(
   prevSnapshot: string,
   dirPath: string,
   fileName: string,
-  commits: ActorDatetimeDeltaString[],
+  commits: commitDatetimeDeltaString.ActorDatetimeDeltaString[],
 ) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {
       continue;
     }
-    prevSnapshot = addssToString(prevSnapshot, [commit]);
-    trySet(fileName, prevSnapshot);
-    progress(i, commits.length);
-    await execute(
+    prevSnapshot = commitDatetimeDeltaString.addssToString(prevSnapshot, [commit]);
+    fsFile.trySet(fileName, prevSnapshot);
+    shell.progress(i, commits.length);
+    await shell.execute(
       `git commit -a --no-verify --author "${commit.actor} <>" --date "${commit.datetime}" -m "${i}"`,
       dirPath,
     );
   }
-  progress(commits.length, commits.length);
-  await execute('git gc', dirPath);
+  shell.progress(commits.length, commits.length);
+  await shell.execute('git gc', dirPath);
 }

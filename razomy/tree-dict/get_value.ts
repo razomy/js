@@ -1,8 +1,8 @@
-import { ArgumentException } from '@razomy/exceptions';
-import type { WithChildrenDict } from '@razomy/tree-dict';
 import { get } from './get';
+import * as exceptions from "@razomy/exceptions";
+import * as treeDict from "@razomy/tree-dict";
 
-export function getValue<T extends WithChildrenDict<T>>(value: T, path: string[], offset: number) {
+export function getValue<T extends treeDict.WithChildrenDict<T>>(value: T, path: string[], offset: number) {
   for (let key in value.children) {
     if (key !== path[offset]) {
       continue;
@@ -11,5 +11,5 @@ export function getValue<T extends WithChildrenDict<T>>(value: T, path: string[]
     return get(value.children[key], path, offset + 1);
   }
 
-  throw new ArgumentException('Node not found path.invalid arguments', { value, path, offset });
+  throw new exceptions.ArgumentException('Node not found path.invalid arguments', { value, path, offset });
 }

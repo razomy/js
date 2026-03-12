@@ -1,3 +1,5 @@
+import * as random from "@razomy/random";
+
 /**
  * @summary Create a random MAC address.
  * @description Generates a random MAC address string in uppercase with colon-separated octets.
@@ -18,9 +20,7 @@
  * @complexity memory O(1)
  */
 export function createMac(): string {
-  return Array.from({ length: 6 }, () => createInt(0, 255).toString(16).padStart(2, '0'))
+  return Array.from({ length: 6 }, () => random.createInt(0, 255).toString(16).padStart(2, '0'))
     .join(':')
     .toUpperCase();
 }
-
-import { createInt } from '@razomy/random';

@@ -1,4 +1,4 @@
-import { WeightedMovingAverageRecorder } from '@razomy/performance';
+import * as performance from "@razomy/performance";
 
 export async function recordPerformance<T extends any[]>(
   fn: (...t: T) => any,
@@ -8,8 +8,8 @@ export async function recordPerformance<T extends any[]>(
     args: T;
   }[],
 ) {
-  let estimator: WeightedMovingAverageRecorder;
-  estimator = new WeightedMovingAverageRecorder(10);
+  let estimator: performance.WeightedMovingAverageRecorder;
+  estimator = new performance.WeightedMovingAverageRecorder(10);
 
   for (const input of testCases) {
     await estimator.measure(input.timeDataSize, input.memoryDataSize, async () => {

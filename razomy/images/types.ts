@@ -1,4 +1,4 @@
-import { type FileFormat } from '@razomy/fs-file-format';
+import * as fsFileFormat from "@razomy/fs-file-format";
 
 export type ReadAndWriteImageFileExtensionType =
   | 'jpg'
@@ -35,7 +35,7 @@ function getConversions(currentExt: string) {
   return imageWriteTargets.filter((t) => t !== currentExt);
 }
 
-export const images: (FileFormat & { fileExtensionType: AllImageFileExtensionType })[] = [
+export const images: (fsFileFormat.FileFormat & { fileExtensionType: AllImageFileExtensionType })[] = [
   // --- РАСПРОСТРАНЕННЫЕ (Чтение и Запись) ---
   {
     fileExtensionType: 'jpg',

@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { FilePathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
-export function getSync(filePath: FilePathString) {
+export function getSync(filePath: abstracts.graphs.FilePathString) {
   return fs.readFileSync(filePath, 'utf8');
 }

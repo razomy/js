@@ -1,7 +1,7 @@
 import { Project } from 'ts-morph';
 import { recordPerformance } from '../performance/record_performance';
-import { nStringTestCasesRecordPerformance } from '@razomy/performance';
 import type { FunctionSpecification } from '../function/function_specification';
+import * as performance from "@razomy/performance";
 
 export async function createDistSpecifications(project: Project, path: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path);
@@ -137,7 +137,7 @@ export async function createDistSpecifications(project: Project, path: string, n
 
   if (spec.parameters.length === 1 && spec.parameters[0].type === 'string') {
     const fn = await import(path).then((c) => c[name]);
-    const history = await recordPerformance(fn, nStringTestCasesRecordPerformance());
+    const history = await recordPerformance(fn, performance.nStringTestCasesRecordPerformance());
     spec.performance.history = history.exportState();
   }
 

@@ -1,3 +1,3 @@
-import { StyleAttribute } from '@razomy/graphics-attributes';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
 
-export class ThemeStyle extends StyleAttribute {}
+export class ThemeStyle extends graphicsAttributes.StyleAttribute {}

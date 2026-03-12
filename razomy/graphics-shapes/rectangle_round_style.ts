@@ -1,6 +1,6 @@
-import { StyleAttribute } from '@razomy/graphics-attributes';
+import * as graphicsAttributes from "@razomy/graphics-attributes";
 
-export class RectangleRoundStyle extends StyleAttribute {
+export class RectangleRoundStyle extends graphicsAttributes.StyleAttribute {
   public topLeft: number;
   public topRight: number;
   public bottomLeft: number;

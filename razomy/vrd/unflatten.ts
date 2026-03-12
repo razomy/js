@@ -1,6 +1,6 @@
-import { assign } from '@razomy/key';
+import * as key from "@razomy/key";
 
-export function unflatten(data: Record<string, any>, assign_ = assign): Record<string, any> {
+export function unflatten(data: Record<string, any>, assign_ = key.assign): Record<string, any> {
   if (typeof data !== 'object' || data === null || Array.isArray(data)) {
     return data;
   }

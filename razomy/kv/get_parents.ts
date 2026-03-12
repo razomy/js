@@ -1,10 +1,9 @@
-import { ArgumentException } from '@razomy/exceptions';
-import type { Valuable } from '@razomy/kv';
-import { isAkv } from '@razomy/kv';
-import type { Slug } from '@razomy/abstracts/graphs';
+import * as exceptions from "@razomy/exceptions";
+import * as kv from "@razomy/kv";
+import * as abstracts from "@razomy/abstracts";
 
-export function getParents<T>(valueRecursive: Valuable<T, T>, path: Slug[], pathOffset: number): Valuable<T, T>[] {
-  if (isAkv(valueRecursive)) {
+export function getParents<T>(valueRecursive: kv.Valuable<T, T>, path: abstracts.graphs.Slug[], pathOffset: number): kv.Valuable<T, T>[] {
+  if (kv.isAkv(valueRecursive)) {
     for (let [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
         continue;
@@ -19,5 +18,5 @@ export function getParents<T>(valueRecursive: Valuable<T, T>, path: Slug[], path
     }
   }
 
-  throw new ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
+  throw new exceptions.ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
 }

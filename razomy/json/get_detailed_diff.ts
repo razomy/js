@@ -1,5 +1,5 @@
-import type { DictRecursive } from '@razomy/dict-recursive';
-import { isObject } from '@razomy/object';
+import * as dictRecursive from "@razomy/dict-recursive";
+import * as object_ from "@razomy/object";
 
 export type DiffCreated = { type: 'CREATED'; newValue: any };
 export type DiffDeleted = { type: 'DELETED'; oldValue: any };
@@ -9,7 +9,7 @@ export type DiffNested = { type: 'NESTED_UPDATE'; children: DiffNode };
 export type DiffEntry = DiffCreated | DiffDeleted | DiffUpdated | DiffNested;
 export type DiffNode = Record<string, DiffEntry>;
 
-export function getDetailedDiff(oldObj: DictRecursive, newObj: DictRecursive): DiffNode {
+export function getDetailedDiff(oldObj: dictRecursive.DictRecursive, newObj: dictRecursive.DictRecursive): DiffNode {
   const diff: DiffNode = {};
 
   // Get all unique keys from both objects
@@ -28,7 +28,7 @@ export function getDetailedDiff(oldObj: DictRecursive, newObj: DictRecursive): D
       diff[key] = { type: 'CREATED', newValue: newVal };
     }
     // 3. If both are objects: RECURSIVE CHECK
-    else if (isObject(oldVal) && isObject(newVal)) {
+    else if (object_.isObject(oldVal) && object_.isObject(newVal)) {
       const nestedDiff = getDetailedDiff(oldVal, newVal);
       // Only add to result if there are actual changes inside
       if (Object.keys(nestedDiff).length > 0) {

@@ -1,10 +1,10 @@
-import type { Context } from '@razomy/context';
-import type { WithOffset } from '@razomy/offset';
-import type { ResultNullFn } from '@razomy/result-null';
+import * as context from "@razomy/context";
+import * as offset from "@razomy/offset";
+import * as resultNull from "@razomy/result-null";
 
 export function tryAll<
-  C extends Context & WithOffset,
-  R extends readonly ResultNullFn<C, { offset: number; result: any }>[],
+  C extends context.Context & offset.WithOffset,
+  R extends readonly resultNull.ResultNullFn<C, { offset: number; result: any }>[],
 >(ctx: C, rules: R) {
   let totalOffset = 0;
   const results: [...{ [K in keyof R]: NonNullable<ReturnType<R[K]>>['result'] }] = [] as any;

@@ -1,8 +1,8 @@
-import type { ChangeDifference } from '@razomy/difference';
 import type { VrdOrValue } from './vrd';
-import { isEqual } from '@razomy/equal';
 import { isVrd } from './is_vrd';
 import { differencesDict } from './differences_dict';
+import * as difference from "@razomy/difference";
+import * as equal from "@razomy/equal";
 
 export interface ReplaceDifference<T> {
   type: 'replace_key';
@@ -10,7 +10,7 @@ export interface ReplaceDifference<T> {
   value: T;
 }
 
-export type P<T> = (ReplaceDifference<VrdOrValue<T>> | ChangeDifference<VrdOrValue<T>>) & {
+export type P<T> = (ReplaceDifference<VrdOrValue<T>> | difference.ChangeDifference<VrdOrValue<T>>) & {
   path: string;
 };
 
@@ -40,7 +40,7 @@ export function differencesVrd<T>(diffs: P<T>[], a: VrdOrValue<T>, b: VrdOrValue
       return diffs;
     }
 
-    if (!isEqual(a, b)) {
+    if (!equal.isEqual(a, b)) {
       diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
     }
     return diffs;

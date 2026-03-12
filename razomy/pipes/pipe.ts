@@ -1,4 +1,4 @@
-import type { Alias } from '@razomy/abstracts/ts';
+import * as abstracts from "@razomy/abstracts";
 
 export type PipeAsync<T, R> = (arg: T) => R | Promise<R>;
 
@@ -46,4 +46,4 @@ export async function pipe(initialValue: any, ...fns: PipeAsync<any, any>[]): Pr
   return result;
 }
 
-export const p: Alias<typeof pipe> = pipe;
+export const p: abstracts.ts.Alias<typeof pipe> = pipe;

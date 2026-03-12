@@ -1,17 +1,12 @@
 import simpleGit from 'simple-git';
-import {
-  type ActorDatetimeDeltaString,
-  addssToString,
-  stringsToDeltaStrings,
-} from '@razomy/commit-datetime-delta-string';
-
 import { getAllCommitHashes } from './get_all_commit_hashes';
+import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
 
 export async function compareVersions(repoPath, filePath) {
   const git = simpleGit(repoPath);
   const commits = await getAllCommitHashes(git);
   const history = {
-    commits: [] as ActorDatetimeDeltaString[],
+    commits: [] as commitDatetimeDeltaString.ActorDatetimeDeltaString[],
   };
   for (let i = 1; i < commits.length; i++) {
     const from = commits[i - 1];
@@ -19,9 +14,9 @@ export async function compareVersions(repoPath, filePath) {
     const getPreviousContent = await git.show([`${from.hash}:${filePath}`]);
     const getCurrentContent = await git.show([`${to.hash}:${filePath}`]);
 
-    const changes = stringsToDeltaStrings(getPreviousContent, getCurrentContent);
+    const changes = commitDatetimeDeltaString.stringsToDeltaStrings(getPreviousContent, getCurrentContent);
 
-    const commit: ActorDatetimeDeltaString = {
+    const commit: commitDatetimeDeltaString.ActorDatetimeDeltaString = {
       datetime: to.date,
       actor: to.authorName,
       deltas: changes,
@@ -30,7 +25,7 @@ export async function compareVersions(repoPath, filePath) {
     history.commits.push(commit);
   }
 
-  const snapshot1 = addssToString('', history.commits);
+  const snapshot1 = commitDatetimeDeltaString.addssToString('', history.commits);
   const lastCommit = await git.show([`${commits.at(-1)!.hash}:${filePath}`]);
   if (snapshot1 !== lastCommit) {
     throw 'error';

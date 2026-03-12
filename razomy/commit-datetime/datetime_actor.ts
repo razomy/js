@@ -1,7 +1,7 @@
-import type { WithActor } from '@razomy/commit';
-import type { WithDatetime } from '@razomy/dates';
+import * as commit from "@razomy/commit";
+import * as dates from "@razomy/dates";
 
-export interface DatetimeActor extends WithDatetime, WithActor {
+export interface DatetimeActor extends dates.WithDatetime, commit.WithActor {
   datetime: string;
   actor: string;
 }

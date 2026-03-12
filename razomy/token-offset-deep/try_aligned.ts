@@ -1,5 +1,5 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithTokens, WithTokenType } from '@razomy/token';
+import * as offset from "@razomy/offset";
+import * as token from "@razomy/token";
 
 export interface WithDeep {
   deep: number;
@@ -9,8 +9,8 @@ export interface WithStack {
   stack: number[];
 }
 
-export function tryAligned<TToken extends WithTokenType<any> & WithDeep, D extends object>(
-  ctx: WithTokens<TToken> & WithOffset & WithStack,
+export function tryAligned<TToken extends token.WithTokenType<any> & WithDeep, D extends object>(
+  ctx: token.WithTokens<TToken> & offset.WithOffset & WithStack,
   deafult: D = {} as D,
 ) {
   const t = ctx.tokens[ctx.offset];

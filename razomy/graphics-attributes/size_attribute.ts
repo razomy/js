@@ -1,12 +1,12 @@
-import { AttributeResource } from '@razomy/resources';
-import { ArgumentException } from '@razomy/exceptions';
+import * as resources from "@razomy/resources";
+import * as exceptions from "@razomy/exceptions";
 
 export interface ISizeResource {
   height: number;
   width: number;
 }
 
-export class SizeAttribute extends AttributeResource implements ISizeResource {
+export class SizeAttribute extends resources.AttributeResource implements ISizeResource {
   public height: number;
   public width: number;
 
@@ -34,6 +34,6 @@ export class SizeAttribute extends AttributeResource implements ISizeResource {
       return;
     }
 
-    throw new ArgumentException('unknown', args);
+    throw new exceptions.ArgumentException('unknown', args);
   }
 }

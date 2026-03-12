@@ -1,12 +1,12 @@
-import type { String } from '@razomy/string';
-import type { Offset } from '@razomy/offset';
-import { stringsAnyIndex } from '@razomy/index';
+import * as string from "@razomy/string";
+import * as offset from "@razomy/offset";
+import * as index from "@razomy/index";
 
 export function isStringsAnyIndex(
-  string: String,
+  string: string.String,
   equalStrings: Set<string>,
-  offset: Offset = 0,
-  maxOffset: Offset = string.length,
+  offset: offset.Offset = 0,
+  maxOffset: offset.Offset = string.length,
 ): boolean {
-  return stringsAnyIndex(string, equalStrings, offset, maxOffset) !== -1;
+  return index.stringsAnyIndex(string, equalStrings, offset, maxOffset) !== -1;
 }

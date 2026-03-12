@@ -1,13 +1,13 @@
 import { execSync } from 'node:child_process';
 import * as path from 'path';
-import type { DirPathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
 export type StringCommand = string;
 export type ShellCommand = StringCommand;
 
 export const startDir = path.resolve(process.argv[1], '../');
 
-export function executeSync(shellCommand: ShellCommand, dirPath: DirPathString = startDir) {
+export function executeSync(shellCommand: ShellCommand, dirPath: abstracts.graphs.DirPathString = startDir) {
   const path_ = path.resolve(dirPath);
   console.info(startDir, shellCommand);
   const result = execSync(shellCommand, {

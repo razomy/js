@@ -1,7 +1,7 @@
 import fs from 'fs';
-import type { FilePathString } from '@razomy/abstracts/graphs';
+import * as abstracts from "@razomy/abstracts";
 
-export function filePathCount(filePath: FilePathString) {
+export function filePathCount(filePath: abstracts.graphs.FilePathString) {
   try {
     const code = fs.readFileSync(filePath, 'utf8');
     const matches = code.trim().match(/\b\w+\b/g) || [];

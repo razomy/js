@@ -1,11 +1,11 @@
-import type { WithOffset } from '@razomy/offset';
-import type { WithValue } from '@razomy/abstracts/domains';
-import { type WithTokens, type WithTokenType } from '@razomy/token';
+import * as offset from "@razomy/offset";
+import * as abstracts from "@razomy/abstracts";
+import * as token from "@razomy/token";
 
 export function tryTokenValue<
-  TToken extends WithTokenType<any> & WithValue<string>,
+  TToken extends token.WithTokenType<any> & abstracts.domains.WithValue<string>,
   TTokenType extends TToken['tokenType'],
->(ctx: WithTokens<TToken> & WithOffset, targetType: TTokenType) {
+>(ctx: token.WithTokens<TToken> & offset.WithOffset, targetType: TTokenType) {
   const t = ctx.tokens[ctx.offset];
   if (!t) return null;
 

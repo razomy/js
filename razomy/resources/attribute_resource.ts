@@ -1,3 +1,3 @@
-import { ObjectResource } from '@razomy/resources';
+import * as resources from "@razomy/resources";
 
-export abstract class AttributeResource extends ObjectResource {}
+export abstract class AttributeResource extends resources.ObjectResource {}

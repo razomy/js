@@ -1,6 +1,6 @@
-import type { WithChildrenList } from '@razomy/tree-list';
+import * as treeList from "@razomy/tree-list";
 
-export function get<T extends WithChildrenList<any>>(node: T, path: string[], offset: number): T {
+export function get<T extends treeList.WithChildrenList<any>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }

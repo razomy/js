@@ -1,16 +1,16 @@
 import type { Json } from './json';
-import { isArray } from '@razomy/array';
-import { isObject } from '@razomy/object';
+import * as array from "@razomy/array";
+import * as object_ from "@razomy/object";
 
 export function sort<T extends Json>(object: T): T {
   if (object === undefined || object === null) {
     return object;
   }
-  if (isArray(object)) {
+  if (array.isArray(object)) {
     return [...object.map((i) => sort(i))] as T;
   }
 
-  if (isObject(object)) {
+  if (object_.isObject(object)) {
     var keys = Object.keys(object);
     keys.sort();
     var newObject = {};

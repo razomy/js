@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-import { cli } from '@razomy/cli';
+import * as cli from '@razomy/cli';
 
-cli(process.argv.slice(2) as any).then();
+cli.cli(process.argv.slice(2) as any).then();

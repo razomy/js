@@ -1,5 +1,5 @@
-import { levenshteinDistance } from '@razomy/string';
 import { ExportDeclaration, ImportDeclaration, Project, SourceFile } from 'ts-morph';
+import * as string from "@razomy/string";
 
 /**
  * Index of all exported symbols in the project.
@@ -27,7 +27,7 @@ function findReplacementSymbol(
   const maxDistanceThreshold = 3; // Strictness of similarity
 
   for (const candidate of allExportNames) {
-    const distance = levenshteinDistance(nameToFind, candidate);
+    const distance = string.levenshteinDistance(nameToFind, candidate);
     if (distance < lowestDistance) {
       lowestDistance = distance;
       currentBestCandidate = candidate;

@@ -1,10 +1,10 @@
 import type { AsyncTask, Context } from './async_task';
-import type { Gate } from '@razomy/abstracts/patterns';
+import * as abstracts from "@razomy/abstracts";
 
 export class FileTaskManager<C extends Context> {
   private currentContext: C | null = null;
 
-  constructor(public file_gate: Gate<C>) {}
+  constructor(public file_gate: abstracts.patterns.Gate<C>) {}
 
   /**
    * 1. Load state if exists (Continue)

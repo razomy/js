@@ -1,3 +1,3 @@
-import { AttributeResource } from '@razomy/resources';
+import * as resources from "@razomy/resources";
 
-export class StyleAttribute extends AttributeResource {}
+export class StyleAttribute extends resources.AttributeResource {}

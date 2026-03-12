@@ -1,8 +1,8 @@
-import type { Module, TerminalArgs } from '@razomy/cli';
+import * as cli_ from '@razomy/cli';
 import { validateArrayStringThrow } from '@razomy/cli';
 
-export async function cli<Rm extends keyof Module & string>(
-  terminalArgs: TerminalArgs<Rm> | null | undefined,
+export async function cli<Rm extends keyof cli_.Module & string>(
+  terminalArgs: cli_.TerminalArgs<Rm> | null | undefined,
 ): Promise<number> {
   terminalArgs = validateArrayStringThrow(terminalArgs, 'terminalArgs');
   console.debug('razomy:js:cli:start');
@@ -11,7 +11,7 @@ export async function cli<Rm extends keyof Module & string>(
   const valueArguments = terminalArgs.slice(1);
   const moduleKey = moduleKeyAndFunctionKey.join('/');
   const functionKey = moduleKeyAndFunctionKey.slice(-1).join('/');
-  const packageImpl = (await import('razomy' + moduleKey)) as Module;
+  const packageImpl = (await import('razomy' + moduleKey)) as cli_.Module;
   const result = await packageImpl[functionKey](...valueArguments);
 
   console.debug('razomy:js:cli:finish');

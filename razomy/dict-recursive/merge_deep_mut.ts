@@ -1,5 +1,5 @@
-import { isObject } from '@razomy/object';
-import type { DictRecursive } from '@razomy/dict-recursive';
+import * as object_ from "@razomy/object";
+import * as dictRecursive from "@razomy/dict-recursive";
 
 /**
  * @summary Deep merge multiple recursive dictionaries into a target.
@@ -22,20 +22,20 @@ import type { DictRecursive } from '@razomy/dict-recursive';
  * @complexity time O(n) where n is total number of keys across all sources
  * @complexity memory O(d) where d is the maximum nesting depth (recursion stack)
  */
-export function mergeDeepMut<T extends DictRecursive>(target: T, ...sources: DictRecursive[]): T {
+export function mergeDeepMut<T extends dictRecursive.DictRecursive>(target: T, ...sources: dictRecursive.DictRecursive[]): T {
   for (const source of sources) {
-    if (!isObject(source)) continue;
+    if (!object_.isObject(source)) continue;
 
     for (const key in source) {
       const sourceValue = source[key];
 
-      if (isObject(sourceValue)) {
-        if (!isObject(target[key])) {
-          (target as DictRecursive)[key] = {};
+      if (object_.isObject(sourceValue)) {
+        if (!object_.isObject(target[key])) {
+          (target as dictRecursive.DictRecursive)[key] = {};
         }
-        mergeDeepMut(target[key] as DictRecursive, sourceValue as DictRecursive);
+        mergeDeepMut(target[key] as dictRecursive.DictRecursive, sourceValue as dictRecursive.DictRecursive);
       } else {
-        (target as DictRecursive)[key] = sourceValue;
+        (target as dictRecursive.DictRecursive)[key] = sourceValue;
       }
     }
   }

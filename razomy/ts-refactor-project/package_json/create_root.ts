@@ -1,17 +1,17 @@
 import * as path from 'path';
-import { getJson, setJson } from '@razomy/fs-file';
 import { getAll } from './get_all';
+import * as fsFile from "@razomy/fs-file";
 
 export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);
   const packages = getAll(projectPath);
 
-  const packageFile = getJson(path.join(rootDir, 'package.json'));
+  const packageFile = fsFile.getJson(path.join(rootDir, 'package.json'));
   packageFile.workspaces = packages.map((folder) => './' + folder.name);
   // packageFile.peerDependencies = Object.fromEntries(
   //     packages.map(folder => [folder.name.replaceAll('/', '.'), './' + folder.name])
   //   );
-  setJson(path.join(rootDir, 'package.json'), packageFile, true);
+  fsFile.setJson(path.join(rootDir, 'package.json'), packageFile, true);
 
   // const tsFile = getJson(path.join(rootDir, 'tsconfig.json'));
   // tsFile.compilerOptions.paths = Object.fromEntries(

@@ -1,3 +1,3 @@
-import { ElementView } from '@razomy/graphics-elements';
+import * as graphicsElements from "@razomy/graphics-elements";
 
-export abstract class IoElement extends ElementView {}
+export abstract class IoElement extends graphicsElements.ElementView {}

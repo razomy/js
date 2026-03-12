@@ -1,10 +1,10 @@
-import type { Event } from '@razomy/event';
+import * as event from "@razomy/event";
 
 export interface WithWorkerId {
   workerId: string;
 }
 
-export interface WorkerEvent<T> extends Event<T> {
+export interface WorkerEvent<T> extends event.Event<T> {
   id: 'get' | 'set';
   ctx: T;
 }

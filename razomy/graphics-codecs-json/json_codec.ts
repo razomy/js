@@ -1,17 +1,16 @@
-import { NotImplementedException } from '@razomy/exceptions';
-import type { Codec } from '@razomy/abstracts/patterns';
-import type { IObject } from '@razomy/abstracts/domains';
-import type { ISizeResource } from '@razomy/graphics-attributes';
-import { ResourceCollection } from '@razomy/resources';
-import { CodecConfig, CodecFactory, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
-import { ElementView } from '@razomy/graphics-elements';
+import * as exceptions from "@razomy/exceptions";
+import * as abstracts from "@razomy/abstracts";
+import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as resources from "@razomy/resources";
+import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as graphicsElements from "@razomy/graphics-elements";
 
 export interface JsonObject {
-  objectResource: IObject;
+  objectResource: abstracts.domains.IObject;
 }
 
 export interface JsonSizeResource {
-  sizeResource: ISizeResource;
+  sizeResource: graphicsAttributes.ISizeResource;
 }
 
 export interface JsonPropertiesResource {
@@ -59,24 +58,24 @@ export const example: ResourceDescription = {
   },
 };
 
-export class JsonCodec implements Codec<ElementView, Node> {
+export class JsonCodec implements abstracts.patterns.Codec<graphicsElements.ElementView, Node> {
   private codecFactory: any;
 
   constructor() {
-    const codecConfig: CodecConfig = new CodecConfig();
-    const encodeNodeFactory: EncodeNodeFactory = new EncodeNodeFactory(codecConfig);
-    this.codecFactory = new CodecFactory(encodeNodeFactory);
+    const codecConfig: graphicsCodecsWebSvgCodecs.CodecConfig = new graphicsCodecsWebSvgCodecs.CodecConfig();
+    const encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory = new graphicsCodecsWebSvgCodecs.EncodeNodeFactory(codecConfig);
+    this.codecFactory = new graphicsCodecsWebSvgCodecs.CodecFactory(encodeNodeFactory);
   }
 
-  public decode(value: Node): ElementView {
+  public decode(value: Node): graphicsElements.ElementView {
     return this.iterate(value as HTMLElement);
   }
 
-  public encode(node: ElementView): Node {
-    throw new NotImplementedException();
+  public encode(node: graphicsElements.ElementView): Node {
+    throw new exceptions.NotImplementedException();
   }
 
-  private iterate(value: HTMLElement): ElementView {
+  private iterate(value: HTMLElement): graphicsElements.ElementView {
     const node = this.codecFactory.create(value).decode(value);
 
     const valueChildren = value.childNodes;
@@ -86,7 +85,7 @@ export class JsonCodec implements Codec<ElementView, Node> {
       }
 
       const subNode = this.iterate(valueChildren[i] as HTMLElement);
-      node.getBy(ResourceCollection).add(subNode);
+      node.getBy(resources.ResourceCollection).add(subNode);
     }
 
     return node;

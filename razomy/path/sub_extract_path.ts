@@ -1,7 +1,7 @@
-import { ArgumentException } from '@razomy/exceptions';
-import type { String } from '@razomy/string';
+import * as exceptions from "@razomy/exceptions";
+import * as string from "@razomy/string";
 
-export function subExtractPath(filePath: String, equalPath: String): String {
+export function subExtractPath(filePath: string.String, equalPath: string.String): string.String {
   const parts: string[] = filePath.split('/');
   const startIndex: number = parts.indexOf(equalPath);
 
@@ -9,6 +9,6 @@ export function subExtractPath(filePath: String, equalPath: String): String {
     const result: string = parts.slice(startIndex).join('/');
     return result;
   } else {
-    throw new ArgumentException('Path not found', { filePath, equalPath });
+    throw new exceptions.ArgumentException('Path not found', { filePath, equalPath });
   }
 }

@@ -1,11 +1,11 @@
 import fs from 'fs';
-import { logInline } from '@razomy/shell';
+import * as shell from "@razomy/shell";
 
 export function tryCreate(dirPath: string) {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
-    logInline(`Directory created: ${dirPath}`);
+    shell.logInline(`Directory created: ${dirPath}`);
   } else {
-    logInline(`Directory already exists: ${dirPath}`);
+    shell.logInline(`Directory already exists: ${dirPath}`);
   }
 }

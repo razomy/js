@@ -1,12 +1,12 @@
 import { getRecursiveStatus } from './get_recursive_status';
-import { iterateReverse, nodesArrayToTree } from '@razomy/tree-list';
 import { execSync } from 'node:child_process';
-import type { SourcePathString } from '@razomy/abstracts/graphs';
+import * as treeList from "@razomy/tree-list";
+import * as abstracts from "@razomy/abstracts";
 
-export function commit(sourcePath: SourcePathString) {
+export function commit(sourcePath: abstracts.graphs.SourcePathString) {
   const { files, repos } = getRecursiveStatus(sourcePath);
-  const tree = nodesArrayToTree(repos, files);
-  iterateReverse(tree[0], (node) => {
+  const tree = treeList.nodesArrayToTree(repos, files);
+  treeList.iterateReverse(tree[0], (node) => {
     if (node.children.length !== 0) {
       const commitCommand = `git add . && git commit -m "update"`;
       execSync(commitCommand, { cwd: node.value });

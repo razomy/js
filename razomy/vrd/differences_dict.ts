@@ -1,6 +1,6 @@
 import { vrd, Vrd } from './vrd';
 import { differencesVrd, type P } from './differences_vrd';
-import { getSimilar } from '@razomy/array-difference';
+import * as arrayDifference from "@razomy/array-difference";
 
 export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, separator = '/'): P<T>[] {
   const aKeys = Object.keys(a);
@@ -13,7 +13,7 @@ export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, se
       continue;
     }
 
-    let newKey: string | null = getSimilar(oldKey, bKeys);
+    let newKey: string | null = arrayDifference.getSimilar(oldKey, bKeys);
     if (newKey) {
       diffs.push({
         type: 'replace_key',

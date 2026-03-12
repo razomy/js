@@ -1,22 +1,21 @@
-import { ElementView } from '@razomy/graphics-elements';
-import type { WebSvgHighLightsRender } from '@razomy/graphics-codecs-web-svg-renders';
-import type { CodecRegistry } from '@razomy/graphics-codecs-web-svg-codecs';
-import { CodecConfig, CodecFactory, EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
-import { Render } from '@razomy/graphics-renderes';
+import * as graphicsElements from "@razomy/graphics-elements";
+import * as graphicsCodecsWebSvgRenders from "@razomy/graphics-codecs-web-svg-renders";
+import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as graphicsRenderes from "@razomy/graphics-renderes";
 
-export class WebSvgRender extends Render<ElementView> {
+export class WebSvgRender extends graphicsRenderes.Render<graphicsElements.ElementView> {
   constructor(
-    public codecConfig: CodecConfig,
-    public encodeNodeFactory: EncodeNodeFactory,
-    public codecFactory: CodecFactory,
-    public codecRegistry: CodecRegistry,
+    public codecConfig: graphicsCodecsWebSvgCodecs.CodecConfig,
+    public encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory,
+    public codecFactory: graphicsCodecsWebSvgCodecs.CodecFactory,
+    public codecRegistry: graphicsCodecsWebSvgCodecs.CodecRegistry,
     public rootNode: Node,
-    public webSvgHighLightsRender: WebSvgHighLightsRender,
+    public webSvgHighLightsRender: graphicsCodecsWebSvgRenders.WebSvgHighLightsRender,
   ) {
     super();
   }
 
-  public render(view: ElementView): void {
+  public render(view: graphicsElements.ElementView): void {
     if (this.rootNode.firstChild) {
       throw new Error('Not empty root');
     }
@@ -25,7 +24,7 @@ export class WebSvgRender extends Render<ElementView> {
     this.rootNode.appendChild(node);
   }
 
-  private iterate(node: ElementView): Node {
+  private iterate(node: graphicsElements.ElementView): Node {
     const value = this.codecFactory.createByNode(node).encode(node);
     this.webSvgHighLightsRender.render(node, value);
     const nodeChildren = node.children;

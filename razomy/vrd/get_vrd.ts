@@ -1,8 +1,8 @@
-import { ArgumentException } from '@razomy/exceptions';
 import type { VrdOrValue } from './vrd';
-import type { DictKey } from '@razomy/dict';
+import * as exceptions from "@razomy/exceptions";
+import * as dict from "@razomy/dict";
 
-export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: DictKey[], pathOffset: number): VrdOrValue<T> {
+export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: dict.DictKey[], pathOffset: number): VrdOrValue<T> {
   for (let key in valueRecursive!) {
     if (key !== path[pathOffset]) {
       continue;
@@ -16,5 +16,5 @@ export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: DictKey[], pathOf
     return getVrd(valueRecursive[key], path, pathOffset);
   }
 
-  throw new ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
+  throw new exceptions.ArgumentException('invalid arguments', { valueRecursive, path, pathOffset });
 }

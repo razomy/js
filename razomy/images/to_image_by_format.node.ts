@@ -1,13 +1,13 @@
 import * as fs from 'node:fs';
 import sharp from 'sharp';
 import { images, type OnlyReadImageFileExtensionType, type ReadAndWriteImageFileExtensionType } from './types';
-import { type ExtensionResult } from '@razomy/fs-file-format';
+import * as fsFileFormat from "@razomy/fs-file-format";
 
 // --- SHARP (Images) ---
 export async function toImageByFormat(
   inputPath: string,
   format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType,
-): Promise<ExtensionResult> {
+): Promise<fsFileFormat.ExtensionResult> {
   let pipeline = sharp(inputPath, { failOn: 'error' }); // failOnError: false позволяет открывать частично битые файлы
 
   // Сохраняем метаданные (EXIF, ориентацию)

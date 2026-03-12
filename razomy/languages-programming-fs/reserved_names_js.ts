@@ -3,6 +3,7 @@ export const reservedNamesJs = {
   case: true,
   catch: true,
   class: true,
+  object: true,
   const: true,
   continue: true,
   debugger: true,

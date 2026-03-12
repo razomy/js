@@ -1,6 +1,6 @@
-import { ElementView } from '@razomy/graphics-elements';
+import * as graphicsElements from "@razomy/graphics-elements";
 
-export class ShapeElement extends ElementView {}
+export class ShapeElement extends graphicsElements.ElementView {}
 
 export class PointShape extends ShapeElement {}
 

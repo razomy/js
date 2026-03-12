@@ -1,12 +1,12 @@
-import { AttributeResource } from '@razomy/resources';
-import { ArgumentException } from '@razomy/exceptions';
+import * as resources from "@razomy/resources";
+import * as exceptions from "@razomy/exceptions";
 
 export interface IPositionAttribute {
   x: number;
   y: number;
 }
 
-export class PositionAttribute extends AttributeResource implements IPositionAttribute {
+export class PositionAttribute extends resources.AttributeResource implements IPositionAttribute {
   public x: number;
   public y: number;
 
@@ -34,6 +34,6 @@ export class PositionAttribute extends AttributeResource implements IPositionAtt
       return;
     }
 
-    throw new ArgumentException('unknown', args);
+    throw new exceptions.ArgumentException('unknown', args);
   }
 }

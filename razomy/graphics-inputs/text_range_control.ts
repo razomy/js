@@ -1,3 +1,3 @@
-import { ControlElement } from '@razomy/graphics-inputs';
+import * as graphicsInputs from "@razomy/graphics-inputs";
 
-export class TextRangeControl extends ControlElement {}
+export class TextRangeControl extends graphicsInputs.ControlElement {}
