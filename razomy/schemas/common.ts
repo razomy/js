@@ -1,4 +1,4 @@
-import { type I64 } from '@razomy/primitives';
+import { type I64 } from '@razomy/abstracts';
 
 export type address_line1 = string; //	Expects the first line of the street address
 export type address_line2 = string; //	Expects the second line of the street address

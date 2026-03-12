@@ -75,7 +75,7 @@
   "module": "./index.ts",
   "name": "@razomy/vrd-fs-graph",
   "peerDependencies": {
-    "@razomy/graph": "*",
+    "@razomy/abstracts/domains": "*",
     "@razomy/vrd": "*"
   },
   "publishConfig": {

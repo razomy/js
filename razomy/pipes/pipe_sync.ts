@@ -1,4 +1,4 @@
-import type { Alias } from '@razomy/primitives/codes';
+import type { Alias } from '@razomy/abstracts/codes';
 
 export type Pipe<T, R> = (arg: T) => R;
 

@@ -1,4 +1,4 @@
-import type { Action } from '@razomy/primitives/functions';
+import type { Action } from '@razomy/abstracts/functions';
 import { Project, SourceFile } from 'ts-morph';
 
 export interface IterateSourceFileState {

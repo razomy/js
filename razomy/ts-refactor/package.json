@@ -89,7 +89,7 @@
   "module": "./index.ts",
   "name": "@razomy/ts-refactor",
   "peerDependencies": {
-    "@razomy/action": "*",
+    "@razomy/abstracts/functions": "*",
     "@razomy/array": "*",
     "@razomy/fss": "*",
     "@razomy/languages-programming-fs": "*",

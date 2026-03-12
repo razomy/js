@@ -73,7 +73,7 @@
   "name": "@razomy/commit-datetime",
   "peerDependencies": {
     "@razomy/commit": "*",
-    "@razomy/date-time": "*"
+    "@razomy/dates": "*"
   },
   "publishConfig": {
     "access": "public"

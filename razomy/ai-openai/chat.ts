@@ -1,4 +1,4 @@
-import type { WithOpenAiCtx } from '@razomy/openai';
+import type { WithOpenAiCtx } from '@razomy/ai-openai';
 
 export class Chat {
   constructor(private ctx: WithOpenAiCtx) {}

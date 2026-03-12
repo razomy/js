@@ -85,8 +85,8 @@
   "module": "./index.ts",
   "name": "@razomy/fs-file",
   "peerDependencies": {
+    "@razomy/abstracts/domains": "*",
     "@razomy/fs-directory": "*",
-    "@razomy/gate": "*",
     "@razomy/path-string": "*"
   },
   "publishConfig": {

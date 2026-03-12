@@ -61,21 +61,21 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/regex#readme",
+  "homepage": "https://github.com/razomy/js/razomy/regexes#readme",
   "keywords": [
     "razomy",
-    "regex"
+    "regexes"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/regex",
+  "name": "@razomy/regexes",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/regex",
+    "directory": "razomy/regexes",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

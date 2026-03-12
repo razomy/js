@@ -73,7 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/main",
   "peerDependencies": {
-    "@razomy/action": "*",
+    "@razomy/abstracts/functions": "*",
     "@razomy/async": "*",
     "@razomy/dates": "*"
   },

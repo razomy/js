@@ -22,7 +22,18 @@ export {
   type StaticArray,
   type DynamicArray,
 } from './arrays';
+export { type Dispose } from './dispose';
 export { type Graph, type GraphAdjacencyMatrix, type GraphAdjacencyList } from './grapths';
+export {
+  type Slug,
+  type AbsolutePathString,
+  type RelativePathString,
+  type PathString,
+  type FilePathString,
+  type DirPathString,
+  type SourcePathString,
+  type WithPathString,
+} from './path_string';
 export {
   type Null,
   type Undefined,
@@ -78,3 +89,4 @@ export {
   type SegmentTree,
 } from './trees';
 export { type Brand, type DataStructure, type LogicalTopology, type MemoryLayout } from './ts_workarounds';
+export { type WithDirPath, type WithFileName, type WithFilePath, type WithSourcePath } from './with_path';

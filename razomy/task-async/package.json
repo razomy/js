@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/task-async",
   "peerDependencies": {
-    "@razomy/gate": "*",
+    "@razomy/abstracts/domains": "*",
     "@razomy/serializable": "*"
   },
   "publishConfig": {

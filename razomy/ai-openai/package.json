@@ -63,9 +63,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/openai#readme",
+  "homepage": "https://github.com/razomy/js/razomy/ai-openai#readme",
   "keywords": [
     "razomy",
+    "ai",
     "openai",
     "addFunctionAndAssign",
     "addSystemMessage",
@@ -85,7 +86,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/openai",
+  "name": "@razomy/ai-openai",
   "peerDependencies": {
     "@razomy/object": "*",
     "@razomy/string": "*"
@@ -94,7 +95,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/openai",
+    "directory": "razomy/ai-openai",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

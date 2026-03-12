@@ -61,17 +61,18 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/primitives#readme",
+  "homepage": "https://github.com/razomy/js/razomy/abstracts#readme",
   "keywords": [
     "razomy",
-    "primitives"
+    "abstracts"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/primitives",
+  "name": "@razomy/abstracts",
   "peerDependencies": {
     "@razomy/function": "*",
+    "@razomy/kv": "*",
     "@razomy/object": "*",
     "@razomy/value": "*"
   },
@@ -79,7 +80,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/primitives",
+    "directory": "razomy/abstracts",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

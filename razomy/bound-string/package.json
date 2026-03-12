@@ -75,6 +75,7 @@
   "module": "./index.ts",
   "name": "@razomy/bound-string",
   "peerDependencies": {
+    "@razomy/coordinates": "*",
     "@razomy/offset": "*"
   },
   "publishConfig": {

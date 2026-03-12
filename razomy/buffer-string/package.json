@@ -73,7 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/buffer-string",
   "peerDependencies": {
-    "@razomy/codec": "*",
+    "@razomy/abstracts/domains": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

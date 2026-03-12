@@ -1,7 +1,7 @@
 import type { Json } from './json';
 import { stringToJson } from './string_to_json';
 import { jsonToString } from './json_to_string';
-import type { Codec } from '@razomy/primitives/domains';
+import type { Codec } from '@razomy/abstracts/domains';
 
 export class JsonCodec<T extends Json> implements Codec<T, string> {
   encode(state: T): string {

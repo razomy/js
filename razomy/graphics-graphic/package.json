@@ -72,8 +72,8 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-graphic",
   "peerDependencies": {
-    "@razomy/collection": "*",
-    "@razomy/resources": "*"
+    "@razomy/resources": "*",
+    "@razomy/structures": "*"
   },
   "publishConfig": {
     "access": "public"
