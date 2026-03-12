@@ -1,4 +1,4 @@
-import * as shell from "@razomy/shell";
+import * as shell from '@razomy/shell';
 
 export async function getLastGitCommitIdOrNull(ctx: { dirPath: string }) {
   try {

@@ -1,6 +1,6 @@
 import * as fss from '@razomy/fss';
 import type { FunctionSpecification } from '../function/function_specification';
-import * as stringCase from "@razomy/string-case";
+import * as stringCase from '@razomy/string-case';
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
 export function createPackageReadme(path: string, packageJson: any, specs: FunctionSpecification[]) {

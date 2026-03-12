@@ -1,6 +1,6 @@
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as resources from "@razomy/resources";
-import * as graphicsGraphic from "@razomy/graphics-graphic";
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as resources from '@razomy/resources';
+import * as graphicsGraphic from '@razomy/graphics-graphic';
 
 export class ElementView extends graphicsGraphic.ViewGraphic {
   constructor() {

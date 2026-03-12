@@ -1,5 +1,5 @@
 import type { NodeBound } from './node_bound';
-import * as coordinates from "@razomy/coordinates";
+import * as coordinates from '@razomy/coordinates';
 
 export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
   if (nodes.length === 0) {

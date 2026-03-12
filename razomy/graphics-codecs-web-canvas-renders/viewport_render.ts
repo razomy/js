@@ -1,9 +1,9 @@
 import * as create from '@razomy/abstracts/patterns';
-import * as graphicsCodecsWebCanvasRenders from "@razomy/graphics-codecs-web-canvas-renders";
-import * as graphicsRenderes from "@razomy/graphics-renderes";
-import * as graphicsElements from "@razomy/graphics-elements";
-import * as graphicsShapes from "@razomy/graphics-shapes";
-import * as exceptions from "@razomy/exceptions";
+import * as graphicsCodecsWebCanvasRenders from '@razomy/graphics-codecs-web-canvas-renders';
+import * as graphicsRenderes from '@razomy/graphics-renderes';
+import * as graphicsElements from '@razomy/graphics-elements';
+import * as graphicsShapes from '@razomy/graphics-shapes';
+import * as exceptions from '@razomy/exceptions';
 
 export class ViewportRender {
   constructor() {}

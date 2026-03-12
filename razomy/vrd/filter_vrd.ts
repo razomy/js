@@ -1,6 +1,6 @@
 import { Vrd, type VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 export function filterVrd<I>(input: Vrd<I>, isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean): Vrd<I>;
 export function filterVrd<I>(input: I, isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean): I;

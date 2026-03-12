@@ -1,5 +1,5 @@
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as graphicsElements from "@razomy/graphics-elements";
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as graphicsElements from '@razomy/graphics-elements';
 
 export class TextElement extends graphicsElements.ElementView {
   constructor() {

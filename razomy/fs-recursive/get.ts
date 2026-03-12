@@ -1,6 +1,6 @@
 import { type Dirent, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * Recursively scans a directory and yields absolute file paths using a synchronous generator.

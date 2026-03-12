@@ -1,5 +1,5 @@
-import * as difference from "@razomy/difference";
-import * as arrayDifference from "@razomy/array-difference";
+import * as difference from '@razomy/difference';
+import * as arrayDifference from '@razomy/array-difference';
 
 export function get(oldArray: string[], newArray: string[]): difference.ChangeDifference<string>[] {
   const newSet = new Set(newArray);

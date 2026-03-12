@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 import * as path from 'path';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export type StringCommand = string;
 export type ShellCommand = StringCommand;

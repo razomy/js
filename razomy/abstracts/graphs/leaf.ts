@@ -1,3 +1,3 @@
-import * as abstracts from "@razomy/abstracts";
+import { type WithValue} from '../domains/with_value';
 
-export interface Leaf<T> extends abstracts.domains.WithValue<T> {}
+export interface Leaf<T> extends WithValue<T> {}

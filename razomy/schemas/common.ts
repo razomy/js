@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export type address_line1 = string; //	Expects the first line of the street address
 export type address_line2 = string; //	Expects the second line of the street address

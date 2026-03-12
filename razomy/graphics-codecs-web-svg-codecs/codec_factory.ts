@@ -1,9 +1,9 @@
 import * as create from '@razomy/abstracts/patterns';
-import * as abstracts from "@razomy/abstracts";
-import * as graphicsElements from "@razomy/graphics-elements";
-import * as graphicsShapes from "@razomy/graphics-shapes";
-import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
-import * as exceptions from "@razomy/exceptions";
+import * as abstracts from '@razomy/abstracts';
+import * as graphicsElements from '@razomy/graphics-elements';
+import * as graphicsShapes from '@razomy/graphics-shapes';
+import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
+import * as exceptions from '@razomy/exceptions';
 
 export class CodecFactory implements create.WithCreate<abstracts.patterns.Codec<graphicsElements.ElementView, any>> {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
@@ -22,7 +22,9 @@ export class CodecFactory implements create.WithCreate<abstracts.patterns.Codec<
     throw new exceptions.UnknownTypeArgumentException(element);
   }
 
-  public createByNode(element?: graphicsElements.ElementView): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
+  public createByNode(
+    element?: graphicsElements.ElementView,
+  ): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
     if (element instanceof graphicsShapes.RectangleShape) {
       return new graphicsCodecsWebSvgCodecs.RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof graphicsElements.ViewportElement) {

@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 export function createPinCode(length: number = 6): string {
   let pin = '';

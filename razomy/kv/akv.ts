@@ -1,4 +1,4 @@
-import * as kv from "@razomy/kv";
+import * as kv from '@razomy/kv';
 
 /** Array key recursive value */
 export class Akv<KT, VT> extends Array<kv.KeyValuable<KT, VT>> {

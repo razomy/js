@@ -1,6 +1,6 @@
 import type { VrdOrValue } from './vrd';
-import * as exceptions from "@razomy/exceptions";
-import * as dict from "@razomy/dict";
+import * as exceptions from '@razomy/exceptions';
+import * as dict from '@razomy/dict';
 
 export function getVrd<T>(valueRecursive: VrdOrValue<T>, path: dict.DictKey[], pathOffset: number): VrdOrValue<T> {
   for (let key in valueRecursive!) {

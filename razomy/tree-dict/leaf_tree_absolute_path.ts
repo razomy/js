@@ -1,5 +1,5 @@
-import * as treeDict from "@razomy/tree-dict";
-import * as abstracts from "@razomy/abstracts";
+import * as treeDict from '@razomy/tree-dict';
+import * as abstracts from '@razomy/abstracts';
 
 export interface WithAbsolutePath {
   absolutePath: abstracts.graphs.AbsolutePathString;

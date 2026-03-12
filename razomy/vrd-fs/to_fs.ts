@@ -1,7 +1,7 @@
 import * as path from 'path';
 import fs from 'fs';
-import * as fsDirectory from "@razomy/fs-directory";
-import * as vrd from "@razomy/vrd";
+import * as fsDirectory from '@razomy/fs-directory';
+import * as vrd from '@razomy/vrd';
 
 export function toFs(absolutePath: string, dict: vrd.VrdOrValue<Buffer>) {
   if (vrd.isVrd(dict)) {

@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as numberString from "@razomy/number-string";
-import * as shell from "@razomy/shell";
-import * as fsFile from "@razomy/fs-file";
+import * as numberString from '@razomy/number-string';
+import * as shell from '@razomy/shell';
+import * as fsFile from '@razomy/fs-file';
 
 export async function exportFiles(baseDir) {
   baseDir = path.resolve(baseDir);

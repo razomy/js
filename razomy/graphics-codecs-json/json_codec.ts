@@ -1,12 +1,13 @@
-import * as exceptions from "@razomy/exceptions";
-import * as abstracts from "@razomy/abstracts";
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as resources from "@razomy/resources";
-import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
-import * as graphicsElements from "@razomy/graphics-elements";
+import * as exceptions from '@razomy/exceptions';
+import * as abstracts from '@razomy/abstracts';
+import * as object_ from '@razomy/object';
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as resources from '@razomy/resources';
+import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
+import * as graphicsElements from '@razomy/graphics-elements';
 
 export interface JsonObject {
-  objectResource: abstracts.domains.IObject;
+  objectResource: object_.IObject;
 }
 
 export interface JsonSizeResource {
@@ -63,7 +64,8 @@ export class JsonCodec implements abstracts.patterns.Codec<graphicsElements.Elem
 
   constructor() {
     const codecConfig: graphicsCodecsWebSvgCodecs.CodecConfig = new graphicsCodecsWebSvgCodecs.CodecConfig();
-    const encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory = new graphicsCodecsWebSvgCodecs.EncodeNodeFactory(codecConfig);
+    const encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory =
+      new graphicsCodecsWebSvgCodecs.EncodeNodeFactory(codecConfig);
     this.codecFactory = new graphicsCodecsWebSvgCodecs.CodecFactory(encodeNodeFactory);
   }
 

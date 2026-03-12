@@ -1,5 +1,5 @@
-import * as offset from "@razomy/offset";
-import * as token from "@razomy/token";
+import * as offset from '@razomy/offset';
+import * as token from '@razomy/token';
 
 export interface WithDeep {
   deep: number;

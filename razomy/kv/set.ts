@@ -1,4 +1,4 @@
-import * as kv from "@razomy/kv";
+import * as kv from '@razomy/kv';
 
 export function set<T>(value: kv.ArrayOrKeyValuable<T, T>, path: T[], newValue: kv.Valuable<T, T>): void {
   const parentPath = path.slice(0, -1);

@@ -84,11 +84,9 @@
   "name": "@razomy/tree-dict",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/abstracts/patterns": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
-    "@razomy/key": "*",
-    "@razomy/tree": "*"
+    "@razomy/key": "*"
   },
   "publishConfig": {
     "access": "public"

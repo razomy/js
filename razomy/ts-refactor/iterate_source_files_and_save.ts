@@ -1,12 +1,15 @@
 import { Project, SourceFile } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export interface IterateSourceFileState {
   project: Project;
   sourceFile: SourceFile;
 }
 
-export async function iterateSourceFilesAndSave(projectPath: String, action: abstracts.functions.Action<IterateSourceFileState>) {
+export async function iterateSourceFilesAndSave(
+  projectPath: String,
+  action: abstracts.functions.Action<IterateSourceFileState>,
+) {
   const project = new Project({
     tsConfigFilePath: projectPath + 'tsconfig.json',
     skipAddingFilesFromTsConfig: false,

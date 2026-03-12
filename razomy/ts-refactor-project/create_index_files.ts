@@ -1,8 +1,8 @@
 import { Project, SourceFile, SyntaxKind } from 'ts-morph';
 import * as fsFile from '@razomy/fs-file';
 import * as path from 'path';
-import * as tsRefactor from "@razomy/ts-refactor";
-import * as stringCase from "@razomy/string-case";
+import * as tsRefactor from '@razomy/ts-refactor';
+import * as stringCase from '@razomy/string-case';
 
 // Типы платформ
 type Platform = 'universal' | 'node' | 'browser' | 'remote';

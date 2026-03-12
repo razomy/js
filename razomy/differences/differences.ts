@@ -1,6 +1,6 @@
-import * as shell from "@razomy/shell";
-import * as difference from "@razomy/difference";
-import * as index from "@razomy/index";
+import * as shell from '@razomy/shell';
+import * as difference from '@razomy/difference';
+import * as index from '@razomy/index';
 
 /** a was, b become */
 export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {

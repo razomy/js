@@ -79,7 +79,7 @@
   "module": "./index.ts",
   "name": "@razomy/pipes",
   "peerDependencies": {
-    "@razomy/abstracts/codes": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

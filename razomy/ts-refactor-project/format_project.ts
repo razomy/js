@@ -1,10 +1,10 @@
-import { convertLambdasToNamedFunctions } from './replace_lambda_to_named_functions';
+import { convertLambdasToNamedFunctions } from './convert_lambdas_to_named_functions';
 import { createIndexFiles } from './create_index_files';
 import { addDependencies, createAtChildDirs, createRoot, updateByTemplate } from './package_json';
 import { renameFiles } from './rename_files';
 import { fixBrokenImportsAndExports } from './fix_broken_imports_and_exports';
-import * as main from "@razomy/main";
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as main from '@razomy/main';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function formatProject(projectPath: string, prefix: string) {
   console.info('renameFiles.start');

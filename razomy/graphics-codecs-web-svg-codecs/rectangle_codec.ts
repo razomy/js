@@ -1,9 +1,9 @@
-import * as abstracts from "@razomy/abstracts";
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as graphicsStyles from "@razomy/graphics-styles";
-import * as graphicsShapes from "@razomy/graphics-shapes";
-import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
-import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as abstracts from '@razomy/abstracts';
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as graphicsStyles from '@razomy/graphics-styles';
+import * as graphicsShapes from '@razomy/graphics-shapes';
+import * as graphicsCodecsWebSvgColor from '@razomy/graphics-codecs-web-svg-color';
+import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
 
 export class RectangleCodec implements abstracts.patterns.Codec<graphicsShapes.RectangleShape, SVGRectElement> {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
@@ -14,8 +14,14 @@ export class RectangleCodec implements abstracts.patterns.Codec<graphicsShapes.R
     el.setAttribute('y', node.getBy(graphicsAttributes.PositionAttribute).y + '');
     el.setAttribute('width', node.getBy(graphicsAttributes.SizeAttribute).width + '');
     el.setAttribute('height', node.getBy(graphicsAttributes.SizeAttribute).height + '');
-    el.setAttribute('fill', graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.FillStyle).color.getSource()));
-    el.setAttribute('stroke', graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.BorderStyle).color.getSource()));
+    el.setAttribute(
+      'fill',
+      graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.FillStyle).color.getSource()),
+    );
+    el.setAttribute(
+      'stroke',
+      graphicsCodecsWebSvgColor.HexParser.toHex(node.getBy(graphicsStyles.BorderStyle).color.getSource()),
+    );
     el.setAttribute('stroke-width', node.getBy(graphicsStyles.BorderStyle).width + '');
     el.setAttribute('rx', node.getBy(graphicsShapes.RectangleRoundStyle).bottomRight + '');
     el.setAttribute('ry', node.getBy(graphicsShapes.RectangleRoundStyle).bottomRight + '');
@@ -40,7 +46,11 @@ export class RectangleCodec implements abstracts.patterns.Codec<graphicsShapes.R
     // Todo: ELement view
     // ResourceCollection
 
-    rectangleShape.replace(new graphicsStyles.FillStyle(graphicsCodecsWebSvgColor.ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000')));
+    rectangleShape.replace(
+      new graphicsStyles.FillStyle(
+        graphicsCodecsWebSvgColor.ColorCodex.tryParsingColor(value.getAttribute('fill') || '#000'),
+      ),
+    );
 
     rectangleShape.replace(
       new graphicsStyles.BorderStyle(

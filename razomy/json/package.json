@@ -78,7 +78,7 @@
   "module": "./index.ts",
   "name": "@razomy/json",
   "peerDependencies": {
-    "@razomy/abstracts/patterns": "*",
+    "@razomy/abstracts": "*",
     "@razomy/array": "*",
     "@razomy/context": "*",
     "@razomy/dict-recursive": "*",
@@ -91,8 +91,7 @@
     "@razomy/serializable": "*",
     "@razomy/token": "*",
     "@razomy/token-offset": "*",
-    "@razomy/token-offset-deep": "*",
-    "@razomy/value": "*"
+    "@razomy/token-offset-deep": "*"
   },
   "publishConfig": {
     "access": "public"

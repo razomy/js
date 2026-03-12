@@ -1,5 +1,5 @@
-import * as object_ from "@razomy/object";
-import * as dictRecursive from "@razomy/dict-recursive";
+import * as object_ from '@razomy/object';
+import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
  * @summary Deep merge multiple recursive dictionaries into a target.
@@ -22,7 +22,10 @@ import * as dictRecursive from "@razomy/dict-recursive";
  * @complexity time O(n) where n is total number of keys across all sources
  * @complexity memory O(d) where d is the maximum nesting depth (recursion stack)
  */
-export function mergeDeepMut<T extends dictRecursive.DictRecursive>(target: T, ...sources: dictRecursive.DictRecursive[]): T {
+export function mergeDeepMut<T extends dictRecursive.DictRecursive>(
+  target: T,
+  ...sources: dictRecursive.DictRecursive[]
+): T {
   for (const source of sources) {
     if (!object_.isObject(source)) continue;
 

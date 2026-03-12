@@ -1,8 +1,8 @@
 import path from 'node:path';
-import * as shell from "@razomy/shell";
-import * as main from "@razomy/main";
-import * as tsRefactorProject from "@razomy/ts-refactor-project";
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as shell from '@razomy/shell';
+import * as main from '@razomy/main';
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 // import * as fs from '@razomy/fs-file';
 
@@ -21,22 +21,24 @@ export async function publish(path_: string) {
 }
 
 main.ifMain(import.meta.url, () => {
-  // publish('../string-case');
-  // publish('../array');
-  // publish('../exceptions');
-  // publish('../string');
-  // publish('../random');
-  // publish('../dict');
-  // publish('../dict-recursive');
+  publish('../abstracts');
+  publish('../string-case');
+  publish('../array');
+  publish('../exceptions');
+  publish('../string');
+  publish('../random');
+  publish('../dict');
+  publish('../dict-recursive');
+  publish('../fs-file-format');
+  publish('../images');
+  publish('../videos');
+  publish('../audios');
+  publish('../schema');
+  publish('../schemas');
+  publish('../nuxt');
+  // publish('../main');
   // publish('../json');
   // publish('../tree');
   // publish('../async');
-  // publish('../fs-file-format');
-  // publish('../images');
-  // publish('../videos');
-  // publish('../audios');
-  // publish('../schema');
-  // publish('../schemas');
   // publish('../pipes');
-  // publish('../nuxt');
 });

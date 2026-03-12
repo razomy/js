@@ -1,7 +1,7 @@
-import * as graphicsElements from "@razomy/graphics-elements";
-import * as graphicsCodecsWebSvgRenders from "@razomy/graphics-codecs-web-svg-renders";
-import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
-import * as graphicsRenderes from "@razomy/graphics-renderes";
+import * as graphicsElements from '@razomy/graphics-elements';
+import * as graphicsCodecsWebSvgRenders from '@razomy/graphics-codecs-web-svg-renders';
+import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
+import * as graphicsRenderes from '@razomy/graphics-renderes';
 
 export class WebSvgRender extends graphicsRenderes.Render<graphicsElements.ElementView> {
   constructor(

@@ -1,4 +1,4 @@
-import * as index from "@razomy/index";
+import * as index from '@razomy/index';
 
 describe(`index`, () => {
   describe(index.lastIndex.name, () => {

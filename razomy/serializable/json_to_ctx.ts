@@ -1,5 +1,5 @@
 import type { Ctx } from './ctx';
-import * as serializable from "@razomy/serializable";
+import * as serializable from '@razomy/serializable';
 
 export function jsonToCtx<T extends Ctx>(ctx: T, data: { [key: string]: serializable.Serializable }): T {
   for (const [k, v] of Object.entries(data)) {

@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 export function shuffleArray<T>(array: readonly T[]): T[] {
   const result: T[] = [...array];

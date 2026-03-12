@@ -1,7 +1,7 @@
 import { vrd, type VrdOrValue } from './vrd';
 import type { P } from './differences_vrd';
 import { differencesDict } from './differences_dict';
-import * as equal from "@razomy/equal";
+import * as equal from '@razomy/equal';
 
 export function test() {
   const specs: [any, VrdOrValue<any>, VrdOrValue<any>, P<any>[]][] = [

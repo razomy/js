@@ -5,7 +5,7 @@ import { createDistSpecifications } from './create_dist_specifications';
 import { createPackageReadme } from './create_package_readme';
 import { getExportedFunctions } from './get_exported_functions';
 import { getFilteredSourceFiles } from './get_filtered_source_files';
-import * as stringCase from "@razomy/string-case";
+import * as stringCase from '@razomy/string-case';
 
 export async function createReadmeAndSpecifications(dirPath) {
   const project = new Project({ tsConfigFilePath: '../../' + 'tsconfig.json' });

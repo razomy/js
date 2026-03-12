@@ -1,4 +1,4 @@
-import * as graphicsElements from "@razomy/graphics-elements";
+import * as graphicsElements from '@razomy/graphics-elements';
 
 export class ShapeElement extends graphicsElements.ElementView {}
 

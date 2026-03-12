@@ -3,7 +3,7 @@ import * as stringCase from '@razomy/string-case';
 import * as array from '@razomy/array';
 import * as dict from '@razomy/dict';
 import * as object from '@razomy/object';
-import * as pipes from "@razomy/pipes";
+import * as pipes from '@razomy/pipes';
 
 declare module '@razomy/pipes' {
   interface StringChainMethods extends pipes.Chainable<typeof string>, pipes.Chainable<typeof stringCase> {}

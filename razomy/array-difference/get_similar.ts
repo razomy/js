@@ -1,15 +1,15 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 export function getSimilar(str: string, items: any[]): string | null {
   let bestMatch: string | null = null;
   let bestSimilarity = 0;
 
   items.forEach((newItem) => {
-    const similarity_ = string.similarity(str, newItem);
-    if (similarity_ > bestSimilarity && similarity_ >= 0.5) {
+    const similarity = string.similarity(str, newItem);
+    if (similarity > bestSimilarity && similarity >= 0.5) {
       // Adjust threshold
       bestMatch = newItem;
-      bestSimilarity = similarity_;
+      bestSimilarity = similarity;
     }
   });
 

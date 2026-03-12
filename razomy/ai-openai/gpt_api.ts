@@ -1,7 +1,7 @@
 import { gptApiV2 } from './gpt_api_v_2';
 import { setTokens } from './set_tokens';
-import * as object from "@razomy/object";
-import * as string from "@razomy/string";
+import * as object from '@razomy/object';
+import * as string from '@razomy/string';
 
 export async function gptApi(messageOrMessagesOrRequest) {
   if (string.isString(messageOrMessagesOrRequest)) {

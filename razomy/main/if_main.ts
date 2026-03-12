@@ -1,9 +1,12 @@
 import { isMain } from './is_main';
-import * as dates from "@razomy/dates";
-import * as async from "@razomy/async";
-import * as abstracts from "@razomy/abstracts";
+import * as dates from '@razomy/dates';
+import * as async from '@razomy/async';
+import * as abstracts from '@razomy/abstracts';
 
-export async function ifMain(importMetaUrlOrModulePath: string, callback: abstracts.functions.Callback | abstracts.functions.AsyncCallback) {
+export async function ifMain(
+  importMetaUrlOrModulePath: string,
+  callback: abstracts.functions.Callback | abstracts.functions.AsyncCallback,
+) {
   const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();
   try {

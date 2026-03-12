@@ -1,5 +1,5 @@
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as graphicsCodecsWebSvgColor from '@razomy/graphics-codecs-web-svg-color';
 
 export class BorderStyle extends graphicsAttributes.StyleAttribute {
   public color: graphicsCodecsWebSvgColor.Color;

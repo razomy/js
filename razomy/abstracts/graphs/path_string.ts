@@ -1,6 +1,4 @@
-import * as kv from "@razomy/kv";
-
-export type Slug = kv.Key<string>;
+export type Slug = string;
 export type AbsolutePathString = Slug;
 export type RelativePathString = Slug;
 export type PathString = AbsolutePathString | RelativePathString;

@@ -74,8 +74,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-codecs-json",
   "peerDependencies": {
-    "@razomy/abstracts/domains": "*",
-    "@razomy/abstracts/patterns": "*",
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-codecs-web-svg-codecs": "*",

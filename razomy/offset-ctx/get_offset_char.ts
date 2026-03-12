@@ -1,5 +1,5 @@
-import * as offset from "@razomy/offset";
-import * as string from "@razomy/string";
+import * as offset from '@razomy/offset';
+import * as string from '@razomy/string';
 
 export function getOffsetChar(ctx: string.WithString & offset.WithOffset) {
   return ctx.string[ctx.offset];

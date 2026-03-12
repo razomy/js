@@ -1,7 +1,10 @@
-import * as strings from "@razomy/strings";
-import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
+import * as strings from '@razomy/strings';
+import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
 
-export function stringsToDeltaStrings(getPreviousContent: string, getCurrentContent: string): commitDatetimeDeltaString.DeltaString[] {
+export function stringsToDeltaStrings(
+  getPreviousContent: string,
+  getCurrentContent: string,
+): commitDatetimeDeltaString.DeltaString[] {
   const diffResult = strings.differencesString(getPreviousContent, getCurrentContent);
 
   const changes: commitDatetimeDeltaString.DeltaString[] = [];

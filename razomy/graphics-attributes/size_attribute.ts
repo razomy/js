@@ -1,5 +1,5 @@
-import * as resources from "@razomy/resources";
-import * as exceptions from "@razomy/exceptions";
+import * as resources from '@razomy/resources';
+import * as exceptions from '@razomy/exceptions';
 
 export interface ISizeResource {
   height: number;

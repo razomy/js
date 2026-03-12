@@ -1,7 +1,7 @@
 import { isAkv } from './is_akv';
 import { akv } from './akv';
-import * as kv from "@razomy/kv";
-import * as function_ from "@razomy/function";
+import * as kv from '@razomy/kv';
+import * as function_ from '@razomy/function';
 
 export function map<IV, OV>(input: kv.Value<IV>, mapCb: function_.Function<[kv.Value<IV>], kv.Value<OV>>): kv.Value<OV>;
 export function map<K, IV, OV>(

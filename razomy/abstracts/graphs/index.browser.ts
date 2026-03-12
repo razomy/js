@@ -1,3 +1,4 @@
+export { type EdgeListGraph } from './edge_list_graph';
 export { type Graph, type GraphAdjacencyMatrix, type GraphAdjacencyList } from './grapths';
 export { type Leaf } from './leaf';
 export {

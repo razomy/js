@@ -1,6 +1,6 @@
-import * as context from "@razomy/context";
-import * as offset from "@razomy/offset";
-import * as resultNull from "@razomy/result-null";
+import * as context from '@razomy/context';
+import * as offset from '@razomy/offset';
+import * as resultNull from '@razomy/result-null';
 
 export function tryAll<
   C extends context.Context & offset.WithOffset,

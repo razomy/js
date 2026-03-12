@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as fsFile from "@razomy/fs-file";
+import * as fsFile from '@razomy/fs-file';
 
 export function createAtChildDirs(projectPath: string, prefix) {
   const rootDir: string = path.resolve(projectPath);

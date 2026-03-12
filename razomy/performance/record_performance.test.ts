@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { recordPerformance } from './record_performance';
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 // Mock function that uses CPU time AND allocates memory
 async function alternatingCaseAndHeavyMemoryAsync(str: string): Promise<string> {

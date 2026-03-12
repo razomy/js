@@ -1,7 +1,7 @@
 import fs from 'fs';
 import * as path from 'path';
-import * as exceptions from "@razomy/exceptions";
-import * as vrd from "@razomy/vrd";
+import * as exceptions from '@razomy/exceptions';
+import * as vrd from '@razomy/vrd';
 
 export function toVrd(directory: string, isSkip: (path) => boolean): vrd.VrdOrValue<Buffer> {
   const stat = fs.statSync(directory);

@@ -1,4 +1,4 @@
-import * as treeList from "@razomy/tree-list";
+import * as treeList from '@razomy/tree-list';
 
 export function iterate<T extends treeList.WithChildrenList<any>>(node: T, cb: (node: T) => void) {
   cb(node);

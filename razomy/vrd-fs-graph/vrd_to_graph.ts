@@ -1,9 +1,9 @@
 import { iterateChildren } from './iterate_children';
-import * as abstracts from "@razomy/abstracts";
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
+import * as abstracts from '@razomy/abstracts';
 
-export function vrdToGraph<T, I extends vrd.VrdOrValue<T>>(input: I): abstracts.domains.EdgeListGraph<I> {
-  const graph: abstracts.domains.EdgeListGraph<I> = {
+export function vrdToGraph<T, I extends vrd.VrdOrValue<T>>(input: I): abstracts.graphs.EdgeListGraph<I> {
+  const graph: abstracts.graphs.EdgeListGraph<I> = {
     nodes: [],
     edges: [],
   };

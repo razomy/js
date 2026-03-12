@@ -71,7 +71,7 @@
   "module": "./index.ts",
   "name": "@razomy/resources",
   "peerDependencies": {
-    "@razomy/abstracts/codes": "*",
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/object": "*"
   },

@@ -1,6 +1,6 @@
 import { Project } from 'ts-morph';
-import * as fsFile from "@razomy/fs-file";
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as fsFile from '@razomy/fs-file';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function renameFiles(projectPath: string) {
   const project = new Project({

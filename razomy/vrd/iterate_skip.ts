@@ -1,5 +1,5 @@
 import { type Iterate, IterateBreaks, iterateVrd } from './iterate_vrd';
-import * as pipesBooleans from "@razomy/pipes-booleans";
+import * as pipesBooleans from '@razomy/pipes-booleans';
 
 export function iterateSkip<T, C extends Iterate<T>>(
   ctx: C,

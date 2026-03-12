@@ -1,4 +1,4 @@
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 export interface FunctionSpecification {
   name: string;

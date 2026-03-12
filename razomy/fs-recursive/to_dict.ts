@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as path from 'path';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function toDict(dirPath: abstracts.graphs.DirPathString) {
   let files: string[] = [];

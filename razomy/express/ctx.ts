@@ -1,7 +1,7 @@
 import winston from 'winston';
 import type { Express } from 'express';
-import * as googleAuth from "@razomy/google-auth";
-import * as server from "@razomy/server";
+import * as googleAuth from '@razomy/google-auth';
+import * as server from '@razomy/server';
 
 export interface Ctx extends server.WithServer, server.WithUrl {
   isProdSecure: boolean;

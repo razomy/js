@@ -1,4 +1,4 @@
-import * as taskAsync from "@razomy/task-async";
+import * as taskAsync from '@razomy/task-async';
 
 interface AsyncTaskListState<C extends taskAsync.Context> {
   startedTaskIndex: number;

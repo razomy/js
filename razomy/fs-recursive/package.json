@@ -76,7 +76,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-recursive",
   "peerDependencies": {
-    "@razomy/abstracts/graphs": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

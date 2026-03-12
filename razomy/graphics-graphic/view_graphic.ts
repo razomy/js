@@ -1,4 +1,4 @@
-import * as graphicsGraphic from "@razomy/graphics-graphic";
+import * as graphicsGraphic from '@razomy/graphics-graphic';
 
 export interface IViewGraphic {}
 

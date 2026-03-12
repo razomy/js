@@ -1,5 +1,5 @@
 import { firstKey } from './first_key';
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
 describe('dict', () => {
   describe('firstKey', () => {

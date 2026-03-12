@@ -1,6 +1,6 @@
 import { isMacDsStoreKey } from './is_mac_ds_store_key';
-import * as exceptions from "@razomy/exceptions";
-import * as abstracts from "@razomy/abstracts";
+import * as exceptions from '@razomy/exceptions';
+import * as abstracts from '@razomy/abstracts';
 
 export const pythonDependencies = ['.venv'];
 export const nodejsDependencies = ['node_modules'];

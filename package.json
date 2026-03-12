@@ -16,13 +16,8 @@
   "packageManager": "npm@11.5.1",
   "private": true,
   "scripts": {
-    "init": "npm install",
-    "build:tsc": "tsc --project tsconfig.json",
-    "dev": "tsc --project tsconfig.json --watch",
-    "build": "npm run build --workspaces && tsdown ./index.ts",
-    "deploy:local": "npm run build && npm uninstall -g razomy && npm i -g .",
-    "lint": "node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js",
-    "format": "prettier --write .",
+    "format": "tsx razomy/ts-refactor-project/format_project.ts && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js && prettier --write .",
+    "build": "tsc --project tsconfig.json",
     "test": "jest . --coverage --collectCoverageFrom='razomy/**/*.{js,jsx,ts,tsx,vue}'",
     "release": "tsx razomy/npm/publish.ts"
   },
@@ -47,7 +42,6 @@
     "./razomy/buffer-string",
     "./razomy/char",
     "./razomy/cli",
-    "./razomy/cli-bin",
     "./razomy/cluster",
     "./razomy/commit",
     "./razomy/commit-datetime",

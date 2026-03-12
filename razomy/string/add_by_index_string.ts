@@ -1,5 +1,5 @@
-import * as string from "@razomy/string";
-import * as abstracts from "@razomy/abstracts";
+import * as string from '@razomy/string';
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Insert a string into another string at a specific index.

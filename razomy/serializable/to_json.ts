@@ -1,9 +1,9 @@
 import { dictToJson } from './dict_to_json';
 
 import { arrayToJson } from './array_to_json';
-import * as serializable from "@razomy/serializable";
-import * as json from "@razomy/json";
-import * as exceptions from "@razomy/exceptions";
+import * as serializable from '@razomy/serializable';
+import * as json from '@razomy/json';
+import * as exceptions from '@razomy/exceptions';
 
 export function toJson(serializable: serializable.Serializable): json.Json {
   if (serializable === null) {

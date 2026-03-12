@@ -1,11 +1,15 @@
-import * as graphicsCodecsWebCanvasRenders from "@razomy/graphics-codecs-web-canvas-renders";
-import * as graphicsGraphic from "@razomy/graphics-graphic";
-import * as graphicsAttributes from "@razomy/graphics-attributes";
-import * as graphicsElements from "@razomy/graphics-elements";
-import * as graphicsShapes from "@razomy/graphics-shapes";
+import * as graphicsCodecsWebCanvasRenders from '@razomy/graphics-codecs-web-canvas-renders';
+import * as graphicsGraphic from '@razomy/graphics-graphic';
+import * as graphicsAttributes from '@razomy/graphics-attributes';
+import * as graphicsElements from '@razomy/graphics-elements';
+import * as graphicsShapes from '@razomy/graphics-shapes';
 
 export class WebCanvasHighLightsRender {
-  constructor(public user: graphicsGraphic.UserEntity, public ctx: CanvasRenderingContext2D, public codecFactory: graphicsCodecsWebCanvasRenders.RenderFactory) {}
+  constructor(
+    public user: graphicsGraphic.UserEntity,
+    public ctx: CanvasRenderingContext2D,
+    public codecFactory: graphicsCodecsWebCanvasRenders.RenderFactory,
+  ) {}
 
   public render(view: graphicsElements.ElementView): void {
     this.iterate(view);

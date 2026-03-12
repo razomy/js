@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 export function pickItem<T>(array: readonly T[]): T {
   if (array.length === 0) {

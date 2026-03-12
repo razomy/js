@@ -1,5 +1,5 @@
-import * as dict_ from "@razomy/dict";
-import * as object_ from "@razomy/object";
+import * as dict_ from '@razomy/dict';
+import * as object_ from '@razomy/object';
 
 /**
  * @summary Recursively find all paths in a nested dict that contain the specified keys.

@@ -1,4 +1,4 @@
-import * as vueResource from "@razomy/vue-resource";
+import * as vueResource from '@razomy/vue-resource';
 
 export const reactiveDirective = {
   mounted(el, binding, vnode) {

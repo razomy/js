@@ -1,4 +1,4 @@
-import * as graphicsAttributes from "@razomy/graphics-attributes";
+import * as graphicsAttributes from '@razomy/graphics-attributes';
 
 export class RectangleRoundStyle extends graphicsAttributes.StyleAttribute {
   public topLeft: number;

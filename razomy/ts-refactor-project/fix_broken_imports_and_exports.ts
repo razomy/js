@@ -1,5 +1,5 @@
 import { ExportDeclaration, ImportDeclaration, Project, SourceFile } from 'ts-morph';
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 /**
  * Index of all exported symbols in the project.

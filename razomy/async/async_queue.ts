@@ -1,4 +1,4 @@
-import * as logging from "@razomy/logging";
+import * as logging from '@razomy/logging';
 
 export class AsyncQueue {
   private isProcessing = false;

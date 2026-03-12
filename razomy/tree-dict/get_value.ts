@@ -1,6 +1,6 @@
 import { get } from './get';
-import * as exceptions from "@razomy/exceptions";
-import * as treeDict from "@razomy/tree-dict";
+import * as exceptions from '@razomy/exceptions';
+import * as treeDict from '@razomy/tree-dict';
 
 export function getValue<T extends treeDict.WithChildrenDict<T>>(value: T, path: string[], offset: number) {
   for (let key in value.children) {

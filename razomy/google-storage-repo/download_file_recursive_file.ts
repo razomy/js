@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { downloadFile } from './download_file';
 import { uploadFile } from './upload_file';
-import * as fsDirectory from "@razomy/fs-directory";
+import * as fsDirectory from '@razomy/fs-directory';
 
 export async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');

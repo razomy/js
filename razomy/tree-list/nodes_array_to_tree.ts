@@ -1,4 +1,4 @@
-import * as treeList from "@razomy/tree-list";
+import * as treeList from '@razomy/tree-list';
 
 export function nodesArrayToTree(nodes: string[], leafs: string[]) {
   let allItems = [

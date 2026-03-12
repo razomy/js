@@ -1,5 +1,5 @@
-import * as fsFile from "@razomy/fs-file";
-import * as shell from "@razomy/shell";
+import * as fsFile from '@razomy/fs-file';
+import * as shell from '@razomy/shell';
 
 export async function init(dirPath: string, fileName: string) {
   await shell.execute('git init && git config gc.auto 0', dirPath);

@@ -1,4 +1,4 @@
-import * as treeList from "@razomy/tree-list";
+import * as treeList from '@razomy/tree-list';
 
 export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
   // We use a virtual root to simplify traversal logic

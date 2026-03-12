@@ -1,7 +1,7 @@
 import { getRecursiveStatus } from './get_recursive_status';
 import { execSync } from 'node:child_process';
-import * as treeList from "@razomy/tree-list";
-import * as abstracts from "@razomy/abstracts";
+import * as treeList from '@razomy/tree-list';
+import * as abstracts from '@razomy/abstracts';
 
 export function restore(sourcePath: abstracts.graphs.SourcePathString) {
   const { files, repos } = getRecursiveStatus(sourcePath);

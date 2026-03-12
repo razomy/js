@@ -1,4 +1,4 @@
-import * as aiOpenai from "@razomy/ai-openai";
+import * as aiOpenai from '@razomy/ai-openai';
 
 export class Chat {
   constructor(private ctx: aiOpenai.WithOpenAiCtx) {}

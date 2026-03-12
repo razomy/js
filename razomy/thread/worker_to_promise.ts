@@ -1,5 +1,5 @@
 import type { Worker } from 'worker_threads';
-import * as cluster from "@razomy/cluster";
+import * as cluster from '@razomy/cluster';
 
 export function workerToPromise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {

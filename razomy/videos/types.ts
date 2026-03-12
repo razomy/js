@@ -1,5 +1,5 @@
-import * as fsFileFormat from "@razomy/fs-file-format";
-import * as audios from "@razomy/audios";
+import * as fsFileFormat from '@razomy/fs-file-format';
+import * as audios from '@razomy/audios';
 
 // Списки целевых форматов (куда мы можем кодировать)
 // Внимание: кодировать В realmedia (.rm) или swf ffmpeg делает плохо, поэтому их лучше оставить только на вход.

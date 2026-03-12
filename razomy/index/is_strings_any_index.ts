@@ -1,6 +1,6 @@
-import * as string from "@razomy/string";
-import * as offset from "@razomy/offset";
-import * as index from "@razomy/index";
+import * as string from '@razomy/string';
+import * as offset from '@razomy/offset';
+import * as index from '@razomy/index';
 
 export function isStringsAnyIndex(
   string: string.String,

@@ -1,5 +1,5 @@
-import * as graphicsGraphic from "@razomy/graphics-graphic";
-import * as resources from "@razomy/resources";
+import * as graphicsGraphic from '@razomy/graphics-graphic';
+import * as resources from '@razomy/resources';
 
 export class UserEntity extends resources.EntityResource {
   constructor() {

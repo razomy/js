@@ -74,11 +74,11 @@
   "module": "./index.ts",
   "name": "@razomy/token-offset",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/context": "*",
     "@razomy/offset": "*",
     "@razomy/result-null": "*",
-    "@razomy/token": "*",
-    "@razomy/value": "*"
+    "@razomy/token": "*"
   },
   "publishConfig": {
     "access": "public"

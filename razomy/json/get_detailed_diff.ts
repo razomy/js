@@ -1,5 +1,5 @@
-import * as dictRecursive from "@razomy/dict-recursive";
-import * as object_ from "@razomy/object";
+import * as dictRecursive from '@razomy/dict-recursive';
+import * as object_ from '@razomy/object';
 
 export type DiffCreated = { type: 'CREATED'; newValue: any };
 export type DiffDeleted = { type: 'DELETED'; oldValue: any };

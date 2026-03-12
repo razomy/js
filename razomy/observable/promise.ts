@@ -1,4 +1,4 @@
-import * as observable from "@razomy/observable";
+import * as observable from '@razomy/observable';
 
 export function promise<T>(observable: observable.Observable<T>) {
   return new Promise<T>((resolve, reject) => {

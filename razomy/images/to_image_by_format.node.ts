@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import sharp from 'sharp';
 import { images, type OnlyReadImageFileExtensionType, type ReadAndWriteImageFileExtensionType } from './types';
-import * as fsFileFormat from "@razomy/fs-file-format";
+import * as fsFileFormat from '@razomy/fs-file-format';
 
 // --- SHARP (Images) ---
 export async function toImageByFormat(

@@ -1,12 +1,10 @@
 import { Node, Project } from 'ts-morph';
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as tsRefactor from '@razomy/ts-refactor';
 
-export async function refactorRazomyImports(projectPath: string) {
+export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
   // Убедитесь, что путь к tsconfig прописан корректно
-  const tsConfigPath = projectPath.endsWith('/')
-    ? projectPath + 'tsconfig.json'
-    : projectPath + '/tsconfig.json';
+  const tsConfigPath = projectPath.endsWith('/') ? projectPath + 'tsconfig.json' : projectPath + '/tsconfig.json';
 
   const project = new Project({
     tsConfigFilePath: tsConfigPath,
@@ -40,14 +38,14 @@ export async function refactorRazomyImports(projectPath: string) {
         const pathParts = pathWithoutPrefix.split('/');
 
         // Извлекаем корневой пакет и подпути
-        const rootPkg = pathParts[0];             // "array-recursive"
-        const subpaths = pathParts.slice(1);      // ["dict"]
+        const rootPkg = pathParts[0]; // "array-recursive"
+        const subpaths = pathParts.slice(1); // ["dict"]
 
         // Формируем новый импорт.
         // Прим: в вашем примере 'array-recusive' почему-то маппится в 'array',
         // но для безопасности скрипт берет реальное имя пакета ('array-recusive' -> '@razomy/array-recusive')
         const newModuleSpecifier = `@razomy/${rootPkg}`;
-        const aliasName = tsRefactor.toSafeName(rootPkg);   // "arrayRecursive"
+        const aliasName = tsRefactor.toSafeName(rootPkg); // "arrayRecursive"
 
         namespacesToAdd.set(newModuleSpecifier, aliasName);
 
@@ -63,10 +61,7 @@ export async function refactorRazomyImports(projectPath: string) {
 
           // Фильтруем ссылки: только в текущем файле и исключаем сам блок import {...}
           const localRefs = references.filter(
-            (ref) =>
-              ref.getSourceFile() === file &&
-              ref !== named.getNameNode() &&
-              ref !== aliasNode
+            (ref) => ref.getSourceFile() === file && ref !== named.getNameNode() && ref !== aliasNode,
           );
 
           // ВАЖНО: Сортируем с конца файла в начало, чтобы при замене текста
@@ -101,9 +96,7 @@ export async function refactorRazomyImports(projectPath: string) {
         // Добавляем сгруппированные namespace-импорты в файл
         for (const [modSpec, alias] of namespacesToAdd.entries()) {
           // Проверяем, не был ли он добавлен ранее или существует в файле
-          const existingImport = file.getImportDeclaration(
-            (decl) => decl.getModuleSpecifierValue() === modSpec
-          );
+          const existingImport = file.getImportDeclaration((decl) => decl.getModuleSpecifierValue() === modSpec);
 
           if (existingImport) {
             // Если импорт есть, но у него нет namespace, добавляем
@@ -120,7 +113,7 @@ export async function refactorRazomyImports(projectPath: string) {
           console.log(`    -> Добавлен импорт: import * as ${alias} from '${modSpec}'`);
         }
       }
-    }catch (e) {
+    } catch (e) {
       console.log(e, file.getFilePath());
     }
   }
@@ -130,4 +123,4 @@ export async function refactorRazomyImports(projectPath: string) {
   console.log('Готово!');
 }
 
-refactorRazomyImports('../../')
+replaceInjectImportWithDefaultImport('../../');

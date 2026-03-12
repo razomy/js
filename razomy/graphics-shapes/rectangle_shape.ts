@@ -1,5 +1,5 @@
-import * as graphicsStyles from "@razomy/graphics-styles";
-import * as graphicsShapes from "@razomy/graphics-shapes";
+import * as graphicsStyles from '@razomy/graphics-styles';
+import * as graphicsShapes from '@razomy/graphics-shapes';
 
 export interface IRectangleShape {}
 

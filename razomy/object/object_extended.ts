@@ -1,7 +1,7 @@
-import * as abstracts from "@razomy/abstracts";
-import * as random from "@razomy/random";
+import * as object_ from '@razomy/object';
+import * as random from '@razomy/random';
 
-export abstract class ObjectExtended implements abstracts.domains.IObject {
+export abstract class ObjectExtended implements object_.IObject {
   public readonly id: string = new random.GuidFactory().create();
 
   public static get type() {

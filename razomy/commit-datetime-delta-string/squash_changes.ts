@@ -1,6 +1,8 @@
-import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
+import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
 
-export function squashChanges(changes: commitDatetimeDeltaString.DeltaString[]): commitDatetimeDeltaString.DeltaString[] {
+export function squashChanges(
+  changes: commitDatetimeDeltaString.DeltaString[],
+): commitDatetimeDeltaString.DeltaString[] {
   if (changes.length === 0) {
     return [];
   }

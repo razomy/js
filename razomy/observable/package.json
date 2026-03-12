@@ -73,7 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/observable",
   "peerDependencies": {
-    "@razomy/abstracts/functions": "*",
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*"
   },
   "publishConfig": {

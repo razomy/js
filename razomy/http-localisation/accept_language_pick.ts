@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 export function acceptLanguagePick(supportedLanguages, acceptLanguage, options) {
   options = options || {};

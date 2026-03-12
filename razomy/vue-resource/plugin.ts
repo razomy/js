@@ -1,6 +1,6 @@
-import * as vueResource from "@razomy/vue-resource";
-import * as socketWeb from "@razomy/socket-web";
-import * as server from "@razomy/server";
+import * as vueResource from '@razomy/vue-resource';
+import * as socketWeb from '@razomy/socket-web';
+import * as server from '@razomy/server';
 
 declare global {
   interface razomy extends socketWeb.WithWebsocket, server.WithUrl {

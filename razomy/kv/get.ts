@@ -1,5 +1,5 @@
-import * as exceptions from "@razomy/exceptions";
-import * as kv from "@razomy/kv";
+import * as exceptions from '@razomy/exceptions';
+import * as kv from '@razomy/kv';
 
 export function get<T>(valueRecursive: kv.ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): kv.Valuable<T, T> {
   if (kv.isAkv(valueRecursive)) {

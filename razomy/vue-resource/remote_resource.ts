@@ -1,6 +1,6 @@
 import vue from 'vue';
-import * as dict from "@razomy/dict";
-import * as array from "@razomy/array";
+import * as dict from '@razomy/dict';
+import * as array from '@razomy/array';
 
 export class RemoteResource {
   ctx: razomy = undefined as any as razomy;

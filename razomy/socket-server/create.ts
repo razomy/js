@@ -1,5 +1,5 @@
 import { Server } from 'socket.io';
-import * as server from "@razomy/server";
+import * as server from '@razomy/server';
 
 export interface WithWebsocket {
   webSocket: Server;

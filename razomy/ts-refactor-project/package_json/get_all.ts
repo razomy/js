@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as fs from "@razomy/fs";
-import * as fsFile from "@razomy/fs-file";
-import * as array from "@razomy/array";
+import * as fs from '@razomy/fs';
+import * as fsFile from '@razomy/fs-file';
+import * as array from '@razomy/array';
 
 export function getAll(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);

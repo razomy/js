@@ -1,7 +1,12 @@
-import * as string from "@razomy/string";
-import * as offset from "@razomy/offset";
+import * as string from '@razomy/string';
+import * as offset from '@razomy/offset';
 
-export function separateStrings(string: string.String, offset: offset.Offset, separateString: string.String, strings: string.String[]) {
+export function separateStrings(
+  string: string.String,
+  offset: offset.Offset,
+  separateString: string.String,
+  strings: string.String[],
+) {
   let ix = string.indexOf(separateString, offset);
   while (ix !== -1) {
     strings.push(string.substring(offset, ix + 1));

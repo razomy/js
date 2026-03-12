@@ -1,5 +1,5 @@
 import type { AsyncTask, Context } from './async_task';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export class FileTaskManager<C extends Context> {
   private currentContext: C | null = null;

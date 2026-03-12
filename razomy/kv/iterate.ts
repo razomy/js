@@ -1,6 +1,6 @@
-import * as kv from "@razomy/kv";
-import * as function_ from "@razomy/function";
-import * as undefined from "@razomy/undefined";
+import * as kv from '@razomy/kv';
+import * as function_ from '@razomy/function';
+import * as undefined from '@razomy/undefined';
 
 /**
  * true - continue

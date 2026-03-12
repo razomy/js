@@ -1,8 +1,8 @@
 import * as path from 'path';
 import { getGitCommitsId } from './get_git_commits_id';
-import * as shell from "@razomy/shell";
-import * as fsFile from "@razomy/fs-file";
-import * as async from "@razomy/async";
+import * as shell from '@razomy/shell';
+import * as fsFile from '@razomy/fs-file';
+import * as async from '@razomy/async';
 
 export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fileSubPath = '/data/start.txt') {
   repositoryPath = path.resolve(repositoryPath);

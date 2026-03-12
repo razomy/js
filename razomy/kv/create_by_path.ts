@@ -1,5 +1,5 @@
 import { k } from './k';
-import * as kv from "@razomy/kv";
+import * as kv from '@razomy/kv';
 
 export function createByPath<T>(path: T[]) {
   const root = k(null as T, kv.akv<T>());

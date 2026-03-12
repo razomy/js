@@ -1,5 +1,5 @@
-import * as abstracts from "@razomy/abstracts";
-import * as resources from "@razomy/resources";
+import * as object_ from '@razomy/object';
+import * as resources from '@razomy/resources';
 
 export class NodeProvidedException extends Error {}
 
@@ -20,5 +20,5 @@ export interface IEntityResource {
 
   replace<T extends resources.ObjectResource>(obj: T): void;
 
-  getBy<T extends resources.ObjectResource>(objCtor: abstracts.domains.Constructor<T>): T;
+  getBy<T extends resources.ObjectResource>(objCtor: object_.Constructor<T>): T;
 }

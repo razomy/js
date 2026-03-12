@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebSvgCodecs from "@razomy/graphics-codecs-web-svg-codecs";
+import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
 
 export class EncodeNodeFactory {
   constructor(private codecConfig: graphicsCodecsWebSvgCodecs.CodecConfig) {}

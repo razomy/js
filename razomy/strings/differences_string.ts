@@ -1,6 +1,6 @@
-import * as differences from "@razomy/differences";
-import * as strings from "@razomy/strings";
-import * as string from "@razomy/string";
+import * as differences from '@razomy/differences';
+import * as strings from '@razomy/strings';
+import * as string from '@razomy/string';
 
 /**
  * @summary Calculate the differences between two strings line by line.

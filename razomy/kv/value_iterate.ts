@@ -1,5 +1,5 @@
-import * as kv_ from "@razomy/kv";
-import * as function_ from "@razomy/function";
+import * as kv_ from '@razomy/kv';
+import * as function_ from '@razomy/function';
 
 /**
  * true - success

@@ -78,6 +78,7 @@
   "module": "./index.ts",
   "name": "@razomy/object",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/random": "*"
   },
   "publishConfig": {

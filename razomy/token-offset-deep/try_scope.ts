@@ -1,8 +1,8 @@
 import type { WithStack } from './try_aligned';
-import * as context from "@razomy/context";
-import * as offset from "@razomy/offset";
-import * as resultNull from "@razomy/result-null";
-import * as token from "@razomy/token";
+import * as context from '@razomy/context';
+import * as offset from '@razomy/offset';
+import * as resultNull from '@razomy/result-null';
+import * as token from '@razomy/token';
 
 export function tryScope<
   C extends context.Context & token.WithTokens<any> & offset.WithOffset & WithStack,

@@ -1,7 +1,8 @@
 export * as packageJson from './package_json';
-export { convertLambdasToNamedFunctions } from './replace_lambda_to_named_functions';
+export { convertLambdasToNamedFunctions } from './convert_lambdas_to_named_functions';
 export { createIndexFiles } from './create_index_files';
 export { fixBrokenImportsAndExports } from './fix_broken_imports_and_exports';
 export { flattenPackages } from './flatten_packages';
 export { formatProject } from './format_project';
 export { renameFiles } from './rename_files';
+export { replaceInjectImportWithDefaultImport } from './replace_inject_import_with_default_import';

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export class FileGate<T extends string> implements abstracts.patterns.Gate<T> {
   constructor(private readonly file_path: string) {}

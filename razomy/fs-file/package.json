@@ -86,8 +86,6 @@
   "name": "@razomy/fs-file",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/abstracts/graphs": "*",
-    "@razomy/abstracts/patterns": "*",
     "@razomy/fs-directory": "*"
   },
   "publishConfig": {

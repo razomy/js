@@ -1,7 +1,7 @@
 import type { Dispose } from '../abstracts/functions/dispose';
 import { throwException } from './throw_exception';
 import type { CancelException } from './cancel_exception';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export class Observable<T, E = CancelException> {
   disposeFn: Dispose | null = null;

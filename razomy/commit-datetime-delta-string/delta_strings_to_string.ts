@@ -1,5 +1,5 @@
-import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
-import * as string from "@razomy/string";
+import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
+import * as string from '@razomy/string';
 
 export function deltaStringsToString(prevSnapshot: string, changes: commitDatetimeDeltaString.DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {

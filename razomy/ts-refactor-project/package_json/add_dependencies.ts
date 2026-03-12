@@ -1,8 +1,8 @@
 import { getAll } from './get_all';
 import fs from 'fs';
 import * as path from 'path';
-import * as fs_ from "@razomy/fs";
-import * as json from "@razomy/json";
+import * as fs_ from '@razomy/fs';
+import * as json from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
   const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');

@@ -1,4 +1,4 @@
-import * as shell from "@razomy/shell";
+import * as shell from '@razomy/shell';
 
 export async function getGitCommitsId(dirPath: string, commitCount: number = 100) {
   // Command to retrieve the last commits with commit IDs and names

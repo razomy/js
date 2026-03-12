@@ -1,4 +1,4 @@
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 /**
  * @summary Check if a dictionary contains any of the specified keys.

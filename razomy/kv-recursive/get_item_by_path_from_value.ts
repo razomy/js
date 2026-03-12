@@ -1,6 +1,6 @@
 import { getItemByPath } from './get_item_by_path';
 import { getKey, type RecursiveList } from './get_key';
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
 export function getItemByPathFromValue(value: RecursiveList, path: string[], offset: number) {
   for (let node of value) {

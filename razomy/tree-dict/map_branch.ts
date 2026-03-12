@@ -1,5 +1,5 @@
-import * as treeDict from "@razomy/tree-dict";
-import * as abstracts from "@razomy/abstracts";
+import * as treeDict from '@razomy/tree-dict';
+import * as abstracts from '@razomy/abstracts';
 
 export interface BranchDict<T, R = BranchDictOrLeaf<T>> extends RootDict<T, R> {
   value: string;

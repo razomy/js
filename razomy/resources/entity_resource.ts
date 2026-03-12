@@ -5,8 +5,8 @@ import {
   NodeAlreadyProvidedException,
   NodeProvidedException,
 } from './node_provided_exception';
-import * as abstracts from "@razomy/abstracts";
-import * as exceptions from "@razomy/exceptions";
+import * as object_ from '@razomy/object';
+import * as exceptions from '@razomy/exceptions';
 
 export class EntityResource extends ObjectResource implements IEntityResource {
   protected resources: IResourceMap = {};
@@ -35,7 +35,7 @@ export class EntityResource extends ObjectResource implements IEntityResource {
     this.resources[obj.type] = obj;
   }
 
-  public getBy<T extends ObjectResource = ObjectResource>(objCtor: abstracts.domains.Constructor<T>): T {
+  public getBy<T extends ObjectResource = ObjectResource>(objCtor: object_.Constructor<T>): T {
     const ctor: T | ObjectResource = this.resources[objCtor.type];
 
     if (ctor === undefined) {

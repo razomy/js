@@ -1,4 +1,4 @@
-import * as commitDatetimeDeltaString from "@razomy/commit-datetime-delta-string";
+import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
 
 export interface ActorDatetimeDeltaString {
   datetime: string;

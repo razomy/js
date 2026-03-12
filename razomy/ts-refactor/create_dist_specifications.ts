@@ -1,7 +1,7 @@
 import { Project } from 'ts-morph';
 import { recordPerformance } from '../performance/record_performance';
 import type { FunctionSpecification } from '../function/function_specification';
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 export async function createDistSpecifications(project: Project, path: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path);

@@ -1,5 +1,5 @@
-import * as graphicsElements from "@razomy/graphics-elements";
-import * as graphicsGraphic from "@razomy/graphics-graphic";
+import * as graphicsElements from '@razomy/graphics-elements';
+import * as graphicsGraphic from '@razomy/graphics-graphic';
 
 export class WebSvgHighLightsRender {
   constructor(public user: graphicsGraphic.UserEntity) {}

@@ -1,5 +1,5 @@
-import * as exceptions from "@razomy/exceptions";
-import * as string from "@razomy/string";
+import * as exceptions from '@razomy/exceptions';
+import * as string from '@razomy/string';
 
 export function preExtractPath(filePath: string.String, equalPath: string.String): string.String {
   const parts: string[] = filePath.split('/');

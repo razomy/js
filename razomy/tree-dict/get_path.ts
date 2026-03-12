@@ -1,4 +1,4 @@
-import * as key from "@razomy/key";
+import * as key from '@razomy/key';
 
 export function getPath(obj, path: string) {
   if (path === '') {

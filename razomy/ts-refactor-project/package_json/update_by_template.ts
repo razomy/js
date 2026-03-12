@@ -6,7 +6,7 @@ import { getExportedFunctions } from '../../ts-refactor/get_exported_functions';
 import { getExportedConstants } from '../../ts-refactor/get_exported_constants';
 import { Project } from 'ts-morph';
 import { getFilteredSourceFiles } from '../../ts-refactor/get_filtered_source_files';
-import * as json from "@razomy/json";
+import * as json from '@razomy/json';
 
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');

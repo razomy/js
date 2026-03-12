@@ -1,6 +1,6 @@
 import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function vrdToAbsolutePath<T>(
   input: VrdOrValue<T>,

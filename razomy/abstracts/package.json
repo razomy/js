@@ -70,12 +70,7 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/abstracts",
-  "peerDependencies": {
-    "@razomy/abstracts/domains": "*",
-    "@razomy/function": "*",
-    "@razomy/kv": "*",
-    "@razomy/object": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

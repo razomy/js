@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as path from 'path';
-import * as observable from "@razomy/observable";
+import * as observable from '@razomy/observable';
 
 export function observe(dirPath: string) {
   return new observable.Observable<string>((resolve) => {

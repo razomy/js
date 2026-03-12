@@ -1,7 +1,7 @@
 /**
  * @summary Retrieves the own enumerable string-keyed property names of an object.
  * @description Returns an array of the object's own enumerable property names.
- * @param object The object to extract keys from.
+ * @param object_ The object to extract keys from.
  * @returns An array of property keys.
  * @example
  * ```ts
@@ -18,6 +18,6 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function getKeys<T extends object>(object: T): (keyof T)[] {
-  return Object.keys(object) as (keyof T)[];
+export function getKeys<T extends object>(object_: T): (keyof T)[] {
+  return Object.keys(object_) as (keyof T)[];
 }

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { bufferTypes } from './is_supported_file_types';
-import * as abstracts from "@razomy/abstracts";
-import * as bufferString from "@razomy/buffer-string";
+import * as abstracts from '@razomy/abstracts';
+import * as bufferString from '@razomy/buffer-string';
 
 export const codecs: Record<BufferEncoding & '*', abstracts.patterns.Codec<Buffer, string>> = {
   base64: bufferString.toCodec('base64'),

@@ -1,4 +1,4 @@
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
 export function validateArrayStringThrow<T extends string[]>(array: T | null | undefined, name: string): T {
   function errorBuilder(t) {

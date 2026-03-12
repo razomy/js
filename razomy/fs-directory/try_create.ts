@@ -1,5 +1,5 @@
 import fs from 'fs';
-import * as shell from "@razomy/shell";
+import * as shell from '@razomy/shell';
 
 export function tryCreate(dirPath: string) {
   if (!fs.existsSync(dirPath)) {

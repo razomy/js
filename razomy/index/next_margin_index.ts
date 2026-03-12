@@ -1,6 +1,6 @@
-import * as string from "@razomy/string";
-import * as offset from "@razomy/offset";
-import * as abstracts from "@razomy/abstracts";
+import * as string from '@razomy/string';
+import * as offset from '@razomy/offset';
+import * as abstracts from '@razomy/abstracts';
 
 export function nextMarginIndex(
   string: string.String,

@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as git from "@razomy/git";
-import * as abstracts from "@razomy/abstracts";
-import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
+import * as git from '@razomy/git';
+import * as abstracts from '@razomy/abstracts';
+import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
 export function getRecursiveStatus(sourcePath: abstracts.graphs.SourcePathString) {
   const repos: string[] = [];

@@ -1,4 +1,4 @@
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 export async function recordPerformance<T extends any[]>(
   fn: (...t: T) => any,

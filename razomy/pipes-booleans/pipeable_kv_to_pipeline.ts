@@ -1,6 +1,6 @@
-import * as pipesBooleans from "@razomy/pipes-booleans";
-import * as exceptions from "@razomy/exceptions";
-import * as kv from "@razomy/kv";
+import * as pipesBooleans from '@razomy/pipes-booleans';
+import * as exceptions from '@razomy/exceptions';
+import * as kv from '@razomy/kv';
 
 export type PipeableKv<T> = kv.KeyValuable<pipesBooleans.BoolPipeable<T>, pipesBooleans.BoolPipeable<T>>;
 

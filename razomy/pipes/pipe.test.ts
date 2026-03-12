@@ -1,4 +1,4 @@
-import * as pipes from "@razomy/pipes";
+import * as pipes from '@razomy/pipes';
 
 describe('pipe', () => {
   it('pipe', () => {

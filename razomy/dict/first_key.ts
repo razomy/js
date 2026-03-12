@@ -20,7 +20,7 @@
  * @complexity memory O(1)
  */
 import type { Dict } from './dict';
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
 export function firstKey<T>(obj: Dict<T>): string {
   for (const key in obj) {

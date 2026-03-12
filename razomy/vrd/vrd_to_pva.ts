@@ -1,10 +1,16 @@
 import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
-export function vrdToPva<T>(input: VrdOrValue<T>, absolutePath: abstracts.graphs.AbsolutePathString, separator: string) {
+export function vrdToPva<T>(
+  input: VrdOrValue<T>,
+  absolutePath: abstracts.graphs.AbsolutePathString,
+  separator: string,
+) {
   const result: { path: abstracts.graphs.AbsolutePathString; value: T }[] = [];
-  const stack: { path: abstracts.graphs.AbsolutePathString; vrd: VrdOrValue<T> }[] = [{ vrd: input, path: absolutePath }];
+  const stack: { path: abstracts.graphs.AbsolutePathString; vrd: VrdOrValue<T> }[] = [
+    { vrd: input, path: absolutePath },
+  ];
 
   while (stack.length > 0) {
     const { vrd, path } = stack.pop()!;

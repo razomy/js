@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { getAll } from './get_all';
-import * as fsFile from "@razomy/fs-file";
+import * as fsFile from '@razomy/fs-file';
 
 export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);

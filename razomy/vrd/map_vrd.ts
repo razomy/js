@@ -1,8 +1,12 @@
 import { Vrd, type VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
-export function mapVrd<I, O>(input: Vrd<I>, leafValueCb: (input: I, parent: dict.DictKey) => O, parent: dict.DictKey): Vrd<O>;
+export function mapVrd<I, O>(
+  input: Vrd<I>,
+  leafValueCb: (input: I, parent: dict.DictKey) => O,
+  parent: dict.DictKey,
+): Vrd<O>;
 export function mapVrd<I, O>(input: I, leafValueCb: (input: I, parent?: dict.DictKey) => O, parent: dict.DictKey): O;
 export function mapVrd<I, O>(
   input: VrdOrValue<I>,

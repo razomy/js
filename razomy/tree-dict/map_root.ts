@@ -1,7 +1,10 @@
 import { mapBranch, type RootDict, type RootOrBranchDict } from './map_branch';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
-export function mapRoot<I, O>(input: RootDict<I>, leafValueCb: (input: abstracts.graphs.Leaf<I>, parent: RootOrBranchDict<I>) => O) {
+export function mapRoot<I, O>(
+  input: RootDict<I>,
+  leafValueCb: (input: abstracts.graphs.Leaf<I>, parent: RootOrBranchDict<I>) => O,
+) {
   const otput: RootDict<O> = {
     children: {},
   };

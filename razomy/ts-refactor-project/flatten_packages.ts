@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { Project, SourceFile } from 'ts-morph';
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 function getNewFilePath(rootDir: string, sourceFile: SourceFile): string | null {
   const filePath = sourceFile.getFilePath();

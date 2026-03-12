@@ -1,7 +1,7 @@
 import type { Kv } from './kv';
-import * as dict from "@razomy/dict";
-import * as key from "@razomy/key";
-import * as string from "@razomy/string";
+import * as dict from '@razomy/dict';
+import * as key from '@razomy/key';
+import * as string from '@razomy/string';
 
 export function valueOrListToFlatDict(
   dict: {},

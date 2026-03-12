@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 export function merge(strings: string.String[]): string.String {
   let result: string.String = '';

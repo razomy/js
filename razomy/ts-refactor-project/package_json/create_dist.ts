@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
-import * as object_ from "@razomy/object";
+import * as object_ from '@razomy/object';
 
 export function createDist(path_) {
   const jsonPath = path.join(path_, './package.json');

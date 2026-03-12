@@ -1,5 +1,5 @@
 import fs from 'fs';
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function set(filePath: abstracts.graphs.FilePathString, content) {
   return new Promise((resolve, reject) => {

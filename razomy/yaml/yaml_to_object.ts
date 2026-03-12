@@ -1,14 +1,16 @@
-import * as offset from "@razomy/offset";
-import * as abstracts from "@razomy/abstracts";
-import * as pipes from "@razomy/pipes";
-import * as tokenOffsetDeep from "@razomy/token-offset-deep";
-import * as tokenOffset from "@razomy/token-offset";
-import * as token from "@razomy/token";
-import * as context from "@razomy/context";
-import * as resultNull from "@razomy/result-null";
+import * as offset from '@razomy/offset';
+import * as abstracts from '@razomy/abstracts';
+import * as pipes from '@razomy/pipes';
+import * as tokenOffsetDeep from '@razomy/token-offset-deep';
+import * as tokenOffset from '@razomy/token-offset';
+import * as token from '@razomy/token';
+import * as context from '@razomy/context';
+import * as resultNull from '@razomy/result-null';
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = token.WithTokenType<JsonTokenType> & abstracts.domains.WithValue<string> & tokenOffsetDeep.WithDeep;
+export type JsonToken = token.WithTokenType<JsonTokenType> &
+  abstracts.domains.WithValue<string> &
+  tokenOffsetDeep.WithDeep;
 
 function ifR<T, r2>(res: T, fn: (r: NonNullable<T>) => NonNullable<r2>) {
   if (res != null) {

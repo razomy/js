@@ -1,4 +1,4 @@
-import * as stringCase from "@razomy/string-case";
+import * as stringCase from '@razomy/string-case';
 
 describe('string', () => {
   describe('constant_case', () => {

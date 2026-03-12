@@ -1,7 +1,10 @@
-import * as treeDict from "@razomy/tree-dict";
-import * as abstracts from "@razomy/abstracts";
+import * as treeDict from '@razomy/tree-dict';
+import * as abstracts from '@razomy/abstracts';
 
-export function iterateChildren<T>(graph: abstracts.domains.EdgeListGraph<treeDict.BranchDictOrLeaf<T>>, branch: treeDict.BranchDictOrLeaf<T>) {
+export function iterateChildren<T>(
+  graph: abstracts.graphs.EdgeListGraph<treeDict.BranchDictOrLeaf<T>>,
+  branch: treeDict.BranchDictOrLeaf<T>,
+) {
   graph.nodes.push(branch);
   if ('children' in branch && branch.children.lenght) {
     for (const entityKey in branch.children) {

@@ -1,8 +1,8 @@
 import type { VrdOrValue } from './vrd';
 import { isVrd } from './is_vrd';
 import { differencesDict } from './differences_dict';
-import * as difference from "@razomy/difference";
-import * as equal from "@razomy/equal";
+import * as difference from '@razomy/difference';
+import * as equal from '@razomy/equal';
 
 export interface ReplaceDifference<T> {
   type: 'replace_key';

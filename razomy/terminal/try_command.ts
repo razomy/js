@@ -1,4 +1,4 @@
-import * as shell from "@razomy/shell";
+import * as shell from '@razomy/shell';
 
 export function tryCommand(commandName: string) {
   try {

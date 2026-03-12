@@ -1,5 +1,5 @@
 import type { DictRecursive } from './recursive';
-import * as object_ from "@razomy/object";
+import * as object_ from '@razomy/object';
 
 /**
  * @summary Set a value in a nested dictionary by dot-separated path.

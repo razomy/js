@@ -1,7 +1,7 @@
 import fs from 'fs';
 import * as path from 'path';
-import * as exceptions from "@razomy/exceptions";
-import * as kv_ from "@razomy/kv";
+import * as exceptions from '@razomy/exceptions';
+import * as kv_ from '@razomy/kv';
 
 export function toKv<T = kv_.ArrayKeyValuable<string, Buffer>>(dirPath: string): T;
 export function toKv<T = kv_.KeyValuable<string, Buffer>>(filePath: string): T;
