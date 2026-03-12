@@ -64,7 +64,8 @@
   "homepage": "https://github.com/razomy/js/razomy/exceptions#readme",
   "keywords": [
     "razomy",
-    "exceptions"
+    "exceptions",
+    "assert"
   ],
   "license": "MIT",
   "main": "./index.ts",

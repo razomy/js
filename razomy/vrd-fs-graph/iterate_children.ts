@@ -1,4 +1,4 @@
-import type { Graph } from '@razomy/graph';
+import type { Graph } from '@razomy/primitives/domains';
 import type { VrdOrValue } from '@razomy/vrd';
 import { isVrd } from '../vrd/is_vrd';
 

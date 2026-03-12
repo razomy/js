@@ -19,8 +19,12 @@
   load. The framework is built with intrinsic migration trajectories, meaning it gracefully accommodates the
   introduction of new abstractions and paradigm shifts as the system's complexity organically evolves.
 
-#### Packages
+### Start
 
+1. Everything starts at: [./razomy/abstracts](./razomy/abstracts)
+
+
+#### Packages
 | directory                                         | npm                                                                            |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [./razomy/string-case](/razomy/string-case)       | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case)       |

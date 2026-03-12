@@ -71,9 +71,7 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/id",
-  "peerDependencies": {
-    "@razomy/create": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

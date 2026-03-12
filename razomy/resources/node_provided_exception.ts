@@ -1,4 +1,4 @@
-import type { Constructor } from '@razomy/class';
+import type { Constructor } from '@razomy/primitives/codes';
 import { ObjectResource } from '@razomy/resources';
 
 export class NodeProvidedException extends Error {}

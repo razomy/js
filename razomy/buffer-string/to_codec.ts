@@ -1,4 +1,4 @@
-import type { Codec } from '@razomy/codec';
+import type { Codec } from '@razomy/primitives/domains';
 import { toBuffer } from '@razomy/string';
 import { toString_ } from '../buffer/to_string';
 

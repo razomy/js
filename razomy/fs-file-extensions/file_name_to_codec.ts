@@ -1,5 +1,5 @@
 import * as path from 'path';
-import type { Codec } from '@razomy/codec';
+import type { Codec } from '@razomy/primitives/domains';
 import { bufferTypes } from './is_supported_file_types';
 import { toCodec } from '@razomy/buffer-string';
 

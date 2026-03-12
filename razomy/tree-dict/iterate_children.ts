@@ -1,5 +1,5 @@
 import type { BranchDictOrLeaf } from '@razomy/tree-dict';
-import type { Graph } from '@razomy/graph';
+import type { Graph } from '@razomy/primitives/domains';
 
 export function iterateChildren<T>(graph: Graph<BranchDictOrLeaf<T>>, branch: BranchDictOrLeaf<T>) {
   graph.nodes.push(branch);

@@ -1,5 +1,5 @@
 export { CancelException } from './cancel_exception';
-export { type Dispose } from './dispose';
+export { type Dispose } from '../primitives/dispose';
 export { ObservableList } from './observable_list';
 export { Observable } from './observable';
 export { promise } from './promise';

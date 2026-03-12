@@ -2,7 +2,7 @@ import { execute } from '@razomy/shell';
 import { ifMain } from '@razomy/main';
 import path from 'node:path';
 import { packageJson } from '@razomy/ts-refactor-project';
-import * as fs from '@razomy/fs-file';
+// import * as fs from '@razomy/fs-file';
 import { createReadmeAndSpecifications } from '@razomy/ts-refactor';
 
 export async function publish(path_: string) {
@@ -10,7 +10,7 @@ export async function publish(path_: string) {
     await execute('npm run build', path.resolve(path_));
     packageJson.createDist(path.resolve(path_));
     await createReadmeAndSpecifications(path.resolve(path_));
-    const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
+    // const pkg = fs.getJson(path.resolve(path_, 'dist', 'package.json'));
     const publishCommand =
       `cd ${path.resolve(path_, 'dist')}` +
       ` && npm publish . --tag latest`;

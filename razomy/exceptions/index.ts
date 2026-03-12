@@ -1,4 +1,5 @@
 export { ArgumentException } from './argument_exception';
+export { assert } from './assert';
 export { type CatchFn, CollectException } from './collect_exception';
 export { Exception } from './exception';
 export { MultipleException } from './multiple_exception';

@@ -1,5 +1,4 @@
-import * as y from '@razomy/coordinates-y';
-import * as x from '@razomy/coordinates-x';
+import type { x, y } from '@razomy/coordinates';
 
 export interface NodeBound {
   fullRect: y.BoundY & x.WithX;

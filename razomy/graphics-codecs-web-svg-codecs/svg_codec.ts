@@ -1,5 +1,5 @@
 import { EncodeNodeFactory } from '@razomy/graphics-codecs-web-svg-codecs';
-import type { Codec } from '@razomy/codec';
+import type { Codec } from '@razomy/primitives/domains';
 import { SizeAttribute } from '@razomy/graphics-attributes';
 import { ViewportElement } from '@razomy/graphics-elements';
 

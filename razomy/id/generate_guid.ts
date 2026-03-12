@@ -1,4 +1,4 @@
-import * as create from '@razomy/create';
+import * as create from '../primitives/domains/with_create';
 
 export function generateGuid() {
   function generatePart8(withHyphen?: boolean) {

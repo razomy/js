@@ -1,6 +1,6 @@
-import type { Dispose } from './dispose';
+import type { Dispose } from '../primitives/dispose';
 import { throwException } from './throw_exception';
-import type { Action } from '@razomy/action';
+import type { Action } from '@razomy/primitives/functions';
 import type { CancelException } from './cancel_exception';
 
 export class Observable<T, E = CancelException> {
