@@ -29,7 +29,7 @@ export class ThresholdTextureFilter implements ITextureFilter {
   ) {}
 
   public filter(imageData: any): void {
-    var level = this.threshold * 255,
+    let level = this.threshold * 255,
       data = imageData.data,
       len = data.length,
       i;

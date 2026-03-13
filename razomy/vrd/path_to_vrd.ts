@@ -5,7 +5,7 @@ export function pathToVrd(path: string[]) {
 
   let last: VrdOrValue<null> = root;
   for (let i = 0; i < path.length - 1; i++) {
-    let string = path[i];
+    const string = path[i];
     last[string] = new Vrd();
     last = last[string];
   }

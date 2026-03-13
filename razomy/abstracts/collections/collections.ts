@@ -5,7 +5,7 @@ import type { RingBuffer } from '../structures';
 
 export type DictionaryObject<K extends PropertyKey, V> = Record<K, V>;
 
-export interface AbstractDataType<T, Underlying> {
+export interface AbstractDataType<_T, Underlying> {
   underlyingStructure: Underlying;
 }
 

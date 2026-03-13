@@ -7,7 +7,7 @@ export function getPath(obj, path: string) {
 
   const closingBracketIndex = path.indexOf(key.assign);
   const slug = path.substring(0, closingBracketIndex);
-  let childNode = Object.keys(obj).find((key) => key === slug);
+  const childNode = Object.keys(obj).find((key) => key === slug);
   if (!childNode) {
     throw new Error(`Node not found path="${path}".`);
   }

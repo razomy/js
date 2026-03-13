@@ -14,7 +14,7 @@ export function get(oldArray: string[], newArray: string[]): difference.ChangeDi
   const remainingNewItems = new Set(newItems);
 
   deletedItems.forEach((deletedItem) => {
-    let bestMatch: string | null = arrayDifference.getSimilar(deletedItem, renamedItems);
+    const bestMatch: string | null = arrayDifference.getSimilar(deletedItem, renamedItems);
 
     if (bestMatch) {
       renamedItems.push({ oldValue: deletedItem, value: bestMatch, type: 'replace' });

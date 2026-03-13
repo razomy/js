@@ -13,7 +13,7 @@ export function filterVrd<I>(
   isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean,
 ): VrdOrValue<I> {
   if (isVrd(input)) {
-    for (let inputKey in input) {
+    for (const inputKey in input) {
       const value = input[inputKey];
       if (!isKeep(value, inputKey)) {
         delete input[inputKey];

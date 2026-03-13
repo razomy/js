@@ -3,7 +3,7 @@ import * as kv from '@razomy/kv';
 
 export function get<T>(valueRecursive: kv.ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): kv.Valuable<T, T> {
   if (kv.isAkv(valueRecursive)) {
-    for (let [key, value] of valueRecursive!) {
+    for (const [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
         continue;
       }

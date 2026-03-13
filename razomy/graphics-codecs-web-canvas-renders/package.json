@@ -61,7 +61,7 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/graphics-codecs-web-canvas-renders#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/graphics-codecs-web-canvas-renders#readme",
   "keywords": [
     "razomy",
     "graphics",
@@ -75,6 +75,7 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-codecs-web-canvas-renders",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-elements": "*",

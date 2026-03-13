@@ -21,7 +21,7 @@ export function mapBranch<I, O>(
       value: input.value,
       children: {},
     };
-    for (let inputKey in input.children) {
+    for (const inputKey in input.children) {
       const value = input[inputKey];
       otput[inputKey] = mapBranch(otput, value, leafValueCb);
     }

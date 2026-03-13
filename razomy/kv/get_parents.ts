@@ -8,7 +8,7 @@ export function getParents<T>(
   pathOffset: number,
 ): kv.Valuable<T, T>[] {
   if (kv.isAkv(valueRecursive)) {
-    for (let [key, value] of valueRecursive!) {
+    for (const [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
         continue;
       }

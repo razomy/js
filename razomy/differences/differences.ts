@@ -26,7 +26,7 @@ export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
       aI++;
       bI++;
     } else {
-      let [nAi, nBi] = index.firstEqualIndexes(a, b, aI, bI);
+      const [nAi, nBi] = index.firstEqualIndexes(a, b, aI, bI);
 
       if (aI < nAi) {
         addDiff('removed', sum(...a.slice(aI, nAi)));

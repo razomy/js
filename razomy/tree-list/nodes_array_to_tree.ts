@@ -1,7 +1,7 @@
 import * as treeList from '@razomy/tree-list';
 
 export function nodesArrayToTree(nodes: string[], leafs: string[]) {
-  let allItems = [
+  const allItems = [
     ...nodes.map((value) => ({ value, children: [] } as treeList.ListTree<string>)),
     ...leafs.map((value) => ({ value, children: [] } as treeList.ListTree<string>)),
   ];

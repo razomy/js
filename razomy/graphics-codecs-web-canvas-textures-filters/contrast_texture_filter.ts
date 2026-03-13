@@ -23,9 +23,9 @@ export class ContrastTextureFilter implements ITextureFilter {
   constructor(public contrast = 0) {}
 
   public filter(imageData: any): void {
-    var adjust = Math.pow((this.contrast + 100) / 100, 2);
+    const adjust = Math.pow((this.contrast + 100) / 100, 2);
 
-    var data = imageData.data,
+    let data = imageData.data,
       nPixels = data.length,
       red = 150,
       green = 150,

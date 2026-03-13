@@ -13,7 +13,7 @@ import type { ITextureFilter } from './i_texture_filter';
  */
 export class SepiaTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {
-    var data = imageData.data,
+    let data = imageData.data,
       nPixels = data.length,
       i,
       r,

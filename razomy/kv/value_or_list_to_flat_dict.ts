@@ -12,7 +12,7 @@ export function valueOrListToFlatDict(
   if (string.isString(input)) {
     dict[parent] = input;
   } else {
-    for (let inputKey of input) {
+    for (const inputKey of input) {
       valueOrListToFlatDict(dict, inputKey[1], parent + key.assign + inputKey[0], separator);
     }
   }

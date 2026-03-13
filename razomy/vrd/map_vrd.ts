@@ -34,7 +34,7 @@ export function mapVrd<I, O>(
       }
     }
     const otput: Vrd<O> = new Vrd<O>();
-    for (let inputKey in iter) {
+    for (const inputKey in iter) {
       const value = iter[inputKey];
       otput[inputKey] = mapVrd(value, leafValueCb, inputKey, nodeCb!);
     }

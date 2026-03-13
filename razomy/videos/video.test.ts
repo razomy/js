@@ -1,62 +1,83 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { toVideoByFormat } from './to_video_by_format.node'; // <-- Поправь путь
-import { videos } from './types'; // <-- Поправь путь
+import { execSync } from 'node:child_process';
+import { toVideoByFormat } from './to_video_by_format.node'; // <-- Убедись, что путь правильный
+import { videos } from './types'; // <-- Убедись, что путь правильный
 
-const sourceVideo = './source_video.mp4'; // Файл из Шага 1
-const outDir = './test_results';
+const sourceVideo = path.join(__dirname, 'source_video.mp4');
+const outDir = path.join(__dirname, 'tmp');
 
-export const prepare = `
-# Создать тестовое видео (5 секунд, таймер на экране, звук писк)
-ffmpeg -f lavfi -i testsrc=duration=5:size=1280x720:rate=30 -f lavfi -i sine=frequency=1000:duration=5 -c:v libx264 -c:a aac -shortest source_video.mp4
-`;
+describe('Video Converter: toVideoByFormat', () => {
+  // Видео конвертируется долго. Ставим таймаут 60 секунд на каждый тест.
+  // Если у тебя много форматов или слабый ПК, можешь увеличить до 120000 (120 сек).
+  jest.setTimeout(60000);
 
-export const test = `
-# В терминале в папке с результатами
-for f in *.*; do ffprobe -v error -i "$f" && echo "OK: $f" || echo "FAIL: $f"; done
-`;
+  // Выполняется один раз перед запуском всех тестов
+  beforeAll(() => {
+    // 1. Создаем папку для результатов
+    if (!fs.existsSync(outDir)) {
+      fs.mkdirSync(outDir, { recursive: true });
+    }
 
-// Создаем папку для результатов
-if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
+    // 2. Автоматически создаем исходное тестовое видео (5 сек, таймер на экране, звук писк)
+    if (!fs.existsSync(sourceVideo)) {
+      console.log('Создание тестового видео (5 секунд, 1280x720, звук)...');
+      try {
+        execSync(
+          `ffmpeg -f lavfi -i testsrc=duration=5:size=1280x720:rate=30 -f lavfi -i sine=frequency=1000:duration=5 -c:v libx264 -c:a aac -shortest "${sourceVideo}"`,
+          { stdio: 'ignore' } // скрываем вывод FFmpeg, чтобы не засорять консоль
+        );
+      } catch (error) {
+        throw new Error('Ошибка при создании source_video.mp4. Убедитесь, что FFmpeg установлен и доступен в PATH.');
+      }
+    }
+  });
 
-async function runTests() {
-  console.log('🚀 ЗАПУСК ТЕСТОВ FFmpeg...\n');
+  // (Опционально) очистка после всех тестов
+  afterAll(() => {
+    fs.rmSync(sourceVideo, { force: true });
+  });
 
-  // --- ТЕСТ ВИДЕО ---
-  console.log('--- 🎥 ТЕСТИРУЕМ ВИДЕО ФОРМАТЫ ---');
-  for (const fmt of videos) {
+  // test.each генерирует отдельный независимый тест для каждого формата из массива
+  test.each(videos)('should convert MP4 to $fileExtensionType', async (fmt) => {
     const targetFormat = fmt.fileExtensionType;
 
-    // Некоторые форматы работают только на выход, но не на вход для генерации
-    // Пропускаем те, в которые кодировать нельзя (если такие есть в списке)
+    // Генерируем уникальные имена для временного файла и результата
+    const tempInput = path.join(outDir, `temp_input_${Date.now()}_${targetFormat}.mp4`);
+    const testOutputFile = path.join(outDir, `result.${targetFormat}`);
+
+    // Копируем исходное видео, так как toVideoByFormat (ffmpeg) обычно удаляет или блокирует входящий файл
+    fs.copyFileSync(sourceVideo, tempInput);
+
     try {
-      // 1. Создаем копию исходника (т.к. функция его удаляет)
-      const tempInput = path.join(outDir, `temp_input_${Date.now()}.mp4`);
-      fs.copyFileSync(sourceVideo, tempInput);
-
-      console.log(`⏳ Конвертация MP4 -> ${targetFormat.toUpperCase()}...`);
-
+      // 1. Запускаем конвертацию
       const result = await toVideoByFormat(tempInput, targetFormat);
 
-      // 2. Сохраняем результат в файл, чтобы проверить
-      const testOutputFile = path.join(outDir, `result.${targetFormat}`);
+      // 2. Сохраняем стрим в выходной файл
       const outputStream = fs.createWriteStream(testOutputFile);
-
       await pipeline(result.stream, outputStream);
 
-      // 3. Проверка
-      const stats = fs.statSync(testOutputFile);
-      if (stats.size > 0) {
-        console.log(`✅ OK: ${targetFormat} (Размер: ${(stats.size / 1024).toFixed(2)} KB)`);
-      } else {
-        console.error(`❌ FAIL: ${targetFormat} (Файл пустой)`);
-      }
-    } catch (e: any) {
-      console.error(`❌ ERROR ${targetFormat}:`, e.message);
-      // Если ошибка "Encoder not found" - значит в твоей системе нет нужного кодека
-    }
-  }
-}
+      // --- ПРОВЕРКИ (Assertions) ---
 
-runTests();
+      // Файл результата должен существовать
+      expect(fs.existsSync(testOutputFile)).toBe(true);
+
+      // Размер файла должен быть больше нуля
+      const stats = fs.statSync(testOutputFile);
+      expect(stats.size).toBeGreaterThan(0);
+
+    } catch (error: any) {
+      // Перехватываем ошибку, чтобы добавить понятное описание (полезно при отсутствии кодеков в ОС)
+      if (error.message.includes('Encoder not found') || error.message.includes('Unknown encoder')) {
+        throw new Error(`Отсутствует кодек для формата ${targetFormat} в вашей версии FFmpeg. Оригинальная ошибка: ${error.message}`);
+      }
+      throw error; // Бросаем ошибку дальше, чтобы тест провалился
+    } finally {
+      // Обязательно удаляем временный входной файл после теста (независимо от успеха/провала)
+      if (fs.existsSync(tempInput)) {
+        fs.rmSync(tempInput, { force: true });
+      }
+    }
+  });
+});

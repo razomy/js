@@ -123,7 +123,7 @@ async function fixBrokenImportsAndExports(project: Project) {
   const allExportNames: string[] = [];
 
   for (const file of sourceFiles) {
-    for (const [name, _] of file.getExportedDeclarations()) {
+    for (const [name] of file.getExportedDeclarations()) {
       if (name !== 'default') {
         exportMap.set(name, file);
         allExportNames.push(name);

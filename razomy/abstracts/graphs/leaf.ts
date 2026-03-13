@@ -1,3 +1,3 @@
-import { type WithValue} from '../domains/with_value';
+import { type WithValue } from '../domains';
 
 export interface Leaf<T> extends WithValue<T> {}

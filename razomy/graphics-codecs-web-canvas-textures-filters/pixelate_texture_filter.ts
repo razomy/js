@@ -1,4 +1,3 @@
-/*eslint-disable max-depth */
 import type { ITextureFilter } from './i_texture_filter';
 
 /**
@@ -28,7 +27,7 @@ export class PixelateTextureFilter implements ITextureFilter {
   ) {}
 
   public filter(imageData: any): void {
-    var pixelSize = Math.ceil(this.pixelSize),
+    let pixelSize = Math.ceil(this.pixelSize),
       width = imageData.width,
       height = imageData.height,
       x,

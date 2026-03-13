@@ -54,7 +54,7 @@ export class BlurStack {
   public next: any = null;
 }
 
-var mulTable = [
+const mulTable = [
   512, 512, 456, 512, 328, 456, 335, 512, 405, 328, 271, 456, 388, 335, 292, 512, 454, 405, 364, 328, 298, 271, 496,
   456, 420, 388, 360, 335, 312, 292, 273, 512, 482, 454, 428, 405, 383, 364, 345, 328, 312, 298, 284, 271, 259, 496,
   475, 456, 437, 420, 404, 388, 374, 360, 347, 335, 323, 312, 302, 292, 282, 273, 265, 512, 497, 482, 468, 454, 441,
@@ -69,7 +69,7 @@ var mulTable = [
   261, 259,
 ];
 
-var shgTable = [
+const shgTable = [
   9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18,
   18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
   20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
@@ -82,11 +82,11 @@ var shgTable = [
 ];
 
 export function filterGaussBlurRgba(imageData: any, radius: any) {
-  var pixels = imageData.data,
+  const pixels = imageData.data,
     width = imageData.width,
     height = imageData.height;
 
-  var x,
+  let x,
     y,
     i,
     p,
@@ -111,7 +111,7 @@ export function filterGaussBlurRgba(imageData: any, radius: any) {
     pa,
     rbs;
 
-  var div = radius + radius + 1,
+  let div = radius + radius + 1,
     widthMinus1 = width - 1,
     heightMinus1 = height - 1,
     radiusPlus1 = radius + 1,
@@ -347,7 +347,7 @@ export class BlurTextureFilter implements ITextureFilter {
   constructor(public blurRadius: number = 0) {}
 
   public filter(imageData: any): void {
-    var radius = Math.round(this.blurRadius);
+    const radius = Math.round(this.blurRadius);
 
     if (radius > 0) {
       filterGaussBlurRgba(imageData, radius);

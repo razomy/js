@@ -29,7 +29,7 @@ export function test() {
     // ]],
     [[], vrd({ a: null }), vrd({ a: vrd({ b: null }) }), [{ type: 'added', path: 'a', value: vrd({ b: null }) }]],
   ];
-  for (let spec of specs) {
+  for (const spec of specs) {
     const result = differencesDict(spec[0], spec[1], spec[2], '');
     console.log(equal.isEqual(result, spec[3]), result);
   }

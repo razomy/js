@@ -25,7 +25,7 @@ export class BrightenTextureFilter implements ITextureFilter {
   constructor(public brightness: number = 0) {}
 
   public filter(imageData: any): void {
-    var brightness = this.brightness * 255,
+    let brightness = this.brightness * 255,
       data = imageData.data,
       len = data.length,
       i;

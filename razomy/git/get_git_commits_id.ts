@@ -8,7 +8,7 @@ export async function getGitCommitsId(dirPath: string, commitCount: number = 100
   const lines = stdout.trim().split('\n');
 
   // Create an array to store the commit information
-  let commits: { id: string; commitName: string; date: string }[] = [];
+  const commits: { id: string; commitName: string; date: string }[] = [];
 
   // Process each line to extract the commit ID and name
   lines.forEach((line) => {

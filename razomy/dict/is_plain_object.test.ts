@@ -124,17 +124,14 @@ describe('isPlainObject', () => {
 
   // 7. Boxed primitives
   it('returns false for a Number object', () => {
-    // eslint-disable-next-line no-new-wrappers
     expect(isPlainObject(new Number(42))).toBe(false);
   });
 
   it('returns false for a String object', () => {
-    // eslint-disable-next-line no-new-wrappers
     expect(isPlainObject(new String('hello'))).toBe(false);
   });
 
   it('returns false for a Boolean object', () => {
-    // eslint-disable-next-line no-new-wrappers
     expect(isPlainObject(new Boolean(true))).toBe(false);
   });
 
@@ -146,7 +143,6 @@ describe('isPlainObject', () => {
 
   it('returns false for arguments object', () => {
     function test() {
-      // eslint-disable-next-line prefer-rest-params
       return isPlainObject(arguments);
     }
 

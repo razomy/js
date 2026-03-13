@@ -8,7 +8,7 @@ export function vrdToAbsolutePath<T>(
   separator: string,
 ): VrdOrValue<T> {
   if (isVrd(input)) {
-    for (let inputKey in input) {
+    for (const inputKey in input) {
       const value = input[inputKey];
       delete input[inputKey];
       const newPrefix = absolutePath ? absolutePath + separator + inputKey : inputKey;

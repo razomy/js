@@ -7,7 +7,7 @@ export function tests<I extends Array<any>, O>(
   cb: function_.Function<I, O>,
   array: dict.Dict<spec.FunctionSpec<I, O>>,
 ) {
-  for (let key in array) {
+  for (const key in array) {
     const spec = array[key];
     it(key, async () => await test(cb, spec.input, spec.otput, spec.error));
   }

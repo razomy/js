@@ -29,7 +29,7 @@ export class Enhance_texture_filter implements ITextureFilter {
   ) {}
 
   public filter(imageData: any): void {
-    var data = imageData.data,
+    let data = imageData.data,
       nSubPixels = data.length,
       rMin = data[0],
       rMax = rMin,
@@ -43,7 +43,7 @@ export class Enhance_texture_filter implements ITextureFilter {
       i;
 
     // If we are not enhancing anything - don't do any computation
-    var enhanceAmount = this.enhance;
+    const enhanceAmount = this.enhance;
     if (enhanceAmount === 0) {
       return;
     }
@@ -87,7 +87,7 @@ export class Enhance_texture_filter implements ITextureFilter {
       bMin = 0;
     }
 
-    var rMid, rGoalMax, rGoalMin, gMid, gGoalMax, gGoalMin, bMid, bGoalMax, bGoalMin;
+    let rMid, rGoalMax, rGoalMin, gMid, gGoalMax, gGoalMin, bMid, bGoalMax, bGoalMin;
 
     // If the enhancement is positive - stretch the histogram
     if (enhanceAmount > 0) {

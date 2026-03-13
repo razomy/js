@@ -1,18 +1,18 @@
 import type { Status } from './get_status';
 
 export function parseStatus(str: string): Status {
-  var lines;
-  var branchLine;
-  var branches;
-  var status: Status = {
+  let lines;
+  let branchLine;
+  let branches;
+  const status: Status = {
     localBranch: '',
     remoteBranch: '',
     remoteDiff: '',
     clean: true,
     files: [],
   };
-  var result;
-  var initialCommitRx = /^\#\# Initial commit on ([^\n]+)\s?$/;
+  let result;
+  const initialCommitRx = /^\#\# Initial commit on ([^\n]+)\s?$/;
 
   lines = str.trim().split('\n');
   branchLine = lines.shift();

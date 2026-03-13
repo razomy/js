@@ -7,7 +7,7 @@ export interface IterateSourceFileState {
 }
 
 export async function iterateSourceFilesAndSave(
-  projectPath: String,
+  projectPath: string,
   action: abstracts.functions.Action<IterateSourceFileState>,
 ) {
   const project = new Project({

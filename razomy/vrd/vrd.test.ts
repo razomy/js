@@ -15,7 +15,7 @@ describe('dict', () => {
           a3: '',
           a4: '',
         });
-        let result = vrd.getVrd(node, ['a2', 'b2'], 0);
+        const result = vrd.getVrd(node, ['a2', 'b2'], 0);
         expect(result).toStrictEqual(new vrd.Vrd({ c2: '' }));
       });
     });
@@ -66,7 +66,7 @@ describe('dict', () => {
             b1: '',
           }),
         });
-        let result = vrd.mergeVrd(a, b, '');
+        const result = vrd.mergeVrd(a, b, '');
         expect(result).toStrictEqual(c);
       });
     });

@@ -24,10 +24,36 @@
 1. Everything starts at: [./razomy/abstracts](./razomy/abstracts)
 2. And implements in packages
 
+### Development
+
+fix everything
+
+```shell
+npm run format
+```
+
+check everything
+
+```shell
+npm run build
+```
+
+test everything
+
+```shell
+npm run test
+```
+
+publish everything
+
+```shell
+npm run publish
+```
+
 #### Packages
 
 | directory                                         | npm                                                                            |
-| ------------------------------------------------- | ------------------------------------------------------------------------------ |
+|---------------------------------------------------|--------------------------------------------------------------------------------|
 | [./razomy/string](/razomy/string)                 | [@razomy/string](https://www.npmjs.com/package/@razomy/string)                 |
 | [./razomy/string-case](/razomy/string-case)       | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case)       |
 | [./razomy/dict](/razomy/dict)                     | [@razomy/dict](https://www.npmjs.com/package/@razomy/dict)                     |

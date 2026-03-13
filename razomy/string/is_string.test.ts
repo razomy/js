@@ -83,7 +83,6 @@ describe('string', () => {
 
     // 4. String object wrapper (boxed string)
     it('returns false for a String object (new String())', () => {
-      // eslint-disable-next-line no-new-wrappers
       expect(isString(new String('hello'))).toBe(false);
     });
 

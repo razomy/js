@@ -6,14 +6,14 @@ export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, se
   const aKeys = Object.keys(a);
   let bKeys = Object.keys(b);
 
-  for (let oldKey of aKeys) {
+  for (const oldKey of aKeys) {
     if (bKeys.includes(oldKey)) {
       differencesVrd(diffs, a[oldKey], b[oldKey], [path, oldKey].filter((i) => i).join(separator));
       bKeys = bKeys.filter((i) => i != oldKey);
       continue;
     }
 
-    let newKey: string | null = arrayDifference.getSimilar(oldKey, bKeys);
+    const newKey: string | null = arrayDifference.getSimilar(oldKey, bKeys);
     if (newKey) {
       diffs.push({
         type: 'replace_key',
@@ -27,7 +27,7 @@ export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, se
 
     diffs.push({ type: 'removed', path: path, value: vrd({ [oldKey]: a[oldKey] }) });
   }
-  for (let newKey of bKeys) {
+  for (const newKey of bKeys) {
     diffs.push({ type: 'added', path: path, value: vrd({ [newKey]: b[newKey] }) });
   }
   return diffs;

@@ -26,7 +26,7 @@ export class NoiseTextureFilter implements ITextureFilter {
   ) {}
 
   public filter(imageData: any): void {
-    var amount = this.noise * 255,
+    let amount = this.noise * 255,
       data = imageData.data,
       nPixels = data.length,
       half = amount / 2,

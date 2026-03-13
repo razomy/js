@@ -18,7 +18,7 @@ export function iterate<K, V>(
     }
     return iterate(value[1], nodeCb);
   } else if (kv.isAkv(value)) {
-    for (let child of value) {
+    for (const child of value) {
       const res = iterate(child, nodeCb);
       // break
       if (!res) {

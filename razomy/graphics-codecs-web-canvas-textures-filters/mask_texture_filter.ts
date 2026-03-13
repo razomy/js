@@ -22,7 +22,7 @@ export class MaskTextureFilter implements ITextureFilter {
 
   public filter(imageData: any): void {
     // Detect pixels close to the background color
-    var threshold = this.threshold,
+    let threshold = this.threshold,
       mask = backgroundMask(imageData, threshold);
     if (mask) {
       // Erode

@@ -51,7 +51,7 @@ export class RgbTextureFilter implements ITextureFilter {
   }
 
   public filter(imageData: any): void {
-    var data = imageData.data,
+    let data = imageData.data,
       nPixels = data.length,
       red = this.red,
       green = this.green,

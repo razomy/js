@@ -6,7 +6,7 @@ export function getAll<T extends treeList.WithChildrenList<any>>(node: T, path: 
   }
 
   const [currentValue, ...remainingPath] = path;
-  let matchingNodes: T[] = [];
+  const matchingNodes: T[] = [];
   if (match(node, currentValue)) {
     if (remainingPath.length === 0) {
       matchingNodes.push(node);

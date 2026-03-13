@@ -1,4 +1,4 @@
-import {patterns} from '@razomy/abstracts';
+import { patterns } from '@razomy/abstracts';
 import * as graphicsCodecsWebCanvasRenders from '@razomy/graphics-codecs-web-canvas-renders';
 import * as graphicsRenderes from '@razomy/graphics-renderes';
 import * as graphicsElements from '@razomy/graphics-elements';

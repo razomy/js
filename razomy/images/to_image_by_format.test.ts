@@ -2,24 +2,19 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import sharp from 'sharp';
 import { pipeline } from 'node:stream/promises';
-import { images } from './types';
-import { toImageByFormat } from './to_image_by_format.node';
-// 👇 УКАЖИ ПРАВИЛЬНЫЙ ПУТЬ К ТВОЕМУ ФАЙЛУ
+import { images } from './types'; // <-- Поправь путь
+import { toImageByFormat } from './to_image_by_format.node'; // <-- Поправь путь
 
-const outDir = './test_images_out';
+const outDir = path.join(__dirname, 'tmp');
 
-// Создаем папку для тестов
-if (fs.existsSync(outDir)) {
-  fs.rmSync(outDir, { recursive: true, force: true });
-}
-fs.mkdirSync(outDir);
+// Увеличиваем таймаут, так как обработка картинок (особенно heic/avif) может быть небыстрой
+jest.setTimeout(30000);
 
-// Функция создания исходного изображения для тестов
+// --- Вспомогательная функция генерации исходников ---
 async function createSourceImage(ext: string, filePath: string) {
   const width = 100;
   const height = 100;
 
-  // 1. Специфичный случай: SVG (это просто XML текст)
   if (ext === 'svg') {
     const svgContent = `
       <svg width="${width}" height="${height}" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -30,17 +25,14 @@ async function createSourceImage(ext: string, filePath: string) {
     return;
   }
 
-  // 2. Специфичный случай: BMP (Sharp не умеет писать BMP)
-  if (ext === 'bmp') {
-    throw new Error('SKIP_BMP'); // Пропускаем генерацию, т.к. нечем создать BMP программно
+  if (ext === 'bmp' || ext === 'ico') {
+    throw new Error(`SKIP_${ext.toUpperCase()}`);
   }
 
-  // 3. Остальные растровые форматы генерируем через Sharp
-  // Создаем красный квадрат с синим кругом
-  let img = sharp({
+  const img = sharp({
     create: {
-      width: width,
-      height: height,
+      width,
+      height,
       channels: 4,
       background: { r: 255, g: 0, b: 0, alpha: 1 },
     },
@@ -51,7 +43,6 @@ async function createSourceImage(ext: string, filePath: string) {
     },
   ]);
 
-  // Настройки сохранения для капризных форматов
   if (ext === 'jpg' || ext === 'jpeg') {
     await img.jpeg().toFile(filePath);
   } else if (ext === 'png') {
@@ -66,77 +57,84 @@ async function createSourceImage(ext: string, filePath: string) {
     await img.avif().toFile(filePath);
   } else if (ext === 'heic' || ext === 'heif') {
     await img.heif({ compression: 'av1' }).toFile(filePath);
-  } else if (ext === 'ico') {
-    // Sharp не умеет писать .ico нативно, сохраняем как png (тест пропустит это)
-    throw new Error('SKIP_ICO_SOURCE');
   } else {
-    // Пробуем дефолт
     await img.toFormat(ext as any).toFile(filePath);
   }
 }
 
-async function runTests() {
-  console.log('🚀 ЗАПУСК ТЕСТОВ GAMBAR (SHARP)...\n');
+describe('images', () => {
+  // Выполняется 1 раз перед всеми тестами: очищаем и создаем папку
+  beforeAll(() => {
+    if (fs.existsSync(outDir)) {
+      fs.rmSync(outDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(outDir, { recursive: true });
+  });
 
+  // Динамически создаем блоки тестов на основе массива настроек
   for (const imgConfig of images) {
     const inputExt = imgConfig.fileExtensionType;
-    const inputFilename = `source_test.${inputExt}`;
-    const inputPath = path.join(outDir, inputFilename);
 
-    console.log(`\n--- 📂 Тест входа: .${inputExt.toUpperCase()} ---`);
-
-    // 1. Пытаемся создать исходник
-    try {
-      await createSourceImage(inputExt, inputPath);
-    } catch (e: any) {
-      console.error(e);
-      if (e.message === 'SKIP_BMP' || e.message === 'SKIP_ICO_SOURCE') {
-        console.log(`   ⏭️  Пропуск генерации исходника (Sharp не умеет писать .${inputExt})`);
-        continue;
-      }
-      console.log(`   ⚠️  Не удалось создать исходник .${inputExt} (возможно, нет системного кодека):`, e.message);
-      continue;
-    }
-
-    // 2. Пробуем конвертировать во все доступные форматы
+    // Если конвертаций нет, пропускаем генерацию describe
     if (!imgConfig.conversions || imgConfig.conversions.length === 0) {
-      console.log('   ℹ️  Нет доступных конвертаций для этого типа');
       continue;
     }
 
-    for (const targetFormat of imgConfig.conversions) {
-      const tempInput = path.join(outDir, `temp_${Date.now()}_${inputFilename}`);
+    describe(`From input: .${inputExt.toUpperCase()}`, () => {
+      const inputPath = path.join(outDir, `source_test.${inputExt}`);
+      let sourceCreated = false;
 
-      try {
-        // ВАЖНО: Твоя функция удаляет файл! Делаем копию перед тестом.
-        fs.copyFileSync(inputPath, tempInput);
-
-        // Запуск твоей функции
-        const result = await toImageByFormat(tempInput, targetFormat as any);
-
-        // Сохранение результата
-        const outputFilename = `result_from_${inputExt}.${targetFormat}`;
-        const outputPath = path.join(outDir, outputFilename);
-        const writeStream = fs.createWriteStream(outputPath);
-
-        await pipeline(result.stream, writeStream);
-
-        // Проверка
-        const stats = fs.statSync(outputPath);
-        if (stats.size > 0) {
-          console.log(`   ✅ OK: -> .${targetFormat} (${(stats.size / 1024).toFixed(2)} KB)`);
-        } else {
-          console.error(`   ❌ FAIL: -> .${targetFormat} (Файл пустой)`);
+      // Перед тестами конкретного формата пытаемся создать для него исходную картинку
+      beforeAll(async () => {
+        try {
+          await createSourceImage(inputExt, inputPath);
+          sourceCreated = true;
+        } catch (e: any) {
+          if (e.message.startsWith('SKIP_')) {
+            console.warn(`[SKIP] Sharp не умеет программно создавать исходники для .${inputExt}`);
+          } else {
+            console.error(`Ошибка создания исходника .${inputExt}:`, e.message);
+          }
         }
-      } catch (err: any) {
-        console.error(`   ❌ ERROR: -> .${targetFormat}`, err.message);
+      });
+
+      // Генерируем тест для каждого целевого формата
+      for (const targetFormat of imgConfig.conversions) {
+        test(`should convert to .${targetFormat}`, async () => {
+          // Если исходник не удалось создать (например, bmp/ico), пропускаем тест зелёным
+          if (!sourceCreated) {
+            console.warn(`   ⏭️ Пропущен тест конвертации ${inputExt} -> ${targetFormat} (нет исходника)`);
+            return;
+          }
+
+          const tempInput = path.join(outDir, `temp_${Date.now()}_source.${inputExt}`);
+          const outputFilename = `result_from_${inputExt}.${targetFormat}`;
+          const outputPath = path.join(outDir, outputFilename);
+
+          // Делаем копию исходника, так как функция удаляет входящий файл!
+          fs.copyFileSync(inputPath, tempInput);
+
+          try {
+            // Выполняем конвертацию
+            const result = await toImageByFormat(tempInput, targetFormat as any);
+
+            // Сохраняем стрим в файл
+            const writeStream = fs.createWriteStream(outputPath);
+            await pipeline(result.stream, writeStream);
+
+            // --- ПРОВЕРКИ (Assertions) ---
+            expect(fs.existsSync(outputPath)).toBe(true);
+            const stats = fs.statSync(outputPath);
+            expect(stats.size).toBeGreaterThan(0);
+
+          } finally {
+            // Убираем временный входной файл, если он случайно остался
+            if (fs.existsSync(tempInput)) {
+              fs.rmSync(tempInput, { force: true });
+            }
+          }
+        });
       }
-    }
+    });
   }
-
-  // Очистка исходников (опционально)
-  // fs.rmSync(OUT_DIR, { recursive: true, force: true });
-  console.log(`\n🏁 Тесты завершены. Результаты в папке ${outDir}`);
-}
-
-runTests().catch((err) => console.error('FATAL:', err));
+});

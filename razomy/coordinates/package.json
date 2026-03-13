@@ -61,7 +61,7 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/razomy/coordinates#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/coordinates#readme",
   "keywords": [
     "razomy",
     "coordinates"
@@ -71,6 +71,8 @@
   "module": "./index.ts",
   "name": "@razomy/coordinates",
   "peerDependencies": {
+    "@razomy/coordinates/x": "*",
+    "@razomy/coordinates/y": "*"
   },
   "publishConfig": {
     "access": "public"

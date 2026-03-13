@@ -115,7 +115,7 @@ export async function createDistSpecifications(project: Project, path: string, n
   const complexityTags = doc.getTags().filter((t) => t.getTagName() === 'complexity');
   complexityTags.forEach((tag) => {
     // 1. Очищаем текст тега от звездочек форматирования JSDoc
-    const cleanText = tag.getCommentText()?.split(' ')!;
+    const cleanText = tag.getCommentText()?.split(' ') || [];
 
     // 2. Ищем Markdown блок с кодом (теперь он чистый)
     const tagMatch = cleanText[0];

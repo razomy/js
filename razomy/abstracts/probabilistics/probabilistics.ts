@@ -1,4 +1,4 @@
-export interface ProbabilisticDataStructure<T> {
+export interface ProbabilisticDataStructure<_T> {
   accuracy: number;
 }
 

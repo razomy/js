@@ -25,7 +25,7 @@ export function filter<K, V>(
     return value;
   } else if (isAkv<K, V>(value)) {
     const children = akv<K, V>();
-    for (let child of value) {
+    for (const child of value) {
       if (isKeep(child)) {
         children.push(filter(child, isKeep));
       }

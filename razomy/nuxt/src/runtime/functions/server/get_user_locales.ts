@@ -5,7 +5,7 @@ import { type RzmNuxtConfig } from '../interfaces';
 
 export function getUserLocales(c: RzmNuxtConfig, event: H3Event) {
   // TODO: use whitelist enum instead
-  let responses = tryGetQueryFrom(c, event, withLocaleSchema);
+  const responses = tryGetQueryFrom(c, event, withLocaleSchema);
   if (responses?.locale) {
     return responses.locale || 'en';
   }

@@ -8,7 +8,7 @@ export function mapRoot<I, O>(
   const otput: RootDict<O> = {
     children: {},
   };
-  for (let inputKey in input.children) {
+  for (const inputKey in input.children) {
     const value = input[inputKey];
     otput[inputKey] = mapBranch(otput, value, leafValueCb);
   }

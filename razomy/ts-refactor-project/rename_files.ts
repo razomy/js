@@ -8,7 +8,7 @@ export async function renameFiles(projectPath: string) {
   });
   const sourceFiles = project.getSourceFiles();
   for (const sourceFile of sourceFiles) {
-    let { baseName, ext } = tsRefactor.getNameAndExt(sourceFile);
+    const { baseName, ext } = tsRefactor.getNameAndExt(sourceFile);
     const newName = tsRefactor.toSafeFilename(baseName);
 
     // Skip if name hasn't changed

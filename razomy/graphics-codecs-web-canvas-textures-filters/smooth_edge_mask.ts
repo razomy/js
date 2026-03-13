@@ -1,20 +1,20 @@
 export function smoothEdgeMask(mask: any, sw: any, sh: any) {
-  var weights = [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9];
-  var side = Math.round(Math.sqrt(weights.length));
-  var halfSide = Math.floor(side / 2);
-  var maskResult: any[] = [];
-  for (var y = 0; y < sh; y++) {
-    for (var x = 0; x < sw; x++) {
-      var so = y * sw + x;
-      var a = 0;
-      for (var cy = 0; cy < side; cy++) {
-        for (var cx = 0; cx < side; cx++) {
-          var scy = y + cy - halfSide;
-          var scx = x + cx - halfSide;
+  const weights = [1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9];
+  const side = Math.round(Math.sqrt(weights.length));
+  const halfSide = Math.floor(side / 2);
+  const maskResult: any[] = [];
+  for (let y = 0; y < sh; y++) {
+    for (let x = 0; x < sw; x++) {
+      const so = y * sw + x;
+      let a = 0;
+      for (let cy = 0; cy < side; cy++) {
+        for (let cx = 0; cx < side; cx++) {
+          const scy = y + cy - halfSide;
+          const scx = x + cx - halfSide;
 
           if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
-            var srcOff = scy * sw + scx;
-            var wt = weights[cy * side + cx];
+            const srcOff = scy * sw + scx;
+            const wt = weights[cy * side + cx];
 
             a += mask[srcOff] * wt;
           }

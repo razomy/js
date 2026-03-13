@@ -5,7 +5,7 @@ export function get<T extends treeList.WithChildrenList<any>>(node: T, path: str
     return node;
   }
 
-  for (let childNode of node.children) {
+  for (const childNode of node.children) {
     if (childNode.value == path[offset]) {
       return get(childNode, path, offset + 1);
     }

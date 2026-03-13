@@ -35,7 +35,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         .toArray()
         .filter(Boolean),
 
-      homepage: `https://github.com/razomy/js/main/${folder.name}#readme`,
+      homepage: `https://github.com/razomy/js/tree/main/${folder.name}#readme`,
       author: {
         name: `Yevhenii Kamenskyi`,
         email: `yevhenii.kamenskyi+js@razomy.org`,

@@ -1,4 +1,4 @@
-import {patterns} from '@razomy/abstracts';
+import { patterns } from '@razomy/abstracts';
 import * as abstracts from '@razomy/abstracts';
 import * as graphicsElements from '@razomy/graphics-elements';
 import * as graphicsShapes from '@razomy/graphics-shapes';

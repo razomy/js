@@ -11,7 +11,7 @@ export interface Status {
 
 export async function getStatus(dirPath: string) {
   return new Promise<Status>((resolve, reject) => {
-    var cmd = 'git status --porcelain -b';
+    const cmd = 'git status --porcelain -b';
     exec(cmd, { cwd: dirPath }, function (err, stdout) {
       if (err) return reject(err);
       resolve(parseStatus(stdout));

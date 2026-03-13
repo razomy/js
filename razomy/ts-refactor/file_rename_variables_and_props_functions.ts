@@ -14,7 +14,7 @@ export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: It
     ...parameters,
     ...sourceFile.getDescendantsOfKind(SyntaxKind.MethodDeclaration),
   ];
-  for (let variableDeclaration of files) {
+  for (const variableDeclaration of files) {
     if (variableDeclaration.wasForgotten()) {
       continue;
     }

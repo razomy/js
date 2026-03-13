@@ -36,7 +36,7 @@ export class Color {
       otherColor = new Color(otherColor);
     }
 
-    var result: number[] = [],
+    let result: number[] = [],
       alpha = this.getAlpha(),
       otherAlpha = 0.5,
       source = this.getSource(),
@@ -82,7 +82,7 @@ export class Color {
    * @return {Color} thisArg
    */
   setAlpha(alpha: number) {
-    var source = this.getSource();
+    const source = this.getSource();
     source[3] = alpha;
     this.setSource(source);
     return this;
@@ -93,7 +93,7 @@ export class Color {
    * @return {Color} thisArg
    */
   toGrayscale() {
-    var source = this.getSource(),
+    const source = this.getSource(),
       average = parseInt((source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0), 10),
       currentAlpha = source[3];
     this.setSource([average, average, average, currentAlpha]);
@@ -106,13 +106,13 @@ export class Color {
    * @return {Color} thisArg
    */
   toBlackWhite(threshold: number) {
-    var source = this.getSource(),
+    const source = this.getSource(),
       average = (source[0] * 0.3 + source[1] * 0.59 + source[2] * 0.11).toFixed(0),
       currentAlpha = source[3];
 
     threshold = threshold || 127;
 
-    var averageI = Number(average) < Number(threshold) ? 0 : 255;
+    const averageI = Number(average) < Number(threshold) ? 0 : 255;
     this.setSource([averageI, averageI, averageI, currentAlpha]);
     return this;
   }

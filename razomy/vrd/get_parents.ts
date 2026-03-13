@@ -7,7 +7,7 @@ export function getParents<T>(
   path: dict.DictKey[],
   pathOffset: number,
 ): VrdOrValue<T>[] {
-  for (let key in valueRecursive!) {
+  for (const key in valueRecursive!) {
     if (key !== path[pathOffset]) {
       continue;
     }

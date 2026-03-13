@@ -2,10 +2,15 @@
   "preset": "ts-jest",
   "testEnvironment": "node",
   "verbose": false,
-  "roots": ["razomy"],
+  "roots": [
+    "razomy"
+  ],
   "moduleNameMapper": {
     "^@razomy/(.*)": "<rootDir>/razomy/$1"
   },
+  "modulePathIgnorePatterns": [
+    "/dist/"
+  ],
   "transform": {
     "^.+\\.tsx?$": [
       "ts-jest",

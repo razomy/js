@@ -1,6 +1,6 @@
 export function remap(fromValue: any, fromMin: any, fromMax: any, toMin: any, toMax: any) {
   // Compute the range of the data
-  var fromRange = fromMax - fromMin,
+  let fromRange = fromMax - fromMin,
     toRange = toMax - toMin,
     toValue;
 

@@ -23,7 +23,7 @@ export function leafTreeAbsolutePath<T>(
 ): AbsolutePathDictLeafOrRoot<T> {
   if ('children' in input) {
     const otput: AbsolutePathBranch<T> = { ...input, absolutePath, children: {}, value: input.value };
-    for (let inputKey in input.children) {
+    for (const inputKey in input.children) {
       const value: treeDict.BranchDictOrLeaf<T> = input.children[inputKey];
       const newPrefix = absolutePath ? absolutePath + '.' + inputKey : inputKey;
       otput.children[inputKey] = leafTreeAbsolutePath(value, newPrefix);

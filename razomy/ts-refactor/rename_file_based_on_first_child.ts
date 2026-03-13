@@ -30,7 +30,7 @@ export async function renameFileBasedOnFirstChild({ sourceFile, project }: Itera
   if (!name) {
     return;
   }
-  let { baseName, ext } = getNameAndExt(sourceFile);
+  const { baseName, ext } = getNameAndExt(sourceFile);
 
   if (name == baseName) {
     return;

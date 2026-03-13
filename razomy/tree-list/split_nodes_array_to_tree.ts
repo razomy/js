@@ -13,7 +13,7 @@ export function splitNodesArrayToTree(nodes: string[], leafs: string[]) {
 
     parts.forEach((part, index) => {
       // Check if this part already exists in the current level's children
-      let existingNode = currentLevel.children.find((child) => child.value === part);
+      const existingNode = currentLevel.children.find((child) => child.value === part);
 
       if (existingNode) {
         // If it exists, just move deeper

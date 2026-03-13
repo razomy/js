@@ -8,7 +8,7 @@ export function firstEqualIndexes<T>(a: T[], b: T[], startA = 0, startB = 0) {
 
   for (let aI = startA; aI < aMax; aI++) {
     for (let bI = startB; bI < bMax; bI++) {
-      let potential = aI + bI;
+      const potential = aI + bI;
       if (potential > potentialIndex) {
         break;
       }

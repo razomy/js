@@ -8,7 +8,7 @@ export const prices = {
 
 export function printPrice(result: any[]) {
   let p = 0;
-  result.forEach((c, i) => {
+  result.forEach((c) => {
     const inP_ = prices.expensive.in_ * c.tokens.in_;
     const outP_ = prices.expensive.out * c.tokens.out;
     p += inP_;

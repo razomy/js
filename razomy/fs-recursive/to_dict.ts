@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as abstracts from '@razomy/abstracts';
 
 export function toDict(dirPath: abstracts.graphs.DirPathString) {
-  let files: string[] = [];
+  const files: string[] = [];
 
   function iterate(currentDirPath: abstracts.graphs.DirPathString) {
     const items = fs.readdirSync(currentDirPath);

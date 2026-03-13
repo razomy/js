@@ -6,7 +6,7 @@ export function mapChildren<I extends WithChildrenList<any>, O extends WithChild
   cb: (input: I) => O,
 ): O[] {
   const children: O[] = [];
-  for (let child of children_) {
+  for (const child of children_) {
     children.push(map(child, cb));
   }
   return children;

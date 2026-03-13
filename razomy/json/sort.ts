@@ -11,10 +11,10 @@ export function sort<T extends Json>(object__: T): T {
   }
 
   if (object_.isObject(object__)) {
-    var keys = Object.keys(object__);
+    const keys = Object.keys(object__);
     keys.sort();
-    var newObject = {};
-    for (var i = 0; i < keys.length; i++) {
+    const newObject = {};
+    for (let i = 0; i < keys.length; i++) {
       newObject[keys[i]] = sort(object__[keys[i]]);
     }
     return newObject as T;

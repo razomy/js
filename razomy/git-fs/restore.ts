@@ -8,7 +8,7 @@ export function restore(sourcePath: abstracts.graphs.SourcePathString) {
   const tree = treeList.nodesArrayToTree(repos, files);
   treeList.iterateReverse(tree[0], (node) => {
     if (node.children.length !== 0) {
-      for (let child of node.children) {
+      for (const child of node.children) {
         const commitCommand = `git restore ` + child.value;
         execSync(commitCommand, { cwd: node.value });
       }
