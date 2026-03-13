@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/dict-recursive) |
 [Io](https://io.razomy.org/dict/recursive)
 
->
+> Utility functions for deep, recursive manipulation of complex JavaScript objects
 
 ## 🚀 Start
 
@@ -51,10 +51,9 @@ import { deleteByPathMut } from '@razomy/dict-recursive';
 
 #### deleteByPathMut
 
-`deleteByPathMut(obj: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/recursive").DictRecursive, path: string): void`
+`deleteByPathMut(obj: DictRecursive, path: string): void`
 
 Delete a nested property from a recursive dictionary by dot-separated path.
-
 Traverses a recursive dictionary using a dot-separated path string
 and deletes the property at the final key. If any intermediate segment does not
 exist or is not a nested dictionary, the operation is a no-op.
@@ -81,10 +80,9 @@ obj; // { a: { b: 1 } } (no change)
 
 #### flat
 
-`flat(obj: T, parentKey: string, result: Record<string, unknown>): import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/flat").FlattenedAndConverted<T>`
+`flat(obj: T, parentKey: string, result: Record<string, unknown>): FlattenedAndConverted<T>`
 
 Flatten a nested object into a single-level object with dot-separated keys.
-
 Recursively traverses a nested plain object and produces a flat object
 where each key is a dot-delimited path representing the original nesting structure.
 Non-plain-object values are preserved as leaf values.
@@ -105,10 +103,9 @@ flat({ x: { y: 1 }, z: [2, 3] }); // { x.y: 1, z: [2, 3] }
 
 #### getAny
 
-`getAny(dict: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict/dict").Dict<unknown>, keys: string[]): string[]`
+`getAny(dict: dict_.Dict<unknown>, keys: string[]): string[]`
 
 Recursively find all paths in a nested dict that contain the specified keys.
-
 Traverses a nested dictionary (objects and arrays) and returns an array of
 colon-separated paths leading to nodes that contain all of the specified keys.
 
@@ -128,10 +125,9 @@ getAny({ a: 'hello', b: { name: 'y' } }, ['name']); // [b:]
 
 #### getAnyAll
 
-`getAnyAll(dict: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict/dict").Dict<unknown>, keys: string[]): string[]`
+`getAnyAll(dict: dict_.Dict<unknown>, keys: string[]): string[]`
 
 Recursively find all paths in a nested dict where the specified keys exist.
-
 Traverses a nested dictionary (objects and arrays) and collects all colon-separated
 paths leading to nodes that contain all of the specified keys.
 
@@ -151,10 +147,9 @@ getAnyAll({ x: { y: { a: 1, b: 2 } }, z: { a: 1, b: 2 } }, ['a', 'b']); // [x:y:
 
 #### getByPath
 
-`getByPath(dict: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/recursive").DictRecursive, path: string): unknown`
+`getByPath(dict: DictRecursive, path: string): unknown`
 
 Get a value from a nested dictionary by dot-separated path.
-
 Traverses a recursive dictionary using a dot-separated path string,
 returning the value at the specified location or `undefined` if the path does not exist.
 
@@ -174,12 +169,10 @@ getByPath({ a: { b: 1 } }, 'a.z'); // undefined
 
 #### mergeDeepMut
 
-`mergeDeepMut(target: T, sources: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/recursive").DictRecursive[]): T`
+`mergeDeepMut(target: T, sources: dictRecursive.DictRecursive[]): T`
 
 Deep merge multiple recursive dictionaries into a target.
-
-Recursively merges properties from one or more source dictionaries into the target dictionary. Nested objects are merged
-deeply rather than replaced. Primitive values in sources overwrite those in the target. Mutates the target in place.
+Recursively merges properties from one or more source dictionaries into the target dictionary. Nested objects are merged deeply rather than replaced. Primitive values in sources overwrite those in the target. Mutates the target in place.
 
 Examples
 
@@ -197,10 +190,9 @@ mergeDeepMut({ a: 1 }, { a: { nested: true } }, { b: 3 }); // { a: { nested: tru
 
 #### moveByPathMut
 
-`moveByPathMut(dict: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/recursive").DictRecursive, oldPath: string, newPath: string): void`
+`moveByPathMut(dict: DictRecursive, oldPath: string, newPath: string): void`
 
 Move a value from one path to another within a recursive dictionary.
-
 Retrieves the value at `oldPath`, sets it at `newPath`, and deletes the value at `oldPath`.
 Throws if the value at `oldPath` is `undefined`.
 
@@ -208,10 +200,9 @@ Examples
 
 #### setByPathMut
 
-`setByPathMut(obj: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict-recursive/recursive").DictRecursive, path: string, value: unknown): void`
+`setByPathMut(obj: DictRecursive, path: string, value: unknown): void`
 
 Set a value in a nested dictionary by dot-separated path.
-
 Traverses or creates nested objects along the dot-separated path and sets the final key to the given value.
 
 Examples
@@ -228,9 +219,9 @@ Examples
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
-please consider backing the developers behind it.
-Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation;
+ please consider backing the developers behind it. 
+ Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation; 
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -254,8 +245,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:

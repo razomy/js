@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Safe and robust utility functions for parsing, stringifying, and handling JSON",
   "engines": {
     "node": ">=18"
   },

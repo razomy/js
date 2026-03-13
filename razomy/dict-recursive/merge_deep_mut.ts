@@ -1,4 +1,4 @@
-import * as object_ from '@razomy/object';
+import * as dict_ from '@razomy/dict';
 import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
@@ -27,13 +27,13 @@ export function mergeDeepMut<T extends dictRecursive.DictRecursive>(
   ...sources: dictRecursive.DictRecursive[]
 ): T {
   for (const source of sources) {
-    if (!object_.isObject(source)) continue;
+    if (!dict_.isPlainObject(source)) continue;
 
     for (const key in source) {
       const sourceValue = source[key];
 
-      if (object_.isObject(sourceValue)) {
-        if (!object_.isObject(target[key])) {
+      if (dict_.isPlainObject(sourceValue)) {
+        if (!dict_.isPlainObject(target[key])) {
           (target as dictRecursive.DictRecursive)[key] = {};
         }
         mergeDeepMut(target[key] as dictRecursive.DictRecursive, sourceValue as dictRecursive.DictRecursive);

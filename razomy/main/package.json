@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Execution context utilities to determine if a module is being run directly",
   "engines": {
     "node": ">=18"
   },

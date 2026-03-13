@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Comprehensive utility functions for string formatting, joining, and parsing",
   "engines": {
     "node": ">=18"
   },

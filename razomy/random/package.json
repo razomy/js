@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "A lightweight, zero-dependency TypeScript library for advanced random manipulations.",
+  "description": "Utility functions for safely generating random numbers, strings, and arbitrary values",
   "engines": {
     "node": ">=18"
   },

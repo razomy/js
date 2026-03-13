@@ -11,4 +11,5 @@ export { setJson } from './set_json';
 export { setSync } from './set_sync';
 export { set } from './set';
 export { tryGetJson } from './try_get_json';
+export { tryGetSync } from './try_get_sync';
 export { trySet } from './try_set';

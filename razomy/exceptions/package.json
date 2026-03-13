@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A collection of standard, reusable exception classes for robust error handling",
   "engines": {
     "node": ">=18"
   },

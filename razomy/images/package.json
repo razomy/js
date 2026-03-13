@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Powerful utilities for processing, formatting, and converting various image types",
   "engines": {
     "node": ">=18"
   },
@@ -73,6 +73,7 @@
   "module": "./index.ts",
   "name": "@razomy/images",
   "peerDependencies": {
+    "@razomy/exceptions": "*",
     "@razomy/fs-file-format": "*",
     "sharp": "^0.34.5"
   },

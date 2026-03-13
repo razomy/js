@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "A lightweight, zero-dependency TypeScript library for advanced dict manipulations.",
+  "description": "Utility functions for iterating, mapping, and manipulating flat JavaScript objects",
   "engines": {
     "node": ">=18"
   },

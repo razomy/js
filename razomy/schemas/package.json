@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A comprehensive collection of pre-built schema templates for quick validation",
   "engines": {
     "node": ">=18"
   },

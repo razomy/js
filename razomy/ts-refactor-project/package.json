@@ -73,7 +73,13 @@
     "flattenPackages",
     "formatProject",
     "renameFiles",
-    "replaceInjectImportWithDefaultImport"
+    "replaceInjectImportWithDefaultImport",
+    "addDependencies",
+    "createAtChildDirs",
+    "createDist",
+    "createRoot",
+    "getAll",
+    "updateByTemplate"
   ],
   "license": "MIT",
   "main": "./index.ts",

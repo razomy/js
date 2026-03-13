@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Functional programming utilities for composing and piping data through functions",
   "engines": {
     "node": ">=18"
   },

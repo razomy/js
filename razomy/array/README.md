@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/array) |
 [Io](https://io.razomy.org/array)
 
-> A lightweight, zero-dependency TypeScript library for advanced array manipulations.
+> Comprehensive utility functions for array transformations, flattening, and operations
 
 ## 🚀 Start
 
@@ -99,7 +99,7 @@ array; // [1, 2, 3]
 ```
 
 ```ts
-const array = ['a'];
+const array = ['a']
 addMut(array, 'b');
 array; // [a, b]
 ```
@@ -115,7 +115,6 @@ array; // [{ id: 1 }, { id: 2 }]
 `chunk(array: T[], size: number): T[][]`
 
 Splits an array into smaller arrays (chunks) of a specified size.
-
 The last chunk may be smaller than the `size`.
 
 Examples
@@ -137,7 +136,6 @@ chunk([true, false], 5); // [[true, false]]
 `countBy(array: readonly T[], predicate: (value: T) => any): Record<string, number>`
 
 Count occurrences of elements grouped by a predicate.
-
 Groups array elements by the result of a predicate function and counts occurrences of each group key.
 
 Examples
@@ -199,7 +197,6 @@ createByIndexAndSize(3, 4); // [0, 0, 0, 1]
 `difference(source: T[], other: T[]): T[]`
 
 Computes the difference between two arrays.
-
 Returns a new array with elements that are in the first array but not in the second array.
 The order of elements in the result is determined by the order in the first array.
 
@@ -327,10 +324,7 @@ Flattens an array of nested arrays by one level.
 Examples
 
 ```ts
-flat([
-  [1, 2],
-  [3, 4],
-]); // [1, 2, 3, 4]
+flat([[1, 2], [3, 4]]); // [1, 2, 3, 4]
 ```
 
 ```ts
@@ -366,7 +360,6 @@ getFirst([]); // Error: Array is empty
 `getLast(array: T[], offset: number): T`
 
 Retrieves the last element of an array.
-
 Optionally accepts an offset to retrieve preceding elements.
 Throws an error if the element is not found (e.g., empty array or out of bounds).
 
@@ -401,13 +394,7 @@ groupBy(['one', 'two', 'three'], (s) => s.length); // { 3: [one, two], 5: [three
 ```
 
 ```ts
-groupBy(
-  [
-    { k: 'a', v: 1 },
-    { k: 'b', v: 2 },
-  ],
-  (o) => o.k,
-); // { a: [{ k: a, v: 1 }], b: [{ k: b, v: 2 }] }
+groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k); // { a: [{ k: a, v: 1 }], b: [{ k: b, v: 2 }] }
 ```
 
 #### hasArray
@@ -495,7 +482,6 @@ intersection([1, 2], [3, 4]); // []
 `isArray(value: unknown): boolean`
 
 Check if a value is an array.
-
 Determines whether the provided value is an array using `Array.isArray`.
 
 Examples
@@ -565,30 +551,18 @@ reduce([1, 2, 3, 4], (acc, val) => acc + val, 0); // 10
 ```
 
 ```ts
-reduce(
-  [
-    ['a', 1],
-    ['b', 2],
-  ],
-  (acc, [key, val]) => ({ ...acc, [key]: val }),
-  {},
-); // { a: 1, b: 2 }
+reduce([['a', 1], ['b', 2]], (acc, [key, val]) => ({ ...acc, [key]: val }), {}); // { a: 1, b: 2 }
 ```
 
 ```ts
-reduce(
-  [1, 2, 3],
-  (acc, val) => {
-    acc.push(val * 2);
-    return acc;
-  },
-  [],
-); // [2, 4, 6]
+reduce([1, 2, 3], (acc, val) => { acc.push(val * 2); return acc; }, []); // [2, 4, 6]
 ```
 
 #### removeAllMut
 
 `removeAllMut(): void`
+
+
 
 Examples
 
@@ -620,9 +594,7 @@ removeAtMut(empty, 0); // undefined
 `removeFirstMut(array: T[], value: T): void`
 
 Remove the first occurrence of a value from an array in place.
-
-Mutates the given array by removing the first element that matches the provided value using strict equality. If the
-value is not found, the array remains unchanged.
+Mutates the given array by removing the first element that matches the provided value using strict equality. If the value is not found, the array remains unchanged.
 
 Examples
 
@@ -649,9 +621,7 @@ array; // [1, 2, 3]
 `removeLast(arr: readonly T[], deltaIndex: number): T[]`
 
 Remove elements from the end of an array.
-
-Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept
-relative to removing just the last one.
+Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
 
 Examples
 
@@ -772,7 +742,6 @@ some(['a', 'bc', 'd'], (s) => s.length > 1); // true
 `sortBy(array: T[], iteratee: (item: T) => string | number): T[]`
 
 This function performs a stable sort and does not mutate the original array.
-
 Creates a new array of elements sorted in ascending order by the results of running an iteratee on each element.
 
 Examples
@@ -786,13 +755,7 @@ sortBy(['bb', 'ccc', 'a'], (s) => s.length); // [a, bb, ccc]
 ```
 
 ```ts
-sortBy(
-  [
-    { user: 'fred', age: 40 },
-    { user: 'barney', age: 36 },
-  ],
-  (u) => u.age,
-); // [{ user: barney, age: 36 }, { user: fred, age: 40 }]
+sortBy([{ user: 'fred', age: 40 }, { user: 'barney', age: 36 }], (u) => u.age); // [{ user: barney, age: 36 }, { user: fred, age: 40 }]
 ```
 
 #### sortByArrayMut
@@ -800,7 +763,6 @@ sortBy(
 `sortByArrayMut(oldOrder: T[], newOrder: T[]): T[]`
 
 Sort an array in place based on the order defined by another array.
-
 Mutably sorts `oldOrder` so that its elements appear in the same
 relative order as they do in `newOrder`. Elements not found in `newOrder` are
 pushed to the end in their original relative order (via `Infinity` fallback).
@@ -864,7 +826,6 @@ take([1, 2, 3], 5); // [1, 2, 3]
 `toggle(array: T[], item: T): T[]`
 
 Toggles the presence of an item in an array.
-
 If the item exists, it is removed. Otherwise, it is appended.
 
 Examples
@@ -886,9 +847,7 @@ toggle([], true); // [true]
 `tryFirstEqual(array1: T[], array2: T[]): T | null`
 
 Find the first element in array2 that also exists in array1.
-
-Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first
-matching element, or null if no match is found.
+Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first matching element, or null if no match is found.
 
 Examples
 
@@ -909,7 +868,6 @@ tryFirstEqual([10, 20, 30], [30, 20, 10]); // 30
 `tryGetLast(arr: T[], deltaIndex: number): T | null`
 
 Retrieves the last element of an array or an element relative to the end.
-
 Returns null if the index is out of bounds.
 
 Examples
@@ -931,7 +889,6 @@ tryGetLast([]); // null
 `tryGetLastEqual(arrayA: T[], arrayB: U[], predicate: (itemA: T, itemB: U) => boolean): [T, U] | null`
 
 Returns the last pair of elements from two arrays that satisfy the provided predicate.
-
 Iterates through both arrays in reverse order.
 
 Examples
@@ -992,8 +949,7 @@ uniq([1, '1', 1]); // [1, 1]
 
 `zip(arrays: T[][]): T[][]`
 
-Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of
-which contains the second elements of the given arrays, and so on.
+Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 
 Examples
 
@@ -1021,9 +977,9 @@ zip([], [1, 2]); // []
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
-please consider backing the developers behind it.
-Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation;
+ please consider backing the developers behind it. 
+ Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation; 
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -1047,8 +1003,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:

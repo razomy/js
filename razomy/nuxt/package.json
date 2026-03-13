@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A powerful Nuxt SDK providing a comprehensive suite of reusable Vue components",
   "devDependencies": {
     "@nuxt/devtools": "^3.2.3",
     "@nuxt/eslint-config": "^1.15.2",

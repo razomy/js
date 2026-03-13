@@ -122,4 +122,3 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
   console.log('Готово!');
 }
 
-replaceInjectImportWithDefaultImport('../../');

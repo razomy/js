@@ -70,10 +70,7 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/coordinates",
-  "peerDependencies": {
-    "@razomy/coordinates/x": "*",
-    "@razomy/coordinates/y": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

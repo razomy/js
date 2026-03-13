@@ -1,5 +1,5 @@
 import * as fss from '@razomy/fss';
-import type { FunctionSpecification } from '../function/function_specification';
+import type {FunctionSpecification} from '../function/function_specification';
 import * as stringCase from '@razomy/string-case';
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
@@ -8,6 +8,8 @@ export function createPackageReadme(path: string, packageJson: any, specs: Funct
 
   // Sort specs alphabetically once to use in both TOC and Docs
   const sortedSpecs = [...specs].sort((a, b) => a.name.localeCompare(b.name));
+
+  const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
 
   const vision = `
 ## 🕊️ Vision
@@ -22,16 +24,17 @@ export function createPackageReadme(path: string, packageJson: any, specs: Funct
   const report = `
 ## 🐛 Reporting Issues
 
-We use GitHub Issues as the official bug tracker for this project. 
+We use GitHub Issues as the official bug tracker for this project.
 
 Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
+
 - A brief description of the issue.
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).
-  `.trim();
+`.trim();
 
   const title = `
 # ${packageJson.name}
@@ -49,9 +52,9 @@ When reporting a bug, please include:
 [![npm downloads](https://img.shields.io/npm/dw/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
 
-[Npm](https://www.npmjs.com/package/${packageJson.name}) | 
-[Npmx](https://npmx.dev/package/${packageJson.name}) | 
-[GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}) | 
+[Npm](https://www.npmjs.com/package/${packageJson.name}) |
+[Npmx](https://npmx.dev/package/${packageJson.name}) |
+[GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}) |
 [Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('razomy', '')})
 
 > ${packageJson.description}
@@ -68,6 +71,7 @@ Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
+
 - [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
 - [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
 - [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
@@ -76,6 +80,7 @@ Help us keep the momentum going. Choose how you want to light the way:
 
   const install = `
 ### Install
+
 \`\`\`sh
 npm i ${packageJson.name}
 \`\`\`
@@ -85,48 +90,53 @@ npm i ${packageJson.name}
   const sampleImport = sortedSpecs.length > 0 ? sortedSpecs[0].name : 'functionName';
   const imports = `
 ### Import
+
 \`\`\`ts
-import * as ${scopeName} from "${packageJson.name}";
+import * as ${scopeName} from '${packageJson.name}';
 // or
-import { ${sampleImport} } from "${packageJson.name}";
+import { ${sampleImport} } from '${packageJson.name}';
 \`\`\`
   `.trim();
 
   // ADDED: Table of contents
+  const tocs = sortedSpecs.map((s) => `- [${s.name}](#${s.name.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
-**Functions**
-${sortedSpecs.map((s) => `- [${s.name}](#${s.name.toLowerCase()})`).join('\n')}
+
+${tocs.length ? '**Functions**\n\n' + tocs : ''}
   `.trim();
 
   // IMPROVED: Markdown formatting for functions (Using ### for function names makes them linkable by the TOC)
-  const examples = `
-## 📚 Documentation
-### Functions
-${sortedSpecs
-  .map(
-    (s) => `
-#### ${s.name}
-
-\`${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.returns.type}\`
-
-${s.title ? `${s.title}\n` : ''}
-${s.description}
-
-Examples
-${s.examples
-  .map((e) =>
-    `
+  const functions = sortedSpecs
+    .map((s) => {
+      const declaration = `\`${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.returns.type}\``;
+      const description = [s.title, s.description].filter(Boolean).join('\n');
+      const examples = s.examples
+        .map((e) => `
 \`\`\`ts
 ${e.code} // ${e.expected}
 \`\`\`
-`.trim(),
-  )
-  .join('\n\n')}
-`,
-  )
-  .join('\n\n') // Added a horizontal rule between functions for better readability
-  .trim()}
+`.trim())
+        .join('\n\n').trim();
+      return `
+#### ${s.name}
+
+${declaration}
+
+${description}
+
+Examples
+
+${examples}
+`.trim();
+    })
+    .join('\n\n') // Added a horizontal rule between functions for better readability
+    .trim();
+
+  const examples = `
+## 📚 Documentation
+
+${functions.length ? '### Functions\n\n' + functions : ''}
 `.trim();
 
   const licenseAndContributing = `
@@ -142,9 +152,10 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 `.trim();
 
   const readme = `
-${title}
+${title}${description ? '\n' + description : ''}
 
 ## 🚀 Start
+
 ${install}
 
 ${imports}
@@ -160,7 +171,7 @@ ${donate}
 ${licenseAndContributing}
 
 ${report}
-`.trim();
-  fss.file.set(`${path}/README.md`, readme);
-  fss.file.set(`${path}/dist/README.md`, readme);
+`.trim() + '\n';
+  fss.file.setSync(`${path}/README.md`, readme);
+  fss.file.setSync(`${path}/dist/README.md`, readme);
 }

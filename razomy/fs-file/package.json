@@ -78,6 +78,7 @@
     "setSync",
     "set",
     "tryGetJson",
+    "tryGetSync",
     "trySet"
   ],
   "license": "MIT",

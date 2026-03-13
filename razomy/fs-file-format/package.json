@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Abstract wrappers and utilities for standardizing Node.js file system operations",
   "engines": {
     "node": ">=18"
   },

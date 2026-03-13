@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "A lightweight, zero-dependency TypeScript library for advanced recursive dict manipulations.",
+  "description": "Utility functions for deep, recursive manipulation of complex JavaScript objects",
   "engines": {
     "node": ">=18"
   },
@@ -80,8 +80,7 @@
   "module": "./index.ts",
   "name": "@razomy/dict-recursive",
   "peerDependencies": {
-    "@razomy/dict": "*",
-    "@razomy/object": "*"
+    "@razomy/dict": "*"
   },
   "publishConfig": {
     "access": "public"

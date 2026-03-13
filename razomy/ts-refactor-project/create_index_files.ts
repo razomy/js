@@ -98,6 +98,7 @@ export async function createIndexFiles(projectPath_: string) {
 function shouldIgnorePath(p: string, projectPath: string): boolean {
   return (
     p.includes('/node_modules') ||
+    p.includes('/tmp') ||
     p.includes('/dist') ||
     p.includes('/bin') ||
     p === projectPath ||

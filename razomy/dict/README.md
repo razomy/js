@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/dict) |
 [Io](https://io.razomy.org/dict)
 
-> A lightweight, zero-dependency TypeScript library for advanced dict manipulations.
+> Utility functions for iterating, mapping, and manipulating flat JavaScript objects
 
 ## 🚀 Start
 
@@ -47,7 +47,7 @@ import { filter } from '@razomy/dict';
 - [mapToArray](#maptoarray)
 - [merge](#merge)
 - [take](#take)
-- [toString\_](#tostring_)
+- [toString_](#tostring_)
 
 ## 📚 Documentation
 
@@ -55,10 +55,9 @@ import { filter } from '@razomy/dict';
 
 #### filter
 
-`filter(dict: Dict<T>, predicate: (value: T, key: string) => boolean): import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict/dict").Dict<T>`
+`filter(dict: Dict<T>, predicate: (value: T, key: string) => boolean): Dict<T>`
 
 Filter entries of a dictionary by a predicate.
-
 Returns a new dictionary containing only the entries for which the predicate returns true.
 
 Examples
@@ -79,6 +78,8 @@ filter<number>({ a: 10, b: 20 }, () => false); // {}
 
 `firstKey(): string`
 
+
+
 Examples
 
 #### get
@@ -86,7 +87,6 @@ Examples
 `get(dict: T, attr: keyof T): T[keyof T] | undefined`
 
 Retrieves the value associated with a specific key from a dictionary.
-
 Returns the value assigned to the provided key in the dictionary. If the key does not exist, returns undefined.
 
 Examples
@@ -105,10 +105,9 @@ get({ c: null }, 'c'); // null
 
 #### getKeys
 
-`getKeys(object: T): (keyof T)[]`
+`getKeys(object_: T): (keyof T)[]`
 
 Retrieves the own enumerable string-keyed property names of an object.
-
 Returns an array of the object's own enumerable property names.
 
 Examples
@@ -127,10 +126,9 @@ getKeys({ name: 'Raz', id: 101 }); // [name, id]
 
 #### isKeys
 
-`isKeys(dict: Dict<T>, keys: readonly string[]): boolean`
+`isKeys(dict: dict.Dict<T>, keys: readonly string[]): boolean`
 
 Check if a dictionary contains any of the specified keys.
-
 Returns `true` if at least one of the provided keys exists in the dictionary, `false` otherwise.
 
 Examples
@@ -152,9 +150,7 @@ isKeys({}, ['a']); // false
 `isPlainObject(value: unknown): boolean`
 
 Check if a value is a plain object.
-
-Determines whether the given value is a plain object — an object created by `{}`, `new Object()`, or
-`Object.create(null)`. Returns `false` for arrays, class instances, and other non-plain objects.
+Determines whether the given value is a plain object — an object created by `{}`, `new Object()`, or `Object.create(null)`. Returns `false` for arrays, class instances, and other non-plain objects.
 
 Examples
 
@@ -175,7 +171,6 @@ isPlainObject([1, 2, 3]); // false
 `iterate(dict: T, iteratee: (value: T[keyof T], key: string, dict: T) => unknown): T`
 
 Iterate over dictionary entries, invoking a callback for each key-value pair.
-
 Iterates over own enumerable string-keyed properties of a dictionary,
 calling the provided iteratee with the value, key, and the dictionary itself.
 Iteration can be terminated early by returning `false` from the iteratee.
@@ -184,9 +179,7 @@ Examples
 
 ```ts
 const logs = [];
-iterate({ a: 1, b: 2 }, (value, key) => {
-  logs.push([key, value]);
-});
+iterate({ a: 1, b: 2 }, (value, key) => { logs.push([key, value]); });
 logs; // [[a, 1], [b, 2]]
 ```
 
@@ -204,9 +197,7 @@ logs; // [10]
 `map(obj: Record<string, I>, cb: (value: I, key: string) => O): Record<string, O>`
 
 Creates a new dictionary by mapping each value of the object.
-
-Iterates over the dictionary and produces a new dictionary with the same keys, but values transformed by the provided
-callback function.
+Iterates over the dictionary and produces a new dictionary with the same keys, but values transformed by the provided callback function.
 
 Examples
 
@@ -227,7 +218,6 @@ map({}, (v) => v); // {}
 `mapToArray(obj: Record<string, I>, cb: (k: string, v: I) => O): O[]`
 
 Maps an object's entries to an array.
-
 Iterates over the dictionary entries and transforms them using the provided callback.
 
 Examples
@@ -246,12 +236,10 @@ mapToArray({}, (k, v) => v); // []
 
 #### merge
 
-`merge(dicts: [...T]): { [K in keyof import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict/merge").UnionToIntersection<T[number]>]: import("/Volumes/resource/resource/razomy/code/js.chunk/razomy/dict/merge").UnionToIntersection<T[number]>[K]; }`
+`merge(dicts: [...T]): { [K in keyof UnionToIntersection<T[number]>]: UnionToIntersection<T[number]>[K]; }`
 
 Merge an array of dictionaries into a single dictionary.
-
-Merges all dictionaries in the given array from left to right, with later entries overwriting earlier ones for duplicate
-keys.
+Merges all dictionaries in the given array from left to right, with later entries overwriting earlier ones for duplicate keys.
 
 Examples
 
@@ -272,7 +260,6 @@ merge([{ x: 'hello' }, { y: 'world' }, { z: true }]); // { x: hello, y: world, z
 `take(obj: T, keys: K[]): Pick<T, K>`
 
 Creates a partial subset of the original object type.
-
 Extracts a subset of properties from an object type.
 
 Examples
@@ -289,9 +276,9 @@ someOf({ id: 1, name: 'A' }, ['id']); // { id: 1 }
 someOf({ x: 10, y: 20 }, []); // {}
 ```
 
-#### toString\_
+#### toString_
 
-`toString_(dict: Dict<T>): string`
+`toString_(dict: dict.Dict<T>): string`
 
 Converts a dictionary to a specific string format.
 
@@ -321,9 +308,9 @@ dictToString({ k: 'v', id: '1' }); // {k:v;id:1;}
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
-please consider backing the developers behind it.
-Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation;
+ please consider backing the developers behind it. 
+ Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation; 
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -347,8 +334,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { getJson } from './get_json';
+import {getJson} from './get_json';
 
 export function tryGetJson(filePath) {
   if (!fs.existsSync(filePath)) {

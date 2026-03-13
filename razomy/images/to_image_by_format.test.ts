@@ -2,15 +2,14 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import sharp from 'sharp';
 import { pipeline } from 'node:stream/promises';
-import { images } from './types'; // <-- Поправь путь
-import { toImageByFormat } from './to_image_by_format.node'; // <-- Поправь путь
+import { images } from './types';
+import { toImageByFormat } from './to_image_by_format.node';
 
 const outDir = path.join(__dirname, 'tmp');
 
 // Увеличиваем таймаут, так как обработка картинок (особенно heic/avif) может быть небыстрой
 jest.setTimeout(30000);
 
-// --- Вспомогательная функция генерации исходников ---
 async function createSourceImage(ext: string, filePath: string) {
   const width = 100;
   const height = 100;

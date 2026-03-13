@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "Advanced utilities for managing asynchronous operations, promises, and futures",
   "engines": {
     "node": ">=18"
   },

@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "",
+  "description": "A lightweight wrapper and unified interface for seamless schema validation",
   "engines": {
     "node": ">=18"
   },

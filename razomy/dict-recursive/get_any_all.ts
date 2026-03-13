@@ -1,5 +1,4 @@
 import * as dict_ from '@razomy/dict';
-import * as object_ from '@razomy/object';
 
 /**
  * @summary Recursively find all paths in a nested dict where the specified keys exist.
@@ -38,7 +37,7 @@ export function getAnyAll(dict: dict_.Dict<unknown>, keys: string[]): string[] {
         result.push(`${i}${child}`);
       }
     }
-  } else if (object_.isObject(dict)) {
+  } else if (dict_.isPlainObject(dict)) {
     for (const key in dict) {
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
         const children = getAnyAll(dict[key] as dict_.Dict<unknown>, keys);

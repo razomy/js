@@ -71,7 +71,15 @@
     "measureComplexity",
     "nStringTestCasesRecordPerformance",
     "performanceCb",
-    "recordPerformance"
+    "recordPerformance",
+    "arrayN",
+    "constant",
+    "exponential",
+    "logN",
+    "nCubed",
+    "nLogN",
+    "nSquared",
+    "n"
   ],
   "license": "MIT",
   "main": "./index.ts",

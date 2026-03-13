@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "A lightweight, zero-dependency TypeScript library for advanced string case conversions and manipulations.\n",
+  "description": "Utility functions for advanced string casing conversions and manipulations",
   "engines": {
     "node": ">=18"
   },

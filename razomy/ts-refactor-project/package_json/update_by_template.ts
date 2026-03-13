@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as stringCase from '@razomy/string-case';
-import { getAll } from './get_all';
-import { getExportedFunctions } from '../../ts-refactor/get_exported_functions';
-import { getExportedConstants } from '../../ts-refactor/get_exported_constants';
-import { Project } from 'ts-morph';
-import { getFilteredSourceFiles } from '../../ts-refactor/get_filtered_source_files';
+import {getAll} from './get_all';
+import {getExportedFunctions} from '../../ts-refactor/get_exported_functions';
+import {getExportedConstants} from '../../ts-refactor/get_exported_constants';
+import {Project} from 'ts-morph';
+import {getFilteredSourceFiles} from '../../ts-refactor/get_filtered_source_files';
 import * as json from '@razomy/json';
 
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
-  const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
+  const project = new Project({tsConfigFilePath: projectPath + '/' + 'tsconfig.json'});
 
   packages.forEach((folder) => {
     const content = fs.readFileSync(folder.path, `utf-8`);
@@ -28,8 +28,8 @@ export function updateByTemplate(projectPath: string, prefix) {
       description: currentPackageJson.description || ``,
       keywords: new Set([
         ...currentPackageJson.name.split(/[@\/\-]/g),
-        ...functions.map(stringCase.camelCase),
-        ...consts.map(stringCase.camelCase),
+        ...functions.map(i => stringCase.camelCase(i.name)),
+        ...consts.map(i => stringCase.camelCase(i.name)),
       ])
         .values()
         .toArray()

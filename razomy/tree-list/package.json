@@ -78,7 +78,8 @@
     "map",
     "nodesArrayToTree",
     "splitNodesArrayToTree",
-    "vrdToTree"
+    "vrdToTree",
+    "first"
   ],
   "license": "MIT",
   "main": "./index.ts",

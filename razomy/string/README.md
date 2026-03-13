@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/string) |
 [Io](https://io.razomy.org/string)
 
->
+> Comprehensive utility functions for string formatting, joining, and parsing
 
 ## 🚀 Start
 
@@ -141,7 +141,6 @@ countOccurrences('apple', 'z'); // 0
 `countSpaceMargin(string: string): number`
 
 Count leading space margin of a string.
-
 Counts the number of leading space characters before the first non-space character in a string.
 
 Examples
@@ -162,6 +161,8 @@ countSpaceMargin('     '); // 5
 
 `countSpaceMarginByArray(): number[]`
 
+
+
 Examples
 
 #### countString
@@ -169,7 +170,6 @@ Examples
 `countString(strings: string[], equalString: string, offset: number, maxOffset: number): number`
 
 Count occurrences of a string within a subarray of strings.
-
 Counts how many times `equalString` appears in the `strings` array
 between index `offset` (inclusive) and `maxOffset` (exclusive).
 
@@ -211,6 +211,8 @@ string(null); // null
 
 `escapeByString(): string`
 
+
+
 Examples
 
 #### getWords
@@ -236,6 +238,8 @@ getWords('nested_snake_case'); // [nested, snake, case]
 #### indentLines
 
 `indentLines(): string`
+
+
 
 Examples
 
@@ -383,6 +387,8 @@ levenshteinDistance('razomy', 'razomy'); // 0
 
 `merge(): string`
 
+
+
 Examples
 
 #### padEnd
@@ -450,7 +456,6 @@ prefixLines('Code', '\t'); // \tCode
 `removeIndex(string: string, index: number, length: number): string`
 
 Remove characters from a string at a given index.
-
 Removes a specified number of characters from a string starting at the given index, returning the resulting string.
 
 Examples
@@ -484,18 +489,22 @@ repeat('razomy', 2); // razomyrazomy
 ```
 
 ```ts
-repeat('test', 0); //
+repeat('test', 0); // 
 ```
 
 #### replace
 
 `replace(): string`
 
+
+
 Examples
 
 #### similarity
 
 `similarity(): number`
+
+
 
 Examples
 
@@ -656,7 +665,7 @@ trim('\nbar\t'); // bar
 ```
 
 ```ts
-trim('   '); //
+trim('   '); // 
 ```
 
 #### truncate
@@ -683,6 +692,8 @@ truncate('hello world', 7, '...'); // hello...
 
 `unescapeByString(): string`
 
+
+
 Examples
 
 ## 🕊️ Vision
@@ -697,9 +708,9 @@ Examples
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
-please consider backing the developers behind it.
-Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation;
+ please consider backing the developers behind it. 
+ Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation; 
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -723,8 +734,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:

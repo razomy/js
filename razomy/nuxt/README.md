@@ -1,63 +1,44 @@
-# @razomy/abstracts
+# @razomy/nuxt
 
-[![License](https://img.shields.io/npm/l/@razomy/abstracts)](https://github.com/razomy/js/blob/main/LICENSE)
+[![License](https://img.shields.io/npm/l/@razomy/nuxt)](https://github.com/razomy/js/blob/main/LICENSE)
 [![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/abstracts)](https://bundlephobia.com/package/@razomy/abstracts)
-[![TypeScript](https://img.shields.io/npm/types/@razomy/abstracts)](https://www.npmjs.com/package/@razomy/abstracts)
-[![Node.js Version](https://img.shields.io/node/v/@razomy/abstracts)](https://www.npmjs.com/package/@razomy/abstracts)
-[![npm version](https://img.shields.io/npm/v/@razomy/abstracts)](https://www.npmjs.com/package/@razomy/abstracts)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/abstracts)](https://www.npmjs.com/package/@razomy/abstracts)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/nuxt)](https://bundlephobia.com/package/@razomy/nuxt)
+[![TypeScript](https://img.shields.io/npm/types/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
+[![Node.js Version](https://img.shields.io/node/v/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
+[![npm version](https://img.shields.io/npm/v/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
 
-[Npm](https://www.npmjs.com/package/@razomy/abstracts) |
-[Npmx](https://npmx.dev/package/@razomy/abstracts) |
-[GitHub](https://github.com/razomy/js/tree/main/razomy/abstracts) |
-[Io](https://io.razomy.org/abstracts)
+[Npm](https://www.npmjs.com/package/@razomy/nuxt) |
+[Npmx](https://npmx.dev/package/@razomy/nuxt) |
+[GitHub](https://github.com/razomy/js/tree/main/razomy/nuxt) |
+[Io](https://io.razomy.org/nuxt)
 
->
-# Abstracts
-
-Contains all core reusable types and interfaces.
-
-**System Layer** - oriented to performance
-
-1. **primitives** — Abstractions defining low-level hardware structures, including CPU, GPU, TPU, and memory/processing
-   units.
-2. **functions** — Abstractions defining behavioral contracts, such as creation and execution pipelines.
-3. **arrays** — Linear memory data structures.
-4. **structures** — Core building blocks for memory organization and data coordination, serving as a foundation for
-   complex templates.
-5. **collections** — Abstractions for mapping data and ordering it in a performance-optimized way (e.g., maps, sets,
-   queues).
-6. **graphs** — Graph and tree-like data structures.
-7. **probabilistics** — Matrices and probabilistic data structures.
-8. **ts** — Utilities designed to generalize and unify the TypeScript development experience alongside other languages.
-
-**Application Layer** - oriented to logic and language
-
-1. **domains** — Interfaces, data templates, domain responsibilities.
-2. **pattens** — Data transforming organizing templates.
-
+> A powerful Nuxt SDK providing a comprehensive suite of reusable Vue components
 
 ## 🚀 Start
 
 ### Install
 
 ```sh
-npm i @razomy/abstracts
+npm i @razomy/nuxt
 ```
 
 ### Import
 
 ```ts
-import * as abstracts from '@razomy/abstracts';
+import * as nuxt from '@razomy/nuxt';
 // or
-import { functionName } from '@razomy/abstracts';
+import { functionName } from '@razomy/nuxt';
 ```
 
 ## 📑 Table of Contents
 
+**Functions**
+
 ## 📚 Documentation
+
+### Functions
 
 ## 🕊️ Vision
 

@@ -14,7 +14,7 @@
 [GitHub](https://github.com/razomy/js/tree/main/razomy/random) |
 [Io](https://io.razomy.org/random)
 
-> A lightweight, zero-dependency TypeScript library for advanced random manipulations.
+> Utility functions for safely generating random numbers, strings, and arbitrary values
 
 ## 🚀 Start
 
@@ -49,6 +49,7 @@ import { createCssGradient } from '@razomy/random';
 - [createRecoveryKeys](#createrecoverykeys)
 - [createString](#createstring)
 - [createUuid](#createuuid)
+- [generateGuid](#generateguid)
 - [isYesOrNo](#isyesorno)
 - [pickItem](#pickitem)
 - [rollDice](#rolldice)
@@ -63,11 +64,15 @@ import { createCssGradient } from '@razomy/random';
 
 `createCssGradient(): string`
 
+
+
 Examples
 
 #### createDate
 
 `createDate(): string`
+
+
 
 Examples
 
@@ -76,7 +81,6 @@ Examples
 `createFloat(): number`
 
 Create a cryptographically secure random float in [0, 1).
-
 Generates a random floating-point number between 0 (inclusive) and 1 (exclusive)
 using the Web Crypto API for cryptographic randomness.
 
@@ -98,11 +102,15 @@ createFloat(); // 0.9481726350
 
 `createFloatRange(): number`
 
+
+
 Examples
 
 #### createInt
 
 `createInt(): number`
+
+
 
 Examples
 
@@ -110,11 +118,15 @@ Examples
 
 `createIpv4(): string`
 
+
+
 Examples
 
 #### createLightHexColor
 
 `createLightHexColor(): string`
+
+
 
 Examples
 
@@ -123,7 +135,6 @@ Examples
 `createMac(): string`
 
 Create a random MAC address.
-
 Generates a random MAC address string in uppercase with colon-separated octets.
 
 Examples
@@ -145,9 +156,7 @@ createMac(); // FF:12:9B:6E:D0:47
 `createPassword(length: number): string`
 
 Create a random password.
-
-Generates a random password of the specified length containing at least one uppercase letter, one lowercase letter, one
-digit, and one special character. The result is shuffled to avoid predictable positions.
+Generates a random password of the specified length containing at least one uppercase letter, one lowercase letter, one digit, and one special character. The result is shuffled to avoid predictable positions.
 
 Examples
 
@@ -167,6 +176,8 @@ createPassword(32); // xP4!rQ8@wN2#mK7&jL5$tH9^yB1*zF6+ (32 characters)
 
 `createPinCode(): string`
 
+
+
 Examples
 
 #### createRecoveryKeys
@@ -174,7 +185,6 @@ Examples
 `createRecoveryKeys(count: number, blocks: number, blockLength: number): string[]`
 
 Create an array of recovery keys.
-
 Generates a list of recovery keys, each composed of uppercase alphanumeric blocks separated by dashes.
 
 Examples
@@ -204,7 +214,6 @@ Examples
 `createUuid(): string`
 
 Create a UUID v4 string.
-
 Generates a cryptographically random UUID v4 string using the Web Crypto API.
 
 Examples
@@ -222,15 +231,27 @@ const id = createUuid();
 id.length; // 36
 ```
 
+#### generateGuid
+
+`generateGuid(): string`
+
+
+
+Examples
+
 #### isYesOrNo
 
 `isYesOrNo(): boolean`
+
+
 
 Examples
 
 #### pickItem
 
 `pickItem(): T`
+
+
 
 Examples
 
@@ -239,9 +260,7 @@ Examples
 `rollDice(diceCount: number, sides: number): number[]`
 
 Roll one or more dice and return the results.
-
-Simulates rolling a specified number of dice, each with a given number of sides, returning an array of random integer
-results.
+Simulates rolling a specified number of dice, each with a given number of sides, returning an array of random integer results.
 
 Examples
 
@@ -261,6 +280,8 @@ rollDice(4, 6); // [2, 6, 1, 4] (four six-sided dice)
 
 `shuffleArray(): T[]`
 
+
+
 Examples
 
 #### splitIntoGroups
@@ -268,9 +289,7 @@ Examples
 `splitIntoGroups(array: T[], groupsCount: number): T[][]`
 
 Split an array into a specified number of groups with randomly distributed elements.
-
-Shuffles the input array and distributes elements round-robin into the specified number of groups. The original array is
-not mutated.
+Shuffles the input array and distributes elements round-robin into the specified number of groups. The original array is not mutated.
 
 Examples
 
@@ -298,9 +317,9 @@ splitIntoGroups([10, 20, 30, 40, 50], 2); // e.g. [[30, 50, 10], [20, 40]]
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
-please consider backing the developers behind it.
-Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation;
+ please consider backing the developers behind it. 
+ Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation; 
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -324,8 +343,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
-issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
