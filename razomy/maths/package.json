@@ -61,25 +61,48 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/mocks#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/maths#readme",
   "keywords": [
     "razomy",
-    "mocks",
-    "generateFile",
-    "insertTotalCount"
+    "maths",
+    "calculate",
+    "million",
+    "tenMillion",
+    "hundredMillion",
+    "milliard",
+    "billion",
+    "trillion",
+    "quadrillion",
+    "quintillion",
+    "sextillion",
+    "septillion",
+    "octillion",
+    "nonillion",
+    "decillion",
+    "undecillion",
+    "duodecillion",
+    "tredecillion",
+    "quattuordecillion",
+    "quindecillion",
+    "sexdecillion",
+    "septendecillion",
+    "octodecillion",
+    "novemdecillion",
+    "vigintillion",
+    "centillion"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/mocks",
+  "name": "@razomy/maths",
   "peerDependencies": {
-    "@razomy/random": "*"
+    "mathjs": "^15.1.1"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/mocks",
+    "directory": "razomy/maths",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

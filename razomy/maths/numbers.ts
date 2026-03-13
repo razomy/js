@@ -1,13 +1,3 @@
-import { generateFile } from './generate_file';
-
-export function generateRandomCharacter() {
-  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  const randomIndex = Math.floor(Math.random() * characters.length);
-  return characters.charAt(randomIndex);
-}
-
-export const filePath = '../../../razomy/notation-editor-web-server/output.txt';
-
 export const million = 1e6;
 export const tenMillion = 1e7;
 export const hundredMillion = 1e8;
@@ -32,5 +22,3 @@ export const octodecillion = 1e108;
 export const novemdecillion = 1e114;
 export const vigintillion = 1e120;
 export const centillion = 1e600;
-
-generateFile(filePath, tenMillion);

@@ -12,7 +12,7 @@ export async function createDistSpecifications(project: Project, path: string, n
   const func = sourceFile.getFunctionOrThrow(name);
   const funcName = func.getName() || name;
 
-  const doc = extractValidJSDoc(func, funcName);
+  const doc = extractValidJsDoc(func, funcName);
 
   const title = extractTitle(doc, funcName, path);
   const description = extractDescription(doc, funcName, path);
@@ -43,7 +43,7 @@ export async function createDistSpecifications(project: Project, path: string, n
 // Функции-экстракторы (Декомпозиция)
 // ============================================================================
 
-function extractValidJSDoc(func: FunctionDeclaration, funcName: string): JSDoc {
+function extractValidJsDoc(func: FunctionDeclaration, funcName: string): JSDoc {
   const jsDocs = func.getJsDocs();
   if (jsDocs.length === 0) {
     throw new Error(`[Parse Error] JSDoc is missing for function '${funcName}'`);

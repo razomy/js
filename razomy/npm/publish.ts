@@ -3,7 +3,7 @@ import * as main from '@razomy/main';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
-import {checkNotProvidedDependency} from './checkNotProvidedDependency';
+import {checkNotProvidedDependency} from './check_not_provided_dependency';
 
 export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));

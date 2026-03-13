@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { generateRandomCharacter } from './generate_random_character';
 import { insertTotalCount } from './insert_total_count';
+import * as random from "@razomy/random";
 
 export function generateFile(filePath, fileSize) {
   const chunkSize = 500;
@@ -11,7 +11,7 @@ export function generateFile(filePath, fileSize) {
     if (totalCount * chunkSize < fileSize) {
       let chunk = '';
       for (let i = 0; i < chunkSize; i++) {
-        chunk += generateRandomCharacter();
+        chunk += random.createString(5);
       }
 
       const countInfo = insertTotalCount(totalCount);

@@ -67,6 +67,7 @@
   "keywords": [
     "razomy",
     "npm",
+    "checkNotProvidedDependency",
     "printProjectPackage",
     "publish"
   ],
@@ -76,6 +77,7 @@
   "name": "@razomy/npm",
   "peerDependencies": {
     "@razomy/main": "*",
+    "@razomy/shell": "*",
     "@razomy/ts-refactor": "*",
     "@razomy/ts-refactor-project": "*"
   },
