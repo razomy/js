@@ -85,7 +85,6 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           }
         }
 
-        // Удаляем старый import { ... } from '@razomy/...'
         importDecl.remove();
         hasChanges = true;
       }

@@ -16,7 +16,7 @@
   "packageManager": "npm@11.5.1",
   "private": true,
   "scripts": {
-    "format": "tsx razomy/ts-refactor-project/format_project.ts && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js && prettier --write .",
+    "format": "cd razomy/ts-refactor-project && tsx ./format_project.ts && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js . && prettier --write .",
     "build": "tsc --project tsconfig.json",
     "test": "jest . --coverage --collectCoverageFrom='razomy/**/*.{js,jsx,ts,tsx,vue}'",
     "release": "tsx razomy/npm/publish.ts"

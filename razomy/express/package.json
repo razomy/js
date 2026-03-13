@@ -5,7 +5,6 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {
-    "@google-cloud/connect-datastore": "^7.0.1",
     "@types/passport": "^1.0.12",
     "body-parser": "^1.20.2",
     "connect-ensure-login": "^0.1.1",

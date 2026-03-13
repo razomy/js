@@ -71,8 +71,6 @@
   "module": "./index.ts",
   "name": "@razomy/coordinates",
   "peerDependencies": {
-    "@razomy/coordinates/x": "*",
-    "@razomy/coordinates/y": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -75,7 +75,6 @@
   "name": "@razomy/graphics-codecs-web-svg-codecs",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/abstracts/patterns": "*",
     "@razomy/exceptions": "*",
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-codecs-web-svg-color": "*",

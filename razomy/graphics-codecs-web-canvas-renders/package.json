@@ -75,7 +75,6 @@
   "module": "./index.ts",
   "name": "@razomy/graphics-codecs-web-canvas-renders",
   "peerDependencies": {
-    "@razomy/abstracts/patterns": "*",
     "@razomy/exceptions": "*",
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-elements": "*",

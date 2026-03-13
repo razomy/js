@@ -1,4 +1,4 @@
-import * as create from '@razomy/abstracts/patterns';
+import {patterns} from '@razomy/abstracts';
 import * as graphicsCodecsWebCanvasRenders from '@razomy/graphics-codecs-web-canvas-renders';
 import * as graphicsRenderes from '@razomy/graphics-renderes';
 import * as graphicsElements from '@razomy/graphics-elements';
@@ -19,7 +19,7 @@ export class TextRender {
 
 export class CanvasRectangle {}
 
-export class RenderFactory implements create.WithCreate<graphicsRenderes.IRender<any>> {
+export class RenderFactory implements patterns.WithCreate<graphicsRenderes.IRender<any>> {
   constructor(public ctx: CanvasRenderingContext2D) {}
 
   public create(element?: graphicsElements.ElementView): graphicsRenderes.IRender<any> {

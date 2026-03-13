@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {
-    "simple-git": "3.30.0"
+    "simple-git": "3.33.0"
   },
   "description": "",
   "engines": {

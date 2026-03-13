@@ -1,4 +1,4 @@
-import * as x from '@razomy/coordinates/x';
-import * as y from '@razomy/coordinates/y';
+import * as x from '../x';
+import * as y from '../y';
 
 export interface WithRectangle extends x.WithX, y.WithY {}

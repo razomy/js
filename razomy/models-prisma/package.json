@@ -72,10 +72,10 @@
   "module": "./index.ts",
   "name": "@razomy/models-prisma",
   "peerDependencies": {
-    "@prisma/adapter-pg": "^7.4.2",
-    "@prisma/client": "^7.4.2",
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
     "@types/pg": "^8.18.0",
-    "prisma": "^7.4.2"
+    "prisma": "^7.5.0"
   },
   "publishConfig": {
     "access": "public"

@@ -79,6 +79,7 @@
     "@razomy/graphics-attributes": "*",
     "@razomy/graphics-codecs-web-svg-codecs": "*",
     "@razomy/graphics-elements": "*",
+    "@razomy/object": "*",
     "@razomy/resources": "*"
   },
   "publishConfig": {

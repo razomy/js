@@ -80,7 +80,6 @@
   "module": "./index.ts",
   "name": "@razomy/ts-refactor-project",
   "peerDependencies": {
-    "@razomy/...": "*",
     "@razomy/array": "*",
     "@razomy/fs": "*",
     "@razomy/fs-file": "*",

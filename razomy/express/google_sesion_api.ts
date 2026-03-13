@@ -1,4 +1,4 @@
-import { DatastoreStore } from '@google-cloud/connect-datastore';
+// import { DatastoreStore } from '@google-cloud/connect-datastore';
 import session from 'express-session';
 import passport from 'passport';
 import * as googleAuth from '@razomy/google-auth';
@@ -8,11 +8,11 @@ export function googleSesionApi(ctx) {
     session({
       proxy: true,
       cookie: { maxAge: 1000 * 60 * 60 * 24 * 31, secure: false, httpOnly: true },
-      store: new DatastoreStore({
-        kind: 'express-sessions',
-        expirationMs: 1000 * 60 * 60 * 24 * 31,
-        // TODO: dataset: new Datastore(),
-      }),
+      // store: new DatastoreStore({
+      //   kind: 'express-sessions',
+      //   expirationMs: 1000 * 60 * 60 * 24 * 31,
+      //   // TODO: dataset: new Datastore(),
+      // }),
       saveUninitialized: true,
       resave: true,
       secret: 'keyboard cat 6 12',
