@@ -1,10 +1,10 @@
 import simpleGit from 'simple-git';
-import { getAllCommitHashes } from './get_all_commit_hashes';
+import {getCommitsHash} from './get_commits_hash';
 import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
 
-export async function compareVersions(repoPath, filePath) {
+export async function compareVersions(repoPath: string, filePath: string) {
   const git = simpleGit(repoPath);
-  const commits = await getAllCommitHashes(git);
+  const commits = await getCommitsHash(git);
   const history = {
     commits: [] as commitDatetimeDeltaString.ActorDatetimeDeltaString[],
   };

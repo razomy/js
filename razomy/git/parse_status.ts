@@ -39,7 +39,7 @@ export function parseStatus(str: string): Status {
   lines.forEach(function (str) {
     if (str.match(/\S/)) {
       const [type, ...path] = str.trim().split(' ');
-      status.files.push({ type, path: path.join(' ') });
+      status.files.push({ type, path: path.join(' ').trim() });
     }
   });
 

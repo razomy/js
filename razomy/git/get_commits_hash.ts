@@ -1,4 +1,4 @@
-export function getAllCommitHashes(git) {
+export function getCommitsHash(git) {
   return new Promise<{ hash: string; date: string; authorName: string }[]>((resolve, reject) => {
     git.log((err, log) => {
       if (err) {

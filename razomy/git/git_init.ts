@@ -1,5 +1,5 @@
 import * as shell from '@razomy/shell';
 
-export function gitInit(c: string) {
+export function init(c: string) {
   shell.executeSync('git init', c);
 }

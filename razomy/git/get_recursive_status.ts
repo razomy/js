@@ -3,7 +3,7 @@ import * as git from '@razomy/git';
 import * as abstracts from '@razomy/abstracts';
 import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
-export function getRecursiveStatus(sourcePath: abstracts.graphs.SourcePathString) {
+export function getRecursiveStatuses(sourcePath: abstracts.graphs.SourcePathString) {
   const repos: string[] = [];
   const files: string[] = [];
   const paths = [path.join(sourcePath)];
@@ -21,4 +21,4 @@ export function getRecursiveStatus(sourcePath: abstracts.graphs.SourcePathString
   return { files, repos };
 }
 
-// console.log(get_recursive_status('/Volumes/resource/resource/').repos.join("\n"));
+// console.log(getRecursiveStatuses('/Volumes/resource/resource/').repos.join("\n"));

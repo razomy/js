@@ -1,6 +1,6 @@
 import * as shell from '@razomy/shell';
 
-export async function getGitCommitsId(dirPath: string, commitCount: number = 100) {
+export async function getCommitsId(dirPath: string, commitCount: number = 100) {
   // Command to retrieve the last commits with commit IDs and names
   const command = `git --git-dir=${dirPath}/.git log --pretty=format:%h%x09%s%x09%ad -n ${commitCount} --date=iso`;
 
