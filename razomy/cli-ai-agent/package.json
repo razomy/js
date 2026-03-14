@@ -61,30 +61,22 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/git-fs#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-agent#readme",
   "keywords": [
     "razomy",
-    "git",
-    "fs",
-    "commit",
-    "getRecursiveStatus",
-    "restore"
+    "ai",
+    "agent"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/git-fs",
-  "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/git": "*",
-    "@razomy/languages-programming-fs": "*",
-    "@razomy/tree-list": "*"
-  },
+  "name": "@razomy/ai-agent",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/git-fs",
+    "directory": "razomy/ai-agent",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

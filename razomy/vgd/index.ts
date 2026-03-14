@@ -1,6 +1,5 @@
 export { create } from './create';
 export { getEmbedding } from './get_embedding';
-export { indexFs } from './index_fs';
+export { indexFs, getLastCommitId } from './index_fs';
 export { search } from './search';
-export { setup } from './setup';
-export { tryIndexAndSearch } from './try_index_and_search';
+export { trySetUp, reset } from './setup';
