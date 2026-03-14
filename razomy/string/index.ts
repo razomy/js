@@ -5,6 +5,8 @@ export { countSpaceMarginByArray } from './count_space_margin_by_array';
 export { countSpaceMargin } from './count_space_margin';
 export { countString } from './count_string';
 export { create, type String } from './create';
+export { chunk } from './chunk';
+export { chunkByByteLength } from './chunkByByteLength';
 export { escapeByString } from './escape_by_string';
 export { getWords } from './get_words';
 export { indentLines } from './indent_lines';
