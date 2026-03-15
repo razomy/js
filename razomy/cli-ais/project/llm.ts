@@ -142,7 +142,7 @@ export async function consensusCall<T>(ctx: LlmContext, call: (ctx: LlmContext) 
           strategy = 'tryAgainWithErrorDescription';
           ctx.messages.push({
             role: 'system',
-            content: `Response is not valid.Return A valid result: ${e.expectedResult} ${e.actualResult}.`
+            content: `Response is not valid. Return a valid result: ${e.expectedResult} ${e.actualResult}.`
           })
           continue;
         }

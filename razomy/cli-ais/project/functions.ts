@@ -11,11 +11,3 @@ export function getFile(filePath: string) {
 export function setFile(filePath: string, data: string) {
   fss.file.setSync(filePath, data);
 }
-
-export function choose(data: string[], index: string) {
-  const result = data[Number.parseInt(index)];
-  if (!result) {
-    throw new Error('Index not found');
-  }
-  return result;
-}

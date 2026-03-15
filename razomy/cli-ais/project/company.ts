@@ -4,10 +4,6 @@ export async function runCompanyByCli(challengePrompt: string, cliContext: { dir
   const ctx: ActorContext = {
     tool: {
       project: {dirPath: cliContext.dirPath},
-      choose: {
-        index: -1,
-        data: []
-      },
       getDirFiles: [],
       getFile: {},
       setFile: {},

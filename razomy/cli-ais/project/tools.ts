@@ -1,37 +1,16 @@
 import {type Tool} from 'ollama';
-import {choose, getDirFiles, getFile, setFile} from './functions';
+import {getDirFiles, getFile, setFile} from './functions';
 import path from 'path';
 import {ToolExecuteLlmException} from './llm';
 
 export type ToolContext = {
   project: { dirPath: string },
-  choose: {
-    index: number,
-    data: string[],
-  },
   getDirFiles: string[],
   getFile: Record<string, string>,
   setFile: Record<string, string>,
 }
 
 export const tools = {
-  choose: {
-    type: 'function',
-    function: {
-      name: 'choose',
-      description: 'Decide',
-      parameters: {
-        type: 'object',
-        required: ['index'],
-        properties: {
-          index: {
-            type: 'index',
-            description: 'Index of data'
-          },
-        },
-      },
-    },
-  },
   getDirFiles: {
     type: 'function',
     function: {
@@ -92,10 +71,6 @@ export function executeToolMut(ctx: ToolContext, function_: any) {
       ctx.setFile[function_.arguments.filePath] = function_.arguments.data;
       setFile(function_.arguments.filePath, function_.arguments.data);
       toolResult = JSON.stringify('void');
-    } else if (function_.name === 'choose') {
-      ctx.choose.index = +(function_.arguments.index);
-      choose(ctx.choose.data, function_.arguments.index);
-      toolResult = JSON.stringify(ctx.choose.index);
     }
   } catch (error: any) {
     console.error(`Ошибка в инструменте ${function_.name}:`, error.message);
