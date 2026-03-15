@@ -1,0 +1,9 @@
+import { toImageByFormat } from '../to_image_by_format.node';
+import type * as fsFileFormat from '@razomy/fs-file-format';
+
+/**
+ * Convert from HEIF to GIF
+ */
+export async function gif(inputPath: string): Promise<fsFileFormat.ExtensionResult> {
+    return await toImageByFormat(inputPath, 'gif');
+}
