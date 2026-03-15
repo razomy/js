@@ -33,7 +33,15 @@ export async function createIndexFiles(projectPath_: string) {
       if (shouldIgnorePath(subDir.getPath(), projectPath)) continue;
 
       const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName());
-      exports.universal.push(exportLine);
+      // Определяем платформу файла по имени
+      const platform = getFilePlatform(exportLine);
+
+      // Распределяем по бакетам
+      if (platform === 'universal') {
+        exports.universal.push(exportLine);
+      } else {
+        exports[platform].push(exportLine);
+      }
     }
 
     // 2. Обработка файлов (Files)

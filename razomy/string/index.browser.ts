@@ -1,12 +1,12 @@
 export { addByIndexString } from './add_by_index_string';
+export { chunkByByteLength } from './chunk_by_byte_length';
+export { chunk } from './chunk';
 export { contains } from './contains';
 export { countOccurrences } from './count_occurrences';
 export { countSpaceMarginByArray } from './count_space_margin_by_array';
 export { countSpaceMargin } from './count_space_margin';
 export { countString } from './count_string';
 export { create, type String } from './create';
-export { chunk } from './chunk';
-export { chunkByByteLength } from './chunkByByteLength';
 export { escapeByString } from './escape_by_string';
 export { getWords } from './get_words';
 export { indentLines } from './indent_lines';

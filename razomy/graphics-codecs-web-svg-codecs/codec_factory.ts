@@ -4,10 +4,10 @@ import * as graphicsShapes from '@razomy/graphics-shapes';
 import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
 import * as exceptions from '@razomy/exceptions';
 
-export class CodecFactory implements abstracts.patterns.WithCreate<abstracts.abstracts.patterns.Codec<graphicsElements.ElementView, any>> {
+export class CodecFactory implements abstracts.patterns.WithCreate<abstracts.patterns.Codec<graphicsElements.ElementView, any>> {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
 
-  public create(element?: HTMLElement): abstracts.abstracts.patterns.Codec<graphicsElements.ElementView, any> {
+  public create(element?: HTMLElement): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
     if (element instanceof SVGRectElement) {
       return new graphicsCodecsWebSvgCodecs.RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof SVGElement) {
@@ -23,7 +23,7 @@ export class CodecFactory implements abstracts.patterns.WithCreate<abstracts.abs
 
   public createByNode(
     element?: graphicsElements.ElementView,
-  ): abstracts.abstracts.patterns.Codec<graphicsElements.ElementView, any> {
+  ): abstracts.patterns.Codec<graphicsElements.ElementView, any> {
     if (element instanceof graphicsShapes.RectangleShape) {
       return new graphicsCodecsWebSvgCodecs.RectangleCodec(this.encodeNodeFactory);
     } else if (element instanceof graphicsElements.ViewportElement) {

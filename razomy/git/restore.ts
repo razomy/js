@@ -1,4 +1,4 @@
-import { getRecursiveStatuses } from './get_recursive_status';
+import { getRecursiveStatuses } from './get_recursive_statuses';
 import { execSync } from 'node:child_process';
 import * as treeList from '@razomy/tree-list';
 import * as abstracts from '@razomy/abstracts';

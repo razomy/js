@@ -66,11 +66,13 @@
     "razomy",
     "vgd",
     "create",
-    "indexFs",
-    "search",
-    "tryIndexAndSearch",
+    "deleteFiles",
     "getEmbedding",
-    "setup"
+    "getLastCommitId",
+    "indexFs",
+    "reset",
+    "search",
+    "trySetUp"
   ],
   "license": "MIT",
   "main": "./index.ts",

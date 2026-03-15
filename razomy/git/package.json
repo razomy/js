@@ -67,20 +67,27 @@
   "keywords": [
     "razomy",
     "git",
+    "commit",
     "compareVersions",
-    "getAllCommitHashes",
-    "getGitCommitsId",
-    "getLastGitCommitIdOrNull",
+    "findGitRoot",
+    "getChangedFilesBetweenCommitsOrAll",
+    "getChangedFilesBetweenCommits",
+    "getCommitsHash",
+    "getCommitsId",
+    "getLastCommitId",
+    "getRecursiveStatuses",
+    "getStatusFileChanges",
     "getStatusSync",
     "getStatus",
-    "gitCommit",
     "gitFileCommitsToCommitJsonFile",
     "gitFileToNewGitFile",
-    "gitInit",
+    "initWithFile",
     "init",
-    "isCleanStatus",
+    "isStatusClean",
     "parseStatusRef",
     "parseStatus",
+    "restore",
+    "statusFilesToFileChangesMut",
     "vcsCommitsToGitFile"
   ],
   "license": "MIT",
@@ -88,10 +95,13 @@
   "module": "./index.ts",
   "name": "@razomy/git",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/async": "*",
     "@razomy/commit-datetime-delta-string": "*",
     "@razomy/fs-file": "*",
-    "@razomy/shell": "*"
+    "@razomy/languages-programming-fs": "*",
+    "@razomy/shell": "*",
+    "@razomy/tree-list": "*"
   },
   "publishConfig": {
     "access": "public"

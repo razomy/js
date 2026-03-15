@@ -34,7 +34,7 @@ export async function translateText(text: string, src: string, tgt: string): Pro
     return result[0].translation_text;
 }
 `;
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'translateText.ts'), engineCode);
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'translate_text.ts'), engineCode);
 
     let indexCode = '';
 

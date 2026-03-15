@@ -133,7 +133,7 @@ export async function toImageByFormat(
     // 3. Генерируем папки (исходящий формат) и файлы (целевой формат)
     for (const sourceFormat of FORMATS) {
         // Создаем папку для формата (например, image-converters/jpg)
-        const dirPath = path.join(OUTPUT_DIR, sourceFormat);
+        const dirPath = path.join(OUTPUT_DIR, sourceFormat +'.node');
         if (!fs.existsSync(dirPath)) {
             fs.mkdirSync(dirPath, { recursive: true });
         }
@@ -155,17 +155,17 @@ export async function toImageByFormat(
             fileCode += `}\n`;
 
             // Записываем файл (например, image-converters/jpg/png.ts)
-            fs.writeFileSync(path.join(dirPath, `${targetFormat}.node.ts`), fileCode);
+            fs.writeFileSync(path.join(dirPath, `${targetFormat}.ts`), fileCode);
 
             // Добавляем в локальный index.ts
             indexFileCode += `export { ${targetFormat} } from './${targetFormat}';\n`;
         }
 
         // Записываем index.ts внутри папки
-        fs.writeFileSync(path.join(dirPath, 'index.node.ts'), indexFileCode);
+        fs.writeFileSync(path.join(dirPath, 'index.ts'), indexFileCode);
 
         // Добавляем запись в глобальный index.ts как namespace
-        indexCode += `export * as ${sourceFormat} from "./${sourceFormat}";\n`;
+        indexCode += `export * as ${sourceFormat} from "./${sourceFormat}.node";\n`;
     }
 
     // 4. Записываем глобальный index.ts

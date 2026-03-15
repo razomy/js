@@ -1,8 +1,8 @@
-// export type Transitions<S extends string, E extends string> = {
-//   // Для конкретного события указываем, в какое состояние переходим
-//   [event in E]?: S;
-// };
-//
+export type Transitions<S extends string, E extends string> = {
+  // Для конкретного события указываем, в какое состояние переходим
+  [event in E]?: S;
+};
+
 //
 // export interface MachineConfig<S extends string, E extends string> {
 //   initial: S; // Начальное состояние

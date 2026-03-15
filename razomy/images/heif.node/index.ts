@@ -1,0 +1,10 @@
+export { avif } from './avif';
+export { gif } from './gif';
+export { heic } from './heic';
+export { ico } from './ico';
+export { jpeg } from './jpeg';
+export { jpg } from './jpg';
+export { png } from './png';
+export { tif } from './tif';
+export { tiff } from './tiff';
+export { webp } from './webp';

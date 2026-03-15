@@ -1,4 +1,4 @@
-import { translateText } from '../translateText';
+import { translateText } from '../translate_text';
 
 /**
  * Перевод с DE на FR

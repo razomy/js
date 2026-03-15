@@ -32,7 +32,3 @@ export function getExportedConstants(files: SourceFile[]): { path: string, name:
 
   return constantNames;
 }
-
-export function getFirstLevelElementsTextFromSource(file: SourceFile): string[] {
-  return file.getStatements().map(statement => statement.getText());
-}

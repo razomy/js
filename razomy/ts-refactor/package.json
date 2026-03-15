@@ -75,6 +75,7 @@
     "getExportedFunctions",
     "getExportedTypes",
     "getFilteredSourceFiles",
+    "getFirstLevelElementsTextFromSource",
     "getNameAndExt",
     "isNameTaken",
     "iterateSourceFilesAndSave",

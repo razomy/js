@@ -1,43 +1,13 @@
-import {getEmbedding} from './get_embedding';
-
-export async function getLastCommitId(db, projectPath: string) {
-  const session = db.session();
-
-  const result = await session.run(
-    `
-        MATCH (r:Repository {name: $projectPath})
-        RETURN r.lastCommitId AS lastCommitId
-      `,
-    {projectPath: projectPath}
-  );
-  await session.close();
-
-  // If no repository is found, return null
-  if (result.records.length === 0) {
-    return null;
-  }
-
-  // Extract and return the lastCommitId from the first record
-  return result.records[0].get('lastCommitId') as string;
-
-}
-
-export interface ChunkFile{
-  chunks: { id: string, text: string }[],
-  filePath: string
-}
+import { getEmbedding } from "./get_embedding";
+import type {ChunkFile} from './get_last_commit_id';
 
 export async function indexFs(db, projectPath: string, lastCommitId: string, filesData: ChunkFile[]) {
-  const session = db.session();
-  console.log('🧠 Начинаем локальную векторизацию через Ollama...');
-
-  // Размер пачки. Подберите оптимальный для вашей системы.
-  // 50-100 — хороший баланс между нагрузкой на Ollama и скоростью Neo4j.
-  const BATCH_SIZE = 5;
-  let batchData = [] as any;
-  let totalIndexed = 0;
-
-  try {
+    const session = db.session();
+    console.log('🧠 Начинаем локальную векторизацию через Ollama...');
+    const batchSize = 5;
+    let batchData = [] as any;
+    let totalIndexed = 0;
+    try {
     // 1. Единоразово обновляем репозиторий
     await session.run(`
       MERGE (r:Repository {name: $projectPath})
@@ -49,21 +19,21 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
     });
 
     // Функция для отправки накопленной пачки в Neo4j
-    const flushBatch = async () => {
-      if (batchData.length === 0) return;
+    async function flushBatch () {
+              if (batchData.length === 0) return;
 
-      // Получаем эмбеддинги ПАРАЛЛЕЛЬНО для всей пачки
-      // Если Ollama захлебывается, можно использовать библиотеку p-limit для ограничения конкурентности
-      const embeddings = await Promise.all(batchData.map(b => getEmbedding(b.text)));
+              // Получаем эмбеддинги ПАРАЛЛЕЛЬНО для всей пачки
+              // Если Ollama захлебывается, можно использовать библиотеку p-limit для ограничения конкурентности
+              const embeddings = await Promise.all(batchData.map(b => getEmbedding(b.text)));
 
-      // Подготавливаем данные для Neo4j, добавляя полученные векторы
-      const neo4jRecords = batchData.map((item, index) => ({
-        ...item,
-        embedding: embeddings[index]
-      }));
+              // Подготавливаем данные для Neo4j, добавляя полученные векторы
+              const neo4JRecords = batchData.map((item, index) => ({
+                ...item,
+                embedding: embeddings[index]
+              }));
 
-      // Записываем всю пачку ОДНИМ запросом с помощью UNWIND
-      await session.run(`
+              // Записываем всю пачку ОДНИМ запросом с помощью UNWIND
+              await session.run(`
         MATCH (r:Repository {name: $projectPath})
         UNWIND $batch AS item
         
@@ -76,16 +46,16 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
             
         MERGE (f)-[:CONTAINS]->(c)
       `, {
-        projectPath: projectPath,
-        batch: neo4jRecords
-      });
+                projectPath: projectPath,
+                batch: neo4JRecords
+              });
 
-      totalIndexed += neo4jRecords.length;
-      console.log(`✅ Проиндексировано чанков: ${totalIndexed}`);
+              totalIndexed += neo4JRecords.length;
+              console.log(`✅ Проиндексировано чанков: ${totalIndexed}`);
 
-      // Очищаем пачку для следующей итерации
-      batchData = [];
-    };
+              // Очищаем пачку для следующей итерации
+              batchData = [];
+            }
     // 2. Итерируемся по файлам и собираем данные в пачки
     let p = 0;
     for (const file of filesData) { // Исправлено mockCodebase -> files
@@ -97,7 +67,7 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
         });
 
         // Если пачка заполнилась — отправляем в обработку
-        if (batchData.length >= BATCH_SIZE) {
+        if (batchData.length >= batchSize) {
           await flushBatch();
         }
       }
@@ -109,54 +79,10 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
 
     console.log(`🎉 Индексация завершена. Всего чанков: ${totalIndexed}`);
 
-  } catch (error) {
+    } catch (error) {
     console.error('❌ Ошибка во время индексации:', error);
     throw error;
-  } finally {
+    } finally {
     await session.close();
-  }
-}
-
-export async function deleteFiles(db, projectPath, deletedFilePaths) {
-  // Если список файлов пуст, ничего не делаем
-  if (!deletedFilePaths || deletedFilePaths.length === 0) {
-    return;
-  }
-
-  const session = db.session();
-  console.log(`🗑️ Начинаем удаление ${deletedFilePaths.length} файлов из БД...`);
-
-  try {
-    const result = await session.run(`
-      // 1. Находим нужный репозиторий и удаляемые файлы в нем
-      MATCH (r:Repository {name: $projectPath})-[:HAS_FILE]->(f:File)
-      WHERE f.path IN $deletedFilePaths
-      
-      // 2. Находим связи этих файлов с чанками кода
-      OPTIONAL MATCH (f)-[rel:CONTAINS]->(c:CodeChunk)
-      
-      // 3. Удаляем связи и сами узлы файлов
-      DELETE rel, f
-      
-      // 4. Проверяем чанки: если на чанк больше не ссылается ни один файл (он стал сиротой), удаляем и его
-      WITH c
-      WHERE c IS NOT NULL AND NOT (c)<-[:CONTAINS]-()
-      DELETE c
-      
-      // Возвращаем количество удаленных чанков для статистики
-      RETURN count(c) AS deletedChunksCount
-    `, {
-      projectPath: projectPath,
-      deletedFilePaths: deletedFilePaths
-    });
-
-    const deletedChunksCount = result.records[0]?.get('deletedChunksCount')?.toNumber() || 0;
-    console.log(`✅ Удаление завершено. Очищено файлов: ${deletedFilePaths.length}, удалено чанков: ${deletedChunksCount}`);
-
-  } catch (error) {
-    console.error('❌ Ошибка во время удаления файлов:', error);
-    throw error;
-  } finally {
-    await session.close();
-  }
+    }
 }

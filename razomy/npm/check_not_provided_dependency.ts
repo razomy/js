@@ -23,7 +23,7 @@ export async function checkNotProvidedDependency(paths: string[]) {
 
       deployedPackages.add(pkg.name);
       packagesData.push({dir, pkg});
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(`Не удалось прочитать package.json в ${dir}: ${error.message}`);
     }
   }
