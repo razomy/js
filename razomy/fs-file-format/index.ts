@@ -1,7 +1,7 @@
 export {
+  type ExtensionResult,
   type FileCategory,
   type FileExtensionType,
-  type MediaType,
   type FileFormat,
-  type ExtensionResult,
+  type MediaType,
 } from './file_extension';

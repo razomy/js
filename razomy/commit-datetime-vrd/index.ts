@@ -1,1 +1,1 @@
-export { type RemoveDeltaVrd, type AddDeltaVrd, type DeltaVrd, type ActorDatetimeDeltaVrd } from './addvrd';
+export { type ActorDatetimeDeltaVrd, type AddDeltaVrd, type DeltaVrd, type RemoveDeltaVrd } from './addvrd';

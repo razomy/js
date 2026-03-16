@@ -11,19 +11,9 @@
   },
   "exports": {
     ".": {
-      "browser": {
-        "import": "./index.browser.ts",
-        "require": "./index.browser.ts",
-        "types": "./index.browser.ts"
-      },
       "default": {
         "default": "./index.ts",
         "types": "./index.ts"
-      },
-      "edge": {
-        "import": "./index.browser.ts",
-        "require": "./index.browser.ts",
-        "types": "./index.browser.ts"
       },
       "import": {
         "default": "./index.ts",
@@ -38,17 +28,7 @@
       "require": {
         "default": "./index.ts",
         "types": "./index.ts"
-      },
-      "vue": {
-        "import": "./index.browser.ts",
-        "require": "./index.browser.ts",
-        "types": "./index.browser.ts"
       }
-    },
-    "./browser": {
-      "import": "./index.browser.ts",
-      "require": "./index.browser.ts",
-      "types": "./index.browser.ts"
     },
     "./node": {
       "import": "./index.node.ts",

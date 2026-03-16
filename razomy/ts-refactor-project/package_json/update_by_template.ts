@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import {getAll} from './get_all';
 import {getExportedFunctions} from '../../ts-refactor/get_exported_functions';
@@ -13,12 +14,57 @@ export function updateByTemplate(projectPath: string, prefix) {
   const project = new Project({tsConfigFilePath: projectPath + '/' + 'tsconfig.json'});
 
   packages.forEach((folder) => {
+    const folderPath = path.dirname(folder.path);
     const content = fs.readFileSync(folder.path, `utf-8`);
     const currentPackageJson = JSON.parse(content);
     const srcPrefix = (currentPackageJson.files || ['*'])[0] === `*` ? `` : `src/`;
     const sources = getFilteredSourceFiles(project, path.dirname(folder.path));
     const functions = getExportedFunctions(sources);
     const consts = getExportedConstants(sources);
+
+    const dotBrowserExports = {
+      vue: {
+        types: `./${srcPrefix}index.browser.ts`,
+        import: `./${srcPrefix}index.browser.ts`,
+        require: `./${srcPrefix}index.browser.ts`,
+      },
+      edge: {
+        types: `./${srcPrefix}index.browser.ts`,
+        import: `./${srcPrefix}index.browser.ts`,
+        require: `./${srcPrefix}index.browser.ts`,
+      },
+      browser: {
+        types: `./${srcPrefix}index.browser.ts`,
+        import: `./${srcPrefix}index.browser.ts`,
+        require: `./${srcPrefix}index.browser.ts`,
+      },
+    }
+    const nameBrowserExport = {
+      './browser': {
+        types: `./${srcPrefix}index.browser.ts`,
+        import: `./${srcPrefix}index.browser.ts`,
+        require: `./${srcPrefix}index.browser.ts`,
+      },
+    }
+
+    const dotNodeExports = {
+      node: {
+        types: `./${srcPrefix}index.node.ts`,
+        import: `./${srcPrefix}index.node.ts`,
+        require: `./${srcPrefix}index.node.ts`,
+      },
+    }
+    const nameNodeExport = {
+      './node': {
+        types: `./${srcPrefix}index.node.ts`,
+        import: `./${srcPrefix}index.node.ts`,
+        require: `./${srcPrefix}index.node.ts`,
+      },
+    }
+
+    const isBrowserExports = fss.file.isExist(`${folderPath}/index.browser.ts`);
+    const isNodeExports = fss.file.isExist(`${folderPath}/index.node.ts`);
+
     const rawPkgData = {
       // general
       name: folder.name.replaceAll(`/`, `-`).replace(prefix + `-`, `@${prefix}/`),
@@ -59,16 +105,7 @@ export function updateByTemplate(projectPath: string, prefix) {
       },
       exports: {
         '.': {
-          vue: {
-            types: `./${srcPrefix}index.browser.ts`,
-            import: `./${srcPrefix}index.browser.ts`,
-            require: `./${srcPrefix}index.browser.ts`,
-          },
-          edge: {
-            types: `./${srcPrefix}index.browser.ts`,
-            import: `./${srcPrefix}index.browser.ts`,
-            require: `./${srcPrefix}index.browser.ts`,
-          },
+          ...(isBrowserExports ? dotBrowserExports : {}),
           import: {
             types: `./${srcPrefix}index.ts`,
             default: `./${srcPrefix}index.ts`,
@@ -82,27 +119,10 @@ export function updateByTemplate(projectPath: string, prefix) {
             types: `./${srcPrefix}index.ts`,
             default: `./${srcPrefix}index.ts`,
           },
-          browser: {
-            types: `./${srcPrefix}index.browser.ts`,
-            import: `./${srcPrefix}index.browser.ts`,
-            require: `./${srcPrefix}index.browser.ts`,
-          },
-          node: {
-            types: `./${srcPrefix}index.node.ts`,
-            import: `./${srcPrefix}index.node.ts`,
-            require: `./${srcPrefix}index.node.ts`,
-          },
+          ...(isNodeExports ? dotNodeExports : {}),
         },
-        './browser': {
-          types: `./${srcPrefix}index.browser.ts`,
-          import: `./${srcPrefix}index.browser.ts`,
-          require: `./${srcPrefix}index.browser.ts`,
-        },
-        './node': {
-          types: `./${srcPrefix}index.node.ts`,
-          import: `./${srcPrefix}index.node.ts`,
-          require: `./${srcPrefix}index.node.ts`,
-        },
+        ...(isBrowserExports ? nameBrowserExport : {}),
+        ...(isNodeExports ? nameNodeExport : {}),
         './specifications.json': './specifications.json',
         './package.json': './package.json',
       },

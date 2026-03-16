@@ -1,15 +1,16 @@
-import { Project, SourceFile, SyntaxKind } from 'ts-morph';
+import {Project, SourceFile, SyntaxKind} from 'ts-morph';
 import * as fsFile from '@razomy/fs-file';
+import * as array from '@razomy/array';
 import * as path from 'path';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from '@razomy/string-case';
 
 // Типы платформ
-type Platform = 'universal' | 'node' | 'browser' | 'remote';
+type Platform = 'default' | 'node' | 'browser' | 'remote';
 
 export async function createIndexFiles(projectPath_: string) {
   const projectPath = path.resolve(projectPath_);
-  const project = new Project({ tsConfigFilePath: path.join(projectPath, 'tsconfig.json') });
+  const project = new Project({tsConfigFilePath: path.join(projectPath, 'tsconfig.json')});
 
   const directories = project.getDirectories();
 
@@ -21,7 +22,7 @@ export async function createIndexFiles(projectPath_: string) {
 
     // Списки для хранения строк экспорта
     const exports = {
-      universal: [] as string[], // Попадает во все файлы
+      default: [] as string[], // Попадает во все файлы
       node: [] as string[], // Только для index.ts (как default/node)
       browser: [] as string[], // Только для index.browser.ts
       remote: [] as string[], // Только для index.remote.ts
@@ -32,16 +33,26 @@ export async function createIndexFiles(projectPath_: string) {
     for (const subDir of dir.getDirectories()) {
       if (shouldIgnorePath(subDir.getPath(), projectPath)) continue;
 
-      const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName());
-      // Определяем платформу файла по имени
-      const platform = getFilePlatform(exportLine);
+      function generateDirExportWithPlatform() {
+        // Определяем платформу файла по имени
+        const platform = getDirPlatforms(subDir.getPath());
 
-      // Распределяем по бакетам
-      if (platform === 'universal') {
-        exports.universal.push(exportLine);
-      } else {
-        exports[platform].push(exportLine);
+        // Распределяем по бакетам
+        if (platform.includes('default')) {
+          const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName(), 'default');
+          exports.default.push(exportLine);
+        }
+        if (platform.includes('browser')) {
+          const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName(), 'browser');
+          exports.browser.push(exportLine);
+        }
+        if (platform.includes('node')) {
+          const exportLine = generateDirExport(subDir.getPath(), subDir.getBaseName(), 'node');
+          exports.node.push(exportLine);
+        }
       }
+
+      generateDirExportWithPlatform();
     }
 
     // 2. Обработка файлов (Files)
@@ -61,8 +72,8 @@ export async function createIndexFiles(projectPath_: string) {
       const platform = getFilePlatform(baseName);
 
       // Распределяем по бакетам
-      if (platform === 'universal') {
-        exports.universal.push(exportLine);
+      if (platform === 'default') {
+        exports.default.push(exportLine);
       } else {
         exports[platform].push(exportLine);
       }
@@ -71,25 +82,29 @@ export async function createIndexFiles(projectPath_: string) {
     // 3. Генерация и запись файлов
     // Если есть универсальные экспорты или специфичные для платформы, создаем файл
 
-    const universalContent = [...exports.universal];
+    const universalContent = array.sortBy([...exports.default]);
     if (universalContent.length > 0) {
       saveIndexFile(project, `${dirPath}/index.ts`, universalContent);
     }
 
     // A. index.ts (Node + Universal)
-    const nodeContent = [...exports.universal, ...exports.node];
-    if (nodeContent.length > 0) {
+    const nodeContent = array.sortBy([...exports.default, ...exports.node]);
+    if (nodeContent.length > 0 && exports.node.length) {
       saveIndexFile(project, `${dirPath}/index.node.ts`, nodeContent);
+    } else {
+      fsFile.deleteSync(`${dirPath}/index.node.ts`);
     }
 
     // B. index.browser.ts (Browser + Universal)
-    const browserContent = [...exports.universal, ...exports.browser];
-    if (browserContent.length > 0) {
+    const browserContent = array.sortBy([...exports.default, ...exports.browser]);
+    if (browserContent.length > 0 && exports.browser.length) {
       saveIndexFile(project, `${dirPath}/index.browser.ts`, browserContent);
+    } else {
+      fsFile.deleteSync(`${dirPath}/index.browser.ts`);
     }
 
     // C. index.remote.ts (Remote + Universal)
-    // const remoteContent = [...exports.universal, ...exports.remote];
+    // const remoteContent = array.sortBy([...exports.default, ...exports.remote]);
     // if (remoteContent.length > 0) {
     //   saveIndexFile(project, `${dirPath}/index.remote.ts`, remoteContent);
     // }
@@ -122,13 +137,22 @@ function getFilePlatform(fileName: string): Platform {
   if (fileName.includes('.browser')) return 'browser';
   if (fileName.includes('.node')) return 'node';
   if (fileName.includes('.remote')) return 'remote';
-  return 'universal';
+  return 'default';
+}
+
+function getDirPlatforms(fullPath: string): (Platform | null)[] {
+  return [
+    fsFile.isExist(path.join(fullPath, 'index.ts')) ? 'default' : null,
+    fsFile.isExist(path.join(fullPath, 'index.node.ts')) ? 'node' : null,
+    fsFile.isExist(path.join(fullPath, 'index.browser.ts')) ? 'browser' : null,
+    fsFile.isExist(path.join(fullPath, 'index.remote.ts')) ? 'remote' : null,
+  ];
 }
 
 /**
  * Генерирует строку экспорта для папки (учитывая package.json если есть)
  */
-function generateDirExport(fullPath: string, baseName: string): string {
+function generateDirExport(fullPath: string, baseName: string, platform: Platform): string {
   const safeKey = tsRefactor.toSafeName(baseName);
   const childPackageJsonPath = path.join(fullPath, 'package.json');
 
@@ -136,7 +160,8 @@ function generateDirExport(fullPath: string, baseName: string): string {
     const name = fsFile.tryGetJson(childPackageJsonPath).name;
     return `export * as ${safeKey} from '${name}';`;
   } else {
-    return `export * as ${safeKey} from './${baseName}';`;
+    const platformExport = platform === 'default' ? '' : `/index.${platform}`;
+    return `export * as ${safeKey} from './${baseName}${platformExport}';`;
   }
 }
 
@@ -148,7 +173,7 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
   if (exportedDeclarations.size === 0) return null;
 
   let hasTypesOrClasses = false;
-  const namesToExport: string[] = [];
+  let namesToExport: string[] = [];
 
   for (const [name, decls] of exportedDeclarations) {
     const decl = decls[0];
@@ -169,7 +194,7 @@ function generateFileExport(sourceFile: SourceFile, baseName: string): string | 
       namesToExport.push(name);
     }
   }
-
+  namesToExport = array.sortBy(namesToExport);
   // Логика выбора стиля экспорта
   if (hasTypesOrClasses) {
     if (namesToExport.length > 0) {
@@ -196,6 +221,6 @@ function saveIndexFile(project: Project, filePath: string, lines: string[]) {
     '', // пустая строка в конце
   ].join('\n');
 
-  project.createSourceFile(filePath, content, { overwrite: true });
+  project.createSourceFile(filePath, content, {overwrite: true});
   console.log(`[GENERATED] ${filePath}`);
 }

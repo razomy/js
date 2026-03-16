@@ -20,7 +20,7 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function sortBy<T>(array: T[], iteratee: (item: T) => string | number): T[] {
+export function sortBy<T>(array: T[], iteratee: (item: T) => string | number = i => i as any): T[] {
   const length = array.length;
   const mapped = new Array(length);
 

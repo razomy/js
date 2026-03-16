@@ -1,10 +1,10 @@
 export {
-  type JsonObject,
-  type JsonSizeResource,
-  type JsonPropertiesResource,
-  type JsonEntityCollection,
-  type ResourceNode,
-  type ResourceDescription,
-  example,
   JsonCodec,
+  example,
+  type JsonEntityCollection,
+  type JsonObject,
+  type JsonPropertiesResource,
+  type JsonSizeResource,
+  type ResourceDescription,
+  type ResourceNode,
 } from './json_codec';

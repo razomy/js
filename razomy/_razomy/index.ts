@@ -1,1 +1,1 @@
-export { registry, fp } from './chain';
+export { fp, registry } from './chain';

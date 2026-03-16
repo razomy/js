@@ -1,2 +1,2 @@
 export { ConsoleLogger } from './console_logger';
-export { type Logger, NoneLogger } from './none_logger';
+export { NoneLogger, type Logger } from './none_logger';

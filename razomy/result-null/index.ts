@@ -1,3 +1,3 @@
 export { any } from './any';
 export { optinal } from './optinal';
-export { type ResultNull, type ResultNullFn, type FnResultNull, type ResultNullRegistry } from './result';
+export { type FnResultNull, type ResultNull, type ResultNullFn, type ResultNullRegistry } from './result';

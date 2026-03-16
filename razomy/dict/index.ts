@@ -1,13 +1,13 @@
-export { type DictKey, type Dict } from './dict';
 export { filter } from './filter';
 export { firstKey } from './first_key';
-export { getKeys } from './get_keys';
 export { get } from './get';
+export { getKeys } from './get_keys';
 export { isKeys } from './is_keys';
 export { isPlainObject } from './is_plain_object';
 export { iterate } from './iterate';
-export { mapToArray } from './map_to_array';
 export { map } from './map';
-export { merge, type UnionToIntersection, type Prettify } from './merge';
+export { mapToArray } from './map_to_array';
+export { merge, type Prettify, type UnionToIntersection } from './merge';
 export { take, type SomeOf } from './take';
 export { toString_ } from './to_string';
+export { type Dict, type DictKey } from './dict';

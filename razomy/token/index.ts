@@ -1,1 +1,1 @@
-export { type WithTokenType, type WithToken, type WithTokens } from './token';
+export { type WithToken, type WithTokenType, type WithTokens } from './token';

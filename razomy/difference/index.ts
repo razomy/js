@@ -1,1 +1,1 @@
-export { type DifferenceType, type Difference, type ReplaceDifference, type ChangeDifference } from './type';
+export { type ChangeDifference, type Difference, type DifferenceType, type ReplaceDifference } from './type';

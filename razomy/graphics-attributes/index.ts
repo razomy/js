@@ -1,5 +1,5 @@
-export { type IPositionAttribute, PositionAttribute } from './position_attribute';
-export { type ISizeResource, SizeAttribute } from './size_attribute';
+export { PositionAttribute, type IPositionAttribute } from './position_attribute';
+export { SizeAttribute, type ISizeResource } from './size_attribute';
 export { StyleAttribute } from './style_attribute';
 export { TextAttribute } from './text_attribute';
 export { TextStyle } from './text_style';

@@ -1,7 +1,8 @@
+export { GuidFactory, generateGuid } from './generate_guid';
 export { createCssGradient } from './create_css_gradient';
 export { createDate } from './create_date';
-export { createFloatRange } from './create_float_range';
 export { createFloat } from './create_float';
+export { createFloatRange } from './create_float_range';
 export { createInt } from './create_int';
 export { createIpv4 } from './create_ipv_4';
 export { createLightHexColor } from './create_light_hex_color';
@@ -11,7 +12,6 @@ export { createPinCode } from './create_pin_code';
 export { createRecoveryKeys } from './create_recovery_keys';
 export { createString } from './create_string';
 export { createUuid } from './create_uuid';
-export { generateGuid, GuidFactory } from './generate_guid';
 export { isYesOrNo } from './is_yes_or_no';
 export { pickItem } from './pick_item';
 export { rollDice } from './roll_dice';

@@ -1,11 +1,11 @@
 export {
+  type DynamicArray,
+  type F64Array,
+  type Index,
   type RawBuffer,
+  type SequenceArray,
+  type StaticArray,
+  type Tuple,
   type TypedMemoryView,
   type U8Array,
-  type F64Array,
-  type SequenceArray,
-  type Tuple,
-  type StaticArray,
-  type DynamicArray,
-  type Index,
 } from './arrays';

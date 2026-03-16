@@ -1,1 +1,1 @@
-export { allAudioTargets, audioConversions, audios, audioExtensions } from './types';
+export { allAudioTargets, audioConversions, audioExtensions, audios } from './types';

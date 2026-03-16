@@ -1,7 +1,7 @@
 export {
-  type ReadAndWriteImageFileExtensionType,
   imageWriteTargets,
-  type OnlyReadImageFileExtensionType,
-  type AllImageFileExtensionType,
   images,
+  type AllImageFileExtensionType,
+  type OnlyReadImageFileExtensionType,
+  type ReadAndWriteImageFileExtensionType,
 } from './types';

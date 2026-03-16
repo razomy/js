@@ -1,2 +1,2 @@
-export { allAudioTargets, audioConversions, audios, audioExtensions } from './types';
+export { allAudioTargets, audioConversions, audioExtensions, audios } from './types';
 export { toAudioByFormat } from './to_audio_by_format.node';

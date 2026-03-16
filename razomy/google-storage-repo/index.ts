@@ -1,4 +1,4 @@
-export { downloadFileRecursiveFile, CloudFileStore } from './download_file_recursive_file';
+export { CloudFileStore, downloadFileRecursiveFile } from './download_file_recursive_file';
 export { downloadFile } from './download_file';
 export { downloadFilesFromStorage } from './download_files_from_storage';
 export { downloadFilesRecursive } from './download_files_recursive';

@@ -1,5 +1,5 @@
+export { ArgumentError, notEmpty } from './argument_error';
 export { andFalseThrow } from './and_false_throw';
-export { notEmpty, ArgumentError } from './argument_error';
 export { assertDeepEqual } from './assert_deep_equal';
 export { emptyThrow } from './empty_throw';
 export { falseThrow } from './false_throw';
