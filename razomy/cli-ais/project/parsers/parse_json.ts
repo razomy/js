@@ -8,6 +8,6 @@ export function parseJson<T>(text: string): T {
     }
     return JSON.parse(text);
     } catch {
-    throw new TypedAnswerLlmException(text,"Архитектор вернул невалидный JSON");
+    throw new TypedAnswerLlmException(text,"АNot a valid JSON");
     }
 }

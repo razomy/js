@@ -1,7 +1,7 @@
 import { getAll } from './get_all';
 import fs from 'fs';
 import * as path from 'path';
-import * as fs_ from '@razomy/fs';
+import * as fss from '@razomy/fss';
 import * as json from '@razomy/json';
 
 export function addDependencies(projectPath: string, prefix) {
@@ -14,7 +14,7 @@ export function addDependencies(projectPath: string, prefix) {
   packages.forEach((folder) => {
     const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
     let matches: string[] = [];
-    fs_.iterate(path.dirname(folder.path), (iterate_node) => {
+    fss.recursive.iterate(path.dirname(folder.path), (iterate_node) => {
       if (iterate_node.path.includes('node_modules')) {
         return true;
       }

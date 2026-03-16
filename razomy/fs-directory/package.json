@@ -38,6 +38,8 @@
     "directory",
     "getSync",
     "isDirEmpty",
+    "observe",
+    "orderByCreateDate",
     "tryCreate"
   ],
   "license": "MIT",
@@ -46,6 +48,7 @@
   "name": "@razomy/fs-directory",
   "peerDependencies": {
     "@razomy/abstracts": "*",
+    "@razomy/observable": "*",
     "@razomy/shell": "*"
   },
   "publishConfig": {

@@ -45,6 +45,7 @@
     "renameFiles",
     "replaceInjectImportWithDefaultImport",
     "addDependencies",
+    "autoPatch",
     "createAtChildDirs",
     "createDist",
     "createRoot",
@@ -57,7 +58,6 @@
   "name": "@razomy/ts-refactor-project",
   "peerDependencies": {
     "@razomy/array": "*",
-    "@razomy/fs": "*",
     "@razomy/fs-file": "*",
     "@razomy/fss": "*",
     "@razomy/json": "*",

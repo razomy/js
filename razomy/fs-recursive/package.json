@@ -39,7 +39,9 @@
     "cliCopy",
     "copy",
     "get",
-    "toDict"
+    "iterate",
+    "toDict",
+    "sharedNode"
   ],
   "license": "MIT",
   "main": "./index.ts",

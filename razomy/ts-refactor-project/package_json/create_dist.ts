@@ -5,8 +5,8 @@ import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
 import * as object_ from '@razomy/object';
 
-export function createDist(path_) {
-  const jsonPath = path.join(path_, './package.json');
+export function createDist(packageDirPath: string) {
+  const jsonPath = path.join(packageDirPath, './package.json');
   // Read root package.json
   const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
@@ -90,6 +90,6 @@ export function createDist(path_) {
     res = res.replaceAll('/index.d.mts', '/index.d.ts').replaceAll('/index.mjs', '/index.js');
   }
 
-  fs.writeFileSync(path.join(path_, 'dist/package.json'), res);
-  fs.copyFileSync(path.resolve(path_, '../../LICENSE'), path.resolve(path_, 'dist/LICENSE'));
+  fs.writeFileSync(path.join(packageDirPath, 'dist/package.json'), res);
+  fs.copyFileSync(path.resolve(packageDirPath, '../../LICENSE'), path.resolve(packageDirPath, 'dist/LICENSE'));
 }

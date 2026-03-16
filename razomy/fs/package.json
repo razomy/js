@@ -35,19 +35,14 @@
   "keywords": [
     "razomy",
     "fs",
-    "iterate",
-    "observe",
-    "orderByCreateDate",
-    "rename",
-    "sharedNode"
+    "rename"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/fs",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/observable": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"
