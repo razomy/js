@@ -1,7 +1,7 @@
 import { callText, consensusCall, type LlmContext } from "../llms";
-import {parsePanic} from './parse_panic';
-import {getPanicPrompt} from './get_panic_prompt';
-import {getComposePrompt} from './get_compose_prompt';
+import {parsePanic} from '../parsers/parse_panic';
+import {getPanicPrompt} from '../prompts/get_panic_prompt';
+import {getComposePrompt} from '../prompts/get_compose_prompt';
 
 export async function askCompose(ctx: LlmContext, contexts: string[], query: string): Promise<string> {
     const messages = [...getPanicPrompt(), ...getComposePrompt(contexts, query)];

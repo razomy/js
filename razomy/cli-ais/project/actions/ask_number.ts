@@ -1,8 +1,8 @@
 import { callText, consensusCall, type LlmContext } from "../llms";
-import {getPanicPrompt} from './get_panic_prompt';
-import {getNumberPrompt} from './get_number_prompt';
-import {parseNumber} from './parse_number';
-import {parsePanic} from './parse_panic';
+import {getPanicPrompt} from '../prompts/get_panic_prompt';
+import {getNumberPrompt} from '../prompts/get_number_prompt';
+import {parseNumber} from '../parsers/parse_number';
+import {parsePanic} from '../parsers/parse_panic';
 
 export async function askNumber(ctx: LlmContext): Promise<number> {
     const messages = [...getPanicPrompt(), ...getNumberPrompt(), ...ctx.messages];

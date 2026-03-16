@@ -1,8 +1,8 @@
 import { callText, consensusCall, type LlmContext } from "../llms";
-import {getPanicPrompt} from './get_panic_prompt';
-import {getTaskDecomposePrompt} from './get_task_decompose_prompt';
-import {parsePanic} from './parse_panic';
-import {parseArray} from './parse_array';
+import {getPanicPrompt} from '../prompts/get_panic_prompt';
+import {getTaskDecomposePrompt} from '../prompts/get_task_decompose_prompt';
+import {parsePanic} from '../parsers/parse_panic';
+import {parseArray} from '../parsers/parse_array';
 
 export async function askTaskDecompose(ctx: LlmContext): Promise<string[]> {
     const messages = [...getPanicPrompt(), ...getTaskDecomposePrompt(), ...ctx.messages];
