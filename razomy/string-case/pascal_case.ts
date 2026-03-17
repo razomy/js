@@ -1,5 +1,9 @@
 /**
  * @summary Convert string to pascal case.
+ * @description Converts a given string to PascalCase by splitting it into words
+ * (handling spaces, underscores, and camelCase/UPPERCASE boundaries),
+ * capitalizing the first letter of each word, lowercasing the rest,
+ * and joining them together without any separator.
  * @param text The string.
  * @returns The pascal cased string.
  * @example

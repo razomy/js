@@ -1,7 +1,9 @@
 /**
  * @summary Get abbreviation from string.
+ * @description Takes a string of words separated by spaces, hyphens, or underscores,
+ * and returns an abbreviation formed by concatenating the first letter of each word.
  * @param text The full name string.
- * @returns The abbreviation joined by hyphens.
+ * @returns The abbreviation formed by the first letter of each word.
  * @example
  * ```ts
  * abbreviation('Hello World'); // => 'HW'

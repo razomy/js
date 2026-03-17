@@ -7,6 +7,7 @@ import {checkNotProvidedDependency} from './check_not_provided_dependency';
 
 export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));
+  // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
   tsRefactorProject.packageJson.createDist(path.resolve(path_));
   await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
 

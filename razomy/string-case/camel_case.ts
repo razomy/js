@@ -1,5 +1,9 @@
 /**
  * @summary Converts a string to camel case.
+ * @description Takes an input string in any common format (space-separated, kebab-case, snake_case, PascalCase, etc.)
+ * and converts it to camelCase. The function first normalizes the string by identifying word boundaries
+ * (including transitions between acronyms, letters/numbers, and common delimiters like spaces, hyphens, dots, and underscores),
+ * then joins the segments together with the first segment in lowercase and each subsequent segment capitalized.
  * @param text - The text to convert.
  * @returns The camel cased string.
  * @example

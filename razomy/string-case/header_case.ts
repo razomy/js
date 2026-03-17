@@ -1,5 +1,9 @@
 /**
  * @summary Convert string to Header-Case (Train-Case).
+ * @description Converts a given string into Header-Case (also known as Train-Case), where each word is capitalized
+ * and separated by hyphens. The function handles various input formats including camelCase, snake_case,
+ * and strings with arbitrary delimiters by first splitting the text into individual words, capitalizing
+ * the first letter of each word, lowercasing the rest, and then joining them with hyphens.
  * @param text The text to convert.
  * @returns The header cased string.
  * @example

@@ -2,6 +2,9 @@ import { capitalize } from './capitalize';
 
 /**
  * @summary Convert a string to a human-readable form.
+ * @description Transforms a string from common programming naming conventions (camelCase, snake_case, kebab-case)
+ * into a human-readable sentence. It splits words by detecting camelCase boundaries, underscores, and hyphens,
+ * normalizes whitespace, converts the result to lowercase, and capitalizes the first letter.
  * @param text The string to humanize.
  * @returns The humanized string.
  * @example

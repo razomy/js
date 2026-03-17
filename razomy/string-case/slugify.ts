@@ -1,5 +1,8 @@
 /**
  * @summary Convert string to url friendly slug.
+ * @description Converts a given string into a URL-friendly slug by normalizing unicode characters
+ * (removing diacritics/accents), converting to lowercase, replacing non-alphanumeric characters
+ * with hyphens, and trimming leading/trailing hyphens.
  * @param text The text to slugify.
  * @returns The slugified string.
  * @example

@@ -1,5 +1,7 @@
 /**
  * @summary Convert string to path/case.
+ * @description Converts a given string into path/case format by splitting it on camelCase boundaries,
+ * non-alphanumeric characters, and whitespace, then joining the resulting lowercase words with forward slashes.
  * @param text The text to convert.
  * @returns The path cased string.
  * @example

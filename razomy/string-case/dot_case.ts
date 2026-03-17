@@ -1,5 +1,8 @@
 /**
  * @summary Convert string to dot.case.
+ * @description Converts a given string into dot.case format by splitting the input on
+ * camelCase boundaries, non-alphanumeric characters, and whitespace, then joining
+ * the resulting lowercase words with dots.
  * @param text The text to convert.
  * @returns The dot cased string.
  * @example

@@ -65,6 +65,15 @@ export function updateByTemplate(projectPath: string, prefix) {
     const isBrowserExports = fss.file.isExist(`${folderPath}/index.browser.ts`);
     const isNodeExports = fss.file.isExist(`${folderPath}/index.node.ts`);
 
+
+    const defaultBuild = {
+      build: `tsdown index.ts ${
+        isBrowserExports ? 'index.browser.ts ' : ''}${
+        isNodeExports ? 'index.node.ts ' : ''}--format esm,cjs --dts`,
+      dev: 'tsdown index.ts --watch',
+      prepublishOnly: 'npm run build',
+    }
+
     const rawPkgData = {
       // general
       name: folder.name.replaceAll(`/`, `-`).replace(prefix + `-`, `@${prefix}/`),
@@ -89,11 +98,7 @@ export function updateByTemplate(projectPath: string, prefix) {
       },
       sideEffects: false,
       // scripts
-      scripts: currentPackageJson.scripts || {
-        build: 'tsdown index.ts index.browser.ts index.node.ts --format esm,cjs --dts',
-        dev: 'tsdown index.ts --watch',
-        prepublishOnly: 'npm run build',
-      },
+      scripts: defaultBuild,
       // local
       module: `./${srcPrefix}index.ts`,
       main: `./${srcPrefix}index.ts`,

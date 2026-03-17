@@ -1,5 +1,9 @@
 /**
  * @summary Convert string to snake case.
+ * @description Converts a given string to snake_case format by handling acronyms, camelCase,
+ * letter-to-number and number-to-letter boundaries, and replacing common delimiters
+ * (spaces, hyphens, dots) with underscores. The result is trimmed of leading/trailing
+ * underscores and converted to lowercase.
  * @param text The string to convert.
  * @returns The snake cased string.
  * @example

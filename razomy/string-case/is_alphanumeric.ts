@@ -1,5 +1,6 @@
 /**
  * @summary Check if the string contains only alphanumeric characters.
+ * @description Tests whether the given string consists exclusively of alphanumeric characters (letters a-z, A-Z and digits 0-9) using a regular expression. Returns false for empty strings, strings containing spaces, special characters, or any non-alphanumeric content.
  * @param text The text to check.
  * @returns True if the string is alphanumeric.
  * @example

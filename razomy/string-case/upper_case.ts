@@ -1,5 +1,6 @@
 /**
  * @summary Convert string to upper case.
+ * @description Converts all characters in the given string to their upper-case equivalents using the built-in `String.prototype.toUpperCase` method. The original string is not modified; a new upper-cased string is returned.
  * @param text The input string.
  * @returns The upper-cased string.
  * @example

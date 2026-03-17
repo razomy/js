@@ -1,5 +1,8 @@
 /**
  * @summary Convert string to kebab case.
+ * @description Converts a given string to kebab-case by handling acronyms, camelCase, letter-number boundaries,
+ * and various delimiters (spaces, underscores, hyphens, dots). Leading and trailing separators are stripped,
+ * and the result is lowercased.
  * @param text The text to convert.
  * @returns The kebab cased string.
  * @example

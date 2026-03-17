@@ -1,5 +1,8 @@
 /**
  * @summary Convert string to CONSTANT_CASE (macro case).
+ * @description Converts a given string from any common casing convention (camelCase, kebab-case,
+ * snake_case, space-separated, etc.) to CONSTANT_CASE (also known as macro case or screaming snake case),
+ * where all letters are uppercased and words are separated by underscores.
  * @param text The text to convert.
  * @returns The constant cased string.
  * @example

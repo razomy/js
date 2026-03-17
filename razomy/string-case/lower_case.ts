@@ -1,5 +1,6 @@
 /**
  * @summary Converts a string to lower case.
+ * @description Converts all characters in the given string to their lower case equivalents using the built-in `toLowerCase` method. The original string is not modified; a new lower cased string is returned.
  * @param text - The string to convert.
  * @returns The lower cased string.
  * @example

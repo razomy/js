@@ -69,6 +69,8 @@ import { abbreviation } from '@razomy/string-case';
 `abbreviation(text: string): string`
 
 Get abbreviation from string.
+Takes a string of words separated by spaces, hyphens, or underscores,
+and returns an abbreviation formed by concatenating the first letter of each word.
 
 Examples
 
@@ -106,6 +108,10 @@ alternatingCase('typescript'); // tYpEsCrIpT
 `camelCase(text: string): string`
 
 Converts a string to camel case.
+Takes an input string in any common format (space-separated, kebab-case, snake_case, PascalCase, etc.)
+and converts it to camelCase. The function first normalizes the string by identifying word boundaries
+(including transitions between acronyms, letters/numbers, and common delimiters like spaces, hyphens, dots, and underscores),
+then joins the segments together with the first segment in lowercase and each subsequent segment capitalized.
 
 Examples
 
@@ -126,6 +132,7 @@ camelCase('__FOO_BAR__'); // fooBar
 `capitalize(text: string): string`
 
 Converts the first character of string to upper case and the remaining to lower case.
+Takes an input string and returns a new string where the first character is converted to upper case and all remaining characters are converted to lower case. This is useful for normalizing the casing of words regardless of their original casing.
 
 Examples
 
@@ -146,6 +153,9 @@ capitalize('rAZOMY'); // Razomy
 `constantCase(text: string): string`
 
 Convert string to CONSTANT_CASE (macro case).
+Converts a given string from any common casing convention (camelCase, kebab-case,
+snake_case, space-separated, etc.) to CONSTANT_CASE (also known as macro case or screaming snake case),
+where all letters are uppercased and words are separated by underscores.
 
 Examples
 
@@ -166,6 +176,9 @@ constantCase('kebab-case-test'); // KEBAB_CASE_TEST
 `dotCase(text: string): string`
 
 Convert string to dot.case.
+Converts a given string into dot.case format by splitting the input on
+camelCase boundaries, non-alphanumeric characters, and whitespace, then joining
+the resulting lowercase words with dots.
 
 Examples
 
@@ -186,6 +199,10 @@ dotCase('foo_bar'); // foo.bar
 `headerCase(text: string): string`
 
 Convert string to Header-Case (Train-Case).
+Converts a given string into Header-Case (also known as Train-Case), where each word is capitalized
+and separated by hyphens. The function handles various input formats including camelCase, snake_case,
+and strings with arbitrary delimiters by first splitting the text into individual words, capitalizing
+the first letter of each word, lowercasing the rest, and then joining them with hyphens.
 
 Examples
 
@@ -206,6 +223,9 @@ headerCase('session_id'); // Session-Id
 `humanize(text: string): string`
 
 Convert a string to a human-readable form.
+Transforms a string from common programming naming conventions (camelCase, snake_case, kebab-case)
+into a human-readable sentence. It splits words by detecting camelCase boundaries, underscores, and hyphens,
+normalizes whitespace, converts the result to lowercase, and capitalizes the first letter.
 
 Examples
 
@@ -226,6 +246,7 @@ humanize('kebab-case-string'); // Kebab case string
 `isAlpha(text: string): boolean`
 
 Checks if the string contains only alphabetic characters.
+Determines whether the given string consists exclusively of alphabetic characters (a-z, A-Z). Returns `false` for empty strings, strings containing digits, whitespace, special characters, or any non-alphabetic characters. The check is performed using a regular expression that matches one or more alphabetic characters spanning the entire string.
 
 Examples
 
@@ -246,6 +267,7 @@ isAlpha(''); // false
 `isAlphanumeric(text: string): boolean`
 
 Check if the string contains only alphanumeric characters.
+Tests whether the given string consists exclusively of alphanumeric characters (letters a-z, A-Z and digits 0-9) using a regular expression. Returns false for empty strings, strings containing spaces, special characters, or any non-alphanumeric content.
 
 Examples
 
@@ -266,6 +288,7 @@ isAlphanumeric(' '); // false
 `isLowerCase(text: string): boolean`
 
 Checks if the string is lower case.
+Determines whether the entire input string is in lower case by comparing it to its lower-cased equivalent. Non-alphabetic characters (such as digits, spaces, and symbols) do not affect the result, as they have no case and remain unchanged by the lower case conversion.
 
 Examples
 
@@ -286,6 +309,7 @@ isLowerCase('string with 123'); // true
 `isUpperCase(text: string): boolean`
 
 Check if a string is upper case.
+Determines whether the given string is entirely in upper case by comparing it to its upper-cased transformation. Returns true only if every character in the string is already upper case (i.e., the string is identical to the result of calling `toUpperCase()` on it).
 
 Examples
 
@@ -306,6 +330,9 @@ isUpperCase('hello'); // false
 `kebabCase(text: string): string`
 
 Convert string to kebab case.
+Converts a given string to kebab-case by handling acronyms, camelCase, letter-number boundaries,
+and various delimiters (spaces, underscores, hyphens, dots). Leading and trailing separators are stripped,
+and the result is lowercased.
 
 Examples
 
@@ -326,6 +353,7 @@ kebabCase('__FOO_BAR__'); // foo-bar
 `lowerCase(text: string): string`
 
 Converts a string to lower case.
+Converts all characters in the given string to their lower case equivalents using the built-in `toLowerCase` method. The original string is not modified; a new lower cased string is returned.
 
 Examples
 
@@ -346,6 +374,10 @@ lowerCase('FOO Bar'); // foo bar
 `pascalCase(text: string): string`
 
 Convert string to pascal case.
+Converts a given string to PascalCase by splitting it into words
+(handling spaces, underscores, and camelCase/UPPERCASE boundaries),
+capitalizing the first letter of each word, lowercasing the rest,
+and joining them together without any separator.
 
 Examples
 
@@ -366,6 +398,8 @@ pascalCase('FOO BAR'); // FooBar
 `pathCase(text: string): string`
 
 Convert string to path/case.
+Converts a given string into path/case format by splitting it on camelCase boundaries,
+non-alphanumeric characters, and whitespace, then joining the resulting lowercase words with forward slashes.
 
 Examples
 
@@ -386,6 +420,9 @@ pathCase('foo_bar'); // foo/bar
 `reverse(text: string): string`
 
 Reverses the given string.
+Reverses the order of characters in the given string by spreading it into an array of individual characters,
+reversing the array, and joining the characters back into a string. This approach correctly handles multi-byte
+Unicode characters (such as emojis) by using the spread operator, which splits on code points rather than code units.
 
 Examples
 
@@ -427,6 +464,9 @@ sentenceCase('foo_bar_baz'); // Foo bar baz
 `slugify(text: string): string`
 
 Convert string to url friendly slug.
+Converts a given string into a URL-friendly slug by normalizing unicode characters
+(removing diacritics/accents), converting to lowercase, replacing non-alphanumeric characters
+with hyphens, and trimming leading/trailing hyphens.
 
 Examples
 
@@ -447,6 +487,10 @@ slugify('Crème Brûlée'); // creme-brulee
 `snakeCase(text: string): string`
 
 Convert string to snake case.
+Converts a given string to snake_case format by handling acronyms, camelCase,
+letter-to-number and number-to-letter boundaries, and replacing common delimiters
+(spaces, hyphens, dots) with underscores. The result is trimmed of leading/trailing
+underscores and converted to lowercase.
 
 Examples
 
@@ -488,6 +532,10 @@ swapCase('123 ABC xyz'); // 123 abc XYZ
 `titleCase(text: string): string`
 
 Convert string to title case.
+Converts the input string to title case by first lowercasing the entire string,
+then capitalizing the first letter of each word. Word boundaries are determined by the `\b`
+regex anchor, so hyphenated words and other non-alphabetic separators only trigger
+capitalization at the start of each word boundary segment.
 
 Examples
 
@@ -508,6 +556,7 @@ titleCase('one-two'); // One-two
 `upperCase(text: string): string`
 
 Convert string to upper case.
+Converts all characters in the given string to their upper-case equivalents using the built-in `String.prototype.toUpperCase` method. The original string is not modified; a new upper-cased string is returned.
 
 Examples
 
