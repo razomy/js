@@ -32,15 +32,15 @@
   </v-menu>
 </template>
 <script lang="ts" setup>
-import { c } from '~~/content/context';
-import { useI18n } from '#imports';
+import { useRzmRuntimeConfigState, useI18n } from '#imports';
 
+const {c} = useRzmRuntimeConfigState();
 const { isVertical = false } = defineProps<{
   isVertical?: boolean;
 }>();
 
 const { t } = useI18n();
 
-const navigationNodes = c.externalNavigationRoot.children;
-const currentNavigationNode = navigationNodes.find((i) => i.id === c.externalNavigationRoot.id)!;
+const navigationNodes = c.value.externalNavigationRoot.children;
+const currentNavigationNode = navigationNodes.find((i) => i.id === c.value.externalNavigationRoot.id)!;
 </script>

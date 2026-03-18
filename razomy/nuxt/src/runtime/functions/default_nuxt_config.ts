@@ -1,9 +1,9 @@
 import type { NuxtConfig } from 'nuxt/config';
 import { locales } from './locales';
-import { type RzmNuxtConfig } from './interfaces';
+import {type RzmNuxtStaticConfig} from './interfaces';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export const defaultNuxtConfig = (c: RzmNuxtConfig) =>
+export const defaultNuxtConfig = (c: RzmNuxtStaticConfig) =>
   ({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },

@@ -23,6 +23,7 @@
       </v-tabs>
     </template>
   </v-navigation-drawer>
+
   <v-bottom-navigation v-if="isMobile" class="overflow-x-auto w-100" color="secondary" horizontal>
     <rzm-navbar-products :isVertical="true" />
 
@@ -47,10 +48,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useDisplay, useI18n, useLocalePath, useRoute, watch } from '#imports';
-import { c } from '~~/content/context';
+import { computed, useDisplay, useRzmRuntimeConfigState, useI18n, useLocalePath, useRoute, watch } from '#imports';
 import { ref } from 'vue';
 
+const {c} = useRzmRuntimeConfigState();
 const { xs } = useDisplay();
 const isMobile = computed(() => xs.value);
 
@@ -58,7 +59,7 @@ const { t } = useI18n();
 const localePath = useLocalePath();
 const route = useRoute();
 const currentNavigationNode1Id = ref<string>();
-const navigationNodes1 = c.navigationRoot.children;
+const navigationNodes1 = c.value.navigationRoot.children;
 
 watch(
   route,

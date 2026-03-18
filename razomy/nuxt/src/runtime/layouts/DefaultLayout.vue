@@ -13,8 +13,9 @@
       <Body>
         <v-app>
           <!-- Сайдбар -->
-          <rzm-sidebar></rzm-sidebar>
-          <slot name="sidebar"></slot>
+          <slot name="sidebar">
+            <rzm-group-sidebar></rzm-group-sidebar>
+          </slot>
           <v-main>
             <!--        <rzm-default-header>-->
             <!--          <template v-slot:start>-->
@@ -41,15 +42,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { c } from '~~/content/context';
-import { computed, useCookie, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme } from '#imports';
+import { computed, useCookie, useRzmRuntimeConfigState, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme } from '#imports';
 import { onMounted, watchEffect } from 'vue';
 
+const {c} = useRzmRuntimeConfigState();
 const { locale } = useI18n();
 const route = useRoute();
 // const {t} = useI18n();
 
-const cookie_session_locale = useCookie(c.cookie.session.locale);
+const cookie_session_locale = useCookie(c.value.cookie.session.locale);
 cookie_session_locale.value = cookie_session_locale.value || locale.value;
 
 const head = useLocaleHead({

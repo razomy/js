@@ -22,12 +22,17 @@ export interface NavigationNode extends NAryTreeNode {
   meta: NavigationNodeMeta;
 }
 
-export interface RzmNuxtTranslate {
+export interface RzmNuxtStaticTranslate {
   nuxt: {
     product: {
       name: string;
       description: string;
     };
+  }
+}
+
+export interface RzmNuxtRuntimeTranslate {
+  nuxt: {
     footer: {
       donate: string;
       start_year: string;
@@ -55,15 +60,11 @@ export interface RzmNuxtTranslate {
   };
 }
 
-export interface RzmNuxtConfig {
+export interface RzmNuxtStaticConfig {
   url: string;
   i18n: {
-    en: RzmNuxtTranslate;
+    en: RzmNuxtStaticTranslate;
   };
-  navigationRoot: NavigationNode;
-  externalNavigationRoot: NavigationNode;
-  footerNavigationNodes: NavigationNode[];
-  headerNavigationNodes: NavigationNode[];
   cookie: {
     session: {
       locale: string;
@@ -71,20 +72,30 @@ export interface RzmNuxtConfig {
   };
 }
 
+export interface RzmNuxtRuntimeConfig {
+  i18n: {
+    en: RzmNuxtRuntimeTranslate;
+  };
+  navigationRoot: NavigationNode;
+  externalNavigationRoot: NavigationNode;
+  footerNavigationNodes: NavigationNode[];
+  headerNavigationNodes: NavigationNode[];
+}
+
 // 1. Utility type that generates ALL paths (leafs and nodes)
 export type PathGenerator<T> = T extends object
   ? {
-      [K in keyof T & (string | number)]: T[K] extends object
-        ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
-        : `${K}`; // Stop at primitives
-    }[keyof T & (string | number)]
+    [K in keyof T & (string | number)]: T[K] extends object
+      ? `${K}` | `${K}.${PathGenerator<T[K]>}` // Recurse into nested objects
+      : `${K}`; // Stop at primitives
+  }[keyof T & (string | number)]
   : never;
 
 // 2. Utility type that generates ONLY absolute end/leaf paths
 export type LeafPathGenerator<T> = T extends object
   ? {
-      [K in keyof T & (string | number)]: T[K] extends object
-        ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
-        : `${K}`; // Stop at primitives
-    }[keyof T & (string | number)]
+    [K in keyof T & (string | number)]: T[K] extends object
+      ? `${K}.${LeafPathGenerator<T[K]>}` // Recurse without keeping the parent key
+      : `${K}`; // Stop at primitives
+  }[keyof T & (string | number)]
   : never;

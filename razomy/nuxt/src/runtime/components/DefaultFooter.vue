@@ -39,9 +39,9 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import { useI18n, useLocalePath } from '#imports';
-import { c } from '~~/content/context';
+import { useI18n, useLocalePath, useRzmRuntimeConfigState } from '#imports';
 
+const {c} = useRzmRuntimeConfigState();
 const localePath = useLocalePath();
 const { t } = useI18n();
 </script>

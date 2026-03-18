@@ -1,8 +1,7 @@
 import { getQuery, H3Event } from 'h3';
-import { type RzmNuxtConfig } from '../interfaces';
 import * as s from '@razomy/schema';
 
-export function tryGetQueryFrom<S extends s.GenericSchema>(c: RzmNuxtConfig, event: H3Event, schema: S) {
+export function tryGetQueryFrom<S extends s.GenericSchema>(event: H3Event, schema: S) {
   const responses = getQuery(event);
 
   try {

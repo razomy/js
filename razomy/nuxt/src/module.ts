@@ -1,4 +1,4 @@
-import { addComponentsDir, addLayout, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit';
+import {addComponentsDir, addImports, addLayout, addPlugin, createResolver, defineNuxtModule} from '@nuxt/kit';
 import { existsSync } from 'node:fs';
 
 // Module options TypeScript interface definition
@@ -15,6 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url);
 
     {
+      _nuxt.options.build.transpile.push(resolve('./runtime/composables'));
       _nuxt.options.build.transpile.push(resolve('./runtime/components'));
       _nuxt.options.build.transpile.push(resolve('./runtime/apps'));
       _nuxt.options.build.transpile.push(resolve('./runtime/layouts'));
@@ -24,6 +25,11 @@ export default defineNuxtModule<ModuleOptions>({
       addComponentsDir({ path: resolve('./runtime/apps'), prefix: 'rzm', pathPrefix: false });
       addComponentsDir({ path: resolve('./runtime/layouts'), prefix: 'rzm', pathPrefix: false });
       addComponentsDir({ path: resolve('./runtime/pages'), prefix: 'rzm', pathPrefix: false });
+
+      addImports({
+        name: 'useRzmRuntimeConfigState',
+        from: resolve('runtime/composables/useRzmRuntimeConfigState'),
+      })
 
       addLayout(
         {

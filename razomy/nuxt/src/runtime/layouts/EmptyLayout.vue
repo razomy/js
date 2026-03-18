@@ -19,12 +19,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { c } from '~~/content/context';
-import { computed, useCookie, useI18n, useLocaleHead, useRoute } from '#imports';
+import { computed, useCookie, useI18n, useRzmRuntimeConfigState, useLocaleHead, useRoute } from '#imports';
 
+const {c} = useRzmRuntimeConfigState();
 const { locale } = useI18n();
 
-const cookie_session_locale = useCookie(c.cookie.session.locale);
+const cookie_session_locale = useCookie(c.value.cookie.session.locale);
 cookie_session_locale.value = cookie_session_locale.value || locale.value;
 
 const route = useRoute();

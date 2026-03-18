@@ -1,6 +1,6 @@
-import { LeafPathGenerator, RzmNuxtConfig, RzmNuxtTranslate } from './runtime/functions';
+import { LeafPathGenerator, RzmNuxtStaticConfig, RzmNuxtRuntimeConfig } from './runtime/functions';
 
-export const c: RzmNuxtConfig = null as any;
+export const c: RzmNuxtStaticConfig | RzmNuxtRuntimeConfig = null as any;
 
 export const useI18n = () => ({ locale: { value: '' }, t: (_: LeafPathGenerator<RzmNuxtTranslate>) => '' });
 export const useLocalePath = () => (_: string) => '';
