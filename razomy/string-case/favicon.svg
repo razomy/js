@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    .small {
+    font: bold 20px sans-serif;
+    text-anchor:middle;
+    dominant-baseline:central;
+    }
+  </style>
+  <rect x="0" y="0" width="100%" height="100%" rx="20%" fill="#ffffff"/>
+  <text x="50%" y="50%" class="small">Sc</text>
+</svg>

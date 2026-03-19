@@ -20,7 +20,6 @@
       },
       "import": {
         "default": "./index.ts",
-        "require": "./index.ts",
         "types": "./index.ts"
       },
       "require": {

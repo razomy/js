@@ -1,18 +1,23 @@
 # @razomy/string-case
 
-[![License](https://img.shields.io/npm/l/@razomy/string-case)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/string-case)](https://bundlephobia.com/package/@razomy/string-case)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/string-case)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/string-case)](https://bundlephobia.com/package/@razomy/string-case)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/string-case)](https://www.npmjs.com/package/@razomy/string-case)
 
 [Npm](https://www.npmjs.com/package/@razomy/string-case) |
 [Npmx](https://npmx.dev/package/@razomy/string-case) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/string-case) |
-[Io](https://io.razomy.org/string/case)
+[Razomy Io](https://io.razomy.org/string/case) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Utility functions for advanced string casing conversions and manipulations
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/string-case
+# or
+bun add @razomy/string-case
+# or
+razomy cli add @razomy/string-case
 ```
 
 ### Import
@@ -29,7 +38,15 @@ npm i @razomy/string-case
 ```ts
 import * as stringCase from '@razomy/string-case';
 // or
+import * as stringCase from "npm:@razomy/string-case";
+// or
+import * as stringCase from "https://esm.sh/@razomy/string-case";
+// or
+import * as stringCase from "https://unpkg.com/@razomy/string-case";
+// or
 import { abbreviation } from '@razomy/string-case';
+// or
+razomy run @razomy/string-case abbreviation
 ```
 
 ## 📑 Table of Contents

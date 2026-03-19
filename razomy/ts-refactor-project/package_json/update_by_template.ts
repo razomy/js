@@ -114,7 +114,6 @@ export function updateByTemplate(projectPath: string, prefix) {
           import: {
             types: `./${srcPrefix}index.ts`,
             default: `./${srcPrefix}index.ts`,
-            require: `./${srcPrefix}index.ts`,
           },
           default: {
             types: `./${srcPrefix}index.ts`,

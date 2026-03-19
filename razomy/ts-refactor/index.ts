@@ -1,5 +1,5 @@
 export { createDistSpecifications } from './create_dist_specifications';
-export { createPackageReadme } from './create_package_readme';
+export { createReadme } from './create_readme';
 export { createReadmeAndSpecifications } from './create_readme_and_specifications';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
 export { getExportedClasses } from './get_exported_classes';

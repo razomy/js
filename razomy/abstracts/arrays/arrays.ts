@@ -41,3 +41,7 @@ export interface DynamicArray<T> extends DataStructure<T> {
 }
 
 export type Index = number;
+
+// export type OutIndex = -1 & { readonly type: 'OutIndex' };
+// export type Index = number & { readonly type: 'Index' };
+// export type IndexOrOut = Index | OutIndex;

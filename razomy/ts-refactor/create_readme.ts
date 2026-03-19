@@ -3,7 +3,7 @@ import type {FunctionSpecification} from '../function/function_specification';
 import * as stringCase from '@razomy/string-case';
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createPackageReadme(path: string, packageJson: any, specs: FunctionSpecification[]) {
+export function createReadme(path: string, packageJson: any, specs: FunctionSpecification[]) {
   const scopeName = stringCase.camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
@@ -35,27 +35,28 @@ When reporting a bug, please include:
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).
 `.trim();
-
+const s = 'https://img.shields.io/';
   const title = `
 # ${packageJson.name}
 
-[![License](https://img.shields.io/npm/l/${packageJson.name})](https://github.com/razomy/js/blob/main/LICENSE)
+[![TypeScript](${s}npm/types/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![Node.js Version](${s}node/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+![Deno](${s}badge/Deno-Supported-blue)
+![Bun](${s}badge/Bun-Supported-black)
+![Cloudflare Workers](${s}badge/Cloudflare_Workers-Supported-orange)
+[![License](${s}npm/l/${packageJson.name})](https://github.com/razomy/js/blob/main/LICENSE)
+
 [![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/${packageJson.name})](https://bundlephobia.com/package/${
-    packageJson.name
-  })
-[![TypeScript](https://img.shields.io/npm/types/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
-[![Node.js Version](https://img.shields.io/node/v/${packageJson.name})](https://www.npmjs.com/package/${
-    packageJson.name
-  })
-[![npm version](https://img.shields.io/npm/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
-[![npm downloads](https://img.shields.io/npm/dw/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
-[![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm version](${s}npm/v/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
+[![minzipped size](${s}bundlephobia/minzip/${packageJson.name})](https://bundlephobia.com/package/${packageJson.name})
+[![GitHub stars](${s}github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](${s}npm/dw/${packageJson.name})](https://www.npmjs.com/package/${packageJson.name})
 
 [Npm](https://www.npmjs.com/package/${packageJson.name}) |
 [Npmx](https://npmx.dev/package/${packageJson.name}) |
 [GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}) |
-[Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('razomy', '')})
+[Razomy Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('razomy', '')}) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > ${packageJson.description}
 `.trim();
@@ -83,6 +84,10 @@ Help us keep the momentum going. Choose how you want to light the way:
 
 \`\`\`sh
 npm i ${packageJson.name}
+# or
+bun add ${packageJson.name}
+# or
+razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
@@ -94,8 +99,17 @@ npm i ${packageJson.name}
 \`\`\`ts
 import * as ${scopeName} from '${packageJson.name}';
 // or
+import * as ${scopeName} from "npm:${packageJson.name}";
+// or
+import * as ${scopeName} from "https://esm.sh/${packageJson.name}";
+// or
+import * as ${scopeName} from "https://unpkg.com/${packageJson.name}";
+// or
 import { ${sampleImport} } from '${packageJson.name}';
+// or
+razomy run ${packageJson.name} ${sampleImport}
 \`\`\`
+
   `.trim();
 
   // ADDED: Table of contents

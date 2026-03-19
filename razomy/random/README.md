@@ -1,18 +1,23 @@
 # @razomy/random
 
-[![License](https://img.shields.io/npm/l/@razomy/random)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/random)](https://bundlephobia.com/package/@razomy/random)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/random)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/random)](https://bundlephobia.com/package/@razomy/random)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/random)](https://www.npmjs.com/package/@razomy/random)
 
 [Npm](https://www.npmjs.com/package/@razomy/random) |
 [Npmx](https://npmx.dev/package/@razomy/random) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/random) |
-[Io](https://io.razomy.org/random)
+[Razomy Io](https://io.razomy.org/random) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Utility functions for safely generating random numbers, strings, and arbitrary values
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/random
+# or
+bun add @razomy/random
+# or
+razomy cli add @razomy/random
 ```
 
 ### Import
@@ -29,14 +38,21 @@ npm i @razomy/random
 ```ts
 import * as random from '@razomy/random';
 // or
-import { create_lorem } from '@razomy/random';
+import * as random from "npm:@razomy/random";
+// or
+import * as random from "https://esm.sh/@razomy/random";
+// or
+import * as random from "https://unpkg.com/@razomy/random";
+// or
+import { createCssGradient } from '@razomy/random';
+// or
+razomy run @razomy/random createCssGradient
 ```
 
 ## 📑 Table of Contents
 
 **Functions**
 
-- [create_lorem](#create_lorem)
 - [createCssGradient](#createcssgradient)
 - [createDate](#createdate)
 - [createFloat](#createfloat)
@@ -45,6 +61,7 @@ import { create_lorem } from '@razomy/random';
 - [createInt](#createint)
 - [createIpv4](#createipv4)
 - [createLightHexColor](#createlighthexcolor)
+- [createLorem](#createlorem)
 - [createMac](#createmac)
 - [createPassword](#createpassword)
 - [createPinCode](#createpincode)
@@ -60,27 +77,6 @@ import { create_lorem } from '@razomy/random';
 ## 📚 Documentation
 
 ### Functions
-
-#### create_lorem
-
-`create_lorem(wordCount: number): string`
-
-Generates random Lorem Ipsum text.
-Generates a random sequence of Lorem Ipsum words of the specified length. The resulting string is capitalized and ends with a period.
-
-Examples
-
-```ts
-createLorem(3); // Dolor sit amet.
-```
-
-```ts
-createLorem(5); // Elit sed do eiusmod tempor.
-```
-
-```ts
-createLorem(1); // Consectetur.
-```
 
 #### createCssGradient
 
@@ -253,6 +249,27 @@ createLightHexColor(); // #e2b4ff
 
 ```ts
 createLightHexColor(); // #7ff89d
+```
+
+#### createLorem
+
+`createLorem(wordCount: number): string`
+
+Generates random Lorem Ipsum text.
+Generates a random sequence of Lorem Ipsum words of the specified length. The resulting string is capitalized and ends with a period.
+
+Examples
+
+```ts
+createLorem(3); // Dolor sit amet.
+```
+
+```ts
+createLorem(5); // Elit sed do eiusmod tempor.
+```
+
+```ts
+createLorem(1); // Consectetur.
 ```
 
 #### createMac

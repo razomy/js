@@ -26,38 +26,42 @@ export function createDist(packageDirPath: string) {
     return t.replace('.ts', '.d.cts').replace('src/', '');
   }
 
-  function mD(v1: dict.Dict<string> | string | undefined, k2, k1 = '') {
+  function mD(v1: dict.Dict<string> | string | undefined, ck, pk = '') {
     if (!v1) {
       return v1;
     }
     if (array.isArray(v1)) {
-      return array.map(v1, (v2, k3) => mD(v2 as any, k3, k2));
+      return array.map(v1, (v2, k3) => mD(v2 as any, k3, ck));
     }
     if (object_.isObject(v1)) {
-      return dict.map(v1, (v2, k3) => mD(v2, k3, k2));
+      return dict.map(v1, (v2, k3) => mD(v2, k3, ck));
     }
-    if (k2 === 'vue' && k1 === 'types') return dmj(v1);
-    if (k2 === 'browser' && k1 === 'types') return dmj(v1);
-    if (k2 === 'default' && k1 === 'types') return dmj(v1);
-    if (k2 === 'types') return dmj(v1);
+    if (pk === 'require' && ck === 'default') return cj(v1);
+    if (pk === 'require' && ck === 'types') return dcj(v1);
+    if (pk === 'vue' && ck === 'types') return dmj(v1);
+    if (pk === 'browser' && ck === 'types') return dmj(v1);
+    if (pk === 'default' && ck === 'types') return dmj(v1);
 
-    if (k2 === 'vue') return mj(v1);
-    if (k2 === 'types') return mj(v1);
-    if (k2 === 'browser') return mj(v1);
+    if (ck === 'types') return dmj(v1);
 
-    if (k2 === 'default') return mj(v1);
-    if (k2 === 'module') return mj(v1);
-    if (k2 === 'node') return mj(v1);
+    if (ck === 'vue') return mj(v1);
+    if (ck === 'types') return mj(v1);
+    if (ck === 'browser') return mj(v1);
 
-    if (k2 === 'import') return mj(v1);
-    if (k2 === 'main') return cj(v1);
-    if (k2 === 'require') return cj(v1);
+    if (ck === 'default') return mj(v1);
+    if (ck === 'module') return mj(v1);
+    if (ck === 'node') return mj(v1);
+
+    if (ck === 'import') return mj(v1);
+    if (ck === 'main') return cj(v1);
+    if (ck === 'require') return cj(v1);
+
     if (v1.endsWith('/*')) return v1.replace('src/', '');
     if (v1.endsWith('.json')) return v1.replace('src/', '');
     if (v1.endsWith('.wasm')) return v1.replace('src/', '');
     if (v1.endsWith('.svg')) return v1.replace('src/', '');
     if (v1.endsWith('.ts')) return dmj(v1);
-    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`);
+    throw new Error(`Unknown key "${ck}" "${pk}":"${v1}"`);
   }
 
   function mDt(v1: dict.Dict<string> | string | undefined, k2, k1 = '') {

@@ -26,7 +26,6 @@
       },
       "import": {
         "default": "./src/index.ts",
-        "require": "./src/index.ts",
         "types": "./src/index.ts"
       },
       "require": {
@@ -66,9 +65,9 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "vue-tsc -b && vite build",
-    "dev": "vite",
-    "preview": "vite preview"
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
   "type": "module",

@@ -2,7 +2,7 @@ import { Project } from 'ts-morph';
 import path from 'path';
 import * as fss from '@razomy/fss';
 import { createDistSpecifications } from './create_dist_specifications';
-import { createPackageReadme } from './create_package_readme';
+import { createReadme } from './create_readme';
 import {getExportedFunctions} from './get_exported_functions';
 import { getFilteredSourceFiles } from './get_filtered_source_files';
 import {getExportedConstants} from './get_exported_constants';
@@ -29,6 +29,6 @@ export async function createReadmeAndSpecifications(dirPath) {
   const files = await Promise.all(functionsFiles.map(createDistSpecificationsCb));
   const str = `${JSON.stringify(files, null, 2)}`;
   fss.file.setSync(`${dirPath}/dist/specifications.json`, str);
-  createPackageReadme(dirPath, fss.file.getJson(dirPath + '/package.json'), files);
+  createReadme(dirPath, fss.file.getJson(dirPath + '/package.json'), files);
   return files;
 }

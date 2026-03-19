@@ -1,3 +1,5 @@
+import {createFloat} from "./create_float";
+
 /**
  * @summary Create a RFC4122-like GUID string.
  * @description Generates a 32-hex-character GUID formatted as `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
@@ -19,7 +21,7 @@
  * @complexity memory O(1)
  */
 export function createGuid(): string {
-  function hex () : string { return (((Math.random() * 0x100000000) >>> 0).toString(16) + '00000000').slice(0, 8); }
+  function hex () : string { return (((createFloat() * 0x100000000) >>> 0).toString(16) + '00000000').slice(0, 8); }
 
   const a = hex();
   const b = hex();
