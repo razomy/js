@@ -1,3 +1,5 @@
+import { createFloat } from './create_float';
+
 /**
  * @summary Create a random date string within a year range.
  * @description Generates a random date between the start of `startYear` and the end of `endYear`,
@@ -20,8 +22,6 @@
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-import { createFloat } from './create_float';
-
 export function createDate(startYear: number = 2000, endYear: number = 2026): string {
   const start: number = new Date(startYear, 0, 1).getTime();
   const end: number = new Date(endYear, 11, 31, 23, 59, 59, 999).getTime();

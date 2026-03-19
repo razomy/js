@@ -29,17 +29,19 @@ npm i @razomy/random
 ```ts
 import * as random from '@razomy/random';
 // or
-import { createCssGradient } from '@razomy/random';
+import { create_lorem } from '@razomy/random';
 ```
 
 ## 📑 Table of Contents
 
 **Functions**
 
+- [create_lorem](#create_lorem)
 - [createCssGradient](#createcssgradient)
 - [createDate](#createdate)
 - [createFloat](#createfloat)
 - [createFloatRange](#createfloatrange)
+- [createGuid](#createguid)
 - [createInt](#createint)
 - [createIpv4](#createipv4)
 - [createLightHexColor](#createlighthexcolor)
@@ -49,7 +51,6 @@ import { createCssGradient } from '@razomy/random';
 - [createRecoveryKeys](#createrecoverykeys)
 - [createString](#createstring)
 - [createUuid](#createuuid)
-- [generateGuid](#generateguid)
 - [isYesOrNo](#isyesorno)
 - [pickItem](#pickitem)
 - [rollDice](#rolldice)
@@ -60,21 +61,69 @@ import { createCssGradient } from '@razomy/random';
 
 ### Functions
 
+#### create_lorem
+
+`create_lorem(wordCount: number): string`
+
+Generates random Lorem Ipsum text.
+Generates a random sequence of Lorem Ipsum words of the specified length. The resulting string is capitalized and ends with a period.
+
+Examples
+
+```ts
+createLorem(3); // Dolor sit amet.
+```
+
+```ts
+createLorem(5); // Elit sed do eiusmod tempor.
+```
+
+```ts
+createLorem(1); // Consectetur.
+```
+
 #### createCssGradient
 
 `createCssGradient(): string`
 
-
+Create a random CSS linear gradient string.
+Generates a CSS linear-gradient with a random angle (0–360°) and two random hex colors.
 
 Examples
+
+```ts
+createCssGradient(); // linear-gradient(142deg, #a3f0b1, #0d44ec)
+```
+
+```ts
+createCssGradient(); // linear-gradient(0deg, #000000, #ffffff)
+```
+
+```ts
+createCssGradient(); // linear-gradient(270deg, #ff6347, #4682b4)
+```
 
 #### createDate
 
-`createDate(): string`
+`createDate(startYear: number, endYear: number): string`
 
-
+Create a random date string within a year range.
+Generates a random date between the start of `startYear` and the end of `endYear`,
+returning it as a formatted string in `YYYY-MM-DD HH:mm:ss` format.
 
 Examples
+
+```ts
+createDate(); // e.g. 2015-07-23 14:05:32
+```
+
+```ts
+createDate(2020, 2020); // e.g. 2020-09-11 03:42:17
+```
+
+```ts
+createDate(1990, 2000); // e.g. 1994-02-08 21:30:44
+```
 
 #### createFloat
 
@@ -100,35 +149,111 @@ createFloat(); // 0.9481726350
 
 #### createFloatRange
 
-`createFloatRange(): number`
+`createFloatRange(from: number, to: number): number`
 
-
+Generate a random float within a specified range [from, to).
+Creates a random floating-point number between `from` (inclusive) and `to` (exclusive)
+using uniform distribution.
 
 Examples
+
+```ts
+createFloatRange(0, 1); // 0.7234...
+```
+
+```ts
+createFloatRange(-5, 5); // -2.318...
+```
+
+```ts
+createFloatRange(100, 200); // 142.857...
+```
+
+#### createGuid
+
+`createGuid(): string`
+
+Create a RFC4122-like GUID string.
+Generates a 32-hex-character GUID formatted as `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
+
+Examples
+
+```ts
+createGuid(); // a3f1b2c4-d5e6-f7a8-b9c0-d1e2f3a4b5c6
+```
+
+```ts
+createGuid(); // 1b4e28ba-2fa1-11d2-883f-b9a761bde3fb
+```
+
+```ts
+const id = createGuid();
+id.length; // 36
+```
 
 #### createInt
 
-`createInt(): number`
+`createInt(min: number, max: number): number`
 
-
+Generate a random integer within a range.
+Generates a random integer between `min` (inclusive) and `max` (inclusive) using a uniform distribution.
 
 Examples
+
+```ts
+createInt(); // 42 (random integer between 0 and 100)
+```
+
+```ts
+createInt(1, 10); // 7 (random integer between 1 and 10)
+```
+
+```ts
+createInt(-5, 5); // -3 (random integer between -5 and 5)
+```
 
 #### createIpv4
 
 `createIpv4(): string`
 
-
+Generate a random IPv4 address string.
+Creates a random IPv4 address by generating four random integers in the range [0, 255] and joining them with dots.
 
 Examples
+
+```ts
+createIpv4(); // 192.168.1.42
+```
+
+```ts
+createIpv4(); // 10.0.254.3
+```
+
+```ts
+createIpv4(); // 0.127.255.12
+```
 
 #### createLightHexColor
 
 `createLightHexColor(): string`
 
-
+Create a random light hex color string.
+Generates a random hex color in the light spectrum by constraining
+each RGB channel to the range [127, 255], producing pastel/light colors.
 
 Examples
+
+```ts
+createLightHexColor(); // #a3f0c7
+```
+
+```ts
+createLightHexColor(); // #e2b4ff
+```
+
+```ts
+createLightHexColor(); // #7ff89d
+```
 
 #### createMac
 
@@ -174,11 +299,25 @@ createPassword(32); // xP4!rQ8@wN2#mK7&jL5$tH9^yB1*zF6+ (32 characters)
 
 #### createPinCode
 
-`createPinCode(): string`
+`createPinCode(length: number): string`
 
-
+Create a random PIN code of a given length with no consecutive repeated digits.
+Generates a numeric PIN code string of the specified length (default 6).
+Each digit is randomly chosen from 0–9, ensuring no two consecutive digits are the same.
 
 Examples
+
+```ts
+createPinCode(); // 482973 (6-digit PIN, no consecutive repeats)
+```
+
+```ts
+createPinCode(4); // 3917 (4-digit PIN, no consecutive repeats)
+```
+
+```ts
+createPinCode(1); // 7 (single-digit PIN)
+```
 
 #### createRecoveryKeys
 
@@ -205,9 +344,22 @@ createRecoveryKeys(3, 3, 5); // [AX7RF-K9BQ2-LMZTK, JN3W8-DVE0H-CS4FR, PL9YT-QWE
 
 `createString(length: number, characters: string): string`
 
+Generates a random string.
 Generates a random string of specified length using optional custom characters.
 
 Examples
+
+```ts
+randomString(3); // X7z
+```
+
+```ts
+randomString(5, '01'); // 10101
+```
+
+```ts
+randomString(4, 'a'); // aaaa
+```
 
 #### createUuid
 
@@ -231,29 +383,47 @@ const id = createUuid();
 id.length; // 36
 ```
 
-#### generateGuid
-
-`generateGuid(): string`
-
-
-
-Examples
-
 #### isYesOrNo
 
 `isYesOrNo(): boolean`
 
-
+Randomly returns true or false with equal probability.
+Generates a random float and returns true if it exceeds 0.5, false otherwise.
 
 Examples
+
+```ts
+isYesOrNo(); // true
+```
+
+```ts
+isYesOrNo(); // false
+```
+
+```ts
+const answer: boolean = isYesOrNo(); // true | false
+```
 
 #### pickItem
 
-`pickItem(): T`
+`pickItem(array: readonly T[]): T`
 
-
+Pick a random item from a non-empty array.
+Selects and returns a single random element from the provided array using a uniform random integer generator.
 
 Examples
+
+```ts
+pickItem([1, 2, 3]); // 2 (random)
+```
+
+```ts
+pickItem(['a', 'b', 'c', 'd']); // c (random)
+```
+
+```ts
+pickItem([true]); // true
+```
 
 #### rollDice
 
@@ -278,11 +448,24 @@ rollDice(4, 6); // [2, 6, 1, 4] (four six-sided dice)
 
 #### shuffleArray
 
-`shuffleArray(): T[]`
+`shuffleArray(array: T[]): T[]`
 
-
+Shuffle an array using the Fisher-Yates algorithm.
+Creates a new array with elements randomly shuffled using the Fisher-Yates algorithm. The original array is not modified.
 
 Examples
+
+```ts
+shuffleArray([1, 2, 3, 4, 5]); // [3, 1, 5, 2, 4]
+```
+
+```ts
+shuffleArray(['a', 'b', 'c']); // [c, a, b]
+```
+
+```ts
+shuffleArray([42]); // [42]
+```
 
 #### splitIntoGroups
 

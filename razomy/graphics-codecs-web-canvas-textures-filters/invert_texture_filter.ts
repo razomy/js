@@ -1,3 +1,5 @@
+import type { ITextureFilter } from './i_texture_filter';
+
 /**
  * Invert Filter
  * https://github.com/konvajs/konva
@@ -8,7 +10,6 @@
  * node.cache();
  * node.Filters([Konva.Filters.Invert]);
  */
-import type { ITextureFilter } from './i_texture_filter';
 
 export class InvertTextureFilter implements ITextureFilter {
   public filter(imageData: any): void {

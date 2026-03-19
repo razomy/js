@@ -1,4 +1,4 @@
-export { GuidFactory, generateGuid } from './generate_guid';
+export { GuidFactory, createGuid } from './create_guid';
 export { createCssGradient } from './create_css_gradient';
 export { createDate } from './create_date';
 export { createFloat } from './create_float';
@@ -12,6 +12,7 @@ export { createPinCode } from './create_pin_code';
 export { createRecoveryKeys } from './create_recovery_keys';
 export { createString } from './create_string';
 export { createUuid } from './create_uuid';
+export { createLorem } from './create_lorem';
 export { isYesOrNo } from './is_yes_or_no';
 export { pickItem } from './pick_item';
 export { rollDice } from './roll_dice';

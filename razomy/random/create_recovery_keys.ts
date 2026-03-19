@@ -17,6 +17,8 @@
  * ```ts
  * createRecoveryKeys(3, 3, 5); // => ['AX7RF-K9BQ2-LMZTK', 'JN3W8-DVE0H-CS4FR', 'PL9YT-QWE3R-ZXC7V']
  * ```
+ * @complexity time O(1)
+ * @complexity memory O(1)
  */
 export function createRecoveryKeys(count: number = 10, blocks: number = 4, blockLength: number = 4): string[] {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

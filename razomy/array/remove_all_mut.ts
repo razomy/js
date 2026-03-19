@@ -1,3 +1,5 @@
+import {removeFirstMut} from './remove_first_mut';
+
 /**
  * @summary Removes the specified values from the array.
  * @description It iterates through the provided values and removes the first matching instance in the target array for each.
@@ -25,7 +27,6 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-import { removeFirstMut } from './remove_first_mut';
 
 export function removeAllMut<T>(array: T[], values: T[]): void {
   for (const value of values) {

@@ -1,3 +1,4 @@
+import { countSpaceMargin } from './count_space_margin';
 /**
  * @summary Count leading space margins for each string in an array.
  * @description Maps an array of strings to an array of numbers representing the count of leading spaces (margin) for each string.
@@ -18,7 +19,6 @@
  * @complexity time O(n * m) where n is the array length and m is the average string length
  * @complexity memory O(n)
  */
-import { countSpaceMargin } from './count_space_margin';
 
 export function countSpaceMarginByArray(strings: string[]): number[] {
   return strings.map(countSpaceMargin);

@@ -1,25 +1,28 @@
 import { createFloat } from './create_float';
 
 /**
- * Generates a random string of specified length using optional custom characters.
+ * @summary Generates a random string.
+ * @description Generates a random string of specified length using optional custom characters.
  * @param length The length of the resulting string.
  * @param characters The set of characters to generate from.
  * @returns The generated random string.
  * @example
  * ```ts
- * // => 'X7z'
- * randomString(3);
+ * randomString(3); // => 'X7z'
+ * ```
  * @example
  * ```ts
- * // => '10101'
- * randomString(5, '01');
+ * randomString(5, '01'); // => '10101'
+ * ```
  * @example
  * ```ts
- * // => 'aaaa'
- * randomString(4, 'a');
+ * randomString(4, 'a'); // => 'aaaa'
+ * ```
+ * @complexity time O(1)
+ * @complexity memory O(1)
  */
 export function createString(
-  length: number,
+  length: number = 16,
   characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 ): string {
   let result: string = '';

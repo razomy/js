@@ -82,6 +82,9 @@ function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: stri
     const name = param.getName();
     const type = param.getType().getText(param);
 
+    // Extract the default value (if it exists)
+    const defaultValue = param.getInitializer()?.getText() || null;
+
     const paramTag = doc.getTags().find((t) => t.getTagName() === 'param' && t.getText().includes(name));
     if (!paramTag) {
       throw new Error(`[Parse Error] Missing @param documentation for parameter '${name}' in '${funcName}'`);
@@ -94,7 +97,12 @@ function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: stri
       throw new Error(`[Parse Error] Empty description for @param '${name}' in '${funcName}'`);
     }
 
-    return { name, type, description };
+    return {
+      name,
+      type,
+      description,
+      defaultValue
+    };
   });
 }
 

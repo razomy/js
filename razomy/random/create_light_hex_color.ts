@@ -1,3 +1,4 @@
+import { createInt } from './create_int';
 /**
  * @summary Create a random light hex color string.
  * @description Generates a random hex color in the light spectrum by constraining
@@ -18,7 +19,6 @@
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-import { createInt } from './create_int';
 
 export function createLightHexColor(): string {
   const r: string = createInt(127, 255).toString(16).padStart(2, '0');

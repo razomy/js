@@ -8,6 +8,7 @@ export interface FunctionSpecification {
     name: string;
     type: string;
     description: string;
+    defaultValue: string | null;
   }[];
   returns: {
     type: string;

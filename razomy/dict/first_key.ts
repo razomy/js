@@ -1,3 +1,6 @@
+import type { Dict } from './dict';
+import * as exceptions from '@razomy/exceptions';
+
 /**
  * @summary Get the first own key of a dictionary.
  * @description Returns the first own enumerable key of the given dictionary. Throws if the dictionary has no own keys.
@@ -19,8 +22,6 @@
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-import type { Dict } from './dict';
-import * as exceptions from '@razomy/exceptions';
 
 export function firstKey<T>(obj: Dict<T>): string {
   for (const key in obj) {
