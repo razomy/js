@@ -195,7 +195,6 @@
     "@razomy/string-case": "*",
     "@razomy/strings": "*",
     "@razomy/structures": "*",
-    "@razomy/task-async": "*",
     "@razomy/terminal": "*",
     "@razomy/test": "*",
     "@razomy/test-jest": "*",

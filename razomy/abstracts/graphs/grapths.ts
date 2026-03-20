@@ -1,4 +1,4 @@
-import type { DataStructure } from '../ts/ts_workarounds';
+import type { DataStructure } from '../meta/ts_workarounds';
 import type { HashTable, LinkedList } from '../structures/structures';
 
 /**

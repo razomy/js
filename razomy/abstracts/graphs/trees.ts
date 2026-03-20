@@ -1,6 +1,6 @@
 import type { DynamicArray } from '../arrays/arrays';
 import type { Node } from '../structures/structures';
-import type { DataStructure } from '../ts/ts_workarounds';
+import type { DataStructure } from '../meta/ts_workarounds';
 
 export interface TreeNode<T> extends Node<T> {
   children: TreeNode<T>[];

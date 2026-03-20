@@ -1,3 +1,4 @@
+export * as task from './task';
 export { AsyncQueue } from './async_queue';
 export { create } from './create';
 export { delay } from './delay';

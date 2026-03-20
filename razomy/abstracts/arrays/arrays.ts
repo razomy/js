@@ -1,4 +1,4 @@
-import type { DataStructure } from '../ts';
+import type { DataStructure } from '../meta';
 
 export type RawBuffer = ArrayBuffer | SharedArrayBuffer;
 

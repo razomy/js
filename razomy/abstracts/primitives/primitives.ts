@@ -1,4 +1,4 @@
-import type { Brand } from '../ts/ts_workarounds';
+import type { Brand } from '../meta/ts_workarounds';
 
 export type Null = null;
 export type Undefined = undefined;

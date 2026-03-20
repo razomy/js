@@ -15,29 +15,37 @@
 [Io](https://io.razomy.org/abstracts)
 
 >
+
 # Abstracts
 
 Contains all core reusable types and interfaces.
 
-**System Layer** - oriented to performance
+**System Layer** (Performance, Execution, Data Layout)
 
-1. **primitives** — Abstractions defining low-level hardware structures, including CPU, GPU, TPU, and memory/processing
-   units.
-2. **functions** — Abstractions defining behavioral contracts, such as creation and execution pipelines.
-3. **arrays** — Linear memory data structures.
-4. **structures** — Core building blocks for memory organization and data coordination, serving as a foundation for
+1. ~~**hardware** hardware structures, including CPU, GPU, TPU,~~
+2. **primitives** — Abstractions defining low-level and memory/processing units.
+3. ~~**memory** — аллокаторы, указатели, буферы.~~
+4. ~~**concurrency** — потоки, мьютексы, event loops, promises.~~
+5. ~~**io_streams** — сокеты, файловые дескрипторы, стримы.~~
+6. **functions** — Abstractions defining behavioral contracts, such as creation and execution pipelines.
+7. **arrays** — Linear memory data structures.
+8. **structures** — Core building blocks for memory organization and data coordination, serving as a foundation for
    complex templates.
-5. **collections** — Abstractions for mapping data and ordering it in a performance-optimized way (e.g., maps, sets,
+9. **collections** — Abstractions for mapping data and ordering it in a performance-optimized way (e.g., maps, sets,
    queues).
-6. **graphs** — Graph and tree-like data structures.
-7. **probabilistics** — Matrices and probabilistic data structures.
-8. **ts** — Utilities designed to generalize and unify the TypeScript development experience alongside other languages.
+10. **graphs** — Graph and tree-like data structures.
+11. **probabilistics** — Matrices and probabilistic data structures.
+12. **meta** — Utilities designed to generalize and unify the TypeScript development experience alongside other
+    languages.
 
-**Application Layer** - oriented to logic and language
+**Application Layer** (Logic, Behavior, Domain)
 
 1. **domains** — Interfaces, data templates, domain responsibilities.
 2. **pattens** — Data transforming organizing templates.
-
+3. **machines** — стейт-машины, акторы (Actors), оркестраторы..
+4. ~~**events** — шины событий, Pub/Sub, реактивные потоки.~~
+5. ~~**contracts** — монады (`Result`, `Option`), валидаторы, обработчики ошибок.~~
+6. ~~**ports** — абстракции внешнего мира (интерфейсы к БД, сети, UI, Ports/Adapters).~~
 
 ## 🚀 Start
 
@@ -52,7 +60,7 @@ npm i @razomy/abstracts
 ```ts
 import * as abstracts from '@razomy/abstracts';
 // or
-import { functionName } from '@razomy/abstracts';
+import {functionName} from '@razomy/abstracts';
 ```
 
 ## 📑 Table of Contents
@@ -71,9 +79,9 @@ import { functionName } from '@razomy/abstracts';
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:
@@ -97,7 +105,8 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 
 We use GitHub Issues as the official bug tracker for this project.
 
-Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new issue here:
+Before opening a new issue, please check if your problem has already been reported. If it hasn't, please open a new
+issue here:
 [GitHub Issues: razomy/js](https://github.com/razomy/js/issues)
 
 When reporting a bug, please include:
