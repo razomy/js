@@ -46,7 +46,6 @@
   "name": "@razomy/index",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/offset": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

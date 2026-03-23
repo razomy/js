@@ -33,25 +33,31 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/dates#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/datetimes#readme",
   "keywords": [
     "razomy",
-    "dates",
+    "datetimes",
     "cronStringToDate",
+    "formatDuration",
+    "formatMilliseconds",
     "formatTimeLength",
     "isDateToday",
-    "stringToDate"
+    "stringToDate",
+    "secondMs",
+    "minuteMs",
+    "hourMs",
+    "dayMs"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/dates",
+  "name": "@razomy/datetimes",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/dates",
+    "directory": "razomy/datetimes",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

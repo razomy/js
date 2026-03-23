@@ -53,6 +53,7 @@
     "includes",
     "insertMut",
     "intersection",
+    "isArrayEqual",
     "isArray",
     "isEmpty",
     "map",

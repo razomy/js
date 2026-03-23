@@ -1,5 +1,5 @@
 import * as string from '@razomy/string';
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 
 export function separateStrings(
   string: string.String,

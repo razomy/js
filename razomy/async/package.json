@@ -36,6 +36,7 @@
     "async",
     "create",
     "delay",
+    "eventToPromise",
     "freeze",
     "isPromise",
     "loop",

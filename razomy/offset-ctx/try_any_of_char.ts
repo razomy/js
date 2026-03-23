@@ -1,4 +1,4 @@
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 import * as string from '@razomy/string';
 import * as offsetCtx from '@razomy/offset-ctx';
 

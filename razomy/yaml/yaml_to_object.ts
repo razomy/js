@@ -1,4 +1,4 @@
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 import * as abstracts from '@razomy/abstracts';
 import * as pipes from '@razomy/pipes';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';

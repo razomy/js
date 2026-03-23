@@ -1,4 +1,4 @@
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 
 export function setPrevOffset(ctx: offset.WithOffset & offset.WithPrevOffset, lexeme: offset.WithOffset) {
   lexeme.offset = ctx.prevOffset;

@@ -45,7 +45,6 @@
   "name": "@razomy/token-offset-deep",
   "peerDependencies": {
     "@razomy/context": "*",
-    "@razomy/offset": "*",
     "@razomy/result-null": "*",
     "@razomy/token": "*"
   },

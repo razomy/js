@@ -1,5 +1,5 @@
 import * as index from '@razomy/index';
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 import * as string from '@razomy/string';
 
 export function tryBeforeAnyOfChar(ctx: string.WithString & offset.WithOffset, chars: Set<string>) {

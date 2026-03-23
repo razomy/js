@@ -1,5 +1,5 @@
 import { isMain } from './is_main';
-import * as dates from '@razomy/dates';
+import * as dates from '../datetimes';
 import * as async from '@razomy/async';
 import * as abstracts from '@razomy/abstracts';
 

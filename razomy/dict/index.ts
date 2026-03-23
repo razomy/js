@@ -2,6 +2,7 @@ export { filter } from './filter';
 export { firstKey } from './first_key';
 export { get } from './get';
 export { getKeys } from './get_keys';
+export { isEqual } from './is_equal';
 export { isKeys } from './is_keys';
 export { isPlainObject } from './is_plain_object';
 export { iterate } from './iterate';

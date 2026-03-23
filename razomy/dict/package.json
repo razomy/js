@@ -38,6 +38,7 @@
     "firstKey",
     "getKeys",
     "get",
+    "isEqual",
     "isKeys",
     "isPlainObject",
     "iterate",

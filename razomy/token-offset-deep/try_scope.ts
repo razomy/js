@@ -1,6 +1,6 @@
 import type { WithStack } from './try_aligned';
 import * as context from '@razomy/context';
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 import * as resultNull from '@razomy/result-null';
 import * as token from '@razomy/token';
 

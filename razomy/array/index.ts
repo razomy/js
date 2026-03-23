@@ -18,6 +18,7 @@ export { includes } from './includes';
 export { insertMut } from './insert_mut';
 export { intersection } from './intersection';
 export { isArray } from './is_array';
+export { isArrayEqual } from './is_array_equal';
 export { isEmpty } from './is_empty';
 export { map } from './map';
 export { reduce } from './reduce';

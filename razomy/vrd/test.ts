@@ -1,7 +1,7 @@
 import { vrd, type VrdOrValue } from './vrd';
 import type { P } from './differences_vrd';
 import { differencesDict } from './differences_dict';
-import * as equal from '@razomy/equal';
+import {isEqual} from "../dict/is_equal";
 
 export function test() {
   const specs: [any, VrdOrValue<any>, VrdOrValue<any>, P<any>[]][] = [
@@ -31,6 +31,6 @@ export function test() {
   ];
   for (const spec of specs) {
     const result = differencesDict(spec[0], spec[1], spec[2], '');
-    console.log(equal.isEqual(result, spec[3]), result);
+    console.log(isEqual(result, spec[3]), result);
   }
 }

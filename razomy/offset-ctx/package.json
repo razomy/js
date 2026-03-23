@@ -52,7 +52,6 @@
   "name": "@razomy/offset-ctx",
   "peerDependencies": {
     "@razomy/index": "*",
-    "@razomy/offset": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

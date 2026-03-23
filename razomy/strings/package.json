@@ -43,7 +43,6 @@
   "name": "@razomy/strings",
   "peerDependencies": {
     "@razomy/differences": "*",
-    "@razomy/offset": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

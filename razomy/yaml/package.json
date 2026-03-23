@@ -43,7 +43,6 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/context": "*",
-    "@razomy/offset": "*",
     "@razomy/pipes": "*",
     "@razomy/result-null": "*",
     "@razomy/token": "*",

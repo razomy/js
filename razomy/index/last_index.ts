@@ -1,5 +1,5 @@
 import * as string from '@razomy/string';
-import * as offset from '@razomy/offset';
+import * as offset from '../abstracts/arrays/offest';
 import * as abstracts from '@razomy/abstracts';
 
 export function lastIndex(
