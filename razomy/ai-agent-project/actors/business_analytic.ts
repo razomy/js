@@ -1,0 +1,25 @@
+// 2. Бизнес-Аналитик (Остается почти без изменений)
+import {think} from "../think";
+import * as ai from "@razomy/ai";
+import type {ActorContext} from "./director_company";
+
+export async function businessAnalytic(task: string, parentCtx: ActorContext): Promise<string> {
+  console.log('📊 Бизнес-аналитик анализирует требования...');
+
+  const ctx: ActorContext = {
+    tool: {...parentCtx.tool}, // Клонируем тулы или инициализируем нужные
+    llm: {messages: [], tools: []}
+  };
+
+  ctx.llm.messages = [
+    ai.sM(
+      `Ты — Senior Бизнес-аналитик. Твоя задача — расписать задачу пользователя по шагам. 
+      Опиши, что именно нужно сделать, какие возможны edge-cases (особые случаи). 
+      Отвечай кратко, по делу, в формате Markdown.`
+    ),
+    ai.uM(task)
+  ];
+
+  await think(ctx);
+  return ctx.llm.messages[ctx.llm.messages.length - 1].content;
+}

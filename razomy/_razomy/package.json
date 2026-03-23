@@ -121,7 +121,7 @@
     "@razomy/fs-recursive": "*",
     "@razomy/fs-vrd": "*",
     "@razomy/fss": "*",
-    "@razomy/function": "*",
+    "@razomy/fns": "*",
     "@razomy/git": "*",
     "@razomy/google": "*",
     "@razomy/google-auth": "*",

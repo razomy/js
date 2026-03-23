@@ -1,4 +1,4 @@
-import { ai } from '../call_tool';
+import { ai } from '../client';
 
 export async function wait(name: string) {
   let batchJob;

@@ -1,4 +1,4 @@
-import { ai, models } from '../call_tool';
+import { ai, models } from '../client';
 import { wait } from './wait';
 import { getResult } from './get_result';
 import { delete_ } from './delete_';

@@ -1,9 +1,9 @@
 import * as fss from '@razomy/fss';
-import type {FunctionSpecification} from '../function/function_specification';
 import * as stringCase from '@razomy/string-case';
+import * as fns from "@razomy/fns";
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createReadme(path: string, packageJson: any, specs: FunctionSpecification[]) {
+export function createReadme(path: string, packageJson: any, specs: fns.FunctionSpecification[]) {
   const scopeName = stringCase.camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs

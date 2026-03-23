@@ -35,7 +35,6 @@
     "razomy",
     "ai",
     "google",
-    "callTool",
     "askAtFiles",
     "asksWithCache",
     "asks",
@@ -44,8 +43,9 @@
     "getResult",
     "get",
     "printPrice",
-    "unescapeMdCode",
     "wait",
+    "askTool",
+    "specToTool",
     "models",
     "prices"
   ],
@@ -55,6 +55,7 @@
   "name": "@razomy/ai-google",
   "peerDependencies": {
     "@google/genai": "^1.44.0",
+    "@razomy/fns": "*",
     "@razomy/fs-file": "*"
   },
   "publishConfig": {

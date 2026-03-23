@@ -1,0 +1,45 @@
+import {
+  Type,
+  type FunctionDeclaration
+} from '@google/genai';
+import * as fns from "@razomy/fns";
+
+function mapType(type: string): Type {
+  const t = type.toLowerCase();
+  if (t === 'string') return Type.STRING;
+  if (t === 'number' || t === 'integer' || t === 'float') return Type.NUMBER;
+  if (t === 'boolean') return Type.BOOLEAN;
+  if (t === 'array') return Type.ARRAY;
+  if (t === 'object') return Type.OBJECT;
+  return Type.STRING; // default
+}
+
+/**
+ * Конвертирует вашу FunctionSpecification в формат Google Gemini
+ */
+export function specToTool(spec: fns.FunctionSpecification): FunctionDeclaration {
+  const properties: Record<string, any> = {};
+  const required: string[] = [];
+
+  spec.parameters.forEach(param => {
+    properties[param.name] = {
+      type: mapType(param.type),
+      description: param.description,
+    };
+
+    // Если нет дефолтного значения, считаем обязательным
+    if (param.defaultValue === null) {
+      required.push(param.name);
+    }
+  });
+
+  return {
+    name: spec.name,
+    description: `${spec.title}: ${spec.description}.`,
+    parameters: {
+      type: Type.OBJECT,
+      properties,
+      required: required.length > 0 ? required : [],
+    },
+  };
+}

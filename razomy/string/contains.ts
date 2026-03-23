@@ -21,3 +21,4 @@
 export function contains(text: string, search: string): boolean {
   return text.includes(search);
 }
+

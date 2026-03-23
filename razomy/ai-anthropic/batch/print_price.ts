@@ -1,8 +1,3 @@
-export const models = {
-  cheap: 'claude-sonnet-4-6',
-  expensive: 'claude-opus-4-6',
-};
-
 export const m = 1_000_000;
 export const batchSale = 2;
 export const pricing = {

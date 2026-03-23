@@ -1,4 +1,4 @@
-import { performanceLogger } from "../logger";
+import { performanceLogger } from "../../../ai-agent-project/logger";
 import {askIndependent} from './ask_independent';
 
 export async function askAnyCli(message: string) {

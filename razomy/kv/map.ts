@@ -1,24 +1,24 @@
 import { isAkv } from './is_akv';
 import { akv } from './akv';
 import * as kv from '@razomy/kv';
-import * as function_ from '@razomy/function';
+import * as fns from '@razomy/fns';
 
-export function map<IV, OV>(input: kv.Value<IV>, mapCb: function_.Function<[kv.Value<IV>], kv.Value<OV>>): kv.Value<OV>;
+export function map<IV, OV>(input: kv.Value<IV>, mapCb: fns.Function<[kv.Value<IV>], kv.Value<OV>>): kv.Value<OV>;
 export function map<K, IV, OV>(
   input: kv.KeyValuable<K, IV>,
-  mapCb: function_.Function<[kv.KeyValuable<K, IV>], kv.KeyValuable<K, OV>>,
+  mapCb: fns.Function<[kv.KeyValuable<K, IV>], kv.KeyValuable<K, OV>>,
 ): kv.KeyValuable<K, OV>;
 export function map<K, IV, OV>(
   input: kv.ArrayKeyValuable<K, IV>,
-  mapCb: function_.Function<[kv.ArrayKeyValuable<K, IV>], kv.ArrayKeyValuable<K, OV>>,
+  mapCb: fns.Function<[kv.ArrayKeyValuable<K, IV>], kv.ArrayKeyValuable<K, OV>>,
 ): kv.ArrayKeyValuable<K, OV>;
 export function map<K, IV, OV>(
   value: kv.Valuable<K, IV>,
-  mapCb: function_.Function<[kv.Valuable<K, IV>], kv.Valuable<K, OV>>,
+  mapCb: fns.Function<[kv.Valuable<K, IV>], kv.Valuable<K, OV>>,
 ): kv.Valuable<K, OV>;
 export function map<K, IV, OV>(
   value: kv.Valuable<K, IV>,
-  mapCb: function_.Function<[kv.Valuable<K, IV>], kv.Valuable<K, OV>>,
+  mapCb: fns.Function<[kv.Valuable<K, IV>], kv.Valuable<K, OV>>,
 ): kv.Valuable<K, OV> {
   if (kv.isKv(value)) {
     const mapped = mapCb(value);

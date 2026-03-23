@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { models } from './print_price';
+import {maxTokens, models} from '../client';
 import { client } from '../client';
 import { continue_ } from './continue_';
 
@@ -9,7 +9,7 @@ export async function asks(texts: string[], systemText: string) {
       custom_id: `req-${index + 1}`, // custom_ids must be unique per item in the batch
       params: {
         model: models.expensive,
-        max_tokens: 5024,
+        max_tokens: maxTokens,
         system: systemText, // Anthropic system prompts go here
         messages: [{ role: 'user', content: text }],
       },

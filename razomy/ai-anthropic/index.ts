@@ -1,3 +1,3 @@
 export * as batch from './batch';
-export * as direct from './direct';
-export { client } from './client';
+export * as instant from './instant';
+export { client, maxTokens, models } from './client';

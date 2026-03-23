@@ -36,3 +36,4 @@ export { trim } from './trim';
 export { truncate } from './truncate';
 export { type WithString } from './with_string';
 export { unescapeByString } from './unescape_by_string';
+export { unescapeMdCode } from './unescape_md_code';

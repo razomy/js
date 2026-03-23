@@ -1,2 +1,3 @@
 export * as batch from './batch';
-export { ai, callTool, models } from './call_tool';
+export * as instant from './instant';
+export { ai, models } from './client';

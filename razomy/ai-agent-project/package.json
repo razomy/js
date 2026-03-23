@@ -1,0 +1,117 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications.json": "./specifications.json"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-agent-project#readme",
+  "keywords": [
+    "razomy",
+    "ai",
+    "agent",
+    "project",
+    "think",
+    "askBool",
+    "askCompose",
+    "askJson",
+    "askNumber",
+    "askSwitch",
+    "askTaskDecompose",
+    "architecture",
+    "businessAnalytic",
+    "developerSolve",
+    "directorCompany",
+    "getDirFiles",
+    "getFile",
+    "setFile",
+    "callAuto",
+    "callText",
+    "callTool",
+    "consensusCall",
+    "parseArray",
+    "parseBool",
+    "parseJson",
+    "parseNumber",
+    "parseSwitch",
+    "parseThrowPanic",
+    "getBoolPrompt",
+    "getComposePrompt",
+    "getNumberPrompt",
+    "getPanicPrompt",
+    "getSwitchPrompt",
+    "getTaskDecomposePrompt",
+    "askProject",
+    "chunkFile",
+    "syncProjectWithVgd",
+    "executeToolMut",
+    "performanceLogger",
+    "tools",
+    "toolRegistry"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ai-agent-project",
+  "peerDependencies": {
+    "@razomy/ai": "*",
+    "@razomy/array": "*",
+    "@razomy/fns": "*",
+    "@razomy/fss": "*",
+    "@razomy/git": "*",
+    "@razomy/performance": "*",
+    "@razomy/random": "*",
+    "@razomy/string": "*",
+    "@razomy/ts-refactor": "*",
+    "@razomy/vgd": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/ai-agent-project",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

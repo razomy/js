@@ -43,7 +43,7 @@
   "name": "@razomy/test-jest",
   "peerDependencies": {
     "@razomy/dict": "*",
-    "@razomy/function": "*",
+    "@razomy/fns": "*",
     "@razomy/spec": "*"
   },
   "publishConfig": {

@@ -70,7 +70,8 @@
     "toBuffer",
     "trim",
     "truncate",
-    "unescapeByString"
+    "unescapeByString",
+    "unescapeMdCode"
   ],
   "license": "MIT",
   "main": "./index.ts",

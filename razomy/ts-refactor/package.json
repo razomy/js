@@ -63,6 +63,7 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/array": "*",
+    "@razomy/fns": "*",
     "@razomy/fss": "*",
     "@razomy/languages-programming-fs": "*",
     "@razomy/refactor-fs": "*",

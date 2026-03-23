@@ -34,4 +34,4 @@ export function pipeSync(initialValue: any, ...fns: Pipe<any, any>[]): any {
   return result;
 }
 
-export const pS: abstracts.ts.Alias<typeof pipeSync> = pipeSync;
+export const pS: abstracts.meta.Alias<typeof pipeSync> = pipeSync;

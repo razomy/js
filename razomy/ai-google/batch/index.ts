@@ -6,5 +6,4 @@ export { delete_ } from './delete_';
 export { get } from './get';
 export { getResult } from './get_result';
 export { prices, printPrice } from './print_price';
-export { unescapeMdCode } from './unescape_md_code';
 export { wait } from './wait';

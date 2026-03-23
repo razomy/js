@@ -51,7 +51,7 @@
     "@razomy/array": "*",
     "@razomy/context": "*",
     "@razomy/dict-recursive": "*",
-    "@razomy/function": "*",
+    "@razomy/fns": "*",
     "@razomy/object": "*",
     "@razomy/pipes": "*",
     "@razomy/result": "*",

@@ -1,5 +1,5 @@
 import * as pipes from '@razomy/pipes';
-import * as function_ from '@razomy/function';
+import * as fns from '@razomy/fns';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';
 import * as tokenOffset from '@razomy/token-offset';
 import * as token from '@razomy/token';
@@ -23,39 +23,39 @@ export function jsonToObject(jsonTokens: JsonToken[]) {
   ) satisfies token.WithTokens<JsonToken> & WithOffset;
   const rs = {
     // Primitives
-    key: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'value')),
-    scalar: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'value')),
-    assign: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'assign')),
-    break_: (c) => pipes.tryP(c, function_.f(tokenOffset.tryTokenValue, 'break')),
-    optBreak: (c) => pipes.tryP(c, function_.f(resultNull.optinal, rs.break_, { offset: 0, result: null })),
+    key: (c) => pipes.tryP(c, fns.f(tokenOffset.tryTokenValue, 'value')),
+    scalar: (c) => pipes.tryP(c, fns.f(tokenOffset.tryTokenValue, 'value')),
+    assign: (c) => pipes.tryP(c, fns.f(tokenOffset.tryTokenValue, 'assign')),
+    break_: (c) => pipes.tryP(c, fns.f(tokenOffset.tryTokenValue, 'break')),
+    optBreak: (c) => pipes.tryP(c, fns.f(resultNull.optinal, rs.break_, { offset: 0, result: null })),
     // Recursion / Alternatives
-    tail: (c) => pipes.tryP(c, function_.f(resultNull.any, [rs.inlineEntry, rs.scalar])),
+    tail: (c) => pipes.tryP(c, fns.f(resultNull.any, [rs.inlineEntry, rs.scalar])),
     nestedBlock: (c) =>
       pipes.tryP(
         c,
-        function_.f(tokenOffsetDeep.tryScope, rs.statement),
+        fns.f(tokenOffsetDeep.tryScope, rs.statement),
         result.fMutResult((c, ...results) => Object.assign({}, ...results)),
       ),
     // Sequences
     inlineEntry: (c) =>
       pipes.tryP(
         c,
-        function_.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.tail, rs.optBreak]),
+        fns.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.tail, rs.optBreak]),
         result.fMutResult((c, [key, a, tail]) => ({ [key]: tail })),
       ),
     blockEntry: (c) =>
       pipes.tryP(
         c,
-        function_.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.break_, rs.nestedBlock]),
+        fns.f(tokenOffset.tryAll, [rs.key, rs.assign, rs.break_, rs.nestedBlock]),
         result.fMutResult((c, [key, a, b, blk]) => ({ [key]: blk })),
       ),
     // region
-    statement: (c) => pipes.tryP(c, function_.f(resultNull.any, [rs.inlineEntry, rs.blockEntry])),
+    statement: (c) => pipes.tryP(c, fns.f(resultNull.any, [rs.inlineEntry, rs.blockEntry])),
     // start
     root: (c) =>
       pipes.tryP(
         c,
-        function_.f(tokenOffsetDeep.tryScope, rs.statement),
+        fns.f(tokenOffsetDeep.tryScope, rs.statement),
         result.fMutResult((c, ...results) => Object.assign({}, ...results)),
       ),
   } satisfies resultNull.ResultNullRegistry<typeof c>;

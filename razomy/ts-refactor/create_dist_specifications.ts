@@ -1,13 +1,13 @@
 import { Project, FunctionDeclaration, JSDoc } from 'ts-morph';
 import { recordPerformance } from '../performance/record_performance';
-import type { FunctionSpecification } from '../function/function_specification';
 import * as performance from '@razomy/performance';
+import * as fns from "@razomy/fns";
 
 /**
  * Основная функция генерации спецификации.
  * Написана в декларативном стиле, собирает данные из функций-экстракторов.
  */
-export async function createDistSpecifications(project: Project, path: string, name: string): Promise<FunctionSpecification> {
+export async function createDistSpecifications(project: Project, path: string, name: string): Promise<fns.FunctionSpecification> {
   const sourceFile = project.getSourceFileOrThrow(path);
   const func = sourceFile.getFunctionOrThrow(name);
   const funcName = func.getName() || name;

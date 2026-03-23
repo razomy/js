@@ -44,7 +44,7 @@
   "module": "./index.ts",
   "name": "@razomy/cluster",
   "peerDependencies": {
-    "@razomy/event": "*"
+    "@razomy/async": "*"
   },
   "publishConfig": {
     "access": "public"

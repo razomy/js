@@ -21,6 +21,7 @@ export { isArray } from './is_array';
 export { isArrayEqual } from './is_array_equal';
 export { isEmpty } from './is_empty';
 export { map } from './map';
+export { mapToDict } from './map_to_dict';
 export { reduce } from './reduce';
 export { removeAllMut } from './remove_all_mut';
 export { removeAtMut } from './remove_at_mut';

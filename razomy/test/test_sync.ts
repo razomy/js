@@ -1,9 +1,9 @@
 import { toStrictEqual } from './to_strict_equal';
 import { toThrow } from './to_throw';
-import * as function_ from '@razomy/function';
+import * as fns from '@razomy/fns';
 
 export function testSync<I extends Array<any>, O>(
-  cb: function_.Function<I, O>,
+  cb: fns.Function<I, O>,
   req: I,
   res: O | null = null,
   err: Error | null = null,

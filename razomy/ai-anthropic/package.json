@@ -43,9 +43,12 @@
     "get",
     "printPrice",
     "wait",
+    "askTool",
     "ask",
-    "client",
+    "specToTool",
     "models",
+    "maxTokens",
+    "client",
     "m",
     "batchSale",
     "pricing"
@@ -55,7 +58,9 @@
   "module": "./index.ts",
   "name": "@razomy/ai-anthropic",
   "peerDependencies": {
-    "@anthropic-ai/sdk": "^0.78.0"
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@razomy/fns": "*",
+    "@razomy/main": "*"
   },
   "publishConfig": {
     "access": "public"
