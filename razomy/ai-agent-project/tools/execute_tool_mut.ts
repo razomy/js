@@ -15,7 +15,7 @@ export const tools = [
   fns.create({
     name: 'getDirFiles',
     description: 'Получить список файлов в папке',
-    returns: {
+    return_: {
       type: 'string[]',
       description: 'Return list of files'
     }
@@ -51,7 +51,7 @@ export const tools = [
 
 export const toolRegistry = array.mapToDict(tools, 'name');
 
-export function executeToolMut(ctx: ToolContext, function_: fns.FunctionPayload) {
+export function executeToolMut(ctx: ToolContext, function_: fns.FunctionArgument) {
   let toolResult = '';
   try {
     if (function_.name === 'getDirFiles') {

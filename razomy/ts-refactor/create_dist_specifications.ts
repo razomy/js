@@ -1,35 +1,44 @@
-import { Project, FunctionDeclaration, JSDoc } from 'ts-morph';
-import { recordPerformance } from '../performance/record_performance';
+import {Project, FunctionDeclaration, JSDoc} from 'ts-morph';
+import {recordPerformance} from '../performance/record_performance';
 import * as performance from '@razomy/performance';
 import * as fns from "@razomy/fns";
+import * as path from "path";
+import * as array from "@razomy/array";
+
+function clearImportType(rawType: string) {
+  return rawType
+    .replace(/import\([^)]+\)\./g, '') // removes import("...").
+    .replace(/[a-zA-Z_$][\w$]*\./g, '');
+}
 
 /**
  * Основная функция генерации спецификации.
  * Написана в декларативном стиле, собирает данные из функций-экстракторов.
  */
-export async function createDistSpecifications(project: Project, path: string, name: string): Promise<fns.FunctionSpecification> {
-  const sourceFile = project.getSourceFileOrThrow(path);
+export async function createDistSpecifications(project: Project, dirPath: string, path_: string, name: string): Promise<fns.FunctionSpecification> {
+  const sourceFile = project.getSourceFileOrThrow(path_);
   const func = sourceFile.getFunctionOrThrow(name);
   const funcName = func.getName() || name;
 
   const doc = extractValidJsDoc(func, funcName);
 
-  const title = extractTitle(doc, funcName, path);
-  const description = extractDescription(doc, funcName, path);
+  const title = extractTitle(doc, funcName, path_);
+  const description = extractDescription(doc, funcName, path_);
   const parameters = extractParameters(func, doc, funcName);
   const returns = extractReturns(func, doc, funcName);
-  const examples = extractExamples(doc, funcName, path);
-  const complexity = extractComplexity(doc, funcName, path);
+  const examples = extractExamples(doc, funcName, path_);
+  const complexity = extractComplexity(doc, funcName, path_);
+  const delta = array.removeLast(path.relative(dirPath, path_).split('/'));
 
-  const history = await extractPerformanceHistory(path, funcName, parameters);
-
+  // const history = await extractPerformanceHistory(path_, funcName, parameters);
+  const history = [];
   return {
     name: funcName,
-    // path: '', // В оригинале было '', возможно нужно заменить на path
+    packagePath: delta,
     title,
     description,
     parameters,
-    returns,
+    return_: returns,
     performance: {
       history,
       timeDataSizeComplexityFn: complexity.time,
@@ -80,7 +89,7 @@ function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: stri
 
   return params.map((param) => {
     const name = param.getName();
-    const type = param.getType().getText(param);
+    const type = clearImportType(param.getType().getText(param));
 
     // Extract the default value (if it exists)
     const defaultValue = param.getInitializer()?.getText() || null;
@@ -107,7 +116,7 @@ function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: stri
 }
 
 function extractReturns(func: FunctionDeclaration, doc: JSDoc, funcName: string) {
-  const type = func.getReturnType().getText(func);
+  const type = clearImportType(func.getReturnType().getText(func));
   const returnsTag = doc.getTags().find((t) => t.getTagName() === 'returns');
 
   if (!returnsTag) {
@@ -124,7 +133,7 @@ function extractReturns(func: FunctionDeclaration, doc: JSDoc, funcName: string)
     throw new Error(`[Parse Error] Empty description for @returns in '${funcName}'`);
   }
 
-  return { type, description };
+  return {type, description};
 }
 
 function extractExamples(doc: JSDoc, funcName: string, path: string) {
@@ -163,7 +172,7 @@ function extractComplexity(doc: JSDoc, funcName: string, path: string) {
     throw new Error(`[Parse Error] Missing or incomplete @complexity tags (need 'time' and 'memory') in '${funcName}' (${path})`);
   }
 
-  const result = { time: '', memory: '' };
+  const result = {time: '', memory: ''};
 
   complexityTags.forEach((tag) => {
     const parts = tag.getCommentText()?.split(' ') || [];

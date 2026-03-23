@@ -15,7 +15,7 @@ import * as abstracts from '@razomy/abstracts';
  * @example
  * ```ts
  * // Example 1: Iterate through files one by one (memory efficient)
- * for (const filePath of getFiles('./src')) {
+ * for (const filePath of get('./src')) {
  *   if (filePath.endsWith('.ts')) {
  *     console.log('Found TypeScript file:', filePath);
  *   }
@@ -24,13 +24,13 @@ import * as abstracts from '@razomy/abstracts';
  * @example
  * ```ts
  * // Example 2: Convert to a standard Array
- * const allImages = Array.from(getFiles('./public/images'));
+ * const allImages = Array.from(get('./public/images'));
  * console.log(`Found ${allImages.length} images`);
  * ```
  * @example
  * ```ts
  * // Example 3: Spread syntax (equivalent to Array.from)
- * const [...files] = getFiles('./dist');
+ * const [...files] = get('./dist');
  * ```
  */
 export function* get(dir: abstracts.graphs.DirPathString): Generator<abstracts.graphs.FilePathString, void, void> {

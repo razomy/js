@@ -19,20 +19,10 @@
         "default": "./index.ts",
         "types": "./index.ts"
       },
-      "node": {
-        "import": "./index.node.ts",
-        "require": "./index.node.ts",
-        "types": "./index.node.ts"
-      },
       "require": {
         "default": "./index.ts",
         "types": "./index.ts"
       }
-    },
-    "./node": {
-      "import": "./index.node.ts",
-      "require": "./index.node.ts",
-      "types": "./index.node.ts"
     },
     "./package.json": "./package.json",
     "./specifications.json": "./specifications.json"
@@ -44,18 +34,55 @@
   "keywords": [
     "razomy",
     "images",
-    "toImageByFormat",
+    "detectEdges",
+    "dilate",
+    "erode",
+    "getHistogram",
+    "getMetadata",
+    "getStats",
+    "threshold",
+    "addAlpha",
+    "brightness",
+    "contrast",
+    "extractChannel",
+    "gamma",
+    "grayscale",
+    "invert",
+    "normalize",
+    "removeAlpha",
+    "sepia",
+    "toColorspace",
+    "blend",
+    "composite",
+    "drawCircle",
+    "drawLine",
+    "drawRectangle",
+    "join",
+    "avif",
     "gif",
     "heic",
-    "heif",
     "ico",
     "jpeg",
-    "jpg",
     "png",
-    "tif",
     "tiff",
+    "toImageByFormat",
     "webp",
-    "avif",
+    "blur",
+    "emboss",
+    "median",
+    "noise",
+    "pixelate",
+    "sharpen",
+    "unsharpMask",
+    "crop",
+    "extend",
+    "flip",
+    "resize",
+    "rotate",
+    "smartCrop",
+    "thumbnail",
+    "trim",
+    "createBlank",
     "imageWriteTargets"
   ],
   "license": "MIT",
@@ -64,7 +91,7 @@
   "name": "@razomy/images",
   "peerDependencies": {
     "@razomy/fs-file-format": "*",
-    "sharp": "^0.34.5"
+    "wasm-vips": "^0.0.17"
   },
   "publishConfig": {
     "access": "public"
@@ -75,7 +102,7 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.node.ts --format esm,cjs --dts",
+    "build": "tsdown index.ts --format esm,cjs --dts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },

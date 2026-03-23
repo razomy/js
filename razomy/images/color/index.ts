@@ -1,0 +1,11 @@
+export { addAlpha } from './add_alpha';
+export { brightness } from './brightness';
+export { contrast } from './contrast';
+export { extractChannel } from './extract_channel';
+export { gamma } from './gamma';
+export { grayscale } from './grayscale';
+export { invert } from './invert';
+export { normalize } from './normalize';
+export { removeAlpha } from './remove_alpha';
+export { sepia } from './sepia';
+export { toColorspace } from './to_colorspace';

@@ -6,7 +6,7 @@ import * as fns from "@razomy/fns";
 export async function askTool(
   texts: string[],
   toolSpec: fns.FunctionSpecification[]
-): Promise<string | fns.FunctionPayload> {
+): Promise<string | fns.FunctionArgument> {
 
   const payload: any = {
     model: models.expensive,
@@ -30,7 +30,7 @@ export async function askTool(
 
   if (toolUseBlock && toolUseBlock.type === 'tool_use') {
     // Map the Anthropic tool use response back to your FunctionPayload format
-    const payloadArgs: fns.FunctionPayloadArgument[] = Object.entries(toolUseBlock.input as any).map(([key, val]) => ({
+    const payloadArgs: fns.ParameterArgument[] = Object.entries(toolUseBlock.input as any).map(([key, val]) => ({
       name: key,
       // Your interface expects the value as a string. We stringify it if it's an object/number.
       value: typeof val === 'string' ? val : JSON.stringify(val)

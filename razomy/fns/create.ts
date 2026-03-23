@@ -1,24 +1,36 @@
 import * as performance from '@razomy/performance';
 
-export interface FunctionSpecificationParameter {
-  name: string;
-  type: string;
+export interface WithDescription {
   description: string;
+}
+
+export interface WithName {
+  name: string;
+}
+
+export interface WithType {
+  type: string;
+
+}
+
+export interface Element extends WithDescription, WithName {
+}
+
+export interface Property extends Element, WithType {
   defaultValue: string | null;
 }
 
-export interface FunctionSpecificationCore {
-  name: string;
-  description: string;
-  parameters: FunctionSpecificationParameter[];
-  returns: {
-    type: string;
-    description: string;
-  };
+export interface Parameter extends Property {
 }
 
-export interface FunctionSpecification extends FunctionSpecificationCore {
+export interface Function_ extends Element {
   title: string;
+  parameters: Parameter[];
+  return_: WithType & WithDescription;
+}
+
+export interface FunctionSpecification extends Function_ {
+  packagePath: string[];
   performance: {
     timeDataSizeComplexityFn: string;
     memoryDataSizeComplexityFn: string;
@@ -30,32 +42,31 @@ export interface FunctionSpecification extends FunctionSpecificationCore {
   }[];
 }
 
-export interface FunctionPayloadArgument {
-  name: string;
+export interface ParameterArgument extends WithName {
   value: string;
 }
 
-export interface FunctionPayload {
-  name: string;
-  arguments_: FunctionPayloadArgument[];
+export interface FunctionArgument extends WithName {
+  arguments_: ParameterArgument[];
 }
 
 export function create(f:
                          Omit<Partial<FunctionSpecification>, 'parameters'>
-                         & Partial<{ parameters: Partial<FunctionSpecificationParameter>[] }>)
+                         & Partial<{ parameters: Partial<Property>[] }>)
   : FunctionSpecification {
   return {
     title: f.title || '',
     description: f.description || '',
     examples: f.examples || [],
     name: f.name || '',
+    packagePath: f.packagePath || [],
     parameters: (f.parameters || []).map(f => ({
       name: f.name || '',
       type: f.type || '',
       description: f.description || '',
       defaultValue: f.defaultValue || null,
-    })),
+    } satisfies Parameter)),
     performance: f.performance || {history: [], timeDataSizeComplexityFn: '', memoryDataSizeComplexityFn: ''},
-    returns: f.returns || {type: 'void', description: 'Nothing'},
+    return_: f.return_ || {type: 'void', description: 'Nothing'},
   } satisfies FunctionSpecification;
 }

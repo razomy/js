@@ -10,28 +10,28 @@ import {replaceInjectImportWithDefaultImport} from './replace_inject_import_with
 export async function formatProject(projectPath: string, prefix: string) {
   console.info('renameFiles.start');
   await renameFiles(projectPath);
-  console.info('iterateSourceFilesAndSave.start');
+  console.info('renameFileBasedOnFirstChild.start');
   await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.renameFileBasedOnFirstChild);
+  console.info('convertLambdasToNamedFunctions.start');
+  await convertLambdasToNamedFunctions(projectPath);
+  console.info('fixBrokenImportsAndExports.start');
+  await fixBrokenImportsAndExports(projectPath);
+  console.info('iterateSourceFilesAndSave.start');
+  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.splitFunctions);
+  console.info('replaceInjectImportWithDefaultImport.start');
+  await replaceInjectImportWithDefaultImport(projectPath);
+  console.info('fileRenameVariablesAndPropsFunctions.start');
+  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.fileRenameVariablesAndPropsFunctions);
+  console.info('createIndexFiles.start');
+  await createIndexFiles(projectPath);
   console.info('createPackageJsonAtChildDirs.start');
   await packageJson.createAtChildDirs(projectPath + prefix + '/', prefix);
   console.info('createPackage.start');
   await packageJson.createRoot(projectPath);
   console.info('addDependencies.start');
   await packageJson.addDependencies(projectPath, prefix);
-  console.info('fixBrokenImportsAndExports.start');
-  await fixBrokenImportsAndExports(projectPath);
-  console.info('createIndexFiles.start');
-  await createIndexFiles(projectPath);
   console.info('updatePackages.start');
   await packageJson.updateByTemplate(projectPath, prefix);
-  console.info('iterateSourceFilesAndSave.start');
-  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.splitFunctions);
-  console.info('convertLambdasToNamedFunctions.start');
-  await convertLambdasToNamedFunctions(projectPath);
-  console.info('replaceInjectImportWithDefaultImport.start');
-  await replaceInjectImportWithDefaultImport(projectPath);
-  console.info('iterateSourceFilesAndSave.start');
-  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.fileRenameVariablesAndPropsFunctions);
 }
 
 main.ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then();

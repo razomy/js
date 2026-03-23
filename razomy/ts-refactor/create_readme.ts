@@ -2,12 +2,17 @@ import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as fns from "@razomy/fns";
 
+function getFPath(n:fns.FunctionSpecification) {
+  const import_ = [...n.packagePath, n.name];
+  return import_;
+}
+
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
 export function createReadme(path: string, packageJson: any, specs: fns.FunctionSpecification[]) {
   const scopeName = stringCase.camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
-  const sortedSpecs = [...specs].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedSpecs = [...specs].sort((a, b) => getFPath(a).join('.').localeCompare(getFPath(b).join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
 
@@ -35,7 +40,7 @@ When reporting a bug, please include:
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).
 `.trim();
-const s = 'https://img.shields.io/';
+  const s = 'https://img.shields.io/';
   const title = `
 # ${packageJson.name}
 
@@ -92,7 +97,7 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   // FIXED: Prevents crash if specs array is empty
-  const sampleImport = sortedSpecs.length > 0 ? sortedSpecs[0].name : 'functionName';
+  const functionPath = sortedSpecs.length > 0 ? getFPath(sortedSpecs[0]) : ['functionName'];
   const imports = `
 ### Import
 
@@ -105,15 +110,15 @@ import * as ${scopeName} from "https://esm.sh/${packageJson.name}";
 // or
 import * as ${scopeName} from "https://unpkg.com/${packageJson.name}";
 // or
-import { ${sampleImport} } from '${packageJson.name}';
+import { ${functionPath[0]} } from '${packageJson.name}';
 // or
-razomy run ${packageJson.name} ${sampleImport}
+razomy run ${packageJson.name} ${functionPath.join(' ')}
 \`\`\`
 
   `.trim();
 
   // ADDED: Table of contents
-  const tocs = sortedSpecs.map((s) => `- [${s.name}](#${s.name.toLowerCase()})`).join('\n');
+  const tocs = sortedSpecs.map((s) => `- [${getFPath(s).join('.')}](#${s.name.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
@@ -123,7 +128,7 @@ ${tocs.length ? '**Functions**\n\n' + tocs : ''}
   // IMPROVED: Markdown formatting for functions (Using ### for function names makes them linkable by the TOC)
   const functions = sortedSpecs
     .map((s) => {
-      const declaration = `\`${s.name}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.returns.type}\``;
+      const declaration = `\`${getFPath(s).join('.')}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.return_.type}\``;
       const description = [s.title, s.description].filter(Boolean).join('\n');
       const examples = s.examples
         .map((e) => `

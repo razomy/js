@@ -3,6 +3,7 @@ import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Insert a string into another string at a specific index.
+ * @description Insert a string into another string at a specific index.
  * @param text The original string.
  * @param index The zero-based index at which to insert.
  * @param insertion The string to insert.

@@ -1,16 +1,16 @@
-import { Project } from 'ts-morph';
+import {Project} from 'ts-morph';
 import path from 'path';
 import * as fss from '@razomy/fss';
-import { createDistSpecifications } from './create_dist_specifications';
-import { createReadme } from './create_readme';
+import {createDistSpecifications} from './create_dist_specifications';
+import {createReadme} from './create_readme';
 import {getExportedFunctions} from './get_exported_functions';
-import { getFilteredSourceFiles } from './get_filtered_source_files';
+import {getFilteredSourceFiles} from './get_filtered_source_files';
 import {getExportedConstants} from './get_exported_constants';
 import {getExportedClasses} from './get_exported_classes';
 import {getExportedTypes} from './get_exported_types';
 
 export async function createReadmeAndSpecifications(dirPath) {
-  const project = new Project({ tsConfigFilePath: '../../' + 'tsconfig.json' });
+  const project = new Project({tsConfigFilePath: '../../' + 'tsconfig.json'});
   const sources = getFilteredSourceFiles(project, dirPath);
 
   const constantsFiles = getExportedConstants(sources);
@@ -23,7 +23,7 @@ export async function createReadmeAndSpecifications(dirPath) {
   console.info(functionsFiles);
 
   async function createDistSpecificationsCb(n) {
-    return await createDistSpecifications(project, path.resolve(n.path), n.name);
+    return await createDistSpecifications(project, dirPath, path.resolve(n.path), n.name);
   }
 
   const files = await Promise.all(functionsFiles.map(createDistSpecificationsCb));

@@ -1,10 +1,10 @@
 export {
   create,
-  type FunctionPayload,
-  type FunctionPayloadArgument,
+  type FunctionArgument,
+  type ParameterArgument,
   type FunctionSpecification,
-  type FunctionSpecificationCore,
-  type FunctionSpecificationParameter,
+  type Function_,
+  type Property,
 } from './create';
 export { f } from './f';
 export { fMut } from './f_mut';
