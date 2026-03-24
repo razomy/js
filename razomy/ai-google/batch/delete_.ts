@@ -1,5 +1,5 @@
-import { ai } from '../client';
+import { client } from '../client';
 
 export async function delete_(name: string) {
-  await ai.batches.delete({ name: name });
+  await client.batches.delete({ name: name });
 }

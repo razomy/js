@@ -1,4 +1,4 @@
-import * as fns from "@razomy/fns";
+import * as abstracts from "@razomy/abstracts";
 
 export interface TextAiMessage {
   sender: 'system' | 'user' | string,
@@ -9,12 +9,12 @@ export interface TextAiMessage {
 export interface ToolsAiMessage {
   sender: 'system' | 'user' | string,
   type: 'tools'
-  tools: fns.FunctionSpecification[],
+  tools: abstracts.ast.PackageFunction[],
 }
 
 export type AiMessage = TextAiMessage;
 
 export interface AiLlmContext {
   messages: AiMessage[],
-  tools: fns.FunctionSpecification[],
+  tools: abstracts.ast.PackageFunction[],
 }

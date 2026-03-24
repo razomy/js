@@ -42,7 +42,7 @@
   "module": "./index.ts",
   "name": "@razomy/ai",
   "peerDependencies": {
-    "@razomy/fns": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -3,8 +3,7 @@ import {
   MustUseToolLlmException,
   PanicAnswerLlmException, ToolExecuteLlmException,
   TypedAnswerLlmException
-} from './must_use_tool_llm_exception';
-import {sM} from "../../ai/s_m";
+} from '../../ai/must_use_tool_llm_exception';
 import * as ai from "@razomy/ai";
 
 export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLlmContext) => Promise<T>) {
@@ -29,7 +28,7 @@ export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLl
         || e instanceof ToolExecuteLlmException) {
         if (strategy === 'init') {
           strategy = 'tryAgainWithErrorDescription';
-          ctx.messages.push(sM(
+          ctx.messages.push(ai.sM(
             `Response is not valid. Return a valid result: ${e.expectedResult} ${e.actualResult}.`
           ))
           continue;

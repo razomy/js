@@ -2,7 +2,7 @@ import {
   Type,
   type FunctionDeclaration
 } from '@google/genai';
-import * as fns from "@razomy/fns";
+import * as  abstracts from "@razomy/abstracts";
 
 function mapType(type: string): Type {
   const t = type.toLowerCase();
@@ -17,25 +17,25 @@ function mapType(type: string): Type {
 /**
  * Конвертирует вашу FunctionSpecification в формат Google Gemini
  */
-export function specToTool(spec: fns.FunctionSpecification): FunctionDeclaration {
+export function specToTool(spec: abstracts.ast.PackageFunction): FunctionDeclaration {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 
-  spec.parameters.forEach(param => {
+  (spec.parameter  as abstracts.ast.Object).items.forEach(param => {
     properties[param.name] = {
-      type: mapType(param.type),
+      type: mapType(param.kind),
       description: param.description,
     };
 
     // Если нет дефолтного значения, считаем обязательным
-    if (param.defaultValue === null) {
-      required.push(param.name);
+    if (param.value === null) {
+      required.push(param.kind);
     }
   });
 
   return {
     name: spec.name,
-    description: `${spec.title}: ${spec.description}.`,
+    description: `${spec.description}.`,
     parameters: {
       type: Type.OBJECT,
       properties,

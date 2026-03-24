@@ -2,12 +2,12 @@ import {
   type Part
 } from '@google/genai';
 import {specToTool} from "./spec_to_tool";
-import {ai, models} from "../client";
-import {MustUseToolLlmException} from "../../ai-agent-project/llms";
-import * as fns from "@razomy/fns";
+import {client, models} from "../client";
+import * as abstracts from "@razomy/abstracts";
+import * as ai from "@razomy/ai";
 
 export async function askTool(texts: string[],
-                               toolSpec: fns.FunctionSpecification[]
+                               toolSpec: abstracts.ast.PackageFunction[]
 ) {
   const tools = [{
     functionDeclarations: toolSpec.map(specToTool)
@@ -23,7 +23,7 @@ export async function askTool(texts: string[],
   const lastMessage = texts[texts.length - 1];
 
   // Запуск генерации
-  const result = await ai.models.generateContent({
+  const result = await client.models.generateContent({
     model: models.cheap,
     contents: [...history, {role: 'user', parts: [{text: lastMessage}]}],
     config: {
@@ -35,7 +35,7 @@ export async function askTool(texts: string[],
 
   // Проверка: вызвал ли AI инструмент
   if (!functionCalls || functionCalls.length === 0) {
-    throw new MustUseToolLlmException(
+    throw new ai.MustUseToolLlmException(
       result.text!,
       'Expected at least one tool call'
     );

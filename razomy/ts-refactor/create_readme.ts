@@ -1,14 +1,14 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
-import * as fns from "@razomy/fns";
+import * as abstracts from "@razomy/abstracts";
 
-function getFPath(n:fns.FunctionSpecification) {
-  const import_ = [...n.packagePath, n.name];
+function getFPath(n:abstracts.ast.PackageFunction) {
+  const import_ = [...n.functionPath, n.name];
   return import_;
 }
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createReadme(path: string, packageJson: any, specs: fns.FunctionSpecification[]) {
+export function createReadme(path: string, packageJson: any, specs: abstracts.ast.PackageFunction[]) {
   const scopeName = stringCase.camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
@@ -128,7 +128,7 @@ ${tocs.length ? '**Functions**\n\n' + tocs : ''}
   // IMPROVED: Markdown formatting for functions (Using ### for function names makes them linkable by the TOC)
   const functions = sortedSpecs
     .map((s) => {
-      const declaration = `\`${getFPath(s).join('.')}(${s.parameters.map((i) => `${i.name}: ${i.type}`).join(', ')}): ${s.return_.type}\``;
+      const declaration = `\`${getFPath(s).join('.')}(${(s.parameter as abstracts.ast.Object).items.map((i) => `${i.name}: ${(i.item as abstracts.ast.Reference).key}`).join(', ')}): ${(s.return_ as abstracts.ast.Reference).key}\``;
       const description = [s.title, s.description].filter(Boolean).join('\n');
       const examples = s.examples
         .map((e) => `

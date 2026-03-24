@@ -1,7 +1,7 @@
 import {Project, FunctionDeclaration, JSDoc} from 'ts-morph';
-import {recordPerformance} from '../performance/record_performance';
-import * as performance from '@razomy/performance';
-import * as fns from "@razomy/fns";
+// import {recordPerformance} from '../performance/record_performance';
+// import * as performance from '@razomy/performance';
+import * as abstracts from "@razomy/abstracts";
 import * as path from "path";
 import * as array from "@razomy/array";
 
@@ -15,7 +15,7 @@ function clearImportType(rawType: string) {
  * Основная функция генерации спецификации.
  * Написана в декларативном стиле, собирает данные из функций-экстракторов.
  */
-export async function createDistSpecifications(project: Project, dirPath: string, path_: string, name: string): Promise<fns.FunctionSpecification> {
+export async function createDistSpecifications(project: Project, dirPath: string, path_: string, name: string) {
   const sourceFile = project.getSourceFileOrThrow(path_);
   const func = sourceFile.getFunctionOrThrow(name);
   const funcName = func.getName() || name;
@@ -24,20 +24,21 @@ export async function createDistSpecifications(project: Project, dirPath: string
 
   const title = extractTitle(doc, funcName, path_);
   const description = extractDescription(doc, funcName, path_);
-  const parameters = extractParameters(func, doc, funcName);
+  const parameter = extractParameters(func, doc, funcName);
   const returns = extractReturns(func, doc, funcName);
   const examples = extractExamples(doc, funcName, path_);
   const complexity = extractComplexity(doc, funcName, path_);
-  const delta = array.removeLast(path.relative(dirPath, path_).split('/'));
+  const functionPath = array.removeLast(path.relative(dirPath, path_).split('/'));
 
   // const history = await extractPerformanceHistory(path_, funcName, parameters);
-  const history = [];
+  const history = [] as [];
   return {
+    kind: 'PackageFunction',
     name: funcName,
-    packagePath: delta,
+    functionPath: functionPath,
     title,
     description,
-    parameters,
+    parameter,
     return_: returns,
     performance: {
       history,
@@ -45,7 +46,7 @@ export async function createDistSpecifications(project: Project, dirPath: string
       memoryDataSizeComplexityFn: complexity.memory,
     },
     examples,
-  };
+  } satisfies abstracts.ast.PackageFunction;
 }
 
 // ============================================================================
@@ -87,9 +88,9 @@ function extractDescription(doc: JSDoc, funcName: string, path: string): string 
 function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: string) {
   const params = func.getParameters();
 
-  return params.map((param) => {
+  const items = params.map((param) => {
     const name = param.getName();
-    const type = clearImportType(param.getType().getText(param));
+    const kind = clearImportType(param.getType().getText(param));
 
     // Extract the default value (if it exists)
     const defaultValue = param.getInitializer()?.getText() || null;
@@ -107,16 +108,31 @@ function extractParameters(func: FunctionDeclaration, doc: JSDoc, funcName: stri
     }
 
     return {
-      name,
-      type,
+      name: name,
+      kind: 'Property',
+      item: {
+        kind: 'Reference',
+        key: kind,
+      } as abstracts.ast.Reference,
+      value: defaultValue
+        ? {
+          kind: 'StringLiteral',
+          value: defaultValue
+        } as abstracts.ast.StringLiteral
+        : null,
       description,
-      defaultValue
-    };
+      // defaultValue
+    } satisfies abstracts.ast.Property;
   });
+
+  return {
+    kind: 'Object',
+    items
+  } as abstracts.ast.Object;
 }
 
 function extractReturns(func: FunctionDeclaration, doc: JSDoc, funcName: string) {
-  const type = clearImportType(func.getReturnType().getText(func));
+  const kind = clearImportType(func.getReturnType().getText(func));
   const returnsTag = doc.getTags().find((t) => t.getTagName() === 'returns');
 
   if (!returnsTag) {
@@ -133,7 +149,11 @@ function extractReturns(func: FunctionDeclaration, doc: JSDoc, funcName: string)
     throw new Error(`[Parse Error] Empty description for @returns in '${funcName}'`);
   }
 
-  return {type, description};
+  return {
+    kind: 'Reference',
+    key: kind,
+    description,
+  } as abstracts.ast.Reference;
 }
 
 function extractExamples(doc: JSDoc, funcName: string, path: string) {
@@ -195,19 +215,19 @@ function extractComplexity(doc: JSDoc, funcName: string, path: string) {
   return result;
 }
 
-async function extractPerformanceHistory(path: string, name: string, parameters: any[]) {
-  // Выполняем тест производительности только если функция принимает ровно 1 параметр типа string
-  if (parameters.length === 1 && parameters[0].type === 'string') {
-    const mod = await import(path);
-    const fn = mod[name];
-
-    if (!fn) {
-      throw new Error(`[Runtime Error] Cannot import function '${name}' from ${path} for performance testing`);
-    }
-
-    const history = await recordPerformance(fn, performance.nStringTestCasesRecordPerformance());
-    return history.exportState();
-  }
-
-  return [];
-}
+// async function extractPerformanceHistory(path: string, name: string, parameters: any[]) {
+//   // Выполняем тест производительности только если функция принимает ровно 1 параметр типа string
+//   if (parameters.length === 1 && parameters[0].type === 'string') {
+//     const mod = await import(path);
+//     const fn = mod[name];
+//
+//     if (!fn) {
+//       throw new Error(`[Runtime Error] Cannot import function '${name}' from ${path} for performance testing`);
+//     }
+//
+//     const history = await recordPerformance(fn, performance.nStringTestCasesRecordPerformance());
+//     return history.exportState();
+//   }
+//
+//   return [];
+// }

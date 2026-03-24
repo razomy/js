@@ -59,6 +59,8 @@
   "name": "@razomy/ai-anthropic",
   "peerDependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
+    "@razomy/abstracts": "*",
+    "@razomy/ai": "*",
     "@razomy/fns": "*",
     "@razomy/main": "*"
   },

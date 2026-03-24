@@ -1,5 +1,5 @@
 import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
-import { ai, models } from '../client';
+import { client, models } from '../client';
 import { wait } from './wait';
 import { getResult } from './get_result';
 import { delete_ } from './delete_';
@@ -12,7 +12,7 @@ export async function asks(texts: string[], systemText: string) {
     } as InlinedRequest;
   });
 
-  const response = await ai.batches.create({
+  const response = await client.batches.create({
     model: models.expensive,
     src: inlinedRequests,
   });

@@ -8,6 +8,8 @@ import * as tsRefactor from '@razomy/ts-refactor';
 import {replaceInjectImportWithDefaultImport} from './replace_inject_import_with_default_import';
 
 export async function formatProject(projectPath: string, prefix: string) {
+  console.info('splitFunctions.start');
+  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.splitFunctions);
   console.info('renameFiles.start');
   await renameFiles(projectPath);
   console.info('renameFileBasedOnFirstChild.start');
@@ -16,8 +18,6 @@ export async function formatProject(projectPath: string, prefix: string) {
   await convertLambdasToNamedFunctions(projectPath);
   console.info('fixBrokenImportsAndExports.start');
   await fixBrokenImportsAndExports(projectPath);
-  console.info('iterateSourceFilesAndSave.start');
-  await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.splitFunctions);
   console.info('replaceInjectImportWithDefaultImport.start');
   await replaceInjectImportWithDefaultImport(projectPath);
   console.info('fileRenameVariablesAndPropsFunctions.start');

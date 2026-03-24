@@ -1,10 +1,10 @@
-import { performanceLogger } from "../../../ai-agent-project/logger";
 import {askIndependent} from './ask_independent';
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export async function askAnyCli(message: string) {
-    performanceLogger.tickAndLog('start')
+    aiAgentProject.performanceLogger.tickAndLog('start')
     await askIndependent(message.trim());
-    performanceLogger.tickAndLog('end')
+    aiAgentProject.performanceLogger.tickAndLog('end')
 }
 askAnyCli(
   'Проверь доку во всех файлах в папкe, чтобы там был @summary и @description',

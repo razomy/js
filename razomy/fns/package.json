@@ -34,7 +34,7 @@
   "keywords": [
     "razomy",
     "fns",
-    "create",
+    "createPackageFunction",
     "fMut",
     "f",
     "isFunction"
@@ -44,7 +44,7 @@
   "module": "./index.ts",
   "name": "@razomy/fns",
   "peerDependencies": {
-    "@razomy/performance": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

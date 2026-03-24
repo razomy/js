@@ -1,6 +1,5 @@
 import * as vgd from "@razomy/vgd";
 import * as git from "@razomy/git";
-import { getChangedFilesBetweenCommitsOrAll } from "../../git/get_changed_files_between_commits_or_all";
 import * as array from "@razomy/array";
 import { Project } from "ts-morph";
 import { performanceLogger } from "../logger";
@@ -12,7 +11,7 @@ export async function syncProjectWithVgd(db) {
     console.info('Project root path:', projectPath);
     const lastDbCommitId = (await vgd.getLastCommitId(db, projectPath))?.trim();
     const lastFsCommitId = git.getLastCommitId({dirPath: projectPath})?.trim();
-    const commitsFiles = await getChangedFilesBetweenCommitsOrAll(projectPath, lastDbCommitId!, lastFsCommitId);
+    const commitsFiles = await git.getChangedFilesBetweenCommitsOrAll(projectPath, lastDbCommitId!, lastFsCommitId);
     const statusFiles = git.getStatusFileChanges(projectPath);
     await vgd.deleteFiles(db, projectPath, array.uniq([...commitsFiles.deleted, ...statusFiles.deleted]));
     const project = new Project({tsConfigFilePath: projectPath + '/tsconfig.json'});

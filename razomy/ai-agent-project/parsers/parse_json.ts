@@ -1,4 +1,4 @@
-import { TypedAnswerLlmException } from "../llms/must_use_tool_llm_exception";
+import * as ai from "@razomy/ai";
 
 export function parseJson<T>(text: string): T {
     try {
@@ -8,6 +8,6 @@ export function parseJson<T>(text: string): T {
     }
     return JSON.parse(text);
     } catch {
-    throw new TypedAnswerLlmException(text,"АNot a valid JSON");
+    throw new ai.TypedAnswerLlmException(text,"АNot a valid JSON");
     }
 }

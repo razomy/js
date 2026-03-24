@@ -1,7 +1,8 @@
 import {getDirFiles, getFile, setFile} from '../functions';
 import path from 'path';
-import {ToolExecuteLlmException} from '../llms/must_use_tool_llm_exception';
+import {ToolExecuteLlmException} from '../../ai/must_use_tool_llm_exception';
 import * as fns from "@razomy/fns";
+import * as abstracts from "@razomy/abstracts";
 import * as array from "@razomy/array";
 
 export type ToolContext = {
@@ -12,46 +13,38 @@ export type ToolContext = {
 }
 
 export const tools = [
-  fns.create({
+  fns.createPackageFunction({
     name: 'getDirFiles',
     description: 'Получить список файлов в папке',
     return_: {
-      type: 'string[]',
       description: 'Return list of files'
     }
   }),
-  fns.create({
+  fns.createPackageFunction({
     name: 'getFile',
     description: 'Прочитать текст из файла',
-    parameters: [
-      {
-        name: 'filePath',
-        type: 'string',
-        description: 'Путь к файлу'
-      }
-    ],
+    parameter: {
+        filePath: 'Путь к файлу'
+      },
+    return_: {
+      description: 'Return list of files'
+    }
   }),
-  fns.create({
+  fns.createPackageFunction({
     name: 'setFile',
     description: 'Записать текст в файла',
-    parameters: [
-      {
-        name: 'filePath',
-        type: 'string',
-        description: 'Путь к файлу'
-      },
-      {
-        name: 'data',
-        type: 'string',
-        description: 'Новый текст файла',
-      },
-    ],
+    parameter: {
+      key: 'filePath',
+      filePath: 'Путь к файлу',
+      data: 'Новый текст файла',
+    },
+
   })
-] satisfies fns.FunctionSpecification[];
+] satisfies abstracts.ast.PackageFunction[];
 
 export const toolRegistry = array.mapToDict(tools, 'name');
 
-export function executeToolMut(ctx: ToolContext, function_: fns.FunctionArgument) {
+export function executeToolMut(ctx: ToolContext, function_: abstracts.ast.FunctionArgument) {
   let toolResult = '';
   try {
     if (function_.name === 'getDirFiles') {

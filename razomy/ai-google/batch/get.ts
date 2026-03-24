@@ -1,6 +1,6 @@
-import { ai } from '../client';
+import { client } from '../client';
 
 export async function get() {
-  const batchJobs = await ai.batches.list({ config: { pageSize: 1000 } });
+  const batchJobs = await client.batches.list({ config: { pageSize: 1000 } });
   return batchJobs;
 }

@@ -1,4 +1,5 @@
 export * as arrays from './arrays';
+export * as ast from './ast';
 export * as collections from './collections';
 export * as domains from './domains';
 export * as functions from './functions';

@@ -55,7 +55,8 @@
   "name": "@razomy/ai-google",
   "peerDependencies": {
     "@google/genai": "^1.44.0",
-    "@razomy/fns": "*",
+    "@razomy/abstracts": "*",
+    "@razomy/ai": "*",
     "@razomy/fs-file": "*"
   },
   "publishConfig": {

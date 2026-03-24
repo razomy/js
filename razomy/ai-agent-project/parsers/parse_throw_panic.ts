@@ -1,8 +1,8 @@
-import {PanicAnswerLlmException} from "../llms/must_use_tool_llm_exception";
+import * as ai from "@razomy/ai";
 
 export function parseThrowPanic(text: string) {
   if (text.toLowerCase().includes('panic')) {
-    throw new PanicAnswerLlmException(text, 'Not have panic');
+    throw new ai.PanicAnswerLlmException(text, 'Not have panic');
   }
   return;
 }

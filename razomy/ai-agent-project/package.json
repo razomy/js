@@ -79,7 +79,9 @@
   "module": "./index.ts",
   "name": "@razomy/ai-agent-project",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/ai": "*",
+    "@razomy/ai-anthropic": "*",
     "@razomy/array": "*",
     "@razomy/fns": "*",
     "@razomy/fss": "*",
