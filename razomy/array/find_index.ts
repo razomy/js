@@ -1,5 +1,6 @@
 /**
  * @summary Returns the index of the first element in the array that satisfies the provided testing function.
+ * @description Returns the index of the first element in the array that satisfies the provided testing function.
  * @template T
  * @param array The array to search.
  * @param predicate The function to execute on each value.

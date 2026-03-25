@@ -1,18 +1,23 @@
 # @razomy/schemas
 
-[![License](https://img.shields.io/npm/l/@razomy/schemas)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/schemas)](https://bundlephobia.com/package/@razomy/schemas)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/schemas)](https://www.npmjs.com/package/@razomy/schemas)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/schemas)](https://www.npmjs.com/package/@razomy/schemas)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/schemas)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/schemas)](https://www.npmjs.com/package/@razomy/schemas)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/schemas)](https://www.npmjs.com/package/@razomy/schemas)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/schemas)](https://bundlephobia.com/package/@razomy/schemas)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/schemas)](https://www.npmjs.com/package/@razomy/schemas)
 
 [Npm](https://www.npmjs.com/package/@razomy/schemas) |
 [Npmx](https://npmx.dev/package/@razomy/schemas) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/schemas) |
-[Io](https://io.razomy.org/schemas)
+[Razomy Io](https://io.razomy.org/schemas) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > A comprehensive collection of pre-built schema templates for quick validation
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/schemas
+# or
+bun add @razomy/schemas
+# or
+razomy cli add @razomy/schemas
 ```
 
 ### Import
@@ -29,16 +38,235 @@ npm i @razomy/schemas
 ```ts
 import * as schemas from '@razomy/schemas';
 // or
+import * as schemas from "npm:@razomy/schemas";
+// or
+import * as schemas from "https://esm.sh/@razomy/schemas";
+// or
+import * as schemas from "https://unpkg.com/@razomy/schemas";
+// or
 import { functionName } from '@razomy/schemas';
+// or
+razomy run @razomy/schemas functionName
 ```
 
 ## 📑 Table of Contents
 
-**Functions**
+**Types**
+
+- [additional_name](#additional_name)
+- [address_level1](#address_level1)
+- [address_level2](#address_level2)
+- [address_level3](#address_level3)
+- [address_level4](#address_level4)
+- [address_line1](#address_line1)
+- [address_line2](#address_line2)
+- [address_line3](#address_line3)
+- [AllAutofill](#allautofill)
+- [AllSpecific](#allspecific)
+- [bday](#bday)
+- [bday_day](#bday_day)
+- [bday_month](#bday_month)
+- [bday_year](#bday_year)
+- [blob_](#blob_)
+- [cc_additional_name](#cc_additional_name)
+- [cc_csc](#cc_csc)
+- [cc_exp](#cc_exp)
+- [cc_exp_month](#cc_exp_month)
+- [cc_exp_year](#cc_exp_year)
+- [cc_family_name](#cc_family_name)
+- [cc_given_name](#cc_given_name)
+- [cc_name](#cc_name)
+- [cc_number](#cc_number)
+- [cc_type](#cc_type)
+- [color](#color)
+- [country](#country)
+- [country_name](#country_name)
+- [current_password](#current_password)
+- [date_](#date_)
+- [dateIsoString](#dateisostring)
+- [dateString](#datestring)
+- [datetimeString](#datetimestring)
+- [email](#email)
+- [family_name](#family_name)
+- [file_](#file_)
+- [given_name](#given_name)
+- [honoric_prefix](#honoric_prefix)
+- [honoric_suffix](#honoric_suffix)
+- [idSchema](#idschema)
+- [impp](#impp)
+- [language](#language)
+- [name](#name)
+- [new_password](#new_password)
+- [nickname](#nickname)
+- [one_time_code](#one_time_code)
+- [organization](#organization)
+- [organization_title](#organization_title)
+- [photo](#photo)
+- [postal_code](#postal_code)
+- [SchemaType](#schematype)
+- [sex](#sex)
+- [street_address](#street_address)
+- [tel](#tel)
+- [tel_area_code](#tel_area_code)
+- [tel_country_code](#tel_country_code)
+- [tel_extension](#tel_extension)
+- [tel_local](#tel_local)
+- [tel_local_prefix](#tel_local_prefix)
+- [tel_local_suffix](#tel_local_suffix)
+- [tel_national](#tel_national)
+- [timestamp](#timestamp)
+- [transaction_amount](#transaction_amount)
+- [transaction_currency](#transaction_currency)
+- [Transformer](#transformer)
+- [Trowable](#trowable)
+- [url](#url)
+- [username](#username)
+- [Validator](#validator)
+- [withLocaleSchema](#withlocaleschema)
 
 ## 📚 Documentation
 
-### Functions
+### Types
+
+#### additional_name
+
+#### address_level1
+
+#### address_level2
+
+#### address_level3
+
+#### address_level4
+
+#### address_line1
+
+#### address_line2
+
+#### address_line3
+
+#### AllAutofill
+
+#### AllSpecific
+
+#### bday
+
+#### bday_day
+
+#### bday_month
+
+#### bday_year
+
+#### blob_
+
+#### cc_additional_name
+
+#### cc_csc
+
+#### cc_exp
+
+#### cc_exp_month
+
+#### cc_exp_year
+
+#### cc_family_name
+
+#### cc_given_name
+
+#### cc_name
+
+#### cc_number
+
+#### cc_type
+
+#### color
+
+#### country
+
+#### country_name
+
+#### current_password
+
+#### date_
+
+#### dateIsoString
+
+#### dateString
+
+#### datetimeString
+
+#### email
+
+#### family_name
+
+#### file_
+
+#### given_name
+
+#### honoric_prefix
+
+#### honoric_suffix
+
+#### idSchema
+
+#### impp
+
+#### language
+
+#### name
+
+#### new_password
+
+#### nickname
+
+#### one_time_code
+
+#### organization
+
+#### organization_title
+
+#### photo
+
+#### postal_code
+
+#### SchemaType
+
+#### sex
+
+#### street_address
+
+#### tel
+
+#### tel_area_code
+
+#### tel_country_code
+
+#### tel_extension
+
+#### tel_local
+
+#### tel_local_prefix
+
+#### tel_local_suffix
+
+#### tel_national
+
+#### timestamp
+
+#### transaction_amount
+
+#### transaction_currency
+
+#### Transformer
+
+#### Trowable
+
+#### url
+
+#### username
+
+#### Validator
+
+#### withLocaleSchema
 
 ## 🕊️ Vision
 

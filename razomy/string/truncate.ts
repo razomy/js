@@ -1,5 +1,6 @@
 /**
  * @summary Truncates string if it's longer than the given maximum string length.
+ * @description Truncates string if it's longer than the given maximum string length.
  * @param text The text to truncate.
  * @param length The maximum length of the truncated string.
  * @param omission The string to indicate text is omitted.

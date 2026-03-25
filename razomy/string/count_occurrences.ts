@@ -1,5 +1,6 @@
 /**
  * @summary Counts the number of occurrences of a substring within a text.
+ * @description Counts the number of occurrences of a substring within a text.
  * @param text The text to search.
  * @param substring The substring to count.
  * @returns {number} The number of occurrences.

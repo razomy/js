@@ -1,5 +1,6 @@
 /**
  * @summary Check if array is empty.
+ * @description Check if array is empty.
  * @param array The array to check.
  * @returns True if array is empty.
  * @example

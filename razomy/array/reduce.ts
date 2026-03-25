@@ -1,5 +1,6 @@
 /**
  * @summary Executes a reducer function on each element of the array, resulting in a single output value.
+ * @description Executes a reducer function on each element of the array, resulting in a single output value.
  * @param array The array to process.
  * @param reducer The function to execute on each element.
  * @param initialValue The initial value of the accumulator.

@@ -2,6 +2,7 @@ import * as string from '@razomy/string';
 
 /**
  * @summary Check if the value is a string.
+ * @description Check if the value is a string.
  * @param value The value to check.
  * @returns True if the value is a string.
  * @example

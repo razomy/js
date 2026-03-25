@@ -25,9 +25,9 @@ import Vips from 'wasm-vips';
 export function createBlank(
   width: number,
   height: number,
-  background: number | number[] = [0, 0, 0, 0]
+  background: number[] = [0, 0, 0, 0]
 ): Vips.Image {
-  const bands = Array.isArray(background) ? background.length : 1;
+  const bands =  background.length ;
   const canvas = Vips.Image.black(width, height, { bands }).add(background);
 
   if (bands === 3 || bands === 4) {

@@ -1,5 +1,6 @@
 /**
  * @summary Create an array of unique values, in order, from all given arrays.
+ * @description Create an array of unique values, in order, from all given arrays.
  * @param {Array<Array<T>>} arrays The arrays to inspect.
  * @returns {Array<T>} The new array of combined values.
  * @example

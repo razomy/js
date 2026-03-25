@@ -1,5 +1,6 @@
 /**
  * @summary Gets the substring before the first occurrence of a separator.
+ * @description Gets the substring before the first occurrence of a separator.
  * @param text The input string.
  * @param separator The string to search for.
  * @returns The substring before the separator or the original string if not found.

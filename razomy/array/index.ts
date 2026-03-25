@@ -1,3 +1,4 @@
+export { addAllMut } from './add_all_mut';
 export { addMut } from './add_mut';
 export { chunk } from './chunk';
 export { countBy } from './count_by';

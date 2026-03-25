@@ -1,5 +1,6 @@
 /**
  * @summary Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
+ * @description Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
  * @param input The string to pad.
  * @param length The target length of the resulting string.
  * @param chars The string to pad with. Defaults to space.

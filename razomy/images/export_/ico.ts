@@ -1,5 +1,7 @@
 import Vips from "wasm-vips";
 import * as images from "@razomy/images";
+import * as fsFileFormat from "@razomy/fs-file-format";
+import {setFile} from "../import_";
 
 /**
  * @summary Export image as a 256x256 PNG buffer for icons.
@@ -24,7 +26,7 @@ import * as images from "@razomy/images";
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function ico(image: images.Image): Uint8Array {
+export function ico(image: images.Image): fsFileFormat.ExtensionResult {
   const resizer = image.thumbnailImage(256, {
     height: 256,
     size: Vips.Size.both
@@ -33,5 +35,5 @@ export function ico(image: images.Image): Uint8Array {
   const buffer = resizer.pngsaveBuffer({keep: Vips.ForeignKeep.all,});
   resizer.delete();
 
-  return buffer;
+  return setFile(buffer, 'ico');
 }

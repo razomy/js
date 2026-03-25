@@ -1,5 +1,6 @@
 /**
  * @summary Groups the elements of an array according to the result of the iteratee function.
+ * @description Groups the elements of an array according to the result of the iteratee function.
  * @param array The array to iterate over.
  * @param iteratee The function invoked per iteration to generate the key.
  * @returns The object with grouped arrays.

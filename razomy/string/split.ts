@@ -1,8 +1,9 @@
 /**
  * @summary Split string by splitter characters.
+ * @description Split string by splitter characters.
  * @param text - The string to split.
- * @param splitter
- * @param limit
+ * @param splitter An object that can split a string.
+ * @param limit A value used to limit the number of elements returned in the array.
  * @returns An array of lines.
  * @example
  * ```ts

@@ -1,5 +1,6 @@
 /**
  * @summary Check if the string is null, undefined, or empty (including whitespace).
+ * @description Check if the string is null, undefined, or empty (including whitespace).
  * @param str The string to check.
  * @returns True if the string is null, undefined, or empty.
  * @example

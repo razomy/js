@@ -1,5 +1,6 @@
 /**
  * @summary Creates a new array with all elements that pass the test implemented by the provided function.
+ * @description Creates a new array with all elements that pass the test implemented by the provided function.
  * @param array The array to iterate over.
  * @param predicate The function invoked per iteration.
  * @returns Returns the new filtered array.

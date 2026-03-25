@@ -1,5 +1,6 @@
 /**
  * @summary Creates a new array with the elements in reverse order.
+ * @description Creates a new array with the elements in reverse order.
  * @param array The input array.
  * @returns A new reversed array.
  * @example

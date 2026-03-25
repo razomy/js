@@ -1,5 +1,6 @@
 /**
  * @summary Repeats a string a specified number of times.
+ * @description Repeats a string a specified number of times.
  * @param content The string to repeat.
  * @param count The number of times to repeat the string.
  * @returns A new string containing the specified number of copies.

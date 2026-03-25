@@ -1,5 +1,6 @@
 /**
  * @summary Create an array of unique values that are included in both given arrays.
+ * @description Create an array of unique values that are included in both given arrays.
  * @param source The array to inspect.
  * @param target The values to include.
  * @returns The new array of intersecting values.

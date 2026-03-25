@@ -1,5 +1,6 @@
 /**
  * @summary Sets the value of the last element of an array mutably, with an optional offset.
+ * @description Sets the value of the last element of an array mutably, with an optional offset.
  * @param array The array to mutate.
  * @param value The value to assign.
  * @param offset The offset from the last index.

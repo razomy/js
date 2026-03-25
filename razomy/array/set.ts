@@ -1,5 +1,6 @@
 /**
  * @summary Creates a new array with the element at the specified index replaced with the given value.
+ * @description Creates a new array with the element at the specified index replaced with the given value.
  * @param array The source array.
  * @param index The zero-based index at which to replace the value, converted to an integer. Negative index counts from the end of the array.
  * @param value The value to insert into the new array.

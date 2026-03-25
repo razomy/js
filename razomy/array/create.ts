@@ -1,5 +1,6 @@
 /**
  * @summary Create an array of specific size filled with a value.
+ * @description Create an array of specific size filled with a value.
  * @param size The size of the array.
  * @param value The value to fill the array with.
  * @returns The created array.

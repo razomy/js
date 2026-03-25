@@ -51,6 +51,19 @@ razomy run @razomy/images advanced detectEdges
 
 ## 📑 Table of Contents
 
+**Types**
+
+- [advanced.ImageMetadata](#imagemetadata)
+- [advanced.ImageStats](#imagestats)
+- [export_.AllImageFileExtensionType](#allimagefileextensiontype)
+- [export_.getConversions](#getconversions)
+- [export_.ImageFormat](#imageformat)
+- [export_.images](#images)
+- [export_.imageWriteTargets](#imagewritetargets)
+- [export_.OnlyReadImageFileExtensionType](#onlyreadimagefileextensiontype)
+- [export_.ReadAndWriteImageFileExtensionType](#readandwriteimagefileextensiontype)
+- [Image](#image)
+
 **Functions**
 
 - [advanced.detectEdges](#detectedges)
@@ -84,7 +97,6 @@ razomy run @razomy/images advanced detectEdges
 - [export_.jpeg](#jpeg)
 - [export_.png](#png)
 - [export_.tiff](#tiff)
-- [export_.toImageByFormat](#toimagebyformat)
 - [export_.webp](#webp)
 - [filter.blur](#blur)
 - [filter.emboss](#emboss)
@@ -102,8 +114,32 @@ razomy run @razomy/images advanced detectEdges
 - [geometry.thumbnail](#thumbnail)
 - [geometry.trim](#trim)
 - [import_.createBlank](#createblank)
+- [import_.getFile](#getfile)
+- [import_.setFile](#setfile)
 
 ## 📚 Documentation
+
+### Types
+
+#### ImageMetadata
+
+#### ImageStats
+
+#### AllImageFileExtensionType
+
+#### getConversions
+
+#### ImageFormat
+
+#### images
+
+#### imageWriteTargets
+
+#### OnlyReadImageFileExtensionType
+
+#### ReadAndWriteImageFileExtensionType
+
+#### Image
 
 ### Functions
 
@@ -626,7 +662,7 @@ join([image1, image2, image3], Vips.Direction.vertical); // Image
 
 #### avif
 
-`export_.avif(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.avif(image: Image): ExtensionResult`
 
 Export an image to AVIF format.
 Encodes the provided image instance into an AVIF formatted buffer utilizing AV1 compression.
@@ -647,7 +683,7 @@ const byteLength = avif(image).byteLength; // Image
 
 #### gif
 
-`export_.gif(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.gif(image: Image): ExtensionResult`
 
 Export image to GIF format buffer.
 Converts and saves the provided image as a GIF buffer with maximum metadata retention and high compression effort.
@@ -668,7 +704,7 @@ const base64 = Buffer.from(gif(image)).toString('base64'); // Image
 
 #### heic
 
-`export_.heic(image: Image, quality: number): Uint8Array<ArrayBufferLike>`
+`export_.heic(image: Image, quality: number): ExtensionResult`
 
 Export image to HEIC format.
 Converts and exports the given image to a HEIC format buffer using HEVC compression.
@@ -689,7 +725,7 @@ const buffer = heic(image, 100); // Image
 
 #### ico
 
-`export_.ico(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.ico(image: Image): ExtensionResult`
 
 Export image as a 256x256 PNG buffer for icons.
 Resizes the provided image to a strict 256x256 pixel dimension while retaining metadata, and encodes it into a PNG buffer suitable for use as an application icon or favicon.
@@ -713,7 +749,7 @@ res.send(buffer); // Image
 
 #### jpeg
 
-`export_.jpeg(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.jpeg(image: Image): ExtensionResult`
 
 Export an image to JPEG format.
 Exports the provided image into a JPEG buffer array using optimized coding, 80% quality, and no chroma subsampling.
@@ -734,7 +770,7 @@ const backgroundBuffer = jpeg(heroBanner); // Image
 
 #### png
 
-`export_.png(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.png(image: Image): ExtensionResult`
 
 Export image to PNG buffer.
 Exports the given image to a Uint8Array buffer formatted as a PNG. It uses a compression level of 8, palette optimization, and an effort level of 7 while keeping all foreign metadata.
@@ -755,7 +791,7 @@ await fs.promises.writeFile('output.png', png(image)); // Image
 
 #### tiff
 
-`export_.tiff(image: Image): Uint8Array<ArrayBufferLike>`
+`export_.tiff(image: Image): ExtensionResult`
 
 Export an image to TIFF format buffer.
 Converts the provided image to a TIFF format and returns it as a buffer array. Applies LZW compression and keeps all metadata by default.
@@ -774,30 +810,9 @@ await fs.promises.writeFile('output.tiff', tiff(image)); // Image
 const response = new Response(tiff(image), { headers: { 'Content-Type': 'image/tiff' } }); // Image
 ```
 
-#### toImageByFormat
-
-`export_.toImageByFormat(inputPath: string, format: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): Promise<ExtensionResult>`
-
-Convert an image file to a specified format.
-Reads an image from the provided file path, automatically rotates it according to EXIF data, and converts it to the requested format using wasm-vips. Returns a readable stream of the converted image along with its media type and extension metadata.
-
-Examples
-
-```ts
-await toImageByFormat('./input.jpg', 'png'); // Image
-```
-
-```ts
-await toImageByFormat('./avatar.webp', 'jpeg'); // Image
-```
-
-```ts
-await toImageByFormat('./photo.heic', 'avif'); // Image
-```
-
 #### webp
 
-`export_.webp(image: Image, options: WebpOptions | undefined): Uint8Array<ArrayBufferLike>`
+`export_.webp(image: Image): ExtensionResult`
 
 Export image to WebP.
 Encodes and exports the given image into a WebP formatted buffer.
@@ -1133,7 +1148,7 @@ trim(image, 5); // Image
 
 #### createBlank
 
-`import_.createBlank(width: number, height: number, background: number | number[]): Image`
+`import_.createBlank(width: number, height: number, background: number[]): Image`
 
 Create a blank image.
 Creates a new blank Vips image with specified dimensions and background color.
@@ -1150,6 +1165,48 @@ createBlank(800, 600, [255, 255, 255]); // Image
 
 ```ts
 createBlank(500, 500, [255, 0, 0, 255]); // Image
+```
+
+#### getFile
+
+`import_.getFile(inputPath: string): Promise<Image>`
+
+Convert an image file to a specified format.
+Reads an image from the provided file path.
+
+Examples
+
+```ts
+await getFile('./input.jpg', 'png'); // Image
+```
+
+```ts
+await getFile('./avatar.webp', 'jpeg'); // Image
+```
+
+```ts
+await getFile('./photo.heic', 'avif'); // Image
+```
+
+#### setFile
+
+`import_.setFile(buffer: Uint8Array<ArrayBufferLike>, fileExtensionType: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): ExtensionResult`
+
+Convert an image file to a specified format.
+Converts it to the requested format using wasm-vips. Returns a readable stream of the converted image along with its media type and extension metadata.
+
+Examples
+
+```ts
+await setFile(image, 'png'); // void
+```
+
+```ts
+await setFile(image, 'jpeg'); // void
+```
+
+```ts
+await setFile(image, 'avif'); // void
 ```
 
 ## 🕊️ Vision

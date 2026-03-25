@@ -1,5 +1,6 @@
 /**
  * @summary Pads the start of a string with another string until it reaches the given length.
+ * @description Pads the start of a string with another string until it reaches the given length.
  * @param input The string to pad.
  * @param length The target length of the resulting string.
  * @param chars The string to pad with. Defaults to space.

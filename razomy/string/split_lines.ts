@@ -1,5 +1,6 @@
 /**
  * @summary Split string by newline characters.
+ * @description Split string by newline characters.
  * @param text - The string to split.
  * @returns An array of lines.
  * @example

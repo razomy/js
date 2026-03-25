@@ -1,5 +1,6 @@
 /**
  * @summary Creates a slice of array with n elements taken from the beginning.
+ * @description Creates a slice of array with n elements taken from the beginning.
  * @param array The array to query.
  * @param n The number of elements to take.
  * @returns The slice of array.

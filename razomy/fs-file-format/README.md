@@ -1,18 +1,23 @@
 # @razomy/fs-file-format
 
-[![License](https://img.shields.io/npm/l/@razomy/fs-file-format)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/fs-file-format)](https://bundlephobia.com/package/@razomy/fs-file-format)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/fs-file-format)](https://www.npmjs.com/package/@razomy/fs-file-format)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/fs-file-format)](https://www.npmjs.com/package/@razomy/fs-file-format)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/fs-file-format)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/fs-file-format)](https://www.npmjs.com/package/@razomy/fs-file-format)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/fs-file-format)](https://www.npmjs.com/package/@razomy/fs-file-format)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/fs-file-format)](https://bundlephobia.com/package/@razomy/fs-file-format)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/fs-file-format)](https://www.npmjs.com/package/@razomy/fs-file-format)
 
 [Npm](https://www.npmjs.com/package/@razomy/fs-file-format) |
 [Npmx](https://npmx.dev/package/@razomy/fs-file-format) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/fs-file-format) |
-[Io](https://io.razomy.org/fs/file-format)
+[Razomy Io](https://io.razomy.org/fs/file-format) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Abstract wrappers and utilities for standardizing Node.js file system operations
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/fs-file-format
+# or
+bun add @razomy/fs-file-format
+# or
+razomy cli add @razomy/fs-file-format
 ```
 
 ### Import
@@ -29,12 +38,40 @@ npm i @razomy/fs-file-format
 ```ts
 import * as fsFileFormat from '@razomy/fs-file-format';
 // or
+import * as fsFileFormat from "npm:@razomy/fs-file-format";
+// or
+import * as fsFileFormat from "https://esm.sh/@razomy/fs-file-format";
+// or
+import * as fsFileFormat from "https://unpkg.com/@razomy/fs-file-format";
+// or
 import { functionName } from '@razomy/fs-file-format';
+// or
+razomy run @razomy/fs-file-format functionName
 ```
 
 ## 📑 Table of Contents
 
+**Types**
+
+- [ExtensionResult](#extensionresult)
+- [FileCategory](#filecategory)
+- [FileExtensionType](#fileextensiontype)
+- [FileFormat](#fileformat)
+- [MediaType](#mediatype)
+
 ## 📚 Documentation
+
+### Types
+
+#### ExtensionResult
+
+#### FileCategory
+
+#### FileExtensionType
+
+#### FileFormat
+
+#### MediaType
 
 ## 🕊️ Vision
 

@@ -1,4 +1,3 @@
-export { createDistSpecifications } from './create_dist_specifications';
 export { createReadme } from './create_readme';
 export { createReadmeAndSpecifications } from './create_readme_and_specifications';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
@@ -9,6 +8,7 @@ export { getExportedTypes } from './get_exported_types';
 export { getFilteredSourceFiles } from './get_filtered_source_files';
 export { getFirstLevelElementsTextFromSource } from './get_first_level_elements_text_from_source';
 export { getNameAndExt } from './get_name_and_ext';
+export { getPackageSpecifications } from './get_package_specifications';
 export { isNameTaken } from './is_name_taken';
 export { iterateSourceFilesAndSave, type IterateSourceFileState } from './iterate_source_files_and_save';
 export { renameFileBasedOnFirstChild } from './rename_file_based_on_first_child';

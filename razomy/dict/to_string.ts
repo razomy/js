@@ -1,7 +1,8 @@
 import * as dict from '@razomy/dict';
 
 /**
- * Converts a dictionary to a specific string format.
+ * @summary Converts a dictionary to a specific string format.
+ * @description Converts a dictionary to a specific string format.
  * @param dict The dictionary object.
  * @returns The formatted string.
  * @example
@@ -16,6 +17,8 @@ import * as dict from '@razomy/dict';
  * ```ts
  * dictToString({ k: 'v', id: '1' }); // => '{k:v;id:1;}'
  * ```
+ * @complexity time O(k) where k is number of keys
+ * @complexity memory O(k)
  */
 export function toString_<T extends string>(dict: dict.Dict<T>): string {
   let result: string = '{';

@@ -1,5 +1,24 @@
-import * as string_ from '@razomy/string';
-
-export function unescapeByString(string: string_.String, separateString: string_.String): string_.String {
-  return string_.replace(string, '\\' + separateString, separateString);
+/**
+ * @summary Unescape occurrences of a specific string.
+ * @description Removes the backslash preceding the specified string globally.
+ * @param string The target string.
+ * @param separateString The string to unescape.
+ * @returns The unescaped string.
+ * @example
+ * ```ts
+ * unescapeByString('foo\\"bar', '"'); // => 'foo"bar'
+ * ```
+ * @example
+ * ```ts
+ * unescapeByString('a\\*b', '*'); // => 'a*b'
+ * ```
+ * @example
+ * ```ts
+ * unescapeByString('\\.ext', '.'); // => '.ext'
+ * ```
+ * @complexity time O(n)
+ * @complexity memory O(n)
+ */
+export function unescapeByString(string: string, separateString: string): string {
+  return string.split(`\\${separateString}`).join(separateString);
 }

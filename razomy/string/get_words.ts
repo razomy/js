@@ -1,5 +1,6 @@
 /**
  * @summary Splits string into an array of its words.
+ * @description Splits string into an array of its words.
  * @param value The string to process.
  * @returns The array of words.
  * @example

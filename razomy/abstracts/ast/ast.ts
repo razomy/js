@@ -82,7 +82,7 @@ export interface Boolean extends Declaration {
  */
 export interface Array extends Declaration {
   kind: 'Array';
-  item: Declaration;
+  item: Any;
 }
 
 /**
@@ -97,7 +97,7 @@ export interface Array extends Declaration {
  */
 export interface Tuple extends Declaration {
   kind: 'Tuple';
-  items: Declaration[];
+  items: Any[];
 }
 
 
@@ -110,7 +110,7 @@ export interface Tuple extends Declaration {
 export interface Select extends Declaration {
   kind: 'Select';
   selected: number;
-  items: Declaration;
+  items: Any;
 }
 
 /**
@@ -122,7 +122,7 @@ export interface Select extends Declaration {
 export interface MultiSelect extends Declaration {
   kind: 'MultiSelect';
   selected: number[];
-  items: Declaration;
+  items: Any;
 }
 
 /**
@@ -138,7 +138,7 @@ export interface MultiSelect extends Declaration {
 export interface Variable extends Declaration {
   kind: 'Variable';
   key: string;
-  item: Declaration;
+  item: Any;
   value: Literal | null;
 }
 
@@ -154,7 +154,7 @@ export interface Variable extends Declaration {
  */
 export interface Property extends Definition {
   kind: 'Property';
-  item: Declaration;
+  item: Any;
   value: Literal | null;
 }
 
@@ -200,7 +200,7 @@ export interface Object extends Declaration {
  */
 export interface Union extends Declaration {
   kind: 'Union';
-  item: Declaration[];
+  item: Any[];
 }
 
 /**
@@ -215,7 +215,7 @@ export interface Union extends Declaration {
  */
 export interface Intersection extends Declaration {
   kind: 'Intersection';
-  item: Declaration[];
+  item: Any[];
 }
 
 /**
@@ -227,7 +227,7 @@ export interface Intersection extends Declaration {
 export interface Type extends Declaration {
   kind: 'Type';
   key: string;
-  value: Declaration;
+  value: Any;
 }
 
 /**
@@ -242,8 +242,8 @@ export interface Type extends Declaration {
  */
 export interface Generic extends Declaration {
   kind: 'Generic';
-  base: Declaration;
-  items: Declaration[];
+  base: Any;
+  items: Any[];
 }
 
 /**
@@ -270,8 +270,8 @@ export interface Void extends Declaration {
  */
 export interface Function extends Definition {
   kind: 'Function';
-  parameter: Declaration;
-  return_: Declaration;
+  parameter: Any;
+  return_: Any;
 }
 
 /**
@@ -290,8 +290,8 @@ export interface PackageFunction extends Definition {
   kind: 'PackageFunction';
   name: string;
   title: string;
-  parameter: Declaration;
-  return_: Declaration;
+  parameter: Any;
+  return_: Any;
   // other
   functionPath: string[];
   performance: {
@@ -378,35 +378,41 @@ export interface JsonString extends Declaration {
 
 export interface Module extends Declaration {
   kind: 'Module';
-  items: Declaration[];
+  items: Any[];
 }
 
+export interface Unknown extends Declaration {
+  kind: 'Unknown';
+  tsSyntaxKey: string;
+}
 
 export type Any = String
+  | StringLiteral
   | Number
-  | Boolean
-  | Array
   | NumberLiteral
+  | Boolean
+  | BooleanLiteral
+  | Array
   | Tuple
-  | Union
   | Select
+  | MultiSelect
   | Property
   | Object
   | Generic
-  | Color
-  | Date
+  | Type
+  | Union
   | Intersection
   | File
-  | MultiSelect
+  | Color
+  | Date
   | Variable
   | Module
-  | Type
-  | BooleanLiteral
   | FileArray
   | JsonString
   | Function
-  | Void
   | FunctionArgument
   | PackageFunction
+  | Void
   | Reference
+  | Unknown
   ;

@@ -1,5 +1,6 @@
 /**
  * @summary Reverses an array in place.
+ * @description Reverses an array in place.
  * @param array The array to reverse.
  * @returns The reversed array.
  * @example

@@ -1,5 +1,6 @@
 /**
  * @summary Checks if at least one element in the array satisfies the provided testing function.
+ * @description Checks if at least one element in the array satisfies the provided testing function.
  * @param array The array to iterate over.
  * @param predicate The function invoked per iteration.
  * @returns True if any element passes the predicate check, false otherwise.

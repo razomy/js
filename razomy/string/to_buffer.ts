@@ -1,5 +1,6 @@
 /**
  * @summary Convert string to buffer using specified encoding.
+ * @description Convert string to buffer using specified encoding.
  * @param value The string to convert.
  * @param encoding The encoding of the string.
  * @returns The resulting buffer.

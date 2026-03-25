@@ -1,5 +1,6 @@
 /**
  * @summary Checks if value is in array.
+ * @description Checks if value is in array.
  * @param array The array to query.
  * @param value The value to search for.
  * @param fromIndex The index to search from.

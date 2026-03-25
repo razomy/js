@@ -46,6 +46,7 @@
     "wait",
     "askTool",
     "specToTool",
+    "client",
     "models",
     "prices"
   ],

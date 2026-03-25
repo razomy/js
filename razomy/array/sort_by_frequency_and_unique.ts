@@ -4,6 +4,7 @@ import { uniq } from './uniq';
 
 /**
  * @summary Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
+ * @description Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
  * @param array The array to process.
  * @returns The new array of unique, sorted values.
  * @example

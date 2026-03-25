@@ -1,18 +1,23 @@
 # @razomy/dict
 
-[![License](https://img.shields.io/npm/l/@razomy/dict)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/dict)](https://bundlephobia.com/package/@razomy/dict)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/dict)](https://www.npmjs.com/package/@razomy/dict)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/dict)](https://www.npmjs.com/package/@razomy/dict)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/dict)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/dict)](https://www.npmjs.com/package/@razomy/dict)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/dict)](https://www.npmjs.com/package/@razomy/dict)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/dict)](https://bundlephobia.com/package/@razomy/dict)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/dict)](https://www.npmjs.com/package/@razomy/dict)
 
 [Npm](https://www.npmjs.com/package/@razomy/dict) |
 [Npmx](https://npmx.dev/package/@razomy/dict) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/dict) |
-[Io](https://io.razomy.org/dict)
+[Razomy Io](https://io.razomy.org/dict) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Utility functions for iterating, mapping, and manipulating flat JavaScript objects
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/dict
+# or
+bun add @razomy/dict
+# or
+razomy cli add @razomy/dict
 ```
 
 ### Import
@@ -29,10 +38,26 @@ npm i @razomy/dict
 ```ts
 import * as dict from '@razomy/dict';
 // or
+import * as dict from "npm:@razomy/dict";
+// or
+import * as dict from "https://esm.sh/@razomy/dict";
+// or
+import * as dict from "https://unpkg.com/@razomy/dict";
+// or
 import { filter } from '@razomy/dict';
+// or
+razomy run @razomy/dict filter
 ```
 
 ## 📑 Table of Contents
+
+**Types**
+
+- [Dict](#dict)
+- [DictKey](#dictkey)
+- [Prettify](#prettify)
+- [SomeOf](#someof)
+- [UnionToIntersection](#uniontointersection)
 
 **Functions**
 
@@ -40,6 +65,7 @@ import { filter } from '@razomy/dict';
 - [firstKey](#firstkey)
 - [get](#get)
 - [getKeys](#getkeys)
+- [isEqual](#isequal)
 - [isKeys](#iskeys)
 - [isPlainObject](#isplainobject)
 - [iterate](#iterate)
@@ -50,6 +76,18 @@ import { filter } from '@razomy/dict';
 - [toString_](#tostring_)
 
 ## 📚 Documentation
+
+### Types
+
+#### Dict
+
+#### DictKey
+
+#### Prettify
+
+#### SomeOf
+
+#### UnionToIntersection
 
 ### Functions
 
@@ -76,11 +114,24 @@ filter<number>({ a: 10, b: 20 }, () => false); // {}
 
 #### firstKey
 
-`firstKey(): string`
+`firstKey(obj: Dict<T>): string`
 
-
+Get the first own key of a dictionary.
+Returns the first own enumerable key of the given dictionary. Throws if the dictionary has no own keys.
 
 Examples
+
+```ts
+firstKey({ a: 1, b: 2 }); // a
+```
+
+```ts
+firstKey({ name: 'Alice' }); // name
+```
+
+```ts
+firstKey({}); // throws ArgumentException(no keys in object)
+```
 
 #### get
 
@@ -124,9 +175,38 @@ getKeys({}); // []
 getKeys({ name: 'Raz', id: 101 }); // [name, id]
 ```
 
+#### isEqual
+
+`isEqual(a: any, b: any): boolean`
+
+Performs a deep equality comparison between two values.
+Compares two values to determine if they are deeply equal. It first evaluates the `.equals()` method if available on the first argument (useful for classes or instances like ObjectIds). If both arguments are objects and not null, it recursively compares all of their properties.
+
+Examples
+
+```ts
+const obj1 = { a: 1, b: { c: 2 } };
+const obj2 = { a: 1, b: { c: 2 } };
+isEqual(obj1, obj2); // true
+```
+
+```ts
+const obj1 = { a: 1 };
+const obj2 = { a: 1, b: 2 };
+isEqual(obj1, obj2); // false
+```
+
+```ts
+class CustomId {
+  constructor(id) { this.id = id; }
+  equals(other) { return this.id === other.id; }
+}
+isEqual(new CustomId(1), new CustomId(1)); // true
+```
+
 #### isKeys
 
-`isKeys(dict: dict.Dict<T>, keys: readonly string[]): boolean`
+`isKeys(dict: Dict<T>, keys: readonly string[]): boolean`
 
 Check if a dictionary contains any of the specified keys.
 Returns `true` if at least one of the provided keys exists in the dictionary, `false` otherwise.
@@ -278,8 +358,9 @@ someOf({ x: 10, y: 20 }, []); // {}
 
 #### toString_
 
-`toString_(dict: dict.Dict<T>): string`
+`toString_(dict: Dict<T>): string`
 
+Converts a dictionary to a specific string format.
 Converts a dictionary to a specific string format.
 
 Examples

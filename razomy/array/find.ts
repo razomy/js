@@ -2,7 +2,7 @@ import { findIndex } from './find_index';
 
 /**
  * @summary Find an item in an array that matches the predicate.
- * Throws an error if no item is found.
+ * @description Find an item in an array that matches the predicate. Throws an error if no item is found.
  * @template T
  * @param array The array to search.
  * @param predicate The function invoked per iteration.

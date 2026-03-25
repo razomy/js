@@ -1,5 +1,6 @@
 /**
  * @summary Checks if a string contains a specific substring.
+ * @description Checks if a string contains a specific substring.
  * @param text The string to inspect.
  * @param search The substring to search for.
  * @returns True if the string contains the substring, false otherwise.

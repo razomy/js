@@ -2,6 +2,7 @@ import { create } from './create';
 
 /**
  * @summary Create an array of a specific size with the value 1 at the specified index.
+ * @description Create an array of a specific size with the value 1 at the specified index.
  * @param index The index where the value 1 will be placed.
  * @param size The length of the created array.
  * @returns An array containing 1 at the specified index.

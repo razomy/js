@@ -65,7 +65,8 @@
   "module": "./index.ts",
   "name": "@razomy/maths",
   "peerDependencies": {
-    "mathjs": "^15.1.1"
+    "mathjs": "^15.1.1",
+    "nerdamer": "^1.1.13"
   },
   "publishConfig": {
     "access": "public"
@@ -90,5 +91,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.4"
+  "version": "0.0.1-alpha.7"
 }

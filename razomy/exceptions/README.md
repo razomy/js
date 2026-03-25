@@ -1,18 +1,23 @@
 # @razomy/exceptions
 
-[![License](https://img.shields.io/npm/l/@razomy/exceptions)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/exceptions)](https://bundlephobia.com/package/@razomy/exceptions)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/exceptions)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/exceptions)](https://bundlephobia.com/package/@razomy/exceptions)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/exceptions)](https://www.npmjs.com/package/@razomy/exceptions)
 
 [Npm](https://www.npmjs.com/package/@razomy/exceptions) |
 [Npmx](https://npmx.dev/package/@razomy/exceptions) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/exceptions) |
-[Io](https://io.razomy.org/exceptions)
+[Razomy Io](https://io.razomy.org/exceptions) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > A collection of standard, reusable exception classes for robust error handling
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/exceptions
+# or
+bun add @razomy/exceptions
+# or
+razomy cli add @razomy/exceptions
 ```
 
 ### Import
@@ -29,10 +38,22 @@ npm i @razomy/exceptions
 ```ts
 import * as exceptions from '@razomy/exceptions';
 // or
+import * as exceptions from "npm:@razomy/exceptions";
+// or
+import * as exceptions from "https://esm.sh/@razomy/exceptions";
+// or
+import * as exceptions from "https://unpkg.com/@razomy/exceptions";
+// or
 import { assert } from '@razomy/exceptions';
+// or
+razomy run @razomy/exceptions assert
 ```
 
 ## 📑 Table of Contents
+
+**Types**
+
+- [CatchFn](#catchfn)
 
 **Functions**
 
@@ -40,15 +61,33 @@ import { assert } from '@razomy/exceptions';
 
 ## 📚 Documentation
 
+### Types
+
+#### CatchFn
+
 ### Functions
 
 #### assert
 
-`assert(): void`
+`assert(condition: boolean, message: string): void`
 
-
+Asserts that a condition is true, throwing an error if it is false.
+Evaluates a boolean condition. If the condition evaluates to false, it throws an Error with the provided message. This function is typically used for invariant checking, validating input, and ensuring expected program states at runtime.
 
 Examples
+
+```ts
+assert(2 + 2 === 4); // void (execution continues normally)
+```
+
+```ts
+assert(typeof 'hello' === 'number', 'Value must be a number'); // throws Error: Value must be a number
+```
+
+```ts
+const user = getUser();
+assert(user !== null, 'User cannot be null'); // throws Error: User cannot be null if user is null
+```
 
 ## 🕊️ Vision
 

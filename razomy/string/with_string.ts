@@ -2,6 +2,7 @@ import * as string from '@razomy/string';
 
 /**
  * @summary Interface defining an object structure containing a string property.
+ * @description Interface defining an object structure containing a string property.
  * @property string The string instance.
  * @example
  * ```ts

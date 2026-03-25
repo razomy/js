@@ -34,13 +34,31 @@
   "keywords": [
     "razomy",
     "ts",
-    "ast"
+    "ast",
+    "clearImportType",
+    "extractComplexity",
+    "extractDescription",
+    "extractExamples",
+    "extractParameters",
+    "extractReturns",
+    "extractTitle",
+    "extractValidJsDoc",
+    "getJsDocDescription",
+    "parseFunction",
+    "parseLiteral",
+    "parseNode",
+    "parseProjectToModules",
+    "parseProperty",
+    "parseSourceFile",
+    "parseTypeNode"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ts-ast",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/abstracts": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

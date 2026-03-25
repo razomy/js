@@ -1,5 +1,6 @@
 /**
  * @summary Get the substring after the first occurrence of a separator.
+ * @description Get the substring after the first occurrence of a separator.
  * @param text The input string.
  * @param separator The separator to look for.
  * @returns The substring after the separator, or the original string if separator is not found.

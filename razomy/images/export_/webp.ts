@@ -1,13 +1,7 @@
 import Vips from 'wasm-vips';
 import * as images from "@razomy/images";
-
-export interface WebpOptions {
-  keep?: number;
-  q?: number;
-  effort?: number;
-  lossless?: boolean;
-  [key: string]: unknown;
-}
+import {setFile} from "../import_";
+import * as fsFileFormat from "@razomy/fs-file-format";
 
 /**
  * @summary Export image to WebP.
@@ -31,12 +25,11 @@ export interface WebpOptions {
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function webp(image: images.Image, options?: WebpOptions): Uint8Array {
-  return image.webpsaveBuffer({
+export function webp(image: images.Image): fsFileFormat.ExtensionResult {
+  return setFile(image.webpsaveBuffer({
     keep: Vips.ForeignKeep.all,
     Q: 80,
     effort: 4,
     lossless: false,
-    ...options
-  });
+  }), 'webp');
 }

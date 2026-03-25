@@ -51,11 +51,89 @@ razomy run @razomy/maths calculate
 
 ## 📑 Table of Contents
 
+**Types**
+
+- [billion](#billion)
+- [centillion](#centillion)
+- [decillion](#decillion)
+- [duodecillion](#duodecillion)
+- [hundredMillion](#hundredmillion)
+- [milliard](#milliard)
+- [million](#million)
+- [nonillion](#nonillion)
+- [novemdecillion](#novemdecillion)
+- [octillion](#octillion)
+- [octodecillion](#octodecillion)
+- [quadrillion](#quadrillion)
+- [quattuordecillion](#quattuordecillion)
+- [quindecillion](#quindecillion)
+- [quintillion](#quintillion)
+- [septendecillion](#septendecillion)
+- [septillion](#septillion)
+- [sexdecillion](#sexdecillion)
+- [sextillion](#sextillion)
+- [tenMillion](#tenmillion)
+- [tredecillion](#tredecillion)
+- [trillion](#trillion)
+- [undecillion](#undecillion)
+- [vigintillion](#vigintillion)
+
 **Functions**
 
 - [calculate](#calculate)
+- [calculateWithParams](#calculatewithparams)
 
 ## 📚 Documentation
+
+### Types
+
+#### billion
+
+#### centillion
+
+#### decillion
+
+#### duodecillion
+
+#### hundredMillion
+
+#### milliard
+
+#### million
+
+#### nonillion
+
+#### novemdecillion
+
+#### octillion
+
+#### octodecillion
+
+#### quadrillion
+
+#### quattuordecillion
+
+#### quindecillion
+
+#### quintillion
+
+#### septendecillion
+
+#### septillion
+
+#### sexdecillion
+
+#### sextillion
+
+#### tenMillion
+
+#### tredecillion
+
+#### trillion
+
+#### undecillion
+
+#### vigintillion
 
 ### Functions
 
@@ -78,6 +156,27 @@ calculate('sin(45 deg) ^ 2'); // 0.5
 
 ```ts
 calculate('5.08 cm to inch'); // 2 inch
+```
+
+#### calculateWithParams
+
+`calculateWithParams(text: string, arguments_: object | null): string`
+
+Evaluates a mathematical expression from a string.
+Parses and evaluates the given string as a mathematical expression using the mathjs library. It supports basic arithmetic, advanced mathematical functions, units, and complex operations. More https://nerdamer.com/examples.html
+
+Examples
+
+```ts
+calculateWithParams('2+2'); // 4
+```
+
+```ts
+calculateWithParams('x^2+y',{y:'x^2+8'}); // 2*x^2+8
+```
+
+```ts
+calculateWithParams('x^2+2*(cos(x)+x*x)', {x:6}); // 109.92034057330073
 ```
 
 ## 🕊️ Vision

@@ -1,18 +1,23 @@
 # @razomy/nuxt
 
-[![License](https://img.shields.io/npm/l/@razomy/nuxt)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/nuxt)](https://bundlephobia.com/package/@razomy/nuxt)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/nuxt)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/nuxt)](https://bundlephobia.com/package/@razomy/nuxt)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/nuxt)](https://www.npmjs.com/package/@razomy/nuxt)
 
 [Npm](https://www.npmjs.com/package/@razomy/nuxt) |
 [Npmx](https://npmx.dev/package/@razomy/nuxt) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/nuxt) |
-[Io](https://io.razomy.org/nuxt)
+[Razomy Io](https://io.razomy.org/nuxt) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > A powerful Nuxt SDK providing a comprehensive suite of reusable Vue components
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/nuxt
+# or
+bun add @razomy/nuxt
+# or
+razomy cli add @razomy/nuxt
 ```
 
 ### Import
@@ -29,16 +38,20 @@ npm i @razomy/nuxt
 ```ts
 import * as nuxt from '@razomy/nuxt';
 // or
+import * as nuxt from "npm:@razomy/nuxt";
+// or
+import * as nuxt from "https://esm.sh/@razomy/nuxt";
+// or
+import * as nuxt from "https://unpkg.com/@razomy/nuxt";
+// or
 import { functionName } from '@razomy/nuxt';
+// or
+razomy run @razomy/nuxt functionName
 ```
 
 ## 📑 Table of Contents
 
-**Functions**
-
 ## 📚 Documentation
-
-### Functions
 
 ## 🕊️ Vision
 

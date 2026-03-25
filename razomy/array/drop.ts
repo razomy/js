@@ -1,5 +1,6 @@
 /**
  * @summary Creates a slice of array with n elements dropped from the beginning.
+ * @description Creates a slice of array with n elements dropped from the beginning.
  * @param array The source array.
  * @param count The number of elements to drop.
  * @returns Returns the new array.

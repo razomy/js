@@ -1,18 +1,23 @@
 # @razomy/array
 
-[![License](https://img.shields.io/npm/l/@razomy/array)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/array)](https://bundlephobia.com/package/@razomy/array)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/array)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/array)](https://bundlephobia.com/package/@razomy/array)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/array)](https://www.npmjs.com/package/@razomy/array)
 
 [Npm](https://www.npmjs.com/package/@razomy/array) |
 [Npmx](https://npmx.dev/package/@razomy/array) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/array) |
-[Io](https://io.razomy.org/array)
+[Razomy Io](https://io.razomy.org/array) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Comprehensive utility functions for array transformations, flattening, and operations
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/array
+# or
+bun add @razomy/array
+# or
+razomy cli add @razomy/array
 ```
 
 ### Import
@@ -29,13 +38,22 @@ npm i @razomy/array
 ```ts
 import * as array from '@razomy/array';
 // or
-import { addMut } from '@razomy/array';
+import * as array from "npm:@razomy/array";
+// or
+import * as array from "https://esm.sh/@razomy/array";
+// or
+import * as array from "https://unpkg.com/@razomy/array";
+// or
+import { addAllMut } from '@razomy/array';
+// or
+razomy run @razomy/array addAllMut
 ```
 
 ## 📑 Table of Contents
 
 **Functions**
 
+- [addAllMut](#addallmut)
 - [addMut](#addmut)
 - [chunk](#chunk)
 - [countBy](#countby)
@@ -56,8 +74,10 @@ import { addMut } from '@razomy/array';
 - [insertMut](#insertmut)
 - [intersection](#intersection)
 - [isArray](#isarray)
+- [isArrayEqual](#isarrayequal)
 - [isEmpty](#isempty)
 - [map](#map)
+- [mapToDict](#maptodict)
 - [reduce](#reduce)
 - [removeAllMut](#removeallmut)
 - [removeAtMut](#removeatmut)
@@ -84,10 +104,38 @@ import { addMut } from '@razomy/array';
 
 ### Functions
 
+#### addAllMut
+
+`addAllMut(array: T[], value: T[]): T[]`
+
+Add elements to the end of an array, modifying the original array.
+Add elements to the end of an array, modifying the original array.
+
+Examples
+
+```ts
+const array = [1, 2];
+addAllMut(array, [3]);
+array; // [1, 2, 3]
+```
+
+```ts
+const array = ['a']
+addAllMut(array, ['b']);
+array; // [a, b]
+```
+
+```ts
+const array = [{ id: 1 }];
+addAllMut(array, [{ id: 2 }]);
+array; // [{ id: 1 }, { id: 2 }]
+```
+
 #### addMut
 
 `addMut(array: T[], value: T): T[]`
 
+Add an element to the end of an array, modifying the original array.
 Add an element to the end of an array, modifying the original array.
 
 Examples
@@ -157,6 +205,7 @@ countBy([true, false, true, true], (v) => v); // { true: 3, false: 1 }
 `create(size: number, value: T): T[]`
 
 Create an array of specific size filled with a value.
+Create an array of specific size filled with a value.
 
 Examples
 
@@ -176,6 +225,7 @@ create(4, true); // [true, true, true, true]
 
 `createByIndexAndSize(index: number, size: number): number[]`
 
+Create an array of a specific size with the value 1 at the specified index.
 Create an array of a specific size with the value 1 at the specified index.
 
 Examples
@@ -219,6 +269,7 @@ difference([1, 2, 3, 4, 5], [2, 3, 4]); // [1, 5]
 `drop(array: T[], count: number): T[]`
 
 Creates a slice of array with n elements dropped from the beginning.
+Creates a slice of array with n elements dropped from the beginning.
 
 Examples
 
@@ -238,6 +289,7 @@ drop([1, 2, 3], 5); // []
 
 `every(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
 
+Checks if all elements in the array satisfy the provided testing function.
 Checks if all elements in the array satisfy the provided testing function.
 
 Examples
@@ -259,6 +311,7 @@ every([], (n) => n > 5); // true
 `filter(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T[]`
 
 Creates a new array with all elements that pass the test implemented by the provided function.
+Creates a new array with all elements that pass the test implemented by the provided function.
 
 Examples
 
@@ -279,7 +332,7 @@ filter(['a', 'b', 'c'], (_, index) => index !== 1); // [a, c]
 `find(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T`
 
 Find an item in an array that matches the predicate.
-Throws an error if no item is found.
+Find an item in an array that matches the predicate. Throws an error if no item is found.
 
 Examples
 
@@ -299,6 +352,7 @@ find([1, 2, 3], (n) => n === 4); // Error: Item not found.
 
 `findIndex(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): number`
 
+Returns the index of the first element in the array that satisfies the provided testing function.
 Returns the index of the first element in the array that satisfies the provided testing function.
 
 Examples
@@ -320,6 +374,7 @@ findIndex([1, 2, 3], (x) => x > 5); // -1
 `flat(array: readonly (T | readonly T[])[]): T[]`
 
 Flattens an array of nested arrays by one level.
+Flattens an array of nested arrays by one level.
 
 Examples
 
@@ -339,6 +394,7 @@ flat([['a'], 'b']); // [a, b]
 
 `getFirst(array: T[]): T`
 
+Get the first element of an array.
 Get the first element of an array.
 
 Examples
@@ -382,6 +438,7 @@ getLast([1, 2, 3], 10); // Error: Element at offset 10 does not exist.
 `groupBy(array: T[], iteratee: (item: T) => K): Record<K, T[]>`
 
 Groups the elements of an array according to the result of the iteratee function.
+Groups the elements of an array according to the result of the iteratee function.
 
 Examples
 
@@ -401,6 +458,7 @@ groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k); // { a: [{ k: a, v: 1
 
 `hasArray(source: T[], array: T[]): boolean`
 
+Check if the source array contains all elements of the sub array in the same relative order.
 Check if the source array contains all elements of the sub array in the same relative order.
 
 Examples
@@ -422,6 +480,7 @@ hasArray([true, false], []); // true
 `includes(array: T[], value: T, fromIndex: number | undefined): boolean`
 
 Checks if value is in array.
+Checks if value is in array.
 
 Examples
 
@@ -442,6 +501,7 @@ includes(['a', 'b', 'c'], 'c', 1); // true
 `insertMut(array: T[], index: number, item: T): T[]`
 
 Inserts an item into an array at the specified index by mutating the array.
+Inserts an item into an array at the specified index by mutating the array.
 
 Examples
 
@@ -461,6 +521,7 @@ insertMut([{ id: 1 }], 1, { id: 2 }); // [{ id: 1 }, { id: 2 }]
 
 `intersection(source: T[], target: T[]): T[]`
 
+Create an array of unique values that are included in both given arrays.
 Create an array of unique values that are included in both given arrays.
 
 Examples
@@ -498,10 +559,32 @@ isArray('hello'); // false
 isArray([]); // true
 ```
 
+#### isArrayEqual
+
+`isArrayEqual(arr1: T[], arr2: T[]): boolean`
+
+Checks if two arrays are strictly equal.
+Compares two arrays for shallow equality. It returns true if both arrays have the exact same length and every element in the first array is strictly equal (`===`) to the element at the corresponding index in the second array.
+
+Examples
+
+```ts
+isArrayEqual([1, 2, 3], [1, 2, 3]); // true
+```
+
+```ts
+isArrayEqual(['a', 'b'], ['a', 'c']); // false
+```
+
+```ts
+isArrayEqual([1, 2], [1, 2, 3]); // false
+```
+
 #### isEmpty
 
 `isEmpty(array: readonly T[]): boolean`
 
+Check if array is empty.
 Check if array is empty.
 
 Examples
@@ -523,6 +606,7 @@ isEmpty(['a', 'b']); // false
 `map(array: T[], iteratee: (element: T, index: number, array: T[]) => U): U[]`
 
 Creates a new array populated with the results of calling a provided function on every element in the input array.
+Creates a new array populated with the results of calling a provided function on every element in the input array.
 
 Examples
 
@@ -538,10 +622,36 @@ map([1, 2, 3], String); // [1, 2, 3]
 map(['a', 'b'], (char, index) => char + index); // [a0, b1]
 ```
 
+#### mapToDict
+
+`mapToDict(arr: T[], key: K): Record<string | number | symbol, T>`
+
+Converts an array of objects into a dictionary keyed by a specified property.
+Iterates over an array of objects and creates a dictionary (Record) where the keys are the values of the specified property from each object, and the values are the objects themselves. Note that if multiple objects share the same key, the last one in the array will overwrite the previous ones.
+
+Examples
+
+```ts
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+];
+mapToDict(users, 'id'); // { 1: { id: 1, name: Alice }, 2: { id: 2, name: Bob } }
+```
+
+```ts
+const roles = [
+  { code: 'ADMIN', level: 1 },
+  { code: 'USER', level: 2 }
+];
+mapToDict(roles, 'code'); // { ADMIN: { code: ADMIN, level: 1 }, USER: { code: USER, level: 2 } }
+```
+
 #### reduce
 
 `reduce(array: T[], reducer: (accumulator: A, value: T, index: number, array: T[]) => A, initialValue: A): A`
 
+Executes a reducer function on each element of the array, resulting in a single output value.
 Executes a reducer function on each element of the array, resulting in a single output value.
 
 Examples
@@ -560,16 +670,36 @@ reduce([1, 2, 3], (acc, val) => { acc.push(val * 2); return acc; }, []); // [2, 
 
 #### removeAllMut
 
-`removeAllMut(): void`
+`removeAllMut(array: T[], values: T[]): void`
 
-
+Removes the specified values from the array.
+It iterates through the provided values and removes the first matching instance in the target array for each.
 
 Examples
+
+```ts
+const array = [1, 2, 3, 4];
+removeAllMut(array, [1, 3]);
+array; // [2, 4]
+```
+
+```ts
+const array = ['a', 'b', 'b', 'c'];
+removeAllMut(array, ['b', 'b']);
+array; // [a, c]
+```
+
+```ts
+const array = [1, 1, 2];
+removeAllMut(array, [1]);
+array; // [1, 2]
+```
 
 #### removeAtMut
 
 `removeAtMut(array: T[], index: number): T | undefined`
 
+Remove an element at a specific index from an array in place.
 Remove an element at a specific index from an array in place.
 
 Examples
@@ -642,6 +772,7 @@ removeLast(['a', 'b', 'c', 'd'], 0); // [a, b, c]
 `reverse(array: T[]): T[]`
 
 Creates a new array with the elements in reverse order.
+Creates a new array with the elements in reverse order.
 
 Examples
 
@@ -661,6 +792,7 @@ reverse([]); // []
 
 `reverseMut(array: T[]): T[]`
 
+Reverses an array in place.
 Reverses an array in place.
 
 Examples
@@ -682,6 +814,7 @@ array; // [b, a]
 `set(array: readonly T[], index: number, value: T): T[]`
 
 Creates a new array with the element at the specified index replaced with the given value.
+Creates a new array with the element at the specified index replaced with the given value.
 
 Examples
 
@@ -702,6 +835,7 @@ set([0, 1, 0], 1, 0); // [0, 0, 0]
 `setLastMut(array: T[], value: T, offset: number): T[]`
 
 Sets the value of the last element of an array mutably, with an optional offset.
+Sets the value of the last element of an array mutably, with an optional offset.
 
 Examples
 
@@ -721,6 +855,7 @@ setLastMut([1, 2, 3], 5, -1); // [1, 5, 3]
 
 `some(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
 
+Checks if at least one element in the array satisfies the provided testing function.
 Checks if at least one element in the array satisfies the provided testing function.
 
 Examples
@@ -786,6 +921,7 @@ sortByArrayMut(['d', 'a', 'b'], ['b', 'a']); // [b, a, d]
 `sortByFrequencyAndUnique(array: T[]): T[]`
 
 Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
+Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
 
 Examples
 
@@ -805,6 +941,7 @@ sortByFrequencyAndUnique([10, 20, 10, 10, 20]); // [10, 20]
 
 `take(array: T[], n: number): T[]`
 
+Creates a slice of array with n elements taken from the beginning.
 Creates a slice of array with n elements taken from the beginning.
 
 Examples
@@ -910,6 +1047,7 @@ tryLastEqual([1, 2], [3, 4], (a, b) => a === b); // null
 `union(arrays: T[][]): T[]`
 
 Create an array of unique values, in order, from all given arrays.
+Create an array of unique values, in order, from all given arrays.
 
 Examples
 
@@ -930,6 +1068,7 @@ union([1, 2], [2, 3]); // [1, 2, 3]
 `uniq(array: readonly T[]): T[]`
 
 Creates a duplicate-free version of an array.
+Creates a duplicate-free version of an array.
 
 Examples
 
@@ -949,6 +1088,7 @@ uniq([1, '1', 1]); // [1, 1]
 
 `zip(arrays: T[][]): T[][]`
 
+Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 
 Examples

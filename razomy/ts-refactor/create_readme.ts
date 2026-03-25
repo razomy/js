@@ -2,13 +2,13 @@ import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from "@razomy/abstracts";
 
-function getFPath(n:abstracts.ast.PackageFunction) {
-  const import_ = [...n.functionPath, n.name];
+function getFPath(n: (abstracts.ast.Any & { functionPath: string })) {
+  const import_ = [...n.functionPath, n['name'] || n['key']];
   return import_;
 }
 
 // ADDED: targetDir parameter so it doesn't hardcode to 'string-case'
-export function createReadme(path: string, packageJson: any, specs: abstracts.ast.PackageFunction[]) {
+export function createReadme(path: string, packageJson: any, specs: (abstracts.ast.Any & { functionPath: string })[]) {
   const scopeName = stringCase.camelCase(packageJson.name.replace('@razomy/', ''));
 
   // Sort specs alphabetically once to use in both TOC and Docs
@@ -97,7 +97,9 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   // FIXED: Prevents crash if specs array is empty
-  const functionPath = sortedSpecs.length > 0 ? getFPath(sortedSpecs[0]) : ['functionName'];
+  const typeSpecs = sortedSpecs.filter(i => i.kind !== 'PackageFunction');
+  const functionSpecs = sortedSpecs.filter(i => i.kind === 'PackageFunction');
+  const functionPath = functionSpecs.length > 0 ? getFPath(functionSpecs[0]) : ['functionName'];
   const imports = `
 ### Import
 
@@ -118,15 +120,16 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
   `.trim();
 
   // ADDED: Table of contents
-  const tocs = sortedSpecs.map((s) => `- [${getFPath(s).join('.')}](#${s.name.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${getFPath(s).join('.')}](#${(s['name'] || s['key']).toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${getFPath(s).join('.')}](#${(s['name']).toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
-${tocs.length ? '**Functions**\n\n' + tocs : ''}
+${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${functionsToc.length ? '**Functions**\n\n' + functionsToc : ''}
   `.trim();
 
   // IMPROVED: Markdown formatting for functions (Using ### for function names makes them linkable by the TOC)
-  const functions = sortedSpecs
+  const functions = functionSpecs
     .map((s) => {
       const declaration = `\`${getFPath(s).join('.')}(${(s.parameter as abstracts.ast.Object).items.map((i) => `${i.name}: ${(i.item as abstracts.ast.Reference).key}`).join(', ')}): ${(s.return_ as abstracts.ast.Reference).key}\``;
       const description = [s.title, s.description].filter(Boolean).join('\n');
@@ -152,10 +155,24 @@ ${examples}
     .join('\n\n') // Added a horizontal rule between functions for better readability
     .trim();
 
+  const types = typeSpecs
+    .map((s) => {
+      const description = [s['title'], s['description']].filter(Boolean).join('\n');
+
+      return `
+#### ${s['name'] || s['key']}
+
+${description}
+
+`.trim();
+    })
+    .join('\n\n') // Added a horizontal rule between functions for better readability
+    .trim();
+
   const examples = `
 ## 📚 Documentation
 
-${functions.length ? '### Functions\n\n' + functions : ''}
+${types.length ? '### Types\n\n' + types + '\n\n' : ''}${functions.length ? '### Functions\n\n' + functions : ''}
 `.trim();
 
   const licenseAndContributing = `

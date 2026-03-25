@@ -1,5 +1,6 @@
 /**
  * @summary Convert any value to a string.
+ * @description Convert any value to a string.
  * @param {unknown} value The value to convert.
  * @returns The string representation of the value.
  * @example

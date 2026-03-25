@@ -21,5 +21,5 @@ import * as math from 'mathjs';
  * @complexity memory O(n)
  */
 export function calculate(text: string): string {
-  return math.evaluate(text) as string;
+  return String(math.evaluate(text)) as string;
 }

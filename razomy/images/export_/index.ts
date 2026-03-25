@@ -13,5 +13,4 @@ export { ico } from './ico';
 export { jpeg } from './jpeg';
 export { png } from './png';
 export { tiff } from './tiff';
-export { toImageByFormat } from './to_image_by_format';
-export { type WebpOptions, webp } from './webp';
+export { webp } from './webp';

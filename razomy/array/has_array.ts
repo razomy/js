@@ -1,5 +1,6 @@
 /**
  * @summary Check if the source array contains all elements of the sub array in the same relative order.
+ * @description Check if the source array contains all elements of the sub array in the same relative order.
  * @param source The array to search in.
  * @param array The sequence of elements to look for.
  * @returns True if the subsequence exists.

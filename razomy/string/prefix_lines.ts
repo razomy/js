@@ -1,5 +1,6 @@
 /**
  * @summary Add margin to every line of the string.
+ * @description Add margin to every line of the string.
  * @param text The input text.
  * @param prefix The margin string to prepend.
  * @returns The text with margin applied.

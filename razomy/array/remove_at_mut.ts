@@ -1,5 +1,6 @@
 /**
  * @summary Remove an element at a specific index from an array in place.
+ * @description Remove an element at a specific index from an array in place.
  * @param array The mutable array.
  * @param index The zero-based index of the element to remove.
  * @returns The removed element.

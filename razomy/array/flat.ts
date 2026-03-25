@@ -1,5 +1,6 @@
 /**
  * @summary Flattens an array of nested arrays by one level.
+ * @description Flattens an array of nested arrays by one level.
  * @param array The array to flatten.
  * @returns The flattened array.
  * @example

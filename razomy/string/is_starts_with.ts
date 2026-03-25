@@ -1,5 +1,6 @@
 /**
  * @summary Checks if string starts with the given target string.
+ * @description Checks if string starts with the given target string.
  * @param string The string to inspect.
  * @param target The string to search for.
  * @param position The position to search from.

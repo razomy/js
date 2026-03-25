@@ -1,5 +1,6 @@
 /**
  * @summary Strip HTML tags from a string.
+ * @description Strip HTML tags from a string.
  * @param content - The input string to strip tags from.
  * @returns The string without HTML tags.
  * @example

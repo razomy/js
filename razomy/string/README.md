@@ -1,18 +1,23 @@
 # @razomy/string
 
-[![License](https://img.shields.io/npm/l/@razomy/string)](https://github.com/razomy/js/blob/main/LICENSE)
-[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/string)](https://bundlephobia.com/package/@razomy/string)
 [![TypeScript](https://img.shields.io/npm/types/@razomy/string)](https://www.npmjs.com/package/@razomy/string)
 [![Node.js Version](https://img.shields.io/node/v/@razomy/string)](https://www.npmjs.com/package/@razomy/string)
+![Deno](https://img.shields.io/badge/Deno-Supported-blue)
+![Bun](https://img.shields.io/badge/Bun-Supported-black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-Supported-orange)
+[![License](https://img.shields.io/npm/l/@razomy/string)](https://github.com/razomy/js/blob/main/LICENSE)
+
+[![CI Status](https://github.com/razomy/js/actions/workflows/release.yml/badge.svg)](https://github.com/razomy/js/actions)
 [![npm version](https://img.shields.io/npm/v/@razomy/string)](https://www.npmjs.com/package/@razomy/string)
-[![npm downloads](https://img.shields.io/npm/dw/@razomy/string)](https://www.npmjs.com/package/@razomy/string)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/@razomy/string)](https://bundlephobia.com/package/@razomy/string)
 [![GitHub stars](https://img.shields.io/github/stars/razomy/js?style=social)](https://github.com/razomy/js/stargazers)
+[![npm downloads](https://img.shields.io/npm/dw/@razomy/string)](https://www.npmjs.com/package/@razomy/string)
 
 [Npm](https://www.npmjs.com/package/@razomy/string) |
 [Npmx](https://npmx.dev/package/@razomy/string) |
 [GitHub](https://github.com/razomy/js/tree/main/razomy/string) |
-[Io](https://io.razomy.org/string)
+[Razomy Io](https://io.razomy.org/string) |
+[Razomy Cli](https://github.com/razomy/cli)
 
 > Comprehensive utility functions for string formatting, joining, and parsing
 
@@ -22,6 +27,10 @@
 
 ```sh
 npm i @razomy/string
+# or
+bun add @razomy/string
+# or
+razomy cli add @razomy/string
 ```
 
 ### Import
@@ -29,14 +38,30 @@ npm i @razomy/string
 ```ts
 import * as string from '@razomy/string';
 // or
+import * as string from "npm:@razomy/string";
+// or
+import * as string from "https://esm.sh/@razomy/string";
+// or
+import * as string from "https://unpkg.com/@razomy/string";
+// or
 import { addByIndexString } from '@razomy/string';
+// or
+razomy run @razomy/string addByIndexString
 ```
 
 ## 📑 Table of Contents
 
+**Types**
+
+- [MARKDOWN_CODE_BLOCK_PATTERN](#markdown_code_block_pattern)
+- [String](#string)
+- [WithString](#withstring)
+
 **Functions**
 
 - [addByIndexString](#addbyindexstring)
+- [chunk](#chunk)
+- [chunkByByteLength](#chunkbybytelength)
 - [contains](#contains)
 - [countOccurrences](#countoccurrences)
 - [countSpaceMargin](#countspacemargin)
@@ -71,8 +96,17 @@ import { addByIndexString } from '@razomy/string';
 - [trim](#trim)
 - [truncate](#truncate)
 - [unescapeByString](#unescapebystring)
+- [unescapeMdCode](#unescapemdcode)
 
 ## 📚 Documentation
+
+### Types
+
+#### MARKDOWN_CODE_BLOCK_PATTERN
+
+#### String
+
+#### WithString
 
 ### Functions
 
@@ -80,6 +114,7 @@ import { addByIndexString } from '@razomy/string';
 
 `addByIndexString(text: string, index: number, insertion: string): string`
 
+Insert a string into another string at a specific index.
 Insert a string into another string at a specific index.
 
 Examples
@@ -96,10 +131,53 @@ addByIndexString('hello ', 6, 'world'); // hello world
 addByIndexString('foo baz', 4, 'bar '); // foo bar baz
 ```
 
+#### chunk
+
+`chunk(text: string, size: number): string[]`
+
+Splits a string into an array of chunks.
+Divides a string into an array of smaller strings, each of a specified maximum length.
+
+Examples
+
+```ts
+chunk('12345', 2); // [12, 34, 5]
+```
+
+```ts
+chunk('hello', 1); // [h, e, l, l, o]
+```
+
+```ts
+chunk('abc', 5); // [abc]
+```
+
+#### chunkByByteLength
+
+`chunkByByteLength(text: string, maxBytes: number): string[]`
+
+Split string into chunks by maximum byte length.
+Iterates over Unicode characters and groups them into chunks ensuring that each chunk's UTF-8 byte size does not exceed the specified maximum bytes.
+
+Examples
+
+```ts
+chunkByByteLength('Hello', 2); // [He, ll, o]
+```
+
+```ts
+chunkByByteLength('a👋b', 5); // [a👋, b]
+```
+
+```ts
+chunkByByteLength('こんにちは', 6); // [こん, にち, は]
+```
+
 #### contains
 
 `contains(text: string, search: string): boolean`
 
+Checks if a string contains a specific substring.
 Checks if a string contains a specific substring.
 
 Examples
@@ -120,6 +198,7 @@ contains('hello world', 'hello'); // true
 
 `countOccurrences(text: string, substring: string): number`
 
+Counts the number of occurrences of a substring within a text.
 Counts the number of occurrences of a substring within a text.
 
 Examples
@@ -159,11 +238,24 @@ countSpaceMargin('     '); // 5
 
 #### countSpaceMarginByArray
 
-`countSpaceMarginByArray(): number[]`
+`countSpaceMarginByArray(strings: string[]): number[]`
 
-
+Count leading space margins for each string in an array.
+Maps an array of strings to an array of numbers representing the count of leading spaces (margin) for each string.
 
 Examples
+
+```ts
+countSpaceMarginByArray(['  hello', '    world', 'foo']); // [2, 4, 0]
+```
+
+```ts
+countSpaceMarginByArray(['', '   ', ' a']); // [0, 3, 1]
+```
+
+```ts
+countSpaceMarginByArray([]); // []
+```
 
 #### countString
 
@@ -192,6 +284,7 @@ countString(['x', 'y', 'z'], 'w', 0, 3); // 0
 `create(value: unknown): string`
 
 Convert any value to a string.
+Convert any value to a string.
 
 Examples
 
@@ -209,16 +302,30 @@ string(null); // null
 
 #### escapeByString
 
-`escapeByString(): string`
+`escapeByString(string: string, separator: string): string`
 
-
+Escapes all occurrences of a separator within a string.
+Inserts a backslash character before every instance of the specified separator substring.
 
 Examples
+
+```ts
+escapeByString('a.b.c', '.'); // a\\.b\\.c
+```
+
+```ts
+escapeByString('foo"bar', '"'); // foo\\bar
+```
+
+```ts
+escapeByString('hello', '-'); // hello
+```
 
 #### getWords
 
 `getWords(value: string): string[]`
 
+Splits string into an array of its words.
 Splits string into an array of its words.
 
 Examples
@@ -237,16 +344,30 @@ getWords('nested_snake_case'); // [nested, snake, case]
 
 #### indentLines
 
-`indentLines(): string`
+`indentLines(value: string, size: number): string`
 
-
+Indent each line of a string.
+Adds a specified number of space characters to the beginning of each line in a given string.
 
 Examples
+
+```ts
+indentLines('hello', 2); // hello
+```
+
+```ts
+indentLines('foo\nbar', 4); // foo\n    bar
+```
+
+```ts
+indentLines('a\nb\nc', 1); // a\n b\n c
+```
 
 #### isEndsWith
 
 `isEndsWith(text: string, target: string, position: number | undefined): boolean`
 
+Checks if string ends with the given target string.
 Checks if string ends with the given target string.
 
 Examples
@@ -268,6 +389,7 @@ isEndsWith('abc', 'b', 2); // true
 `isEndsWithAny(text: string, targets: string[], position: number | undefined): boolean`
 
 Checks if string ends with any of the given target strings.
+Checks if string ends with any of the given target strings.
 
 Examples
 
@@ -287,6 +409,7 @@ isEndsWithAny('abc', ['a', 'b'], 2); // true
 
 `isNullOrEmpty(str: string | null | undefined): boolean`
 
+Check if the string is null, undefined, or empty (including whitespace).
 Check if the string is null, undefined, or empty (including whitespace).
 
 Examples
@@ -308,6 +431,7 @@ isNullOrEmpty('razomy'); // false
 `isStartsWith(string: string, target: string, position: number): boolean`
 
 Checks if string starts with the given target string.
+Checks if string starts with the given target string.
 
 Examples
 
@@ -327,6 +451,7 @@ isStartsWith('razomy', 'z', 2); // true
 
 `isString(value: unknown): boolean`
 
+Check if the value is a string.
 Check if the value is a string.
 
 Examples
@@ -348,6 +473,7 @@ isString(null); // false
 `join(items: string[], separator: string): string`
 
 Joins an array of strings into a single string using a separator.
+Joins an array of strings into a single string using a separator.
 
 Examples
 
@@ -368,6 +494,7 @@ join(['one'], ','); // one
 `levenshteinDistance(a: string, b: string): number`
 
 Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
+Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
 
 Examples
 
@@ -385,16 +512,30 @@ levenshteinDistance('razomy', 'razomy'); // 0
 
 #### merge
 
-`merge(): string`
+`merge(strings: string[]): string`
 
-
+Merge an array of strings into a single string.
+Concatenates all strings in the provided array together in order, returning a single merged string.
 
 Examples
+
+```ts
+merge(['a', 'b', 'c']); // abc
+```
+
+```ts
+merge(['hello', ' ', 'world']); // hello world
+```
+
+```ts
+merge([]); // 
+```
 
 #### padEnd
 
 `padEnd(input: string, length: number, chars: string): string`
 
+Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
 Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
 
 Examples
@@ -416,6 +557,7 @@ padEnd('abc', 2); // abc
 `padStart(input: string, length: number, chars: string): string`
 
 Pads the start of a string with another string until it reaches the given length.
+Pads the start of a string with another string until it reaches the given length.
 
 Examples
 
@@ -435,6 +577,7 @@ padStart('abc', 2); // abc
 
 `prefixLines(text: string, prefix: string): string`
 
+Add margin to every line of the string.
 Add margin to every line of the string.
 
 Examples
@@ -477,6 +620,7 @@ removeIndex('world', 0, 2); // rld
 `repeat(content: string, count: number): string`
 
 Repeats a string a specified number of times.
+Repeats a string a specified number of times.
 
 Examples
 
@@ -494,24 +638,51 @@ repeat('test', 0); //
 
 #### replace
 
-`replace(): string`
+`replace(text: string, separator: string, replacement: string): string`
 
-
+Replace all occurrences of a separator in a string.
+Replace all occurrences of a separator string with a replacement string.
 
 Examples
+
+```ts
+replace('hello world', 'world', 'there'); // hello there
+```
+
+```ts
+replace('a-b-c-d', '-', '_'); // a_b_c_d
+```
+
+```ts
+replace('foo', 'bar', 'baz'); // foo
+```
 
 #### similarity
 
-`similarity(): number`
+`similarity(str1: string, str2: string): number`
 
-
+Calculate the similarity ratio between two strings.
+Computes a similarity score between 0 and 1 for two strings based on their Levenshtein distance. A score of 1 indicates identical strings, while 0 indicates no commonality.
 
 Examples
+
+```ts
+similarity('hello', 'hello'); // 1
+```
+
+```ts
+similarity('hello', 'hallo'); // 0.8
+```
+
+```ts
+similarity('test', ''); // 0
+```
 
 #### split
 
 `split(text: string, splitter: string | RegExp, limit: number | undefined): string[]`
 
+Split string by splitter characters.
 Split string by splitter characters.
 
 Examples
@@ -533,6 +704,7 @@ split('One', ''); // [O,n,e]
 `splitLines(text: string): string[]`
 
 Split string by newline characters.
+Split string by newline characters.
 
 Examples
 
@@ -552,6 +724,7 @@ splitLines('One'); // [One]
 
 `stripTags(content: string): string`
 
+Strip HTML tags from a string.
 Strip HTML tags from a string.
 
 Examples
@@ -573,6 +746,7 @@ stripTags('<div><span>content</span></div>'); // content
 `takeAfter(text: string, separator: string): string`
 
 Get the substring after the first occurrence of a separator.
+Get the substring after the first occurrence of a separator.
 
 Examples
 
@@ -592,6 +766,7 @@ takeAfter('foo', ','); // foo
 
 `takeBefore(text: string, separator: string): string`
 
+Gets the substring before the first occurrence of a separator.
 Gets the substring before the first occurrence of a separator.
 
 Examples
@@ -613,6 +788,7 @@ takeBefore('atomic', ' '); // atomic
 `takeBetween(text: string, start: string, end: string): string`
 
 Extracts a substring found between a start string and an end string.
+Extracts a substring found between a start string and an end string.
 
 Examples
 
@@ -632,6 +808,7 @@ takeBetween('<div>content</div>', '<div>', '</div>'); // content
 
 `toBuffer(value: string, encoding: BufferEncoding): Buffer<ArrayBufferLike>`
 
+Convert string to buffer using specified encoding.
 Convert string to buffer using specified encoding.
 
 Examples
@@ -653,6 +830,7 @@ toBuffer('616263', 'hex'); // <Buffer 61 62 63>
 `trim(text: string): string`
 
 Removes whitespace from both ends of the string.
+Removes whitespace from both ends of the string.
 
 Examples
 
@@ -673,6 +851,7 @@ trim('   '); //
 `truncate(text: string, length: number, omission: string): string`
 
 Truncates string if it's longer than the given maximum string length.
+Truncates string if it's longer than the given maximum string length.
 
 Examples
 
@@ -690,11 +869,45 @@ truncate('hello world', 7, '...'); // hello...
 
 #### unescapeByString
 
-`unescapeByString(): string`
+`unescapeByString(string: string, separateString: string): string`
 
-
+Unescape occurrences of a specific string.
+Removes the backslash preceding the specified string globally.
 
 Examples
+
+```ts
+unescapeByString('foo\\"bar', '"'); // foobar
+```
+
+```ts
+unescapeByString('a\\*b', '*'); // a*b
+```
+
+```ts
+unescapeByString('\\.ext', '.'); // .ext
+```
+
+#### unescapeMdCode
+
+`unescapeMdCode(text: string): string`
+
+Extract content from a Markdown code block.
+Removes surrounding Markdown code block backticks and language tags from a string, returning the inner content. If the string is not a valid Markdown code block, it returns the trimmed original string.
+
+Examples
+
+```ts
+unescapeMdCode('''ts\nconsole.log("hello");\n''''); // console.log(hello);
+```
+
+```ts
+unescapeMdCode(''''\nPlain text block\n''''); // Plain text block
+```
+
+```ts
+unescapeMdCode('Just normal text'); // Just normal text
+```
 
 ## 🕊️ Vision
 

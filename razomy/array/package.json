@@ -34,6 +34,7 @@
   "keywords": [
     "razomy",
     "array",
+    "addAllMut",
     "addMut",
     "chunk",
     "countBy",
@@ -108,5 +109,5 @@
       ]
     }
   },
-  "version": "0.0.1-alpha.5"
+  "version": "0.0.1-alpha.7"
 }

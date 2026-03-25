@@ -1,5 +1,6 @@
 /**
  * @summary Removes whitespace from both ends of the string.
+ * @description Removes whitespace from both ends of the string.
  * @param text - The string to trim.
  * @returns The trimmed string.
  * @example

@@ -29,6 +29,7 @@ export {
   type Tuple,
   type Type,
   type Union,
+  type Unknown,
   type Variable,
   type Void,
 } from './ast';

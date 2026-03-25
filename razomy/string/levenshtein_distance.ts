@@ -1,5 +1,6 @@
 /**
  * @summary Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
+ * @description Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
  * @param a The first string.
  * @param b The second string.
  * @returns {number} The number of edits (insertions, deletions, or substitutions) required to transform one string into the other.

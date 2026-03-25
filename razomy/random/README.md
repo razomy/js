@@ -51,6 +51,19 @@ razomy run @razomy/random createCssGradient
 
 ## 📑 Table of Contents
 
+**Types**
+
+- [all](#all)
+- [digits](#digits)
+- [hexLength](#hexlength)
+- [loremWords](#loremwords)
+- [lower](#lower)
+- [maxAngle](#maxangle)
+- [maxRgb](#maxrgb)
+- [minLength](#minlength)
+- [specials](#specials)
+- [upper](#upper)
+
 **Functions**
 
 - [createCssGradient](#createcssgradient)
@@ -75,6 +88,28 @@ razomy run @razomy/random createCssGradient
 - [splitIntoGroups](#splitintogroups)
 
 ## 📚 Documentation
+
+### Types
+
+#### all
+
+#### digits
+
+#### hexLength
+
+#### loremWords
+
+#### lower
+
+#### maxAngle
+
+#### maxRgb
+
+#### minLength
+
+#### specials
+
+#### upper
 
 ### Functions
 
