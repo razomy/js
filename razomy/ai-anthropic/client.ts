@@ -1,11 +1,11 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-export const models = {
+export const MODELS = {
   cheap: 'claude-sonnet-4-6',
   expensive: 'claude-opus-4-6',
 };
 
-export const maxTokens = 5024;
+export const MAX_TOKENS = 5024;
 
 declare global {
   namespace NodeJS {
@@ -15,4 +15,4 @@ declare global {
   }
 }
 
-export const client = new Anthropic({apiKey: process.env.ANTHROPIC_API_KEY});
+export const CLIENT = new Anthropic({apiKey: process.env.ANTHROPIC_API_KEY});

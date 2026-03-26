@@ -1,9 +1,9 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function wait(messageBatchId: string) {
   let messageBatch;
   while (true) {
-    messageBatch = await client.messages.batches.retrieve(messageBatchId);
+    messageBatch = await CLIENT.messages.batches.retrieve(messageBatchId);
 
     if (messageBatch.processing_status === 'ended') {
       break;

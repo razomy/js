@@ -1,5 +1,5 @@
 const batchSale = 2;
-export const prices = {
+export const PRICES = {
   expensive: {
     in_: 2 / 200_000 / batchSale,
     out: 12 / 200_000 / batchSale,
@@ -9,8 +9,8 @@ export const prices = {
 export function printPrice(result: any[]) {
   let p = 0;
   result.forEach((c) => {
-    const inP_ = prices.expensive.in_ * c.tokens.in_;
-    const outP_ = prices.expensive.out * c.tokens.out;
+    const inP_ = PRICES.expensive.in_ * c.tokens.in_;
+    const outP_ = PRICES.expensive.out * c.tokens.out;
     p += inP_;
     p += outP_;
     const inP = `in=${c.tokens.in_}=$${inP_.toFixed(5)}`;

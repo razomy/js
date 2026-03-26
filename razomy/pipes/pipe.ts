@@ -46,4 +46,4 @@ export async function pipe(initialValue: any, ...fns: PipeAsync<any, any>[]): Pr
   return result;
 }
 
-export const p: abstracts.meta.Alias<typeof pipe> = pipe;
+export const P: abstracts.meta.Alias<typeof pipe> = pipe;

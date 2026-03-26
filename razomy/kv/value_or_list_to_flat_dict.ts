@@ -13,7 +13,7 @@ export function valueOrListToFlatDict(
     dict[parent] = input;
   } else {
     for (const inputKey of input) {
-      valueOrListToFlatDict(dict, inputKey[1], parent + key.assign + inputKey[0], separator);
+      valueOrListToFlatDict(dict, inputKey[1], parent + key.ASSIGN + inputKey[0], separator);
     }
   }
   return dict;

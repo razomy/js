@@ -1,5 +1,5 @@
 import ffmpeg from 'fluent-ffmpeg';
-import { audios } from './types';
+import { AUDIOS } from './types';
 import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
@@ -114,7 +114,7 @@ export async function toAudioByFormat(inputPath: string, format: string): Promis
     fs.unlink(outputPath, () => {});
   });
 
-  const mimeType = audios.find((a) => a.fileExtensionType === format)?.mediaType || 'application/octet-stream';
+  const mimeType = AUDIOS.find((a) => a.fileExtensionType === format)?.mediaType || 'application/octet-stream';
 
   return { stream: fileStream, mediaType: mimeType, fileExtensionType: format };
 }

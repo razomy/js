@@ -1,10 +1,10 @@
-import {models} from '../client';
-import {client} from "../client";
+import {MODELS} from '../client';
+import {CLIENT} from "../client";
 import * as main from "@razomy/main";
 
 export async function ask(texts: string[]) {
-  const result = await client.messages.create({
-    model: models.expensive,
+  const result = await CLIENT.messages.create({
+    model: MODELS.expensive,
     max_tokens: 20_000,
     messages: texts.map(i => ({content: i, role: 'user'})),
   });

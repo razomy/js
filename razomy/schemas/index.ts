@@ -64,6 +64,6 @@ export {
   type url,
   type username,
 } from './common';
-export { idSchema, withLocaleSchema } from './validators';
+export { ID_SCHEMA, WITH_LOCALE_SCHEMA } from './validators';
 export { type SchemaType } from './schema';
 export { type Transformer, type Trowable, type Validator } from './validator';

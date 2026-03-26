@@ -25,7 +25,7 @@ export interface JsonEntityCollection {
 export type ResourceNode = JsonObject | JsonSizeResource | JsonPropertiesResource | JsonEntityCollection;
 export type ResourceDescription = ResourceNode;
 
-export const example: ResourceDescription = {
+export const EXAMPLE: ResourceDescription = {
   objectResource: {
     type: 'Type',
     id: 'asd',

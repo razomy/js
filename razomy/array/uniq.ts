@@ -18,6 +18,6 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function uniq<T>(array: readonly T[]): T[] {
+export function uniq<T>(array: ReadonlyArray<T>): T[] {
   return Array.from(new Set(array));
 }

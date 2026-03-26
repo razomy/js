@@ -1,9 +1,7 @@
 import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
-import * as stringCase from '@razomy/string-case';
 
-export function toSafeName(name: string) {
-  let newName = stringCase.camelCase(name);
-  if (languagesProgrammingFs.reservedNamesJs[newName] || newName == '') {
+export function toSafeName(newName:string) {
+  if (languagesProgrammingFs.RESERVED_NAMES_JS[newName] || newName == '') {
     newName = newName + '_';
   }
   return newName;

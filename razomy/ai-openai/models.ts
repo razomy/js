@@ -1,4 +1,4 @@
-export const models = {
+export const MODELS = {
   cheapest: {
     name: 'text-ada-001',
     token: 2192,

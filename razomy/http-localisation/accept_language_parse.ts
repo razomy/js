@@ -1,7 +1,7 @@
-export const regex = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
+export const REGEX = /((([a-zA-Z]+(-[a-zA-Z0-9]+){0,2})|\*)(;q=[0-1](\.[0-9]+)?)?)*/g;
 
 export function acceptLanguageParse(al) {
-  const strings = (al || '').match(regex);
+  const strings = (al || '').match(REGEX);
   return strings
     .map((m) => {
       if (!m) {

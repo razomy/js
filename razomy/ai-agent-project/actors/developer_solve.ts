@@ -1,5 +1,5 @@
 import {think} from "../think";
-import {toolRegistry} from "../tools/execute_tool_mut";
+import {TOOL_REGISTRY} from "../tools/execute_tool_mut";
 import type {ActorContext, DeveloperTask} from './director_company';
 import * as ai from "@razomy/ai";
 
@@ -23,7 +23,7 @@ export async function developerSolve(task: DeveloperTask, globalStrategy: string
       Сделай только свою часть работы.`
     )
   ];
-  ctx.llm.tools = [toolRegistry.getFile, toolRegistry.setFile];
+  ctx.llm.tools = [TOOL_REGISTRY.getFile, TOOL_REGISTRY.setFile];
   await think(ctx);
   console.log(`✅ Разработчик #${devId} завершил работу над ${task.fileName}`);
 }

@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import {pipeline} from 'node:stream/promises';
-import {images} from './types';
+import {IMAGES} from './types';
 import Vips from "wasm-vips";
 import {avif} from './avif';
 import {gif} from './gif';
@@ -87,7 +87,7 @@ describe('images', () => {
   });
 
   // Динамически создаем блоки тестов на основе массива настроек
-  for (const imgConfig of images) {
+  for (const imgConfig of IMAGES) {
     const inputExt = imgConfig.fileExtensionType;
 
     // Если конвертаций нет, пропускаем генерацию describe

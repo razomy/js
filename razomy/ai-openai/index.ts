@@ -1,6 +1,8 @@
 export * as instructions from './instructions';
 export { Chat } from './chat';
 export { LanguageGrammarCorrection } from './language_grammar_correction';
+export { MODELS } from './models';
+export { OPENAI } from './openai';
 export { addFunctionAndAssign } from './add_function_and_assign';
 export { addSystemMessage } from './add_system_message';
 export { addUserMessage } from './add_user_message';
@@ -9,8 +11,6 @@ export { createOpenai } from './create_openai';
 export { getModels } from './get_models';
 export { gptApi } from './gpt_api';
 export { gptApiV2 } from './gpt_api_v_2';
-export { models } from './models';
-export { openai } from './openai';
 export { setTokens } from './set_tokens';
 export { setWeight } from './set_weight';
 export { setWeightAnTokens } from './set_weight_an_tokens';

@@ -1,6 +1,6 @@
 export {
-  imageWriteTargets,
-  images,
+  IMAGES,
+  IMAGE_WRITE_TARGETS,
   type AllImageFileExtensionType,
   type ImageFormat,
   type OnlyReadImageFileExtensionType,

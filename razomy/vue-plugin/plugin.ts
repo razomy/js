@@ -21,7 +21,7 @@ declare module 'vue' {
   }
 }
 
-export const plugin = {
+export const PLUGIN = {
   install(app, razomy: razomy) {
     window.r = window.razomy = app.config.globalProperties.razomy = razomy;
     app.provide('razomy', razomy);

@@ -1,1 +1,1 @@
-export { assign, break_, seperate } from './assign';
+export { ASSIGN, BREAK, SEPERATE } from './assign';

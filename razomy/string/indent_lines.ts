@@ -1,4 +1,4 @@
-import { prefixLines } from '@razomy/string';
+import * as string from "@razomy/string";
 
 /**
  * @summary Indent each line of a string.
@@ -22,5 +22,5 @@ import { prefixLines } from '@razomy/string';
  * @complexity memory O(n)
  */
 export function indentLines(value: string, size: number): string {
-  return prefixLines(value, ' '.repeat(size));
+  return string.prefixLines(value, ' '.repeat(size));
 }

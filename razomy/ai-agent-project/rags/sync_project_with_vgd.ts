@@ -2,11 +2,11 @@ import * as vgd from "@razomy/vgd";
 import * as git from "@razomy/git";
 import * as array from "@razomy/array";
 import { Project } from "ts-morph";
-import { performanceLogger } from "../logger";
+import { PERFORMANCE_LOGGER } from "../logger";
 import {chunkFile} from './chunk_file';
 
 export async function syncProjectWithVgd(db) {
-    performanceLogger.tickAndLog('syncProjectWithVgd');
+    PERFORMANCE_LOGGER.tickAndLog('syncProjectWithVgd');
     const projectPath = (await git.findGitRoot())!;
     console.info('Project root path:', projectPath);
     const lastDbCommitId = (await vgd.getLastCommitId(db, projectPath))?.trim();
@@ -21,5 +21,5 @@ export async function syncProjectWithVgd(db) {
     ...statusFiles.created,
     ...statusFiles.modified,
     ]).map(i => chunkFile(projectPath, i, project)));
-    performanceLogger.tickAndLog('end syncProjectWithVgd');
+    PERFORMANCE_LOGGER.tickAndLog('end syncProjectWithVgd');
 }

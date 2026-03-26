@@ -1,6 +1,6 @@
 export {
+  EXAMPLE,
   JsonCodec,
-  example,
   type JsonEntityCollection,
   type JsonObject,
   type JsonPropertiesResource,

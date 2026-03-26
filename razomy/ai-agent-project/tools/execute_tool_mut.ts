@@ -12,7 +12,7 @@ export type ToolContext = {
   setFile: Record<string, string>,
 }
 
-export const tools = [
+export const TOOLS = [
   fns.createPackageFunction({
     name: 'getDirFiles',
     description: 'Получить список файлов в папке',
@@ -40,22 +40,22 @@ export const tools = [
     },
 
   })
-] satisfies abstracts.ast.PackageFunction[];
+] satisfies abstracts.ast.FunctionDeclaration[];
 
-export const toolRegistry = array.mapToDict(tools, 'name');
+export const TOOL_REGISTRY = array.mapToDictBy(TOOLS, (i)=>i.identifier.name);
 
-export function executeToolMut(ctx: ToolContext, function_: abstracts.ast.FunctionArgument) {
+export function executeToolMut(ctx: ToolContext, function_: any) {
   let toolResult = '';
   try {
-    if (function_.name === 'getDirFiles') {
+    if (function_.identifier.name === 'getDirFiles') {
       ctx.getDirFiles = getDirFiles(path.join(ctx.project.dirPath));
       toolResult = JSON.stringify(ctx.getDirFiles);
-    } else if (function_.name === 'getFile') {
-      ctx.getFile[function_.arguments_[0].value] = getFile(path.join(ctx.project.dirPath, function_.arguments_[0].value));
-      toolResult = JSON.stringify(ctx.getFile[function_.arguments_[0].value]);
-    } else if (function_.name === 'setFile') {
-      ctx.setFile[function_.arguments_[0].value] = function_.arguments_[1].value;
-      setFile(function_.arguments_[0].value, function_.arguments_[1].value);
+    } else if (function_.identifier.name === 'getFile') {
+      ctx.getFile[function_.expression.value] = getFile(path.join(ctx.project.dirPath, function_.expression[0].value));
+      toolResult = JSON.stringify(ctx.getFile[function_.expression[0].value]);
+    } else if (function_.identifier.name === 'setFile') {
+      ctx.setFile[function_.arguments_[0].value] = function_.expression[1].value;
+      setFile(function_.expression[0].value, function_.expression[1].value);
       toolResult = JSON.stringify('void');
     }
   } catch (error: any) {

@@ -19,7 +19,7 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function removeLast<T>(arr: readonly T[], deltaIndex: number = 0): T[] {
+export function removeLast<T>(arr: ReadonlyArray<T>, deltaIndex: number = 0): T[] {
   const end: number = arr.length - 1 + deltaIndex;
 
   if (end <= 0) {

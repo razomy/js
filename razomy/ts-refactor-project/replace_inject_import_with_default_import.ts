@@ -1,5 +1,6 @@
 import { Node, Project } from 'ts-morph';
 import * as tsRefactor from '@razomy/ts-refactor';
+import * as stringCase from "@razomy/string-case";
 
 export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
@@ -45,7 +46,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         // Прим: в вашем примере 'array-recusive' почему-то маппится в 'array',
         // но для безопасности скрипт берет реальное имя пакета ('array-recusive' -> '@razomy/array-recusive')
         const newModuleSpecifier = `@razomy/${rootPkg}`;
-        const aliasName = tsRefactor.toSafeName(rootPkg); // "arrayRecursive"
+        const aliasName = tsRefactor.toSafeName(stringCase.camelCase(rootPkg)); // "arrayRecursive"
 
         namespacesToAdd.set(newModuleSpecifier, aliasName);
 

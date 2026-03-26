@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-export const textBufferTypes = {
+export const TEXT_BUFFER_TYPES = {
   rnt: 'utf-8', // TODO: remove after v2 migrate
   rdn: 'utf-8', // TODO: remove after v2 migrate
   rn1: 'utf-8', // TODO: remove after v2 migrate
@@ -8,13 +8,13 @@ export const textBufferTypes = {
   txt: 'utf-8',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const keysBufferTypes = {
+export const KEYS_BUFFER_TYPES = {
   csr: 'utf-8',
   key: 'utf-8',
   pem: 'utf-8',
   keystore: 'utf-8',
 } as const satisfies Record<string, BufferEncoding>;
-export const mixedBufferTypes = {
+export const MIXED_BUFFER_TYPES = {
   pdf: 'base64',
   pages: 'base64',
   doc: 'base64',
@@ -24,7 +24,7 @@ export const mixedBufferTypes = {
   psd: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const programmingLanguagesBufferTypes = {
+export const PROGRAMMING_LANGUAGES_BUFFER_TYPES = {
   pug: 'utf-8',
   properties: 'utf-8',
   lua: 'utf-8',
@@ -84,7 +84,7 @@ export const programmingLanguagesBufferTypes = {
   sln: 'utf-8',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const unityBufferTypes = {
+export const UNITY_BUFFER_TYPES = {
   asset: 'utf-8',
   prefab: 'utf-8',
   shader: 'utf-8',
@@ -102,7 +102,7 @@ export const unityBufferTypes = {
   fbx: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const imagesBufferTypes = {
+export const IMAGES_BUFFER_TYPES = {
   jpeg: 'base64',
   webp: 'base64',
   jpg: 'base64',
@@ -114,31 +114,31 @@ export const imagesBufferTypes = {
   ttf: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const typesBufferTypes = {
+export const TYPES_BUFFER_TYPES = {
   eot: 'base64',
   woff: 'base64',
   woff2: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const videoBufferTypes = {
+export const VIDEO_BUFFER_TYPES = {
   mp3: 'base64',
   mp4: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 
-export const bufferTypes = {
-  ...textBufferTypes,
-  ...keysBufferTypes,
-  ...mixedBufferTypes,
-  ...typesBufferTypes,
-  ...programmingLanguagesBufferTypes,
-  ...unityBufferTypes,
-  ...imagesBufferTypes,
-  ...videoBufferTypes,
+export const BUFFER_TYPES = {
+  ...TEXT_BUFFER_TYPES,
+  ...KEYS_BUFFER_TYPES,
+  ...MIXED_BUFFER_TYPES,
+  ...TYPES_BUFFER_TYPES,
+  ...PROGRAMMING_LANGUAGES_BUFFER_TYPES,
+  ...UNITY_BUFFER_TYPES,
+  ...IMAGES_BUFFER_TYPES,
+  ...VIDEO_BUFFER_TYPES,
 } as const satisfies Record<string, BufferEncoding>;
 
-export type TypeFs = keyof typeof bufferTypes;
+export type TypeFs = keyof typeof BUFFER_TYPES;
 
-export const uniqProgrammingBufferName = {
+export const UNIQ_PROGRAMMING_BUFFER_NAME = {
   Dockerfile: 'utf-8',
   '.gitignore': 'utf-8',
   '.npmrc': 'utf-8',
@@ -158,6 +158,6 @@ export const uniqProgrammingBufferName = {
 export function isSupportedFileTypes(path_: string) {
   const type = path.extname(path_) as TypeFs;
   return (
-    bufferTypes.hasOwnProperty(type.substring(1)) || uniqProgrammingBufferName.hasOwnProperty(path.basename(path_))
+    BUFFER_TYPES.hasOwnProperty(type.substring(1)) || UNIQ_PROGRAMMING_BUFFER_NAME.hasOwnProperty(path.basename(path_))
   );
 }

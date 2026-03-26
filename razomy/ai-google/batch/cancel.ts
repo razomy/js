@@ -1,5 +1,5 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function cancel(name: string) {
-  await client.batches.cancel({ name: name });
+  await CLIENT.batches.cancel({ name: name });
 }

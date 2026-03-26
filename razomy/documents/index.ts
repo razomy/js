@@ -1,1 +1,1 @@
-export { documents } from './types';
+export { DOCUMENTS } from './types';

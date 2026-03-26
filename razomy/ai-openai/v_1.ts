@@ -1,4 +1,4 @@
-import { openai } from './openai';
+import { OPENAI } from './openai';
 
 export async function v1(params = { messages: [] } as any) {
   const prompt = params.messages.map((i) => i.content).join('\n');
@@ -11,6 +11,6 @@ export async function v1(params = { messages: [] } as any) {
     presence_penalty: 0,
     ...params,
   };
-  const response = await openai.completions.create(request);
+  const response = await OPENAI.completions.create(request);
   return response.choices[0].text;
 }

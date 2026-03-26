@@ -1,4 +1,4 @@
-import { client, models } from '../client';
+import { CLIENT, MODELS } from '../client';
 import { wait } from './wait';
 import { getResult } from './get_result';
 import { delete_ } from './delete_';
@@ -6,8 +6,8 @@ import { printPrice } from './print_price';
 import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
 
 export async function asksWithCache(texts: string[], systemText: string, sameTextCache: string) {
-  const cache = await client.caches.create({
-    model: models.expensive,
+  const cache = await CLIENT.caches.create({
+    model: MODELS.expensive,
     config: {
       contents: sameTextCache,
       systemInstruction: systemText,
@@ -27,8 +27,8 @@ export async function asksWithCache(texts: string[], systemText: string, sameTex
     } as InlinedRequest;
   });
 
-  const response = await client.batches.create({
-    model: models.expensive,
+  const response = await CLIENT.batches.create({
+    model: MODELS.expensive,
     src: inlinedRequests,
   });
   console.log(response.name);
@@ -37,6 +37,6 @@ export async function asksWithCache(texts: string[], systemText: string, sameTex
   const result = await getResult(jobId);
   printPrice(result!);
   await delete_(jobId);
-  await client.caches.delete({ name: cacheId! });
+  await CLIENT.caches.delete({ name: cacheId! });
   return result;
 }

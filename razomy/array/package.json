@@ -57,6 +57,7 @@
     "isArrayEqual",
     "isArray",
     "isEmpty",
+    "mapToDictBy",
     "mapToDict",
     "map",
     "reduce",

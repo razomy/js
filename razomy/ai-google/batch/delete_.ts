@@ -1,5 +1,5 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function delete_(name: string) {
-  await client.batches.delete({ name: name });
+  await CLIENT.batches.delete({ name: name });
 }

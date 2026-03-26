@@ -153,7 +153,7 @@ function getDirPlatforms(fullPath: string): (Platform | null)[] {
  * Генерирует строку экспорта для папки (учитывая package.json если есть)
  */
 function generateDirExport(fullPath: string, baseName: string, platform: Platform): string {
-  const safeKey = tsRefactor.toSafeName(baseName);
+  const safeKey = tsRefactor.toSafeName(stringCase.camelCase(baseName));
   const childPackageJsonPath = path.join(fullPath, 'package.json');
 
   if (fsFile.isExist(childPackageJsonPath)) {

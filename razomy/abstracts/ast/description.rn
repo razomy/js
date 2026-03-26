@@ -1,0 +1,7 @@
+1 text (source code)
+2 tokens (lexer: splitting text into words and symbols)
+3 AST (parser: tree construction, declarations, statements)
+4 scopes & symbols (name table: registering defined types and variables)
+5 types (type checker: checking predefined types, outputting calculated types)
+6 static values (optimizer: calculating constants before runtime)
+7 dynamic values (code generation/runtime: things that are calculated only when the program runs)

@@ -1,5 +1,5 @@
 import ffmpeg from 'fluent-ffmpeg';
-import { videos } from './types';
+import { VIDEOS } from './types';
 import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
@@ -214,7 +214,7 @@ export async function toVideoByFormat(inputPath: string, format: string): Promis
     fs.unlink(outputPath, () => {});
   });
 
-  const mimeType = videos.find((v) => v.fileExtensionType === format)?.mediaType || 'application/octet-stream';
+  const mimeType = VIDEOS.find((v) => v.fileExtensionType === format)?.mediaType || 'application/octet-stream';
 
   return { stream: fileStream, mediaType: mimeType, fileExtensionType: format };
 }

@@ -1,6 +1,6 @@
 import * as vueResource from '@razomy/vue-resource';
 
-export const reactiveDirective = {
+export const REACTIVE_DIRECTIVE = {
   mounted(el, binding, vnode) {
     function inject<T>(k) {
       return vnode.ctx.provides[k] as T;

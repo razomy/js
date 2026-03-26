@@ -2,46 +2,46 @@
 
 // text
 // split
-export const space = ' ';
-export const newline = '\n';
-export const dot = '.';
-export const comma = ',';
-export const colon = ':';
-export const semicolon = ';';
-export const equals = '=';
-export const pipe = '|';
-export const percent = '%';
+export const SPACE = ' ';
+export const NEWLINE = '\n';
+export const DOT = '.';
+export const COMMA = ',';
+export const COLON = ':';
+export const SEMICOLON = ';';
+export const EQUALS = '=';
+export const PIPE = '|';
+export const PERCENT = '%';
 //join
-export const dash = '-';
-export const underscore = '_';
-export const plus = '+';
-export const caret = '^';
-export const tilde = '~';
-export const asterisk = '*';
-export const ampersand = '&';
-export const atSign = '@';
+export const DASH = '-';
+export const UNDERSCORE = '_';
+export const PLUS = '+';
+export const CARET = '^';
+export const TILDE = '~';
+export const ASTERISK = '*';
+export const AMPERSAND = '&';
+export const AT_SIGN = '@';
 
 // group
 // mono
-export const doubleQuote = '"';
+export const DOUBLE_QUOTE = '"';
 // open
-export const angleOpen = '<';
-export const parenOpen = '(';
-export const bracketOpen = '[';
-export const braceOpen = '{';
+export const ANGLE_OPEN = '<';
+export const PAREN_OPEN = '(';
+export const BRACKET_OPEN = '[';
+export const BRACE_OPEN = '{';
 // close
-export const angleClose = '>';
-export const parenClose = ')';
-export const bracketClose = ']';
-export const braceClose = '}';
+export const ANGLE_CLOSE = '>';
+export const PAREN_CLOSE = ')';
+export const BRACKET_CLOSE = ']';
+export const BRACE_CLOSE = '}';
 // slash
-export const slash = '/';
-export const backslash = '\\';
+export const SLASH = '/';
+export const BACKSLASH = '\\';
 
 // priority
-export const singleQuote = `'`;
-export const backtick = '`';
-export const exclamation = '!';
-export const question = '?';
-export const hash = '#';
-export const dollar = '$';
+export const SINGLE_QUOTE = `'`;
+export const BACKTICK = '`';
+export const EXCLAMATION = '!';
+export const QUESTION = '?';
+export const HASH = '#';
+export const DOLLAR = '$';

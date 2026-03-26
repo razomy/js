@@ -6,5 +6,5 @@ export * as parsers from './parsers';
 export * as prompts from './prompts';
 export * as rags from './rags';
 export * as tools from './tools';
-export { performanceLogger } from './logger';
+export { PERFORMANCE_LOGGER } from './logger';
 export { think } from './think';

@@ -3,13 +3,13 @@ import { ensureLoggedIn as ensureLogIn } from 'connect-ensure-login';
 import { Strategy as CustomStrategy } from 'passport-custom';
 import passport from 'passport';
 
-export const isAuthenticated = ensureLogIn();
-export const googleTapOn = 'google-tap-on';
+export const IS_AUTHENTICATED = ensureLogIn();
+export const GOOGLE_TAP_ON = 'google-tap-on';
 
 export class Google {
   constructor(ctx) {
     passport.use(
-      googleTapOn,
+      GOOGLE_TAP_ON,
       new CustomStrategy(async function (this: any, req, callback) {
         const csrfTokenCookie = req.cookies.g_csrf_token;
         if (!csrfTokenCookie) {

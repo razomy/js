@@ -1,7 +1,7 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function get() {
-  for await (const messageBatch of client.messages.batches.list({
+  for await (const messageBatch of CLIENT.messages.batches.list({
     limit: 20,
   })) {
     console.log(`${messageBatch.id} - ${messageBatch.processing_status}`);

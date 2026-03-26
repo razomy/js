@@ -2,7 +2,7 @@ import { gptApiV2 } from './gpt_api_v_2';
 import { setTokens } from './set_tokens';
 import * as aiOpenai from '@razomy/ai-openai';
 
-export async function singleRequestPro(text, model = aiOpenai.models.expensive120000) {
+export async function singleRequestPro(text, model = aiOpenai.MODELS.expensive120000) {
   let messageOrMessagesOrRequest = {
     messages: [
       {

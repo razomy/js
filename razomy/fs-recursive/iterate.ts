@@ -9,7 +9,7 @@ export interface IterateNode {
 
 // 1. Pre-allocate the object we will pass to the callback.
 // We recycle this SINGLE object for every file in the system.
-export const sharedNode: IterateNode = {
+export const SHARED_NODE: IterateNode = {
   stats: null as unknown as Dirent,
   slug: '',
   path: '',
@@ -52,11 +52,11 @@ export function iterate(dirPath: string, cb: (iterate_node: IterateNode) => void
 
       // 8. MUTATE the shared object instead of creating a new one.
       // This saves millions of heap allocations.
-      sharedNode.stats = entry;
-      sharedNode.slug = entry.name;
-      sharedNode.path = fullPath;
+      SHARED_NODE.stats = entry;
+      SHARED_NODE.slug = entry.name;
+      SHARED_NODE.path = fullPath;
 
-      result = cb(sharedNode);
+      result = cb(SHARED_NODE);
 
       if (result === false) return; // Hard Stop
       if (result === true) continue; // Skip Recursion (Prune)

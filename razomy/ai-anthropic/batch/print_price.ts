@@ -1,13 +1,13 @@
-export const m = 1_000_000;
-export const batchSale = 2;
-export const pricing = {
+export const M = 1_000_000;
+export const BATCH_SALE = 2;
+export const PRICING = {
   cheap: {
-    in_: 3 / m,
-    out_: 15 / m,
+    in_: 3 / M,
+    out_: 15 / M,
   },
   expensive: {
-    in_: 15 / m,
-    out_: 75 / m,
+    in_: 15 / M,
+    out_: 75 / M,
   },
 };
 
@@ -22,8 +22,8 @@ export function printPrice(results: any[]) {
       const outputTokens = usage.output_tokens || 0;
 
       // Applying the batch sale (divide by 2)
-      const inP_ = (pricing.expensive.in_ * inputTokens) / batchSale;
-      const outP_ = (pricing.expensive.out_ * outputTokens) / batchSale;
+      const inP_ = (PRICING.expensive.in_ * inputTokens) / BATCH_SALE;
+      const outP_ = (PRICING.expensive.out_ * outputTokens) / BATCH_SALE;
 
       p += inP_;
       p += outP_;

@@ -1,6 +1,6 @@
 import * as fsFileFormat from '@razomy/fs-file-format';
 
-export const documents: fsFileFormat.FileFormat[] = [
+export const DOCUMENTS: fsFileFormat.FileFormat[] = [
   {
     fileExtensionType: 'pdf',
     mediaType: 'application/pdf',

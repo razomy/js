@@ -1,6 +1,6 @@
 import { JSDoc } from "ts-morph";
 
-export function extractComplexity(doc: JSDoc, funcName: string) {
+export function parseComplexity(doc: JSDoc, funcName: string) {
     const complexityTags = doc.getTags().filter((t) => t.getTagName() === 'complexity');
     if (complexityTags.length < 2) {
     throw new Error(`[Parse Error] Missing or incomplete @complexity tags (need 'time' and 'memory') in '${funcName}'`);
@@ -26,3 +26,24 @@ export function extractComplexity(doc: JSDoc, funcName: string) {
 
     return result;
 }
+
+// ============================================================================
+// Функции-экстракторы (Декомпозиция)
+// ============================================================================
+
+// async function extractPerformanceHistory(path: string, name: string, parameters: any[]) {
+//   // Выполняем тест производительности только если функция принимает ровно 1 параметр типа string
+//   if (parameters.length === 1 && parameters[0].type === 'string') {
+//     const mod = await import(path);
+//     const fn = mod[name];
+//
+//     if (!fn) {
+//       throw new Error(`[Runtime Error] Cannot import function '${name}' from ${path} for performance testing`);
+//     }
+//
+//     const history = await recordPerformance(fn, performance.nStringTestCasesRecordPerformance());
+//     return history.exportState();
+//   }
+//
+//   return [];
+// }

@@ -2,12 +2,12 @@ import {
   type Part
 } from '@google/genai';
 import {specToTool} from "./spec_to_tool";
-import {client, models} from "../client";
+import {CLIENT, MODELS} from "../client";
 import * as abstracts from "@razomy/abstracts";
 import * as ai from "@razomy/ai";
 
 export async function askTool(texts: string[],
-                               toolSpec: abstracts.ast.PackageFunction[]
+                               toolSpec: abstracts.ast.FunctionDeclaration[]
 ) {
   const tools = [{
     functionDeclarations: toolSpec.map(specToTool)
@@ -23,8 +23,8 @@ export async function askTool(texts: string[],
   const lastMessage = texts[texts.length - 1];
 
   // Запуск генерации
-  const result = await client.models.generateContent({
-    model: models.cheap,
+  const result = await CLIENT.models.generateContent({
+    model: MODELS.cheap,
     contents: [...history, {role: 'user', parts: [{text: lastMessage}]}],
     config: {
       tools

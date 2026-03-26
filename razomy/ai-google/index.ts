@@ -1,3 +1,3 @@
 export * as batch from './batch';
 export * as instant from './instant';
-export { client, models } from './client';
+export { CLIENT, MODELS } from './client';

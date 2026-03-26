@@ -1,3 +1,3 @@
 import * as performance from "@razomy/performance";
 
-export const performanceLogger = new performance.Performance();
+export const PERFORMANCE_LOGGER = new performance.Performance();

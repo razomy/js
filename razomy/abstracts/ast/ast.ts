@@ -1,418 +1,621 @@
-import type {WithDescription, WithName} from "../domains";
-import type {WithKind} from "../domains";
+// ==========================================
+// 1. BASE NODES
+// ==========================================
 
-
-export interface Declaration extends WithKind {
-}
-
-export interface Definition extends Declaration, WithDescription, WithName {
-}
-
-// a, 1, /** My magic number */4
-export interface Literal extends Declaration {
-  value: any;
+/**
+ * The foundational interface for all AST nodes.
+ */
+export interface AstNode {
+  kind: string;
+  // Future implementation for error coordinates: loc: { start: number, end: number }
 }
 
 /**
+ * Base interface for all expressions.
+ */
+export interface Expression extends AstNode {
+}
+
+/**
+ * Represents the name of a variable, function, or property.
  * @example
  * ```ts
- * "string1"
- * ```
- * @example
- * ```ts
- * 'string2'
+ * myVar
  * ```
  */
-export interface StringLiteral extends Literal {
-  kind: 'StringLiteral';
+export interface Identifier extends AstNode {
+  kind: 'Identifier';
+  name: string;
+}
+
+export interface TypeIdentifier extends AstNode {
+  kind: 'TypeIdentifier';
+  name: string;
+}
+
+/**
+ * Base interface for all type nodes.
+ */
+export interface Type extends AstNode {
+}
+
+/**
+ * Base interface for all declarations.
+ */
+export interface Declaration extends AstNode {
+  identifier: Identifier;
+  isPublic: boolean;
+  description: string;
+}
+
+export type AstType = Expression | Identifier | TypeIdentifier | Type | Declaration;
+
+// ==========================================
+// 2. EXPRESSIONS
+// Values computed during program execution
+// ==========================================
+
+
+/**
+ * Represents a string literal expression.
+ * @example
+ * ```ts
+ * "hello world"
+ * ```
+ */
+export interface StringExpression extends Expression {
+  kind: 'StringExpression';
   value: string;
 }
 
-export interface String extends Declaration {
-  kind: 'String';
-}
-
 /**
+ * Represents a number literal expression.
  * @example
  * ```ts
  * 42
  * ```
- * @example
- * ```ts
- * 3.14
- * ```
  */
-export interface NumberLiteral extends Literal {
-  kind: 'NumberLiteral';
+export interface NumberExpression extends Expression {
+  kind: 'NumberExpression';
   value: number;
 }
 
-export interface Number extends Declaration {
-  kind: 'Number';
-}
-
 /**
+ * Represents a boolean literal expression.
  * @example
  * ```ts
  * true
  * ```
- * @example
- * ```ts
- * false
- * ```
  */
-export interface BooleanLiteral extends Literal {
-  kind: 'BooleanLiteral';
+export interface BooleanExpression extends Expression {
+  kind: 'BooleanExpression';
   value: boolean;
 }
 
-export interface Boolean extends Declaration {
-  kind: 'Boolean';
-}
-
 /**
+ * Represents a null literal expression.
  * @example
  * ```ts
- * string[]
- * ```
- * @example
- * ```ts
- * [1, 2, 3]
+ * null
  * ```
  */
-export interface Array extends Declaration {
-  kind: 'Array';
-  item: Any;
+export interface NullExpression extends Expression {
+  kind: 'NullExpression';
+  value: null;
 }
 
 /**
+ * Represents an undefined literal expression.
  * @example
  * ```ts
- * [string, number]
+ * undefined
  * ```
+ */
+export interface UndefinedExpression extends Expression {
+  kind: 'UndefinedExpression';
+  value: undefined;
+}
+
+/**
+ * Represents a BigInt literal expression.
+ * @example
+ * ```ts
+ * 9007199254740991n
+ * ```
+ */
+export interface BigIntExpression extends Expression {
+  kind: 'BigIntExpression';
+  value: bigint;
+}
+
+/**
+ * Represents a Regular Expression literal.
+ * @example
+ * ```ts
+ * /^[a-z]+$/i
+ * ```
+ */
+export interface RegExpExpression extends Expression {
+  kind: 'RegExpExpression';
+  pattern: string;
+  flags: string;
+}
+
+// ==========================================
+//
+// WithChildren
+// ==========================================
+
+
+/**
+ * Represents an array literal containing various expressions.
+ * @example
+ * ```ts
+ * [1, 2, "text"]
+ * ```
+ */
+export interface ArrayExpression<T extends ExpressionType = ExpressionType> extends Expression {
+  kind: 'ArrayExpression';
+  expressions: T[];
+}
+
+// `sd ${as} ${1}`
+export interface TemplateExpression extends Expression {
+  kind: 'TemplateExpression';
+  template: string;
+  expressions: ExpressionType[];
+}
+
+/**
+ * Represents a tuple expression.
+ * (Syntactically similar to ArrayExpression in JS/TS, but separated for custom language needs).
  * @example
  * ```ts
  * ['John', 25]
  * ```
  */
-export interface Tuple extends Declaration {
-  kind: 'Tuple';
-  items: Any[];
+export interface TupleExpression extends Expression {
+  kind: 'TupleExpression';
+  expressions: ExpressionType[];
 }
 
-
 /**
+ * Domain Specific Type: Represents an array/list where exactly one item is marked as selected.
  * @example
  * ```ts
- * [1, 2, selected 3, 4, 5]
+ * [1, 2, selected 3, 4]
  * ```
  */
-export interface Select extends Declaration {
-  kind: 'Select';
-  selected: number;
-  items: Any;
+export interface SelectExpression extends Expression {
+  kind: 'SelectExpression';
+  expressions: ExpressionType[];
+  selectedIndex: number;
 }
 
 /**
+ * Domain Specific Type: Represents an array/list where multiple items can be marked as selected.
  * @example
  * ```ts
- * [1, 2, selected1 3, 4, selected2 5]
+ *[1, selected 2, 3, selected 4]
  * ```
  */
-export interface MultiSelect extends Declaration {
-  kind: 'MultiSelect';
-  selected: number[];
-  items: Any;
+export interface MultiSelectExpression extends Expression {
+  kind: 'MultiSelectExpression';
+  expressions: ExpressionType[];
+  selectedIndexes: number[];
 }
 
+export interface IdentifierExpression extends Expression {
+  identifier: Identifier;
+}
+
+export type ExpressionType =
+  | StringExpression
+  | NumberExpression
+  | BooleanExpression
+  | NullExpression
+  | UndefinedExpression
+  | BigIntExpression
+  | RegExpExpression
+  | ArrayExpression
+  | TupleExpression
+  | SelectExpression
+  | TemplateExpression
+  | MultiSelectExpression
+  | IdentifierExpression
+  | DependencyExpression;
+
+
+// ==========================================
+// 3. TYPE NODES
+// How types are written in the code (Type Annotations)
+// ==========================================
+
+
 /**
+ * Built-in language primitives.
+ * Includes Domain Specific types (color, date, file, jsonString) reserved as keywords.
  * @example
  * ```ts
- * const myVar = "hello";
- * ```
- * @example
- * ```ts
- * let count: number;
+ * string
  * ```
  */
-export interface Variable extends Declaration {
-  kind: 'Variable';
-  key: string;
-  item: Any;
-  value: Literal | null;
+export interface KeywordType extends Type {
+  kind: 'KeywordType';
+  name: | 'string' | 'number' | 'symbol' | 'object' | 'boolean' | 'null' | 'undefined' | 'any' | 'never' | 'unknown' | 'bigint' | 'void' | 'color' | 'date' | 'file' | 'fileArray' | 'jsonString';
+}
+
+export interface StringType extends Type {
+  kind: 'StringType';
+  value: string
+}
+
+export interface NumberType extends Type {
+  kind: 'NumberType';
+  value: number
+}
+
+export interface BooleanType extends Type {
+  kind: 'BooleanType';
+  value: boolean
+}
+
+export interface NullType extends Type {
+  kind: 'NullType';
+  value: null
+}
+
+export interface UndefinedType extends Type {
+  kind: 'UndefinedType';
+  value: undefined
+}
+
+export interface BigIntType extends Type {
+  kind: 'BigIntType';
+  value: string
+}
+
+export interface RegExpType extends Type {
+  kind: 'RegExpType';
+  value: string
 }
 
 /**
+ * A reference to an existing type, class, or interface.
  * @example
  * ```ts
- * myProperty: string = "text"
- * ```
- * @example
- * ```ts
- * age: number
+ * UserType
  * ```
  */
-export interface Property extends Definition {
-  kind: 'Property';
-  item: Any;
-  value: Literal | null;
+export interface ReferenceType extends Type {
+  kind: 'ReferenceType';
+  identifier: TypeIdentifier;
 }
 
 /**
+ * A reference to a generic type with type arguments.
  * @example
  * ```ts
- * UserType // Referencing an existing type or variable
- * ```
- * @example
- * ```ts
- * domain.UserType // Referencing an existing type or variable
+ * Promise<string, number>
  * ```
  */
-export interface Reference extends Declaration {
-  kind: 'Reference';
-  key: string;
+export interface GenericReferenceType extends Type {
+  kind: 'GenericReferenceType';
+  identifier: TypeIdentifier;
+  types: TypeType[];
 }
 
 /**
+ * Represents an array type.
  * @example
  * ```ts
- * { name: string; age: number; }
- * ```
- * @example
- * ```ts
- * { id: 1 }
+ * string[]
  * ```
  */
-export interface Object extends Declaration {
-  kind: 'Object';
-  items: Property[];
+export interface ArrayType extends Type {
+  kind: 'ArrayType';
+  type: TypeType;
 }
 
 /**
+ * Represents a tuple type.
+ * @example
+ * ```ts
+ * [string, number]
+ * ```
+ */
+export interface TupleType extends Type {
+  kind: 'TupleType';
+  types: TypeType[];
+}
+
+/**
+ * Represents a property defined inside a type or interface.
+ * @example
+ * ```ts
+ * readonly id: string;
+ * ```
+ */
+export interface PropertyType extends Type {
+  kind: 'PropertyType';
+  identifier: Identifier;
+  type: TypeType;
+  description: string;
+}
+
+/**
+ * Represents an object literal type.
+ * @example
+ * ```ts
+ * { name: string; age: number }
+ * ```
+ */
+export interface ObjectType extends Type {
+  kind: 'ObjectType';
+  properties: PropertyType[];
+}
+
+/**
+ * Represents a union type.
  * @example
  * ```ts
  * string | number
  * ```
- * @example
- * ```ts
- * 'success' | 'error'
- * ```
  */
-export interface Union extends Declaration {
-  kind: 'Union';
-  item: Any[];
+export interface UnionType extends Type {
+  kind: 'UnionType';
+  types: TypeType[];
 }
 
 /**
+ * Represents an intersection type.
  * @example
  * ```ts
  * User & Timestamped
  * ```
- * @example
- * ```ts
- * { id: string } & { name: string }
- * ```
  */
-export interface Intersection extends Declaration {
-  kind: 'Intersection';
-  item: Any[];
+export interface IntersectionType extends Type {
+  kind: 'IntersectionType';
+  types: TypeType[];
 }
 
 /**
+ * Represents a template literal type.
+ * @example
+ * ```ts
+ * `user_${number}`
+ * ```
+ */
+export interface TemplateType extends Type {
+  kind: 'TemplateType';
+  template: string;
+  types: TypeType[];
+}
+
+/**
+ * Represents a mapped type.
+ * @example
+ * ```ts
+ * { [K in keyof User]: boolean }
+ * ```
+ */
+export interface MappedType extends Type {
+  kind: 'MappedType';
+  identifier: Identifier;
+  constraint: TypeType;
+  type: TypeType;
+}
+
+/**
+ * Represents a function type signature.
+ * @example
+ * ```ts
+ * (price: number, tax: number) => number
+ * ```
+ */
+export interface FunctionType extends Type {
+  kind: 'FunctionType';
+  parameters: PropertyType[];
+  return_: TypeType;
+}
+
+export type TypeType =
+  | KeywordType
+  | ReferenceType
+  | ArrayType
+  | TupleType
+  | ObjectType
+  | UnionType
+  | IntersectionType
+  | TemplateType
+  | MappedType
+  | FunctionType
+  | GenericReferenceType
+  | StringType
+  | NumberType
+  | BooleanType
+  | NullType
+  | UndefinedType
+  | BigIntType
+  | RegExpType
+  ;
+
+// ==========================================
+// 4. DECLARATIONS
+// Statements that create new entities in a scope
+// ==========================================
+
+
+/**
+ * Represents a variable declaration.
+ * @example
+ * ```ts
+ * var myVar;
+ * const myVar: string = "hello";
+ * ```
+ */
+export interface VariableDeclaration extends Declaration {
+  kind: 'VariableDeclaration';
+  isConst: boolean;
+  type: TypeType | null;
+  expression: ExpressionType | null;
+
+}
+
+/**
+ * Represents a property defined inside a type or interface.
+ * @example
+ * ```ts
+ * readonly id?: string;
+ * ```
+ */
+export interface PropertyDeclaration extends Declaration {
+  kind: 'PropertyDeclaration';
+  type: TypeType | null;
+  expression: ExpressionType | null;
+  isOptional: boolean;
+  isReadonly: boolean;
+
+}
+
+/**
+ * Represents an interface declaration.
+ * @example
+ * ```ts
+ * interface Admin extends User { role: string; }
+ * ```
+ */
+export interface InterfaceDeclaration extends Declaration {
+  kind: 'InterfaceDeclaration';
+  extends_: ReferenceType[];
+  properties: PropertyDeclaration[];
+
+}
+
+/**
+ * Represents a type alias declaration.
  * @example
  * ```ts
  * type MyCustomType = string | number;
  * ```
  */
-export interface Type extends Declaration {
-  kind: 'Type';
-  key: string;
-  value: Any;
+export interface TypeAliasDeclaration extends Declaration {
+  kind: 'TypeAliasDeclaration';
+  type: TypeType;
+
 }
 
 /**
+ * Represents an individual member of an enum.
  * @example
  * ```ts
- * Promise<string>
- * ```
- * @example
- * ```ts
- * Record<string, number>
+ * Up = 1
  * ```
  */
-export interface Generic extends Declaration {
-  kind: 'Generic';
-  base: Any;
-  items: Any[];
+export interface EnumPropertyDeclaration extends Declaration {
+  kind: 'EnumPropertyDeclaration';
+  expression: ExpressionType | null;
+
 }
 
 /**
+ * Represents an enum declaration.
  * @example
  * ```ts
- * void
+ * enum Direction { Up = 1, Down }
  * ```
  */
-export interface Void extends Declaration {
-  kind: 'Void';
+export interface EnumDeclaration extends Declaration {
+  kind: 'EnumDeclaration';
+  properties: EnumPropertyDeclaration[];
+
 }
 
 /**
+ * Represents a parameter in a function declaration or signature.
  * @example
  * ```ts
- * function calculateTotal {price: number, tax: number}: number { ... }
- * function calculateTotal [number, number]: number { ... } // 1,2
- * function calculateTotal number: number { ... } // 1
- * function calculateTotal(a:number, b:c, d:3, ...args): number { ... } // {a,b,d,0,1,2,3,4,5}
- * function calculateTotal : number { ... }
- * function calculateTotal : {} { ... }
- * function calculateTotal : [] { ... }
+ * ...args: string[]
  * ```
  */
-export interface Function extends Definition {
-  kind: 'Function';
-  parameter: Any;
-  return_: Any;
+export interface ParameterDeclaration extends Declaration {
+  kind: 'ParameterDeclaration';
+  type: TypeType | null;
+  expression: ExpressionType | null;
+  isRest: boolean;
 }
 
+export interface ReturnDeclaration extends Declaration {
+  kind: 'ReturnDeclaration';
+  type: TypeType | null;
+  identifier: { name: 'return', kind: 'Identifier' };
+}
+
+
 /**
- * /package/function.ts
+ * Represents a function declaration.
  * @example
  * ```ts
- * /**
- * * @example
- * * calculateTotal(); // => 1
- * *\/
- * @performance('O(n)')
- * function calculateTotal(price: number, tax: number): number { ... }
+ * function calculateTotal(price: number): number { ... }
  * ```
  */
-export interface PackageFunction extends Definition {
-  kind: 'PackageFunction';
-  name: string;
-  title: string;
-  parameter: Any;
-  return_: Any;
+export interface FunctionDeclaration extends Declaration {
+  kind: 'FunctionDeclaration';
+  parameters: ParameterDeclaration[];
+  return_: ReturnDeclaration;
+  isAsync: boolean;
+  isGenerator: boolean;
+  body: DeclarationType[];
   // other
-  functionPath: string[];
+  title: string;
+  // other
   performance: {
-    timeDataSizeComplexityFn: string;
-    memoryDataSizeComplexityFn: string;
-    history: []
+    timeDataSizeComplexityFn: string; memoryDataSizeComplexityFn: string; history: []
     // history: performance.PerformanceRecord[];
   };
   examples: {
-    code: string;
-    expected: string;
+    code: string; expected: string;
   }[];
 }
 
-/**
- * @example
- * ```ts
- * myFunction("john", 42, true) // The arguments passed into greet("john", 42, true)
- * ```
- */
-export interface FunctionArgument extends Declaration {
-  name: string;
-  kind: 'FunctionArgument';
-  arguments_: Literal[];
+// @razomy/something=1.0.0
+export interface DependencyExpression extends Expression {
+  kind: 'DependencyExpression';
+  identifier: Identifier;
+  version: string;
 }
 
 /**
+ * Represents a module or namespace declaration.
  * @example
  * ```ts
- * "#FF0000"
- * ```
- * @example
- * ```ts
- * "rgba(255, 255, 255, 0.5)"
+ * file.ts [...]
+ * index.ts [...export folder, export files]
  * ```
  */
-export interface Color extends Declaration {
-  kind: 'Color';
+export interface ModuleDeclaration extends Declaration {
+  kind: 'ModuleDeclaration';
+  body: DeclarationType[];
 }
 
-/**
- * @example
- * ```ts
- * new Date()
- * ```
- * @example
- * ```ts
- * "2023-10-25T12:00:00Z"
- * ```
- */
-export interface Date extends Declaration {
-  kind: 'Date';
+export interface PackageDeclaration extends Declaration {
+  kind: 'PackageDeclaration';
+  body: ModuleDeclaration;
+  version: string;
+  engine: DependencyExpression;
+  dependencies: DependencyExpression[];
 }
 
-/**
- * @example
- * ```ts
- * new File(["content"], "test.txt", { type: "text/plain" })
- * ```
- */
-export interface File extends Declaration {
-  kind: 'File';
-}
 
-/**
- * @example
- * ```ts
- * [file1, file2] // e.g., FileList from <input type="file" multiple />
- * ```
- */
-export interface FileArray extends Declaration {
-  kind: 'FileArray';
-}
+export type DeclarationType =
+  | VariableDeclaration
+  | InterfaceDeclaration
+  | TypeAliasDeclaration
+  | EnumDeclaration
+  | FunctionDeclaration
+  | ModuleDeclaration
+  | PackageDeclaration;
 
-/**
- * @example
- * ```ts
- * '{"name": "John", "age": 30}'
- * ```
- */
-export interface JsonString extends Declaration {
-  kind: 'JsonString';
-}
+// ----
 
-export interface Module extends Declaration {
-  kind: 'Module';
-  items: Any[];
-}
-
-export interface Unknown extends Declaration {
-  kind: 'Unknown';
-  tsSyntaxKey: string;
-}
-
-export type Any = String
-  | StringLiteral
-  | Number
-  | NumberLiteral
-  | Boolean
-  | BooleanLiteral
-  | Array
-  | Tuple
-  | Select
-  | MultiSelect
-  | Property
-  | Object
-  | Generic
-  | Type
-  | Union
-  | Intersection
-  | File
-  | Color
-  | Date
-  | Variable
-  | Module
-  | FileArray
-  | JsonString
-  | Function
-  | FunctionArgument
-  | PackageFunction
-  | Void
-  | Reference
-  | Unknown
-  ;
+export type AstLeafType = ExpressionType | TypeType | DeclarationType;

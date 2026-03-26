@@ -1,8 +1,8 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function getResult(jobId: string) {
   const results: (any | null)[] = [];
-  for await (const result of await client.messages.batches.results(jobId)) {
+  for await (const result of await CLIENT.messages.batches.results(jobId)) {
     switch (result.result.type) {
       case 'succeeded':
         console.log(`Success! ${result.custom_id}`);

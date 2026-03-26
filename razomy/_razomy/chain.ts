@@ -17,9 +17,9 @@ declare module '@razomy/pipes' {
 }
 
 // RUNTIME REGISTRATION
-export const registry = new pipes.ChainRegistry();
-registry.register((val) => string.isString(val), { ...string, ...stringCase });
-registry.register((val) => array.isArray(val), array);
-registry.register((val) => object.isObject(val), dict);
+export const REGISTRY = new pipes.ChainRegistry();
+REGISTRY.register((val) => string.isString(val), { ...string, ...stringCase });
+REGISTRY.register((val) => array.isArray(val), array);
+REGISTRY.register((val) => object.isObject(val), dict);
 
-export const fp = registry.fp.bind(registry);
+export const FP = REGISTRY.fp.bind(REGISTRY);

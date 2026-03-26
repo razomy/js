@@ -38,6 +38,7 @@
     "createReadmeAndSpecifications",
     "createReadme",
     "fileRenameVariablesAndPropsFunctions",
+    "functionToString",
     "getExportedClasses",
     "getExportedConstants",
     "getExportedFunctions",
@@ -45,7 +46,6 @@
     "getFilteredSourceFiles",
     "getFirstLevelElementsTextFromSource",
     "getNameAndExt",
-    "getPackageSpecifications",
     "isNameTaken",
     "iterateSourceFilesAndSave",
     "renameFileBasedOnFirstChild",
@@ -66,8 +66,7 @@
     "@razomy/fss": "*",
     "@razomy/languages-programming-fs": "*",
     "@razomy/refactor-fs": "*",
-    "@razomy/string-case": "*",
-    "@razomy/ts-ast": "*"
+    "@razomy/string-case": "*"
   },
   "publishConfig": {
     "access": "public"

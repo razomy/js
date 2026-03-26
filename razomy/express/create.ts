@@ -10,7 +10,7 @@ import * as express_ from '@razomy/express';
 // import helmet from 'helmet';
 
 export function create(ctx: express_.Ctx) {
-  ctx.logger = server.logger;
+  ctx.logger = server.LOGGER;
 
   const app = express();
   ctx.app = app;
@@ -55,7 +55,7 @@ export function create(ctx: express_.Ctx) {
   // app.use(express.static('public'));
 
   app.use((err, req, res, next) => {
-    server.logger.error(err.stack);
+    server.LOGGER.error(err.stack);
     res.status(500).send('System error!');
   });
   return ctx;

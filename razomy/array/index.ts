@@ -23,6 +23,7 @@ export { isArrayEqual } from './is_array_equal';
 export { isEmpty } from './is_empty';
 export { map } from './map';
 export { mapToDict } from './map_to_dict';
+export { mapToDictBy } from './map_to_dict_by';
 export { reduce } from './reduce';
 export { removeAllMut } from './remove_all_mut';
 export { removeAtMut } from './remove_at_mut';

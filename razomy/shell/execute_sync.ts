@@ -5,11 +5,11 @@ import * as abstracts from '@razomy/abstracts';
 export type StringCommand = string;
 export type ShellCommand = StringCommand;
 
-export const startDir = path.resolve(process.argv[1], '../');
+export const START_DIR = path.resolve(process.argv[1], '../');
 
-export function executeSync(shellCommand: ShellCommand, dirPath: abstracts.graphs.DirPathString = startDir) {
+export function executeSync(shellCommand: ShellCommand, dirPath: abstracts.graphs.DirPathString = START_DIR) {
   const path_ = path.resolve(dirPath);
-  console.info(startDir, shellCommand);
+  console.info(START_DIR, shellCommand);
   const result = execSync(shellCommand, {
     cwd: path_,
     encoding: 'utf-8',

@@ -8,8 +8,9 @@ import {
   PropertySignature,
   VariableDeclaration,
 } from 'ts-morph';
-import { toSafeName } from './to_safe_name';
-import { isNameTaken } from './is_name_taken';
+import {toSafeName} from './to_safe_name';
+import {isNameTaken} from './is_name_taken';
+import * as stringCase from "@razomy/string-case";
 
 export function renameNode(
   v:
@@ -70,7 +71,7 @@ function renameBindingElement(element: BindingElement) {
   // If we don't set the property name first, ts-morph might change it to `const { b } = obj`.
   const parent = element.getParent();
   if (Node.isObjectBindingPattern(parent) && !element.getPropertyNameNode()) {
-    const newName = toSafeName(name);
+    const newName = toSafeName(stringCase.camelCase(name));
     // Only mess with the structure if a rename is actually going to happen
     if (newName !== name && (isNameTaken(element as any, newName) || newName !== name)) {
       // Lock the source property name to the current name
@@ -85,7 +86,22 @@ function renameBindingElement(element: BindingElement) {
  * Shared logic to calculate safe name and apply rename
  */
 function performSafeRename(node: Node & { rename: (text: string) => void }, originalName: string) {
-  let newName = toSafeName(originalName);
+  function isExportableVariable() {
+    const isVariable = Node.isVariableDeclaration(node);
+    if (!isVariable) {
+      return false;
+    }
+    const parentStatement = node.getParent()?.getParent();
+    if (!parentStatement) {
+      return false;
+    }
+    return Node.isExportable(parentStatement) && parentStatement.isExported();
+  }
+
+  let newName = toSafeName(isExportableVariable()
+    ? stringCase.constantCase(originalName)
+    : stringCase.camelCase(originalName)
+  );
 
   if (originalName === newName) {
     return;

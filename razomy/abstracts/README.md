@@ -76,9 +76,9 @@ import * as abstracts from "https://esm.sh/@razomy/abstracts";
 // or
 import * as abstracts from "https://unpkg.com/@razomy/abstracts";
 // or
-import { functionName } from '@razomy/abstracts';
+import { arrays } from '@razomy/abstracts';
 // or
-razomy run @razomy/abstracts functionName
+razomy run @razomy/abstracts arrays DynamicArray
 ```
 
 ## 📑 Table of Contents
@@ -97,39 +97,61 @@ razomy run @razomy/abstracts functionName
 - [arrays.U8Array](#u8array)
 - [arrays.WithOffset](#withoffset)
 - [arrays.WithPrevOffset](#withprevoffset)
-- [ast.Any](#any)
-- [ast.Array](#array)
-- [ast.Boolean](#boolean)
-- [ast.BooleanLiteral](#booleanliteral)
-- [ast.Color](#color)
-- [ast.Date](#date)
+- [ast.ArrayExpression](#arrayexpression)
+- [ast.ArrayType](#arraytype)
+- [ast.AstLeafType](#astleaftype)
+- [ast.AstNode](#astnode)
+- [ast.AstType](#asttype)
+- [ast.BigIntExpression](#bigintexpression)
+- [ast.BigIntType](#biginttype)
+- [ast.BooleanExpression](#booleanexpression)
+- [ast.BooleanType](#booleantype)
 - [ast.Declaration](#declaration)
-- [ast.Definition](#definition)
-- [ast.File](#file)
-- [ast.FileArray](#filearray)
-- [ast.Function](#function)
-- [ast.FunctionArgument](#functionargument)
-- [ast.Generic](#generic)
-- [ast.Intersection](#intersection)
-- [ast.JsonString](#jsonstring)
-- [ast.Literal](#literal)
-- [ast.Module](#module)
-- [ast.MultiSelect](#multiselect)
-- [ast.Number](#number)
-- [ast.NumberLiteral](#numberliteral)
-- [ast.Object](#object)
-- [ast.PackageFunction](#packagefunction)
-- [ast.Property](#property)
-- [ast.Reference](#reference)
-- [ast.Select](#select)
-- [ast.String](#string)
-- [ast.StringLiteral](#stringliteral)
-- [ast.Tuple](#tuple)
+- [ast.DeclarationType](#declarationtype)
+- [ast.DependencyExpression](#dependencyexpression)
+- [ast.EnumDeclaration](#enumdeclaration)
+- [ast.EnumPropertyDeclaration](#enumpropertydeclaration)
+- [ast.Expression](#expression)
+- [ast.ExpressionType](#expressiontype)
+- [ast.FunctionDeclaration](#functiondeclaration)
+- [ast.FunctionType](#functiontype)
+- [ast.GenericReferenceType](#genericreferencetype)
+- [ast.Identifier](#identifier)
+- [ast.IdentifierExpression](#identifierexpression)
+- [ast.InterfaceDeclaration](#interfacedeclaration)
+- [ast.IntersectionType](#intersectiontype)
+- [ast.KeywordType](#keywordtype)
+- [ast.MappedType](#mappedtype)
+- [ast.ModuleDeclaration](#moduledeclaration)
+- [ast.MultiSelectExpression](#multiselectexpression)
+- [ast.NullExpression](#nullexpression)
+- [ast.NullType](#nulltype)
+- [ast.NumberExpression](#numberexpression)
+- [ast.NumberType](#numbertype)
+- [ast.ObjectType](#objecttype)
+- [ast.PackageDeclaration](#packagedeclaration)
+- [ast.ParameterDeclaration](#parameterdeclaration)
+- [ast.PropertyDeclaration](#propertydeclaration)
+- [ast.PropertyType](#propertytype)
+- [ast.ReferenceType](#referencetype)
+- [ast.RegExpExpression](#regexpexpression)
+- [ast.RegExpType](#regexptype)
+- [ast.ReturnDeclaration](#returndeclaration)
+- [ast.SelectExpression](#selectexpression)
+- [ast.StringExpression](#stringexpression)
+- [ast.StringType](#stringtype)
+- [ast.TemplateExpression](#templateexpression)
+- [ast.TemplateType](#templatetype)
+- [ast.TupleExpression](#tupleexpression)
+- [ast.TupleType](#tupletype)
 - [ast.Type](#type)
-- [ast.Union](#union)
-- [ast.Unknown](#unknown)
-- [ast.Variable](#variable)
-- [ast.Void](#void)
+- [ast.TypeAliasDeclaration](#typealiasdeclaration)
+- [ast.TypeIdentifier](#typeidentifier)
+- [ast.TypeType](#typetype)
+- [ast.UndefinedExpression](#undefinedexpression)
+- [ast.UndefinedType](#undefinedtype)
+- [ast.UnionType](#uniontype)
+- [ast.VariableDeclaration](#variabledeclaration)
 - [collections.AbstractDataType](#abstractdatatype)
 - [collections.Deque](#deque)
 - [collections.DictionaryMap](#dictionarymap)
@@ -186,22 +208,6 @@ razomy run @razomy/abstracts functionName
 - [graphs.WithFilePath](#withfilepath)
 - [graphs.WithPathString](#withpathstring)
 - [graphs.WithSourcePath](#withsourcepath)
-- [machines.IActor](#iactor)
-- [machines.IJobBid](#ijobbid)
-- [machines.IJobContract](#ijobcontract)
-- [machines.IJobMarket](#ijobmarket)
-- [machines.IMessage](#imessage)
-- [machines.IMessageBroker](#imessagebroker)
-- [machines.IPipeline](#ipipeline)
-- [machines.IPipelineStep](#ipipelinestep)
-- [machines.IStackMachine](#istackmachine)
-- [machines.IStateMachine](#istatemachine)
-- [machines.IStateNode](#istatenode)
-- [machines.ITask](#itask)
-- [machines.ITaskHandler](#itaskhandler)
-- [machines.IWorker](#iworker)
-- [machines.IWorkflowContext](#iworkflowcontext)
-- [machines.StackDirective](#stackdirective)
 - [meta.Alias](#alias)
 - [meta.Brand](#brand)
 - [meta.DataStructure](#datastructure)
@@ -268,355 +274,731 @@ razomy run @razomy/abstracts functionName
 
 #### DynamicArray
 
+`interface DynamicArray `
+
 #### F64Array
+
+`type F64Array = Float64Array`
 
 #### Index
 
+`type Index = number`
+
 #### Offset
+
+`type Offset = number`
 
 #### RawBuffer
 
+`type RawBuffer = ArrayBuffer | SharedArrayBuffer`
+
 #### SequenceArray
+
+`type SequenceArray = V[]`
 
 #### StaticArray
 
+`interface StaticArray `
+
 #### Tuple
+
+`type Tuple = T`
 
 #### TypedMemoryView
 
+`interface TypedMemoryView `
+
 #### U8Array
+
+`type U8Array = Uint8Array`
 
 #### WithOffset
 
+`interface WithOffset `
+
 #### WithPrevOffset
 
-#### Any
+`interface WithPrevOffset `
 
-#### Array
+#### ArrayExpression
 
-#### Boolean
+`interface ArrayExpression `
 
-#### BooleanLiteral
+#### ArrayType
 
-#### Color
+`interface ArrayType `
 
-#### Date
+#### AstLeafType
+
+`type AstLeafType = ExpressionType | TypeType | DeclarationType`
+
+#### AstNode
+
+`interface AstNode `
+
+#### AstType
+
+`type AstType = Expression | Identifier | TypeIdentifier | Type | Declaration`
+
+#### BigIntExpression
+
+`interface BigIntExpression `
+
+#### BigIntType
+
+`interface BigIntType `
+
+#### BooleanExpression
+
+`interface BooleanExpression `
+
+#### BooleanType
+
+`interface BooleanType `
 
 #### Declaration
 
-#### Definition
+`interface Declaration `
 
-#### File
+#### DeclarationType
 
-#### FileArray
+`type DeclarationType = VariableDeclaration | InterfaceDeclaration | TypeAliasDeclaration | EnumDeclaration | FunctionDeclaration | ModuleDeclaration | PackageDeclaration`
 
-#### Function
+#### DependencyExpression
 
-#### FunctionArgument
+`interface DependencyExpression `
 
-#### Generic
+#### EnumDeclaration
 
-#### Intersection
+`interface EnumDeclaration `
 
-#### JsonString
+#### EnumPropertyDeclaration
 
-#### Literal
+`interface EnumPropertyDeclaration `
 
-#### Module
+#### Expression
 
-#### MultiSelect
+`interface Expression `
 
-#### Number
+#### ExpressionType
 
-#### NumberLiteral
+`type ExpressionType = StringExpression | NumberExpression | BooleanExpression | NullExpression | UndefinedExpression | BigIntExpression | RegExpExpression | ArrayExpression | TupleExpression | SelectExpression | TemplateExpression | MultiSelectExpression | IdentifierExpression | DependencyExpression`
 
-#### Object
+#### FunctionDeclaration
 
-#### PackageFunction
+`interface FunctionDeclaration `
 
-#### Property
+#### FunctionType
 
-#### Reference
+`interface FunctionType `
 
-#### Select
+#### GenericReferenceType
 
-#### String
+`interface GenericReferenceType `
 
-#### StringLiteral
+#### Identifier
 
-#### Tuple
+`interface Identifier `
+
+#### IdentifierExpression
+
+`interface IdentifierExpression `
+
+#### InterfaceDeclaration
+
+`interface InterfaceDeclaration `
+
+#### IntersectionType
+
+`interface IntersectionType `
+
+#### KeywordType
+
+`interface KeywordType `
+
+#### MappedType
+
+`interface MappedType `
+
+#### ModuleDeclaration
+
+`interface ModuleDeclaration `
+
+#### MultiSelectExpression
+
+`interface MultiSelectExpression `
+
+#### NullExpression
+
+`interface NullExpression `
+
+#### NullType
+
+`interface NullType `
+
+#### NumberExpression
+
+`interface NumberExpression `
+
+#### NumberType
+
+`interface NumberType `
+
+#### ObjectType
+
+`interface ObjectType `
+
+#### PackageDeclaration
+
+`interface PackageDeclaration `
+
+#### ParameterDeclaration
+
+`interface ParameterDeclaration `
+
+#### PropertyDeclaration
+
+`interface PropertyDeclaration `
+
+#### PropertyType
+
+`interface PropertyType `
+
+#### ReferenceType
+
+`interface ReferenceType `
+
+#### RegExpExpression
+
+`interface RegExpExpression `
+
+#### RegExpType
+
+`interface RegExpType `
+
+#### ReturnDeclaration
+
+`interface ReturnDeclaration `
+
+#### SelectExpression
+
+`interface SelectExpression `
+
+#### StringExpression
+
+`interface StringExpression `
+
+#### StringType
+
+`interface StringType `
+
+#### TemplateExpression
+
+`interface TemplateExpression `
+
+#### TemplateType
+
+`interface TemplateType `
+
+#### TupleExpression
+
+`interface TupleExpression `
+
+#### TupleType
+
+`interface TupleType `
 
 #### Type
 
-#### Union
+`interface Type `
 
-#### Unknown
+#### TypeAliasDeclaration
 
-#### Variable
+`interface TypeAliasDeclaration `
 
-#### Void
+#### TypeIdentifier
+
+`interface TypeIdentifier `
+
+#### TypeType
+
+`type TypeType = KeywordType | ReferenceType | ArrayType | TupleType | ObjectType | UnionType | IntersectionType | TemplateType | MappedType | FunctionType | GenericReferenceType | StringType | NumberType | BooleanType | NullType | UndefinedType | BigIntType | RegExpType`
+
+#### UndefinedExpression
+
+`interface UndefinedExpression `
+
+#### UndefinedType
+
+`interface UndefinedType `
+
+#### UnionType
+
+`interface UnionType `
+
+#### VariableDeclaration
+
+`interface VariableDeclaration `
 
 #### AbstractDataType
 
+`interface AbstractDataType `
+
 #### Deque
+
+`interface Deque `
 
 #### DictionaryMap
 
+`interface DictionaryMap `
+
 #### DictionaryObject
+
+`type DictionaryObject = Record<K, V>`
 
 #### LRUCache
 
+`interface LRUCache `
+
 #### LRUCacheInternalMemory
+
+`interface LRUCacheInternalMemory `
 
 #### PriorityQueue
 
+`interface PriorityQueue `
+
 #### Queue
+
+`interface Queue `
 
 #### Set
 
+`interface Set `
+
 #### Stack
+
+`interface Stack `
 
 #### Value
 
+`type Value = T`
+
 #### WithDescription
+
+`interface WithDescription `
 
 #### WithId
 
+`interface WithId `
+
 #### WithKind
+
+`interface WithKind `
 
 #### WithName
 
+`interface WithName `
+
 #### WithType
+
+`interface WithType `
 
 #### WithValue
 
+`interface WithValue `
+
 #### Action
+
+`type Action = (value: Value<T>) => void`
 
 #### AsyncCallback
 
+`type AsyncCallback = () => Promise<void>`
+
 #### Callable
+
+`type Callable = (args: TArgs) => TReturn`
 
 #### Callback
 
+`type Callback = () => void`
+
 #### Constructable
+
+`type Constructable = any`
 
 #### Dispose
 
+`type Dispose = () => void`
+
 #### Future
+
+`type Future = Promise<T>`
 
 #### IObjectClone
 
+`interface IObjectClone `
+
 #### Stream
+
+`type Stream = AsyncIterable<T>`
 
 #### AbsolutePathString
 
+`type AbsolutePathString = Slug`
+
 #### BalancedTree
+
+`interface BalancedTree `
 
 #### BinaryTree
 
+`interface BinaryTree `
+
 #### BinaryTreeNode
+
+`interface BinaryTreeNode `
 
 #### BTree
 
+`interface BTree `
+
 #### DirPathString
+
+`type DirPathString = PathString`
 
 #### EdgeListGraph
 
+`interface EdgeListGraph `
+
 #### FilePathString
+
+`type FilePathString = PathString`
 
 #### Graph
 
+`interface Graph `
+
 #### GraphAdjacencyList
+
+`interface GraphAdjacencyList `
 
 #### GraphAdjacencyMatrix
 
+`interface GraphAdjacencyMatrix `
+
 #### Heap
+
+`interface Heap `
 
 #### Leaf
 
+`interface Leaf `
+
 #### Octree
+
+`interface Octree `
 
 #### OctreeNode
 
+`interface OctreeNode `
+
 #### PathString
+
+`type PathString = AbsolutePathString | RelativePathString`
 
 #### QuadTree
 
+`interface QuadTree `
+
 #### QuadTreeNode
+
+`interface QuadTreeNode `
 
 #### RelativePathString
 
+`type RelativePathString = Slug`
+
 #### SegmentTree
+
+`interface SegmentTree `
 
 #### Slug
 
+`type Slug = string`
+
 #### SourcePathString
+
+`type SourcePathString = DirPathString`
 
 #### Tree
 
+`interface Tree `
+
 #### TreeNode
+
+`interface TreeNode `
 
 #### Trie
 
+`interface Trie `
+
 #### WithDirPath
+
+`interface WithDirPath `
 
 #### WithFileName
 
+`interface WithFileName `
+
 #### WithFilePath
+
+`interface WithFilePath `
 
 #### WithPathString
 
+`interface WithPathString `
+
 #### WithSourcePath
 
-#### IActor
-
-#### IJobBid
-
-#### IJobContract
-
-#### IJobMarket
-
-#### IMessage
-
-#### IMessageBroker
-
-#### IPipeline
-
-#### IPipelineStep
-
-#### IStackMachine
-
-#### IStateMachine
-
-#### IStateNode
-
-#### ITask
-
-#### ITaskHandler
-
-#### IWorker
-
-#### IWorkflowContext
-
-#### StackDirective
+`interface WithSourcePath `
 
 #### Alias
 
+`type Alias = T`
+
 #### Brand
+
+`type Brand = K & { brand: T }`
 
 #### DataStructure
 
+`interface DataStructure `
+
 #### LateInit
+
+`type LateInit = T`
 
 #### LogicalTopology
 
+`type LogicalTopology = "1:1_Linear" | "1:N_Hierarchical" | "N:M_Network" | "Spatial_Grid"`
+
 #### MemoryLayout
+
+`type MemoryLayout = "Contiguous" | "Pointer" | "Hashed" | "Composite"`
 
 #### Codec
 
+`interface Codec `
+
 #### Decode
+
+`type Decode = (encoded: E) => D`
 
 #### Encode
 
+`type Encode = (data: D) => E`
+
 #### Execute
+
+`type Execute = Callable<I, O>`
 
 #### Gate
 
+`interface Gate `
+
 #### WithCreate
+
+`interface WithCreate `
 
 #### WithDecode
 
+`interface WithDecode `
+
 #### WithEncode
+
+`interface WithEncode `
 
 #### WithExecute
 
+`interface WithExecute `
+
 #### AllPrimitives
+
+`type AllPrimitives = StringPrimitive | NumberPrimitive | Bool | Null | Undefined | SymbolType`
 
 #### Bool
 
+`type Bool = boolean`
+
 #### Char
+
+`type Char = Brand<string, "Char">`
 
 #### EnumInt
 
+`type EnumInt = number`
+
 #### EnumString
+
+`type EnumString = string`
 
 #### F32
 
+`type F32 = Brand<number, "F32">`
+
 #### F64
+
+`type F64 = Brand<number, "F64">`
 
 #### FixedString
 
+`type FixedString = string`
+
 #### Float
+
+`type Float = F32`
 
 #### FloatPrimitive
 
+`type FloatPrimitive = F32 | F64 | Float`
+
 #### I128
+
+`type I128 = Brand<bigint, "I128">`
 
 #### I16
 
+`type I16 = Brand<number, "I16">`
+
 #### I32
+
+`type I32 = Brand<number, "I32">`
 
 #### I64
 
+`type I64 = Brand<bigint, "I64">`
+
 #### I8
+
+`type I8 = Brand<number, "I8">`
 
 #### InlineString
 
+`type InlineString = string`
+
 #### Int
+
+`type Int = I32`
 
 #### IntPrimitive
 
+`type IntPrimitive = I8 | I16 | I32 | I64 | I128 | Int`
+
 #### MultilineString
+
+`type MultilineString = string`
 
 #### Null
 
+`type Null = null`
+
 #### Number
+
+`type Number = number`
 
 #### NumberPrimitive
 
+`type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive`
+
 #### StringPrimitive
+
+`type StringPrimitive = Char | InlineString | MultilineString | FixedString`
 
 #### SymbolType
 
+`type SymbolType = symbol`
+
 #### U128
+
+`type U128 = Brand<bigint, "U128">`
 
 #### U16
 
+`type U16 = Brand<number, "U16">`
+
 #### U32
+
+`type U32 = Brand<number, "U32">`
 
 #### U64
 
+`type U64 = Brand<bigint, "U64">`
+
 #### U8
+
+`type U8 = Brand<number, "U8">`
 
 #### UIntPrimitive
 
+`type UIntPrimitive = U8 | U16 | U32 | U64 | U128`
+
 #### Undefined
+
+`type Undefined = undefined`
 
 #### BloomFilter
 
+`interface BloomFilter `
+
 #### HyperLogLog
+
+`interface HyperLogLog `
 
 #### ProbabilisticDataStructure
 
+`interface ProbabilisticDataStructure `
+
 #### DisjointSet
+
+`interface DisjointSet `
 
 #### DoublyLinkedList
 
+`interface DoublyLinkedList `
+
 #### DoublyLinkedListNode
+
+`interface DoublyLinkedListNode `
 
 #### HashTable
 
+`interface HashTable `
+
 #### LinkedList
+
+`interface LinkedList `
 
 #### LinkedListNode
 
+`interface LinkedListNode `
+
 #### Node
+
+`interface Node `
 
 #### RingBuffer
 
+`interface RingBuffer `
+
 #### SkipList
 
+`interface SkipList `
+
 #### SkipListNode
+
+`interface SkipListNode `
 
 ## 🕊️ Vision
 

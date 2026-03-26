@@ -1,9 +1,9 @@
 import { intervalToDuration } from 'date-fns';
 
-export const secondMs = 1000;
-export const minuteMs = secondMs * 60;
-export const hourMs = minuteMs * 60;
-export const dayMs = hourMs * 24;
+export const SECOND_MS = 1000;
+export const MINUTE_MS = SECOND_MS * 60;
+export const HOUR_MS = MINUTE_MS * 60;
+export const DAY_MS = HOUR_MS * 24;
 
 export function formatDuration(durationInMs: number): string {
   const duration = intervalToDuration({ start: 0, end: durationInMs });

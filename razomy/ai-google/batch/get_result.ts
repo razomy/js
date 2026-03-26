@@ -1,8 +1,8 @@
-import { client } from '../client';
+import { CLIENT } from '../client';
 
 export async function getResult(jobName: string) {
   try {
-    const batchJob = await client.batches.get({ name: jobName });
+    const batchJob = await CLIENT.batches.get({ name: jobName });
 
     if (batchJob.state === 'JOB_STATE_SUCCEEDED') {
       // console.log('Found completed batch:', batchJob.displayName);
@@ -14,7 +14,7 @@ export async function getResult(jobName: string) {
         console.log(`Results are in file: ${resultFileName}`);
 
         console.log('Downloading result file content...');
-        await client.files.download({ file: resultFileName, downloadPath: '.' });
+        await CLIENT.files.download({ file: resultFileName, downloadPath: '.' });
 
         // Process fileContentBuffer (Buffer) as needed
         // console.log(fileContentBuffer.toString('utf-8'));

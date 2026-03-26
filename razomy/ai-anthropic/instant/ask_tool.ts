@@ -1,4 +1,4 @@
-import {client, maxTokens, models} from '../client';
+import {CLIENT, MAX_TOKENS, MODELS} from '../client';
 import {specToTool} from "./spec_to_tool";
 import * as main from "@razomy/main";
 import * as fns from "@razomy/fns";
@@ -7,21 +7,21 @@ import * as ai from "@razomy/ai";
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstracts.ast.PackageFunction[]
-): Promise<string | abstracts.ast.FunctionArgument> {
+  toolSpec: abstracts.ast.FunctionDeclaration[]
+): Promise<string | abstracts.ast.PropertyDeclaration> {
 
   const payload: any = {
-    model: models.expensive,
-    max_tokens: maxTokens,
+    model: MODELS.expensive,
+    max_tokens: MAX_TOKENS,
     messages: texts.map(i => ({ content: i, role: 'user' })),
   };
   payload.tools = toolSpec.map(specToTool);
 
   if (toolSpec.length  === 1) {
-    payload.tool_choice = { type: "tool", name: toolSpec[0].name };
+    payload.tool_choice = { type: "tool", name: toolSpec[0].identifier.name };
   }
 
-  const result = await client.messages.create(payload);
+  const result = await CLIENT.messages.create(payload);
 
   const toolsRequest = result.content.filter((block: any) => block.type === 'tool_use');
 
@@ -31,7 +31,7 @@ export async function askTool(
   }
 
     const payloadArgs = toolsRequest.map((toolRequest,ix) => {
-      const tool = toolSpec.find((block) => block.name === toolRequest.type)!;
+      const tool = toolSpec.find((block) => block.identifier.name === toolRequest.type)!;
       // const arguments_ =
       // return ({
       //   name: key,
@@ -42,7 +42,7 @@ export async function askTool(
       // } as abstracts.ast.Property)
 
       return {
-        name: tool.name,
+        name: tool.identifier.name,
         arguments_: []
       }
     });

@@ -1,5 +1,5 @@
 import {calculate} from "./calculate";
-import {calculateWithParams} from "./calculateWithParams";
+import {calculateWithParams} from "./calculate_with_params";
 
 describe('maths', () => {
   describe('calculate', () => {

@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export const razomyResourcePlugin = {
+export const RAZOMY_RESOURCE_PLUGIN = {
   install(app, ctx: razomy) {
     ctx.resource = {
       store: new vueResource.RemoteResource(),
@@ -18,7 +18,7 @@ export const razomyResourcePlugin = {
     };
     ctx.resource.store.ctx = ctx;
     ctx.resource.socket.ctx = ctx;
-    app.directive('r_r_r', vueResource.reactiveDirective);
+    app.directive('r_r_r', vueResource.REACTIVE_DIRECTIVE);
     ctx.rG = ctx.resource.store.get.bind(ctx.resource.store);
   },
 };

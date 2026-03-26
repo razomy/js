@@ -1,19 +1,19 @@
-export const jsOutput = ['dist'];
-export const javaOutput = ['out'];
-export const pythonOutput = ['build'];
-export const nuxtOutput = ['.output'];
-export const rustOutput = ['target'];
-export const e2EOutput = ['test-results'];
-export const razomyOutput = ['_releases'];
-export const cOutput = ['cmake-build-debug'];
+export const JS_OUTPUT = ['dist'];
+export const JAVA_OUTPUT = ['out'];
+export const PYTHON_OUTPUT = ['build'];
+export const NUXT_OUTPUT = ['.output'];
+export const RUST_OUTPUT = ['target'];
+export const E2EOUTPUT = ['test-results'];
+export const RAZOMY_OUTPUT = ['_releases'];
+export const C_OUTPUT = ['cmake-build-debug'];
 
-export const knownOutput = [
-  ...jsOutput,
-  ...javaOutput,
-  ...pythonOutput,
-  ...rustOutput,
-  ...razomyOutput,
-  ...nuxtOutput,
-  ...cOutput,
-  ...e2EOutput,
+export const KNOWN_OUTPUT = [
+  ...JS_OUTPUT,
+  ...JAVA_OUTPUT,
+  ...PYTHON_OUTPUT,
+  ...RUST_OUTPUT,
+  ...RAZOMY_OUTPUT,
+  ...NUXT_OUTPUT,
+  ...C_OUTPUT,
+  ...E2EOUTPUT,
 ];

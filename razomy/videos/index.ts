@@ -1,1 +1,1 @@
-export { allVideoTargets, videoConversions, videoExtensions, videos } from './types';
+export { ALL_VIDEO_TARGETS, VIDEOS, VIDEO_CONVERSIONS, VIDEO_EXTENSIONS } from './types';

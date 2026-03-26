@@ -3,7 +3,7 @@ import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { execSync } from 'node:child_process';
 import { toVideoByFormat } from './to_video_by_format.node'; // <-- Убедись, что путь правильный
-import { videos } from './types'; // <-- Убедись, что путь правильный
+import { VIDEOS } from './types'; // <-- Убедись, что путь правильный
 
 const sourceVideo = path.join(__dirname, 'source_video.mp4');
 const outDir = path.join(__dirname, 'tmp');
@@ -40,7 +40,7 @@ describe('Video Converter: toVideoByFormat', () => {
   });
 
   // test.each генерирует отдельный независимый тест для каждого формата из массива
-  test.each(videos)('should convert MP4 to $fileExtensionType', async (fmt) => {
+  test.each(VIDEOS)('should convert MP4 to $fileExtensionType', async (fmt) => {
     const targetFormat = fmt.fileExtensionType;
 
     // Генерируем уникальные имена для временного файла и результата

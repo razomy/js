@@ -1,6 +1,6 @@
 import { JSDoc } from "ts-morph";
 
-export function extractExamples(doc: JSDoc, funcName: string) {
+export function parseExamples(doc: JSDoc, funcName: string) {
     const exampleTags = doc.getTags().filter((t) => t.getTagName() === 'example');
     if (exampleTags.length === 0) {
     throw new Error(`[Parse Error] Missing @example tags in '${funcName}'`);

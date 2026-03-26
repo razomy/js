@@ -1,4 +1,4 @@
-const MARKDOWN_CODE_BLOCK_PATTERN = /^\s*```[^\n]*\n([\s\S]*?)\n?```\s*$/;
+const markdownCodeBlockPattern = /^\s*```[^\n]*\n([\s\S]*?)\n?```\s*$/;
 
 /**
  * @summary Extract content from a Markdown code block.
@@ -21,7 +21,7 @@ const MARKDOWN_CODE_BLOCK_PATTERN = /^\s*```[^\n]*\n([\s\S]*?)\n?```\s*$/;
  * @complexity memory O(n)
  */
 export function unescapeMdCode(text: string): string {
-  const match = text.match(MARKDOWN_CODE_BLOCK_PATTERN);
+  const match = text.match(markdownCodeBlockPattern);
 
   return match ? match[1].trim() : text.trim();
 }

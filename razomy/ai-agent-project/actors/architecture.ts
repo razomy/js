@@ -1,7 +1,7 @@
 import {think} from "../think";
 import type {ActorContext, ArchitecturePlan} from "./director_company";
 import {parseJson} from "../parsers";
-import {toolRegistry} from "../tools/execute_tool_mut";
+import {TOOL_REGISTRY} from "../tools/execute_tool_mut";
 import * as ai from "@razomy/ai";
 
 export async function architecture(baPlan: string, parentCtx: ActorContext): Promise<ArchitecturePlan> {
@@ -18,7 +18,7 @@ export async function architecture(baPlan: string, parentCtx: ActorContext): Pro
      `),
     ai.uM(baPlan)
   ];
-  ctx.llm.tools = [toolRegistry.getDirFiles];
+  ctx.llm.tools = [TOOL_REGISTRY.getDirFiles];
 
   await think(ctx);
   const rawResponse = ctx.llm.messages[ctx.llm.messages.length - 1].content;

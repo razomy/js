@@ -5,7 +5,7 @@ export function getPath(obj, path: string) {
     return [];
   }
 
-  const closingBracketIndex = path.indexOf(key.assign);
+  const closingBracketIndex = path.indexOf(key.ASSIGN);
   const slug = path.substring(0, closingBracketIndex);
   const childNode = Object.keys(obj).find((key) => key === slug);
   if (!childNode) {

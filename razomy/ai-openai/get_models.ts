@@ -1,7 +1,7 @@
-import { openai } from './openai';
+import { OPENAI } from './openai';
 
 export async function getModels() {
-  const res = await openai.models.list();
+  const res = await OPENAI.models.list();
   console.log(res.data.map((i) => i.id));
   return res.data;
 }

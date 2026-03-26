@@ -1,11 +1,13 @@
 import {Project} from 'ts-morph';
 import * as fss from '@razomy/fss';
-import {getPackageSpecifications} from './get_package_specifications';
+import {getPackageDeclaration} from '../ts-ast/get_package_declaration';
 import {createReadme} from './create_readme';
+import path from "path";
 
 export async function createReadmeAndSpecifications(dirPath) {
   const project = new Project({tsConfigFilePath: '../../' + 'tsconfig.json'});
-  const files = getPackageSpecifications(project, dirPath);
+  project.addSourceFileAtPath(path.join(dirPath, "package.json"))
+  const files = getPackageDeclaration(project, dirPath);
 
   const str = `${JSON.stringify(files, null, 2)}`;
   fss.file.setSync(`${dirPath}/dist/specifications.json`, str);

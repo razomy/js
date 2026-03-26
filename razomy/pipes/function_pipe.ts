@@ -49,4 +49,4 @@ export function functionPipe<C, I>(...fns: Unary<any, any>[]): (initial: C) => I
   return (initial) => (pipeSync as any)(initial, ...fns);
 }
 
-export const fP = functionPipe;
+export const F_P = functionPipe;

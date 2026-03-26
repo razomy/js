@@ -1,6 +1,6 @@
 import * as fsFileFormat from '@razomy/fs-file-format';
 
-export const allAudioTargets = [
+export const ALL_AUDIO_TARGETS = [
   'mp3',
   'wav',
   'ogg',
@@ -16,44 +16,44 @@ export const allAudioTargets = [
   'voc',
 ];
 
-export const audioConversions = [...allAudioTargets];
+export const AUDIO_CONVERSIONS = [...ALL_AUDIO_TARGETS];
 
-export const audios: fsFileFormat.FileFormat[] = [
+export const AUDIOS: fsFileFormat.FileFormat[] = [
   // --- COMMON ---
   {
     fileExtensionType: 'mp3',
     mediaType: 'audio/mpeg',
     fileCategory: 'audio',
     iconUrl: 'mdi-music',
-    conversions: audioConversions.filter((c) => c !== 'mp3'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'mp3'),
   },
   {
     fileExtensionType: 'wav',
     mediaType: 'audio/wav',
     fileCategory: 'audio',
     iconUrl: 'mdi-waveform',
-    conversions: audioConversions.filter((c) => c !== 'wav'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'wav'),
   },
   {
     fileExtensionType: 'aac',
     mediaType: 'audio/aac',
     fileCategory: 'audio',
     iconUrl: 'mdi-music-note',
-    conversions: audioConversions.filter((c) => c !== 'aac'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'aac'),
   },
   {
     fileExtensionType: 'm4a',
     mediaType: 'audio/mp4',
     fileCategory: 'audio',
     iconUrl: 'mdi-apple',
-    conversions: audioConversions.filter((c) => c !== 'm4a'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'm4a'),
   },
   {
     fileExtensionType: 'ogg',
     mediaType: 'audio/ogg',
     fileCategory: 'audio',
     iconUrl: 'mdi-music-circle',
-    conversions: audioConversions.filter((c) => c !== 'ogg'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'ogg'),
   },
 
   // --- HIGH QUALITY / PRO ---
@@ -62,21 +62,21 @@ export const audios: fsFileFormat.FileFormat[] = [
     mediaType: 'audio/flac',
     fileCategory: 'audio',
     iconUrl: 'mdi-diamond-stone',
-    conversions: audioConversions.filter((c) => c !== 'flac'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'flac'),
   },
   {
     fileExtensionType: 'aiff',
     mediaType: 'audio/x-aiff',
     fileCategory: 'audio',
     iconUrl: 'mdi-music-clef-treble',
-    conversions: audioConversions.filter((c) => c !== 'aiff'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'aiff'),
   }, // Apple Lossless (старый)
   {
     fileExtensionType: 'alac',
     mediaType: 'audio/mp4',
     fileCategory: 'audio',
     iconUrl: 'mdi-apple',
-    conversions: audioConversions.filter((c) => c !== 'alac'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'alac'),
   }, // Apple Lossless
 
   // --- CINEMA / SURROUND ---
@@ -85,14 +85,14 @@ export const audios: fsFileFormat.FileFormat[] = [
     mediaType: 'audio/ac3',
     fileCategory: 'audio',
     iconUrl: 'mdi-speaker',
-    conversions: audioConversions.filter((c) => c !== 'ac3'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'ac3'),
   }, // Dolby Digital
   {
     fileExtensionType: 'dts',
     mediaType: 'audio/vnd.dts',
     fileCategory: 'audio',
     iconUrl: 'mdi-speaker-wireless',
-    conversions: audioConversions.filter((c) => c !== 'dts'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'dts'),
   }, // Digital Theater Systems
 
   // --- SPECIFIC ---
@@ -101,36 +101,36 @@ export const audios: fsFileFormat.FileFormat[] = [
     mediaType: 'audio/x-ms-wma',
     fileCategory: 'audio',
     iconUrl: 'mdi-windows',
-    conversions: audioConversions.filter((c) => c !== 'wma'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'wma'),
   },
   {
     fileExtensionType: 'opus',
     mediaType: 'audio/opus',
     fileCategory: 'audio',
     iconUrl: 'mdi-access-point',
-    conversions: audioConversions.filter((c) => c !== 'opus'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'opus'),
   },
   {
     fileExtensionType: 'amr',
     mediaType: 'audio/amr',
     fileCategory: 'audio',
     iconUrl: 'mdi-cellphone',
-    conversions: audioConversions.filter((c) => c !== 'amr'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'amr'),
   }, // Nokia / Voice Recorders
   {
     fileExtensionType: 'voc',
     mediaType: 'audio/x-voc',
     fileCategory: 'audio',
     iconUrl: 'mdi-gamepad-variant',
-    conversions: audioConversions.filter((c) => c !== 'voc'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'voc'),
   }, // Creative SoundBlaster (DOS Games)
   {
     fileExtensionType: 'au',
     mediaType: 'audio/basic',
     fileCategory: 'audio',
     iconUrl: 'mdi-server',
-    conversions: audioConversions.filter((c) => c !== 'au'),
+    conversions: AUDIO_CONVERSIONS.filter((c) => c !== 'au'),
   }, // Sun Microsystems / Java
 ] as const;
 
-export const audioExtensions = new Set(audios.map((i) => i.fileExtensionType));
+export const AUDIO_EXTENSIONS = new Set(AUDIOS.map((i) => i.fileExtensionType));

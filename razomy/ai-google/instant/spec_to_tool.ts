@@ -17,24 +17,24 @@ function mapType(type: string): Type {
 /**
  * Конвертирует вашу FunctionSpecification в формат Google Gemini
  */
-export function specToTool(spec: abstracts.ast.PackageFunction): FunctionDeclaration {
+export function specToTool(spec: abstracts.ast.FunctionDeclaration): FunctionDeclaration {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 
-  (spec.parameter  as abstracts.ast.Object).items.forEach(param => {
-    properties[param.name] = {
+  spec.parameters.forEach(param => {
+    properties[param.identifier.name] = {
       type: mapType(param.kind),
       description: param.description,
     };
 
     // Если нет дефолтного значения, считаем обязательным
-    if (param.value === null) {
+    if (param.expression === null) {
       required.push(param.kind);
     }
   });
 
   return {
-    name: spec.name,
+    name: spec.identifier.name,
     description: `${spec.description}.`,
     parameters: {
       type: Type.OBJECT,

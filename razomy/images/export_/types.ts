@@ -47,7 +47,7 @@ export type ReadAndWriteImageFileExtensionType =
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-export const imageWriteTargets: ReadAndWriteImageFileExtensionType[] = [
+export const IMAGE_WRITE_TARGETS: ReadAndWriteImageFileExtensionType[] = [
   'jpg',
   'jpeg',
   'png',
@@ -118,7 +118,7 @@ export type ImageFormat = fsFileFormat.FileFormat & {
 };
 
 function getConversions(currentExt: ReadAndWriteImageFileExtensionType): ReadAndWriteImageFileExtensionType[] {
-  return imageWriteTargets.filter((target) => target !== currentExt);
+  return IMAGE_WRITE_TARGETS.filter((target) => target !== currentExt);
 }
 
 /**
@@ -139,7 +139,7 @@ function getConversions(currentExt: ReadAndWriteImageFileExtensionType): ReadAnd
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-export const images: readonly ImageFormat[] = [
+export const IMAGES: readonly ImageFormat[] = [
   {
     fileExtensionType: 'jpg',
     mediaType: 'image/jpeg',
@@ -210,13 +210,13 @@ export const images: readonly ImageFormat[] = [
     mediaType: 'image/svg+xml',
     fileCategory: 'image',
     iconUrl: 'mdi-vector-curve',
-    conversions: imageWriteTargets,
+    conversions: IMAGE_WRITE_TARGETS,
   },
   {
     fileExtensionType: 'bmp',
     mediaType: 'image/bmp',
     fileCategory: 'image',
     iconUrl: 'mdi-image-filter-black-white',
-    conversions: imageWriteTargets,
+    conversions: IMAGE_WRITE_TARGETS,
   },
 ];

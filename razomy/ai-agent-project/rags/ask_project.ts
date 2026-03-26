@@ -1,12 +1,12 @@
 import * as vgd from "@razomy/vgd";
-import { performanceLogger } from "../logger";
+import { PERFORMANCE_LOGGER } from "../logger";
 
 export async function askProject(message: string) {
-    performanceLogger.tickAndLog('askProject');
+    PERFORMANCE_LOGGER.tickAndLog('askProject');
     const db = await vgd.create();
     await vgd.trySetUp(db);
     const result = await vgd.search(db, message);
     await db.close();
-    performanceLogger.tickAndLog('end askProject');
+    PERFORMANCE_LOGGER.tickAndLog('end askProject');
     return result;
 }
