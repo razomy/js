@@ -2,7 +2,7 @@ import * as pipes from '@razomy/pipes';
 import * as fns from '@razomy/fns';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';
 import * as tokenOffset from '@razomy/token-offset';
-import * as token from '@razomy/token';
+import * as token from '../abstracts/translators';
 import * as resultNull from '@razomy/result-null';
 import * as result from '@razomy/result';
 import * as context from '@razomy/context';

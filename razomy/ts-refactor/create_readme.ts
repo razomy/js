@@ -4,12 +4,12 @@ import * as abstracts from "@razomy/abstracts";
 import {functionToString} from "./function_to_string";
 
 type FlatDeclaration = {
-  decl: Exclude<abstracts.ast.DeclarationType, abstracts.ast.ModuleDeclaration | abstracts.ast.PackageDeclaration>;
+  decl: Exclude<abstracts.translators.DeclarationType, abstracts.translators.ModuleDeclaration | abstracts.translators.PackageDeclaration>;
   path: string[];
 };
 
 function collectDeclarations(
-  nodes: abstracts.ast.DeclarationType[],
+  nodes: abstracts.translators.DeclarationType[],
   currentPath: string[],
   result: FlatDeclaration[] = []
 ) {
@@ -23,7 +23,7 @@ function collectDeclarations(
   return result;
 }
 
-function docTypeToString(s:{ decl: abstracts.ast.DeclarationType, path: string[] }) {
+function docTypeToString(s:{ decl: abstracts.translators.DeclarationType, path: string[] }) {
   let declStr = '';
   if (s.decl.kind === 'InterfaceDeclaration') {
     declStr = `interface ${s.decl.identifier.name} ${s.decl.extends_.map(i=>i.identifier.name).join(', ')}`;
@@ -45,7 +45,7 @@ ${declStr ? `\`${declStr}\`\n\n` : ''}${description}
 `.trim();
 }
 
-function typeToString(type: abstracts.ast.TypeType | null): string {
+function typeToString(type: abstracts.translators.TypeType | null): string {
   if (!type) return 'any';
   switch (type.kind) {
     case 'KeywordType': return type.name;
@@ -73,7 +73,7 @@ function typeToString(type: abstracts.ast.TypeType | null): string {
   }
 }
 
-export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.ast.PackageDeclaration) {
+export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageDeclaration) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
 
   const allDecls = collectDeclarations(packageDeclaration.body.body, []);
@@ -162,7 +162,7 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   const typeSpecs = allDecls.filter(i => i.decl.kind !== 'FunctionDeclaration');
-  const functionSpecs = allDecls.filter(i => i.decl.kind === 'FunctionDeclaration') as { decl: abstracts.ast.FunctionDeclaration, path: string[] }[];
+  const functionSpecs = allDecls.filter(i => i.decl.kind === 'FunctionDeclaration') as { decl: abstracts.translators.FunctionDeclaration, path: string[] }[];
   const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
 
   const imports = `

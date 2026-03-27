@@ -1,4 +1,4 @@
-import * as token from '@razomy/token';
+import * as token from '../abstracts/translators';
 import type { WithOffset } from "../abstracts/arrays/offest";
 
 export interface WithDeep {

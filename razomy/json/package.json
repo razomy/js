@@ -57,7 +57,6 @@
     "@razomy/result": "*",
     "@razomy/result-null": "*",
     "@razomy/serializable": "*",
-    "@razomy/token": "*",
     "@razomy/token-offset": "*",
     "@razomy/token-offset-deep": "*"
   },

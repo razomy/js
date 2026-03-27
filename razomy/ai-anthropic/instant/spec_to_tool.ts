@@ -2,7 +2,7 @@ import * as abstracts from "@razomy/abstracts";
 
 // --- Helper to convert your Spec to Anthropic Tool Schema ---
 
-export function specToTool(spec: abstracts.ast.FunctionDeclaration) {
+export function specToTool(spec: abstracts.translators.FunctionDeclaration) {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 

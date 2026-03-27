@@ -7,8 +7,8 @@ import * as ai from "@razomy/ai";
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstracts.ast.FunctionDeclaration[]
-): Promise<string | abstracts.ast.PropertyDeclaration> {
+  toolSpec: abstracts.translators.FunctionDeclaration[]
+): Promise<string | abstracts.translators.PropertyDeclaration> {
 
   const payload: any = {
     model: MODELS.expensive,
@@ -39,7 +39,7 @@ export async function askTool(
       //   item: toolSpec[ix],
       //   // Your interface expects the value as a string. We stringify it if it's an object/number.
       //   value: typeof val === 'string' ? val : JSON.stringify(val),
-      // } as abstracts.ast.Property)
+      // } as abstracts.translators.Property)
 
       return {
         name: tool.identifier.name,

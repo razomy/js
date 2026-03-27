@@ -1,6 +1,6 @@
 import * as offset from '../abstracts/arrays/offest';
 import * as abstracts from '@razomy/abstracts';
-import * as token from '@razomy/token';
+import * as token from '../abstracts/translators';
 
 export function tryTokenValue<
   TToken extends token.WithTokenType<any> & abstracts.domains.WithValue<string>,

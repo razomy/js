@@ -2,14 +2,14 @@ import * as abstracts from "@razomy/abstracts";
 
 export function createPackageFunction(f:
   Omit<
-    Partial<abstracts.ast.FunctionDeclaration>,
+    Partial<abstracts.translators.FunctionDeclaration>,
     'parameters' | 'return_' | 'identifier'
   > & Partial<{
     name: string;
     parameter: Record<string, string>;
     return_: { description: string; type?: string };
   }>
-): abstracts.ast.FunctionDeclaration {
+): abstracts.translators.FunctionDeclaration {
   return {
     ...f,
     kind: 'FunctionDeclaration',

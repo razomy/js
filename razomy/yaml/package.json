@@ -45,7 +45,6 @@
     "@razomy/context": "*",
     "@razomy/pipes": "*",
     "@razomy/result-null": "*",
-    "@razomy/token": "*",
     "@razomy/token-offset": "*",
     "@razomy/token-offset-deep": "*"
   },

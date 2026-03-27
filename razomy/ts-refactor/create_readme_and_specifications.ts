@@ -1,6 +1,6 @@
 import {Project} from 'ts-morph';
 import * as fss from '@razomy/fss';
-import {getPackageDeclaration} from '../ts-ast/get_package_declaration';
+import {getPackageDeclaration} from '../ts-translators/ast/get_package_declaration';
 import {createReadme} from './create_readme';
 import path from "path";
 

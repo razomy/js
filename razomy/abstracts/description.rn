@@ -23,7 +23,7 @@ Contains all core reusable types and interfaces.
 **Application Layer** (Logic, Behavior, Domain)
 
 1. **domains** — Interfaces, data templates, domain responsibilities.
-1. **ast** — Programming language declarations.
+1. **translators** — Programming language declarations.
 2. **pattens** — Data transforming organizing templates.
 3. **machines** — стейт-машины, акторы (Actors), оркестраторы..
 4. ~~**events** — шины событий, Pub/Sub, реактивные потоки.~~

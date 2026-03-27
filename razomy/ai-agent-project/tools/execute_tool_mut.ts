@@ -40,7 +40,7 @@ export const TOOLS = [
     },
 
   })
-] satisfies abstracts.ast.FunctionDeclaration[];
+] satisfies abstracts.translators.FunctionDeclaration[];
 
 export const TOOL_REGISTRY = array.mapToDictBy(TOOLS, (i)=>i.identifier.name);
 

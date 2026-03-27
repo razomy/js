@@ -1,7 +1,7 @@
 import * as abstracts from "@razomy/abstracts";
 
 
-function typeToString(type: abstracts.ast.TypeType | null): string {
+function typeToString(type: abstracts.translators.TypeType | null): string {
   if (!type) return 'any';
   switch (type.kind) {
     case 'KeywordType': return type.name;
@@ -29,7 +29,7 @@ function typeToString(type: abstracts.ast.TypeType | null): string {
   }
 }
 
-export function functionToString(s: { decl: abstracts.ast.FunctionDeclaration, path: string[] }) {
+export function functionToString(s: { decl: abstracts.translators.FunctionDeclaration, path: string[] }) {
     const paramsStr = s.decl.parameters.map(p => {
             const rest = p.isRest ? '...' : '';
             const typeStr = typeToString(p.type);

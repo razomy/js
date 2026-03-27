@@ -39,7 +39,9 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/abstracts",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/something@1.0.0": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

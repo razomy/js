@@ -17,7 +17,7 @@ function mapType(type: string): Type {
 /**
  * Конвертирует вашу FunctionSpecification в формат Google Gemini
  */
-export function specToTool(spec: abstracts.ast.FunctionDeclaration): FunctionDeclaration {
+export function specToTool(spec: abstracts.translators.FunctionDeclaration): FunctionDeclaration {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 

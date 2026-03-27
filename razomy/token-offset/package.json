@@ -45,8 +45,7 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/context": "*",
-    "@razomy/result-null": "*",
-    "@razomy/token": "*"
+    "@razomy/result-null": "*"
   },
   "publishConfig": {
     "access": "public"

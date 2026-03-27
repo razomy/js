@@ -3,7 +3,7 @@ import * as abstracts from '@razomy/abstracts';
 import * as pipes from '@razomy/pipes';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';
 import * as tokenOffset from '@razomy/token-offset';
-import * as token from '@razomy/token';
+import * as token from '../abstracts/translators';
 import * as context from '@razomy/context';
 import * as resultNull from '@razomy/result-null';
 
