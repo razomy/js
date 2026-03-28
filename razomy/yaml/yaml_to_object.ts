@@ -3,12 +3,11 @@ import * as abstracts from '@razomy/abstracts';
 import * as pipes from '@razomy/pipes';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';
 import * as tokenOffset from '@razomy/token-offset';
-import * as token from '../abstracts/translators';
 import * as context from '@razomy/context';
 import * as resultNull from '@razomy/result-null';
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = token.WithTokenType<JsonTokenType> &
+export type JsonToken = abstracts.translators.WithTokenType<JsonTokenType> &
   abstracts.domains.WithValue<string> &
   tokenOffsetDeep.WithDeep;
 
@@ -35,7 +34,7 @@ export function yamlToObject(jsonTokens: JsonToken[]) {
     { stack: [] as number[] },
     { deep: 0 },
     { children: [] as any },
-  ) satisfies token.WithTokens<JsonToken> & offset.WithOffset;
+  ) satisfies abstracts.translators.WithTokens<JsonToken> & offset.WithOffset;
 
   const rs = {
     root: (c) => ifR(tokenOffsetDeep.tryScope(c, rs.line), mergeResults),

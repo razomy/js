@@ -2,7 +2,6 @@ import * as pipes from '@razomy/pipes';
 import * as fns from '@razomy/fns';
 import * as tokenOffsetDeep from '@razomy/token-offset-deep';
 import * as tokenOffset from '@razomy/token-offset';
-import * as token from '../abstracts/translators';
 import * as resultNull from '@razomy/result-null';
 import * as result from '@razomy/result';
 import * as context from '@razomy/context';
@@ -10,7 +9,7 @@ import * as abstracts from '@razomy/abstracts';
 import type { WithOffset } from "../abstracts/arrays/offest";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = token.WithTokenType<JsonTokenType> &
+export type JsonToken = abstracts.translators.WithTokenType<JsonTokenType> &
   abstracts.domains.WithValue<string> &
   tokenOffsetDeep.WithDeep;
 
@@ -20,7 +19,7 @@ export function jsonToObject(jsonTokens: JsonToken[]) {
     { offset: 0 },
     { stack: [] as number[] },
     { deep: 0 },
-  ) satisfies token.WithTokens<JsonToken> & WithOffset;
+  ) satisfies abstracts.translators.WithTokens<JsonToken> & WithOffset;
   const rs = {
     // Primitives
     key: (c) => pipes.tryP(c, fns.f(tokenOffset.tryTokenValue, 'value')),

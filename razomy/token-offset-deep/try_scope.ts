@@ -2,10 +2,10 @@ import type { WithStack } from './try_aligned';
 import * as context from '@razomy/context';
 import * as offset from '../abstracts/arrays/offest';
 import * as resultNull from '@razomy/result-null';
-import * as token from '../abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
 export function tryScope<
-  C extends context.Context & token.WithTokens<any> & offset.WithOffset & WithStack,
+  C extends context.Context & abstracts.translators.WithTokens<any> & offset.WithOffset & WithStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
 >(ctx: C, rule: resultNull.ResultNullFn<C, T>) {

@@ -1,11 +1,10 @@
 import * as offset from '../abstracts/arrays/offest';
 import * as abstracts from '@razomy/abstracts';
-import * as token from '../abstracts/translators';
 
 export function tryTokenValue<
-  TToken extends token.WithTokenType<any> & abstracts.domains.WithValue<string>,
+  TToken extends abstracts.translators.WithTokenType<any> & abstracts.domains.WithValue<string>,
   TTokenType extends TToken['tokenType'],
->(ctx: token.WithTokens<TToken> & offset.WithOffset, targetType: TTokenType) {
+>(ctx: abstracts.translators.WithTokens<TToken> & offset.WithOffset, targetType: TTokenType) {
   const t = ctx.tokens[ctx.offset];
   if (!t) return null;
 

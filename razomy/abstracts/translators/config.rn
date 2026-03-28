@@ -5,7 +5,8 @@ order
  token.ts
  concrete_ast.ts
  surface_ast.ts
- core_ast.ts
- semantic_ast.ts
+ hir_ast.ts
  validator.ts
  schema.ts
+ hir.ts
+ core_ast.ts

@@ -18,7 +18,6 @@ export interface TokenNode {
 
 /** Связующее звено для сообщений об ошибках и LSP (IDE) */
 export interface Span {
-  sourceId: number;//file_id
-  start: number;
-  end: number;
+  offset: number;
+  length: number;
 }

@@ -4,7 +4,7 @@
 // Ничего не знает про язык (type vs const).
 // ==========================================
 
-export type CstSyntaxKind = 'Token' | 'Whitespace' | 'Comment' | 'Error' | 'NodeGroup';
+import type {Span, Token} from "./token";
 
 /**
  * Base interface for all CST nodes.
@@ -22,9 +22,10 @@ export interface CstNode {
  *  `const`, `// comment`, or a space `" "`
  * ```
  */
-export interface CstToken extends CstNode {
-  kind: CstSyntaxKind;
-  text: string;
+export interface TokenCst extends CstNode {
+  kind: 'TokenCst';
+  token: Token;
+  span: Span;
 }
 
 /**
@@ -34,7 +35,7 @@ export interface CstToken extends CstNode {
  * `{ let a = 1; }` or `(a + b)`
  * ```
  */
-export interface CstNodeGroup extends CstNode {
-  kind: 'NodeGroup';
-  children: Array<CstNodeGroup | CstToken>;
+export interface GroupCst extends CstNode {
+  kind: 'GroupCst';
+  children: Array<TokenCst | GroupCst>;
 }

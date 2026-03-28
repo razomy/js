@@ -1,16 +1,17 @@
 ### Полный пайплайн компилятора (Архитектурный граф)
 
 toc
-↓ Source
-↓ Lexer
-↓ Parser (CST)
-↓ Desugar & Resolve
-↓ Surface AST
-↓ Lowering
-↓ Core AST
-↓ Type Checker & Normalizer
-↓ Optimizer (IR/SSA)
-↓ Code Gen
+↓ Source Code - raw text string
+↓ Lexer - stream of tokens (keywords, symbols)
+↓ Parser (CST) - concrete syntax tree (keeps exact formatting & punctuation)
+↓ Surface AST - logical tree structure (classes, loops, syntax sugar)
+↓ Desugar & Resolve - remove syntax sugar (e.g., for to while), bind string names to unique IDs
+↓ HIR (Semantic AST) - high-level graph of references via unique Symbol IDs (powers IDEs/LSP)
+↓ Type Checker & Normalizer - validate semantics, prove type safety, pre-calculate static values
+↓ Core AST - pure mathematical model (Calculus of Constructions: Lambdas, Records, no classes/interfaces)
+↓ Optimizer (Low-level IR / SSA) - hardware-agnostic optimizations (Static Single Assignment, dead code removal)
+↓ Code Generator - translate to target CPU instructions (x86, ARM) or bytecode (WASM, JVM)
+↓ Binary Code - final executable (0s and 1s)
 
 detailed
 1 text (source code)
