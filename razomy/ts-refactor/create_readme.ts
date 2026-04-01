@@ -1,82 +1,13 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from "@razomy/abstracts";
-import {functionToString} from "./function_to_string";
+import {functionToString, docTypeToString, type FlatDeclaration} from "../ts-translators/ast/string";
+import {collectDeclarations} from "../ts-translators/ast/string";
 
-type FlatDeclaration = {
-  decl: Exclude<abstracts.translators.DeclarationType, abstracts.translators.ModuleDeclaration | abstracts.translators.PackageDeclaration>;
-  path: string[];
-};
-
-function collectDeclarations(
-  nodes: abstracts.translators.DeclarationType[],
-  currentPath: string[],
-  result: FlatDeclaration[] = []
-) {
-  for (const node of nodes) {
-    if (node.kind === 'ModuleDeclaration') {
-      collectDeclarations(node.body, [...currentPath, node.identifier.name], result);
-    } else if (node.kind !== 'PackageDeclaration') {
-      result.push({ decl: node, path: [...currentPath, node.identifier.name] });
-    }
-  }
-  return result;
-}
-
-function docTypeToString(s:{ decl: abstracts.translators.DeclarationType, path: string[] }) {
-  let declStr = '';
-  if (s.decl.kind === 'InterfaceDeclaration') {
-    declStr = `interface ${s.decl.identifier.name} ${s.decl.extends_.map(i=>i.identifier.name).join(', ')}`;
-  } else if (s.decl.kind === 'TypeAliasDeclaration') {
-    declStr = `type ${s.decl.identifier.name} = ${typeToString(s.decl.type)}`;
-  } else if (s.decl.kind === 'VariableDeclaration') {
-    const keyword = s.decl.isConst ? 'const' : 'let';
-    declStr = `${keyword} ${s.decl.identifier.name}: ${typeToString(s.decl.type)}`;
-  } else if (s.decl.kind === 'EnumDeclaration') {
-    declStr = `enum ${s.decl.identifier.name}`;
-  }
-
-  const description = [(s.decl as any).title, s.decl.description].filter(Boolean).join('\n');
-
-  return `
-#### ${s.decl.identifier.name}
-
-${declStr ? `\`${declStr}\`\n\n` : ''}${description}
-`.trim();
-}
-
-function typeToString(type: abstracts.translators.TypeType | null): string {
-  if (!type) return 'any';
-  switch (type.kind) {
-    case 'KeywordType': return type.name;
-    case 'ReferenceType': return type.identifier.name;
-    case 'ArrayType': {
-      const inner = typeToString(type.type);
-      return inner.includes(' ') ? `(${inner})[]` : `${inner}[]`;
-    }
-    case 'TupleType': return `[${type.types.map(typeToString).join(', ')}]`;
-    case 'UnionType': return type.types.map(typeToString).join(' | ');
-    case 'IntersectionType': return type.types.map(typeToString).join(' & ');
-    case 'GenericReferenceType': return `${type.identifier.name}<${type.types.map(typeToString).join(', ')}>`;
-    case 'StringType': return `"${type.value}"`;
-    case 'NumberType': return `${type.value}`;
-    case 'BooleanType': return `${type.value}`;
-    case 'NullType': return 'null';
-    case 'UndefinedType': return 'undefined';
-    case 'BigIntType': return `${type.value}n`;
-    case 'RegExpType': return type.value;
-    case 'ObjectType': return `{ ${type.properties.map(p => `${p.identifier.name}: ${typeToString(p.type)}`).join(', ')} }`;
-    case 'FunctionType': return `(${type.parameters.map(p => `${p.identifier.name}: ${typeToString(p.type)}`).join(', ')}) => ${typeToString(type.return_)}`;
-    case 'TemplateType': return `\`${type.template}\``;
-    case 'MappedType': return `{ [${type.identifier.name} in ${typeToString(type.constraint)}]: ${typeToString(type.type)} }`;
-    default: return 'any';
-  }
-}
-
-export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageDeclaration) {
+export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
 
-  const allDecls = collectDeclarations(packageDeclaration.body.body, []);
+  const allDecls = collectDeclarations(packageDeclaration.body, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -161,8 +92,8 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const typeSpecs = allDecls.filter(i => i.decl.kind !== 'FunctionDeclaration');
-  const functionSpecs = allDecls.filter(i => i.decl.kind === 'FunctionDeclaration') as { decl: abstracts.translators.FunctionDeclaration, path: string[] }[];
+  const typeSpecs = allDecls.filter(i => i.node.kind !== 'FunctionBinding');
+  const functionSpecs = allDecls.filter(i => i.node.kind === 'FunctionBinding') as FlatDeclaration<abstracts.translators.FunctionBinding>[];
   const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
 
   const imports = `
@@ -184,8 +115,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${s.path.join('.')}](#${s.decl.identifier.name.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${s.path.join('.')}](#${s.decl.identifier.name.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${s.path.join('.')}](#${s.name.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${s.path.join('.')}](#${s.name.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 

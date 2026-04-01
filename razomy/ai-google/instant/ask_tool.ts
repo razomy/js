@@ -7,7 +7,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as ai from "@razomy/ai";
 
 export async function askTool(texts: string[],
-                               toolSpec: abstracts.translators.FunctionDeclaration[]
+                               toolSpec: abstracts.translators.FunctionBinding[]
 ) {
   const tools = [{
     functionDeclarations: toolSpec.map(specToTool)

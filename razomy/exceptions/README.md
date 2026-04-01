@@ -65,11 +65,13 @@ razomy run @razomy/exceptions assert
 
 #### CatchFn
 
+`type CatchFn = (throwable_fn: () => void) => void`
+
 ### Functions
 
 #### assert
 
-`assert(condition: boolean, message: string): void`
+`assert(condition: boolean, message: undefined): undefined`
 
 Asserts that a condition is true, throwing an error if it is false.
 Evaluates a boolean condition. If the condition evaluates to false, it throws an Error with the provided message. This function is typically used for invariant checking, validating input, and ensuring expected program states at runtime.

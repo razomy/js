@@ -56,10 +56,9 @@ razomy run @razomy/images advanced detectEdges
 - [advanced.ImageMetadata](#imagemetadata)
 - [advanced.ImageStats](#imagestats)
 - [export_.AllImageFileExtensionType](#allimagefileextensiontype)
-- [export_.getConversions](#getconversions)
+- [export_.IMAGE_WRITE_TARGETS](#image_write_targets)
 - [export_.ImageFormat](#imageformat)
-- [export_.images](#images)
-- [export_.imageWriteTargets](#imagewritetargets)
+- [export_.IMAGES](#images)
 - [export_.OnlyReadImageFileExtensionType](#onlyreadimagefileextensiontype)
 - [export_.ReadAndWriteImageFileExtensionType](#readandwriteimagefileextensiontype)
 - [Image](#image)
@@ -91,6 +90,7 @@ razomy run @razomy/images advanced detectEdges
 - [compositing.drawRectangle](#drawrectangle)
 - [compositing.join](#join)
 - [export_.avif](#avif)
+- [export_.getConversions](#getconversions)
 - [export_.gif](#gif)
 - [export_.heic](#heic)
 - [export_.ico](#ico)
@@ -123,29 +123,45 @@ razomy run @razomy/images advanced detectEdges
 
 #### ImageMetadata
 
+`interface ImageMetadata `
+
 #### ImageStats
+
+`interface ImageStats `
 
 #### AllImageFileExtensionType
 
-#### getConversions
+`type AllImageFileExtensionType = ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType`
+
+#### IMAGE_WRITE_TARGETS
+
+`const IMAGE_WRITE_TARGETS: ReadAndWriteImageFileExtensionType[]`
 
 #### ImageFormat
 
-#### images
+`type ImageFormat = fsFileFormat.FileFormat & { fileExtensionType: AllImageFileExtensionType }`
 
-#### imageWriteTargets
+#### IMAGES
+
+`const IMAGES: readonly ImageFormat[]`
 
 #### OnlyReadImageFileExtensionType
 
+`type OnlyReadImageFileExtensionType = "svg" | "bmp"`
+
 #### ReadAndWriteImageFileExtensionType
 
+`type ReadAndWriteImageFileExtensionType = "jpg" | "jpeg" | "png" | "webp" | "gif" | "avif" | "tiff" | "tif" | "ico" | "heif" | "heic"`
+
 #### Image
+
+`type Image = Vips.Image`
 
 ### Functions
 
 #### detectEdges
 
-`advanced.detectEdges(image: Image): Image`
+`advanced.detectEdges(image: images.Image): images.Image`
 
 Detect edges in an image.
 Applies the Canny edge detection algorithm to the provided image and returns a new image with the detected edges.
@@ -166,7 +182,7 @@ detectEdges(drawing); // Image
 
 #### dilate
 
-`advanced.dilate(image: Image, size: number): Image`
+`advanced.dilate(image: images.Image, size: number): images.Image`
 
 Apply morphological dilation to an image.
 Performs morphological dilation, which expands bright areas and reduces dark areas in the image. It is implemented using a maximum rank filter over a square neighborhood of the specified size.
@@ -187,7 +203,7 @@ dilate(image, 7); // Image
 
 #### erode
 
-`advanced.erode(image: Image, size: number): Image`
+`advanced.erode(image: images.Image, size: number): images.Image`
 
 Apply morphological erosion to an image.
 Performs morphological erosion on the image using a square structuring element of the given size. This operation expands dark regions and shrinks bright regions by applying a local minimum filter.
@@ -208,7 +224,7 @@ erode(image, 7); // Image // instance with kernel size 7
 
 #### getHistogram
 
-`advanced.getHistogram(image: Image): Image`
+`advanced.getHistogram(image: images.Image): images.Image`
 
 Get the histogram of an image.
 Computes the frequency distribution of pixel intensities for the provided image.
@@ -230,7 +246,7 @@ getHistogram(brightImage); // Image
 
 #### getMetadata
 
-`advanced.getMetadata(image: Image): ImageMetadata`
+`advanced.getMetadata(image: images.Image): ImageMetadata`
 
 Get metadata from an image.
 Extracts and returns the metadata properties of the provided image, such as dimensions, band count, color space, and alpha channel presence.
@@ -254,7 +270,7 @@ getMetadata(image); // { width: 128, height: 128, bands: 1, space: b-w, hasAlpha
 
 #### getStats
 
-`advanced.getStats(image: Image): ImageStats`
+`advanced.getStats(image: images.Image): ImageStats`
 
 Get basic statistics of an image.
 Retrieves the minimum, maximum, and average pixel values from the provided image instance.
@@ -275,7 +291,7 @@ getStats({ min: () => 50, max: () => 50, avg: () => 50 } as Image); // { min: 50
 
 #### threshold
 
-`advanced.threshold(image: Image, level: number): Image`
+`advanced.threshold(image: images.Image, level: number): images.Image`
 
 Apply threshold to an image.
 Applies a fixed-level threshold to the image, returning a new binary image where values greater than the given level are evaluated.
@@ -296,7 +312,7 @@ threshold(image, 200); // Image
 
 #### addAlpha
 
-`color.addAlpha(image: Image, alphaValue: number): Image`
+`color.addAlpha(image: images.Image, alphaValue: number): images.Image`
 
 Add an alpha channel to an image.
 Evaluates the number of bands in the given image and appends an alpha channel with the specified value if it does not already exist.
@@ -320,7 +336,7 @@ addAlpha(image); // returns the original image (already has alpha)
 
 #### brightness
 
-`color.brightness(image: Image, value: number): Image`
+`color.brightness(image: images.Image, value: number): images.Image`
 
 Adjust the brightness of an image.
 Multiplies the pixel values of the image by a specified multiplier to adjust its brightness. A value of 1.0 indicates no change, values greater than 1.0 increase brightness, and values between 0.0 and 1.0 decrease brightness.
@@ -341,7 +357,7 @@ brightness(image, 0.5); // Image (half brightness)
 
 #### contrast
 
-`color.contrast(image: Image, value: number): Image`
+`color.contrast(image: images.Image, value: number): images.Image`
 
 Adjust the contrast of an image.
 Applies a linear transformation to adjust the contrast of an image based on a multiplier value.
@@ -362,7 +378,7 @@ contrast(image, 1.0); // Image
 
 #### extractChannel
 
-`color.extractChannel(image: Image, channelIndex: number): Image`
+`color.extractChannel(image: images.Image, channelIndex: number): images.Image`
 
 Extract a specific color channel from an image.
 Extract a specific color channel from an image by its index.
@@ -383,7 +399,7 @@ extractChannel(image, 3); // Image
 
 #### gamma
 
-`color.gamma(image: Image, value: number): Image`
+`color.gamma(image: images.Image, value: number): images.Image`
 
 Applies gamma correction to an image.
 Adjusts the gamma level of an image using the specified exponent value.
@@ -404,7 +420,7 @@ gamma(image, 0.8); // Image
 
 #### grayscale
 
-`color.grayscale(image: Image): Image`
+`color.grayscale(image: images.Image): images.Image`
 
 Convert an image to grayscale.
 Changes the colourspace of the provided image to black and white.
@@ -428,7 +444,7 @@ const grayImage = grayscale(image); // Image
 
 #### invert
 
-`color.invert(image: Image): Image`
+`color.invert(image: images.Image): images.Image`
 
 Invert image colors.
 Invert the colors of the given image.
@@ -449,7 +465,7 @@ invert(decode('image.png')); // Image
 
 #### normalize
 
-`color.normalize(image: Image): Image`
+`color.normalize(image: images.Image): images.Image`
 
 Normalize image contrast.
 Automatically stretches the image histogram to improve overall contrast.
@@ -470,7 +486,7 @@ const result = normalize(sourceImage); // Image
 
 #### removeAlpha
 
-`color.removeAlpha(image: Image, background: ArrayConstant): Image`
+`color.removeAlpha(image: images.Image, background: Vips.ArrayConstant): images.Image`
 
 Remove the alpha channel from an image.
 Removes the alpha channel from an image by flattening it against a specified background color. Returns the original image if it has no alpha channel.
@@ -491,7 +507,7 @@ const result = removeAlpha(image, [255, 0, 0]); // Image
 
 #### sepia
 
-`color.sepia(image: Image): Image`
+`color.sepia(image: images.Image): images.Image`
 
 Apply a sepia filter to an image.
 Recombines the color channels of the image using a sepia transformation matrix to produce a vintage, warm-toned effect.
@@ -515,7 +531,7 @@ sepia(image); // Image
 
 #### toColorspace
 
-`color.toColorspace(image: Image, space: Interpretation): Image`
+`color.toColorspace(image: images.Image, space: Vips.Interpretation): images.Image`
 
 Convert an image to a specified colorspace.
 Transforms the color profile of the given image to the target colorspace interpretation using the libvips engine.
@@ -536,7 +552,7 @@ toColorspace(image, Vips.Interpretation.b_w); // Image
 
 #### blend
 
-`compositing.blend(base: Image, overlay: Image, mode: BlendMode, opacity: number): Image`
+`compositing.blend(base: images.Image, overlay: images.Image, mode: Vips.BlendMode, opacity: number): images.Image`
 
 Blends two images together using a specified blend mode and opacity.
 Composites an overlay image onto a base image. Supports various blend modes (e.g., over, multiply, screen) and adjustable overlay opacity. Memory is automatically managed for temporary intermediate images.
@@ -557,7 +573,7 @@ blend(baseImage, overlayImage, Vips.BlendMode.screen, 0.5); // Image
 
 #### composite
 
-`compositing.composite(baseImage: Image, overlayImage: Image, x: number, y: number, mode: BlendMode): Image`
+`compositing.composite(baseImage: images.Image, overlayImage: images.Image, x: number, y: number, mode: Vips.BlendMode): images.Image`
 
 Composite an overlay image onto a base image.
 Blends an overlay image onto a base image at the specified x and y coordinates using a given blend mode.
@@ -578,7 +594,7 @@ composite(baseImage, overlayImage, 50, 100, Vips.BlendMode.screen); // Image
 
 #### drawCircle
 
-`compositing.drawCircle(image: Image, x: number, y: number, radius: number, color: ArrayConstant): Image`
+`compositing.drawCircle(image: images.Image, x: number, y: number, radius: number, color: Vips.ArrayConstant): images.Image`
 
 Draw a filled circle on an image.
 Creates a copy of the provided image and draws a filled circle at the specified coordinates with the given radius and color.
@@ -599,7 +615,7 @@ drawCircle(image, 0, 0, 100, [0, 0, 255]); // Image
 
 #### drawLine
 
-`compositing.drawLine(image: Image, x1: number, y1: number, x2: number, y2: number, color: ArrayConstant): Image`
+`compositing.drawLine(image: images.Image, x1: number, y1: number, x2: number, y2: number, color: Vips.ArrayConstant): images.Image`
 
 Draw a line on an image.
 Creates a copy of the provided image and draws a line from the starting coordinates to the ending coordinates using the specified color.
@@ -620,7 +636,7 @@ drawLine(image, 0, 50, 100, 50, [0, 0, 255]); // Image
 
 #### drawRectangle
 
-`compositing.drawRectangle(image: Image, x: number, y: number, width: number, height: number, color: ArrayConstant): Image`
+`compositing.drawRectangle(image: images.Image, x: number, y: number, width: number, height: number, color: Vips.ArrayConstant): images.Image`
 
 Draw a filled rectangle on an image.
 Creates a copy of the given image and draws a filled rectangle at the specified coordinates with the provided dimensions and color.
@@ -641,7 +657,7 @@ drawRectangle(image, 5, 5, 100, 20, [0, 0, 255, 255]); // Image
 
 #### join
 
-`compositing.join(images: Image[], direction: Direction): Image`
+`compositing.join(images: images.Image[], direction: Vips.Direction): images.Image`
 
 Join an array of images into a single image.
 Concatenates multiple images either vertically or horizontally to create a single combined image.
@@ -662,7 +678,7 @@ join([image1, image2, image3], Vips.Direction.vertical); // Image
 
 #### avif
 
-`export_.avif(image: Image): ExtensionResult`
+`export_.avif(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export an image to AVIF format.
 Encodes the provided image instance into an AVIF formatted buffer utilizing AV1 compression.
@@ -681,9 +697,13 @@ const response = new Response(avif(image)); // Image
 const byteLength = avif(image).byteLength; // Image
 ```
 
+#### getConversions
+
+`export_.getConversions(currentExt: ReadAndWriteImageFileExtensionType): ReadAndWriteImageFileExtensionType[]`
+
 #### gif
 
-`export_.gif(image: Image): ExtensionResult`
+`export_.gif(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export image to GIF format buffer.
 Converts and saves the provided image as a GIF buffer with maximum metadata retention and high compression effort.
@@ -704,7 +724,7 @@ const base64 = Buffer.from(gif(image)).toString('base64'); // Image
 
 #### heic
 
-`export_.heic(image: Image, quality: number): ExtensionResult`
+`export_.heic(image: images.Image, quality: number): fsFileFormat.ExtensionResult`
 
 Export image to HEIC format.
 Converts and exports the given image to a HEIC format buffer using HEVC compression.
@@ -725,7 +745,7 @@ const buffer = heic(image, 100); // Image
 
 #### ico
 
-`export_.ico(image: Image): ExtensionResult`
+`export_.ico(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export image as a 256x256 PNG buffer for icons.
 Resizes the provided image to a strict 256x256 pixel dimension while retaining metadata, and encodes it into a PNG buffer suitable for use as an application icon or favicon.
@@ -749,7 +769,7 @@ res.send(buffer); // Image
 
 #### jpeg
 
-`export_.jpeg(image: Image): ExtensionResult`
+`export_.jpeg(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export an image to JPEG format.
 Exports the provided image into a JPEG buffer array using optimized coding, 80% quality, and no chroma subsampling.
@@ -770,7 +790,7 @@ const backgroundBuffer = jpeg(heroBanner); // Image
 
 #### png
 
-`export_.png(image: Image): ExtensionResult`
+`export_.png(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export image to PNG buffer.
 Exports the given image to a Uint8Array buffer formatted as a PNG. It uses a compression level of 8, palette optimization, and an effort level of 7 while keeping all foreign metadata.
@@ -791,7 +811,7 @@ await fs.promises.writeFile('output.png', png(image)); // Image
 
 #### tiff
 
-`export_.tiff(image: Image): ExtensionResult`
+`export_.tiff(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export an image to TIFF format buffer.
 Converts the provided image to a TIFF format and returns it as a buffer array. Applies LZW compression and keeps all metadata by default.
@@ -812,7 +832,7 @@ const response = new Response(tiff(image), { headers: { 'Content-Type': 'image/t
 
 #### webp
 
-`export_.webp(image: Image): ExtensionResult`
+`export_.webp(image: images.Image): fsFileFormat.ExtensionResult`
 
 Export image to WebP.
 Encodes and exports the given image into a WebP formatted buffer.
@@ -833,7 +853,7 @@ webp(image, { lossless: true, effort: 6 }); // Uint8Array( [ ... ] )
 
 #### blur
 
-`filter.blur(image: Image, radius: number): Image`
+`filter.blur(image: images.Image, radius: number): images.Image`
 
 Apply a Gaussian blur filter to an image.
 Apply a Gaussian blur filter to an image with the specified radius.
@@ -854,7 +874,7 @@ blur(image, 10); // Image
 
 #### emboss
 
-`filter.emboss(image: Image): Image`
+`filter.emboss(image: images.Image): images.Image`
 
 Apply an emboss filter to the image.
 Applies an emboss convolution matrix to the given image to create a 3D shadow effect.
@@ -875,7 +895,7 @@ emboss(Vips.Image.black(100, 100)); // Image
 
 #### median
 
-`filter.median(image: Image, size: number): Image`
+`filter.median(image: images.Image, size: number): images.Image`
 
 Apply a median filter to an image.
 Applies a median filter to the given image to reduce noise, using a square matrix of the specified size.
@@ -896,7 +916,7 @@ median(image, 7); // Image
 
 #### noise
 
-`filter.noise(image: Image, amount: number): Image`
+`filter.noise(image: images.Image, amount: number): images.Image`
 
 Add Gaussian noise to an image.
 Generates a Gaussian noise layer based on the specified amount and adds it to the provided image to simulate film grain or sensor noise.
@@ -917,7 +937,7 @@ const result = noise(image, 50); // Image
 
 #### pixelate
 
-`filter.pixelate(image: Image, pixelSize: number): Image`
+`filter.pixelate(image: images.Image, pixelSize: number): images.Image`
 
 Pixelate an image.
 Creates a pixelated version of the provided image by scaling it down and then scaling it back up. Intermediate resources are safely freed.
@@ -938,7 +958,7 @@ pixelate(image, 20); // Image
 
 #### sharpen
 
-`filter.sharpen(image: Image, intensity: number): Image`
+`filter.sharpen(image: images.Image, intensity: number): images.Image`
 
 Sharpen an image.
 Applies a sharpening filter to the provided image using the specified intensity.
@@ -959,7 +979,7 @@ sharpen(image, 0.5); // Image
 
 #### unsharpMask
 
-`filter.unsharpMask(image: Image, sigma: number, x1: number, y2: number): Image`
+`filter.unsharpMask(image: images.Image, sigma: number, x1: number, y2: number): images.Image`
 
 Apply an unsharp mask filter to an image.
 Enhances the sharpness of an image using an unsharp mask technique. The `sigma` parameter controls the radius of the blur, `x1` controls the sharpening strength, and `y2` sets the threshold level.
@@ -980,7 +1000,7 @@ unsharpMask(image, 1.5, 2.0, 15); // Image
 
 #### crop
 
-`geometry.crop(image: Image, x: number, y: number, width: number, height: number): Image`
+`geometry.crop(image: images.Image, x: number, y: number, width: number, height: number): images.Image`
 
 Crop an image to the specified dimensions.
 Crops the given image starting at coordinates (x, y) with the specified width and height.
@@ -1001,7 +1021,7 @@ crop(image, 10, 20, 30, 40); // Image
 
 #### extend
 
-`geometry.extend(image: Image, left: number, right: number, top: number, bottom: number, background: ArrayConstant): Image`
+`geometry.extend(image: images.Image, left: number, right: number, top: number, bottom: number, background: Vips.ArrayConstant): images.Image`
 
 Extend image boundaries.
 Extend image boundaries by adding padding to the left, right, top, and bottom with a specified background color.
@@ -1022,7 +1042,7 @@ extend(image, 5, 5, 0, 0, [255, 0, 0]); // Image
 
 #### flip
 
-`geometry.flip(image: Image, axis: "horizontal" | "vertical"): Image`
+`geometry.flip(image: images.Image, axis: 'horizontal' | 'vertical'): images.Image`
 
 Flip an image along a specified axis.
 Creates a new image that is flipped either horizontally or vertically based on the provided axis.
@@ -1043,7 +1063,7 @@ flip(flip(image, 'horizontal'), 'vertical'); // Image
 
 #### resize
 
-`geometry.resize(image: Image, width: number, height: number | undefined, mode: Kernel): Image`
+`geometry.resize(image: images.Image, width: number, height: number, mode: Vips.Kernel): images.Image`
 
 Resize an image to a specific width and optional height.
 Scales an image uniformly if only width is provided, or non-uniformly if both width and height are specified. Uses Lanczos3 interpolation by default.
@@ -1064,7 +1084,7 @@ resize(image, 1920, 1080, Vips.Kernel.nearest); // Image
 
 #### rotate
 
-`geometry.rotate(image: Image, angle: number, backgroundColor: ArrayConstant): Image`
+`geometry.rotate(image: images.Image, angle: number, backgroundColor: Vips.ArrayConstant): images.Image`
 
 Rotate an image.
 Rotates an image by a specified angle in degrees. The empty space created by the rotation is filled with the provided background color.
@@ -1085,7 +1105,7 @@ rotate(image, 180, [255, 0, 0, 255]); // Image
 
 #### smartCrop
 
-`geometry.smartCrop(image: Image, width: number, height: number, interesting: Interesting): Image`
+`geometry.smartCrop(image: images.Image, width: number, height: number, interesting: Vips.Interesting): images.Image`
 
 Smartly crop an image to the specified dimensions.
 Crops an image down to a given width and height by removing the least interesting areas based on the provided strategy.
@@ -1106,7 +1126,7 @@ smartCrop(image, 150, 150, Vips.Interesting.attention); // Image
 
 #### thumbnail
 
-`geometry.thumbnail(image: Image, width: number, height: number): Image`
+`geometry.thumbnail(image: images.Image, width: number, height: number): images.Image`
 
 Create an optimized thumbnail of an image.
 Generates a scaled-down version of the provided image using a fast, highly optimized reduction algorithm.
@@ -1127,7 +1147,7 @@ const preview = thumbnail(image, 1280, 720); // Image
 
 #### trim
 
-`geometry.trim(image: Image, threshold: number): Image`
+`geometry.trim(image: images.Image, threshold: number): images.Image`
 
 Trim an image by removing its monotonous background.
 Finds the trim boundaries of an image using a threshold and extracts the trimmed area.
@@ -1148,7 +1168,7 @@ trim(image, 5); // Image
 
 #### createBlank
 
-`import_.createBlank(width: number, height: number, background: number[]): Image`
+`import_.createBlank(width: number, height: number, background: number[]): Vips.Image`
 
 Create a blank image.
 Creates a new blank Vips image with specified dimensions and background color.
@@ -1169,7 +1189,7 @@ createBlank(500, 500, [255, 0, 0, 255]); // Image
 
 #### getFile
 
-`import_.getFile(inputPath: string): Promise<Image>`
+`async import_.getFile(inputPath: string): undefined`
 
 Convert an image file to a specified format.
 Reads an image from the provided file path.
@@ -1190,7 +1210,7 @@ await getFile('./photo.heic', 'avif'); // Image
 
 #### setFile
 
-`import_.setFile(buffer: Uint8Array<ArrayBufferLike>, fileExtensionType: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): ExtensionResult`
+`import_.setFile(buffer: Uint8Array, fileExtensionType: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType): fsFileFormat.ExtensionResult`
 
 Convert an image file to a specified format.
 Converts it to the requested format using wasm-vips. Returns a readable stream of the converted image along with its media type and extension metadata.

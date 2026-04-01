@@ -6,7 +6,7 @@ import * as resultNull from '@razomy/result-null';
 import * as result from '@razomy/result';
 import * as context from '@razomy/context';
 import * as abstracts from '@razomy/abstracts';
-import type { WithOffset } from "../abstracts/arrays/offest";
+import type { WithOffset } from "../abstracts/arrays";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = abstracts.translators.WithTokenType<JsonTokenType> &

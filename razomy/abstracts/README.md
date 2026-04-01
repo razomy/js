@@ -45,7 +45,7 @@ Contains all core reusable types and interfaces.
 **Application Layer** (Logic, Behavior, Domain)
 
 1. **domains** — Interfaces, data templates, domain responsibilities.
-1. **ast** — Programming language declarations.
+1. **translators** — Programming language declarations.
 2. **pattens** — Data transforming organizing templates.
 3. **machines** — стейт-машины, акторы (Actors), оркестраторы..
 4. ~~**events** — шины событий, Pub/Sub, реактивные потоки.~~
@@ -97,61 +97,6 @@ razomy run @razomy/abstracts arrays DynamicArray
 - [arrays.U8Array](#u8array)
 - [arrays.WithOffset](#withoffset)
 - [arrays.WithPrevOffset](#withprevoffset)
-- [translators.ArrayExpression](#arrayexpression)
-- [translators.ArrayType](#arraytype)
-- [translators.AstLeafType](#astleaftype)
-- [translators.AstNode](#astnode)
-- [translators.AstType](#asttype)
-- [translators.BigIntExpression](#bigintexpression)
-- [translators.BigIntType](#biginttype)
-- [translators.BooleanExpression](#booleanexpression)
-- [translators.BooleanType](#booleantype)
-- [translators.Declaration](#declaration)
-- [translators.DeclarationType](#declarationtype)
-- [translators.DependencyExpression](#dependencyexpression)
-- [translators.EnumDeclaration](#enumdeclaration)
-- [translators.EnumPropertyDeclaration](#enumpropertydeclaration)
-- [translators.Expression](#expression)
-- [translators.ExpressionType](#expressiontype)
-- [translators.FunctionDeclaration](#functiondeclaration)
-- [translators.FunctionType](#functiontype)
-- [translators.GenericReferenceType](#genericreferencetype)
-- [translators.Identifier](#identifier)
-- [translators.IdentifierExpression](#identifierexpression)
-- [translators.InterfaceDeclaration](#interfacedeclaration)
-- [translators.IntersectionType](#intersectiontype)
-- [translators.KeywordType](#keywordtype)
-- [translators.MappedType](#mappedtype)
-- [translators.ModuleDeclaration](#moduledeclaration)
-- [translators.MultiSelectExpression](#multiselectexpression)
-- [translators.NullExpression](#nullexpression)
-- [translators.NullType](#nulltype)
-- [translators.NumberExpression](#numberexpression)
-- [translators.NumberType](#numbertype)
-- [translators.ObjectType](#objecttype)
-- [translators.PackageDeclaration](#packagedeclaration)
-- [translators.ParameterDeclaration](#parameterdeclaration)
-- [translators.PropertyDeclaration](#propertydeclaration)
-- [translators.PropertyType](#propertytype)
-- [translators.ReferenceType](#referencetype)
-- [translators.RegExpExpression](#regexpexpression)
-- [translators.RegExpType](#regexptype)
-- [translators.ReturnDeclaration](#returndeclaration)
-- [translators.SelectExpression](#selectexpression)
-- [translators.StringExpression](#stringexpression)
-- [translators.StringType](#stringtype)
-- [translators.TemplateExpression](#templateexpression)
-- [translators.TemplateType](#templatetype)
-- [translators.TupleExpression](#tupleexpression)
-- [translators.TupleType](#tupletype)
-- [translators.Type](#type)
-- [translators.TypeAliasDeclaration](#typealiasdeclaration)
-- [translators.TypeIdentifier](#typeidentifier)
-- [translators.TypeType](#typetype)
-- [translators.UndefinedExpression](#undefinedexpression)
-- [translators.UndefinedType](#undefinedtype)
-- [translators.UnionType](#uniontype)
-- [translators.VariableDeclaration](#variabledeclaration)
 - [collections.AbstractDataType](#abstractdatatype)
 - [collections.Deque](#deque)
 - [collections.DictionaryMap](#dictionarymap)
@@ -267,6 +212,118 @@ razomy run @razomy/abstracts arrays DynamicArray
 - [structures.RingBuffer](#ringbuffer)
 - [structures.SkipList](#skiplist)
 - [structures.SkipListNode](#skiplistnode)
+- [translators.AliasTypeBinding](#aliastypebinding)
+- [translators.ArrayExpression](#arrayexpression)
+- [translators.ArrayType](#arraytype)
+- [translators.AssignBinding](#assignbinding)
+- [translators.AstDataType](#astdatatype)
+- [translators.AstLeafType](#astleaftype)
+- [translators.AstNode](#astnode)
+- [translators.AstType](#asttype)
+- [translators.AstTypeType](#asttypetype)
+- [translators.BigIntExpression](#bigintexpression)
+- [translators.BigIntType](#biginttype)
+- [translators.BinaryExpression](#binaryexpression)
+- [translators.Binding](#binding)
+- [translators.BindingType](#bindingtype)
+- [translators.BlockStatement](#blockstatement)
+- [translators.BooleanExpression](#booleanexpression)
+- [translators.BooleanType](#booleantype)
+- [translators.BreakStatement](#breakstatement)
+- [translators.CallBinding](#callbinding)
+- [translators.CatchStatement](#catchstatement)
+- [translators.ClassBinding](#classbinding)
+- [translators.ContinueStatement](#continuestatement)
+- [translators.CoreApplyTerm](#coreapplyterm)
+- [translators.CoreIntrinsicTerm](#coreintrinsicterm)
+- [translators.CoreLambdaTerm](#corelambdaterm)
+- [translators.CoreLetTerm](#coreletterm)
+- [translators.CoreMatchTerm](#corematchterm)
+- [translators.CoreNode](#corenode)
+- [translators.CorePiTerm](#corepiterm)
+- [translators.CoreProjectTerm](#coreprojectterm)
+- [translators.CoreRecordTerm](#corerecordterm)
+- [translators.CoreTerm](#coreterm)
+- [translators.CoreUniverseTerm](#coreuniverseterm)
+- [translators.CoreVariableTerm](#corevariableterm)
+- [translators.CstNode](#cstnode)
+- [translators.DependencyBinding](#dependencybinding)
+- [translators.EnumBinding](#enumbinding)
+- [translators.EnumPropertyBinding](#enumpropertybinding)
+- [translators.Expression](#expression)
+- [translators.ExpressionType](#expressiontype)
+- [translators.ForOfStatement](#forofstatement)
+- [translators.ForStatement](#forstatement)
+- [translators.FunctionBinding](#functionbinding)
+- [translators.FunctionType](#functiontype)
+- [translators.GenericReferenceType](#genericreferencetype)
+- [translators.GroupCst](#groupcst)
+- [translators.HirBinding](#hirbinding)
+- [translators.HirCall](#hircall)
+- [translators.HirExpression](#hirexpression)
+- [translators.HirFunction](#hirfunction)
+- [translators.HirNode](#hirnode)
+- [translators.HirReference](#hirreference)
+- [translators.Identifier](#identifier)
+- [translators.IfExpression](#ifexpression)
+- [translators.IfStatement](#ifstatement)
+- [translators.InterfaceTypeBinding](#interfacetypebinding)
+- [translators.IntersectionType](#intersectiontype)
+- [translators.KeywordType](#keywordtype)
+- [translators.MappedType](#mappedtype)
+- [translators.MatchExpression](#matchexpression)
+- [translators.MatchStatement](#matchstatement)
+- [translators.ModuleBinding](#modulebinding)
+- [translators.MultiSelectExpression](#multiselectexpression)
+- [translators.NullExpression](#nullexpression)
+- [translators.NullType](#nulltype)
+- [translators.NumberExpression](#numberexpression)
+- [translators.NumberType](#numbertype)
+- [translators.ObjectExpression](#objectexpression)
+- [translators.ObjectType](#objecttype)
+- [translators.PackageBinding](#packagebinding)
+- [translators.ParameterBinding](#parameterbinding)
+- [translators.PropertyBinding](#propertybinding)
+- [translators.PropertyExpression](#propertyexpression)
+- [translators.PropertyType](#propertytype)
+- [translators.ReferenceExpression](#referenceexpression)
+- [translators.ReferenceType](#referencetype)
+- [translators.RegExpExpression](#regexpexpression)
+- [translators.RegExpType](#regexptype)
+- [translators.ReturnStatement](#returnstatement)
+- [translators.SelectExpression](#selectexpression)
+- [translators.Span](#span)
+- [translators.Statement](#statement)
+- [translators.StatementType](#statementtype)
+- [translators.StringExpression](#stringexpression)
+- [translators.StringType](#stringtype)
+- [translators.SymbolId](#symbolid)
+- [translators.TemplateExpression](#templateexpression)
+- [translators.TemplateType](#templatetype)
+- [translators.ThrowStatement](#throwstatement)
+- [translators.Token](#token)
+- [translators.TokenCst](#tokencst)
+- [translators.TokenNode](#tokennode)
+- [translators.TryStatement](#trystatement)
+- [translators.TupleExpression](#tupleexpression)
+- [translators.TupleType](#tupletype)
+- [translators.Type](#type)
+- [translators.TypeBinding](#typebinding)
+- [translators.TypeBindingType](#typebindingtype)
+- [translators.TypeChecker](#typechecker)
+- [translators.TypeIdentifier](#typeidentifier)
+- [translators.TypeStatement](#typestatement)
+- [translators.TypeType](#typetype)
+- [translators.UnaryExpression](#unaryexpression)
+- [translators.UndefinedExpression](#undefinedexpression)
+- [translators.UndefinedType](#undefinedtype)
+- [translators.UnionType](#uniontype)
+- [translators.VariableBinding](#variablebinding)
+- [translators.VariableStatement](#variablestatement)
+- [translators.WhileStatement](#whilestatement)
+- [translators.WithToken](#withtoken)
+- [translators.WithTokens](#withtokens)
+- [translators.WithTokenType](#withtokentype)
 
 ## 📚 Documentation
 
@@ -319,226 +376,6 @@ razomy run @razomy/abstracts arrays DynamicArray
 #### WithPrevOffset
 
 `interface WithPrevOffset `
-
-#### ArrayExpression
-
-`interface ArrayExpression `
-
-#### ArrayType
-
-`interface ArrayType `
-
-#### AstLeafType
-
-`type AstLeafType = ExpressionType | TypeType | DeclarationType`
-
-#### AstNode
-
-`interface AstNode `
-
-#### AstType
-
-`type AstType = Expression | Identifier | TypeIdentifier | Type | Declaration`
-
-#### BigIntExpression
-
-`interface BigIntExpression `
-
-#### BigIntType
-
-`interface BigIntType `
-
-#### BooleanExpression
-
-`interface BooleanExpression `
-
-#### BooleanType
-
-`interface BooleanType `
-
-#### Declaration
-
-`interface Declaration `
-
-#### DeclarationType
-
-`type DeclarationType = VariableDeclaration | InterfaceDeclaration | TypeAliasDeclaration | EnumDeclaration | FunctionDeclaration | ModuleDeclaration | PackageDeclaration`
-
-#### DependencyExpression
-
-`interface DependencyExpression `
-
-#### EnumDeclaration
-
-`interface EnumDeclaration `
-
-#### EnumPropertyDeclaration
-
-`interface EnumPropertyDeclaration `
-
-#### Expression
-
-`interface Expression `
-
-#### ExpressionType
-
-`type ExpressionType = StringExpression | NumberExpression | BooleanExpression | NullExpression | UndefinedExpression | BigIntExpression | RegExpExpression | ArrayExpression | TupleExpression | SelectExpression | TemplateExpression | MultiSelectExpression | IdentifierExpression | DependencyExpression`
-
-#### FunctionDeclaration
-
-`interface FunctionDeclaration `
-
-#### FunctionType
-
-`interface FunctionType `
-
-#### GenericReferenceType
-
-`interface GenericReferenceType `
-
-#### Identifier
-
-`interface Identifier `
-
-#### IdentifierExpression
-
-`interface IdentifierExpression `
-
-#### InterfaceDeclaration
-
-`interface InterfaceDeclaration `
-
-#### IntersectionType
-
-`interface IntersectionType `
-
-#### KeywordType
-
-`interface KeywordType `
-
-#### MappedType
-
-`interface MappedType `
-
-#### ModuleDeclaration
-
-`interface ModuleDeclaration `
-
-#### MultiSelectExpression
-
-`interface MultiSelectExpression `
-
-#### NullExpression
-
-`interface NullExpression `
-
-#### NullType
-
-`interface NullType `
-
-#### NumberExpression
-
-`interface NumberExpression `
-
-#### NumberType
-
-`interface NumberType `
-
-#### ObjectType
-
-`interface ObjectType `
-
-#### PackageDeclaration
-
-`interface PackageDeclaration `
-
-#### ParameterDeclaration
-
-`interface ParameterDeclaration `
-
-#### PropertyDeclaration
-
-`interface PropertyDeclaration `
-
-#### PropertyType
-
-`interface PropertyType `
-
-#### ReferenceType
-
-`interface ReferenceType `
-
-#### RegExpExpression
-
-`interface RegExpExpression `
-
-#### RegExpType
-
-`interface RegExpType `
-
-#### ReturnDeclaration
-
-`interface ReturnDeclaration `
-
-#### SelectExpression
-
-`interface SelectExpression `
-
-#### StringExpression
-
-`interface StringExpression `
-
-#### StringType
-
-`interface StringType `
-
-#### TemplateExpression
-
-`interface TemplateExpression `
-
-#### TemplateType
-
-`interface TemplateType `
-
-#### TupleExpression
-
-`interface TupleExpression `
-
-#### TupleType
-
-`interface TupleType `
-
-#### Type
-
-`interface Type `
-
-#### TypeAliasDeclaration
-
-`interface TypeAliasDeclaration `
-
-#### TypeIdentifier
-
-`interface TypeIdentifier `
-
-#### TypeType
-
-`type TypeType = KeywordType | ReferenceType | ArrayType | TupleType | ObjectType | UnionType | IntersectionType | TemplateType | MappedType | FunctionType | GenericReferenceType | StringType | NumberType | BooleanType | NullType | UndefinedType | BigIntType | RegExpType`
-
-#### UndefinedExpression
-
-`interface UndefinedExpression `
-
-#### UndefinedType
-
-`interface UndefinedType `
-
-#### UnionType
-
-`interface UnionType `
-
-#### VariableDeclaration
-
-`interface VariableDeclaration `
 
 #### AbstractDataType
 
@@ -999,6 +836,454 @@ razomy run @razomy/abstracts arrays DynamicArray
 #### SkipListNode
 
 `interface SkipListNode `
+
+#### AliasTypeBinding
+
+`interface AliasTypeBinding `
+
+#### ArrayExpression
+
+`interface ArrayExpression `
+
+#### ArrayType
+
+`interface ArrayType `
+
+#### AssignBinding
+
+`interface AssignBinding `
+
+#### AstDataType
+
+`type AstDataType = Expression | Statement | Binding`
+
+#### AstLeafType
+
+`type AstLeafType = StatementType | BindingType | TypeBindingType`
+
+#### AstNode
+
+`interface AstNode `
+
+#### AstType
+
+`type AstType = AstDataType | AstTypeType`
+
+#### AstTypeType
+
+`type AstTypeType = Type | TypeStatement | TypeBinding`
+
+#### BigIntExpression
+
+`interface BigIntExpression `
+
+#### BigIntType
+
+`interface BigIntType `
+
+#### BinaryExpression
+
+`interface BinaryExpression `
+
+#### Binding
+
+`interface Binding `
+
+#### BindingType
+
+`type BindingType = VariableBinding | CallBinding | AssignBinding | DependencyBinding | PropertyBinding | ParameterBinding | EnumPropertyBinding | EnumBinding | FunctionBinding | ModuleBinding | PackageBinding | ClassBinding`
+
+#### BlockStatement
+
+`interface BlockStatement `
+
+#### BooleanExpression
+
+`interface BooleanExpression `
+
+#### BooleanType
+
+`interface BooleanType `
+
+#### BreakStatement
+
+`interface BreakStatement `
+
+#### CallBinding
+
+`interface CallBinding `
+
+#### CatchStatement
+
+`interface CatchStatement `
+
+#### ClassBinding
+
+`interface ClassBinding `
+
+#### ContinueStatement
+
+`interface ContinueStatement `
+
+#### CoreApplyTerm
+
+`interface CoreApplyTerm `
+
+#### CoreIntrinsicTerm
+
+`interface CoreIntrinsicTerm `
+
+#### CoreLambdaTerm
+
+`interface CoreLambdaTerm `
+
+#### CoreLetTerm
+
+`interface CoreLetTerm `
+
+#### CoreMatchTerm
+
+`interface CoreMatchTerm `
+
+#### CoreNode
+
+`interface CoreNode `
+
+#### CorePiTerm
+
+`interface CorePiTerm `
+
+#### CoreProjectTerm
+
+`interface CoreProjectTerm `
+
+#### CoreRecordTerm
+
+`interface CoreRecordTerm `
+
+#### CoreTerm
+
+`type CoreTerm = CoreUniverseTerm | CoreVariableTerm | CoreLetTerm | CorePiTerm | CoreLambdaTerm | CoreApplyTerm | CoreRecordTerm | CoreProjectTerm | CoreMatchTerm | CoreIntrinsicTerm`
+
+#### CoreUniverseTerm
+
+`interface CoreUniverseTerm `
+
+#### CoreVariableTerm
+
+`interface CoreVariableTerm `
+
+#### CstNode
+
+`interface CstNode `
+
+#### DependencyBinding
+
+`interface DependencyBinding `
+
+#### EnumBinding
+
+`interface EnumBinding `
+
+#### EnumPropertyBinding
+
+`interface EnumPropertyBinding `
+
+#### Expression
+
+`interface Expression `
+
+#### ExpressionType
+
+`type ExpressionType = StringExpression | NumberExpression | BooleanExpression | NullExpression | UndefinedExpression | BigIntExpression | RegExpExpression | ArrayExpression | ObjectExpression | PropertyExpression | TupleExpression | TemplateExpression | ReferenceExpression | MatchExpression | IfExpression | UnaryExpression | BinaryExpression | SelectExpression | MultiSelectExpression`
+
+#### ForOfStatement
+
+`interface ForOfStatement `
+
+#### ForStatement
+
+`interface ForStatement `
+
+#### FunctionBinding
+
+`interface FunctionBinding `
+
+#### FunctionType
+
+`interface FunctionType `
+
+#### GenericReferenceType
+
+`interface GenericReferenceType `
+
+#### GroupCst
+
+`interface GroupCst `
+
+#### HirBinding
+
+`interface HirBinding `
+
+#### HirCall
+
+`interface HirCall `
+
+#### HirExpression
+
+`type HirExpression = HirReference | HirFunction | HirCall`
+
+#### HirFunction
+
+`interface HirFunction `
+
+#### HirNode
+
+`interface HirNode `
+
+#### HirReference
+
+`interface HirReference `
+
+#### Identifier
+
+`interface Identifier `
+
+#### IfExpression
+
+`interface IfExpression `
+
+#### IfStatement
+
+`interface IfStatement `
+
+#### InterfaceTypeBinding
+
+`interface InterfaceTypeBinding `
+
+#### IntersectionType
+
+`interface IntersectionType `
+
+#### KeywordType
+
+`interface KeywordType `
+
+#### MappedType
+
+`interface MappedType `
+
+#### MatchExpression
+
+`interface MatchExpression `
+
+#### MatchStatement
+
+`interface MatchStatement `
+
+#### ModuleBinding
+
+`interface ModuleBinding `
+
+#### MultiSelectExpression
+
+`interface MultiSelectExpression `
+
+#### NullExpression
+
+`interface NullExpression `
+
+#### NullType
+
+`interface NullType `
+
+#### NumberExpression
+
+`interface NumberExpression `
+
+#### NumberType
+
+`interface NumberType `
+
+#### ObjectExpression
+
+`interface ObjectExpression `
+
+#### ObjectType
+
+`interface ObjectType `
+
+#### PackageBinding
+
+`interface PackageBinding `
+
+#### ParameterBinding
+
+`interface ParameterBinding `
+
+#### PropertyBinding
+
+`interface PropertyBinding `
+
+#### PropertyExpression
+
+`interface PropertyExpression `
+
+#### PropertyType
+
+`interface PropertyType `
+
+#### ReferenceExpression
+
+`interface ReferenceExpression `
+
+#### ReferenceType
+
+`interface ReferenceType `
+
+#### RegExpExpression
+
+`interface RegExpExpression `
+
+#### RegExpType
+
+`interface RegExpType `
+
+#### ReturnStatement
+
+`interface ReturnStatement `
+
+#### SelectExpression
+
+`interface SelectExpression `
+
+#### Span
+
+`interface Span `
+
+#### Statement
+
+`interface Statement `
+
+#### StatementType
+
+`type StatementType = BlockStatement | VariableStatement | ReturnStatement | IfStatement | WhileStatement | CatchStatement | ForStatement | ForOfStatement | BreakStatement | ContinueStatement | MatchStatement | ThrowStatement | TryStatement`
+
+#### StringExpression
+
+`interface StringExpression `
+
+#### StringType
+
+`interface StringType `
+
+#### SymbolId
+
+`type SymbolId = number`
+
+#### TemplateExpression
+
+`interface TemplateExpression `
+
+#### TemplateType
+
+`interface TemplateType `
+
+#### ThrowStatement
+
+`interface ThrowStatement `
+
+#### Token
+
+`type Token = never`
+
+#### TokenCst
+
+`interface TokenCst `
+
+#### TokenNode
+
+`interface TokenNode `
+
+#### TryStatement
+
+`interface TryStatement `
+
+#### TupleExpression
+
+`interface TupleExpression `
+
+#### TupleType
+
+`interface TupleType `
+
+#### Type
+
+`interface Type `
+
+#### TypeBinding
+
+`interface TypeBinding `
+
+#### TypeBindingType
+
+`type TypeBindingType = InterfaceTypeBinding | AliasTypeBinding`
+
+#### TypeChecker
+
+`interface TypeChecker `
+
+#### TypeIdentifier
+
+`interface TypeIdentifier `
+
+#### TypeStatement
+
+`interface TypeStatement `
+
+#### TypeType
+
+`type TypeType = KeywordType | ReferenceType | ArrayType | TupleType | ObjectType | TemplateType | MappedType | GenericReferenceType | StringType | NumberType | BooleanType | NullType | UndefinedType | BigIntType | RegExpType | UnionType | IntersectionType | FunctionType`
+
+#### UnaryExpression
+
+`interface UnaryExpression `
+
+#### UndefinedExpression
+
+`interface UndefinedExpression `
+
+#### UndefinedType
+
+`interface UndefinedType `
+
+#### UnionType
+
+`interface UnionType `
+
+#### VariableBinding
+
+`interface VariableBinding `
+
+#### VariableStatement
+
+`interface VariableStatement `
+
+#### WhileStatement
+
+`interface WhileStatement `
+
+#### WithToken
+
+`interface WithToken `
+
+#### WithTokens
+
+`interface WithTokens `
+
+#### WithTokenType
+
+`interface WithTokenType `
 
 ## 🕊️ Vision
 

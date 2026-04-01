@@ -1,4 +1,4 @@
-import nerdamer from "nerdamer/all.min";
+import nerdamer from "nerdamer/all.min.js";
 
 /**
  * @summary Evaluates a mathematical expression from a string.

@@ -9,7 +9,7 @@ import { parseEnumDeclaration } from "./parse_enum_declaration";
 /**
  * Recursively parses general TS Nodes (Declarations, Statements)
  */
-export function parseNode(node: Node): abstracts.translators.DeclarationType | null {
+export function parseNode(node: Node): abstracts.translators.AstLeafType | null {
     if (Node.isVariableStatement(node)) {
     return parseNode(node.getDeclarations()[0]);
     }

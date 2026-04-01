@@ -53,7 +53,6 @@ razomy run @razomy/random createCssGradient
 
 **Types**
 
-- [all](#all)
 - [digits](#digits)
 - [hexLength](#hexlength)
 - [loremWords](#loremwords)
@@ -91,25 +90,41 @@ razomy run @razomy/random createCssGradient
 
 ### Types
 
-#### all
-
 #### digits
+
+`const digits: string`
 
 #### hexLength
 
+`const hexLength: number`
+
 #### loremWords
+
+`const loremWords: string[]`
 
 #### lower
 
+`const lower: string`
+
 #### maxAngle
+
+`const maxAngle: number`
 
 #### maxRgb
 
+`const maxRgb: number`
+
 #### minLength
+
+`const minLength: number`
 
 #### specials
 
+`const specials: string`
+
 #### upper
+
+`const upper: string`
 
 ### Functions
 
@@ -458,7 +473,7 @@ const answer: boolean = isYesOrNo(); // true | false
 
 #### pickItem
 
-`pickItem(array: readonly T[]): T`
+`pickItem(array: ReadonlyArray<T>): T`
 
 Pick a random item from a non-empty array.
 Selects and returns a single random element from the provided array using a uniform random integer generator.

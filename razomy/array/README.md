@@ -78,6 +78,7 @@ razomy run @razomy/array addAllMut
 - [isEmpty](#isempty)
 - [map](#map)
 - [mapToDict](#maptodict)
+- [mapToDictBy](#maptodictby)
 - [reduce](#reduce)
 - [removeAllMut](#removeallmut)
 - [removeAtMut](#removeatmut)
@@ -181,7 +182,7 @@ chunk([true, false], 5); // [[true, false]]
 
 #### countBy
 
-`countBy(array: readonly T[], predicate: (value: T) => any): Record<string, number>`
+`countBy(array: ReadonlyArray<T>, predicate: (value: T) => any): Record<string, number>`
 
 Count occurrences of elements grouped by a predicate.
 Groups array elements by the result of a predicate function and counts occurrences of each group key.
@@ -371,7 +372,7 @@ findIndex([1, 2, 3], (x) => x > 5); // -1
 
 #### flat
 
-`flat(array: readonly (T | readonly T[])[]): T[]`
+`flat(array: readonly (T | ReadonlyArray<T>)[]): T[]`
 
 Flattens an array of nested arrays by one level.
 Flattens an array of nested arrays by one level.
@@ -477,7 +478,7 @@ hasArray([true, false], []); // true
 
 #### includes
 
-`includes(array: T[], value: T, fromIndex: number | undefined): boolean`
+`includes(array: T[], value: T, fromIndex: number): boolean`
 
 Checks if value is in array.
 Checks if value is in array.
@@ -540,7 +541,7 @@ intersection([1, 2], [3, 4]); // []
 
 #### isArray
 
-`isArray(value: unknown): boolean`
+`isArray(value: unknown): value is unknown[]`
 
 Check if a value is an array.
 Determines whether the provided value is an array using `Array.isArray`.
@@ -561,7 +562,7 @@ isArray([]); // true
 
 #### isArrayEqual
 
-`isArrayEqual(arr1: T[], arr2: T[]): boolean`
+`isArrayEqual(arr1: T[], arr2: T[]): undefined`
 
 Checks if two arrays are strictly equal.
 Compares two arrays for shallow equality. It returns true if both arrays have the exact same length and every element in the first array is strictly equal (`===`) to the element at the corresponding index in the second array.
@@ -582,7 +583,7 @@ isArrayEqual([1, 2], [1, 2, 3]); // false
 
 #### isEmpty
 
-`isEmpty(array: readonly T[]): boolean`
+`isEmpty(array: ReadonlyArray<T>): boolean`
 
 Check if array is empty.
 Check if array is empty.
@@ -645,6 +646,31 @@ const roles = [
   { code: 'USER', level: 2 }
 ];
 mapToDict(roles, 'code'); // { ADMIN: { code: ADMIN, level: 1 }, USER: { code: USER, level: 2 } }
+```
+
+#### mapToDictBy
+
+`mapToDictBy(arr: T[], get: (i: T) => string): Record<string | number | symbol, T>`
+
+Converts an array of objects into a dictionary keyed by a specified property.
+Iterates over an array of objects and creates a dictionary (Record) where the keys are the values of the specified property from each object, and the values are the objects themselves. Note that if multiple objects share the same key, the last one in the array will overwrite the previous ones.
+
+Examples
+
+```ts
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+];
+mapToDictBy(users, (i)=>i.id); // { 1: { id: 1, name: Alice }, 2: { id: 2, name: Bob } }
+```
+
+```ts
+const roles = [
+  { code: 'ADMIN', level: 1 },
+  { code: 'USER', level: 2 }
+];
+mapToDictBy(roles, (i)=>i.code); // { ADMIN: { code: ADMIN, level: 1 }, USER: { code: USER, level: 2 } }
 ```
 
 #### reduce
@@ -748,7 +774,7 @@ array; // [1, 2, 3]
 
 #### removeLast
 
-`removeLast(arr: readonly T[], deltaIndex: number): T[]`
+`removeLast(arr: ReadonlyArray<T>, deltaIndex: number): T[]`
 
 Remove elements from the end of an array.
 Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
@@ -811,7 +837,7 @@ array; // [b, a]
 
 #### set
 
-`set(array: readonly T[], index: number, value: T): T[]`
+`set(array: ReadonlyArray<T>, index: number, value: T): T[]`
 
 Creates a new array with the element at the specified index replaced with the given value.
 Creates a new array with the element at the specified index replaced with the given value.
@@ -1044,7 +1070,7 @@ tryLastEqual([1, 2], [3, 4], (a, b) => a === b); // null
 
 #### union
 
-`union(arrays: T[][]): T[]`
+`union(...arrays: T[][]): T[]`
 
 Create an array of unique values, in order, from all given arrays.
 Create an array of unique values, in order, from all given arrays.
@@ -1065,7 +1091,7 @@ union([1, 2], [2, 3]); // [1, 2, 3]
 
 #### uniq
 
-`uniq(array: readonly T[]): T[]`
+`uniq(array: ReadonlyArray<T>): T[]`
 
 Creates a duplicate-free version of an array.
 Creates a duplicate-free version of an array.
@@ -1086,7 +1112,7 @@ uniq([1, '1', 1]); // [1, 1]
 
 #### zip
 
-`zip(arrays: T[][]): T[][]`
+`zip(...arrays: T[][]): T[][]`
 
 Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.

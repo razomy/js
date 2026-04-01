@@ -44,9 +44,9 @@ import * as dict from "https://esm.sh/@razomy/dict";
 // or
 import * as dict from "https://unpkg.com/@razomy/dict";
 // or
-import { filter } from '@razomy/dict';
+import { Dict } from '@razomy/dict';
 // or
-razomy run @razomy/dict filter
+razomy run @razomy/dict Dict
 ```
 
 ## 📑 Table of Contents
@@ -81,13 +81,23 @@ razomy run @razomy/dict filter
 
 #### Dict
 
+`interface Dict `
+
 #### DictKey
+
+`type DictKey = string`
 
 #### Prettify
 
+`type Prettify = { [K in any]: any } & {  }`
+
 #### SomeOf
 
+`type SomeOf = { [K in any]: any }`
+
 #### UnionToIntersection
+
+`type UnionToIntersection = any`
 
 ### Functions
 
@@ -206,7 +216,7 @@ isEqual(new CustomId(1), new CustomId(1)); // true
 
 #### isKeys
 
-`isKeys(dict: Dict<T>, keys: readonly string[]): boolean`
+`isKeys(dict: dict.Dict<T>, keys: readonly string[]): boolean`
 
 Check if a dictionary contains any of the specified keys.
 Returns `true` if at least one of the provided keys exists in the dictionary, `false` otherwise.
@@ -227,7 +237,7 @@ isKeys({}, ['a']); // false
 
 #### isPlainObject
 
-`isPlainObject(value: unknown): boolean`
+`isPlainObject(value: unknown): value is Record<string, unknown>`
 
 Check if a value is a plain object.
 Determines whether the given value is a plain object — an object created by `{}`, `new Object()`, or `Object.create(null)`. Returns `false` for arrays, class instances, and other non-plain objects.
@@ -316,7 +326,7 @@ mapToArray({}, (k, v) => v); // []
 
 #### merge
 
-`merge(dicts: [...T]): { [K in keyof UnionToIntersection<T[number]>]: UnionToIntersection<T[number]>[K]; }`
+`merge(dicts: [...T]): Prettify<UnionToIntersection<T[number]>>`
 
 Merge an array of dictionaries into a single dictionary.
 Merges all dictionaries in the given array from left to right, with later entries overwriting earlier ones for duplicate keys.
@@ -358,7 +368,7 @@ someOf({ x: 10, y: 20 }, []); // {}
 
 #### toString_
 
-`toString_(dict: Dict<T>): string`
+`toString_(dict: dict.Dict<T>): string`
 
 Converts a dictionary to a specific string format.
 Converts a dictionary to a specific string format.

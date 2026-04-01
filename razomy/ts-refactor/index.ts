@@ -1,7 +1,6 @@
 export { createReadme } from './create_readme';
 export { createReadmeAndSpecifications } from './create_readme_and_specifications';
 export { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
-export { functionToString } from './function_to_string';
 export { getExportedClasses } from './get_exported_classes';
 export { getExportedConstants } from './get_exported_constants';
 export { getExportedFunctions } from './get_exported_functions';

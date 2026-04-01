@@ -7,6 +7,4 @@ order
  surface_ast.ts
  hir_ast.ts
  validator.ts
- schema.ts
- hir.ts
  core_ast.ts

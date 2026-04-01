@@ -44,9 +44,9 @@ import * as fsFileFormat from "https://esm.sh/@razomy/fs-file-format";
 // or
 import * as fsFileFormat from "https://unpkg.com/@razomy/fs-file-format";
 // or
-import { functionName } from '@razomy/fs-file-format';
+import { ExtensionResult } from '@razomy/fs-file-format';
 // or
-razomy run @razomy/fs-file-format functionName
+razomy run @razomy/fs-file-format ExtensionResult
 ```
 
 ## 📑 Table of Contents
@@ -65,13 +65,23 @@ razomy run @razomy/fs-file-format functionName
 
 #### ExtensionResult
 
+`interface ExtensionResult `
+
 #### FileCategory
+
+`type FileCategory = "image" | "video" | "audio" | "document"`
 
 #### FileExtensionType
 
+`type FileExtensionType = string`
+
 #### FileFormat
 
+`interface FileFormat `
+
 #### MediaType
+
+`type MediaType = string`
 
 ## 🕊️ Vision
 

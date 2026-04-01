@@ -53,7 +53,7 @@ razomy run @razomy/string addByIndexString
 
 **Types**
 
-- [MARKDOWN_CODE_BLOCK_PATTERN](#markdown_code_block_pattern)
+- [markdownCodeBlockPattern](#markdowncodeblockpattern)
 - [String](#string)
 - [WithString](#withstring)
 
@@ -102,17 +102,23 @@ razomy run @razomy/string addByIndexString
 
 ### Types
 
-#### MARKDOWN_CODE_BLOCK_PATTERN
+#### markdownCodeBlockPattern
+
+`const markdownCodeBlockPattern: unknown`
 
 #### String
 
+`type String = string`
+
 #### WithString
+
+`interface WithString `
 
 ### Functions
 
 #### addByIndexString
 
-`addByIndexString(text: string, index: number, insertion: string): string`
+`addByIndexString(text: string.String, index: abstracts.arrays.Index, insertion: string): string.String`
 
 Insert a string into another string at a specific index.
 Insert a string into another string at a specific index.
@@ -365,7 +371,7 @@ indentLines('a\nb\nc', 1); // a\n b\n c
 
 #### isEndsWith
 
-`isEndsWith(text: string, target: string, position: number | undefined): boolean`
+`isEndsWith(text: string, target: string, position: number): boolean`
 
 Checks if string ends with the given target string.
 Checks if string ends with the given target string.
@@ -386,7 +392,7 @@ isEndsWith('abc', 'b', 2); // true
 
 #### isEndsWithAny
 
-`isEndsWithAny(text: string, targets: string[], position: number | undefined): boolean`
+`isEndsWithAny(text: string, targets: string[], position: number): boolean`
 
 Checks if string ends with any of the given target strings.
 Checks if string ends with any of the given target strings.
@@ -407,7 +413,7 @@ isEndsWithAny('abc', ['a', 'b'], 2); // true
 
 #### isNullOrEmpty
 
-`isNullOrEmpty(str: string | null | undefined): boolean`
+`isNullOrEmpty(str: string | null | undefined): str is null | undefined | ''`
 
 Check if the string is null, undefined, or empty (including whitespace).
 Check if the string is null, undefined, or empty (including whitespace).
@@ -449,7 +455,7 @@ isStartsWith('razomy', 'z', 2); // true
 
 #### isString
 
-`isString(value: unknown): boolean`
+`isString(value: unknown): value is string.String`
 
 Check if the value is a string.
 Check if the value is a string.
@@ -528,7 +534,7 @@ merge(['hello', ' ', 'world']); // hello world
 ```
 
 ```ts
-merge([]); // 
+merge([]);
 ```
 
 #### padEnd
@@ -633,7 +639,7 @@ repeat('razomy', 2); // razomyrazomy
 ```
 
 ```ts
-repeat('test', 0); // 
+repeat('test', 0);
 ```
 
 #### replace
@@ -680,7 +686,7 @@ similarity('test', ''); // 0
 
 #### split
 
-`split(text: string, splitter: string | RegExp, limit: number | undefined): string[]`
+`split(text: string, splitter: string | RegExp, limit: number): string[]`
 
 Split string by splitter characters.
 Split string by splitter characters.
@@ -806,7 +812,7 @@ takeBetween('<div>content</div>', '<div>', '</div>'); // content
 
 #### toBuffer
 
-`toBuffer(value: string, encoding: BufferEncoding): Buffer<ArrayBufferLike>`
+`toBuffer(value: string, encoding: BufferEncoding): Buffer`
 
 Convert string to buffer using specified encoding.
 Convert string to buffer using specified encoding.
@@ -843,7 +849,7 @@ trim('\nbar\t'); // bar
 ```
 
 ```ts
-trim('   '); // 
+trim('   ');
 ```
 
 #### truncate

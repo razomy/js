@@ -44,39 +44,39 @@ import * as maths from "https://esm.sh/@razomy/maths";
 // or
 import * as maths from "https://unpkg.com/@razomy/maths";
 // or
-import { calculate } from '@razomy/maths';
+import { BILLION } from '@razomy/maths';
 // or
-razomy run @razomy/maths calculate
+razomy run @razomy/maths BILLION
 ```
 
 ## 📑 Table of Contents
 
 **Types**
 
-- [billion](#billion)
-- [centillion](#centillion)
-- [decillion](#decillion)
-- [duodecillion](#duodecillion)
-- [hundredMillion](#hundredmillion)
-- [milliard](#milliard)
-- [million](#million)
-- [nonillion](#nonillion)
-- [novemdecillion](#novemdecillion)
-- [octillion](#octillion)
-- [octodecillion](#octodecillion)
-- [quadrillion](#quadrillion)
-- [quattuordecillion](#quattuordecillion)
-- [quindecillion](#quindecillion)
-- [quintillion](#quintillion)
-- [septendecillion](#septendecillion)
-- [septillion](#septillion)
-- [sexdecillion](#sexdecillion)
-- [sextillion](#sextillion)
-- [tenMillion](#tenmillion)
-- [tredecillion](#tredecillion)
-- [trillion](#trillion)
-- [undecillion](#undecillion)
-- [vigintillion](#vigintillion)
+- [BILLION](#billion)
+- [CENTILLION](#centillion)
+- [DECILLION](#decillion)
+- [DUODECILLION](#duodecillion)
+- [HUNDRED_MILLION](#hundred_million)
+- [MILLIARD](#milliard)
+- [MILLION](#million)
+- [NONILLION](#nonillion)
+- [NOVEMDECILLION](#novemdecillion)
+- [OCTILLION](#octillion)
+- [OCTODECILLION](#octodecillion)
+- [QUADRILLION](#quadrillion)
+- [QUATTUORDECILLION](#quattuordecillion)
+- [QUINDECILLION](#quindecillion)
+- [QUINTILLION](#quintillion)
+- [SEPTENDECILLION](#septendecillion)
+- [SEPTILLION](#septillion)
+- [SEXDECILLION](#sexdecillion)
+- [SEXTILLION](#sextillion)
+- [TEN_MILLION](#ten_million)
+- [TREDECILLION](#tredecillion)
+- [TRILLION](#trillion)
+- [UNDECILLION](#undecillion)
+- [VIGINTILLION](#vigintillion)
 
 **Functions**
 
@@ -87,53 +87,101 @@ razomy run @razomy/maths calculate
 
 ### Types
 
-#### billion
+#### BILLION
 
-#### centillion
+`const BILLION: number`
 
-#### decillion
+#### CENTILLION
 
-#### duodecillion
+`const CENTILLION: number`
 
-#### hundredMillion
+#### DECILLION
 
-#### milliard
+`const DECILLION: number`
 
-#### million
+#### DUODECILLION
 
-#### nonillion
+`const DUODECILLION: number`
 
-#### novemdecillion
+#### HUNDRED_MILLION
 
-#### octillion
+`const HUNDRED_MILLION: number`
 
-#### octodecillion
+#### MILLIARD
 
-#### quadrillion
+`const MILLIARD: number`
 
-#### quattuordecillion
+#### MILLION
 
-#### quindecillion
+`const MILLION: number`
 
-#### quintillion
+#### NONILLION
 
-#### septendecillion
+`const NONILLION: number`
 
-#### septillion
+#### NOVEMDECILLION
 
-#### sexdecillion
+`const NOVEMDECILLION: number`
 
-#### sextillion
+#### OCTILLION
 
-#### tenMillion
+`const OCTILLION: number`
 
-#### tredecillion
+#### OCTODECILLION
 
-#### trillion
+`const OCTODECILLION: number`
 
-#### undecillion
+#### QUADRILLION
 
-#### vigintillion
+`const QUADRILLION: number`
+
+#### QUATTUORDECILLION
+
+`const QUATTUORDECILLION: number`
+
+#### QUINDECILLION
+
+`const QUINDECILLION: number`
+
+#### QUINTILLION
+
+`const QUINTILLION: number`
+
+#### SEPTENDECILLION
+
+`const SEPTENDECILLION: number`
+
+#### SEPTILLION
+
+`const SEPTILLION: number`
+
+#### SEXDECILLION
+
+`const SEXDECILLION: number`
+
+#### SEXTILLION
+
+`const SEXTILLION: number`
+
+#### TEN_MILLION
+
+`const TEN_MILLION: number`
+
+#### TREDECILLION
+
+`const TREDECILLION: number`
+
+#### TRILLION
+
+`const TRILLION: number`
+
+#### UNDECILLION
+
+`const UNDECILLION: number`
+
+#### VIGINTILLION
+
+`const VIGINTILLION: number`
 
 ### Functions
 

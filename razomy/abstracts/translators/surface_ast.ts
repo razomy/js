@@ -357,7 +357,7 @@ export type ExpressionType =
  */
 export interface BlockStatement extends Statement {
   kind: 'BlockStatement';
-  statements: StatementType[];
+  statements: AstLeafType[];
 }
 
 /**
@@ -367,6 +367,7 @@ export interface BlockStatement extends Statement {
  */
 export interface ReturnStatement extends Statement {
   kind: 'ReturnStatement';
+  description: string;
   argument: ExpressionType | null;
 }
 
@@ -441,6 +442,7 @@ export interface ThrowStatement extends Statement {
   kind: 'ThrowStatement';
   argument: ExpressionType;
 }
+
 /**
  * @final
  */
@@ -476,16 +478,17 @@ export interface MatchStatement extends Statement {
  * Represents a variable declaration.
  * @example
  * ```ts
- * const myVar: string;
+ * let myVar: string;
  * ```
  * @final
  */
 export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
-  isConst: boolean;
-  type: TypeType | null;
+  typeIdentifier: TypeIdentifier | null;
+  description: string;
 }
+
 
 
 export type StatementType =
@@ -516,8 +519,9 @@ export type StatementType =
  */
 export interface VariableBinding extends Binding {
   kind: 'VariableBinding';
-  typeIdentifier: TypeIdentifier;
   identifier: Identifier;
+  typeIdentifier: TypeIdentifier;
+  isConst: boolean;
   description: string;
   expression: ExpressionType;
 }
@@ -546,7 +550,7 @@ export interface AssignBinding extends Binding {
  * Represents an external dependency declaration.
  * @example
  * ```ts
- * import something from "@razomy/something@1.0.0"
+ * import * as abstracts from "@razomy/abstracts";
  * ```
  * @final
  */
@@ -568,9 +572,10 @@ export interface DependencyBinding extends Binding {
 export interface PropertyBinding extends Binding {
   kind: 'PropertyBinding';
   identifier: Identifier;
-  expression: ExpressionType;
-  type: TypeType | null;
+  typeIdentifier: TypeIdentifier | null;
+  expression: ExpressionType | null;
   isOptional: boolean;
+  description: string;
   isReadonly: boolean;
 }
 
@@ -585,7 +590,8 @@ export interface PropertyBinding extends Binding {
 export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
-  type: TypeType | null;
+  typeIdentifier: TypeIdentifier | null;
+  description: string;
   expression: ExpressionType | null;
   isRest: boolean;
 }
@@ -601,6 +607,7 @@ export interface ParameterBinding extends Binding {
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
   identifier: Identifier;
+  description: string;
   expression: ExpressionType | null;
 }
 
@@ -615,6 +622,7 @@ export interface EnumPropertyBinding extends Binding {
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
   identifier: Identifier;
+  description: string;
   properties: EnumPropertyBinding[];
 }
 
@@ -630,10 +638,12 @@ export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
   identifier: Identifier;
   parameters: ParameterBinding[];
-  return_: ReturnStatement;
+  types: TypeBindingType[];
+  returnType: TypeIdentifier | null;
+  description: string;
   isAsync: boolean;
   isGenerator: boolean;
-  body: StatementType[];
+  body: StatementType | null;
   title: string;
   performance: {
     timeDataSizeComplexityFn: string; memoryDataSizeComplexityFn: string; history: any[];
@@ -651,6 +661,7 @@ export interface FunctionBinding extends Binding {
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
+  description: string;
   identifier: Identifier;
   extends_: ReferenceType[];
   properties: PropertyType[];
@@ -666,8 +677,9 @@ export interface ClassBinding extends Binding {
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
+  description: string;
   identifier: Identifier;
-  body: StatementType[];
+  body: AstLeafType[];
 }
 
 /**
@@ -681,10 +693,11 @@ export interface ModuleBinding extends Binding {
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
   identifier: Identifier;
-  body: ModuleBinding;
+  description: string;
   version: string;
   engine: DependencyBinding;
   dependencies: DependencyBinding[];
+  body: AstLeafType[];
 }
 
 export type BindingType =
@@ -732,6 +745,7 @@ export interface TypeIdentifier extends AstNode {
  */
 export interface TypeStatement extends AstNode {
 }
+
 /*
  * @abstract
  */
@@ -995,7 +1009,7 @@ export interface IntersectionType extends Type {
 export interface FunctionType extends Type {
   kind: 'FunctionType';
   parameters: PropertyType[];
-  return_: TypeType;
+  return_: TypeIdentifier;
 }
 
 export type TypeType =
@@ -1033,6 +1047,7 @@ export type TypeType =
  */
 export interface AliasTypeBinding extends TypeBinding {
   kind: 'AliasTypeBinding';
+  description: string;
   typeIdentifier: TypeIdentifier;
   type: TypeType;
 }
@@ -1047,6 +1062,7 @@ export interface AliasTypeBinding extends TypeBinding {
  */
 export interface InterfaceTypeBinding extends TypeBinding {
   kind: 'InterfaceTypeBinding';
+  description: string;
   typeIdentifier: TypeIdentifier;
   extends_: ReferenceType[];
   properties: PropertyType[];
@@ -1059,5 +1075,7 @@ export type TypeBindingType = InterfaceTypeBinding
 
 // endregion TypeBinding
 // endregion Type
+
+export type AstLeafType = StatementType | BindingType | TypeBindingType;
 
 export type AstType = AstDataType | AstTypeType;

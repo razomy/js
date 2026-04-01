@@ -1,10 +1,10 @@
 export { clearImportType } from './clear_import_type';
-export { filterPublicDeclaration } from './filter_public_declaration';
+export { getSurfaceDeclarationMut } from './get_surface_declaration_mut';
 export { parseComplexity } from './parse_complexity';
 export { parseDescription } from './parse_description';
 export { parseExamples } from './parse_examples';
 export { parseFunctionDescriptionOrThrow } from './parse_function_description_or_throw';
 export { parseJsDocOrThrow } from './parse_js_doc_or_throw';
-export { parseProperty } from './parse_property';
+export { parsePropertyType } from './parse_property_type';
 export { parseTitleOrThrow } from './parse_title_or_throw';
 export { tryParseJsDoc } from './try_parse_js_doc';

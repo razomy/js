@@ -1,10 +1,9 @@
 import {FunctionDeclaration, ParameterDeclaration} from "ts-morph";
-import {parseIdentifier} from "../base/parse_identifier";
 import * as abstracts from "@razomy/abstracts";
-import {parseExpression} from "../expressions";
 import {parseTypeIdentifier} from "../base";
+import {parseType} from "../types";
 
-export function parseParameterDeclaration(node: ParameterDeclaration): abstracts.translators.ParameterBinding {
+export function parseParameterType(node: ParameterDeclaration): abstracts.translators.PropertyType {
   let description = '';
   const jsDocs = (node.getParent() as FunctionDeclaration)?.getJsDocs?.();
   if (jsDocs && jsDocs.length > 0) {
@@ -15,12 +14,9 @@ export function parseParameterDeclaration(node: ParameterDeclaration): abstracts
   }
 
   return {
-    kind: 'ParameterBinding',
-    identifier: parseIdentifier(node.getNameNode()),
-    typeIdentifier: node.getTypeNode() ? parseTypeIdentifier(node.getTypeNode()!) : null,
-    expression: node.getInitializer() ? parseExpression(node.getInitializer()!) : null,
-    isRest: node.isRestParameter(),
+    kind: 'PropertyType',
+    type: parseType(node.getTypeNode()!),
+    typeIdentifier: parseTypeIdentifier(node.getNameNode()!),
     description,
   };
 }
-

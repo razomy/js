@@ -4,10 +4,9 @@ import { parseExpression } from "../expressions/parse_expression";
 import * as abstracts from "@razomy/abstracts";
 import {parseDescription} from "../functions/parse_description";
 
-export function parseEnumMemberDeclaration(node: EnumMember): abstracts.translators.EnumPropertyDeclaration {
+export function parseEnumMemberDeclaration(node: EnumMember): abstracts.translators.EnumPropertyBinding {
   return {
-    kind: 'EnumPropertyDeclaration',
-    isPublic: true,
+    kind: 'EnumPropertyBinding',
     identifier: parseIdentifier(node.getNameNode()),
     expression: node.getInitializer() ? parseExpression(node.getInitializer()!) : null,
     description: parseDescription(node.getNameNode()),

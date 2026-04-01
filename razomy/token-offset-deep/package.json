@@ -44,6 +44,7 @@
   "module": "./index.ts",
   "name": "@razomy/token-offset-deep",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/context": "*",
     "@razomy/result-null": "*"
   },

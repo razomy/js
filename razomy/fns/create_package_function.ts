@@ -1,46 +1,42 @@
 import * as abstracts from "@razomy/abstracts";
 
-export function createPackageFunction(f:
-  Omit<
-    Partial<abstracts.translators.FunctionDeclaration>,
-    'parameters' | 'return_' | 'identifier'
-  > & Partial<{
-    name: string;
-    parameter: Record<string, string>;
-    return_: { description: string; type?: string };
-  }>
-): abstracts.translators.FunctionDeclaration {
+export function createPackageFunction(f: Partial<{
+  title: string;
+  body: any;
+  performance: any;
+  examples: any;
+  isAsync: boolean;
+  isGenerator: boolean;
+  name: string;
+  description: string;
+  parameter: Record<string, string>;
+  return_: { description: string; type?: string };
+}>): abstracts.translators.FunctionBinding {
   return {
-    ...f,
-    kind: 'FunctionDeclaration',
+    kind: 'FunctionBinding',
     title: f.title || f.name || '',
-    identifier: { kind: 'Identifier', name: f.name || '' },
-    isPublic: f.isPublic ?? true,
+    identifier: {kind: 'Identifier', name: f.name || ''} as any,
     description: f.description || '',
     isAsync: f.isAsync ?? false,
     isGenerator: f.isGenerator ?? false,
     body: f.body || [],
-    return_: {
-      kind: 'ReturnDeclaration',
-      identifier: { kind: 'Identifier', name: 'return' },
-      isPublic: true,
-      description: f.return_?.description || 'Nothing',
-      type: f.return_?.type ? { kind: 'KeywordType', name: f.return_.type as any } : null,
-    },
+    types: [],
+    returnType: f.return_?.type
+      ? {kind: 'TypeIdentifier', name: f.return_.type} as any
+      : null,
     performance: {
       timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
       memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-      history: f.performance?.history || ([] as any),
+      history: f.performance?.history || [],
     },
     parameters: Object.entries(f.parameter || {}).map(([k, v]) => ({
-      kind: 'ParameterDeclaration',
+      kind: 'ParameterBinding',
       description: v,
-      identifier: { kind: 'Identifier', name: k },
-      isPublic: true,
+      identifier: {kind: 'Identifier', name: k} as any,
       isRest: false,
-      type: { kind: 'KeywordType', name: 'string' },
+      type: {kind: 'KeywordType', name: 'string'} as any,
       expression: null,
-    })),
+    } as any)),
     examples: f.examples || [],
   };
 }

@@ -7,8 +7,8 @@ import * as ai from "@razomy/ai";
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstracts.translators.FunctionDeclaration[]
-): Promise<string | abstracts.translators.PropertyDeclaration> {
+  toolSpec: abstracts.translators.FunctionBinding[]
+): Promise<string | abstracts.translators.PropertyBinding> {
 
   const payload: any = {
     model: MODELS.expensive,
