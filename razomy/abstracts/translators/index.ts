@@ -58,6 +58,7 @@ export {
   type RegExpExpression,
   type RegExpType,
   type ReturnStatement,
+  type ReturnType,
   type SelectExpression,
   type Statement,
   type StatementType,

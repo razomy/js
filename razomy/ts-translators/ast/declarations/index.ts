@@ -6,6 +6,7 @@ export { parseModuleDeclaration } from './parse_module_declaration';
 export { parseModuleDeclarationBody } from './parse_module_declaration_body';
 export { parseNode } from './parse_node';
 export { parseParameterDeclaration } from './parse_parameter_declaration';
+export { parseParameterType } from './parse_parameter_type';
 export { parsePropertyBinding } from './parse_property_binding';
 export { parseTypeAliasDeclaration } from './parse_type_alias_declaration';
 export { parseVariableDeclaration } from './parse_variable_declaration';

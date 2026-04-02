@@ -490,7 +490,6 @@ export interface VariableStatement extends Statement {
 }
 
 
-
 export type StatementType =
   | BlockStatement
   | VariableStatement
@@ -639,7 +638,7 @@ export interface FunctionBinding extends Binding {
   identifier: Identifier;
   parameters: ParameterBinding[];
   types: TypeBindingType[];
-  returnType: TypeIdentifier | null;
+  returnType: ReturnType | null;
   description: string;
   isAsync: boolean;
   isGenerator: boolean;
@@ -768,6 +767,15 @@ export type AstTypeType = Type | TypeStatement | TypeBinding;
 export interface KeywordType extends Type {
   kind: 'KeywordType';
   name: | 'string' | 'number' | 'object' | 'boolean' | 'null' | 'undefined' | 'symbol' | 'any' | 'never' | 'unknown' | 'bigint' | 'void';
+}
+
+/**
+ * : String
+ */
+export interface ReturnType extends Type {
+  kind: 'ReturnType';
+  typeIdentifier: TypeIdentifier;
+  description: string;
 }
 
 /**
@@ -1009,7 +1017,7 @@ export interface IntersectionType extends Type {
 export interface FunctionType extends Type {
   kind: 'FunctionType';
   parameters: PropertyType[];
-  return_: TypeIdentifier;
+  returnType: ReturnType | null;
 }
 
 export type TypeType =
@@ -1030,6 +1038,7 @@ export type TypeType =
   | RegExpType
   | UnionType
   | IntersectionType
+  | ReturnType
   | FunctionType
   ;
 

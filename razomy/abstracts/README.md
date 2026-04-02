@@ -291,6 +291,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 - [translators.RegExpExpression](#regexpexpression)
 - [translators.RegExpType](#regexptype)
 - [translators.ReturnStatement](#returnstatement)
+- [translators.ReturnType](#returntype)
 - [translators.SelectExpression](#selectexpression)
 - [translators.Span](#span)
 - [translators.Statement](#statement)
@@ -1153,6 +1154,10 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 `interface ReturnStatement `
 
+#### ReturnType
+
+`interface ReturnType `
+
 #### SelectExpression
 
 `interface SelectExpression `
@@ -1243,7 +1248,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### TypeType
 
-`type TypeType = KeywordType | ReferenceType | ArrayType | TupleType | ObjectType | TemplateType | MappedType | GenericReferenceType | StringType | NumberType | BooleanType | NullType | UndefinedType | BigIntType | RegExpType | UnionType | IntersectionType | FunctionType`
+`type TypeType = KeywordType | ReferenceType | ArrayType | TupleType | ObjectType | TemplateType | MappedType | GenericReferenceType | StringType | NumberType | BooleanType | NullType | UndefinedType | BigIntType | RegExpType | UnionType | IntersectionType | ReturnType | FunctionType`
 
 #### UnaryExpression
 

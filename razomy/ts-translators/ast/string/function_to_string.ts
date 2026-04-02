@@ -6,7 +6,7 @@ export function functionToString(s: FlatDeclaration<abstracts.translators.Functi
     const typeStr = p.typeIdentifier?.name;
     return `${rest}${p.identifier.name}: ${typeStr}`;
   }).join(', ');
-  const returnStr = s.node.returnType?.name;
+  const returnStr = s.node.returnType?.typeIdentifier.name;
   const isAsync = s.node.isAsync ? 'async ' : '';
   const declaration = `\`${isAsync}${s.path.join('.')}(${paramsStr}): ${returnStr}\``;
   const description = [(s.node as any).title, s.node.description].filter(Boolean).join('\n');

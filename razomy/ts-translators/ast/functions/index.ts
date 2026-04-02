@@ -6,5 +6,6 @@ export { parseExamples } from './parse_examples';
 export { parseFunctionDescriptionOrThrow } from './parse_function_description_or_throw';
 export { parseJsDocOrThrow } from './parse_js_doc_or_throw';
 export { parsePropertyType } from './parse_property_type';
+export { parseReturnOrThrow } from './parse_return_or_throw';
 export { parseTitleOrThrow } from './parse_title_or_throw';
 export { tryParseJsDoc } from './try_parse_js_doc';

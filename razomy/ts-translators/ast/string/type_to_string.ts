@@ -36,7 +36,7 @@ export function typeToString(type: abstracts.translators.TypeType | null): strin
     case 'ObjectType':
       return `{ ${type.properties.map(p => `${p.typeIdentifier.name}: ${typeToString(p.type)}`).join(', ')} }`;
     case 'FunctionType':
-      return `(${type.parameters.map(p => `${p.typeIdentifier.name}: ${typeToString(p.type)}`).join(', ')}) => ${type.return_.name}`;
+      return `(${type.parameters.map(p => `${p.typeIdentifier.name}: ${typeToString(p.type)}`).join(', ')}) => ${type.returnType?.typeIdentifier.name}`;
     case 'TemplateType':
       return `\`${type.template}\``;
     case 'MappedType':

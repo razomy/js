@@ -8,6 +8,10 @@ export function parseFunctionType(node: FunctionTypeNode): abstracts.translators
   return {
     kind: 'FunctionType',
     parameters: node.getParameters().map(p => parseParameterType(p)),
-    return_: parseTypeIdentifier(node.getReturnTypeNode()!),
+    returnType: {
+      kind: 'ReturnType',
+      typeIdentifier: parseTypeIdentifier(node.getReturnTypeNode()!),
+      description: ''
+    },
   };
 }
