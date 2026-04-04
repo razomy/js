@@ -19,7 +19,9 @@ export {
   type IntPrimitive,
   type MultilineString,
   type Null,
+  type Number,
   type NumberPrimitive,
+  type String,
   type StringPrimitive,
   type SymbolType,
   type U128,
@@ -30,4 +32,3 @@ export {
   type UIntPrimitive,
   type Undefined,
 } from './primitives';
-export { type Number } from './number';

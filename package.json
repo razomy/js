@@ -30,6 +30,7 @@
     "./razomy/ai-agent-project",
     "./razomy/ai-anthropic",
     "./razomy/ai-google",
+    "./razomy/ai-huggingface",
     "./razomy/ai-openai",
     "./razomy/analytics-token",
     "./razomy/array",

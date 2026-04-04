@@ -55,6 +55,7 @@
     "isStatusClean",
     "parseStatusRef",
     "parseStatus",
+    "restoreSpaces",
     "restore",
     "statusFilesToFileChangesMut",
     "vcsCommitsToGitFile"

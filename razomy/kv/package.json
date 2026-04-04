@@ -45,11 +45,9 @@
     "iterate",
     "k",
     "isKv",
-    "listToFlatDict",
     "map",
     "set",
-    "valueIterate",
-    "valueOrListToFlatDict"
+    "valueIterate"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -57,11 +55,8 @@
   "name": "@razomy/kv",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/dict": "*",
     "@razomy/exceptions": "*",
     "@razomy/fns": "*",
-    "@razomy/key": "*",
-    "@razomy/string": "*",
     "@razomy/undefined": "*"
   },
   "publishConfig": {

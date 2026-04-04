@@ -38,6 +38,7 @@
     "chunkByByteLength",
     "chunk",
     "contains",
+    "countChar",
     "countOccurrences",
     "countSpaceMarginByArray",
     "countSpaceMargin",

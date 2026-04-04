@@ -1,11 +1,11 @@
-import type { Kv } from './kv';
 import * as dict from '@razomy/dict';
 import * as key from '@razomy/key';
 import * as string from '@razomy/string';
+import type {RecursiveList} from "./get_key";
 
 export function valueOrListToFlatDict(
   dict: {},
-  input: Kv<string, string>,
+  input: RecursiveList | string,
   parent: string,
   separator: string,
 ): dict.Dict<string> {

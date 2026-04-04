@@ -30,61 +30,25 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/vrd#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-huggingface#readme",
   "keywords": [
     "razomy",
-    "vrd",
-    "differencesDict",
-    "differencesVrd",
-    "filterVrd",
-    "flatten",
-    "getMatchesKey",
-    "getParents",
-    "getVrd",
-    "getWithPath",
-    "isVrd",
-    "iterateBreak",
-    "iterateSkip",
-    "iterateVrd",
-    "kvToVrd",
-    "mapVrd",
-    "mergeDict",
-    "mergeVrd",
-    "merges",
-    "orderVrd",
-    "pathToVrd",
-    "pvaToVrd",
-    "rdToVrd",
-    "setVrd",
-    "test",
-    "unflatten",
-    "vrdToAbsolutePath",
-    "vrdToPath",
-    "vrdToPva",
-    "vrlToVrd"
+    "ai",
+    "huggingface"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/vrd",
+  "name": "@razomy/ai-huggingface",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/array-difference": "*",
-    "@razomy/dict": "*",
-    "@razomy/dict-recursive": "*",
-    "@razomy/difference": "*",
-    "@razomy/exceptions": "*",
-    "@razomy/key": "*",
-    "@razomy/kv": "*",
-    "@razomy/kv-recursive": "*",
-    "@razomy/pipes-booleans": "*",
-    "@razomy/string": "*"
+    "@mlx-node/lm": "^0.0.6",
+    "@razomy/main": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/vrd",
+    "directory": "razomy/ai-huggingface",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

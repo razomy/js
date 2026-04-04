@@ -1,8 +1,9 @@
 import { Vrd, type VrdOrValue } from './vrd';
 import * as string from '@razomy/string';
 import * as kv from '@razomy/kv';
+import * as kvRecursive from "@razomy/kv-recursive";
 
-export function vrlToVrd(dict: kv.Kv<string, string> | string): VrdOrValue<string> {
+export function vrlToVrd(dict: kvRecursive.RecursiveList | string): VrdOrValue<string> {
   if (string.isString(dict)) {
     return dict;
   }

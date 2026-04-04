@@ -6,23 +6,23 @@ export function parseKeywordType(node: Node): abstracts.translators.KeywordType 
   let name: abstracts.translators.KeywordType['name'] | null = null;
   
   switch(kind) {
-    case SyntaxKind.StringKeyword: name = 'string'; break;
-    case SyntaxKind.SymbolKeyword: name = 'symbol'; break;
-    case SyntaxKind.ObjectKeyword: name = 'object'; break;
-    case SyntaxKind.NumberKeyword: name = 'number'; break;
-    case SyntaxKind.BooleanKeyword: name = 'boolean'; break;
-    case SyntaxKind.NullKeyword: name = 'null'; break;
-    case SyntaxKind.UndefinedKeyword: name = 'undefined'; break;
-    case SyntaxKind.AnyKeyword: name = 'any'; break;
-    case SyntaxKind.NeverKeyword: name = 'never'; break;
-    case SyntaxKind.UnknownKeyword: name = 'unknown'; break;
-    case SyntaxKind.BigIntKeyword: name = 'bigint'; break;
-    case SyntaxKind.VoidKeyword: name = 'void'; break;
+    case SyntaxKind.StringKeyword: name = 'String'; break;
+    case SyntaxKind.ObjectKeyword: name = 'Object'; break;
+    case SyntaxKind.NumberKeyword: name = 'Number'; break;
+    case SyntaxKind.BooleanKeyword: name = 'Boolean'; break;
+    case SyntaxKind.NullKeyword: name = 'Null'; break;
+    case SyntaxKind.UndefinedKeyword: name = 'Undefined'; break;
+    case SyntaxKind.BigIntKeyword: name = 'Bigint'; break;
+    case SyntaxKind.SymbolKeyword: name = 'Symbol'; break;
+    case SyntaxKind.AnyKeyword: name = 'Any'; break;
+    case SyntaxKind.NeverKeyword: name = 'Never'; break;
+    case SyntaxKind.UnknownKeyword: name = 'Unknown'; break;
+    case SyntaxKind.VoidKeyword: name = 'Void'; break;
   }
 
   if (Node.isTypeReference(node)) {
     const typeName = node.getTypeName().getText();
-    if (['color', 'date', 'file', 'fileArray', 'jsonString'].includes(typeName)) {
+    if (['Color', 'Date', 'File', 'FileArray', 'JsonString'].includes(typeName)) {
       name = typeName as abstracts.translators.KeywordType['name'];
     }
   }

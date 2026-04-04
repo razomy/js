@@ -28,14 +28,16 @@ export type F64 = Brand<number, 'F64'>;
 export type Float = F32;
 export type FloatPrimitive = F32 | F64 | Float;
 
-export type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive;
+export type Number = number;
+export type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive | Number;
 
 // Строки
 export type Char = Brand<string, 'Char'>;
 export type InlineString = string;
 export type FixedString = string;
 export type MultilineString = string;
-export type StringPrimitive = Char | InlineString | MultilineString | FixedString;
+export type String = string;
+export type StringPrimitive = Char | InlineString | MultilineString | FixedString | String;
 
 export type EnumInt = number;
 export type EnumString = string;

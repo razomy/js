@@ -18,5 +18,6 @@ export { isStatusClean } from './is_status_clean';
 export { parseStatus } from './parse_status';
 export { parseStatusRef } from './parse_status_ref';
 export { restore } from './restore';
+export { restoreSpaces } from './restore_spaces';
 export { statusFilesToFileChangesMut } from './status_files_to_file_changes_mut';
 export { vcsCommitsToGitFile } from './vcs_commits_to_git_file';

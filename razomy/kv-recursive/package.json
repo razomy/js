@@ -39,15 +39,19 @@
     "getItemByPath",
     "getKey",
     "getValue",
-    "get"
+    "get",
+    "listToFlatDict",
+    "valueOrListToFlatDict"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/kv-recursive",
   "peerDependencies": {
+    "@razomy/dict": "*",
     "@razomy/exceptions": "*",
-    "@razomy/key": "*"
+    "@razomy/key": "*",
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public"

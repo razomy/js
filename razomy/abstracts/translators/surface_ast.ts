@@ -766,7 +766,7 @@ export type AstTypeType = Type | TypeStatement | TypeBinding;
  */
 export interface KeywordType extends Type {
   kind: 'KeywordType';
-  name: | 'string' | 'number' | 'object' | 'boolean' | 'null' | 'undefined' | 'symbol' | 'any' | 'never' | 'unknown' | 'bigint' | 'void';
+  name: | 'String' | 'Number' | 'Object' | 'Boolean' | 'Null' | 'Undefined' | 'Symbol' | 'Any' | 'Never' | 'Unknown' | 'Bigint' | 'Void';
 }
 
 /**
