@@ -1,4 +1,4 @@
-# Abstracts
+`# Abstracts
 
 Contains all core reusable types and interfaces.
 
@@ -29,3 +29,4 @@ Contains all core reusable types and interfaces.
 4. ~~**events** — шины событий, Pub/Sub, реактивные потоки.~~
 5. ~~**contracts** — монады (`Result`, `Option`), валидаторы, обработчики ошибок.~~
 6. ~~**ports** — абстракции внешнего мира (интерфейсы к БД, сети, UI, Ports/Adapters).~~
+`
