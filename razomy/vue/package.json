@@ -34,7 +34,7 @@
       }
     },
     "./package.json": "./package.json",
-    "./specifications.json": "./specifications.json"
+    "./specifications/*": "./specifications/*"
   },
   "files": [
     "src/*"

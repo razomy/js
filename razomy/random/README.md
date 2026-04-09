@@ -92,45 +92,45 @@ razomy run @razomy/random createCssGradient
 
 #### digits
 
-`const digits: string`
+`const digits: String`
 
 #### hexLength
 
-`const hexLength: number`
+`const hexLength: Number`
 
 #### loremWords
 
-`const loremWords: string[]`
+`const loremWords: Array<String>`
 
 #### lower
 
-`const lower: string`
+`const lower: String`
 
 #### maxAngle
 
-`const maxAngle: number`
+`const maxAngle: Number`
 
 #### maxRgb
 
-`const maxRgb: number`
+`const maxRgb: Number`
 
 #### minLength
 
-`const minLength: number`
+`const minLength: Number`
 
 #### specials
 
-`const specials: string`
+`const specials: String`
 
 #### upper
 
-`const upper: string`
+`const upper: String`
 
 ### Functions
 
 #### createCssGradient
 
-`createCssGradient(): string`
+`createCssGradient(): String`
 
 Create a random CSS linear gradient string.
 Generates a CSS linear-gradient with a random angle (0–360°) and two random hex colors.
@@ -151,7 +151,7 @@ createCssGradient(); // linear-gradient(270deg, #ff6347, #4682b4)
 
 #### createDate
 
-`createDate(startYear: number, endYear: number): string`
+`createDate(startYear: Number, endYear: Number): String`
 
 Create a random date string within a year range.
 Generates a random date between the start of `startYear` and the end of `endYear`,
@@ -173,7 +173,7 @@ createDate(1990, 2000); // e.g. 1994-02-08 21:30:44
 
 #### createFloat
 
-`createFloat(): number`
+`createFloat(): Number`
 
 Create a cryptographically secure random float in [0, 1).
 Generates a random floating-point number between 0 (inclusive) and 1 (exclusive)
@@ -195,7 +195,7 @@ createFloat(); // 0.9481726350
 
 #### createFloatRange
 
-`createFloatRange(from: number, to: number): number`
+`createFloatRange(from: Number, to: Number): Number`
 
 Generate a random float within a specified range [from, to).
 Creates a random floating-point number between `from` (inclusive) and `to` (exclusive)
@@ -217,7 +217,7 @@ createFloatRange(100, 200); // 142.857...
 
 #### createGuid
 
-`createGuid(): string`
+`createGuid(): String`
 
 Create a RFC4122-like GUID string.
 Generates a 32-hex-character GUID formatted as `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
@@ -239,7 +239,7 @@ id.length; // 36
 
 #### createInt
 
-`createInt(min: number, max: number): number`
+`createInt(min: Number, max: Number): Number`
 
 Generate a random integer within a range.
 Generates a random integer between `min` (inclusive) and `max` (inclusive) using a uniform distribution.
@@ -260,7 +260,7 @@ createInt(-5, 5); // -3 (random integer between -5 and 5)
 
 #### createIpv4
 
-`createIpv4(): string`
+`createIpv4(): String`
 
 Generate a random IPv4 address string.
 Creates a random IPv4 address by generating four random integers in the range [0, 255] and joining them with dots.
@@ -281,7 +281,7 @@ createIpv4(); // 0.127.255.12
 
 #### createLightHexColor
 
-`createLightHexColor(): string`
+`createLightHexColor(): String`
 
 Create a random light hex color string.
 Generates a random hex color in the light spectrum by constraining
@@ -303,7 +303,7 @@ createLightHexColor(); // #7ff89d
 
 #### createLorem
 
-`createLorem(wordCount: number): string`
+`createLorem(wordCount: Number): String`
 
 Generates random Lorem Ipsum text.
 Generates a random sequence of Lorem Ipsum words of the specified length. The resulting string is capitalized and ends with a period.
@@ -324,7 +324,7 @@ createLorem(1); // Consectetur.
 
 #### createMac
 
-`createMac(): string`
+`createMac(): String`
 
 Create a random MAC address.
 Generates a random MAC address string in uppercase with colon-separated octets.
@@ -345,7 +345,7 @@ createMac(); // FF:12:9B:6E:D0:47
 
 #### createPassword
 
-`createPassword(length: number): string`
+`createPassword(length: Number): String`
 
 Create a random password.
 Generates a random password of the specified length containing at least one uppercase letter, one lowercase letter, one digit, and one special character. The result is shuffled to avoid predictable positions.
@@ -366,7 +366,7 @@ createPassword(32); // xP4!rQ8@wN2#mK7&jL5$tH9^yB1*zF6+ (32 characters)
 
 #### createPinCode
 
-`createPinCode(length: number): string`
+`createPinCode(length: Number): String`
 
 Create a random PIN code of a given length with no consecutive repeated digits.
 Generates a numeric PIN code string of the specified length (default 6).
@@ -388,7 +388,7 @@ createPinCode(1); // 7 (single-digit PIN)
 
 #### createRecoveryKeys
 
-`createRecoveryKeys(count: number, blocks: number, blockLength: number): string[]`
+`createRecoveryKeys(count: Number, blocks: Number, blockLength: Number): Array<String>`
 
 Create an array of recovery keys.
 Generates a list of recovery keys, each composed of uppercase alphanumeric blocks separated by dashes.
@@ -409,7 +409,7 @@ createRecoveryKeys(3, 3, 5); // [AX7RF-K9BQ2-LMZTK, JN3W8-DVE0H-CS4FR, PL9YT-QWE
 
 #### createString
 
-`createString(length: number, characters: string): string`
+`createString(length: Number, characters: String): String`
 
 Generates a random string.
 Generates a random string of specified length using optional custom characters.
@@ -430,7 +430,7 @@ randomString(4, 'a'); // aaaa
 
 #### createUuid
 
-`createUuid(): string`
+`createUuid(): String`
 
 Create a UUID v4 string.
 Generates a cryptographically random UUID v4 string using the Web Crypto API.
@@ -452,7 +452,7 @@ id.length; // 36
 
 #### isYesOrNo
 
-`isYesOrNo(): boolean`
+`isYesOrNo(): Boolean`
 
 Randomly returns true or false with equal probability.
 Generates a random float and returns true if it exceeds 0.5, false otherwise.
@@ -473,7 +473,7 @@ const answer: boolean = isYesOrNo(); // true | false
 
 #### pickItem
 
-`pickItem(array: ReadonlyArray<T>): T`
+`pickItem(array: Array<T>): T`
 
 Pick a random item from a non-empty array.
 Selects and returns a single random element from the provided array using a uniform random integer generator.
@@ -494,7 +494,7 @@ pickItem([true]); // true
 
 #### rollDice
 
-`rollDice(diceCount: number, sides: number): number[]`
+`rollDice(diceCount: Number, sides: Number): Array<Number>`
 
 Roll one or more dice and return the results.
 Simulates rolling a specified number of dice, each with a given number of sides, returning an array of random integer results.
@@ -536,7 +536,7 @@ shuffleArray([42]); // [42]
 
 #### splitIntoGroups
 
-`splitIntoGroups(array: T[], groupsCount: number): T[][]`
+`splitIntoGroups(array: T[], groupsCount: Number): T[][]`
 
 Split an array into a specified number of groups with randomly distributed elements.
 Shuffles the input array and distributes elements round-robin into the specified number of groups. The original array is not mutated.

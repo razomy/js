@@ -63,6 +63,7 @@ razomy run @razomy/string addByIndexString
 - [chunk](#chunk)
 - [chunkByByteLength](#chunkbybytelength)
 - [contains](#contains)
+- [countChar](#countchar)
 - [countOccurrences](#countoccurrences)
 - [countSpaceMargin](#countspacemargin)
 - [countSpaceMarginByArray](#countspacemarginbyarray)
@@ -108,7 +109,7 @@ razomy run @razomy/string addByIndexString
 
 #### String
 
-`type String = string`
+`type String = String`
 
 #### WithString
 
@@ -118,7 +119,7 @@ razomy run @razomy/string addByIndexString
 
 #### addByIndexString
 
-`addByIndexString(text: string.String, index: abstracts.arrays.Index, insertion: string): string.String`
+`addByIndexString(text: string.String, index: abstracts.arrays.Index, insertion: String): string.String`
 
 Insert a string into another string at a specific index.
 Insert a string into another string at a specific index.
@@ -139,7 +140,7 @@ addByIndexString('foo baz', 4, 'bar '); // foo bar baz
 
 #### chunk
 
-`chunk(text: string, size: number): string[]`
+`chunk(text: String, size: Number): Array<String>`
 
 Splits a string into an array of chunks.
 Divides a string into an array of smaller strings, each of a specified maximum length.
@@ -160,7 +161,7 @@ chunk('abc', 5); // [abc]
 
 #### chunkByByteLength
 
-`chunkByByteLength(text: string, maxBytes: number): string[]`
+`chunkByByteLength(text: String, maxBytes: Number): Array<String>`
 
 Split string into chunks by maximum byte length.
 Iterates over Unicode characters and groups them into chunks ensuring that each chunk's UTF-8 byte size does not exceed the specified maximum bytes.
@@ -181,7 +182,7 @@ chunkByByteLength('こんにちは', 6); // [こん, にち, は]
 
 #### contains
 
-`contains(text: string, search: string): boolean`
+`contains(text: String, search: String): Boolean`
 
 Checks if a string contains a specific substring.
 Checks if a string contains a specific substring.
@@ -200,9 +201,31 @@ contains('razomy', 'bar'); // false
 contains('hello world', 'hello'); // true
 ```
 
+#### countChar
+
+`countChar(string: String, equalChar: String, offset: Number, maxOffset: Number): Number`
+
+Count occurrences of a char at string.
+Counts how many times `equalChar` appears in the `string`
+between index `offset` (inclusive) and `maxOffset` (exclusive).
+
+Examples
+
+```ts
+countChar('abac', 'a', 0, 4); // 2
+```
+
+```ts
+countChar('helloworldhello', 'h', 0, 3); // 1
+```
+
+```ts
+countChar(['xyz', 'w', 0, 3); // 0
+```
+
 #### countOccurrences
 
-`countOccurrences(text: string, substring: string): number`
+`countOccurrences(text: String, substring: String): Number`
 
 Counts the number of occurrences of a substring within a text.
 Counts the number of occurrences of a substring within a text.
@@ -223,7 +246,7 @@ countOccurrences('apple', 'z'); // 0
 
 #### countSpaceMargin
 
-`countSpaceMargin(string: string): number`
+`countSpaceMargin(string: String): Number`
 
 Count leading space margin of a string.
 Counts the number of leading space characters before the first non-space character in a string.
@@ -244,7 +267,7 @@ countSpaceMargin('     '); // 5
 
 #### countSpaceMarginByArray
 
-`countSpaceMarginByArray(strings: string[]): number[]`
+`countSpaceMarginByArray(strings: Array<String>): Array<Number>`
 
 Count leading space margins for each string in an array.
 Maps an array of strings to an array of numbers representing the count of leading spaces (margin) for each string.
@@ -265,7 +288,7 @@ countSpaceMarginByArray([]); // []
 
 #### countString
 
-`countString(strings: string[], equalString: string, offset: number, maxOffset: number): number`
+`countString(strings: Array<String>, equalString: String, offset: Number, maxOffset: Number): Number`
 
 Count occurrences of a string within a subarray of strings.
 Counts how many times `equalString` appears in the `strings` array
@@ -287,7 +310,7 @@ countString(['x', 'y', 'z'], 'w', 0, 3); // 0
 
 #### create
 
-`create(value: unknown): string`
+`create(value: unknown): String`
 
 Convert any value to a string.
 Convert any value to a string.
@@ -308,7 +331,7 @@ string(null); // null
 
 #### escapeByString
 
-`escapeByString(string: string, separator: string): string`
+`escapeByString(string: String, separator: String): String`
 
 Escapes all occurrences of a separator within a string.
 Inserts a backslash character before every instance of the specified separator substring.
@@ -329,7 +352,7 @@ escapeByString('hello', '-'); // hello
 
 #### getWords
 
-`getWords(value: string): string[]`
+`getWords(value: String): Array<String>`
 
 Splits string into an array of its words.
 Splits string into an array of its words.
@@ -350,7 +373,7 @@ getWords('nested_snake_case'); // [nested, snake, case]
 
 #### indentLines
 
-`indentLines(value: string, size: number): string`
+`indentLines(value: String, size: Number): String`
 
 Indent each line of a string.
 Adds a specified number of space characters to the beginning of each line in a given string.
@@ -371,7 +394,7 @@ indentLines('a\nb\nc', 1); // a\n b\n c
 
 #### isEndsWith
 
-`isEndsWith(text: string, target: string, position: number): boolean`
+`isEndsWith(text: String, target: String, position: Number): Boolean`
 
 Checks if string ends with the given target string.
 Checks if string ends with the given target string.
@@ -392,7 +415,7 @@ isEndsWith('abc', 'b', 2); // true
 
 #### isEndsWithAny
 
-`isEndsWithAny(text: string, targets: string[], position: number): boolean`
+`isEndsWithAny(text: String, targets: Array<String>, position: Number): Boolean`
 
 Checks if string ends with any of the given target strings.
 Checks if string ends with any of the given target strings.
@@ -434,7 +457,7 @@ isNullOrEmpty('razomy'); // false
 
 #### isStartsWith
 
-`isStartsWith(string: string, target: string, position: number): boolean`
+`isStartsWith(string: String, target: String, position: Number): Boolean`
 
 Checks if string starts with the given target string.
 Checks if string starts with the given target string.
@@ -476,7 +499,7 @@ isString(null); // false
 
 #### join
 
-`join(items: string[], separator: string): string`
+`join(items: Array<String>, separator: String): String`
 
 Joins an array of strings into a single string using a separator.
 Joins an array of strings into a single string using a separator.
@@ -497,7 +520,7 @@ join(['one'], ','); // one
 
 #### levenshteinDistance
 
-`levenshteinDistance(a: string, b: string): number`
+`levenshteinDistance(a: String, b: String): Number`
 
 Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
 Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
@@ -518,7 +541,7 @@ levenshteinDistance('razomy', 'razomy'); // 0
 
 #### merge
 
-`merge(strings: string[]): string`
+`merge(strings: Array<String>): String`
 
 Merge an array of strings into a single string.
 Concatenates all strings in the provided array together in order, returning a single merged string.
@@ -539,7 +562,7 @@ merge([]);
 
 #### padEnd
 
-`padEnd(input: string, length: number, chars: string): string`
+`padEnd(input: String, length: Number, chars: String): String`
 
 Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
 Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
@@ -560,7 +583,7 @@ padEnd('abc', 2); // abc
 
 #### padStart
 
-`padStart(input: string, length: number, chars: string): string`
+`padStart(input: String, length: Number, chars: String): String`
 
 Pads the start of a string with another string until it reaches the given length.
 Pads the start of a string with another string until it reaches the given length.
@@ -581,7 +604,7 @@ padStart('abc', 2); // abc
 
 #### prefixLines
 
-`prefixLines(text: string, prefix: string): string`
+`prefixLines(text: String, prefix: String): String`
 
 Add margin to every line of the string.
 Add margin to every line of the string.
@@ -602,7 +625,7 @@ prefixLines('Code', '\t'); // \tCode
 
 #### removeIndex
 
-`removeIndex(string: string, index: number, length: number): string`
+`removeIndex(string: String, index: Number, length: Number): String`
 
 Remove characters from a string at a given index.
 Removes a specified number of characters from a string starting at the given index, returning the resulting string.
@@ -623,7 +646,7 @@ removeIndex('world', 0, 2); // rld
 
 #### repeat
 
-`repeat(content: string, count: number): string`
+`repeat(content: String, count: Number): String`
 
 Repeats a string a specified number of times.
 Repeats a string a specified number of times.
@@ -644,7 +667,7 @@ repeat('test', 0);
 
 #### replace
 
-`replace(text: string, separator: string, replacement: string): string`
+`replace(text: String, separator: String, replacement: String): String`
 
 Replace all occurrences of a separator in a string.
 Replace all occurrences of a separator string with a replacement string.
@@ -665,7 +688,7 @@ replace('foo', 'bar', 'baz'); // foo
 
 #### similarity
 
-`similarity(str1: string, str2: string): number`
+`similarity(str1: String, str2: String): Number`
 
 Calculate the similarity ratio between two strings.
 Computes a similarity score between 0 and 1 for two strings based on their Levenshtein distance. A score of 1 indicates identical strings, while 0 indicates no commonality.
@@ -686,7 +709,7 @@ similarity('test', ''); // 0
 
 #### split
 
-`split(text: string, splitter: string | RegExp, limit: number): string[]`
+`split(text: String, splitter: string | RegExp, limit: Number): Array<String>`
 
 Split string by splitter characters.
 Split string by splitter characters.
@@ -707,7 +730,7 @@ split('One', ''); // [O,n,e]
 
 #### splitLines
 
-`splitLines(text: string): string[]`
+`splitLines(text: String): Array<String>`
 
 Split string by newline characters.
 Split string by newline characters.
@@ -728,7 +751,7 @@ splitLines('One'); // [One]
 
 #### stripTags
 
-`stripTags(content: string): string`
+`stripTags(content: String): String`
 
 Strip HTML tags from a string.
 Strip HTML tags from a string.
@@ -749,7 +772,7 @@ stripTags('<div><span>content</span></div>'); // content
 
 #### takeAfter
 
-`takeAfter(text: string, separator: string): string`
+`takeAfter(text: String, separator: String): String`
 
 Get the substring after the first occurrence of a separator.
 Get the substring after the first occurrence of a separator.
@@ -770,7 +793,7 @@ takeAfter('foo', ','); // foo
 
 #### takeBefore
 
-`takeBefore(text: string, separator: string): string`
+`takeBefore(text: String, separator: String): String`
 
 Gets the substring before the first occurrence of a separator.
 Gets the substring before the first occurrence of a separator.
@@ -791,7 +814,7 @@ takeBefore('atomic', ' '); // atomic
 
 #### takeBetween
 
-`takeBetween(text: string, start: string, end: string): string`
+`takeBetween(text: String, start: String, end: String): String`
 
 Extracts a substring found between a start string and an end string.
 Extracts a substring found between a start string and an end string.
@@ -812,7 +835,7 @@ takeBetween('<div>content</div>', '<div>', '</div>'); // content
 
 #### toBuffer
 
-`toBuffer(value: string, encoding: BufferEncoding): Buffer`
+`toBuffer(value: String, encoding: BufferEncoding): Buffer`
 
 Convert string to buffer using specified encoding.
 Convert string to buffer using specified encoding.
@@ -833,7 +856,7 @@ toBuffer('616263', 'hex'); // <Buffer 61 62 63>
 
 #### trim
 
-`trim(text: string): string`
+`trim(text: String): String`
 
 Removes whitespace from both ends of the string.
 Removes whitespace from both ends of the string.
@@ -854,7 +877,7 @@ trim('   ');
 
 #### truncate
 
-`truncate(text: string, length: number, omission: string): string`
+`truncate(text: String, length: Number, omission: String): String`
 
 Truncates string if it's longer than the given maximum string length.
 Truncates string if it's longer than the given maximum string length.
@@ -875,7 +898,7 @@ truncate('hello world', 7, '...'); // hello...
 
 #### unescapeByString
 
-`unescapeByString(string: string, separateString: string): string`
+`unescapeByString(string: String, separateString: String): String`
 
 Unescape occurrences of a specific string.
 Removes the backslash preceding the specified string globally.
@@ -896,7 +919,7 @@ unescapeByString('\\.ext', '.'); // .ext
 
 #### unescapeMdCode
 
-`unescapeMdCode(text: string): string`
+`unescapeMdCode(text: String): String`
 
 Extract content from a Markdown code block.
 Removes surrounding Markdown code block backticks and language tags from a string, returning the inner content. If the string is not a valid Markdown code block, it returns the trimmed original string.

@@ -1,3 +1,9 @@
+export const ONE = 1;
+export const TEN = 1e1;
+export const HUNDRED = 1e2;
+export const THOUSAND = 1e3;
+export const TEN_THOUSAND = 1e4;
+export const HUNDRED_THOUSAND = 1e5;
 export const MILLION = 1e6;
 export const TEN_MILLION = 1e7;
 export const HUNDRED_MILLION = 1e8;

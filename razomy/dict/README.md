@@ -85,7 +85,7 @@ razomy run @razomy/dict Dict
 
 #### DictKey
 
-`type DictKey = string`
+`type DictKey = String`
 
 #### Prettify
 
@@ -124,7 +124,7 @@ filter<number>({ a: 10, b: 20 }, () => false); // {}
 
 #### firstKey
 
-`firstKey(obj: Dict<T>): string`
+`firstKey(obj: Dict<T>): String`
 
 Get the first own key of a dictionary.
 Returns the first own enumerable key of the given dictionary. Throws if the dictionary has no own keys.
@@ -187,7 +187,7 @@ getKeys({ name: 'Raz', id: 101 }); // [name, id]
 
 #### isEqual
 
-`isEqual(a: any, b: any): boolean`
+`isEqual(a: any, b: any): Boolean`
 
 Performs a deep equality comparison between two values.
 Compares two values to determine if they are deeply equal. It first evaluates the `.equals()` method if available on the first argument (useful for classes or instances like ObjectIds). If both arguments are objects and not null, it recursively compares all of their properties.
@@ -216,7 +216,7 @@ isEqual(new CustomId(1), new CustomId(1)); // true
 
 #### isKeys
 
-`isKeys(dict: dict.Dict<T>, keys: readonly string[]): boolean`
+`isKeys(dict: dict.Dict<T>, keys: readonly string[]): Boolean`
 
 Check if a dictionary contains any of the specified keys.
 Returns `true` if at least one of the provided keys exists in the dictionary, `false` otherwise.
@@ -368,7 +368,7 @@ someOf({ x: 10, y: 20 }, []); // {}
 
 #### toString_
 
-`toString_(dict: dict.Dict<T>): string`
+`toString_(dict: dict.Dict<T>): String`
 
 Converts a dictionary to a specific string format.
 Converts a dictionary to a specific string format.

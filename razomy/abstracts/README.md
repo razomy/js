@@ -20,7 +20,7 @@
 [Razomy Cli](https://github.com/razomy/cli)
 
 >
-# Abstracts
+`# Abstracts
 
 Contains all core reusable types and interfaces.
 
@@ -51,6 +51,7 @@ Contains all core reusable types and interfaces.
 4. ~~**events** — шины событий, Pub/Sub, реактивные потоки.~~
 5. ~~**contracts** — монады (`Result`, `Option`), валидаторы, обработчики ошибок.~~
 6. ~~**ports** — абстракции внешнего мира (интерфейсы к БД, сети, UI, Ports/Adapters).~~
+`
 
 
 ## 🚀 Start
@@ -190,6 +191,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 - [primitives.Null](#null)
 - [primitives.Number](#number)
 - [primitives.NumberPrimitive](#numberprimitive)
+- [primitives.String](#string)
 - [primitives.StringPrimitive](#stringprimitive)
 - [primitives.SymbolType](#symboltype)
 - [primitives.U128](#u128)
@@ -340,11 +342,11 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### Index
 
-`type Index = number`
+`type Index = Number`
 
 #### Offset
 
-`type Offset = number`
+`type Offset = Number`
 
 #### RawBuffer
 
@@ -564,7 +566,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### Slug
 
-`type Slug = string`
+`type Slug = String`
 
 #### SourcePathString
 
@@ -668,31 +670,31 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### Bool
 
-`type Bool = boolean`
+`type Bool = Boolean`
 
 #### Char
 
-`type Char = Brand<string, "Char">`
+`type Char = Brand<String, "Char">`
 
 #### EnumInt
 
-`type EnumInt = number`
+`type EnumInt = Number`
 
 #### EnumString
 
-`type EnumString = string`
+`type EnumString = String`
 
 #### F32
 
-`type F32 = Brand<number, "F32">`
+`type F32 = Brand<Number, "F32">`
 
 #### F64
 
-`type F64 = Brand<number, "F64">`
+`type F64 = Brand<Number, "F64">`
 
 #### FixedString
 
-`type FixedString = string`
+`type FixedString = String`
 
 #### Float
 
@@ -704,27 +706,27 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### I128
 
-`type I128 = Brand<bigint, "I128">`
+`type I128 = Brand<Bigint, "I128">`
 
 #### I16
 
-`type I16 = Brand<number, "I16">`
+`type I16 = Brand<Number, "I16">`
 
 #### I32
 
-`type I32 = Brand<number, "I32">`
+`type I32 = Brand<Number, "I32">`
 
 #### I64
 
-`type I64 = Brand<bigint, "I64">`
+`type I64 = Brand<Bigint, "I64">`
 
 #### I8
 
-`type I8 = Brand<number, "I8">`
+`type I8 = Brand<Number, "I8">`
 
 #### InlineString
 
-`type InlineString = string`
+`type InlineString = String`
 
 #### Int
 
@@ -736,7 +738,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### MultilineString
 
-`type MultilineString = string`
+`type MultilineString = String`
 
 #### Null
 
@@ -744,39 +746,43 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### Number
 
-`type Number = number`
+`type Number = Number`
 
 #### NumberPrimitive
 
-`type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive`
+`type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive | Number`
+
+#### String
+
+`type String = String`
 
 #### StringPrimitive
 
-`type StringPrimitive = Char | InlineString | MultilineString | FixedString`
+`type StringPrimitive = Char | InlineString | MultilineString | FixedString | String`
 
 #### SymbolType
 
-`type SymbolType = symbol`
+`type SymbolType = Symbol`
 
 #### U128
 
-`type U128 = Brand<bigint, "U128">`
+`type U128 = Brand<Bigint, "U128">`
 
 #### U16
 
-`type U16 = Brand<number, "U16">`
+`type U16 = Brand<Number, "U16">`
 
 #### U32
 
-`type U32 = Brand<number, "U32">`
+`type U32 = Brand<Number, "U32">`
 
 #### U64
 
-`type U64 = Brand<bigint, "U64">`
+`type U64 = Brand<Bigint, "U64">`
 
 #### U8
 
-`type U8 = Brand<number, "U8">`
+`type U8 = Brand<Number, "U8">`
 
 #### UIntPrimitive
 
@@ -1184,7 +1190,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### SymbolId
 
-`type SymbolId = number`
+`type SymbolId = Number`
 
 #### TemplateExpression
 
@@ -1200,7 +1206,7 @@ razomy run @razomy/abstracts arrays DynamicArray
 
 #### Token
 
-`type Token = never`
+`type Token = Never`
 
 #### TokenCst
 

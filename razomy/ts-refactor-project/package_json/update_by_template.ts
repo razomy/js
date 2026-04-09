@@ -127,7 +127,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         },
         ...(isBrowserExports ? nameBrowserExport : {}),
         ...(isNodeExports ? nameNodeExport : {}),
-        './specifications.json': './specifications.json',
+        './specifications/*': './specifications/*',
         './package.json': './package.json',
       },
       // deploy

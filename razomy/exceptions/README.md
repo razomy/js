@@ -71,7 +71,7 @@ razomy run @razomy/exceptions assert
 
 #### assert
 
-`assert(condition: boolean, message: undefined): undefined`
+`assert(condition: Boolean, message: undefined): undefined`
 
 Asserts that a condition is true, throwing an error if it is false.
 Evaluates a boolean condition. If the condition evaluates to false, it throws an Error with the provided message. This function is typically used for invariant checking, validating input, and ensuring expected program states at runtime.

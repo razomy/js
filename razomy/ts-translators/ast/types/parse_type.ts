@@ -11,8 +11,9 @@ import {parseFunctionType} from "./parse_function_type";
 import * as abstracts from "@razomy/abstracts";
 import {parseLiteralType} from "./parse_literal_type";
 import {parseTemplateTypeType} from "./parse_template_type_type";
+import {parseTypeIdentifier} from "../base";
 
-export function parseType(node: Node): abstracts.translators.TypeType {
+export function parseType(node: Node): abstracts.translators.TypeType | abstracts.translators.TypeIdentifier {
   const literal = parseLiteralType(node);
   if (literal) return literal;
 
@@ -28,6 +29,7 @@ export function parseType(node: Node): abstracts.translators.TypeType {
   if (Node.isTemplateLiteralTypeNode(node)) return parseTemplateTypeType(node);
   if (Node.isMappedTypeNode(node)) return parseMappedType(node);
   if (Node.isFunctionTypeNode(node)) return parseFunctionType(node);
+  if (Node.isIdentifier(node)) return parseTypeIdentifier(node);
 
   // TODO:
   if (Node.isConstructorTypeNode(node)) return null as any;

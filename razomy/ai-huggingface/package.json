@@ -25,7 +25,7 @@
       }
     },
     "./package.json": "./package.json",
-    "./specifications.json": "./specifications.json"
+    "./specifications/*": "./specifications/*"
   },
   "files": [
     "*"
@@ -41,8 +41,7 @@
   "module": "./index.ts",
   "name": "@razomy/ai-huggingface",
   "peerDependencies": {
-    "@mlx-node/lm": "^0.0.6",
-    "@razomy/main": "*"
+    "@mlx-node/lm": "^0.0.6"
   },
   "publishConfig": {
     "access": "public"

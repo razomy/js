@@ -15,7 +15,7 @@ export async function publish(path_: string) {
   console.info(`Выполняем: ${publishCommand}`);
 
   // Раскомментируйте, когда будете готовы к реальному деплою
-  await shell.execute(publishCommand, path.resolve(path_, 'dist'));
+  // await shell.execute(publishCommand, path.resolve(path_, 'dist'));
 }
 
 main.ifMain(import.meta.url, async () => {

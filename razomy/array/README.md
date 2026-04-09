@@ -161,7 +161,7 @@ array; // [{ id: 1 }, { id: 2 }]
 
 #### chunk
 
-`chunk(array: T[], size: number): T[][]`
+`chunk(array: T[], size: Number): T[][]`
 
 Splits an array into smaller arrays (chunks) of a specified size.
 The last chunk may be smaller than the `size`.
@@ -203,7 +203,7 @@ countBy([true, false, true, true], (v) => v); // { true: 3, false: 1 }
 
 #### create
 
-`create(size: number, value: T): T[]`
+`create(size: Number, value: T): T[]`
 
 Create an array of specific size filled with a value.
 Create an array of specific size filled with a value.
@@ -224,7 +224,7 @@ create(4, true); // [true, true, true, true]
 
 #### createByIndexAndSize
 
-`createByIndexAndSize(index: number, size: number): number[]`
+`createByIndexAndSize(index: Number, size: Number): Array<Number>`
 
 Create an array of a specific size with the value 1 at the specified index.
 Create an array of a specific size with the value 1 at the specified index.
@@ -267,7 +267,7 @@ difference([1, 2, 3, 4, 5], [2, 3, 4]); // [1, 5]
 
 #### drop
 
-`drop(array: T[], count: number): T[]`
+`drop(array: T[], count: Number): T[]`
 
 Creates a slice of array with n elements dropped from the beginning.
 Creates a slice of array with n elements dropped from the beginning.
@@ -288,7 +288,7 @@ drop([1, 2, 3], 5); // []
 
 #### every
 
-`every(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
+`every(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): Boolean`
 
 Checks if all elements in the array satisfy the provided testing function.
 Checks if all elements in the array satisfy the provided testing function.
@@ -351,7 +351,7 @@ find([1, 2, 3], (n) => n === 4); // Error: Item not found.
 
 #### findIndex
 
-`findIndex(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): number`
+`findIndex(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): Number`
 
 Returns the index of the first element in the array that satisfies the provided testing function.
 Returns the index of the first element in the array that satisfies the provided testing function.
@@ -414,7 +414,7 @@ getFirst([]); // Error: Array is empty
 
 #### getLast
 
-`getLast(array: T[], offset: number): T`
+`getLast(array: T[], offset: Number): T`
 
 Retrieves the last element of an array.
 Optionally accepts an offset to retrieve preceding elements.
@@ -457,7 +457,7 @@ groupBy([{ k: 'a', v: 1 }, { k: 'b', v: 2 }], (o) => o.k); // { a: [{ k: a, v: 1
 
 #### hasArray
 
-`hasArray(source: T[], array: T[]): boolean`
+`hasArray(source: T[], array: T[]): Boolean`
 
 Check if the source array contains all elements of the sub array in the same relative order.
 Check if the source array contains all elements of the sub array in the same relative order.
@@ -478,7 +478,7 @@ hasArray([true, false], []); // true
 
 #### includes
 
-`includes(array: T[], value: T, fromIndex: number): boolean`
+`includes(array: T[], value: T, fromIndex: Number): Boolean`
 
 Checks if value is in array.
 Checks if value is in array.
@@ -499,7 +499,7 @@ includes(['a', 'b', 'c'], 'c', 1); // true
 
 #### insertMut
 
-`insertMut(array: T[], index: number, item: T): T[]`
+`insertMut(array: T[], index: Number, item: T): T[]`
 
 Inserts an item into an array at the specified index by mutating the array.
 Inserts an item into an array at the specified index by mutating the array.
@@ -583,7 +583,7 @@ isArrayEqual([1, 2], [1, 2, 3]); // false
 
 #### isEmpty
 
-`isEmpty(array: ReadonlyArray<T>): boolean`
+`isEmpty(array: ReadonlyArray<T>): Boolean`
 
 Check if array is empty.
 Check if array is empty.
@@ -723,7 +723,7 @@ array; // [1, 2]
 
 #### removeAtMut
 
-`removeAtMut(array: T[], index: number): T | undefined`
+`removeAtMut(array: T[], index: Number): T | undefined`
 
 Remove an element at a specific index from an array in place.
 Remove an element at a specific index from an array in place.
@@ -774,7 +774,7 @@ array; // [1, 2, 3]
 
 #### removeLast
 
-`removeLast(arr: ReadonlyArray<T>, deltaIndex: number): T[]`
+`removeLast(arr: ReadonlyArray<T>, deltaIndex: Number): T[]`
 
 Remove elements from the end of an array.
 Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
@@ -837,7 +837,7 @@ array; // [b, a]
 
 #### set
 
-`set(array: ReadonlyArray<T>, index: number, value: T): T[]`
+`set(array: ReadonlyArray<T>, index: Number, value: T): T[]`
 
 Creates a new array with the element at the specified index replaced with the given value.
 Creates a new array with the element at the specified index replaced with the given value.
@@ -858,7 +858,7 @@ set([0, 1, 0], 1, 0); // [0, 0, 0]
 
 #### setLastMut
 
-`setLastMut(array: T[], value: T, offset: number): T[]`
+`setLastMut(array: T[], value: T, offset: Number): T[]`
 
 Sets the value of the last element of an array mutably, with an optional offset.
 Sets the value of the last element of an array mutably, with an optional offset.
@@ -879,7 +879,7 @@ setLastMut([1, 2, 3], 5, -1); // [1, 5, 3]
 
 #### some
 
-`some(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean`
+`some(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): Boolean`
 
 Checks if at least one element in the array satisfies the provided testing function.
 Checks if at least one element in the array satisfies the provided testing function.
@@ -965,7 +965,7 @@ sortByFrequencyAndUnique([10, 20, 10, 10, 20]); // [10, 20]
 
 #### take
 
-`take(array: T[], n: number): T[]`
+`take(array: T[], n: Number): T[]`
 
 Creates a slice of array with n elements taken from the beginning.
 Creates a slice of array with n elements taken from the beginning.
@@ -1028,7 +1028,7 @@ tryFirstEqual([10, 20, 30], [30, 20, 10]); // 30
 
 #### tryGetLast
 
-`tryGetLast(arr: T[], deltaIndex: number): T | null`
+`tryGetLast(arr: T[], deltaIndex: Number): T | null`
 
 Retrieves the last element of an array or an element relative to the end.
 Returns null if the index is out of bounds.

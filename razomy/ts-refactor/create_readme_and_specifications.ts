@@ -10,7 +10,10 @@ export async function createReadmeAndSpecifications(dirPath) {
   const files = getPackageDeclaration(project, dirPath);
 
   const str = `${JSON.stringify(files, null, 2)}`;
-  fss.file.setSync(`${dirPath}/dist/specifications.json`, str);
+  fss.directory.tryCreate(`${dirPath}/specifications`);
+  fss.directory.tryCreate(`${dirPath}/dist/specifications`);
+  fss.file.setSync(`${dirPath}/specifications/packageDeclaration.json`, str);
+  fss.file.setSync(`${dirPath}/dist/specifications/packageDeclaration.json`, str);
   createReadme(dirPath, fss.file.getJson(dirPath + '/package.json'), files);
   return files;
 }

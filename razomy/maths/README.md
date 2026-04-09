@@ -57,13 +57,16 @@ razomy run @razomy/maths BILLION
 - [CENTILLION](#centillion)
 - [DECILLION](#decillion)
 - [DUODECILLION](#duodecillion)
+- [HUNDRED](#hundred)
 - [HUNDRED_MILLION](#hundred_million)
+- [HUNDRED_THOUSAND](#hundred_thousand)
 - [MILLIARD](#milliard)
 - [MILLION](#million)
 - [NONILLION](#nonillion)
 - [NOVEMDECILLION](#novemdecillion)
 - [OCTILLION](#octillion)
 - [OCTODECILLION](#octodecillion)
+- [ONE](#one)
 - [QUADRILLION](#quadrillion)
 - [QUATTUORDECILLION](#quattuordecillion)
 - [QUINDECILLION](#quindecillion)
@@ -72,7 +75,10 @@ razomy run @razomy/maths BILLION
 - [SEPTILLION](#septillion)
 - [SEXDECILLION](#sexdecillion)
 - [SEXTILLION](#sextillion)
+- [TEN](#ten)
 - [TEN_MILLION](#ten_million)
+- [TEN_THOUSAND](#ten_thousand)
+- [THOUSAND](#thousand)
 - [TREDECILLION](#tredecillion)
 - [TRILLION](#trillion)
 - [UNDECILLION](#undecillion)
@@ -89,105 +95,129 @@ razomy run @razomy/maths BILLION
 
 #### BILLION
 
-`const BILLION: number`
+`const BILLION: Number`
 
 #### CENTILLION
 
-`const CENTILLION: number`
+`const CENTILLION: Number`
 
 #### DECILLION
 
-`const DECILLION: number`
+`const DECILLION: Number`
 
 #### DUODECILLION
 
-`const DUODECILLION: number`
+`const DUODECILLION: Number`
+
+#### HUNDRED
+
+`const HUNDRED: Number`
 
 #### HUNDRED_MILLION
 
-`const HUNDRED_MILLION: number`
+`const HUNDRED_MILLION: Number`
+
+#### HUNDRED_THOUSAND
+
+`const HUNDRED_THOUSAND: Number`
 
 #### MILLIARD
 
-`const MILLIARD: number`
+`const MILLIARD: Number`
 
 #### MILLION
 
-`const MILLION: number`
+`const MILLION: Number`
 
 #### NONILLION
 
-`const NONILLION: number`
+`const NONILLION: Number`
 
 #### NOVEMDECILLION
 
-`const NOVEMDECILLION: number`
+`const NOVEMDECILLION: Number`
 
 #### OCTILLION
 
-`const OCTILLION: number`
+`const OCTILLION: Number`
 
 #### OCTODECILLION
 
-`const OCTODECILLION: number`
+`const OCTODECILLION: Number`
+
+#### ONE
+
+`const ONE: Number`
 
 #### QUADRILLION
 
-`const QUADRILLION: number`
+`const QUADRILLION: Number`
 
 #### QUATTUORDECILLION
 
-`const QUATTUORDECILLION: number`
+`const QUATTUORDECILLION: Number`
 
 #### QUINDECILLION
 
-`const QUINDECILLION: number`
+`const QUINDECILLION: Number`
 
 #### QUINTILLION
 
-`const QUINTILLION: number`
+`const QUINTILLION: Number`
 
 #### SEPTENDECILLION
 
-`const SEPTENDECILLION: number`
+`const SEPTENDECILLION: Number`
 
 #### SEPTILLION
 
-`const SEPTILLION: number`
+`const SEPTILLION: Number`
 
 #### SEXDECILLION
 
-`const SEXDECILLION: number`
+`const SEXDECILLION: Number`
 
 #### SEXTILLION
 
-`const SEXTILLION: number`
+`const SEXTILLION: Number`
+
+#### TEN
+
+`const TEN: Number`
 
 #### TEN_MILLION
 
-`const TEN_MILLION: number`
+`const TEN_MILLION: Number`
+
+#### TEN_THOUSAND
+
+`const TEN_THOUSAND: Number`
+
+#### THOUSAND
+
+`const THOUSAND: Number`
 
 #### TREDECILLION
 
-`const TREDECILLION: number`
+`const TREDECILLION: Number`
 
 #### TRILLION
 
-`const TRILLION: number`
+`const TRILLION: Number`
 
 #### UNDECILLION
 
-`const UNDECILLION: number`
+`const UNDECILLION: Number`
 
 #### VIGINTILLION
 
-`const VIGINTILLION: number`
+`const VIGINTILLION: Number`
 
 ### Functions
 
 #### calculate
 
-`calculate(text: string): string`
+`calculate(text: String): String`
 
 Evaluates a mathematical expression from a string.
 Parses and evaluates the given string as a mathematical expression using the mathjs library. It supports basic arithmetic, advanced mathematical functions, units, and complex operations. More https://mathjs.org/examples/index.html
@@ -208,7 +238,7 @@ calculate('5.08 cm to inch'); // 2 inch
 
 #### calculateWithParams
 
-`calculateWithParams(text: string, arguments_: object | null): string`
+`calculateWithParams(text: String, arguments_: object | null): String`
 
 Evaluates a mathematical expression from a string.
 Parses and evaluates the given string as a mathematical expression using the mathjs library. It supports basic arithmetic, advanced mathematical functions, units, and complex operations. More https://nerdamer.com/examples.html

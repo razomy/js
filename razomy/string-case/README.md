@@ -83,7 +83,7 @@ razomy run @razomy/string-case abbreviation
 
 #### abbreviation
 
-`abbreviation(text: string): string`
+`abbreviation(text: String): String`
 
 Get abbreviation from string.
 Takes a string of words separated by spaces, hyphens, or underscores,
@@ -105,7 +105,7 @@ abbreviation('Read-Only_Memory'); // ROM
 
 #### alternatingCase
 
-`alternatingCase(text: string): string`
+`alternatingCase(text: String): String`
 
 Convert string to aLtErNaTiNg cAsE (SpongeBob case).
 Alternates cases based on the index of the character (ignoring spaces is optional, this implementation alternates strictly by character position).
@@ -122,7 +122,7 @@ alternatingCase('typescript'); // tYpEsCrIpT
 
 #### camelCase
 
-`camelCase(text: string): string`
+`camelCase(text: String): String`
 
 Converts a string to camel case.
 Takes an input string in any common format (space-separated, kebab-case, snake_case, PascalCase, etc.)
@@ -146,7 +146,7 @@ camelCase('__FOO_BAR__'); // fooBar
 
 #### capitalize
 
-`capitalize(text: string): string`
+`capitalize(text: String): String`
 
 Converts the first character of string to upper case and the remaining to lower case.
 Takes an input string and returns a new string where the first character is converted to upper case and all remaining characters are converted to lower case. This is useful for normalizing the casing of words regardless of their original casing.
@@ -167,7 +167,7 @@ capitalize('rAZOMY'); // Razomy
 
 #### constantCase
 
-`constantCase(text: string): string`
+`constantCase(text: String): String`
 
 Convert string to CONSTANT_CASE (macro case).
 Converts a given string from any common casing convention (camelCase, kebab-case,
@@ -190,7 +190,7 @@ constantCase('kebab-case-test'); // KEBAB_CASE_TEST
 
 #### dotCase
 
-`dotCase(text: string): string`
+`dotCase(text: String): String`
 
 Convert string to dot.case.
 Converts a given string into dot.case format by splitting the input on
@@ -213,7 +213,7 @@ dotCase('foo_bar'); // foo.bar
 
 #### headerCase
 
-`headerCase(text: string): string`
+`headerCase(text: String): String`
 
 Convert string to Header-Case (Train-Case).
 Converts a given string into Header-Case (also known as Train-Case), where each word is capitalized
@@ -237,7 +237,7 @@ headerCase('session_id'); // Session-Id
 
 #### humanize
 
-`humanize(text: string): string`
+`humanize(text: String): String`
 
 Convert a string to a human-readable form.
 Transforms a string from common programming naming conventions (camelCase, snake_case, kebab-case)
@@ -260,7 +260,7 @@ humanize('kebab-case-string'); // Kebab case string
 
 #### isAlpha
 
-`isAlpha(text: string): boolean`
+`isAlpha(text: String): Boolean`
 
 Checks if the string contains only alphabetic characters.
 Determines whether the given string consists exclusively of alphabetic characters (a-z, A-Z). Returns `false` for empty strings, strings containing digits, whitespace, special characters, or any non-alphabetic characters. The check is performed using a regular expression that matches one or more alphabetic characters spanning the entire string.
@@ -281,7 +281,7 @@ isAlpha(''); // false
 
 #### isAlphanumeric
 
-`isAlphanumeric(text: string): boolean`
+`isAlphanumeric(text: String): Boolean`
 
 Check if the string contains only alphanumeric characters.
 Tests whether the given string consists exclusively of alphanumeric characters (letters a-z, A-Z and digits 0-9) using a regular expression. Returns false for empty strings, strings containing spaces, special characters, or any non-alphanumeric content.
@@ -302,7 +302,7 @@ isAlphanumeric(' '); // false
 
 #### isLowerCase
 
-`isLowerCase(text: string): boolean`
+`isLowerCase(text: String): Boolean`
 
 Checks if the string is lower case.
 Determines whether the entire input string is in lower case by comparing it to its lower-cased equivalent. Non-alphabetic characters (such as digits, spaces, and symbols) do not affect the result, as they have no case and remain unchanged by the lower case conversion.
@@ -323,7 +323,7 @@ isLowerCase('string with 123'); // true
 
 #### isUpperCase
 
-`isUpperCase(text: string): boolean`
+`isUpperCase(text: String): Boolean`
 
 Check if a string is upper case.
 Determines whether the given string is entirely in upper case by comparing it to its upper-cased transformation. Returns true only if every character in the string is already upper case (i.e., the string is identical to the result of calling `toUpperCase()` on it).
@@ -344,7 +344,7 @@ isUpperCase('hello'); // false
 
 #### kebabCase
 
-`kebabCase(text: string): string`
+`kebabCase(text: String): String`
 
 Convert string to kebab case.
 Converts a given string to kebab-case by handling acronyms, camelCase, letter-number boundaries,
@@ -367,7 +367,7 @@ kebabCase('__FOO_BAR__'); // foo-bar
 
 #### lowerCase
 
-`lowerCase(text: string): string`
+`lowerCase(text: String): String`
 
 Converts a string to lower case.
 Converts all characters in the given string to their lower case equivalents using the built-in `toLowerCase` method. The original string is not modified; a new lower cased string is returned.
@@ -388,7 +388,7 @@ lowerCase('FOO Bar'); // foo bar
 
 #### pascalCase
 
-`pascalCase(text: string): string`
+`pascalCase(text: String): String`
 
 Convert string to pascal case.
 Converts a given string to PascalCase by splitting it into words
@@ -412,7 +412,7 @@ pascalCase('FOO BAR'); // FooBar
 
 #### pathCase
 
-`pathCase(text: string): string`
+`pathCase(text: String): String`
 
 Convert string to path/case.
 Converts a given string into path/case format by splitting it on camelCase boundaries,
@@ -434,7 +434,7 @@ pathCase('foo_bar'); // foo/bar
 
 #### reverse
 
-`reverse(text: string): string`
+`reverse(text: String): String`
 
 Reverses the given string.
 Reverses the order of characters in the given string by spreading it into an array of individual characters,
@@ -457,7 +457,7 @@ reverse('123'); // 321
 
 #### sentenceCase
 
-`sentenceCase(text: string): string`
+`sentenceCase(text: String): String`
 
 Convert string to Sentence case.
 Only the first letter of the result is capitalized, the rest is lowercase.
@@ -478,7 +478,7 @@ sentenceCase('foo_bar_baz'); // Foo bar baz
 
 #### slugify
 
-`slugify(text: string): string`
+`slugify(text: String): String`
 
 Convert string to url friendly slug.
 Converts a given string into a URL-friendly slug by normalizing unicode characters
@@ -501,7 +501,7 @@ slugify('Crème Brûlée'); // creme-brulee
 
 #### snakeCase
 
-`snakeCase(text: string): string`
+`snakeCase(text: String): String`
 
 Convert string to snake case.
 Converts a given string to snake_case format by handling acronyms, camelCase,
@@ -525,7 +525,7 @@ snakeCase('FOO-BAR'); // foo_bar
 
 #### swapCase
 
-`swapCase(text: string): string`
+`swapCase(text: String): String`
 
 Convert string by swapping the case of every character.
 Uppercase becomes lowercase, and lowercase becomes uppercase.
@@ -546,7 +546,7 @@ swapCase('123 ABC xyz'); // 123 abc XYZ
 
 #### titleCase
 
-`titleCase(text: string): string`
+`titleCase(text: String): String`
 
 Convert string to title case.
 Converts the input string to title case by first lowercasing the entire string,
@@ -570,7 +570,7 @@ titleCase('one-two'); // One-two
 
 #### upperCase
 
-`upperCase(text: string): string`
+`upperCase(text: String): String`
 
 Convert string to upper case.
 Converts all characters in the given string to their upper-case equivalents using the built-in `String.prototype.toUpperCase` method. The original string is not modified; a new upper-cased string is returned.

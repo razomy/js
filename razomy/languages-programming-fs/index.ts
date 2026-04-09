@@ -9,6 +9,7 @@ export {
   NEXT_CACHE,
   NUXT_CACHE,
   NX_CACHE,
+  PULUMI_CACHE,
   PYTHON_CACHE,
   UNITY_CACHE,
 } from './is_cache';

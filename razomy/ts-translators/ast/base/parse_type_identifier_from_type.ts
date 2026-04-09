@@ -1,5 +1,6 @@
 import {Node} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
+import {mapName} from "./map_name";
 
 export function parseTypeIdentifierFromType(node: Node): abstracts.translators.TypeIdentifier {
   const inferredType = node.getType();
@@ -14,7 +15,7 @@ export function parseTypeIdentifierFromType(node: Node): abstracts.translators.T
     typeString = inferredType.getBaseTypeOfLiteralType().getText();
     return {
       kind: 'TypeIdentifier',
-      name: typeString,
+      name: mapName(typeString),
     };
   }
 

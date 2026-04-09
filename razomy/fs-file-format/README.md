@@ -73,7 +73,7 @@ razomy run @razomy/fs-file-format ExtensionResult
 
 #### FileExtensionType
 
-`type FileExtensionType = string`
+`type FileExtensionType = String`
 
 #### FileFormat
 
@@ -81,7 +81,7 @@ razomy run @razomy/fs-file-format ExtensionResult
 
 #### MediaType
 
-`type MediaType = string`
+`type MediaType = String`
 
 ## 🕊️ Vision
 
