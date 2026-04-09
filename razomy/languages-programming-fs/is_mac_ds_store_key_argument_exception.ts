@@ -1,4 +1,4 @@
-import { isMacDsStoreKey } from './is_mac_ds_store_key';
+import {isMacDsStoreKey} from './is_mac_ds_store_key';
 import * as exceptions from '@razomy/exceptions';
 import * as abstracts from '@razomy/abstracts';
 
@@ -11,8 +11,8 @@ export const KNOWN_DEPENDENCIES = [...PYTHON_DEPENDENCIES, ...NODEJS_DEPENDENCIE
 export const GIT_SLUG = '.git';
 export const MAC_DS_STORE_FILE = '.DS_Store';
 
-export class IsMacDsStoreKeyArgumentException extends exceptions.ArgumentException<abstracts.graphs.WithPathString> {
+export class IsMacDsStoreKeyArgumentException extends exceptions.ArgumentException<string> {
   constructor(path: string) {
-    super(isMacDsStoreKey.name, { pathString: path });
+    super(isMacDsStoreKey.name, path);
   }
 }

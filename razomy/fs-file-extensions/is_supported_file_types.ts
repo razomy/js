@@ -66,6 +66,7 @@ export const PROGRAMMING_LANGUAGES_BUFFER_TYPES = {
   toml: 'utf-8',
   tsx: 'utf-8',
   go: 'utf-8',
+  r: 'utf-8',
 
   drawio: 'utf-8',
   proto: 'utf-8',
@@ -99,6 +100,7 @@ export const UNITY_BUFFER_TYPES = {
   preset: 'utf-8',
   unity: 'utf-8',
   mat: 'utf-8',
+  xsd: 'utf-8',
   fbx: 'base64',
 } as const satisfies Record<string, BufferEncoding>;
 

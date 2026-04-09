@@ -4,8 +4,9 @@ export const CSHARP_CACHE = ['obj'];
 export const DART_CACHE = ['.dart_tool'];
 export const NEXT_CACHE = ['.next'];
 export const NX_CACHE = ['lib'];
-export const IDEA_CACHE = ['.idea'];
+export const IDEA_CACHE = ['.idea', '.vscode-test'];
 export const NUXT_CACHE = ['.nuxt'];
+export const PULUMI_CACHE = ['.pulumi'];
 export const DART_FIREBASE_CACHE = [
   '.firebase',
   ['flutter', 'ephemeral'],
@@ -13,7 +14,7 @@ export const DART_FIREBASE_CACHE = [
   // ios
   ['Pods'],
 ];
-export const UNITY_CACHE = ['Temp', 'Debug'];
+export const UNITY_CACHE = ['Temp', 'Debug', 'Logs'];
 export const JAVA_CACHE = ['.gradle'];
 
 export const KNOWN_CACHE = [
@@ -28,4 +29,5 @@ export const KNOWN_CACHE = [
   ...UNITY_CACHE,
   ...JAVA_CACHE,
   ...IDEA_CACHE,
+  ...PULUMI_CACHE,
 ];
