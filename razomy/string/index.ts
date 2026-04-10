@@ -2,6 +2,7 @@ export { addByIndexString } from './add_by_index_string';
 export { chunk } from './chunk';
 export { chunkByByteLength } from './chunk_by_byte_length';
 export { contains } from './contains';
+export { containsAny } from './contains_any';
 export { countChar } from './count_char';
 export { countOccurrences } from './count_occurrences';
 export { countSpaceMargin } from './count_space_margin';

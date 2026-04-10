@@ -1,4 +1,4 @@
-import { OPENAI } from './openai';
+import { CLIENT } from './client';
 
 export async function gptApiV2(params = { messages: [] }) {
   const request = {
@@ -8,6 +8,6 @@ export async function gptApiV2(params = { messages: [] }) {
     presence_penalty: 0,
     ...params,
   };
-  const response = await OPENAI.chat.completions.create(request as any);
+  const response = await CLIENT.chat.completions.create(request as any);
   return response;
 }

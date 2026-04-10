@@ -1,7 +1,7 @@
-import { OPENAI } from './openai';
+import { CLIENT } from './client';
 
 export async function getModels() {
-  const res = await OPENAI.models.list();
+  const res = await CLIENT.models.list();
   console.log(res.data.map((i) => i.id));
   return res.data;
 }

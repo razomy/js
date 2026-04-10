@@ -1,8 +1,8 @@
 /**
  * @summary Splits string into an array of its words.
- * @description Splits string into an array of its words.
+ * @description Splits string into an array of its words by matching sequences of letters or numbers.
  * @param value The string to process.
- * @returns The array of words.
+ * @returns An array of words found in the string.
  * @example
  * ```ts
  * getWords('fred, barney, & pebbles'); // => ['fred', 'barney', 'pebbles']

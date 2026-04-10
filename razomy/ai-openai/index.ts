@@ -1,8 +1,8 @@
 export * as instructions from './instructions';
+export { CLIENT } from './client';
 export { Chat } from './chat';
 export { LanguageGrammarCorrection } from './language_grammar_correction';
 export { MODELS } from './models';
-export { OPENAI } from './openai';
 export { addFunctionAndAssign } from './add_function_and_assign';
 export { addSystemMessage } from './add_system_message';
 export { addUserMessage } from './add_user_message';

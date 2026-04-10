@@ -1,1 +1,1 @@
-export * as programming from '../languages';
+export { LOCALES } from './locales';

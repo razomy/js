@@ -1,7 +1,7 @@
 /**
  * @summary Unescape occurrences of a specific string.
  * @description Removes the backslash preceding the specified string globally.
- * @param string The target string.
+ * @param string The string to process.
  * @param separateString The string to unescape.
  * @returns The unescaped string.
  * @example

@@ -1,10 +1,10 @@
 /**
- * @summary Split string by splitter characters.
- * @description Split string by splitter characters.
- * @param text - The string to split.
- * @param splitter An object that can split a string.
- * @param limit A value used to limit the number of elements returned in the array.
- * @returns An array of lines.
+ * @summary Split string by a given delimiter.
+ * @description Splits a string based on a specified splitter (string or RegExp) and an optional limit on the number of resulting elements.
+ * @param text The string to be split.
+ * @param splitter The delimiter to use for splitting. Can be a string or a RegExp.
+ * @param limit An optional number to limit the number of elements returned in the array.
+ * @returns An array of strings resulting from the split operation.
  * @example
  * ```ts
  * split('Line 1\nLine 2', '\n'); // => ['Line 1', 'Line 2']

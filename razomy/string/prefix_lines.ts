@@ -1,9 +1,9 @@
 /**
  * @summary Add margin to every line of the string.
- * @description Add margin to every line of the string.
- * @param text The input text.
- * @param prefix The margin string to prepend.
- * @returns The text with margin applied.
+ * @description Adds a specified prefix to the beginning of every line in the input string.
+ * @param text The input string to be prefixed.
+ * @param prefix The string to prepend to the beginning of each line.
+ * @returns The string with the prefix applied to every line.
  * @example
  * ```ts
  * prefixLines('Hello', '  '); // => '  Hello'

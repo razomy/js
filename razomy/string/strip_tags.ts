@@ -1,8 +1,8 @@
 /**
  * @summary Strip HTML tags from a string.
- * @description Strip HTML tags from a string.
- * @param content - The input string to strip tags from.
- * @returns The string without HTML tags.
+ * @description Removes all HTML tags from a given string.
+ * @param content The input string potentially containing HTML tags.
+ * @returns The string with all HTML tags removed.
  * @example
  * ```ts
  * stripTags('<p>Hello world</p>'); // => 'Hello world'

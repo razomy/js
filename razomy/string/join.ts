@@ -1,7 +1,7 @@
 /**
  * @summary Joins an array of strings into a single string using a separator.
  * @description Joins an array of strings into a single string using a separator.
- * @param items The array of strings to join.
+ * @param items An array of strings to join.
  * @param separator The string to use as a separator.
  * @returns The joined string.
  * @example

@@ -1,9 +1,9 @@
 /**
- * @summary Count occurrences of a char at string.
+ * @summary Count occurrences of a char at string within a range.
  * @description Counts how many times `equalChar` appears in the `string`
  * between index `offset` (inclusive) and `maxOffset` (exclusive).
  * @param string The string to search within.
- * @param equalChar The string to match against.
+ * @param equalChar The single character to match against.
  * @param offset The starting index (inclusive).
  * @param maxOffset The ending index (exclusive).
  * @returns The number of occurrences found.

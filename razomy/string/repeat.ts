@@ -2,7 +2,7 @@
  * @summary Repeats a string a specified number of times.
  * @description Repeats a string a specified number of times.
  * @param content The string to repeat.
- * @param count The number of times to repeat the string.
+ * @param count The number of times to repeat the string. Must be a non-negative number.
  * @returns A new string containing the specified number of copies.
  * @example
  * ```ts

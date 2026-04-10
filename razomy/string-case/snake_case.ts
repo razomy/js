@@ -40,7 +40,7 @@ export function snakeCase(text: string): string {
 
       // 5. Replace delimiters (spaces, hyphens, dots) with a single underscore
       // This collapses multiple separators (e.g. ' - ' becomes '_')
-      .replace(/[ |_\-\.]+/g, '_')
+      .replace(/[ |_\-.]+/g, '_')
       // from _text_ -> text
       .replace(/^_+|_+$/g, '')
 

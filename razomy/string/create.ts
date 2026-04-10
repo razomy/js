@@ -1,8 +1,8 @@
 /**
  * @summary Convert any value to a string.
- * @description Convert any value to a string.
+ * @description Converts any value to its string representation.
  * @param {unknown} value The value to convert.
- * @returns The string representation of the value.
+ * @returns {string} The string representation of the value.
  * @example
  * ```ts
  * string(100); // => '100'

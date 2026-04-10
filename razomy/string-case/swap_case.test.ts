@@ -51,9 +51,9 @@ describe('string', () => {
     // 5. Non-ASCII Characters (Implementation Limitation)
     it('ignores non-ASCII characters due to regex constraint', () => {
       // The implementation uses /[a-zA-Z]/g, which typically excludes accented characters
-      expect(stringCase.swapCase('ñ')).toBe('ñ');
-      expect(stringCase.swapCase('É')).toBe('É');
-      expect(stringCase.swapCase('café')).toBe('CAFé'); // 'c', 'a', 'f' swap, 'é' stays
+      expect(stringCase.swapCase('ñ')).toBe('Ñ');
+      expect(stringCase.swapCase('É')).toBe('é');
+      expect(stringCase.swapCase('café')).toBe('CAFÉ');
     });
   });
 });

@@ -1,8 +1,8 @@
 /**
  * @summary Check if the string is null, undefined, or empty (including whitespace).
- * @description Check if the string is null, undefined, or empty (including whitespace).
+ * @description Checks if the string is null, undefined, or empty after trimming whitespace.
  * @param str The string to check.
- * @returns True if the string is null, undefined, or empty.
+ * @returns True if the string is null, undefined, or consists only of whitespace.
  * @example
  * ```ts
  * isNullOrEmpty(null); // => true

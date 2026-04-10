@@ -3,11 +3,11 @@ import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Insert a string into another string at a specific index.
- * @description Insert a string into another string at a specific index.
- * @param text The original string.
- * @param index The zero-based index at which to insert.
- * @param insertion The string to insert.
- * @returns The resulting string with the insertion.
+ * @description Inserts a string into another string at a specified index.
+ * @param text The original string where the insertion will occur.
+ * @param index The zero-based index at which to insert the new string.
+ * @param insertion The string to be inserted into the original string.
+ * @returns The resulting string after the insertion.
  * @example
  * ```ts
  * addByIndexString('-text', 0, 'prefix'); // => 'prefix-text'

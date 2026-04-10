@@ -1,130 +1,108 @@
-// TODO:import from @razomy/language
-export const locales = [
+export const LOCALES = [
   {
     name: 'English',
     code: 'en',
     iso: 'en-US',
-    file: 'en-US.json',
   },
   {
     name: 'Українська',
     code: 'uk',
     iso: 'uk-UA',
-    file: 'uk-UA.json',
   },
   {
     name: 'Español',
     code: 'es',
     iso: 'es-ES',
-    file: 'es-ES.json',
   },
   {
     name: 'Français',
     code: 'fr',
     iso: 'fr-FR',
-    file: 'fr-FR.json',
   },
   {
     name: 'Deutsch',
     code: 'de',
     iso: 'de-DE',
-    file: 'de-DE.json',
   },
   {
     name: 'Italiano',
     code: 'it',
     iso: 'it-IT',
-    file: 'it-IT.json',
   },
   {
     name: 'Português',
     code: 'pt',
     iso: 'pt-PT',
-    file: 'pt-PT.json',
   },
   {
     name: 'Nederlands',
     code: 'nl',
     iso: 'nl-NL',
-    file: 'nl-NL.json',
   },
   {
     name: 'Svenska',
     code: 'sv',
     iso: 'sv-SE',
-    file: 'sv-SE.json',
   },
   {
     name: 'Norsk',
     code: 'no',
     iso: 'no-NO',
-    file: 'no-NO.json',
   },
   {
     name: 'Dansk',
     code: 'da',
     iso: 'da-DK',
-    file: 'da-DK.json',
   },
   {
     name: 'Suomi',
     code: 'fi',
     iso: 'fi-FI',
-    file: 'fi-FI.json',
   },
   {
     name: '日本語',
     code: 'ja',
     iso: 'ja-JP',
-    file: 'ja-JP.json',
   },
   {
     name: '中文',
     code: 'zh',
     iso: 'zh-CN',
-    file: 'zh-CN.json',
   },
   {
     name: '한국어',
     code: 'ko',
     iso: 'ko-KR',
-    file: 'ko-KR.json',
   },
   {
     name: 'العربية',
     code: 'ar',
     dir: 'rtl',
     iso: 'ar-SA',
-    file: 'ar-SA.json',
   },
   {
     name: 'Русский',
     code: 'ru',
     iso: 'ru-RU',
-    file: 'ru-RU.json',
   },
   {
     name: 'Türkçe',
     code: 'tr',
     iso: 'tr-TR',
-    file: 'tr-TR.json',
   },
   {
     name: 'हिन्दी',
     code: 'hi',
     iso: 'hi-IN',
-    file: 'hi-IN.json',
   },
   {
     name: 'ไทย',
     code: 'th',
     iso: 'th-TH',
-    file: 'th-TH.json',
   },
   {
     name: 'Bahasa Indonesia',
     code: 'id',
     iso: 'id-ID',
-    file: 'id-ID.json',
   },
 ];

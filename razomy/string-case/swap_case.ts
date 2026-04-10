@@ -19,7 +19,7 @@
  * @complexity memory O(n)
  */
 export function swapCase(text: string): string {
-  return text.replace(/[a-zA-Z]/g, (char) => {
+  return text.replace(/./g, (char) => {
     const lower = char.toLowerCase();
     return char === lower ? char.toUpperCase() : lower;
   });

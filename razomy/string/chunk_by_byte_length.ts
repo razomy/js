@@ -2,7 +2,7 @@
  * @summary Split string into chunks by maximum byte length.
  * @description Iterates over Unicode characters and groups them into chunks ensuring that each chunk's UTF-8 byte size does not exceed the specified maximum bytes.
  * @param text The input string to chunk.
- * @param maxBytes The maximum allowed byte size per chunk.
+ * @param maxBytes The maximum allowed byte size per chunk. Defaults to 700.
  * @returns An array of string chunks.
  * @example
  * ```ts

@@ -1,10 +1,10 @@
 /**
  * @summary Checks if string starts with the given target string.
- * @description Checks if string starts with the given target string.
+ * @description Checks if string starts with the given target string starting from a specified position.
  * @param string The string to inspect.
  * @param target The string to search for.
- * @param position The position to search from.
- * @returns Returns true if string starts with target, else false.
+ * @param position The starting index in the string to check from. Defaults to 0.
+ * @returns Returns true if the substring of `string` starting at `position` starts with `target`, else false.
  * @example
  * ```ts
  * isStartsWith('razomy', 'r'); // => true

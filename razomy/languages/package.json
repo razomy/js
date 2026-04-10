@@ -35,7 +35,8 @@
   "homepage": "https://github.com/razomy/js/tree/main/razomy/languages#readme",
   "keywords": [
     "razomy",
-    "languages"
+    "languages",
+    "locales"
   ],
   "license": "MIT",
   "main": "./index.ts",

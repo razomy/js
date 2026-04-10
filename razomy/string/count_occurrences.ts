@@ -1,9 +1,8 @@
 /**
- * @summary Counts the number of occurrences of a substring within a text.
- * @description Counts the number of occurrences of a substring within a text.
- * @param text The text to search.
- * @param substring The substring to count.
- * @returns {number} The number of occurrences.
+ * Counts the number of non-overlapping occurrences of a substring within a text.
+ * @param text The main string to search within.
+ * @param substring The substring to count occurrences of.
+ * @returns {number} The total number of times the substring appears in the text.
  * @example
  * ```ts
  * countOccurrences('hello world', 'l'); // => 3
