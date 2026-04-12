@@ -37,6 +37,7 @@
     "addByIndexString",
     "chunkByByteLength",
     "chunk",
+    "containsAny",
     "contains",
     "countChar",
     "countOccurrences",

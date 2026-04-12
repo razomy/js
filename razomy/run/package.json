@@ -30,24 +30,32 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/cli#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/run#readme",
   "keywords": [
     "razomy",
-    "cli",
-    "validateArrayStringThrow"
+    "run",
+    "createRunner",
+    "resolveFilePathOrPackageName",
+    "runFunctionInstant",
+    "start",
+    "validateArrayStringThrow",
+    "cancelMut",
+    "createMut",
+    "processJobMut"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/cli",
+  "name": "@razomy/run",
   "peerDependencies": {
-    "@razomy/exceptions": "*"
+    "@razomy/exceptions": "*",
+    "@razomy/random": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/cli",
+    "directory": "razomy/run",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
