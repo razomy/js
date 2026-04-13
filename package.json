@@ -45,7 +45,6 @@
     "./razomy/buffer",
     "./razomy/buffer-string",
     "./razomy/char",
-    "./razomy/cli",
     "./razomy/cli-ais",
     "./razomy/cluster",
     "./razomy/commit",

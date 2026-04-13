@@ -35,8 +35,10 @@
     "razomy",
     "run",
     "createRunner",
+    "resolveAndRun",
     "resolveFilePathOrPackageName",
     "runFunctionInstant",
+    "spawnProcess",
     "start",
     "validateArrayStringThrow",
     "cancelMut",
@@ -49,7 +51,8 @@
   "name": "@razomy/run",
   "peerDependencies": {
     "@razomy/exceptions": "*",
-    "@razomy/random": "*"
+    "@razomy/random": "*",
+    "express": "^5.2.1"
   },
   "publishConfig": {
     "access": "public"

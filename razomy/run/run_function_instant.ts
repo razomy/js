@@ -21,4 +21,3 @@ export async function runFunctionInstant<M>(
 
   return fn(...arguments_);
 }
-
