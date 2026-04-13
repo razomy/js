@@ -1,9 +1,6 @@
 import express from 'express';
 import {resolveAndRun, type RunRequest} from "../resolve_and_run";
 
-const app = express();
-app.use(express.json());
-
 /*
 
 curl -X POST http://localhost:3000/run \
@@ -16,6 +13,9 @@ curl -X POST http://localhost:3000/run \
 
  */
 export async function start() {
+  const app = express();
+  app.use(express.json());
+
   const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
   app.post('/run', async (req, res) => {

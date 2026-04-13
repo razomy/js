@@ -1,5 +1,6 @@
 import {ChildProcess, execSync, spawn} from "child_process";
 import {platform} from "os";
+import type {ChildProcessWithoutNullStreams} from "node:child_process";
 
 class ProcessManager {
   private static activeProcesses = new Set<ChildProcess>();
@@ -40,7 +41,7 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-// 2. Атомарный парсер (Без изменений)
+
 function parseCliResult(output: string): any {
   const lines = output.trim().split('\n');
   for (let i = lines.length - 1; i >= 0; i--) {
@@ -54,42 +55,40 @@ function parseCliResult(output: string): any {
   return null;
 }
 
-// =====================================================================
-// 3. ОСНОВНАЯ ФУНКЦИЯ (Авто-определение Сервер/Скрипт)
-// =====================================================================
 export async function spawnProcess(
   command: string,
   args: string[],
   cwd: string,
   env: any
-): Promise<any> {
+): Promise<{
+  isServer: true,
+  process: ChildProcessWithoutNullStreams,
+  kill: () => void
+} | null | string> {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {cwd, env});
     ProcessManager.register(child);
 
     let outputBuffer = '';
-    let isServerMode = false; // Функция сама догадается
+    let isServerMode = false;
 
-    function handleStream (chunk: string) {
-            // Если мы уже поняли, что это сервер - логи не копим (защита от утечек памяти)
-            if (isServerMode) return;
+    function handleStream(chunk: string) {
+      if (isServerMode) return;
 
-            outputBuffer += chunk;
+      outputBuffer += chunk;
 
-            // АВТО-ОПРЕДЕЛЕНИЕ СЕРВЕРА:
-            // Если Python скрипт напечатал это слово, значит он перешел в режим сервера
-            if (outputBuffer.includes('__SERVER_READY__')) {
-              isServerMode = true;
-              outputBuffer = ''; // Очищаем память, буфер логов больше не нужен
+      // АВТО-ОПРЕДЕЛЕНИЕ СЕРВЕРА:
+      if (outputBuffer.includes('__SERVER_READY__')) {
+        isServerMode = true;
+        outputBuffer = '';
 
-              // Возвращаем спец-объект. Процесс продолжает работать в фоне!
-              resolve({
-                __is_server: true, // Метка для вашего кода
-                process: child,
-                kill: () => ProcessManager.killTree(child)
-              });
-            }
-          }
+        resolve({
+          isServer: true,
+          process: child,
+          kill: () => ProcessManager.killTree(child)
+        });
+      }
+    }
 
     child.stdout.on('data', (data) => handleStream(data.toString()));
     child.stderr.on('data', (data) => handleStream(data.toString()));
@@ -97,14 +96,12 @@ export async function spawnProcess(
     child.on('close', (code) => {
       ProcessManager.unregister(child);
 
-      // Если это был сервер, Promise уже давно зарезолвлен, делать ничего не надо
       if (isServerMode) return;
 
-      // Если дошли сюда, значит это был обычный CLI скрипт. Ищем результат:
       try {
         const result = parseCliResult(outputBuffer);
         if (result !== null) {
-          resolve(result); // Возвращаем обычный результат как раньше
+          resolve(result);
         } else {
           reject(new Error(`Runner failed (No __CLI_RESULT__). Code: ${code}\nLogs: ${outputBuffer}`));
         }
