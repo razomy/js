@@ -34,6 +34,7 @@ main.ifMain(import.meta.url, async () => {
     '../schema',
     '../schemas',
     '../nuxt',
+    '../run',
     // '../dict-recursive',
     // '../videos',
     // '../audios',
