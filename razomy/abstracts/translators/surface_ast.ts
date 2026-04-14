@@ -1,16 +1,19 @@
 /**
- * Суть: Описывает Cинтаксис (то, как написан код).
- * Правила: Оборачивает CST → Дает узлам языковой смысл → Игнорирует пробелы → Все имена — это просто строки.
- * Код разделен на два параллельных пространства (от внешних абстракций к внутренним):
- * 1. Пространство значений - сущетвуют в копилированом коде
- * - Expression — внешние единицы измерения (базовые вычисляемые блоки, data, structure in memory, return value).
- * - Statement — список действий и завершенных шаблонов над Expression и Binding (logic, action, no return value).
- * - Binding — Declaration + Statement (связывание объявленного имени с конкретным действием/результатом).
- * 2. Пространство типов - сущетвуют в только на этапе разработки сахар
- * - Type — группирование Expression по общему признаку.
- * - TypeStatement — действия над группами типов (ограничения, маппинг, трансформации).
- * - TypeBinding — TypeDeclaration + TypeStatement (связывание имени типа с его правилами и структурой).
+ * Суть: Описывает Синтаксис
+ * Код разделен на два параллельных пространства:
+ * 1. Пространство значений - сущетвуют в копилированом коде Rust Kotlin Python Ts
+ * - Expression — возврашают значение (вычисляемые, data, structure in memory).
+ * - Statement — меняют значение в рамках блока (for, while).
+ * - Binding — Declaration + Statement, связывание объявленного имени с конкретным действием/результатом.
+ * 2. Пространство типов - существуют в только на этапе разработки - сахар
+ * - Shape — группирование Expression по общему признаку.
+ * - ShapeBinding — TypeDeclaration + TypeExpression (связывание имени типа с его правилами и структурой).
+ * 3. Онтология - текстовое описание процессов Inform 7,Attempto Controlled English,Cucumber
+ * - Concept (Концепт) — аналог Binding и Shape. Это декларация фактов, правил игры, объектов и их типов. То, что валидируется до выполнения.
+ * - Clause (Клауза/Фраза) — аналог Statement и Expression. Это активные действия, происходящие в рантайме.
  */
+
+import type {Token} from "./token";
 
 /**
  * The foundational interface for all AST nodes.
@@ -23,7 +26,7 @@ export interface AstNode {
   kind: string;
 }
 
-// region Data Level 1
+// region Data - Level 1
 /**
  * Base interface for all expressions (data values).
  * Exists in memory
@@ -52,17 +55,16 @@ export interface Statement extends AstNode {
 }
 
 /**
- * @final
+ * @abstract
  */
 export interface Identifier extends AstNode {
-  kind: 'Identifier';
   name: string;
 }
 
 /**
  * Base interface for all declarations.
  * Represents creating an entity with a specific name and state.
- * Requqest memory
+ * Request memory
  * @example
  * ```ts
  * * Identifier with Expression assignment
@@ -76,114 +78,19 @@ export interface Binding extends AstNode {
 /**
  * @abstract
  */
-export type AstDataType = Expression | Statement | Binding;
+export type AstValueType = Expression | Statement | Binding;
 
 // region Expression
 
 /**
- * Represents a string literal expression.
+ *
  * @example
- * ```ts
- * "hello world"
- * ```
  * @final
  */
-export interface StringExpression extends Expression {
-  kind: 'StringExpression';
+export interface BuildInExpression extends Expression {
+  kind: 'BuildInExpression';
+  type: 'RegExp' | 'string' | 'number' | 'boolean' | 'null';
   value: string;
-}
-
-/**
- * Represents a number literal expression.
- * @example
- * ```ts
- * 42 or 3.14
- * ```
- * @final
- */
-export interface NumberExpression extends Expression {
-  kind: 'NumberExpression';
-  value: number;
-}
-
-/**
- * Represents a boolean literal expression.
- * @example
- * ```ts
- * true or false
- * ```
- * @final
- */
-export interface BooleanExpression extends Expression {
-  kind: 'BooleanExpression';
-  value: boolean;
-}
-
-/**
- * Represents a null literal expression.
- * @example
- * ```ts
- * null
- * ```
- * @final
- */
-export interface NullExpression extends Expression {
-  kind: 'NullExpression';
-  value: null;
-}
-
-/**
- * Represents an undefined literal expression.
- * @example
- * ```ts
- * undefined
- * ```
- * @final
- */
-export interface UndefinedExpression extends Expression {
-  kind: 'UndefinedExpression';
-  value: undefined;
-}
-
-/**
- * Represents a BigInt literal expression.
- * @example
- * ```ts
- * 9007199254740991n
- * ```
- * @final
- */
-export interface BigIntExpression extends Expression {
-  kind: 'BigIntExpression';
-  value: bigint;
-}
-
-/**
- * Represents a Regular Expression literal.
- * @example
- * ```ts
- * /^[a-z]+$/i
- * ```
- * @final
- */
-export interface RegExpExpression extends Expression {
-  kind: 'RegExpExpression';
-  pattern: string;
-  flags: string;
-}
-
-/**
- * Represents a template string expression.
- * @example
- * ```ts
- * `Hello ${name}`
- * ```
- * @final
- */
-export interface TemplateExpression extends Expression {
-  kind: 'TemplateExpression';
-  template: string;
-  expressions: ExpressionType[];
 }
 
 /**
@@ -196,21 +103,8 @@ export interface TemplateExpression extends Expression {
  */
 export interface ArrayExpression<T extends ExpressionType = ExpressionType> extends Expression {
   kind: 'ArrayExpression';
+  type: 'array' | 'tuple';
   expressions: T[];
-}
-
-/**
- * Represents a tuple expression.
- * (Syntactically similar to ArrayExpression in JS/TS, but conceptually fixed-length).
- * @example
- * ```ts
- * ['John', 25]
- * ```
- * @final
- */
-export interface TupleExpression extends Expression {
-  kind: 'TupleExpression';
-  expressions: ExpressionType[];
 }
 
 /**
@@ -242,111 +136,131 @@ export interface ObjectExpression extends Expression {
 }
 
 /**
- * Represents a reference to an identifier (variable/function/etc).
- * @example
- * ```ts
- * myVariable when used in console.log(myVariable)
- * ```
- * @final
- */
-export interface ReferenceExpression extends Expression {
-  kind: 'ReferenceExpression';
-  identifier: Identifier;
-}
-
-/** !1 ++1
+ * Унарные операции: !1, ++1, x--, -5, +x, ~2, typeof x, delete x
  * @final
  */
 export interface UnaryExpression extends Expression {
   kind: 'UnaryExpression';
-  operator: string;
-  expression: ExpressionType;
-  isPrefix: boolean;
+  operator:
+    | '&'      // AddressOfExpression
+    | '*'      // DereferenceExpression
+    | '!'      // Логическое НЕ
+    | '+'      // Унарный плюс (приведение к числу)
+    | '-'      // Унарный минус (отрицание)
+    | '~'      // Побитовое НЕ
+    | '++'     // Инкремент
+    | '--'     // Декремент
+    | 'typeof' // Определение типа
+    | 'delete';// Удаление свойства
+  expression: ExpressionType; // В стандарте ESTree это обычно называется 'argument'
+  isPrefix: boolean;          // true для ++x, false для x++
 }
 
-/** 1+1 3&4
+/**
+ * Бинарные операции: 1 + 1, 3 & 4, x === y, a ** b
  * @final
  */
 export interface BinaryExpression extends Expression {
   kind: 'BinaryExpression';
-  operator: string;
+  operator:
+  // Арифметика
+    | '+' | '-' | '*' | '/' | '%' | '**'
+    // Побитовые операции
+    | '&' | '|' | '^' | '<<' | '>>' | '>>>'
+    // Сравнение (строгое и нестрогое)
+    | '==' | '!=' | '===' | '!=='
+    // Отношение
+    | '<' | '<=' | '>' | '>='
+    // Проверка наличия/типа
+    | 'in'
   left: ExpressionType;
   right: ExpressionType;
 }
 
-/**
- * Represents an if statement.
+export interface ControlBranchExpression extends Expression {
+  kind: 'ControlBranch';
+  type: 'if' | 'switch';
+  pattern: Expression | null;
+  body: BlockExpression;
+}
+
+export interface ConditionalControlFlowExpression extends Expression {
+  kind: 'ConditionalControlFlow';
+  target: Expression | null;
+  branches: ControlBranchExpression[];
+}
+
+export interface LoopControlFlowExpression extends Expression {
+  kind: 'LoopControlFlow';
+  type: 'do_while' | 'while_do' | 'for_in' | 'for_of'
+  init: Expression | null;
+  condition: Expression | null;
+
+  // Шаг цикла (i++; или получение следующего элемента yield/next)
+  update: Expression | null;
+
+  body: BlockExpression;
+}
+
+/** name(1,2) | (1,2)
  * @final
  */
-export interface IfExpression extends Expression {
-  kind: 'IfExpression';
-  condition: ExpressionType;
-  consequent: ExpressionType;
-  alternate: ExpressionType | null;
+export interface CallExpression extends Expression {
+  kind: 'CallExpression';
+  identifier: Identifier | null;
+  arguments_: ExpressionType[];
 }
 
 /**
- * a = b?
- * 1-> 5
- * 2-> 6
- * @final
+ * Вызов макроса. Обрати внимание, что аргументы могут быть не выражениями,
+ * а сырым текстом/токенами, если макрос определяет свой DSL.
+ * @example Rust: `println!("{}, {}", x, y)`, `vec![1, 2, 3]`
  */
-export interface MatchExpression extends Expression {
-  kind: 'MatchExpression';
-  target: ExpressionType;
-  cases: Array<{ pattern: ExpressionType; body: ExpressionType }>;
+export interface MacroCallExpression extends Expression {
+  kind: 'MacroCallExpression';
+  identifier: Identifier;
+  arguments: Token;
 }
 
 /**
- * Domain Specific Type: Represents an array/list where exactly one item is marked as selected.
- * @example
- * ```ts
- * Not native to TS. Conceptually: [1, 2, selected(3), 4]
- * ```
- * @final
+ * @example .a | [1]
  */
-export interface SelectExpression extends Expression {
-  kind: 'SelectExpression';
-  expressions: ExpressionType[];
-  selectedIndex: number;
+export interface MemberExpression extends Expression {
+  kind: 'MemberExpression';
+  property: ExpressionType; // propertyExpression or number ...
 }
 
 /**
- * Domain Specific Type: Represents an array/list where multiple items can be marked as selected.
- * @example
- * ```ts
- * Not native to TS. Conceptually: [1, selected 2, 3, selected 4]
- * ```
+ * Represents a return statement.
+ * return ...;
  * @final
  */
-export interface MultiSelectExpression extends Expression {
-  kind: 'MultiSelectExpression';
-  expressions: ExpressionType[];
-  selectedIndexes: number[];
+export interface ReturnExpression extends Expression {
+  kind: 'ReturnExpression';
+  argument: ExpressionType | null;
+}
+
+export interface BlockExpression extends Expression {
+  kind: 'BlockExpression';
+  statements: StatementType[];
+  result: ReturnExpression;
 }
 
 export type ExpressionType =
-  | StringExpression
-  | NumberExpression
-  | BooleanExpression
-  | NullExpression
-  | UndefinedExpression
-  | BigIntExpression
-  | RegExpExpression
+  | BuildInExpression
   | ArrayExpression
   | ObjectExpression
   | PropertyExpression
-  | TupleExpression
-  | TemplateExpression
-  | ReferenceExpression
-  | MatchExpression
-  | IfExpression
   | UnaryExpression
+  | ConditionalControlFlowExpression
+  | LoopControlFlowExpression
+  | CallExpression
+  | MacroCallExpression
   | BinaryExpression
-  | SelectExpression
-  | MultiSelectExpression
+  | BlockExpression
+  | ReturnExpression
+  | MemberExpression
   ;
-
 // endregion Expression
 // region Statement
 
@@ -357,81 +271,36 @@ export type ExpressionType =
  */
 export interface BlockStatement extends Statement {
   kind: 'BlockStatement';
-  statements: AstLeafType[];
+  statements: StatementType[];
 }
 
-/**
- * Represents a return statement.
- * return ...;
- * @final
- */
-export interface ReturnStatement extends Statement {
-  kind: 'ReturnStatement';
-  description: string;
-  argument: ExpressionType | null;
+export interface ControlBranchStatement extends Statement {
+  kind: 'ControlBranch';
+  type: 'if' | 'switch' | 'try_catch'
+  pattern: Expression | null;
+  body: BlockStatement;
 }
 
-/**
- * Represents an if statement.
- * @final
- */
-export interface IfStatement extends Statement {
-  kind: 'IfStatement';
-  condition: ExpressionType;
-  consequent: StatementType;
-  alternate: StatementType | null;
+export interface ConditionalControlFlowStatement extends Statement {
+  kind: 'ConditionalControlFlow';
+  target: Expression | null;
+  branches: ConditionalControlFlowStatement[];
 }
 
-/**
- * Represents a while statement.
- * @final
- */
-export interface WhileStatement extends Statement {
-  kind: 'WhileStatement';
-  condition: ExpressionType;
-  body: StatementType;
+export interface LoopControlFlowStatement extends Statement {
+  kind: 'LoopControlFlow';
+  type: 'do_while' | 'while_do' | 'for_in' | 'for_of'
+  init: Expression | null;
+  condition: Expression | null;
+  update: Expression | null;
+
+  body: BlockStatement;
 }
 
-/**
- * Represents a for statement.
- * @final
- */
-export interface ForStatement extends Statement {
-  kind: 'ForStatement';
-  init: VariableStatement | null;
-  check: ExpressionType | null;
-  update: ExpressionType | null;
-  body: StatementType;
-}
-
-/**
- * Represents a for-of or for-in statement.
- * @final
- */
-export interface ForOfStatement extends Statement {
-  kind: 'ForOfStatement';
-  left: VariableStatement | ExpressionType;
-  right: ExpressionType;
-  body: StatementType;
-  isAwait: boolean;
-}
-
-/**
- * Represents a break statement.
- * @final
- */
-export interface BreakStatement extends Statement {
-  kind: 'BreakStatement';
-  label: Identifier | null;
-}
-
-/**
- * Represents a continue statement.
- * @final
- */
-export interface ContinueStatement extends Statement {
-  kind: 'ContinueStatement';
-  label: Identifier | null;
+export interface LoopBreakStatement extends Statement {
+  kind: 'LoopControlFlow';
+  type: 'break' | 'continue'
+  labelIdentifier: Identifier;
 }
 
 /**
@@ -441,37 +310,6 @@ export interface ContinueStatement extends Statement {
 export interface ThrowStatement extends Statement {
   kind: 'ThrowStatement';
   argument: ExpressionType;
-}
-
-/**
- * @final
- */
-export interface CatchStatement extends Statement {
-  kind: 'CatchStatement';
-  param: Identifier | null;
-  body: StatementType;
-}
-
-/**
- * Represents a try-catch statement.
- * @final
- */
-export interface TryStatement extends Statement {
-  kind: 'TryStatement';
-  block: BlockStatement
-  handler: CatchStatement | null;
-  finalizer: BlockStatement | null;
-}
-
-/**
- * switch
- * case1:do()
- * @final
- */
-export interface MatchStatement extends Statement {
-  kind: 'MatchStatement';
-  target: ExpressionType;
-  cases: Array<{ pattern: ExpressionType; body: BlockStatement }>;
 }
 
 /**
@@ -485,25 +323,19 @@ export interface MatchStatement extends Statement {
 export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
-  typeIdentifier: TypeIdentifier | null;
+  shapeIdentifier: ShapeIdentifier | null;
   description: string;
 }
 
-
 export type StatementType =
   | BlockStatement
+  | LoopControlFlowStatement
+  | ConditionalControlFlowStatement
+  | ControlBranchStatement
+  | LoopBreakStatement
   | VariableStatement
-  | ReturnStatement
-  | IfStatement
-  | WhileStatement
-  | CatchStatement
-  | ForStatement
-  | ForOfStatement
-  | BreakStatement
-  | ContinueStatement
-  | MatchStatement
   | ThrowStatement
-  | TryStatement;
+  ;
 
 // endregion Statement
 // region Binding
@@ -519,29 +351,9 @@ export type StatementType =
 export interface VariableBinding extends Binding {
   kind: 'VariableBinding';
   identifier: Identifier;
-  typeIdentifier: TypeIdentifier;
+  shapeIdentifier: ShapeIdentifier;
   isConst: boolean;
   description: string;
-  expression: ExpressionType;
-}
-
-/** name(1,2)
- * @final
- */
-export interface CallBinding extends Binding {
-  kind: 'CallBinding';
-  identifier: Identifier;
-  arguments_: ExpressionType[];
-}
-
-/**
- * Represents an expression used as a statement.
- * a = ... ;
- * @final
- */
-export interface AssignBinding extends Binding {
-  kind: 'AssignBinding';
-  identifier: Identifier;
   expression: ExpressionType;
 }
 
@@ -571,7 +383,7 @@ export interface DependencyBinding extends Binding {
 export interface PropertyBinding extends Binding {
   kind: 'PropertyBinding';
   identifier: Identifier;
-  typeIdentifier: TypeIdentifier | null;
+  shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType | null;
   isOptional: boolean;
   description: string;
@@ -589,7 +401,7 @@ export interface PropertyBinding extends Binding {
 export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
-  typeIdentifier: TypeIdentifier | null;
+  shapeIdentifier: ShapeIdentifier | null;
   description: string;
   expression: ExpressionType | null;
   isRest: boolean;
@@ -625,6 +437,8 @@ export interface EnumBinding extends Binding {
   properties: EnumPropertyBinding[];
 }
 
+export type  Modifier = 'async' | 'export' | 'public'
+
 /**
  * Represents a function declaration.
  * @example
@@ -637,17 +451,20 @@ export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
   identifier: Identifier;
   parameters: ParameterBinding[];
-  types: TypeBindingType[];
-  returnType: ReturnType | null;
-  description: string;
-  isAsync: boolean;
-  isGenerator: boolean;
-  body: StatementType | null;
-  title: string;
-  performance: {
-    timeDataSizeComplexityFn: string; memoryDataSizeComplexityFn: string; history: any[];
-  };
-  examples: Array<{ code: string; expected: string }>;
+  types: ShapeBindingType[];
+  returnType: ReturnShape | null;
+  modifiers: Modifier[];
+  body: SbsbType[];
+  meta: {
+    title: string;
+    performance: {
+      timeDataSizeComplexityFn: string;
+      memoryDataSizeComplexityFn: string;
+      history: any[];
+    };
+    examples: Array<{ code: string; expected: string }>;
+    description: string;
+  }
 }
 
 /**
@@ -662,8 +479,9 @@ export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
   description: string;
   identifier: Identifier;
-  extends_: ReferenceType[];
-  properties: PropertyType[];
+  extends_: ShapeIdentifier[];
+  properties: PropertyBinding[];
+  methods: FunctionBinding[];
 }
 
 /**
@@ -678,7 +496,7 @@ export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
   description: string;
   identifier: Identifier;
-  body: AstLeafType[];
+  body: SbsbType[];
 }
 
 /**
@@ -694,15 +512,23 @@ export interface PackageBinding extends Binding {
   identifier: Identifier;
   description: string;
   version: string;
-  engine: DependencyBinding;
+  runtime: DependencyBinding;
   dependencies: DependencyBinding[];
-  body: AstLeafType[];
+  body: SbsbType[];
+}
+
+/**
+ * Объявление макроса.
+ * @example Rust: `macro_rules! my_macro { ... }`
+ */
+export interface MacroBinding extends Binding {
+  kind: 'MacroBinding';
+  identifier: Identifier;
+  rules: Array<{ pattern: Token[]; template: Token[] }>;
 }
 
 export type BindingType =
   VariableBinding
-  | CallBinding
-  | AssignBinding
   | DependencyBinding
   | PropertyBinding
   | ParameterBinding
@@ -711,6 +537,7 @@ export type BindingType =
   | FunctionBinding
   | ModuleBinding
   | PackageBinding
+  | MacroBinding
   | ClassBinding
   ;
 
@@ -728,145 +555,62 @@ export type BindingType =
  * ```
  * @abstract
  */
-export interface Type extends AstNode {
+export interface Shape extends AstNode {
 }
 
-/*
+
+/**
+ * A reference to an existing type, class, or interface.
+ * @example
+ * ```ts
+ * UserType
+ * ```
  * @final
  */
-export interface TypeIdentifier extends AstNode {
-  kind: 'TypeIdentifier';
+export interface ShapeIdentifier extends Identifier {
   name: string;
 }
 
 /*
  * @abstract
  */
-export interface TypeStatement extends AstNode {
+export interface ShapeStatement extends AstNode {
 }
 
 /*
  * @abstract
  */
-export interface TypeBinding extends AstNode {
+export interface ShapeBinding extends AstNode {
 }
 
-export type AstTypeType = Type | TypeStatement | TypeBinding;
+export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
 
-// region TypeType
+// region ShapeType
+
+/**
+ * Унарные операции: typeof x
+ * @final
+ */
+export interface UnaryShape extends Shape {
+  kind: 'UnaryShape';
+  operator:
+    | 'typeof' | 'as'
+  expression: ExpressionType;
+}
 
 /**
  * Built-in language primitives.
- * Includes standard types like string, number, etc.
+ * Includes BuildIn types like string, number, etc.
  * @example
  * ```ts
  * string, number, boolean, any
  * ```
  * @final
  */
-export interface KeywordType extends Type {
-  kind: 'KeywordType';
-  name: | 'String' | 'Number' | 'Object' | 'Boolean' | 'Null' | 'Undefined' | 'Symbol' | 'Any' | 'Never' | 'Unknown' | 'Bigint' | 'Void';
-}
-
-/**
- * : String
- */
-export interface ReturnType extends Type {
-  kind: 'ReturnType';
-  typeIdentifier: TypeIdentifier;
-  description: string;
-}
-
-/**
- * Literal string type.
- * @example
- * ```ts
- * "success"
- * ```
- * @final
- */
-export interface StringType extends Type {
-  kind: 'StringType';
-  value: string;
-}
-
-/**
- * Literal number type.
- * @example
- * ```ts
- * 42
- * ```
- * @final
- */
-export interface NumberType extends Type {
-  kind: 'NumberType';
-  value: number;
-}
-
-/**
- * Literal boolean type.
- * @example
- * ```ts
- * true
- * ```
- * @final
- */
-export interface BooleanType extends Type {
-  kind: 'BooleanType';
-  value: boolean;
-}
-
-/**
- * Literal null type.
- * @example
- * ```ts
- * null
- * ```
- * @final
- */
-export interface NullType extends Type {
-  kind: 'NullType';
-  value: null;
-}
-
-/**
- * Literal undefined type.
- * @example
- * ```ts
- * undefined
- * ```
- * @final
- */
-export interface UndefinedType extends Type {
-  kind: 'UndefinedType';
-  value: undefined;
-}
-
-/**
- * Literal BigInt type.
- * @example
- * ```ts
- * 100n
- * ```
- * @final
- */
-export interface BigIntType extends Type {
-  kind: 'BigIntType';
-  value: string;
-}
-
-/**
- * Literal RegExp type.
- * @example
- * ```ts
- * /abc/
- * ```
- * @final
- */
-export interface RegExpType extends Type {
-  kind: 'RegExpType';
-  value: string;
+export interface BuildInShape extends Shape {
+  kind: 'BuildInShape';
+  type: | 'String' | 'Number' | 'Object' | 'Boolean' | 'Null' | 'Undefined' | 'Symbol' | 'Any' | 'Never' | 'Unknown' | 'Bigint' | 'Void';
+  value: string | null;
 }
 
 /**
@@ -877,10 +621,10 @@ export interface RegExpType extends Type {
  * ```
  * @final
  */
-export interface TemplateType extends Type {
-  kind: 'TemplateType';
+export interface TemplateShape extends Shape {
+  kind: 'TemplateShape';
   template: string;
-  types: TypeType[];
+  types: ShapeType[];
 }
 
 /**
@@ -891,11 +635,11 @@ export interface TemplateType extends Type {
  * ```
  * @final
  */
-export interface MappedType extends Type {
-  kind: 'MappedType';
+export interface MappedShape extends Shape {
+  kind: 'MappedShape';
   identifier: Identifier;
-  constraint: TypeType;
-  type: TypeType;
+  constraint: ShapeType;
+  shape: ShapeType;
 }
 
 /**
@@ -906,22 +650,10 @@ export interface MappedType extends Type {
  * ```
  * @final
  */
-export interface ArrayType extends Type {
-  kind: 'ArrayType';
-  type: TypeType;
-}
-
-/**
- * Represents a tuple type.
- * @example
- * ```ts
- * [string, number]
- * ```
- * @final
- */
-export interface TupleType extends Type {
-  kind: 'TupleType';
-  types: TypeType[];
+export interface ArrayShape extends Shape {
+  kind: 'ArrayShape';
+  type: 'array' | 'tuple';
+  shape: ShapeType;
 }
 
 /**
@@ -932,10 +664,10 @@ export interface TupleType extends Type {
  * ```
  * @final
  */
-export interface PropertyType extends Type {
-  kind: 'PropertyType';
-  typeIdentifier: TypeIdentifier;
-  type: TypeType;
+export interface PropertyShape extends Shape {
+  kind: 'PropertyShape';
+  shapeIdentifier: ShapeIdentifier;
+  shape: ShapeType;
   description: string;
 }
 
@@ -947,22 +679,9 @@ export interface PropertyType extends Type {
  * ```
  * @final
  */
-export interface ObjectType extends Type {
-  kind: 'ObjectType';
-  properties: PropertyType[];
-}
-
-/**
- * A reference to an existing type, class, or interface.
- * @example
- * ```ts
- * UserType
- * ```
- * @final
- */
-export interface ReferenceType extends Type {
-  kind: 'ReferenceType';
-  typeIdentifier: TypeIdentifier;
+export interface ObjectShape extends Shape {
+  kind: 'ObjectShape';
+  properties: PropertyShape[];
 }
 
 /**
@@ -973,12 +692,11 @@ export interface ReferenceType extends Type {
  * ```
  * @final
  */
-export interface GenericReferenceType extends Type {
-  kind: 'GenericReferenceType';
-  typeIdentifier: TypeIdentifier;
-  types: TypeType[];
+export interface GenericReferenceShape extends Shape {
+  kind: 'GenericReferenceShape';
+  shapeIdentifier: ShapeIdentifier;
+  types: ShapeType[];
 }
-
 
 /**
  * Represents a union type.
@@ -988,9 +706,9 @@ export interface GenericReferenceType extends Type {
  * ```
  * @final
  */
-export interface UnionType extends Type {
-  kind: 'UnionType';
-  types: TypeType[];
+export interface UnionShape extends Shape {
+  kind: 'UnionShape';
+  types: ShapeType[];
 }
 
 /**
@@ -1001,9 +719,18 @@ export interface UnionType extends Type {
  * ```
  * @final
  */
-export interface IntersectionType extends Type {
-  kind: 'IntersectionType';
-  types: TypeType[];
+export interface IntersectionShape extends Shape {
+  kind: 'IntersectionShape';
+  types: ShapeType[];
+}
+
+/**
+ * (): String
+ */
+export interface ReturnShape extends Shape {
+  kind: 'ReturnShape';
+  shapeIdentifier: ShapeIdentifier;
+  description: string;
 }
 
 /**
@@ -1014,36 +741,29 @@ export interface IntersectionType extends Type {
  * ```
  * @final
  */
-export interface FunctionType extends Type {
-  kind: 'FunctionType';
-  parameters: PropertyType[];
-  returnType: ReturnType | null;
+export interface FunctionShape extends Shape {
+  kind: 'FunctionShape';
+  parameters: PropertyShape[];
+  returnType: ShapeType | null;
 }
 
-export type TypeType =
-  | KeywordType
-  | ReferenceType
-  | ArrayType
-  | TupleType
-  | ObjectType
-  | TemplateType
-  | MappedType
-  | GenericReferenceType
-  | StringType
-  | NumberType
-  | BooleanType
-  | NullType
-  | UndefinedType
-  | BigIntType
-  | RegExpType
-  | UnionType
-  | IntersectionType
-  | ReturnType
-  | FunctionType
+export type ShapeType =
+  | ShapeIdentifier
+  | ArrayShape
+  | BuildInShape
+  | ObjectShape
+  | TemplateShape
+  | UnaryShape
+  | MappedShape
+  | GenericReferenceShape
+  | UnionShape
+  | IntersectionShape
+  | ReturnShape
+  | FunctionShape
   ;
 
 
-// endregion TypeType
+// endregion ShapeType
 // region TypeBinding
 
 /**
@@ -1054,11 +774,11 @@ export type TypeType =
  * ```
  * @final
  */
-export interface AliasTypeBinding extends TypeBinding {
-  kind: 'AliasTypeBinding';
+export interface AliasShapeBinding extends ShapeBinding {
+  kind: 'AliasShapeBinding';
   description: string;
-  typeIdentifier: TypeIdentifier;
-  type: TypeType;
+  shapeIdentifier: ShapeIdentifier;
+  shape: ShapeType;
 }
 
 /**
@@ -1069,22 +789,159 @@ export interface AliasTypeBinding extends TypeBinding {
  * ```
  * @final
  */
-export interface InterfaceTypeBinding extends TypeBinding {
-  kind: 'InterfaceTypeBinding';
+export interface InterfaceShapeBinding extends ShapeBinding {
+  kind: 'InterfaceShapeBinding';
   description: string;
-  typeIdentifier: TypeIdentifier;
-  extends_: ReferenceType[];
-  properties: PropertyType[];
+  shapeIdentifier: ShapeIdentifier;
+  extends_: ShapeIdentifier[];
+  properties: PropertyShape[];
 }
 
 
-export type TypeBindingType = InterfaceTypeBinding
-  | AliasTypeBinding
+export type ShapeBindingType = InterfaceShapeBinding
+  | AliasShapeBinding
   ;
 
-// endregion TypeBinding
-// endregion Type
+// endregion ShapeBinding
+// endregion Shape
 
-export type AstLeafType = StatementType | BindingType | TypeBindingType;
+// ==========================================
+// ПРОСТРАНСТВО ОНТОЛОГИИ (ТИПЫ И ФАКТЫ) - Concept
+// ==========================================
 
-export type AstType = AstDataType | AstTypeType;
+export interface Concept extends AstNode {}
+export interface Clause extends AstNode {}
+
+/**
+ * Роль участника в отношении (Тематическая роль).
+ * В AMR это :ARG0, :ARG1, :location, :time.
+ * В твоем языке это могут быть "Кто", "Кого", "Где", "Чем".
+ */
+export interface SemanticRole extends AstNode {
+  kind: 'SemanticRole';
+  name: string; // 'actor', 'theme', 'instrument', 'location'
+}
+
+/**
+ * Универсальное наследование и инстанцирование.
+ * Заменяет DefinitionConcept и InstanceConcept.
+ * @example
+ * "Комната — это вид хранилища." -> relation: 'subclass'
+ * "Библиотека — это комната."   -> relation: 'instance'
+ */
+export interface TaxonomyConcept extends Concept {
+  kind: 'TaxonomyConcept';
+  subject: Identifier;     // "Библиотека"
+  relation: 'instance' | 'subclass';
+  base: Identifier;        // "Комната"
+}
+
+/**
+ * Описание сигнатуры Предиката (Глагола, Свойства, Отношения).
+ * Универсальная замена для VerbSignatureConcept.
+ * Здесь мы говорим компилятору, КАКИЕ роли поддерживает предикат и КАКИЕ типы они требуют.
+ * @example
+ * "Глагол [передать] требует (Кто:Человек, Что:Предмет, Кому:Человек)."
+ */
+export interface PredicateSignatureConcept extends Concept {
+  kind: 'PredicateSignatureConcept';
+  predicate: Identifier; // "передать" (или "находится", или "темный")
+  roles: Array<{
+    role: SemanticRole;       // 'actor', 'theme', 'recipient'
+    constraint: Identifier;   // 'Человек', 'Предмет', 'Человек'
+  }>;
+}
+
+/**
+ * Универсальный Факт (Состояние мира).
+ * Заменяет AdjectiveConcept и RelationConcept.
+ * По сути, это узел графа: Предикат связывает набор аргументов.
+ * @example
+ * "Книга находится на столе" -> predicate: "находится", args: [theme: "Книга", location: "стол"]
+ * "Библиотека темная" -> predicate: "темная", args: [theme: "Библиотека"]
+ */
+export interface FactConcept extends Concept {
+  kind: 'FactConcept';
+  predicate: Identifier; // "находится" или "темная"
+  isNegative: boolean;   // false (утверждение), true (отрицание: "не находится")
+  arguments: Array<{
+    role: SemanticRole;
+    value: Identifier | ExpressionType; // Связь с классическим кодом (value может быть числом/строкой)
+  }>;
+}
+
+// ==========================================
+// ПРОСТРАНСТВО ДЕЙСТВИЙ И ПРАВИЛ (РАНТАЙМ) - Clause
+// ==========================================
+
+/**
+ * Универсальное Действие (Событие в динамике).
+ * В AMR любое действие — это экземпляр события (Event/Action) с ролями.
+ * @example
+ * "Джон открывает дверь ключом"
+ * predicate: "открыть"
+ * args: [actor: "Джон", theme: "дверь", instrument: "ключ"]
+ */
+export interface ActionClause extends Clause {
+  kind: 'ActionClause';
+  predicate: Identifier; // "открыть"
+  arguments: Array<{
+    role: SemanticRole;
+    value: Identifier | ExpressionType;
+  }>;
+}
+
+/**
+ * Универсальная мутация графа знаний.
+ * Заменяет MutationClause ('state_change' | 'move_object').
+ * Любое изменение в мире — это добавление нового факта или удаление старого.
+ * @example
+ * "Теперь библиотека освещена" -> assert Fact(освещена, [theme: библиотека])
+ * "Джон больше не носит шляпу" -> retract Fact(носит, [actor: Джон, theme: шляпа])
+ */
+export interface StateTransitionClause extends Clause {
+  kind: 'StateTransitionClause';
+  operation: 'assert' | 'retract'; // Добавить факт или Удалить факт
+  fact: FactConcept; // Факт, который применяется к миру
+}
+
+/**
+ * Паттерн-матчинг событий (Универсальные правила).
+ * Заменяет EventRuleClause. Теперь мы фильтруем не по жестким полям, а по графу фактов!
+ * @example
+ * "Вместо (Action: Джон открывает дверь), ЕСЛИ (Fact: дверь закрыта):"
+ */
+export interface RuleClause extends Clause {
+  kind: 'RuleClause';
+  phase: 'before' | 'instead_of' | 'after' | 'always';
+
+  // Какое действие пытаемся перехватить (может содержать null как wildcard)
+  triggerPattern: ActionClause;
+
+  // Дополнительные проверки в графе знаний (AMR Subgraph matching)
+  conditions: FactConcept[];
+
+  body: BlockClause;
+}
+
+/**
+ * Блок выполнения.
+ */
+export interface BlockClause extends Clause {
+  kind: 'BlockClause';
+  clauses: ExecutableClauseType[];
+}
+
+export type ConceptType =
+  | TaxonomyConcept
+  | PredicateSignatureConcept
+  | FactConcept;
+
+export type ExecutableClauseType =
+  | ActionClause
+  | StateTransitionClause
+  | RuleClause;
+
+export type SbsbType = StatementType | BindingType | ShapeBindingType;
+
+export type AstType = AstValueType | AstShapeType;

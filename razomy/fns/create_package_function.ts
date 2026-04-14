@@ -14,21 +14,22 @@ export function createPackageFunction(f: Partial<{
 }>): abstracts.translators.FunctionBinding {
   return {
     kind: 'FunctionBinding',
-    title: f.title || f.name || '',
-    identifier: {kind: 'Identifier', name: f.name || ''} as any,
-    description: f.description || '',
-    isAsync: f.isAsync ?? false,
-    isGenerator: f.isGenerator ?? false,
-    body: f.body || [],
-    types: [],
-    returnType: f.return_?.type
-      ? {kind: 'TypeIdentifier', name: f.return_.type} as any
-      : null,
-    performance: {
-      timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
-      memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-      history: f.performance?.history || [],
+    meta: {
+      title: f.title || f.name || '',
+      description: f.description || '',
+      performance: {
+        timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
+        memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
+        history: f.performance?.history || [],
+      },
+
+      examples: f.examples || [],
     },
+    modifiers: [
+      f.isAsync ? 'async' : undefined,
+      f.isGenerator ? 'generator' : undefined,
+    ].filter(Boolean) as any,
+    identifier: {kind: 'Identifier', name: f.name || ''} as any,
     parameters: Object.entries(f.parameter || {}).map(([k, v]) => ({
       kind: 'ParameterBinding',
       description: v,
@@ -37,6 +38,11 @@ export function createPackageFunction(f: Partial<{
       type: {kind: 'KeywordType', name: 'string'} as any,
       expression: null,
     } as any)),
-    examples: f.examples || [],
+    body: f.body || [],
+    types: [],
+    returnType: f.return_?.type
+      ? {kind: 'ShapeIdentifier', name: f.return_.type} as any
+      : null,
+
   };
 }

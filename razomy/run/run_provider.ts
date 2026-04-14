@@ -4,9 +4,9 @@ export interface BrowserRunProvider {
   packageName: string
 }
 
-export interface BrowserJobProvider {
+export interface BrowserTaskProvider {
   environment: 'browser_js'
-  strategy: 'job'
+  strategy: 'task'
   packageName: string
 }
 
@@ -36,5 +36,5 @@ export interface ServerEsmShFetchRunProvider {
 
 
 export type RunProvider =
-  BrowserRunProvider | BrowserJobProvider | BrowserEsmShFetchRunProvider
+  BrowserRunProvider | BrowserTaskProvider | BrowserEsmShFetchRunProvider
   | ServerRunProvider | ServerJobProvider | ServerEsmShFetchRunProvider;
