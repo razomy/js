@@ -1,5 +1,6 @@
 /**
- * Counts the number of non-overlapping occurrences of a substring within a text.
+ * @summary Counts the number of non-overlapping occurrences of a substring within a text.
+ * @description Counts the number of non-overlapping occurrences of a substring within a text.
  * @param text The main string to search within.
  * @param substring The substring to count occurrences of.
  * @returns {number} The total number of times the substring appears in the text.

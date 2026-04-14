@@ -58,6 +58,7 @@ export interface Statement extends AstNode {
  * @abstract
  */
 export interface Identifier extends AstNode {
+  kind: 'Identifier'
   name: string;
 }
 
@@ -104,7 +105,7 @@ export interface BuildInExpression extends Expression {
 export interface TemplateExpression extends Expression {
   kind: 'TemplateExpression';
   template: string;
-  types: ShapeType[];
+  shapes: ShapeType[];
 }
 
 /**
@@ -339,7 +340,9 @@ export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
-  description: string;
+  meta: {
+    description: string;
+  }
 }
 
 export type StatementType =
@@ -366,10 +369,10 @@ export type StatementType =
 export interface VariableBinding extends Binding {
   kind: 'VariableBinding';
   identifier: Identifier;
-  shapeIdentifier: ShapeIdentifier;
-  isConst: boolean;
-  description: string;
+  shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType;
+  modifiers: Modifier[];
+  meta: { description: string; }
 }
 
 /**
@@ -400,9 +403,8 @@ export interface PropertyBinding extends Binding {
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType | null;
-  isOptional: boolean;
-  description: string;
-  isReadonly: boolean;
+  modifiers: Modifier[];
+  meta: { description: string; }
 }
 
 /**
@@ -417,7 +419,7 @@ export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
-  description: string;
+  meta: { description: string; }
   expression: ExpressionType | null;
   isRest: boolean;
 }
@@ -433,7 +435,7 @@ export interface ParameterBinding extends Binding {
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
   identifier: Identifier;
-  description: string;
+  meta: { description: string; }
   expression: ExpressionType | null;
 }
 
@@ -448,11 +450,11 @@ export interface EnumPropertyBinding extends Binding {
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
   identifier: Identifier;
-  description: string;
+  meta: { description: string; }
   properties: EnumPropertyBinding[];
 }
 
-export type  Modifier = 'async' | 'export' | 'public' | 'generator'
+export type  Modifier = 'async' | 'export' | 'public' | 'generator' | 'optional' | 'readonly' | 'const'
 
 /**
  * Represents a function declaration.
@@ -466,7 +468,7 @@ export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
   identifier: Identifier;
   parameters: ParameterBinding[];
-  types: ShapeBindingType[];
+  shapes: ShapeBindingType[];
   returnType: ReturnShape | null;
   modifiers: Modifier[];
   body: SbsbType[];
@@ -492,7 +494,7 @@ export interface FunctionBinding extends Binding {
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
-  description: string;
+  meta: { description: string; }
   identifier: Identifier;
   extends_: ShapeIdentifier[];
   properties: PropertyBinding[];
@@ -509,7 +511,7 @@ export interface ClassBinding extends Binding {
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
-  description: string;
+  meta: { description: string; }
   identifier: Identifier;
   body: SbsbType[];
 }
@@ -525,7 +527,7 @@ export interface ModuleBinding extends Binding {
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
   identifier: Identifier;
-  description: string;
+  meta: { description: string; }
   version: string;
   runtime: DependencyBinding;
   dependencies: DependencyBinding[];
@@ -582,7 +584,8 @@ export interface Shape extends AstNode {
  * ```
  * @final
  */
-export interface ShapeIdentifier extends Identifier {
+export interface ShapeIdentifier extends AstNode {
+  kind: 'ShapeIdentifier';
   name: string;
 }
 
@@ -608,9 +611,8 @@ export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
  */
 export interface UnaryShape extends Shape {
   kind: 'UnaryShape';
-  operator:
-    | 'typeof' | 'as'
-  expression: ExpressionType;
+  operator: | 'typeof' | 'as'
+  shape: ShapeType;
 }
 
 /**
@@ -639,7 +641,7 @@ export interface BuildInShape extends Shape {
 export interface TemplateShape extends Shape {
   kind: 'TemplateShape';
   template: string;
-  types: ShapeType[];
+  shapes: ShapeType[];
 }
 
 /**
@@ -683,7 +685,7 @@ export interface PropertyShape extends Shape {
   kind: 'PropertyShape';
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
-  description: string;
+  meta: { description: string; }
 }
 
 /**
@@ -710,7 +712,7 @@ export interface ObjectShape extends Shape {
 export interface ReferenceShape extends Shape {
   kind: 'ReferenceShape';
   shapeIdentifier: ShapeIdentifier;
-  types: ShapeType[];
+  shapes: ShapeType[];
 }
 
 /**
@@ -723,7 +725,7 @@ export interface ReferenceShape extends Shape {
  */
 export interface UnionShape extends Shape {
   kind: 'UnionShape';
-  types: ShapeType[];
+  shapes: ShapeType[];
 }
 
 /**
@@ -736,7 +738,7 @@ export interface UnionShape extends Shape {
  */
 export interface IntersectionShape extends Shape {
   kind: 'IntersectionShape';
-  types: ShapeType[];
+  shapes: ShapeType[];
 }
 
 /**
@@ -745,7 +747,7 @@ export interface IntersectionShape extends Shape {
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
   shapeIdentifier: ShapeIdentifier;
-  description: string;
+  meta: { description: string; }
 }
 
 /**
@@ -791,7 +793,9 @@ export type ShapeType =
  */
 export interface AliasShapeBinding extends ShapeBinding {
   kind: 'AliasShapeBinding';
-  description: string;
+  meta: {
+    description: string;
+  },
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
 }
@@ -806,9 +810,11 @@ export interface AliasShapeBinding extends ShapeBinding {
  */
 export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
-  description: string;
+  meta: {
+    description: string;
+  }
   shapeIdentifier: ShapeIdentifier;
-  extends_: ShapeIdentifier[];
+  extends_: ReferenceShape[];
   properties: PropertyShape[];
 }
 
@@ -824,8 +830,11 @@ export type ShapeBindingType = InterfaceShapeBinding
 // ПРОСТРАНСТВО ОНТОЛОГИИ (ТИПЫ И ФАКТЫ) - Concept
 // ==========================================
 
-export interface Concept extends AstNode {}
-export interface Clause extends AstNode {}
+export interface Concept extends AstNode {
+}
+
+export interface Clause extends AstNode {
+}
 
 /**
  * Роль участника в отношении (Тематическая роль).

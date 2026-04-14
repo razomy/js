@@ -1,6 +1,4 @@
 import extractZip from 'extract-zip';
-import * as fs from 'node:fs';
-import * as https from 'node:https';
 import * as tar from 'tar';
 
 export async function extractArchive(archivePath: string, destDir: string): Promise<void> {

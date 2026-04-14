@@ -1,13 +1,13 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from "@razomy/abstracts";
-import {functionToString, docTypeToString, type FlatDeclaration} from "../ts-translators/ast/string";
-import {collectDeclarations} from "../ts-translators/ast/string";
+import {functionToString, docToString, type FlatDeclaration} from "../ts-translators/ast/md";
+import {bindingToString} from "../ts-translators/ast/md/binding_to_string";
 
 export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
 
-  const allDecls = collectDeclarations(packageDeclaration.body, []);
+  const allDecls = bindingToString(packageDeclaration.body, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -129,7 +129,7 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${functionsToc.leng
     .trim();
 
   const types = typeSpecs
-    .map(docTypeToString)
+    .map(docToString)
     .join('\n\n')
     .trim();
 
@@ -172,6 +172,5 @@ ${licenseAndContributing}
 
 ${report}
 `.trim() + '\n';
-  fss.file.setSync(`${path}/README.md`, readme);
   fss.file.setSync(`${path}/dist/README.md`, readme);
 }

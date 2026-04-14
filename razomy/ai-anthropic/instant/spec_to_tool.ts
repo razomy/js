@@ -9,7 +9,7 @@ export function specToTool(spec: abstracts.translators.FunctionBinding) {
   for (const param of spec.parameters) {
     properties[param.identifier.name] = {
       type: param.shapeIdentifier?.kind, // Note: Anthropic expects JSON Schema types (string, number, boolean, object, array)
-      description: param.description,
+      description: param.meta.description,
     };
 
     // If there is no default value, we assume the parameter is required

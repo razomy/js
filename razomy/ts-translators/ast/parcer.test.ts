@@ -1,11 +1,10 @@
 import {InMemoryFileSystemHost, Project} from "ts-morph";
-import {getPackageDeclaration} from "./get_package_declaration";
-
+import {getPackageDeclaration} from "./bindings/get_package_declaration";
+import * as abstracts from "@razomy/abstracts";
 
 describe('parse', () => {
   it('parse', () => {
-
-// 1. Initialize ts-morph project
+    // 1. Initialize ts-morph project
     const fileSystem = new InMemoryFileSystemHost();
     const project = new Project({fileSystem});
     project.createSourceFile("package.json", `{
@@ -16,7 +15,8 @@ describe('parse', () => {
     "dependencies":{
       "myDependencies": "1.1.1"
     }}`);
-// 2. Add some source files (or load an entire tsconfig.json)
+
+    // 2. Add some source files (or load an entire tsconfig.json)
     project.createSourceFile("example.ts", `
     /**
      * The unique ID of the user
@@ -32,14 +32,30 @@ describe('parse', () => {
     const greeting: string = "hello world";
 
     /**
-     * Calculates the sum
+     * @summary Calculates the sum
+     * @description Calculates the sum
+     * @returns Calculates the sum
+       @example 
+     \`\`\`ts
+     a // => a 
+      \`\`\`
+       @complexity time O(n)
+       @complexity memory O(n)
      */
     function calculateTotal(price: number, tax: number): number {
         return price + tax;
     }
     
     /**
-     * Calculates the sum
+     * @summary Calculates the sum
+     * @description Calculates the sum
+     * @returns Calculates the sum
+     @example 
+     \`\`\`ts
+     a // => a 
+      \`\`\`
+       @complexity time O(n)
+       @complexity memory O(n)
      */
     export function calculateUserAge(u2: User, u1: User): number {
         return u1.age + u2.age;
@@ -48,493 +64,551 @@ describe('parse', () => {
 
     project.createSourceFile("index.ts", "export * as example from './example'; export {calculateUserAge} from './example';");
 
-// 3. Run your parser!
+    // 3. Run your parser!
     const modules = getPackageDeclaration(project, '');
 
     expect(modules).toEqual({
-      "body": {
-        "body": [
-          {
-            "body": [
-              {
-                "description": "",
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "UserId"
-                },
-                "kind": "TypeAliasDeclaration",
-                "type": {
-                  "kind": "UnionType",
-                  "types": [
-                    {
-                      "kind": "KeywordType",
-                      "name": "string"
-                    },
-                    {
-                      "kind": "KeywordType",
-                      "name": "number"
-                    }
-                  ]
-                }
+      "body": [
+        {
+          "body": [
+            {
+              "kind": "AliasShapeBinding",
+              "meta": {
+                "description": ""
               },
-              {
-                "description": "",
-                "extends_": [],
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "User"
-                },
-                "kind": "InterfaceDeclaration",
-                "properties": [
+              "shape": {
+                "kind": "UnionShape",
+                "shapes": [
                   {
-                    "description": "",
-                    "expression": null,
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "name"
-                    },
-                    "isOptional": false,
-                    "isReadonly": false,
-                    "kind": "PropertyDeclaration",
-                    "type": {
-                      "kind": "KeywordType",
-                      "name": "string"
-                    }
+                    "kind": "BuildInShape",
+                    "type": "String",
+                    "value": "string"
                   },
                   {
-                    "description": "",
-                    "expression": null,
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "age"
-                    },
-                    "isOptional": false,
-                    "isReadonly": false,
-                    "kind": "PropertyDeclaration",
-                    "type": {
-                      "kind": "NumberType",
-                      "value": 25
-                    }
-                  },
-                  {
-                    "description": "",
-                    "expression": null,
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "roles"
-                    },
-                    "isOptional": false,
-                    "isReadonly": false,
-                    "kind": "PropertyDeclaration",
-                    "type": {
-                      "kind": "ArrayType",
-                      "type": {
-                        "kind": "KeywordType",
-                        "name": "string"
-                      }
-                    }
+                    "kind": "BuildInShape",
+                    "type": "Number",
+                    "value": "number"
                   }
                 ]
               },
-              {
-                "description": "",
-                "expression": {
-                  "kind": "StringExpression",
-                  "value": "hello world"
-                },
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "greeting"
-                },
-                "isConst": true,
-                "kind": "VariableDeclaration",
-                "type": {
-                  "kind": "KeywordType",
-                  "name": "string"
-                }
-              },
-              {
-                "body": [],
-                "description": "Calculates the sum",
-                "examples": [],
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "calculateTotal"
-                },
-                "isAsync": false,
-                "isGenerator": false,
-                "kind": "FunctionDeclaration",
-                "parameters": [
-                  {
-                    "description": "",
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "price"
-                    },
-                    "isRest": false,
-                    "kind": "ParameterDeclaration",
-                    "type": {
-                      "kind": "KeywordType",
-                      "name": "number"
-                    }
-                  },
-                  {
-                    "description": "",
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "tax"
-                    },
-                    "isRest": false,
-                    "kind": "ParameterDeclaration",
-                    "type": {
-                      "kind": "KeywordType",
-                      "name": "number"
-                    }
-                  }
-                ],
-                "performance": {
-                  "history": [],
-                  "memoryDataSizeComplexityFn": "",
-                  "timeDataSizeComplexityFn": ""
-                },
-                "return_": {
-                  "description": "",
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "return"
-                  },
-                  "kind": "ReturnDeclaration",
-                  "type": {
-                    "kind": "KeywordType",
-                    "name": "number"
-                  }
-                },
-                "title": "Calculates the sum"
-              },
-              {
-                "body": [],
-                "description": "Calculates the sum",
-                "examples": [],
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "calculateUserAge"
-                },
-                "isAsync": false,
-                "isGenerator": false,
-                "kind": "FunctionDeclaration",
-                "parameters": [
-                  {
-                    "description": "",
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "u2"
-                    },
-                    "isRest": false,
-                    "kind": "ParameterDeclaration",
-                    "type": {
-                      "identifier": {
-                        "kind": "TypeIdentifier",
-                        "name": "User"
-                      },
-                      "kind": "ReferenceType"
-                    }
-                  },
-                  {
-                    "description": "",
-                    "identifier": {
-                      "kind": "Identifier",
-                      "name": "u1"
-                    },
-                    "isRest": false,
-                    "kind": "ParameterDeclaration",
-                    "type": {
-                      "identifier": {
-                        "kind": "TypeIdentifier",
-                        "name": "User"
-                      },
-                      "kind": "ReferenceType"
-                    }
-                  }
-                ],
-                "performance": {
-                  "history": [],
-                  "memoryDataSizeComplexityFn": "",
-                  "timeDataSizeComplexityFn": ""
-                },
-                "return_": {
-                  "description": "",
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "return"
-                  },
-                  "kind": "ReturnDeclaration",
-                  "type": {
-                    "kind": "KeywordType",
-                    "name": "number"
-                  }
-                },
-                "title": "Calculates the sum"
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "UserId"
               }
-            ],
-            "description": "",
-            "identifier": {
-              "kind": "Identifier",
-              "name": "example"
             },
-            "kind": "ModuleDeclaration"
-          },
-          {
-            "description": "",
-            "identifier": {
-              "kind": "Identifier",
-              "name": "UserId"
-            },
-            "kind": "TypeAliasDeclaration",
-            "type": {
-              "kind": "UnionType",
-              "types": [
-                {
-                  "kind": "KeywordType",
-                  "name": "string"
-                },
-                {
-                  "kind": "KeywordType",
-                  "name": "number"
-                }
-              ]
-            }
-          },
-          {
-            "description": "",
-            "extends_": [],
-            "identifier": {
-              "kind": "Identifier",
-              "name": "User"
-            },
-            "kind": "InterfaceDeclaration",
-            "properties": [
-              {
-                "description": "",
-                "expression": null,
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "name"
-                },
-                "isOptional": false,
-                "isReadonly": false,
-                "kind": "PropertyDeclaration",
-                "type": {
-                  "kind": "KeywordType",
-                  "name": "string"
-                }
+            {
+              "extends_": [],
+              "kind": "InterfaceShapeBinding",
+              "meta": {
+                "description": ""
               },
-              {
-                "description": "",
-                "expression": null,
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "age"
+              "properties": [
+                {
+                  "kind": "PropertyShape",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shape": {
+                    "kind": "BuildInShape",
+                    "type": "String",
+                    "value": "string"
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "name"
+                  }
                 },
-                "isOptional": false,
-                "isReadonly": false,
-                "kind": "PropertyDeclaration",
-                "type": {
-                  "kind": "NumberType",
-                  "value": 25
-                }
-              },
-              {
-                "description": "",
-                "expression": null,
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "roles"
+                {
+                  "kind": "PropertyShape",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shape": {
+                    "kind": "BuildInShape",
+                    "type": "Number",
+                    "value": "25"
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "Number"
+                  }
                 },
-                "isOptional": false,
-                "isReadonly": false,
-                "kind": "PropertyDeclaration",
-                "type": {
-                  "kind": "ArrayType",
-                  "type": {
-                    "kind": "KeywordType",
-                    "name": "string"
+                {
+                  "kind": "PropertyShape",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shape": {
+                    "kind": "ArrayShape",
+                    "shapes": [
+                      {
+                        "kind": "BuildInShape",
+                        "type": "String",
+                        "value": "string"
+                      }
+                    ],
+                    "type": "Array"
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "roles"
                   }
                 }
+              ],
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "User"
+              }
+            },
+            {
+              "expression": {
+                "kind": "BuildInExpression",
+                "type": "String",
+                "value": "hello world"
+              },
+              "identifier": {
+                "kind": "Identifier",
+                "name": "greeting"
+              },
+              "kind": "VariableBinding",
+              "meta": {
+                "description": ""
+              },
+              "modifiers": [
+                "const"
+              ],
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "String"
+              }
+            },
+            {
+              "body": [],
+              "identifier": {
+                "kind": "Identifier",
+                "name": "calculateTotal"
+              },
+              "kind": "FunctionBinding",
+              "meta": {
+                "description": "Calculates the sum",
+                "examples": [
+                  {
+                    "code": "a",
+                    "expected": "a"
+                  }
+                ],
+                "performance": {
+                  "history": [],
+                  "memoryDataSizeComplexityFn": "O(n)",
+                  "timeDataSizeComplexityFn": "O(n)"
+                },
+                "title": "Calculates the sum"
+              },
+              "modifiers": [],
+              "parameters": [
+                {
+                  "expression": null,
+                  "identifier": {
+                    "kind": "Identifier",
+                    "name": "price"
+                  },
+                  "isRest": false,
+                  "kind": "ParameterBinding",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "Number"
+                  }
+                },
+                {
+                  "expression": null,
+                  "identifier": {
+                    "kind": "Identifier",
+                    "name": "tax"
+                  },
+                  "isRest": false,
+                  "kind": "ParameterBinding",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "Number"
+                  }
+                }
+              ],
+              "returnType": {
+                "kind": "ReturnShape",
+                "meta": {
+                  "description": "Calculates the sum"
+                },
+                "shapeIdentifier": {
+                  "kind": "ShapeIdentifier",
+                  "name": "Number"
+                }
+              },
+              "shapes": []
+            },
+            {
+              "body": [],
+              "identifier": {
+                "kind": "Identifier",
+                "name": "calculateUserAge"
+              },
+              "kind": "FunctionBinding",
+              "meta": {
+                "description": "Calculates the sum",
+                "examples": [
+                  {
+                    "code": "a",
+                    "expected": "a"
+                  }
+                ],
+                "performance": {
+                  "history": [],
+                  "memoryDataSizeComplexityFn": "O(n)",
+                  "timeDataSizeComplexityFn": "O(n)"
+                },
+                "title": "Calculates the sum"
+              },
+              "modifiers": [],
+              "parameters": [
+                {
+                  "expression": null,
+                  "identifier": {
+                    "kind": "Identifier",
+                    "name": "u2"
+                  },
+                  "isRest": false,
+                  "kind": "ParameterBinding",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "User"
+                  }
+                },
+                {
+                  "expression": null,
+                  "identifier": {
+                    "kind": "Identifier",
+                    "name": "u1"
+                  },
+                  "isRest": false,
+                  "kind": "ParameterBinding",
+                  "meta": {
+                    "description": ""
+                  },
+                  "shapeIdentifier": {
+                    "kind": "ShapeIdentifier",
+                    "name": "User"
+                  }
+                }
+              ],
+              "returnType": {
+                "kind": "ReturnShape",
+                "meta": {
+                  "description": "Calculates the sum"
+                },
+                "shapeIdentifier": {
+                  "kind": "ShapeIdentifier",
+                  "name": "Number"
+                }
+              },
+              "shapes": []
+            }
+          ],
+          "identifier": {
+            "kind": "Identifier",
+            "name": "example"
+          },
+          "kind": "ModuleBinding",
+          "meta": {
+            "description": ""
+          }
+        },
+        {
+          "kind": "AliasShapeBinding",
+          "meta": {
+            "description": ""
+          },
+          "shape": {
+            "kind": "UnionShape",
+            "shapes": [
+              {
+                "kind": "BuildInShape",
+                "type": "String",
+                "value": "string"
+              },
+              {
+                "kind": "BuildInShape",
+                "type": "Number",
+                "value": "number"
               }
             ]
           },
-          {
-            "description": "",
-            "expression": {
-              "kind": "StringExpression",
-              "value": "hello world"
+          "shapeIdentifier": {
+            "kind": "ShapeIdentifier",
+            "name": "UserId"
+          }
+        },
+        {
+          "extends_": [],
+          "kind": "InterfaceShapeBinding",
+          "meta": {
+            "description": ""
+          },
+          "properties": [
+            {
+              "kind": "PropertyShape",
+              "meta": {
+                "description": ""
+              },
+              "shape": {
+                "kind": "BuildInShape",
+                "type": "String",
+                "value": "string"
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "name"
+              }
             },
-            "identifier": {
-              "kind": "Identifier",
-              "name": "greeting"
+            {
+              "kind": "PropertyShape",
+              "meta": {
+                "description": ""
+              },
+              "shape": {
+                "kind": "BuildInShape",
+                "type": "Number",
+                "value": "25"
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "Number"
+              }
             },
-            "isConst": true,
-            "kind": "VariableDeclaration",
-            "type": {
-              "kind": "KeywordType",
-              "name": "string"
+            {
+              "kind": "PropertyShape",
+              "meta": {
+                "description": ""
+              },
+              "shape": {
+                "kind": "ArrayShape",
+                "shapes": [
+                  {
+                    "kind": "BuildInShape",
+                    "type": "String",
+                    "value": "string"
+                  }
+                ],
+                "type": "Array"
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "roles"
+              }
+            }
+          ],
+          "shapeIdentifier": {
+            "kind": "ShapeIdentifier",
+            "name": "User"
+          }
+        },
+        {
+          "expression": {
+            "kind": "BuildInExpression",
+            "type": "String",
+            "value": "hello world"
+          },
+          "identifier": {
+            "kind": "Identifier",
+            "name": "greeting"
+          },
+          "kind": "VariableBinding",
+          "meta": {
+            "description": ""
+          },
+          "modifiers": [
+            "const"
+          ],
+          "shapeIdentifier": {
+            "kind": "ShapeIdentifier",
+            "name": "String"
+          }
+        },
+        {
+          "body": [],
+          "identifier": {
+            "kind": "Identifier",
+            "name": "calculateTotal"
+          },
+          "kind": "FunctionBinding",
+          "meta": {
+            "description": "Calculates the sum",
+            "examples": [
+              {
+                "code": "a",
+                "expected": "a"
+              }
+            ],
+            "performance": {
+              "history": [],
+              "memoryDataSizeComplexityFn": "O(n)",
+              "timeDataSizeComplexityFn": "O(n)"
+            },
+            "title": "Calculates the sum"
+          },
+          "modifiers": [],
+          "parameters": [
+            {
+              "expression": null,
+              "identifier": {
+                "kind": "Identifier",
+                "name": "price"
+              },
+              "isRest": false,
+              "kind": "ParameterBinding",
+              "meta": {
+                "description": ""
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "Number"
+              }
+            },
+            {
+              "expression": null,
+              "identifier": {
+                "kind": "Identifier",
+                "name": "tax"
+              },
+              "isRest": false,
+              "kind": "ParameterBinding",
+              "meta": {
+                "description": ""
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "Number"
+              }
+            }
+          ],
+          "returnType": {
+            "kind": "ReturnShape",
+            "meta": {
+              "description": "Calculates the sum"
+            },
+            "shapeIdentifier": {
+              "kind": "ShapeIdentifier",
+              "name": "Number"
             }
           },
-          {
-            "body": [],
+          "shapes": []
+        },
+        {
+          "body": [],
+          "identifier": {
+            "kind": "Identifier",
+            "name": "calculateUserAge"
+          },
+          "kind": "FunctionBinding",
+          "meta": {
             "description": "Calculates the sum",
-            "examples": [],
-            "identifier": {
-              "kind": "Identifier",
-              "name": "calculateTotal"
-            },
-            "isAsync": false,
-            "isGenerator": false,
-            "kind": "FunctionDeclaration",
-            "parameters": [
+            "examples": [
               {
-                "description": "",
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "price"
-                },
-                "isRest": false,
-                "kind": "ParameterDeclaration",
-                "type": {
-                  "kind": "KeywordType",
-                  "name": "number"
-                }
-              },
-              {
-                "description": "",
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "tax"
-                },
-                "isRest": false,
-                "kind": "ParameterDeclaration",
-                "type": {
-                  "kind": "KeywordType",
-                  "name": "number"
-                }
+                "code": "a",
+                "expected": "a"
               }
             ],
             "performance": {
               "history": [],
-              "memoryDataSizeComplexityFn": "",
-              "timeDataSizeComplexityFn": ""
-            },
-            "return_": {
-              "description": "",
-              "identifier": {
-                "kind": "Identifier",
-                "name": "return"
-              },
-              "kind": "ReturnDeclaration",
-              "type": {
-                "kind": "KeywordType",
-                "name": "number"
-              }
+              "memoryDataSizeComplexityFn": "O(n)",
+              "timeDataSizeComplexityFn": "O(n)"
             },
             "title": "Calculates the sum"
           },
-          {
-            "body": [],
-            "description": "Calculates the sum",
-            "examples": [],
-            "identifier": {
-              "kind": "Identifier",
-              "name": "calculateUserAge"
-            },
-            "isAsync": false,
-            "isGenerator": false,
-            "kind": "FunctionDeclaration",
-            "parameters": [
-              {
-                "description": "",
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "u2"
-                },
-                "isRest": false,
-                "kind": "ParameterDeclaration",
-                "type": {
-                  "identifier": {
-                    "kind": "TypeIdentifier",
-                    "name": "User"
-                  },
-                  "kind": "ReferenceType"
-                }
-              },
-              {
-                "description": "",
-                "identifier": {
-                  "kind": "Identifier",
-                  "name": "u1"
-                },
-                "isRest": false,
-                "kind": "ParameterDeclaration",
-                "type": {
-                  "identifier": {
-                    "kind": "TypeIdentifier",
-                    "name": "User"
-                  },
-                  "kind": "ReferenceType"
-                }
-              }
-            ],
-            "performance": {
-              "history": [],
-              "memoryDataSizeComplexityFn": "",
-              "timeDataSizeComplexityFn": ""
-            },
-            "return_": {
-              "description": "",
+          "modifiers": [],
+          "parameters": [
+            {
+              "expression": null,
               "identifier": {
                 "kind": "Identifier",
-                "name": "return"
+                "name": "u2"
               },
-              "kind": "ReturnDeclaration",
-              "type": {
-                "kind": "KeywordType",
-                "name": "number"
+              "isRest": false,
+              "kind": "ParameterBinding",
+              "meta": {
+                "description": ""
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "User"
               }
             },
-            "title": "Calculates the sum"
-          }
-        ],
-        "description": "",
-        "identifier": {
-          "kind": "Identifier",
-          "name": ""
-        },
-        "kind": "ModuleDeclaration"
-      },
+            {
+              "expression": null,
+              "identifier": {
+                "kind": "Identifier",
+                "name": "u1"
+              },
+              "isRest": false,
+              "kind": "ParameterBinding",
+              "meta": {
+                "description": ""
+              },
+              "shapeIdentifier": {
+                "kind": "ShapeIdentifier",
+                "name": "User"
+              }
+            }
+          ],
+          "returnType": {
+            "kind": "ReturnShape",
+            "meta": {
+              "description": "Calculates the sum"
+            },
+            "shapeIdentifier": {
+              "kind": "ShapeIdentifier",
+              "name": "Number"
+            }
+          },
+          "shapes": []
+        }
+      ],
       "dependencies": [
         {
           "identifier": {
             "kind": "Identifier",
             "name": "myDependencies"
           },
-          "kind": "DependencyExpression",
+          "kind": "DependencyBinding",
+          "path": "",
           "version": "1.1.1"
         }
       ],
-      "description": "myFavoritePackage",
-      "engine": {
-        "identifier": {
-          "kind": "Identifier",
-          "name": "node"
-        },
-        "kind": "DependencyExpression",
-        "version": "1.1.3"
-      },
       "identifier": {
         "kind": "Identifier",
         "name": "myPackage"
       },
-      "kind": "PackageDeclaration",
+      "kind": "PackageBinding",
+      "meta": {
+        "description": "myFavoritePackage"
+      },
+      "runtime": {
+        "identifier": {
+          "kind": "Identifier",
+          "name": "node"
+        },
+        "kind": "DependencyBinding",
+        "path": "",
+        "version": "1.1.3"
+      },
       "version": "0.1.1"
-    });
+    } satisfies abstracts.translators.PackageBinding);
   });
 });

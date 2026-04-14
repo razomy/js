@@ -24,7 +24,7 @@ export function specToTool(spec: abstracts.translators.FunctionBinding): Functio
   spec.parameters.forEach(param => {
     properties[param.identifier.name] = {
       type: mapType(param.kind),
-      description: param.description,
+      description: param.meta.description,
     };
 
     // Если нет дефолтного значения, считаем обязательным
@@ -35,7 +35,7 @@ export function specToTool(spec: abstracts.translators.FunctionBinding): Functio
 
   return {
     name: spec.identifier.name,
-    description: `${spec.description}.`,
+    description: `${spec.meta.description}.`,
     parameters: {
       type: Type.OBJECT,
       properties,

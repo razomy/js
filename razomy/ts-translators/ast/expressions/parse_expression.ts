@@ -1,12 +1,12 @@
 import { Node } from "ts-morph";
-import { parseStringExpression } from "./parse_string_expression";
-import { parseNumberExpression } from "./parse_number_expression";
-import { parseBooleanExpression } from "./parse_boolean_expression";
-import { parseNullExpression } from "./parse_null_expression";
-import { parseUndefinedExpression } from "./parse_undefined_expression";
-import { parseBigIntExpression } from "./parse_big_int_expression";
-import { parseRegExpExpression } from "./parse_reg_exp_expression";
-import { parseArrayExpression } from "./parse_array_expression";
+import { parseStringExpression } from "./build_in/parse_string_expression";
+import { parseNumberExpression } from "./build_in/parse_number_expression";
+import { parseBooleanExpression } from "./build_in/parse_boolean_expression";
+import { parseNullExpression } from "./build_in/parse_null_expression";
+import { parseUndefinedExpression } from "./build_in/parse_undefined_expression";
+import { parseBigIntExpression } from "./build_in/parse_big_int_expression";
+import { parseRegExpExpression } from "./build_in/parse_reg_exp_expression";
+import { parseArrayExpression } from "./build_in/parse_array_expression";
 import * as abstracts from "@razomy/abstracts";
 
 export function parseExpression(node: Node): abstracts.translators.ExpressionType | null {

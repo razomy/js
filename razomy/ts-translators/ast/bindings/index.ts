@@ -1,0 +1,11 @@
+export { clearImportType } from './clear_import_type';
+export { getSurfaceDeclarationMut } from './get_surface_declaration_mut';
+export { parseComplexity } from '../doc/parse_complexity';
+export { parseDescription } from '../doc/parse_description';
+export { parseExamples } from '../doc/parse_examples';
+export { parseFunctionDescriptionOrThrow } from '../doc/parse_function_description_or_throw';
+export { parseJsDocOrThrow } from '../doc/parse_js_doc_or_throw';
+export { parsePropertyType } from '../shapes/parse_property_type';
+export { parseReturnOrThrow } from '../doc/parse_return_or_throw';
+export { parseTitleOrThrow } from '../doc/parse_title_or_throw';
+export { tryParseJsDoc } from '../doc/try_parse_js_doc';
