@@ -1,14 +1,14 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {cli} from '@razomy/run';
-import {getExePath, isWin} from "./get_exe_path";
+import {getExePath, IS_WIN} from "./get_exe_path";
 import type {RuntimeProvider} from "./types";
-import {execCmd} from "./utils";
+import {execCmd} from "./exec_cmd";
+import * as run from "@razomy/run";
 
 function getContext(versionRuntimeDir: string) {
   const nodeExe = getExePath(versionRuntimeDir, 'bin/node', 'node.exe');
-  const binPath = isWin ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
-  const npmJsPath = isWin
+  const binPath = IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
+  const npmJsPath = IS_WIN
     ? path.join(versionRuntimeDir, 'node_modules', 'npm', 'bin', 'npm-cli.js')
     : path.join(versionRuntimeDir, 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js');
 
@@ -16,7 +16,7 @@ function getContext(versionRuntimeDir: string) {
   return {nodeExe, npmJsPath, env};
 }
 
-export const nodeRuntime: RuntimeProvider = {
+export const NODE_RUNTIME: RuntimeProvider = {
   defaultVersion: '25.9.0',
 
   setup(versionWorkspaceDir) {
@@ -27,7 +27,7 @@ export const nodeRuntime: RuntimeProvider = {
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
     const {nodeExe, env} = getContext(versionRuntimeDir);
-    return cli.spawnProcess(nodeExe.replace(/"/g, ''), ['start_cli.mjs', packageName, functionName, params], versionWorkspaceDir, env);
+    return run.cli.spawnProcess(nodeExe.replace(/"/g, ''), ['start_cli.mjs', packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {

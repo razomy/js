@@ -1,14 +1,14 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {cli} from '@razomy/run';
-import {getExePath, isWin} from "./get_exe_path";
+import {getExePath, IS_WIN} from "./get_exe_path";
 import type {RuntimeProvider} from "./types";
-import {execCmd} from "./utils";
+import {execCmd} from "./exec_cmd";
+import * as run from "@razomy/run";
 
 // Контекст изолирует дубликаты переменных окружения и путей
 function getContext(versionRuntimeDir: string, versionWorkspaceDir?: string) {
   const pyExe = getExePath(versionRuntimeDir, 'bin/python3', 'python.exe');
-  const binPath = isWin ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
+  const binPath = IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,
@@ -19,7 +19,7 @@ function getContext(versionRuntimeDir: string, versionWorkspaceDir?: string) {
   return {pyExe, env};
 }
 
-export const pythonRuntime: RuntimeProvider = {
+export const PYTHON_RUNTIME: RuntimeProvider = {
   defaultVersion: '3.14.4',
 
   setup(versionWorkspaceDir) {
@@ -30,7 +30,7 @@ export const pythonRuntime: RuntimeProvider = {
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
     const {pyExe, env} = getContext(versionRuntimeDir);
-    return cli.spawnProcess(pyExe.replace(/"/g, ''), ['start_cli.py', packageName, functionName, params], versionWorkspaceDir, env);
+    return run.cli.spawnProcess(pyExe.replace(/"/g, ''), ['start_cli.py', packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {

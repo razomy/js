@@ -1,12 +1,14 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {cli} from '@razomy/run';
-import {getExePath, isMac, isWin} from "./get_exe_path";
+import {getExePath, IS_MAC, IS_WIN} from "./get_exe_path";
 import type {RuntimeProvider} from "./types";
-import {downloadFile, execCmd, extractArchive} from "./utils";
+import {extractArchive} from "./extract_archive";
+import {execCmd} from "./exec_cmd";
+import * as run from "@razomy/run";
+import {downloadFile} from "./download_file";
 
 function getContext(versionRuntimeDir: string) {
-  const binSubDir = isMac ? 'Contents/Home/bin' : 'bin';
+  const binSubDir = IS_MAC ? 'Contents/Home/bin' : 'bin';
   const binPath = path.join(versionRuntimeDir, binSubDir);
 
   const javacExe = getExePath(versionRuntimeDir, `${binSubDir}/javac`, 'bin/javac.exe');
@@ -21,7 +23,7 @@ function getContext(versionRuntimeDir: string) {
   return {javaExe, javacExe, nativeImgExe, env};
 }
 
-export const javaRuntime: RuntimeProvider = {
+export const JAVA_RUNTIME: RuntimeProvider = {
   defaultVersion: '25',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
@@ -46,7 +48,7 @@ export const javaRuntime: RuntimeProvider = {
       ? `./StartCli`
       : `${javaExe.replace(/"/g, '')} StartCli`;
 
-    return cli.spawnProcess(cmd, [packageName, functionName, params], versionWorkspaceDir, env);
+    return run.cli.spawnProcess(cmd, [packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   async install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
@@ -54,10 +56,10 @@ export const javaRuntime: RuntimeProvider = {
     let mvnCmd = 'mvn';
 
     try {
-      execCmd(`${isWin ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
+      execCmd(`${IS_WIN ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
     } catch {
       const mavenDir = path.join(versionRuntimeDir, 'maven');
-      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', isWin ? 'mvn.cmd' : 'mvn');
+      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', IS_WIN ? 'mvn.cmd' : 'mvn');
 
       if (!fs.existsSync(mvnCmd)) {
         console.log("⏳ Apache Maven not found. Downloading standalone wrapper...");
@@ -68,7 +70,7 @@ export const javaRuntime: RuntimeProvider = {
         await extractArchive(zipDest, mavenDir);
         fs.unlinkSync(zipDest);
 
-        if (!isWin) execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
+        if (!IS_WIN) execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
       }
       mvnCmd = `"${mvnCmd}"`;
     }

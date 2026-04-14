@@ -89,8 +89,22 @@ export type AstValueType = Expression | Statement | Binding;
  */
 export interface BuildInExpression extends Expression {
   kind: 'BuildInExpression';
-  type: 'RegExp' | 'string' | 'number' | 'boolean' | 'null';
-  value: string;
+  type: 'RegExp' | 'String' | 'Number' | 'Boolean' | 'Null' | 'BigInt' | 'Undefined';
+  value: string | number | boolean | bigint | undefined | null;
+}
+
+/**
+ * Represents a template literal type.
+ * @example
+ * ```ts
+ * \\user_${number}\\
+ * ```
+ * @final
+ */
+export interface TemplateExpression extends Expression {
+  kind: 'TemplateExpression';
+  template: string;
+  types: ShapeType[];
 }
 
 /**
@@ -103,7 +117,7 @@ export interface BuildInExpression extends Expression {
  */
 export interface ArrayExpression<T extends ExpressionType = ExpressionType> extends Expression {
   kind: 'ArrayExpression';
-  type: 'array' | 'tuple';
+  type: 'Array' | 'Tuple';
   expressions: T[];
 }
 
@@ -219,7 +233,7 @@ export interface CallExpression extends Expression {
 export interface MacroCallExpression extends Expression {
   kind: 'MacroCallExpression';
   identifier: Identifier;
-  arguments: Token;
+  arguments_: Token;
 }
 
 /**
@@ -250,6 +264,7 @@ export type ExpressionType =
   | BuildInExpression
   | ArrayExpression
   | ObjectExpression
+  | TemplateExpression
   | PropertyExpression
   | UnaryExpression
   | ConditionalControlFlowExpression
@@ -437,7 +452,7 @@ export interface EnumBinding extends Binding {
   properties: EnumPropertyBinding[];
 }
 
-export type  Modifier = 'async' | 'export' | 'public'
+export type  Modifier = 'async' | 'export' | 'public' | 'generator'
 
 /**
  * Represents a function declaration.
@@ -652,8 +667,8 @@ export interface MappedShape extends Shape {
  */
 export interface ArrayShape extends Shape {
   kind: 'ArrayShape';
-  type: 'array' | 'tuple';
-  shape: ShapeType;
+  type: 'Array' | 'Tuple';
+  shapes: ShapeType[];
 }
 
 /**
@@ -692,8 +707,8 @@ export interface ObjectShape extends Shape {
  * ```
  * @final
  */
-export interface GenericReferenceShape extends Shape {
-  kind: 'GenericReferenceShape';
+export interface ReferenceShape extends Shape {
+  kind: 'ReferenceShape';
   shapeIdentifier: ShapeIdentifier;
   types: ShapeType[];
 }
@@ -755,7 +770,7 @@ export type ShapeType =
   | TemplateShape
   | UnaryShape
   | MappedShape
-  | GenericReferenceShape
+  | ReferenceShape
   | UnionShape
   | IntersectionShape
   | ReturnShape
@@ -864,7 +879,7 @@ export interface FactConcept extends Concept {
   kind: 'FactConcept';
   predicate: Identifier; // "находится" или "темная"
   isNegative: boolean;   // false (утверждение), true (отрицание: "не находится")
-  arguments: Array<{
+  arguments_: Array<{
     role: SemanticRole;
     value: Identifier | ExpressionType; // Связь с классическим кодом (value может быть числом/строкой)
   }>;
@@ -885,7 +900,7 @@ export interface FactConcept extends Concept {
 export interface ActionClause extends Clause {
   kind: 'ActionClause';
   predicate: Identifier; // "открыть"
-  arguments: Array<{
+  arguments_: Array<{
     role: SemanticRole;
     value: Identifier | ExpressionType;
   }>;

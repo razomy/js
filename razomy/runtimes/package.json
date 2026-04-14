@@ -1,0 +1,85 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/runtimes#readme",
+  "keywords": [
+    "razomy",
+    "runtimes",
+    "cleanupExtractedStructure",
+    "createSymlink",
+    "downloadFile",
+    "execCmd",
+    "extractArchive",
+    "getExePath",
+    "linkExists",
+    "defaultPackage",
+    "runtimeRegistry",
+    "isWin",
+    "isMac",
+    "javaRuntime",
+    "nodeRuntime",
+    "podmanRuntime",
+    "pythonRuntime",
+    "rustRuntime"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/runtimes",
+  "peerDependencies": {
+    "@razomy/run": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/runtimes",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

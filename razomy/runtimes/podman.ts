@@ -1,9 +1,9 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import { cli } from '@razomy/run';
 import { getExePath } from "./get_exe_path";
 import type { RuntimeProvider } from "./types";
-import { execCmd } from "./utils";
+import { execCmd } from "./exec_cmd";
+import * as run from "@razomy/run";
 
 // Настраиваем пути и переменные окружения
 function getContext(versionRuntimeDir: string) {
@@ -22,7 +22,7 @@ function getContext(versionRuntimeDir: string) {
   return { podmanExe, env };
 }
 
-export const podmanRuntime: RuntimeProvider = {
+export const PODMAN_RUNTIME: RuntimeProvider = {
   defaultVersion: '4.9.3', // Стабильная версия
 
   // МАГИЯ ЗДЕСЬ: Подготовка окружения (создание микро-Linux для Mac/Win)
@@ -75,7 +75,7 @@ export const podmanRuntime: RuntimeProvider = {
     if (functionName) args.push(functionName);
     if (params && params.length > 0) args.push(...params);
 
-    return cli.spawnProcess(podmanExe.replace(/"/g, ''), args, versionWorkspaceDir, env);
+    return run.cli.spawnProcess(podmanExe.replace(/"/g, ''), args, versionWorkspaceDir, env);
   },
 
   // Аналог "install" - скачивание образа

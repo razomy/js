@@ -1,9 +1,9 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {cli} from '@razomy/run';
-import {getExePath, isWin} from "./get_exe_path";
+import {getExePath, IS_WIN} from "./get_exe_path";
 import type {RuntimeProvider} from "./types";
-import {execCmd} from "./utils";
+import {execCmd} from "./exec_cmd";
+import * as run from "@razomy/run";
 
 function getContext(versionRuntimeDir: string) {
   const cargoBin = path.join(versionRuntimeDir, 'cargo', 'bin');
@@ -18,7 +18,7 @@ function getContext(versionRuntimeDir: string) {
   return {cargoExe, rustcExe, env};
 }
 
-export const rustRuntime: RuntimeProvider = {
+export const RUST_RUNTIME: RuntimeProvider = {
   defaultVersion: '1.94.1',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
@@ -31,8 +31,8 @@ export const rustRuntime: RuntimeProvider = {
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
     const {env} = getContext(versionRuntimeDir);
-    const executable = isWin ? 'cli_runner.exe' : './cli_runner';
-    return cli.spawnProcess(executable, [packageName, functionName, params], versionWorkspaceDir, env);
+    const executable = IS_WIN ? 'cli_runner.exe' : './cli_runner';
+    return run.cli.spawnProcess(executable, [packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {

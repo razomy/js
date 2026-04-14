@@ -3,8 +3,8 @@ export * as server from './server';
 export * as task from './task';
 export {
   type BrowserEsmShFetchRunProvider,
-  type BrowserTaskProvider,
   type BrowserRunProvider,
+  type BrowserTaskProvider,
   type RunProvider,
   type ServerEsmShFetchRunProvider,
   type ServerJobProvider,
