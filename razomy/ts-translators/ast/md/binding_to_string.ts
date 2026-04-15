@@ -2,13 +2,13 @@ import * as abstracts from '@razomy/abstracts';
 import * as tsTranslators from '@razomy/ts-translators';
 
 export function bindingToString(
-  nodes: abstracts.translators.SbsbType[],
+  nodes: abstracts.translators.DeclarationType[],
   currentPath: string[],
   result: tsTranslators.ast.md.FlatDeclaration[] = [],
 ) {
   for (const node of nodes) {
     if (node.kind === 'ModuleBinding') {
-      bindingToString(node.body, [...currentPath, node.identifier.name], result);
+      bindingToString(node.block.declarations, [...currentPath, node.identifier.name], result);
     } else if (node.kind === 'FunctionBinding') {
       result.push({
         node: node,

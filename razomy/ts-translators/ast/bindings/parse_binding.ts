@@ -5,7 +5,7 @@ import * as tsTranslators from '@razomy/ts-translators';
 /**
  * Recursively parses general TS Nodes (Declarations, Statements)
  */
-export function parseBinding(node: Node): abstracts.translators.SbsbType | null {
+export function parseBinding(node: Node): abstracts.translators.DeclarationType | null {
   if (Node.isVariableStatement(node)) {
     return parseBinding(node.getDeclarations()[0]);
   }

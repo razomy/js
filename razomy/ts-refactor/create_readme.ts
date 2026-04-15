@@ -6,7 +6,7 @@ import * as tsTranslators from '@razomy/ts-translators';
 export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
 
-  const allDecls = tsTranslators.ast.md.bindingToString(packageDeclaration.body, []);
+  const allDecls = tsTranslators.ast.md.bindingToString(packageDeclaration.block.declarations, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;

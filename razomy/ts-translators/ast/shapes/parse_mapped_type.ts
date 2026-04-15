@@ -6,7 +6,7 @@ export function parseMappedType(node: MappedTypeNode): abstracts.translators.Map
   const typeParam = node.getTypeParameter();
   return {
     kind: 'MappedShape',
-    identifier: tsTranslators.ast.bindings.parseIdentifier(typeParam.getNameNode()),
+    shapeIdentifier: tsTranslators.ast.shapes.parseShapeIdentifier(typeParam.getNameNode()),
     constraint: typeParam.getConstraint()
       ? (tsTranslators.ast.shapes.parseShape(typeParam.getConstraint()!) as any)
       : (null as any),

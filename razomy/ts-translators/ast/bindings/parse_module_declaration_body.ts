@@ -7,7 +7,7 @@ import * as tsTranslators from '@razomy/ts-translators';
  * Parses a single SourceFile into a Module
  */
 export function parseModuleDeclarationBody(file: SourceFile) {
-  const body: abstracts.translators.SbsbType[] = [];
+  const body: abstracts.translators.DeclarationType[] = [];
 
   for (const statement of file.getStatements()) {
     const parsedNode = tsTranslators.ast.bindings.parseBinding(statement);
@@ -47,7 +47,10 @@ export function parseModuleDeclarationBody(file: SourceFile) {
         body.push({
           kind: 'ModuleBinding',
           identifier: { kind: 'Identifier', name: subModuleName },
-          body: items,
+          block: {
+            kind: 'BlockStatement',
+            declarations: items
+          },
           meta: { description: '' },
         });
       }

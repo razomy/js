@@ -1,16 +1,16 @@
 import * as abstracts from '@razomy/abstracts';
 
-export function getSurfaceDeclarationMut<T extends abstracts.translators.SbsbType>(node: T) {
+export function getSurfaceDeclarationMut<T extends abstracts.translators.DeclarationType>(node: T) {
   if (node.kind === 'FunctionBinding') {
-    node.body = [];
+    node.block.declarations = [];
   }
 
   if (node.kind === 'PackageBinding') {
-    node.body = node.body.map(getSurfaceDeclarationMut);
+    node.block.declarations = node.block.declarations.map(getSurfaceDeclarationMut);
   }
 
   if (node.kind === 'ModuleBinding') {
-    node.body = node.body.map(getSurfaceDeclarationMut);
+    node.block.declarations = node.block.declarations.map(getSurfaceDeclarationMut);
   }
 
   return node;

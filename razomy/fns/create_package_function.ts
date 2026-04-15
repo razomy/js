@@ -40,8 +40,8 @@ export function createPackageFunction(
           expression: null,
         } as any),
     ),
-    body: f.body || [],
+    block: f.body || [],
     shapes: [],
-    returnType: f.return_?.type ? ({ kind: 'ShapeIdentifier', name: f.return_.type } as any) : null,
+    return_: f.return_?.type ? ({ kind: 'ShapeIdentifier', name: f.return_.type } as any) : null,
   };
 }

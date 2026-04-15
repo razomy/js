@@ -14,7 +14,10 @@ export function parseModuleDeclaration(node: Directory): abstracts.translators.M
   return {
     kind: 'ModuleBinding',
     identifier: { kind: 'Identifier', name: moduleName },
-    body: body,
+    block: {
+      kind: 'BlockStatement',
+      declarations: body
+    },
     meta: { description: '' },
   };
 }

@@ -1,3 +1,26 @@
+/**
+ * @description
+ * Суть: Описывает Синтаксис
+ * Код разделен на два параллельных пространства:
+ * 1. Пространство значений - существуют в компилированном коде Rust Kotlin Python Ts
+ * - Expression — возвращают значение (вычисляемые, data, structure in memory).
+ * - Statement — меняют значение в рамках блока (for, while).
+ * - Binding — Declaration + Statement, связывание объявленного имени с конкретным действием/результатом.
+ * 2. Пространство типов - существуют в только на этапе разработки - сахар
+ * - Shape — группирование Expression по общему признаку.
+ * - ShapeBinding — TypeDeclaration + TypeExpression (связывание имени типа с его правилами и структурой).
+ * 3. Онтология - текстовое описание процессов Inform 7, Attempt to Controlled English, Cucumber
+ * - Concept (Концепт) — аналог Binding и Shape. Это декларация фактов, правил игры, объектов и их типов. То, что валидируется до выполнения.
+ * - Clause (Клауза/Фраза) — аналог Statement и Expression. Это активные действия, происходящие в рантайме.
+ * @checklist
+ * [] kind same as name
+ * [] proper type mapping - expression: ExpressionType no @abstract
+ * [] no null usage
+ * [] strict layer no intersections
+ * [] property same as Type Base - identifier:Identifier, shapes: Shapes ...
+ *   uniq name or opposite names pairs or integration names in one scope - animal, cat | dog, cat1|cat2|cat3
+ */
+
 import * as abstracts from '@razomy/abstracts';
 
 /**
@@ -11,7 +34,7 @@ export interface AstNode {
   kind: string;
 }
 
-// region Data - Level 1
+// region Value - Level 1
 /**
  * Base interface for all expressions (data values).
  * Exists in memory
@@ -22,7 +45,8 @@ export interface AstNode {
  * ```
  * @abstract
  */
-export interface Expression extends AstNode {}
+export interface Expression extends AstNode {
+}
 
 /**
  * Base interface for all statements (actions/control flow).
@@ -35,10 +59,11 @@ export interface Expression extends AstNode {}
  * ```
  * @abstract
  */
-export interface Statement extends AstNode {}
+export interface Statement extends AstNode {
+}
 
 /**
- * @abstract
+ * @final
  */
 export interface Identifier extends AstNode {
   kind: 'Identifier';
@@ -56,7 +81,8 @@ export interface Identifier extends AstNode {
  * ```
  * @abstract
  */
-export interface Binding extends AstNode {}
+export interface Binding extends AstNode {
+}
 
 /**
  * @abstract
@@ -80,14 +106,15 @@ export interface BuildInExpression extends Expression {
  * Represents a template literal type.
  * @example
  * ```ts
- * \\user_${number}\\
+ * a = 1;
+ * "user_${a}"
  * ```
  * @final
  */
 export interface TemplateExpression extends Expression {
   kind: 'TemplateExpression';
   template: string;
-  shapes: ShapeType[];
+  expressions: ExpressionType[];
 }
 
 /**
@@ -160,7 +187,7 @@ export interface UnaryExpression extends Expression {
 export interface BinaryExpression extends Expression {
   kind: 'BinaryExpression';
   operator: // Арифметика
-  | '+'
+    | '+'
     | '-'
     | '*'
     | '/'
@@ -189,29 +216,31 @@ export interface BinaryExpression extends Expression {
   right: ExpressionType;
 }
 
-export interface ControlBranchExpression extends Expression {
-  kind: 'ControlBranch';
+export interface BranchFlowExpression extends Expression {
+  kind: 'BranchFlowExpression';
   type: 'if' | 'switch';
-  pattern: Expression | null;
-  body: BlockExpression;
+  // null = else {}
+  pattern: ExpressionType | null;
+  expression: ExpressionType;
 }
 
-export interface ConditionalControlFlowExpression extends Expression {
-  kind: 'ConditionalControlFlow';
-  target: Expression | null;
-  branches: ControlBranchExpression[];
+export interface ConditionalFlowExpression extends Expression {
+  kind: 'ConditionalFlowExpression';
+  // null = if {}
+  target: ExpressionType | null;
+  branches: BranchFlowExpression[];
 }
 
-export interface LoopControlFlowExpression extends Expression {
-  kind: 'LoopControlFlow';
-  type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
-  init: Expression | null;
-  condition: Expression | null;
-
-  // Шаг цикла (i++; или получение следующего элемента yield/next)
-  update: Expression | null;
-
-  body: BlockExpression;
+export interface LoopFlowExpression extends Expression {
+  kind: 'LoopFlowExpression';
+  type: 'do_while' | 'while_do' | 'for_in' | 'for_of' | 'for_it';
+  // null = while
+  init: ExpressionType | null;
+  // null = for
+  condition: ExpressionType | null;
+  // null = while
+  update: ExpressionType | null;
+  expression: ExpressionType;
 }
 
 /** name(1,2) | (1,2)
@@ -219,6 +248,7 @@ export interface LoopControlFlowExpression extends Expression {
  */
 export interface CallExpression extends Expression {
   kind: 'CallExpression';
+  // null = call()()
   identifier: Identifier | null;
   arguments_: ExpressionType[];
 }
@@ -231,7 +261,7 @@ export interface CallExpression extends Expression {
 export interface MacroCallExpression extends Expression {
   kind: 'MacroCallExpression';
   identifier: Identifier;
-  arguments_: abstracts.translators.Token;
+  arguments_: abstracts.translators.Token[];
 }
 
 /**
@@ -239,24 +269,15 @@ export interface MacroCallExpression extends Expression {
  */
 export interface MemberExpression extends Expression {
   kind: 'MemberExpression';
-  property: ExpressionType; // propertyExpression or number ...
+  object_: ExpressionType;
+  property: ExpressionType;
 }
 
-/**
- * Represents a return statement.
- * return ...;
- * @final
- */
-export interface ReturnExpression extends Expression {
-  kind: 'ReturnExpression';
-  argument: ExpressionType | null;
+export interface ReferenceExpression extends Expression {
+  kind: 'ReferenceExpression';
+  identifier: Identifier;
 }
 
-export interface BlockExpression extends Expression {
-  kind: 'BlockExpression';
-  statements: StatementType[];
-  result: ReturnExpression;
-}
 
 export type ExpressionType =
   | BuildInExpression
@@ -265,16 +286,27 @@ export type ExpressionType =
   | TemplateExpression
   | PropertyExpression
   | UnaryExpression
-  | ConditionalControlFlowExpression
-  | LoopControlFlowExpression
+  | ConditionalFlowExpression
+  | LoopFlowExpression
   | CallExpression
   | MacroCallExpression
   | BinaryExpression
-  | BlockExpression
-  | ReturnExpression
-  | MemberExpression;
+  | MemberExpression
+  | ReferenceExpression;
 // endregion Expression
+
 // region Statement
+
+/**
+ * Represents a return statement.
+ * return ...;
+ * @final
+ */
+export interface ReturnStatement extends Statement {
+  kind: 'ReturnStatement';
+  // null - void
+  argument: ExpressionType | null;
+}
 
 /**
  * Represents a block of scoped statements.
@@ -283,34 +315,33 @@ export type ExpressionType =
  */
 export interface BlockStatement extends Statement {
   kind: 'BlockStatement';
-  statements: StatementType[];
+  declarations: DeclarationType[];
 }
 
-export interface ControlBranchStatement extends Statement {
-  kind: 'ControlBranch';
+export interface BranchFlowStatement extends Statement {
+  kind: 'BranchFlowStatement';
   type: 'if' | 'switch' | 'try_catch';
-  pattern: Expression | null;
-  body: BlockStatement;
+  pattern: ExpressionType | null;
+  block: BlockStatement;
 }
 
-export interface ConditionalControlFlowStatement extends Statement {
-  kind: 'ConditionalControlFlow';
-  target: Expression | null;
-  branches: ConditionalControlFlowStatement[];
+export interface ConditionalFlowStatement extends Statement {
+  kind: 'ConditionalFlowStatement';
+  target: ExpressionType | null;
+  branches: BranchFlowStatement[];
 }
 
-export interface LoopControlFlowStatement extends Statement {
-  kind: 'LoopControlFlow';
+export interface LoopFlowStatement extends Statement {
+  kind: 'LoopFlowStatement';
   type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
-  init: Expression | null;
-  condition: Expression | null;
-  update: Expression | null;
-
-  body: BlockStatement;
+  init: ExpressionType | null;
+  condition: ExpressionType | null;
+  update: ExpressionType | null;
+  block: BlockStatement;
 }
 
-export interface LoopBreakStatement extends Statement {
-  kind: 'LoopControlFlow';
+export interface GoStatement extends Statement {
+  kind: 'GoStatement';
   type: 'break' | 'continue';
   labelIdentifier: Identifier;
 }
@@ -336,21 +367,21 @@ export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
-  meta: {
-    description: string;
-  };
+  meta: abstracts.domains.WithDescription;
 }
 
 export type StatementType =
+  | ReturnStatement
   | BlockStatement
-  | LoopControlFlowStatement
-  | ConditionalControlFlowStatement
-  | ControlBranchStatement
-  | LoopBreakStatement
+  | LoopFlowStatement
+  | ConditionalFlowStatement
+  | BranchFlowStatement
+  | GoStatement
   | VariableStatement
   | ThrowStatement;
 
 // endregion Statement
+
 // region Binding
 
 /**
@@ -366,8 +397,8 @@ export interface VariableBinding extends Binding {
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType;
-  modifiers: Modifier[];
-  meta: { description: string };
+  modifiers: ('const')[];
+  meta: abstracts.domains.WithDescription;
 }
 
 /**
@@ -398,8 +429,8 @@ export interface PropertyBinding extends Binding {
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType | null;
-  modifiers: Modifier[];
-  meta: { description: string };
+  modifiers: ('optional' | 'const')[];
+  meta: abstracts.domains.WithDescription;
 }
 
 /**
@@ -414,9 +445,9 @@ export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   expression: ExpressionType | null;
-  isRest: boolean;
+  modifiers: ('rest')[];
 }
 
 /**
@@ -430,7 +461,7 @@ export interface ParameterBinding extends Binding {
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
   identifier: Identifier;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   expression: ExpressionType | null;
 }
 
@@ -445,11 +476,9 @@ export interface EnumPropertyBinding extends Binding {
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
   identifier: Identifier;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   properties: EnumPropertyBinding[];
 }
-
-export type Modifier = 'async' | 'export' | 'public' | 'generator' | 'optional' | 'readonly' | 'const';
 
 /**
  * Represents a function declaration.
@@ -463,11 +492,11 @@ export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
   identifier: Identifier;
   parameters: ParameterBinding[];
-  shapes: ShapeBindingType[];
-  returnType: ReturnShape | null;
-  modifiers: Modifier[];
-  body: SbsbType[];
-  meta: {
+  shapes: AliasShapeBinding[];
+  return_: ReturnShape | null;
+  modifiers: ('async' | 'public' | 'generator')[];
+  block: BlockStatement;
+  meta: abstracts.domains.WithDescription & {
     title: string;
     performance: {
       timeDataSizeComplexityFn: string;
@@ -475,7 +504,6 @@ export interface FunctionBinding extends Binding {
       history: any[];
     };
     examples: Array<{ code: string; expected: string }>;
-    description: string;
   };
 }
 
@@ -489,7 +517,7 @@ export interface FunctionBinding extends Binding {
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   identifier: Identifier;
   extends_: ShapeIdentifier[];
   properties: PropertyBinding[];
@@ -506,9 +534,9 @@ export interface ClassBinding extends Binding {
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   identifier: Identifier;
-  body: SbsbType[];
+  block: BlockStatement;
 }
 
 /**
@@ -522,11 +550,11 @@ export interface ModuleBinding extends Binding {
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
   identifier: Identifier;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
   version: string;
   runtime: DependencyBinding;
   dependencies: DependencyBinding[];
-  body: SbsbType[];
+  block: BlockStatement;
 }
 
 /**
@@ -553,9 +581,9 @@ export type BindingType =
   | ClassBinding;
 
 // endregion Binding
-// endregion Data
-// region Type - Level 2
+// endregion Value
 
+// region Type - Level 2
 /**
  * Base interface for all type nodes (rules/constraints).
  * Not exists in compiler
@@ -566,7 +594,14 @@ export type BindingType =
  * ```
  * @abstract
  */
-export interface Shape extends AstNode {}
+export interface Shape extends AstNode {
+}
+
+/*
+ * @abstract
+ */
+export interface ShapeStatement extends AstNode {
+}
 
 /**
  * A reference to an existing type, class, or interface.
@@ -584,12 +619,8 @@ export interface ShapeIdentifier extends AstNode {
 /*
  * @abstract
  */
-export interface ShapeStatement extends AstNode {}
-
-/*
- * @abstract
- */
-export interface ShapeBinding extends AstNode {}
+export interface ShapeBinding extends AstNode {
+}
 
 export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
 
@@ -656,7 +687,7 @@ export interface TemplateShape extends Shape {
  */
 export interface MappedShape extends Shape {
   kind: 'MappedShape';
-  identifier: Identifier;
+  shapeIdentifier: ShapeIdentifier;
   constraint: ShapeType;
   shape: ShapeType;
 }
@@ -687,7 +718,7 @@ export interface PropertyShape extends Shape {
   kind: 'PropertyShape';
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
 }
 
 /**
@@ -749,7 +780,7 @@ export interface IntersectionShape extends Shape {
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
   shapeIdentifier: ShapeIdentifier;
-  meta: { description: string };
+  meta: abstracts.domains.WithDescription;
 }
 
 /**
@@ -762,8 +793,9 @@ export interface ReturnShape extends Shape {
  */
 export interface FunctionShape extends Shape {
   kind: 'FunctionShape';
+  shapes: AliasShapeBinding[];
   parameters: PropertyShape[];
-  returnType: ShapeType | null;
+  return_: ShapeType | null;
 }
 
 export type ShapeType =
@@ -781,6 +813,7 @@ export type ShapeType =
   | FunctionShape;
 
 // endregion ShapeType
+
 // region TypeBinding
 
 /**
@@ -793,9 +826,7 @@ export type ShapeType =
  */
 export interface AliasShapeBinding extends ShapeBinding {
   kind: 'AliasShapeBinding';
-  meta: {
-    description: string;
-  };
+  meta: abstracts.domains.WithDescription;
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
 }
@@ -810,9 +841,7 @@ export interface AliasShapeBinding extends ShapeBinding {
  */
 export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
-  meta: {
-    description: string;
-  };
+  meta: abstracts.domains.WithDescription;
   shapeIdentifier: ShapeIdentifier;
   extends_: ReferenceShape[];
   properties: PropertyShape[];
@@ -823,36 +852,42 @@ export type ShapeBindingType = InterfaceShapeBinding | AliasShapeBinding;
 // endregion ShapeBinding
 // endregion Shape
 
+// region Ontology - Level 3
 // ==========================================
 // ПРОСТРАНСТВО ОНТОЛОГИИ (ТИПЫ И ФАКТЫ) - Concept
 // ==========================================
 
-export interface Concept extends AstNode {}
+export interface Concept extends AstNode {
+}
 
-export interface Clause extends AstNode {}
+export interface Clause extends AstNode {
+}
 
 /**
  * Роль участника в отношении (Тематическая роль).
- * В AMR это :ARG0, :ARG1, :location, :time.
+ * В AMR это: :ARG0, :ARG1, :location, :time.
  * В твоем языке это могут быть "Кто", "Кого", "Где", "Чем".
  */
-export interface SemanticRole extends AstNode {
-  kind: 'SemanticRole';
+export interface ConceptIdentifier extends AstNode {
+  kind: 'ConceptIdentifier';
   name: string; // 'actor', 'theme', 'instrument', 'location'
 }
 
+export type AstOntologyType = Concept | Clause;
+
+// region Concept
 /**
  * Универсальное наследование и инстанцирование.
  * Заменяет DefinitionConcept и InstanceConcept.
  * @example
  * "Комната — это вид хранилища." -> relation: 'subclass'
- * "Библиотека — это комната."   -> relation: 'instance'
+ * "Библиотека — это комната." -> relation: 'instance'
  */
 export interface TaxonomyConcept extends Concept {
   kind: 'TaxonomyConcept';
-  subject: Identifier; // "Библиотека"
+  subject: ConceptIdentifier; // "Библиотека"
   relation: 'instance' | 'subclass';
-  base: Identifier; // "Комната"
+  base: ConceptIdentifier; // "Комната"
 }
 
 /**
@@ -862,12 +897,13 @@ export interface TaxonomyConcept extends Concept {
  * @example
  * "Глагол [передать] требует (Кто:Человек, Что:Предмет, Кому:Человек)."
  */
-export interface PredicateSignatureConcept extends Concept {
-  kind: 'PredicateSignatureConcept';
-  predicate: Identifier; // "передать" (или "находится", или "темный")
+export interface PredicateConcept extends Concept {
+  kind: 'PredicateConcept';
+  modifiers: Array<'transitive' | 'symmetric' | 'reflexive'>;
+  predicate: ConceptIdentifier; // "передать" (или "находится", или "темный")
   roles: Array<{
-    role: SemanticRole; // 'actor', 'theme', 'recipient'
-    constraint: Identifier; // 'Человек', 'Предмет', 'Человек'
+    identifier: Identifier; // 'actor', 'theme', 'recipient'
+    constraint: ConceptIdentifier; // 'Человек', 'Предмет', 'Человек'
   }>;
 }
 
@@ -879,16 +915,32 @@ export interface PredicateSignatureConcept extends Concept {
  * "Книга находится на столе" -> predicate: "находится", args: [theme: "Книга", location: "стол"]
  * "Библиотека темная" -> predicate: "темная", args: [theme: "Библиотека"]
  */
-export interface FactConcept extends Concept {
+export interface FactConcept extends AstNode {
   kind: 'FactConcept';
-  predicate: Identifier; // "находится" или "темная"
-  isNegative: boolean; // false (утверждение), true (отрицание: "не находится")
+  predicate: ConceptIdentifier;
+  isNegative: boolean; // true = retract/not
   arguments_: Array<{
-    role: SemanticRole;
-    value: Identifier | ExpressionType; // Связь с классическим кодом (value может быть числом/строкой)
+    role: Identifier;
+    value: ConceptIdentifier | ExpressionType; // Конкретный узел (Джон) или значение (100)
   }>;
 }
 
+export interface PatternConceptExpression extends Expression {
+  kind: 'PatternConceptExpression';
+  predicate: ConceptIdentifier; // "находится" или "темная"
+  temporalMarker?: 'ever' | 'past' | 'now'; // "когда_либо", "в_прошлом"
+  quantifier?: 'all' | 'any' | 'none';      // "все", "ни_одна"
+  arguments_: Array<{
+    role: Identifier;
+    value: ConceptIdentifier | ExpressionType | VariableBinding;
+  }>;
+}
+
+export type ConceptType = TaxonomyConcept | PredicateConcept | FactConcept;
+
+// endregion Concept
+
+// region Clause
 // ==========================================
 // ПРОСТРАНСТВО ДЕЙСТВИЙ И ПРАВИЛ (РАНТАЙМ) - Clause
 // ==========================================
@@ -903,9 +955,9 @@ export interface FactConcept extends Concept {
  */
 export interface ActionClause extends Clause {
   kind: 'ActionClause';
-  predicate: Identifier; // "открыть"
+  predicate: ConceptIdentifier; // "открыть"
   arguments_: Array<{
-    role: SemanticRole;
+    role: Identifier;
     value: Identifier | ExpressionType;
   }>;
 }
@@ -920,8 +972,8 @@ export interface ActionClause extends Clause {
  */
 export interface StateTransitionClause extends Clause {
   kind: 'StateTransitionClause';
-  operation: 'assert' | 'retract'; // Добавить факт или Удалить факт
-  fact: FactConcept; // Факт, который применяется к миру
+  operation: 'assert' | 'retract'; // Добавить факт или удалить факт
+  pattern: PatternConceptExpression; // Факт, который применяется к миру
 }
 
 /**
@@ -934,13 +986,13 @@ export interface RuleClause extends Clause {
   kind: 'RuleClause';
   phase: 'before' | 'instead_of' | 'after' | 'always';
 
-  // Какое действие пытаемся перехватить (может содержать null как wildcard)
+  // действие, которое пытаемся перехватить (может содержать null как wildcard)
   triggerPattern: ActionClause;
 
   // Дополнительные проверки в графе знаний (AMR Subgraph matching)
   conditions: FactConcept[];
 
-  body: BlockClause;
+  blockClause: BlockClause;
 }
 
 /**
@@ -948,13 +1000,39 @@ export interface RuleClause extends Clause {
  */
 export interface BlockClause extends Clause {
   kind: 'BlockClause';
-  clauses: ExecutableClauseType[];
+  clauses: ClauseType[];
 }
 
-export type ConceptType = TaxonomyConcept | PredicateSignatureConcept | FactConcept;
+/**
+ * Инвариант. Целостность базы данных.
+ */
+export interface InvariantClause extends AstNode {
+  kind: 'InvariantClause';
+  conditions: ExpressionType[]; // Если эти условия совпали — откатываем транзакцию
+  errorMessage?: string;
+}
 
-export type ExecutableClauseType = ActionClause | StateTransitionClause | RuleClause;
+/**
+ * Выводимый факт (Datalog Rule).
+ * Позволяет описывать сложную бизнес-логику без мутаций.
+ * "Факт А истинен, если истинны Факты Б и В".
+ */
+export interface InferenceClause extends Clause {
+  kind: 'InferenceClause';
 
-export type SbsbType = StatementType | BindingType | ShapeBindingType;
+  // Факт, который мы выводим (например: Джон является VIP)
+  derivedFact: PatternConceptExpression;
 
-export type AstType = AstValueType | AstShapeType;
+  // Условия, при которых он считается истинным
+  conditions: ExpressionType[];
+}
+
+export type ClauseType = ActionClause | StateTransitionClause | RuleClause | BlockClause | InferenceClause | InvariantClause;
+
+// endregion Clause
+
+// endregion Ontology
+
+export type DeclarationType = StatementType | BindingType | ShapeBindingType;
+
+export type AstType = AstValueType | AstShapeType | AstOntologyType;

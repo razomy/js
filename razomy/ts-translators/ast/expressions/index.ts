@@ -1,2 +1,9 @@
 export * as buildIn from './build_in';
+export { parseBinaryExpression } from './parse_binary_expression';
+export { parseCallExpression } from './parse_call_expression';
 export { parseExpression } from './parse_expression';
+export { parseMemberExpression } from './parse_member_expression';
+export { parseNewExpression } from './parse_new_expression';
+export { parseReferenceExpression } from './parse_reference_expression';
+export { parseUnaryExpression } from './parse_unary_expression';
+export { parseArrowFunctionExpression } from './parse_arrow_function_expression';

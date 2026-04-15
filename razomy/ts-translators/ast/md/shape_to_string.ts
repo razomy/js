@@ -28,11 +28,11 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'FunctionShape':
       return `(${type.parameters
         .map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`)
-        .join(', ')}) => ${shapeToString(type.returnType)}`;
+        .join(', ')}) => ${shapeToString(type.return_)}`;
     case 'TemplateShape':
       return `\`${type.template}\``;
     case 'MappedShape':
-      return `{ [${type.identifier.name} in ${shapeToString(type.constraint)}]: ${shapeToString(type.shape)} }`;
+      return `{ [${type.shapeIdentifier.name} in ${shapeToString(type.constraint)}]: ${shapeToString(type.shape)} }`;
     default:
       // throw new Error(`Unknown type ${type.kind}`);
       return 'any';

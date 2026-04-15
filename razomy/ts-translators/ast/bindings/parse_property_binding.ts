@@ -10,9 +10,9 @@ export function parsePropertyBinding(
     identifier: tsTranslators.ast.bindings.parseIdentifier(node.getNameNode()),
     shapeIdentifier: node.getTypeNode() ? tsTranslators.ast.shapes.parseShapeIdentifier(node.getTypeNode()!) : null,
     expression: node.getInitializer() ? tsTranslators.ast.expressions.parseExpression(node.getInitializer()!) : null,
-    modifiers: [node.hasQuestionToken() ? 'optional' : null, node.isReadonly() ? 'readonly' : null].filter(
+    modifiers: [node.hasQuestionToken() ? 'optional' as const : null, node.isReadonly() ? 'const' as const : null].filter(
       (i) => i != null,
-    ) as abstracts.translators.Modifier[],
+    ),
     meta: { description: tsTranslators.ast.doc.parseDescription(node.getNameNode()) },
   };
 }

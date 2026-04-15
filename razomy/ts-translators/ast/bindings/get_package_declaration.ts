@@ -32,9 +32,12 @@ export function getPackageDeclaration(
     meta: {
       description: packageJson.description,
     },
-    body: tsTranslators.ast.bindings.parseModuleDeclarationBody(
-      project.getDirectory(dirPath)!.getSourceFile((f) => f.getBaseName().startsWith('index.'))!,
-    ),
+    block: {
+      kind: 'BlockStatement',
+      declarations:tsTranslators.ast.bindings.parseModuleDeclarationBody(
+        project.getDirectory(dirPath)!.getSourceFile((f) => f.getBaseName().startsWith('index.'))!,
+      )
+    },
     version: packageJson.version,
     runtime: {
       kind: 'DependencyBinding',

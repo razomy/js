@@ -1,14 +1,15 @@
 import * as abstracts from '@razomy/abstracts';
+import * as array from '@razomy/array';
 
 export function functionToString(s: FlatDeclaration<abstracts.translators.FunctionBinding>) {
   const paramsStr = s.node.parameters
     .map((p) => {
-      const rest = p.isRest ? '...' : '';
+      const rest = array.includes (p.modifiers, 'rest') ? '...' : '';
       const typeStr = p.shapeIdentifier?.name;
       return `${rest}${p.identifier.name}: ${typeStr}`;
     })
     .join(', ');
-  const returnStr = s.node.returnType?.shapeIdentifier.name;
+  const returnStr = s.node.return_?.shapeIdentifier.name;
   const isAsync = s.node.modifiers.join(' ');
   const declaration = `\`${isAsync}${s.path.join('.')}(${paramsStr}): ${returnStr}\``;
   const description = [(s.node as any).title, s.node.meta.description].filter(Boolean).join('\n');
@@ -33,7 +34,7 @@ ${examples ? '\nExamples\n\n' + examples : ''}
 `.trim();
 }
 
-export type FlatDeclaration<T = abstracts.translators.SbsbType> = {
+export type FlatDeclaration<T = abstracts.translators.DeclarationType> = {
   node: T;
   description: string;
   name: string;

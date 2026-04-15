@@ -42,7 +42,7 @@ export async function convertLambdasToNamedFunctions(projectPath: string) {
       const isExported = variableStatement.isExported();
       const typeParams = initializer.getTypeParameters().map((t) => t.getText());
       const params = initializer.getParameters().map((p) => p.getText());
-      const returnType = initializer.getReturnTypeNode()?.getText();
+      const return_ = initializer.getReturnTypeNode()?.getText();
 
       // 5. Handle the Body
       const body = initializer.getBody();
@@ -64,7 +64,7 @@ export async function convertLambdasToNamedFunctions(projectPath: string) {
       parts.push(`function ${functionName}`);
       if (typeParams.length > 0) parts.push(`<${typeParams.join(', ')}>`);
       parts.push(`(${params.join(', ')})`);
-      if (returnType) parts.push(`: ${returnType}`);
+      if (return_) parts.push(`: ${return_}`);
       parts.push(newBodyText);
 
       const finalText = parts.join(' ');

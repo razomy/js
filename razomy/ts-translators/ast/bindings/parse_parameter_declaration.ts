@@ -1,4 +1,4 @@
-import { FunctionDeclaration, ParameterDeclaration } from 'ts-morph';
+import {FunctionDeclaration, ParameterDeclaration} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsTranslators from '@razomy/ts-translators';
 
@@ -19,7 +19,7 @@ export function parseParameterDeclaration(node: ParameterDeclaration): abstracts
     identifier: tsTranslators.ast.bindings.parseIdentifier(node.getNameNode()),
     shapeIdentifier: node.getTypeNode() ? tsTranslators.ast.shapes.parseShapeIdentifier(node.getTypeNode()!) : null,
     expression: node.getInitializer() ? tsTranslators.ast.expressions.parseExpression(node.getInitializer()!) : null,
-    isRest: node.isRestParameter(),
-    meta: { description },
+    modifiers: [node.isRestParameter() ? 'rest' as const : null].filter(i => i != null),
+    meta: {description},
   };
 }

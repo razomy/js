@@ -23,7 +23,7 @@ export function parseVariableBinding(
   return {
     kind: 'VariableBinding',
     identifier: tsTranslators.ast.bindings.parseIdentifier(node.getNameNode()),
-    modifiers: [isConst ? 'const' : null].filter((i) => i != null) as abstracts.translators.Modifier[],
+    modifiers: [isConst ? 'const' as const : null].filter((i) => i != null),
     shapeIdentifier,
     expression,
     meta: { description: tsTranslators.ast.doc.parseDescription(node.getNameNode()) },

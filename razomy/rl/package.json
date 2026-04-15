@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {},
-  "description": "Powerful utilities for processing, formatting, and converting various video types",
+  "description": "",
   "engines": {
     "node": ">=18"
   },
@@ -19,20 +19,10 @@
         "default": "./index.ts",
         "types": "./index.ts"
       },
-      "node": {
-        "import": "./index.node.ts",
-        "require": "./index.node.ts",
-        "types": "./index.node.ts"
-      },
       "require": {
         "default": "./index.ts",
         "types": "./index.ts"
       }
-    },
-    "./node": {
-      "import": "./index.node.ts",
-      "require": "./index.node.ts",
-      "types": "./index.node.ts"
     },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
@@ -40,36 +30,26 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/videos#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/rl#readme",
   "keywords": [
     "razomy",
-    "videos",
-    "toVideoByFormat",
-    "allVideoTargets",
-    "videoConversions",
-    "videoExtensions"
+    "rl"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/videos",
-  "peerDependencies": {
-    "@razomy/audios": "*",
-    "@razomy/fs-file-format": "*",
-    "@types/fluent-ffmpeg": "^2.1.3",
-    "ffmpeg-static": "^5.3.0",
-    "fluent-ffmpeg": "^2.1.3"
-  },
+  "name": "@razomy/rl",
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/videos",
+    "directory": "razomy/rl",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.node.ts --format esm,cjs --dts",
+    "build": "tsdown index.ts --format esm,cjs --dts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },

@@ -57,7 +57,13 @@
     "parseReturnOrThrow",
     "parseTitleOrThrow",
     "tryParseJsDoc",
+    "parseBinaryExpression",
+    "parseCallExpression",
     "parseExpression",
+    "parseMemberExpression",
+    "parseNewExpression",
+    "parseReferenceExpression",
+    "parseUnaryExpression",
     "parseArrayExpression",
     "parseBigIntExpression",
     "parseBooleanExpression",
@@ -87,14 +93,22 @@
     "parseTemplateShape",
     "parseTemplateTypeType",
     "parseTupleType",
-    "parseUnionType"
+    "parseUnionType",
+    "parseBlockStatement",
+    "parseBreakOrContinueStatement",
+    "parseIfStatement",
+    "parseLoopStatement",
+    "parseReturnStatement",
+    "parseStatement",
+    "parseThrowStatement"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ts-translators",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/array": "*"
   },
   "publishConfig": {
     "access": "public"
