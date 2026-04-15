@@ -9,6 +9,6 @@ export function parseReferenceNode(node: TsTypeReferenceNode): abstracts.transla
   return {
     kind: 'ReferenceShape',
     shapeIdentifier,
-    shapes: typeArgs.map((arg) => tsTranslators.ast.shapes.parseShape(arg) as any).filter(Boolean),
+    shapes: typeArgs.map((arg) => tsTranslators.ast.shapes.parse(arg) as any).filter(Boolean),
   };
 }

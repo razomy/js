@@ -98,7 +98,7 @@ export type AstValueType = Expression | Statement | Binding;
  */
 export interface BuildInExpression extends Expression {
   kind: 'BuildInExpression';
-  type: 'RegExp' | 'String' | 'Number' | 'Boolean' | 'Null' | 'BigInt' | 'Undefined';
+  type: 'RegExp' | 'String' | 'Number' | 'Boolean' | 'Null' | 'BigInt' | 'Undefined' | 'Object';
   value: string | number | boolean | bigint | undefined | null;
 }
 
@@ -175,9 +175,11 @@ export interface UnaryExpression extends Expression {
     | '++' // Инкремент
     | '--' // Декремент
     | 'typeof' // Определение типа
+    | 'as' // Определение типа
     | 'delete'; // Удаление свойства
   expression: ExpressionType; // В стандарте ESTree это обычно называется 'argument'
   isPrefix: boolean; // true для ++x, false для x++
+  shape: ShapeType | null; // true для ++x, false для x++
 }
 
 /**
@@ -250,6 +252,7 @@ export interface CallExpression extends Expression {
   kind: 'CallExpression';
   // null = call()()
   identifier: Identifier | null;
+  modifiers: Array<'spread' | 'async'>;
   arguments_: ExpressionType[];
 }
 
@@ -276,6 +279,7 @@ export interface MemberExpression extends Expression {
 export interface ReferenceExpression extends Expression {
   kind: 'ReferenceExpression';
   identifier: Identifier;
+  modifiers: Array<'spread' | 'async'>;
 }
 
 
@@ -366,7 +370,7 @@ export interface ThrowStatement extends Statement {
 export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
-  shapeIdentifier: ShapeIdentifier | null;
+  shape: ShapeType | null;
   meta: abstracts.domains.WithDescription;
 }
 
@@ -395,10 +399,21 @@ export type StatementType =
 export interface VariableBinding extends Binding {
   kind: 'VariableBinding';
   identifier: Identifier;
-  shapeIdentifier: ShapeIdentifier | null;
+  shape: ShapeType | null;
   expression: ExpressionType;
-  modifiers: ('const')[];
+  modifiers: Array<'const'>;
   meta: abstracts.domains.WithDescription;
+}
+
+/**
+ * Represents an expression used as a statement.
+ * a = ... ;
+ * @final
+ */
+export interface AssignBinding extends Binding {
+  kind: 'AssignBinding';
+  identifier: Identifier;
+  expression: ExpressionType;
 }
 
 /**
@@ -427,7 +442,7 @@ export interface DependencyBinding extends Binding {
 export interface PropertyBinding extends Binding {
   kind: 'PropertyBinding';
   identifier: Identifier;
-  shapeIdentifier: ShapeIdentifier | null;
+  shape: ShapeType | null;
   expression: ExpressionType | null;
   modifiers: ('optional' | 'const')[];
   meta: abstracts.domains.WithDescription;
@@ -444,7 +459,7 @@ export interface PropertyBinding extends Binding {
 export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
-  shapeIdentifier: ShapeIdentifier | null;
+  shape: ShapeType | null;
   meta: abstracts.domains.WithDescription;
   expression: ExpressionType | null;
   modifiers: ('rest')[];
@@ -519,7 +534,7 @@ export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
   meta: abstracts.domains.WithDescription;
   identifier: Identifier;
-  extends_: ShapeIdentifier[];
+  extends_: ShapeType[];
   properties: PropertyBinding[];
   methods: FunctionBinding[];
 }
@@ -574,6 +589,7 @@ export type BindingType =
   | ParameterBinding
   | EnumPropertyBinding
   | EnumBinding
+  | AssignBinding
   | FunctionBinding
   | ModuleBinding
   | PackageBinding
@@ -625,16 +641,6 @@ export interface ShapeBinding extends AstNode {
 export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
 
 // region ShapeType
-
-/**
- * Унарные операции: typeof x
- * @final
- */
-export interface UnaryShape extends Shape {
-  kind: 'UnaryShape';
-  operator: 'typeof' | 'as';
-  shape: ShapeType;
-}
 
 /**
  * Built-in language primitives.
@@ -779,7 +785,7 @@ export interface IntersectionShape extends Shape {
  */
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
-  shapeIdentifier: ShapeIdentifier;
+  shape: ShapeType;
   meta: abstracts.domains.WithDescription;
 }
 
@@ -795,7 +801,7 @@ export interface FunctionShape extends Shape {
   kind: 'FunctionShape';
   shapes: AliasShapeBinding[];
   parameters: PropertyShape[];
-  return_: ShapeType | null;
+  return_: ReturnShape | null;
 }
 
 export type ShapeType =
@@ -804,7 +810,6 @@ export type ShapeType =
   | BuildInShape
   | ObjectShape
   | TemplateShape
-  | UnaryShape
   | MappedShape
   | ReferenceShape
   | UnionShape
@@ -843,7 +848,7 @@ export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
   meta: abstracts.domains.WithDescription;
   shapeIdentifier: ShapeIdentifier;
-  extends_: ReferenceShape[];
+  extends_: ShapeType[];
   properties: PropertyShape[];
 }
 

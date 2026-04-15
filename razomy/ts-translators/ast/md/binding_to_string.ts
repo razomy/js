@@ -51,6 +51,9 @@ export function bindingToString(
         name: node.shapeIdentifier.name,
         path: [...currentPath, node.shapeIdentifier.name],
       });
+    } else if (node.kind === 'DependencyBinding') {
+    } else {
+      throw new Error(`Unknown Biding "${node.kind}"`);
     }
   }
 

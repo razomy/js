@@ -2,6 +2,7 @@ import { JSDoc } from 'ts-morph';
 
 export function parseComplexity(doc: JSDoc, funcName: string) {
   const complexityTags = doc.getTags().filter((t) => t.getTagName() === 'complexity');
+
   if (complexityTags.length < 2) {
     throw new Error(`[Parse Error] Missing or incomplete @complexity tags (need 'time' and 'memory') in '${funcName}'`);
   }
@@ -23,6 +24,7 @@ export function parseComplexity(doc: JSDoc, funcName: string) {
     else
       throw new Error(`[Parse Error] Unknown complexity type '${type}' in '${funcName}'. Expected 'time' or 'memory'`);
   });
+
   if (!result.time || !result.memory) {
     throw new Error(`[Parse Error] Both 'time' and 'memory' @complexity must be specified in '${funcName}'`);
   }

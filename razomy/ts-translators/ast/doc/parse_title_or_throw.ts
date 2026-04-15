@@ -1,6 +1,6 @@
 import { JSDoc } from 'ts-morph';
 
-export function parseTitleOrThrow(doc: JSDoc, funcName: string): string {
+export function parseTitle(doc: JSDoc, funcName: string): string {
   const titleTag = doc.getTags().find((t) => t.getTagName() === 'summary');
   const title = titleTag?.getCommentText()?.trim();
   if (!title) {

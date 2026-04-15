@@ -1,7 +1,7 @@
-export { parseBlockStatement } from './parse_block_statement';
-export { parseBreakOrContinueStatement } from './parse_break_or_continue_statement';
-export { parseIfStatement } from './parse_if_statement';
-export { parseLoopStatement } from './parse_loop_statement';
-export { parseReturnStatement } from './parse_return_statement';
-export { parseStatement } from './parse_statement';
-export { parseThrowStatement } from './parse_throw_statement';
+export { parse } from './parse';
+export { parseBlock } from './parse_block';
+export { parseCondition } from './parse_condition';
+export { parseGo } from './parse_go';
+export { parseLoop } from './parse_loop';
+export { parseReturn } from './parse_return';
+export { parseThrow } from './parse_throw';

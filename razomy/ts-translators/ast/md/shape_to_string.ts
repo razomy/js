@@ -9,18 +9,19 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'ShapeIdentifier':
       return type.name;
     case 'ReturnShape':
-      return type.shapeIdentifier.name;
+      return shapeToString(type.shape);
     case 'ReferenceShape':
       if (type.shapes.length > 1) {
         return `${type.shapeIdentifier.name}<${type.shapes.map(shapeToString).join(', ')}>`;
       }
       return type.shapeIdentifier.name;
     case 'ArrayShape':
+      if (type.type === 'Array') {
+        return `${type.shapes.map(shapeToString).join(', ')}[]`;
+      }
       return `[${type.shapes.map(shapeToString).join(', ')}]`;
     case 'UnionShape':
       return type.shapes.map(shapeToString).join(' | ');
-    case 'UnaryShape':
-      return type.operator + ' ' + shapeToString(type.shape);
     case 'IntersectionShape':
       return type.shapes.map(shapeToString).join(' & ');
     case 'ObjectShape':

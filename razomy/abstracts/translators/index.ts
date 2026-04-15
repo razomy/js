@@ -76,7 +76,6 @@ export {
   type TemplateShape,
   type ThrowStatement,
   type UnaryExpression,
-  type UnaryShape,
   type UnionShape,
   type VariableBinding,
   type VariableStatement,
