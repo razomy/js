@@ -2,7 +2,7 @@ import {FunctionTypeNode} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
 
 import {parseShapeIdentifier} from "./parse_shape_identifier";
-import {parsePropertyType} from "../bindings";
+import {parsePropertyType} from "./parse_property_type";
 
 export function parseFunctionShape(node: FunctionTypeNode): abstracts.translators.FunctionShape {
   return {

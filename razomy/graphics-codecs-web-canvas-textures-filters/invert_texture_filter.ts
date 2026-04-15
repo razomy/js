@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Invert Filter
@@ -11,7 +11,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Invert]);
  */
 
-export class InvertTextureFilter implements ITextureFilter {
+export class InvertTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   public filter(imageData: any): void {
     let data = imageData.data,
       len = data.length,

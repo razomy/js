@@ -1,5 +1,5 @@
-import type { Dict } from './dict';
 import * as exceptions from '@razomy/exceptions';
+import * as dict from "@razomy/dict";
 
 /**
  * @summary Get the first own key of a dictionary.
@@ -23,7 +23,7 @@ import * as exceptions from '@razomy/exceptions';
  * @complexity memory O(1)
  */
 
-export function firstKey<T>(obj: Dict<T>): string {
+export function firstKey<T>(obj: dict.Dict<T>): string {
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       return key;

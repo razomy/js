@@ -1,4 +1,4 @@
-import { createFloat } from './create_float';
+import * as random from "@razomy/random";
 
 /**
  * @summary Generates a random string.
@@ -28,7 +28,7 @@ export function createString(
   let result: string = '';
   const charactersLength: number = characters.length;
   for (let i: number = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(createFloat() * charactersLength));
+    result += characters.charAt(Math.floor(random.createFloat() * charactersLength));
   }
   return result;
 }

@@ -1,8 +1,6 @@
-import { isCacheHasSubArray } from './is_cache_has_sub_array';
-import { isCacheGetPathComponents } from './is_cache_get_path_components';
-import { KNOWN_CACHE } from './is_cache';
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
 export function isCacheIsInCache(path: string): boolean {
-  const pathComponents = isCacheGetPathComponents(path);
-  return KNOWN_CACHE.some((cacheDir) => isCacheHasSubArray(pathComponents, cacheDir));
+  const pathComponents = languagesProgrammingFs.isCacheGetPathComponents(path);
+  return languagesProgrammingFs.KNOWN_CACHE.some((cacheDir) => languagesProgrammingFs.isCacheHasSubArray(pathComponents, cacheDir));
 }

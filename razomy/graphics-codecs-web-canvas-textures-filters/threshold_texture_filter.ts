@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Threshold Filter. Pushes any value above the mid point to
@@ -15,7 +15,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Threshold]);
  * node.threshold(0.1);
  */
-export class ThresholdTextureFilter implements ITextureFilter {
+export class ThresholdTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set threshold.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Threshold} or {@link Konva.Filters.Mask} filter.

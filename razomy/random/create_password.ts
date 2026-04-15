@@ -1,5 +1,4 @@
-import { createInt } from './create_int';
-import { shuffleArray } from './shuffle_array';
+import * as random from "@razomy/random";
 
 const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lower = 'abcdefghijklmnopqrstuvwxyz';
@@ -36,17 +35,17 @@ export function createPassword(length: number = 16): string {
   }
 
   let chars: string[] = [
-    upper[createInt(0, upper.length - 1)],
-    lower[createInt(0, lower.length - 1)],
-    digits[createInt(0, digits.length - 1)],
-    specials[createInt(0, specials.length - 1)],
+    upper[random.createInt(0, upper.length - 1)],
+    lower[random.createInt(0, lower.length - 1)],
+    digits[random.createInt(0, digits.length - 1)],
+    specials[random.createInt(0, specials.length - 1)],
   ];
 
   for (let i = chars.length; i < length; i++) {
-    chars.push(all[createInt(0, all.length - 1)]);
+    chars.push(all[random.createInt(0, all.length - 1)]);
   }
 
-  chars = shuffleArray(chars);
+  chars = random.shuffleArray(chars);
 
   return chars.join('');
 }

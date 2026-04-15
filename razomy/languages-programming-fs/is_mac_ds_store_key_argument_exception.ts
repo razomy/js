@@ -1,5 +1,5 @@
-import {isMacDsStoreKey} from './is_mac_ds_store_key';
 import * as exceptions from '@razomy/exceptions';
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
 export const PYTHON_DEPENDENCIES = ['.venv'];
 export const NODEJS_DEPENDENCIES = ['node_modules'];
@@ -12,6 +12,6 @@ export const MAC_DS_STORE_FILE = '.DS_Store';
 
 export class IsMacDsStoreKeyArgumentException extends exceptions.ArgumentException<string> {
   constructor(path: string) {
-    super(isMacDsStoreKey.name, path);
+    super(languagesProgrammingFs.isMacDsStoreKey.name, path);
   }
 }

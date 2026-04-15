@@ -1,7 +1,6 @@
 import {Identifier as TsIdentifier, Node} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-import {mapName} from "./map_name";
-
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseShapeIdentifier(node: TsIdentifier | Node): abstracts.translators.ShapeIdentifier {
 
@@ -11,13 +10,13 @@ export function parseShapeIdentifier(node: TsIdentifier | Node): abstracts.trans
     typeString = inferredType.getBaseTypeOfLiteralType().getText();
     return {
       kind: 'ShapeIdentifier',
-      name: mapName(typeString),
+      name: tsTranslators.ast.shapes.mapName(typeString),
     };
   }
 
   let name = node.getText();
   return {
     kind: 'ShapeIdentifier',
-    name: mapName(name),
+    name: tsTranslators.ast.shapes.mapName(name),
   };
 }

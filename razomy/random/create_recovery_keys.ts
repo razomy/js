@@ -1,3 +1,5 @@
+import * as random from "@razomy/random";
+
 /**
  * @summary Create an array of recovery keys.
  * @description Generates a list of recovery keys, each composed of uppercase alphanumeric blocks separated by dashes.
@@ -26,9 +28,7 @@ export function createRecoveryKeys(count: number = 10, blocks: number = 4, block
 
   return Array.from({ length: count }, () =>
     Array.from({ length: blocks }, () =>
-      Array.from({ length: blockLength }, () => chars[createInt(0, maxIndex)]).join(''),
+      Array.from({ length: blockLength }, () => chars[random.createInt(0, maxIndex)]).join(''),
     ).join('-'),
   );
 }
-
-import { createInt } from './create_int';

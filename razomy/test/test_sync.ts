@@ -1,6 +1,5 @@
-import { toStrictEqual } from './to_strict_equal';
-import { toThrow } from './to_throw';
 import * as fns from '@razomy/fns';
+import * as test from "@razomy/test";
 
 export function testSync<I extends Array<any>, O>(
   cb: fns.Function<I, O>,
@@ -14,10 +13,10 @@ export function testSync<I extends Array<any>, O>(
 
   if (res != null) {
     const result = resultFn();
-    toStrictEqual(result, res);
+    test.toStrictEqual(result, res);
   }
 
   if (err != null) {
-    toThrow(resultFn, err);
+    test.toThrow(resultFn, err);
   }
 }

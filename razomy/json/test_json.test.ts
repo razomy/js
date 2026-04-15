@@ -1,7 +1,7 @@
-import { type JsonToken, jsonToObject } from './json_to_object';
+import * as json from "@razomy/json";
 
 export function testJson() {
-  const tokens: JsonToken[] = [
+  const tokens: json.JsonToken[] = [
     { tokenType: 'value', value: 'a', deep: 0 },
     { tokenType: 'assign', value: ':', deep: 0 },
     { tokenType: 'value', value: 'b', deep: 0 },
@@ -16,7 +16,7 @@ export function testJson() {
     { tokenType: 'value', value: '1', deep: 1 },
     { tokenType: 'break', value: '\n', deep: 1 },
   ];
-  const result = jsonToObject(tokens);
+  const result = json.jsonToObject(tokens);
   console.log(JSON.stringify(result, null, 2));
 }
 

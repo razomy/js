@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Solarize Filter
@@ -14,7 +14,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.cache();
  * node.Filters([Konva.Filters.Solarize]);
  */
-export class SolarizeTextureFilter implements ITextureFilter {
+export class SolarizeTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   public filter(imageData: any): void {
     let data = imageData.data,
       w = imageData.width,

@@ -1,10 +1,11 @@
+import * as aiAgentProject from "@razomy/ai-agent-project";
+
 // import {executeToolMut} from './tools/execute_tool_mut';
-import type {ActorContext} from './actors/director_company';
 // import {callAuto} from './llms';
 // import * as array from "@razomy/array";
 // import * as ai from "@razomy/ai";
 
-export async function think(ctx: ActorContext) {
+export async function think(ctx: aiAgentProject.actors.ActorContext) {
   // console.log(`  [AGENT START] Задача: ...${ctx.llm.messages[ctx.llm.messages.length - 1].content}`);
   //
   // const maxSteps = 10;

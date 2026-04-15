@@ -5,8 +5,8 @@ import * as abstracts from "@razomy/abstracts";
 import {parseTitleOrThrow} from "../doc/parse_title_or_throw";
 import {parseExamples} from "../doc/parse_examples";
 import {parseComplexity} from "../doc/parse_complexity";
-import {parseFunctionDescriptionOrThrow, parseReturnOrThrow, tryParseJsDoc} from "./index";
 import {parseShapeIdentifier} from "../shapes/parse_shape_identifier";
+import {parseFunctionDescriptionOrThrow, parseReturnOrThrow, tryParseJsDoc} from "../doc";
 
 
 export function parseFunctionDeclaration(node: FunctionDeclaration): abstracts.translators.FunctionBinding {

@@ -1,5 +1,5 @@
 import simpleGit from 'simple-git';
-import {getChangedFilesBetweenCommits} from './get_changed_files_between_commits';
+import * as git from "@razomy/git";
 
 export interface FileChanges {
   created: string[];
@@ -21,7 +21,7 @@ export async function getChangedFilesBetweenCommitsOrAll(
       deleted: [],
     }
   }
-  return getChangedFilesBetweenCommits(
+  return git.getChangedFilesBetweenCommits(
     repoPath,
     fromCommit,
     toCommit

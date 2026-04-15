@@ -1,4 +1,4 @@
-import type { WithSerializable } from './with_serializable';
+import * as serializable from "@razomy/serializable";
 
 export type SerializablePrimitive = string | number | boolean | null;
 
@@ -7,4 +7,4 @@ export type SerializableValue<T = SerializablePrimitive> =
   | { [key: string]: SerializableValue<T> }
   | SerializableValue<T>[];
 
-export type Serializable = SerializableValue<SerializablePrimitive | WithSerializable>;
+export type Serializable = SerializableValue<SerializablePrimitive | serializable.WithSerializable>;

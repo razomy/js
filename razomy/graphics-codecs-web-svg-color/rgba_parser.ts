@@ -1,4 +1,4 @@
-import { Color } from './color';
+import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
 
 export class RgbaParser {
   /**
@@ -33,9 +33,9 @@ export class RgbaParser {
    * Returns new color object, when given a color in RGB format
    * @memberOf Color
    * @param {String} color Color value ex: rgb(0-255,0-255,0-255)
-   * @return {Color}
+   * @return {graphicsCodecsWebSvgColor.Color}
    */
-  public static fromRgb(color: string): Color {
+  public static fromRgb(color: string): graphicsCodecsWebSvgColor.Color {
     return this.sourceFromRgb(color) as any;
   }
 

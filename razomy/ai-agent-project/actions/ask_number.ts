@@ -1,15 +1,11 @@
-import { callText, consensusCall } from "../llms";
-import {getPanicPrompt} from '../prompts/get_panic_prompt';
-import {getNumberPrompt} from '../prompts/get_number_prompt';
-import {parseNumber} from '../parsers/parse_number';
-import {parseThrowPanic} from '../parsers/parse_throw_panic';
 import * as ai from "@razomy/ai";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export async function askNumber(ctx: ai.AiLlmContext): Promise<number> {
-    const messages = [...getPanicPrompt(), ...getNumberPrompt(), ...ctx.messages];
-    return consensusCall({...ctx, messages}, async (ctx) => {
-    const result = await callText(ctx);
-    parseThrowPanic(result);
-    return parseNumber(result);
+    const messages = [...aiAgentProject.prompts.getPanicPrompt(), ...aiAgentProject.prompts.getNumberPrompt(), ...ctx.messages];
+    return aiAgentProject.llms.consensusCall({...ctx, messages}, async (ctx) => {
+    const result = await aiAgentProject.llms.callText(ctx);
+    aiAgentProject.parsers.parseThrowPanic(result);
+    return aiAgentProject.parsers.parseNumber(result);
     })
 }

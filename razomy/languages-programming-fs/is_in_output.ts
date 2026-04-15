@@ -1,7 +1,6 @@
-import { isOutputGetPathComponents } from './is_output_get_path_components';
-import { KNOWN_OUTPUT } from './is_output';
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
 export function isInOutput(path: string): boolean {
-  const pathComponents = isOutputGetPathComponents(path);
-  return KNOWN_OUTPUT.some((outputDir) => pathComponents.includes(outputDir));
+  const pathComponents = languagesProgrammingFs.isOutputGetPathComponents(path);
+  return languagesProgrammingFs.KNOWN_OUTPUT.some((outputDir) => pathComponents.includes(outputDir));
 }

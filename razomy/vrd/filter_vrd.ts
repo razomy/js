@@ -1,18 +1,17 @@
-import { Vrd, type VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
 import * as dict from '@razomy/dict';
+import * as vrd from "@razomy/vrd";
 
-export function filterVrd<I>(input: Vrd<I>, isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean): Vrd<I>;
-export function filterVrd<I>(input: I, isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean): I;
+export function filterVrd<I>(input: vrd.Vrd<I>, isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean): vrd.Vrd<I>;
+export function filterVrd<I>(input: I, isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean): I;
 export function filterVrd<I>(
-  input: VrdOrValue<I>,
-  isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean,
-): VrdOrValue<I>;
+  input: vrd.VrdOrValue<I>,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean,
+): vrd.VrdOrValue<I>;
 export function filterVrd<I>(
-  input: VrdOrValue<I>,
-  isKeep: (input: VrdOrValue<I>, parent: dict.DictKey) => boolean,
-): VrdOrValue<I> {
-  if (isVrd(input)) {
+  input: vrd.VrdOrValue<I>,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean,
+): vrd.VrdOrValue<I> {
+  if (vrd.isVrd(input)) {
     for (const inputKey in input) {
       const value = input[inputKey];
       if (!isKeep(value, inputKey)) {

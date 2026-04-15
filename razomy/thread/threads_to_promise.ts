@@ -1,5 +1,5 @@
-import { threadsToPromises } from './threads_to_promises';
+import * as thread from "@razomy/thread";
 
 export function threadsToPromise(ctx, { path }) {
-  return Promise.all(threadsToPromises(ctx, { path }));
+  return Promise.all(thread.threadsToPromises(ctx, { path }));
 }

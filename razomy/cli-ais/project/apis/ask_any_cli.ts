@@ -1,9 +1,9 @@
-import {askIndependent} from './ask_independent';
 import * as aiAgentProject from "@razomy/ai-agent-project";
+import * as cliAis from "@razomy/cli-ais";
 
 export async function askAnyCli(message: string) {
     aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('start')
-    await askIndependent(message.trim());
+    await cliAis.project.apis.askIndependent(message.trim());
     aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('end')
 }
 askAnyCli(

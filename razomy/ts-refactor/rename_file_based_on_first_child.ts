@@ -1,9 +1,7 @@
-import type { IterateSourceFileState } from './iterate_source_files_and_save';
 import { Node, SyntaxKind, VariableDeclaration } from 'ts-morph';
-import { getNameAndExt } from './get_name_and_ext';
-import { toSafeFilename } from './to_safe_filename';
+import * as tsRefactor from "@razomy/ts-refactor";
 
-export async function renameFileBasedOnFirstChild({ sourceFile, project }: IterateSourceFileState) {
+export async function renameFileBasedOnFirstChild({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   const declaration = sourceFile.getFirstDescendant((node) => {
     // 1. Check if it is the Kind we want
     const kind = node.getKind();
@@ -26,11 +24,11 @@ export async function renameFileBasedOnFirstChild({ sourceFile, project }: Itera
     return;
   }
 
-  const name = toSafeFilename((declaration as VariableDeclaration).getName() || '');
+  const name = tsRefactor.toSafeFilename((declaration as VariableDeclaration).getName() || '');
   if (!name) {
     return;
   }
-  const { baseName, ext } = getNameAndExt(sourceFile);
+  const { baseName, ext } = tsRefactor.getNameAndExt(sourceFile);
 
   if (name == baseName) {
     return;

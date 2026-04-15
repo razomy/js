@@ -1,4 +1,4 @@
-import { createInt } from './create_int';
+import * as random from "@razomy/random";
 
 /**
  * @summary Roll one or more dice and return the results.
@@ -22,5 +22,5 @@ import { createInt } from './create_int';
  * @complexity memory O(n)
  */
 export function rollDice(diceCount: number = 2, sides: number = 6): number[] {
-  return Array.from({ length: diceCount }, () => createInt(1, sides));
+  return Array.from({ length: diceCount }, () => random.createInt(1, sides));
 }

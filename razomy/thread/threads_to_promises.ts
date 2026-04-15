@@ -1,6 +1,5 @@
 import { isMainThread } from 'worker_threads';
-
-import { threadToPromise } from './thread_to_promise';
+import * as thread from "@razomy/thread";
 
 export function threadsToPromises<T>(ctx, { path }) {
   if (!isMainThread) {
@@ -10,7 +9,7 @@ export function threadsToPromises<T>(ctx, { path }) {
   const promises: Promise<T>[] = [];
   const count = ctx.length;
   for (let i = 0; i < count; i++) {
-    promises.push(threadToPromise(ctx[i], { workerId: i + '', path: path }));
+    promises.push(thread.threadToPromise(ctx[i], { workerId: i + '', path: path }));
   }
 
   return promises;

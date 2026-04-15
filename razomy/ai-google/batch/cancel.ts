@@ -1,5 +1,5 @@
-import { CLIENT } from '../client';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function cancel(name: string) {
-  await CLIENT.batches.cancel({ name: name });
+  await aiGoogle.CLIENT.batches.cancel({ name: name });
 }

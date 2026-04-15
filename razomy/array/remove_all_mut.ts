@@ -1,4 +1,4 @@
-import {removeFirstMut} from './remove_first_mut';
+import * as array_ from "@razomy/array";
 
 /**
  * @summary Removes the specified values from the array.
@@ -30,6 +30,6 @@ import {removeFirstMut} from './remove_first_mut';
 
 export function removeAllMut<T>(array: T[], values: T[]): void {
   for (const value of values) {
-    removeFirstMut(array, value);
+    array_.removeFirstMut(array, value);
   }
 }

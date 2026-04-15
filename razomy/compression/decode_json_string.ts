@@ -1,6 +1,6 @@
-import { decodeString } from './decode_string';
+import * as compression from "@razomy/compression";
 
 export function decodeJsonString<T>(encodedStr: string): T {
-  const decodedData = decodeString(encodedStr);
+  const decodedData = compression.decodeString(encodedStr);
   return JSON.parse(decodedData) as T;
 }

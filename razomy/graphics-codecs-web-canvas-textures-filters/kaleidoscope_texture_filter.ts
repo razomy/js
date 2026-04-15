@@ -11,8 +11,6 @@
  * node.kaleidoscopePower(3);
  * node.kaleidoscopeAngle(45);
  */
-import type { ITextureFilter } from './i_texture_filter';
-import { createCanvasElement } from './create_canvas_element';
 /*
  * ToPolar Filter. Converts image data to polar coordinates. Performs
  *  w*h*4 pixel reads and w*h pixel writes. The r axis is placed along
@@ -29,6 +27,7 @@ import { createCanvasElement } from './create_canvas_element';
  * @param {Number} [opt.polarCenterY] vertical location for the center of the circle,
  *  default is in the middle
  */
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 const toPolar = function (src: any, dst: any, opt: any) {
   let srcPixels = src.data,
@@ -177,7 +176,7 @@ const fromPolar = function (src: any, dst: any, opt: any) {
 
 // create a temporary canvas for working - shared between multiple calls
 
-export class KaleidoscopeTextureFilter implements ITextureFilter {
+export class KaleidoscopeTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set kaleidoscope power. Use with {@link Konva.Filters.Kaleidoscope} filter.
@@ -212,7 +211,7 @@ export class KaleidoscopeTextureFilter implements ITextureFilter {
     }
 
     // Work with our shared buffer canvas
-    const tempCanvas = createCanvasElement();
+    const tempCanvas = graphicsCodecsWebCanvasTexturesFilters.createCanvasElement();
     tempCanvas.width = xSize;
     tempCanvas.height = ySize;
     const scratchData = tempCanvas.getContext('2d')!.getImageData(0, 0, xSize, ySize);

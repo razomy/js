@@ -43,6 +43,7 @@
   "name": "@razomy/buffer-string",
   "peerDependencies": {
     "@razomy/abstracts": "*",
+    "@razomy/buffer": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

@@ -1,4 +1,3 @@
-import { isVrd } from '../vrd/is_vrd';
 import * as abstracts from '@razomy/abstracts';
 import * as vrd from '@razomy/vrd';
 
@@ -7,7 +6,7 @@ export function iterateChildren<T>(
   branch: vrd.VrdOrValue<T>,
 ) {
   graph.nodes.push(branch);
-  if (isVrd(branch)) {
+  if (vrd.isVrd(branch)) {
     for (const entityKey in branch) {
       const value = branch[entityKey];
       graph.edges.push([branch, value]);

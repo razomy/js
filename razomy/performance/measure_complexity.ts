@@ -1,4 +1,4 @@
-import { WeightedMovingAverageRecorder } from './weighted_moving_average_recorder';
+import * as performance from "@razomy/performance";
 
 /**
  * Декоратор, который оборачивает функцию в измеритель
@@ -7,7 +7,7 @@ import { WeightedMovingAverageRecorder } from './weighted_moving_average_recorde
  * @param memoryCalculator Функция, которая принимает аргументы исходной функции и возвращает memoryDataSize (наш n^2)
  */
 export function measureComplexity<T extends any[]>(
-  myRecorder: WeightedMovingAverageRecorder,
+  myRecorder: performance.WeightedMovingAverageRecorder,
   sizeCalculator: (...args: T) => number,
   memoryCalculator: (...args: T) => number,
 ) {

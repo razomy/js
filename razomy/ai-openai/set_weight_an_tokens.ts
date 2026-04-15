@@ -1,7 +1,6 @@
-import { setTokens } from './set_tokens';
-import { setWeight } from './set_weight';
+import * as aiOpenai from "@razomy/ai-openai";
 
 export function setWeightAnTokens(request) {
-  setWeight(request);
-  setTokens(request);
+  aiOpenai.setWeight(request);
+  aiOpenai.setTokens(request);
 }

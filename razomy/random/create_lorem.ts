@@ -1,4 +1,4 @@
-import { createFloat } from './create_float';
+import * as random from "@razomy/random";
 
 const loremWords: string[] = [
   'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
@@ -38,7 +38,7 @@ export function createLorem(wordCount: number = 32): string {
   const wordsLength: number = loremWords.length;
 
   for (let i: number = 0; i < wordCount; i++) {
-    result.push(loremWords[Math.floor(createFloat() * wordsLength)]);
+    result.push(loremWords[Math.floor(random.createFloat() * wordsLength)]);
   }
 
   const text: string = result.join(' ');

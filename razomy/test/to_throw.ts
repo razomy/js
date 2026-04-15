@@ -1,4 +1,4 @@
-import { matchesError } from './matches_error';
+import * as test from "@razomy/test";
 
 export function toThrow<T extends Function>(actual: T, expected?: Error) {
   let threw = false;
@@ -7,7 +7,7 @@ export function toThrow<T extends Function>(actual: T, expected?: Error) {
     result = actual();
   } catch (err) {
     threw = true;
-    if (!matchesError(err, expected)) {
+    if (!test.matchesError(err, expected)) {
       throw new Error(`Assertion Failed: ${err}\ndid not match: ${expected}`);
     }
   }

@@ -1,10 +1,10 @@
 import fs from 'fs';
-import {getSync} from './get_sync';
+import * as fsFile from "@razomy/fs-file";
 
 export function tryGetSync(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
   }
 
-  return getSync(filePath);
+  return fsFile.getSync(filePath);
 }

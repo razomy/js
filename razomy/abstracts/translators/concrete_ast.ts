@@ -1,10 +1,10 @@
+import * as abstracts from "@razomy/abstracts";
+
 // ==========================================
 // СЛОЙ 1.1: CST (Concrete Syntax Tree) - Чистая геометрия текста
 // Сохраняет всё: пробелы, комментарии, ошибки парсинга.
 // Ничего не знает про язык (type vs const).
 // ==========================================
-
-import type {Span, Token} from "./token";
 
 /**
  * Base interface for all CST nodes.
@@ -24,8 +24,8 @@ export interface CstNode {
  */
 export interface TokenCst extends CstNode {
   kind: 'TokenCst';
-  token: Token;
-  span: Span;
+  token: abstracts.translators.Token;
+  span: abstracts.translators.Span;
 }
 
 /**

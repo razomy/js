@@ -1,5 +1,5 @@
-import { CLIENT } from '../client';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function delete_(name: string) {
-  await CLIENT.batches.delete({ name: name });
+  await aiGoogle.CLIENT.batches.delete({ name: name });
 }

@@ -1,36 +1,24 @@
 import {Node} from "ts-morph";
-import {parseKeywordType} from "./parse_keyword_type";
-import {parseReferenceNode} from "./parse_reference_node";
-import {parseArrayType} from "./parse_array_type";
-import {parseTupleType} from "./parse_tuple_type";
-import {parseObjectType} from "./parse_object_type";
-import {parseUnionType} from "./parse_union_type";
-import {parseIntersectionType} from "./parse_intersection_type";
-import {parseMappedType} from "./parse_mapped_type";
-import {parseFunctionShape} from "./parse_function_shape";
 import * as abstracts from "@razomy/abstracts";
-import {parseLiteralType} from "./parse_literal_type";
-import {parseTemplateTypeType} from "./parse_template_type_type";
-import {parseShapeIdentifier} from "./parse_shape_identifier";
-
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseShape(node: Node): abstracts.translators.ShapeType {
-  const literal = parseLiteralType(node);
+  const literal = tsTranslators.ast.shapes.parseLiteralType(node);
   if (literal) return literal;
 
-  const keyword = parseKeywordType(node);
+  const keyword = tsTranslators.ast.shapes.parseKeywordType(node);
   if (keyword) return keyword;
 
-  if (Node.isTypeReference(node)) return parseReferenceNode(node);
-  if (Node.isArrayTypeNode(node)) return parseArrayType(node);
-  if (Node.isTupleTypeNode(node)) return parseTupleType(node);
-  if (Node.isTypeLiteral(node)) return parseObjectType(node);
-  if (Node.isUnionTypeNode(node)) return parseUnionType(node);
-  if (Node.isIntersectionTypeNode(node)) return parseIntersectionType(node);
-  if (Node.isTemplateLiteralTypeNode(node)) return parseTemplateTypeType(node);
-  if (Node.isMappedTypeNode(node)) return parseMappedType(node);
-  if (Node.isFunctionTypeNode(node)) return parseFunctionShape(node);
-  if (Node.isIdentifier(node)) return parseShapeIdentifier(node);
+  if (Node.isTypeReference(node)) return tsTranslators.ast.shapes.parseReferenceNode(node);
+  if (Node.isArrayTypeNode(node)) return tsTranslators.ast.shapes.parseArrayType(node);
+  if (Node.isTupleTypeNode(node)) return tsTranslators.ast.shapes.parseTupleType(node);
+  if (Node.isTypeLiteral(node)) return tsTranslators.ast.shapes.parseObjectType(node);
+  if (Node.isUnionTypeNode(node)) return tsTranslators.ast.shapes.parseUnionType(node);
+  if (Node.isIntersectionTypeNode(node)) return tsTranslators.ast.shapes.parseIntersectionType(node);
+  if (Node.isTemplateLiteralTypeNode(node)) return tsTranslators.ast.shapes.parseTemplateTypeType(node);
+  if (Node.isMappedTypeNode(node)) return tsTranslators.ast.shapes.parseMappedType(node);
+  if (Node.isFunctionTypeNode(node)) return tsTranslators.ast.shapes.parseFunctionShape(node);
+  if (Node.isIdentifier(node)) return tsTranslators.ast.shapes.parseShapeIdentifier(node);
 
   // TODO:
   if (Node.isConstructorTypeNode(node)) return null as any;

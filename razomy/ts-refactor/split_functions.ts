@@ -1,9 +1,8 @@
 import * as path from 'path';
-import type { IterateSourceFileState } from './iterate_source_files_and_save';
 import { Node, SyntaxKind } from 'ts-morph';
-import { toSafeFilename } from './to_safe_filename';
+import * as tsRefactor from "@razomy/ts-refactor";
 
-export async function splitFunctions({ sourceFile, project }: IterateSourceFileState) {
+export async function splitFunctions({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   // We only care about exported functions at the top level
   const exportedFunctions = sourceFile.getFunctions().filter((f) => f.isExported());
 
@@ -17,7 +16,7 @@ export async function splitFunctions({ sourceFile, project }: IterateSourceFileS
     const funcName = func.getName();
     if (!funcName) continue;
 
-    const newFilename = `${toSafeFilename(funcName)}.ts`;
+    const newFilename = `${tsRefactor.toSafeFilename(funcName)}.ts`;
     const dirPath = sourceFile.getDirectoryPath();
     const newFilePath = path.join(dirPath, newFilename);
 

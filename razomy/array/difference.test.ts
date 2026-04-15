@@ -1,71 +1,71 @@
-import { difference } from './difference';
+import * as array from "@razomy/array";
 
 describe('array', () => {
   describe('difference', () => {
     // 1. Standard cases
     it('returns elements in source that are not in other', () => {
-      expect(difference([1, 2, 3], [2, 4])).toEqual([1, 3]);
+      expect(array.difference([1, 2, 3], [2, 4])).toEqual([1, 3]);
     });
 
     it('returns elements unique to the source with strings', () => {
-      expect(difference(['apple', 'banana', 'orange'], ['orange', 'grape'])).toEqual(['apple', 'banana']);
+      expect(array.difference(['apple', 'banana', 'orange'], ['orange', 'grape'])).toEqual(['apple', 'banana']);
     });
 
     it('removes multiple elements from the middle', () => {
-      expect(difference([1, 2, 3, 4, 5], [2, 3, 4])).toEqual([1, 5]);
+      expect(array.difference([1, 2, 3, 4, 5], [2, 3, 4])).toEqual([1, 5]);
     });
 
     // 2. Empty arrays
     it('returns an empty array when source is empty', () => {
-      expect(difference([], [1, 2, 3])).toEqual([]);
+      expect(array.difference([], [1, 2, 3])).toEqual([]);
     });
 
     it('returns a copy of source when other is empty', () => {
-      expect(difference([1, 2, 3], [])).toEqual([1, 2, 3]);
+      expect(array.difference([1, 2, 3], [])).toEqual([1, 2, 3]);
     });
 
     it('returns an empty array when both arrays are empty', () => {
-      expect(difference([], [])).toEqual([]);
+      expect(array.difference([], [])).toEqual([]);
     });
 
     // 3. No overlap
     it('returns all source elements when there is no overlap', () => {
-      expect(difference([1, 2, 3], [4, 5, 6])).toEqual([1, 2, 3]);
+      expect(array.difference([1, 2, 3], [4, 5, 6])).toEqual([1, 2, 3]);
     });
 
     // 4. Complete overlap
     it('returns an empty array when all source elements are in other', () => {
-      expect(difference([1, 2, 3], [1, 2, 3])).toEqual([]);
+      expect(array.difference([1, 2, 3], [1, 2, 3])).toEqual([]);
     });
 
     it('returns an empty array when other is a superset of source', () => {
-      expect(difference([1, 2], [1, 2, 3, 4])).toEqual([]);
+      expect(array.difference([1, 2], [1, 2, 3, 4])).toEqual([]);
     });
 
     // 5. Duplicate elements in source
     it('preserves duplicate elements in source that are not in other', () => {
-      expect(difference([1, 1, 2, 3, 3], [2])).toEqual([1, 1, 3, 3]);
+      expect(array.difference([1, 1, 2, 3, 3], [2])).toEqual([1, 1, 3, 3]);
     });
 
     it('removes all occurrences of duplicates that appear in other', () => {
-      expect(difference([1, 1, 2, 2, 3], [1, 2])).toEqual([3]);
+      expect(array.difference([1, 1, 2, 2, 3], [1, 2])).toEqual([3]);
     });
 
     // 6. Duplicate elements in other
     it('handles duplicates in other array correctly', () => {
-      expect(difference([1, 2, 3], [2, 2, 2])).toEqual([1, 3]);
+      expect(array.difference([1, 2, 3], [2, 2, 2])).toEqual([1, 3]);
     });
 
     // 7. Order preservation
     it('preserves the order of elements from the source array', () => {
-      expect(difference([5, 3, 1, 4, 2], [3, 4])).toEqual([5, 1, 2]);
+      expect(array.difference([5, 3, 1, 4, 2], [3, 4])).toEqual([5, 1, 2]);
     });
 
     // 8. Returns a new array (immutability)
     it('returns a new array and does not mutate the source', () => {
       const source = [1, 2, 3];
       const other = [2];
-      const result = difference(source, other);
+      const result = array.difference(source, other);
 
       expect(result).toEqual([1, 3]);
       expect(source).toEqual([1, 2, 3]);
@@ -74,7 +74,7 @@ describe('array', () => {
 
     it('does not mutate the other array', () => {
       const other = [2, 3];
-      difference([1, 2, 3, 4], other);
+      array.difference([1, 2, 3, 4], other);
       expect(other).toEqual([2, 3]);
     });
 
@@ -84,7 +84,7 @@ describe('array', () => {
       const obj2 = { id: 2 };
       const obj3 = { id: 3 };
 
-      expect(difference([obj1, obj2, obj3], [obj2])).toEqual([obj1, obj3]);
+      expect(array.difference([obj1, obj2, obj3], [obj2])).toEqual([obj1, obj3]);
     });
   });
 });

@@ -1,4 +1,4 @@
-import type { Dict } from './dict';
+import * as dict from "@razomy/dict";
 
 /**
  * @summary Filter entries of a dictionary by a predicate.
@@ -21,8 +21,8 @@ import type { Dict } from './dict';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function filter<T>(dict: Dict<T>, predicate: (value: T, key: string) => boolean): Dict<T> {
-  const result: Dict<T> = {};
+export function filter<T>(dict: dict.Dict<T>, predicate: (value: T, key: string) => boolean): dict.Dict<T> {
+  const result: dict.Dict<T> = {};
 
   for (const key in dict) {
     if (predicate(dict[key], key)) {

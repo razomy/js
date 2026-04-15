@@ -1,10 +1,10 @@
-import { objectToFormattedString } from './object_to_formatted_string';
+import * as object_ from "@razomy/object";
 
 describe('bytes', () => {
   it('getObjectSizeInBytes', () => {
     const input = { foo: 'bar' };
 
-    const encoded = objectToFormattedString(input);
+    const encoded = object_.objectToFormattedString(input);
     expect(encoded).toStrictEqual(13);
   });
 });

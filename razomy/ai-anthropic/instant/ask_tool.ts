@@ -1,9 +1,8 @@
-import {CLIENT, MAX_TOKENS, MODELS} from '../client';
-import {specToTool} from "./spec_to_tool";
 import * as main from "@razomy/main";
 import * as fns from "@razomy/fns";
 import * as abstracts from "@razomy/abstracts";
 import * as ai from "@razomy/ai";
+import * as aiAnthropic from "@razomy/ai-anthropic";
 
 export async function askTool(
   texts: string[],
@@ -11,17 +10,17 @@ export async function askTool(
 ): Promise<string | abstracts.translators.PropertyBinding> {
 
   const payload: any = {
-    model: MODELS.expensive,
-    max_tokens: MAX_TOKENS,
+    model: aiAnthropic.MODELS.expensive,
+    max_tokens: aiAnthropic.MAX_TOKENS,
     messages: texts.map(i => ({ content: i, role: 'user' })),
   };
-  payload.tools = toolSpec.map(specToTool);
+  payload.tools = toolSpec.map(aiAnthropic.instant.specToTool);
 
   if (toolSpec.length  === 1) {
     payload.tool_choice = { type: "tool", name: toolSpec[0].identifier.name };
   }
 
-  const result = await CLIENT.messages.create(payload);
+  const result = await aiAnthropic.CLIENT.messages.create(payload);
 
   const toolsRequest = result.content.filter((block: any) => block.type === 'tool_use');
 

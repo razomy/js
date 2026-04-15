@@ -1,4 +1,3 @@
-import type { WithOffset } from "../abstracts/arrays/offest";
 import * as abstracts from "@razomy/abstracts";
 
 export interface WithDeep {
@@ -10,7 +9,7 @@ export interface WithStack {
 }
 
 export function tryAligned<TToken extends abstracts.translators.WithTokenType<any> & WithDeep, D extends object>(
-  ctx: abstracts.translators.WithTokens<TToken> & WithOffset & WithStack,
+  ctx: abstracts.translators.WithTokens<TToken> & abstracts.arrays.WithOffset & WithStack,
   deafult: D = {} as D,
 ) {
   const t = ctx.tokens[ctx.offset];

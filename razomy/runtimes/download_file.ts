@@ -2,8 +2,9 @@ import * as fs from "node:fs";
 import * as https from "node:https";
 
 export function downloadFile(url: string, dest: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-    const request = https.get(url, (response) => {
+  return new Promise((resolve, reject) => {
+    // @ts-ignore
+    const request = https.get(url, (response: any) => {
       if ((response.statusCode === 301 || response.statusCode === 302) && response.headers.location) {
         return downloadFile(response.headers.location, dest).then(resolve).catch(reject);
       }
@@ -17,10 +18,12 @@ export function downloadFile(url: string, dest: string): Promise<void> {
         file.close();
         resolve();
       });
-    });
+    }
+  )
+    ;
     request.on('error', (err) => {
       if (fs.existsSync(dest)) fs.unlinkSync(dest);
       reject(err);
     });
-    });
+  });
 }

@@ -1,14 +1,12 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {getExePath, IS_WIN} from "./get_exe_path";
-import type {RuntimeProvider} from "./types";
-import {execCmd} from "./exec_cmd";
 import * as run from "@razomy/run";
+import * as runtimes from "@razomy/runtimes";
 
 // Контекст изолирует дубликаты переменных окружения и путей
 function getContext(versionRuntimeDir: string, versionWorkspaceDir?: string) {
-  const pyExe = getExePath(versionRuntimeDir, 'bin/python3', 'python.exe');
-  const binPath = IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
+  const pyExe = runtimes.getExePath(versionRuntimeDir, 'bin/python3', 'python.exe');
+  const binPath = runtimes.IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,
@@ -19,7 +17,7 @@ function getContext(versionRuntimeDir: string, versionWorkspaceDir?: string) {
   return {pyExe, env};
 }
 
-export const PYTHON_RUNTIME: RuntimeProvider = {
+export const PYTHON_RUNTIME: runtimes.RuntimeProvider = {
   defaultVersion: '3.14.4',
 
   setup(versionWorkspaceDir) {
@@ -35,18 +33,18 @@ export const PYTHON_RUNTIME: RuntimeProvider = {
 
   install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
     const {pyExe, env} = getContext(versionRuntimeDir);
-    execCmd(`${pyExe} -m pip install ${packageName} --target .`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${pyExe} -m pip install ${packageName} --target .`, versionWorkspaceDir, env);
   },
 
   remove(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
     const {pyExe, env} = getContext(versionRuntimeDir, versionWorkspaceDir);
-    execCmd(`${pyExe} -m pip uninstall -y ${packageName}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${pyExe} -m pip uninstall -y ${packageName}`, versionWorkspaceDir, env);
   },
 
   list(versionWorkspaceDir: string, versionRuntimeDir: string): string[] {
     try {
       const {pyExe, env} = getContext(versionRuntimeDir);
-      const output = execCmd(`${pyExe} -m pip freeze --path .`, versionWorkspaceDir, env, 'pipe');
+      const output = runtimes.execCmd(`${pyExe} -m pip freeze --path .`, versionWorkspaceDir, env, 'pipe');
       return output.split('\n').map(l => l.trim()).filter(l => l.length > 0);
     } catch {
       return [];

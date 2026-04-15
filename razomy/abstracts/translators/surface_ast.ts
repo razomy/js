@@ -1,19 +1,4 @@
-/**
- * Суть: Описывает Синтаксис
- * Код разделен на два параллельных пространства:
- * 1. Пространство значений - сущетвуют в копилированом коде Rust Kotlin Python Ts
- * - Expression — возврашают значение (вычисляемые, data, structure in memory).
- * - Statement — меняют значение в рамках блока (for, while).
- * - Binding — Declaration + Statement, связывание объявленного имени с конкретным действием/результатом.
- * 2. Пространство типов - существуют в только на этапе разработки - сахар
- * - Shape — группирование Expression по общему признаку.
- * - ShapeBinding — TypeDeclaration + TypeExpression (связывание имени типа с его правилами и структурой).
- * 3. Онтология - текстовое описание процессов Inform 7,Attempto Controlled English,Cucumber
- * - Concept (Концепт) — аналог Binding и Shape. Это декларация фактов, правил игры, объектов и их типов. То, что валидируется до выполнения.
- * - Clause (Клауза/Фраза) — аналог Statement и Expression. Это активные действия, происходящие в рантайме.
- */
-
-import type {Token} from "./token";
+import * as abstracts from "@razomy/abstracts";
 
 /**
  * The foundational interface for all AST nodes.
@@ -234,7 +219,7 @@ export interface CallExpression extends Expression {
 export interface MacroCallExpression extends Expression {
   kind: 'MacroCallExpression';
   identifier: Identifier;
-  arguments_: Token;
+  arguments_: abstracts.translators.Token;
 }
 
 /**
@@ -541,7 +526,7 @@ export interface PackageBinding extends Binding {
 export interface MacroBinding extends Binding {
   kind: 'MacroBinding';
   identifier: Identifier;
-  rules: Array<{ pattern: Token[]; template: Token[] }>;
+  rules: Array<{ pattern: abstracts.translators.Token[]; template: abstracts.translators.Token[] }>;
 }
 
 export type BindingType =

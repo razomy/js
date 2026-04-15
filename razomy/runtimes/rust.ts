@@ -1,15 +1,13 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {getExePath, IS_WIN} from "./get_exe_path";
-import type {RuntimeProvider} from "./types";
-import {execCmd} from "./exec_cmd";
 import * as run from "@razomy/run";
+import * as runtimes from "@razomy/runtimes";
 
 function getContext(versionRuntimeDir: string) {
   const cargoBin = path.join(versionRuntimeDir, 'cargo', 'bin');
   const rustcBin = path.join(versionRuntimeDir, 'rustc', 'bin');
-  const cargoExe = getExePath(versionRuntimeDir, 'cargo/bin/cargo', 'cargo/bin/cargo.exe');
-  const rustcExe = getExePath(versionRuntimeDir, 'rustc/bin/rustc', 'rustc/bin/rustc.exe');
+  const cargoExe = runtimes.getExePath(versionRuntimeDir, 'cargo/bin/cargo', 'cargo/bin/cargo.exe');
+  const rustcExe = runtimes.getExePath(versionRuntimeDir, 'rustc/bin/rustc', 'rustc/bin/rustc.exe');
 
   const env = {
     ...process.env,
@@ -18,7 +16,7 @@ function getContext(versionRuntimeDir: string) {
   return {cargoExe, rustcExe, env};
 }
 
-export const RUST_RUNTIME: RuntimeProvider = {
+export const RUST_RUNTIME: runtimes.RuntimeProvider = {
   defaultVersion: '1.94.1',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
@@ -26,12 +24,12 @@ export const RUST_RUNTIME: RuntimeProvider = {
     const rustPath = path.join(versionWorkspaceDir, 'main.rs');
     const rustCode = `use razomy::run_cli;\nuse std::env;\n\nfunction main() {\n cli::start();\n}`;
     fs.writeFileSync(rustPath, rustCode);
-    execCmd(`${rustcExe} main.rs -o cli_runner`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${rustcExe} main.rs -o cli_runner`, versionWorkspaceDir, env);
   },
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
     const {env} = getContext(versionRuntimeDir);
-    const executable = IS_WIN ? 'cli_runner.exe' : './cli_runner';
+    const executable = runtimes.IS_WIN ? 'cli_runner.exe' : './cli_runner';
     return run.cli.spawnProcess(executable, [packageName, functionName, params], versionWorkspaceDir, env);
   },
 
@@ -40,14 +38,14 @@ export const RUST_RUNTIME: RuntimeProvider = {
     const cargoTomlPath = path.join(versionWorkspaceDir, 'Cargo.toml');
 
     if (!fs.existsSync(cargoTomlPath)) {
-      execCmd(`${cargoExe} init --bin`, versionWorkspaceDir, env);
+      runtimes.execCmd(`${cargoExe} init --bin`, versionWorkspaceDir, env);
     }
-    execCmd(`${cargoExe} add ${packageName}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${cargoExe} add ${packageName}`, versionWorkspaceDir, env);
   },
 
   remove(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
     const {cargoExe, env} = getContext(versionRuntimeDir);
-    execCmd(`${cargoExe} remove ${packageName}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${cargoExe} remove ${packageName}`, versionWorkspaceDir, env);
   },
 
   list(versionWorkspaceDir: string): string[] {

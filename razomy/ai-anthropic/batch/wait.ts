@@ -1,9 +1,9 @@
-import { CLIENT } from '../client';
+import * as aiAnthropic from "@razomy/ai-anthropic";
 
 export async function wait(messageBatchId: string) {
   let messageBatch;
   while (true) {
-    messageBatch = await CLIENT.messages.batches.retrieve(messageBatchId);
+    messageBatch = await aiAnthropic.CLIENT.messages.batches.retrieve(messageBatchId);
 
     if (messageBatch.processing_status === 'ended') {
       break;

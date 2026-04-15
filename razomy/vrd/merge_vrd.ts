@@ -1,8 +1,6 @@
-import { Vrd, type VrdOrValue } from './vrd';
-import { mergeDict } from './merge_dict';
-import { isVrd } from './is_vrd';
+import * as vrd from "@razomy/vrd";
 
-export function mergeVrd<T>(a: VrdOrValue<T>, b: VrdOrValue<T>, empty: T): VrdOrValue<T>;
+export function mergeVrd<T>(a: vrd.VrdOrValue<T>, b: vrd.VrdOrValue<T>, empty: T): vrd.VrdOrValue<T>;
 export function mergeVrd<A, B>(a: A, b: B, empty: string | null): A & B;
 export function mergeVrd<T, A, B>(a: A, b: B, empty: T): A & B {
   if (!a) {
@@ -12,12 +10,12 @@ export function mergeVrd<T, A, B>(a: A, b: B, empty: T): A & B {
     return a as A & B;
   }
 
-  const isA = isVrd(a);
-  const isB = isVrd(b);
+  const isA = vrd.isVrd(a);
+  const isB = vrd.isVrd(b);
 
   if (isA) {
     if (isB) {
-      return mergeDict(a, b, empty) as A & B;
+      return vrd.mergeDict(a, b, empty) as A & B;
     }
     a[b as string] = empty;
     return a as A & B;
@@ -26,6 +24,6 @@ export function mergeVrd<T, A, B>(a: A, b: B, empty: T): A & B {
       b[a as string] = empty;
       return b as A & B;
     }
-    return new Vrd({ [a as string]: '', [b as string]: '' }) as A & B;
+    return new vrd.Vrd({ [a as string]: '', [b as string]: '' }) as A & B;
   }
 }

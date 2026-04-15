@@ -1,39 +1,38 @@
-import { Vrd, type VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
 import * as dict from '@razomy/dict';
+import * as vrd from "@razomy/vrd";
 
 export function mapVrd<I, O>(
-  input: Vrd<I>,
+  input: vrd.Vrd<I>,
   leafValueCb: (input: I, parent: dict.DictKey) => O,
   parent: dict.DictKey,
-): Vrd<O>;
+): vrd.Vrd<O>;
 export function mapVrd<I, O>(input: I, leafValueCb: (input: I, parent?: dict.DictKey) => O, parent: dict.DictKey): O;
 export function mapVrd<I, O>(
-  input: VrdOrValue<I>,
+  input: vrd.VrdOrValue<I>,
   leafValueCb: (input: I, parent: dict.DictKey) => O,
   parent: dict.DictKey,
-): VrdOrValue<O>;
+): vrd.VrdOrValue<O>;
 export function mapVrd<I, O>(
-  input: VrdOrValue<I>,
+  input: vrd.VrdOrValue<I>,
   leafValueCb: (input: I, parent: dict.DictKey) => O,
   parent: dict.DictKey,
-  nodeCb: (input: Vrd<I>, parent: dict.DictKey) => Vrd<O> | O,
-): VrdOrValue<O>;
+  nodeCb: (input: vrd.Vrd<I>, parent: dict.DictKey) => vrd.Vrd<O> | O,
+): vrd.VrdOrValue<O>;
 export function mapVrd<I, O>(
-  input: VrdOrValue<I>,
+  input: vrd.VrdOrValue<I>,
   leafValueCb: (input: I, parent: dict.DictKey) => O,
   parent: dict.DictKey,
-  nodeCb: ((input: Vrd<I>, parent: dict.DictKey) => Vrd<O> | O) | undefined = undefined,
-): VrdOrValue<O> {
-  if (isVrd(input)) {
+  nodeCb: ((input: vrd.Vrd<I>, parent: dict.DictKey) => vrd.Vrd<O> | O) | undefined = undefined,
+): vrd.VrdOrValue<O> {
+  if (vrd.isVrd(input)) {
     let iter: any = input;
     if (nodeCb) {
       iter = nodeCb(iter, parent) as any;
-      if (!isVrd(iter)) {
+      if (!vrd.isVrd(iter)) {
         return iter;
       }
     }
-    const otput: Vrd<O> = new Vrd<O>();
+    const otput: vrd.Vrd<O> = new vrd.Vrd<O>();
     for (const inputKey in iter) {
       const value = iter[inputKey];
       otput[inputKey] = mapVrd(value, leafValueCb, inputKey, nodeCb!);

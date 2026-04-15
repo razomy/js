@@ -1,6 +1,6 @@
-import {IMAGES, type OnlyReadImageFileExtensionType, type ReadAndWriteImageFileExtensionType} from "../export_";
 import * as fsFileFormat from "@razomy/fs-file-format";
 import {Readable} from "node:stream";
+import * as images from "@razomy/images";
 
 /**
  * @summary Convert an image file to a specified format.
@@ -25,11 +25,11 @@ import {Readable} from "node:stream";
  */
 export function setFile(
   buffer: Uint8Array,
-  fileExtensionType: ReadAndWriteImageFileExtensionType | OnlyReadImageFileExtensionType,
+  fileExtensionType: images.export_.ReadAndWriteImageFileExtensionType | images.export_.OnlyReadImageFileExtensionType,
 ): fsFileFormat.ExtensionResult {
   const stream = Readable.from([Buffer.from(buffer)]);
   const outMime =
-    IMAGES.find((imageItem) => imageItem.fileExtensionType === fileExtensionType)
+    images.export_.IMAGES.find((imageItem) => imageItem.fileExtensionType === fileExtensionType)
       ?.mediaType ?? 'application/octet-stream';
 
   return {

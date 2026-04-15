@@ -1,14 +1,14 @@
 import * as path from 'path';
-import { getCommitsId } from './get_commits_id';
 import * as shell from '@razomy/shell';
 import * as fsFile from '@razomy/fs-file';
 import * as async from '@razomy/async';
+import * as git from "@razomy/git";
 
 export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fileSubPath = '/data/start.txt') {
   repositoryPath = path.resolve(repositoryPath);
   repositorynewPath = path.resolve(repositorynewPath);
 
-  const commits = await getCommitsId(repositoryPath);
+  const commits = await git.getCommitsId(repositoryPath);
   for (const commit of commits) {
     const index = commits.indexOf(commit);
 

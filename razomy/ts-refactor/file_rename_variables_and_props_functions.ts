@@ -1,9 +1,8 @@
 import { SyntaxKind } from 'ts-morph';
-import { renameNode } from './rename_node';
-import type { IterateSourceFileState } from './iterate_source_files_and_save';
 import * as array from '@razomy/array';
+import * as tsRefactor from "@razomy/ts-refactor";
 
-export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: IterateSourceFileState) {
+export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);
   const parameters = array.flat(functions.map((decl) => decl.getParameters())).filter((i) => !!i);
   const files = [
@@ -22,6 +21,6 @@ export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: It
       continue;
     }
 
-    renameNode(variableDeclaration);
+    tsRefactor.renameNode(variableDeclaration);
   }
 }

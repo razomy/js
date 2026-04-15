@@ -1,6 +1,6 @@
-import { isWithGit } from './is_with_git';
 import * as abstracts from '@razomy/abstracts';
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
 export function isWithoutGit(path: abstracts.graphs.PathString) {
-  return !isWithGit(path);
+  return !languagesProgrammingFs.isWithGit(path);
 }

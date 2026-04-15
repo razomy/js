@@ -1,10 +1,10 @@
 import fs from 'fs';
-import {getJson} from './get_json';
+import * as fsFile from "@razomy/fs-file";
 
 export function tryGetJson(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
   }
 
-  return getJson(filePath);
+  return fsFile.getJson(filePath);
 }

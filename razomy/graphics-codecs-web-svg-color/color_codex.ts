@@ -1,8 +1,4 @@
-import { Color } from './color';
-import { HexParser } from './hex_parser';
-import { HslaParser } from './hsla_parser';
-import { RgbaParser } from './rgba_parser';
-import { type SvgColorKeys, SvgColorParser } from './svg_color_parser';
+import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
 
 /**
  * @Source https://github.com/fabricjs/js/blob/master/src/color.class
@@ -12,11 +8,11 @@ export class ColorCodex {
    * @private
    * @param {String|Array} color Color value to parse
    */
-  public static tryParsingColor(color: string): Color {
+  public static tryParsingColor(color: string): graphicsCodecsWebSvgColor.Color {
     let source: number[] | null = null;
 
-    if (SvgColorParser.isSvgColor(color as SvgColorKeys)) {
-      color = SvgColorParser.colorNameMap[color as SvgColorKeys];
+    if (graphicsCodecsWebSvgColor.SvgColorParser.isSvgColor(color as graphicsCodecsWebSvgColor.SvgColorKeys)) {
+      color = graphicsCodecsWebSvgColor.SvgColorParser.colorNameMap[color as graphicsCodecsWebSvgColor.SvgColorKeys];
     }
 
     if (color === 'transparent') {
@@ -24,13 +20,13 @@ export class ColorCodex {
     }
 
     if (!source) {
-      source = HexParser.sourceFromHex(color);
+      source = graphicsCodecsWebSvgColor.HexParser.sourceFromHex(color);
     }
     if (!source) {
-      source = RgbaParser.sourceFromRgb(color);
+      source = graphicsCodecsWebSvgColor.RgbaParser.sourceFromRgb(color);
     }
     if (!source) {
-      source = HslaParser.sourceFromHsl(color);
+      source = graphicsCodecsWebSvgColor.HslaParser.sourceFromHsl(color);
     }
     if (!source) {
       //if color is not recognized, let's make it black as the canvas does
@@ -45,10 +41,10 @@ export class ColorCodex {
    * @static
    * @memberOf Color
    * @param {Array} source
-   * @return {Color}
+   * @return {graphicsCodecsWebSvgColor.Color}
    */
-  public static fromSource(source: number[]): Color {
-    const oColor = new Color();
+  public static fromSource(source: number[]): graphicsCodecsWebSvgColor.Color {
+    const oColor = new graphicsCodecsWebSvgColor.Color();
     oColor.setSource(source);
     return oColor;
   }

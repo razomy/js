@@ -1,8 +1,8 @@
-import { CLIENT } from '../client';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function getResult(jobName: string) {
   try {
-    const batchJob = await CLIENT.batches.get({ name: jobName });
+    const batchJob = await aiGoogle.CLIENT.batches.get({ name: jobName });
 
     if (batchJob.state === 'JOB_STATE_SUCCEEDED') {
       // console.log('Found completed batch:', batchJob.displayName);
@@ -14,7 +14,7 @@ export async function getResult(jobName: string) {
         console.log(`Results are in file: ${resultFileName}`);
 
         console.log('Downloading result file content...');
-        await CLIENT.files.download({ file: resultFileName, downloadPath: '.' });
+        await aiGoogle.CLIENT.files.download({ file: resultFileName, downloadPath: '.' });
 
         // Process fileContentBuffer (Buffer) as needed
         // console.log(fileContentBuffer.toString('utf-8'));

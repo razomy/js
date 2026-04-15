@@ -1,11 +1,8 @@
-import {type ToolContext} from '../tools/execute_tool_mut';
-import {developerSolve} from './developer_solve';
-import {businessAnalytic} from "./business_analytic";
-import {architecture} from "./architecture";
 import * as ai from "@razomy/ai";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export interface ActorContext {
-  tool: ToolContext;
+  tool: aiAgentProject.tools.ToolContext;
   llm: ai.AiLlmContext;
 }
 
@@ -25,17 +22,17 @@ export async function directorCompany(challengePrompt: string, parentCtx: ActorC
   console.log('👔 Директор берет задачу в работу...');
 
   // Шаг 1: Бизнес-анализ
-  const baResult = await businessAnalytic(challengePrompt, parentCtx);
+  const baResult = await aiAgentProject.actors.businessAnalytic(challengePrompt, parentCtx);
 
   // Шаг 2: Архитектура (создает директорию параллельных задач)
-  const archPlan = await architecture(baResult, parentCtx);
+  const archPlan = await aiAgentProject.actors.architecture(baResult, parentCtx);
 
   console.log(`🚀 Архитектор разбил проект на ${archPlan.tasks.length} параллельных задач.`);
 
   // Шаг 3: Параллельная разработка (индивидуальная задача для каждого разработчика)
   // Используем Promise.all для одновременного запуска всех разработчиков
   const developerPromises = archPlan.tasks.map((task, index) =>
-    developerSolve(task, archPlan.globalStrategy, parentCtx, index + 1)
+    aiAgentProject.actors.developerSolve(task, archPlan.globalStrategy, parentCtx, index + 1)
   );
 
   await Promise.all(developerPromises);

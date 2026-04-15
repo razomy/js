@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import { parseStatus } from './parse_status';
+import * as git from "@razomy/git";
 
 export interface Status {
   localBranch: string;
@@ -14,7 +14,7 @@ export async function getStatus(dirPath: string) {
     const cmd = 'git status --porcelain -b';
     exec(cmd, { cwd: dirPath }, function (err, stdout) {
       if (err) return reject(err);
-      resolve(parseStatus(stdout));
+      resolve(git.parseStatus(stdout));
     });
   });
 }

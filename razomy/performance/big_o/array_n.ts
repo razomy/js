@@ -1,5 +1,5 @@
-import { n } from './n';
+import * as performance from "@razomy/performance";
 
 export function arrayN(arr: any[]) {
-  return n(arr.length);
+  return performance.bigO.n(arr.length);
 }

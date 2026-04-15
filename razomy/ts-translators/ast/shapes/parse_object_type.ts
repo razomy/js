@@ -1,6 +1,7 @@
 import { TypeLiteralNode } from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-import {parsePropertyType} from "../bindings";
+import {parsePropertyType} from "./parse_property_type";
+
 
 export function parseObjectType(node: TypeLiteralNode): abstracts.translators.ObjectShape {
   return {

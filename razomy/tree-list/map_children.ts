@@ -1,13 +1,12 @@
-import type { WithChildrenList } from './with_children_list';
-import { map } from './map';
+import * as treeList from "@razomy/tree-list";
 
-export function mapChildren<I extends WithChildrenList<any>, O extends WithChildrenList<any>>(
+export function mapChildren<I extends treeList.WithChildrenList<any>, O extends treeList.WithChildrenList<any>>(
   children_: I[],
   cb: (input: I) => O,
 ): O[] {
   const children: O[] = [];
   for (const child of children_) {
-    children.push(map(child, cb));
+    children.push(treeList.map(child, cb));
   }
   return children;
 }

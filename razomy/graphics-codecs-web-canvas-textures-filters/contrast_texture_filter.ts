@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Contrast Filter.
@@ -11,7 +11,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Contrast]);
  * node.contrast(10);
  */
-export class ContrastTextureFilter implements ITextureFilter {
+export class ContrastTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   /**
    * get/set filter contrast.  The contrast is a number between -100 and 100.
    * Use with {@link Konva.Filters.Contrast} filter.

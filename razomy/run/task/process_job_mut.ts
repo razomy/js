@@ -1,6 +1,6 @@
-import type {Task, TaskHandler} from "./task_controller";
+import * as run from "@razomy/run";
 
-export async function processJobMut(handlers: Map<string, TaskHandler<any>>, job: Task) {
+export async function processJobMut(handlers: Map<string, run.task.TaskHandler<any>>, job: run.task.Task) {
   if (job.abortController.signal.aborted) return;
 
   const handler = handlers.get(job.type);

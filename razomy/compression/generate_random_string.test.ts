@@ -1,11 +1,11 @@
-import { decodeJsonString, encodeJsonString } from './index';
+import * as compression from "@razomy/compression";
 
 describe('compress', () => {
   it('should encode a string using gzip compression', () => {
     const input = { foo: 'bar' };
 
-    const encoded = encodeJsonString(input);
-    const decoded = decodeJsonString(encoded);
+    const encoded = compression.encodeJsonString(input);
+    const decoded = compression.decodeJsonString(encoded);
 
     expect(input).toEqual(decoded);
   });
@@ -13,8 +13,8 @@ describe('compress', () => {
   it('should correctly encode and decode a string with any characters', () => {
     const input = 'Hello, 你好, مرحبا, नमस्ते, γεια σας! 😊';
 
-    const encoded = encodeJsonString(input);
-    const decoded = decodeJsonString(encoded);
+    const encoded = compression.encodeJsonString(input);
+    const decoded = compression.decodeJsonString(encoded);
 
     expect(decoded).toEqual(input);
   });
@@ -36,10 +36,10 @@ it('should correctly encode and decode extremely large data', () => {
   const largeData = generateRandomString(10000000);
 
   // Encode the large data
-  const encoded = encodeJsonString(largeData);
+  const encoded = compression.encodeJsonString(largeData);
 
   // Decode the encoded data
-  const decoded = decodeJsonString(encoded);
+  const decoded = compression.decodeJsonString(encoded);
 
   // Verify that the decoded data matches the original large data
   expect(decoded).toEqual(largeData);

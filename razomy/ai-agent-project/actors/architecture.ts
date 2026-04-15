@@ -1,13 +1,10 @@
-import {think} from "../think";
-import type {ActorContext, ArchitecturePlan} from "./director_company";
-import {parseJson} from "../parsers";
-import {TOOL_REGISTRY} from "../tools/execute_tool_mut";
 import * as ai from "@razomy/ai";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
-export async function architecture(baPlan: string, parentCtx: ActorContext): Promise<ArchitecturePlan> {
+export async function architecture(baPlan: string, parentCtx: aiAgentProject.actors.ActorContext): Promise<aiAgentProject.actors.ArchitecturePlan> {
   console.log('📐 Архитектор планирует изменения и распределяет задачи...');
 
-  const ctx: ActorContext = {
+  const ctx: aiAgentProject.actors.ActorContext = {
     tool: {...parentCtx.tool},
     llm: {messages: [], tools: []}
   };
@@ -18,12 +15,12 @@ export async function architecture(baPlan: string, parentCtx: ActorContext): Pro
      `),
     ai.uM(baPlan)
   ];
-  ctx.llm.tools = [TOOL_REGISTRY.getDirFiles];
+  ctx.llm.tools = [aiAgentProject.tools.TOOL_REGISTRY.getDirFiles];
 
-  await think(ctx);
+  await aiAgentProject.think(ctx);
   const rawResponse = ctx.llm.messages[ctx.llm.messages.length - 1].content;
 
-  const ctx2: ActorContext = {
+  const ctx2: aiAgentProject.actors.ActorContext = {
     tool: {...parentCtx.tool},
     llm: {messages: [], tools: []}
   };
@@ -49,8 +46,8 @@ export async function architecture(baPlan: string, parentCtx: ActorContext): Pro
   ];
   ctx2.llm.tools = [];
 
-  await think(ctx2);
+  await aiAgentProject.think(ctx2);
   const rawResponse2 = ctx2.llm.messages[ctx2.llm.messages.length - 1].content;
 
-  return parseJson<ArchitecturePlan>(rawResponse2);
+  return aiAgentProject.parsers.parseJson<aiAgentProject.actors.ArchitecturePlan>(rawResponse2);
 }

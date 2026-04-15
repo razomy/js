@@ -2,8 +2,7 @@ import {Project} from 'ts-morph';
 
 import * as abstracts from "@razomy/abstracts";
 import * as path from "path";
-import {parseModuleDeclarationBody} from "./parse_module_declaration_body";
-import {getSurfaceDeclarationMut} from "./index";
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function getPackageDeclaration(project: Project, dirPath: string, onlyPublic: boolean = true): abstracts.translators.PackageBinding {
   const packageJson = JSON.parse(project.getSourceFile(path.join(dirPath, "package.json"))!.getText());
@@ -24,7 +23,7 @@ export function getPackageDeclaration(project: Project, dirPath: string, onlyPub
     meta:{
       description: packageJson.description,
     },
-    body: parseModuleDeclarationBody(project.getDirectory(dirPath)!.getSourceFile(f => f.getBaseName().startsWith("index."))!),
+    body: tsTranslators.ast.bindings.parseModuleDeclarationBody(project.getDirectory(dirPath)!.getSourceFile(f => f.getBaseName().startsWith("index."))!),
     version: packageJson.version,
     runtime: {
       kind: 'DependencyBinding',
@@ -36,7 +35,7 @@ export function getPackageDeclaration(project: Project, dirPath: string, onlyPub
   } satisfies abstracts.translators.PackageBinding;
 
   if (onlyPublic) {
-    getSurfaceDeclarationMut(packageDeclaration)!;
+    tsTranslators.ast.bindings.getSurfaceDeclarationMut(packageDeclaration)!;
   }
 
   return packageDeclaration;

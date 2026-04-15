@@ -1,12 +1,11 @@
 // 2. Бизнес-Аналитик (Остается почти без изменений)
-import {think} from "../think";
 import * as ai from "@razomy/ai";
-import type {ActorContext} from "./director_company";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
-export async function businessAnalytic(task: string, parentCtx: ActorContext): Promise<string> {
+export async function businessAnalytic(task: string, parentCtx: aiAgentProject.actors.ActorContext): Promise<string> {
   console.log('📊 Бизнес-аналитик анализирует требования...');
 
-  const ctx: ActorContext = {
+  const ctx: aiAgentProject.actors.ActorContext = {
     tool: {...parentCtx.tool}, // Клонируем тулы или инициализируем нужные
     llm: {messages: [], tools: []}
   };
@@ -20,6 +19,6 @@ export async function businessAnalytic(task: string, parentCtx: ActorContext): P
     ai.uM(task)
   ];
 
-  await think(ctx);
+  await aiAgentProject.think(ctx);
   return ctx.llm.messages[ctx.llm.messages.length - 1].content;
 }

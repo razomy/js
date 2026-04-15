@@ -1,8 +1,6 @@
-import type { VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
-import { differencesDict } from './differences_dict';
 import * as difference from '@razomy/difference';
-import { isEqual } from "../dict/is_equal";
+import * as vrd from "@razomy/vrd";
+import * as dict from "@razomy/dict";
 
 export interface ReplaceDifference<T> {
   type: 'replace_key';
@@ -10,11 +8,11 @@ export interface ReplaceDifference<T> {
   value: T;
 }
 
-export type P<T> = (ReplaceDifference<VrdOrValue<T>> | difference.ChangeDifference<VrdOrValue<T>>) & {
+export type P<T> = (ReplaceDifference<vrd.VrdOrValue<T>> | difference.ChangeDifference<vrd.VrdOrValue<T>>) & {
   path: string;
 };
 
-export function differencesVrd<T>(diffs: P<T>[], a: VrdOrValue<T>, b: VrdOrValue<T>, path: string): P<T>[] {
+export function differencesVrd<T>(diffs: P<T>[], a: vrd.VrdOrValue<T>, b: vrd.VrdOrValue<T>, path: string): P<T>[] {
   if (!a && !b) {
     return diffs;
   } else if (!a) {
@@ -25,12 +23,12 @@ export function differencesVrd<T>(diffs: P<T>[], a: VrdOrValue<T>, b: VrdOrValue
     return diffs;
   }
 
-  const isA = isVrd(a);
-  const isB = isVrd(b);
+  const isA = vrd.isVrd(a);
+  const isB = vrd.isVrd(b);
 
   if (isA) {
     if (isB) {
-      return differencesDict(diffs, a, b, path);
+      return vrd.differencesDict(diffs, a, b, path);
     }
     diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
     return diffs;
@@ -40,7 +38,7 @@ export function differencesVrd<T>(diffs: P<T>[], a: VrdOrValue<T>, b: VrdOrValue
       return diffs;
     }
 
-    if (!isEqual(a, b)) {
+    if (!dict.isEqual(a, b)) {
       diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
     }
     return diffs;

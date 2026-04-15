@@ -1,6 +1,6 @@
-import type {Task} from "./task/task_controller";
+import * as run from "@razomy/run";
 
-export interface RunFunctionTask extends Task {
+export interface RunFunctionTask extends run.task.Task {
   type: 'instant';
   packageName: string;
   functionPath: string[];

@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 
@@ -11,7 +11,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.cache();
  * node.Filters([Konva.Filters.Sepia]);
  */
-export class SepiaTextureFilter implements ITextureFilter {
+export class SepiaTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   public filter(imageData: any): void {
     let data = imageData.data,
       nPixels = data.length,

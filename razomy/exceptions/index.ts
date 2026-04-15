@@ -1,6 +1,6 @@
+export { Exception } from './exception';
 export { ArgumentException } from './argument_exception';
 export { CollectException, type CatchFn } from './collect_exception';
-export { Exception } from './exception';
 export { MultipleException } from './multiple_exception';
 export { NotImplementedException } from './not_implemented_exception';
 export { NotSupportedException } from './not_supported_exception';

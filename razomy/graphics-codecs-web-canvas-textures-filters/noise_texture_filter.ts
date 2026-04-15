@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Noise Filter. Randomly adds or substracts to the color channels
@@ -13,7 +13,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Noise]);
  * node.noise(0.8);
  */
-export class NoiseTextureFilter implements ITextureFilter {
+export class NoiseTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set noise amount.  Must be a value between 0 and 1. Use with {@link Konva.Filters.Noise} filter.

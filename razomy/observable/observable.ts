@@ -1,15 +1,13 @@
-import type { Dispose } from '../abstracts/functions/dispose';
-import { throwException } from './throw_exception';
-import type { CancelException } from './cancel_exception';
 import * as abstracts from '@razomy/abstracts';
+import * as observable from "@razomy/observable";
 
-export class Observable<T, E = CancelException> {
-  disposeFn: Dispose | null = null;
+export class Observable<T, E = observable.CancelException> {
+  disposeFn: abstracts.functions.Dispose | null = null;
   next: abstracts.functions.Action<T> | undefined;
-  exception: abstracts.functions.Action<E> = throwException;
-  factory: (resolve: abstracts.functions.Action<T>) => Dispose;
+  exception: abstracts.functions.Action<E> = observable.throwException;
+  factory: (resolve: abstracts.functions.Action<T>) => abstracts.functions.Dispose;
 
-  constructor(factory: (resolve: abstracts.functions.Action<T>) => Dispose) {
+  constructor(factory: (resolve: abstracts.functions.Action<T>) => abstracts.functions.Dispose) {
     this.factory = factory;
   }
 

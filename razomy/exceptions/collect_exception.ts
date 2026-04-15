@@ -1,19 +1,19 @@
-import { Exception } from './exception';
+import * as exceptions from "@razomy/exceptions";
 
 export type CatchFn = (throwable_fn: () => void) => void;
 
 export class CollectException {
-  errors: Exception[];
+  errors: exceptions.Exception[];
 
   constructor() {
-    this.errors = [] as Exception[];
+    this.errors = [] as exceptions.Exception[];
   }
 
   catchFn(throwable_fn: () => void) {
     try {
       return throwable_fn();
     } catch (e) {
-      if (e instanceof Exception) {
+      if (e instanceof exceptions.Exception) {
         this.errors.push(e);
       } else {
         throw e;

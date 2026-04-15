@@ -1,7 +1,6 @@
-import { getItemByPath } from './get_item_by_path';
-import type { ListItem } from './get_key';
 import * as key from '@razomy/key';
+import * as kvRecursive from "@razomy/kv-recursive";
 
-export function get(node: ListItem, path: string) {
-  return getItemByPath(node, path.split(key.ASSIGN), 0);
+export function get(node: kvRecursive.ListItem, path: string) {
+  return kvRecursive.getItemByPath(node, path.split(key.ASSIGN), 0);
 }

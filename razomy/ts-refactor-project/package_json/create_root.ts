@@ -1,10 +1,10 @@
 import * as path from 'path';
-import { getAll } from './get_all';
 import * as fsFile from '@razomy/fs-file';
+import * as tsRefactorProject from "@razomy/ts-refactor-project";
 
 export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);
-  const packages = getAll(projectPath);
+  const packages = tsRefactorProject.packageJson.getAll(projectPath);
 
   const packageFile = fsFile.getJson(path.join(rootDir, 'package.json'));
   packageFile.workspaces = packages.map((folder) => './' + folder.name);

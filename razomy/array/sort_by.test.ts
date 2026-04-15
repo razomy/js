@@ -1,18 +1,18 @@
-import { sortBy } from './sort_by';
+import * as array from "@razomy/array";
 
 describe('array', () => {
   describe('sortBy', () => {
     // 1. Standard cases - numeric sorting
     it('sorts numbers in ascending order', () => {
-      expect(sortBy([3, 1, 2], (n) => n)).toEqual([1, 2, 3]);
+      expect(array.sortBy([3, 1, 2], (n) => n)).toEqual([1, 2, 3]);
     });
 
     it('sorts strings by length', () => {
-      expect(sortBy(['bb', 'ccc', 'a'], (s) => s.length)).toEqual(['a', 'bb', 'ccc']);
+      expect(array.sortBy(['bb', 'ccc', 'a'], (s) => s.length)).toEqual(['a', 'bb', 'ccc']);
     });
 
     it('sorts objects by a numeric property', () => {
-      const result = sortBy(
+      const result = array.sortBy(
         [
           { user: 'fred', age: 40 },
           { user: 'barney', age: 36 },
@@ -27,26 +27,26 @@ describe('array', () => {
 
     // 2. Empty array
     it('returns an empty array when given an empty array', () => {
-      expect(sortBy([], (n) => n)).toEqual([]);
+      expect(array.sortBy([], (n) => n)).toEqual([]);
     });
 
     // 3. Single element
     it('returns a single-element array unchanged', () => {
-      expect(sortBy([42], (n) => n)).toEqual([42]);
+      expect(array.sortBy([42], (n) => n)).toEqual([42]);
     });
 
     // 4. Does not mutate the original array
     it('does not mutate the original array', () => {
       const original = [3, 1, 2];
       const originalCopy = [...original];
-      sortBy(original, (n) => n);
+      array.sortBy(original, (n) => n);
       expect(original).toEqual(originalCopy);
     });
 
     // 5. Returns a new array reference
     it('returns a new array, not the same reference', () => {
       const original = [1, 2, 3];
-      const result = sortBy(original, (n) => n);
+      const result = array.sortBy(original, (n) => n);
       expect(result).not.toBe(original);
     });
 
@@ -58,7 +58,7 @@ describe('array', () => {
         { name: 'Charlie', age: 30 },
         { name: 'Dave', age: 25 },
       ];
-      const result = sortBy(items, (item) => item.age);
+      const result = array.sortBy(items, (item) => item.age);
       expect(result).toEqual([
         { name: 'Bob', age: 25 },
         { name: 'Dave', age: 25 },
@@ -74,7 +74,7 @@ describe('array', () => {
         { name: 'Alice', age: 25 },
         { name: 'Bob', age: 35 },
       ];
-      const result = sortBy(items, (item) => item.name);
+      const result = array.sortBy(items, (item) => item.name);
       expect(result).toEqual([
         { name: 'Alice', age: 25 },
         { name: 'Bob', age: 35 },
@@ -84,12 +84,12 @@ describe('array', () => {
 
     // 8. Already sorted array
     it('returns a correctly sorted array when input is already sorted', () => {
-      expect(sortBy([1, 2, 3, 4, 5], (n) => n)).toEqual([1, 2, 3, 4, 5]);
+      expect(array.sortBy([1, 2, 3, 4, 5], (n) => n)).toEqual([1, 2, 3, 4, 5]);
     });
 
     // 9. Reverse sorted array
     it('sorts a reverse-sorted array correctly', () => {
-      expect(sortBy([5, 4, 3, 2, 1], (n) => n)).toEqual([1, 2, 3, 4, 5]);
+      expect(array.sortBy([5, 4, 3, 2, 1], (n) => n)).toEqual([1, 2, 3, 4, 5]);
     });
   });
 });

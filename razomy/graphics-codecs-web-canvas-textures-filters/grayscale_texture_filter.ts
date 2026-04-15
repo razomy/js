@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Grayscale Filter
@@ -10,7 +10,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.cache();
  * node.Filters([Konva.Filters.Grayscale]);
  */
-export class GrayscaleTextureFilter implements ITextureFilter {
+export class GrayscaleTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   public filter(imageData: any): void {
     let data = imageData.data,
       len = data.length,

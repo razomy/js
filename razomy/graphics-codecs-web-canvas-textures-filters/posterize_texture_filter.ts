@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Posterize Filter. Adjusts the channels so that there are no more
@@ -15,7 +15,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Posterize]);
  * node.levels(0.8); // between 0 and 1
  */
-export class PosterizeTextureFilter implements ITextureFilter {
+export class PosterizeTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set levels.  Must be a number between 0 and 1.  Use with {@link Konva.Filters.Posterize} filter.

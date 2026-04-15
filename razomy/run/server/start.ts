@@ -1,5 +1,5 @@
 import express from 'express';
-import {resolveAndRun, type RunRequest} from "../resolve_and_run";
+import * as run from "@razomy/run";
 
 /*
 
@@ -24,7 +24,7 @@ export async function start() {
         filePathOrPackageName,
         pathWithFunctionName,
         params = []
-      } = req.body as RunRequest;
+      } = req.body as run.RunRequest;
 
       // Валидация входных данных
       if (!filePathOrPackageName || !pathWithFunctionName) {
@@ -35,7 +35,7 @@ export async function start() {
       }
 
       // Логика из вашего оригинального скрипта
-      const result = await resolveAndRun(filePathOrPackageName, pathWithFunctionName, params);
+      const result = await run.resolveAndRun(filePathOrPackageName, pathWithFunctionName, params);
 
       // Отправляем результат обратно клиенту
       return res.json({

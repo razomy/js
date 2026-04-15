@@ -1,6 +1,6 @@
-import { ArgumentException } from './argument_exception';
+import * as exceptions from "@razomy/exceptions";
 
-export class PathException extends ArgumentException<{ path: string }> {
+export class PathException extends exceptions.ArgumentException<{ path: string }> {
   constructor(public path: string) {
     super('PathException', { path });
   }

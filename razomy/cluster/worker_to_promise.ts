@@ -1,5 +1,5 @@
 import type { Worker } from 'cluster';
-import type { WorkerEvent } from './worker';
+import * as cluster from "@razomy/cluster";
 
 export function workerToPromise<T>(worker: Worker, ctx: T) {
   return new Promise<T>((resolve, reject) => {
@@ -10,7 +10,7 @@ export function workerToPromise<T>(worker: Worker, ctx: T) {
       return (lastError = error);
     }
 
-    function ctxHandle(data: WorkerEvent<T>) {
+    function ctxHandle(data: cluster.WorkerEvent<T>) {
       if (data.id === 'set') {
         lastCtx = data.ctx;
       } else if (data.id === 'get') {

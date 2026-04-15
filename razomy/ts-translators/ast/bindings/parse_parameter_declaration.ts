@@ -1,8 +1,6 @@
 import {FunctionDeclaration, ParameterDeclaration} from "ts-morph";
-import {parseIdentifier} from "./parse_identifier";
 import * as abstracts from "@razomy/abstracts";
-import {parseShapeIdentifier} from "../shapes/parse_shape_identifier";
-import {parseExpression} from "../expressions";
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseParameterDeclaration(node: ParameterDeclaration): abstracts.translators.ParameterBinding {
   let description = '';
@@ -16,9 +14,9 @@ export function parseParameterDeclaration(node: ParameterDeclaration): abstracts
 
   return {
     kind: 'ParameterBinding',
-    identifier: parseIdentifier(node.getNameNode()),
-    shapeIdentifier: node.getTypeNode() ? parseShapeIdentifier(node.getTypeNode()!) : null,
-    expression: node.getInitializer() ? parseExpression(node.getInitializer()!) : null,
+    identifier: tsTranslators.ast.bindings.parseIdentifier(node.getNameNode()),
+    shapeIdentifier: node.getTypeNode() ? tsTranslators.ast.shapes.parseShapeIdentifier(node.getTypeNode()!) : null,
+    expression: node.getInitializer() ? tsTranslators.ast.expressions.parseExpression(node.getInitializer()!) : null,
     isRest: node.isRestParameter(),
     meta: {description}
   };

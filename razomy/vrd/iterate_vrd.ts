@@ -1,9 +1,8 @@
-import type { VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
+import * as vrd from "@razomy/vrd";
 
 export interface Iterate<T> {
   parents: string[];
-  input: VrdOrValue<T>;
+  input: vrd.VrdOrValue<T>;
 }
 
 export enum IterateBreaks {
@@ -26,7 +25,7 @@ export function iterateVrd<T, C extends Iterate<T>>(
 
   const input = ctx.input;
   const parents = ctx.parents;
-  if (isVrd(input)) {
+  if (vrd.isVrd(input)) {
     for (const inputKey in input) {
       const value = input[inputKey];
       ctx.parents = [...parents, inputKey];

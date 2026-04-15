@@ -1,14 +1,12 @@
-import type { Json } from './json';
-import { stringToJson } from './string_to_json';
-import { jsonToString } from './json_to_string';
 import * as abstracts from '@razomy/abstracts';
+import * as json from "@razomy/json";
 
-export class JsonCodec<T extends Json> implements abstracts.patterns.Codec<T, string> {
+export class JsonCodec<T extends json.Json> implements abstracts.patterns.Codec<T, string> {
   encode(state: T): string {
-    return jsonToString(state);
+    return json.jsonToString(state);
   }
 
   decode(data: string): T {
-    return stringToJson(data);
+    return json.stringToJson(data);
   }
 }

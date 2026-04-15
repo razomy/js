@@ -1,4 +1,4 @@
-import { createFloat } from './create_float';
+import * as random from "@razomy/random";
 
 /**
  * @summary Create a random date string within a year range.
@@ -25,7 +25,7 @@ import { createFloat } from './create_float';
 export function createDate(startYear: number = 2000, endYear: number = 2026): string {
   const start: number = new Date(startYear, 0, 1).getTime();
   const end: number = new Date(endYear, 11, 31, 23, 59, 59, 999).getTime();
-  const date: Date = new Date(start + createFloat() * (end - start));
+  const date: Date = new Date(start + random.createFloat() * (end - start));
 
   function pad(n: number): string {
     return n.toString().padStart(2, '0');

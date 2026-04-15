@@ -1,6 +1,6 @@
 import {InMemoryFileSystemHost, Project} from "ts-morph";
-import {getPackageDeclaration} from "./bindings/get_package_declaration";
 import * as abstracts from "@razomy/abstracts";
+import * as tsTranslators from "@razomy/ts-translators";
 
 describe('parse', () => {
   it('parse', () => {
@@ -65,7 +65,7 @@ describe('parse', () => {
     project.createSourceFile("index.ts", "export * as example from './example'; export {calculateUserAge} from './example';");
 
     // 3. Run your parser!
-    const modules = getPackageDeclaration(project, '');
+    const modules = tsTranslators.ast.bindings.getPackageDeclaration(project, '');
 
     expect(modules).toEqual({
       "body": [

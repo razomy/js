@@ -1,4 +1,4 @@
-import { mergeVrd } from './merge_vrd';
+import * as vrd from "@razomy/vrd";
 
 export function merges<A, B>(a: A, b: B): A & B;
 export function merges<A, B, C>(a: A, b: B, c: C): A & B & C;
@@ -19,7 +19,7 @@ export function merges<A, B, C, D, E, F, G, H>(
 export function merges(...args) {
   let res = args[0];
   for (let i = 1; i < args.length; i++) {
-    res = mergeVrd(res, args[1], '');
+    res = vrd.mergeVrd(res, args[1], '');
   }
   return res;
 }

@@ -1,4 +1,4 @@
-import type { DataStructure } from '../meta';
+import * as abstracts from "@razomy/abstracts";
 
 export type RawBuffer = ArrayBuffer | SharedArrayBuffer;
 
@@ -6,7 +6,7 @@ export type RawBuffer = ArrayBuffer | SharedArrayBuffer;
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface TypedMemoryView<T> extends DataStructure<T> {
+export interface TypedMemoryView<T> extends abstracts.meta.DataStructure<T> {
   buffer: RawBuffer;
   byteLength: number;
   byteOffset: number;
@@ -22,7 +22,7 @@ export type Tuple<T extends unknown[]> = T;
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface StaticArray<T> extends DataStructure<T> {
+export interface StaticArray<T> extends abstracts.meta.DataStructure<T> {
   readonly length: number;
 
   [index: number]: T;
@@ -32,7 +32,7 @@ export interface StaticArray<T> extends DataStructure<T> {
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface DynamicArray<T> extends DataStructure<T> {
+export interface DynamicArray<T> extends abstracts.meta.DataStructure<T> {
   capacity: number;
   length: number;
   resizeAlgorithm: () => void;

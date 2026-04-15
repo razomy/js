@@ -1,4 +1,3 @@
-import { iterateChildren } from './iterate_children';
 import * as treeDict from '@razomy/tree-dict';
 import * as abstracts from '@razomy/abstracts';
 
@@ -7,6 +6,6 @@ export function dictToGraph<T, I extends treeDict.BranchDictOrLeaf<T>>(input: I)
     nodes: [],
     edges: [],
   };
-  iterateChildren(graph, input);
+  treeDict.iterateChildren(graph, input);
   return graph;
 }

@@ -1,6 +1,6 @@
-import type { WithParent } from './parent';
+import * as treeList from "@razomy/tree-list";
 
-export function first<T extends WithParent>(node: T, cb: (node: T) => boolean) {
+export function first<T extends treeList.parent.WithParent>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {
     return node;
   }

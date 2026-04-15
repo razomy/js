@@ -1,12 +1,10 @@
-import type { ListItem } from './get_key';
-import { getItemByPathFromValue } from './get_item_by_path_from_value';
-import { getValue } from './get_value';
+import * as kvRecursive from "@razomy/kv-recursive";
 
-export function getItemByPath(node: ListItem, path: string[], offset: number): ListItem {
+export function getItemByPath(node: kvRecursive.ListItem, path: string[], offset: number): kvRecursive.ListItem {
   if (offset >= path.length) {
     return node;
   }
 
-  const value = getValue(node);
-  return getItemByPathFromValue(value, path, offset);
+  const value = kvRecursive.getValue(node);
+  return kvRecursive.getItemByPathFromValue(value, path, offset);
 }

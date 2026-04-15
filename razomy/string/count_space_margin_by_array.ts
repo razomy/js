@@ -1,4 +1,5 @@
-import { countSpaceMargin } from './count_space_margin';
+import * as string from "@razomy/string";
+
 /**
  * @summary Count leading space margins for each string in an array.
  * @description Maps an array of strings to an array of numbers representing the count of leading spaces (margin) for each string.
@@ -21,5 +22,5 @@ import { countSpaceMargin } from './count_space_margin';
  */
 
 export function countSpaceMarginByArray(strings: string[]): number[] {
-  return strings.map(countSpaceMargin);
+  return strings.map(string.countSpaceMargin);
 }

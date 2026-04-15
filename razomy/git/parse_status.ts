@@ -1,10 +1,10 @@
-import type { Status } from './get_status';
+import * as git from "@razomy/git";
 
-export function parseStatus(str: string): Status {
+export function parseStatus(str: string): git.Status {
   let lines;
   let branchLine;
   let branches;
-  const status: Status = {
+  const status: git.Status = {
     localBranch: '',
     remoteBranch: '',
     remoteDiff: '',

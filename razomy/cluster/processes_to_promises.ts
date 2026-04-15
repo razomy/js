@@ -1,6 +1,6 @@
 import cluster, { type ClusterSettings } from 'cluster';
 import child from 'node:child_process';
-import { processToPromise } from './process_to_promise';
+import * as cluster_ from "@razomy/cluster";
 
 export function processesToPromises<T extends child.Serializable>(ctx: T[], settings: ClusterSettings): Promise<T>[] {
   if (!cluster.isPrimary) {
@@ -14,7 +14,7 @@ export function processesToPromises<T extends child.Serializable>(ctx: T[], sett
       new Promise(async (resolve) => {
         const prevSettings = cluster.settings;
         cluster.setupPrimary(settings);
-        const result = await processToPromise(ctx[i], { workerId: i + '' });
+        const result = await cluster_.processToPromise(ctx[i], { workerId: i + '' });
         cluster.setupPrimary(prevSettings);
         return resolve(result);
       }),

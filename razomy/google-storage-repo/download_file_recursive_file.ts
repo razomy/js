@@ -1,7 +1,6 @@
 import * as path from 'path';
-import { downloadFile } from './download_file';
-import { uploadFile } from './upload_file';
 import * as fsDirectory from '@razomy/fs-directory';
+import * as googleStorageRepo from "@razomy/google-storage-repo";
 
 export async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');
@@ -13,10 +12,10 @@ export async function downloadFileRecursiveFile(file, folderPath, destinationPat
 
 export class CloudFileStore {
   async downloadFile(bucketName, filePath, folderPath) {
-    await downloadFile(bucketName, filePath, folderPath);
+    await googleStorageRepo.downloadFile(bucketName, filePath, folderPath);
   }
 
   async uploadFile(bucketName, filePath, folderPath) {
-    await uploadFile(bucketName, filePath, folderPath);
+    await googleStorageRepo.uploadFile(bucketName, filePath, folderPath);
   }
 }

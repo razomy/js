@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { insertTotalCount } from './insert_total_count';
 import * as random from "@razomy/random";
+import * as mocks from "@razomy/mocks";
 
 export function generateFile(filePath, fileSize) {
   const chunkSize = 500;
@@ -14,7 +14,7 @@ export function generateFile(filePath, fileSize) {
         chunk += random.createString(5);
       }
 
-      const countInfo = insertTotalCount(totalCount);
+      const countInfo = mocks.insertTotalCount(totalCount);
       totalCount++;
 
       if (!writableStream.write(chunk + countInfo)) {

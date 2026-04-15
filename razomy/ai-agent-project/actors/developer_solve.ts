@@ -1,11 +1,9 @@
-import {think} from "../think";
-import {TOOL_REGISTRY} from "../tools/execute_tool_mut";
-import type {ActorContext, DeveloperTask} from './director_company';
 import * as ai from "@razomy/ai";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
-export async function developerSolve(task: DeveloperTask, globalStrategy: string, parentCtx: ActorContext, devId: number) {
+export async function developerSolve(task: aiAgentProject.actors.DeveloperTask, globalStrategy: string, parentCtx: aiAgentProject.actors.ActorContext, devId: number) {
   console.log(`💻 Разработчик #${devId} приступает к файлу: ${task.fileName}...`);
-  const ctx: ActorContext = {
+  const ctx: aiAgentProject.actors.ActorContext = {
     tool: {...parentCtx.tool},
     llm: {messages: [], tools: []}
   };
@@ -23,7 +21,7 @@ export async function developerSolve(task: DeveloperTask, globalStrategy: string
       Сделай только свою часть работы.`
     )
   ];
-  ctx.llm.tools = [TOOL_REGISTRY.getFile, TOOL_REGISTRY.setFile];
-  await think(ctx);
+  ctx.llm.tools = [aiAgentProject.tools.TOOL_REGISTRY.getFile, aiAgentProject.tools.TOOL_REGISTRY.setFile];
+  await aiAgentProject.think(ctx);
   console.log(`✅ Разработчик #${devId} завершил работу над ${task.fileName}`);
 }

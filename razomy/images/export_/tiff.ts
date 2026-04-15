@@ -1,7 +1,6 @@
 import Vips from "wasm-vips";
 import * as images from "@razomy/images";
 import * as fsFileFormat from "@razomy/fs-file-format";
-import {setFile} from "../import_";
 
 /**
  * @summary Export an image to TIFF format buffer.
@@ -24,7 +23,7 @@ import {setFile} from "../import_";
  * @complexity memory O(n)
  */
 export function tiff(image: images.Image): fsFileFormat.ExtensionResult {
-  return setFile(image.tiffsaveBuffer({
+  return images.import_.setFile(image.tiffsaveBuffer({
     keep: Vips.ForeignKeep.all,
     compression: Vips.ForeignTiffCompression.lzw,
     Q: 80

@@ -1,5 +1,5 @@
-import type { DictRecursive } from './recursive';
 import * as dict_ from '@razomy/dict';
+import * as dictRecursive from "@razomy/dict-recursive";
 
 /**
  * @summary Set a value in a nested dictionary by dot-separated path.
@@ -30,7 +30,7 @@ import * as dict_ from '@razomy/dict';
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n) for intermediate objects created along the path
  */
-export function setByPathMut(obj: DictRecursive, path: string, value: unknown): void {
+export function setByPathMut(obj: dictRecursive.DictRecursive, path: string, value: unknown): void {
   const parts: string[] = path.split('.');
   const last: string | undefined = parts.pop();
 
@@ -38,11 +38,11 @@ export function setByPathMut(obj: DictRecursive, path: string, value: unknown): 
     throw new Error('Path must be a non-empty string');
   }
 
-  const target: DictRecursive = parts.reduce<DictRecursive>((acc, part) => {
+  const target: dictRecursive.DictRecursive = parts.reduce<dictRecursive.DictRecursive>((acc, part) => {
     if (!acc[part] || !dict_.isPlainObject(acc[part])) {
       acc[part] = {};
     }
-    return acc[part] as DictRecursive;
+    return acc[part] as dictRecursive.DictRecursive;
   }, obj);
 
   target[last!] = value as any;

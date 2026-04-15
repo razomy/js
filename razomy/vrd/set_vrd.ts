@@ -1,13 +1,12 @@
-import { Vrd, type VrdOrValue } from './vrd';
-import { getVrd } from './get_vrd';
+import * as vrd from "@razomy/vrd";
 
-export function setVrd<T>(root: VrdOrValue<T>, path: string[], newValue: VrdOrValue<T>): void {
+export function setVrd<T>(root: vrd.VrdOrValue<T>, path: string[], newValue: vrd.VrdOrValue<T>): void {
   const parentPath = path.slice(0, -1);
-  let parentNode: Vrd<T>;
+  let parentNode: vrd.Vrd<T>;
   if (parentPath.length !== 0) {
-    parentNode = getVrd(root, parentPath, 0) as Vrd<T>;
+    parentNode = vrd.getVrd(root, parentPath, 0) as vrd.Vrd<T>;
   } else {
-    parentNode = root as Vrd<T>;
+    parentNode = root as vrd.Vrd<T>;
   }
   parentNode[path.at(-1)!] = newValue;
 }

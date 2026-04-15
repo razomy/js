@@ -1,6 +1,6 @@
-import type {FileChanges} from './get_changed_files_between_commits_or_all';
+import * as git from "@razomy/git";
 
-export function statusFilesToFileChangesMut(result: FileChanges, line) {
+export function statusFilesToFileChangesMut(result: git.FileChanges, line) {
     const parts = line.split('\t');
     if (parts.length < 2) return;
     const statusFlag = parts[0][0];

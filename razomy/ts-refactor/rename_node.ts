@@ -8,9 +8,8 @@ import {
   PropertySignature,
   VariableDeclaration,
 } from 'ts-morph';
-import {toSafeName} from './to_safe_name';
-import {isNameTaken} from './is_name_taken';
 import * as stringCase from "@razomy/string-case";
+import * as tsRefactor from "@razomy/ts-refactor";
 
 export function renameNode(
   v:
@@ -71,9 +70,9 @@ function renameBindingElement(element: BindingElement) {
   // If we don't set the property name first, ts-morph might change it to `const { b } = obj`.
   const parent = element.getParent();
   if (Node.isObjectBindingPattern(parent) && !element.getPropertyNameNode()) {
-    const newName = toSafeName(stringCase.camelCase(name));
+    const newName = tsRefactor.toSafeName(stringCase.camelCase(name));
     // Only mess with the structure if a rename is actually going to happen
-    if (newName !== name && (isNameTaken(element as any, newName) || newName !== name)) {
+    if (newName !== name && (tsRefactor.isNameTaken(element as any, newName) || newName !== name)) {
       // Lock the source property name to the current name
       element.rename(name);
     }
@@ -98,7 +97,7 @@ function performSafeRename(node: Node & { rename: (text: string) => void }, orig
     return Node.isExportable(parentStatement) && parentStatement.isExported();
   }
 
-  let newName = toSafeName(isExportableVariable()
+  let newName = tsRefactor.toSafeName(isExportableVariable()
     ? stringCase.constantCase(originalName)
     : stringCase.camelCase(originalName)
   );
@@ -109,7 +108,7 @@ function performSafeRename(node: Node & { rename: (text: string) => void }, orig
 
   // Note: we cast to 'any' for isNameTaken because the custom guard might only accept specific types,
   // but BindingElement acts like a variable in this context.
-  if (isNameTaken(node as any, newName)) {
+  if (tsRefactor.isNameTaken(node as any, newName)) {
     newName = newName + '_';
   }
 

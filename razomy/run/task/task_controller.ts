@@ -1,6 +1,4 @@
-import {createMut} from "./create_mut";
-import {cancelMut} from "./cancel_mut";
-import {processJobMut} from "./process_job_mut";
+import * as run from "@razomy/run";
 
 export type TaskStatus = 'pending' | 'processing' | 'completed' | 'error' | 'cancelled';
 
@@ -36,14 +34,14 @@ export class TaskController {
     type: T['type'],
     payload: Omit<T, keyof Task>
   ): string => {
-    return createMut(this.tasks, this.handlers, type, payload);
+    return run.task.createMut(this.tasks, this.handlers, type, payload);
   };
 
   process = async (job: Task) => {
-    return processJobMut(this.handlers, job);
+    return run.task.processJobMut(this.handlers, job);
   };
 
   cancel = (id: string): boolean => {
-    return cancelMut(this.tasks, id);
+    return run.task.cancelMut(this.tasks, id);
   };
 }

@@ -1,10 +1,10 @@
 import path from 'path';
 import * as file from '@razomy/fs-file';
-import { asks } from './asks';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function askAtFiles(files_: string[]) {
   const files = files_.map((f) => file.getSync(path.resolve(__dirname, f)));
-  const results = await asks(files, '');
+  const results = await aiGoogle.batch.asks(files, '');
   results!.forEach((c, i) => {
     if (!c) {
       return;

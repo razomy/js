@@ -1,8 +1,6 @@
-import type { WithId } from '../abstracts/domains/with_id';
-
-import type { WithType } from '../abstracts/domains/with_type';
+import * as abstracts from "@razomy/abstracts";
 
 //TODO:rename
-export interface IObject extends WithId, WithType {}
+export interface IObject extends abstracts.domains.WithId, abstracts.domains.WithType {}
 
-export interface IObjectConstructor extends WithType {}
+export interface IObjectConstructor extends abstracts.domains.WithType {}

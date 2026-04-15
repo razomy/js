@@ -1,9 +1,9 @@
-import { translateText } from '../translate_text';
+import * as translate from "@razomy/translate";
 
 /**
  * Перевод с RU на DE
  */
 export async function de(text: string): Promise<string> {
-    return await translateText(text, 'ru', 'de');
+    return await translate.translateText(text, 'ru', 'de');
 }
 

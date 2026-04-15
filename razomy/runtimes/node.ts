@@ -1,14 +1,12 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {getExePath, IS_WIN} from "./get_exe_path";
-import type {RuntimeProvider} from "./types";
-import {execCmd} from "./exec_cmd";
 import * as run from "@razomy/run";
+import * as runtimes from "@razomy/runtimes";
 
 function getContext(versionRuntimeDir: string) {
-  const nodeExe = getExePath(versionRuntimeDir, 'bin/node', 'node.exe');
-  const binPath = IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
-  const npmJsPath = IS_WIN
+  const nodeExe = runtimes.getExePath(versionRuntimeDir, 'bin/node', 'node.exe');
+  const binPath = runtimes.IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
+  const npmJsPath = runtimes.IS_WIN
     ? path.join(versionRuntimeDir, 'node_modules', 'npm', 'bin', 'npm-cli.js')
     : path.join(versionRuntimeDir, 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js');
 
@@ -16,7 +14,7 @@ function getContext(versionRuntimeDir: string) {
   return {nodeExe, npmJsPath, env};
 }
 
-export const NODE_RUNTIME: RuntimeProvider = {
+export const NODE_RUNTIME: runtimes.RuntimeProvider = {
   defaultVersion: '25.9.0',
 
   setup(versionWorkspaceDir) {
@@ -36,12 +34,12 @@ export const NODE_RUNTIME: RuntimeProvider = {
       fs.writeFileSync(pkgJsonPath, JSON.stringify({name: '@razomy/cli-env', version: '1.0.0'}));
     }
     const {nodeExe, npmJsPath, env} = getContext(versionRuntimeDir);
-    execCmd(`${nodeExe} "${npmJsPath}" install ${packageName}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${nodeExe} "${npmJsPath}" install ${packageName}`, versionWorkspaceDir, env);
   },
 
   remove(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
     const {nodeExe, npmJsPath, env} = getContext(versionRuntimeDir);
-    execCmd(`${nodeExe} "${npmJsPath}" uninstall ${packageName}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${nodeExe} "${npmJsPath}" uninstall ${packageName}`, versionWorkspaceDir, env);
   },
 
   list(versionWorkspaceDir: string): string[] {

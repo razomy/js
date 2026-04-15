@@ -1,13 +1,9 @@
-import { CLIENT, MODELS } from '../client';
-import { wait } from './wait';
-import { getResult } from './get_result';
-import { delete_ } from './delete_';
-import { printPrice } from './print_price';
 import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function asksWithCache(texts: string[], systemText: string, sameTextCache: string) {
-  const cache = await CLIENT.caches.create({
-    model: MODELS.expensive,
+  const cache = await aiGoogle.CLIENT.caches.create({
+    model: aiGoogle.MODELS.expensive,
     config: {
       contents: sameTextCache,
       systemInstruction: systemText,
@@ -27,16 +23,16 @@ export async function asksWithCache(texts: string[], systemText: string, sameTex
     } as InlinedRequest;
   });
 
-  const response = await CLIENT.batches.create({
-    model: MODELS.expensive,
+  const response = await aiGoogle.CLIENT.batches.create({
+    model: aiGoogle.MODELS.expensive,
     src: inlinedRequests,
   });
   console.log(response.name);
   const jobId = response.name!;
-  await wait(jobId);
-  const result = await getResult(jobId);
-  printPrice(result!);
-  await delete_(jobId);
-  await CLIENT.caches.delete({ name: cacheId! });
+  await aiGoogle.batch.wait(jobId);
+  const result = await aiGoogle.batch.getResult(jobId);
+  aiGoogle.batch.printPrice(result!);
+  await aiGoogle.batch.delete_(jobId);
+  await aiGoogle.CLIENT.caches.delete({ name: cacheId! });
   return result;
 }

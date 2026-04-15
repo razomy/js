@@ -1,5 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
-import { remap } from './remap';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Enhance Filter. Adjusts the colors so that they span the widest
@@ -16,7 +15,7 @@ import { remap } from './remap';
  * node.Filters([Konva.Filters.Enhance]);
  * node.enhance(0.4);
  */
-export class Enhance_texture_filter implements ITextureFilter {
+export class Enhance_texture_filter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set enhance. Use with {@link Konva.Filters.Enhance} filter. -1 to 1 values
@@ -112,9 +111,9 @@ export class Enhance_texture_filter implements ITextureFilter {
 
     // Pass 2 - remap everything, except the alpha
     for (i = 0; i < nSubPixels; i += 4) {
-      data[i + 0] = remap(data[i + 0], rMin, rMax, rGoalMin, rGoalMax);
-      data[i + 1] = remap(data[i + 1], gMin, gMax, gGoalMin, gGoalMax);
-      data[i + 2] = remap(data[i + 2], bMin, bMax, bGoalMin, bGoalMax);
+      data[i + 0] = graphicsCodecsWebCanvasTexturesFilters.remap(data[i + 0], rMin, rMax, rGoalMin, rGoalMax);
+      data[i + 1] = graphicsCodecsWebCanvasTexturesFilters.remap(data[i + 1], gMin, gMax, gGoalMin, gGoalMax);
+      data[i + 2] = graphicsCodecsWebCanvasTexturesFilters.remap(data[i + 2], bMin, bMax, bGoalMin, bGoalMax);
       //data[i + 3] = remap(data[i + 3], aMin, aMax, aGoalMin, aGoalMax);
     }
   }

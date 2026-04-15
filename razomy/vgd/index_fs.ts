@@ -1,7 +1,6 @@
-import { getEmbedding } from "./get_embedding";
-import type {ChunkFile} from './get_last_commit_id';
+import * as vgd from "@razomy/vgd";
 
-export async function indexFs(db, projectPath: string, lastCommitId: string, filesData: ChunkFile[]) {
+export async function indexFs(db, projectPath: string, lastCommitId: string, filesData: vgd.ChunkFile[]) {
     const session = db.session();
     console.log('🧠 Начинаем локальную векторизацию через Ollama...');
     const batchSize = 5;
@@ -24,7 +23,7 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
 
               // Получаем эмбеддинги ПАРАЛЛЕЛЬНО для всей пачки
               // Если Ollama захлебывается, можно использовать библиотеку p-limit для ограничения конкурентности
-              const embeddings = await Promise.all(batchData.map(b => getEmbedding(b.text)));
+              const embeddings = await Promise.all(batchData.map(b => vgd.getEmbedding(b.text)));
 
               // Подготавливаем данные для Neo4j, добавляя полученные векторы
               const neo4JRecords = batchData.map((item, index) => ({

@@ -1,3 +1,3 @@
-import type { AllAutofill, AllSpecific } from './common';
+import * as schemas from "@razomy/schemas";
 
-export type SchemaType<T = unknown> = T | AllSpecific | AllAutofill;
+export type SchemaType<T = unknown> = T | schemas.AllSpecific | schemas.AllAutofill;

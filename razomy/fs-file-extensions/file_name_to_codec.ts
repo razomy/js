@@ -1,7 +1,7 @@
 import * as path from 'path';
-import { BUFFER_TYPES } from './is_supported_file_types';
 import * as abstracts from '@razomy/abstracts';
 import * as bufferString from '@razomy/buffer-string';
+import * as fsFileExtensions from "@razomy/fs-file-extensions";
 
 export const CODECS: Record<BufferEncoding & '*', abstracts.patterns.Codec<Buffer, string>> = {
   base64: bufferString.toCodec('base64'),
@@ -11,5 +11,5 @@ export const CODECS: Record<BufferEncoding & '*', abstracts.patterns.Codec<Buffe
 
 export function fileNameToCodec(fileName: string) {
   const type = path.extname(fileName).substring(1);
-  return BUFFER_TYPES.hasOwnProperty(type) ? CODECS[BUFFER_TYPES[type]] : CODECS['*'];
+  return fsFileExtensions.BUFFER_TYPES.hasOwnProperty(type) ? CODECS[fsFileExtensions.BUFFER_TYPES[type]] : CODECS['*'];
 }

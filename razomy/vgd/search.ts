@@ -1,10 +1,10 @@
-import { getEmbedding } from "./get_embedding";
+import * as vgd from "@razomy/vgd";
 
 export async function search(db, query: string) {
     const session = db.session();
     console.log(`\n🔍 Ищем: "${query}"...`);
     try {
-    const queryVector = await getEmbedding(query);
+    const queryVector = await vgd.getEmbedding(query);
 
     const result = await session.run(`
       CALL db.index.vector.queryNodes('code_embeddings', 2, $queryVector)

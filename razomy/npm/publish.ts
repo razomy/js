@@ -3,7 +3,7 @@ import * as main from '@razomy/main';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
-import {checkNotProvidedDependency} from './check_not_provided_dependency';
+import * as npm from "@razomy/npm";
 
 export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));
@@ -45,7 +45,7 @@ main.ifMain(import.meta.url, async () => {
   ];
 
   // Сначала проверяем, все ли нужные зависимости есть в этом списке
-  await checkNotProvidedDependency(packagesToDeploy);
+  await npm.checkNotProvidedDependency(packagesToDeploy);
 
   // Если скрипт не упал с ошибкой, запускаем публикацию
   for (const pkgPath of packagesToDeploy) {

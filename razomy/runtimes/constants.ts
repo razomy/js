@@ -1,17 +1,13 @@
-import {PYTHON_RUNTIME} from './python';
-import {NODE_RUNTIME} from './node';
-import {RUST_RUNTIME} from './rust';
-import {JAVA_RUNTIME} from './java';
-import type {RuntimeProvider} from "./types";
+import * as runtimes from "@razomy/runtimes";
 
 export const DEFAULT_PACKAGE = {
   packageName: "@razomy/string-case",
   runtimeName: "node",
 };
 
-export const RUNTIME_REGISTRY: Record<string, RuntimeProvider> = {
-  python: PYTHON_RUNTIME,
-  node: NODE_RUNTIME,
-  rust: RUST_RUNTIME,
-  java: JAVA_RUNTIME,
+export const RUNTIME_REGISTRY: Record<string, runtimes.RuntimeProvider> = {
+  python: runtimes.PYTHON_RUNTIME,
+  node: runtimes.NODE_RUNTIME,
+  rust: runtimes.RUST_RUNTIME,
+  java: runtimes.JAVA_RUNTIME,
 };

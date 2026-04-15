@@ -1,4 +1,4 @@
-import { capitalize } from './capitalize';
+import * as stringCase from "@razomy/string-case";
 
 /**
  * @summary Convert a string to a human-readable form.
@@ -30,5 +30,5 @@ export function humanize(text: string): string {
     .trim()
     .toLowerCase();
 
-  return capitalize(separated);
+  return stringCase.capitalize(separated);
 }

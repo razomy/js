@@ -1,9 +1,8 @@
-import { Vrd, type VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
+import * as vrd from "@razomy/vrd";
 
-export function orderVrd<T, T2>(a: VrdOrValue<T>, b: VrdOrValue<T2>): VrdOrValue<T2> {
-  if (isVrd(a) && isVrd(b)) {
-    const orderB = new Vrd<T2>({});
+export function orderVrd<T, T2>(a: vrd.VrdOrValue<T>, b: vrd.VrdOrValue<T2>): vrd.VrdOrValue<T2> {
+  if (vrd.isVrd(a) && vrd.isVrd(b)) {
+    const orderB = new vrd.Vrd<T2>({});
     for (const key in a) {
       if (b[key] !== undefined) {
         orderB[key] = orderVrd(a[key], b[key]);

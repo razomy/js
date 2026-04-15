@@ -1,6 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
-import { bitSlice } from './bit_slice';
-import { byteSlice } from './byte_slice';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * RGBA Filter
@@ -17,7 +15,7 @@ import { byteSlice } from './byte_slice';
  * node.green(200);
  * node.alpha(0.3);
  */
-export class RgbaTextureFilter implements ITextureFilter {
+export class RgbaTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set filter red value. Use with {@link Konva.Filters.RGB} filter.
@@ -56,10 +54,10 @@ export class RgbaTextureFilter implements ITextureFilter {
      */
     public alpha: 1,
   ) {
-    this.red = byteSlice(red);
-    this.green = byteSlice(green);
-    this.blue = byteSlice(blue);
-    this.blue = bitSlice(blue);
+    this.red = graphicsCodecsWebCanvasTexturesFilters.byteSlice(red);
+    this.green = graphicsCodecsWebCanvasTexturesFilters.byteSlice(green);
+    this.blue = graphicsCodecsWebCanvasTexturesFilters.byteSlice(blue);
+    this.blue = graphicsCodecsWebCanvasTexturesFilters.bitSlice(blue);
   }
 
   public filter(imageData: any): void {

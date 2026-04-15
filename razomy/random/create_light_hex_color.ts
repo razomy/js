@@ -1,4 +1,5 @@
-import { createInt } from './create_int';
+import * as random from "@razomy/random";
+
 /**
  * @summary Create a random light hex color string.
  * @description Generates a random hex color in the light spectrum by constraining
@@ -21,9 +22,9 @@ import { createInt } from './create_int';
  */
 
 export function createLightHexColor(): string {
-  const r: string = createInt(127, 255).toString(16).padStart(2, '0');
-  const g: string = createInt(127, 255).toString(16).padStart(2, '0');
-  const b: string = createInt(127, 255).toString(16).padStart(2, '0');
+  const r: string = random.createInt(127, 255).toString(16).padStart(2, '0');
+  const g: string = random.createInt(127, 255).toString(16).padStart(2, '0');
+  const b: string = random.createInt(127, 255).toString(16).padStart(2, '0');
 
   return `#${r}${g}${b}`;
 }

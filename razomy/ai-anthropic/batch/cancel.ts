@@ -1,5 +1,5 @@
-import { CLIENT } from '../client';
+import * as aiAnthropic from "@razomy/ai-anthropic";
 
 export async function cancel(id) {
-  await CLIENT.messages.batches.cancel(id);
+  await aiAnthropic.CLIENT.messages.batches.cancel(id);
 }

@@ -1,8 +1,7 @@
-import { toFormattedString } from './to_formatted_string';
-import { objectToBytes } from './object_to_bytes';
+import * as object_ from "@razomy/object";
 
 export function objectToFormattedString(obj: unknown): string {
-  const sizeInBytes = objectToBytes(obj);
-  const formattedSize = toFormattedString(sizeInBytes);
+  const sizeInBytes = object_.objectToBytes(obj);
+  const formattedSize = object_.toFormattedString(sizeInBytes);
   return formattedSize;
 }

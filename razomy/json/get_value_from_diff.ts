@@ -1,6 +1,6 @@
-import type { DiffEntry } from './get_detailed_diff';
+import * as json from "@razomy/json";
 
-export function getValueFromDiff(diff: DiffEntry): any {
+export function getValueFromDiff(diff: json.DiffEntry): any {
   if (diff.type === 'CREATED') {
     return diff.newValue;
   }

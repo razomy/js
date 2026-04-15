@@ -1,6 +1,6 @@
-import { fileNameToCodec } from './file_name_to_codec';
+import * as fsFileExtensions from "@razomy/fs-file-extensions";
 
 export function toBuffer(node: string, parent: string): Buffer {
-  const codec = fileNameToCodec(parent);
+  const codec = fsFileExtensions.fileNameToCodec(parent);
   return codec.decode(node);
 }

@@ -1,14 +1,13 @@
-import { vrd, Vrd } from './vrd';
-import { differencesVrd, type P } from './differences_vrd';
 import * as arrayDifference from '@razomy/array-difference';
+import * as vrd from "@razomy/vrd";
 
-export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, separator = '/'): P<T>[] {
+export function differencesDict<T>(diffs: vrd.P<T>[], a: vrd.Vrd<T>, b: vrd.Vrd<T>, path, separator = '/'): vrd.P<T>[] {
   const aKeys = Object.keys(a);
   let bKeys = Object.keys(b);
 
   for (const oldKey of aKeys) {
     if (bKeys.includes(oldKey)) {
-      differencesVrd(diffs, a[oldKey], b[oldKey], [path, oldKey].filter((i) => i).join(separator));
+      vrd.differencesVrd(diffs, a[oldKey], b[oldKey], [path, oldKey].filter((i) => i).join(separator));
       bKeys = bKeys.filter((i) => i != oldKey);
       continue;
     }
@@ -18,17 +17,17 @@ export function differencesDict<T>(diffs: P<T>[], a: Vrd<T>, b: Vrd<T>, path, se
       diffs.push({
         type: 'replace_key',
         path: path,
-        oldValue: vrd({ [oldKey]: a[oldKey] }),
-        value: vrd({ [newKey]: b[newKey] }),
+        oldValue: vrd.vrd({ [oldKey]: a[oldKey] }),
+        value: vrd.vrd({ [newKey]: b[newKey] }),
       });
       bKeys = bKeys.filter((i) => i != newKey);
       continue;
     }
 
-    diffs.push({ type: 'removed', path: path, value: vrd({ [oldKey]: a[oldKey] }) });
+    diffs.push({ type: 'removed', path: path, value: vrd.vrd({ [oldKey]: a[oldKey] }) });
   }
   for (const newKey of bKeys) {
-    diffs.push({ type: 'added', path: path, value: vrd({ [newKey]: b[newKey] }) });
+    diffs.push({ type: 'added', path: path, value: vrd.vrd({ [newKey]: b[newKey] }) });
   }
   return diffs;
 }

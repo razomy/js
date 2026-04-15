@@ -1,12 +1,12 @@
-import { Node } from './node';
+import * as structures from "@razomy/structures";
 
 export class LinkedList<T> {
-  private head: Node<T> | null = null;
+  private head: structures.Node<T> | null = null;
   private size: number = 0;
 
   // Add a value to the end of the list
   append(value: T): void {
-    const newNode = new Node(value);
+    const newNode = new structures.Node(value);
 
     if (this.head === null) {
       this.head = newNode;
@@ -23,7 +23,7 @@ export class LinkedList<T> {
 
   // Add a value to the start of the list
   prepend(value: T): void {
-    const newNode = new Node(value, this.head);
+    const newNode = new structures.Node(value, this.head);
     this.head = newNode;
     this.size++;
   }

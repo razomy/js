@@ -1,4 +1,4 @@
-import {createFloat} from "./create_float";
+import * as random from "@razomy/random";
 
 /**
  * @summary Create a RFC4122-like GUID string.
@@ -21,7 +21,7 @@ import {createFloat} from "./create_float";
  * @complexity memory O(1)
  */
 export function createGuid(): string {
-  function hex () : string { return (((createFloat() * 0x100000000) >>> 0).toString(16) + '00000000').slice(0, 8); }
+  function hex () : string { return (((random.createFloat() * 0x100000000) >>> 0).toString(16) + '00000000').slice(0, 8); }
 
   const a = hex();
   const b = hex();

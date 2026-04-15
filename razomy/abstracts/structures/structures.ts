@@ -1,5 +1,4 @@
-import type { DynamicArray } from '../arrays/arrays';
-import type { DataStructure } from '../meta/ts_workarounds';
+import * as abstracts from "@razomy/abstracts";
 
 export interface Node<T> {
   value: T;
@@ -17,7 +16,7 @@ export interface DoublyLinkedListNode<T> extends LinkedListNode<T> {
  * @memoryLayout Pointer
  * @topology 1:1_Linear
  */
-export interface LinkedList<T> extends DataStructure<T> {
+export interface LinkedList<T> extends abstracts.meta.DataStructure<T> {
   head: LinkedListNode<T> | null;
 }
 
@@ -33,7 +32,7 @@ export interface DoublyLinkedList<T> extends LinkedList<T> {
  * @memoryLayout Hashed
  * @topology 1:1_Linear
  */
-export interface HashTable<K, V> extends DataStructure<V> {
-  buckets: DynamicArray<LinkedList<[K, V]>>;
+export interface HashTable<K, V> extends abstracts.meta.DataStructure<V> {
+  buckets: abstracts.arrays.DynamicArray<LinkedList<[K, V]>>;
   hashFunction: (key: K) => number;
 }

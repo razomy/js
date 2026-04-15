@@ -1,6 +1,6 @@
-import { get } from './get';
+import * as shell from "@razomy/shell";
 
 export async function getBool(query: string) {
-  const r = await get(query);
+  const r = await shell.get(query);
   return r.toLowerCase().trim().startsWith('y');
 }

@@ -1,6 +1,4 @@
-import { countBy } from './count_by';
-import { sortBy } from './sort_by';
-import { uniq } from './uniq';
+import * as array_ from "@razomy/array";
 
 /**
  * @summary Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.
@@ -23,10 +21,10 @@ import { uniq } from './uniq';
  * @complexity memory O(n)
  */
 export function sortByFrequencyAndUnique<T>(array: T[]): T[] {
-  const frequencies = countBy(array);
-  const distinctItems = uniq(array);
+  const frequencies = array_.countBy(array);
+  const distinctItems = array_.uniq(array);
 
-  return sortBy(distinctItems, (item: T) => {
+  return array_.sortBy(distinctItems, (item: T) => {
     return -frequencies[item as any];
   });
 }

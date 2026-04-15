@@ -1,6 +1,6 @@
-import { CLIENT } from '../client';
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function get() {
-  const batchJobs = await CLIENT.batches.list({ config: { pageSize: 1000 } });
+  const batchJobs = await aiGoogle.CLIENT.batches.list({ config: { pageSize: 1000 } });
   return batchJobs;
 }

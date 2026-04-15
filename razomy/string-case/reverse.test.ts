@@ -1,50 +1,50 @@
-import { reverse } from './reverse';
+import * as stringCase from "@razomy/string-case";
 
 describe('string', () => {
   describe('reverse', () => {
     // 1. Standard usage
     it('reverses a simple string', () => {
-      expect(reverse('abc')).toBe('cba');
+      expect(stringCase.reverse('abc')).toBe('cba');
     });
 
     it('reverses a longer string', () => {
-      expect(reverse('qwerty')).toBe('ytrewq');
+      expect(stringCase.reverse('qwerty')).toBe('ytrewq');
     });
 
     it('reverses a sentence with spaces', () => {
-      expect(reverse('Hello World')).toBe('dlroW olleH');
+      expect(stringCase.reverse('Hello World')).toBe('dlroW olleH');
     });
 
     // 2. Edge cases
     it('returns empty string for empty input', () => {
-      expect(reverse('')).toBe('');
+      expect(stringCase.reverse('')).toBe('');
     });
 
     it('handles single characters', () => {
-      expect(reverse('A')).toBe('A');
+      expect(stringCase.reverse('A')).toBe('A');
     });
 
     it('handles palindromes', () => {
-      expect(reverse('racecar')).toBe('racecar');
-      expect(reverse('12321')).toBe('12321');
+      expect(stringCase.reverse('racecar')).toBe('racecar');
+      expect(stringCase.reverse('12321')).toBe('12321');
     });
 
     // 3. Special Characters & Numbers
     it('reverses numeric strings', () => {
-      expect(reverse('12345')).toBe('54321');
+      expect(stringCase.reverse('12345')).toBe('54321');
     });
 
     it('handles mixed special characters', () => {
-      expect(reverse('!@#$%')).toBe('%$#@!');
-      expect(reverse('a-b-c')).toBe('c-b-a');
+      expect(stringCase.reverse('!@#$%')).toBe('%$#@!');
+      expect(stringCase.reverse('a-b-c')).toBe('c-b-a');
     });
 
     // 4. Unicode & Emojis
     it('handles unicode characters (surrogate pairs) correctly', () => {
       // The implementation uses spread syntax [...text] which handles code points
-      expect(reverse('foo 𝌆 bar')).toBe('rab 𝌆 oof');
-      expect(reverse('👍👎')).toBe('👎👍');
-      expect(reverse('mañana')).toBe('anañam');
+      expect(stringCase.reverse('foo 𝌆 bar')).toBe('rab 𝌆 oof');
+      expect(stringCase.reverse('👍👎')).toBe('👎👍');
+      expect(stringCase.reverse('mañana')).toBe('anañam');
     });
   });
 });

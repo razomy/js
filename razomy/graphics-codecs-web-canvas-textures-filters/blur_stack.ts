@@ -43,8 +43,7 @@
      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
      OTHER DEALINGS IN THE SOFTWARE.
      */
-
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 export class BlurStack {
   public r = 0;
@@ -336,7 +335,7 @@ export function filterGaussBlurRgba(imageData: any, radius: any) {
  * node.Filters([Konva.Filters.Blur]);
  * node.blurRadius(10);
  */
-export class BlurTextureFilter implements ITextureFilter {
+export class BlurTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   /**
    * get/set blur radius. Use with {@link Konva.Filters.Blur} filter
    * @name Konva.Node#blurRadius

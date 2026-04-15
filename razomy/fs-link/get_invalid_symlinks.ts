@@ -1,8 +1,8 @@
 import fs from 'fs';
 import * as path from 'path';
-import { InvalidLinkException } from './invalid_link_exception';
 import * as fsFile from '@razomy/fs-file';
 import * as exceptions from '@razomy/exceptions';
+import * as fsLink from "@razomy/fs-link";
 
 export function getInvalidSymlinks(catchFn: exceptions.CatchFn) {
   function iterateIfInvalidLink({ stats: entry, path: path_ }) {
@@ -11,7 +11,7 @@ export function getInvalidSymlinks(catchFn: exceptions.CatchFn) {
       const resolvedTargetPath = path.resolve(path.dirname(path_), targetPath);
       catchFn(() => {
         if (!fsFile.isExist(resolvedTargetPath)) {
-          throw new InvalidLinkException(path_, targetPath);
+          throw new fsLink.InvalidLinkException(path_, targetPath);
         }
       });
     }

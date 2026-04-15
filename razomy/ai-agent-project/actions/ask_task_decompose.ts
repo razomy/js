@@ -1,15 +1,11 @@
-import { callText, consensusCall } from "../llms";
-import {getPanicPrompt} from '../prompts/get_panic_prompt';
-import {getTaskDecomposePrompt} from '../prompts/get_task_decompose_prompt';
-import {parseThrowPanic} from '../parsers/parse_throw_panic';
-import {parseArray} from '../parsers/parse_array';
 import * as ai from "@razomy/ai";
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export async function askTaskDecompose(ctx: ai.AiLlmContext): Promise<string[]> {
-    const messages = [...getPanicPrompt(), ...getTaskDecomposePrompt(), ...ctx.messages];
-    return consensusCall({...ctx, messages}, async (ctx) => {
-    const result = await callText(ctx);
-    parseThrowPanic(result);
-    return parseArray(result);
+    const messages = [...aiAgentProject.prompts.getPanicPrompt(), ...aiAgentProject.prompts.getTaskDecomposePrompt(), ...ctx.messages];
+    return aiAgentProject.llms.consensusCall({...ctx, messages}, async (ctx) => {
+    const result = await aiAgentProject.llms.callText(ctx);
+    aiAgentProject.parsers.parseThrowPanic(result);
+    return aiAgentProject.parsers.parseArray(result);
     })
 }

@@ -1,7 +1,5 @@
-import {runFunctionInstant} from "./run_function_instant";
-import {createRunner} from "./create_runner";
-import {resolveFilePathOrPackageName} from "./resolve_file_path_or_package_name";
 import path from "node:path";
+import * as run from "@razomy/run";
 
 function extractPathAndFunction(pathWithFunctionName: string) {
   // Check if the string contains a dot
@@ -35,15 +33,15 @@ export interface RunRequest {
 }
 
 export async function resolveAndRun(filePathOrPackageName: string, pathWithFunctionName: string, params: string[]) {
-  const {importPath, moduleDir} = resolveFilePathOrPackageName(
+  const {importPath, moduleDir} = run.resolveFilePathOrPackageName(
     path.resolve(),
     filePathOrPackageName
   );
 
-  const fileUrl = await createRunner(importPath, moduleDir);
+  const fileUrl = await run.createRunner(importPath, moduleDir);
   const dynamicModule = await import(fileUrl);
   const {pathArray, functionName} = extractPathAndFunction(pathWithFunctionName)
 
-  return await runFunctionInstant(dynamicModule, pathArray, functionName, params);
+  return await run.runFunctionInstant(dynamicModule, pathArray, functionName, params);
 
 }

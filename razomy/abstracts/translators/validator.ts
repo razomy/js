@@ -1,9 +1,9 @@
+import * as abstracts from "@razomy/abstracts";
+
 // ==========================================
 // ДВИЖОК КОМПИЛЯТОРА: Тайпчекер
 // Работает ТОЛЬКО со слоем 3 (Core AST).
 // ==========================================
-
-import type {CoreTerm} from "./core_ast";
 
 export interface TypeChecker {
   /**
@@ -13,7 +13,7 @@ export interface TypeChecker {
    * Выводит тип \`number\` для выражения \`1\`
    * ```
    */
-  infer(term: CoreTerm, env: CoreTerm[]): CoreTerm;
+  infer(term: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): abstracts.translators.CoreTerm;
 
   /**
    * Проверить тип сверху-вниз
@@ -22,7 +22,7 @@ export interface TypeChecker {
    * Проверяет, что \`1\` соответствует ожидаемому типу \`number\`
    * ```
    */
-  check(term: CoreTerm, expected: CoreTerm, env: CoreTerm[]): void;
+  check(term: abstracts.translators.CoreTerm, expected: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): void;
 
   /**
    * Выполнить мапперы/дженерики/функции прямо во время компиляции
@@ -31,7 +31,7 @@ export interface TypeChecker {
    * Раскрывает \`Pick<User, "id">\` в \`{ id: string }\`
    * ```
    */
-  normalize(term: CoreTerm, env: CoreTerm[]): CoreTerm;
+  normalize(term: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): abstracts.translators.CoreTerm;
 
   /**
    * Проверить два типа на математическую эквивалентность
@@ -40,5 +40,5 @@ export interface TypeChecker {
    * Проверяет \`string | number\` эквивалентно \`number | string\`
    * ```
    */
-  equate(a: CoreTerm, b: CoreTerm): boolean;
+  equate(a: abstracts.translators.CoreTerm, b: abstracts.translators.CoreTerm): boolean;
 }

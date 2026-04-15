@@ -1,4 +1,4 @@
-import { CLIENT } from './client';
+import * as aiOpenai from "@razomy/ai-openai";
 
 export async function v1(params = { messages: [] } as any) {
   const prompt = params.messages.map((i) => i.content).join('\n');
@@ -11,6 +11,6 @@ export async function v1(params = { messages: [] } as any) {
     presence_penalty: 0,
     ...params,
   };
-  const response = await CLIENT.completions.create(request);
+  const response = await aiOpenai.CLIENT.completions.create(request);
   return response.choices[0].text;
 }

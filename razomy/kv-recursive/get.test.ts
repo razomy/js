@@ -1,11 +1,9 @@
-import { get } from './get';
-import { getItemByPath } from './get_item_by_path';
-import type { ListItem } from './get_key';
+import * as kvRecursive from "@razomy/kv-recursive";
 
 describe('list', () => {
   describe('recursive', () => {
-    it(get.name, () => {
-      const node: ListItem = [
+    it(kvRecursive.get.name, () => {
+      const node: kvRecursive.ListItem = [
         '',
         [
           ['a1', []],
@@ -20,9 +18,9 @@ describe('list', () => {
           ['a4', []],
         ],
       ];
-      let result = getItemByPath(node, ['a2', 'b2', 'c2'], 0);
+      let result = kvRecursive.getItemByPath(node, ['a2', 'b2', 'c2'], 0);
       expect(result).toStrictEqual(['c2', []]);
-      result = get(node, 'a2:b2:c2');
+      result = kvRecursive.get(node, 'a2:b2:c2');
       expect(result).toStrictEqual(['c2', []]);
     });
   });

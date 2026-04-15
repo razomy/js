@@ -1,28 +1,20 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import {pipeline} from 'node:stream/promises';
-import {IMAGES} from './types';
 import Vips from "wasm-vips";
-import {avif} from './avif';
-import {gif} from './gif';
-import {heic} from './heic';
-import {ico} from './ico';
-import {jpeg} from './jpeg';
-import {png} from './png';
-import {tiff} from './tiff';
-import {webp} from './webp';
+import * as images from "@razomy/images";
 
 const outDir = path.join(__dirname, 'tmp');
 
 const mapping = {
-  avif: avif,
-  gif: gif,
-  heic: heic,
-  ico: ico,
-  jpeg: jpeg,
-  png: png,
-  tiff: tiff,
-  webp: webp,
+  avif: images.export_.avif,
+  gif: images.export_.gif,
+  heic: images.export_.heic,
+  ico: images.export_.ico,
+  jpeg: images.export_.jpeg,
+  png: images.export_.png,
+  tiff: images.export_.tiff,
+  webp: images.export_.webp,
 }
 // Увеличиваем таймаут, так как обработка картинок (особенно heic/avif) может быть небыстрой
 jest.setTimeout(30000);
@@ -87,7 +79,7 @@ describe('images', () => {
   });
 
   // Динамически создаем блоки тестов на основе массива настроек
-  for (const imgConfig of IMAGES) {
+  for (const imgConfig of images.export_.IMAGES) {
     const inputExt = imgConfig.fileExtensionType;
 
     // Если конвертаций нет, пропускаем генерацию describe

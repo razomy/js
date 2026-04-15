@@ -1,8 +1,8 @@
-import { ArgumentError, notEmpty } from './argument_error';
+import * as test from "@razomy/test";
 
 export function emptyThrow(value) {
-  if (!notEmpty(value)) {
-    throw new ArgumentError(value);
+  if (!test.notEmpty(value)) {
+    throw new test.ArgumentError(value);
   }
 
   return true;

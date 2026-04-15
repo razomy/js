@@ -1,9 +1,3 @@
-import {
-  MaxAttemptLlmException,
-  MustUseToolLlmException,
-  PanicAnswerLlmException, ToolExecuteLlmException,
-  TypedAnswerLlmException
-} from '../../ai/must_use_tool_llm_exception';
 import * as ai from "@razomy/ai";
 
 export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLlmContext) => Promise<T>) {
@@ -11,7 +5,7 @@ export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLl
     let attempt = 1;
     while (strategy !== 'complete') {
     if (attempt <= 3) {
-      throw new MaxAttemptLlmException('Max attempts reached', 'not repeat');
+      throw new ai.MaxAttemptLlmException('Max attempts reached', 'not repeat');
     }
     try {
       attempt++;
@@ -20,12 +14,12 @@ export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLl
       // }
       return await call(ctx);
     } catch (e) {
-      if (e instanceof PanicAnswerLlmException) throw e;
-      if (e instanceof MaxAttemptLlmException) throw e;
+      if (e instanceof ai.PanicAnswerLlmException) throw e;
+      if (e instanceof ai.MaxAttemptLlmException) throw e;
 
-      if (e instanceof TypedAnswerLlmException
-        || e instanceof MustUseToolLlmException
-        || e instanceof ToolExecuteLlmException) {
+      if (e instanceof ai.TypedAnswerLlmException
+        || e instanceof ai.MustUseToolLlmException
+        || e instanceof ai.ToolExecuteLlmException) {
         if (strategy === 'init') {
           strategy = 'tryAgainWithErrorDescription';
           ctx.messages.push(ai.sM(

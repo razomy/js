@@ -1,18 +1,6 @@
-/**
- * Brighten Filter.
- * https://github.com/konvajs/konva
- * https://github.com/konvajs/konva
- * @function
- * @memberof Konva.Filters
- * @param {Object} imageData
- * @example
- * node.cache();
- * node.Filters([Konva.Filters.Brighten]);
- * node.brightness(0.8);
- */
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
-export class BrightenTextureFilter implements ITextureFilter {
+export class BrightenTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   /**
    * get/set filter brightness.  The brightness is a number between -1 and 1.&nbsp; Positive values
    *  brighten the pixels and negative values darken them. Use with {@link Konva.Filters.Brighten} filter.

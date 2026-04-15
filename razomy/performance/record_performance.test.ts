@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { recordPerformance } from './record_performance';
 import * as performance from '@razomy/performance';
 
 // Mock function that uses CPU time AND allocates memory
@@ -33,7 +32,7 @@ describe('SmartResourceEstimator (Time & RAM)', () => {
       { args: ['a'.repeat(40)], timeDataSize: 40, memoryDataSize: 40 },
     ] as { args: [string]; timeDataSize: number; memoryDataSize: number }[];
 
-    const estimator = await recordPerformance(alternatingCaseAndHeavyMemoryAsync, testCases);
+    const estimator = await performance.recordPerformance(alternatingCaseAndHeavyMemoryAsync, testCases);
 
     // Predict resources for a huge text (10,000 chars) based on the learned history
     const hugeTextPrediction = estimator.estimate(10000, 10000);

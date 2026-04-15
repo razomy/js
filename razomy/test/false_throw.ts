@@ -1,8 +1,8 @@
-import { ArgumentError } from './argument_error';
+import * as test from "@razomy/test";
 
 export function falseThrow(value: boolean) {
   if (!value) {
-    throw new ArgumentError(value);
+    throw new test.ArgumentError(value);
   }
 
   return true;

@@ -1,6 +1,6 @@
-import { GIT_SLUG } from './is_mac_ds_store_key_argument_exception';
 import * as abstracts from '@razomy/abstracts';
+import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
 
 export function isGitKey(slug: abstracts.graphs.Slug) {
-  return slug === GIT_SLUG;
+  return slug === languagesProgrammingFs.GIT_SLUG;
 }

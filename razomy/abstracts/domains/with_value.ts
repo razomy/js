@@ -1,5 +1,5 @@
-import type { Value } from './value';
+import * as abstracts from "@razomy/abstracts";
 
 export interface WithValue<T> {
-  value: Value<T>;
+  value: abstracts.domains.Value<T>;
 }

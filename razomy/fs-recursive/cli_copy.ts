@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { copy } from './copy';
+import * as fsRecursive from "@razomy/fs-recursive";
 
 export async function cliCopy() {
   const [, , ...args] = process.argv;
@@ -10,7 +10,7 @@ export async function cliCopy() {
 
   const [source, target, ...excludedDirs] = args;
   try {
-    await copy(path.resolve(source) + '', path.resolve(target) + '', excludedDirs);
+    await fsRecursive.copy(path.resolve(source) + '', path.resolve(target) + '', excludedDirs);
     console.log('Files copied successfully.');
   } catch (error) {
     console.error('Error copying files:', error);

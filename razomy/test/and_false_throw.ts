@@ -1,9 +1,9 @@
-import { ArgumentError } from './argument_error';
 import * as boolean from '@razomy/boolean';
+import * as test from "@razomy/test";
 
 export function andFalseThrow(...value: boolean[]) {
   if (!boolean.and(...value)) {
-    throw new ArgumentError(value);
+    throw new test.ArgumentError(value);
   }
 
   return true;

@@ -1,4 +1,4 @@
-import type {Span} from "./token";
+import * as abstracts from "@razomy/abstracts";
 
 // ==========================================
 // СЛОЙ 2: HIR (High-Level IR / Семантика / Смыслы)
@@ -10,7 +10,7 @@ export type SymbolId = number; // Уникальный ID переменной/�
 
 export interface HirNode {
   kind: string;
-  span: Span;
+  span: abstracts.translators.Span;
   symbolId: SymbolId; // Кэш вычисленного типа (для IDE)
 }
 

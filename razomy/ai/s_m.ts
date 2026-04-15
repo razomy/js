@@ -1,5 +1,5 @@
-import type {AiMessage} from "./message";
+import * as ai from "@razomy/ai";
 
 export function sM(m: string) {
-  return {sender: 'system', content: m, type: "text"} satisfies AiMessage;
+  return {sender: 'system', content: m, type: "text"} satisfies ai.AiMessage;
 }

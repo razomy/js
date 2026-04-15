@@ -1,7 +1,7 @@
 import * as abstracts from "@razomy/abstracts";
-import type {FlatDeclaration} from "./function_to_string";
+import * as tsTranslators from "@razomy/ts-translators";
 
-export function bindingToString(nodes: abstracts.translators.SbsbType[], currentPath: string[], result: FlatDeclaration[] = []) {
+export function bindingToString(nodes: abstracts.translators.SbsbType[], currentPath: string[], result: tsTranslators.ast.md.FlatDeclaration[] = []) {
   for (const node of nodes) {
     if (node.kind === 'ModuleBinding') {
       bindingToString(node.body, [...currentPath, node.identifier.name], result);

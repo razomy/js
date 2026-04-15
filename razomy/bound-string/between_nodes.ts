@@ -1,7 +1,7 @@
-import type { NodeBound } from './node_bound';
 import * as coordinates from '@razomy/coordinates';
+import * as boundString from "@razomy/bound-string";
 
-export function betweenNodes(nodes: NodeBound[], root: NodeBound) {
+export function betweenNodes(nodes: boundString.NodeBound[], root: boundString.NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }

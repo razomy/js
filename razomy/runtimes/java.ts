@@ -1,19 +1,15 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {getExePath, IS_MAC, IS_WIN} from "./get_exe_path";
-import type {RuntimeProvider} from "./types";
-import {extractArchive} from "./extract_archive";
-import {execCmd} from "./exec_cmd";
 import * as run from "@razomy/run";
-import {downloadFile} from "./download_file";
+import * as runtimes from "@razomy/runtimes";
 
 function getContext(versionRuntimeDir: string) {
-  const binSubDir = IS_MAC ? 'Contents/Home/bin' : 'bin';
+  const binSubDir = runtimes.IS_MAC ? 'Contents/Home/bin' : 'bin';
   const binPath = path.join(versionRuntimeDir, binSubDir);
 
-  const javacExe = getExePath(versionRuntimeDir, `${binSubDir}/javac`, 'bin/javac.exe');
-  const javaExe = getExePath(versionRuntimeDir, `${binSubDir}/java`, 'bin/java.exe');
-  const nativeImgExe = getExePath(versionRuntimeDir, `${binSubDir}/native-image`, 'bin/native-image.cmd');
+  const javacExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/javac`, 'bin/javac.exe');
+  const javaExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/java`, 'bin/java.exe');
+  const nativeImgExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/native-image`, 'bin/native-image.cmd');
 
   const env = {
     ...process.env,
@@ -23,7 +19,7 @@ function getContext(versionRuntimeDir: string) {
   return {javaExe, javacExe, nativeImgExe, env};
 }
 
-export const JAVA_RUNTIME: RuntimeProvider = {
+export const JAVA_RUNTIME: runtimes.RuntimeProvider = {
   defaultVersion: '25',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
@@ -33,10 +29,10 @@ export const JAVA_RUNTIME: RuntimeProvider = {
     fs.writeFileSync(javaPath, javaCode);
 
     console.log("Compiling Java...");
-    execCmd(`${javacExe} StartCli.java`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${javacExe} StartCli.java`, versionWorkspaceDir, env);
 
     try {
-      execCmd(`${nativeImgExe} StartCli`, versionWorkspaceDir, env);
+      runtimes.execCmd(`${nativeImgExe} StartCli`, versionWorkspaceDir, env);
     } catch {
       console.warn("Native binary skipped. Using bytecode.");
     }
@@ -56,26 +52,26 @@ export const JAVA_RUNTIME: RuntimeProvider = {
     let mvnCmd = 'mvn';
 
     try {
-      execCmd(`${IS_WIN ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
+      runtimes.execCmd(`${runtimes.IS_WIN ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
     } catch {
       const mavenDir = path.join(versionRuntimeDir, 'maven');
-      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', IS_WIN ? 'mvn.cmd' : 'mvn');
+      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', runtimes.IS_WIN ? 'mvn.cmd' : 'mvn');
 
       if (!fs.existsSync(mvnCmd)) {
         console.log("⏳ Apache Maven not found. Downloading standalone wrapper...");
         const mvnZipUrl = 'https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip';
         const zipDest = path.join(versionRuntimeDir, 'maven.zip');
 
-        await downloadFile(mvnZipUrl, zipDest);
-        await extractArchive(zipDest, mavenDir);
+        await runtimes.downloadFile(mvnZipUrl, zipDest);
+        await runtimes.extractArchive(zipDest, mavenDir);
         fs.unlinkSync(zipDest);
 
-        if (!IS_WIN) execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
+        if (!runtimes.IS_WIN) runtimes.execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
       }
       mvnCmd = `"${mvnCmd}"`;
     }
 
-    execCmd(`${mvnCmd} dependency:get -Dartifact=${packageName} -Ddest=${versionWorkspaceDir}`, versionWorkspaceDir, env);
+    runtimes.execCmd(`${mvnCmd} dependency:get -Dartifact=${packageName} -Ddest=${versionWorkspaceDir}`, versionWorkspaceDir, env);
   },
 
   remove(packageName: string, versionWorkspaceDir: string) {

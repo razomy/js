@@ -1,5 +1,3 @@
-import { isAkv } from './is_akv';
-import { akv } from './akv';
 import * as kv from '@razomy/kv';
 import * as fns from '@razomy/fns';
 
@@ -24,11 +22,11 @@ export function map<K, IV, OV>(
     const mapped = mapCb(value);
     mapped[1] = map(mapped[1], mapCb);
     return mapped;
-  } else if (isAkv(value)) {
+  } else if (kv.isAkv(value)) {
     const mapped = mapCb(value);
-    if (isAkv(mapped)) {
+    if (kv.isAkv(mapped)) {
       const mappedTwice = mapped.map((child) => map(child as any, mapCb) as kv.KeyValuable<K, OV>);
-      return akv(...mappedTwice);
+      return kv.akv(...mappedTwice);
     }
     return mapped;
   } else {

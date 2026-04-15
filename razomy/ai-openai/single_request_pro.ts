@@ -1,5 +1,3 @@
-import { gptApiV2 } from './gpt_api_v_2';
-import { setTokens } from './set_tokens';
 import * as aiOpenai from '@razomy/ai-openai';
 
 export async function singleRequestPro(text, model = aiOpenai.MODELS.expensive120000) {
@@ -12,8 +10,8 @@ export async function singleRequestPro(text, model = aiOpenai.MODELS.expensive12
     ],
     model: model,
   };
-  messageOrMessagesOrRequest = setTokens(messageOrMessagesOrRequest);
-  const result = await gptApiV2(messageOrMessagesOrRequest as any);
+  messageOrMessagesOrRequest = aiOpenai.setTokens(messageOrMessagesOrRequest);
+  const result = await aiOpenai.gptApiV2(messageOrMessagesOrRequest as any);
   const message = result.choices[0].message.content;
   return message;
 }

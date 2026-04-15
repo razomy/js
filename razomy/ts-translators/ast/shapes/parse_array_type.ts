@@ -1,11 +1,11 @@
 import { ArrayTypeNode } from "ts-morph";
-import { parseShape } from "./parse_shape";
 import * as abstracts from "@razomy/abstracts";
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseArrayType(node: ArrayTypeNode): abstracts.translators.ArrayShape {
   return {
     kind: 'ArrayShape',
     type: 'Array',
-    shapes: [parseShape(node.getElementTypeNode())],
+    shapes: [tsTranslators.ast.shapes.parseShape(node.getElementTypeNode())],
   };
 }

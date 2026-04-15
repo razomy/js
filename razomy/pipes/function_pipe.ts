@@ -1,4 +1,4 @@
-import { pipeSync } from './pipe_sync';
+import * as pipes from "@razomy/pipes";
 
 export type Unary<T, R> = (arg: T) => R;
 
@@ -46,7 +46,7 @@ export function functionPipe<A, B, C, D, E, F, G, H, I>(
   fn8: Unary<H, I>,
 ): (a: A) => I;
 export function functionPipe<C, I>(...fns: Unary<any, any>[]): (initial: C) => I {
-  return (initial) => (pipeSync as any)(initial, ...fns);
+  return (initial) => (pipes.pipeSync as any)(initial, ...fns);
 }
 
 export const F_P = functionPipe;

@@ -1,9 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
-import { backgroundMask } from './background_mask';
-import { erodeMask } from './erode_mask';
-import { dilateMask } from './dilate_mask';
-import { smoothEdgeMask } from './smooth_edge_mask';
-import { applyMask } from './apply_mask';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Mask Filter
@@ -17,25 +12,25 @@ import { applyMask } from './apply_mask';
  * node.Filters([Konva.Filters.Mask]);
  * node.threshold(200);
  */
-export class MaskTextureFilter implements ITextureFilter {
+export class MaskTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(public threshold = 0) {}
 
   public filter(imageData: any): void {
     // Detect pixels close to the background color
     let threshold = this.threshold,
-      mask = backgroundMask(imageData, threshold);
+      mask = graphicsCodecsWebCanvasTexturesFilters.backgroundMask(imageData, threshold);
     if (mask) {
       // Erode
-      mask = erodeMask(mask, imageData.width, imageData.height);
+      mask = graphicsCodecsWebCanvasTexturesFilters.erodeMask(mask, imageData.width, imageData.height);
 
       // Dilate
-      mask = dilateMask(mask, imageData.width, imageData.height);
+      mask = graphicsCodecsWebCanvasTexturesFilters.dilateMask(mask, imageData.width, imageData.height);
 
       // Gradient
-      mask = smoothEdgeMask(mask, imageData.width, imageData.height);
+      mask = graphicsCodecsWebCanvasTexturesFilters.smoothEdgeMask(mask, imageData.width, imageData.height);
 
       // Apply mask
-      applyMask(imageData, mask);
+      graphicsCodecsWebCanvasTexturesFilters.applyMask(imageData, mask);
     }
 
     return imageData;

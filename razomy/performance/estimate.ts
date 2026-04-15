@@ -1,6 +1,4 @@
-import { formatTime } from './format_time';
-import { formatMemory } from './format_memory';
-import type { PerformanceRecord, Prediction } from './weighted_moving_average_recorder';
+import * as performance from "@razomy/performance";
 
 /**
  * Get a time and RAM prediction using Weighted Moving Average (WMA).
@@ -10,7 +8,7 @@ import type { PerformanceRecord, Prediction } from './weighted_moving_average_re
  * @param memoryDataSize - Size of the data (e.g., characters length)
  * @returns Object with time and memory predictions
  */
-export function estimate(history: PerformanceRecord[], timeDataSize: number, memoryDataSize: number): Prediction {
+export function estimate(history: performance.PerformanceRecord[], timeDataSize: number, memoryDataSize: number): performance.Prediction {
   if (history.length === 0) {
     return {
       timeText: 'Unknown (calibrating...)',
@@ -54,9 +52,9 @@ export function estimate(history: PerformanceRecord[], timeDataSize: number, mem
   const predictedMemoryBytes = memoryDataSize * avgMemoryRatio;
 
   return {
-    timeText: formatTime(predictedTimeMs), // Убедись, что функция formatTime импортирована
+    timeText: performance.formatTime(predictedTimeMs), // Убедись, что функция formatTime импортирована
     timeMs: predictedTimeMs,
-    memoryText: formatMemory(predictedMemoryBytes), // Убедись, что функция formatMemory импортирована
+    memoryText: performance.formatMemory(predictedMemoryBytes), // Убедись, что функция formatMemory импортирована
     memoryBytes: predictedMemoryBytes,
   };
 }

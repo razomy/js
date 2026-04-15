@@ -1,6 +1,6 @@
-import type { Logger } from './none_logger';
+import * as logging from "@razomy/logging";
 
-export class ConsoleLogger implements Logger {
+export class ConsoleLogger implements logging.Logger {
   info(message: string) {
     console.info(message);
   }

@@ -1,12 +1,11 @@
-import { Vrd } from './vrd';
-import { mergeVrd } from './merge_vrd';
+import * as vrd from "@razomy/vrd";
 
-export function mergeDict<T>(a: Vrd<T>, b: Vrd<T>, empty: T): Vrd<T> {
+export function mergeDict<T>(a: vrd.Vrd<T>, b: vrd.Vrd<T>, empty: T): vrd.Vrd<T> {
   const aKeys = Object.keys(a);
   const bKeys = Object.keys(b);
   const allKeys = new Set([...aKeys, ...bKeys]);
   for (const key of allKeys) {
-    a[key] = mergeVrd(a[key], b[key], empty);
+    a[key] = vrd.mergeVrd(a[key], b[key], empty);
   }
   return a;
 }

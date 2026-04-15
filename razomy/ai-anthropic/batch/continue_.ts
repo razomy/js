@@ -1,12 +1,9 @@
-import { wait } from './wait';
-import { getResult } from './get_result';
-import { printPrice } from './print_price';
-import { delete_ } from './delete_';
+import * as aiAnthropic from "@razomy/ai-anthropic";
 
 export async function continue_(jobId: string) {
-  await wait(jobId);
-  const result = await getResult(jobId);
-  printPrice(result);
-  await delete_(jobId);
+  await aiAnthropic.batch.wait(jobId);
+  const result = await aiAnthropic.batch.getResult(jobId);
+  aiAnthropic.batch.printPrice(result);
+  await aiAnthropic.batch.delete_(jobId);
   return result.map((c) => ({ text: c.result.message.content[0]['text'] }));
 }

@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Emboss Filter.
@@ -17,7 +17,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.embossDirection('right');
  * node.embossBlend(true);
  */
-export class EmbossTextureFilter implements ITextureFilter {
+export class EmbossTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set emboss strength. Use with {@link Konva.Filters.Emboss} filter.

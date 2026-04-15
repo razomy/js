@@ -2,11 +2,10 @@ import * as vgd from "@razomy/vgd";
 import * as git from "@razomy/git";
 import * as array from "@razomy/array";
 import { Project } from "ts-morph";
-import { PERFORMANCE_LOGGER } from "../logger";
-import {chunkFile} from './chunk_file';
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export async function syncProjectWithVgd(db) {
-    PERFORMANCE_LOGGER.tickAndLog('syncProjectWithVgd');
+    aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('syncProjectWithVgd');
     const projectPath = (await git.findGitRoot())!;
     console.info('Project root path:', projectPath);
     const lastDbCommitId = (await vgd.getLastCommitId(db, projectPath))?.trim();
@@ -20,6 +19,6 @@ export async function syncProjectWithVgd(db) {
     ...commitsFiles.modified,
     ...statusFiles.created,
     ...statusFiles.modified,
-    ]).map(i => chunkFile(projectPath, i, project)));
-    PERFORMANCE_LOGGER.tickAndLog('end syncProjectWithVgd');
+    ]).map(i => aiAgentProject.rags.chunkFile(projectPath, i, project)));
+    aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('end syncProjectWithVgd');
 }

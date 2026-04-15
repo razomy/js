@@ -1,12 +1,12 @@
-import type { VrdOrValue } from './vrd';
 import * as exceptions from '@razomy/exceptions';
 import * as dict from '@razomy/dict';
+import * as vrd from "@razomy/vrd";
 
 export function getParents<T>(
-  valueRecursive: VrdOrValue<T>,
+  valueRecursive: vrd.VrdOrValue<T>,
   path: dict.DictKey[],
   pathOffset: number,
-): VrdOrValue<T>[] {
+): vrd.VrdOrValue<T>[] {
   for (const key in valueRecursive!) {
     if (key !== path[pathOffset]) {
       continue;

@@ -1,7 +1,7 @@
-import { isMain } from './is_main';
 import * as dates from '../datetimes';
 import * as async from '@razomy/async';
 import * as abstracts from '@razomy/abstracts';
+import * as main from "@razomy/main";
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,
@@ -10,7 +10,7 @@ export async function ifMain(
   const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();
   try {
-    if (isMain(importMetaUrlOrModulePath)) {
+    if (main.isMain(importMetaUrlOrModulePath)) {
       console.log(`${path}.start`);
       const voidOrPromise = callback();
       if (async.isPromise(voidOrPromise)) {

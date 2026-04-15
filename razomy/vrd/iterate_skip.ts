@@ -1,11 +1,11 @@
-import { type Iterate, IterateBreaks, iterateVrd } from './iterate_vrd';
 import * as pipesBooleans from '@razomy/pipes-booleans';
+import * as vrd from "@razomy/vrd";
 
-export function iterateSkip<T, C extends Iterate<T>>(
+export function iterateSkip<T, C extends vrd.Iterate<T>>(
   ctx: C,
   isIterateChildExecuteBool: pipesBooleans.BoolExecute<C> | ((ctx: C) => void),
 ): void {
-  iterateVrd(ctx, (c) => {
-    return isIterateChildExecuteBool(c) ? IterateBreaks.None : IterateBreaks.Skip;
+  vrd.iterateVrd(ctx, (c) => {
+    return isIterateChildExecuteBool(c) ? vrd.IterateBreaks.None : vrd.IterateBreaks.Skip;
   });
 }

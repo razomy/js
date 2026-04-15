@@ -1,6 +1,6 @@
-import { Exception } from './exception';
+import * as exceptions from "@razomy/exceptions";
 
-export class NotImplementedException extends Exception {
+export class NotImplementedException extends exceptions.Exception {
   constructor() {
     super('Code under construction.');
   }

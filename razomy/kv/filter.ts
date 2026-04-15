@@ -1,5 +1,3 @@
-import { akv } from './akv';
-import { isAkv } from './index';
 import * as kv from '@razomy/kv';
 import * as fns from '@razomy/fns';
 
@@ -23,8 +21,8 @@ export function filter<K, V>(
   if (kv.isKv(value)) {
     value[1] = filter(value[1], isKeep);
     return value;
-  } else if (isAkv<K, V>(value)) {
-    const children = akv<K, V>();
+  } else if (kv.isAkv<K, V>(value)) {
+    const children = kv.akv<K, V>();
     for (const child of value) {
       if (isKeep(child)) {
         children.push(filter(child, isKeep));

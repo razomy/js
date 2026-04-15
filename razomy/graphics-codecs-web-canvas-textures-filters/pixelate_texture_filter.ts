@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * Pixelate Filter. Averages groups of pixels and redraws
@@ -14,7 +14,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * node.Filters([Konva.Filters.Pixelate]);
  * node.pixelSize(10);
  */
-export class PixelateTextureFilter implements ITextureFilter {
+export class PixelateTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set pixel size. Use with {@link Konva.Filters.Pixelate} filter.

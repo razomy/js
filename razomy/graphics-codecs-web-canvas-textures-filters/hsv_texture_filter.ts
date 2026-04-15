@@ -1,4 +1,4 @@
-import type { ITextureFilter } from './i_texture_filter';
+import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value
@@ -12,7 +12,7 @@ import type { ITextureFilter } from './i_texture_filter';
  * image.Filters([Konva.Filters.HSV]);
  * image.value(200);
  */
-export class HsvTextureFilter implements ITextureFilter {
+export class HsvTextureFilter implements graphicsCodecsWebCanvasTexturesFilters.ITextureFilter {
   constructor(
     /**
      * get/set hsv hue in degrees. Use with {@link Konva.Filters.HSV} or {@link Konva.Filters.HSL} filter.

@@ -1,16 +1,15 @@
 import {
   type Part
 } from '@google/genai';
-import {specToTool} from "./spec_to_tool";
-import {CLIENT, MODELS} from "../client";
 import * as abstracts from "@razomy/abstracts";
 import * as ai from "@razomy/ai";
+import * as aiGoogle from "@razomy/ai-google";
 
 export async function askTool(texts: string[],
                                toolSpec: abstracts.translators.FunctionBinding[]
 ) {
   const tools = [{
-    functionDeclarations: toolSpec.map(specToTool)
+    functionDeclarations: toolSpec.map(aiGoogle.instant.specToTool)
   }];
   // Конвертируем историю сообщений в формат Gemini
   // В Gemini роли: 'user' и 'model'. Система обрабатывается отдельно или как первый user.
@@ -23,8 +22,8 @@ export async function askTool(texts: string[],
   const lastMessage = texts[texts.length - 1];
 
   // Запуск генерации
-  const result = await CLIENT.models.generateContent({
-    model: MODELS.cheap,
+  const result = await aiGoogle.CLIENT.models.generateContent({
+    model: aiGoogle.MODELS.cheap,
     contents: [...history, {role: 'user', parts: [{text: lastMessage}]}],
     config: {
       tools

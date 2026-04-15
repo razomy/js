@@ -1,9 +1,10 @@
+import * as cliAis from "@razomy/cli-ais";
+
 // import {findGitRoot} from '../../git/commit';
 // import {askProject} from './rag';
-import {askCompanyByCli} from './ask_company_by_cli';
 
 export async function askIndependent(message: string) {
-  await askCompanyByCli(
+  await cliAis.project.apis.askCompanyByCli(
     message,
     {dirPath: '../../string-case'}
   );

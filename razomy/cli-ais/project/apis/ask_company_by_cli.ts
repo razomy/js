@@ -1,7 +1,7 @@
-import {type ActorContext, directorCompany} from '../../../ai-agent-project/actors/director_company';
+import * as aiAgentProject from "@razomy/ai-agent-project";
 
 export async function askCompanyByCli(challengePrompt: string, cliContext: { dirPath: string }) {
-  const ctx: ActorContext = {
+  const ctx: aiAgentProject.actors.ActorContext = {
     tool: {
       project: {dirPath: cliContext.dirPath},
       getDirFiles: [],
@@ -13,5 +13,5 @@ export async function askCompanyByCli(challengePrompt: string, cliContext: { dir
       tools: []
     }
   }
-  await directorCompany(challengePrompt, ctx);
+  await aiAgentProject.actors.directorCompany(challengePrompt, ctx);
 }

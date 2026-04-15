@@ -1,10 +1,10 @@
 import * as fss from '@razomy/fss';
-import {type ChunkFile} from '../../vgd/get_last_commit_id';
 import * as random from '@razomy/random';
 import * as string from '@razomy/string';
 import * as tsRefactor from '@razomy/ts-refactor';
+import * as vgd from "@razomy/vgd";
 
-export function chunkFile(projectPath, filePath, project): ChunkFile {
+export function chunkFile(projectPath, filePath, project): vgd.ChunkFile {
   const sourceFile = project.getSourceFile(projectPath + '/' + filePath);
   let chunks = [] as string[];
   if (!sourceFile) {
