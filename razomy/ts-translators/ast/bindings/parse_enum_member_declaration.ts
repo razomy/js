@@ -1,6 +1,6 @@
-import {EnumMember} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { EnumMember } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function parseEnumMemberDeclaration(node: EnumMember): abstracts.translators.EnumPropertyBinding {
   return {
@@ -9,6 +9,6 @@ export function parseEnumMemberDeclaration(node: EnumMember): abstracts.translat
     expression: node.getInitializer() ? tsTranslators.ast.expressions.parseExpression(node.getInitializer()!) : null,
     meta: {
       description: tsTranslators.ast.doc.parseDescription(node.getNameNode()),
-    }
+    },
   };
 }

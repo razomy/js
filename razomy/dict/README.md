@@ -73,7 +73,7 @@ razomy run @razomy/dict Dict
 - [mapToArray](#maptoarray)
 - [merge](#merge)
 - [take](#take)
-- [toString_](#tostring_)
+- [toString\_](#tostring_)
 
 ## 📚 Documentation
 
@@ -208,8 +208,12 @@ isEqual(obj1, obj2); // false
 
 ```ts
 class CustomId {
-  constructor(id) { this.id = id; }
-  equals(other) { return this.id === other.id; }
+  constructor(id) {
+    this.id = id;
+  }
+  equals(other) {
+    return this.id === other.id;
+  }
 }
 isEqual(new CustomId(1), new CustomId(1)); // true
 ```
@@ -269,7 +273,9 @@ Examples
 
 ```ts
 const logs = [];
-iterate({ a: 1, b: 2 }, (value, key) => { logs.push([key, value]); });
+iterate({ a: 1, b: 2 }, (value, key) => {
+  logs.push([key, value]);
+});
 logs; // [[a, 1], [b, 2]]
 ```
 
@@ -366,7 +372,7 @@ someOf({ id: 1, name: 'A' }, ['id']); // { id: 1 }
 someOf({ x: 10, y: 20 }, []); // {}
 ```
 
-#### toString_
+#### toString\_
 
 `toString_(dict: dict.Dict<T>): String`
 
@@ -399,9 +405,9 @@ dictToString({ k: 'v', id: '1' }); // {k:v;id:1;}
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:

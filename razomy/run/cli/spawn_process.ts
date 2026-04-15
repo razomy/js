@@ -1,6 +1,6 @@
-import {ChildProcess, execSync, spawn} from "child_process";
-import {platform} from "os";
-import type {ChildProcessWithoutNullStreams} from "node:child_process";
+import { ChildProcess, execSync, spawn } from 'child_process';
+import { platform } from 'os';
+import type { ChildProcessWithoutNullStreams } from 'node:child_process';
 
 class ProcessManager {
   private static activeProcesses = new Set<ChildProcess>();
@@ -17,9 +17,8 @@ class ProcessManager {
     if (child.killed || child.exitCode !== null) return;
     if (platform() === 'win32' && child.pid) {
       try {
-        execSync(`taskkill /pid ${child.pid} /T /F`, {stdio: 'ignore'});
-      } catch (e) {
-      }
+        execSync(`taskkill /pid ${child.pid} /T /F`, { stdio: 'ignore' });
+      } catch (e) {}
     } else {
       child.kill('SIGTERM');
     }
@@ -41,7 +40,6 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-
 function parseCliResult(output: string): any {
   const lines = output.trim().split('\n');
   for (let i = lines.length - 1; i >= 0; i--) {
@@ -59,14 +57,18 @@ export async function spawnProcess(
   command: string,
   args: string[],
   cwd: string,
-  env: any
-): Promise<{
-  isServer: true,
-  process: ChildProcessWithoutNullStreams,
-  kill: () => void
-} | null | string> {
+  env: any,
+): Promise<
+  | {
+      isServer: true;
+      process: ChildProcessWithoutNullStreams;
+      kill: () => void;
+    }
+  | null
+  | string
+> {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args, {cwd, env});
+    const child = spawn(command, args, { cwd, env });
     ProcessManager.register(child);
 
     let outputBuffer = '';
@@ -85,7 +87,7 @@ export async function spawnProcess(
         resolve({
           isServer: true,
           process: child,
-          kill: () => ProcessManager.killTree(child)
+          kill: () => ProcessManager.killTree(child),
         });
       }
     }
@@ -111,4 +113,3 @@ export async function spawnProcess(
     });
   });
 }
-

@@ -1,4 +1,4 @@
-import * as shell from "@razomy/shell";
+import * as shell from '@razomy/shell';
 
 export function progress(progress: number, total: number, message: string = 'Loading') {
   const percent = (progress / total) * 100;

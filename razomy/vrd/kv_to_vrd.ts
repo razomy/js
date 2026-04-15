@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function kvToVrd<T>(arr: [key: string, value: vrd.VrdOrValue<T>, order?: number][]): vrd.Vrd<T> {
   const m = vrd.vrd<T>({});

@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 /**
  * Noise Filter. Randomly adds or substracts to the color channels

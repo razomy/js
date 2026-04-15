@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 export interface ImageStats {
   min: number;
@@ -30,6 +30,6 @@ export function getStats(image: images.Image): ImageStats {
   return {
     min: image.min(),
     max: image.max(),
-    avg: image.avg()
+    avg: image.avg(),
   };
 }

@@ -1,7 +1,7 @@
-import {SourceFile} from "ts-morph";
+import { SourceFile } from 'ts-morph';
 
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 /**
  * Parses a single SourceFile into a Module
@@ -33,7 +33,7 @@ export function parseModuleDeclarationBody(file: SourceFile) {
       const subModuleName = namespaceExport.getName();
 
       // Проверяем, указывает ли экспорт на index-файл в другой папке
-      const isTargetIndex = targetSourceFile.getBaseName().startsWith("index.");
+      const isTargetIndex = targetSourceFile.getBaseName().startsWith('index.');
 
       if (isTargetIndex) {
         // Если это папка с index.ts внутри, рекурсивно парсим саму папку
@@ -46,9 +46,9 @@ export function parseModuleDeclarationBody(file: SourceFile) {
         const items = parseModuleDeclarationBody(targetSourceFile);
         body.push({
           kind: 'ModuleBinding',
-          identifier: {kind: 'Identifier', name: subModuleName},
+          identifier: { kind: 'Identifier', name: subModuleName },
           body: items,
-          meta: {description: ''}
+          meta: { description: '' },
         });
       }
     } else {
@@ -60,7 +60,6 @@ export function parseModuleDeclarationBody(file: SourceFile) {
       body.push(...items);
     }
   }
-
 
   return body;
 }

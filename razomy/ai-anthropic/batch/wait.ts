@@ -1,4 +1,4 @@
-import * as aiAnthropic from "@razomy/ai-anthropic";
+import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function wait(messageBatchId: string) {
   let messageBatch;

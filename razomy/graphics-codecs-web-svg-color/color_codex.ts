@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
+import * as graphicsCodecsWebSvgColor from '@razomy/graphics-codecs-web-svg-color';
 
 /**
  * @Source https://github.com/fabricjs/js/blob/master/src/color.class

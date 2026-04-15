@@ -1,5 +1,5 @@
 import * as fns from '@razomy/fns';
-import * as test from "@razomy/test";
+import * as test from '@razomy/test';
 
 export function testSync<I extends Array<any>, O>(
   cb: fns.Function<I, O>,

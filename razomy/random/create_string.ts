@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 /**
  * @summary Generates a random string.

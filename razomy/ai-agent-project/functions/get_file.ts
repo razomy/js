@@ -1,5 +1,5 @@
-import * as fss from "@razomy/fss";
+import * as fss from '@razomy/fss';
 
 export function getFile(filePath: string) {
-    return fss.file.getSync(filePath);
+  return fss.file.getSync(filePath);
 }

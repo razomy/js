@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function mergeDict<T>(a: vrd.Vrd<T>, b: vrd.Vrd<T>, empty: T): vrd.Vrd<T> {
   const aKeys = Object.keys(a);

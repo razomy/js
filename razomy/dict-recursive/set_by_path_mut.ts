@@ -1,5 +1,5 @@
 import * as dict_ from '@razomy/dict';
-import * as dictRecursive from "@razomy/dict-recursive";
+import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
  * @summary Set a value in a nested dictionary by dot-separated path.

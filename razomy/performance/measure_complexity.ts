@@ -1,4 +1,4 @@
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 /**
  * Декоратор, который оборачивает функцию в измеритель

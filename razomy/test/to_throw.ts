@@ -1,4 +1,4 @@
-import * as test from "@razomy/test";
+import * as test from '@razomy/test';
 
 export function toThrow<T extends Function>(actual: T, expected?: Error) {
   let threw = false;

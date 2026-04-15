@@ -1,5 +1,5 @@
 import * as dict from '@razomy/dict';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function getMatchesKey<T>(valueRecursive: vrd.VrdOrValue<T>, keys: string[]) {
   const matches = [] as dict.DictKey[][];

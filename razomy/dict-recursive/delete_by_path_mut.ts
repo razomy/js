@@ -1,4 +1,4 @@
-import * as dictRecursive from "@razomy/dict-recursive";
+import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
  * @summary Delete a nested property from a recursive dictionary by dot-separated path.

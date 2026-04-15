@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Apply morphological dilation to an image.
@@ -22,6 +22,6 @@ import * as images from "@razomy/images";
  * @complexity memory O(w * h)
  */
 export function dilate(image: images.Image, size: number = 3): images.Image {
-  const maxIndex = (size * size) - 1;
+  const maxIndex = size * size - 1;
   return image.rank(size, size, maxIndex);
 }

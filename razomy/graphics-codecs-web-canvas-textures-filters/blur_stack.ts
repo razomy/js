@@ -43,7 +43,7 @@
      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
      OTHER DEALINGS IN THE SOFTWARE.
      */
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 export class BlurStack {
   public r = 0;

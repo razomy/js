@@ -27,7 +27,7 @@
  * @param {Number} [opt.polarCenterY] vertical location for the center of the circle,
  *  default is in the middle
  */
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 const toPolar = function (src: any, dst: any, opt: any) {
   let srcPixels = src.data,

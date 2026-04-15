@@ -1,4 +1,4 @@
-import {addComponentsDir, addImports, addLayout, addPlugin, createResolver, defineNuxtModule} from '@nuxt/kit';
+import { addComponentsDir, addImports, addLayout, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit';
 import { existsSync } from 'node:fs';
 
 // Module options TypeScript interface definition
@@ -29,7 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({
         name: 'useRzmRuntimeConfigState',
         from: resolve('runtime/composables/useRzmRuntimeConfigState'),
-      })
+      });
 
       addLayout(
         {

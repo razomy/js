@@ -1,5 +1,5 @@
 import * as abstracts from '@razomy/abstracts';
-import * as vrd_ from "@razomy/vrd";
+import * as vrd_ from '@razomy/vrd';
 
 export function vrdToPva<T>(
   input: vrd_.VrdOrValue<T>,

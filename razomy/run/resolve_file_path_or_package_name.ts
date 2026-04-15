@@ -1,10 +1,13 @@
-import {dirname, resolve} from "node:path";
-import {pathToFileURL} from "node:url";
+import { dirname, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-export function resolveFilePathOrPackageName(workspaceDir: string, filePathOrPackageName: string): {
+export function resolveFilePathOrPackageName(
+  workspaceDir: string,
+  filePathOrPackageName: string,
+): {
   importPath: string;
   moduleDir: string;
-  isFile: boolean
+  isFile: boolean;
 } {
   let importPath = filePathOrPackageName;
   let moduleDir = '';
@@ -17,12 +20,12 @@ export function resolveFilePathOrPackageName(workspaceDir: string, filePathOrPac
     isFile = true;
   } else {
     try {
-      const packageJsonPath = require.resolve(`${filePathOrPackageName}/package.json`, {paths: [workspaceDir]});
+      const packageJsonPath = require.resolve(`${filePathOrPackageName}/package.json`, { paths: [workspaceDir] });
       moduleDir = dirname(packageJsonPath);
     } catch {
       moduleDir = resolve(workspaceDir, 'node_modules', filePathOrPackageName);
     }
   }
 
-  return {importPath, moduleDir, isFile};
+  return { importPath, moduleDir, isFile };
 }

@@ -1,10 +1,10 @@
 import * as exceptions from '@razomy/exceptions';
 import * as string from '@razomy/string';
-import * as kvRecursive from "@razomy/kv-recursive";
+import * as kvRecursive from '@razomy/kv-recursive';
 
 export function getItemByPathFromValue(value: kvRecursive.RecursiveList, path: string[], offset: number) {
   if (string.isString(value)) {
-    return [value, ''] as kvRecursive.ListItem <string>;
+    return [value, ''] as kvRecursive.ListItem<string>;
   }
   for (const node of value) {
     const key = kvRecursive.getKey(node);
@@ -15,5 +15,5 @@ export function getItemByPathFromValue(value: kvRecursive.RecursiveList, path: s
     return kvRecursive.getItemByPath(node, path, offset + 1);
   }
 
-  throw new exceptions.ArgumentException('invalid arguments', {value, path, offset});
+  throw new exceptions.ArgumentException('invalid arguments', { value, path, offset });
 }

@@ -1,4 +1,4 @@
-import {FunctionDeclaration, JSDoc} from "ts-morph";
+import { FunctionDeclaration, JSDoc } from 'ts-morph';
 
 export function parseJsDocOrThrow(func: FunctionDeclaration, funcName: string): JSDoc {
   const jsDocs = func.getJsDocs();

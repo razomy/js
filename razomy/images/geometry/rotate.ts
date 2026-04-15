@@ -1,5 +1,5 @@
 import type Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Rotate an image.
@@ -26,7 +26,7 @@ import * as images from "@razomy/images";
 export function rotate(
   image: images.Image,
   angle: number,
-  backgroundColor: Vips.ArrayConstant = [0, 0, 0]
+  backgroundColor: Vips.ArrayConstant = [0, 0, 0],
 ): images.Image {
   return image.rotate(angle, { background: backgroundColor });
 }

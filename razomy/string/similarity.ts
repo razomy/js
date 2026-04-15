@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 /**
  * @summary Calculate the similarity ratio between two strings.
@@ -30,5 +30,5 @@ export function similarity(str1: string, str2: string): number {
 
   const distance: number = string.levenshteinDistance(str1, str2);
 
-  return 1 - (distance / maxLength);
+  return 1 - distance / maxLength;
 }

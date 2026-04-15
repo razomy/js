@@ -49,7 +49,6 @@ export class ToolExecuteLlmException extends Error {
   }
 }
 
-
 // ============================================================================
 // 1. API
 // ============================================================================
@@ -57,7 +56,6 @@ export class ToolExecuteLlmException extends Error {
 // ============================================================================
 // 1. CORE LLM FUNCTIONS
 // ============================================================================
-
 
 // export async function ask_three_different_ways_with_different_temperatures(): Promise<string> {
 //   const results = await Promise.all([

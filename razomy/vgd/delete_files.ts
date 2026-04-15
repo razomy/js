@@ -1,13 +1,13 @@
-
 export async function deleteFiles(db, projectPath, deletedFilePaths) {
-    if (!deletedFilePaths || deletedFilePaths.length === 0) {
+  if (!deletedFilePaths || deletedFilePaths.length === 0) {
     return;
-    }
+  }
 
-    const session = db.session();
-    console.log(`🗑️ Начинаем удаление ${deletedFilePaths.length} файлов из БД...`);
-    try {
-    const result = await session.run(`
+  const session = db.session();
+  console.log(`🗑️ Начинаем удаление ${deletedFilePaths.length} файлов из БД...`);
+  try {
+    const result = await session.run(
+      `
       // 1. Находим нужный репозиторий и удаляемые файлы в нем
       MATCH (r:Repository {name: $projectPath})-[:HAS_FILE]->(f:File)
       WHERE f.path IN $deletedFilePaths
@@ -25,18 +25,21 @@ export async function deleteFiles(db, projectPath, deletedFilePaths) {
       
       // Возвращаем количество удаленных чанков для статистики
       RETURN count(c) AS deletedChunksCount
-    `, {
-      projectPath: projectPath,
-      deletedFilePaths: deletedFilePaths
-    });
+    `,
+      {
+        projectPath: projectPath,
+        deletedFilePaths: deletedFilePaths,
+      },
+    );
 
     const deletedChunksCount = result.records[0]?.get('deletedChunksCount')?.toNumber() || 0;
-    console.log(`✅ Удаление завершено. Очищено файлов: ${deletedFilePaths.length}, удалено чанков: ${deletedChunksCount}`);
-
-    } catch (error) {
+    console.log(
+      `✅ Удаление завершено. Очищено файлов: ${deletedFilePaths.length}, удалено чанков: ${deletedChunksCount}`,
+    );
+  } catch (error) {
     console.error('❌ Ошибка во время удаления файлов:', error);
     throw error;
-    } finally {
+  } finally {
     await session.close();
-    }
+  }
 }

@@ -20,5 +20,5 @@
  * @complexity memory O(n)
  */
 export function containsAny(text: string, search: string[]): boolean {
-  return search.some(s => text.includes(s));
+  return search.some((s) => text.includes(s));
 }

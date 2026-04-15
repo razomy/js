@@ -1,4 +1,4 @@
-import * as array_ from "@razomy/array";
+import * as array_ from '@razomy/array';
 
 /**
  * @summary Find an item in an array that matches the predicate.

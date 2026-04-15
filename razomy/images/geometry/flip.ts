@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Flip an image along a specified axis.
@@ -23,9 +23,7 @@ import * as images from "@razomy/images";
  * @complexity memory O(1)
  */
 export function flip(image: images.Image, axis: 'horizontal' | 'vertical'): images.Image {
-  const direction = axis === 'horizontal' 
-    ? Vips.Direction.horizontal 
-    : Vips.Direction.vertical;
+  const direction = axis === 'horizontal' ? Vips.Direction.horizontal : Vips.Direction.vertical;
 
   return image.flip(direction);
 }

@@ -3,7 +3,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import ffmpegPath from 'ffmpeg-static';
 import * as fsFileFormat from '@razomy/fs-file-format';
-import * as videos from "@razomy/videos";
+import * as videos from '@razomy/videos';
 
 // Явно указываем путь к бинарнику
 if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);

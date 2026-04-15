@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as fsRecursive from "@razomy/fs-recursive";
+import * as fsRecursive from '@razomy/fs-recursive';
 
 export async function cliCopy() {
   const [, , ...args] = process.argv;

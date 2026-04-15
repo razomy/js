@@ -1,4 +1,4 @@
-import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
+import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
 export function isInOutput(path: string): boolean {
   const pathComponents = languagesProgrammingFs.isOutputGetPathComponents(path);

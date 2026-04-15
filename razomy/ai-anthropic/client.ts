@@ -15,4 +15,4 @@ declare global {
   }
 }
 
-export const CLIENT = new Anthropic({apiKey: process.env.ANTHROPIC_API_KEY});
+export const CLIENT = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });

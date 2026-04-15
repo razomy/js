@@ -1,7 +1,7 @@
 import * as dates from '../datetimes';
 import * as async from '@razomy/async';
 import * as abstracts from '@razomy/abstracts';
-import * as main from "@razomy/main";
+import * as main from '@razomy/main';
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,

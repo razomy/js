@@ -1,5 +1,5 @@
 import express from 'express';
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
 /*
 
@@ -20,17 +20,13 @@ export async function start() {
 
   app.post('/run', async (req, res) => {
     try {
-      const {
-        filePathOrPackageName,
-        pathWithFunctionName,
-        params = []
-      } = req.body as run.RunRequest;
+      const { filePathOrPackageName, pathWithFunctionName, params = [] } = req.body as run.RunRequest;
 
       // Валидация входных данных
       if (!filePathOrPackageName || !pathWithFunctionName) {
         return res.status(400).json({
-          status: "error",
-          message: "Missing filePathOrPackageName or functionName"
+          status: 'error',
+          message: 'Missing filePathOrPackageName or functionName',
         });
       }
 
@@ -39,17 +35,16 @@ export async function start() {
 
       // Отправляем результат обратно клиенту
       return res.json({
-        status: "success",
-        result: result
+        status: 'success',
+        result: result,
       });
-
     } catch (error: any) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(JSON.stringify({status: "error", message}));
+      console.error(JSON.stringify({ status: 'error', message }));
 
       return res.status(500).json({
-        status: "error",
-        message: message
+        status: 'error',
+        message: message,
       });
     }
   });
@@ -58,4 +53,3 @@ export async function start() {
     console.log(`__SERVER_READY__ Server started on http://localhost:${port}`);
   });
 }
-

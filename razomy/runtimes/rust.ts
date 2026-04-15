@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from "@razomy/run";
-import * as runtimes from "@razomy/runtimes";
+import * as run from '@razomy/run';
+import * as runtimes from '@razomy/runtimes';
 
 function getContext(versionRuntimeDir: string) {
   const cargoBin = path.join(versionRuntimeDir, 'cargo', 'bin');
@@ -11,16 +11,16 @@ function getContext(versionRuntimeDir: string) {
 
   const env = {
     ...process.env,
-    PATH: `${cargoBin}${path.delimiter}${rustcBin}${path.delimiter}${process.env.PATH}`
+    PATH: `${cargoBin}${path.delimiter}${rustcBin}${path.delimiter}${process.env.PATH}`,
   };
-  return {cargoExe, rustcExe, env};
+  return { cargoExe, rustcExe, env };
 }
 
 export const RUST_RUNTIME: runtimes.RuntimeProvider = {
   defaultVersion: '1.94.1',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
-    const {rustcExe, env} = getContext(versionRuntimeDir);
+    const { rustcExe, env } = getContext(versionRuntimeDir);
     const rustPath = path.join(versionWorkspaceDir, 'main.rs');
     const rustCode = `use razomy::run_cli;\nuse std::env;\n\nfunction main() {\n cli::start();\n}`;
     fs.writeFileSync(rustPath, rustCode);
@@ -28,13 +28,13 @@ export const RUST_RUNTIME: runtimes.RuntimeProvider = {
   },
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
-    const {env} = getContext(versionRuntimeDir);
+    const { env } = getContext(versionRuntimeDir);
     const executable = runtimes.IS_WIN ? 'cli_runner.exe' : './cli_runner';
     return run.cli.spawnProcess(executable, [packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
-    const {cargoExe, env} = getContext(versionRuntimeDir);
+    const { cargoExe, env } = getContext(versionRuntimeDir);
     const cargoTomlPath = path.join(versionWorkspaceDir, 'Cargo.toml');
 
     if (!fs.existsSync(cargoTomlPath)) {
@@ -44,7 +44,7 @@ export const RUST_RUNTIME: runtimes.RuntimeProvider = {
   },
 
   remove(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
-    const {cargoExe, env} = getContext(versionRuntimeDir);
+    const { cargoExe, env } = getContext(versionRuntimeDir);
     runtimes.execCmd(`${cargoExe} remove ${packageName}`, versionWorkspaceDir, env);
   },
 
@@ -57,10 +57,11 @@ export const RUST_RUNTIME: runtimes.RuntimeProvider = {
       const match = content.match(/\[dependencies\]([\s\S]*?)(?:\n\[|$)/);
       if (!match) return [];
 
-      return match[1].split('\n')
-        .map(l => l.trim())
-        .filter(l => l && !l.startsWith('#'))
-        .map(l => l.replace(/=.*/, '').trim());
+      return match[1]
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith('#'))
+        .map((l) => l.replace(/=.*/, '').trim());
     } catch {
       return [];
     }
@@ -71,6 +72,6 @@ export const RUST_RUNTIME: runtimes.RuntimeProvider = {
     if (platform === 'win32') target = arch === 'arm64' ? 'aarch64-pc-windows-msvc' : 'x86_64-pc-windows-msvc';
     else if (platform === 'darwin') target = arch === 'arm64' ? 'aarch64-apple-darwin' : 'x86_64-apple-darwin';
     else target = arch === 'arm64' ? 'aarch64-unknown-linux-gnu' : 'x86_64-unknown-linux-gnu';
-    return {filename: 'rust.tar.gz', url: `https://static.rust-lang.org/dist/rust-${version}-${target}.tar.gz`};
-  }
+    return { filename: 'rust.tar.gz', url: `https://static.rust-lang.org/dist/rust-${version}-${target}.tar.gz` };
+  },
 };

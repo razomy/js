@@ -1,6 +1,6 @@
 import { Node, Project, SyntaxKind } from 'ts-morph';
 import * as tsRefactor from '@razomy/ts-refactor';
-import * as stringCase from "@razomy/string-case";
+import * as stringCase from '@razomy/string-case';
 
 export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
@@ -20,9 +20,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
       // === НОВЫЙ БЛОК: СОБИРАЕМ ВСЕ ИМЕНА В ФАЙЛЕ ===
       // Собираем абсолютно все слова, которые используются как переменные, функции, свойства на любом уровне.
       // Это дает 100% гарантию, что наш сгенерированный alias ни с чем не пересечется.
-      const allIdentifiersInFile = new Set(
-        file.getDescendantsOfKind(SyntaxKind.Identifier).map(id => id.getText())
-      );
+      const allIdentifiersInFile = new Set(file.getDescendantsOfKind(SyntaxKind.Identifier).map((id) => id.getText()));
       // ===============================================
 
       const importDeclarations = file.getImportDeclarations();
@@ -44,7 +42,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           const pathParts = pathWithoutPrefix.split('/');
 
           rootPkg = pathParts[0];
-          subpaths = pathParts.slice(1).map(i=>tsRefactor.toSafeName(stringCase.camelCase(i)));
+          subpaths = pathParts.slice(1).map((i) => tsRefactor.toSafeName(stringCase.camelCase(i)));
         }
         // 2. ЕСЛИ ЭТО ОТНОСИТЕЛЬНЫЙ ИМПОРТ
         else if (moduleSpecifier.startsWith('.')) {
@@ -62,9 +60,8 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           const pathParts = dirPath.split('/');
           rootPkg = pathParts[0];
-          subpaths = pathParts.slice(1).filter(p => p !== 'src');
-        }
-        else {
+          subpaths = pathParts.slice(1).filter((p) => p !== 'src');
+        } else {
           continue;
         }
 
@@ -73,7 +70,9 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         let aliasName = namespacesToAdd.get(newModuleSpecifier);
 
         if (!aliasName) {
-          const existingImport = file.getImportDeclaration(decl => decl.getModuleSpecifierValue() === newModuleSpecifier);
+          const existingImport = file.getImportDeclaration(
+            (decl) => decl.getModuleSpecifierValue() === newModuleSpecifier,
+          );
           const existingNamespace = existingImport?.getNamespaceImport();
 
           if (existingNamespace) {
@@ -83,10 +82,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
             // ПРОВЕРКА НА КОЛЛИЗИИ ТЕПЕРЬ АБСОЛЮТНАЯ:
             // Проверяем наличие слова в нашем Set всех идентификаторов файла.
-            while (
-              allIdentifiersInFile.has(aliasName) ||
-              Array.from(namespacesToAdd.values()).includes(aliasName)
-              ) {
+            while (allIdentifiersInFile.has(aliasName) || Array.from(namespacesToAdd.values()).includes(aliasName)) {
               aliasName += '_';
             }
 
@@ -111,8 +107,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          const replacementStr = [aliasName, ...subpaths, importedName]
-            .join('.');
+          const replacementStr = [aliasName, ...subpaths, importedName].join('.');
 
           for (const ref of localRefs) {
             const parent = ref.getParent();

@@ -1,4 +1,4 @@
-import * as array from "@razomy/array";
+import * as array from '@razomy/array';
 
 describe('array', () => {
   describe('reduce', () => {
@@ -61,9 +61,9 @@ describe('array', () => {
       );
 
       expect(args).toEqual([
-        ['', 'a', 0, array],
-        ['a', 'b', 1, array],
-        ['ab', 'c', 2, array],
+        ['', 'a', 0, arr],
+        ['a', 'b', 1, arr],
+        ['ab', 'c', 2, arr],
       ]);
     });
 

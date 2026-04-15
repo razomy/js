@@ -1,4 +1,4 @@
-import * as aiAgentProject from "@razomy/ai-agent-project";
+import * as aiAgentProject from '@razomy/ai-agent-project';
 
 // import {executeToolMut} from './tools/execute_tool_mut';
 // import {callAuto} from './llms';

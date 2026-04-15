@@ -1,5 +1,5 @@
 import pako from 'pako';
-import * as compression from "@razomy/compression";
+import * as compression from '@razomy/compression';
 
 export function decodeString(encodedStr: string): string {
   const encodedData = compression.arrayBufferFromBase64(encodedStr);

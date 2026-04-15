@@ -1,22 +1,20 @@
-import {
-  type Part
-} from '@google/genai';
-import * as abstracts from "@razomy/abstracts";
-import * as ai from "@razomy/ai";
-import * as aiGoogle from "@razomy/ai-google";
+import { type Part } from '@google/genai';
+import * as abstracts from '@razomy/abstracts';
+import * as ai from '@razomy/ai';
+import * as aiGoogle from '@razomy/ai-google';
 
-export async function askTool(texts: string[],
-                               toolSpec: abstracts.translators.FunctionBinding[]
-) {
-  const tools = [{
-    functionDeclarations: toolSpec.map(aiGoogle.instant.specToTool)
-  }];
+export async function askTool(texts: string[], toolSpec: abstracts.translators.FunctionBinding[]) {
+  const tools = [
+    {
+      functionDeclarations: toolSpec.map(aiGoogle.instant.specToTool),
+    },
+  ];
   // Конвертируем историю сообщений в формат Gemini
   // В Gemini роли: 'user' и 'model'. Система обрабатывается отдельно или как первый user.
-  const history = texts.slice(0, -1).map(m => ({
+  const history = texts.slice(0, -1).map((m) => ({
     // role: m.role === 'model' ? 'model' : 'user',
     role: 'user',
-    parts: [{text: m} as Part],
+    parts: [{ text: m } as Part],
   }));
 
   const lastMessage = texts[texts.length - 1];
@@ -24,28 +22,25 @@ export async function askTool(texts: string[],
   // Запуск генерации
   const result = await aiGoogle.CLIENT.models.generateContent({
     model: aiGoogle.MODELS.cheap,
-    contents: [...history, {role: 'user', parts: [{text: lastMessage}]}],
+    contents: [...history, { role: 'user', parts: [{ text: lastMessage }] }],
     config: {
-      tools
-    }
+      tools,
+    },
   });
 
   const functionCalls = result.functionCalls;
 
   // Проверка: вызвал ли AI инструмент
   if (!functionCalls || functionCalls.length === 0) {
-    throw new ai.MustUseToolLlmException(
-      result.text!,
-      'Expected at least one tool call'
-    );
+    throw new ai.MustUseToolLlmException(result.text!, 'Expected at least one tool call');
   }
 
   // Возвращаем массив вызовов (совместимо с логикой Ollama/OpenAI)
-  return functionCalls.map(call => ({
+  return functionCalls.map((call) => ({
     function: {
       name: call.name,
-      arguments: call.args // Gemini возвращает уже распарсенный объект
-    }
+      arguments: call.args, // Gemini возвращает уже распарсенный объект
+    },
   }));
 }
 

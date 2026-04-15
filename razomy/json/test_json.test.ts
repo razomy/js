@@ -1,4 +1,4 @@
-import * as json from "@razomy/json";
+import * as json from '@razomy/json';
 
 export function testJson() {
   const tokens: json.JsonToken[] = [

@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Smartly crop an image to the specified dimensions.
@@ -28,7 +28,7 @@ export function smartCrop(
   image: images.Image,
   width: number,
   height: number,
-  interesting: Vips.Interesting = Vips.Interesting.centre
+  interesting: Vips.Interesting = Vips.Interesting.centre,
 ): images.Image {
   return image.smartcrop(width, height, { interesting });
 }

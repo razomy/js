@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fsDirectory from '@razomy/fs-directory';
-import * as googleStorageRepo from "@razomy/google-storage-repo";
+import * as googleStorageRepo from '@razomy/google-storage-repo';
 
 export async function downloadFileRecursiveFile(file, folderPath, destinationPath = '') {
   const filePath = file.name.replace(folderPath, '');

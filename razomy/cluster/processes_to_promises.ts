@@ -1,6 +1,6 @@
 import cluster, { type ClusterSettings } from 'cluster';
 import child from 'node:child_process';
-import * as cluster_ from "@razomy/cluster";
+import * as cluster_ from '@razomy/cluster';
 
 export function processesToPromises<T extends child.Serializable>(ctx: T[], settings: ClusterSettings): Promise<T>[] {
   if (!cluster.isPrimary) {

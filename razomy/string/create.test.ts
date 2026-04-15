@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 describe('string', () => {
   describe('create', () => {
@@ -91,7 +91,7 @@ describe('string', () => {
     it('converts a function to its string representation', () => {
       function fn() {}
 
-      expect(string.create(fn)).toContain('=>');
+      expect(string.create(fn)).toContain('function fn() { }');
     });
   });
 });

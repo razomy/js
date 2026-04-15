@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Composite an overlay image onto a base image.
@@ -30,7 +30,7 @@ export function composite(
   overlayImage: images.Image,
   x: number,
   y: number,
-  mode: Vips.BlendMode = Vips.BlendMode.over
+  mode: Vips.BlendMode = Vips.BlendMode.over,
 ): images.Image {
   return baseImage.composite(overlayImage, mode, { x, y });
 }

@@ -1,6 +1,6 @@
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
-export class ArgumentException<T> extends exceptions.Exception {
+export class ArgumentException<T> extends exceptions.AException {
   public arguments_: T;
 
   constructor(message: string, arguments_: T) {

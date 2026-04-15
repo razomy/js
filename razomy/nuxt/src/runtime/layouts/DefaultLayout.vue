@@ -34,7 +34,7 @@
             <!-- Контент -->
             <slot />
             <rzm-default-footer></rzm-default-footer>
-<!--            <rzm-breadcrumbs :navigationRoot="c.navigationRoot" class="mx-4"></rzm-breadcrumbs>-->
+            <!--            <rzm-breadcrumbs :navigationRoot="c.navigationRoot" class="mx-4"></rzm-breadcrumbs>-->
           </v-main>
         </v-app>
       </Body>
@@ -42,10 +42,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, useCookie, useRzmRuntimeConfigState, useI18n, useLocaleHead, usePreferredDark, useRoute, useTheme } from '#imports';
+import {
+  computed,
+  useCookie,
+  useRzmRuntimeConfigState,
+  useI18n,
+  useLocaleHead,
+  usePreferredDark,
+  useRoute,
+  useTheme,
+} from '#imports';
 import { onMounted, watchEffect } from 'vue';
 
-const {c} = useRzmRuntimeConfigState();
+const { c } = useRzmRuntimeConfigState();
 const { locale } = useI18n();
 const route = useRoute();
 // const {t} = useI18n();

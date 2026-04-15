@@ -1,7 +1,7 @@
-import {getCookie, H3Event} from 'h3';
-import {withLocaleSchema} from '@razomy/schemas';
-import {tryGetQueryFrom} from './get_query_from';
-import {type RzmNuxtStaticConfig} from '../interfaces';
+import { getCookie, H3Event } from 'h3';
+import { withLocaleSchema } from '@razomy/schemas';
+import { tryGetQueryFrom } from './get_query_from';
+import { type RzmNuxtStaticConfig } from '../interfaces';
 
 export function getUserLocales(c: RzmNuxtStaticConfig, event: H3Event) {
   // TODO: use whitelist enum instead

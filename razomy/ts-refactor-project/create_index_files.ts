@@ -1,4 +1,4 @@
-import {Project, SourceFile, SyntaxKind} from 'ts-morph';
+import { Project, SourceFile, SyntaxKind } from 'ts-morph';
 import * as fsFile from '@razomy/fs-file';
 import * as array from '@razomy/array';
 import * as path from 'path';
@@ -10,7 +10,7 @@ type Platform = 'default' | 'node' | 'browser' | 'remote';
 
 export async function createIndexFiles(projectPath_: string) {
   const projectPath = path.resolve(projectPath_);
-  const project = new Project({tsConfigFilePath: path.join(projectPath, 'tsconfig.json')});
+  const project = new Project({ tsConfigFilePath: path.join(projectPath, 'tsconfig.json') });
 
   const directories = project.getDirectories();
 
@@ -120,10 +120,10 @@ export async function createIndexFiles(projectPath_: string) {
  */
 function shouldIgnorePath(p: string, projectPath: string): boolean {
   return (
-    p.includes('/node_modules') ||
-    p.includes('/tmp') ||
-    p.includes('/dist') ||
-    p.includes('/bin') ||
+    p.includes('/node_modules/') ||
+    p.includes('/tmp/') ||
+    p.includes('/dist/') ||
+    p.includes('/bin/') ||
     p === projectPath ||
     p === projectPath + '/razomy'
   );
@@ -221,6 +221,6 @@ function saveIndexFile(project: Project, filePath: string, lines: string[]) {
     '', // пустая строка в конце
   ].join('\n');
 
-  project.createSourceFile(filePath, content, {overwrite: true});
+  project.createSourceFile(filePath, content, { overwrite: true });
   console.log(`[GENERATED] ${filePath}`);
 }

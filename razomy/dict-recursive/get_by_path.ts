@@ -1,4 +1,4 @@
-import * as dictRecursive from "@razomy/dict-recursive";
+import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
  * @summary Get a value from a nested dictionary by dot-separated path.

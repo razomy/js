@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import { useI18n, useLocalePath, useRzmRuntimeConfigState } from '#imports';
 
-const {c} = useRzmRuntimeConfigState();
+const { c } = useRzmRuntimeConfigState();
 const localePath = useLocalePath();
 const { t } = useI18n();
 </script>

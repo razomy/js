@@ -1,11 +1,11 @@
-import * as git from "@razomy/git";
+import * as git from '@razomy/git';
 
 export function statusFilesToFileChangesMut(result: git.FileChanges, line) {
-    const parts = line.split('\t');
-    if (parts.length < 2) return;
-    const statusFlag = parts[0][0];
-    const filePath = parts[1];
-    switch (statusFlag) {
+  const parts = line.split('\t');
+  if (parts.length < 2) return;
+  const statusFlag = parts[0][0];
+  const filePath = parts[1];
+  switch (statusFlag) {
     case 'A': // Added
     case 'C': // Copied
       result.created.push(filePath);
@@ -23,5 +23,5 @@ export function statusFilesToFileChangesMut(result: git.FileChanges, line) {
         result.created.push(parts[2]); // New filename is at parts[2]
       }
       break;
-    }
+  }
 }

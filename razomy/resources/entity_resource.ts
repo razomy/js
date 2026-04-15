@@ -1,6 +1,6 @@
 import * as object_ from '@razomy/object';
 import * as exceptions from '@razomy/exceptions';
-import * as resources from "@razomy/resources";
+import * as resources from '@razomy/resources';
 
 export class EntityResource extends resources.ObjectResource implements resources.IEntityResource {
   protected resources: resources.IResourceMap = {};

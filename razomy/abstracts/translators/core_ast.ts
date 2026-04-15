@@ -30,7 +30,7 @@ export interface CoreUniverseTerm extends CoreNode {
  */
 export interface CoreVariableTerm extends CoreNode {
   kind: 'CoreVariableTerm';
-  index: number; 
+  index: number;
 }
 
 /**
@@ -60,7 +60,7 @@ export interface CoreLetTerm extends CoreNode {
 export interface CorePiTerm extends CoreNode {
   kind: 'CorePiTerm';
   paramType: CoreTerm;
-  bodyType: CoreTerm; 
+  bodyType: CoreTerm;
 }
 
 /**
@@ -98,7 +98,7 @@ export interface CoreApplyTerm extends CoreNode {
  */
 export interface CoreRecordTerm extends CoreNode {
   kind: 'CoreRecordTerm';
-  fields: Map<string, CoreTerm>; 
+  fields: Map<string, CoreTerm>;
 }
 
 /**
@@ -136,7 +136,7 @@ export interface CoreMatchTerm extends CoreNode {
  */
 export interface CoreIntrinsicTerm extends CoreNode {
   kind: 'CoreIntrinsicTerm';
-  op: 'Syscall' | 'Malloc' | 'Add' | 'Mul' | 'Print' | 'ReadFile'; 
+  op: 'Syscall' | 'Malloc' | 'Add' | 'Mul' | 'Print' | 'ReadFile';
   args: CoreTerm[];
 }
 
@@ -151,4 +151,3 @@ export type CoreTerm =
   | CoreProjectTerm
   | CoreMatchTerm
   | CoreIntrinsicTerm;
-

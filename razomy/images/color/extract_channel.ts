@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Extract a specific color channel from an image.

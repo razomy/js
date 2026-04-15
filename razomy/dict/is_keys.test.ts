@@ -1,4 +1,4 @@
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 describe('dict', () => {
   describe('isKeys', () => {
@@ -82,9 +82,9 @@ describe('dict', () => {
     // 9. Inherited properties
     it('returns true for inherited properties (via prototype chain)', () => {
       const proto = { inherited: 'value' };
-      const dict = Object.create(proto);
-      dict.own = 1;
-      expect(dict.isKeys(dict, ['inherited'])).toBe(true);
+      const dct = Object.create(proto);
+      dct.own = 1;
+      expect(dict.isKeys(dct, ['inherited'])).toBe(true);
     });
 
     // 10. Many keys, none matching

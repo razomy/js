@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 /**
  * HSV Filter. Adjusts the hue, saturation and value

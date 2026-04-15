@@ -1,6 +1,6 @@
-import * as fsFileFormat from "@razomy/fs-file-format";
-import {Readable} from "node:stream";
-import * as images from "@razomy/images";
+import * as fsFileFormat from '@razomy/fs-file-format';
+import { Readable } from 'node:stream';
+import * as images from '@razomy/images';
 
 /**
  * @summary Convert an image file to a specified format.
@@ -29,8 +29,8 @@ export function setFile(
 ): fsFileFormat.ExtensionResult {
   const stream = Readable.from([Buffer.from(buffer)]);
   const outMime =
-    images.export_.IMAGES.find((imageItem) => imageItem.fileExtensionType === fileExtensionType)
-      ?.mediaType ?? 'application/octet-stream';
+    images.export_.IMAGES.find((imageItem) => imageItem.fileExtensionType === fileExtensionType)?.mediaType ??
+    'application/octet-stream';
 
   return {
     stream,

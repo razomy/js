@@ -1,8 +1,5 @@
-import {
-  Type,
-  type FunctionDeclaration
-} from '@google/genai';
-import * as  abstracts from "@razomy/abstracts";
+import { Type, type FunctionDeclaration } from '@google/genai';
+import * as abstracts from '@razomy/abstracts';
 
 function mapType(type: string): Type {
   const t = type.toLowerCase();
@@ -21,7 +18,7 @@ export function specToTool(spec: abstracts.translators.FunctionBinding): Functio
   const properties: Record<string, any> = {};
   const required: string[] = [];
 
-  spec.parameters.forEach(param => {
+  spec.parameters.forEach((param) => {
     properties[param.identifier.name] = {
       type: mapType(param.kind),
       description: param.meta.description,

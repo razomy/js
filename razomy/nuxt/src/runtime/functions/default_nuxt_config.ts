@@ -1,6 +1,6 @@
 import type { NuxtConfig } from 'nuxt/config';
 import { locales } from './locales';
-import {type RzmNuxtStaticConfig} from './interfaces';
+import { type RzmNuxtStaticConfig } from './interfaces';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export const defaultNuxtConfig = (c: RzmNuxtStaticConfig) =>

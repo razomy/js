@@ -1,4 +1,4 @@
-import * as treeList from "@razomy/tree-list";
+import * as treeList from '@razomy/tree-list';
 
 export function first<T extends treeList.parent.WithParent>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {

@@ -1,4 +1,4 @@
-import * as dict_ from "@razomy/dict";
+import * as dict_ from '@razomy/dict';
 
 describe('dictionary', () => {
   describe('get', () => {

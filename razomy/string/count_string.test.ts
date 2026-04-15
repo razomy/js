@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 describe('countString', () => {
   // 1. Standard cases

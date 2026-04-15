@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Add Gaussian noise to an image.
@@ -25,8 +25,8 @@ import * as images from "@razomy/images";
 export function noise(image: images.Image, amount: number = 10): images.Image {
   const noiseLayer = Vips.Image.gaussnoise(image.width, image.height, { sigma: amount });
   const result = image.add(noiseLayer);
-  
+
   noiseLayer.delete();
-  
+
   return result;
 }

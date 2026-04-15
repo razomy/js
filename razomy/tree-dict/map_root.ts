@@ -1,5 +1,5 @@
 import * as abstracts from '@razomy/abstracts';
-import * as treeDict from "@razomy/tree-dict";
+import * as treeDict from '@razomy/tree-dict';
 
 export function mapRoot<I, O>(
   input: treeDict.RootDict<I>,

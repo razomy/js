@@ -1,5 +1,5 @@
-import Vips from "wasm-vips";
-import * as images from "@razomy/images";
+import Vips from 'wasm-vips';
+import * as images from '@razomy/images';
 
 /**
  * @summary Draw a line on an image.
@@ -32,7 +32,7 @@ export function drawLine(
   y1: number,
   x2: number,
   y2: number,
-  color: Vips.ArrayConstant
+  color: Vips.ArrayConstant,
 ): images.Image {
   const canvas = image.copy();
   canvas.drawLine(color, x1, y1, x2, y2);

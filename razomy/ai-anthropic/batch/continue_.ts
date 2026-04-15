@@ -1,4 +1,4 @@
-import * as aiAnthropic from "@razomy/ai-anthropic";
+import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function continue_(jobId: string) {
   await aiAnthropic.batch.wait(jobId);

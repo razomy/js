@@ -1,5 +1,5 @@
-import Vips from "wasm-vips";
-import * as images from "@razomy/images";
+import Vips from 'wasm-vips';
+import * as images from '@razomy/images';
 
 /**
  * @summary Convert an image to a specified colorspace.

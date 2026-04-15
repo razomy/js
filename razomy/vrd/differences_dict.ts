@@ -1,5 +1,5 @@
 import * as arrayDifference from '@razomy/array-difference';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function differencesDict<T>(diffs: vrd.P<T>[], a: vrd.Vrd<T>, b: vrd.Vrd<T>, path, separator = '/'): vrd.P<T>[] {
   const aKeys = Object.keys(a);

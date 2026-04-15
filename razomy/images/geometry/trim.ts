@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Trim an image by removing its monotonous background.

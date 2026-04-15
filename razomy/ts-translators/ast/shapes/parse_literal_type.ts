@@ -1,5 +1,5 @@
-import { Node, SyntaxKind } from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
+import { Node, SyntaxKind } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
 
 export function parseLiteralType(node: Node): abstracts.translators.BuildInShape | null {
   let targetNode = node;
@@ -11,67 +11,67 @@ export function parseLiteralType(node: Node): abstracts.translators.BuildInShape
 
   if (Node.isStringLiteral(targetNode)) {
     return {
-      kind: "BuildInShape",
-      type: "String",
+      kind: 'BuildInShape',
+      type: 'String',
       value: targetNode.getLiteralValue(), // Уже строка
     };
   }
 
   if (Node.isNumericLiteral(targetNode)) {
     return {
-      kind: "BuildInShape",
-      type: "Number",
+      kind: 'BuildInShape',
+      type: 'Number',
       value: targetNode.getLiteralValue().toString(), // Приводим к строке
     };
   }
 
   if (kind === SyntaxKind.TrueKeyword) {
     return {
-      kind: "BuildInShape",
-      type: "Boolean",
-      value: "true", // Приводим к строке
+      kind: 'BuildInShape',
+      type: 'Boolean',
+      value: 'true', // Приводим к строке
     };
   }
 
   if (kind === SyntaxKind.FalseKeyword) {
     return {
-      kind: "BuildInShape",
-      type: "Boolean",
-      value: "false", // Приводим к строке
+      kind: 'BuildInShape',
+      type: 'Boolean',
+      value: 'false', // Приводим к строке
     };
   }
 
   if (kind === SyntaxKind.NullKeyword) {
     return {
-      kind: "BuildInShape",
-      type: "Null",
+      kind: 'BuildInShape',
+      type: 'Null',
       value: null, // null разрешен интерфейсом
     };
   }
 
   if (kind === SyntaxKind.UndefinedKeyword) {
     return {
-      kind: "BuildInShape",
-      type: "Undefined",
-      value: "undefined", // undefined не разрешен в value, пишем строку
+      kind: 'BuildInShape',
+      type: 'Undefined',
+      value: 'undefined', // undefined не разрешен в value, пишем строку
     };
   }
 
   if (Node.isBigIntLiteral(targetNode)) {
     const text = targetNode.getLiteralText();
-    const value = text.endsWith("n") ? text.slice(0, -1) : text;
+    const value = text.endsWith('n') ? text.slice(0, -1) : text;
     return {
-      kind: "BuildInShape",
-      type: "Bigint",
+      kind: 'BuildInShape',
+      type: 'Bigint',
       value, // Уже строка
     };
   }
 
   if (Node.isRegularExpressionLiteral(targetNode)) {
     return {
-      kind: "BuildInShape",
+      kind: 'BuildInShape',
       // В новом интерфейсе нет типа 'RegExp', мапим в 'Object'
-      type: "Object",
+      type: 'Object',
       value: targetNode.getLiteralText(),
     };
   }
@@ -82,19 +82,19 @@ export function parseLiteralType(node: Node): abstracts.translators.BuildInShape
 
       if (Node.isNumericLiteral(operand)) {
         return {
-          kind: "BuildInShape",
-          type: "Number",
+          kind: 'BuildInShape',
+          type: 'Number',
           value: (-operand.getLiteralValue()).toString(), // Отрицательное число в строку
         };
       }
 
       if (Node.isBigIntLiteral(operand)) {
         const text = operand.getLiteralText();
-        const value = text.endsWith("n") ? text.slice(0, -1) : text;
+        const value = text.endsWith('n') ? text.slice(0, -1) : text;
         return {
-          kind: "BuildInShape",
-          type: "Bigint",
-          value: "-" + value,
+          kind: 'BuildInShape',
+          type: 'Bigint',
+          value: '-' + value,
         };
       }
     }
@@ -102,4 +102,3 @@ export function parseLiteralType(node: Node): abstracts.translators.BuildInShape
 
   return null;
 }
-

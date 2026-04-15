@@ -1,5 +1,5 @@
 import { Node, SyntaxKind, VariableDeclaration } from 'ts-morph';
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function renameFileBasedOnFirstChild({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   const declaration = sourceFile.getFirstDescendant((node) => {

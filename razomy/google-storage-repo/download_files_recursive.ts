@@ -1,4 +1,4 @@
-import * as googleStorageRepo from "@razomy/google-storage-repo";
+import * as googleStorageRepo from '@razomy/google-storage-repo';
 
 export async function downloadFilesRecursive(bucket, folderPath, destinationPath = '') {
   const [files] = await bucket.getFiles();

@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Apply a Gaussian blur filter to an image.

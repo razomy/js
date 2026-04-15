@@ -1,6 +1,6 @@
 import * as dictRecursive from '@razomy/dict-recursive';
-import * as vrd from "@razomy/vrd";
-import * as object_ from "@razomy/object";
+import * as vrd from '@razomy/vrd';
+import * as object_ from '@razomy/object';
 
 export function rdToVrd(
   dict: dictRecursive.DictRecursive,

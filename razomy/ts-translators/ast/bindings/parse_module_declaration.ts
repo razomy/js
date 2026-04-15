@@ -1,13 +1,11 @@
-import {Directory} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { Directory } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
-export function parseModuleDeclaration(
-  node: Directory,
-): abstracts.translators.ModuleBinding {
-  const indexFile = node.getSourceFile(f => f.getBaseName().startsWith("index."))!;
+export function parseModuleDeclaration(node: Directory): abstracts.translators.ModuleBinding {
+  const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
   if (!indexFile) {
-    throw new Error("NO index file")
+    throw new Error('NO index file');
   }
   const body = tsTranslators.ast.bindings.parseModuleDeclarationBody(indexFile);
   // Имя модуля: либо переданное (для подмодулей), либо имя папки
@@ -15,8 +13,8 @@ export function parseModuleDeclaration(
 
   return {
     kind: 'ModuleBinding',
-    identifier: {kind: 'Identifier', name: moduleName},
+    identifier: { kind: 'Identifier', name: moduleName },
     body: body,
-    meta: {description: ''}
+    meta: { description: '' },
   };
 }

@@ -1,6 +1,6 @@
 import * as exceptions from '@razomy/exceptions';
 import * as dict from '@razomy/dict';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function getParents<T>(
   valueRecursive: vrd.VrdOrValue<T>,

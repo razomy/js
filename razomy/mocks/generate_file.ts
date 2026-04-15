@@ -1,6 +1,6 @@
 import fs from 'fs';
-import * as random from "@razomy/random";
-import * as mocks from "@razomy/mocks";
+import * as random from '@razomy/random';
+import * as mocks from '@razomy/mocks';
 
 export function generateFile(filePath, fileSize) {
   const chunkSize = 500;

@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function getSurfaceDeclarationMut<T extends abstracts.translators.SbsbType>(node: T) {
   if (node.kind === 'FunctionBinding') {

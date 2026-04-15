@@ -1,7 +1,7 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
@@ -91,8 +91,10 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const typeSpecs = allDecls.filter(i => i.node.kind !== 'FunctionBinding');
-  const functionSpecs = allDecls.filter(i => i.node.kind === 'FunctionBinding') as tsTranslators.ast.md.FlatDeclaration<abstracts.translators.FunctionBinding>[];
+  const typeSpecs = allDecls.filter((i) => i.node.kind !== 'FunctionBinding');
+  const functionSpecs = allDecls.filter(
+    (i) => i.node.kind === 'FunctionBinding',
+  ) as tsTranslators.ast.md.FlatDeclaration<abstracts.translators.FunctionBinding>[];
   const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
 
   const imports = `
@@ -119,18 +121,14 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
   const toc = `
 ## 📑 Table of Contents
 
-${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${functionsToc.length ? '**Functions**\n\n' + functionsToc : ''}
+${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
+    functionsToc.length ? '**Functions**\n\n' + functionsToc : ''
+  }
   `.trim();
 
-  const functions = functionSpecs
-    .map(tsTranslators.ast.md.functionToString)
-    .join('\n\n')
-    .trim();
+  const functions = functionSpecs.map(tsTranslators.ast.md.functionToString).join('\n\n').trim();
 
-  const types = typeSpecs
-    .map(tsTranslators.ast.md.docToString)
-    .join('\n\n')
-    .trim();
+  const types = typeSpecs.map(tsTranslators.ast.md.docToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation
@@ -150,7 +148,8 @@ Copyright © ${new Date().getFullYear()} [Razomy](https://github.com/razomy).
 This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 `.trim();
 
-  const readme = `
+  const readme =
+    `
 ${title}${description ? '\n' + description : ''}
 
 ## 🚀 Start

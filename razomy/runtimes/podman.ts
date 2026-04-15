@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from "@razomy/run";
-import * as runtimes from "@razomy/runtimes";
+import * as run from '@razomy/run';
+import * as runtimes from '@razomy/runtimes';
 
 // Настраиваем пути и переменные окружения
 function getContext(versionRuntimeDir: string) {
@@ -14,7 +14,7 @@ function getContext(versionRuntimeDir: string) {
   const exeDir = path.dirname(podmanExe);
   const env = {
     ...process.env,
-    PATH: `${exeDir}${path.delimiter}${process.env.PATH}`
+    PATH: `${exeDir}${path.delimiter}${process.env.PATH}`,
   };
 
   return { podmanExe, env };
@@ -43,7 +43,7 @@ export const PODMAN_RUNTIME: runtimes.RuntimeProvider = {
 
       // Если нет машины по умолчанию, создаем её (скачивается образ Linux ~300мб)
       if (!machineList.includes('podman-machine-default')) {
-        console.log("⚙️ Инициализация движка контейнеров (это произойдет только один раз и займет пару минут)...");
+        console.log('⚙️ Инициализация движка контейнеров (это произойдет только один раз и займет пару минут)...');
         runtimes.execCmd(`${podmanExe} machine init`, versionWorkspaceDir, env);
       }
 
@@ -51,14 +51,13 @@ export const PODMAN_RUNTIME: runtimes.RuntimeProvider = {
       const isRunning = machineList.includes('Running') || machineList.match(/running/i);
 
       if (!isRunning) {
-        console.log("🚀 Запуск движка контейнеров в фоне...");
+        console.log('🚀 Запуск движка контейнеров в фоне...');
         runtimes.execCmd(`${podmanExe} machine start`, versionWorkspaceDir, env);
       }
 
       if (!fs.existsSync(initFlagPath)) fs.writeFileSync(initFlagPath, 'mac-win-vm-ready');
-
     } catch (e) {
-      console.error("❌ Ошибка при настройке движка контейнеров:", e);
+      console.error('❌ Ошибка при настройке движка контейнеров:', e);
     }
   },
 
@@ -94,8 +93,15 @@ export const PODMAN_RUNTIME: runtimes.RuntimeProvider = {
   list(versionWorkspaceDir: string, versionRuntimeDir: string): string[] {
     const { podmanExe, env } = getContext(versionRuntimeDir);
     try {
-      const output = runtimes.execCmd(`${podmanExe} images --format "{{.Repository}}:{{.Tag}}"`, versionWorkspaceDir, env);
-      return output.split('\n').map(line => line.trim()).filter(Boolean);
+      const output = runtimes.execCmd(
+        `${podmanExe} images --format "{{.Repository}}:{{.Tag}}"`,
+        versionWorkspaceDir,
+        env,
+      );
+      return output
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean);
     } catch {
       return [];
     }
@@ -107,17 +113,18 @@ export const PODMAN_RUNTIME: runtimes.RuntimeProvider = {
     const baseUrl = `https://github.com/containers/podman/releases/download/${v}`;
 
     // Windows (Пульт управления)
-    if (platform === 'win32') return {
-      filename: 'podman.zip',
-      url: `${baseUrl}/podman-remote-release-windows_amd64.zip`
-    };
+    if (platform === 'win32')
+      return {
+        filename: 'podman.zip',
+        url: `${baseUrl}/podman-remote-release-windows_amd64.zip`,
+      };
 
     // macOS (Пульт управления, поддерживает Intel и M1/M2/M3)
     if (platform === 'darwin') {
       const macArch = arch === 'arm64' ? 'arm64' : 'amd64';
       return {
         filename: 'podman.zip',
-        url: `${baseUrl}/podman-remote-release-darwin_${macArch}.zip`
+        url: `${baseUrl}/podman-remote-release-darwin_${macArch}.zip`,
       };
     }
 
@@ -126,7 +133,7 @@ export const PODMAN_RUNTIME: runtimes.RuntimeProvider = {
     return {
       filename: 'podman.tar.gz',
       // Используем статическую сборку для Linux, чтобы не зависеть от системных библиотек
-      url: `${baseUrl}/podman-linux-${linuxArch}.tar.gz`
+      url: `${baseUrl}/podman-linux-${linuxArch}.tar.gz`,
     };
-  }
+  },
 };

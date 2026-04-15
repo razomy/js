@@ -4,8 +4,8 @@ import { Node, SourceFile, VariableDeclarationKind } from 'ts-morph';
  * 3. Get all exported constants from the specified directory.
  * Ignores functions, classes, types, etc.
  */
-export function getExportedConstants(files: SourceFile[]): { path: string, name: string }[] {
-  const constantNames: { path: string, name: string }[] = [];
+export function getExportedConstants(files: SourceFile[]): { path: string; name: string }[] {
+  const constantNames: { path: string; name: string }[] = [];
   for (const file of files) {
     const exports = file.getExportedDeclarations();
 
@@ -24,7 +24,7 @@ export function getExportedConstants(files: SourceFile[]): { path: string, name:
         const isFunction = initializer && (Node.isArrowFunction(initializer) || Node.isFunctionExpression(initializer));
 
         if (isConst && !isFunction) {
-          constantNames.push({path: file.getFilePath(), name});
+          constantNames.push({ path: file.getFilePath(), name });
         }
       }
     }

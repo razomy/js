@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {execSync} from 'child_process';
-
+import { execSync } from 'child_process';
 
 export function restoreSpaces(args: string[]) {
   const gitRepoPath = args[0];
@@ -14,15 +13,15 @@ export function restoreSpaces(args: string[]) {
     // Получаем список измененных файлов через git diff
     const diffOutput = execSync(`git diff --name-only ${oldCommit}`, {
       cwd: gitRepoPath,
-      encoding: 'utf-8'
+      encoding: 'utf-8',
     });
 
     // Разбиваем вывод на строки, убираем пустые и оставляем только yaml/yml
     const changedFiles = diffOutput
       .split(/\r?\n/)
-      .map(file => file.trim())
-      .filter(file => file.length > 0)
-      .filter(file => file.endsWith('.rn') || file.endsWith('.yaml'));
+      .map((file) => file.trim())
+      .filter((file) => file.length > 0)
+      .filter((file) => file.endsWith('.rn') || file.endsWith('.yaml'));
 
     if (changedFiles.length === 0) {
       console.log('🤷‍♂️ Измененных YAML файлов не найдено. Нечего чинить.');
@@ -49,7 +48,7 @@ export function restoreSpaces(args: string[]) {
         const oldContent = execSync(`git show ${oldCommit}:${relativeFilePath}`, {
           cwd: gitRepoPath,
           encoding: 'utf-8',
-          stdio: ['pipe', 'pipe', 'ignore'] // Скрываем ошибки гита в консоли, ловим их в catch
+          stdio: ['pipe', 'pipe', 'ignore'], // Скрываем ошибки гита в консоли, ловим их в catch
         });
 
         // Читаем текущий файл
@@ -67,10 +66,12 @@ export function restoreSpaces(args: string[]) {
 
         // Проверка на совпадение количества строк
         if (oldLines.length !== newLines.length) {
-          throw new Error(`Количество строк не совпадает (Git: ${oldLines.length}, Диск: ${newLines.length}). Пропускаем.`);
+          throw new Error(
+            `Количество строк не совпадает (Git: ${oldLines.length}, Диск: ${newLines.length}). Пропускаем.`,
+          );
         }
 
-        const fixedLines:string[] = [];
+        const fixedLines: string[] = [];
 
         // Восстанавливаем отступы
         for (let i = 0; i < oldLines.length; i++) {
@@ -83,8 +84,7 @@ export function restoreSpaces(args: string[]) {
         fs.writeFileSync(absoluteFilePath, fixedLines.join('\n'), 'utf-8');
         console.log(`  ✅ Успешно восстановлен.`);
         successCount++;
-
-      } catch (fileError:any) {
+      } catch (fileError: any) {
         console.log(`  ❌ Ошибка: ${fileError.message}`);
         // Если ошибка в git show (например, файл новый и его нет в старом коммите)
         if (fileError.message.includes('Command failed: git show')) {
@@ -96,8 +96,7 @@ export function restoreSpaces(args: string[]) {
 
     console.log('\n==================================');
     console.log(`🏁 Готово! Успешно: ${successCount}, Ошибок: ${errorCount}`);
-
-  } catch (globalError:any) {
+  } catch (globalError: any) {
     console.error('\n❌ Критическая ошибка:');
     if (globalError.stderr) {
       console.error(globalError.stderr.toString());
@@ -106,4 +105,3 @@ export function restoreSpaces(args: string[]) {
     }
   }
 }
-

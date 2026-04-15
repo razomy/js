@@ -1,4 +1,4 @@
-import * as treeList from "@razomy/tree-list";
+import * as treeList from '@razomy/tree-list';
 
 export function mapChildren<I extends treeList.WithChildrenList<any>, O extends treeList.WithChildrenList<any>>(
   children_: I[],

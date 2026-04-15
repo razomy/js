@@ -1,4 +1,4 @@
-import {JSDoc} from "ts-morph";
+import { JSDoc } from 'ts-morph';
 
 export function parseReturnOrThrow(doc: JSDoc, funcName: string): string {
   const titleTag = doc.getTags().find((t) => t.getTagName() === 'returns');

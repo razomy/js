@@ -1,5 +1,5 @@
-import Vips from "wasm-vips";
-import * as images from "@razomy/images";
+import Vips from 'wasm-vips';
+import * as images from '@razomy/images';
 
 /**
  * @summary Extend image boundaries.
@@ -32,16 +32,10 @@ export function extend(
   right: number,
   top: number,
   bottom: number,
-  background: Vips.ArrayConstant = [0, 0, 0, 0]
+  background: Vips.ArrayConstant = [0, 0, 0, 0],
 ): images.Image {
-  return image.embed(
-    left,
-    top,
-    image.width + left + right,
-    image.height + top + bottom,
-    {
-      extend: Vips.Extend.background,
-      background
-    }
-  ) as images.Image;
+  return image.embed(left, top, image.width + left + right, image.height + top + bottom, {
+    extend: Vips.Extend.background,
+    background,
+  }) as images.Image;
 }

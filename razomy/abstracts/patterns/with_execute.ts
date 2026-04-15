@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export type Execute<I extends any[], O> = abstracts.functions.Callable<I, O>;
 

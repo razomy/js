@@ -2,10 +2,12 @@ import fs from 'fs';
 import * as path from 'path';
 import * as fss from '@razomy/fss';
 import * as json from '@razomy/json';
-import * as tsRefactorProject from "@razomy/ts-refactor-project";
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
 
 export function addDependencies(projectPath: string, prefix) {
-  const packages = tsRefactorProject.packageJson.getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+  const packages = tsRefactorProject.packageJson
+    .getAll(projectPath)
+    .filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names

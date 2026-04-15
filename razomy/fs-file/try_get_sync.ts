@@ -1,5 +1,5 @@
 import fs from 'fs';
-import * as fsFile from "@razomy/fs-file";
+import * as fsFile from '@razomy/fs-file';
 
 export function tryGetSync(filePath) {
   if (!fs.existsSync(filePath)) {

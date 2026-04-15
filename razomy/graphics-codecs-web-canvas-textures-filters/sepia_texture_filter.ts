@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 // based on https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
 

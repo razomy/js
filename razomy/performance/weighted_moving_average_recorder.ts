@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import * as performance_ from "@razomy/performance";
+import * as performance_ from '@razomy/performance';
 
 export interface PerformanceRecord {
   // Abstract linear measurement system of function complexity for space

@@ -1,4 +1,4 @@
-export { Exception } from './exception';
+export { AException } from './a_exception';
 export { ArgumentException } from './argument_exception';
 export { CollectException, type CatchFn } from './collect_exception';
 export { MultipleException } from './multiple_exception';

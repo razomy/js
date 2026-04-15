@@ -1,7 +1,7 @@
 import * as dict from '@razomy/dict';
 import * as key from '@razomy/key';
 import * as string from '@razomy/string';
-import * as kvRecursive from "@razomy/kv-recursive";
+import * as kvRecursive from '@razomy/kv-recursive';
 
 export function valueOrListToFlatDict(
   dict: {},

@@ -1,4 +1,4 @@
-import * as pipes from "@razomy/pipes";
+import * as pipes from '@razomy/pipes';
 
 export type Unary<T, R> = (arg: T) => R;
 

@@ -1,5 +1,5 @@
 import * as exceptions from '@razomy/exceptions';
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 describe('dict', () => {
   describe('firstKey', () => {

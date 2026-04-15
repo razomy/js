@@ -1,9 +1,8 @@
-import {Identifier as TsIdentifier, Node} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { Identifier as TsIdentifier, Node } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function parseShapeIdentifier(node: TsIdentifier | Node): abstracts.translators.ShapeIdentifier {
-
   const inferredType = node.getType();
   if (inferredType.isLiteral()) {
     let typeString = inferredType.getText();

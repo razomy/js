@@ -26,6 +26,6 @@
  * @complexity memory O(n)
  */
 export function addAllMut<T>(array: T[], value: T[]): T[] {
-    array.push(...value);
-    return array;
+  array.push(...value);
+  return array;
 }

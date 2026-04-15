@@ -1,5 +1,5 @@
-import { BigIntLiteral } from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
+import { BigIntLiteral } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
 
 export function parseBigIntExpression(node: BigIntLiteral): abstracts.translators.BuildInExpression {
   const text = node.getLiteralText();

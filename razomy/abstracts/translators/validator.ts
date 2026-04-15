@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 // ==========================================
 // ДВИЖОК КОМПИЛЯТОРА: Тайпчекер
@@ -22,7 +22,11 @@ export interface TypeChecker {
    * Проверяет, что \`1\` соответствует ожидаемому типу \`number\`
    * ```
    */
-  check(term: abstracts.translators.CoreTerm, expected: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): void;
+  check(
+    term: abstracts.translators.CoreTerm,
+    expected: abstracts.translators.CoreTerm,
+    env: abstracts.translators.CoreTerm[],
+  ): void;
 
   /**
    * Выполнить мапперы/дженерики/функции прямо во время компиляции
@@ -31,7 +35,10 @@ export interface TypeChecker {
    * Раскрывает \`Pick<User, "id">\` в \`{ id: string }\`
    * ```
    */
-  normalize(term: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): abstracts.translators.CoreTerm;
+  normalize(
+    term: abstracts.translators.CoreTerm,
+    env: abstracts.translators.CoreTerm[],
+  ): abstracts.translators.CoreTerm;
 
   /**
    * Проверить два типа на математическую эквивалентность

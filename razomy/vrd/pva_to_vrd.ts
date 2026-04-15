@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function pvaToVrd(rootPath: string, rows: { path: string; value: string }[]) {
   if (rows.length === 1 && rows[0].path === rootPath) {

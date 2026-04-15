@@ -1,4 +1,4 @@
-import * as array_ from "@razomy/array";
+import * as array_ from '@razomy/array';
 
 /**
  * @summary Create an array of a specific size with the value 1 at the specified index.

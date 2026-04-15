@@ -1,4 +1,4 @@
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
 export async function processJobMut(handlers: Map<string, run.task.TaskHandler<any>>, job: run.task.Task) {
   if (job.abortController.signal.aborted) return;

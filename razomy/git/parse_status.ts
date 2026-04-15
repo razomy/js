@@ -1,4 +1,4 @@
-import * as git from "@razomy/git";
+import * as git from '@razomy/git';
 
 export function parseStatus(str: string): git.Status {
   let lines;

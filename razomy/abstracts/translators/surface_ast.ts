@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * The foundational interface for all AST nodes.
@@ -22,8 +22,7 @@ export interface AstNode {
  * ```
  * @abstract
  */
-export interface Expression extends AstNode {
-}
+export interface Expression extends AstNode {}
 
 /**
  * Base interface for all statements (actions/control flow).
@@ -36,14 +35,13 @@ export interface Expression extends AstNode {
  * ```
  * @abstract
  */
-export interface Statement extends AstNode {
-}
+export interface Statement extends AstNode {}
 
 /**
  * @abstract
  */
 export interface Identifier extends AstNode {
-  kind: 'Identifier'
+  kind: 'Identifier';
   name: string;
 }
 
@@ -58,8 +56,7 @@ export interface Identifier extends AstNode {
  * ```
  * @abstract
  */
-export interface Binding extends AstNode {
-}
+export interface Binding extends AstNode {}
 
 /**
  * @abstract
@@ -142,18 +139,18 @@ export interface ObjectExpression extends Expression {
 export interface UnaryExpression extends Expression {
   kind: 'UnaryExpression';
   operator:
-    | '&'      // AddressOfExpression
-    | '*'      // DereferenceExpression
-    | '!'      // Логическое НЕ
-    | '+'      // Унарный плюс (приведение к числу)
-    | '-'      // Унарный минус (отрицание)
-    | '~'      // Побитовое НЕ
-    | '++'     // Инкремент
-    | '--'     // Декремент
+    | '&' // AddressOfExpression
+    | '*' // DereferenceExpression
+    | '!' // Логическое НЕ
+    | '+' // Унарный плюс (приведение к числу)
+    | '-' // Унарный минус (отрицание)
+    | '~' // Побитовое НЕ
+    | '++' // Инкремент
+    | '--' // Декремент
     | 'typeof' // Определение типа
-    | 'delete';// Удаление свойства
+    | 'delete'; // Удаление свойства
   expression: ExpressionType; // В стандарте ESTree это обычно называется 'argument'
-  isPrefix: boolean;          // true для ++x, false для x++
+  isPrefix: boolean; // true для ++x, false для x++
 }
 
 /**
@@ -162,17 +159,32 @@ export interface UnaryExpression extends Expression {
  */
 export interface BinaryExpression extends Expression {
   kind: 'BinaryExpression';
-  operator:
-  // Арифметика
-    | '+' | '-' | '*' | '/' | '%' | '**'
+  operator: // Арифметика
+  | '+'
+    | '-'
+    | '*'
+    | '/'
+    | '%'
+    | '**'
     // Побитовые операции
-    | '&' | '|' | '^' | '<<' | '>>' | '>>>'
+    | '&'
+    | '|'
+    | '^'
+    | '<<'
+    | '>>'
+    | '>>>'
     // Сравнение (строгое и нестрогое)
-    | '==' | '!=' | '===' | '!=='
+    | '=='
+    | '!='
+    | '==='
+    | '!=='
     // Отношение
-    | '<' | '<=' | '>' | '>='
+    | '<'
+    | '<='
+    | '>'
+    | '>='
     // Проверка наличия/типа
-    | 'in'
+    | 'in';
   left: ExpressionType;
   right: ExpressionType;
 }
@@ -192,7 +204,7 @@ export interface ConditionalControlFlowExpression extends Expression {
 
 export interface LoopControlFlowExpression extends Expression {
   kind: 'LoopControlFlow';
-  type: 'do_while' | 'while_do' | 'for_in' | 'for_of'
+  type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
   init: Expression | null;
   condition: Expression | null;
 
@@ -260,8 +272,7 @@ export type ExpressionType =
   | BinaryExpression
   | BlockExpression
   | ReturnExpression
-  | MemberExpression
-  ;
+  | MemberExpression;
 // endregion Expression
 // region Statement
 
@@ -277,7 +288,7 @@ export interface BlockStatement extends Statement {
 
 export interface ControlBranchStatement extends Statement {
   kind: 'ControlBranch';
-  type: 'if' | 'switch' | 'try_catch'
+  type: 'if' | 'switch' | 'try_catch';
   pattern: Expression | null;
   body: BlockStatement;
 }
@@ -290,7 +301,7 @@ export interface ConditionalControlFlowStatement extends Statement {
 
 export interface LoopControlFlowStatement extends Statement {
   kind: 'LoopControlFlow';
-  type: 'do_while' | 'while_do' | 'for_in' | 'for_of'
+  type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
   init: Expression | null;
   condition: Expression | null;
   update: Expression | null;
@@ -300,7 +311,7 @@ export interface LoopControlFlowStatement extends Statement {
 
 export interface LoopBreakStatement extends Statement {
   kind: 'LoopControlFlow';
-  type: 'break' | 'continue'
+  type: 'break' | 'continue';
   labelIdentifier: Identifier;
 }
 
@@ -327,7 +338,7 @@ export interface VariableStatement extends Statement {
   shapeIdentifier: ShapeIdentifier | null;
   meta: {
     description: string;
-  }
+  };
 }
 
 export type StatementType =
@@ -337,8 +348,7 @@ export type StatementType =
   | ControlBranchStatement
   | LoopBreakStatement
   | VariableStatement
-  | ThrowStatement
-  ;
+  | ThrowStatement;
 
 // endregion Statement
 // region Binding
@@ -357,7 +367,7 @@ export interface VariableBinding extends Binding {
   shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType;
   modifiers: Modifier[];
-  meta: { description: string; }
+  meta: { description: string };
 }
 
 /**
@@ -389,7 +399,7 @@ export interface PropertyBinding extends Binding {
   shapeIdentifier: ShapeIdentifier | null;
   expression: ExpressionType | null;
   modifiers: Modifier[];
-  meta: { description: string; }
+  meta: { description: string };
 }
 
 /**
@@ -404,7 +414,7 @@ export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
   shapeIdentifier: ShapeIdentifier | null;
-  meta: { description: string; }
+  meta: { description: string };
   expression: ExpressionType | null;
   isRest: boolean;
 }
@@ -420,7 +430,7 @@ export interface ParameterBinding extends Binding {
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
   identifier: Identifier;
-  meta: { description: string; }
+  meta: { description: string };
   expression: ExpressionType | null;
 }
 
@@ -435,11 +445,11 @@ export interface EnumPropertyBinding extends Binding {
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
   identifier: Identifier;
-  meta: { description: string; }
+  meta: { description: string };
   properties: EnumPropertyBinding[];
 }
 
-export type  Modifier = 'async' | 'export' | 'public' | 'generator' | 'optional' | 'readonly' | 'const'
+export type Modifier = 'async' | 'export' | 'public' | 'generator' | 'optional' | 'readonly' | 'const';
 
 /**
  * Represents a function declaration.
@@ -466,7 +476,7 @@ export interface FunctionBinding extends Binding {
     };
     examples: Array<{ code: string; expected: string }>;
     description: string;
-  }
+  };
 }
 
 /**
@@ -479,7 +489,7 @@ export interface FunctionBinding extends Binding {
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
-  meta: { description: string; }
+  meta: { description: string };
   identifier: Identifier;
   extends_: ShapeIdentifier[];
   properties: PropertyBinding[];
@@ -496,7 +506,7 @@ export interface ClassBinding extends Binding {
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
-  meta: { description: string; }
+  meta: { description: string };
   identifier: Identifier;
   body: SbsbType[];
 }
@@ -512,7 +522,7 @@ export interface ModuleBinding extends Binding {
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
   identifier: Identifier;
-  meta: { description: string; }
+  meta: { description: string };
   version: string;
   runtime: DependencyBinding;
   dependencies: DependencyBinding[];
@@ -530,7 +540,7 @@ export interface MacroBinding extends Binding {
 }
 
 export type BindingType =
-  VariableBinding
+  | VariableBinding
   | DependencyBinding
   | PropertyBinding
   | ParameterBinding
@@ -540,8 +550,7 @@ export type BindingType =
   | ModuleBinding
   | PackageBinding
   | MacroBinding
-  | ClassBinding
-  ;
+  | ClassBinding;
 
 // endregion Binding
 // endregion Data
@@ -557,9 +566,7 @@ export type BindingType =
  * ```
  * @abstract
  */
-export interface Shape extends AstNode {
-}
-
+export interface Shape extends AstNode {}
 
 /**
  * A reference to an existing type, class, or interface.
@@ -577,14 +584,12 @@ export interface ShapeIdentifier extends AstNode {
 /*
  * @abstract
  */
-export interface ShapeStatement extends AstNode {
-}
+export interface ShapeStatement extends AstNode {}
 
 /*
  * @abstract
  */
-export interface ShapeBinding extends AstNode {
-}
+export interface ShapeBinding extends AstNode {}
 
 export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
 
@@ -596,7 +601,7 @@ export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
  */
 export interface UnaryShape extends Shape {
   kind: 'UnaryShape';
-  operator: | 'typeof' | 'as'
+  operator: 'typeof' | 'as';
   shape: ShapeType;
 }
 
@@ -611,7 +616,19 @@ export interface UnaryShape extends Shape {
  */
 export interface BuildInShape extends Shape {
   kind: 'BuildInShape';
-  type: | 'String' | 'Number' | 'Object' | 'Boolean' | 'Null' | 'Undefined' | 'Symbol' | 'Any' | 'Never' | 'Unknown' | 'Bigint' | 'Void';
+  type:
+    | 'String'
+    | 'Number'
+    | 'Object'
+    | 'Boolean'
+    | 'Null'
+    | 'Undefined'
+    | 'Symbol'
+    | 'Any'
+    | 'Never'
+    | 'Unknown'
+    | 'Bigint'
+    | 'Void';
   value: string | null;
 }
 
@@ -670,7 +687,7 @@ export interface PropertyShape extends Shape {
   kind: 'PropertyShape';
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
-  meta: { description: string; }
+  meta: { description: string };
 }
 
 /**
@@ -732,7 +749,7 @@ export interface IntersectionShape extends Shape {
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
   shapeIdentifier: ShapeIdentifier;
-  meta: { description: string; }
+  meta: { description: string };
 }
 
 /**
@@ -761,9 +778,7 @@ export type ShapeType =
   | UnionShape
   | IntersectionShape
   | ReturnShape
-  | FunctionShape
-  ;
-
+  | FunctionShape;
 
 // endregion ShapeType
 // region TypeBinding
@@ -780,7 +795,7 @@ export interface AliasShapeBinding extends ShapeBinding {
   kind: 'AliasShapeBinding';
   meta: {
     description: string;
-  },
+  };
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
 }
@@ -797,16 +812,13 @@ export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
   meta: {
     description: string;
-  }
+  };
   shapeIdentifier: ShapeIdentifier;
   extends_: ReferenceShape[];
   properties: PropertyShape[];
 }
 
-
-export type ShapeBindingType = InterfaceShapeBinding
-  | AliasShapeBinding
-  ;
+export type ShapeBindingType = InterfaceShapeBinding | AliasShapeBinding;
 
 // endregion ShapeBinding
 // endregion Shape
@@ -815,11 +827,9 @@ export type ShapeBindingType = InterfaceShapeBinding
 // ПРОСТРАНСТВО ОНТОЛОГИИ (ТИПЫ И ФАКТЫ) - Concept
 // ==========================================
 
-export interface Concept extends AstNode {
-}
+export interface Concept extends AstNode {}
 
-export interface Clause extends AstNode {
-}
+export interface Clause extends AstNode {}
 
 /**
  * Роль участника в отношении (Тематическая роль).
@@ -840,9 +850,9 @@ export interface SemanticRole extends AstNode {
  */
 export interface TaxonomyConcept extends Concept {
   kind: 'TaxonomyConcept';
-  subject: Identifier;     // "Библиотека"
+  subject: Identifier; // "Библиотека"
   relation: 'instance' | 'subclass';
-  base: Identifier;        // "Комната"
+  base: Identifier; // "Комната"
 }
 
 /**
@@ -856,8 +866,8 @@ export interface PredicateSignatureConcept extends Concept {
   kind: 'PredicateSignatureConcept';
   predicate: Identifier; // "передать" (или "находится", или "темный")
   roles: Array<{
-    role: SemanticRole;       // 'actor', 'theme', 'recipient'
-    constraint: Identifier;   // 'Человек', 'Предмет', 'Человек'
+    role: SemanticRole; // 'actor', 'theme', 'recipient'
+    constraint: Identifier; // 'Человек', 'Предмет', 'Человек'
   }>;
 }
 
@@ -872,7 +882,7 @@ export interface PredicateSignatureConcept extends Concept {
 export interface FactConcept extends Concept {
   kind: 'FactConcept';
   predicate: Identifier; // "находится" или "темная"
-  isNegative: boolean;   // false (утверждение), true (отрицание: "не находится")
+  isNegative: boolean; // false (утверждение), true (отрицание: "не находится")
   arguments_: Array<{
     role: SemanticRole;
     value: Identifier | ExpressionType; // Связь с классическим кодом (value может быть числом/строкой)
@@ -941,15 +951,9 @@ export interface BlockClause extends Clause {
   clauses: ExecutableClauseType[];
 }
 
-export type ConceptType =
-  | TaxonomyConcept
-  | PredicateSignatureConcept
-  | FactConcept;
+export type ConceptType = TaxonomyConcept | PredicateSignatureConcept | FactConcept;
 
-export type ExecutableClauseType =
-  | ActionClause
-  | StateTransitionClause
-  | RuleClause;
+export type ExecutableClauseType = ActionClause | StateTransitionClause | RuleClause;
 
 export type SbsbType = StatementType | BindingType | ShapeBindingType;
 

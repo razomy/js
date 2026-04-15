@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export interface TreeNode<T> extends abstracts.structures.Node<T> {
   children: TreeNode<T>[];

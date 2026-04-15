@@ -1,4 +1,4 @@
-import * as aiOpenai from "@razomy/ai-openai";
+import * as aiOpenai from '@razomy/ai-openai';
 
 export async function gptApiV2(params = { messages: [] }) {
   const request = {

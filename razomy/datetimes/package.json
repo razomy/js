@@ -52,7 +52,9 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/datetimes",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "date-fns": "^4.1.0"
+  },
   "publishConfig": {
     "access": "public"
   },

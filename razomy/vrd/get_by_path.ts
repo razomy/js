@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function getByPath<T>(valueRecursive: vrd.VrdOrValue<T>, path: string[]) {
   const pathed = vrd.pathToVrd(path);

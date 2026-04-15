@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 // --- Helper to convert your Spec to Anthropic Tool Schema ---
 
@@ -22,9 +22,9 @@ export function specToTool(spec: abstracts.translators.FunctionBinding) {
     name: spec.identifier.name,
     description: spec.meta.description,
     input_schema: {
-      type: "object",
+      type: 'object',
       properties,
       required,
-    }
+    },
   };
 }

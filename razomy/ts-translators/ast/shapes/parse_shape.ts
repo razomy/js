@@ -1,6 +1,6 @@
-import {Node} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { Node } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function parseShape(node: Node): abstracts.translators.ShapeType {
   const literal = tsTranslators.ast.shapes.parseLiteralType(node);

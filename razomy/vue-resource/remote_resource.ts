@@ -1,4 +1,4 @@
-import vue from 'vue';
+import * as vue from 'vue';
 import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
 

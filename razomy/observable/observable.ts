@@ -1,5 +1,5 @@
 import * as abstracts from '@razomy/abstracts';
-import * as observable from "@razomy/observable";
+import * as observable from '@razomy/observable';
 
 export class Observable<T, E = observable.CancelException> {
   disposeFn: abstracts.functions.Dispose | null = null;

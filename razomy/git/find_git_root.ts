@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import * as path from "path";
+import { promises as fs } from 'fs';
+import * as path from 'path';
 
 /**
  * Recursively searches upwards for a directory containing a `.git` folder.
@@ -8,13 +8,13 @@ import * as path from "path";
  * @returns A Promise resolving to the path containing `.git`, or null if not found.
  */
 export async function findGitRoot(startPath: string = process.cwd()): Promise<string | null> {
-    const currentPath = path.resolve(startPath);
-    const targetPath = path.join(currentPath, '.git');
-    try {
+  const currentPath = path.resolve(startPath);
+  const targetPath = path.join(currentPath, '.git');
+  try {
     // Check if .git exists in the current directory
     await fs.access(targetPath);
     return currentPath;
-    } catch {
+  } catch {
     // .git does not exist here, move to the parent directory
     const parentPath = path.dirname(currentPath);
 
@@ -25,7 +25,7 @@ export async function findGitRoot(startPath: string = process.cwd()): Promise<st
 
     // Recursive call
     return findGitRoot(parentPath);
-    }
+  }
 }
 
 // // --- Usage Example ---

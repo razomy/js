@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import * as git from "@razomy/git";
+import * as git from '@razomy/git';
 
 export interface Status {
   localBranch: string;

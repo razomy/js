@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Convert an image file to a specified format.
@@ -21,11 +21,8 @@ import * as images from "@razomy/images";
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export async function getFile(
-  inputPath: string,
-) {
+export async function getFile(inputPath: string) {
   const vips = await Vips();
-  let image = vips.Image.newFromFile(inputPath, {access: 'sequential'});
+  let image = vips.Image.newFromFile(inputPath, { access: 'sequential' });
   return image as images.Image;
 }
-

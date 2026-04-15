@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 /**
  * HSL Filter. Adjusts the hue, saturation and luminance (or lightness)

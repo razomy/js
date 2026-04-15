@@ -1,4 +1,4 @@
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 describe('object', () => {
   describe('mapToArray', () => {

@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 /**
  * @summary Generate a random integer within a range.

@@ -1,4 +1,4 @@
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
 export type TaskStatus = 'pending' | 'processing' | 'completed' | 'error' | 'cancelled';
 
@@ -13,27 +13,18 @@ export interface Task {
 
 export type TaskHandler<T extends Task = Task> = (job: T) => Promise<void>;
 
-
 export class TaskController {
-  constructor(
-    public tasks = new Map<string, Task>(),
-    public handlers = new Map<string, TaskHandler<any>>(),
-  ) {
-  }
+  constructor(public tasks = new Map<string, Task>(), public handlers = new Map<string, TaskHandler<any>>()) {}
 
   addHandler = <T extends Task>(type: string, handler: TaskHandler<T>) => {
     this.handlers.set(type, handler);
   };
 
-  get = <T extends Task = Task>(
-    id: string): T | undefined => {
+  get = <T extends Task = Task>(id: string): T | undefined => {
     return this.tasks.get(id) as T | undefined;
   };
 
-  create = <T extends Task>(
-    type: T['type'],
-    payload: Omit<T, keyof Task>
-  ): string => {
+  create = <T extends Task>(type: T['type'], payload: Omit<T, keyof Task>): string => {
     return run.task.createMut(this.tasks, this.handlers, type, payload);
   };
 

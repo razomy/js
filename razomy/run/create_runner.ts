@@ -1,6 +1,6 @@
-import {createRequire} from 'node:module';
+import { createRequire } from 'node:module';
 import path from 'node:path';
-import {pathToFileURL} from 'node:url';
+import { pathToFileURL } from 'node:url';
 
 export async function createRunner(importPath: string, moduleDir: string) {
   let exactFileUrl: string;

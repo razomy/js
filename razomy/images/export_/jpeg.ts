@@ -1,6 +1,6 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
-import * as fsFileFormat from "@razomy/fs-file-format";
+import * as images from '@razomy/images';
+import * as fsFileFormat from '@razomy/fs-file-format';
 
 /**
  * @summary Export an image to JPEG format.
@@ -23,10 +23,13 @@ import * as fsFileFormat from "@razomy/fs-file-format";
  * @complexity memory O(w * h)
  */
 export function jpeg(image: images.Image): fsFileFormat.ExtensionResult {
-  return images.import_.setFile(image.jpegsaveBuffer({
-    Q: 80,
-    keep: Vips.ForeignKeep.all,
-    optimize_coding: true,
-    subsample_mode: Vips.ForeignSubsample.off
-  }), 'jpeg');
+  return images.import_.setFile(
+    image.jpegsaveBuffer({
+      Q: 80,
+      keep: Vips.ForeignKeep.all,
+      optimize_coding: true,
+      subsample_mode: Vips.ForeignSubsample.off,
+    }),
+    'jpeg',
+  );
 }

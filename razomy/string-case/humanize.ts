@@ -1,4 +1,4 @@
-import * as stringCase from "@razomy/string-case";
+import * as stringCase from '@razomy/string-case';
 
 /**
  * @summary Convert a string to a human-readable form.

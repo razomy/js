@@ -1,6 +1,6 @@
-import {Node} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { Node } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 /**
  * Recursively parses general TS Nodes (Declarations, Statements)
@@ -31,11 +31,11 @@ export function parseBinding(node: Node): abstracts.translators.SbsbType | null 
   }
 
   if (Node.isImportDeclaration(node)) {
-    const allNames = node.getNamedImports().map(ni => ni.getName());
+    const allNames = node.getNamedImports().map((ni) => ni.getName());
 
     return {
       kind: 'DependencyBinding',
-      identifier: {kind: 'Identifier', name: allNames[0]},
+      identifier: { kind: 'Identifier', name: allNames[0] },
       version: '',
       path: node.getModuleSpecifierValue(),
     } satisfies abstracts.translators.DependencyBinding;

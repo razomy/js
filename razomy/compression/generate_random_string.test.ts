@@ -1,4 +1,4 @@
-import * as compression from "@razomy/compression";
+import * as compression from '@razomy/compression';
 
 describe('compress', () => {
   it('should encode a string using gzip compression', () => {

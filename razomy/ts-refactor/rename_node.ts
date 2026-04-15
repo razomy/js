@@ -8,8 +8,8 @@ import {
   PropertySignature,
   VariableDeclaration,
 } from 'ts-morph';
-import * as stringCase from "@razomy/string-case";
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as stringCase from '@razomy/string-case';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export function renameNode(
   v:
@@ -97,9 +97,8 @@ function performSafeRename(node: Node & { rename: (text: string) => void }, orig
     return Node.isExportable(parentStatement) && parentStatement.isExported();
   }
 
-  let newName = tsRefactor.toSafeName(isExportableVariable()
-    ? stringCase.constantCase(originalName)
-    : stringCase.camelCase(originalName)
+  let newName = tsRefactor.toSafeName(
+    isExportableVariable() ? stringCase.constantCase(originalName) : stringCase.camelCase(originalName),
   );
 
   if (originalName === newName) {

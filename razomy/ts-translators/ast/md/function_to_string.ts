@@ -1,11 +1,13 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function functionToString(s: FlatDeclaration<abstracts.translators.FunctionBinding>) {
-  const paramsStr = s.node.parameters.map(p => {
-    const rest = p.isRest ? '...' : '';
-    const typeStr = p.shapeIdentifier?.name;
-    return `${rest}${p.identifier.name}: ${typeStr}`;
-  }).join(', ');
+  const paramsStr = s.node.parameters
+    .map((p) => {
+      const rest = p.isRest ? '...' : '';
+      const typeStr = p.shapeIdentifier?.name;
+      return `${rest}${p.identifier.name}: ${typeStr}`;
+    })
+    .join(', ');
   const returnStr = s.node.returnType?.shapeIdentifier.name;
   const isAsync = s.node.modifiers.join(' ');
   const declaration = `\`${isAsync}${s.path.join('.')}(${paramsStr}): ${returnStr}\``;
@@ -19,7 +21,8 @@ ${e.code}${comment}
 \`\`\`
 `.trim();
     })
-    .join('\n\n').trim();
+    .join('\n\n')
+    .trim();
   return `
 #### ${s.node.identifier.name}
 
@@ -31,9 +34,8 @@ ${examples ? '\nExamples\n\n' + examples : ''}
 }
 
 export type FlatDeclaration<T = abstracts.translators.SbsbType> = {
-  node: T,
+  node: T;
   description: string;
   name: string;
   path: string[];
 };
-

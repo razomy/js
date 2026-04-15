@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import {pipeline} from 'node:stream/promises';
-import Vips from "wasm-vips";
-import * as images from "@razomy/images";
+import { pipeline } from 'node:stream/promises';
+import Vips from 'wasm-vips';
+import * as images from '@razomy/images';
 
 const outDir = path.join(__dirname, 'tmp');
 
@@ -15,7 +15,7 @@ const mapping = {
   png: images.export_.png,
   tiff: images.export_.tiff,
   webp: images.export_.webp,
-}
+};
 // Увеличиваем таймаут, так как обработка картинок (особенно heic/avif) может быть небыстрой
 jest.setTimeout(30000);
 
@@ -33,10 +33,12 @@ async function createSourceImage(ext: string, filePath: string) {
   // Создаем красное изображение
   // .black() создает 1 канал, .add([R, G, B]) делает его цветным
   let img = vips.Image.black(width, height).add([255, 0, 0]);
-  img = img.copy({interpretation: vips.Interpretation.srgb});
+  img = img.copy({ interpretation: vips.Interpretation.srgb });
 
   // Создаем оверлей (синий круг) через SVG буфер
-  const circleSvg = Buffer.from(`<svg width="${width}" height="${height}"><circle cx="50" cy="50" r="40" fill="blue"/></svg>`);
+  const circleSvg = Buffer.from(
+    `<svg width="${width}" height="${height}"><circle cx="50" cy="50" r="40" fill="blue"/></svg>`,
+  );
   const overlay = vips.Image.newFromBuffer(circleSvg);
 
   // Композиция
@@ -52,7 +54,7 @@ async function createSourceImage(ext: string, filePath: string) {
     } else if (ext === 'gif') {
       result.gifsave(filePath);
     } else if (ext === 'avif' || ext === 'heic' || ext === 'heif') {
-      result.heifsave(filePath, {compression: vips.ForeignHeifCompression.av1});
+      result.heifsave(filePath, { compression: vips.ForeignHeifCompression.av1 });
     } else if (ext === 'tiff' || ext === 'tif') {
       result.tiffsave(filePath);
     } else {
@@ -73,9 +75,9 @@ describe('images', () => {
   // Выполняется 1 раз перед всеми тестами: очищаем и создаем папку
   beforeAll(() => {
     if (fs.existsSync(outDir)) {
-      fs.rmSync(outDir, {recursive: true, force: true});
+      fs.rmSync(outDir, { recursive: true, force: true });
     }
-    fs.mkdirSync(outDir, {recursive: true});
+    fs.mkdirSync(outDir, { recursive: true });
   });
 
   // Динамически создаем блоки тестов на основе массива настроек
@@ -133,11 +135,10 @@ describe('images', () => {
             expect(fs.existsSync(outputPath)).toBe(true);
             const stats = fs.statSync(outputPath);
             expect(stats.size).toBeGreaterThan(0);
-
           } finally {
             // Убираем временный входной файл, если он случайно остался
             if (fs.existsSync(tempInput)) {
-              fs.rmSync(tempInput, {force: true});
+              fs.rmSync(tempInput, { force: true });
             }
           }
         });

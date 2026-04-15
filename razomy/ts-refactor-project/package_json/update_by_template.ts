@@ -2,14 +2,16 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
-import {Project} from 'ts-morph';
+import { Project } from 'ts-morph';
 import * as json from '@razomy/json';
-import * as tsRefactorProject from "@razomy/ts-refactor-project";
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export function updateByTemplate(projectPath: string, prefix) {
-  const packages = tsRefactorProject.packageJson.getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
-  const project = new Project({tsConfigFilePath: projectPath + '/' + 'tsconfig.json'});
+  const packages = tsRefactorProject.packageJson
+    .getAll(projectPath)
+    .filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+  const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
 
   packages.forEach((folder) => {
     const folderPath = path.dirname(folder.path);
@@ -36,14 +38,14 @@ export function updateByTemplate(projectPath: string, prefix) {
         import: `./${srcPrefix}index.browser.ts`,
         require: `./${srcPrefix}index.browser.ts`,
       },
-    }
+    };
     const nameBrowserExport = {
       './browser': {
         types: `./${srcPrefix}index.browser.ts`,
         import: `./${srcPrefix}index.browser.ts`,
         require: `./${srcPrefix}index.browser.ts`,
       },
-    }
+    };
 
     const dotNodeExports = {
       node: {
@@ -51,26 +53,25 @@ export function updateByTemplate(projectPath: string, prefix) {
         import: `./${srcPrefix}index.node.ts`,
         require: `./${srcPrefix}index.node.ts`,
       },
-    }
+    };
     const nameNodeExport = {
       './node': {
         types: `./${srcPrefix}index.node.ts`,
         import: `./${srcPrefix}index.node.ts`,
         require: `./${srcPrefix}index.node.ts`,
       },
-    }
+    };
 
     const isBrowserExports = fss.file.isExist(`${folderPath}/index.browser.ts`);
     const isNodeExports = fss.file.isExist(`${folderPath}/index.node.ts`);
 
-
     const defaultBuild = {
-      build: `tsdown index.ts ${
-        isBrowserExports ? 'index.browser.ts ' : ''}${
-        isNodeExports ? 'index.node.ts ' : ''}--format esm,cjs --dts`,
+      build: `tsdown index.ts ${isBrowserExports ? 'index.browser.ts ' : ''}${
+        isNodeExports ? 'index.node.ts ' : ''
+      }--format esm,cjs --dts`,
       dev: 'tsdown index.ts --watch',
       prepublishOnly: 'npm run build',
-    }
+    };
 
     const rawPkgData = {
       // general
@@ -81,8 +82,8 @@ export function updateByTemplate(projectPath: string, prefix) {
       description: currentPackageJson.description || ``,
       keywords: new Set([
         ...currentPackageJson.name.split(/[@\/\-]/g),
-        ...functions.map(i => stringCase.camelCase(i.name)),
-        ...consts.map(i => stringCase.camelCase(i.name)),
+        ...functions.map((i) => stringCase.camelCase(i.name)),
+        ...consts.map((i) => stringCase.camelCase(i.name)),
       ])
         .values()
         .toArray()

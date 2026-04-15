@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export type RawBuffer = ArrayBuffer | SharedArrayBuffer;
 

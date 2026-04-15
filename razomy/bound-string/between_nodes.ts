@@ -1,5 +1,5 @@
 import * as coordinates from '@razomy/coordinates';
-import * as boundString from "@razomy/bound-string";
+import * as boundString from '@razomy/bound-string';
 
 export function betweenNodes(nodes: boundString.NodeBound[], root: boundString.NodeBound) {
   if (nodes.length === 0) {

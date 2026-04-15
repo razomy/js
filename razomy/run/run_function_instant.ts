@@ -11,7 +11,8 @@ export async function runFunctionInstant<M>(
   packageImport: Promise<M>,
   functionPath: string[],
   functionName: keyof M,
-  arguments_: any[]) {
+  arguments_: any[],
+) {
   const packageModule = await packageImport;
   const fn = getByPath(packageModule, [...functionPath, functionName as string]) as (...s: any[]) => any;
 

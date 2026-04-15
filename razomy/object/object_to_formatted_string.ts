@@ -1,4 +1,4 @@
-import * as object_ from "@razomy/object";
+import * as object_ from '@razomy/object';
 
 export function objectToFormattedString(obj: unknown): string {
   const sizeInBytes = object_.objectToBytes(obj);

@@ -1,4 +1,4 @@
-import * as fsFileFormat from "@razomy/fs-file-format";
+import * as fsFileFormat from '@razomy/fs-file-format';
 
 /**
  * @summary Image extensions supported for both reading and writing.

@@ -2,6 +2,7 @@ node_modules
 dist
 .idea
 .env
+tmp
 razomy*.tgz
 _releases
 .changeset

@@ -1,6 +1,5 @@
-
 export function mapName(name: string) {
-    switch (name) {
+  switch (name) {
     case 'string':
       name = 'String';
       break;
@@ -19,7 +18,7 @@ export function mapName(name: string) {
     case 'boolean[]':
       name = 'Array<Boolean>';
       break;
-    }
+  }
 
-    return name;
+  return name;
 }

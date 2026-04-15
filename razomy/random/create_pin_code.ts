@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 /**
  * @summary Create a random PIN code of a given length with no consecutive repeated digits.

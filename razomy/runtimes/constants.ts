@@ -1,8 +1,8 @@
-import * as runtimes from "@razomy/runtimes";
+import * as runtimes from '@razomy/runtimes';
 
 export const DEFAULT_PACKAGE = {
-  packageName: "@razomy/string-case",
-  runtimeName: "node",
+  packageName: '@razomy/string-case',
+  runtimeName: 'node',
 };
 
 export const RUNTIME_REGISTRY: Record<string, runtimes.RuntimeProvider> = {

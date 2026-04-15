@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Blends two images together using a specified blend mode and opacity.
@@ -28,7 +28,7 @@ export function blend(
   base: images.Image,
   overlay: images.Image,
   mode: Vips.BlendMode = Vips.BlendMode.over,
-  opacity: number = 1.0
+  opacity: number = 1.0,
 ): images.Image {
   let top = overlay;
 

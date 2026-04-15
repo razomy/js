@@ -1,5 +1,5 @@
 import type Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Draw a filled rectangle on an image.
@@ -32,11 +32,11 @@ export function drawRectangle(
   y: number,
   width: number,
   height: number,
-  color: Vips.ArrayConstant
+  color: Vips.ArrayConstant,
 ): images.Image {
   const canvas = image.copy();
-  
+
   canvas.drawRect(color, x, y, width, height, { fill: true });
-  
+
   return canvas;
 }

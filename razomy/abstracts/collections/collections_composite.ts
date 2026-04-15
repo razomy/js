@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export interface LRUCacheInternalMemory<K, V> {
   map: abstracts.structures.HashTable<K, abstracts.structures.DoublyLinkedListNode<[K, V]>>;

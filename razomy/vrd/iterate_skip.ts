@@ -1,5 +1,5 @@
 import * as pipesBooleans from '@razomy/pipes-booleans';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function iterateSkip<T, C extends vrd.Iterate<T>>(
   ctx: C,

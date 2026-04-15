@@ -25,7 +25,10 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function mapToDictBy<T, K extends keyof T>(arr: T[], get: (i: T) => string): Record<string | number | symbol, T> {
+export function mapToDictBy<T, K extends keyof T>(
+  arr: T[],
+  get: (i: T) => string,
+): Record<string | number | symbol, T> {
   return arr.reduce((acc, item) => {
     // Correctly index item[key] and assign to accumulator
     acc[get(item)] = item;

@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 /**
  * @summary Generate a random float within a specified range [from, to).

@@ -1,4 +1,4 @@
-import * as compression from "@razomy/compression";
+import * as compression from '@razomy/compression';
 
 export function decodeJsonString<T>(encodedStr: string): T {
   const decodedData = compression.decodeString(encodedStr);

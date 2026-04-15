@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 //TODO:rename
 export interface IObject extends abstracts.domains.WithId, abstracts.domains.WithType {}

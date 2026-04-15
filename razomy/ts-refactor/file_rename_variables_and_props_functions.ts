@@ -1,6 +1,6 @@
 import { SyntaxKind } from 'ts-morph';
 import * as array from '@razomy/array';
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);

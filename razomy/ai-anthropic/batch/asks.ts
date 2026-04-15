@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import * as aiAnthropic from "@razomy/ai-anthropic";
+import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function asks(texts: string[], systemText: string) {
   const requests: Anthropic.Messages.Batches.BatchCreateParams.Request[] = texts.map((text, index) => {

@@ -1,9 +1,9 @@
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
-export class MultipleException extends exceptions.Exception {
-  public exceptions: exceptions.Exception[];
+export class MultipleException extends exceptions.AException {
+  public exceptions: exceptions.AException[];
 
-  constructor(exceptions: exceptions.Exception[]) {
+  constructor(exceptions: exceptions.AException[]) {
     super('Merge exceptions');
     this.exceptions = exceptions;
   }

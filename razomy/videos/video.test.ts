@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { execSync } from 'node:child_process';
-import * as videos from "@razomy/videos/node";
+import * as videos from '@razomy/videos/node';
 
 const sourceVideo = path.join(__dirname, 'source_video.mp4');
 const outDir = path.join(__dirname, 'tmp');
@@ -25,7 +25,7 @@ describe('Video Converter: toVideoByFormat', () => {
       try {
         execSync(
           `ffmpeg -f lavfi -i testsrc=duration=5:size=1280x720:rate=30 -f lavfi -i sine=frequency=1000:duration=5 -c:v libx264 -c:a aac -shortest "${sourceVideo}"`,
-          { stdio: 'ignore' } // скрываем вывод FFmpeg, чтобы не засорять консоль
+          { stdio: 'ignore' }, // скрываем вывод FFmpeg, чтобы не засорять консоль
         );
       } catch (error) {
         throw new Error('Ошибка при создании source_video.mp4. Убедитесь, что FFmpeg установлен и доступен в PATH.');
@@ -65,11 +65,12 @@ describe('Video Converter: toVideoByFormat', () => {
       // Размер файла должен быть больше нуля
       const stats = fs.statSync(testOutputFile);
       expect(stats.size).toBeGreaterThan(0);
-
     } catch (error: any) {
       // Перехватываем ошибку, чтобы добавить понятное описание (полезно при отсутствии кодеков в ОС)
       if (error.message.includes('Encoder not found') || error.message.includes('Unknown encoder')) {
-        throw new Error(`Отсутствует кодек для формата ${targetFormat} в вашей версии FFmpeg. Оригинальная ошибка: ${error.message}`);
+        throw new Error(
+          `Отсутствует кодек для формата ${targetFormat} в вашей версии FFmpeg. Оригинальная ошибка: ${error.message}`,
+        );
       }
       throw error; // Бросаем ошибку дальше, чтобы тест провалился
     } finally {

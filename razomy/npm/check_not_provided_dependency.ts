@@ -22,19 +22,19 @@ export async function checkNotProvidedDependency(paths: string[]) {
       }
 
       deployedPackages.add(pkg.name);
-      packagesData.push({dir, pkg});
+      packagesData.push({ dir, pkg });
     } catch (error: any) {
       throw new Error(`Не удалось прочитать package.json в ${dir}: ${error.message}`);
     }
   }
 
   // Шаг 2: Проверяем зависимости каждого пакета
-  for (const {dir, pkg} of packagesData) {
+  for (const { dir, pkg } of packagesData) {
     // Собираем все типы зависимостей пакета
     const allDependencies = {
       ...(pkg.dependencies || {}),
       ...(pkg.devDependencies || {}),
-      ...(pkg.peerDependencies || {})
+      ...(pkg.peerDependencies || {}),
     };
 
     for (const depName of Object.keys(allDependencies)) {
@@ -44,7 +44,7 @@ export async function checkNotProvidedDependency(paths: string[]) {
         if (!deployedPackages.has(depName)) {
           throw new Error(
             `❌ Ошибка зависимостей: Пакет "${pkg.name}" (${dir}) зависит от "${depName}", ` +
-            `но пакет "${depName}" не указан в списке на деплой!`
+              `но пакет "${depName}" не указан в списке на деплой!`,
           );
         }
       }

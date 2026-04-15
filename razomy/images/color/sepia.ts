@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Apply a sepia filter to an image.
@@ -26,8 +26,8 @@ import * as images from "@razomy/images";
 export function sepia(image: images.Image): images.Image {
   const matrix = [
     [0.3588, 0.7044, 0.1368],
-    [0.2990, 0.5870, 0.1140],
-    [0.2392, 0.4696, 0.0912]
+    [0.299, 0.587, 0.114],
+    [0.2392, 0.4696, 0.0912],
   ] as const;
 
   return image.recomb(matrix as unknown as number[]);

@@ -1,4 +1,4 @@
-import * as array_ from "@razomy/array";
+import * as array_ from '@razomy/array';
 
 /**
  * @summary Creates an array of unique values from the input array, sorted by their frequency of occurrence in descending order.

@@ -1,5 +1,5 @@
 import * as abstracts from '@razomy/abstracts';
-import * as async from "@razomy/async";
+import * as async from '@razomy/async';
 
 export class FileTaskManager<C extends async.task.Context> {
   private currentContext: C | null = null;

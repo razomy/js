@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Create a blank image.
@@ -23,12 +23,8 @@ import * as images from "@razomy/images";
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-export function createBlank(
-  width: number,
-  height: number,
-  background: number[] = [0, 0, 0, 0]
-): images.Image {
-  const bands =  background.length ;
+export function createBlank(width: number, height: number, background: number[] = [0, 0, 0, 0]): images.Image {
+  const bands = background.length;
   const canvas = Vips.Image.black(width, height, { bands }).add(background);
 
   if (bands === 3 || bands === 4) {

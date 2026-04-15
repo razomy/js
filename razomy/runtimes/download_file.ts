@@ -1,5 +1,5 @@
-import * as fs from "node:fs";
-import * as https from "node:https";
+import * as fs from 'node:fs';
+import * as https from 'node:https';
 
 export function downloadFile(url: string, dest: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -18,9 +18,7 @@ export function downloadFile(url: string, dest: string): Promise<void> {
         file.close();
         resolve();
       });
-    }
-  )
-    ;
+    });
     request.on('error', (err) => {
       if (fs.existsSync(dest)) fs.unlinkSync(dest);
       reject(err);

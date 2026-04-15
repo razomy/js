@@ -1,4 +1,4 @@
-import * as kvRecursive from "@razomy/kv-recursive";
+import * as kvRecursive from '@razomy/kv-recursive';
 
 export function getItemByPath(node: kvRecursive.ListItem, path: string[], offset: number): kvRecursive.ListItem {
   if (offset >= path.length) {

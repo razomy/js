@@ -1,4 +1,4 @@
-import * as serializable from "@razomy/serializable";
+import * as serializable from '@razomy/serializable';
 
 export type SerializablePrimitive = string | number | boolean | null;
 

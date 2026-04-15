@@ -1,6 +1,6 @@
 import cluster from 'cluster';
 import child from 'node:child_process';
-import * as cluster_ from "@razomy/cluster";
+import * as cluster_ from '@razomy/cluster';
 
 export function processToPromise<T extends child.Serializable>(ctx: T, env: cluster_.WorkerEnvironment): Promise<T> {
   if (!cluster.isPrimary) {

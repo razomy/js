@@ -1,5 +1,5 @@
-import * as vrd from "@razomy/vrd";
-import * as dict from "@razomy/dict";
+import * as vrd from '@razomy/vrd';
+import * as dict from '@razomy/dict';
 
 export function test() {
   const specs: [any, vrd.VrdOrValue<any>, vrd.VrdOrValue<any>, vrd.P<any>[]][] = [
@@ -25,7 +25,12 @@ export function test() {
     // [[], d({'a': null}), d({'a1': null}), [
     //   {type: 'replace', old_value: d({a: null}), value: d({a1: null})},
     // ]],
-    [[], vrd.vrd({ a: null }), vrd.vrd({ a: vrd.vrd({ b: null }) }), [{ type: 'added', path: 'a', value: vrd.vrd({ b: null }) }]],
+    [
+      [],
+      vrd.vrd({ a: null }),
+      vrd.vrd({ a: vrd.vrd({ b: null }) }),
+      [{ type: 'added', path: 'a', value: vrd.vrd({ b: null }) }],
+    ],
   ];
   for (const spec of specs) {
     const result = vrd.differencesDict(spec[0], spec[1], spec[2], '');

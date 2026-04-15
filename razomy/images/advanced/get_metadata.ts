@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 export interface ImageMetadata {
   width: number;
@@ -37,6 +37,6 @@ export function getMetadata(image: images.Image): ImageMetadata {
     height: image.height,
     bands: image.bands,
     space: image.interpretation,
-    hasAlpha: image.hasAlpha()
+    hasAlpha: image.hasAlpha(),
   };
 }

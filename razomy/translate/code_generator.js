@@ -8,13 +8,13 @@ const LANGUAGES = ['en', 'ru', 'de', 'fr'];
 const OUTPUT_DIR = path.resolve('');
 
 function generateTranslationStructure() {
-    // 1. Создаем папку, если ее нет
-    if (!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR, {recursive: true});
-    }
+  // 1. Создаем папку, если ее нет
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
 
-    // 2. Создаем базовый движок (Кэширование + Transformers.js)
-    const engineCode = `import { pipeline } from '@xenova/transformers';
+  // 2. Создаем базовый движок (Кэширование + Transformers.js)
+  const engineCode = `import { pipeline } from '@xenova/transformers';
 
 // Кэш для хранения загруженных ИИ-моделей
 const modelsCache = new Map<string, any>();
@@ -34,40 +34,40 @@ export async function translateText(text: string, src: string, tgt: string): Pro
     return result[0].translation_text;
 }
 `;
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'translate_text.ts'), engineCode);
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'translate_text.ts'), engineCode);
 
-    let indexCode = '';
+  let indexCode = '';
 
-    // 3. Генерируем файлы для каждого языка (en.ts, ru.ts и т.д.)
-    for (const sourceLang of LANGUAGES) {
-        fss.directory.tryCreate(path.join(OUTPUT_DIR, `${sourceLang}`));
+  // 3. Генерируем файлы для каждого языка (en.ts, ru.ts и т.д.)
+  for (const sourceLang of LANGUAGES) {
+    fss.directory.tryCreate(path.join(OUTPUT_DIR, `${sourceLang}`));
 
-        let indexFileCode = ``;
+    let indexFileCode = ``;
 
-        for (const targetLang of LANGUAGES) {
-            // Пропускаем перевод на самого себя (например, en -> en)
-            if (sourceLang === targetLang) continue;
-            let fileCode = `import { translateText } from '../translateText';\n\n`;
+    for (const targetLang of LANGUAGES) {
+      // Пропускаем перевод на самого себя (например, en -> en)
+      if (sourceLang === targetLang) continue;
+      let fileCode = `import { translateText } from '../translateText';\n\n`;
 
-            fileCode += `/**\n`;
-            fileCode += ` * Перевод с ${sourceLang.toUpperCase()} на ${targetLang.toUpperCase()}\n`;
-            fileCode += ` */\n`;
-            fileCode += `export async function ${targetLang}(text: string): Promise<string> {\n`;
-            fileCode += `    return await translateText(text, '${sourceLang}', '${targetLang}');\n`;
-            fileCode += `}\n\n`;
-            indexFileCode += `export { ${targetLang} } from './${targetLang}';\n`;
-            // Записываем файл языка (например, translations/en.ts)
-            fs.writeFileSync(path.join(OUTPUT_DIR, `${sourceLang}/${targetLang}.ts`), fileCode);
-        }
-        fs.writeFileSync(path.join(OUTPUT_DIR, `${sourceLang}/index.ts`), indexFileCode);
-
-        // Добавляем запись в index.ts как namespace, чтобы не было конфликтов имен
-        indexCode += `export * as ${sourceLang} from "./${sourceLang}";\n`;
+      fileCode += `/**\n`;
+      fileCode += ` * Перевод с ${sourceLang.toUpperCase()} на ${targetLang.toUpperCase()}\n`;
+      fileCode += ` */\n`;
+      fileCode += `export async function ${targetLang}(text: string): Promise<string> {\n`;
+      fileCode += `    return await translateText(text, '${sourceLang}', '${targetLang}');\n`;
+      fileCode += `}\n\n`;
+      indexFileCode += `export { ${targetLang} } from './${targetLang}';\n`;
+      // Записываем файл языка (например, translations/en.ts)
+      fs.writeFileSync(path.join(OUTPUT_DIR, `${sourceLang}/${targetLang}.ts`), fileCode);
     }
+    fs.writeFileSync(path.join(OUTPUT_DIR, `${sourceLang}/index.ts`), indexFileCode);
 
-    // 4. Записываем index.ts
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'index.ts'), indexCode);
-    console.log('✅ Структура для переводов успешно сгенерирована!');
+    // Добавляем запись в index.ts как namespace, чтобы не было конфликтов имен
+    indexCode += `export * as ${sourceLang} from "./${sourceLang}";\n`;
+  }
+
+  // 4. Записываем index.ts
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'index.ts'), indexCode);
+  // console.log('✅ Структура для переводов успешно сгенерирована!');
 }
 
 // Запускаем генератор

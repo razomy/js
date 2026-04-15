@@ -1,4 +1,4 @@
-import * as yaml from "@razomy/yaml";
+import * as yaml from '@razomy/yaml';
 
 export function testYaml() {
   const tokens: yaml.JsonToken[] = [

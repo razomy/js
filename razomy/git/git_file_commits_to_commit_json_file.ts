@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as path from 'path';
-import * as git from "@razomy/git";
+import * as git from '@razomy/git';
 
 export async function gitFileCommitsToCommitJsonFile(repositoryPathRoot: string, fileSubPath: string) {
   const newFfile = path.join(repositoryPathRoot, fileSubPath + '.json');

@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function pathToVrd(path: string[]) {
   const root = new vrd.Vrd<null>();

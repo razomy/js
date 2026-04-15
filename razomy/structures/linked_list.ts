@@ -1,4 +1,4 @@
-import * as structures from "@razomy/structures";
+import * as structures from '@razomy/structures';
 
 export class LinkedList<T> {
   private head: structures.Node<T> | null = null;

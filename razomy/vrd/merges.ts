@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function merges<A, B>(a: A, b: B): A & B;
 export function merges<A, B, C>(a: A, b: B, c: C): A & B & C;

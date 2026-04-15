@@ -3,6 +3,8 @@
   "compilerOptions": {
     "types": ["jest"],
     "verbatimModuleSyntax": false,
-    "module": "CommonJS"
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "esnext"
   }
 }

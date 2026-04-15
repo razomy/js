@@ -1,6 +1,6 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
-import * as fsFileFormat from "@razomy/fs-file-format";
+import * as images from '@razomy/images';
+import * as fsFileFormat from '@razomy/fs-file-format';
 
 /**
  * @summary Export image to GIF format buffer.
@@ -23,8 +23,11 @@ import * as fsFileFormat from "@razomy/fs-file-format";
  * @complexity memory O(n)
  */
 export function gif(image: images.Image): fsFileFormat.ExtensionResult {
-  return images.import_.setFile(image.gifsaveBuffer({
-    keep: Vips.ForeignKeep.all,
-    effort: 7
-  }), 'gif');
+  return images.import_.setFile(
+    image.gifsaveBuffer({
+      keep: Vips.ForeignKeep.all,
+      effort: 7,
+    }),
+    'gif',
+  );
 }

@@ -1,9 +1,11 @@
-import * as tsTranslators from "@razomy/ts-translators";
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function docToString(s: tsTranslators.ast.md.FlatDeclaration) {
   let declStr = '';
   if (s.node.kind === 'InterfaceShapeBinding') {
-    declStr = `interface ${s.node.shapeIdentifier.name} ${s.node.extends_.map(i => i.shapeIdentifier.name).join(', ')}`;
+    declStr = `interface ${s.node.shapeIdentifier.name} ${s.node.extends_
+      .map((i) => i.shapeIdentifier.name)
+      .join(', ')}`;
   } else if (s.node.kind === 'AliasShapeBinding') {
     declStr = `type ${s.node.shapeIdentifier.name} = ${tsTranslators.ast.md.shapeToString(s.node.shape)}`;
   } else if (s.node.kind === 'VariableBinding') {

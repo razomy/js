@@ -1,5 +1,5 @@
 import { isMainThread } from 'worker_threads';
-import * as thread from "@razomy/thread";
+import * as thread from '@razomy/thread';
 
 export function threadsToPromises<T>(ctx, { path }) {
   if (!isMainThread) {

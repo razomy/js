@@ -1,4 +1,4 @@
-import * as aiOpenai from "@razomy/ai-openai";
+import * as aiOpenai from '@razomy/ai-openai';
 
 export async function getModels() {
   const res = await aiOpenai.CLIENT.models.list();

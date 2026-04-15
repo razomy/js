@@ -34,7 +34,7 @@
 <script lang="ts" setup>
 import { useRzmRuntimeConfigState, useI18n } from '#imports';
 
-const {c} = useRzmRuntimeConfigState();
+const { c } = useRzmRuntimeConfigState();
 const { isVertical = false } = defineProps<{
   isVertical?: boolean;
 }>();

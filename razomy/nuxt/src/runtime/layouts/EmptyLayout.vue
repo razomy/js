@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { computed, useCookie, useI18n, useRzmRuntimeConfigState, useLocaleHead, useRoute } from '#imports';
 
-const {c} = useRzmRuntimeConfigState();
+const { c } = useRzmRuntimeConfigState();
 const { locale } = useI18n();
 
 const cookie_session_locale = useCookie(c.value.cookie.session.locale);

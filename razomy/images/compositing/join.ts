@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Join an array of images into a single image.
@@ -22,10 +22,7 @@ import * as images from "@razomy/images";
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function join(
-  images: images.Image[],
-  direction: Vips.Direction = Vips.Direction.vertical
-): images.Image {
+export function join(images: images.Image[], direction: Vips.Direction = Vips.Direction.vertical): images.Image {
   const across = direction === Vips.Direction.horizontal ? images.length : 1;
 
   return Vips.Image.arrayjoin(images as Vips.Image[], { across }) as unknown as images.Image;

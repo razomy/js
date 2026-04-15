@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 /**
  * @summary Count leading space margins for each string in an array.

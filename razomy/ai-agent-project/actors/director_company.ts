@@ -1,5 +1,5 @@
-import * as ai from "@razomy/ai";
-import * as aiAgentProject from "@razomy/ai-agent-project";
+import * as ai from '@razomy/ai';
+import * as aiAgentProject from '@razomy/ai-agent-project';
 
 export interface ActorContext {
   tool: aiAgentProject.tools.ToolContext;
@@ -32,7 +32,7 @@ export async function directorCompany(challengePrompt: string, parentCtx: ActorC
   // Шаг 3: Параллельная разработка (индивидуальная задача для каждого разработчика)
   // Используем Promise.all для одновременного запуска всех разработчиков
   const developerPromises = archPlan.tasks.map((task, index) =>
-    aiAgentProject.actors.developerSolve(task, archPlan.globalStrategy, parentCtx, index + 1)
+    aiAgentProject.actors.developerSolve(task, archPlan.globalStrategy, parentCtx, index + 1),
   );
 
   await Promise.all(developerPromises);

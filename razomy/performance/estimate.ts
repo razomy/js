@@ -1,4 +1,4 @@
-import * as performance from "@razomy/performance";
+import * as performance from '@razomy/performance';
 
 /**
  * Get a time and RAM prediction using Weighted Moving Average (WMA).
@@ -8,7 +8,11 @@ import * as performance from "@razomy/performance";
  * @param memoryDataSize - Size of the data (e.g., characters length)
  * @returns Object with time and memory predictions
  */
-export function estimate(history: performance.PerformanceRecord[], timeDataSize: number, memoryDataSize: number): performance.Prediction {
+export function estimate(
+  history: performance.PerformanceRecord[],
+  timeDataSize: number,
+  memoryDataSize: number,
+): performance.Prediction {
   if (history.length === 0) {
     return {
       timeText: 'Unknown (calibrating...)',

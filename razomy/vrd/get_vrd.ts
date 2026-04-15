@@ -1,8 +1,12 @@
 import * as exceptions from '@razomy/exceptions';
 import * as dict from '@razomy/dict';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
-export function getVrd<T>(valueRecursive: vrd.VrdOrValue<T>, path: dict.DictKey[], pathOffset: number): vrd.VrdOrValue<T> {
+export function getVrd<T>(
+  valueRecursive: vrd.VrdOrValue<T>,
+  path: dict.DictKey[],
+  pathOffset: number,
+): vrd.VrdOrValue<T> {
   for (const key in valueRecursive!) {
     if (key !== path[pathOffset]) {
       continue;

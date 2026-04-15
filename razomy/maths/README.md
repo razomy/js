@@ -250,11 +250,11 @@ calculateWithParams('2+2'); // 4
 ```
 
 ```ts
-calculateWithParams('x^2+y',{y:'x^2+8'}); // 2*x^2+8
+calculateWithParams('x^2+y', { y: 'x^2+8' }); // 2*x^2+8
 ```
 
 ```ts
-calculateWithParams('x^2+2*(cos(x)+x*x)', {x:6}); // 109.92034057330073
+calculateWithParams('x^2+2*(cos(x)+x*x)', { x: 6 }); // 109.92034057330073
 ```
 
 ## 🕊️ Vision
@@ -269,9 +269,9 @@ calculateWithParams('x^2+2*(cos(x)+x*x)', {x:6}); // 109.92034057330073
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:

@@ -1,19 +1,22 @@
-import * as ai from "@razomy/ai";
-import * as aiAgentProject from "@razomy/ai-agent-project";
+import * as ai from '@razomy/ai';
+import * as aiAgentProject from '@razomy/ai-agent-project';
 
-export async function architecture(baPlan: string, parentCtx: aiAgentProject.actors.ActorContext): Promise<aiAgentProject.actors.ArchitecturePlan> {
+export async function architecture(
+  baPlan: string,
+  parentCtx: aiAgentProject.actors.ActorContext,
+): Promise<aiAgentProject.actors.ArchitecturePlan> {
   console.log('📐 Архитектор планирует изменения и распределяет задачи...');
 
   const ctx: aiAgentProject.actors.ActorContext = {
-    tool: {...parentCtx.tool},
-    llm: {messages: [], tools: []}
+    tool: { ...parentCtx.tool },
+    llm: { messages: [], tools: [] },
   };
 
   ctx.llm.messages = [
     ai.sM(`Ты — Software Architect. У тебя есть план от Бизнес-аналитика.
       1. Твоя задача — использовать инструменты (getDirFiles), чтобы понять структуру проекта, 
      `),
-    ai.uM(baPlan)
+    ai.uM(baPlan),
   ];
   ctx.llm.tools = [aiAgentProject.tools.TOOL_REGISTRY.getDirFiles];
 
@@ -21,8 +24,8 @@ export async function architecture(baPlan: string, parentCtx: aiAgentProject.act
   const rawResponse = ctx.llm.messages[ctx.llm.messages.length - 1].content;
 
   const ctx2: aiAgentProject.actors.ActorContext = {
-    tool: {...parentCtx.tool},
-    llm: {messages: [], tools: []}
+    tool: { ...parentCtx.tool },
+    llm: { messages: [], tools: [] },
   };
 
   ctx2.llm.messages = [
@@ -40,9 +43,8 @@ export async function architecture(baPlan: string, parentCtx: aiAgentProject.act
             "instructions": "Конкретное ТЗ что именно разработчик должен написать или изменить в этом файле"
           }
         ]
-      }`
-    ),
-    ai.uM(rawResponse)
+      }`),
+    ai.uM(rawResponse),
   ];
   ctx2.llm.tools = [];
 

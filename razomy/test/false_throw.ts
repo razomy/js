@@ -1,4 +1,4 @@
-import * as test from "@razomy/test";
+import * as test from '@razomy/test';
 
 export function falseThrow(value: boolean) {
   if (!value) {

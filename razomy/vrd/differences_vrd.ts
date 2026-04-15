@@ -1,6 +1,6 @@
 import * as difference from '@razomy/difference';
-import * as vrd from "@razomy/vrd";
-import * as dict from "@razomy/dict";
+import * as vrd from '@razomy/vrd';
+import * as dict from '@razomy/dict';
 
 export interface ReplaceDifference<T> {
   type: 'replace_key';

@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function mergeVrd<T>(a: vrd.VrdOrValue<T>, b: vrd.VrdOrValue<T>, empty: T): vrd.VrdOrValue<T>;
 export function mergeVrd<A, B>(a: A, b: B, empty: string | null): A & B;

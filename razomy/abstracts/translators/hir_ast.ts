@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 // ==========================================
 // СЛОЙ 2: HIR (High-Level IR / Семантика / Смыслы)
@@ -25,7 +25,7 @@ export interface HirNode {
 export interface HirBinding extends HirNode {
   kind: 'HirBinding';
   symbol: SymbolId;
-  isTypeLevel: boolean;  // true для type/interface, false для const/let
+  isTypeLevel: boolean; // true для type/interface, false для const/let
   value: HirExpression;
 }
 
@@ -67,7 +67,4 @@ export interface HirCall extends HirNode {
   args: HirExpression[];
 }
 
-export type HirExpression =
-  | HirReference
-  | HirFunction
-  | HirCall;
+export type HirExpression = HirReference | HirFunction | HirCall;

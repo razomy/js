@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { Node, SyntaxKind } from 'ts-morph';
-import * as tsRefactor from "@razomy/ts-refactor";
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function splitFunctions({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
   // We only care about exported functions at the top level

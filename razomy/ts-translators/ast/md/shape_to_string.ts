@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export function shapeToString(type: abstracts.translators.ShapeType | null): string {
   if (!type) return 'any';
@@ -11,7 +11,7 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'ReturnShape':
       return type.shapeIdentifier.name;
     case 'ReferenceShape':
-      if(type.shapes.length > 1) {
+      if (type.shapes.length > 1) {
         return `${type.shapeIdentifier.name}<${type.shapes.map(shapeToString).join(', ')}>`;
       }
       return type.shapeIdentifier.name;
@@ -24,9 +24,11 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'IntersectionShape':
       return type.shapes.map(shapeToString).join(' & ');
     case 'ObjectShape':
-      return `{ ${type.properties.map(p => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`).join(', ')} }`;
+      return `{ ${type.properties.map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`).join(', ')} }`;
     case 'FunctionShape':
-      return `(${type.parameters.map(p => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`).join(', ')}) => ${shapeToString(type.returnType)}`;
+      return `(${type.parameters
+        .map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`)
+        .join(', ')}) => ${shapeToString(type.returnType)}`;
     case 'TemplateShape':
       return `\`${type.template}\``;
     case 'MappedShape':

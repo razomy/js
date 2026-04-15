@@ -1,4 +1,4 @@
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
 export async function start() {
   try {
@@ -11,11 +11,10 @@ export async function start() {
 
     const result = await run.resolveAndRun(filePathOrPackageName, pathWithFunctionName, params);
 
-    console.log('__CLI_RESULT__:' + JSON.stringify({status: "success", result: result}));
-
+    console.log('__CLI_RESULT__:' + JSON.stringify({ status: 'success', result: result }));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.log(JSON.stringify({status: "error", message}));
+    console.log(JSON.stringify({ status: 'error', message }));
     process.exit(1);
   }
 }

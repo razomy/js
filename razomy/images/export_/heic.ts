@@ -1,6 +1,6 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
-import * as fsFileFormat from "@razomy/fs-file-format";
+import * as images from '@razomy/images';
+import * as fsFileFormat from '@razomy/fs-file-format';
 
 /**
  * @summary Export image to HEIC format.
@@ -24,9 +24,12 @@ import * as fsFileFormat from "@razomy/fs-file-format";
  * @complexity memory O(n)
  */
 export function heic(image: images.Image, quality: number = 65): fsFileFormat.ExtensionResult {
-  return images.import_.setFile(image.heifsaveBuffer({
-    keep: Vips.ForeignKeep.all,
-    compression: Vips.ForeignHeifCompression.hevc,
-    Q: quality
-  }), 'heic');
+  return images.import_.setFile(
+    image.heifsaveBuffer({
+      keep: Vips.ForeignKeep.all,
+      compression: Vips.ForeignHeifCompression.hevc,
+      Q: quality,
+    }),
+    'heic',
+  );
 }

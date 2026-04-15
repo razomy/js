@@ -1,4 +1,4 @@
-import * as array_ from "@razomy/array";
+import * as array_ from '@razomy/array';
 
 describe('array', () => {
   describe('filter', () => {

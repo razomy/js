@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Resize an image to a specific width and optional height.
@@ -28,7 +28,7 @@ export function resize(
   image: images.Image,
   width: number,
   height?: number,
-  mode: Vips.Kernel = Vips.Kernel.lanczos3
+  mode: Vips.Kernel = Vips.Kernel.lanczos3,
 ): images.Image {
   const scale = width / image.width;
   const vscale = height !== undefined ? height / image.height : scale;

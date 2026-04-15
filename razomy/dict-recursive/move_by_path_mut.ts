@@ -1,4 +1,4 @@
-import * as dictRecursive from "@razomy/dict-recursive";
+import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
  * @summary Move a value from one path to another within a recursive dictionary.

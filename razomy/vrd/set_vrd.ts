@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function setVrd<T>(root: vrd.VrdOrValue<T>, path: string[], newValue: vrd.VrdOrValue<T>): void {
   const parentPath = path.slice(0, -1);

@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebSvgColor from "@razomy/graphics-codecs-web-svg-color";
+import * as graphicsCodecsWebSvgColor from '@razomy/graphics-codecs-web-svg-color';
 
 export class RgbaParser {
   /**

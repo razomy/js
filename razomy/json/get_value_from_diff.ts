@@ -1,4 +1,4 @@
-import * as json from "@razomy/json";
+import * as json from '@razomy/json';
 
 export function getValueFromDiff(diff: json.DiffEntry): any {
   if (diff.type === 'CREATED') {

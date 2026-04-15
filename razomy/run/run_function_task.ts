@@ -1,4 +1,4 @@
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
 export interface RunFunctionTask extends run.task.Task {
   type: 'instant';

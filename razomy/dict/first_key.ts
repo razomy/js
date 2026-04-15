@@ -1,5 +1,5 @@
 import * as exceptions from '@razomy/exceptions';
-import * as dict from "@razomy/dict";
+import * as dict from '@razomy/dict';
 
 /**
  * @summary Get the first own key of a dictionary.

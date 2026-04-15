@@ -1,4 +1,4 @@
-import * as graphicsCodecsWebCanvasTexturesFilters from "@razomy/graphics-codecs-web-canvas-textures-filters";
+import * as graphicsCodecsWebCanvasTexturesFilters from '@razomy/graphics-codecs-web-canvas-textures-filters';
 
 export function backgroundMask(idata: any, threshold: number): any {
   const rgbvNo = graphicsCodecsWebCanvasTexturesFilters.pixelAt(idata, 0, 0);
@@ -18,7 +18,11 @@ export function backgroundMask(idata: any, threshold: number): any {
     // Mask based on color distance
     const mask: any[] = [];
     for (let i = 0; i < idata.width * idata.height; i++) {
-      const d = graphicsCodecsWebCanvasTexturesFilters.rgbDistance(mean, [idata.data[i * 4], idata.data[i * 4 + 1], idata.data[i * 4 + 2]]);
+      const d = graphicsCodecsWebCanvasTexturesFilters.rgbDistance(mean, [
+        idata.data[i * 4],
+        idata.data[i * 4 + 1],
+        idata.data[i * 4 + 2],
+      ]);
       mask[i] = d < thres ? 0 : 255;
     }
 

@@ -1,5 +1,5 @@
 import * as exceptions from '@razomy/exceptions';
-import * as languagesProgrammingFs from "@razomy/languages-programming-fs";
+import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
 export const PYTHON_DEPENDENCIES = ['.venv'];
 export const NODEJS_DEPENDENCIES = ['node_modules'];

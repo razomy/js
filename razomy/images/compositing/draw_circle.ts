@@ -1,5 +1,5 @@
 import type Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Draw a filled circle on an image.
@@ -30,7 +30,7 @@ export function drawCircle(
   x: number,
   y: number,
   radius: number,
-  color: Vips.ArrayConstant
+  color: Vips.ArrayConstant,
 ): images.Image {
   const canvas = image.copy();
   canvas.drawCircle(color, x, y, radius, { fill: true });

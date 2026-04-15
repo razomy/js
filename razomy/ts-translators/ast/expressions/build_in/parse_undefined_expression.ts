@@ -1,5 +1,5 @@
-import { Identifier } from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
+import { Identifier } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
 
 export function parseUndefinedExpression(node: Identifier): abstracts.translators.BuildInExpression {
   return {

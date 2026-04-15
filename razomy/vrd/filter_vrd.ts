@@ -1,7 +1,10 @@
 import * as dict from '@razomy/dict';
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
-export function filterVrd<I>(input: vrd.Vrd<I>, isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean): vrd.Vrd<I>;
+export function filterVrd<I>(
+  input: vrd.Vrd<I>,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean,
+): vrd.Vrd<I>;
 export function filterVrd<I>(input: I, isKeep: (input: vrd.VrdOrValue<I>, parent: dict.DictKey) => boolean): I;
 export function filterVrd<I>(
   input: vrd.VrdOrValue<I>,

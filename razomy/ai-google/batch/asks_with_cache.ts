@@ -1,5 +1,5 @@
 import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
-import * as aiGoogle from "@razomy/ai-google";
+import * as aiGoogle from '@razomy/ai-google';
 
 export async function asksWithCache(texts: string[], systemText: string, sameTextCache: string) {
   const cache = await aiGoogle.CLIENT.caches.create({

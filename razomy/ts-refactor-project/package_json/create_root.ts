@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fsFile from '@razomy/fs-file';
-import * as tsRefactorProject from "@razomy/ts-refactor-project";
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
 
 export function createRoot(projectPath: string) {
   const rootDir: string = path.resolve(projectPath);

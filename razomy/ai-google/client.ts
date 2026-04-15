@@ -1,4 +1,4 @@
-import {GoogleGenAI} from "@google/genai";
+import { GoogleGenAI } from '@google/genai';
 
 declare global {
   namespace NodeJS {
@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export const CLIENT = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+export const CLIENT = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 export const MODELS = {
   cheap: 'gemini-3.1-flash-lite-preview',
   expensive: 'gemini-3.1-pro-preview',

@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Apply an unsharp mask filter to an image.
@@ -23,11 +23,6 @@ import * as images from "@razomy/images";
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function unsharpMask(
-  image: images.Image,
-  sigma: number = 1.0,
-  x1: number = 1.5,
-  y2: number = 20
-): images.Image {
-  return image.sharpen({sigma, x1, y2});
+export function unsharpMask(image: images.Image, sigma: number = 1.0, x1: number = 1.5, y2: number = 20): images.Image {
+  return image.sharpen({ sigma, x1, y2 });
 }

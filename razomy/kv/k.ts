@@ -1,4 +1,4 @@
-import * as kv from "@razomy/kv";
+import * as kv from '@razomy/kv';
 
 // export function k<T>(key: T, value: T): KeyValuable<T, T>;
 export function k<T>(key: T, value: T): [T, T];

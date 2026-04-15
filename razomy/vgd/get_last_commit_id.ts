@@ -1,4 +1,3 @@
-
 export async function getLastCommitId(db, projectPath: string) {
   const session = db.session();
 
@@ -7,7 +6,7 @@ export async function getLastCommitId(db, projectPath: string) {
         MATCH (r:Repository {name: $projectPath})
         RETURN r.lastCommitId AS lastCommitId
       `,
-    {projectPath: projectPath}
+    { projectPath: projectPath },
   );
   await session.close();
 
@@ -18,10 +17,9 @@ export async function getLastCommitId(db, projectPath: string) {
 
   // Extract and return the lastCommitId from the first record
   return result.records[0].get('lastCommitId') as string;
-
 }
 
-export interface ChunkFile{
-  chunks: { id: string, text: string }[],
-  filePath: string
+export interface ChunkFile {
+  chunks: { id: string; text: string }[];
+  filePath: string;
 }

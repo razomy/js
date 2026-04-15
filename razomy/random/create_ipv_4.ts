@@ -1,4 +1,4 @@
-import * as random from "@razomy/random";
+import * as random from '@razomy/random';
 
 /**
  * @summary Generate a random IPv4 address string.
@@ -20,5 +20,8 @@ import * as random from "@razomy/random";
  * @complexity memory O(1)
  */
 export function createIpv4(): string {
-  return `${random.createInt(0, 255)}.${random.createInt(0, 255)}.${random.createInt(0, 255)}.${random.createInt(0, 255)}`;
+  return `${random.createInt(0, 255)}.${random.createInt(0, 255)}.${random.createInt(0, 255)}.${random.createInt(
+    0,
+    255,
+  )}`;
 }

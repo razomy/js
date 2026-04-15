@@ -1,4 +1,4 @@
-import * as kvRecursive from "@razomy/kv-recursive";
+import * as kvRecursive from '@razomy/kv-recursive';
 
 describe('list', () => {
   describe('recursive', () => {

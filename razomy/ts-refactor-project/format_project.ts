@@ -1,7 +1,7 @@
 import * as packageJson from './package_json';
 import * as main from '@razomy/main';
 import * as tsRefactor from '@razomy/ts-refactor';
-import * as tsRefactorProject from "@razomy/ts-refactor-project";
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
 
 export async function formatProject(projectPath: string, prefix: string) {
   console.info('splitFunctions.start');

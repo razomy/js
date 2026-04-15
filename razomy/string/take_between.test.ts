@@ -1,4 +1,4 @@
-import * as string from "@razomy/string";
+import * as string from '@razomy/string';
 
 describe('string', () => {
   describe('takeBetween', () => {
@@ -47,7 +47,9 @@ describe('string', () => {
     });
 
     it('throws an error when both delimiters are not found', () => {
-      expect(() => string.takeBetween('hello', 'abc', 'def')).toThrow("Start substring 'abc' not found in the source text.");
+      expect(() => string.takeBetween('hello', 'abc', 'def')).toThrow(
+        "Start substring 'abc' not found in the source text.",
+      );
     });
 
     // 5. End delimiter exists before start but not after

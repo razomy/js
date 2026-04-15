@@ -1,15 +1,15 @@
-import path from "node:path";
-import fs from "node:fs";
-import {execSync} from "child_process";
+import path from 'node:path';
+import fs from 'node:fs';
+import { execSync } from 'child_process';
 
 export function autoPatch(packageDirPath: string) {
   const jsonPath = path.join(packageDirPath, './package.json');
 
   // 1. Read the current version from package.json
   const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
-  const version = pkg.version || "";
+  const version = pkg.version || '';
 
-  let command = "";
+  let command = '';
 
   // 2. Determine which command to run
   if (version.includes('alpha')) {
@@ -26,8 +26,8 @@ export function autoPatch(packageDirPath: string) {
   // 3. Execute the command in the specific directory
   try {
     console.log(`Executing: ${command} in ${packageDirPath}`);
-    execSync(command, {cwd: packageDirPath, stdio: 'inherit'});
-  } catch (error:any) {
+    execSync(command, { cwd: packageDirPath, stdio: 'inherit' });
+  } catch (error: any) {
     console.error(`Failed to patch version: ${error.message}`);
   }
 }

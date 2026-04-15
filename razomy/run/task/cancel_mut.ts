@@ -1,6 +1,6 @@
-import * as run from "@razomy/run";
+import * as run from '@razomy/run';
 
-export function cancelMut (jobs: Map<string, run.task.Task>, id: string) : boolean {
+export function cancelMut(jobs: Map<string, run.task.Task>, id: string): boolean {
   const job = jobs.get(id);
 
   if (!job) return false;

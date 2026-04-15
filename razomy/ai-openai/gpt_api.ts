@@ -1,6 +1,6 @@
 import * as object from '@razomy/object';
 import * as string from '@razomy/string';
-import * as aiOpenai from "@razomy/ai-openai";
+import * as aiOpenai from '@razomy/ai-openai';
 
 export async function gptApi(messageOrMessagesOrRequest) {
   if (string.isString(messageOrMessagesOrRequest)) {

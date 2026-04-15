@@ -1,6 +1,6 @@
-import { Node } from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { Node } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 export function parseExpression(node: Node): abstracts.translators.ExpressionType | null {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node)) {

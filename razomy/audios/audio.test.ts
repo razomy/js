@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { execSync } from 'node:child_process';
-import * as audios from "@razomy/audios/node";
+import * as audios from '@razomy/audios/node';
 
 const sourceAudio = path.join(__dirname, 'source_audio.mp3');
 const outDir = path.join(__dirname, 'tmp');
@@ -22,10 +22,9 @@ describe('audios', () => {
     if (!fs.existsSync(sourceAudio)) {
       console.log('Создание тестового аудио (5 секунд, синусоида)...');
       try {
-        execSync(
-          `ffmpeg -f lavfi -i sine=frequency=440:duration=5 -c:a libmp3lame "${sourceAudio}"`,
-          { stdio: 'ignore' }
-        );
+        execSync(`ffmpeg -f lavfi -i sine=frequency=440:duration=5 -c:a libmp3lame "${sourceAudio}"`, {
+          stdio: 'ignore',
+        });
       } catch (error) {
         throw new Error('Ошибка при создании source_audio.mp3. Убедитесь, что FFmpeg установлен.');
       }
@@ -62,7 +61,6 @@ describe('audios', () => {
       // 2. Размер файла должен быть больше 0
       const stats = fs.statSync(testOutputFile);
       expect(stats.size).toBeGreaterThan(0);
-
     } finally {
       // Удаляем временный входной файл после теста, чтобы не засорять папку
       if (fs.existsSync(tempInput)) {

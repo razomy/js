@@ -1,4 +1,4 @@
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Crop an image to the specified dimensions.
@@ -24,12 +24,6 @@ import * as images from "@razomy/images";
  * @complexity time O(width * height)
  * @complexity memory O(width * height)
  */
-export function crop(
-  image: images.Image,
-  x: number,
-  y: number,
-  width: number,
-  height: number
-): images.Image {
+export function crop(image: images.Image, x: number, y: number, width: number, height: number): images.Image {
   return image.crop(x, y, width, height);
 }

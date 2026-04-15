@@ -67,7 +67,7 @@ razomy run @razomy/schemas functionName
 - [bday_day](#bday_day)
 - [bday_month](#bday_month)
 - [bday_year](#bday_year)
-- [blob_](#blob_)
+- [blob\_](#blob_)
 - [cc_additional_name](#cc_additional_name)
 - [cc_csc](#cc_csc)
 - [cc_exp](#cc_exp)
@@ -82,13 +82,13 @@ razomy run @razomy/schemas functionName
 - [country](#country)
 - [country_name](#country_name)
 - [current_password](#current_password)
-- [date_](#date_)
+- [date\_](#date_)
 - [dateIsoString](#dateisostring)
 - [dateString](#datestring)
 - [datetimeString](#datetimestring)
 - [email](#email)
 - [family_name](#family_name)
-- [file_](#file_)
+- [file\_](#file_)
 - [given_name](#given_name)
 - [honoric_prefix](#honoric_prefix)
 - [honoric_suffix](#honoric_suffix)
@@ -156,7 +156,7 @@ razomy run @razomy/schemas functionName
 
 #### bday_year
 
-#### blob_
+#### blob\_
 
 #### cc_additional_name
 
@@ -186,7 +186,7 @@ razomy run @razomy/schemas functionName
 
 #### current_password
 
-#### date_
+#### date\_
 
 #### dateIsoString
 
@@ -198,7 +198,7 @@ razomy run @razomy/schemas functionName
 
 #### family_name
 
-#### file_
+#### file\_
 
 #### given_name
 
@@ -280,9 +280,9 @@ razomy run @razomy/schemas functionName
 
 We can't build this without you.
 If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
+please consider backing the developers behind it.
+Building reliable, open-source tools takes immense time and energy.
+Your sponsorship isn't just a donation;
 it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
 
 Help us keep the momentum going. Choose how you want to light the way:

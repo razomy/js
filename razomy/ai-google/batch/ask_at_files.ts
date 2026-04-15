@@ -1,6 +1,6 @@
 import path from 'path';
 import * as file from '@razomy/fs-file';
-import * as aiGoogle from "@razomy/ai-google";
+import * as aiGoogle from '@razomy/ai-google';
 
 export async function askAtFiles(files_: string[]) {
   const files = files_.map((f) => file.getSync(path.resolve(__dirname, f)));

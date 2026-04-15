@@ -1,23 +1,28 @@
-import {InMemoryFileSystemHost, Project} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
-import * as tsTranslators from "@razomy/ts-translators";
+import { InMemoryFileSystemHost, Project } from 'ts-morph';
+import * as abstracts from '@razomy/abstracts';
+import * as tsTranslators from '@razomy/ts-translators';
 
 describe('parse', () => {
   it('parse', () => {
     // 1. Initialize ts-morph project
     const fileSystem = new InMemoryFileSystemHost();
-    const project = new Project({fileSystem});
-    project.createSourceFile("package.json", `{
+    const project = new Project({ fileSystem });
+    project.createSourceFile(
+      'package.json',
+      `{
     "name":"myPackage", 
     "version":"0.1.1", 
     "description":"myFavoritePackage", 
     "engines": {"node": "1.1.3"}, 
     "dependencies":{
       "myDependencies": "1.1.1"
-    }}`);
+    }}`,
+    );
 
     // 2. Add some source files (or load an entire tsconfig.json)
-    project.createSourceFile("example.ts", `
+    project.createSourceFile(
+      'example.ts',
+      `
     /**
      * The unique ID of the user
      */
@@ -60,555 +65,555 @@ describe('parse', () => {
     export function calculateUserAge(u2: User, u1: User): number {
         return u1.age + u2.age;
     }
-`);
+`,
+    );
 
-    project.createSourceFile("index.ts", "export * as example from './example'; export {calculateUserAge} from './example';");
+    project.createSourceFile(
+      'index.ts',
+      "export * as example from './example'; export {calculateUserAge} from './example';",
+    );
 
     // 3. Run your parser!
     const modules = tsTranslators.ast.bindings.getPackageDeclaration(project, '');
 
     expect(modules).toEqual({
-      "body": [
+      body: [
         {
-          "body": [
+          body: [
             {
-              "kind": "AliasShapeBinding",
-              "meta": {
-                "description": ""
+              kind: 'AliasShapeBinding',
+              meta: {
+                description: '',
               },
-              "shape": {
-                "kind": "UnionShape",
-                "shapes": [
+              shape: {
+                kind: 'UnionShape',
+                shapes: [
                   {
-                    "kind": "BuildInShape",
-                    "type": "String",
-                    "value": "string"
+                    kind: 'BuildInShape',
+                    type: 'String',
+                    value: 'string',
                   },
                   {
-                    "kind": "BuildInShape",
-                    "type": "Number",
-                    "value": "number"
-                  }
-                ]
+                    kind: 'BuildInShape',
+                    type: 'Number',
+                    value: 'number',
+                  },
+                ],
               },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "UserId"
-              }
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'UserId',
+              },
             },
             {
-              "extends_": [],
-              "kind": "InterfaceShapeBinding",
-              "meta": {
-                "description": ""
+              extends_: [],
+              kind: 'InterfaceShapeBinding',
+              meta: {
+                description: '',
               },
-              "properties": [
+              properties: [
                 {
-                  "kind": "PropertyShape",
-                  "meta": {
-                    "description": ""
+                  kind: 'PropertyShape',
+                  meta: {
+                    description: '',
                   },
-                  "shape": {
-                    "kind": "BuildInShape",
-                    "type": "String",
-                    "value": "string"
+                  shape: {
+                    kind: 'BuildInShape',
+                    type: 'String',
+                    value: 'string',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "name"
-                  }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'name',
+                  },
                 },
                 {
-                  "kind": "PropertyShape",
-                  "meta": {
-                    "description": ""
+                  kind: 'PropertyShape',
+                  meta: {
+                    description: '',
                   },
-                  "shape": {
-                    "kind": "BuildInShape",
-                    "type": "Number",
-                    "value": "25"
+                  shape: {
+                    kind: 'BuildInShape',
+                    type: 'Number',
+                    value: '25',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "Number"
-                  }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'Number',
+                  },
                 },
                 {
-                  "kind": "PropertyShape",
-                  "meta": {
-                    "description": ""
+                  kind: 'PropertyShape',
+                  meta: {
+                    description: '',
                   },
-                  "shape": {
-                    "kind": "ArrayShape",
-                    "shapes": [
+                  shape: {
+                    kind: 'ArrayShape',
+                    shapes: [
                       {
-                        "kind": "BuildInShape",
-                        "type": "String",
-                        "value": "string"
-                      }
+                        kind: 'BuildInShape',
+                        type: 'String',
+                        value: 'string',
+                      },
                     ],
-                    "type": "Array"
+                    type: 'Array',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "roles"
-                  }
-                }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'roles',
+                  },
+                },
               ],
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "User"
-              }
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'User',
+              },
             },
             {
-              "expression": {
-                "kind": "BuildInExpression",
-                "type": "String",
-                "value": "hello world"
+              expression: {
+                kind: 'BuildInExpression',
+                type: 'String',
+                value: 'hello world',
               },
-              "identifier": {
-                "kind": "Identifier",
-                "name": "greeting"
+              identifier: {
+                kind: 'Identifier',
+                name: 'greeting',
               },
-              "kind": "VariableBinding",
-              "meta": {
-                "description": ""
+              kind: 'VariableBinding',
+              meta: {
+                description: '',
               },
-              "modifiers": [
-                "const"
-              ],
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "String"
-              }
+              modifiers: ['const'],
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'String',
+              },
             },
             {
-              "body": [],
-              "identifier": {
-                "kind": "Identifier",
-                "name": "calculateTotal"
+              body: [],
+              identifier: {
+                kind: 'Identifier',
+                name: 'calculateTotal',
               },
-              "kind": "FunctionBinding",
-              "meta": {
-                "description": "Calculates the sum",
-                "examples": [
+              kind: 'FunctionBinding',
+              meta: {
+                description: 'Calculates the sum',
+                examples: [
                   {
-                    "code": "a",
-                    "expected": "a"
-                  }
+                    code: 'a',
+                    expected: 'a',
+                  },
                 ],
-                "performance": {
-                  "history": [],
-                  "memoryDataSizeComplexityFn": "O(n)",
-                  "timeDataSizeComplexityFn": "O(n)"
+                performance: {
+                  history: [],
+                  memoryDataSizeComplexityFn: 'O(n)',
+                  timeDataSizeComplexityFn: 'O(n)',
                 },
-                "title": "Calculates the sum"
+                title: 'Calculates the sum',
               },
-              "modifiers": [],
-              "parameters": [
+              modifiers: [],
+              parameters: [
                 {
-                  "expression": null,
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "price"
+                  expression: null,
+                  identifier: {
+                    kind: 'Identifier',
+                    name: 'price',
                   },
-                  "isRest": false,
-                  "kind": "ParameterBinding",
-                  "meta": {
-                    "description": ""
+                  isRest: false,
+                  kind: 'ParameterBinding',
+                  meta: {
+                    description: '',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "Number"
-                  }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'Number',
+                  },
                 },
                 {
-                  "expression": null,
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "tax"
+                  expression: null,
+                  identifier: {
+                    kind: 'Identifier',
+                    name: 'tax',
                   },
-                  "isRest": false,
-                  "kind": "ParameterBinding",
-                  "meta": {
-                    "description": ""
+                  isRest: false,
+                  kind: 'ParameterBinding',
+                  meta: {
+                    description: '',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "Number"
-                  }
-                }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'Number',
+                  },
+                },
               ],
-              "returnType": {
-                "kind": "ReturnShape",
-                "meta": {
-                  "description": "Calculates the sum"
+              returnType: {
+                kind: 'ReturnShape',
+                meta: {
+                  description: 'Calculates the sum',
                 },
-                "shapeIdentifier": {
-                  "kind": "ShapeIdentifier",
-                  "name": "Number"
-                }
+                shapeIdentifier: {
+                  kind: 'ShapeIdentifier',
+                  name: 'Number',
+                },
               },
-              "shapes": []
+              shapes: [],
             },
             {
-              "body": [],
-              "identifier": {
-                "kind": "Identifier",
-                "name": "calculateUserAge"
+              body: [],
+              identifier: {
+                kind: 'Identifier',
+                name: 'calculateUserAge',
               },
-              "kind": "FunctionBinding",
-              "meta": {
-                "description": "Calculates the sum",
-                "examples": [
+              kind: 'FunctionBinding',
+              meta: {
+                description: 'Calculates the sum',
+                examples: [
                   {
-                    "code": "a",
-                    "expected": "a"
-                  }
+                    code: 'a',
+                    expected: 'a',
+                  },
                 ],
-                "performance": {
-                  "history": [],
-                  "memoryDataSizeComplexityFn": "O(n)",
-                  "timeDataSizeComplexityFn": "O(n)"
+                performance: {
+                  history: [],
+                  memoryDataSizeComplexityFn: 'O(n)',
+                  timeDataSizeComplexityFn: 'O(n)',
                 },
-                "title": "Calculates the sum"
+                title: 'Calculates the sum',
               },
-              "modifiers": [],
-              "parameters": [
+              modifiers: [],
+              parameters: [
                 {
-                  "expression": null,
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "u2"
+                  expression: null,
+                  identifier: {
+                    kind: 'Identifier',
+                    name: 'u2',
                   },
-                  "isRest": false,
-                  "kind": "ParameterBinding",
-                  "meta": {
-                    "description": ""
+                  isRest: false,
+                  kind: 'ParameterBinding',
+                  meta: {
+                    description: '',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "User"
-                  }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'User',
+                  },
                 },
                 {
-                  "expression": null,
-                  "identifier": {
-                    "kind": "Identifier",
-                    "name": "u1"
+                  expression: null,
+                  identifier: {
+                    kind: 'Identifier',
+                    name: 'u1',
                   },
-                  "isRest": false,
-                  "kind": "ParameterBinding",
-                  "meta": {
-                    "description": ""
+                  isRest: false,
+                  kind: 'ParameterBinding',
+                  meta: {
+                    description: '',
                   },
-                  "shapeIdentifier": {
-                    "kind": "ShapeIdentifier",
-                    "name": "User"
-                  }
-                }
+                  shapeIdentifier: {
+                    kind: 'ShapeIdentifier',
+                    name: 'User',
+                  },
+                },
               ],
-              "returnType": {
-                "kind": "ReturnShape",
-                "meta": {
-                  "description": "Calculates the sum"
+              returnType: {
+                kind: 'ReturnShape',
+                meta: {
+                  description: 'Calculates the sum',
                 },
-                "shapeIdentifier": {
-                  "kind": "ShapeIdentifier",
-                  "name": "Number"
-                }
+                shapeIdentifier: {
+                  kind: 'ShapeIdentifier',
+                  name: 'Number',
+                },
               },
-              "shapes": []
-            }
+              shapes: [],
+            },
           ],
-          "identifier": {
-            "kind": "Identifier",
-            "name": "example"
+          identifier: {
+            kind: 'Identifier',
+            name: 'example',
           },
-          "kind": "ModuleBinding",
-          "meta": {
-            "description": ""
-          }
+          kind: 'ModuleBinding',
+          meta: {
+            description: '',
+          },
         },
         {
-          "kind": "AliasShapeBinding",
-          "meta": {
-            "description": ""
+          kind: 'AliasShapeBinding',
+          meta: {
+            description: '',
           },
-          "shape": {
-            "kind": "UnionShape",
-            "shapes": [
+          shape: {
+            kind: 'UnionShape',
+            shapes: [
               {
-                "kind": "BuildInShape",
-                "type": "String",
-                "value": "string"
+                kind: 'BuildInShape',
+                type: 'String',
+                value: 'string',
               },
               {
-                "kind": "BuildInShape",
-                "type": "Number",
-                "value": "number"
-              }
-            ]
-          },
-          "shapeIdentifier": {
-            "kind": "ShapeIdentifier",
-            "name": "UserId"
-          }
-        },
-        {
-          "extends_": [],
-          "kind": "InterfaceShapeBinding",
-          "meta": {
-            "description": ""
-          },
-          "properties": [
-            {
-              "kind": "PropertyShape",
-              "meta": {
-                "description": ""
+                kind: 'BuildInShape',
+                type: 'Number',
+                value: 'number',
               },
-              "shape": {
-                "kind": "BuildInShape",
-                "type": "String",
-                "value": "string"
-              },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "name"
-              }
-            },
-            {
-              "kind": "PropertyShape",
-              "meta": {
-                "description": ""
-              },
-              "shape": {
-                "kind": "BuildInShape",
-                "type": "Number",
-                "value": "25"
-              },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "Number"
-              }
-            },
-            {
-              "kind": "PropertyShape",
-              "meta": {
-                "description": ""
-              },
-              "shape": {
-                "kind": "ArrayShape",
-                "shapes": [
-                  {
-                    "kind": "BuildInShape",
-                    "type": "String",
-                    "value": "string"
-                  }
-                ],
-                "type": "Array"
-              },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "roles"
-              }
-            }
-          ],
-          "shapeIdentifier": {
-            "kind": "ShapeIdentifier",
-            "name": "User"
-          }
-        },
-        {
-          "expression": {
-            "kind": "BuildInExpression",
-            "type": "String",
-            "value": "hello world"
-          },
-          "identifier": {
-            "kind": "Identifier",
-            "name": "greeting"
-          },
-          "kind": "VariableBinding",
-          "meta": {
-            "description": ""
-          },
-          "modifiers": [
-            "const"
-          ],
-          "shapeIdentifier": {
-            "kind": "ShapeIdentifier",
-            "name": "String"
-          }
-        },
-        {
-          "body": [],
-          "identifier": {
-            "kind": "Identifier",
-            "name": "calculateTotal"
-          },
-          "kind": "FunctionBinding",
-          "meta": {
-            "description": "Calculates the sum",
-            "examples": [
-              {
-                "code": "a",
-                "expected": "a"
-              }
             ],
-            "performance": {
-              "history": [],
-              "memoryDataSizeComplexityFn": "O(n)",
-              "timeDataSizeComplexityFn": "O(n)"
-            },
-            "title": "Calculates the sum"
           },
-          "modifiers": [],
-          "parameters": [
-            {
-              "expression": null,
-              "identifier": {
-                "kind": "Identifier",
-                "name": "price"
-              },
-              "isRest": false,
-              "kind": "ParameterBinding",
-              "meta": {
-                "description": ""
-              },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "Number"
-              }
-            },
-            {
-              "expression": null,
-              "identifier": {
-                "kind": "Identifier",
-                "name": "tax"
-              },
-              "isRest": false,
-              "kind": "ParameterBinding",
-              "meta": {
-                "description": ""
-              },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "Number"
-              }
-            }
-          ],
-          "returnType": {
-            "kind": "ReturnShape",
-            "meta": {
-              "description": "Calculates the sum"
-            },
-            "shapeIdentifier": {
-              "kind": "ShapeIdentifier",
-              "name": "Number"
-            }
+          shapeIdentifier: {
+            kind: 'ShapeIdentifier',
+            name: 'UserId',
           },
-          "shapes": []
         },
         {
-          "body": [],
-          "identifier": {
-            "kind": "Identifier",
-            "name": "calculateUserAge"
+          extends_: [],
+          kind: 'InterfaceShapeBinding',
+          meta: {
+            description: '',
           },
-          "kind": "FunctionBinding",
-          "meta": {
-            "description": "Calculates the sum",
-            "examples": [
+          properties: [
+            {
+              kind: 'PropertyShape',
+              meta: {
+                description: '',
+              },
+              shape: {
+                kind: 'BuildInShape',
+                type: 'String',
+                value: 'string',
+              },
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'name',
+              },
+            },
+            {
+              kind: 'PropertyShape',
+              meta: {
+                description: '',
+              },
+              shape: {
+                kind: 'BuildInShape',
+                type: 'Number',
+                value: '25',
+              },
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'Number',
+              },
+            },
+            {
+              kind: 'PropertyShape',
+              meta: {
+                description: '',
+              },
+              shape: {
+                kind: 'ArrayShape',
+                shapes: [
+                  {
+                    kind: 'BuildInShape',
+                    type: 'String',
+                    value: 'string',
+                  },
+                ],
+                type: 'Array',
+              },
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'roles',
+              },
+            },
+          ],
+          shapeIdentifier: {
+            kind: 'ShapeIdentifier',
+            name: 'User',
+          },
+        },
+        {
+          expression: {
+            kind: 'BuildInExpression',
+            type: 'String',
+            value: 'hello world',
+          },
+          identifier: {
+            kind: 'Identifier',
+            name: 'greeting',
+          },
+          kind: 'VariableBinding',
+          meta: {
+            description: '',
+          },
+          modifiers: ['const'],
+          shapeIdentifier: {
+            kind: 'ShapeIdentifier',
+            name: 'String',
+          },
+        },
+        {
+          body: [],
+          identifier: {
+            kind: 'Identifier',
+            name: 'calculateTotal',
+          },
+          kind: 'FunctionBinding',
+          meta: {
+            description: 'Calculates the sum',
+            examples: [
               {
-                "code": "a",
-                "expected": "a"
-              }
+                code: 'a',
+                expected: 'a',
+              },
             ],
-            "performance": {
-              "history": [],
-              "memoryDataSizeComplexityFn": "O(n)",
-              "timeDataSizeComplexityFn": "O(n)"
+            performance: {
+              history: [],
+              memoryDataSizeComplexityFn: 'O(n)',
+              timeDataSizeComplexityFn: 'O(n)',
             },
-            "title": "Calculates the sum"
+            title: 'Calculates the sum',
           },
-          "modifiers": [],
-          "parameters": [
+          modifiers: [],
+          parameters: [
             {
-              "expression": null,
-              "identifier": {
-                "kind": "Identifier",
-                "name": "u2"
+              expression: null,
+              identifier: {
+                kind: 'Identifier',
+                name: 'price',
               },
-              "isRest": false,
-              "kind": "ParameterBinding",
-              "meta": {
-                "description": ""
+              isRest: false,
+              kind: 'ParameterBinding',
+              meta: {
+                description: '',
               },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "User"
-              }
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'Number',
+              },
             },
             {
-              "expression": null,
-              "identifier": {
-                "kind": "Identifier",
-                "name": "u1"
+              expression: null,
+              identifier: {
+                kind: 'Identifier',
+                name: 'tax',
               },
-              "isRest": false,
-              "kind": "ParameterBinding",
-              "meta": {
-                "description": ""
+              isRest: false,
+              kind: 'ParameterBinding',
+              meta: {
+                description: '',
               },
-              "shapeIdentifier": {
-                "kind": "ShapeIdentifier",
-                "name": "User"
-              }
-            }
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'Number',
+              },
+            },
           ],
-          "returnType": {
-            "kind": "ReturnShape",
-            "meta": {
-              "description": "Calculates the sum"
+          returnType: {
+            kind: 'ReturnShape',
+            meta: {
+              description: 'Calculates the sum',
             },
-            "shapeIdentifier": {
-              "kind": "ShapeIdentifier",
-              "name": "Number"
-            }
+            shapeIdentifier: {
+              kind: 'ShapeIdentifier',
+              name: 'Number',
+            },
           },
-          "shapes": []
-        }
-      ],
-      "dependencies": [
-        {
-          "identifier": {
-            "kind": "Identifier",
-            "name": "myDependencies"
-          },
-          "kind": "DependencyBinding",
-          "path": "",
-          "version": "1.1.1"
-        }
-      ],
-      "identifier": {
-        "kind": "Identifier",
-        "name": "myPackage"
-      },
-      "kind": "PackageBinding",
-      "meta": {
-        "description": "myFavoritePackage"
-      },
-      "runtime": {
-        "identifier": {
-          "kind": "Identifier",
-          "name": "node"
+          shapes: [],
         },
-        "kind": "DependencyBinding",
-        "path": "",
-        "version": "1.1.3"
+        {
+          body: [],
+          identifier: {
+            kind: 'Identifier',
+            name: 'calculateUserAge',
+          },
+          kind: 'FunctionBinding',
+          meta: {
+            description: 'Calculates the sum',
+            examples: [
+              {
+                code: 'a',
+                expected: 'a',
+              },
+            ],
+            performance: {
+              history: [],
+              memoryDataSizeComplexityFn: 'O(n)',
+              timeDataSizeComplexityFn: 'O(n)',
+            },
+            title: 'Calculates the sum',
+          },
+          modifiers: [],
+          parameters: [
+            {
+              expression: null,
+              identifier: {
+                kind: 'Identifier',
+                name: 'u2',
+              },
+              isRest: false,
+              kind: 'ParameterBinding',
+              meta: {
+                description: '',
+              },
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'User',
+              },
+            },
+            {
+              expression: null,
+              identifier: {
+                kind: 'Identifier',
+                name: 'u1',
+              },
+              isRest: false,
+              kind: 'ParameterBinding',
+              meta: {
+                description: '',
+              },
+              shapeIdentifier: {
+                kind: 'ShapeIdentifier',
+                name: 'User',
+              },
+            },
+          ],
+          returnType: {
+            kind: 'ReturnShape',
+            meta: {
+              description: 'Calculates the sum',
+            },
+            shapeIdentifier: {
+              kind: 'ShapeIdentifier',
+              name: 'Number',
+            },
+          },
+          shapes: [],
+        },
+      ],
+      dependencies: [
+        {
+          identifier: {
+            kind: 'Identifier',
+            name: 'myDependencies',
+          },
+          kind: 'DependencyBinding',
+          path: 'myDependencies',
+          version: '1.1.1',
+        },
+      ],
+      identifier: {
+        kind: 'Identifier',
+        name: 'myPackage',
       },
-      "version": "0.1.1"
+      kind: 'PackageBinding',
+      meta: {
+        description: 'myFavoritePackage',
+      },
+      runtime: {
+        identifier: {
+          kind: 'Identifier',
+          name: 'node',
+        },
+        kind: 'DependencyBinding',
+        path: '',
+        version: '1.1.3',
+      },
+      version: '0.1.1',
     } satisfies abstracts.translators.PackageBinding);
   });
 });

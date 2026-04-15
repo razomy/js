@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export interface QuadTreeNode<T> extends abstracts.structures.Node<T> {
   children: [QuadTreeNode<T> | null, QuadTreeNode<T> | null, QuadTreeNode<T> | null, QuadTreeNode<T> | null];

@@ -1,5 +1,5 @@
 import simpleGit from 'simple-git';
-import * as git from "@razomy/git";
+import * as git from '@razomy/git';
 
 export interface FileChanges {
   created: string[];
@@ -10,7 +10,7 @@ export interface FileChanges {
 export async function getChangedFilesBetweenCommitsOrAll(
   repoPath: string,
   fromCommit: string | null,
-  toCommit: string | null
+  toCommit: string | null,
 ): Promise<FileChanges> {
   if (!fromCommit || !toCommit) {
     const git = simpleGit(repoPath);
@@ -19,11 +19,7 @@ export async function getChangedFilesBetweenCommitsOrAll(
       created: allFilesOutput.trim().split(/\r?\n/).filter(Boolean),
       modified: [],
       deleted: [],
-    }
+    };
   }
-  return git.getChangedFilesBetweenCommits(
-    repoPath,
-    fromCommit,
-    toCommit
-  )
+  return git.getChangedFilesBetweenCommits(repoPath, fromCommit, toCommit);
 }

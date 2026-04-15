@@ -51,7 +51,7 @@
 import { computed, useDisplay, useRzmRuntimeConfigState, useI18n, useLocalePath, useRoute, watch } from '#imports';
 import { ref } from 'vue';
 
-const {c} = useRzmRuntimeConfigState();
+const { c } = useRzmRuntimeConfigState();
 const { xs } = useDisplay();
 const isMobile = computed(() => xs.value);
 

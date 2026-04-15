@@ -1,4 +1,4 @@
-import * as aiOpenai from "@razomy/ai-openai";
+import * as aiOpenai from '@razomy/ai-openai';
 
 export async function v1(params = { messages: [] } as any) {
   const prompt = params.messages.map((i) => i.content).join('\n');

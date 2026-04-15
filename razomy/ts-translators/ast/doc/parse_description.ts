@@ -1,4 +1,4 @@
-import {Node} from "ts-morph";
+import { Node } from 'ts-morph';
 
 /**
  * Helper to safely extract JSDoc description

@@ -1,3 +1,3 @@
-import * as exceptions from "@razomy/exceptions";
+import * as exceptions from '@razomy/exceptions';
 
-export class NotSupportedException extends exceptions.Exception {}
+export class NotSupportedException extends exceptions.AException {}

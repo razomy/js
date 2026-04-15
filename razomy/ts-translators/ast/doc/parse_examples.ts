@@ -1,4 +1,4 @@
-import {JSDoc} from "ts-morph";
+import { JSDoc } from 'ts-morph';
 
 export function parseExamples(doc: JSDoc, funcName: string) {
   const exampleTags = doc.getTags().filter((t) => t.getTagName() === 'example');
@@ -18,7 +18,9 @@ export function parseExamples(doc: JSDoc, funcName: string) {
     const parts = rawCode.split('// =>');
 
     if (parts.length !== 2) {
-      throw new Error(`[Parse Error] Invalid @example format in '${funcName}'. Expected '// =>' separator for expected result.`);
+      throw new Error(
+        `[Parse Error] Invalid @example format in '${funcName}'. Expected '// =>' separator for expected result.`,
+      );
     }
 
     return {

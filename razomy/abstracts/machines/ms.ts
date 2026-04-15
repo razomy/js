@@ -76,7 +76,7 @@ interface IActor {
   actorId: string;
   mailbox: IMessage[]; // Incoming message queue
 
-// The actor decides when to read mail and who to reply to
+  // The actor decides when to read mail and who to reply to
   processNextMessage(): Promise<IMessage | null>; // Can return a new message to send
 }
 
@@ -117,7 +117,7 @@ interface IWorker {
 interface IJobMarket {
   publishJob(job: IJobContract): void;
 
-// Collects bids from workers whose capabilities match requiredTags,
-// selects a winner and assigns the task to them.
+  // Collects bids from workers whose capabilities match requiredTags,
+  // selects a winner and assigns the task to them.
   assignJob(jobId: string): Promise<void>;
 }

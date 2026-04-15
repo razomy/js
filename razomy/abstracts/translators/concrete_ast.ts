@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 // ==========================================
 // СЛОЙ 1.1: CST (Concrete Syntax Tree) - Чистая геометрия текста

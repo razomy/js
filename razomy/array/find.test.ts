@@ -1,4 +1,4 @@
-import * as array from "@razomy/array";
+import * as array from '@razomy/array';
 
 describe('array', () => {
   describe('find', () => {
@@ -52,9 +52,9 @@ describe('array', () => {
       });
 
       expect(args).toEqual([
-        ['a', 0, array],
-        ['b', 1, array],
-        ['c', 2, array],
+        ['a', 0, arr],
+        ['b', 1, arr],
+        ['c', 2, arr],
       ]);
     });
 

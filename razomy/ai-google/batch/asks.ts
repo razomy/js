@@ -1,5 +1,5 @@
 import type { BatchJobSourceUnion, InlinedRequest } from '@google/genai';
-import * as aiGoogle from "@razomy/ai-google";
+import * as aiGoogle from '@razomy/ai-google';
 
 export async function asks(texts: string[], systemText: string) {
   const inlinedRequests: BatchJobSourceUnion = texts.map((text) => {

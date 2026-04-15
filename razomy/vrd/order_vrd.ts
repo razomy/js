@@ -1,4 +1,4 @@
-import * as vrd from "@razomy/vrd";
+import * as vrd from '@razomy/vrd';
 
 export function orderVrd<T, T2>(a: vrd.VrdOrValue<T>, b: vrd.VrdOrValue<T2>): vrd.VrdOrValue<T2> {
   if (vrd.isVrd(a) && vrd.isVrd(b)) {

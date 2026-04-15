@@ -1,5 +1,5 @@
 import Vips from 'wasm-vips';
-import * as images from "@razomy/images";
+import * as images from '@razomy/images';
 
 /**
  * @summary Apply an emboss filter to the image.
@@ -25,7 +25,7 @@ export function emboss(image: images.Image): images.Image {
   const matrix = Vips.Image.newFromArray([
     [-1, -1, 0],
     [-1, 1, 1],
-    [0, 1, 1]
+    [0, 1, 1],
   ] as any);
 
   return image.conv(matrix);
