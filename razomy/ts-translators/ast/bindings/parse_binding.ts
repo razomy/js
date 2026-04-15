@@ -1,10 +1,6 @@
 import {Node} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-import {parseVariableBinding} from "./parse_variable_binding";
-import {parseTypeAliasBinding} from "./parse_type_alias_binding";
-import {parseInterfaceDeclaration} from "../shapeBindings";
-import {parseFunctionDeclaration} from "./parse_function_declaration";
-import {parseEnumDeclaration} from "./parse_enum_declaration";
+import * as tsTranslators from "@razomy/ts-translators";
 
 /**
  * Recursively parses general TS Nodes (Declarations, Statements)
@@ -15,23 +11,23 @@ export function parseBinding(node: Node): abstracts.translators.SbsbType | null 
   }
 
   if (Node.isVariableDeclaration(node)) {
-    return parseVariableBinding(node);
+    return tsTranslators.ast.bindings.parseVariableBinding(node);
   }
 
   if (Node.isTypeAliasDeclaration(node)) {
-    return parseTypeAliasBinding(node);
+    return tsTranslators.ast.bindings.parseTypeAliasBinding(node);
   }
 
   if (Node.isInterfaceDeclaration(node)) {
-    return parseInterfaceDeclaration(node);
+    return tsTranslators.ast.shapeBindings.parseInterfaceDeclaration(node);
   }
 
   if (Node.isEnumDeclaration(node)) {
-    return parseEnumDeclaration(node);
+    return tsTranslators.ast.bindings.parseEnumDeclaration(node);
   }
 
   if (Node.isFunctionDeclaration(node)) {
-    return parseFunctionDeclaration(node);
+    return tsTranslators.ast.bindings.parseFunctionDeclaration(node);
   }
 
   if (Node.isImportDeclaration(node)) {

@@ -65,7 +65,8 @@
     "@razomy/fss": "*",
     "@razomy/languages-programming-fs": "*",
     "@razomy/refactor-fs": "*",
-    "@razomy/string-case": "*"
+    "@razomy/string-case": "*",
+    "@razomy/ts-translators": "*"
   },
   "publishConfig": {
     "access": "public"

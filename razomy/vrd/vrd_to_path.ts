@@ -1,8 +1,7 @@
-import type { VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
+import * as vrd_ from "@razomy/vrd";
 
-export function vrdToPath(vrd: VrdOrValue<string | null>): string[] {
-  if (isVrd(vrd)) {
+export function vrdToPath(vrd: vrd_.VrdOrValue<string | null>): string[] {
+  if (vrd_.isVrd(vrd)) {
     const key = Object.keys(vrd)[0];
     if (!key) {
       return [];

@@ -1,6 +1,5 @@
 import simpleGit from "simple-git";
-import {statusFilesToFileChangesMut} from './status_files_to_file_changes_mut';
-import type {FileChanges} from './get_changed_files_between_commits_or_all';
+import * as git_ from "@razomy/git";
 
 /**
  * Compares two commits and returns a categorized list of changed files.
@@ -9,7 +8,7 @@ import type {FileChanges} from './get_changed_files_between_commits_or_all';
  * @param fromCommit - The older commit hash
  * @param toCommit - The newer commit hash
  */
-export async function getChangedFilesBetweenCommits(repoPath: string, fromCommit: string, toCommit: string): Promise<FileChanges> {
+export async function getChangedFilesBetweenCommits(repoPath: string, fromCommit: string, toCommit: string): Promise<git_.FileChanges> {
     if (fromCommit === toCommit) {
     return {
       created: [],
@@ -20,7 +19,7 @@ export async function getChangedFilesBetweenCommits(repoPath: string, fromCommit
 
     const git = simpleGit(repoPath);
     const diffOutput = await git.diff(['--name-status', fromCommit, toCommit]);
-    const result: FileChanges = {
+    const result: git_.FileChanges = {
             created: [],
             modified: [],
             deleted: [],
@@ -31,7 +30,7 @@ export async function getChangedFilesBetweenCommits(repoPath: string, fromCommit
 
     const lines = diffOutput.trim().split('\n');
     for (const line of lines) {
-    statusFilesToFileChangesMut(result, line);
+    git_.statusFilesToFileChangesMut(result, line);
     }
 
     return result;

@@ -1,8 +1,7 @@
 import {SourceFile} from "ts-morph";
 
 import * as abstracts from "@razomy/abstracts";
-import {parseBinding} from "./parse_binding";
-import {parseModuleDeclaration} from "./parse_module_declaration";
+import * as tsTranslators from "@razomy/ts-translators";
 
 /**
  * Parses a single SourceFile into a Module
@@ -11,7 +10,7 @@ export function parseModuleDeclarationBody(file: SourceFile) {
   const body: abstracts.translators.SbsbType[] = [];
 
   for (const statement of file.getStatements()) {
-    const parsedNode = parseBinding(statement);
+    const parsedNode = tsTranslators.ast.bindings.parseBinding(statement);
     if (parsedNode) {
       body.push(parsedNode);
     }
@@ -39,7 +38,7 @@ export function parseModuleDeclarationBody(file: SourceFile) {
       if (isTargetIndex) {
         // Если это папка с index.ts внутри, рекурсивно парсим саму папку
         const subDir = targetSourceFile.getDirectory();
-        const subModule = parseModuleDeclaration(subDir);
+        const subModule = tsTranslators.ast.bindings.parseModuleDeclaration(subDir);
         body.push(subModule);
       } else {
         // Если это экспорт конкретного файла как подмодуля (export * as types from './types.ts')

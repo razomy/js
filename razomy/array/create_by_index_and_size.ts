@@ -1,4 +1,4 @@
-import { create } from './create';
+import * as array_ from "@razomy/array";
 
 /**
  * @summary Create an array of a specific size with the value 1 at the specified index.
@@ -22,7 +22,7 @@ import { create } from './create';
  * @complexity memory O(n)
  */
 export function createByIndexAndSize(index: number, size: number): number[] {
-  const array = create(size, 0);
+  const array = array_.create(size, 0);
   array[index] = 1;
   return array;
 }

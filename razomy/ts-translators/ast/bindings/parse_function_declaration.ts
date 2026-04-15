@@ -1,31 +1,24 @@
 import {FunctionDeclaration} from "ts-morph";
-import {parseIdentifier} from "./parse_identifier";
-import {parseParameterDeclaration} from "./parse_parameter_declaration";
 import * as abstracts from "@razomy/abstracts";
-import {parseTitleOrThrow} from "../doc/parse_title_or_throw";
-import {parseExamples} from "../doc/parse_examples";
-import {parseComplexity} from "../doc/parse_complexity";
-import {parseShapeIdentifier} from "../shapes/parse_shape_identifier";
-import {parseFunctionDescriptionOrThrow, parseReturnOrThrow, tryParseJsDoc} from "../doc";
-
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseFunctionDeclaration(node: FunctionDeclaration): abstracts.translators.FunctionBinding {
   const funcName = node.getNameOrThrow();
-  const doc = tryParseJsDoc(node);
-  const title = doc ? parseTitleOrThrow(doc, funcName) : '';
-  const examples = doc ? parseExamples(doc, funcName) : [];
-  const returnDescription = doc ? parseReturnOrThrow(doc, funcName) : "";
-  const complexity = doc ? parseComplexity(doc, funcName) : {time: '', memory: ''};
+  const doc = tsTranslators.ast.doc.tryParseJsDoc(node);
+  const title = doc ? tsTranslators.ast.doc.parseTitleOrThrow(doc, funcName) : '';
+  const examples = doc ? tsTranslators.ast.doc.parseExamples(doc, funcName) : [];
+  const returnDescription = doc ? tsTranslators.ast.doc.parseReturnOrThrow(doc, funcName) : "";
+  const complexity = doc ? tsTranslators.ast.doc.parseComplexity(doc, funcName) : {time: '', memory: ''};
   // const history = await extractPerformanceHistory(path_, funcName, parameters);
   const history = [] as [];
 
   return {
     kind: 'FunctionBinding',
-    identifier: node.getNameNode() ? parseIdentifier(node.getNameNode()!) : {kind: 'Identifier', name: ''},
-    parameters: node.getParameters().map(p => parseParameterDeclaration(p)),
+    identifier: node.getNameNode() ? tsTranslators.ast.bindings.parseIdentifier(node.getNameNode()!) : {kind: 'Identifier', name: ''},
+    parameters: node.getParameters().map(p => tsTranslators.ast.bindings.parseParameterDeclaration(p)),
     returnType: node.getReturnTypeNode() ? {
       kind: 'ReturnShape',
-      shapeIdentifier: parseShapeIdentifier(node.getReturnTypeNode()!),
+      shapeIdentifier: tsTranslators.ast.shapes.parseShapeIdentifier(node.getReturnTypeNode()!),
       meta: {description: returnDescription,}
     } : null,
     modifiers: [
@@ -36,7 +29,7 @@ export function parseFunctionDeclaration(node: FunctionDeclaration): abstracts.t
     body: [],
     shapes: [],
     meta: {
-      description: doc ? parseFunctionDescriptionOrThrow(doc) : '',
+      description: doc ? tsTranslators.ast.doc.parseFunctionDescriptionOrThrow(doc) : '',
       title,
       performance: {
         history,

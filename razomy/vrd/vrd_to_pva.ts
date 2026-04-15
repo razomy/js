@@ -1,14 +1,13 @@
-import type { VrdOrValue } from './vrd';
-import { isVrd } from './is_vrd';
 import * as abstracts from '@razomy/abstracts';
+import * as vrd_ from "@razomy/vrd";
 
 export function vrdToPva<T>(
-  input: VrdOrValue<T>,
+  input: vrd_.VrdOrValue<T>,
   absolutePath: abstracts.graphs.AbsolutePathString,
   separator: string,
 ) {
   const result: { path: abstracts.graphs.AbsolutePathString; value: T }[] = [];
-  const stack: { path: abstracts.graphs.AbsolutePathString; vrd: VrdOrValue<T> }[] = [
+  const stack: { path: abstracts.graphs.AbsolutePathString; vrd: vrd_.VrdOrValue<T> }[] = [
     { vrd: input, path: absolutePath },
   ];
 
@@ -25,7 +24,7 @@ export function vrdToPva<T>(
       const newPrefix = path ? path + separator + inputKey : inputKey;
 
       // If the value is a nested Vrd, push it onto the stack to process its children
-      if (isVrd(vrdOrValue)) {
+      if (vrd_.isVrd(vrdOrValue)) {
         stack.push({
           vrd: vrdOrValue,
           path: newPrefix,

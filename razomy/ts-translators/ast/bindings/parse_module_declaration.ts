@@ -1,7 +1,6 @@
 import {Directory} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-import {parseModuleDeclarationBody} from "./parse_module_declaration_body";
-
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseModuleDeclaration(
   node: Directory,
@@ -10,7 +9,7 @@ export function parseModuleDeclaration(
   if (!indexFile) {
     throw new Error("NO index file")
   }
-  const body = parseModuleDeclarationBody(indexFile);
+  const body = tsTranslators.ast.bindings.parseModuleDeclarationBody(indexFile);
   // Имя модуля: либо переданное (для подмодулей), либо имя папки
   const moduleName = node.getBaseName() || '';
 

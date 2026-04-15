@@ -2,15 +2,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
-import {getAll} from './get_all';
-import {getExportedFunctions} from '../../ts-refactor/get_exported_functions';
-import {getExportedConstants} from '../../ts-refactor/get_exported_constants';
 import {Project} from 'ts-morph';
-import {getFilteredSourceFiles} from '../../ts-refactor/get_filtered_source_files';
 import * as json from '@razomy/json';
+import * as tsRefactorProject from "@razomy/ts-refactor-project";
+import * as tsRefactor from "@razomy/ts-refactor";
 
 export function updateByTemplate(projectPath: string, prefix) {
-  const packages = getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+  const packages = tsRefactorProject.packageJson.getAll(projectPath).filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
   const project = new Project({tsConfigFilePath: projectPath + '/' + 'tsconfig.json'});
 
   packages.forEach((folder) => {
@@ -18,9 +16,9 @@ export function updateByTemplate(projectPath: string, prefix) {
     const content = fs.readFileSync(folder.path, `utf-8`);
     const currentPackageJson = JSON.parse(content);
     const srcPrefix = (currentPackageJson.files || ['*'])[0] === `*` ? `` : `src/`;
-    const sources = getFilteredSourceFiles(project, path.dirname(folder.path));
-    const functions = getExportedFunctions(sources);
-    const consts = getExportedConstants(sources);
+    const sources = tsRefactor.getFilteredSourceFiles(project, path.dirname(folder.path));
+    const functions = tsRefactor.getExportedFunctions(sources);
+    const consts = tsRefactor.getExportedConstants(sources);
 
     const dotBrowserExports = {
       vue: {

@@ -1,7 +1,5 @@
 import { performance } from 'perf_hooks';
-import { formatTime } from './format_time';
-import { formatMemory } from './format_memory';
-import { estimate } from './estimate';
+import * as performance_ from "@razomy/performance";
 
 export interface PerformanceRecord {
   // Abstract linear measurement system of function complexity for space
@@ -34,14 +32,14 @@ export class WeightedMovingAverageRecorder {
   }
 
   public estimate(timeDataSize: number, memoryDataSize: number) {
-    return estimate(this.history, timeDataSize, memoryDataSize);
+    return performance_.estimate(this.history, timeDataSize, memoryDataSize);
   }
 
   /**
    * Wrapper for executing the task. Measures time, memory, and learns.
    */
   public async measure<T>(timeDataSize: number, memoryDataSize: number, taskFn: () => Promise<T>) {
-    const prediction = estimate(this.history, timeDataSize, memoryDataSize);
+    const prediction = performance_.estimate(this.history, timeDataSize, memoryDataSize);
 
     // 1. Snapshot memory and time before execution
     const startMemory = process.memoryUsage().heapUsed;
@@ -72,9 +70,9 @@ export class WeightedMovingAverageRecorder {
     return {
       result: result,
       prediction: prediction,
-      actualTimeText: formatTime(actualTimeMs),
+      actualTimeText: performance_.formatTime(actualTimeMs),
       actualTimeMs: actualTimeMs,
-      actualMemoryText: formatMemory(actualMemoryBytes),
+      actualMemoryText: performance_.formatMemory(actualMemoryBytes),
       actualMemoryBytes: actualMemoryBytes,
     };
   }

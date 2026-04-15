@@ -1,13 +1,12 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from "@razomy/abstracts";
-import {functionToString, docToString, type FlatDeclaration} from "../ts-translators/ast/md";
-import {bindingToString} from "../ts-translators/ast/md/binding_to_string";
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
   const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
 
-  const allDecls = bindingToString(packageDeclaration.body, []);
+  const allDecls = tsTranslators.ast.md.bindingToString(packageDeclaration.body, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -93,7 +92,7 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   const typeSpecs = allDecls.filter(i => i.node.kind !== 'FunctionBinding');
-  const functionSpecs = allDecls.filter(i => i.node.kind === 'FunctionBinding') as FlatDeclaration<abstracts.translators.FunctionBinding>[];
+  const functionSpecs = allDecls.filter(i => i.node.kind === 'FunctionBinding') as tsTranslators.ast.md.FlatDeclaration<abstracts.translators.FunctionBinding>[];
   const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
 
   const imports = `
@@ -124,12 +123,12 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${functionsToc.leng
   `.trim();
 
   const functions = functionSpecs
-    .map(functionToString)
+    .map(tsTranslators.ast.md.functionToString)
     .join('\n\n')
     .trim();
 
   const types = typeSpecs
-    .map(docToString)
+    .map(tsTranslators.ast.md.docToString)
     .join('\n\n')
     .trim();
 

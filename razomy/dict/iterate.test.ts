@@ -1,11 +1,11 @@
-import { iterate } from './iterate';
+import * as dict_ from "@razomy/dict";
 
 describe('dictionary', () => {
   describe('iterate', () => {
     // 1. Standard cases
     it('iterates over all key-value pairs in the dictionary', () => {
       const logs: Array<[string, number]> = [];
-      iterate({ a: 1, b: 2, c: 3 }, (value, key) => {
+      dict_.iterate({ a: 1, b: 2, c: 3 }, (value, key) => {
         logs.push([key, value as number]);
       });
       expect(logs).toEqual([
@@ -17,14 +17,14 @@ describe('dictionary', () => {
 
     it('returns the original dictionary', () => {
       const dict = { a: 1, b: 2 };
-      const result = iterate(dict, () => {});
+      const result = dict_.iterate(dict, () => {});
       expect(result).toBe(dict);
     });
 
     // 2. Empty dictionary
     it('handles an empty dictionary without invoking the iteratee', () => {
       let callCount = 0;
-      const result = iterate({}, () => {
+      const result = dict_.iterate({}, () => {
         callCount++;
       });
       expect(callCount).toBe(0);
@@ -36,7 +36,7 @@ describe('dictionary', () => {
       const dict = { x: 10, y: 20 };
       const args: Array<[unknown, string, typeof dict]> = [];
 
-      iterate(dict, (value, key, d) => {
+      dict_.iterate(dict, (value, key, d) => {
         args.push([value, key, d]);
       });
 
@@ -49,7 +49,7 @@ describe('dictionary', () => {
     // 4. Early termination (short-circuiting)
     it('stops iterating when the iteratee returns false', () => {
       const logs: number[] = [];
-      iterate({ x: 10, y: 20, z: 30 }, (value) => {
+      dict_.iterate({ x: 10, y: 20, z: 30 }, (value) => {
         if ((value as number) >= 20) return false;
         logs.push(value as number);
         return;
@@ -59,7 +59,7 @@ describe('dictionary', () => {
 
     it('does not stop iterating for other falsy return values', () => {
       const logs: Array<[string, unknown]> = [];
-      iterate({ a: 1, b: 2, c: 3 }, (value, key) => {
+      dict_.iterate({ a: 1, b: 2, c: 3 }, (value, key) => {
         logs.push([key, value]);
         return undefined;
       });
@@ -72,7 +72,7 @@ describe('dictionary', () => {
 
     it('does not stop iterating when iteratee returns 0', () => {
       const logs: string[] = [];
-      iterate({ a: 1, b: 2 }, (_value, key) => {
+      dict_.iterate({ a: 1, b: 2 }, (_value, key) => {
         logs.push(key);
         return 0;
       });
@@ -81,7 +81,7 @@ describe('dictionary', () => {
 
     it('does not stop iterating when iteratee returns null', () => {
       const logs: string[] = [];
-      iterate({ a: 1, b: 2 }, (_value, key) => {
+      dict_.iterate({ a: 1, b: 2 }, (_value, key) => {
         logs.push(key);
         return null;
       });
@@ -90,7 +90,7 @@ describe('dictionary', () => {
 
     it('does not stop iterating when iteratee returns empty string', () => {
       const logs: string[] = [];
-      iterate({ a: 1, b: 2 }, (_value, key) => {
+      dict_.iterate({ a: 1, b: 2 }, (_value, key) => {
         logs.push(key);
         return '';
       });
@@ -100,7 +100,7 @@ describe('dictionary', () => {
     // 5. Single entry dictionary
     it('works correctly with a single entry dictionary', () => {
       const logs: Array<[string, number]> = [];
-      iterate({ only: 42 }, (value, key) => {
+      dict_.iterate({ only: 42 }, (value, key) => {
         logs.push([key, value as number]);
       });
       expect(logs).toEqual([['only', 42]]);
@@ -109,7 +109,7 @@ describe('dictionary', () => {
     // 6. Early termination on first element
     it('stops on the first element if iteratee returns false immediately', () => {
       let callCount = 0;
-      iterate({ a: 1, b: 2, c: 3 }, () => {
+      dict_.iterate({ a: 1, b: 2, c: 3 }, () => {
         callCount++;
         return false;
       });
@@ -125,7 +125,7 @@ describe('dictionary', () => {
       const keys: string[] = [];
       const values: unknown[] = [];
 
-      iterate(dict, (value, key) => {
+      dict_.iterate(dict, (value, key) => {
         keys.push(key);
         values.push(value);
       });
@@ -141,7 +141,7 @@ describe('dictionary', () => {
       child.own = 'value';
 
       const logs: string[] = [];
-      iterate(child, (_value, key) => {
+      dict_.iterate(child, (_value, key) => {
         logs.push(key);
       });
 
@@ -154,7 +154,7 @@ describe('dictionary', () => {
       const dict = { str: 'hello', num: 42, bool: true, nil: null, undef: undefined };
       const collected: Array<[string, unknown]> = [];
 
-      iterate(dict, (value, key) => {
+      dict_.iterate(dict, (value, key) => {
         collected.push([key, value]);
       });
 
@@ -170,7 +170,7 @@ describe('dictionary', () => {
     // 10. Returns the object-coerced version for primitives (edge case with Object())
     it('returns the result of Object(dict)', () => {
       const dict = { a: 1 };
-      const result = iterate(dict, () => {});
+      const result = dict_.iterate(dict, () => {});
       expect(result).toBe(dict);
     });
   });

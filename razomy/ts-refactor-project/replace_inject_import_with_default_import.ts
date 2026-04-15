@@ -1,4 +1,4 @@
-import {Node, Project} from 'ts-morph';
+import { Node, Project, SyntaxKind } from 'ts-morph';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from "@razomy/string-case";
 
@@ -17,6 +17,14 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
       let hasChanges = false;
       const namespacesToAdd = new Map<string, string>();
 
+      // === НОВЫЙ БЛОК: СОБИРАЕМ ВСЕ ИМЕНА В ФАЙЛЕ ===
+      // Собираем абсолютно все слова, которые используются как переменные, функции, свойства на любом уровне.
+      // Это дает 100% гарантию, что наш сгенерированный alias ни с чем не пересечется.
+      const allIdentifiersInFile = new Set(
+        file.getDescendantsOfKind(SyntaxKind.Identifier).map(id => id.getText())
+      );
+      // ===============================================
+
       const importDeclarations = file.getImportDeclarations();
 
       for (const importDecl of importDeclarations) {
@@ -24,7 +32,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         const namedImports = importDecl.getNamedImports();
 
         if (namedImports.length === 0) {
-          continue; // Пропускаем import * as или default
+          continue;
         }
 
         let rootPkg: string;
@@ -35,57 +43,63 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           const pathWithoutPrefix = moduleSpecifier.replace('@razomy/', '');
           const pathParts = pathWithoutPrefix.split('/');
 
-          rootPkg = pathParts[0];       // например, "ast"
-          subpaths = pathParts.slice(1); // например, ["biding"]
+          rootPkg = pathParts[0];
+          subpaths = pathParts.slice(1).map(i=>tsRefactor.toSafeName(stringCase.camelCase(i)));
         }
         // 2. ЕСЛИ ЭТО ОТНОСИТЕЛЬНЫЙ ИМПОРТ
         else if (moduleSpecifier.startsWith('.')) {
-          // Получаем AST-узел самого файла, который импортируется
           const importedSourceFile = importDecl.getModuleSpecifierSourceFile();
-          if (!importedSourceFile) {
-            continue; // Если файл не найден в проекте, пропускаем
-          }
+          if (!importedSourceFile) continue;
 
-          // Приводим пути к единому стандарту (для поддержки Windows)
           const filePath = importedSourceFile.getFilePath().replace(/\\/g, '/');
-
-          // Ищем директорию пакетов монорепы (по вашему примеру это "razomy/")
-          // ВАЖНО: Если у вас папки лежат в "packages/", измените константу ниже
           const rootFolderName = '/razomy/';
           const matchIndex = filePath.lastIndexOf(rootFolderName);
 
-          if (matchIndex === -1) {
-            continue; // Файл не находится внутри /razomy/, пропускаем
-          }
+          if (matchIndex === -1) continue;
 
-          // Отрезаем начало пути.
-          // "/.../razomy/ast/biding/parse_enum_declaration.ts" -> "ast/biding/parse_enum_declaration.ts"
           const packageRelativePath = filePath.substring(matchIndex + rootFolderName.length);
-
-          // Получаем только путь директории (отбрасываем имя файла parse_enum_declaration.ts)
-          // Результат: "ast/biding"
           const dirPath = packageRelativePath.substring(0, packageRelativePath.lastIndexOf('/'));
 
           const pathParts = dirPath.split('/');
-          rootPkg = pathParts[0]; // "ast"
-
-          // Извлекаем подпапки (например, ["biding"])
-          // .filter(p => p !== 'src') убирает папку src, если она есть в путях вашей монорепы
+          rootPkg = pathParts[0];
           subpaths = pathParts.slice(1).filter(p => p !== 'src');
         }
-        // 3. ИГНОРИРУЕМ ОСТАЛЬНОЕ (react, lodash и т.д.)
         else {
           continue;
         }
 
-        // --- ОБЩАЯ ЛОГИКА ЗАМЕНЫ (для абсолютных и относительных) ---
+        // --- ФОРМИРУЕМ ALIAS С УЧЕТОМ ЛЮБЫХ КОЛЛИЗИЙ ---
         const newModuleSpecifier = `@razomy/${rootPkg}`;
-        const aliasName = tsRefactor.toSafeName(stringCase.camelCase(rootPkg)); // "ast"
+        let aliasName = namespacesToAdd.get(newModuleSpecifier);
 
-        namespacesToAdd.set(newModuleSpecifier, aliasName);
+        if (!aliasName) {
+          const existingImport = file.getImportDeclaration(decl => decl.getModuleSpecifierValue() === newModuleSpecifier);
+          const existingNamespace = existingImport?.getNamespaceImport();
 
+          if (existingNamespace) {
+            aliasName = existingNamespace.getText();
+          } else {
+            aliasName = tsRefactor.toSafeName(stringCase.camelCase(rootPkg));
+
+            // ПРОВЕРКА НА КОЛЛИЗИИ ТЕПЕРЬ АБСОЛЮТНАЯ:
+            // Проверяем наличие слова в нашем Set всех идентификаторов файла.
+            while (
+              allIdentifiersInFile.has(aliasName) ||
+              Array.from(namespacesToAdd.values()).includes(aliasName)
+              ) {
+              aliasName += '_';
+            }
+
+            // Как только мы придумали безопасное имя, добавляем его в Set,
+            // чтобы следующие импорты из других пакетов тоже его случайно не заняли.
+            allIdentifiersInFile.add(aliasName);
+          }
+          namespacesToAdd.set(newModuleSpecifier, aliasName);
+        }
+
+        // --- ЗАМЕНА ССЫЛОК В КОДЕ ---
         for (const named of namedImports) {
-          const importedName = named.getName(); // "parseEnumDeclaration"
+          const importedName = named.getName();
           const aliasNode = named.getAliasNode();
 
           const searchNode = aliasNode || named.getNameNode();
@@ -95,11 +109,10 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
             (ref) => ref.getSourceFile() === file && ref !== named.getNameNode() && ref !== aliasNode,
           );
 
-          // Сортировка с конца для безопасной замены текста
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          // Формируем: "ast" + "biding" + "parseEnumDeclaration" = "ast.biding.parseEnumDeclaration"
-          const replacementStr = [aliasName, ...subpaths, importedName].join('.');
+          const replacementStr = [aliasName, ...subpaths, importedName]
+            .join('.');
 
           for (const ref of localRefs) {
             const parent = ref.getParent();
@@ -112,12 +125,10 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           }
         }
 
-        // Удаляем старый относительный или абсолютный импорт { ... }
         importDecl.remove();
         hasChanges = true;
       }
 
-      // --- ДОБАВЛЕНИЕ НОВЫХ NAMESPACE ИМПОРТОВ ---
       if (hasChanges) {
         console.log(`Обновление файла: ${file.getBaseName()}`);
 

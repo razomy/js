@@ -1,16 +1,14 @@
 import {FunctionTypeNode} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-
-import {parseShapeIdentifier} from "./parse_shape_identifier";
-import {parsePropertyType} from "./parse_property_type";
+import * as tsTranslators from "@razomy/ts-translators";
 
 export function parseFunctionShape(node: FunctionTypeNode): abstracts.translators.FunctionShape {
   return {
     kind: 'FunctionShape',
-    parameters: node.getParameters().map(p => parsePropertyType(p)),
+    parameters: node.getParameters().map(p => tsTranslators.ast.shapes.parsePropertyType(p)),
     returnType: {
       kind: 'ReturnShape',
-      shapeIdentifier: parseShapeIdentifier(node.getReturnTypeNode()!),
+      shapeIdentifier: tsTranslators.ast.shapes.parseShapeIdentifier(node.getReturnTypeNode()!),
       meta: {description: ''}
     },
   };

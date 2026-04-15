@@ -1,24 +1,24 @@
-import { every } from './every';
+import * as array_ from "@razomy/array";
 
 describe('array', () => {
   describe('every', () => {
     // 1. Standard cases
     it('returns true if all elements satisfy the predicate', () => {
-      expect(every([2, 4, 6], (n) => n % 2 === 0)).toBe(true);
+      expect(array_.every([2, 4, 6], (n) => n % 2 === 0)).toBe(true);
     });
 
     it('returns false if at least one element fails the predicate', () => {
-      expect(every([2, 4, 7], (n) => n % 2 === 0)).toBe(false);
+      expect(array_.every([2, 4, 7], (n) => n % 2 === 0)).toBe(false);
     });
 
     it('returns false if all elements fail the predicate', () => {
-      expect(every([1, 3, 5], (n) => n % 2 === 0)).toBe(false);
+      expect(array_.every([1, 3, 5], (n) => n % 2 === 0)).toBe(false);
     });
 
     // 2. Empty arrays
     it('returns true for an empty array regardless of the predicate', () => {
-      expect(every([], (n) => n > 5)).toBe(true);
-      expect(every([], () => false)).toBe(true);
+      expect(array_.every([], (n) => n > 5)).toBe(true);
+      expect(array_.every([], () => false)).toBe(true);
     });
 
     // 3. Callback arguments
@@ -26,7 +26,7 @@ describe('array', () => {
       const array = ['a', 'b', 'c'];
       const args: Array<[string, number, string[]]> = [];
 
-      every(array, (item, index, arr) => {
+      array_.every(array, (item, index, arr) => {
         args.push([item, index, arr]);
         return true;
       });
@@ -41,7 +41,7 @@ describe('array', () => {
     // 4. Iteration behavior (Short-circuiting)
     it('stops iterating as soon as the predicate returns false', () => {
       let callCount = 0;
-      const result = every([1, 2, 3, 4, 5], (n) => {
+      const result = array_.every([1, 2, 3, 4, 5], (n) => {
         callCount++;
         return n < 3;
       });
@@ -56,13 +56,13 @@ describe('array', () => {
         { name: 'Alice', active: true },
         { name: 'Bob', active: true },
       ];
-      expect(every(users, (u) => u.active)).toBe(true);
+      expect(array_.every(users, (u) => u.active)).toBe(true);
 
       const mixedUsers = [
         { name: 'Alice', active: true },
         { name: 'Charlie', active: false },
       ];
-      expect(every(mixedUsers, (u) => u.active)).toBe(false);
+      expect(array_.every(mixedUsers, (u) => u.active)).toBe(false);
     });
   });
 });

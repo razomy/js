@@ -1,31 +1,31 @@
-import { findIndex } from './find_index';
+import * as array_ from "@razomy/array";
 
 describe('array', () => {
   describe('findIndex', () => {
     // 1. Standard cases
     it('returns the index of the first element that satisfies the predicate', () => {
-      expect(findIndex([1, 2, 3], (x) => x === 2)).toBe(1);
+      expect(array_.findIndex([1, 2, 3], (x) => x === 2)).toBe(1);
     });
 
     it('returns the index of the first matching element when multiple match', () => {
-      expect(findIndex([1, 2, 3, 2], (x) => x === 2)).toBe(1);
+      expect(array_.findIndex([1, 2, 3, 2], (x) => x === 2)).toBe(1);
     });
 
     it('returns the first index when the first element matches', () => {
-      expect(findIndex(['a', 'b', 'c'], (x) => x !== 'b')).toBe(0);
+      expect(array_.findIndex(['a', 'b', 'c'], (x) => x !== 'b')).toBe(0);
     });
 
     it('returns the last index when only the last element matches', () => {
-      expect(findIndex([1, 2, 3], (x) => x === 3)).toBe(2);
+      expect(array_.findIndex([1, 2, 3], (x) => x === 3)).toBe(2);
     });
 
     // 2. Throwing behavior
     it('throws an error if no element satisfies the predicate', () => {
-      expect(() => findIndex([1, 2, 3], (x) => x > 5)).toThrow('Item not found.');
+      expect(() => array_.findIndex([1, 2, 3], (x) => x > 5)).toThrow('Item not found.');
     });
 
     it('throws an error for an empty array', () => {
-      expect(() => findIndex([], () => true)).toThrow('Item not found.');
+      expect(() => array_.findIndex([], () => true)).toThrow('Item not found.');
     });
 
     // 3. Callback arguments
@@ -34,7 +34,7 @@ describe('array', () => {
       const args: Array<[string, number, string[]]> = [];
 
       expect(() =>
-        findIndex(array, (item, index, arr) => {
+        array_.findIndex(array, (item, index, arr) => {
           args.push([item, index, arr]);
           return false;
         }),
@@ -50,7 +50,7 @@ describe('array', () => {
     // 4. Short-circuiting behavior
     it('stops iterating as soon as the predicate returns true', () => {
       let callCount = 0;
-      const result = findIndex([1, 2, 3, 4, 5], (n) => {
+      const result = array_.findIndex([1, 2, 3, 4, 5], (n) => {
         callCount++;
         return n === 3;
       });
@@ -66,16 +66,16 @@ describe('array', () => {
         { name: 'Bob', active: true },
         { name: 'Charlie', active: true },
       ];
-      expect(findIndex(users, (u) => u.active)).toBe(1);
+      expect(array_.findIndex(users, (u) => u.active)).toBe(1);
     });
 
     // 6. Single element array
     it('returns 0 for a single-element array where the element matches', () => {
-      expect(findIndex([42], (x) => x === 42)).toBe(0);
+      expect(array_.findIndex([42], (x) => x === 42)).toBe(0);
     });
 
     it('throws for a single-element array where the element does not match', () => {
-      expect(() => findIndex([42], (x) => x === 99)).toThrow('Item not found.');
+      expect(() => array_.findIndex([42], (x) => x === 99)).toThrow('Item not found.');
     });
   });
 });

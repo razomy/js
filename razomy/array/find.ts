@@ -1,4 +1,4 @@
-import { findIndex } from './find_index';
+import * as array_ from "@razomy/array";
 
 /**
  * @summary Find an item in an array that matches the predicate.
@@ -24,5 +24,5 @@ import { findIndex } from './find_index';
  * @complexity memory O(n)
  */
 export function find<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T {
-  return array[findIndex(array, predicate)];
+  return array[array_.findIndex(array, predicate)];
 }

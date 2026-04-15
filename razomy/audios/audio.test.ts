@@ -2,8 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { execSync } from 'node:child_process';
-import { toAudioByFormat } from './to_audio_by_format.node'; // <-- Убедись, что путь правильный
-import { AUDIOS } from './types'; // <-- Убедись, что путь правильный
+import * as audios from "@razomy/audios/node";
 
 const sourceAudio = path.join(__dirname, 'source_audio.mp3');
 const outDir = path.join(__dirname, 'tmp');
@@ -39,7 +38,7 @@ describe('audios', () => {
   });
 
   // test.each автоматически создаст отдельный тест для каждого элемента массива audios
-  test.each(AUDIOS)('should convert MP3 to $fileExtensionType', async (fmt) => {
+  test.each(audios.AUDIOS)('should convert MP3 to $fileExtensionType', async (fmt) => {
     const targetFormat = fmt.fileExtensionType;
     const tempInput = path.join(outDir, `temp_input_${Date.now()}_${targetFormat}.mp3`);
     const testOutputFile = path.join(outDir, `result.${targetFormat}`);
@@ -49,7 +48,7 @@ describe('audios', () => {
 
     try {
       // Запускаем конвертацию
-      const result = await toAudioByFormat(tempInput, targetFormat);
+      const result = await audios.toAudioByFormat(tempInput, targetFormat);
 
       // Сохраняем результат
       const outputStream = fs.createWriteStream(testOutputFile);
