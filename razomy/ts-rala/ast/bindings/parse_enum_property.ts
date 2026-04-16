@@ -1,14 +1,14 @@
 import { EnumMember } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseEnumProperty(node: EnumMember): abstracts.translators.EnumPropertyBinding {
   return {
     kind: 'EnumPropertyBinding',
-    identifier: tsLang.ast.bindings.parseIdentifier(node.getNameNode()),
-    expression: node.getInitializer() ? tsLang.ast.expressions.parse(node.getInitializer()!) : null,
+    identifier: tsRala.ast.bindings.parseIdentifier(node.getNameNode()),
+    expression: node.getInitializer() ? tsRala.ast.expressions.parse(node.getInitializer()!) : null,
     meta: {
-      description: tsLang.ast.doc.tryParseDescription(node.getNameNode()),
+      description: tsRala.ast.doc.tryParseDescription(node.getNameNode()),
     },
   };
 }

@@ -1,6 +1,6 @@
 import { ReturnStatement } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseReturn(node: ReturnStatement): abstracts.translators.ReturnStatement {
   const expressionNode = node.getExpression();
@@ -8,7 +8,7 @@ export function parseReturn(node: ReturnStatement): abstracts.translators.Return
   return {
     kind: 'ReturnStatement',
     argument: expressionNode
-      ? tsLang.ast.expressions.parse(expressionNode)
+      ? tsRala.ast.expressions.parse(expressionNode)
       : null, // Если это просто `return;`
   };
 }

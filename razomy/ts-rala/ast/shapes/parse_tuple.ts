@@ -1,6 +1,6 @@
 import { TupleTypeNode } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseTuple(node: TupleTypeNode): abstracts.translators.ArrayShape {
   return {
@@ -8,7 +8,7 @@ export function parseTuple(node: TupleTypeNode): abstracts.translators.ArrayShap
     type: 'Tuple',
     shapes: node
       .getElements()
-      .map((el) => tsLang.ast.shapes.parse(el))
+      .map((el) => tsRala.ast.shapes.parse(el))
       .filter(Boolean),
   };
 }

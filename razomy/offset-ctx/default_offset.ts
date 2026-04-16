@@ -1,6 +1,6 @@
-import * as offset from '../abstracts/arrays/offest';
+import * as abstracts from "@razomy/abstracts";
 
-export function defaultOffset<T extends offset.WithOffset>(ctx: T): T {
+export function defaultOffset<T extends abstracts.arrays.WithOffset>(ctx: T): T {
   ctx.offset = 0;
   return ctx;
 }

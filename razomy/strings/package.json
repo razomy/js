@@ -42,6 +42,7 @@
   "module": "./index.ts",
   "name": "@razomy/strings",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/differences": "*",
     "@razomy/string": "*"
   },

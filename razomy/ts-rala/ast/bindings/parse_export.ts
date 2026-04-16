@@ -1,5 +1,5 @@
 import * as abstracts from "@razomy/abstracts";
-import * as tsLang from "../..";
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseExport(exportDecl) {
   // Пытаемся получить `as ast` (NamespaceExport)
@@ -18,12 +18,12 @@ export function parseExport(exportDecl) {
     if (isTargetIndex) {
       // Если это папка с index.ts внутри, рекурсивно парсим саму папку
       const subDir = targetSourceFile.getDirectory();
-      const subModule = tsLang.ast.bindings.parseModule(subDir);
+      const subModule = tsRala.ast.bindings.parseModule(subDir);
       return ([subModule]);
     } else {
       // Если это экспорт конкретного файла как подмодуля (export * as types from './types.ts')
       // Оборачиваем его содержимое в ModuleDeclaration
-      const items = tsLang.ast.bindings.parseModuleBody(targetSourceFile);
+      const items = tsRala.ast.bindings.parseModuleBody(targetSourceFile);
       return [({
         kind: 'ModuleBinding',
         identifier: {kind: 'Identifier', name: subModuleName},
@@ -37,7 +37,7 @@ export function parseExport(exportDecl) {
   } else {
     // 2. КЕЙС: export { getPackageSpecifications } from './...'; (ФАЙЛЫ В BODY)
     // Парсим исходный файл
-    const items = tsLang.ast.bindings.parseModuleBody(targetSourceFile);
+    const items = tsRala.ast.bindings.parseModuleBody(targetSourceFile);
 
     // Распаковываем все найденные декларации напрямую в текущий body
     return items;

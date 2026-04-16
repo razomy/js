@@ -1,6 +1,6 @@
 import { ArrayLiteralExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseTuple(node: ArrayLiteralExpression): abstracts.translators.ArrayExpression {
   return {
@@ -8,7 +8,7 @@ export function parseTuple(node: ArrayLiteralExpression): abstracts.translators.
     type: 'Tuple',
     expressions: node
       .getElements()
-      .map((element) => tsLang.ast.expressions.parse(element) as any)
+      .map((element) => tsRala.ast.expressions.parse(element) as any)
       .filter(Boolean),
   };
 }

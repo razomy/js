@@ -1,10 +1,10 @@
 import * as abstracts from '@razomy/abstracts';
-import * as langMd from './';
+import * as ralaString from '@razomy/rala-string';
 
 export function bindingToString(
   nodes: abstracts.translators.DeclarationType[],
   currentPath: string[],
-  result: langMd.FlatDeclaration[] = [],
+  result: ralaString.FlatDeclaration[] = [],
 ) {
   for (const node of nodes) {
     if (node.kind === 'ModuleBinding') {

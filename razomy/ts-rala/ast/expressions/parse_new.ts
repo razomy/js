@@ -1,6 +1,6 @@
 import { NewExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseNew(node: NewExpression): abstracts.translators.CallExpression {
   // Получаем имя конструктора (например, "Error", "Date", "MyClass")
@@ -27,7 +27,7 @@ export function parseNew(node: NewExpression): abstracts.translators.CallExpress
   // Получаем аргументы конструктора (например, "Age cannot be negative")
   const args = node.getArguments().map(arg => {
     // getArguments возвращает Node, но мы знаем, что это Expression
-    return tsLang.ast.expressions.parse(arg as any)!;
+    return tsRala.ast.expressions.parse(arg as any)!;
   });
 
   return {

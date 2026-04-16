@@ -1,6 +1,7 @@
 import { Node, Project, SyntaxKind } from 'ts-morph';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from '@razomy/string-case';
+import * as path from 'path';
 
 export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
@@ -17,83 +18,110 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
       let hasChanges = false;
       const namespacesToAdd = new Map<string, string>();
 
-      // === НОВЫЙ БЛОК: СОБИРАЕМ ВСЕ ИМЕНА В ФАЙЛЕ ===
-      // Собираем абсолютно все слова, которые используются как переменные, функции, свойства на любом уровне.
-      // Это дает 100% гарантию, что наш сгенерированный alias ни с чем не пересечется.
+      // Собираем все имена в файле для предотвращения коллизий
       const allIdentifiersInFile = new Set(file.getDescendantsOfKind(SyntaxKind.Identifier).map((id) => id.getText()));
-      // ===============================================
 
       const importDeclarations = file.getImportDeclarations();
 
       for (const importDecl of importDeclarations) {
         const moduleSpecifier = importDecl.getModuleSpecifierValue();
         const namedImports = importDecl.getNamedImports();
+        const namespaceImport = importDecl.getNamespaceImport();
 
-        if (namedImports.length === 0) {
+        // Пропускаем импорты без переменных (например, `import "reflect-metadata"`)
+        if (namedImports.length === 0 && !namespaceImport) {
           continue;
         }
 
-        let rootPkg: string;
-        let subpaths: string[];
+        let targetModuleSpecifier = moduleSpecifier;
 
-        // 1. ЕСЛИ ЭТО АБСОЛЮТНЫЙ ИМПОРТ
+        // 1. АБСОЛЮТНЫЙ ИМПОРТ (@razomy/videos/node) - путь уже правильный
         if (moduleSpecifier.startsWith('@razomy/')) {
-          const pathWithoutPrefix = moduleSpecifier.replace('@razomy/', '');
-          const pathParts = pathWithoutPrefix.split('/');
-
-          rootPkg = pathParts[0];
-          subpaths = pathParts.slice(1).map((i) => tsRefactor.toSafeName(stringCase.camelCase(i)));
+          targetModuleSpecifier = moduleSpecifier;
         }
-        // 2. ЕСЛИ ЭТО ОТНОСИТЕЛЬНЫЙ ИМПОРТ
+        // 2. ОТНОСИТЕЛЬНЫЙ ИМПОРТ (напр. ../../node) - вычисляем абсолютный
         else if (moduleSpecifier.startsWith('.')) {
+          let targetFilePath = '';
           const importedSourceFile = importDecl.getModuleSpecifierSourceFile();
-          if (!importedSourceFile) continue;
 
-          const filePath = importedSourceFile.getFilePath().replace(/\\/g, '/');
+          if (importedSourceFile) {
+            targetFilePath = importedSourceFile.getFilePath();
+          } else {
+            targetFilePath = path.resolve(file.getDirectoryPath(), moduleSpecifier);
+          }
+
+          targetFilePath = targetFilePath.replace(/\\/g, '/');
           const rootFolderName = '/razomy/';
-          const matchIndex = filePath.lastIndexOf(rootFolderName);
+          const matchIndex = targetFilePath.lastIndexOf(rootFolderName);
 
           if (matchIndex === -1) continue;
 
-          const packageRelativePath = filePath.substring(matchIndex + rootFolderName.length);
-          const dirPath = packageRelativePath.substring(0, packageRelativePath.lastIndexOf('/'));
+          // Получаем путь внутри монорепы
+          const packageRelativePath = targetFilePath.substring(matchIndex + rootFolderName.length);
 
-          const pathParts = dirPath.split('/');
-          rootPkg = pathParts[0];
-          subpaths = pathParts.slice(1).filter((p) => p !== 'src');
+          // Очищаем расширения (.ts, .tsx, /index.ts)
+          let cleanPath = packageRelativePath.replace(/\.[tj]sx?$/, '');
+          if (cleanPath.endsWith('/index')) {
+            cleanPath = cleanPath.slice(0, -6);
+          }
+
+          const parts = cleanPath.split('/');
+          const rootPkg = parts[0];
+          // Исключаем папку src
+          const subDirParts = parts.slice(1).filter((p) => p !== 'src');
+
+          if (subDirParts.length > 0) {
+            targetModuleSpecifier = `@razomy/${rootPkg}/${subDirParts.join('/')}`;
+          } else {
+            targetModuleSpecifier = `@razomy/${rootPkg}`;
+          }
         } else {
+          // Пропускаем сторонние библиотеки (react, lodash и т.д.)
           continue;
         }
 
-        // --- ФОРМИРУЕМ ALIAS С УЧЕТОМ ЛЮБЫХ КОЛЛИЗИЙ ---
-        const newModuleSpecifier = `@razomy/${rootPkg}`;
-        let aliasName = namespacesToAdd.get(newModuleSpecifier);
+        // ==========================================================
+        // === ПРОВЕРКА: ЕСЛИ ИМПОРТ УЖЕ ПРАВИЛЬНЫЙ ===
+        // ==========================================================
+        if (namedImports.length === 0 && namespaceImport) {
+          if (moduleSpecifier !== targetModuleSpecifier) {
+            // Если путь был относительным, просто заменяем на абсолютный
+            importDecl.setModuleSpecifier(targetModuleSpecifier);
+            hasChanges = true;
+          }
+          continue; // Идем к следующему импорту, код не трогаем!
+        }
+
+        // ==========================================================
+        // === ЗАМЕНА NAMED ИМПОРТОВ (import { X }) ===
+        // ==========================================================
+        let aliasName = namespacesToAdd.get(targetModuleSpecifier);
 
         if (!aliasName) {
           const existingImport = file.getImportDeclaration(
-            (decl) => decl.getModuleSpecifierValue() === newModuleSpecifier,
+            (decl) => decl.getModuleSpecifierValue() === targetModuleSpecifier,
           );
           const existingNamespace = existingImport?.getNamespaceImport();
 
           if (existingNamespace) {
             aliasName = existingNamespace.getText();
+          } else if (namespaceImport) {
+            aliasName = namespaceImport.getText();
           } else {
-            aliasName = tsRefactor.toSafeName(stringCase.camelCase(rootPkg));
+            // Генерируем имя из пути: videos/node -> videosNode
+            const pathWithoutPrefix = targetModuleSpecifier.replace('@razomy/', '');
+            const aliasBase = stringCase.camelCase(pathWithoutPrefix.replace(/\//g, '_'));
+            aliasName = tsRefactor.toSafeName(aliasBase);
 
-            // ПРОВЕРКА НА КОЛЛИЗИИ ТЕПЕРЬ АБСОЛЮТНАЯ:
-            // Проверяем наличие слова в нашем Set всех идентификаторов файла.
             while (allIdentifiersInFile.has(aliasName) || Array.from(namespacesToAdd.values()).includes(aliasName)) {
               aliasName += '_';
             }
-
-            // Как только мы придумали безопасное имя, добавляем его в Set,
-            // чтобы следующие импорты из других пакетов тоже его случайно не заняли.
             allIdentifiersInFile.add(aliasName);
           }
-          namespacesToAdd.set(newModuleSpecifier, aliasName);
+          namespacesToAdd.set(targetModuleSpecifier, aliasName);
         }
 
-        // --- ЗАМЕНА ССЫЛОК В КОДЕ ---
+        // Заменяем все использования импортированных переменных
         for (const named of namedImports) {
           const importedName = named.getName();
           const aliasNode = named.getAliasNode();
@@ -107,7 +135,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          const replacementStr = [aliasName, ...subpaths, importedName].join('.');
+          const replacementStr = `${aliasName}.${importedName}`;
 
           for (const ref of localRefs) {
             const parent = ref.getParent();
@@ -124,9 +152,8 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         hasChanges = true;
       }
 
+      // Добавляем новые сгенерированные импорты
       if (hasChanges) {
-        console.log(`Обновление файла: ${file.getBaseName()}`);
-
         for (const [modSpec, alias] of namespacesToAdd.entries()) {
           const existingImport = file.getImportDeclaration((decl) => decl.getModuleSpecifierValue() === modSpec);
 
@@ -140,8 +167,8 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
               moduleSpecifier: modSpec,
             });
           }
-          console.log(`    -> Добавлен импорт: import * as ${alias} from '${modSpec}'`);
         }
+        console.log(`Файл обновлен: ${file.getBaseName()}`);
       }
     } catch (e) {
       console.log(e, file.getFilePath());

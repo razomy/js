@@ -1,7 +1,7 @@
-import * as offset from '../abstracts/arrays/offest';
 import * as string from '@razomy/string';
+import * as abstracts from "@razomy/abstracts";
 
-export function tryRegex(ctx: string.WithString & offset.WithOffset, regex: RegExp) {
+export function tryRegex(ctx: string.WithString & abstracts.arrays.WithOffset, regex: RegExp) {
   regex.lastIndex = ctx.offset;
   const match = regex.exec(ctx.string);
   if (match) {

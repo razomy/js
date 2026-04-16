@@ -1,6 +1,6 @@
 import {InMemoryFileSystemHost, Project} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '..';
+import * as tsRala from "@razomy/ts-rala";
 
 describe('parse', () => {
   it('parse', () => {
@@ -148,7 +148,7 @@ describe('parse', () => {
     );
 
     // 3. Run your parser!
-    const modules = tsLang.ast.bindings.getPackage(project, '', false);
+    const modules = tsRala.ast.bindings.getPackage(project, '', false);
 
     expect(modules).toEqual({} as any satisfies abstracts.translators.PackageBinding);
   });

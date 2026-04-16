@@ -1,4 +1,3 @@
-import * as packageJson from './package_json';
 import * as main from '@razomy/main';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
@@ -21,13 +20,13 @@ export async function formatProject(projectPath: string, prefix: string) {
   console.info('createIndexFiles.start');
   await tsRefactorProject.createIndexFiles(projectPath);
   console.info('createPackageJsonAtChildDirs.start');
-  await packageJson.createAtChildDirs(projectPath + prefix + '/', prefix);
+  await tsRefactorProject.packageJson.createAtChildDirs(projectPath + prefix + '/', prefix);
   console.info('createPackage.start');
-  await packageJson.createRoot(projectPath);
+  await tsRefactorProject.packageJson.createRoot(projectPath);
   console.info('addDependencies.start');
-  await packageJson.addDependencies(projectPath, prefix);
+  await tsRefactorProject.packageJson.addDependencies(projectPath, prefix);
   console.info('updatePackages.start');
-  await packageJson.updateByTemplate(projectPath, prefix);
+  await tsRefactorProject.packageJson.updateByTemplate(projectPath, prefix);
 }
 
 main.ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then();

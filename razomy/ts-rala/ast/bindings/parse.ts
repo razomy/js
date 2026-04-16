@@ -1,33 +1,33 @@
 import {Node} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 /**
  * Recursively parses general TS Nodes (Declarations, Statements)
  */
 export function parse(node: Node): abstracts.translators.BindingType | abstracts.translators.ShapeBindingType {
   if (Node.isVariableDeclaration(node)) {
-    return tsLang.ast.bindings.parseVariable(node) as abstracts.translators.VariableBinding;
+    return tsRala.ast.bindings.parseVariable(node) as abstracts.translators.VariableBinding;
   }
 
   if (Node.isTypeAliasDeclaration(node)) {
-    return tsLang.ast.shapeBindings.parseAlias(node);
+    return tsRala.ast.shapeBindings.parseAlias(node);
   }
 
   if (Node.isInterfaceDeclaration(node)) {
-    return tsLang.ast.shapeBindings.parseInterface(node);
+    return tsRala.ast.shapeBindings.parseInterface(node);
   }
 
   if (Node.isClassDeclaration(node)) {
-    return tsLang.ast.shapeBindings.parseClass(node);
+    return tsRala.ast.shapeBindings.parseClass(node);
   }
 
   if (Node.isEnumDeclaration(node)) {
-    return tsLang.ast.bindings.parseEnum(node);
+    return tsRala.ast.bindings.parseEnum(node);
   }
 
   if (Node.isFunctionDeclaration(node)) {
-    return tsLang.ast.bindings.parseFunction(node);
+    return tsRala.ast.bindings.parseFunction(node);
   }
 
   if (Node.isExpressionStatement(node)) {
@@ -39,7 +39,7 @@ export function parse(node: Node): abstracts.translators.BindingType | abstracts
           kind: 'Identifier',
           name: expr.getLeft().getText() // This gets 'x'
         },
-        expression: tsLang.ast.expressions.parse(expr.getRight()), // This gets the value
+        expression: tsRala.ast.expressions.parse(expr.getRight()), // This gets the value
       };
     }
     throw new Error(`Unknown Bindings "${expr.getKindName()}" "${expr.getText()}"`);

@@ -1,6 +1,6 @@
 import { Node, Statement } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseLoop(node: Statement): abstracts.translators.LoopFlowStatement {
   let type: 'do_while' | 'while_do' | 'for_in' | 'for_of' = 'while_do';
@@ -15,25 +15,25 @@ export function parseLoop(node: Statement): abstracts.translators.LoopFlowStatem
 
     // Парсим condition и update
     const condNode = node.getCondition();
-    if (condNode) condition = tsLang.ast.expressions.parse(condNode);
+    if (condNode) condition = tsRala.ast.expressions.parse(condNode);
 
     const updNode = node.getIncrementor();
-    if (updNode) update = tsLang.ast.expressions.parse(updNode);
+    if (updNode) update = tsRala.ast.expressions.parse(updNode);
 
   } else if (Node.isWhileStatement(node)) {
     type = 'while_do';
     bodyNode = node.getStatement();
-    condition = tsLang.ast.expressions.parse(node.getExpression());
+    condition = tsRala.ast.expressions.parse(node.getExpression());
 
   } else if (Node.isDoStatement(node)) {
     type = 'do_while';
     bodyNode = node.getStatement();
-    condition = tsLang.ast.expressions.parse(node.getExpression());
+    condition = tsRala.ast.expressions.parse(node.getExpression());
 
   } else if (Node.isForOfStatement(node) || Node.isForInStatement(node)) {
     type = Node.isForOfStatement(node) ? 'for_of' : 'for_in';
     bodyNode = node.getStatement();
-    condition = tsLang.ast.expressions.parse(node.getExpression());
+    condition = tsRala.ast.expressions.parse(node.getExpression());
   } else {
     throw new Error('Unsupported loop node type');
   }
@@ -44,6 +44,6 @@ export function parseLoop(node: Statement): abstracts.translators.LoopFlowStatem
     init,
     condition,
     update,
-    block: tsLang.ast.statements.parseBlock(bodyNode),
+    block: tsRala.ast.statements.parseBlock(bodyNode),
   };
 }

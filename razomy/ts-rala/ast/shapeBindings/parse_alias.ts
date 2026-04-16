@@ -1,12 +1,12 @@
 import { TypeAliasDeclaration as TsTypeAliasDeclaration } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseAlias(node: TsTypeAliasDeclaration): abstracts.translators.AliasShapeBinding {
   return {
     kind: 'AliasShapeBinding',
-    shapeIdentifier: tsLang.ast.shapes.parseShapeIdentifier(node.getNameNode()),
-    shape: tsLang.ast.shapes.parse(node.getTypeNode()!),
-    meta: { description: tsLang.ast.doc.tryParseDescription(node.getNameNode()) },
+    shapeIdentifier: tsRala.ast.shapes.parseShapeIdentifier(node.getNameNode()),
+    shape: tsRala.ast.shapes.parse(node.getTypeNode()!),
+    meta: { description: tsRala.ast.doc.tryParseDescription(node.getNameNode()) },
   };
 }

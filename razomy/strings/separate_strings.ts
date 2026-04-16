@@ -1,9 +1,9 @@
 import * as string from '@razomy/string';
-import * as offset from '../abstracts/arrays/offest';
+import * as abstracts from "@razomy/abstracts";
 
 export function separateStrings(
   string: string.String,
-  offset: offset.Offset,
+  offset: abstracts.arrays.Offset,
   separateString: string.String,
   strings: string.String[],
 ) {

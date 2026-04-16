@@ -1,6 +1,6 @@
 import { Node, PropertyAccessExpression, ElementAccessExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseMember(
   node: PropertyAccessExpression | ElementAccessExpression
@@ -20,12 +20,12 @@ export function parseMember(
   // Случай 2: obj[index] (ElementAccessExpression)
   else {
     const argNode = node.getArgumentExpressionOrThrow();
-    propertyExpr = tsLang.ast.expressions.parse(argNode)!;
+    propertyExpr = tsRala.ast.expressions.parse(argNode)!;
   }
 
   return {
     kind: 'MemberExpression',
-    object_: tsLang.ast.expressions.parse(node.getExpression())!!,
+    object_: tsRala.ast.expressions.parse(node.getExpression())!!,
     property: propertyExpr,
   };
 }

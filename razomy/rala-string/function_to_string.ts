@@ -1,6 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
 import * as array from '@razomy/array';
-import * as langMd from "./";
+import * as ralaString from "@razomy/rala-string";
 
 export function functionToString(s: FlatDeclaration<abstracts.translators.FunctionBinding>) {
   const shapes = s.node.shapes.length ?
@@ -9,11 +9,11 @@ export function functionToString(s: FlatDeclaration<abstracts.translators.Functi
   const paramsStr = s.node.parameters
     .map((p) => {
       const rest = array.includes (p.modifiers, 'rest') ? '...' : '';
-      const typeStr = langMd.shapeToString(p.shape);
+      const typeStr = ralaString.shapeToString(p.shape);
       return `${rest}${p.identifier.name}: ${typeStr}`;
     })
     .join(', ');
-  const returnStr = langMd.shapeToString(s.node.return_?.shape || null);
+  const returnStr = ralaString.shapeToString(s.node.return_?.shape || null);
   const isAsync = s.node.modifiers.join(' ');
   const declaration = `\`${isAsync}${s.path.join('.')}${shapes}(${paramsStr}): ${returnStr}\``;
   const description = [(s.node as any).title, s.node.meta.description].filter(Boolean).join('\n');

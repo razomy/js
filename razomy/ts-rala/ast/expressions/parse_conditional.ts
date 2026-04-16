@@ -1,6 +1,6 @@
 import { ConditionalExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseConditional(node: ConditionalExpression): abstracts.translators.ConditionalFlowExpression {
   const branches: abstracts.translators.BranchFlowExpression[] = []; // В вашем типе тут почему-то рекурсия, но по логике это BranchFlowExpression
@@ -9,8 +9,8 @@ export function parseConditional(node: ConditionalExpression): abstracts.transla
   const thenBranch: abstracts.translators.BranchFlowExpression = {
     kind: 'BranchFlowExpression',
     type: 'if',
-    pattern: tsLang.ast.expressions.parse(node.getCondition()),
-    expression: tsLang.ast.expressions.parse(node.getWhenTrue()),
+    pattern: tsRala.ast.expressions.parse(node.getCondition()),
+    expression: tsRala.ast.expressions.parse(node.getWhenTrue()),
   };
 
   // ВАЖНО: В вашем интерфейсе `branches` у ConditionalFlowExpression требует `ConditionalFlowExpression[]`.
@@ -26,7 +26,7 @@ export function parseConditional(node: ConditionalExpression): abstracts.transla
       kind: 'BranchFlowExpression',
       type: 'if', // Или можно добавить 'else' в тип в абстракциях
       pattern: null,
-      expression: tsLang.ast.expressions.parse(elseNode),
+      expression: tsRala.ast.expressions.parse(elseNode),
     };
     branches.push(elseBranch as any);
   }

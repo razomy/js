@@ -51,6 +51,7 @@
   "module": "./index.ts",
   "name": "@razomy/offset-ctx",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/index": "*",
     "@razomy/string": "*"
   },

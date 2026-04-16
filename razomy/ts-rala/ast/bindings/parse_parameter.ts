@@ -1,6 +1,6 @@
 import {FunctionDeclaration, ParameterDeclaration} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseParameter(node: ParameterDeclaration): abstracts.translators.ParameterBinding {
   let description = '';
@@ -16,9 +16,9 @@ export function parseParameter(node: ParameterDeclaration): abstracts.translator
 
   return {
     kind: 'ParameterBinding',
-    identifier: tsLang.ast.bindings.parseIdentifier(node.getNameNode()),
-    shape: node.getTypeNode() ? tsLang.ast.shapes.parse(node.getTypeNode()!) : null,
-    expression: node.getInitializer() ? tsLang.ast.expressions.parse(node.getInitializer()!) : null,
+    identifier: tsRala.ast.bindings.parseIdentifier(node.getNameNode()),
+    shape: node.getTypeNode() ? tsRala.ast.shapes.parse(node.getTypeNode()!) : null,
+    expression: node.getInitializer() ? tsRala.ast.expressions.parse(node.getInitializer()!) : null,
     modifiers: [node.isRestParameter() ? 'rest' as const : null].filter(i => i != null),
     meta: {description},
   };

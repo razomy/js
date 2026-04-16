@@ -1,6 +1,6 @@
 import {CallExpression} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseCall(node: CallExpression): abstracts.translators.CallExpression {
   const expressionNode = node.getExpression();
@@ -24,7 +24,7 @@ export function parseCall(node: CallExpression): abstracts.translators.CallExpre
 
   // Парсим аргументы вызова функции
   const args = node.getArguments().map(arg => {
-    return tsLang.ast.expressions.parse(arg as any)!;
+    return tsRala.ast.expressions.parse(arg as any)!;
   });
 
   return {

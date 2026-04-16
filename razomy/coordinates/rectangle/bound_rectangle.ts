@@ -1,4 +1,3 @@
-import * as x from '../x/bound_x';
-import * as y from '../y/bound_y';
+import * as coordinates from "@razomy/coordinates";
 
-export interface BoundRectangle extends x.BoundX, y.BoundY {}
+export interface BoundRectangle extends coordinates.x.BoundX, coordinates.y.BoundY {}

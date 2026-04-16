@@ -1,6 +1,6 @@
 import {ArrowFunction} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
-import * as tsLang from "../..";
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseArrowFunction(node: ArrowFunction) {
   const shapes: abstracts.translators.AliasShapeBinding[] = node.getTypeParameters().map((typeParam) => {
@@ -9,9 +9,9 @@ export function parseArrowFunction(node: ArrowFunction) {
 
     let shape: abstracts.translators.ShapeType;
     if (constraintNode) {
-      shape = tsLang.ast.shapes.parse(constraintNode);
+      shape = tsRala.ast.shapes.parse(constraintNode);
     } else if (defaultNode) {
-      shape = tsLang.ast.shapes.parse(defaultNode);
+      shape = tsRala.ast.shapes.parse(defaultNode);
     } else {
       shape = {kind: 'BuildInShape', type: 'Any', value: null};
     }
@@ -30,18 +30,18 @@ export function parseArrowFunction(node: ArrowFunction) {
   return {
     kind: 'FunctionBinding',
     identifier: {kind: 'Identifier', name: ''},
-    parameters: node.getParameters().map((p) => tsLang.ast.bindings.parseParameter(p)),
+    parameters: node.getParameters().map((p) => tsRala.ast.bindings.parseParameter(p)),
     return_: node.getReturnTypeNode()
       ? {
         kind: 'ReturnShape',
-        shapeIdentifier: tsLang.ast.shapes.parseShapeIdentifier(node.getReturnTypeNode()!),
+        shapeIdentifier: tsRala.ast.shapes.parseShapeIdentifier(node.getReturnTypeNode()!),
         meta: {description: ''},
       }
       : null,
     modifiers: [node.isAsync() ? 'async' as const : null].filter(
       (i) => i != null,
     ),
-    block: tsLang.ast.statements.parseBlock(node.getBody() as any),
+    block: tsRala.ast.statements.parseBlock(node.getBody() as any),
     shapes,
     meta: {
       description: '',

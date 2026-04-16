@@ -2,7 +2,7 @@ import { Project } from 'ts-morph';
 
 import * as abstracts from '@razomy/abstracts';
 import * as path from 'path';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function getPackage(
   project: Project,
@@ -34,7 +34,7 @@ export function getPackage(
     },
     block: {
       kind: 'BlockStatement',
-      declarations:tsLang.ast.bindings.parseModuleBody(
+      declarations:tsRala.ast.bindings.parseModuleBody(
         project.getDirectory(dirPath)!.getSourceFile((f) => f.getBaseName().startsWith('index.'))!,
       )
     },
@@ -49,7 +49,7 @@ export function getPackage(
   } satisfies abstracts.translators.PackageBinding;
 
   if (onlyPublic) {
-    tsLang.ast.bindings.getPublicOnlyMut(packageDeclaration)!;
+    tsRala.ast.bindings.getPublicOnlyMut(packageDeclaration)!;
   }
 
   return packageDeclaration;

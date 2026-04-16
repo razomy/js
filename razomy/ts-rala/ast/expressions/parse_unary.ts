@@ -1,6 +1,6 @@
 import { Node, SyntaxKind, Expression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseUnary(node: Expression): abstracts.translators.UnaryExpression {
   // 1. Префиксные (++x, !x, -x, ~x)
@@ -18,7 +18,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryExpress
     return {
       kind: 'UnaryExpression',
       operator: operator as any,
-      expression: tsLang.ast.expressions.parse(node.getOperand())!,
+      expression: tsRala.ast.expressions.parse(node.getOperand())!,
       isPrefix: true,
       shape: null,
     };
@@ -31,7 +31,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryExpress
     return {
       kind: 'UnaryExpression',
       operator: operator as any,
-      expression: tsLang.ast.expressions.parse(node.getOperand())!,
+      expression: tsRala.ast.expressions.parse(node.getOperand())!,
       isPrefix: false,
       shape: null
     };
@@ -42,7 +42,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryExpress
     return {
       kind: 'UnaryExpression',
       operator: 'typeof',
-      expression: tsLang.ast.expressions.parse(node.getExpression())!,
+      expression: tsRala.ast.expressions.parse(node.getExpression())!,
       isPrefix: true,
       shape: null
     };
@@ -53,7 +53,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryExpress
     return {
       kind: 'UnaryExpression',
       operator: 'delete',
-      expression: tsLang.ast.expressions.parse(node.getExpression())!,
+      expression: tsRala.ast.expressions.parse(node.getExpression())!,
       isPrefix: true,
       shape: null
     };

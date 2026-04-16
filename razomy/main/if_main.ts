@@ -1,7 +1,7 @@
-import * as dates from '../datetimes';
 import * as async from '@razomy/async';
 import * as abstracts from '@razomy/abstracts';
 import * as main from '@razomy/main';
+import * as datetimes from "@razomy/datetimes";
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,
@@ -17,7 +17,7 @@ export async function ifMain(
         await voidOrPromise;
       }
       const endDate = Date.now();
-      const printDate = dates.formatTimeLength(endDate - startDate);
+      const printDate = datetimes.formatTimeLength(endDate - startDate);
       console.log(`${path}.finish time:${printDate}`);
     } else {
       console.log(`${path}.skip`);

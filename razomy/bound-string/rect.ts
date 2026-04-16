@@ -1,11 +1,11 @@
-import * as offset from '../abstracts/arrays/offest';
 import * as boundString from '@razomy/bound-string';
 import * as coordinates from '@razomy/coordinates';
+import * as abstracts from "@razomy/abstracts";
 
 export function rect(
   delta: string,
   str: string,
-): offset.WithOffset & coordinates.length.WithLength & coordinates.rectangle.BoundRectangle {
+): abstracts.arrays.WithOffset & coordinates.length.WithLength & coordinates.rectangle.BoundRectangle {
   const start = boundString.size(delta);
   const end = boundString.size(str);
   return {

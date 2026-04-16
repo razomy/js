@@ -1,6 +1,6 @@
 import { ArrayLiteralExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parseArray(node: ArrayLiteralExpression): abstracts.translators.ArrayExpression {
   return {
@@ -8,7 +8,7 @@ export function parseArray(node: ArrayLiteralExpression): abstracts.translators.
     type: 'Array',
     expressions: node
       .getElements()
-      .map((element) => tsLang.ast.expressions.parse(element))
+      .map((element) => tsRala.ast.expressions.parse(element))
       .filter((i) => i != null),
   };
 }

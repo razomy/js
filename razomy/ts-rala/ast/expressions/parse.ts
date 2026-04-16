@@ -1,13 +1,13 @@
 import {Node} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsLang from '../..';
+import * as tsRala from "@razomy/ts-rala";
 
 export function parse(node: Node): abstracts.translators.ExpressionType {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseString(node);
+    return tsRala.ast.expressions.buildIn.parseString(node);
   }
   if (Node.isNumericLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseNumber(node);
+    return tsRala.ast.expressions.buildIn.parseNumber(node);
   }
   if (Node.isObjectLiteralExpression(node)) {
     return {
@@ -17,13 +17,13 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
     };
   }
   if (Node.isBooleanKeyword(node) || Node.isTrueLiteral(node) || Node.isFalseLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseBoolean(node as any);
+    return tsRala.ast.expressions.buildIn.parseBoolean(node as any);
   }
   if (Node.isNullLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseNull(node);
+    return tsRala.ast.expressions.buildIn.parseNull(node);
   }
   if (Node.isIdentifier(node) && node.getText() === 'undefined') {
-    return tsLang.ast.expressions.buildIn.parseUndefined(node);
+    return tsRala.ast.expressions.buildIn.parseUndefined(node);
   }
   if (Node.isSpreadElement(node)) {
     return {
@@ -45,7 +45,7 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
           kind: 'Identifier',
           name: node.getText(),
         },
-        arguments_: node.getArguments().map((i) => tsLang.ast.expressions.parse(i)),
+        arguments_: node.getArguments().map((i) => tsRala.ast.expressions.parse(i)),
       };
     }
     return {
@@ -58,18 +58,18 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
     };
   }
   if (Node.isBigIntLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseBigInt(node);
+    return tsRala.ast.expressions.buildIn.parseBigInt(node);
   }
   if (Node.isRegularExpressionLiteral(node)) {
-    return tsLang.ast.expressions.buildIn.parseRegExp(node);
+    return tsRala.ast.expressions.buildIn.parseRegExp(node);
   }
   if (Node.isArrayLiteralExpression(node)) {
-    return tsLang.ast.expressions.buildIn.parseArray(node);
+    return tsRala.ast.expressions.buildIn.parseArray(node);
   }
 
   // 1. Бинарные выражения
   if (Node.isBinaryExpression(node)) {
-    return tsLang.ast.expressions.parseBinary(node);
+    return tsRala.ast.expressions.parseBinary(node);
   }
 
   if (Node.isTemplateExpression(node)) {
@@ -87,46 +87,46 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
     Node.isTypeOfExpression(node) ||
     Node.isDeleteExpression(node)
   ) {
-    const unary = tsLang.ast.expressions.parseUnary(node);
+    const unary = tsRala.ast.expressions.parseUnary(node);
     if (unary) return unary;
   }
 
   // 3. Круглые скобки
   if (Node.isParenthesizedExpression(node)) {
-    return tsLang.ast.expressions.parse(node.getExpression());
+    return tsRala.ast.expressions.parse(node.getExpression());
   }
 
   if (Node.isIdentifier(node)) {
-    return tsLang.ast.expressions.parseReference(node);
+    return tsRala.ast.expressions.parseReference(node);
   }
 
   if (Node.isPropertyAccessExpression(node) || Node.isElementAccessExpression(node)) {
-    return tsLang.ast.expressions.parseMember(node);
+    return tsRala.ast.expressions.parseMember(node);
   }
 
   if (Node.isNewExpression(node)) {
-    return tsLang.ast.expressions.parseNew(node);
+    return tsRala.ast.expressions.parseNew(node);
   }
 
   if (Node.isCallExpression(node)) {
-    return tsLang.ast.expressions.parseCall(node);
+    return tsRala.ast.expressions.parseCall(node);
   }
 
   if (Node.isArrowFunction(node)) {
-    return tsLang.ast.expressions.parseArrowFunction(node);
+    return tsRala.ast.expressions.parseArrowFunction(node);
   }
 
   if (Node.isConditionalExpression(node)) {
-    return tsLang.ast.expressions.parseConditional(node);
+    return tsRala.ast.expressions.parseConditional(node);
   }
 
   if (Node.isAsExpression(node)) {
     return {
       kind: 'UnaryExpression',
       operator: 'as',
-      expression: tsLang.ast.expressions.parse(node.getExpression())!,
+      expression: tsRala.ast.expressions.parse(node.getExpression())!,
       isPrefix: true,
-      shape: tsLang.ast.shapes.parse(node.getTypeNode()!),
+      shape: tsRala.ast.shapes.parse(node.getTypeNode()!),
     };
   }
 
