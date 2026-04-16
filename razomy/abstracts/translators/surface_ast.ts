@@ -51,6 +51,7 @@ export interface Expression extends AstNode {
 /**
  * Base interface for all statements (actions/control flow).
  * Sequence of logic
+ * @deprecated
  * @example
  * ```ts
  * * block of Template
@@ -95,6 +96,7 @@ export type AstValueType = Expression | Statement | Binding;
  *
  * @example
  * @final
+ * @deprecated
  */
 export interface BuildInExpression extends Expression {
   kind: 'BuildInExpression';
@@ -110,6 +112,7 @@ export interface BuildInExpression extends Expression {
  * "user_${a}"
  * ```
  * @final
+ * @deprecated
  */
 export interface TemplateExpression extends Expression {
   kind: 'TemplateExpression';
@@ -305,6 +308,7 @@ export type ExpressionType =
  * Represents a return statement.
  * return ...;
  * @final
+ * @deprecated
  */
 export interface ReturnStatement extends Statement {
   kind: 'ReturnStatement';
@@ -322,6 +326,7 @@ export interface BlockStatement extends Statement {
   declarations: DeclarationType[];
 }
 
+/** @deprecated */
 export interface BranchFlowStatement extends Statement {
   kind: 'BranchFlowStatement';
   type: 'if' | 'switch' | 'try_catch';
@@ -329,12 +334,14 @@ export interface BranchFlowStatement extends Statement {
   block: BlockStatement;
 }
 
+/** @deprecated */
 export interface ConditionalFlowStatement extends Statement {
   kind: 'ConditionalFlowStatement';
   target: ExpressionType | null;
   branches: BranchFlowStatement[];
 }
 
+/** @deprecated */
 export interface LoopFlowStatement extends Statement {
   kind: 'LoopFlowStatement';
   type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
@@ -344,6 +351,7 @@ export interface LoopFlowStatement extends Statement {
   block: BlockStatement;
 }
 
+/** @deprecated */
 export interface GoStatement extends Statement {
   kind: 'GoStatement';
   type: 'break' | 'continue';
@@ -353,6 +361,29 @@ export interface GoStatement extends Statement {
 /**
  * Represents a throw statement.
  * @final
+ * @deprecated
+ */
+export interface TryStatement extends Statement {
+  kind: 'TryStatement';
+  block: BlockStatement;
+  catches: CatchStatement[];
+}
+
+/**
+ * Represents a throw statement.
+ * @final
+ * @deprecated
+ */
+export interface CatchStatement extends Statement {
+  kind: 'TryStatement';
+  trigger: ParameterBinding;
+  block: BlockStatement;
+}
+
+/**
+ * Represents a throw statement.
+ * @final
+ * @deprecated
  */
 export interface ThrowStatement extends Statement {
   kind: 'ThrowStatement';
@@ -366,6 +397,7 @@ export interface ThrowStatement extends Statement {
  * let myVar: string;
  * ```
  * @final
+ * @deprecated
  */
 export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
@@ -374,6 +406,7 @@ export interface VariableStatement extends Statement {
   meta: abstracts.domains.WithDescription;
 }
 
+/** @deprecated */
 export type StatementType =
   | ReturnStatement
   | BlockStatement
@@ -382,6 +415,8 @@ export type StatementType =
   | BranchFlowStatement
   | GoStatement
   | VariableStatement
+  | CatchStatement
+  | TryStatement
   | ThrowStatement;
 
 // endregion Statement
@@ -438,6 +473,7 @@ export interface DependencyBinding extends Binding {
  * readonly id?: string  = "1";
  * ```
  * @final
+ * @depricated merge
  */
 export interface PropertyBinding extends Binding {
   kind: 'PropertyBinding';
@@ -452,7 +488,7 @@ export interface PropertyBinding extends Binding {
  * Represents a parameter in a function declaration or signature.
  * @example
  * ```ts
- * (cat=args: string[])
+ * (cat=args: string[],)
  * ```
  * @final
  */
@@ -472,6 +508,7 @@ export interface ParameterBinding extends Binding {
  * Up = 1 inside enum Direction { Up = 1 }
  * ```
  * @final
+ * @depricated use object
  */
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
@@ -487,6 +524,7 @@ export interface EnumPropertyBinding extends Binding {
  * enum Direction { Up = 1, Down }
  * ```
  * @final
+ * @depricated use object
  */
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
@@ -502,6 +540,7 @@ export interface EnumBinding extends Binding {
  * function calculateTotal(price: number): number { ... }
  * ```
  * @final
+ * @depricated merge
  */
 export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
@@ -529,6 +568,7 @@ export interface FunctionBinding extends Binding {
  * interface Admin extends User { role: string; }
  * ```
  * @final
+ * @depricated rethink concept
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
@@ -546,6 +586,7 @@ export interface ClassBinding extends Binding {
  * namespace MyModule { export const x = 1; }
  * ```
  * @final
+ * @depricated no need
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
@@ -561,6 +602,7 @@ export interface ModuleBinding extends Binding {
  * Represents a module with dependencies.
  * ```
  * @final
+ * @depricated no need
  */
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
@@ -575,6 +617,7 @@ export interface PackageBinding extends Binding {
 /**
  * Объявление макроса.
  * @example Rust: `macro_rules! my_macro { ... }`
+ * @depricated must be language plugin system
  */
 export interface MacroBinding extends Binding {
   kind: 'MacroBinding';
@@ -650,6 +693,7 @@ export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
  * string, number, boolean, any
  * ```
  * @final
+ * @depricated
  */
 export interface BuildInShape extends Shape {
   kind: 'BuildInShape';
@@ -676,6 +720,7 @@ export interface BuildInShape extends Shape {
  * \\user_${number}\\
  * ```
  * @final
+ * @depricated
  */
 export interface TemplateShape extends Shape {
   kind: 'TemplateShape';
@@ -690,6 +735,7 @@ export interface TemplateShape extends Shape {
  * { [K in keyof User]: boolean }
  * ```
  * @final
+ * @depricated
  */
 export interface MappedShape extends Shape {
   kind: 'MappedShape';

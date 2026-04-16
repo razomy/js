@@ -11,7 +11,7 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'ReturnShape':
       return shapeToString(type.shape);
     case 'ReferenceShape':
-      if (type.shapes.length > 1) {
+      if (type.shapes.length > 0) {
         return `${type.shapeIdentifier.name}<${type.shapes.map(shapeToString).join(', ')}>`;
       }
       return type.shapeIdentifier.name;
@@ -27,9 +27,13 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
     case 'ObjectShape':
       return `{ ${type.properties.map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`).join(', ')} }`;
     case 'FunctionShape':
-      return `(${type.parameters
-        .map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`)
-        .join(', ')}) => ${shapeToString(type.return_)}`;
+      const shapes = type.shapes.length ?
+        `<${type.shapes.map(i => i.shapeIdentifier.name).join(', ')}>`
+      : '';
+      const params = `(${type.parameters
+      .map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`)
+      .join(', ')})`;
+      return `${shapes}${params} => ${shapeToString(type.return_)}`;
     case 'TemplateShape':
       return `\`${type.template}\``;
     case 'MappedShape':
