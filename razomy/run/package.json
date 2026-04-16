@@ -19,10 +19,20 @@
         "default": "./index.ts",
         "types": "./index.ts"
       },
+      "node": {
+        "import": "./index.node.ts",
+        "require": "./index.node.ts",
+        "types": "./index.node.ts"
+      },
       "require": {
         "default": "./index.ts",
         "types": "./index.ts"
       }
+    },
+    "./node": {
+      "import": "./index.node.ts",
+      "require": "./index.node.ts",
+      "types": "./index.node.ts"
     },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
@@ -38,9 +48,9 @@
     "resolveAndRun",
     "resolveFilePathOrPackageName",
     "runFunctionInstant",
+    "validateArrayStringThrow",
     "spawnProcess",
     "start",
-    "validateArrayStringThrow",
     "cancelMut",
     "createMut",
     "processJobMut"
@@ -63,7 +73,7 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
+    "build": "tsdown index.ts index.node.ts --format esm,cjs --dts",
     "dev": "tsdown index.ts --watch",
     "prepublishOnly": "npm run build"
   },
