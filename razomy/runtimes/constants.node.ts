@@ -1,4 +1,4 @@
-import * as runtimes from '@razomy/runtimes';
+import * as runtimes from '@razomy/runtimes/node';
 
 export const DEFAULT_PACKAGE = {
   packageName: '@razomy/string-case',

@@ -7,7 +7,7 @@ import * as tsRefactorProject from '@razomy/ts-refactor-project';
 export function addDependencies(projectPath: string, prefix) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+    .filter((i) => !tsRefactorProject.packageJson.isPackageNameSkip(i.name));
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names

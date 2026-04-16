@@ -49,6 +49,7 @@
     "createDist",
     "createRoot",
     "getAll",
+    "isPackageNameSkip",
     "updateByTemplate"
   ],
   "license": "MIT",

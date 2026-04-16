@@ -127,6 +127,7 @@
     "./razomy/pipes-booleans",
     "./razomy/rala",
     "./razomy/rala-string",
+    "./razomy/rala-vue",
     "./razomy/random",
     "./razomy/razomy",
     "./razomy/refactor-fs",

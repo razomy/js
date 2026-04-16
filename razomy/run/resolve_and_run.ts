@@ -1,5 +1,5 @@
 import path from 'node:path';
-import * as run from '@razomy/run';
+import * as run from '@razomy/run/node';
 
 function extractPathAndFunction(pathWithFunctionName: string) {
   // Check if the string contains a dot

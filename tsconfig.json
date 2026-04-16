@@ -3,8 +3,13 @@
     "allowJs": false,
     "declaration": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["jest"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "jest"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noImplicitAny": false,
@@ -23,11 +28,22 @@
     "verbatimModuleSyntax": true,
     "target": "esnext",
     "paths": {
-      "razomy": ["./razomy/index.ts"],
-      "@razomy/*": ["./razomy/*/index.ts"]
+      "razomy": [
+        "./razomy/index.ts"
+      ],
+      "@razomy/*": [
+        "./razomy/*/index.ts"
+      ]
     }
   },
-  "exclude": ["**/node_modules", "**/dist", "**/coverage", "./razomy/vue", "./razomy/nuxt"],
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/coverage",
+    "./razomy/vue",
+    "./razomy/nuxt",
+    "./razomy/rala-vue"
+  ],
   "references": [
     {
       "path": "./razomy/nuxt/tsconfig.json"

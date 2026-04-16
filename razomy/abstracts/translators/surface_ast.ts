@@ -19,6 +19,7 @@
  * [] strict layer no intersections
  * [] property same as Type Base - identifier:Identifier, shapes: Shapes ...
  *   uniq name or opposite names pairs or integration names in one scope - animal, cat | dog, cat1|cat2|cat3
+ * //TODO: split into two groups uniq core and domain specific
  */
 
 import * as abstracts from '@razomy/abstracts';
@@ -51,7 +52,7 @@ export interface Expression extends AstNode {
 /**
  * Base interface for all statements (actions/control flow).
  * Sequence of logic
- * @deprecated all code should return value
+ * @deprecated all code should return value, use Expression instead
  * @example
  * ```ts
  * * block of Template
@@ -112,7 +113,7 @@ export interface BuildInExpression extends Expression {
  * "user_${a}"
  * ```
  * @final
- * @deprecated should be a natural language code
+ * @deprecated should be a natural language code use Expression instead
  */
 export interface TemplateExpression extends Expression {
   kind: 'TemplateExpression';
@@ -223,7 +224,6 @@ export interface BinaryExpression extends Expression {
 
 export interface BranchFlowExpression extends Expression {
   kind: 'BranchFlowExpression';
-  type: 'if' | 'switch';
   // null = else {}
   pattern: ExpressionType | null;
   expression: ExpressionType;
@@ -231,6 +231,7 @@ export interface BranchFlowExpression extends Expression {
 
 export interface ConditionalFlowExpression extends Expression {
   kind: 'ConditionalFlowExpression';
+  type: 'if' | 'switch';
   // null = if {}
   target: ExpressionType | null;
   branches: BranchFlowExpression[];
@@ -263,7 +264,7 @@ export interface CallExpression extends Expression {
  * Вызов макроса. Обрати внимание, что аргументы могут быть не выражениями,
  * а сырым текстом/токенами, если макрос определяет свой DSL.
  * @example Rust: `println!("{}, {}", x, y)`, `vec![1, 2, 3]`
- * @deprecated must be code injection as lang plugin not a virtual code
+ * @deprecated must be code injection as lang plugin not a virtual code TODO: Create injection node
  */
 export interface MacroCallExpression extends Expression {
   kind: 'MacroCallExpression';
@@ -283,7 +284,7 @@ export interface MemberExpression extends Expression {
 export interface ReferenceExpression extends Expression {
   kind: 'ReferenceExpression';
   identifier: Identifier;
-  modifiers: Array<'spread' | 'async'>;
+  modifiers: Array<'spread' | 'await'>;
 }
 
 
@@ -458,6 +459,7 @@ export interface AssignBinding extends Binding {
  * import * as abstracts from "@razomy/abstracts";
  * ```
  * @final
+ * @deprecated it should be alias variables `myPkg = npm:My-pckg:version:relative/path;`
  */
 export interface DependencyBinding extends Binding {
   kind: 'DependencyBinding';
@@ -934,6 +936,7 @@ export type AstOntologyType = Concept | Clause;
  * @example
  * "Комната — это вид хранилища." -> relation: 'subclass'
  * "Библиотека — это комната." -> relation: 'instance'
+ * @deprecated same as ValueBinding and ShapeBinding
  */
 export interface TaxonomyConcept extends Concept {
   kind: 'TaxonomyConcept';
@@ -948,6 +951,7 @@ export interface TaxonomyConcept extends Concept {
  * Здесь мы говорим компилятору, КАКИЕ роли поддерживает предикат и КАКИЕ типы они требуют.
  * @example
  * "Глагол [передать] требует (Кто:Человек, Что:Предмет, Кому:Человек)."
+ * @deprecated same as FunctionBinding
  */
 export interface PredicateConcept extends Concept {
   kind: 'PredicateConcept';

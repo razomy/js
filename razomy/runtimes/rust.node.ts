@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from '@razomy/run';
-import * as runtimes from '@razomy/runtimes';
+import * as run from '@razomy/run/node';
+import * as runtimes from '@razomy/runtimes/node';
 
 function getContext(versionRuntimeDir: string) {
   const cargoBin = path.join(versionRuntimeDir, 'cargo', 'bin');

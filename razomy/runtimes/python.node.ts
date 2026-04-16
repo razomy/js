@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from '@razomy/run';
-import * as runtimes from '@razomy/runtimes';
+import * as run from '@razomy/run/node';
+import * as runtimes from '@razomy/runtimes/node';
 
 // Контекст изолирует дубликаты переменных окружения и путей
 function getContext(versionRuntimeDir: string, versionWorkspaceDir?: string) {

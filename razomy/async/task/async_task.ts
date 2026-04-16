@@ -1,6 +1,6 @@
-import * as serializable from '@razomy/serializable';
+// import * as serializable from '@razomy/serializable';
 
-export interface Context extends serializable.WithSerializable {}
+export interface Context {}//extends serializable.WithSerializable {}
 
 export interface WithContext<C extends Context> {
   c: C;

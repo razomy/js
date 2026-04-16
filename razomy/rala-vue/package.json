@@ -1,0 +1,57 @@
+{
+  "main": "./my-vue-package.umd.js",
+  "module": "./my-vue-package.es.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./my-vue-package.es.js",
+      "require": "./my-vue-package.umd.js",
+      "types": "./src/index.d.ts"
+    },
+    "./style.css": "./style.css"
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build && cp package.json ./dist/package.json"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.32"
+  },
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/rala-vue#readme",
+  "keywords": [
+    "razomy",
+    "rala",
+    "vue"
+  ],
+  "license": "MIT",
+  "name": "@razomy/rala-vue",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/rala-vue",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "1.0.0"
+}

@@ -1,4 +1,4 @@
-import * as run from '@razomy/run';
+import * as run from '@razomy/run/node';
 
 export async function start() {
   try {

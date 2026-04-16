@@ -1,5 +1,5 @@
 export * as task from './task';
-export { AsyncQueue } from './async_queue';
+export { Debounce } from './debounce';
 export { create } from './create';
 export { delay } from './delay';
 export { eventToPromise, type Event } from './event_to_promise';

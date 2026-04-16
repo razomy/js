@@ -10,7 +10,7 @@ import * as tsRefactor from '@razomy/ts-refactor';
 export function updateByTemplate(projectPath: string, prefix) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => i.name !== 'razomy/_razomy' && i.name !== 'razomy/nuxt');
+    .filter((i) => !tsRefactorProject.packageJson.isPackageNameSkip(i.name));
   const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
 
   packages.forEach((folder) => {

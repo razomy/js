@@ -4,4 +4,5 @@ export { createAtChildDirs } from './create_at_child_dirs';
 export { createDist } from './create_dist';
 export { createRoot } from './create_root';
 export { getAll } from './get_all';
+export { isPackageNameSkip } from './is_package_name_skip';
 export { updateByTemplate } from './update_by_template';

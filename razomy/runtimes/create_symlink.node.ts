@@ -1,5 +1,5 @@
 import * as fs from 'node:fs';
-import * as runtimes from '@razomy/runtimes';
+import * as runtimes from '@razomy/runtimes/node';
 
 export function createSymlink(targetDir: string, linkPath: string) {
   if (runtimes.linkExists(linkPath)) {
