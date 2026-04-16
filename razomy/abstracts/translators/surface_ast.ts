@@ -51,7 +51,7 @@ export interface Expression extends AstNode {
 /**
  * Base interface for all statements (actions/control flow).
  * Sequence of logic
- * @deprecated
+ * @deprecated all code should return value
  * @example
  * ```ts
  * * block of Template
@@ -96,7 +96,7 @@ export type AstValueType = Expression | Statement | Binding;
  *
  * @example
  * @final
- * @deprecated
+ * @deprecated no magic words
  */
 export interface BuildInExpression extends Expression {
   kind: 'BuildInExpression';
@@ -112,7 +112,7 @@ export interface BuildInExpression extends Expression {
  * "user_${a}"
  * ```
  * @final
- * @deprecated
+ * @deprecated should be a natural language code
  */
 export interface TemplateExpression extends Expression {
   kind: 'TemplateExpression';
@@ -263,6 +263,7 @@ export interface CallExpression extends Expression {
  * Вызов макроса. Обрати внимание, что аргументы могут быть не выражениями,
  * а сырым текстом/токенами, если макрос определяет свой DSL.
  * @example Rust: `println!("{}, {}", x, y)`, `vec![1, 2, 3]`
+ * @deprecated must be code injection as lang plugin not a virtual code
  */
 export interface MacroCallExpression extends Expression {
   kind: 'MacroCallExpression';
@@ -308,7 +309,6 @@ export type ExpressionType =
  * Represents a return statement.
  * return ...;
  * @final
- * @deprecated
  */
 export interface ReturnStatement extends Statement {
   kind: 'ReturnStatement';
@@ -326,7 +326,7 @@ export interface BlockStatement extends Statement {
   declarations: DeclarationType[];
 }
 
-/** @deprecated */
+/** @deprecated use functional programming */
 export interface BranchFlowStatement extends Statement {
   kind: 'BranchFlowStatement';
   type: 'if' | 'switch' | 'try_catch';
@@ -334,14 +334,14 @@ export interface BranchFlowStatement extends Statement {
   block: BlockStatement;
 }
 
-/** @deprecated */
+/** @deprecated use functional programming */
 export interface ConditionalFlowStatement extends Statement {
   kind: 'ConditionalFlowStatement';
   target: ExpressionType | null;
   branches: BranchFlowStatement[];
 }
 
-/** @deprecated */
+/** @deprecated use functional programming */
 export interface LoopFlowStatement extends Statement {
   kind: 'LoopFlowStatement';
   type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
@@ -351,7 +351,7 @@ export interface LoopFlowStatement extends Statement {
   block: BlockStatement;
 }
 
-/** @deprecated */
+/** @deprecated use functional programming */
 export interface GoStatement extends Statement {
   kind: 'GoStatement';
   type: 'break' | 'continue';
@@ -361,7 +361,7 @@ export interface GoStatement extends Statement {
 /**
  * Represents a throw statement.
  * @final
- * @deprecated
+ * @deprecated uniq data type instead and data validation
  */
 export interface TryStatement extends Statement {
   kind: 'TryStatement';
@@ -372,7 +372,7 @@ export interface TryStatement extends Statement {
 /**
  * Represents a throw statement.
  * @final
- * @deprecated
+ * @deprecated uniq data type instead and data validation
  */
 export interface CatchStatement extends Statement {
   kind: 'TryStatement';
@@ -383,7 +383,7 @@ export interface CatchStatement extends Statement {
 /**
  * Represents a throw statement.
  * @final
- * @deprecated
+ * @deprecated uniq data type instead and data validation
  */
 export interface ThrowStatement extends Statement {
   kind: 'ThrowStatement';
@@ -397,7 +397,7 @@ export interface ThrowStatement extends Statement {
  * let myVar: string;
  * ```
  * @final
- * @deprecated
+ * @deprecated use functional programming
  */
 export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
@@ -473,7 +473,7 @@ export interface DependencyBinding extends Binding {
  * readonly id?: string  = "1";
  * ```
  * @final
- * @depricated merge
+ * @deprecated merge with expression
  */
 export interface PropertyBinding extends Binding {
   kind: 'PropertyBinding';
@@ -508,7 +508,7 @@ export interface ParameterBinding extends Binding {
  * Up = 1 inside enum Direction { Up = 1 }
  * ```
  * @final
- * @depricated use object
+ * @deprecated use property expression with modifiers
  */
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
@@ -524,7 +524,7 @@ export interface EnumPropertyBinding extends Binding {
  * enum Direction { Up = 1, Down }
  * ```
  * @final
- * @depricated use object
+ * @deprecated use object expression with modifiers
  */
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
@@ -540,7 +540,7 @@ export interface EnumBinding extends Binding {
  * function calculateTotal(price: number): number { ... }
  * ```
  * @final
- * @depricated merge
+ * @deprecated merge with array function
  */
 export interface FunctionBinding extends Binding {
   kind: 'FunctionBinding';
@@ -568,7 +568,7 @@ export interface FunctionBinding extends Binding {
  * interface Admin extends User { role: string; }
  * ```
  * @final
- * @depricated rethink concept
+ * @deprecated rethink concept adaptive context mapping
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
@@ -586,7 +586,7 @@ export interface ClassBinding extends Binding {
  * namespace MyModule { export const x = 1; }
  * ```
  * @final
- * @depricated no need
+ * @deprecated no need use Block as scope
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
@@ -602,7 +602,7 @@ export interface ModuleBinding extends Binding {
  * Represents a module with dependencies.
  * ```
  * @final
- * @depricated no need
+ * @deprecated no need use Block as scope
  */
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
@@ -617,7 +617,7 @@ export interface PackageBinding extends Binding {
 /**
  * Объявление макроса.
  * @example Rust: `macro_rules! my_macro { ... }`
- * @depricated must be language plugin system
+ * @deprecated must be language plugin system
  */
 export interface MacroBinding extends Binding {
   kind: 'MacroBinding';
@@ -658,6 +658,7 @@ export interface Shape extends AstNode {
 
 /*
  * @abstract
+ * @deprecated no need
  */
 export interface ShapeStatement extends AstNode {
 }
@@ -693,7 +694,7 @@ export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
  * string, number, boolean, any
  * ```
  * @final
- * @depricated
+ * @deprecated no magic
  */
 export interface BuildInShape extends Shape {
   kind: 'BuildInShape';
@@ -720,7 +721,7 @@ export interface BuildInShape extends Shape {
  * \\user_${number}\\
  * ```
  * @final
- * @depricated
+ * @deprecated same reason as template expression
  */
 export interface TemplateShape extends Shape {
   kind: 'TemplateShape';
@@ -735,7 +736,6 @@ export interface TemplateShape extends Shape {
  * { [K in keyof User]: boolean }
  * ```
  * @final
- * @depricated
  */
 export interface MappedShape extends Shape {
   kind: 'MappedShape';
@@ -820,6 +820,7 @@ export interface UnionShape extends Shape {
  * User & Timestamped
  * ```
  * @final
+ * @deprecated
  */
 export interface IntersectionShape extends Shape {
   kind: 'IntersectionShape';
@@ -828,6 +829,7 @@ export interface IntersectionShape extends Shape {
 
 /**
  * (): String
+ * @deprecated autogenerated
  */
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
@@ -889,6 +891,7 @@ export interface AliasShapeBinding extends ShapeBinding {
  * interface Admin extends User { role: string; }
  * ```
  * @final
+ * @deprecated rethink luck of flexibility
  */
 export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
@@ -915,13 +918,11 @@ export interface Clause extends AstNode {
 }
 
 /**
- * Роль участника в отношении (Тематическая роль).
- * В AMR это: :ARG0, :ARG1, :location, :time.
- * В твоем языке это могут быть "Кто", "Кого", "Где", "Чем".
+ * Concept
  */
 export interface ConceptIdentifier extends AstNode {
   kind: 'ConceptIdentifier';
-  name: string; // 'actor', 'theme', 'instrument', 'location'
+  name: string; // 'Actor', 'Theme', 'Instrument', 'Location'
 }
 
 export type AstOntologyType = Concept | Clause;

@@ -22,12 +22,8 @@ export function renameNode(
 ) {
   const nameNode = v.getNameNode();
 
-  // 1. Handle Destructuring (Object or Array binding patterns)
-  // e.g. const { a, b } = obj;  or  const [x, y] = arr;
   if (Node.isObjectBindingPattern(nameNode) || Node.isArrayBindingPattern(nameNode)) {
-    // Iterate over every element in the pattern ({a, b} -> rename a, rename b)
     nameNode.getElements().forEach((element) => {
-      // Omitted expressions occur in arrays with holes: const [, b] = arr;
       if (Node.isBindingElement(element)) {
         renameBindingElement(element);
       }
@@ -35,8 +31,6 @@ export function renameNode(
     return;
   }
 
-  // 2. Handle Standard Declarations
-  // e.g. const a = 1;
   const name = v.getName();
   if (!name) {
     throw new Error('v must have name ' + v.getSourceFile().getFilePath() + v);
@@ -52,7 +46,6 @@ export function renameNode(
 function renameBindingElement(element: BindingElement) {
   const nameNode = element.getNameNode();
 
-  // Recursively handle nested destructuring
   if (Node.isObjectBindingPattern(nameNode) || Node.isArrayBindingPattern(nameNode)) {
     nameNode.getElements().forEach((childEl) => {
       if (Node.isBindingElement(childEl)) {
@@ -62,18 +55,11 @@ function renameBindingElement(element: BindingElement) {
     return;
   }
 
-  // It's a leaf node variable (e.g. 'a' in { a })
   const name = element.getName();
-
-  // Logic specifically for Object Destructuring:
-  // If we rename 'a' to 'b' in `const { a } = obj`, we must ensure it becomes `const { a: b } = obj`.
-  // If we don't set the property name first, ts-morph might change it to `const { b } = obj`.
   const parent = element.getParent();
   if (Node.isObjectBindingPattern(parent) && !element.getPropertyNameNode()) {
     const newName = tsRefactor.toSafeName(stringCase.camelCase(name));
-    // Only mess with the structure if a rename is actually going to happen
     if (newName !== name && (tsRefactor.isNameTaken(element as any, newName) || newName !== name)) {
-      // Lock the source property name to the current name
       element.rename(name);
     }
   }
@@ -87,13 +73,9 @@ function renameBindingElement(element: BindingElement) {
 function performSafeRename(node: Node & { rename: (text: string) => void }, originalName: string) {
   function isExportableVariable() {
     const isVariable = Node.isVariableDeclaration(node);
-    if (!isVariable) {
-      return false;
-    }
+    if (!isVariable) return false;
     const parentStatement = node.getParent()?.getParent();
-    if (!parentStatement) {
-      return false;
-    }
+    if (!parentStatement) return false;
     return Node.isExportable(parentStatement) && parentStatement.isExported();
   }
 
@@ -101,12 +83,8 @@ function performSafeRename(node: Node & { rename: (text: string) => void }, orig
     isExportableVariable() ? stringCase.constantCase(originalName) : stringCase.camelCase(originalName),
   );
 
-  if (originalName === newName) {
-    return;
-  }
+  if (originalName === newName) return;
 
-  // Note: we cast to 'any' for isNameTaken because the custom guard might only accept specific types,
-  // but BindingElement acts like a variable in this context.
   if (tsRefactor.isNameTaken(node as any, newName)) {
     newName = newName + '_';
   }

@@ -1,4 +1,4 @@
-import * as dict_ from '@razomy/dict';
+import * as dict from '@razomy/dict';
 import * as dictRecursive from '@razomy/dict-recursive';
 
 /**
@@ -39,7 +39,7 @@ export function setByPathMut(obj: dictRecursive.DictRecursive, path: string, val
   }
 
   const target: dictRecursive.DictRecursive = parts.reduce<dictRecursive.DictRecursive>((acc, part) => {
-    if (!acc[part] || !dict_.isPlainObject(acc[part])) {
+    if (!acc[part] || !dict.isPlainObject(acc[part])) {
       acc[part] = {};
     }
     return acc[part] as dictRecursive.DictRecursive;

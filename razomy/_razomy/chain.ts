@@ -2,7 +2,7 @@ import * as string from '@razomy/string';
 import * as stringCase from '@razomy/string-case';
 import * as array from '@razomy/array';
 import * as dict from '@razomy/dict';
-import * as object from '@razomy/object';
+import * as object_ from '@razomy/object';
 import * as pipes from '@razomy/pipes';
 
 declare module '@razomy/pipes' {
@@ -20,6 +20,6 @@ declare module '@razomy/pipes' {
 export const REGISTRY = new pipes.ChainRegistry();
 REGISTRY.register((val) => string.isString(val), { ...string, ...stringCase });
 REGISTRY.register((val) => array.isArray(val), array);
-REGISTRY.register((val) => object.isObject(val), dict);
+REGISTRY.register((val) => object_.isObject(val), dict);
 
 export const FP = REGISTRY.fp.bind(REGISTRY);

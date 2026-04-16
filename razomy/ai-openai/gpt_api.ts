@@ -1,4 +1,4 @@
-import * as object from '@razomy/object';
+import * as object_ from '@razomy/object';
 import * as string from '@razomy/string';
 import * as aiOpenai from '@razomy/ai-openai';
 
@@ -9,7 +9,7 @@ export async function gptApi(messageOrMessagesOrRequest) {
     return (await aiOpenai.gptApiV2(req as any)).choices[0].message.content;
   } else if (Array.isArray(messageOrMessagesOrRequest)) {
     return (await aiOpenai.gptApiV2(messageOrMessagesOrRequest as any)).choices[0].message.content;
-  } else if (object.isObject(messageOrMessagesOrRequest)) {
+  } else if (object_.isObject(messageOrMessagesOrRequest)) {
     aiOpenai.setTokens(messageOrMessagesOrRequest);
     return (await aiOpenai.gptApiV2(messageOrMessagesOrRequest)).choices[0].message.content;
   } else {

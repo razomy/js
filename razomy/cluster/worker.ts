@@ -1,10 +1,10 @@
-import * as event from '@razomy/async';
+import * as async from '@razomy/async';
 
 export interface WithWorkerId {
   workerId: string;
 }
 
-export interface WorkerEvent<T> extends event.Event<T> {
+export interface WorkerEvent<T> extends async.Event<T> {
   id: 'get' | 'set';
   ctx: T;
 }

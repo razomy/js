@@ -3,6 +3,11 @@ import * as array from '@razomy/array';
 import * as tsRefactor from '@razomy/ts-refactor';
 
 export function fileRenameVariablesAndPropsFunctions({ sourceFile, project }: tsRefactor.IterateSourceFileState) {
+  const imports = sourceFile.getDescendantsOfKind(SyntaxKind.NamespaceImport);
+  for (const variableDeclaration of imports) {
+    tsRefactor.renameNamespaceImport(variableDeclaration);
+  }
+
   const functions = sourceFile.getDescendantsOfKind(SyntaxKind.FunctionDeclaration);
   const parameters = array.flat(functions.map((decl) => decl.getParameters())).filter((i) => !!i);
   const files = [

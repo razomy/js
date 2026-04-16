@@ -49,6 +49,7 @@
     "iterateSourceFilesAndSave",
     "renameFileBasedOnFirstChild",
     "renameFoldersRecursively",
+    "renameNamespaceImport",
     "renameNode",
     "renameToSnakeCaseRecursiveTs",
     "splitFunctions",
@@ -64,9 +65,10 @@
     "@razomy/array": "*",
     "@razomy/fss": "*",
     "@razomy/languages-programming-fs": "*",
+    "@razomy/rala-string": "*",
     "@razomy/refactor-fs": "*",
     "@razomy/string-case": "*",
-    "@razomy/ts-translators": "*"
+    "@razomy/ts-rala": "*"
   },
   "publishConfig": {
     "access": "public"
