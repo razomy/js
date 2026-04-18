@@ -63,7 +63,7 @@ export enum PackageFormat {
   IPA = '.ipa'        // iOS App
 }
 
-interface BuildConfig {
+export interface BuildConfig {
   os: OperatingSystem;
   arch: CpuArchitecture;
   format: PackageFormat;

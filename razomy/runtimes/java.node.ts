@@ -1,15 +1,15 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from '@razomy/run/node';
-import * as runtimes from '@razomy/runtimes/node';
+import * as runNode from '@razomy/run/node';
+import * as runtimesNode from '@razomy/runtimes/node';
 
 function getContext(versionRuntimeDir: string) {
-  const binSubDir = runtimes.IS_MAC ? 'Contents/Home/bin' : 'bin';
+  const binSubDir = runtimesNode.IS_MAC ? 'Contents/Home/bin' : 'bin';
   const binPath = path.join(versionRuntimeDir, binSubDir);
 
-  const javacExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/javac`, 'bin/javac.exe');
-  const javaExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/java`, 'bin/java.exe');
-  const nativeImgExe = runtimes.getExePath(versionRuntimeDir, `${binSubDir}/native-image`, 'bin/native-image.cmd');
+  const javacExe = runtimesNode.getExePath(versionRuntimeDir, `${binSubDir}/javac`, 'bin/javac.exe');
+  const javaExe = runtimesNode.getExePath(versionRuntimeDir, `${binSubDir}/java`, 'bin/java.exe');
+  const nativeImgExe = runtimesNode.getExePath(versionRuntimeDir, `${binSubDir}/native-image`, 'bin/native-image.cmd');
 
   const env = {
     ...process.env,
@@ -19,7 +19,7 @@ function getContext(versionRuntimeDir: string) {
   return { javaExe, javacExe, nativeImgExe, env };
 }
 
-export const JAVA_RUNTIME: runtimes.RuntimeProvider = {
+export const JAVA_RUNTIME: runtimesNode.RuntimeProvider = {
   defaultVersion: '25',
 
   setup(versionWorkspaceDir, versionRuntimeDir) {
@@ -29,10 +29,10 @@ export const JAVA_RUNTIME: runtimes.RuntimeProvider = {
     fs.writeFileSync(javaPath, javaCode);
 
     console.log('Compiling Java...');
-    runtimes.execCmd(`${javacExe} StartCli.java`, versionWorkspaceDir, env);
+    runtimesNode.execCmd(`${javacExe} StartCli.java`, versionWorkspaceDir, env);
 
     try {
-      runtimes.execCmd(`${nativeImgExe} StartCli`, versionWorkspaceDir, env);
+      runtimesNode.execCmd(`${nativeImgExe} StartCli`, versionWorkspaceDir, env);
     } catch {
       console.warn('Native binary skipped. Using bytecode.');
     }
@@ -46,7 +46,7 @@ export const JAVA_RUNTIME: runtimes.RuntimeProvider = {
         ? `./StartCli`
         : `${javaExe.replace(/"/g, '')} StartCli`;
 
-    return run.cli.spawnProcess(cmd, [packageName, functionName, params], versionWorkspaceDir, env);
+    return runNode.cli.spawnProcess(cmd, [packageName, functionName, params], versionWorkspaceDir, env);
   },
 
   async install(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
@@ -54,26 +54,26 @@ export const JAVA_RUNTIME: runtimes.RuntimeProvider = {
     let mvnCmd = 'mvn';
 
     try {
-      runtimes.execCmd(`${runtimes.IS_WIN ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
+      runtimesNode.execCmd(`${runtimesNode.IS_WIN ? 'where' : 'which'} mvn`, versionWorkspaceDir, env, 'ignore');
     } catch {
       const mavenDir = path.join(versionRuntimeDir, 'maven');
-      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', runtimes.IS_WIN ? 'mvn.cmd' : 'mvn');
+      mvnCmd = path.join(mavenDir, 'apache-maven-3.9.6', 'bin', runtimesNode.IS_WIN ? 'mvn.cmd' : 'mvn');
 
       if (!fs.existsSync(mvnCmd)) {
         console.log('⏳ Apache Maven not found. Downloading standalone wrapper...');
         const mvnZipUrl = 'https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip';
         const zipDest = path.join(versionRuntimeDir, 'maven.zip');
 
-        await runtimes.downloadFile(mvnZipUrl, zipDest);
-        await runtimes.extractArchive(zipDest, mavenDir);
+        await runtimesNode.downloadFile(mvnZipUrl, zipDest);
+        await runtimesNode.extractArchive(zipDest, mavenDir);
         fs.unlinkSync(zipDest);
 
-        if (!runtimes.IS_WIN) runtimes.execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
+        if (!runtimesNode.IS_WIN) runtimesNode.execCmd(`chmod +x "${mvnCmd}"`, versionWorkspaceDir, env);
       }
       mvnCmd = `"${mvnCmd}"`;
     }
 
-    runtimes.execCmd(
+    runtimesNode.execCmd(
       `${mvnCmd} dependency:get -Dartifact=${packageName} -Ddest=${versionWorkspaceDir}`,
       versionWorkspaceDir,
       env,

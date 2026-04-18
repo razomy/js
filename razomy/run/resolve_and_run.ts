@@ -1,5 +1,5 @@
 import path from 'node:path';
-import * as run from '@razomy/run/node';
+import * as runNode from '@razomy/run/node';
 
 function extractPathAndFunction(pathWithFunctionName: string) {
   // Check if the string contains a dot
@@ -33,11 +33,11 @@ export interface RunRequest {
 }
 
 export async function resolveAndRun(filePathOrPackageName: string, pathWithFunctionName: string, params: string[]) {
-  const { importPath, moduleDir } = run.resolveFilePathOrPackageName(path.resolve(), filePathOrPackageName);
+  const { importPath, moduleDir } = runNode.resolveFilePathOrPackageName(path.resolve(), filePathOrPackageName);
 
-  const fileUrl = await run.createRunner(importPath, moduleDir);
+  const fileUrl = await runNode.createRunner(importPath, moduleDir);
   const dynamicModule = await import(fileUrl);
   const { pathArray, functionName } = extractPathAndFunction(pathWithFunctionName);
 
-  return await run.runFunctionInstant(dynamicModule, pathArray, functionName, params);
+  return await runNode.runFunctionInstant(dynamicModule, pathArray, functionName, params);
 }

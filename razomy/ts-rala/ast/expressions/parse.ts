@@ -50,7 +50,7 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
     }
     return {
       kind: 'ReferenceExpression',
-      modifiers: ['async'],
+      modifiers: ['await'],
       identifier: {
         kind: 'Identifier',
         name: node.getText(),
@@ -117,7 +117,7 @@ export function parse(node: Node): abstracts.translators.ExpressionType {
   }
 
   if (Node.isConditionalExpression(node)) {
-    return tsRala.ast.expressions.parseConditional(node);
+    return tsRala.ast.expressions.parseCondition(node);
   }
 
   if (Node.isAsExpression(node)) {

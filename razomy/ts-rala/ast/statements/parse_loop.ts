@@ -2,48 +2,70 @@ import { Node, Statement } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRala from "@razomy/ts-rala";
 
-export function parseLoop(node: Statement): abstracts.translators.LoopFlowStatement {
-  let type: 'do_while' | 'while_do' | 'for_in' | 'for_of' = 'while_do';
-  let init: abstracts.translators.ExpressionType | null = null;
-  let condition: abstracts.translators.ExpressionType | null = null;
-  let update: abstracts.translators.ExpressionType | null = null;
-  let bodyNode: Statement;
-
+export function parseLoop(
+  node: Statement
+):
+  | abstracts.translators.DoWhileLoopFlowStatement
+  | abstracts.translators.WhileDoLoopFlowStatement
+  | abstracts.translators.ForInLoopFlowStatement
+  | abstracts.translators.ForOfLoopFlowStatement
+  | abstracts.translators.ForItLoopFlowStatement
+{
   if (Node.isForStatement(node)) {
-    type = 'while_do'; // Классический for (;;) работает как while
-    bodyNode = node.getStatement();
+    let init: abstracts.translators.ExpressionType | null = null;
+    let condition: abstracts.translators.ExpressionType | null = null;
+    let update: abstracts.translators.ExpressionType | null = null;
 
-    // Парсим condition и update
+    const initNode = node.getInitializer();
+    if (initNode) init = tsRala.ast.expressions.parse(initNode);
+
     const condNode = node.getCondition();
     if (condNode) condition = tsRala.ast.expressions.parse(condNode);
 
     const updNode = node.getIncrementor();
     if (updNode) update = tsRala.ast.expressions.parse(updNode);
 
-  } else if (Node.isWhileStatement(node)) {
-    type = 'while_do';
-    bodyNode = node.getStatement();
-    condition = tsRala.ast.expressions.parse(node.getExpression());
-
-  } else if (Node.isDoStatement(node)) {
-    type = 'do_while';
-    bodyNode = node.getStatement();
-    condition = tsRala.ast.expressions.parse(node.getExpression());
-
-  } else if (Node.isForOfStatement(node) || Node.isForInStatement(node)) {
-    type = Node.isForOfStatement(node) ? 'for_of' : 'for_in';
-    bodyNode = node.getStatement();
-    condition = tsRala.ast.expressions.parse(node.getExpression());
-  } else {
-    throw new Error('Unsupported loop node type');
+    return {
+      kind: 'ForItLoopFlowStatement',
+      init,
+      condition,
+      update,
+      block: tsRala.ast.statements.parseBlock(node.getStatement()),
+    };
   }
 
-  return {
-    kind: 'LoopFlowStatement',
-    type,
-    init,
-    condition,
-    update,
-    block: tsRala.ast.statements.parseBlock(bodyNode),
-  };
+  if (Node.isWhileStatement(node)) {
+    return {
+      kind: 'WhileDoLoopFlowStatement',
+      condition: tsRala.ast.expressions.parse(node.getExpression()),
+      block: tsRala.ast.statements.parseBlock(node.getStatement()),
+    };
+  }
+
+  if (Node.isDoStatement(node)) {
+    return {
+      kind: 'DoWhileLoopFlowStatement',
+      condition: tsRala.ast.expressions.parse(node.getExpression()),
+      block: tsRala.ast.statements.parseBlock(node.getStatement()),
+    };
+  }
+
+  if (Node.isForOfStatement(node)) {
+    return {
+      kind: 'ForOfLoopFlowStatement',
+      init: tsRala.ast.expressions.parse(node.getExpression()),
+      block: tsRala.ast.statements.parseBlock(node.getStatement()),
+    };
+  }
+
+  if (Node.isForInStatement(node)) {
+    return {
+      kind: 'ForInLoopFlowStatement',
+      init: tsRala.ast.expressions.parse(node.getExpression()),
+      block: tsRala.ast.statements.parseBlock(node.getStatement()),
+    };
+  }
+
+  throw new Error('Unsupported loop node type');
 }
+

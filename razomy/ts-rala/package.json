@@ -62,7 +62,7 @@
     "parseArrowFunction",
     "parseBinary",
     "parseCall",
-    "parseConditional",
+    "parseCondition",
     "parseMember",
     "parseNew",
     "parseReference",

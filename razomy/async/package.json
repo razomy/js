@@ -47,7 +47,9 @@
   "module": "./index.ts",
   "name": "@razomy/async",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/logging": "*",
+    "@razomy/serializable": "*"
   },
   "publishConfig": {
     "access": "public"

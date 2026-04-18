@@ -1,18 +1,29 @@
-import { BreakStatement, ContinueStatement, Node } from 'ts-morph';
+import {BreakStatement, ContinueStatement, Node} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 
 export function parseGo(
   node: BreakStatement | ContinueStatement
-): abstracts.translators.GoStatement {
-  const type = Node.isBreakStatement(node) ? 'break' : 'continue';
+): abstracts.translators.BreakGoStatement
+  | abstracts.translators.ContinueGoStatement {
   const label = node.getLabel();
+  if (Node.isBreakStatement(node)) {
+    return {
+      kind: 'BreakGoStatement',
+      labelIdentifier: {
+        kind: 'Identifier',
+        name: label ? label.getText() : '',
+      },
+    };
+  }
+
 
   return {
-    kind: 'GoStatement', // Внимание: берем из вашего интерфейса, хотя логичнее было бы 'LoopBreakStatement'
-    type,
+    kind: 'ContinueGoStatement',
     labelIdentifier: {
       kind: 'Identifier',
-      name: label ? label.getText() : '', // Если нет метки (label), возвращаем пустую строку
+      name: label ? label.getText() : '',
     },
   };
+
 }
+

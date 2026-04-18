@@ -1,12 +1,12 @@
 import * as fs from 'node:fs';
 import path from 'node:path';
-import * as run from '@razomy/run/node';
-import * as runtimes from '@razomy/runtimes/node';
+import * as runNode from '@razomy/run/node';
+import * as runtimesNode from '@razomy/runtimes/node';
 
 function getContext(versionRuntimeDir: string) {
-  const nodeExe = runtimes.getExePath(versionRuntimeDir, 'bin/node', 'node.exe');
-  const binPath = runtimes.IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
-  const npmJsPath = runtimes.IS_WIN
+  const nodeExe = runtimesNode.getExePath(versionRuntimeDir, 'bin/node', 'node.exe');
+  const binPath = runtimesNode.IS_WIN ? versionRuntimeDir : path.join(versionRuntimeDir, 'bin');
+  const npmJsPath = runtimesNode.IS_WIN
     ? path.join(versionRuntimeDir, 'node_modules', 'npm', 'bin', 'npm-cli.js')
     : path.join(versionRuntimeDir, 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js');
 
@@ -14,7 +14,7 @@ function getContext(versionRuntimeDir: string) {
   return { nodeExe, npmJsPath, env };
 }
 
-export const NODE_RUNTIME: runtimes.RuntimeProvider = {
+export const NODE_RUNTIME: runtimesNode.RuntimeProvider = {
   defaultVersion: '25.9.0',
 
   setup(versionWorkspaceDir) {
@@ -25,7 +25,7 @@ export const NODE_RUNTIME: runtimes.RuntimeProvider = {
 
   run(versionWorkspaceDir, versionRuntimeDir, packageName, functionName, params) {
     const { nodeExe, env } = getContext(versionRuntimeDir);
-    return run.cli.spawnProcess(
+    return runNode.cli.spawnProcess(
       nodeExe.replace(/"/g, ''),
       ['start_cli.mjs', packageName, functionName, params],
       versionWorkspaceDir,
@@ -39,12 +39,12 @@ export const NODE_RUNTIME: runtimes.RuntimeProvider = {
       fs.writeFileSync(pkgJsonPath, JSON.stringify({ name: '@razomy/cli-env', version: '1.0.0' }));
     }
     const { nodeExe, npmJsPath, env } = getContext(versionRuntimeDir);
-    runtimes.execCmd(`${nodeExe} "${npmJsPath}" install ${packageName}`, versionWorkspaceDir, env);
+    runtimesNode.execCmd(`${nodeExe} "${npmJsPath}" install ${packageName}`, versionWorkspaceDir, env);
   },
 
   remove(packageName: string, versionWorkspaceDir: string, versionRuntimeDir: string) {
     const { nodeExe, npmJsPath, env } = getContext(versionRuntimeDir);
-    runtimes.execCmd(`${nodeExe} "${npmJsPath}" uninstall ${packageName}`, versionWorkspaceDir, env);
+    runtimesNode.execCmd(`${nodeExe} "${npmJsPath}" uninstall ${packageName}`, versionWorkspaceDir, env);
   },
 
   list(versionWorkspaceDir: string): string[] {

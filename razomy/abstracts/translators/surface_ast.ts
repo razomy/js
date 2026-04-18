@@ -222,25 +222,55 @@ export interface BinaryExpression extends Expression {
   right: ExpressionType;
 }
 
-export interface BranchFlowExpression extends Expression {
-  kind: 'BranchFlowExpression';
-  // null = else {}
-  pattern: ExpressionType | null;
+export interface IfBranchFlowExpression extends Expression {
+  kind: 'IfBranchFlowExpression';
+  pattern: ExpressionType | null; // null = else
   expression: ExpressionType;
 }
 
-export interface ConditionalFlowExpression extends Expression {
-  kind: 'ConditionalFlowExpression';
-  type: 'if' | 'switch';
-  // null = if {}
-  target: ExpressionType | null;
-  branches: BranchFlowExpression[];
+export interface IfConditionalFlowExpression extends Expression {
+  kind: 'IfConditionalFlowExpression';
+  branches: IfBranchFlowExpression[];
 }
 
-export interface LoopFlowExpression extends Expression {
-  kind: 'LoopFlowExpression';
-  type: 'do_while' | 'while_do' | 'for_in' | 'for_of' | 'for_it';
-  // null = while
+export interface SwitchBranchFlowExpression extends Expression {
+  kind: 'SwitchBranchFlowExpression';
+  pattern: ExpressionType | null; // null = default
+  expression: ExpressionType;
+}
+
+export interface SwitchConditionalFlowExpression extends Expression {
+  kind: 'SwitchConditionalFlowExpression';
+  target: ExpressionType;
+  branches: SwitchBranchFlowExpression[];
+}
+
+export interface DoWhileLoopFlowExpression extends Expression {
+  kind: 'DoWhileLoopFlowExpression';
+  condition: ExpressionType;
+  expression: ExpressionType;
+}
+
+export interface WhileDoLoopFlowExpression extends Expression {
+  kind: 'WhileDoLoopFlowExpression';
+  condition: ExpressionType;
+  expression: ExpressionType;
+}
+
+export interface ForInLoopFlowExpression extends Expression {
+  kind: 'ForInLoopFlowExpression';
+  init: ExpressionType;
+  expression: ExpressionType;
+}
+
+export interface ForOfLoopFlowExpression extends Expression {
+  kind: 'ForOfLoopFlowExpression';
+  init: ExpressionType;
+  expression: ExpressionType;
+}
+
+export interface ForItLoopFlowExpression extends Expression {
+  kind: 'ForItLoopFlowExpression';
   init: ExpressionType | null;
   // null = for
   condition: ExpressionType | null;
@@ -295,11 +325,16 @@ export type ExpressionType =
   | TemplateExpression
   | PropertyExpression
   | UnaryExpression
-  | ConditionalFlowExpression
-  | LoopFlowExpression
+  | BinaryExpression
+  | IfConditionalFlowExpression
+  | SwitchConditionalFlowExpression
+  | DoWhileLoopFlowExpression
+  | WhileDoLoopFlowExpression
+  | ForInLoopFlowExpression
+  | ForOfLoopFlowExpression
+  | ForItLoopFlowExpression
   | CallExpression
   | MacroCallExpression
-  | BinaryExpression
   | MemberExpression
   | ReferenceExpression;
 // endregion Expression
@@ -327,36 +362,70 @@ export interface BlockStatement extends Statement {
   declarations: DeclarationType[];
 }
 
-/** @deprecated use functional programming */
-export interface BranchFlowStatement extends Statement {
-  kind: 'BranchFlowStatement';
-  type: 'if' | 'switch' | 'try_catch';
+export interface IfBranchFlowStatement extends Statement {
+  kind: 'IfBranchFlowStatement';
   pattern: ExpressionType | null;
   block: BlockStatement;
 }
 
-/** @deprecated use functional programming */
-export interface ConditionalFlowStatement extends Statement {
-  kind: 'ConditionalFlowStatement';
-  target: ExpressionType | null;
-  branches: BranchFlowStatement[];
+export interface SwitchBranchFlowStatement extends Statement {
+  kind: 'SwitchBranchFlowStatement';
+  pattern: ExpressionType | null;
+  block: BlockStatement;
+}
+
+export interface IfConditionalFlowStatement extends Statement {
+  kind: 'IfConditionalFlowStatement';
+  branches: IfBranchFlowStatement[];
+}
+
+export interface SwitchConditionalFlowStatement extends Statement {
+  kind: 'SwitchConditionalFlowStatement';
+  target: ExpressionType;
+  branches: SwitchBranchFlowStatement[];
+}
+
+export interface DoWhileLoopFlowStatement extends Statement {
+  kind: 'DoWhileLoopFlowStatement';
+  condition: ExpressionType;
+  block: BlockStatement;
+}
+
+export interface WhileDoLoopFlowStatement extends Statement {
+  kind: 'WhileDoLoopFlowStatement';
+  condition: ExpressionType;
+  block: BlockStatement;
+}
+
+export interface ForInLoopFlowStatement extends Statement {
+  kind: 'ForInLoopFlowStatement';
+  init: ExpressionType;
+  block: BlockStatement;
+}
+
+export interface ForOfLoopFlowStatement extends Statement {
+  kind: 'ForOfLoopFlowStatement';
+  init: ExpressionType;
+  block: BlockStatement;
 }
 
 /** @deprecated use functional programming */
-export interface LoopFlowStatement extends Statement {
-  kind: 'LoopFlowStatement';
-  type: 'do_while' | 'while_do' | 'for_in' | 'for_of';
+export interface ForItLoopFlowStatement extends Statement {
+  kind: 'ForItLoopFlowStatement';
   init: ExpressionType | null;
   condition: ExpressionType | null;
   update: ExpressionType | null;
   block: BlockStatement;
 }
 
-/** @deprecated use functional programming */
-export interface GoStatement extends Statement {
-  kind: 'GoStatement';
-  type: 'break' | 'continue';
-  labelIdentifier: Identifier;
+export interface BreakGoStatement extends Statement {
+  kind: 'BreakGoStatement';
+  labelIdentifier: Identifier | null;
+}
+
+export interface ContinueGoStatement extends Statement {
+  kind: 'ContinueGoStatement';
+  labelIdentifier: Identifier | null;
 }
 
 /**
@@ -376,7 +445,7 @@ export interface TryStatement extends Statement {
  * @deprecated uniq data type instead and data validation
  */
 export interface CatchStatement extends Statement {
-  kind: 'TryStatement';
+  kind: 'CatchStatement';
   trigger: ParameterBinding;
   block: BlockStatement;
 }
@@ -407,14 +476,18 @@ export interface VariableStatement extends Statement {
   meta: abstracts.domains.WithDescription;
 }
 
-/** @deprecated */
 export type StatementType =
   | ReturnStatement
   | BlockStatement
-  | LoopFlowStatement
-  | ConditionalFlowStatement
-  | BranchFlowStatement
-  | GoStatement
+  | IfConditionalFlowStatement
+  | SwitchConditionalFlowStatement
+  | DoWhileLoopFlowStatement
+  | WhileDoLoopFlowStatement
+  | ForInLoopFlowStatement
+  | ForOfLoopFlowStatement
+  | ForItLoopFlowStatement
+  | BreakGoStatement
+  | ContinueGoStatement
   | VariableStatement
   | CatchStatement
   | TryStatement

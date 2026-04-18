@@ -1,11 +1,11 @@
 import * as fs from 'node:fs';
-import * as runtimes from '@razomy/runtimes/node';
+import * as runtimesNode from '@razomy/runtimes/node';
 
 export function createSymlink(targetDir: string, linkPath: string) {
-  if (runtimes.linkExists(linkPath)) {
+  if (runtimesNode.linkExists(linkPath)) {
     fs.rmSync(linkPath, { force: true, recursive: true });
   }
 
-  const linkType = runtimes.IS_WIN ? 'junction' : 'dir';
+  const linkType = runtimesNode.IS_WIN ? 'junction' : 'dir';
   fs.symlinkSync(targetDir, linkPath, linkType);
 }

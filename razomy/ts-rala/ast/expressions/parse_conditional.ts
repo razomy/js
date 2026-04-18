@@ -2,39 +2,31 @@ import { ConditionalExpression } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRala from "@razomy/ts-rala";
 
-export function parseConditional(node: ConditionalExpression): abstracts.translators.ConditionalFlowExpression {
-  const branches: abstracts.translators.BranchFlowExpression[] = []; // В вашем типе тут почему-то рекурсия, но по логике это BranchFlowExpression
+export function parseCondition(
+  node: ConditionalExpression
+): abstracts.translators.IfConditionalFlowExpression {
 
-  // 1. Ветка IF (Then)
-  const thenBranch: abstracts.translators.BranchFlowExpression = {
-    kind: 'BranchFlowExpression',
-    type: 'if',
+  const branches: abstracts.translators.IfBranchFlowExpression[] = [];
+
+  // 1. IF Branch (Then)
+  branches.push({
+    kind: 'IfBranchFlowExpression',
     pattern: tsRala.ast.expressions.parse(node.getCondition()),
     expression: tsRala.ast.expressions.parse(node.getWhenTrue()),
-  };
+  });
 
-  // ВАЖНО: В вашем интерфейсе `branches` у ConditionalFlowExpression требует `ConditionalFlowExpression[]`.
-  // Если это опечатка в архитектуре и там должно быть `BranchFlowExpression[]`, нужно поправить интерфейс.
-  // Ниже каст Any, чтобы не ругался TS, пока вы не решите как лучше в интерфейсах.
-  branches.push(thenBranch as any);
-
-  // 2. Ветка ELSE (если есть)
+  // 2. ELSE Branch (if exists)
   const elseNode = node.getWhenFalse();
   if (elseNode) {
-    // Ветка ELSE не имеет паттерна
-    const elseBranch: abstracts.translators.BranchFlowExpression = {
-      kind: 'BranchFlowExpression',
-      type: 'if', // Или можно добавить 'else' в тип в абстракциях
-      pattern: null,
+    branches.push({
+      kind: 'IfBranchFlowExpression',
+      pattern: null, // Else branch has no pattern
       expression: tsRala.ast.expressions.parse(elseNode),
-    };
-    branches.push(elseBranch as any);
+    });
   }
 
   return {
-    kind: 'ConditionalFlowExpression',
-    target: null, // target используется для switch (например switch(target))
+    kind: 'IfConditionalFlowExpression',
     branches,
   };
 }
-
