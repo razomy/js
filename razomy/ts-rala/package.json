@@ -92,7 +92,6 @@
     "parseUnion",
     "isStatement",
     "parseBlock",
-    "parseCondition",
     "parseGo",
     "parseLoop",
     "parseThrow"

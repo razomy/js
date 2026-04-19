@@ -30,16 +30,16 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/models-prisma#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-prisma#readme",
   "keywords": [
     "razomy",
-    "models",
+    "db",
     "prisma"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/models-prisma",
+  "name": "@razomy/db-prisma",
   "peerDependencies": {
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
@@ -50,7 +50,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/models-prisma",
+    "directory": "razomy/db-prisma",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

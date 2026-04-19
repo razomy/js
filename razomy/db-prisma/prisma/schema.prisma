@@ -5,7 +5,7 @@ generator client {
 }
 
 datasource db {
-  provider = "cockroachdb"
+  provider = "postgresql"
   schemas  = ["public", "users_db", "fss_db", "auths_db", "acls_db", "ids_db"]
 }
 

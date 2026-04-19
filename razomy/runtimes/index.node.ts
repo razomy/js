@@ -1,4 +1,11 @@
-export { BuildTarget, CpuArchitecture, OperatingSystem, PackageFormat, type IoEnvironment } from './environment';
+export {
+  BuildTarget,
+  CpuArchitecture,
+  OperatingSystem,
+  PackageFormat,
+  type BuildConfig,
+  type IoEnvironment,
+} from './environment';
 export { DEFAULT_PACKAGE, RUNTIME_REGISTRY } from './constants.node';
 export { IS_MAC, IS_WIN, getExePath } from './get_exe_path.node';
 export { JAVA_RUNTIME } from './java.node';
