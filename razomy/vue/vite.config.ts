@@ -1,29 +1,34 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
-import { resolve } from 'path';
-// https://vite.dev/config/
+// @razomy/rala-vue/vite.config.ts
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
+import { resolve } from 'path'
+import vuetify from 'vite-plugin-vuetify'
+
 export default defineConfig({
-  plugins: [vue(), dts({ rollupTypes: true, tsconfigPath: './tsconfig.build.json' }) as any],
+  plugins: [
+    vue(),
+    vuetify({ autoImport: true }),
+    dts({ insertTypesEntry: true })
+  ],
   build: {
     lib: {
-      // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'index.ts'),
-      name: '@razomy/vue',
-      // the proper extensions will be added
-      fileName: 'index',
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'RazomyVue',
+      // 1. Tell Vite to ONLY build ES Modules (Nuxt's preferred format)
+      formats: ['es'],
+      fileName: (format) => `razomy-vue.${format}.js`
     },
     rollupOptions: {
-      // make sure to externalize deps that shouldn't be bundled
-      // into your library
-      external: ['vue'],
+      external: ['vue', 'vuetify', /^vuetify\/.*/],
       output: {
-        // Provide global variables to use in the UMD build
-        // for externalized deps
+        // 2. Suppress the Mixed Exports warning
+        exports: 'named',
         globals: {
           vue: 'Vue',
-        },
-      },
-    },
-  },
-});
+          vuetify: 'Vuetify'
+        }
+      }
+    }
+  }
+})

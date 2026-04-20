@@ -1,5 +1,7 @@
+import {Razomy} from "@razomy/razomy";
+
 export class SocketStore {
-  ctx: razomy = undefined as any as razomy;
+  ctx: Razomy = undefined as any as Razomy;
 
   on(key: string, cb: any) {
     const webSocket = this.ctx.webSocket;

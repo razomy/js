@@ -1,9 +1,10 @@
 import * as vue from 'vue';
 import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
+import {Razomy} from "@razomy/razomy";
 
 export class RemoteResource {
-  ctx: razomy = undefined as any as razomy;
+  ctx: Razomy = undefined as any as Razomy;
 
   state = vue.reactive({
     notation: null as dict.Dict<string> | null,

@@ -22,6 +22,6 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function set<T>(array: ReadonlyArray<T>, index: number, value: T): T[] {
+export function set<T>(array: Array<T>, index: number, value: T): T[] {
   return array.with(index, value);
 }

@@ -1,4 +1,5 @@
-import * as vueResource from '@razomy/vue-resource';
+import {RemoteNode} from "./remote_node";
+import {Razomy} from "@razomy/razomy";
 
 export const REACTIVE_DIRECTIVE = {
   mounted(el, binding, vnode) {
@@ -6,8 +7,8 @@ export const REACTIVE_DIRECTIVE = {
       return vnode.ctx.provides[k] as T;
     }
 
-    el.remove_node = new vueResource.RemoteNode();
-    el.remove_node.ctx = inject<razomy>('razomy');
+    el.remove_node = new RemoteNode();
+    el.remove_node.ctx = inject<Razomy>('razomy');
     el.remove_node.key = binding.value;
     el.remove_node.render = (value) => {
       el.innerHTML = value;

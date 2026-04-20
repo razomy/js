@@ -1,5 +1,7 @@
+import {Razomy} from "@razomy/razomy";
+
 export class RemoteNode {
-  ctx: razomy = undefined as any as razomy;
+  ctx: Razomy = undefined as any as Razomy;
   key: string = '';
 
   constructor() {}
