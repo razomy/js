@@ -16,6 +16,12 @@ export function getNameAndExt(sourceFile: SourceFile) {
     baseName = baseName.replace('.node', '');
     ext = '.node' + ext;
   }
+
+  if (baseName.endsWith('.remote')) {
+    baseName = baseName.replace('.remote', '');
+    ext = '.remote' + ext;
+  }
+
   if (baseName.endsWith('.browser')) {
     baseName = baseName.replace('.browser', '');
     ext = '.browser' + ext;

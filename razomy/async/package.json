@@ -40,6 +40,8 @@
     "freeze",
     "isPromise",
     "loop",
+    "parallel",
+    "sequentially",
     "tryPromise"
   ],
   "license": "MIT",

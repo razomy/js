@@ -1,3 +1,4 @@
+export * as server from './server';
 export * as task from './task';
 export {
   type BrowserEsmShFetchRunProvider,

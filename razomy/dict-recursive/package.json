@@ -40,7 +40,7 @@
     "getAnyAll",
     "getAny",
     "getByPath",
-    "mergeDeepMut",
+    "mergeMut",
     "moveByPathMut",
     "setByPathMut"
   ],

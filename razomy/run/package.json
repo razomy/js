@@ -51,6 +51,7 @@
     "validateArrayStringThrow",
     "spawnProcess",
     "start",
+    "call",
     "cancelMut",
     "createMut",
     "processJobMut"

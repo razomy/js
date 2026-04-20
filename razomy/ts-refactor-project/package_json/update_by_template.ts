@@ -62,12 +62,26 @@ export function updateByTemplate(projectPath: string, prefix) {
       },
     };
 
+    const nameRemoteExport = {
+      './remote': {
+        types: `./${srcPrefix}index.remote.ts`,
+        import: `./${srcPrefix}index.remote.ts`,
+        require: `./${srcPrefix}index.remote.ts`,
+      },
+    };
+
+
     const isBrowserExports = fss.file.isExist(`${folderPath}/index.browser.ts`);
     const isNodeExports = fss.file.isExist(`${folderPath}/index.node.ts`);
+    const isRemoteExports = fss.file.isExist(`${folderPath}/index.remote.ts`);
 
     const defaultBuild = {
-      build: `tsdown index.ts ${isBrowserExports ? 'index.browser.ts ' : ''}${
+      build: `tsdown index.ts ${
+        isBrowserExports ? 'index.browser.ts ' : ''
+      }${
         isNodeExports ? 'index.node.ts ' : ''
+      }${
+        isRemoteExports ? 'index.remote.ts ' : ''
       }--format esm,cjs --dts`,
       dev: 'tsdown index.ts --watch',
       prepublishOnly: 'npm run build',
@@ -126,6 +140,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         },
         ...(isBrowserExports ? nameBrowserExport : {}),
         ...(isNodeExports ? nameNodeExport : {}),
+        ...(isRemoteExports ? nameRemoteExport : {}),
         './specifications/*': './specifications/*',
         './package.json': './package.json',
       },

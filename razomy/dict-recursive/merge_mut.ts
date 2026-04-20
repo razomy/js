@@ -22,7 +22,7 @@ import * as dictRecursive from '@razomy/dict-recursive';
  * @complexity time O(n) where n is total number of keys across all sources
  * @complexity memory O(d) where d is the maximum nesting depth (recursion stack)
  */
-export function mergeDeepMut<T extends dictRecursive.DictRecursive>(
+export function mergeMut<T extends dictRecursive.DictRecursive>(
   target: T,
   ...sources: dictRecursive.DictRecursive[]
 ): T {
@@ -36,7 +36,7 @@ export function mergeDeepMut<T extends dictRecursive.DictRecursive>(
         if (!dict.isPlainObject(target[key])) {
           (target as dictRecursive.DictRecursive)[key] = {};
         }
-        mergeDeepMut(target[key] as dictRecursive.DictRecursive, sourceValue as dictRecursive.DictRecursive);
+        mergeMut(target[key] as dictRecursive.DictRecursive, sourceValue as dictRecursive.DictRecursive);
       } else {
         (target as dictRecursive.DictRecursive)[key] = sourceValue;
       }

@@ -6,4 +6,6 @@ export { eventToPromise, type Event } from './event_to_promise';
 export { freeze } from './freeze';
 export { isPromise } from './is_promise';
 export { loop } from './loop';
+export { parallel } from './parallel';
+export { sequentially } from './sequentially';
 export { tryPromise } from './try_promise';
