@@ -1,5 +1,5 @@
 import * as main from '@razomy/main';
-import * as fns from '@razomy/fns';
+import * as fns from '../../functions';
 import * as abstracts from '@razomy/abstracts';
 import * as ai from '@razomy/ai';
 import * as aiAnthropic from '@razomy/ai-anthropic';

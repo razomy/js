@@ -1,4 +1,4 @@
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 import * as test from '@razomy/test';
 
 export function testSync<I extends Array<any>, O>(

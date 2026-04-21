@@ -35,18 +35,18 @@
   "engines": {
     "node": ">=18"
   },
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/vue-resoure#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/vue-resource#readme",
   "keywords": [
     "razomy",
     "vue"
   ],
   "license": "MIT",
-  "name": "@razomy/vue-resoure",
+  "name": "@razomy/vue-resource",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/vue-resoure",
+    "directory": "razomy/vue-resource",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

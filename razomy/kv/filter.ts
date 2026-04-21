@@ -1,5 +1,5 @@
 import * as kv from '@razomy/kv';
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 
 export function filter<V>(input: kv.Value<V>, isKeep: fns.Function<[kv.Value<V>], boolean>): kv.Value<V>;
 export function filter<K, V>(

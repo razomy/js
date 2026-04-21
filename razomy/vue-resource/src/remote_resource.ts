@@ -11,13 +11,17 @@ export class RemoteResource {
     listeners: [] as (() => void)[],
   });
 
-  set(notation: dict.Dict<string>) {
+  // Привязываем контекст с помощью стрелочной функции,
+  // чтобы this не терялся при вызове из сокета
+  set = (notation: dict.Dict<string>) => {
     this.state.notation = notation;
     this.state.listeners.forEach((i) => i());
   }
 
   get(key: string) {
-    return this.state.notation![key];
+    // ЗАЩИТА ОТ NULL: Если данные еще не загрузились, возвращаем пустую строку
+    if (!this.state.notation) return '';
+    return this.state.notation[key] || '';
   }
 
   async load() {

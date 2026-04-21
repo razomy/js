@@ -1,5 +1,5 @@
 import simpleGit from 'simple-git';
-import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
+import * as commitDatetimeDeltaString from '../commit/delta-string';
 import * as git_ from '@razomy/git';
 
 export async function compareVersions(repoPath: string, filePath: string) {

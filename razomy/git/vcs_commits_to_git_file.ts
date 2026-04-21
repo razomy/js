@@ -1,5 +1,5 @@
 import * as shell from '@razomy/shell';
-import * as commitDatetimeDeltaString from '@razomy/commit-datetime-delta-string';
+import * as commitDatetimeDeltaString from '../commit/delta-string';
 import * as fsFile from '@razomy/fs-file';
 
 export async function vcsCommitsToGitFile(

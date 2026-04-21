@@ -1,4 +1,4 @@
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 
 export async function test<I extends Array<any>, O>(
   cb: fns.Function<I, O>,

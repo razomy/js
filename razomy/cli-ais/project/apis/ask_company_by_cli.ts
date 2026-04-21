@@ -1,4 +1,4 @@
-import * as aiAgentProject from '@razomy/ai-agent-project';
+import * as aiAgentProject from '../../../ai-agent';
 
 export async function askCompanyByCli(challengePrompt: string, cliContext: { dirPath: string }) {
   const ctx: aiAgentProject.actors.ActorContext = {

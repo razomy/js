@@ -7,18 +7,23 @@ export const REACTIVE_DIRECTIVE = {
       return vnode.ctx.provides[k] as T;
     }
 
-    el.remove_node = new RemoteNode();
-    el.remove_node.ctx = inject<Razomy>('razomy');
-    el.remove_node.key = binding.value;
-    el.remove_node.render = (value) => {
-      el.innerHTML = value;
+    el.remote_node = new RemoteNode(); // Лучше называть remote_node, а не remove_node
+    el.remote_node.ctx = inject<Razomy>('razomy');
+    el.remote_node.key = binding.value;
+
+    el.remote_node.render = (value) => {
+      el.innerHTML = value || '';
     };
-    el.remove_node.start();
+
+    el.remote_node.start();
   },
   updated(el, binding) {
-    el.remove_node.update_key(binding.value);
+    // ИСПРАВЛЕНИЕ: метод в классе называется updateKey (camelCase)
+    if (el.remote_node.key !== binding.value) {
+      el.remote_node.updateKey(binding.value);
+    }
   },
   unmounted(el) {
-    el.remove_node.finish();
+    el.remote_node.finish();
   },
 };

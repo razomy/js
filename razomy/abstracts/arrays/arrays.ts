@@ -40,8 +40,6 @@ export interface DynamicArray<T> extends abstracts.meta.DataStructure<T> {
   [index: number]: T;
 }
 
+export type OutIndex = -1;
 export type Index = number;
-
-// export type OutIndex = -1 & { readonly type: 'OutIndex' };
-// export type Index = number & { readonly type: 'Index' };
-// export type IndexOrOut = Index | OutIndex;
+export type IndexOrOut = Index | OutIndex;

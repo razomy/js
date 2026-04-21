@@ -1,0 +1,17 @@
+order
+ package.json
+ config
+ description
+ index.ts
+ primitives
+ functions
+ arrays
+ structures
+ collections
+ graphs
+ probabilistics
+ meta
+ domains
+ translators
+ patterns
+ machines

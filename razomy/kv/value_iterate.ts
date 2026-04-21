@@ -1,5 +1,5 @@
 import * as kv_ from '@razomy/kv';
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 
 /**
  * true - success

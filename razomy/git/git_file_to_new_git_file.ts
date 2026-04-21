@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as shell from '@razomy/shell';
 import * as fsFile from '@razomy/fs-file';
-import * as async from '@razomy/async';
+import * as async from '../future';
 import * as git from '@razomy/git';
 
 export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fileSubPath = '/data/start.txt') {

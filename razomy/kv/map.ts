@@ -1,5 +1,5 @@
 import * as kv from '@razomy/kv';
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 
 export function map<IV, OV>(input: kv.Value<IV>, mapCb: fns.Function<[kv.Value<IV>], kv.Value<OV>>): kv.Value<OV>;
 export function map<K, IV, OV>(

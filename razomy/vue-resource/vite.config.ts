@@ -17,7 +17,7 @@ export default defineConfig({
       name: 'RazomyVueResource',
       // 1. Tell Vite to ONLY build ES Modules (Nuxt's preferred format)
       formats: ['es'],
-      fileName: (format) => `razomy-vue-resoure.${format}.js`
+      fileName: (format) => `razomy-vue-resource.${format}.js`
     },
     rollupOptions: {
       external: ['vue', 'vuetify', /^vuetify\/.*/],

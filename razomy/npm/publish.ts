@@ -9,7 +9,7 @@ export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));
   // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
   tsRefactorProject.packageJson.createDist(path.resolve(path_));
-  await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
+  // await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
 
   const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
   console.info(`Выполняем: ${publishCommand}`);
@@ -21,24 +21,36 @@ export async function publish(path_: string) {
 main.ifMain(import.meta.url, async () => {
   // Выносим список пакетов в отдельный массив
   const packagesToDeploy = [
-    '../abstracts',
-    '../string-case',
-    '../array',
-    '../exceptions',
-    '../random',
-    '../fs-file-format',
-    '../images',
-    '../maths',
-    '../string',
-    '../dict',
-    '../rala-string',
-    '../schema',
-    '../schemas',
-    '../nuxt',
-    '../run',
-    '../rala-vue',
-    '../runtimes',
-    // '../dict-recursive',
+    // '../abstracts',
+    // '../string-case',
+    // '../array',
+    // '../exceptions',
+    // '../random',
+    // '../fs-file-format',
+    // '../images',
+    // '../maths',
+    // '../string',
+    // '../dict',
+    // '../rala-string',
+    // '../schema',
+    // '../schemas',
+    // '../nuxt',
+    // '../run',
+    // '../rala-vue',
+    // '../runtimes',
+    // '../express',
+    // '../socket',
+    // '../server',
+    // '../google-auth',
+    // '../vrd',
+    // '../pipes-booleans',
+    // '../object',
+    // '../kv',
+    '../socket-server',
+    // '../undefined',
+    // '../fns',
+    // '../char',
+    // '../key',
     // '../videos',
     // '../audios',
     // '../main',
@@ -48,7 +60,7 @@ main.ifMain(import.meta.url, async () => {
   ];
 
   // Сначала проверяем, все ли нужные зависимости есть в этом списке
-  await npm.checkNotProvidedDependency(packagesToDeploy);
+  // await npm.checkNotProvidedDependency(packagesToDeploy);
 
   // Если скрипт не упал с ошибкой, запускаем публикацию
   for (const pkgPath of packagesToDeploy) {

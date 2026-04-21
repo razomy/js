@@ -1,1 +1,0 @@
-export { and } from './and';

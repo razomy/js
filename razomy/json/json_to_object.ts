@@ -1,7 +1,7 @@
 import * as pipes from '@razomy/pipes';
-import * as fns from '@razomy/fns';
-import * as tokenOffsetDeep from '@razomy/token-offset-deep';
-import * as tokenOffset from '@razomy/token-offset';
+import * as fns from '../functions';
+import * as tokenOffsetDeep from '../lexemes/token-offset-deep';
+import * as tokenOffset from '../lexemes/token-offset';
 import * as resultNull from '@razomy/result-null';
 import * as result from '@razomy/result';
 import * as context from '@razomy/context';

@@ -1,4 +1,4 @@
-import * as async from '@razomy/async';
+import * as async from '../future';
 import * as abstracts from '@razomy/abstracts';
 import * as main from '@razomy/main';
 import * as datetimes from "@razomy/datetimes";

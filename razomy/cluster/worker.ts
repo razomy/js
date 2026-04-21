@@ -1,4 +1,4 @@
-import * as async from '@razomy/async';
+import * as async from '../future';
 
 export interface WithWorkerId {
   workerId: string;

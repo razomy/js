@@ -1,4 +1,4 @@
-import * as fns from '@razomy/fns';
+import * as fns from '../functions';
 import * as dict from '@razomy/dict';
 import * as spec from '@razomy/spec';
 import * as testJest from '@razomy/test-jest';

@@ -1,4 +1,4 @@
-import * as aiAgentProject from '@razomy/ai-agent-project';
+import * as aiAgentProject from '../../../ai-agent';
 import * as cliAis from '@razomy/cli-ais';
 
 export async function askAnyCli(message: string) {

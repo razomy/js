@@ -1,4 +1,4 @@
-export { type Value } from './value';
+export { type Value } from '../structures/value';
 export { type WithDescription } from './with_description';
 export { type WithId } from './with_id';
 export { type WithKind } from './with_kind';

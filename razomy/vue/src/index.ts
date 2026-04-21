@@ -27,7 +27,10 @@ declare module 'vue' {
 
 export default {
   install(app, razomy: Razomy) {
-    window.r = window.razomy = app.config.globalProperties.razomy = razomy;
+    if(window){
+      window.r = window.razomy = razomy;
+    }
+    app.config.globalProperties.razomy = razomy;
     app.provide('razomy', razomy);
     app.provide('r', razomy);
   },

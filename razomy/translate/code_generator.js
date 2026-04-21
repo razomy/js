@@ -1,6 +1,6 @@
 import * as fss from '@razomy/fss';
 import * as fs from 'fs';
-import * as path from 'path';
+import * as path from 'strings/path';
 
 // Укажите языки, с которыми будете работать
 // ВАЖНО: Убедитесь, что для пары существует модель Xenova/opus-mt-{src}-{tgt}
