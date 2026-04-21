@@ -2,6 +2,10 @@
 
 Contains all core reusable types and interfaces.
 
+**Utils Layer** (Extend typescript)
+1. **meta** — Utilities designed to generalize and unify the TypeScript development experience alongside other
+    languages.
+
 **System Layer** (Performance, Execution, Data Layout)
 
 1. ~~**hardware** hardware structures, including CPU, GPU, TPU,~~
@@ -17,8 +21,7 @@ Contains all core reusable types and interfaces.
    queues).
 10. **graphs** — Graph and tree-like data structures.
 11. **probabilistics** — Matrices and probabilistic data structures.
-12. **meta** — Utilities designed to generalize and unify the TypeScript development experience alongside other
-    languages.
+
 
 **Application Layer** (Logic, Behavior, Domain)
 

@@ -8,7 +8,7 @@ import * as fns from '../functions';
  */
 export function iterate<K, V>(
   value: kv.Valuable<K, V>,
-  nodeCb: fns.Function<[kv.KeyValuable<K, V>], boolean | undefined>,
+  nodeCb: fns.Function<[kv.KeyValue<K, V>], boolean | undefined>,
 ): boolean {
   if (kv.isKv(value)) {
     const res = undefined.booleanUndefined(nodeCb(value));

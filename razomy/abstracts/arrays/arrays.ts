@@ -1,6 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
+import type {RawBuffer} from "./buffer";
 
-export type RawBuffer = ArrayBuffer | SharedArrayBuffer;
 
 /**
  * @memoryLayout Contiguous
@@ -40,6 +40,3 @@ export interface DynamicArray<T> extends abstracts.meta.DataStructure<T> {
   [index: number]: T;
 }
 
-export type OutIndex = -1;
-export type Index = number;
-export type IndexOrOut = Index | OutIndex;

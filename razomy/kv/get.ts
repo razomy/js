@@ -1,7 +1,7 @@
 import * as exceptions from '@razomy/exceptions';
 import * as kv from '@razomy/kv';
 
-export function get<T>(valueRecursive: kv.ArrayOrKeyValuable<T, T>, path: T[], pathOffset: number): kv.Valuable<T, T> {
+export function get<T>(valueRecursive: kv.ArrayOrKeyValue<T, T>, path: T[], pathOffset: number): kv.Valuable<T, T> {
   if (kv.isAkv(valueRecursive)) {
     for (const [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
@@ -13,7 +13,7 @@ export function get<T>(valueRecursive: kv.ArrayOrKeyValuable<T, T>, path: T[], p
         return value;
       }
 
-      return get(value as kv.ArrayKeyValuable<T, T>, path, pathOffset);
+      return get(value as kv.KeyValueArray<T, T>, path, pathOffset);
     }
   }
 

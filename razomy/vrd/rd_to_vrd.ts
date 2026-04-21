@@ -3,8 +3,8 @@ import * as vrd from '@razomy/vrd';
 import * as object_ from '@razomy/object';
 
 export function rdToVrd(
-  dict: dictRecursive.DictRecursive,
-  isValue: (t: dictRecursive.DictRecursive) => boolean = (i: dictRecursive.DictRecursive) => !object_.isObject(i),
+  dict: dictRecursive.RecursiveDict,
+  isValue: (t: dictRecursive.RecursiveDict) => boolean = (i: dictRecursive.RecursiveDict) => !object_.isObject(i),
 ): vrd.VrdOrValue<string> {
   if (isValue(dict)) {
     return dict;

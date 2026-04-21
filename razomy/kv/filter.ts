@@ -3,13 +3,13 @@ import * as fns from '../functions';
 
 export function filter<V>(input: kv.Value<V>, isKeep: fns.Function<[kv.Value<V>], boolean>): kv.Value<V>;
 export function filter<K, V>(
-  input: kv.KeyValuable<K, V>,
-  isKeep: fns.Function<[kv.KeyValuable<K, V>], boolean>,
-): kv.KeyValuable<K, V>;
+  input: kv.KeyValue<K, V>,
+  isKeep: fns.Function<[kv.KeyValue<K, V>], boolean>,
+): kv.KeyValue<K, V>;
 export function filter<K, V>(
-  input: kv.ArrayKeyValuable<K, V>,
-  isKeep: fns.Function<[kv.ArrayKeyValuable<K, V>], boolean>,
-): kv.ArrayKeyValuable<K, V>;
+  input: kv.KeyValueArray<K, V>,
+  isKeep: fns.Function<[kv.KeyValueArray<K, V>], boolean>,
+): kv.KeyValueArray<K, V>;
 export function filter<K, V>(
   value: kv.Valuable<K, V>,
   isKeep: fns.Function<[kv.Valuable<K, V>], boolean>,

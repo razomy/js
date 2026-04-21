@@ -6,9 +6,9 @@ export function test() {
     [[], null, null, []],
     [[], 'a', null, [{ type: 'removed', path: '', value: 'a' }]],
     [[], null, 'b', [{ type: 'added', path: '', value: 'b' }]],
-    [[], 'a', 'b', [{ type: 'replace', path: '', oldValue: 'a', value: 'b' }]],
-    [[], 'a', vrd.vrd({ b: null }), [{ type: 'replace', path: '', oldValue: 'a', value: { b: null } }]],
-    [[], vrd.vrd({ a: null }), 'b', [{ type: 'replace', path: '', oldValue: { a: null }, value: 'b' }]],
+    [[], 'a', 'b', [{ type: 'replace', path: '', prevValue: 'a', value: 'b' }]],
+    [[], 'a', vrd.vrd({ b: null }), [{ type: 'replace', path: '', prevValue: 'a', value: { b: null } }]],
+    [[], vrd.vrd({ a: null }), 'b', [{ type: 'replace', path: '', prevValue: { a: null }, value: 'b' }]],
     // -
 
     [[], vrd.vrd({ a: null }), vrd.vrd({}), [{ type: 'removed', path: '', value: vrd.vrd({ a: null }) }]],

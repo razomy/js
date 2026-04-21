@@ -29,7 +29,7 @@ import * as dictRecursive from '@razomy/dict-recursive';
  * @complexity time O(d) where d is the depth of the longest path
  * @complexity memory O(d)
  */
-export function moveByPathMut(dict: dictRecursive.DictRecursive, oldPath: string, newPath: string): void {
+export function moveByPathMut(dict: dictRecursive.RecursiveDict, oldPath: string, newPath: string): void {
   const value = dictRecursive.getByPath(dict, oldPath);
 
   if (value === undefined) {

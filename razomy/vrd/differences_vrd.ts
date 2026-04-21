@@ -4,7 +4,7 @@ import * as dict from '@razomy/dict';
 
 export interface ReplaceDifference<T> {
   type: 'replace_key';
-  oldValue: T;
+  prevValue: T;
   value: T;
 }
 
@@ -30,16 +30,16 @@ export function differencesVrd<T>(diffs: P<T>[], a: vrd.VrdOrValue<T>, b: vrd.Vr
     if (isB) {
       return vrd.differencesDict(diffs, a, b, path);
     }
-    diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
+    diffs.push({ type: 'replace', path: path, prevValue: a, value: b });
     return diffs;
   } else {
     if (isB) {
-      diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
+      diffs.push({ type: 'replace', path: path, prevValue: a, value: b });
       return diffs;
     }
 
     if (!dict.isEqual(a, b)) {
-      diffs.push({ type: 'replace', path: path, oldValue: a, value: b });
+      diffs.push({ type: 'replace', path: path, prevValue: a, value: b });
     }
     return diffs;
   }

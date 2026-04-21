@@ -6,4 +6,4 @@ export { getByPath } from './get_by_path';
 export { mergeMut } from './merge_mut';
 export { moveByPathMut } from './move_by_path_mut';
 export { setByPathMut } from './set_by_path_mut';
-export { type DictRecursive } from './recursive';
+export { type RecursiveDict } from './recursive';

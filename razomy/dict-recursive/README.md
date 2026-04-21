@@ -51,7 +51,7 @@ import { deleteByPathMut } from '@razomy/dict-recursive';
 
 #### deleteByPathMut
 
-`deleteByPathMut(obj: DictRecursive, path: string): void`
+`deleteByPathMut(obj: RecursiveDict, path: string): void`
 
 Delete a nested property from a recursive dictionary by dot-separated path.
 Traverses a recursive dictionary using a dot-separated path string
@@ -147,7 +147,7 @@ getAnyAll({ x: { y: { a: 1, b: 2 } }, z: { a: 1, b: 2 } }, ['a', 'b']); // [x:y:
 
 #### getByPath
 
-`getByPath(dict: DictRecursive, path: string): unknown`
+`getByPath(dict: RecursiveDict, path: string): unknown`
 
 Get a value from a nested dictionary by dot-separated path.
 Traverses a recursive dictionary using a dot-separated path string,
@@ -169,7 +169,7 @@ getByPath({ a: { b: 1 } }, 'a.z'); // undefined
 
 #### mergeDeepMut
 
-`mergeDeepMut(target: T, sources: dictRecursive.DictRecursive[]): T`
+`mergeDeepMut(target: T, sources: dictRecursive.RecursiveDict[]): T`
 
 Deep merge multiple recursive dictionaries into a target.
 Recursively merges properties from one or more source dictionaries into the target dictionary. Nested objects are merged deeply rather than replaced. Primitive values in sources overwrite those in the target. Mutates the target in place.
@@ -190,7 +190,7 @@ mergeDeepMut({ a: 1 }, { a: { nested: true } }, { b: 3 }); // { a: { nested: tru
 
 #### moveByPathMut
 
-`moveByPathMut(dict: DictRecursive, oldPath: string, newPath: string): void`
+`moveByPathMut(dict: RecursiveDict, oldPath: string, newPath: string): void`
 
 Move a value from one path to another within a recursive dictionary.
 Retrieves the value at `oldPath`, sets it at `newPath`, and deletes the value at `oldPath`.
@@ -200,7 +200,7 @@ Examples
 
 #### setByPathMut
 
-`setByPathMut(obj: DictRecursive, path: string, value: unknown): void`
+`setByPathMut(obj: RecursiveDict, path: string, value: unknown): void`
 
 Set a value in a nested dictionary by dot-separated path.
 Traverses or creates nested objects along the dot-separated path and sets the final key to the given value.

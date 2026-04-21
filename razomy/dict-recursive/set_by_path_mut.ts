@@ -11,26 +11,26 @@ import * as dictRecursive from '@razomy/dict-recursive';
  * @throws {Error} If the path is empty.
  * @example
  * ```ts
- * const obj: DictRecursive = {};
+ * const obj: RecursiveDict = {};
  * setByPathMut(obj, 'a.b.c', 42);
  * // obj => { a: { b: { c: 42 } } }
  * ```
  * @example
  * ```ts
- * const obj: DictRecursive = { x: { y: 1 } };
+ * const obj: RecursiveDict = { x: { y: 1 } };
  * setByPathMut(obj, 'x.y', 2);
  * // obj => { x: { y: 2 } }
  * ```
  * @example
  * ```ts
- * const obj: DictRecursive = { a: 'old' };
+ * const obj: RecursiveDict = { a: 'old' };
  * setByPathMut(obj, 'a', 'new');
  * // obj => { a: 'new' }
  * ```
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n) for intermediate objects created along the path
  */
-export function setByPathMut(obj: dictRecursive.DictRecursive, path: string, value: unknown): void {
+export function setByPathMut(obj: dictRecursive.RecursiveDict, path: string, value: unknown): void {
   const parts: string[] = path.split('.');
   const last: string | undefined = parts.pop();
 
@@ -38,11 +38,11 @@ export function setByPathMut(obj: dictRecursive.DictRecursive, path: string, val
     throw new Error('Path must be a non-empty string');
   }
 
-  const target: dictRecursive.DictRecursive = parts.reduce<dictRecursive.DictRecursive>((acc, part) => {
+  const target: dictRecursive.RecursiveDict = parts.reduce<dictRecursive.RecursiveDict>((acc, part) => {
     if (!acc[part] || !dict.isPlainObject(acc[part])) {
       acc[part] = {};
     }
-    return acc[part] as dictRecursive.DictRecursive;
+    return acc[part] as dictRecursive.RecursiveDict;
   }, obj);
 
   target[last!] = value as any;

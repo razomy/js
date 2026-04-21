@@ -7,7 +7,7 @@ export interface Difference<T> {
 
 export interface ReplaceDifference<T> {
   type: 'replace';
-  oldValue: T;
+  prevValue: T;
   value: T;
 }
 

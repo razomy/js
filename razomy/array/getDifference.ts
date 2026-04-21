@@ -17,7 +17,7 @@ export function getDifference(oldArray: string[], newArray: string[]): differenc
     const bestMatch: string | null = arrayDifference.getSimilar(deletedItem, renamedItems);
 
     if (bestMatch) {
-      renamedItems.push({ oldValue: deletedItem, value: bestMatch, type: 'replace' });
+      renamedItems.push({ prevValue: deletedItem, value: bestMatch, type: 'replace' });
       remainingNewItems.delete(bestMatch); // Avoid reusing the same match
     }
   });
@@ -27,7 +27,7 @@ export function getDifference(oldArray: string[], newArray: string[]): differenc
     .filter((item) => !renamedItems.some((pair) => pair.value === item))
     .map((item) => ({ value: item, type: 'added' } as difference.Difference<string>));
   const finalDeletedItems = deletedItems
-    .filter((item) => !renamedItems.some((pair) => pair.oldValue === item))
+    .filter((item) => !renamedItems.some((pair) => pair.prevValue === item))
     .map((item) => ({ value: item, type: 'removed' } as difference.Difference<string>));
   return [...finalNewItems, ...finalDeletedItems, ...renamedItems];
 }

@@ -3,9 +3,9 @@ import * as path from 'path';
 import * as exceptions from '@razomy/exceptions';
 import * as kv_ from '@razomy/kv';
 
-export function toKv<T = kv_.ArrayKeyValuable<string, Buffer>>(dirPath: string): T;
-export function toKv<T = kv_.KeyValuable<string, Buffer>>(filePath: string): T;
-export function toKv<T extends kv_.ArrayOrKeyValuable<string, Buffer>>(directory: string): T {
+export function toKv<T = kv_.KeyValueArray<string, Buffer>>(dirPath: string): T;
+export function toKv<T = kv_.KeyValue<string, Buffer>>(filePath: string): T;
+export function toKv<T extends kv_.ArrayOrKeyValue<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = kv_.k(path.basename(directory), null as any) as T;
 

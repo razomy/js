@@ -1,9 +1,8 @@
-export type Value<T> = T;
-export type Key<T> = T;
+import type {Value} from "./value";
 
-export type KeyValuable<KT, VT> = [Key<KT>, Valuable<KT, VT>];
-export type ArrayKeyValuable<KT, VT> = KeyValuable<KT, VT>[];
+export type Key<T = string> = T;
 
-export type ArrayOrKeyValuable<KT, VT> = KeyValuable<KT, VT> | ArrayKeyValuable<KT, VT>;
+export type KeyValue<KT, VT> = [Key<KT>, KvaOrValue<KT, VT>];
+export type KeyValueArray<KT, VT> = KeyValue<KT, VT>[];
 
-export type Valuable<KT, VT> = Value<VT> | ArrayOrKeyValuable<KT, VT>;
+export type KvaOrValue<KT, VT> = KeyValueArray<KT, VT> | Value<VT>;

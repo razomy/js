@@ -1,10 +1,10 @@
 export {
   Kv,
   isKv,
-  type ArrayKeyValuable,
-  type ArrayOrKeyValuable,
+  type KeyValueArray,
+  type ArrayOrKeyValue,
   type Key,
-  type KeyValuable,
+  type KeyValue,
   type Valuable,
   type Value,
 } from './kv';

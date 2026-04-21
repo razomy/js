@@ -17,7 +17,7 @@ export function differencesDict<T>(diffs: vrd.P<T>[], a: vrd.Vrd<T>, b: vrd.Vrd<
       diffs.push({
         type: 'replace_key',
         path: path,
-        oldValue: vrd.vrd({ [oldKey]: a[oldKey] }),
+        prevValue: vrd.vrd({ [oldKey]: a[oldKey] }),
         value: vrd.vrd({ [newKey]: b[newKey] }),
       });
       bKeys = bKeys.filter((i) => i != newKey);
