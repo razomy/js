@@ -1,5 +1,5 @@
-import * as dict from '@razomy/dict';
-import * as key from '@razomy/key';
+import * as abstracts from '@razomy/abstracts';
+import * as key from '@razomy/dict';
 import * as string from '@razomy/string';
 import * as kvRecursive from '@razomy/kv-recursive';
 
@@ -8,7 +8,7 @@ export function valueOrListToFlatDict(
   input: kvRecursive.RecursiveList | string,
   parent: string,
   separator: string,
-): dict.Dict<string> {
+): abstracts.structures.Dict<string> {
   if (string.isString(input)) {
     dict[parent] = input;
   } else {

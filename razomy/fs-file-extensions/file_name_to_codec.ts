@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as abstracts from '@razomy/abstracts';
-import * as bufferString from '@razomy/buffer-string';
+import * as bufferString from '@razomy/buffer';
 import * as fsFileExtensions from '@razomy/fs-file-extensions';
 
 export const CODECS: Record<BufferEncoding & '*', abstracts.patterns.Codec<Buffer, string>> = {

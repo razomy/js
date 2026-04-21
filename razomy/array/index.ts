@@ -15,7 +15,7 @@ export { firstEqualIndexes } from './first_equal_indexes';
 export { flat } from './flat';
 export { getFirst } from './get_first';
 export { getLast } from './get_last';
-export { getSimilar } from './get_similar';
+export { getSimilar } from '../string/get_similar';
 export { groupBy } from './group_by';
 export { hasArray } from './has_array';
 export { includes } from './includes';

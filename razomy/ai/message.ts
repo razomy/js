@@ -1,7 +1,7 @@
 import * as abstracts from '@razomy/abstracts';
 
 export interface TextAiMessage {
-  sender: 'system' | 'user' | string;
+  sender: 'system' | 'user' | 'assistant' | string;
   type: 'text';
   content: string;
 }

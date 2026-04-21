@@ -1,4 +1,4 @@
-import * as key from '@razomy/key';
+import * as key from '@razomy/dict';
 import {vrd} from "./vrd";
 
 export function unflatten(data: Record<string, any>, assign = key.ASSIGN): Record<string, any> {

@@ -1,7 +1,7 @@
-import * as difference from '@razomy/difference';
-import * as arrayDifference from '@razomy/array-difference';
+import * as abstracts from '@razomy/abstracts';
+import * as string from '@razomy/string';
 
-export function getDifference(oldArray: string[], newArray: string[]): difference.ChangeDifference<string>[] {
+export function getDifference(oldArray: string[], newArray: string[]): abstracts.patterns.ChangeDifference<string>[] {
   const newSet = new Set(newArray);
   const oldSet = new Set(oldArray);
 
@@ -10,11 +10,11 @@ export function getDifference(oldArray: string[], newArray: string[]): differenc
   const deletedItems = oldArray.filter((item) => !newSet.has(item));
 
   // Identify renamed items
-  const renamedItems: difference.ReplaceDifference<string>[] = [];
+  const renamedItems: abstracts.patterns.ReplaceDifference<string>[] = [];
   const remainingNewItems = new Set(newItems);
 
   deletedItems.forEach((deletedItem) => {
-    const bestMatch: string | null = arrayDifference.getSimilar(deletedItem, renamedItems);
+    const bestMatch: string | null = string.getSimilar(deletedItem, renamedItems);
 
     if (bestMatch) {
       renamedItems.push({ prevValue: deletedItem, value: bestMatch, type: 'replace' });

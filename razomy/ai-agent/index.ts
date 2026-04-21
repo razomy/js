@@ -1,5 +1,4 @@
 export * as actions from './actions';
-export * as functions from './functions';
 export * as llms from './llms';
 export * as parsers from './parsers';
 export * as prompts from './prompts';

@@ -1,18 +1,21 @@
 export async function call(packageName, functionName, args) {
   const url = "http://0.0.0.0:8000/api/run";
-  const data = {
+  const req = {
     "package_name": packageName,
     "function_name": functionName,
     "args": args
   }
-  const request = await fetch(url, {
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(req),
   });
-  const response = await request.json();
-  return response.result
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status} data: ${JSON.stringify(data)}`);
+  }
+  return data['result']
 }
 
