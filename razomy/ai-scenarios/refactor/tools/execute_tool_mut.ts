@@ -1,8 +1,8 @@
 import path from 'path';
-import * as fns from '../../functions';
+import * as fns from '@razomy/fns';
 import * as abstracts from '@razomy/abstracts';
 import * as array from '@razomy/array';
-import * as aiAgentProject from '..';
+import * as aiAgentProject from '../../../ai-agent';
 import * as ai from '@razomy/ai';
 
 export type ToolContext = {

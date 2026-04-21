@@ -1,6 +1,6 @@
 // 2. Бизнес-Аналитик (Остается почти без изменений)
 import * as ai from '@razomy/ai';
-import * as aiAgentProject from '..';
+import * as aiAgentProject from '../../../ai-agent';
 
 export async function businessAnalytic(task: string, parentCtx: aiAgentProject.actors.ActorContext): Promise<string> {
   console.log('📊 Бизнес-аналитик анализирует требования...');

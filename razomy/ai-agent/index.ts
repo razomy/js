@@ -1,10 +1,10 @@
 export * as actions from './actions';
-export * as actors from './actors';
+export * as actors from '../ai-scenarios/refactor/actors';
 export * as functions from './functions';
 export * as llms from './llms';
 export * as parsers from './parsers';
 export * as prompts from './prompts';
 export * as rags from './rags';
-export * as tools from './tools';
+export * as tools from '../ai-scenarios/refactor/tools';
 export { PERFORMANCE_LOGGER } from './logger';
 export { think } from './think';

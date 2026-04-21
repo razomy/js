@@ -1,1 +1,0 @@
-export { predict } from './predict';

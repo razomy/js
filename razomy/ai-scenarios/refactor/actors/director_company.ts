@@ -1,5 +1,5 @@
 import * as ai from '@razomy/ai';
-import * as aiAgentProject from '..';
+import * as aiAgentProject from '../../../ai-agent';
 
 export interface ActorContext {
   tool: aiAgentProject.tools.ToolContext;
