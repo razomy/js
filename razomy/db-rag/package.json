@@ -46,7 +46,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/vgd",
+  "name": "@razomy/db-rag",
   "peerDependencies": {
     "neo4j-driver": "^6.0.1",
     "ollama": "^0.6.3"

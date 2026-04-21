@@ -38,7 +38,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/commit",
+  "name": "@razomy/commits",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"

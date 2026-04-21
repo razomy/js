@@ -1,4 +1,10 @@
-export { type Value } from '../structures/value';
+export {
+  type Serializable,
+  type SerializablePrimitive,
+  type SerializableValue,
+  type WithSerializable,
+} from './serializable';
+export { type WithClone } from './with_clone';
 export { type WithDescription } from './with_description';
 export { type WithId } from './with_id';
 export { type WithKind } from './with_kind';

@@ -1,1 +1,1 @@
-export { predict } from './chat/text/predict';
+export * as chat from './chat';

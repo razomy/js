@@ -102,8 +102,6 @@
     "@razomy/debug": "*",
     "@razomy/dict": "*",
     "@razomy/dict-recursive": "*",
-    "@razomy/difference": "*",
-    "@razomy/differences": "*",
     "@razomy/documents": "*",
     "@razomy/eslint-config": "*",
     "@razomy/exceptions": "*",

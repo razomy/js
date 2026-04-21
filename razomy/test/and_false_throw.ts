@@ -1,8 +1,8 @@
-import * as boolean from '@razomy/boolean';
 import * as test from '@razomy/test';
+import {and} from "@razomy/array";
 
 export function andFalseThrow(...value: boolean[]) {
-  if (!boolean.and(...value)) {
+  if (!and(...value)) {
     throw new test.ArgumentError(value);
   }
 

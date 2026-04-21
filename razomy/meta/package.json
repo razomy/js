@@ -38,7 +38,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/debug",
+  "name": "@razomy/meta",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"

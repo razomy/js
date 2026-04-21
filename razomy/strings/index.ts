@@ -1,2 +1,2 @@
-export { differencesString } from './differences_string';
+export * as path from '@razomy/path';
 export { separateStrings } from './separate_strings';

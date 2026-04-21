@@ -72,7 +72,6 @@
     "@razomy/array-difference": "*",
     "@razomy/dict": "*",
     "@razomy/dict-recursive": "*",
-    "@razomy/difference": "*",
     "@razomy/exceptions": "*",
     "@razomy/key": "*",
     "@razomy/kv": "*",

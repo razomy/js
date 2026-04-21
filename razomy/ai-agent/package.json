@@ -77,7 +77,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/ai-agent-project",
+  "name": "@razomy/ai-agent",
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/ai": "*",

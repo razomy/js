@@ -39,7 +39,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/undefined",
+  "name": "@razomy/primitives",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"

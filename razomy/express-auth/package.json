@@ -41,7 +41,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/auth-express-middleware",
+  "name": "@razomy/express-auth",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"

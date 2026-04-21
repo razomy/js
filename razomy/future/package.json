@@ -47,7 +47,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/async",
+  "name": "@razomy/future",
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/logging": "*",

@@ -1,9 +1,9 @@
-import * as context from '@razomy/context';
+import * as context from '@razomy/abstracts';
 import * as resultNull from '@razomy/result-null';
 import * as abstracts from "@razomy/abstracts";
 
 export function tryAll<
-  C extends context.Context & abstracts.arrays.WithOffset,
+  C extends context.structures.Context & abstracts.arrays.WithOffset,
   R extends readonly resultNull.ResultNullFn<C, { offset: number; result: any }>[],
 >(ctx: C, rules: R) {
   let totalOffset = 0;

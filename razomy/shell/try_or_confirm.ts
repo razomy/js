@@ -1,7 +1,7 @@
 import { confirm } from '@inquirer/prompts';
 import * as test from '@razomy/test';
 import * as shell from '@razomy/shell';
-import * as terminal from '@razomy/terminal';
+import * as terminal from '@razomy/shell';
 
 export async function tryOrConfirm(message: string, tryCommand: string, installCommand: string) {
   if (!terminal.tryCommand(tryCommand)) {

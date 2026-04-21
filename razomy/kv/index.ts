@@ -1,14 +1,5 @@
-export {
-  Kv,
-  isKv,
-  type KeyValueArray,
-  type ArrayOrKeyValue,
-  type Key,
-  type KeyValue,
-  type Valuable,
-  type Value,
-} from './kv';
 export { Akv, akv } from './akv';
+export { Kv, isKv } from './kv';
 export { createByPath } from './create_by_path';
 export { filter } from './filter';
 export { get } from './get';

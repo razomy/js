@@ -1,4 +1,3 @@
-export * as task from '../task';
 export { Debounce } from './debounce';
 export { create } from './create';
 export { delay } from './delay';

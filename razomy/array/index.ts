@@ -1,5 +1,6 @@
 export { addAllMut } from './add_all_mut';
 export { addMut } from './add_mut';
+export { and } from './and';
 export { chunk } from './chunk';
 export { countBy } from './count_by';
 export { create } from './create';
@@ -10,9 +11,11 @@ export { every } from './every';
 export { filter } from './filter';
 export { find } from './find';
 export { findIndex } from './find_index';
+export { firstEqualIndexes } from './first_equal_indexes';
 export { flat } from './flat';
 export { getFirst } from './get_first';
 export { getLast } from './get_last';
+export { getSimilar } from './get_similar';
 export { groupBy } from './group_by';
 export { hasArray } from './has_array';
 export { includes } from './includes';

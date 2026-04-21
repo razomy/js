@@ -1,4 +1,4 @@
-import * as differences from '@razomy/differences';
+import * as array from '@razomy/array';
 import * as strings from '@razomy/strings';
 import * as string from '@razomy/string';
 
@@ -25,5 +25,5 @@ import * as string from '@razomy/string';
 export function differencesString(aString: string, bString: string) {
   const aLines = strings.separateStrings(aString, 0, '\n', []);
   const bLines = strings.separateStrings(bString, 0, '\n', []);
-  return differences.differences(aLines, bLines, (...as) => string.merge(as));
+  return array.differences(aLines, bLines, (...as) => string.merge(as));
 }

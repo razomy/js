@@ -39,7 +39,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/state-machine",
+  "name": "@razomy/machines",
   "peerDependencies": {},
   "publishConfig": {
     "access": "public"
