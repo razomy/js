@@ -1,5 +1,5 @@
 import * as abstracts from '@razomy/abstracts';
-import * as key from '@razomy/dict';
+import * as dict_ from '@razomy/dict';
 import * as string from '@razomy/string';
 import * as kvRecursive from '@razomy/kv-recursive';
 
@@ -13,7 +13,7 @@ export function valueOrListToFlatDict(
     dict[parent] = input;
   } else {
     for (const inputKey of input) {
-      valueOrListToFlatDict(dict, inputKey[1], parent + key.ASSIGN + inputKey[0], separator);
+      valueOrListToFlatDict(dict, inputKey[1], parent + dict_.ASSIGN + inputKey[0], separator);
     }
   }
   return dict;

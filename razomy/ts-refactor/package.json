@@ -64,9 +64,9 @@
     "@razomy/abstracts": "*",
     "@razomy/array": "*",
     "@razomy/fss": "*",
+    "@razomy/kv-recursive": "*",
     "@razomy/languages-programming-fs": "*",
     "@razomy/rala-string": "*",
-    "@razomy/refactor-fs": "*",
     "@razomy/string-case": "*",
     "@razomy/ts-rala": "*"
   },

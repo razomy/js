@@ -1,4 +1,4 @@
-import * as translateRemote from "./index.remote";
+import * as translateRemote from "@razomy/translate/remote";
 
 export async function translateArray(obj: string[], fromLocale: string, toLocale: string, glossary ={}) {
   const res = [] as string[];

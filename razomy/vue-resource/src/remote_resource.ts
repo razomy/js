@@ -7,13 +7,13 @@ export class RemoteResource {
   ctx: Razomy = undefined as any as Razomy;
 
   state = vue.reactive({
-    notation: null as dict.Dict<string> | null,
+    notation: null as abstracts.structures.Dict<string> | null,
     listeners: [] as (() => void)[],
   });
 
   // Привязываем контекст с помощью стрелочной функции,
   // чтобы this не терялся при вызове из сокета
-  set = (notation: dict.Dict<string>) => {
+  set = (notation: abstracts.structures.Dict<string>) => {
     this.state.notation = notation;
     this.state.listeners.forEach((i) => i());
   }

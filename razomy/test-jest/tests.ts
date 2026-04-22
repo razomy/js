@@ -1,9 +1,14 @@
-import * as fns from '../functions';
-import * as dict from '@razomy/dict';
-import * as spec from '@razomy/spec';
+import * as functions from '@razomy/functions';
 import * as testJest from '@razomy/test-jest';
+import * as abstracts from '@razomy/abstracts';
 
-export function tests<I extends Array<any>, O>(cb: fns.Function<I, O>, array: dict.Dict<spec.FunctionSpec<I, O>>) {
+export interface FunctionSpec<i, O> {
+  input: any;
+  otput: any;
+  error: any;
+}
+
+export function tests<I extends Array<any>, O>(cb: functions.Function<I, O>, array: abstracts.structures.Dict<FunctionSpec<I, O>>) {
   for (const key in array) {
     const spec = array[key];
     it(key, async () => await testJest.test(cb, spec.input, spec.otput, spec.error));

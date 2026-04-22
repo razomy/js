@@ -1,7 +1,7 @@
 import * as abstracts from '@razomy/abstracts';
-import * as async from '../future';
+import * as task_ from "@razomy/task";
 
-export class FileTaskManager<C extends async.task.Context> {
+export class FileTaskManager<C extends abstracts.structures.Context> {
   private currentContext: C | null = null;
 
   constructor(public file_gate: abstracts.patterns.Gate<C>) {}
@@ -32,7 +32,7 @@ export class FileTaskManager<C extends async.task.Context> {
   /**
    * Preview/Check: Validate that the task can be executed
    */
-  async validate(task: async.task.AsyncTask<C>): Promise<boolean> {
+  async validate(task: task_.AsyncTask<C>): Promise<boolean> {
     this.ensureContextLoaded();
     try {
       await task.validate(this.currentContext!);
@@ -46,7 +46,7 @@ export class FileTaskManager<C extends async.task.Context> {
   /**
    * Execute the task with Save-Before and Save-After logic
    */
-  async execute(task: async.task.AsyncTask<C>): Promise<void> {
+  async execute(task: task_.AsyncTask<C>): Promise<void> {
     this.ensureContextLoaded();
 
     // 1. Validate first
@@ -81,7 +81,7 @@ export class FileTaskManager<C extends async.task.Context> {
   /**
    * Rollback the specific task using its history
    */
-  async rollback(task: async.task.AsyncTask<C>): Promise<void> {
+  async rollback(task: task_.AsyncTask<C>): Promise<void> {
     this.ensureContextLoaded();
 
     if (task.history.length === 0) {
@@ -108,7 +108,7 @@ export class FileTaskManager<C extends async.task.Context> {
   /**
    * Cancel the operation
    */
-  async cancel(task: async.task.AsyncTask<C>): Promise<void> {
+  async cancel(task: task_.AsyncTask<C>): Promise<void> {
     this.ensureContextLoaded();
     console.log(`Cancelling task ${task.taskId}...`);
     await task.cancel(this.currentContext!);

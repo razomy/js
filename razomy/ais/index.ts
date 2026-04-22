@@ -1,1 +1,1 @@
-export * as analyticsToken from '@razomy/analytics-token';
+export * as analyticsToken from './analytics-token';

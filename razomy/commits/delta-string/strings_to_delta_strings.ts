@@ -1,13 +1,13 @@
-import * as strings from '@razomy/strings';
-import * as commitDatetimeDeltaString from './index';
+import * as commitsDeltaString from '@razomy/commits/delta-string';
+import * as patters from "@razomy/patters";
 
 export function stringsToDeltaStrings(
   getPreviousContent: string,
   getCurrentContent: string,
-): commitDatetimeDeltaString.DeltaString[] {
-  const diffResult = strings.differencesString(getPreviousContent, getCurrentContent);
+): commitsDeltaString.DeltaString[] {
+  const diffResult = patters.differences.differencesString(getPreviousContent, getCurrentContent);
 
-  const changes: commitDatetimeDeltaString.DeltaString[] = [];
+  const changes: commitsDeltaString.DeltaString[] = [];
   let offset = 0;
   for (let i = 0; i < diffResult.length; i++) {
     const diffChange = diffResult[i];

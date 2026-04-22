@@ -66,9 +66,9 @@
   "name": "@razomy/git",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/async": "*",
-    "@razomy/commit-datetime-delta-string": "*",
+    "@razomy/commits": "*",
     "@razomy/fs-file": "*",
+    "@razomy/future": "*",
     "@razomy/languages-programming-fs": "*",
     "@razomy/shell": "*",
     "@razomy/tree-list": "*"

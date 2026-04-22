@@ -1,24 +1,11 @@
 {
-  "main": "./razomy-vue-resource.umd.js",
-  "module": "./razomy-vue-resource.es.js",
-  "types": "./src/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./razomy-vue-resource.es.js",
-      "require": "./razomy-vue-resource.umd.js",
-      "types": "./src/index.d.ts"
-    },
-    "./style.css": "./style.css"
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "files": [
-    "*"
-  ],
-  "scripts": {
-    "build": "vue-tsc --noEmit && vite build && cp package.json ./dist/package.json"
-  },
-  "peerDependencies": {
-    "vue": "^3.0.0"
-  },
+  "dependencies": {},
+  "description": "",
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.6",
     "typescript": "^6.0.2",
@@ -26,22 +13,47 @@
     "vite-plugin-dts": "^4.5.4",
     "vue": "^3.5.32"
   },
-  "author": {
-    "email": "yevhenii.kamenskyi+js@razomy.org",
-    "name": "Yevhenii Kamenskyi",
-    "url": "https://id.razomy.org/yevhenii-kamenskyi"
-  },
-  "description": "",
   "engines": {
     "node": ">=18"
   },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
   "homepage": "https://github.com/razomy/js/tree/main/razomy/vue-resource#readme",
   "keywords": [
     "razomy",
-    "vue"
+    "vue",
+    "resource"
   ],
   "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
   "name": "@razomy/vue-resource",
+  "peerDependencies": {
+    "@razomy/array": "*",
+    "@razomy/dict": "*",
+    "@razomy/razomy": "*",
+    "@razomy/server": "*",
+    "vue": "^3.0.0"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -50,7 +62,20 @@
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
+  "scripts": {
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
   "sideEffects": false,
   "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
   "version": "1.0.0"
 }

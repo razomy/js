@@ -26,7 +26,7 @@ ${globalStrategy}
 Сделай только свою часть работы.`
 ),
   ];
-  ctx.llm.tools = [aiScenarios.refactor.tools.TOOL_REGISTRY.getFile, aiScenarios.refactor.tools.TOOL_REGISTRY.setFile];
-  await aiScenarios.refactor.think(ctx);
+  // ctx.llm.tools = [aiScenarios.refactor.tools.TOOL_REGISTRY.getFile, aiScenarios.refactor.tools.TOOL_REGISTRY.setFile];
+  // await aiScenarios.refactor.think(ctx);
   console.log(`✅ Разработчик #${devId} завершил работу над ${task.fileName}`);
 }

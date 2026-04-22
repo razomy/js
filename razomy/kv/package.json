@@ -56,7 +56,9 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
-    "@razomy/fns": "*"
+    "@razomy/functions": "*",
+    "@razomy/primitives": "*",
+    "@razomy/undefined": "*"
   },
   "publishConfig": {
     "access": "public"

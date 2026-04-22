@@ -1,5 +1,5 @@
-import * as dict from '@razomy/dict';
+import * as abstracts from '@razomy/abstracts';
 
 export interface WithChildrenDict<T> {
-  children: dict.Dict<T>;
+  children: abstracts.structures.Dict<T>;
 }

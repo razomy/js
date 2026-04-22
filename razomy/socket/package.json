@@ -33,13 +33,15 @@
   "homepage": "https://github.com/razomy/js/tree/main/razomy/socket#readme",
   "keywords": [
     "razomy",
-    "socket"
+    "socket",
+    "create"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/socket",
   "peerDependencies": {
+    "@razomy/server": "*",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
   },

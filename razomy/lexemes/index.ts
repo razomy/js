@@ -1,4 +1,4 @@
-export * as bound from '@razomy/bound-string';
-export * as offset from '@razomy/offset-ctx';
-export * as tokenOffset from '@razomy/token-offset';
-export * as tokenOffsetDeep from '@razomy/token-offset-deep';
+export * as bound from './bound';
+export * as offset from './offset';
+export * as tokenOffset from './token-offset';
+export * as tokenOffsetDeep from './token-offset-deep';

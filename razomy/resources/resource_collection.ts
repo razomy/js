@@ -17,7 +17,7 @@ export interface IResourceCollection<T extends resources.EntityResource> {
 }
 
 export class ResourceCollection<T extends resources.EntityResource>
-  extends resources.ObjectResource
+  extends resources.AObjectResource
   implements IResourceCollection<T>
 {
   public nodes: T[];

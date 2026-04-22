@@ -34,13 +34,18 @@
   "keywords": [
     "razomy",
     "json",
+    "arrayToJson",
+    "dictToJson",
     "getDetailedDiff",
     "getValueFromDiff",
     "isObject",
+    "jsonToCtx",
     "jsonToObject",
     "jsonToString",
     "sort",
-    "stringToJson"
+    "stringToJson",
+    "toJson",
+    "tryJsonToCtx"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -49,16 +54,13 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/array": "*",
-    "@razomy/context": "*",
-    "@razomy/dict-recursive": "*",
-    "@razomy/fns": "*",
+    "@razomy/dict": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/functions": "*",
+    "@razomy/lexemes": "*",
     "@razomy/object": "*",
     "@razomy/pipes": "*",
-    "@razomy/result": "*",
-    "@razomy/result-null": "*",
-    "@razomy/serializable": "*",
-    "@razomy/token-offset": "*",
-    "@razomy/token-offset-deep": "*"
+    "@razomy/resources": "*"
   },
   "publishConfig": {
     "access": "public"

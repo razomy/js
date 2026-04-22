@@ -1,3 +1,3 @@
-import * as serializable from '@razomy/serializable';
+import * as abstracts from "@razomy/abstracts";
 
-export type Json = serializable.SerializableValue;
+export type Json = abstracts.domains.SerializableValue;

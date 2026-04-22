@@ -1,19 +1,19 @@
 import * as shell from '@razomy/shell';
-import * as commitDatetimeDeltaString from '../commit/delta-string';
 import * as fsFile from '@razomy/fs-file';
+import * as commits_ from "@razomy/commits";
 
 export async function vcsCommitsToGitFile(
   prevSnapshot: string,
   dirPath: string,
   fileName: string,
-  commits: commitDatetimeDeltaString.ActorDatetimeDeltaString[],
+  commits: commits_.deltaString.ActorDatetimeDeltaString[],
 ) {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
     if (!commit.deltas.length) {
       continue;
     }
-    prevSnapshot = commitDatetimeDeltaString.addssToString(prevSnapshot, [commit]);
+    prevSnapshot = commits_.deltaString.addssToString(prevSnapshot, [commit]);
     fsFile.trySet(fileName, prevSnapshot);
     shell.progress(i, commits.length);
     await shell.execute(

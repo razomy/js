@@ -1,4 +1,4 @@
-import * as char from '../char';
+import * as char from '@razomy/char';
 
 export const ASSIGN = char.COLON;
 export const SEPERATE = char.COMMA;

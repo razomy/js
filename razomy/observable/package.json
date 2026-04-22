@@ -34,8 +34,8 @@
   "keywords": [
     "razomy",
     "observable",
-    "promise",
-    "throwException"
+    "throwException",
+    "toPromise"
   ],
   "license": "MIT",
   "main": "./index.ts",

@@ -1,15 +1,15 @@
 import * as ai from '@razomy/ai';
-import * as aiAgentProject from '..';
+import * as aiAgent from '@razomy/ai-agent';
 
 export async function askNumber(ctx: ai.AiLlmContext): Promise<number> {
   const messages = [
-    ...aiAgentProject.prompts.getPanicPrompt(),
-    ...aiAgentProject.prompts.getNumberPrompt(),
+    ...aiAgent.prompts.getPanicPrompt(),
+    ...aiAgent.prompts.getNumberPrompt(),
     ...ctx.messages,
   ];
-  return aiAgentProject.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
-    const result = await aiAgentProject.llms.callText(ctx);
-    aiAgentProject.parsers.parseThrowPanic(result);
-    return aiAgentProject.parsers.parseNumber(result);
+  return aiAgent.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
+    const result = await aiAgent.llms.callText(ctx);
+    aiAgent.parsers.parseThrowPanic(result);
+    return aiAgent.parsers.parseNumber(result);
   });
 }

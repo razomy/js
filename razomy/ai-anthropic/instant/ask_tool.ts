@@ -1,8 +1,8 @@
 import * as main from '@razomy/main';
-import * as fns from '../../functions';
 import * as abstracts from '@razomy/abstracts';
 import * as ai from '@razomy/ai';
 import * as aiAnthropic from '@razomy/ai-anthropic';
+import * as tsRala from "@razomy/ts-rala";
 
 export async function askTool(
   texts: string[],
@@ -53,7 +53,7 @@ main.ifMain(import.meta.url, async () => {
     await askTool(
       ['call hello'],
       [
-        fns.createPackageFunction({
+        tsRala.createPackageFunction({
           name: 'hello',
           description: 'says hello',
         }),

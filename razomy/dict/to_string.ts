@@ -1,4 +1,4 @@
-import * as dict from '@razomy/dict';
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Converts a dictionary to a specific string format.
@@ -20,7 +20,7 @@ import * as dict from '@razomy/dict';
  * @complexity time O(k) where k is number of keys
  * @complexity memory O(k)
  */
-export function toString_<T extends string>(dict: dict.Dict<T>): string {
+export function toString_<T extends string>(dict: abstracts.structures.Dict<T>): string {
   let result: string = '{';
   for (const key in dict) {
     result += `${key}:${dict[key]};`;

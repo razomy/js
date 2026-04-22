@@ -30,10 +30,11 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/vgd#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-rag#readme",
   "keywords": [
     "razomy",
-    "vgd",
+    "db",
+    "rag",
     "create",
     "deleteFiles",
     "getEmbedding",
@@ -55,7 +56,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/vgd",
+    "directory": "razomy/db-rag",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

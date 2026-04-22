@@ -42,6 +42,7 @@
   "module": "./index.ts",
   "name": "@razomy/kv-fs",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/fs-directory": "*",
     "@razomy/kv": "*"
   },

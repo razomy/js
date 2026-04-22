@@ -30,12 +30,11 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-agent-project#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-agent#readme",
   "keywords": [
     "razomy",
     "ai",
     "agent",
-    "project",
     "think",
     "askBool",
     "askCompose",
@@ -43,13 +42,6 @@
     "askNumber",
     "askSwitch",
     "askTaskDecompose",
-    "architecture",
-    "businessAnalytic",
-    "developerSolve",
-    "directorCompany",
-    "getDirFiles",
-    "getFile",
-    "setFile",
     "callAuto",
     "callText",
     "callTool",
@@ -62,6 +54,7 @@
     "parseThrowPanic",
     "getBoolPrompt",
     "getComposePrompt",
+    "getDonePrompt",
     "getNumberPrompt",
     "getPanicPrompt",
     "getSwitchPrompt",
@@ -69,34 +62,30 @@
     "askProject",
     "chunkFile",
     "syncProjectWithVgd",
-    "executeToolMut",
-    "performanceLogger",
-    "tools",
-    "toolRegistry"
+    "performanceLogger"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ai-agent",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
     "@razomy/ai": "*",
     "@razomy/ai-anthropic": "*",
+    "@razomy/ai-scenarios": "*",
     "@razomy/array": "*",
-    "@razomy/fns": "*",
+    "@razomy/db-rag": "*",
     "@razomy/fss": "*",
     "@razomy/git": "*",
     "@razomy/performance": "*",
     "@razomy/random": "*",
     "@razomy/string": "*",
-    "@razomy/ts-refactor": "*",
-    "@razomy/vgd": "*"
+    "@razomy/ts-refactor": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/ai-agent-project",
+    "directory": "razomy/ai-agent",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

@@ -45,6 +45,7 @@
   "module": "./index.ts",
   "name": "@razomy/pipes-booleans",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/kv": "*"
   },

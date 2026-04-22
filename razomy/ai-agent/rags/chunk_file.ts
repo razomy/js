@@ -2,9 +2,9 @@ import * as fss from '@razomy/fss';
 import * as random from '@razomy/random';
 import * as string from '@razomy/string';
 import * as tsRefactor from '@razomy/ts-refactor';
-import * as vgd from '../../db-rag';
+import * as dbRag from '@razomy/db-rag';
 
-export function chunkFile(projectPath, filePath, project): vgd.ChunkFile {
+export function chunkFile(projectPath, filePath, project): dbRag.ChunkFile {
   const sourceFile = project.getSourceFile(projectPath + '/' + filePath);
   let chunks = [] as string[];
   if (!sourceFile) {

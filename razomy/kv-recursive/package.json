@@ -41,6 +41,7 @@
     "getValue",
     "get",
     "listToFlatDict",
+    "renameToSnakeCaseRecursive",
     "valueOrListToFlatDict"
   ],
   "license": "MIT",
@@ -48,10 +49,12 @@
   "module": "./index.ts",
   "name": "@razomy/kv-recursive",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
-    "@razomy/key": "*",
-    "@razomy/string": "*"
+    "@razomy/fs-recursive": "*",
+    "@razomy/string": "*",
+    "@razomy/string-case": "*"
   },
   "publishConfig": {
     "access": "public"

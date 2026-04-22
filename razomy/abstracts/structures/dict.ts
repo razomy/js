@@ -1,4 +1,4 @@
-import type { Key } from "./kva";
+import * as abstracts from "@razomy/abstracts";
 
 /**
  * @summary Represents a dictionary collection.
@@ -17,7 +17,7 @@ import type { Key } from "./kva";
  * ```
  */
 export interface Dict<T> {
-  [key: Key]: T;
+  [key: abstracts.structures.Key]: T;
 }
 
 export interface RecursiveDict<T = RecursiveDict<any>> extends Dict<T> {}

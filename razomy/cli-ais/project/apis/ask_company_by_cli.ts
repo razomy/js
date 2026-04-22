@@ -1,17 +1,17 @@
-import * as aiAgentProject from '../../../ai-agent';
+import * as aiScenarios from "@razomy/ai-scenarios";
 
 export async function askCompanyByCli(challengePrompt: string, cliContext: { dirPath: string }) {
-  const ctx: aiAgentProject.actors.ActorContext = {
+  const ctx: aiScenarios.refactor.actors.ActorContext = {
     tool: {
       project: { dirPath: cliContext.dirPath },
-      getDirFiles: [],
-      getFile: {},
-      setFile: {},
+      // getDirFiles: [],
+      // getFile: {},
+      // setFile: {},
     },
     llm: {
       messages: [],
       tools: [],
     },
   };
-  await aiAgentProject.actors.directorCompany(challengePrompt, ctx);
+  await aiScenarios.refactor.actors.directorCompany(challengePrompt, ctx);
 }

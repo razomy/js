@@ -33,13 +33,17 @@
   "homepage": "https://github.com/razomy/js/tree/main/razomy/resources#readme",
   "keywords": [
     "razomy",
-    "resources"
+    "resources",
+    "any",
+    "fMutResult",
+    "optinal"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/resources",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/object": "*"
   },

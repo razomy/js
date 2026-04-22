@@ -1,2 +1,2 @@
 export { test } from './test';
-export { tests } from './tests';
+export { tests, type FunctionSpec } from './tests';

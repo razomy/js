@@ -1,6 +1,6 @@
-import * as vgd from './';
+import * as dbRag from '@razomy/db-rag';
 
-export async function indexFs(db, projectPath: string, lastCommitId: string, filesData: vgd.ChunkFile[]) {
+export async function indexFs(db, projectPath: string, lastCommitId: string, filesData: dbRag.ChunkFile[]) {
   const session = db.session();
   console.log('🧠 Начинаем локальную векторизацию через Ollama...');
   const batchSize = 5;
@@ -26,7 +26,7 @@ export async function indexFs(db, projectPath: string, lastCommitId: string, fil
 
       // Получаем эмбеддинги ПАРАЛЛЕЛЬНО для всей пачки
       // Если Ollama захлебывается, можно использовать библиотеку p-limit для ограничения конкурентности
-      const embeddings = await Promise.all(batchData.map((b) => vgd.getEmbedding(b.text)));
+      const embeddings = await Promise.all(batchData.map((b) => dbRag.getEmbedding(b.text)));
 
       // Подготавливаем данные для Neo4j, добавляя полученные векторы
       const neo4JRecords = batchData.map((item, index) => ({

@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as numberString from '@razomy/number-string';
 import * as shell from '@razomy/shell';
 import * as fsFile from '@razomy/fs-file';
+import * as number from "@razomy/number";
 
 export async function exportFiles(baseDir) {
   baseDir = path.resolve(baseDir);
@@ -37,7 +37,7 @@ export async function exportFiles(baseDir) {
     } catch (e) {
       console.log(e);
     }
-    console.log(`Add ${i} of ${files.length} ${numberString.string((i / files.length) * 100)} %`);
+    console.log(`Add ${i} of ${files.length} ${number.string((i / files.length) * 100)} %`);
     // return;
   }
 }

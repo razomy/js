@@ -1,2 +1,2 @@
-export * as path from '@razomy/path';
+export * as path from './path';
 export { separateStrings } from './separate_strings';

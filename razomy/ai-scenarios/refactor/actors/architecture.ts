@@ -1,5 +1,6 @@
 import * as ai from '@razomy/ai';
 import * as aiScenarios from "@razomy/ai-scenarios";
+import * as aiAgentParsers from "@razomy/ai-agent/parsers";
 
 export async function architecture(
   baPlan: string,
@@ -18,9 +19,9 @@ export async function architecture(
      `),
     ai.uM(baPlan),
   ];
-  ctx.llm.tools = [aiScenarios.refactor.tools.TOOL_REGISTRY.getDirFiles];
+  // ctx.llm.tools = [aiScenarios.refactor.tools.TOOL_REGISTRY.getDirFiles];
 
-  await aiScenarios.refactor.think(ctx);
+  // await aiScenarios.refactor.think(ctx);
   const rawResponse = ctx.llm.messages[ctx.llm.messages.length - 1].content;
 
   const ctx2: aiScenarios.refactor.actors.ActorContext = {
@@ -48,8 +49,8 @@ export async function architecture(
   ];
   ctx2.llm.tools = [];
 
-  await aiScenarios.refactor.think(ctx2);
+  // await aiScenarios.refactor.think(ctx2);
   const rawResponse2 = ctx2.llm.messages[ctx2.llm.messages.length - 1].content;
 
-  return aiScenarios.refactor.parsers.parseJson<aiScenarios.refactor.actors.ArchitecturePlan>(rawResponse2);
+  return aiAgentParsers.parseJson<aiScenarios.refactor.actors.ArchitecturePlan>(rawResponse2);
 }

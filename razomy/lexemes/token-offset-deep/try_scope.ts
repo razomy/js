@@ -1,13 +1,12 @@
-import * as context from '@razomy/context';
-import * as resultNull from '@razomy/result-null';
+import * as resources from '@razomy/resources';
 import * as abstracts from '@razomy/abstracts';
-import * as tokenOffsetDeep from '@razomy/lexemes/token-offset-deep';
+import * as lexemesTokenOffsetDeep from '@razomy/lexemes/token-offset-deep';
 
 export function tryScope<
-  C extends context.Context & abstracts.translators.WithTokens<any> & abstracts.arrays.WithOffset & tokenOffsetDeep.WithStack,
+  C extends abstracts.structures.Context & abstracts.translators.WithTokens<any> & abstracts.arrays.WithOffset & lexemesTokenOffsetDeep.WithStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
->(ctx: C, rule: resultNull.ResultNullFn<C, T>) {
+>(ctx: C, rule: resources.ResultNullFn<C, T>) {
   const trigger = ctx.tokens[ctx.offset];
   const parentIndent = ctx.stack[ctx.stack.length - 1] ?? -1;
 

@@ -41,7 +41,9 @@ export function addDependencies(projectPath: string, prefix) {
       const newImports = pkgSource
         .matchAll(importRegex)
         .map((m) => m[1])
-        .filter((m) => !m.endsWith('/node'))
+        .map((m) => m.split('/').slice(0,2).join('/'))
+        // .filter((m) => !m.endsWith('/node'))
+        // .filter((m) => !m.endsWith('/remote'))
         .toArray();
       matches = [...matches, ...newImports];
       return undefined;

@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as dict from '@razomy/dict';
+import * as abstracts from '@razomy/abstracts';
 import * as array from '@razomy/array';
 import * as object_ from '@razomy/object';
 
@@ -26,7 +27,7 @@ export function createDist(packageDirPath: string) {
     return t.replace('.ts', '.d.cts').replace('src/', '');
   }
 
-  function mD(v1: dict.Dict<string> | string | undefined, ck, pk = '') {
+  function mD(v1: abstracts.structures.Dict<string> | string | undefined, ck, pk = '') {
     if (!v1) {
       return v1;
     }
@@ -64,7 +65,7 @@ export function createDist(packageDirPath: string) {
     throw new Error(`Unknown key "${ck}" "${pk}":"${v1}"`);
   }
 
-  function mDt(v1: dict.Dict<string> | string | undefined, k2, k1 = '') {
+  function mDt(v1: abstracts.structures.Dict<string> | string | undefined, k2, k1 = '') {
     if (!v1) {
       return v1;
     }

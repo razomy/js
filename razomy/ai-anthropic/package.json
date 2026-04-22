@@ -61,8 +61,8 @@
     "@anthropic-ai/sdk": "^0.78.0",
     "@razomy/abstracts": "*",
     "@razomy/ai": "*",
-    "@razomy/fns": "*",
-    "@razomy/main": "*"
+    "@razomy/main": "*",
+    "@razomy/ts-rala": "*"
   },
   "publishConfig": {
     "access": "public"

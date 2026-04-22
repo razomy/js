@@ -1,10 +1,10 @@
-import * as vgd from './';
+import * as dbRag from '@razomy/db-rag';
 
 export async function search(db, query: string) {
   const session = db.session();
   console.log(`\n🔍 Ищем: "${query}"...`);
   try {
-    const queryVector = await vgd.getEmbedding(query);
+    const queryVector = await dbRag.getEmbedding(query);
 
     const result = await session.run(
       `

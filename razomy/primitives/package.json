@@ -30,22 +30,26 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/undefined#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/primitives#readme",
   "keywords": [
     "razomy",
-    "undefined",
-    "booleanUndefined"
+    "primitives",
+    "booleanUndefined",
+    "isWithValue"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/primitives",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/exceptions": "*"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/undefined",
+    "directory": "razomy/primitives",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

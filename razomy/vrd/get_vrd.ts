@@ -1,10 +1,10 @@
 import * as exceptions from '@razomy/exceptions';
-import * as dict from '@razomy/dict';
 import * as vrd from '@razomy/vrd';
+import * as abstracts from '@razomy/abstracts';
 
 export function getVrd<T>(
   valueRecursive: vrd.VrdOrValue<T>,
-  path: dict.DictKey[],
+  path: abstracts.structures.Key[],
   pathOffset: number,
 ): vrd.VrdOrValue<T> {
   for (const key in valueRecursive!) {

@@ -1,6 +1,7 @@
-import * as serializable from '@razomy/serializable';
+import * as abstracts from "@razomy/abstracts";
+import * as json from "@razomy/json";
 
-export function jsonToCtx<T extends serializable.Ctx>(ctx: T, data: { [key: string]: serializable.Serializable }): T {
+export function jsonToCtx<T extends json.Ctx>(ctx: T, data: { [key: string]: abstracts.domains.Serializable }): T {
   for (const [k, v] of Object.entries(data)) {
     if (!ctx.has(k)) {
       ctx.set(k, v);
@@ -14,7 +15,7 @@ export function jsonToCtx<T extends serializable.Ctx>(ctx: T, data: { [key: stri
     }
 
     if (typeof attribute === 'object' && 'fromSerializable' in attribute) {
-      (attribute as serializable.WithSerializable).fromSerializable(v);
+      (attribute as abstracts.domains.WithSerializable).fromSerializable(v);
       continue;
     }
 

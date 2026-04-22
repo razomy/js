@@ -1,18 +1,18 @@
 import * as shell from '@razomy/shell';
-import * as commitDatetimeDeltaString from './index';
+import * as commitsDeltaString from '@razomy/commits/delta-string';
 
-export function mapCommit(commits: commitDatetimeDeltaString.ActorDatetimeDeltaString[]) {
+export function mapCommit(commits: commitsDeltaString.ActorDatetimeDeltaString[]) {
   let snapshot = '';
-  const result: commitDatetimeDeltaString.ActorDatetimeDeltaString[] = [];
+  const result: commitsDeltaString.ActorDatetimeDeltaString[] = [];
   for (let i = 0; i < commits.length; i++) {
     shell.progress(i, commits.length);
     const commit = commits[i];
     if (commit.deltas.length === 0) {
       continue;
     }
-    const commitSnapshot = commitDatetimeDeltaString.addssToString(snapshot, [commit]);
+    const commitSnapshot = commitsDeltaString.addssToString(snapshot, [commit]);
     result.push({
-      deltas: commitDatetimeDeltaString.stringsToDeltaStrings(snapshot, commitSnapshot),
+      deltas: commitsDeltaString.stringsToDeltaStrings(snapshot, commitSnapshot),
       actor: commit.actor,
       datetime: commit.datetime,
     });

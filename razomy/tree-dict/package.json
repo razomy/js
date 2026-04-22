@@ -54,8 +54,7 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/dict": "*",
-    "@razomy/exceptions": "*",
-    "@razomy/key": "*"
+    "@razomy/exceptions": "*"
   },
   "publishConfig": {
     "access": "public"

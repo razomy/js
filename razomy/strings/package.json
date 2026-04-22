@@ -34,8 +34,9 @@
   "keywords": [
     "razomy",
     "strings",
-    "differencesString",
-    "separateStrings"
+    "separateStrings",
+    "preExtractPath",
+    "subExtractPath"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -43,6 +44,7 @@
   "name": "@razomy/strings",
   "peerDependencies": {
     "@razomy/abstracts": "*",
+    "@razomy/exceptions": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

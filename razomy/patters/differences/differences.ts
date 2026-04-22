@@ -1,13 +1,13 @@
 import * as shell from '@razomy/shell';
-import * as difference from '@razomy/difference';
-import * as index from '@razomy/index';
+import * as abstracts from "@razomy/abstracts";
+import * as array from "@razomy/array";
 
 /** a was, b become */
 export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
-  const diffs = [] as difference.Difference<T>[];
-  let last: difference.Difference<T> | null = null;
+  const diffs = [] as abstracts.patterns.Difference<T>[];
+  let last: abstracts.patterns.Difference<T> | null = null;
 
-  function addDiff(type: difference.DifferenceType, value: T) {
+  function addDiff(type: abstracts.patterns.DifferenceType, value: T) {
     if (last?.type === type) {
       last.value = sum(last.value, value);
     } else {
@@ -26,7 +26,7 @@ export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
       aI++;
       bI++;
     } else {
-      const [nAi, nBi] = index.firstEqualIndexes(a, b, aI, bI);
+      const [nAi, nBi] = array.firstEqualIndexes(a, b, aI, bI);
 
       if (aI < nAi) {
         addDiff('removed', sum(...a.slice(aI, nAi)));

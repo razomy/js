@@ -58,7 +58,7 @@
   "name": "@razomy/fs-file-extensions",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/buffer-string": "*"
+    "@razomy/buffer": "*"
   },
   "publishConfig": {
     "access": "public"

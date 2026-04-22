@@ -39,7 +39,8 @@
   "keywords": [
     "razomy",
     "translate",
-    "translateObject",
+    "translateArray",
+    "translateDict",
     "en",
     "fr",
     "ru",

@@ -35,14 +35,18 @@
     "razomy",
     "ai",
     "sM",
-    "uM"
+    "uM",
+    "predict",
+    "mapMessageBack",
+    "mapMessage"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ai",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/run": "*"
   },
   "publishConfig": {
     "access": "public"

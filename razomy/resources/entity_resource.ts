@@ -2,10 +2,10 @@ import * as object_ from '@razomy/object';
 import * as exceptions from '@razomy/exceptions';
 import * as resources from '@razomy/resources';
 
-export class EntityResource extends resources.ObjectResource implements resources.IEntityResource {
+export class EntityResource extends resources.AObjectResource implements resources.IEntityResource {
   protected resources: resources.IResourceMap = {};
 
-  public add<T extends resources.ObjectResource>(obj: T): void {
+  public add<T extends resources.AObjectResource>(obj: T): void {
     if (this.resources[obj.type]) {
       throw new resources.NodeAlreadyProvidedException('Already added' + obj.type);
     }
@@ -13,7 +13,7 @@ export class EntityResource extends resources.ObjectResource implements resource
     this.resources[obj.type] = obj;
   }
 
-  public remove<T extends resources.ObjectResource>(obj: T): void {
+  public remove<T extends resources.AObjectResource>(obj: T): void {
     if (this.resources[obj.type] === undefined) {
       throw new resources.NodeProvidedException('Cannot remove because Resource not exist' + obj.type);
     }
@@ -21,7 +21,7 @@ export class EntityResource extends resources.ObjectResource implements resource
     delete this.resources[obj.type];
   }
 
-  public replace<T extends resources.ObjectResource>(obj: T): void {
+  public replace<T extends resources.AObjectResource>(obj: T): void {
     if (this.resources[obj.type] === undefined) {
       throw new resources.NodeProvidedException('Cannot remove because Resource not exist' + obj.type);
     }
@@ -29,8 +29,8 @@ export class EntityResource extends resources.ObjectResource implements resource
     this.resources[obj.type] = obj;
   }
 
-  public getBy<T extends resources.ObjectResource = resources.ObjectResource>(objCtor: object_.Constructor<T>): T {
-    const ctor: T | resources.ObjectResource = this.resources[objCtor.type];
+  public getBy<T extends resources.AObjectResource = resources.AObjectResource>(objCtor: object_.Constructor<T>): T {
+    const ctor: T | resources.AObjectResource = this.resources[objCtor.type];
 
     if (ctor === undefined) {
       throw new resources.NodeProvidedException('Cannot get because Resource not exist' + objCtor.type);

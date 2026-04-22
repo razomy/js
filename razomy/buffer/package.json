@@ -34,13 +34,17 @@
   "keywords": [
     "razomy",
     "buffer",
+    "toCodec",
     "toString"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/buffer",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/string": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

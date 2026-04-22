@@ -1,11 +1,11 @@
 import * as ai from '@razomy/ai';
-import * as aiAgentProject from '..';
+import * as aiAgent from '@razomy/ai-agent';
 
 export async function askJson(ctx: ai.AiLlmContext): Promise<string> {
-  const messages = [...aiAgentProject.prompts.getPanicPrompt(), ...ctx.messages];
-  return aiAgentProject.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
-    const result = await aiAgentProject.llms.callText(ctx);
-    aiAgentProject.parsers.parseThrowPanic(result);
-    return aiAgentProject.parsers.parseJson(result);
+  const messages = [...aiAgent.prompts.getPanicPrompt(), ...ctx.messages];
+  return aiAgent.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
+    const result = await aiAgent.llms.callText(ctx);
+    aiAgent.parsers.parseThrowPanic(result);
+    return aiAgent.parsers.parseJson(result);
   });
 }

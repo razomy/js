@@ -1,10 +1,10 @@
-import * as context from '@razomy/abstracts';
-import * as resultNull from '@razomy/result-null';
+import * as abstracts_ from '@razomy/abstracts';
+import * as resources from '@razomy/resources';
 import * as abstracts from "@razomy/abstracts";
 
 export function tryAll<
-  C extends context.structures.Context & abstracts.arrays.WithOffset,
-  R extends readonly resultNull.ResultNullFn<C, { offset: number; result: any }>[],
+  C extends abstracts_.structures.Context & abstracts.arrays.WithOffset,
+  R extends readonly resources.ResultNullFn<C, { offset: number; result: any }>[],
 >(ctx: C, rules: R) {
   let totalOffset = 0;
   const results: [...{ [K in keyof R]: NonNullable<ReturnType<R[K]>>['result'] }] = [] as any;

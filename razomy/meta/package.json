@@ -30,9 +30,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/debug#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/meta#readme",
   "keywords": [
     "razomy",
+    "meta",
     "debug"
   ],
   "license": "MIT",
@@ -44,7 +45,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/debug",
+    "directory": "razomy/meta",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

@@ -30,13 +30,15 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/auth-express-middleware#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/express-auth#readme",
   "keywords": [
     "razomy",
-    "auth",
     "express",
-    "middleware",
-    "apiKey"
+    "auth",
+    "apiKey",
+    "googleSesionApi",
+    "isAuthenticated",
+    "googleTapOn"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -47,7 +49,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/auth-express-middleware",
+    "directory": "razomy/express-auth",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

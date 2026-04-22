@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as shell from '@razomy/shell';
 import * as fsFile from '@razomy/fs-file';
-import * as async from '../future';
+import * as future from '@razomy/future';
 import * as git from '@razomy/git';
 
 export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fileSubPath = '/data/start.txt') {
@@ -13,13 +13,13 @@ export async function gitFileToNewGitFile(repositoryPath, repositorynewPath, fil
     const index = commits.indexOf(commit);
 
     const checkoutCommand = `git checkout ${commit.id}`;
-    await async.tryPromise(shell.execute(checkoutCommand, repositoryPath));
+    await future.tryPromise(shell.execute(checkoutCommand, repositoryPath));
 
     const data = fsFile.getSync(repositoryPath + fileSubPath);
     fsFile.setSync(repositorynewPath + fileSubPath, data);
 
     const commitCommand = `git add . && git commit --date "${commit.date}" -m "${commit.commitName}"`;
-    await async.tryPromise(shell.execute(commitCommand, repositorynewPath));
+    await future.tryPromise(shell.execute(commitCommand, repositorynewPath));
 
     console.log(`${index + 1}. Commit ID: ${commit.id}`);
     console.log(`   Commit Name: ${commit.commitName}`);

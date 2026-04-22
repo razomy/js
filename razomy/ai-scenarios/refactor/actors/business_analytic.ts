@@ -20,7 +20,7 @@ export async function businessAnalytic(task: string, parentCtx: aiScenarios.refa
     ai.uM(task),
   ];
 
-  await aiScenarios.refactor.think(ctx);
+  // await aiScenarios.refactor.think(ctx);
   return ctx.llm.messages[ctx.llm.messages.length - 1].content;
 }
 

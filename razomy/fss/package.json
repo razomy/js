@@ -47,8 +47,7 @@
     "@razomy/fs-file-format": "*",
     "@razomy/fs-kv": "*",
     "@razomy/fs-link": "*",
-    "@razomy/fs-recursive": "*",
-    "@razomy/fs-vrd": "*"
+    "@razomy/fs-recursive": "*"
   },
   "publishConfig": {
     "access": "public"

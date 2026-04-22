@@ -40,7 +40,20 @@
     "get",
     "logInline",
     "log",
+    "observe",
     "progress",
+    "tryCommand",
+    "tryOrConfirm",
+    "checkbox",
+    "confirm",
+    "number",
+    "input",
+    "editor",
+    "search",
+    "password",
+    "expand",
+    "select",
+    "rawlist",
     "startDir"
   ],
   "license": "MIT",
@@ -48,7 +61,9 @@
   "module": "./index.ts",
   "name": "@razomy/shell",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/observable": "*",
+    "@razomy/test": "*"
   },
   "publishConfig": {
     "access": "public"

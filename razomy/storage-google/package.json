@@ -30,27 +30,35 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/google-storage#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/storage-google#readme",
   "keywords": [
     "razomy",
-    "google",
     "storage",
-    "exportFiles"
+    "google",
+    "downloadFileRecursiveFile",
+    "downloadFile",
+    "downloadFilesFromStorage",
+    "downloadFilesRecursive",
+    "exportFiles",
+    "uploadFile",
+    "uploadFilesRecursive",
+    "uploadFilesToStorage"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/storage-google",
   "peerDependencies": {
+    "@razomy/fs-directory": "*",
     "@razomy/fs-file": "*",
-    "@razomy/number-string": "*",
+    "@razomy/number": "*",
     "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/google-storage",
+    "directory": "razomy/storage-google",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

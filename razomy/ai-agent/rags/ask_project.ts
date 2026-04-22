@@ -1,12 +1,12 @@
-import * as vgd from '../../db-rag';
-import * as aiAgentProject from '..';
+import * as dbRag from '@razomy/db-rag';
+import * as aiAgent from '@razomy/ai-agent';
 
 export async function askProject(message: string) {
-  aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('askProject');
-  const db = await vgd.create();
-  await vgd.trySetUp(db);
-  const result = await vgd.search(db, message);
+  aiAgent.PERFORMANCE_LOGGER.tickAndLog('askProject');
+  const db = await dbRag.create();
+  await dbRag.trySetUp(db);
+  const result = await dbRag.search(db, message);
   await db.close();
-  aiAgentProject.PERFORMANCE_LOGGER.tickAndLog('end askProject');
+  aiAgent.PERFORMANCE_LOGGER.tickAndLog('end askProject');
   return result;
 }

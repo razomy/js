@@ -53,15 +53,14 @@
   "keywords": [
     "razomy",
     "express",
-    "create",
-    "googleSesionApi"
+    "create"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/express",
   "peerDependencies": {
-    "@razomy/google-auth": "*",
+    "@razomy/express-auth": "*",
     "@razomy/server": "*"
   },
   "publishConfig": {

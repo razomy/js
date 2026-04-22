@@ -1,8 +1,8 @@
-import * as dict from '@razomy/dict';
 import * as vrd from '@razomy/vrd';
+import * as abstracts from '@razomy/abstracts';
 
 export function getMatchesKey<T>(valueRecursive: vrd.VrdOrValue<T>, keys: string[]) {
-  const matches = [] as dict.DictKey[][];
+  const matches = [] as abstracts.structures.Key[][];
   vrd.iterateSkip({ input: valueRecursive, parents: [] }, (ctx) => {
     for (const key of keys) {
       if (key === ctx.parents.at(-1)) {

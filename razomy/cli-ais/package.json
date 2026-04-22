@@ -44,7 +44,8 @@
   "module": "./index.ts",
   "name": "@razomy/cli-ais",
   "peerDependencies": {
-    "@razomy/ai-agent-project": "*"
+    "@razomy/ai-agent": "*",
+    "@razomy/ai-scenarios": "*"
   },
   "publishConfig": {
     "access": "public"

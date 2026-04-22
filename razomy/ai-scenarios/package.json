@@ -1,3 +1,89 @@
 {
-  "name": "@razomy/ai-scenarios"
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/ai-scenarios#readme",
+  "keywords": [
+    "razomy",
+    "ai",
+    "scenarios",
+    "architecture",
+    "businessAnalytic",
+    "developerSolve",
+    "directorCompany",
+    "predictSuT",
+    "predictSu",
+    "predict",
+    "specToTool",
+    "toolPredict",
+    "executeToolMut",
+    "tools",
+    "toolRegistry"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ai-scenarios",
+  "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/ai": "*",
+    "@razomy/ai-agent": "*",
+    "@razomy/array": "*",
+    "@razomy/fss": "*",
+    "@razomy/main": "*",
+    "@razomy/shell": "*",
+    "@razomy/ts-rala": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "razomy/ai-scenarios",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
 }

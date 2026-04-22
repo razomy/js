@@ -1,4 +1,4 @@
-import * as dict from '@razomy/dict';
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Filter entries of a dictionary by a predicate.
@@ -21,8 +21,8 @@ import * as dict from '@razomy/dict';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function filter<T>(dict: dict.Dict<T>, predicate: (value: T, key: string) => boolean): dict.Dict<T> {
-  const result: dict.Dict<T> = {};
+export function filter<T>(dict: abstracts.structures.Dict<T>, predicate: (value: T, key: string) => boolean): abstracts.structures.Dict<T> {
+  const result: abstracts.structures.Dict<T> = {};
 
   for (const key in dict) {
     if (predicate(dict[key], key)) {

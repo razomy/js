@@ -1,5 +1,5 @@
-import * as dictRecursive from '@razomy/dict-recursive';
 import * as object_ from '@razomy/object';
+import * as abstracts from '@razomy/abstracts';
 
 export type DiffCreated = { type: 'CREATED'; newValue: any };
 export type DiffDeleted = { type: 'DELETED'; prevValue: any };
@@ -9,7 +9,7 @@ export type DiffNested = { type: 'NESTED_UPDATE'; children: DiffNode };
 export type DiffEntry = DiffCreated | DiffDeleted | DiffUpdated | DiffNested;
 export type DiffNode = Record<string, DiffEntry>;
 
-export function getDetailedDiff(oldObj: dictRecursive.RecursiveDict, newObj: dictRecursive.RecursiveDict): DiffNode {
+export function getDetailedDiff(oldObj: abstracts.structures.RecursiveDict, newObj: abstracts.structures.RecursiveDict): DiffNode {
   const diff: DiffNode = {};
 
   // Get all unique keys from both objects

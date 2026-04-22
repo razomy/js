@@ -1,4 +1,4 @@
-import * as dict from '@razomy/dict';
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Check if a dictionary contains any of the specified keys.
@@ -21,6 +21,6 @@ import * as dict from '@razomy/dict';
  * @complexity time O(n)
  * @complexity memory O(1)
  */
-export function isKeys<T>(dict: dict.Dict<T>, keys: readonly string[]): boolean {
+export function isKeys<T>(dict: abstracts.structures.Dict<T>, keys: readonly string[]): boolean {
   return keys.some((key) => key in dict);
 }

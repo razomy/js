@@ -25,9 +25,9 @@ export function getDifference(oldArray: string[], newArray: string[]): abstracts
   // Remove renamed items from new and deleted lists
   const finalNewItems = newItems
     .filter((item) => !renamedItems.some((pair) => pair.value === item))
-    .map((item) => ({ value: item, type: 'added' } as difference.Difference<string>));
+    .map((item) => ({ value: item, type: 'added' } as abstracts.patterns.Difference<string>));
   const finalDeletedItems = deletedItems
     .filter((item) => !renamedItems.some((pair) => pair.prevValue === item))
-    .map((item) => ({ value: item, type: 'removed' } as difference.Difference<string>));
+    .map((item) => ({ value: item, type: 'removed' } as abstracts.patterns.Difference<string>));
   return [...finalNewItems, ...finalDeletedItems, ...renamedItems];
 }

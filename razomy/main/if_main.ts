@@ -1,11 +1,11 @@
-import * as async from '../future';
+import * as future from '@razomy/future';
 import * as abstracts from '@razomy/abstracts';
 import * as main from '@razomy/main';
 import * as datetimes from "@razomy/datetimes";
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,
-  callback: abstracts.functions.Callback | abstracts.functions.AsyncCallback,
+  callback: abstracts.functions.Callback | abstracts.functions.FutureCallback,
 ) {
   const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();
@@ -13,7 +13,7 @@ export async function ifMain(
     if (main.isMain(importMetaUrlOrModulePath)) {
       console.log(`${path}.start`);
       const voidOrPromise = callback();
-      if (async.isPromise(voidOrPromise)) {
+      if (future.isPromise(voidOrPromise)) {
         await voidOrPromise;
       }
       const endDate = Date.now();

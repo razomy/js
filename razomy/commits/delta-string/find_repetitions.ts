@@ -1,6 +1,6 @@
-import * as commitDatetimeDeltaString from './index';
+import * as commitsDeltaString from '@razomy/commits/delta-string';
 
-export function findRepetitions(arr: commitDatetimeDeltaString.ActorDatetimeDeltaString[]) {
+export function findRepetitions(arr: commitsDeltaString.ActorDatetimeDeltaString[]) {
   const frequencyMap = new Map();
   for (let i = 0; i < arr.length; i++) {
     const item = arr[i];

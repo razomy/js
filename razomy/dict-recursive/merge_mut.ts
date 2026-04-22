@@ -1,5 +1,5 @@
 import * as dict from '@razomy/dict';
-import * as dictRecursive from '@razomy/dict-recursive';
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * @summary Deep merge multiple recursive dictionaries into a target.
@@ -22,9 +22,9 @@ import * as dictRecursive from '@razomy/dict-recursive';
  * @complexity time O(n) where n is total number of keys across all sources
  * @complexity memory O(d) where d is the maximum nesting depth (recursion stack)
  */
-export function mergeMut<T extends dictRecursive.RecursiveDict>(
+export function mergeMut<T extends abstracts.structures.RecursiveDict>(
   target: T,
-  ...sources: dictRecursive.RecursiveDict[]
+  ...sources: abstracts.structures.RecursiveDict[]
 ): T {
   for (const source of sources) {
     if (!dict.isPlainObject(source)) continue;
@@ -34,11 +34,11 @@ export function mergeMut<T extends dictRecursive.RecursiveDict>(
 
       if (dict.isPlainObject(sourceValue)) {
         if (!dict.isPlainObject(target[key])) {
-          (target as dictRecursive.RecursiveDict)[key] = {};
+          (target as abstracts.structures.RecursiveDict)[key] = {};
         }
-        mergeMut(target[key] as dictRecursive.RecursiveDict, sourceValue as dictRecursive.RecursiveDict);
+        mergeMut(target[key] as abstracts.structures.RecursiveDict, sourceValue as abstracts.structures.RecursiveDict);
       } else {
-        (target as dictRecursive.RecursiveDict)[key] = sourceValue;
+        (target as abstracts.structures.RecursiveDict)[key] = sourceValue;
       }
     }
   }

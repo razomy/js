@@ -1,2 +1,2 @@
-export * as client from '@razomy/socket-web';
-export * as server from '@razomy/socket-server';
+export * as client from './client';
+export * as server from './server';

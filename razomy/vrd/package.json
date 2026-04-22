@@ -69,11 +69,8 @@
   "name": "@razomy/vrd",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/array-difference": "*",
     "@razomy/dict": "*",
-    "@razomy/dict-recursive": "*",
     "@razomy/exceptions": "*",
-    "@razomy/key": "*",
     "@razomy/kv": "*",
     "@razomy/kv-recursive": "*",
     "@razomy/object": "*",

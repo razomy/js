@@ -4,8 +4,7 @@ import * as array from '@razomy/array';
 import * as ai from '@razomy/ai';
 import * as fss from '@razomy/fss';
 import * as shell from '@razomy/shell';
-import {predictSuT} from "../ai/wrappers";
-import type {AiMessage} from "@razomy/ai";
+import * as aiScenarios from "@razomy/ai-scenarios";
 
 export type ToolContext = {
   project: { dirPath: string };
@@ -45,7 +44,7 @@ export const TOOLS = [
     async fn(ctx: ToolContext, args: { arguments_: { task: string, exctation: string } }) {
       let i = 0;
       while (i++ < 100) {
-        const res = await predictSuT(ctx,`
+        const res = await aiScenarios.refactor.ai.predictSuT(ctx,`
       You recevie a task you need to complete.
       Use any avaible instrument to complete it.
       its task complete return 'DONE';
@@ -56,10 +55,11 @@ export const TOOLS = [
             TOOL_REGISTRY.getFile.spec,
             TOOL_REGISTRY.setFile.spec,
           ])
-        if (res.includes('DONE')) {
+        if (res.content.includes('DONE')) {
           return res;
         }
       }
+      return;
     },
   },
   {
@@ -107,10 +107,10 @@ export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec']['identifier']['n
   array.mapToDictBy(TOOLS as any, (i) => i.spec.identifier.name)
 ;
 
-export async function executeToolMut(ctx: ToolContext, function_: any):Promise<AiMessage> {
+export async function executeToolMut(ctx: ToolContext, function_: any):Promise<ai.AiMessage> {
   try {
     const toolREs= await TOOL_REGISTRY[function_.spec.identifier.name]!.fn(ctx, function_);
-    return {sender: 'tool', type: 'data', content: JSON.stringify(toolREs)}
+    return {sender: 'tool', type: 'response', content: JSON.stringify(toolREs)}
   } catch (error: any) {
     console.error(`Ошибка в инструменте ${function_.name}:`, error.message);
     throw new ai.ToolExecuteLlmException(error.toString(), 'No error expected');

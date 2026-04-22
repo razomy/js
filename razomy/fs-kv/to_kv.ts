@@ -2,10 +2,11 @@ import fs from 'fs';
 import * as path from 'path';
 import * as exceptions from '@razomy/exceptions';
 import * as kv_ from '@razomy/kv';
+import * as abstracts from '@razomy/abstracts';
 
-export function toKv<T = kv_.KeyValueArray<string, Buffer>>(dirPath: string): T;
-export function toKv<T = kv_.KeyValue<string, Buffer>>(filePath: string): T;
-export function toKv<T extends kv_.ArrayOrKeyValue<string, Buffer>>(directory: string): T {
+export function toKv<T = abstracts.structures.KeyValueArray<string, Buffer>>(dirPath: string): T;
+export function toKv<T = abstracts.structures.KeyValue<string, Buffer>>(filePath: string): T;
+export function toKv<T extends abstracts.structures.KeyValueArray<string, Buffer> | abstracts.structures.KeyValue<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = kv_.k(path.basename(directory), null as any) as T;
 

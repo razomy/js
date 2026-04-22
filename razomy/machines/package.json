@@ -30,11 +30,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/state-machine#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/machines#readme",
   "keywords": [
     "razomy",
-    "state",
-    "machine"
+    "machines"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -45,7 +44,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/state-machine",
+    "directory": "razomy/machines",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

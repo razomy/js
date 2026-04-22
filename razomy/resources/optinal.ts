@@ -1,9 +1,9 @@
-import * as resultNull from '@razomy/result-null';
-import * as context from '@razomy/context';
+import * as resources from '@razomy/resources';
+import * as abstracts from '@razomy/abstracts';
 
-export function optinal<C extends context.Context, R, D>(
+export function optinal<C extends abstracts.structures.Context, R, D>(
   ctx: C,
-  rule: resultNull.ResultNullFn<C, R>,
+  rule: resources.ResultNullFn<C, R>,
   default_: D,
 ): D | R {
   const res = rule(ctx);

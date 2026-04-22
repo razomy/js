@@ -6,7 +6,7 @@ export class NodeProvidedException extends Error {}
 export class NodeAlreadyProvidedException extends Error {}
 
 export interface IResourceMap {
-  [key: string]: resources.ObjectResource;
+  [key: string]: resources.AObjectResource;
 }
 
 export interface IEntityResourceMap {
@@ -14,11 +14,11 @@ export interface IEntityResourceMap {
 }
 
 export interface IEntityResource {
-  add<T extends resources.ObjectResource>(obj: T): void;
+  add<T extends resources.AObjectResource>(obj: T): void;
 
-  remove<T extends resources.ObjectResource>(obj: T): void;
+  remove<T extends resources.AObjectResource>(obj: T): void;
 
-  replace<T extends resources.ObjectResource>(obj: T): void;
+  replace<T extends resources.AObjectResource>(obj: T): void;
 
-  getBy<T extends resources.ObjectResource>(objCtor: object_.Constructor<T>): T;
+  getBy<T extends resources.AObjectResource>(objCtor: object_.Constructor<T>): T;
 }

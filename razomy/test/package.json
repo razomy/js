@@ -50,8 +50,8 @@
   "module": "./index.ts",
   "name": "@razomy/test",
   "peerDependencies": {
-    "@razomy/boolean": "*",
-    "@razomy/fns": "*"
+    "@razomy/array": "*",
+    "@razomy/functions": "*"
   },
   "publishConfig": {
     "access": "public"

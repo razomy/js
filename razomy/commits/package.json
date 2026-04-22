@@ -30,21 +30,35 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/commit#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/commits#readme",
   "keywords": [
     "razomy",
-    "commit"
+    "commits",
+    "addssToString",
+    "deltaStringsToString",
+    "findRepetitions",
+    "iterateCommit",
+    "mapCommit",
+    "removeDuplicatedChanges",
+    "squashChanges",
+    "stringsToDeltaStrings"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/commits",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/datetimes": "*",
+    "@razomy/patters": "*",
+    "@razomy/shell": "*",
+    "@razomy/string": "*",
+    "@razomy/vrd": "*"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/commit",
+    "directory": "razomy/commits",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

@@ -1,13 +1,14 @@
 import * as kv_ from '@razomy/kv';
-import * as fns from '../functions';
+import * as functions from '@razomy/functions';
+import * as abstracts from "@razomy/abstracts";
 
 /**
  * true - success
  * false - break
  */
 export function valueIterate<K, V>(
-  value: kv_.Valuable<K, V>,
-  valueCb: fns.Function<[kv_.KeyValue<K, V>], boolean | undefined>,
+  value: abstracts.structures.KeyValue<K, V>,
+  valueCb: functions.Function<[abstracts.structures.KeyValue<K, V>], boolean | undefined>,
 ): boolean {
   return kv_.iterate(value, (kv) => {
     if (!kv_.isKv(kv[0]) && !kv_.isAkv(kv[0])) {

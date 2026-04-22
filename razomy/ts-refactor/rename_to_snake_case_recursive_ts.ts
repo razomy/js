@@ -1,5 +1,5 @@
-import * as refactorFs from '@razomy/refactor-fs';
+import * as kvRecursive from "@razomy/kv-recursive";
 
 export function renameToSnakeCaseRecursiveTs(dirPath: string) {
-  return refactorFs.renameToSnakeCaseRecursive(dirPath, '.ts', 'node_modules');
+  return kvRecursive.renameToSnakeCaseRecursive(dirPath, '.ts', 'node_modules');
 }

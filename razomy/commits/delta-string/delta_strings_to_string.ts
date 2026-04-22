@@ -1,7 +1,7 @@
-import * as commitDatetimeDeltaString from './index';
+import * as commitsDeltaString from '@razomy/commits/delta-string';
 import * as string from '@razomy/string';
 
-export function deltaStringsToString(prevSnapshot: string, changes: commitDatetimeDeltaString.DeltaString[]): string {
+export function deltaStringsToString(prevSnapshot: string, changes: commitsDeltaString.DeltaString[]): string {
   for (let j = 0; j < changes.length; j++) {
     const change = changes[j];
     if ('removeLength' in change) {

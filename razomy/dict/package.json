@@ -34,6 +34,7 @@
   "keywords": [
     "razomy",
     "dict",
+    "create",
     "filter",
     "firstKey",
     "getKeys",
@@ -46,13 +47,18 @@
     "map",
     "merge",
     "take",
-    "toString"
+    "toString",
+    "assign",
+    "seperate",
+    "break"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/dict",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/char": "*",
     "@razomy/exceptions": "*"
   },
   "publishConfig": {

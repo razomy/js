@@ -43,8 +43,8 @@
   "name": "@razomy/main",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/async": "*",
-    "@razomy/datetimes": "*"
+    "@razomy/datetimes": "*",
+    "@razomy/future": "*"
   },
   "publishConfig": {
     "access": "public"

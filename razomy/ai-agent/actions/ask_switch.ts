@@ -1,15 +1,15 @@
 import * as ai from '@razomy/ai';
-import * as aiAgentProject from '..';
+import * as aiAgent from '@razomy/ai-agent';
 
 export async function askSwitch(ctx: ai.AiLlmContext, options: string[]): Promise<string> {
   const messages = [
-    ...aiAgentProject.prompts.getPanicPrompt(),
-    ...aiAgentProject.prompts.getSwitchPrompt(options),
+    ...aiAgent.prompts.getPanicPrompt(),
+    ...aiAgent.prompts.getSwitchPrompt(options),
     ...ctx.messages,
   ];
-  return aiAgentProject.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
-    const result = await aiAgentProject.llms.callText(ctx);
-    aiAgentProject.parsers.parseThrowPanic(result);
-    return aiAgentProject.parsers.parseSwitch(result, options);
+  return aiAgent.llms.consensusCall({ ...ctx, messages }, async (ctx) => {
+    const result = await aiAgent.llms.callText(ctx);
+    aiAgent.parsers.parseThrowPanic(result);
+    return aiAgent.parsers.parseSwitch(result, options);
   });
 }

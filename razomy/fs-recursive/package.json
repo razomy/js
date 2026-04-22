@@ -37,6 +37,7 @@
     "recursive",
     "cliCopy",
     "copy",
+    "getAllFlat",
     "get",
     "iterate",
     "toDict",

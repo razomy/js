@@ -1,10 +1,11 @@
 import * as pipesBooleans from '@razomy/pipes-booleans';
 import * as exceptions from '@razomy/exceptions';
 import * as kv from '@razomy/kv';
+import * as abstracts from '@razomy/abstracts';
 
-export type PipeableKv<T> = kv.KeyValue<pipesBooleans.BoolPipeable<T>, pipesBooleans.BoolPipeable<T>>;
+export type PipeableKv<T> = abstracts.structures.KeyValue<pipesBooleans.BoolPipeable<T>, pipesBooleans.BoolPipeable<T>>;
 
-export function pipeableKvToPipeline<T>(pipeableKv: PipeableKv<T>): pipesBooleans.BoolExecute<T> {
+export function pipeableKvToPipeline<T>(pipeableKv: PipeableKv<T>| PipeableKv<T>[]): pipesBooleans.BoolExecute<T> {
   if (!kv.isKv<pipesBooleans.BoolPipeable<T>, pipesBooleans.BoolPipeable<T>>(pipeableKv)) {
     throw new exceptions.ArgumentException('not a kv', { pipeableKv });
   }

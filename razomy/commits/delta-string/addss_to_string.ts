@@ -1,15 +1,15 @@
-import * as commitDatetimeDeltaString from './index';
+import * as commitsDeltaString from '@razomy/commits/delta-string';
 
 export interface ActorDatetimeDeltaString {
   datetime: string;
   actor: string;
-  deltas: commitDatetimeDeltaString.DeltaString[];
+  deltas: commitsDeltaString.DeltaString[];
 }
 
 export function addssToString(prevSnapshot: string, commits: ActorDatetimeDeltaString[]): string {
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
-    prevSnapshot = commitDatetimeDeltaString.deltaStringsToString(prevSnapshot, commit.deltas);
+    prevSnapshot = commitsDeltaString.deltaStringsToString(prevSnapshot, commit.deltas);
   }
 
   return prevSnapshot;

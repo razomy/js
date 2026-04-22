@@ -30,11 +30,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/fns#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/functions#readme",
   "keywords": [
     "razomy",
-    "fns",
-    "createPackageFunction",
+    "functions",
     "fMut",
     "f",
     "isFunction"
@@ -43,14 +42,12 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/functions",
-  "peerDependencies": {
-    "@razomy/abstracts": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/fns",
+    "directory": "razomy/functions",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

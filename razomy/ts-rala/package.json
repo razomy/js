@@ -35,6 +35,7 @@
     "razomy",
     "ts",
     "rala",
+    "createPackageFunction",
     "getPackage",
     "getPublicOnlyMut",
     "isBindings",

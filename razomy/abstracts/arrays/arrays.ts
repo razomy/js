@@ -1,13 +1,11 @@
 import * as abstracts from '@razomy/abstracts';
-import type {RawBuffer} from "./buffer";
-
 
 /**
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
 export interface TypedMemoryView<T> extends abstracts.meta.DataStructure<T> {
-  buffer: RawBuffer;
+  buffer: abstracts.arrays.RawBuffer;
   byteLength: number;
   byteOffset: number;
 }

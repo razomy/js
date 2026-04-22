@@ -1,8 +1,8 @@
-import * as translate from '@razomy/translate';
+import * as translateRemote from '@razomy/translate/remote';
 
 /**
  * Перевод с EN на FR
  */
 export async function fr(text: string): Promise<string> {
-  return await translate.translateText(text, 'en', 'fr');
+  return await translateRemote.translate(text, 'en', 'fr');
 }

@@ -42,11 +42,10 @@
   "name": "@razomy/yaml",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/context": "*",
+    "@razomy/dict": "*",
+    "@razomy/lexemes": "*",
     "@razomy/pipes": "*",
-    "@razomy/result-null": "*",
-    "@razomy/token-offset": "*",
-    "@razomy/token-offset-deep": "*"
+    "@razomy/resources": "*"
   },
   "publishConfig": {
     "access": "public"

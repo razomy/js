@@ -1,11 +1,11 @@
-import * as key from '@razomy/dict';
+import * as dict from '@razomy/dict';
 
 export function getPath(obj, path: string) {
   if (path === '') {
     return [];
   }
 
-  const closingBracketIndex = path.indexOf(key.ASSIGN);
+  const closingBracketIndex = path.indexOf(dict.ASSIGN);
   const slug = path.substring(0, closingBracketIndex);
   const childNode = Object.keys(obj).find((key) => key === slug);
   if (!childNode) {
