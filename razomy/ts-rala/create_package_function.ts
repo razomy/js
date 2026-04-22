@@ -33,12 +33,12 @@ export function createPackageFunction(
       ([k, v]) =>
         ({
           kind: 'ParameterBinding',
-          description: v,
+          meta:{description: v},
           identifier: { kind: 'Identifier', name: k } as any,
-          isRest: false,
-          type: { kind: 'KeywordType', name: 'string' } as any,
+          modifiers: [],
+          shape: { kind: 'KeywordType', name: 'string' } as any,
           expression: null,
-        } as any),
+        } as abstracts.translators.ParameterBinding),
     ),
     block: f.body || [],
     shapes: [],
