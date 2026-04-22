@@ -1,17 +1,17 @@
-import * as commitsDeltaString from '@razomy/commits/delta-string';
+import * as commits from "@razomy/commits";
 
 export function squashChanges(
-  changes: commitsDeltaString.DeltaString[],
-): commitsDeltaString.DeltaString[] {
+  changes: commits.deltaString.DeltaString[],
+): commits.deltaString.DeltaString[] {
   if (changes.length === 0) {
     return [];
   }
 
-  let lastAdd: commitsDeltaString.AddDeltaString | undefined = undefined;
-  let lastRemove: commitsDeltaString.RemoveDeltaString | undefined = undefined;
+  let lastAdd: commits.deltaString.AddDeltaString | undefined = undefined;
+  let lastRemove: commits.deltaString.RemoveDeltaString | undefined = undefined;
   let last = changes[0];
   let posSshit = 1;
-  const next: commitsDeltaString.DeltaString[] = [changes[0]];
+  const next: commits.deltaString.DeltaString[] = [changes[0]];
   for (let i = 1; i < changes.length; i++) {
     const current = changes[i];
 

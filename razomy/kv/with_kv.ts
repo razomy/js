@@ -1,5 +1,5 @@
-import * as abstractsStructures from "@razomy/abstracts/structures";
+import * as abstracts from "@razomy/abstracts";
 
 export interface WithKv<K, V> {
-  kv: abstractsStructures.KvaOrValue<K, V>;
+  kv: abstracts.structures.KvaOrValue<K, V>;
 }

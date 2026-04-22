@@ -1,10 +1,10 @@
-import * as commitsDeltaString from '@razomy/commits/delta-string';
+import * as commits_ from "@razomy/commits";
 
-export function iterateCommit(commits: commitsDeltaString.DeltaString[], iter) {
+export function iterateCommit(commits: commits_.deltaString.DeltaString[], iter) {
   let snapshot = '';
   for (let i = 0; i < commits.length; i++) {
     const commit = commits[i];
-    const commitSnapshot = commitsDeltaString.deltaStringsToString(snapshot, [commit]);
+    const commitSnapshot = commits_.deltaString.deltaStringsToString(snapshot, [commit]);
     iter(snapshot);
     snapshot = commitSnapshot;
   }

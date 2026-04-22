@@ -1,13 +1,13 @@
-import * as lexemesBound from '@razomy/lexemes/bound';
 import * as coordinates from '@razomy/coordinates';
 import * as abstracts from "@razomy/abstracts";
+import * as lexemes from "@razomy/lexemes";
 
 export function rect(
   delta: string,
   str: string,
 ): abstracts.arrays.WithOffset & coordinates.length.WithLength & coordinates.rectangle.BoundRectangle {
-  const start = lexemesBound.size(delta);
-  const end = lexemesBound.size(str);
+  const start = lexemes.bound.size(delta);
+  const end = lexemes.bound.size(str);
   return {
     offset: delta.length,
     length: str.length,

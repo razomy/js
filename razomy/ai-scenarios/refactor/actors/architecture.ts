@@ -1,6 +1,6 @@
 import * as ai from '@razomy/ai';
 import * as aiScenarios from "@razomy/ai-scenarios";
-import * as aiAgentParsers from "@razomy/ai-agent/parsers";
+import * as aiAgent from "@razomy/ai-agent";
 
 export async function architecture(
   baPlan: string,
@@ -52,5 +52,5 @@ export async function architecture(
   // await aiScenarios.refactor.think(ctx2);
   const rawResponse2 = ctx2.llm.messages[ctx2.llm.messages.length - 1].content;
 
-  return aiAgentParsers.parseJson<aiScenarios.refactor.actors.ArchitecturePlan>(rawResponse2);
+  return aiAgent.parsers.parseJson<aiScenarios.refactor.actors.ArchitecturePlan>(rawResponse2);
 }

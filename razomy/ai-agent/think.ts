@@ -1,11 +1,11 @@
-import * as aiScenariosRefactorActors from "@razomy/ai-scenarios/refactor/actors";
+import * as aiScenarios from "@razomy/ai-scenarios";
 
 // import {executeToolMut} from './tools/execute_tool_mut';
 // import {callAuto} from './llms';
 // import * as array from "@razomy/array";
 // import * as ai from "@razomy/ai";
 
-export async function think(ctx: aiScenariosRefactorActors.ActorContext) {
+export async function think(ctx: aiScenarios.refactor.actors.ActorContext) {
   // console.log(`  [AGENT START] Задача: ...${ctx.llm.messages[ctx.llm.messages.length - 1].content}`);
   //
   // const maxSteps = 10;

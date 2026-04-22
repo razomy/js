@@ -3,6 +3,18 @@ import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from '@razomy/string-case';
 import * as path from 'path';
 
+// Специальные саб-пакеты, которые считаются отдельными точками входа
+const exceptionEntryPoints = new Set(['node', 'remote', 'browser']);
+
+// Вспомогательная функция для построения цепочки свойств
+// Теперь всё строго приводится к camelCase (a.b-c -> a.bC)
+function buildPropertyAccess(base: string, paths: string[]): string {
+  if (paths.length === 0) return base;
+  return paths.reduce((acc, curr) => {
+    return `${acc}.${stringCase.camelCase(curr)}`;
+  }, base);
+}
+
 export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
   const tsConfigPath = projectPath.endsWith('/') ? projectPath + 'tsconfig.json' : projectPath + '/tsconfig.json';
@@ -28,18 +40,32 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         const namedImports = importDecl.getNamedImports();
         const namespaceImport = importDecl.getNamespaceImport();
 
-        // Пропускаем импорты без переменных (например, `import "reflect-metadata"`)
+        // Пропускаем импорты без переменных
         if (namedImports.length === 0 && !namespaceImport) {
           continue;
         }
 
-        let targetModuleSpecifier = moduleSpecifier;
+        let rootPackageImport = '';
+        let rootPkgName = '';
+        let subPathParts: string[] = [];
 
-        // 1. АБСОЛЮТНЫЙ ИМПОРТ (@razomy/videos/node) - путь уже правильный
+        // 1. АБСОЛЮТНЫЙ ИМПОРТ (@razomy/videos/node/utils)
         if (moduleSpecifier.startsWith('@razomy/')) {
-          targetModuleSpecifier = moduleSpecifier;
+          const parts = moduleSpecifier.split('/');
+          if (parts.length < 2) continue;
+
+          let rootEndIndex = 2; // По умолчанию корень: '@razomy/videos'
+
+          // Проверяем наличие исключений (node, remote, browser)
+          if (parts.length > 2 && exceptionEntryPoints.has(parts[2])) {
+            rootEndIndex = 3; // Корень сдвигается: '@razomy/videos/node'
+          }
+
+          rootPackageImport = parts.slice(0, rootEndIndex).join('/');
+          rootPkgName = parts.slice(1, rootEndIndex).join('_');
+          subPathParts = parts.slice(rootEndIndex);
         }
-        // 2. ОТНОСИТЕЛЬНЫЙ ИМПОРТ (напр. ../../node) - вычисляем абсолютный
+        // 2. ОТНОСИТЕЛЬНЫЙ ИМПОРТ (напр. ../../node/utils)
         else if (moduleSpecifier.startsWith('.')) {
           let targetFilePath = '';
           const importedSourceFile = importDecl.getModuleSpecifierSourceFile();
@@ -56,61 +82,58 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           if (matchIndex === -1) continue;
 
-          // Получаем путь внутри монорепы
           const packageRelativePath = targetFilePath.substring(matchIndex + rootFolderName.length);
 
-          // Очищаем расширения (.ts, .tsx, /index.ts)
           let cleanPath = packageRelativePath.replace(/\.[tj]sx?$/, '');
           if (cleanPath.endsWith('/index')) {
             cleanPath = cleanPath.slice(0, -6);
           }
 
-          const parts = cleanPath.split('/');
-          const rootPkg = parts[0];
-          // Исключаем папку src
-          const subDirParts = parts.slice(1).filter((p) => p !== 'src');
+          const parts = cleanPath.split('/'); // ['videos', 'node', 'utils']
+          let rootEndIndex = 1; // По умолчанию: 'videos'
 
-          if (subDirParts.length > 0) {
-            targetModuleSpecifier = `@razomy/${rootPkg}/${subDirParts.join('/')}`;
-          } else {
-            targetModuleSpecifier = `@razomy/${rootPkg}`;
+          // Проверяем наличие исключений (node, remote, browser)
+          if (parts.length > 1 && exceptionEntryPoints.has(parts[1])) {
+            rootEndIndex = 2; // Корень сдвигается: 'videos', 'node'
           }
+
+          rootPkgName = parts.slice(0, rootEndIndex).join('_'); // 'videos' или 'videos_node'
+          rootPackageImport = `@razomy/${parts.slice(0, rootEndIndex).join('/')}`;
+
+          // Исключаем папку src, остальное идет в sub-path
+          subPathParts = parts.slice(rootEndIndex).filter((p) => p !== 'src');
         } else {
-          // Пропускаем сторонние библиотеки (react, lodash и т.д.)
           continue;
         }
 
         // ==========================================================
         // === ПРОВЕРКА: ЕСЛИ ИМПОРТ УЖЕ ПРАВИЛЬНЫЙ ===
         // ==========================================================
-        if (namedImports.length === 0 && namespaceImport) {
-          if (moduleSpecifier !== targetModuleSpecifier) {
-            // Если путь был относительным, просто заменяем на абсолютный
-            importDecl.setModuleSpecifier(targetModuleSpecifier);
-            hasChanges = true;
+        if (namedImports.length === 0 && namespaceImport && moduleSpecifier === rootPackageImport) {
+          // Если это УЖЕ корректный namespace импорт корневого пакета
+          // (например, import * as videosNode from '@razomy/videos/node')
+          if (!namespacesToAdd.has(rootPackageImport)) {
+            namespacesToAdd.set(rootPackageImport, namespaceImport.getText());
           }
-          continue; // Идем к следующему импорту, код не трогаем!
+          continue; // Идем к следующему импорту, этот не удаляем и не помечаем файл как измененный
         }
 
         // ==========================================================
-        // === ЗАМЕНА NAMED ИМПОРТОВ (import { X }) ===
+        // === ГЕНЕРАЦИЯ АЛИАСА ДЛЯ КОРНЕВОГО ПАКЕТА ===
         // ==========================================================
-        let aliasName = namespacesToAdd.get(targetModuleSpecifier);
+        let aliasName = namespacesToAdd.get(rootPackageImport);
 
         if (!aliasName) {
           const existingImport = file.getImportDeclaration(
-            (decl) => decl.getModuleSpecifierValue() === targetModuleSpecifier,
+            (decl) => decl.getModuleSpecifierValue() === rootPackageImport,
           );
           const existingNamespace = existingImport?.getNamespaceImport();
 
           if (existingNamespace) {
             aliasName = existingNamespace.getText();
-          } else if (namespaceImport) {
-            aliasName = namespaceImport.getText();
           } else {
-            // Генерируем имя из пути: videos/node -> videosNode
-            const pathWithoutPrefix = targetModuleSpecifier.replace('@razomy/', '');
-            const aliasBase = stringCase.camelCase(pathWithoutPrefix.replace(/\//g, '_'));
+            // Генерируем имя (videos -> videos; videos_node -> videosNode)
+            const aliasBase = stringCase.camelCase(rootPkgName);
             aliasName = tsRefactor.toSafeName(aliasBase);
 
             while (allIdentifiersInFile.has(aliasName) || Array.from(namespacesToAdd.values()).includes(aliasName)) {
@@ -118,10 +141,14 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
             }
             allIdentifiersInFile.add(aliasName);
           }
-          namespacesToAdd.set(targetModuleSpecifier, aliasName);
+          namespacesToAdd.set(rootPackageImport, aliasName);
         }
 
-        // Заменяем все использования импортированных переменных
+        const propertyAccessPrefix = buildPropertyAccess(aliasName, subPathParts);
+
+        // ==========================================================
+        // === ЗАМЕНА NAMED ИМПОРТОВ (import { X }) ===
+        // ==========================================================
         for (const named of namedImports) {
           const importedName = named.getName();
           const aliasNode = named.getAliasNode();
@@ -135,13 +162,41 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          const replacementStr = `${aliasName}.${importedName}`;
+          const replacementStr = subPathParts.length > 0
+            ? `${propertyAccessPrefix}.${importedName}`
+            : `${aliasName}.${importedName}`;
 
           for (const ref of localRefs) {
             const parent = ref.getParent();
 
             if (parent && Node.isShorthandPropertyAssignment(parent)) {
-              parent.replaceWithText(`${importedName}: ${replacementStr}`);
+              parent.replaceWithText(`${searchNode.getText()}: ${replacementStr}`);
+            } else {
+              ref.replaceWithText(replacementStr);
+            }
+          }
+        }
+
+        // ==========================================================
+        // === ЗАМЕНА NAMESPACE ИМПОРТОВ (import * as subPath) ===
+        // ==========================================================
+        if (namespaceImport) {
+          const nsNameNode = namespaceImport;
+          const nsName = nsNameNode.getText();
+          const references = nsNameNode['findReferencesAsNodes']();
+
+          const localRefs = references.filter(
+            (ref) => ref.getSourceFile() === file && ref !== nsNameNode
+          );
+
+          localRefs.sort((a, b) => b.getStart() - a.getStart());
+
+          const replacementStr = propertyAccessPrefix;
+
+          for (const ref of localRefs) {
+            const parent = ref.getParent();
+            if (parent && Node.isShorthandPropertyAssignment(parent)) {
+              parent.replaceWithText(`${nsName}: ${replacementStr}`);
             } else {
               ref.replaceWithText(replacementStr);
             }
@@ -171,7 +226,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         console.log(`Файл обновлен: ${file.getBaseName()}`);
       }
     } catch (e) {
-      console.log(e, file.getFilePath());
+      console.log(`Ошибка в файле ${file.getFilePath()}:`, e);
     }
   }
 

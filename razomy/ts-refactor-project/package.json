@@ -64,7 +64,8 @@
     "@razomy/main": "*",
     "@razomy/string": "*",
     "@razomy/string-case": "*",
-    "@razomy/ts-refactor": "*"
+    "@razomy/ts-refactor": "*",
+    "@razomy/videos": "*"
   },
   "publishConfig": {
     "access": "public"

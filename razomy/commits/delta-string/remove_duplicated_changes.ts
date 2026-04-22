@@ -1,9 +1,9 @@
-import * as commitsDeltaString from '@razomy/commits/delta-string';
+import * as commits from "@razomy/commits";
 
 export function removeDuplicatedChanges(
-  changes: commitsDeltaString.DeltaString[],
-): commitsDeltaString.DeltaString[] {
-  const minimizedChanges: commitsDeltaString.DeltaString[] = [];
+  changes: commits.deltaString.DeltaString[],
+): commits.deltaString.DeltaString[] {
+  const minimizedChanges: commits.deltaString.DeltaString[] = [];
 
   for (let i = 0; i < changes.length; i++) {
     const current = changes[i];

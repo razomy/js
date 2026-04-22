@@ -1,9 +1,9 @@
 import * as resources from '@razomy/resources';
 import * as abstracts from '@razomy/abstracts';
-import * as lexemesTokenOffsetDeep from '@razomy/lexemes/token-offset-deep';
+import * as lexemes from "@razomy/lexemes";
 
 export function tryScope<
-  C extends abstracts.structures.Context & abstracts.translators.WithTokens<any> & abstracts.arrays.WithOffset & lexemesTokenOffsetDeep.WithStack,
+  C extends abstracts.structures.Context & abstracts.translators.WithTokens<any> & abstracts.arrays.WithOffset & lexemes.tokenOffsetDeep.WithStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
 >(ctx: C, rule: resources.ResultNullFn<C, T>) {

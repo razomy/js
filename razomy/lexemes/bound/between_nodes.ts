@@ -1,7 +1,7 @@
 import * as coordinates from '@razomy/coordinates';
-import * as lexemesBound from '@razomy/lexemes/bound';
+import * as lexemes from "@razomy/lexemes";
 
-export function betweenNodes(nodes: lexemesBound.NodeBound[], root: lexemesBound.NodeBound) {
+export function betweenNodes(nodes: lexemes.bound.NodeBound[], root: lexemes.bound.NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }
