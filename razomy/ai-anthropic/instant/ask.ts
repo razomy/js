@@ -1,4 +1,4 @@
-import * as main from '@razomy/main';
+// import * as main from '@razomy/main';
 import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function ask(texts: string[]) {
@@ -10,6 +10,6 @@ export async function ask(texts: string[]) {
   return result.content[0]['text'];
 }
 
-main.ifMain(import.meta.url, async () => {
-  console.log(await ask(['say hello']));
-});
+// main.ifMain(import.meta.url, async () => {
+//   console.log(await ask(['say hello']));
+// });

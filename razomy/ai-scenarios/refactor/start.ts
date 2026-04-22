@@ -1,4 +1,4 @@
-import * as main from "@razomy/main";
+// import * as main from "@razomy/main";
 //
 // function refactor() {
 //   return `
@@ -19,6 +19,6 @@ import * as main from "@razomy/main";
 
 
 
-main.ifMain(import.meta.url, async () => {
+// main.ifMain(import.meta.url, async () => {
   // await aiScenarios.refactor.ai.start(path.resolve('razomy'), refactor());
-})
+// })

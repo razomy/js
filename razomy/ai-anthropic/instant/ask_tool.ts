@@ -1,4 +1,4 @@
-import * as main from '@razomy/main';
+// import * as main from '@razomy/main';
 import * as abstracts from '@razomy/abstracts';
 import * as ai from '@razomy/ai';
 import * as aiAnthropic from '@razomy/ai-anthropic';
@@ -48,16 +48,16 @@ export async function askTool(
   return payloadArgs as any;
 }
 
-main.ifMain(import.meta.url, async () => {
-  console.log(
-    await askTool(
-      ['call hello'],
-      [
-        tsRala.createPackageFunction({
-          name: 'hello',
-          description: 'says hello',
-        }),
-      ],
-    ),
-  );
-});
+// main.ifMain(import.meta.url, async () => {
+//   console.log(
+//     await askTool(
+//       ['call hello'],
+//       [
+//         tsRala.createPackageFunction({
+//           name: 'hello',
+//           description: 'says hello',
+//         }),
+//       ],
+//     ),
+//   );
+// });
