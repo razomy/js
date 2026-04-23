@@ -1,0 +1,29 @@
+enum FsNodeType {
+  DIRECTORY
+  FILE_RN
+  FILE_STORAGE_URL
+  FILE_BINARY
+
+  @@schema("fss_db")
+}
+
+model FsNode {
+  fsNodeId   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fsNodeType FsNodeType
+  name       String     @db.VarChar(255)
+
+  contentJson   Json?
+  contentBinary Bytes?
+
+  parentId  String?  @db.Uuid
+  ancestors String[] @db.Uuid
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@unique([name, parentId], name: "unique_name_in_folder")
+  @@index([ancestors], type: Gin)
+  @@index([contentJson], type: Gin)
+  @@schema("fss_db")
+}

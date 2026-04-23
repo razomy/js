@@ -1,16 +1,11 @@
 generator client {
-  provider        = "prisma-client"
-  output          = "./generated"
-  previewFeatures = ["multiSchema"]
+  provider        = "prisma-client-js"
+  output          = "../generated"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
-  schemas  = ["public", "users_db", "fss_db", "auths_db", "acls_db", "ids_db"]
-}
-
-enum crdb_internal_region {
-  gcp_us_central1 @map("gcp-us-central1")
-
-  @@schema("public")
+  provider   = "postgresql"
+  schemas    = ["public", "acls_db", "auths_db", "events_db", "fss_db", "graphs_db", "users_db"]
+  extensions = [pgcrypto]
 }

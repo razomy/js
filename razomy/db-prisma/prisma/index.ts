@@ -1,1 +1,1 @@
-export * as prismaConfig from './prisma.config';
+export {prisma, getPrismaWithUser} from "./prisma";

@@ -1,0 +1,35 @@
+enum EntityType {
+  EDGE
+  ACL_ACCESS_POLICY
+  USER
+  FS_NODE
+  EVENT_LOG
+  AUTH_PROVIDER
+  AUTH_SESSION
+
+  @@schema("graphs_db")
+}
+
+model Edge {
+  edgeId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  sourceType EntityType
+  sourceId   String     @db.Uuid
+
+  targetType EntityType
+  targetId   String     @db.Uuid
+
+  relation String @db.VarChar(50) // 'OWNS', 'FAVORITED', 'ATTACHED_TO'
+  metadata Json? // Вес ребра, доп. параметры (графовая модель)
+
+  createdAt DateTime  @default(now())
+  deletedAt DateTime?
+
+  // Гарантируем, что нет дублирующих связей между одними и теми же объектами
+  @@unique([sourceId, targetId, relation])
+  // Композитные индексы, включающие тип (максимально быстрый поиск)
+  @@index([sourceType, sourceId, relation])
+  @@index([targetType, targetId, relation])
+  @@index([metadata], type: Gin)
+  @@schema("graphs_db")
+}

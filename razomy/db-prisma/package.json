@@ -25,7 +25,8 @@
       }
     },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./specifications/*": "./specifications/*",
+    "./generated/*": "./generated/*"
   },
   "files": [
     "*"
@@ -44,7 +45,8 @@
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
     "@types/pg": "^8.18.0",
-    "prisma": "^7.5.0"
+    "prisma": "^7.5.0",
+    "pg": "^8.20.0"
   },
   "publishConfig": {
     "access": "public"
@@ -55,9 +57,9 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
-    "prepublishOnly": "npm run build"
+    "reset": "prisma migrate reset",
+    "build": "prisma generate && prisma migrate dev --create-only --name init",
+    "release": "prisma migrate deploy && prisma generate"
   },
   "sideEffects": false,
   "type": "module",

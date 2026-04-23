@@ -1,0 +1,29 @@
+model User {
+  userId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  profile   Profile?
+  providers Provider[]
+  sessions  Session[]
+  events    Event[]
+
+  @@schema("users_db")
+}
+
+model Profile {
+  profileId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String @unique @db.Uuid // @unique делает связь 1-к-1
+
+  name   String?
+  avatar String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@schema("users_db")
+}
