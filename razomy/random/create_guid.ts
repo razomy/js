@@ -20,7 +20,7 @@ import * as random from '@razomy/random';
  * @complexity time O(1)
  * @complexity memory O(1)
  */
-export function createGuid(): string {
+export function createGuid(prefix = ''): string {
   function hex(): string {
     return (((random.createFloat() * 0x100000000) >>> 0).toString(16) + '00000000').slice(0, 8);
   }
@@ -30,7 +30,8 @@ export function createGuid(): string {
   const c = hex();
   const d = hex();
 
-  return a + '-' + b.slice(0, 4) + '-' + b.slice(4, 8) + '-' + c.slice(0, 4) + '-' + c.slice(4, 8) + d;
+  const gi = a + '-' + b.slice(0, 4) + '-' + b.slice(4, 8) + '-' + c.slice(0, 4) + '-' + c.slice(4, 8) + d;
+  return prefix + gi;
 }
 
 export class GuidFactory {

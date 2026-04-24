@@ -2,7 +2,6 @@
 import * as abstracts from '@razomy/abstracts';
 import * as ai from '@razomy/ai';
 import * as aiAnthropic from '@razomy/ai-anthropic';
-import * as tsRala from "@razomy/ts-rala";
 
 export async function askTool(
   texts: string[],

@@ -2,7 +2,7 @@ import * as ai from '@razomy/ai';
 
 export function parseJson<T>(text: string): T {
   try {
-    const match = text.match(/```json\n([\s\S]*?)\n```/) || text.match(/```\n([\s\S]*?)\n```/);
+    const match = text.match(/```[a-zA-Z_-]*\n([\s\S]*?)\n```/) || text.match(/```\n([\s\S]*?)\n```/);
     if (match) {
       return JSON.parse(match[1]);
     }

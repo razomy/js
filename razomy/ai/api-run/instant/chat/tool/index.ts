@@ -1,2 +1,2 @@
 export { mapMessage } from './map_message';
-export { predict } from './predict';
+export { predict , predict_cache_string} from './predict';

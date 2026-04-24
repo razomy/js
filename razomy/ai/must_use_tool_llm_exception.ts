@@ -7,14 +7,14 @@
  */
 export class MustUseToolLlmException extends Error {
   constructor(public actualResult: string, public expectedResult: string) {
-    super(`LLM Panic. Expected: ${expectedResult}, Actual: ${actualResult}`);
+    super(`LLM Panic. Expected: "${expectedResult}", Actual: "${actualResult}"`);
     this.name = 'MustUseToolLlmException';
   }
 }
 
 export class MaxAttemptLlmException extends Error {
   constructor(public actualResult: string, public expectedResult: string) {
-    super(`Max attempts reached. Expected: ${expectedResult}, Actual: ${actualResult}`);
+    super(`Max attempts reached. Expected: "${expectedResult}", Actual: "${actualResult}"`);
     this.name = 'MaxAttemptLlmException';
   }
 }
@@ -24,7 +24,7 @@ export class MaxAttemptLlmException extends Error {
  */
 export class PanicAnswerLlmException extends Error {
   constructor(public actualResult: string, public expectedResult: string) {
-    super(`LLM Panic. Expected: ${expectedResult}, Actual: ${actualResult}`);
+    super(`LLM Panic. Expected: "${expectedResult}", Actual: "${actualResult}"`);
     this.name = 'PanicAnswerLlmException';
   }
 }
@@ -34,7 +34,7 @@ export class PanicAnswerLlmException extends Error {
  */
 export class TypedAnswerLlmException extends Error {
   constructor(public actualResult: string, public expectedResult: string) {
-    super(`Invalid type. Expected: ${expectedResult}, Actual: ${actualResult}`);
+    super(`Invalid type. Expected: "${expectedResult}", Actual: "${actualResult}"`);
     this.name = 'TypedAnswerLlmException';
   }
 }
@@ -44,7 +44,7 @@ export class TypedAnswerLlmException extends Error {
  */
 export class ToolExecuteLlmException extends Error {
   constructor(public actualResult: string, public expectedResult: string) {
-    super(`Invalid type. Expected: ${expectedResult}, Actual: ${actualResult}`);
+    super(`Invalid type. Expected: "${expectedResult}", Actual: "${actualResult}"`);
     this.name = 'ToolExecuteLlmException';
   }
 }

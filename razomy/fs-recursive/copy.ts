@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import {promises as fs} from 'fs';
 import * as path from 'path';
 
 export async function copy(source, target, excludedDirs: string[] = []) {
@@ -24,3 +24,4 @@ export async function copy(source, target, excludedDirs: string[] = []) {
     await fs.copyFile(source, target);
   }
 }
+
