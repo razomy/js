@@ -1,7 +1,7 @@
 /**
  * @summary Remove an element at a specific index from an array in place.
  * @description Remove an element at a specific index from an array in place.
- * @param array The mutable array.
+ * @param arr The mutable array.
  * @param index The zero-based index of the element to remove.
  * @returns The removed element.
  * @example
@@ -22,6 +22,7 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function removeAtMut<T>(array: T[], index: number): T | undefined {
-  return array.splice(index, 1)[0];
+export function removeAtMut<T>(arr: T[], index: number): T | undefined {
+  return arr.splice(index, 1)[0];
 }
+

@@ -47,3 +47,4 @@ export { tryGetLastEqual } from './try_get_last_equal';
 export { union } from './union';
 export { uniq } from './uniq';
 export { zip } from './zip';
+export { removeMut } from "./remove_mut";

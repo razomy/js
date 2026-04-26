@@ -7,3 +7,4 @@ export { NotSupportedException } from './not_supported_exception';
 export { PathException } from './path_exception';
 export { UnknownTypeArgumentException } from './unknown_type_argument_exception';
 export { assert } from './assert';
+export { assertUnreachable } from './assert';

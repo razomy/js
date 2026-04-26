@@ -31,7 +31,7 @@ export async function predict(
   ))
 }
 
-export async function predict_cache_string(cache_id, model_id, text, opts: {
+export async function predict_cache_string(cache_id: string | null, model_id: string, text: string, opts: {
   "max_tokens": number,
   'verbose': boolean,
   'update_cache': boolean,
