@@ -8,6 +8,7 @@ export {
   type DiffUpdated,
 } from './get_detailed_diff';
 export { JsonCodec } from './json_codec';
+export { iterate } from './iterate';
 export { arrayToJson } from './array_to_json';
 export { dictToJson } from './dict_to_json';
 export { getValueFromDiff } from './get_value_from_diff';
