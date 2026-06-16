@@ -11,5 +11,5 @@ export { iterate } from './iterate';
 export { k } from './k';
 export { map } from './map';
 export { set } from './set';
-export { type WithKv } from './with_kv';
+export { type HasKv } from './with_kv';
 export { valueIterate } from './value_iterate';

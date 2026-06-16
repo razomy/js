@@ -473,7 +473,7 @@ export interface VariableStatement extends Statement {
   kind: 'VariableStatement';
   identifier: Identifier;
   shape: ShapeType | null;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
 }
 
 export type StatementType =
@@ -511,7 +511,7 @@ export interface VariableBinding extends Binding {
   shape: ShapeType | null;
   expression: ExpressionType;
   modifiers: Array<'const'>;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
 }
 
 /**
@@ -556,7 +556,7 @@ export interface PropertyBinding extends Binding {
   shape: ShapeType | null;
   expression: ExpressionType | null;
   modifiers: ('optional' | 'const')[];
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
 }
 
 /**
@@ -571,7 +571,7 @@ export interface ParameterBinding extends Binding {
   kind: 'ParameterBinding';
   identifier: Identifier;
   shape: ShapeType | null;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   expression: ExpressionType | null;
   modifiers: ('rest')[];
 }
@@ -588,7 +588,7 @@ export interface ParameterBinding extends Binding {
 export interface EnumPropertyBinding extends Binding {
   kind: 'EnumPropertyBinding';
   identifier: Identifier;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   expression: ExpressionType | null;
 }
 
@@ -604,7 +604,7 @@ export interface EnumPropertyBinding extends Binding {
 export interface EnumBinding extends Binding {
   kind: 'EnumBinding';
   identifier: Identifier;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   properties: EnumPropertyBinding[];
 }
 
@@ -625,7 +625,7 @@ export interface FunctionBinding extends Binding {
   return_: ReturnShape | null;
   modifiers: ('async' | 'public' | 'generator')[];
   block: BlockStatement;
-  meta: abstracts.domains.WithDescription & {
+  meta: abstracts.domains.HasDescription & {
     title: string;
     performance: {
       timeDataSizeComplexityFn: string;
@@ -647,7 +647,7 @@ export interface FunctionBinding extends Binding {
  */
 export interface ClassBinding extends Binding {
   kind: 'ClassBinding';
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   identifier: Identifier;
   extends_: ShapeType[];
   properties: PropertyBinding[];
@@ -665,7 +665,7 @@ export interface ClassBinding extends Binding {
  */
 export interface ModuleBinding extends Binding {
   kind: 'ModuleBinding';
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   identifier: Identifier;
   block: BlockStatement;
 }
@@ -682,7 +682,7 @@ export interface ModuleBinding extends Binding {
 export interface PackageBinding extends Binding {
   kind: 'PackageBinding';
   identifier: Identifier;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   version: string;
   runtime: DependencyBinding;
   dependencies: DependencyBinding[];
@@ -845,7 +845,7 @@ export interface PropertyShape extends Shape {
   kind: 'PropertyShape';
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
 }
 
 /**
@@ -909,7 +909,7 @@ export interface IntersectionShape extends Shape {
 export interface ReturnShape extends Shape {
   kind: 'ReturnShape';
   shape: ShapeType;
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
 }
 
 /**
@@ -954,7 +954,7 @@ export type ShapeType =
  */
 export interface AliasShapeBinding extends ShapeBinding {
   kind: 'AliasShapeBinding';
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   shapeIdentifier: ShapeIdentifier;
   shape: ShapeType;
 }
@@ -970,7 +970,7 @@ export interface AliasShapeBinding extends ShapeBinding {
  */
 export interface InterfaceShapeBinding extends ShapeBinding {
   kind: 'InterfaceShapeBinding';
-  meta: abstracts.domains.WithDescription;
+  meta: abstracts.domains.HasDescription;
   shapeIdentifier: ShapeIdentifier;
   extends_: ShapeType[];
   properties: PropertyShape[];

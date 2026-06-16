@@ -1,14 +1,14 @@
 import * as treeDict from '@razomy/tree-dict';
 import * as abstracts from '@razomy/abstracts';
 
-export interface WithAbsolutePath {
+export interface HasAbsolutePath {
   absolutePath: abstracts.graphs.AbsolutePathString;
 }
 
-export interface AbsolutePathDictRoot<T> extends treeDict.RootDict<T, AbsolutePathDictRoot<T>>, WithAbsolutePath {}
+export interface AbsolutePathDictRoot<T> extends treeDict.RootDict<T, AbsolutePathDictRoot<T>>, HasAbsolutePath {}
 
-export type AbsolutePathLeaf<T> = abstracts.graphs.Leaf<T> & WithAbsolutePath;
-export type AbsolutePathBranch<T> = treeDict.BranchDict<T, AbsolutePathDictLeafOrRoot<T>> & WithAbsolutePath;
+export type AbsolutePathLeaf<T> = abstracts.graphs.Leaf<T> & HasAbsolutePath;
+export type AbsolutePathBranch<T> = treeDict.BranchDict<T, AbsolutePathDictLeafOrRoot<T>> & HasAbsolutePath;
 export type AbsolutePathDictLeafOrRoot<T> = AbsolutePathBranch<T> | AbsolutePathLeaf<T>;
 
 export function leafTreeAbsolutePath<T>(input: abstracts.graphs.Leaf<T>, absolutePath: string): AbsolutePathLeaf<T>;

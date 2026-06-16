@@ -1,7 +1,7 @@
 import * as exceptions from '@razomy/exceptions';
 import * as treeDict from '@razomy/tree-dict';
 
-export function getValue<T extends treeDict.WithChildrenDict<T>>(value: T, path: string[], offset: number) {
+export function getValue<T extends treeDict.HasChildrenDict<T>>(value: T, path: string[], offset: number) {
   for (const key in value.children) {
     if (key !== path[offset]) {
       continue;

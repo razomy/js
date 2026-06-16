@@ -1,33 +1,33 @@
 // import * as serializable from '@razomy/serializable';
 
-export interface Context {}//extends serializable.WithSerializable {}
+export interface Context {}//extends serializable.HasSerializable {}
 
-export interface WithContext<C extends Context> {
+export interface HasContext<C extends Context> {
   c: C;
 }
 
-export interface WithAsyncExecute<T> {
+export interface HasAsyncExecute<T> {
   execute: (c: T) => Promise<void>;
 }
 
-export interface WithAsyncCancel<T> {
+export interface HasAsyncCancel<T> {
   cancel: (c: T) => Promise<void>;
 }
 
-export interface WithAsyncRollback<T> {
+export interface HasAsyncRollback<T> {
   rollback: (c: T) => Promise<void>;
 }
 
-export interface WithValidate<T> {
+export interface HasValidate<T> {
   validate: (c: T) => Promise<void>;
 }
 
 export interface AsyncTask<C extends Context>
-  extends WithContext<C>,
-    WithAsyncExecute<C>,
-    WithValidate<C>,
-    WithAsyncCancel<C>,
-    WithAsyncRollback<C> {
+  extends HasContext<C>,
+    HasAsyncExecute<C>,
+    HasValidate<C>,
+    HasAsyncCancel<C>,
+    HasAsyncRollback<C> {
   taskId: string;
   history: C[];
 }

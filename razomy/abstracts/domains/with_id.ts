@@ -1,3 +1,3 @@
-export interface WithId {
+export interface HasId {
   id: string;
 }

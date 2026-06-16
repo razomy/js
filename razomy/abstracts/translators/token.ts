@@ -1,12 +1,12 @@
-export interface WithTokenType<T = Token> {
+export interface HasTokenType<T = Token> {
   tokenType: T;
 }
 
-export interface WithToken<T = Token> {
+export interface HasToken<T = Token> {
   token: T;
 }
 
-export interface WithTokens<TToken extends WithTokenType<any> = WithTokenType<Token>> {
+export interface HasTokens<TToken extends HasTokenType<any> = HasTokenType<Token>> {
   tokens: TToken[];
 }
 

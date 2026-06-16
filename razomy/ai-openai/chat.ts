@@ -1,7 +1,7 @@
 import * as aiOpenai from '@razomy/ai-openai';
 
 export class Chat {
-  constructor(private ctx: aiOpenai.WithOpenAiCtx) {}
+  constructor(private ctx: aiOpenai.HasOpenAiCtx) {}
 
   public async query(message) {
     try {

@@ -1,3 +1,3 @@
-export interface WithLength {
+export interface HasLength {
   length: number;
 }

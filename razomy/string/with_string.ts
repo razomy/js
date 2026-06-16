@@ -7,27 +7,27 @@ import * as string from '@razomy/string';
  * @example
  * ```ts
  * // Object literal implementation
- * const item: WithString = {
+ * const item: HasString = {
  *   string: "example"
  * };
  * ```
  * @example
  * ```ts
  * // Class implementation
- * class TextContainer implements WithString {
+ * class TextContainer implements HasString {
  *   constructor(public string: String) {}
  * }
  * ```
  * @example
  * ```ts
  * // Function parameter usage
- * function processText(entity: WithString): void {
+ * function processText(entity: HasString): void {
  *   console.log(entity.string);
  * }
  * ```
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export interface WithString {
+export interface HasString {
   string: string.String;
 }

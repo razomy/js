@@ -9,7 +9,7 @@ export type BranchDictOrLeaf<T> = BranchDict<T> | abstracts.graphs.Leaf<T>;
 export type RootOrBranchDict<T> = RootDict<T> | BranchDict<T>;
 export type RootDictOrLeaf<T> = RootDict<T> | abstracts.graphs.Leaf<T>;
 
-export interface RootDict<T, R = unknown> extends treeDict.WithChildrenDict<R> {}
+export interface RootDict<T, R = unknown> extends treeDict.HasChildrenDict<R> {}
 
 export function mapBranch<I, O>(
   parent: RootDict<O>,

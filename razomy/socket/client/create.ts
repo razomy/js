@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 
-export interface WithWebsocket {
+export interface HasWebsocket {
   webSocket: Socket;
 }
 

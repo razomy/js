@@ -1,15 +1,15 @@
-export interface WithDirPath {
+export interface HasDirPath {
   dirPath: string;
 }
 
-export interface WithFileName {
+export interface HasFileName {
   fileName: string;
 }
 
-export interface WithFilePath {
+export interface HasFilePath {
   filePath: string;
 }
 
-export interface WithSourcePath {
+export interface HasSourcePath {
   sourcePath: string;
 }

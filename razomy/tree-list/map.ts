@@ -1,6 +1,6 @@
 import * as treeList from '@razomy/tree-list';
 
-export function map<I extends treeList.WithChildrenList<any>, O extends treeList.WithChildrenList<any>>(
+export function map<I extends treeList.HasChildrenList<any>, O extends treeList.HasChildrenList<any>>(
   input: I,
   cb: (input: I) => O,
 ): O {

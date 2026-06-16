@@ -1,1 +1,1 @@
-export { type WithLength } from './with_length';
+export { type HasLength } from './with_length';

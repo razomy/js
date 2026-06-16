@@ -1,6 +1,6 @@
 import * as treeList from '@razomy/tree-list';
 
-export function getCondition<T extends treeList.WithChildrenList<any>>(node: T, path: string[], match) {
+export function getCondition<T extends treeList.HasChildrenList<any>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {
     return null;
   }

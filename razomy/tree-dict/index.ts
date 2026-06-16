@@ -4,7 +4,7 @@ export {
   type AbsolutePathDictLeafOrRoot,
   type AbsolutePathDictRoot,
   type AbsolutePathLeaf,
-  type WithAbsolutePath,
+  type HasAbsolutePath,
 } from './leaf_tree_absolute_path';
 export {
   mapBranch,
@@ -23,4 +23,4 @@ export { getValue } from './get_value';
 export { iterate } from './iterate';
 export { iterateChildren } from './iterate_children';
 export { mapRoot } from './map_root';
-export { type WithChildrenDict } from './with_children_dict';
+export { type HasChildrenDict } from './with_children_dict';

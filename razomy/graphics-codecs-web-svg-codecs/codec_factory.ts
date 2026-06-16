@@ -5,7 +5,7 @@ import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-cod
 import * as exceptions from '@razomy/exceptions';
 
 export class CodecFactory
-  implements abstracts.patterns.WithCreate<abstracts.patterns.Codec<graphicsElements.ElementView, any>>
+  implements abstracts.patterns.HasCreate<abstracts.patterns.Codec<graphicsElements.ElementView, any>>
 {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
 

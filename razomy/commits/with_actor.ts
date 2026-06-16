@@ -1,3 +1,3 @@
-export interface WithActor {
+export interface HasActor {
   actor: string;
 }

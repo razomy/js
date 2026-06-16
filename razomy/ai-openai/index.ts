@@ -15,5 +15,5 @@ export { setTokens } from './set_tokens';
 export { setWeight } from './set_weight';
 export { setWeightAnTokens } from './set_weight_an_tokens';
 export { singleRequestPro } from './single_request_pro';
-export { type OpenAiCtx, type WithOpenAiCtx } from './open_ai_ctx';
+export { type OpenAiCtx, type HasOpenAiCtx } from './open_ai_ctx';
 export { v1 } from './v_1';

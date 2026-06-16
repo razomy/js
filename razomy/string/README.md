@@ -111,9 +111,9 @@ razomy run @razomy/string addByIndexString
 
 `type String = String`
 
-#### WithString
+#### HasString
 
-`interface WithString `
+`interface HasString `
 
 ### Functions
 

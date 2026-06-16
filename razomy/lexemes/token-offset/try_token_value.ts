@@ -1,9 +1,9 @@
 import * as abstracts from '@razomy/abstracts';
 
 export function tryTokenValue<
-  TToken extends abstracts.translators.WithTokenType<any> & abstracts.domains.WithValue<string>,
+  TToken extends abstracts.translators.HasTokenType<any> & abstracts.domains.HasValue<string>,
   TTokenType extends TToken['tokenType'],
->(ctx: abstracts.translators.WithTokens<TToken> & abstracts.arrays.WithOffset, targetType: TTokenType) {
+>(ctx: abstracts.translators.HasTokens<TToken> & abstracts.arrays.HasOffset, targetType: TTokenType) {
   const t = ctx.tokens[ctx.offset];
   if (!t) return null;
 

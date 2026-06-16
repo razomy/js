@@ -19,7 +19,7 @@ export class TextRender {
 
 export class CanvasRectangle {}
 
-export class RenderFactory implements abstracts.patterns.WithCreate<graphicsRenderes.IRender<any>> {
+export class RenderFactory implements abstracts.patterns.HasCreate<graphicsRenderes.IRender<any>> {
   constructor(public ctx: CanvasRenderingContext2D) {}
 
   public create(element?: graphicsElements.ElementView): graphicsRenderes.IRender<any> {

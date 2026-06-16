@@ -1,3 +1,3 @@
-export interface WithDatetime {
+export interface HasDatetime {
   datetime: string;
 }

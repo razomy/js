@@ -4,10 +4,10 @@ export type IndexOrOut = Index | OutIndex;
 
 export type Offset = number;
 
-export interface WithOffset {
+export interface HasOffset {
   offset: Offset;
 }
 
-export interface WithPrevOffset {
+export interface HasPrevOffset {
   prevOffset: Offset;
 }

@@ -2,7 +2,7 @@ import openai from 'openai';
 import * as aiOpenai from '@razomy/ai-openai';
 
 export class LanguageGrammarCorrection {
-  constructor(private ctx: aiOpenai.WithOpenAiCtx) {}
+  constructor(private ctx: aiOpenai.HasOpenAiCtx) {}
 
   async get(text) {
     const request = {

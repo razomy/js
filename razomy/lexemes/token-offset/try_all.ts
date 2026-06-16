@@ -3,7 +3,7 @@ import * as resources from '@razomy/resources';
 import * as abstracts from "@razomy/abstracts";
 
 export function tryAll<
-  C extends abstracts_.structures.Context & abstracts.arrays.WithOffset,
+  C extends abstracts_.structures.Context & abstracts.arrays.HasOffset,
   R extends readonly resources.ResultNullFn<C, { offset: number; result: any }>[],
 >(ctx: C, rules: R) {
   let totalOffset = 0;
@@ -22,7 +22,7 @@ export function tryAll<
 }
 
 //
-// function liftContext<C extends Context & WithOffset>(ctx: C, delta: number): C {
+// function liftContext<C extends Context & HasOffset>(ctx: C, delta: number): C {
 //   if (delta === 0) return ctx;
 //   return { ...ctx, offset: ctx.offset + delta };
 // }

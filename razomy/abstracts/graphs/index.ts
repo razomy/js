@@ -6,7 +6,7 @@ export {
   type RelativePathString,
   type Slug,
   type SourcePathString,
-  type WithPathString,
+  type HasPathString,
 } from './path_string';
 export {
   type BTree,
@@ -23,4 +23,4 @@ export { type EdgeListGraph } from './edge_list_graph';
 export { type Graph, type GraphAdjacencyList, type GraphAdjacencyMatrix } from './grapths';
 export { type Leaf } from './leaf';
 export { type Octree, type OctreeNode, type QuadTree, type QuadTreeNode } from './trees_spatial';
-export { type WithDirPath, type WithFileName, type WithFilePath, type WithSourcePath } from './with_path';
+export { type HasDirPath, type HasFileName, type HasFilePath, type HasSourcePath } from './with_path';

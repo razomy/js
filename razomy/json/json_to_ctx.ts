@@ -15,7 +15,7 @@ export function jsonToCtx<T extends json.Ctx>(ctx: T, data: { [key: string]: abs
     }
 
     if (typeof attribute === 'object' && 'fromSerializable' in attribute) {
-      (attribute as abstracts.domains.WithSerializable).fromSerializable(v);
+      (attribute as abstracts.domains.HasSerializable).fromSerializable(v);
       continue;
     }
 

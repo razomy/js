@@ -1,3 +1,3 @@
-export interface WithChildrenList<T> {
+export interface HasChildrenList<T> {
   children: T[];
 }

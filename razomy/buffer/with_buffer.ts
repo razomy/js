@@ -1,3 +1,3 @@
-export interface WithBuffer {
+export interface HasBuffer {
   buffer: Buffer;
 }

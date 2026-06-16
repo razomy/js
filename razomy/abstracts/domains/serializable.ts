@@ -5,10 +5,10 @@ export type SerializableValue<T = SerializablePrimitive> =
   | { [key: string]: SerializableValue<T> }
   | SerializableValue<T>[];
 
-export interface WithSerializable {
+export interface HasSerializable {
   toSerializable(): Serializable;
 
   fromSerializable(data: Serializable): void;
 }
 
-export type Serializable = SerializableValue<SerializablePrimitive | WithSerializable>;
+export type Serializable = SerializableValue<SerializablePrimitive | HasSerializable>;

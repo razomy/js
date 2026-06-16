@@ -1,5 +1,5 @@
 import * as abstracts from "@razomy/abstracts";
 
-export interface WithKv<K, V> {
+export interface HasKv<K, V> {
   kv: abstracts.structures.KvaOrValue<K, V>;
 }

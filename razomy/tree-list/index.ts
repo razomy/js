@@ -13,4 +13,4 @@ export { nodesArrayToTree } from './nodes_array_to_tree';
 export { splitNodesArrayToTree } from './split_nodes_array_to_tree';
 export { type ListTree } from './list_tree';
 export { type ValueChildren, vrdToTree } from './vrd_to_tree';
-export { type WithChildrenList } from './with_children_list';
+export { type HasChildrenList } from './with_children_list';

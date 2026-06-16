@@ -7,6 +7,6 @@ export type FilePathString = PathString;
 export type DirPathString = PathString;
 export type SourcePathString = DirPathString;
 
-export interface WithPathString {
+export interface HasPathString {
   pathString: PathString;
 }

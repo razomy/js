@@ -1,3 +1,3 @@
-export interface WithType {
+export interface HasType {
   type: string;
 }

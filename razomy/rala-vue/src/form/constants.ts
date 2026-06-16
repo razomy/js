@@ -5,7 +5,7 @@ export const defaultFormKey = 'form';
 export type Path = string[];
 export type Value = any;
 
-export interface WithPath {
+export interface HasPath {
   path: Path;
 }
 

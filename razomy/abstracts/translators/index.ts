@@ -146,5 +146,5 @@ export {
   type CoreVariableTerm,
 } from './core_ast';
 export { type CstNode, type GroupCst, type TokenCst } from './concrete_ast';
-export { type Span, type Token, type TokenNode, type WithToken, type WithTokenType, type WithTokens } from './token';
+export { type Span, type Token, type TokenNode, type HasToken, type HasTokenType, type HasTokens } from './token';
 export { type TypeChecker } from './validator';

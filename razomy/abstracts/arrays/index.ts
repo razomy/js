@@ -12,7 +12,7 @@ export {
   type IndexOrOut,
   type Offset,
   type OutIndex,
-  type WithOffset,
-  type WithPrevOffset,
+  type HasOffset,
+  type HasPrevOffset,
 } from './offest';
 export { type RawBuffer } from './buffer';

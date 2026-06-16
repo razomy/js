@@ -41,6 +41,6 @@ export { takeBetween } from './take_between';
 export { toBuffer } from './to_buffer';
 export { trim } from './trim';
 export { truncate } from './truncate';
-export { type WithString } from './with_string';
+export { type HasString } from './with_string';
 export { unescapeByString } from './unescape_by_string';
 export { unescapeMdCode } from './unescape_md_code';

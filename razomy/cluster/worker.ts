@@ -1,6 +1,6 @@
 import * as future from '@razomy/future';
 
-export interface WithWorkerId {
+export interface HasWorkerId {
   workerId: string;
 }
 
@@ -9,4 +9,4 @@ export interface WorkerEvent<T> extends future.Event<T> {
   ctx: T;
 }
 
-export interface WorkerEnvironment extends WithWorkerId {}
+export interface WorkerEnvironment extends HasWorkerId {}

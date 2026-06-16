@@ -1,3 +1,3 @@
-export interface WithDescription {
+export interface HasDescription {
   description: string;
 }

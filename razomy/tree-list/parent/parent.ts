@@ -1,3 +1,3 @@
-export interface WithParent<T extends WithParent = any> {
+export interface HasParent<T extends HasParent = any> {
   parent: T | null;
 }

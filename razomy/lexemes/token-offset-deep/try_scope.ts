@@ -3,7 +3,7 @@ import * as abstracts from '@razomy/abstracts';
 import * as lexemes from "@razomy/lexemes";
 
 export function tryScope<
-  C extends abstracts.structures.Context & abstracts.translators.WithTokens<any> & abstracts.arrays.WithOffset & lexemes.tokenOffsetDeep.WithStack,
+  C extends abstracts.structures.Context & abstracts.translators.HasTokens<any> & abstracts.arrays.HasOffset & lexemes.tokenOffsetDeep.HasStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
 >(ctx: C, rule: resources.ResultNullFn<C, T>) {

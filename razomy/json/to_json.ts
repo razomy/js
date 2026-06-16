@@ -12,7 +12,7 @@ export function toJson(serializable: abstracts.domains.Serializable): json.Json 
     return json.arrayToJson(serializable) as json.Json;
   } else if (typeof serializable === 'object') {
     if ('toSerializable' in serializable) {
-      return (serializable as abstracts.domains.WithSerializable).toSerializable() as json.Json;
+      return (serializable as abstracts.domains.HasSerializable).toSerializable() as json.Json;
     }
     return json.dictToJson(serializable);
   }

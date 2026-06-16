@@ -4,6 +4,6 @@ export interface OpenAiCtx {
   openai: OpenAI;
 }
 
-export interface WithOpenAiCtx {
+export interface HasOpenAiCtx {
   openai: OpenAiCtx;
 }

@@ -9,7 +9,7 @@ import * as razomy from '@razomy/razomy';
 
 // @ts-ignore
 export declare module '@razomy/razomy' {
-  export interface Razomy extends socketWeb.WithWebsocket, server.WithUrl {
+  export interface Razomy extends socketWeb.HasWebsocket, server.HasUrl {
     id: string;
     resource: Resource;
     rG: (string: string) => string;

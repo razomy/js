@@ -1,9 +1,9 @@
 import http from 'http';
 
-export interface WithServer {
+export interface HasServer {
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
 }
 
-export interface WithUrl {
+export interface HasUrl {
   url: string;
 }
