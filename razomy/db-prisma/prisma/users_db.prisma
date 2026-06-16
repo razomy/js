@@ -5,20 +5,23 @@ model User {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  profile   Profile?
-  providers Provider[]
-  sessions  Session[]
-  events    Event[]
+  // --- Связи ---
+  userProfile UserProfile?
+  userAuth    UserAuth?
+  events      AuthEvent[]
 
   @@schema("users_db")
 }
 
-model Profile {
+model UserProfile {
   profileId String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String @unique @db.Uuid // @unique делает связь 1-к-1
+  userId    String @unique @db.Uuid
 
   name   String?
   avatar String?
+
+  // Здесь можно хранить текущий основной email для рассылок (не для входа)
+  contactEmail String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
