@@ -39,6 +39,7 @@
     "getDetailedDiff",
     "getValueFromDiff",
     "isObject",
+    "iterate",
     "jsonToCtx",
     "jsonToObject",
     "jsonToString",

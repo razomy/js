@@ -11,6 +11,6 @@ export { map } from './map';
 export { mapChildren } from './map_children';
 export { nodesArrayToTree } from './nodes_array_to_tree';
 export { splitNodesArrayToTree } from './split_nodes_array_to_tree';
+export { type HasChildrenList } from './with_children_list';
 export { type ListTree } from './list_tree';
 export { type ValueChildren, vrdToTree } from './vrd_to_tree';
-export { type HasChildrenList } from './with_children_list';

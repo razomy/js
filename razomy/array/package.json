@@ -67,6 +67,7 @@
     "removeAtMut",
     "removeFirstMut",
     "removeLast",
+    "removeMut",
     "reverseMut",
     "reverse",
     "setLastMut",

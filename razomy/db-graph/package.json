@@ -30,24 +30,28 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-rag#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-graph#readme",
   "keywords": [
     "razomy",
     "db",
-    "rag",
-    "create",
-    "deleteFiles",
-    "getEmbedding",
-    "getLastCommitId",
-    "indexFs",
-    "reset",
-    "search",
-    "trySetUp"
+    "graph",
+    "filterHasTag",
+    "startQuery",
+    "stepIn",
+    "stepOut",
+    "yieldIds",
+    "yieldVertices",
+    "addEdgeMut",
+    "addVertexMut",
+    "createGraphStorage",
+    "getIncomingEdges",
+    "getOutgoingEdges",
+    "getVertex"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/db-grapn",
+  "name": "@razomy/db-graph",
   "peerDependencies": {
     "neo4j-driver": "^6.0.1",
     "ollama": "^0.6.3"
@@ -56,7 +60,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/db-rag",
+    "directory": "razomy/db-graph",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

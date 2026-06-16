@@ -38,7 +38,8 @@
     "uM",
     "predict",
     "mapMessageBack",
-    "mapMessage"
+    "mapMessage",
+    "predictCacheString"
   ],
   "license": "MIT",
   "main": "./index.ts",

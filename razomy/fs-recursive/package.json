@@ -37,9 +37,11 @@
     "recursive",
     "cliCopy",
     "copy",
+    "delete",
     "getAllFlat",
     "get",
     "iterate",
+    "move",
     "toDict",
     "sharedNode"
   ],

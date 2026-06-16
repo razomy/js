@@ -1,13 +1,13 @@
 import {PrismaPg} from "@prisma/adapter-pg";
-import {PrismaClient} from "../generated/client";
+import * as dbPrisma from "@razomy/db-prisma";
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
 const adapter = new PrismaPg({connectionString});
-export const prisma = new PrismaClient({adapter});
+export const PRISMA = new dbPrisma.generated.clientD.PrismaClient({adapter});
 
-export const getPrismaWithUser = (userId?: string | null) => {
-  return prisma.$extends({
+export function getPrismaWithUser (userId?: string | null) {
+  return PRISMA.$extends({
     query: {
       $allModels: {
         // Перехватываем абсолютно все операции к моделям (findMany, update, create и тд)
@@ -16,7 +16,7 @@ export const getPrismaWithUser = (userId?: string | null) => {
           // Если userId не передан (например, анонимный запрос),
           // просто выполняем запрос (RLS заблокирует данные, кроме тех, что доступны всем)
           if (!userId) {
-            return prisma.$transaction(async (tx) => {
+            return PRISMA.$transaction(async (tx) => {
               // Сбрасываем контекст на всякий случай, чтобы из пула не прилетел чужой ID
               await tx.$executeRaw`SELECT set_config('app.current_user_id', '', true)`;
               return query(args);
@@ -24,7 +24,7 @@ export const getPrismaWithUser = (userId?: string | null) => {
           }
 
           // Если пользователь есть, запускаем транзакцию
-          return prisma.$transaction(async (tx) => {
+          return PRISMA.$transaction(async (tx) => {
             // 1. Устанавливаем ID пользователя в рамках текущей транзакции (соединения)
             await tx.$executeRaw`SELECT set_config('app.current_user_id', ${userId}, true)`;
 
@@ -35,5 +35,5 @@ export const getPrismaWithUser = (userId?: string | null) => {
       },
     },
   });
-};
+}
 

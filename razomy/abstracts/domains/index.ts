@@ -1,8 +1,8 @@
 export {
+  type HasSerializable,
   type Serializable,
   type SerializablePrimitive,
   type SerializableValue,
-  type HasSerializable,
 } from './serializable';
 export { type HasClone } from './with_clone';
 export { type HasDescription } from './with_description';

@@ -8,11 +8,11 @@ export {
   type DiffUpdated,
 } from './get_detailed_diff';
 export { JsonCodec } from './json_codec';
-export { iterate } from './iterate';
 export { arrayToJson } from './array_to_json';
 export { dictToJson } from './dict_to_json';
 export { getValueFromDiff } from './get_value_from_diff';
 export { isObject, type PlainObject } from './is_object';
+export { iterate, type JsonIterateCallback } from './iterate';
 export { jsonToCtx } from './json_to_ctx';
 export { jsonToObject, type JsonToken, type JsonTokenType } from './json_to_object';
 export { jsonToString } from './json_to_string';

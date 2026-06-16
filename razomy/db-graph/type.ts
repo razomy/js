@@ -15,16 +15,3 @@ export interface Edge {
   edgeKey: EdgeKey;
   value: Value;
 }
-
-
-export interface GraphStorage {
-  vertices: Map<Id, Node>;
-  outEdges: Map<Id, Edge[]>;
-  inEdges: Map<Id, Edge[]>;
-}
-
-// Состояние текущего запроса
-export interface QueryState {
-  storage: GraphStorage;
-  currentVids: Id[];
-}

@@ -44,6 +44,7 @@
     "./razomy/compression",
     "./razomy/coordinates",
     "./razomy/datetimes",
+    "./razomy/db-graph",
     "./razomy/db-prisma",
     "./razomy/db-rag",
     "./razomy/dict",
