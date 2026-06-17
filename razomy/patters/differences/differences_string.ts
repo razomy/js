@@ -25,5 +25,5 @@ import * as patters from "@razomy/patters";
 export function differencesString(aString: string, bString: string) {
   const aLines = strings.separateStrings(aString, 0, '\n', []);
   const bLines = strings.separateStrings(bString, 0, '\n', []);
-  return patters.differences.differences(aLines, bLines, (...as) => string.merge(as));
+  return patters.differences.differences_(aLines, bLines, (...as) => string.merge(as));
 }

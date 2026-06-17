@@ -4,7 +4,9 @@
     "name": "Yevhenii Kamenskyi",
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@inquirer/prompts": "^8.5.2"
+  },
   "description": "",
   "engines": {
     "node": ">=18"

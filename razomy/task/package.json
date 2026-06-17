@@ -41,8 +41,7 @@
   "module": "./index.ts",
   "name": "@razomy/task",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/serializable": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

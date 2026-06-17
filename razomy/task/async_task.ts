@@ -1,4 +1,4 @@
-// import * as serializable from '@razomy/serializable';
+// import * as serializable from '@razomy/abstracts';
 
 export interface Context {}//extends serializable.HasSerializable {}
 

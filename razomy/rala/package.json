@@ -33,7 +33,8 @@
   "homepage": "https://github.com/razomy/js/tree/main/razomy/rala#readme",
   "keywords": [
     "razomy",
-    "rala"
+    "rala",
+    "example"
   ],
   "license": "MIT",
   "main": "./index.ts",

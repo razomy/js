@@ -7,7 +7,6 @@ import { resolveFilePathOrPackageName } from './resolve_file_path_or_package_nam
 import { runFunctionInstant } from './run_function_instant';
 import type { RunFunctionTask } from './run_function_task';
 import type { BrowserEsmShFetchRunProvider, BrowserRunProvider, BrowserTaskProvider, RunProvider, ServerEsmShFetchRunProvider, ServerJobProvider, ServerRunProvider } from './run_provider';
-import * as server from './server';
 import * as server from './server/index.node';
 import * as task from './task';
 import { validateArrayStringThrow } from './validate_array_string_throw';
@@ -19,7 +18,6 @@ export {
   resolveAndRun,
   resolveFilePathOrPackageName,
   runFunctionInstant,
-  server,
   server,
   task,
   validateArrayStringThrow
@@ -43,7 +41,6 @@ const run = {
   resolveAndRun,
   resolveFilePathOrPackageName,
   runFunctionInstant,
-  server,
   server,
   task,
   validateArrayStringThrow,

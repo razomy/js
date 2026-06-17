@@ -17,17 +17,17 @@ export function differencesDict<T>(diffs: vrd.P<T>[], a: vrd.Vrd<T>, b: vrd.Vrd<
       diffs.push({
         type: 'replace_key',
         path: path,
-        prevValue: vrd.vrd({ [oldKey]: a[oldKey] }),
-        value: vrd.vrd({ [newKey]: b[newKey] }),
+        prevValue: vrd.create({ [oldKey]: a[oldKey] }),
+        value: vrd.create({ [newKey]: b[newKey] }),
       });
       bKeys = bKeys.filter((i) => i != newKey);
       continue;
     }
 
-    diffs.push({ type: 'removed', path: path, value: vrd.vrd({ [oldKey]: a[oldKey] }) });
+    diffs.push({ type: 'removed', path: path, value: vrd.create({ [oldKey]: a[oldKey] }) });
   }
   for (const newKey of bKeys) {
-    diffs.push({ type: 'added', path: path, value: vrd.vrd({ [newKey]: b[newKey] }) });
+    diffs.push({ type: 'added', path: path, value: vrd.create({ [newKey]: b[newKey] }) });
   }
   return diffs;
 }

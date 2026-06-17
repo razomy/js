@@ -3,7 +3,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as array from "@razomy/array";
 
 /** a was, b become */
-export function differences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
+export function differences_<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
   const diffs = [] as abstracts.patterns.Difference<T>[];
   let last: abstracts.patterns.Difference<T> | null = null;
 

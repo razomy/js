@@ -62,7 +62,6 @@
     "mapToDictBy",
     "mapToDict",
     "map",
-    "proxy",
     "reduce",
     "removeAllMut",
     "removeAtMut",

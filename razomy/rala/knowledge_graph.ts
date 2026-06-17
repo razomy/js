@@ -147,7 +147,7 @@ class RuleEngine {
   }
 }
 
-function example() {
+export function example() {
 
   const graph = new KnowledgeGraph();
   const query = new QueryEngine(graph);

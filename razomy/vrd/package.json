@@ -61,6 +61,7 @@
     "vrdToAbsolutePath",
     "vrdToPath",
     "vrdToPva",
+    "create",
     "vrlToVrd"
   ],
   "license": "MIT",

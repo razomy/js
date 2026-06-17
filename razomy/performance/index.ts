@@ -5,7 +5,7 @@ import { formatMemory } from './format_memory';
 import { formatTime } from './format_time';
 import { measureComplexity } from './measure_complexity';
 import { nStringTestCasesRecordPerformance } from './n_string_test_cases_record_performance';
-import { Performance, performance } from './performance';
+import { Performance, performance_ } from './performance';
 import type { HardwareLimitation, OptimizationTradeoff } from './performance';
 import { performanceCb } from './performance_cb';
 import { recordPerformance } from './record_performance';
@@ -22,7 +22,7 @@ export {
   formatTime,
   measureComplexity,
   nStringTestCasesRecordPerformance,
-  performance,
+  performance_,
   performanceCb,
   recordPerformance
 };
@@ -42,7 +42,7 @@ const performance = {
   measureComplexity,
   nStringTestCasesRecordPerformance,
   Performance,
-  performance,
+  performance_,
   performanceCb,
   recordPerformance,
   WeightedMovingAverageRecorder,

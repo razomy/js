@@ -57,8 +57,7 @@
     "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
     "@razomy/functions": "*",
-    "@razomy/primitives": "*",
-    "@razomy/undefined": "*"
+    "@razomy/primitives": "*"
   },
   "publishConfig": {
     "access": "public"

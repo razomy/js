@@ -1,11 +1,11 @@
 import * as task_ from "@razomy/task";
 
-interface AsyncTaskListState<C extends Context> {
+interface AsyncTaskListState<C extends task_.Context> {
   startedTaskIndex: number;
   tasks: task_.AsyncTask<C>[];
 }
 
-export class AsyncTaskList<C extends Context> {
+export class AsyncTaskList<C extends task_.Context> {
   constructor(public ctx: AsyncTaskListState<C>) {}
 
   public async cancelStarted(): Promise<void> {

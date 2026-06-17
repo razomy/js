@@ -4,7 +4,9 @@
     "name": "Yevhenii Kamenskyi",
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@google-cloud/storage": "^7.21.0"
+  },
   "description": "",
   "engines": {
     "node": ">=18"

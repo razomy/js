@@ -6,7 +6,7 @@ export function pvaToVrd(rootPath: string, rows: { path: string; value: string }
   }
 
   const rootLevel = rootPath.split('.').length;
-  const result = vrd.vrd<string>({});
+  const result = vrd.create<string>({});
   for (const row of rows.slice(1)) {
     const pathStr = row.path; // e.g., "top.a.b.c"
     const value = row.value;
@@ -20,7 +20,7 @@ export function pvaToVrd(rootPath: string, rows: { path: string; value: string }
     for (let i = 0; i < parts.length - 1; i++) {
       const key = parts[i];
       // Create intermediate object if it doesn't exist
-      current[key] = current[key] || vrd.vrd<string>({});
+      current[key] = current[key] || vrd.create<string>({});
       current = current[key] as vrd.Vrd<string> & object;
     }
 

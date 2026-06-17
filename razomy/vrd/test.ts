@@ -7,19 +7,19 @@ export function test() {
     [[], 'a', null, [{ type: 'removed', path: '', value: 'a' }]],
     [[], null, 'b', [{ type: 'added', path: '', value: 'b' }]],
     [[], 'a', 'b', [{ type: 'replace', path: '', prevValue: 'a', value: 'b' }]],
-    [[], 'a', vrd.vrd({ b: null }), [{ type: 'replace', path: '', prevValue: 'a', value: { b: null } }]],
-    [[], vrd.vrd({ a: null }), 'b', [{ type: 'replace', path: '', prevValue: { a: null }, value: 'b' }]],
+    [[], 'a', vrd.create({ b: null }), [{ type: 'replace', path: '', prevValue: 'a', value: { b: null } }]],
+    [[], vrd.create({ a: null }), 'b', [{ type: 'replace', path: '', prevValue: { a: null }, value: 'b' }]],
     // -
 
-    [[], vrd.vrd({ a: null }), vrd.vrd({}), [{ type: 'removed', path: '', value: vrd.vrd({ a: null }) }]],
-    [[], vrd.vrd({}), vrd.vrd({ b: null }), [{ type: 'added', path: '', value: vrd.vrd({ b: null }) }]],
+    [[], vrd.create({ a: null }), vrd.create({}), [{ type: 'removed', path: '', value: vrd.create({ a: null }) }]],
+    [[], vrd.create({}), vrd.create({ b: null }), [{ type: 'added', path: '', value: vrd.create({ b: null }) }]],
     [
       [],
-      vrd.vrd({ a: null }),
-      vrd.vrd({ b: null }),
+      vrd.create({ a: null }),
+      vrd.create({ b: null }),
       [
-        { type: 'removed', path: '', value: vrd.vrd({ a: null }) },
-        { type: 'added', path: '', value: vrd.vrd({ b: null }) },
+        { type: 'removed', path: '', value: vrd.create({ a: null }) },
+        { type: 'added', path: '', value: vrd.create({ b: null }) },
       ],
     ],
     // [[], d({'a': null}), d({'a1': null}), [
@@ -27,9 +27,9 @@ export function test() {
     // ]],
     [
       [],
-      vrd.vrd({ a: null }),
-      vrd.vrd({ a: vrd.vrd({ b: null }) }),
-      [{ type: 'added', path: 'a', value: vrd.vrd({ b: null }) }],
+      vrd.create({ a: null }),
+      vrd.create({ a: vrd.create({ b: null }) }),
+      [{ type: 'added', path: 'a', value: vrd.create({ b: null }) }],
     ],
   ];
   for (const spec of specs) {
