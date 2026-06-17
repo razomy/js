@@ -25,7 +25,35 @@
       }
     },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./query": {
+      "default": {
+        "default": "./query/index.ts",
+        "types": "./query/index.ts"
+      },
+      "import": {
+        "default": "./query/index.ts",
+        "types": "./query/index.ts"
+      },
+      "require": {
+        "default": "./query/index.ts",
+        "types": "./query/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*",
+    "./storage": {
+      "default": {
+        "default": "./storage/index.ts",
+        "types": "./storage/index.ts"
+      },
+      "import": {
+        "default": "./storage/index.ts",
+        "types": "./storage/index.ts"
+      },
+      "require": {
+        "default": "./storage/index.ts",
+        "types": "./storage/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -65,8 +93,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts query/index.ts storage/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts query/index.ts storage/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

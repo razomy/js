@@ -24,7 +24,77 @@
         "types": "./index.ts"
       }
     },
+    "./actions": {
+      "default": {
+        "default": "./actions/index.ts",
+        "types": "./actions/index.ts"
+      },
+      "import": {
+        "default": "./actions/index.ts",
+        "types": "./actions/index.ts"
+      },
+      "require": {
+        "default": "./actions/index.ts",
+        "types": "./actions/index.ts"
+      }
+    },
+    "./llms": {
+      "default": {
+        "default": "./llms/index.ts",
+        "types": "./llms/index.ts"
+      },
+      "import": {
+        "default": "./llms/index.ts",
+        "types": "./llms/index.ts"
+      },
+      "require": {
+        "default": "./llms/index.ts",
+        "types": "./llms/index.ts"
+      }
+    },
     "./package.json": "./package.json",
+    "./parsers": {
+      "default": {
+        "default": "./parsers/index.ts",
+        "types": "./parsers/index.ts"
+      },
+      "import": {
+        "default": "./parsers/index.ts",
+        "types": "./parsers/index.ts"
+      },
+      "require": {
+        "default": "./parsers/index.ts",
+        "types": "./parsers/index.ts"
+      }
+    },
+    "./prompts": {
+      "default": {
+        "default": "./prompts/index.ts",
+        "types": "./prompts/index.ts"
+      },
+      "import": {
+        "default": "./prompts/index.ts",
+        "types": "./prompts/index.ts"
+      },
+      "require": {
+        "default": "./prompts/index.ts",
+        "types": "./prompts/index.ts"
+      }
+    },
+    "./rags": {
+      "default": {
+        "default": "./rags/index.ts",
+        "types": "./rags/index.ts"
+      },
+      "import": {
+        "default": "./rags/index.ts",
+        "types": "./rags/index.ts"
+      },
+      "require": {
+        "default": "./rags/index.ts",
+        "types": "./rags/index.ts"
+      }
+    },
     "./specifications/*": "./specifications/*"
   },
   "files": [
@@ -90,8 +160,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts actions/index.ts llms/index.ts parsers/index.ts prompts/index.ts rags/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts actions/index.ts llms/index.ts parsers/index.ts prompts/index.ts rags/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

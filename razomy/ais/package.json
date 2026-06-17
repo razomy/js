@@ -24,6 +24,20 @@
         "types": "./index.ts"
       }
     },
+    "./analytics-token": {
+      "default": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      },
+      "import": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      },
+      "require": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -53,8 +67,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts analytics-token/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts analytics-token/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

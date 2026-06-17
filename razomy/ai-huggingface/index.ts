@@ -1,0 +1,1 @@
+export { MODEL } from './ask';

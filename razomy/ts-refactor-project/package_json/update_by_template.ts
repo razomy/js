@@ -1,13 +1,99 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import { Project } from 'ts-morph';
 import * as json from '@razomy/json';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
 
-export function updateByTemplate(projectPath: string, prefix) {
+function getDirectoriesRecursive(dir: string, dirList: string[] = []): string[] {
+  const files = fs.readdirSync(dir, { withFileTypes: true });
+  dirList.push(dir); // Добавляем текущую папку в массив
+
+  for (const file of files) {
+    if (file.isDirectory() && !['dist', 'node_modules', '.git'].includes(file.name)) {
+      getDirectoriesRecursive(path.join(dir, file.name), dirList);
+    }
+  }
+
+  return dirList;
+}
+
+function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
+  const allDirs = getDirectoriesRecursive(folderPath);
+
+  const generatedExports: Record<string, any> = {};
+  const buildFiles: string[] = [];
+  const devFiles: string[] = [];
+
+  for (const dir of allDirs) {
+    // Получаем относительный путь (например 'utils' или '' для корня)
+    const relativePath = path.relative(folderPath, dir).replace(/\\/g, '/');
+    const isRoot = relativePath === '';
+    const exportKey = isRoot ? '.' : `./${relativePath}`;
+    const prefixPath = isRoot ? `./${srcPrefix}` : `./${srcPrefix}${relativePath}/`;
+
+    // 2. Отфильтровываем, где какой тип
+    const hasIndex = fs.existsSync(path.join(dir, 'index.ts'));
+    const hasBrowser = fs.existsSync(path.join(dir, 'index.browser.ts'));
+    const hasNode = fs.existsSync(path.join(dir, 'index.node.ts'));
+    const hasRemote = fs.existsSync(path.join(dir, 'index.remote.ts'));
+
+    // Пропускаем папки, в которых нет нужных файлов
+    if (!hasIndex && !hasBrowser && !hasNode && !hasRemote) continue;
+
+    // 3. Записываем их как экспорт
+    const currentExport: any = {};
+    function makeCond (ext: string) { return ({
+            types: `${prefixPath}index${ext}.ts`,
+            import: `${prefixPath}index${ext}.ts`,
+            require: `${prefixPath}index${ext}.ts`,
+          }); }
+
+    if (hasBrowser) {
+      currentExport.vue = makeCond('.browser');
+      currentExport.edge = makeCond('.browser');
+      currentExport.browser = makeCond('.browser');
+    }
+
+    if (hasIndex) {
+      currentExport.import = { types: `${prefixPath}index.ts`, default: `${prefixPath}index.ts` };
+      currentExport.default = { types: `${prefixPath}index.ts`, default: `${prefixPath}index.ts` };
+      currentExport.require = { types: `${prefixPath}index.ts`, default: `${prefixPath}index.ts` };
+    }
+
+    if (hasNode) {
+      currentExport.node = makeCond('.node');
+    }
+
+    // Сохраняем главный экспорт для папки ('.' или './subfolder')
+    generatedExports[exportKey] = currentExport;
+
+    // Сохраняем именованные экспорты ('./browser' или './subfolder/browser')
+    if (hasBrowser) generatedExports[isRoot ? './browser' : `${exportKey}/browser`] = makeCond('.browser');
+    if (hasNode) generatedExports[isRoot ? './node' : `${exportKey}/node`] = makeCond('.node');
+    if (hasRemote) generatedExports[isRoot ? './remote' : `${exportKey}/remote`] = makeCond('.remote');
+
+    // 4. Собираем массив файлов для команды билда
+    const buildPrefix = isRoot ? '' : `${relativePath}/`;
+    if (hasIndex) {
+      buildFiles.push(`${buildPrefix}index.ts`);
+      devFiles.push(`${buildPrefix}index.ts`); // В dev крутим только основные файлы
+    }
+    if (hasBrowser) buildFiles.push(`${buildPrefix}index.browser.ts`);
+    if (hasNode) buildFiles.push(`${buildPrefix}index.node.ts`);
+    if (hasRemote) buildFiles.push(`${buildPrefix}index.remote.ts`);
+  }
+
+  // Обновляем билд команды
+  return {
+    exports: generatedExports,
+    buildCmd: `tsdown ${buildFiles.join(' ')} --format esm,cjs --dts`,
+    devCmd: `tsdown ${devFiles.join(' ')} --watch`,
+  };
+}
+
+export function updateByTemplate(projectPath: string, prefix: string) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
     .filter((i) => !tsRefactorProject.packageJson.isPackageNameSkip(i.name));
@@ -18,72 +104,17 @@ export function updateByTemplate(projectPath: string, prefix) {
     const content = fs.readFileSync(folder.path, `utf-8`);
     const currentPackageJson = JSON.parse(content);
     const srcPrefix = (currentPackageJson.files || ['*'])[0] === `*` ? `` : `src/`;
-    const sources = tsRefactor.getFilteredSourceFiles(project, path.dirname(folder.path));
+
+    const sources = tsRefactor.getFilteredSourceFiles(project, folderPath);
     const functions = tsRefactor.getExportedFunctions(sources);
     const consts = tsRefactor.getExportedConstants(sources);
 
-    const dotBrowserExports = {
-      vue: {
-        types: `./${srcPrefix}index.browser.ts`,
-        import: `./${srcPrefix}index.browser.ts`,
-        require: `./${srcPrefix}index.browser.ts`,
-      },
-      edge: {
-        types: `./${srcPrefix}index.browser.ts`,
-        import: `./${srcPrefix}index.browser.ts`,
-        require: `./${srcPrefix}index.browser.ts`,
-      },
-      browser: {
-        types: `./${srcPrefix}index.browser.ts`,
-        import: `./${srcPrefix}index.browser.ts`,
-        require: `./${srcPrefix}index.browser.ts`,
-      },
-    };
-    const nameBrowserExport = {
-      './browser': {
-        types: `./${srcPrefix}index.browser.ts`,
-        import: `./${srcPrefix}index.browser.ts`,
-        require: `./${srcPrefix}index.browser.ts`,
-      },
-    };
-
-    const dotNodeExports = {
-      node: {
-        types: `./${srcPrefix}index.node.ts`,
-        import: `./${srcPrefix}index.node.ts`,
-        require: `./${srcPrefix}index.node.ts`,
-      },
-    };
-    const nameNodeExport = {
-      './node': {
-        types: `./${srcPrefix}index.node.ts`,
-        import: `./${srcPrefix}index.node.ts`,
-        require: `./${srcPrefix}index.node.ts`,
-      },
-    };
-
-    const nameRemoteExport = {
-      './remote': {
-        types: `./${srcPrefix}index.remote.ts`,
-        import: `./${srcPrefix}index.remote.ts`,
-        require: `./${srcPrefix}index.remote.ts`,
-      },
-    };
-
-
-    const isBrowserExports = fss.file.isExist(`${folderPath}/index.browser.ts`);
-    const isNodeExports = fss.file.isExist(`${folderPath}/index.node.ts`);
-    const isRemoteExports = fss.file.isExist(`${folderPath}/index.remote.ts`);
+    // ВЫЗОВ НОВОЙ ФУНКЦИИ
+    const dynamicData = generatePackageExportsAndBuild(folderPath, srcPrefix);
 
     const defaultBuild = {
-      build: `tsdown index.ts ${
-        isBrowserExports ? 'index.browser.ts ' : ''
-      }${
-        isNodeExports ? 'index.node.ts ' : ''
-      }${
-        isRemoteExports ? 'index.remote.ts ' : ''
-      }--format esm,cjs --dts`,
-      dev: 'tsdown index.ts --watch',
+      build: dynamicData.buildCmd,
+      dev: dynamicData.devCmd,
       prepublishOnly: 'npm run build',
     };
 
@@ -122,25 +153,8 @@ export function updateByTemplate(projectPath: string, prefix) {
         },
       },
       exports: {
-        '.': {
-          ...(isBrowserExports ? dotBrowserExports : {}),
-          import: {
-            types: `./${srcPrefix}index.ts`,
-            default: `./${srcPrefix}index.ts`,
-          },
-          default: {
-            types: `./${srcPrefix}index.ts`,
-            default: `./${srcPrefix}index.ts`,
-          },
-          require: {
-            types: `./${srcPrefix}index.ts`,
-            default: `./${srcPrefix}index.ts`,
-          },
-          ...(isNodeExports ? dotNodeExports : {}),
-        },
-        ...(isBrowserExports ? nameBrowserExport : {}),
-        ...(isNodeExports ? nameNodeExport : {}),
-        ...(isRemoteExports ? nameRemoteExport : {}),
+        // Распаковываем динамически сгенерированные экспорты
+        ...dynamicData.exports,
         './specifications/*': './specifications/*',
         './package.json': './package.json',
       },
@@ -154,7 +168,7 @@ export function updateByTemplate(projectPath: string, prefix) {
         url: 'git+https://github.com/razomy/js.git',
         directory: folder.name,
       },
-      // 6. Engines (хорошая практика)
+      // Engines
       engines: {
         node: '>=18',
       },
@@ -170,6 +184,7 @@ export function updateByTemplate(projectPath: string, prefix) {
       },
       ...rawPkgData,
     };
+
     pkgData = json.sort(pkgData);
     // pkgData.exports = rawPkgData.exports
     // pkgData.publishConfig.exports = rawPkgData.publishConfig.exports;
@@ -177,3 +192,4 @@ export function updateByTemplate(projectPath: string, prefix) {
     console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
   });
 }
+

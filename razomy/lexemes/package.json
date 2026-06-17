@@ -24,8 +24,64 @@
         "types": "./index.ts"
       }
     },
+    "./bound": {
+      "default": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      },
+      "import": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      },
+      "require": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      }
+    },
+    "./offset": {
+      "default": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      },
+      "import": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      },
+      "require": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      }
+    },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./specifications/*": "./specifications/*",
+    "./token-offset": {
+      "default": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      },
+      "import": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      },
+      "require": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      }
+    },
+    "./token-offset-deep": {
+      "default": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      },
+      "import": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      },
+      "require": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -71,8 +127,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts bound/index.ts offset/index.ts token-offset/index.ts token-offset-deep/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts bound/index.ts offset/index.ts token-offset/index.ts token-offset-deep/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

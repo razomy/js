@@ -29,13 +29,63 @@
         "types": "./index.ts"
       }
     },
+    "./cli": {
+      "node": {
+        "import": "./cli/index.node.ts",
+        "require": "./cli/index.node.ts",
+        "types": "./cli/index.node.ts"
+      }
+    },
+    "./cli/node": {
+      "import": "./cli/index.node.ts",
+      "require": "./cli/index.node.ts",
+      "types": "./cli/index.node.ts"
+    },
     "./node": {
       "import": "./index.node.ts",
       "require": "./index.node.ts",
       "types": "./index.node.ts"
     },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./server": {
+      "default": {
+        "default": "./server/index.ts",
+        "types": "./server/index.ts"
+      },
+      "import": {
+        "default": "./server/index.ts",
+        "types": "./server/index.ts"
+      },
+      "node": {
+        "import": "./server/index.node.ts",
+        "require": "./server/index.node.ts",
+        "types": "./server/index.node.ts"
+      },
+      "require": {
+        "default": "./server/index.ts",
+        "types": "./server/index.ts"
+      }
+    },
+    "./server/node": {
+      "import": "./server/index.node.ts",
+      "require": "./server/index.node.ts",
+      "types": "./server/index.node.ts"
+    },
+    "./specifications/*": "./specifications/*",
+    "./task": {
+      "default": {
+        "default": "./task/index.ts",
+        "types": "./task/index.ts"
+      },
+      "import": {
+        "default": "./task/index.ts",
+        "types": "./task/index.ts"
+      },
+      "require": {
+        "default": "./task/index.ts",
+        "types": "./task/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -74,8 +124,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.node.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts index.node.ts cli/index.node.ts server/index.ts server/index.node.ts task/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts server/index.ts task/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

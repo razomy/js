@@ -24,8 +24,36 @@
         "types": "./index.ts"
       }
     },
+    "./delta-string": {
+      "default": {
+        "default": "./delta-string/index.ts",
+        "types": "./delta-string/index.ts"
+      },
+      "import": {
+        "default": "./delta-string/index.ts",
+        "types": "./delta-string/index.ts"
+      },
+      "require": {
+        "default": "./delta-string/index.ts",
+        "types": "./delta-string/index.ts"
+      }
+    },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./specifications/*": "./specifications/*",
+    "./vrd": {
+      "default": {
+        "default": "./vrd/index.ts",
+        "types": "./vrd/index.ts"
+      },
+      "import": {
+        "default": "./vrd/index.ts",
+        "types": "./vrd/index.ts"
+      },
+      "require": {
+        "default": "./vrd/index.ts",
+        "types": "./vrd/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -63,8 +91,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts delta-string/index.ts vrd/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts delta-string/index.ts vrd/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

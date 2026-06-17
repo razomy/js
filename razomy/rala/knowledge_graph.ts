@@ -4,7 +4,7 @@ interface RuntimeFact {
   args: Record<string, string | number>; // роли: { theme: 'ВходнаяДверь' }
 }
 
-class KnowledgeGraph {
+export class KnowledgeGraph {
   public facts: RuntimeFact[] = [];
 
   // Добавить факт (+)

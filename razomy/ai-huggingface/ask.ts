@@ -1,7 +1,7 @@
 import { loadModel } from '@mlx-node/lm';
 
-const model = await loadModel('');
+export const MODEL = await loadModel('');
 
-const result = await model.chat([{ role: 'user', content: 'What is the capital of France?' }]);
+const result = await MODEL.chat([{ role: 'user', content: 'What is the capital of France?' }]);
 
 console.log(result.text);

@@ -24,6 +24,118 @@
         "types": "./index.ts"
       }
     },
+    "./ast": {
+      "default": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      },
+      "import": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      },
+      "require": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      }
+    },
+    "./ast/bindings": {
+      "default": {
+        "default": "./ast/bindings/index.ts",
+        "types": "./ast/bindings/index.ts"
+      },
+      "import": {
+        "default": "./ast/bindings/index.ts",
+        "types": "./ast/bindings/index.ts"
+      },
+      "require": {
+        "default": "./ast/bindings/index.ts",
+        "types": "./ast/bindings/index.ts"
+      }
+    },
+    "./ast/doc": {
+      "default": {
+        "default": "./ast/doc/index.ts",
+        "types": "./ast/doc/index.ts"
+      },
+      "import": {
+        "default": "./ast/doc/index.ts",
+        "types": "./ast/doc/index.ts"
+      },
+      "require": {
+        "default": "./ast/doc/index.ts",
+        "types": "./ast/doc/index.ts"
+      }
+    },
+    "./ast/expressions": {
+      "default": {
+        "default": "./ast/expressions/index.ts",
+        "types": "./ast/expressions/index.ts"
+      },
+      "import": {
+        "default": "./ast/expressions/index.ts",
+        "types": "./ast/expressions/index.ts"
+      },
+      "require": {
+        "default": "./ast/expressions/index.ts",
+        "types": "./ast/expressions/index.ts"
+      }
+    },
+    "./ast/expressions/build_in": {
+      "default": {
+        "default": "./ast/expressions/build_in/index.ts",
+        "types": "./ast/expressions/build_in/index.ts"
+      },
+      "import": {
+        "default": "./ast/expressions/build_in/index.ts",
+        "types": "./ast/expressions/build_in/index.ts"
+      },
+      "require": {
+        "default": "./ast/expressions/build_in/index.ts",
+        "types": "./ast/expressions/build_in/index.ts"
+      }
+    },
+    "./ast/shapeBindings": {
+      "default": {
+        "default": "./ast/shapeBindings/index.ts",
+        "types": "./ast/shapeBindings/index.ts"
+      },
+      "import": {
+        "default": "./ast/shapeBindings/index.ts",
+        "types": "./ast/shapeBindings/index.ts"
+      },
+      "require": {
+        "default": "./ast/shapeBindings/index.ts",
+        "types": "./ast/shapeBindings/index.ts"
+      }
+    },
+    "./ast/shapes": {
+      "default": {
+        "default": "./ast/shapes/index.ts",
+        "types": "./ast/shapes/index.ts"
+      },
+      "import": {
+        "default": "./ast/shapes/index.ts",
+        "types": "./ast/shapes/index.ts"
+      },
+      "require": {
+        "default": "./ast/shapes/index.ts",
+        "types": "./ast/shapes/index.ts"
+      }
+    },
+    "./ast/statements": {
+      "default": {
+        "default": "./ast/statements/index.ts",
+        "types": "./ast/statements/index.ts"
+      },
+      "import": {
+        "default": "./ast/statements/index.ts",
+        "types": "./ast/statements/index.ts"
+      },
+      "require": {
+        "default": "./ast/statements/index.ts",
+        "types": "./ast/statements/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -113,8 +225,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

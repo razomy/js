@@ -24,6 +24,90 @@
         "types": "./index.ts"
       }
     },
+    "./api-run": {
+      "default": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      },
+      "import": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      },
+      "require": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      }
+    },
+    "./api-run/batch": {
+      "default": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      },
+      "import": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      },
+      "require": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      }
+    },
+    "./api-run/instant": {
+      "default": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      }
+    },
+    "./api-run/instant/chat": {
+      "default": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      }
+    },
+    "./api-run/instant/chat/logic": {
+      "default": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      }
+    },
+    "./api-run/instant/chat/tool": {
+      "default": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -58,8 +142,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts api-run/index.ts api-run/batch/index.ts api-run/instant/index.ts api-run/instant/chat/index.ts api-run/instant/chat/logic/index.ts api-run/instant/chat/tool/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts api-run/index.ts api-run/batch/index.ts api-run/instant/index.ts api-run/instant/chat/index.ts api-run/instant/chat/logic/index.ts api-run/instant/chat/tool/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

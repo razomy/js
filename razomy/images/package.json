@@ -24,6 +24,104 @@
         "types": "./index.ts"
       }
     },
+    "./advanced": {
+      "default": {
+        "default": "./advanced/index.ts",
+        "types": "./advanced/index.ts"
+      },
+      "import": {
+        "default": "./advanced/index.ts",
+        "types": "./advanced/index.ts"
+      },
+      "require": {
+        "default": "./advanced/index.ts",
+        "types": "./advanced/index.ts"
+      }
+    },
+    "./color": {
+      "default": {
+        "default": "./color/index.ts",
+        "types": "./color/index.ts"
+      },
+      "import": {
+        "default": "./color/index.ts",
+        "types": "./color/index.ts"
+      },
+      "require": {
+        "default": "./color/index.ts",
+        "types": "./color/index.ts"
+      }
+    },
+    "./compositing": {
+      "default": {
+        "default": "./compositing/index.ts",
+        "types": "./compositing/index.ts"
+      },
+      "import": {
+        "default": "./compositing/index.ts",
+        "types": "./compositing/index.ts"
+      },
+      "require": {
+        "default": "./compositing/index.ts",
+        "types": "./compositing/index.ts"
+      }
+    },
+    "./export_": {
+      "default": {
+        "default": "./export_/index.ts",
+        "types": "./export_/index.ts"
+      },
+      "import": {
+        "default": "./export_/index.ts",
+        "types": "./export_/index.ts"
+      },
+      "require": {
+        "default": "./export_/index.ts",
+        "types": "./export_/index.ts"
+      }
+    },
+    "./filter": {
+      "default": {
+        "default": "./filter/index.ts",
+        "types": "./filter/index.ts"
+      },
+      "import": {
+        "default": "./filter/index.ts",
+        "types": "./filter/index.ts"
+      },
+      "require": {
+        "default": "./filter/index.ts",
+        "types": "./filter/index.ts"
+      }
+    },
+    "./geometry": {
+      "default": {
+        "default": "./geometry/index.ts",
+        "types": "./geometry/index.ts"
+      },
+      "import": {
+        "default": "./geometry/index.ts",
+        "types": "./geometry/index.ts"
+      },
+      "require": {
+        "default": "./geometry/index.ts",
+        "types": "./geometry/index.ts"
+      }
+    },
+    "./import_": {
+      "default": {
+        "default": "./import_/index.ts",
+        "types": "./import_/index.ts"
+      },
+      "import": {
+        "default": "./import_/index.ts",
+        "types": "./import_/index.ts"
+      },
+      "require": {
+        "default": "./import_/index.ts",
+        "types": "./import_/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -103,8 +201,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts advanced/index.ts color/index.ts compositing/index.ts export_/index.ts filter/index.ts geometry/index.ts import_/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts advanced/index.ts color/index.ts compositing/index.ts export_/index.ts filter/index.ts geometry/index.ts import_/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

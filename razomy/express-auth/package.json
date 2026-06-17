@@ -24,6 +24,20 @@
         "types": "./index.ts"
       }
     },
+    "./google-auth": {
+      "default": {
+        "default": "./google-auth/index.ts",
+        "types": "./google-auth/index.ts"
+      },
+      "import": {
+        "default": "./google-auth/index.ts",
+        "types": "./google-auth/index.ts"
+      },
+      "require": {
+        "default": "./google-auth/index.ts",
+        "types": "./google-auth/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -54,8 +68,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts google-auth/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts google-auth/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

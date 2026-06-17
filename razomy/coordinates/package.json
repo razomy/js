@@ -24,8 +24,64 @@
         "types": "./index.ts"
       }
     },
+    "./length": {
+      "default": {
+        "default": "./length/index.ts",
+        "types": "./length/index.ts"
+      },
+      "import": {
+        "default": "./length/index.ts",
+        "types": "./length/index.ts"
+      },
+      "require": {
+        "default": "./length/index.ts",
+        "types": "./length/index.ts"
+      }
+    },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./rectangle": {
+      "default": {
+        "default": "./rectangle/index.ts",
+        "types": "./rectangle/index.ts"
+      },
+      "import": {
+        "default": "./rectangle/index.ts",
+        "types": "./rectangle/index.ts"
+      },
+      "require": {
+        "default": "./rectangle/index.ts",
+        "types": "./rectangle/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*",
+    "./x": {
+      "default": {
+        "default": "./x/index.ts",
+        "types": "./x/index.ts"
+      },
+      "import": {
+        "default": "./x/index.ts",
+        "types": "./x/index.ts"
+      },
+      "require": {
+        "default": "./x/index.ts",
+        "types": "./x/index.ts"
+      }
+    },
+    "./y": {
+      "default": {
+        "default": "./y/index.ts",
+        "types": "./y/index.ts"
+      },
+      "import": {
+        "default": "./y/index.ts",
+        "types": "./y/index.ts"
+      },
+      "require": {
+        "default": "./y/index.ts",
+        "types": "./y/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -49,8 +105,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts length/index.ts rectangle/index.ts x/index.ts y/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts length/index.ts rectangle/index.ts x/index.ts y/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

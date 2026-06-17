@@ -34,7 +34,8 @@
   "keywords": [
     "razomy",
     "ai",
-    "huggingface"
+    "huggingface",
+    "model"
   ],
   "license": "MIT",
   "main": "./index.ts",

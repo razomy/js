@@ -25,6 +25,62 @@
       }
     },
     "./package.json": "./package.json",
+    "./refactor": {
+      "default": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
+      },
+      "import": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
+      },
+      "require": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
+      }
+    },
+    "./refactor/actors": {
+      "default": {
+        "default": "./refactor/actors/index.ts",
+        "types": "./refactor/actors/index.ts"
+      },
+      "import": {
+        "default": "./refactor/actors/index.ts",
+        "types": "./refactor/actors/index.ts"
+      },
+      "require": {
+        "default": "./refactor/actors/index.ts",
+        "types": "./refactor/actors/index.ts"
+      }
+    },
+    "./refactor/ai": {
+      "default": {
+        "default": "./refactor/ai/index.ts",
+        "types": "./refactor/ai/index.ts"
+      },
+      "import": {
+        "default": "./refactor/ai/index.ts",
+        "types": "./refactor/ai/index.ts"
+      },
+      "require": {
+        "default": "./refactor/ai/index.ts",
+        "types": "./refactor/ai/index.ts"
+      }
+    },
+    "./refactor/tools": {
+      "default": {
+        "default": "./refactor/tools/index.ts",
+        "types": "./refactor/tools/index.ts"
+      },
+      "import": {
+        "default": "./refactor/tools/index.ts",
+        "types": "./refactor/tools/index.ts"
+      },
+      "require": {
+        "default": "./refactor/tools/index.ts",
+        "types": "./refactor/tools/index.ts"
+      }
+    },
     "./specifications/*": "./specifications/*"
   },
   "files": [
@@ -71,8 +127,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts refactor/index.ts refactor/actors/index.ts refactor/ai/index.ts refactor/tools/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts refactor/index.ts refactor/actors/index.ts refactor/ai/index.ts refactor/tools/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

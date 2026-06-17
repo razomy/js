@@ -24,11 +24,67 @@
         "types": "./index.ts"
       }
     },
+    "./de": {
+      "default": {
+        "default": "./de/index.ts",
+        "types": "./de/index.ts"
+      },
+      "import": {
+        "default": "./de/index.ts",
+        "types": "./de/index.ts"
+      },
+      "require": {
+        "default": "./de/index.ts",
+        "types": "./de/index.ts"
+      }
+    },
+    "./en": {
+      "default": {
+        "default": "./en/index.ts",
+        "types": "./en/index.ts"
+      },
+      "import": {
+        "default": "./en/index.ts",
+        "types": "./en/index.ts"
+      },
+      "require": {
+        "default": "./en/index.ts",
+        "types": "./en/index.ts"
+      }
+    },
+    "./fr": {
+      "default": {
+        "default": "./fr/index.ts",
+        "types": "./fr/index.ts"
+      },
+      "import": {
+        "default": "./fr/index.ts",
+        "types": "./fr/index.ts"
+      },
+      "require": {
+        "default": "./fr/index.ts",
+        "types": "./fr/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./remote": {
       "import": "./index.remote.ts",
       "require": "./index.remote.ts",
       "types": "./index.remote.ts"
+    },
+    "./ru": {
+      "default": {
+        "default": "./ru/index.ts",
+        "types": "./ru/index.ts"
+      },
+      "import": {
+        "default": "./ru/index.ts",
+        "types": "./ru/index.ts"
+      },
+      "require": {
+        "default": "./ru/index.ts",
+        "types": "./ru/index.ts"
+      }
     },
     "./specifications/*": "./specifications/*"
   },
@@ -64,8 +120,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.remote.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts index.remote.ts de/index.ts en/index.ts fr/index.ts ru/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts de/index.ts en/index.ts fr/index.ts ru/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

@@ -24,8 +24,162 @@
         "types": "./index.ts"
       }
     },
+    "./arrays": {
+      "default": {
+        "default": "./arrays/index.ts",
+        "types": "./arrays/index.ts"
+      },
+      "import": {
+        "default": "./arrays/index.ts",
+        "types": "./arrays/index.ts"
+      },
+      "require": {
+        "default": "./arrays/index.ts",
+        "types": "./arrays/index.ts"
+      }
+    },
+    "./collections": {
+      "default": {
+        "default": "./collections/index.ts",
+        "types": "./collections/index.ts"
+      },
+      "import": {
+        "default": "./collections/index.ts",
+        "types": "./collections/index.ts"
+      },
+      "require": {
+        "default": "./collections/index.ts",
+        "types": "./collections/index.ts"
+      }
+    },
+    "./domains": {
+      "default": {
+        "default": "./domains/index.ts",
+        "types": "./domains/index.ts"
+      },
+      "import": {
+        "default": "./domains/index.ts",
+        "types": "./domains/index.ts"
+      },
+      "require": {
+        "default": "./domains/index.ts",
+        "types": "./domains/index.ts"
+      }
+    },
+    "./functions": {
+      "default": {
+        "default": "./functions/index.ts",
+        "types": "./functions/index.ts"
+      },
+      "import": {
+        "default": "./functions/index.ts",
+        "types": "./functions/index.ts"
+      },
+      "require": {
+        "default": "./functions/index.ts",
+        "types": "./functions/index.ts"
+      }
+    },
+    "./graphs": {
+      "default": {
+        "default": "./graphs/index.ts",
+        "types": "./graphs/index.ts"
+      },
+      "import": {
+        "default": "./graphs/index.ts",
+        "types": "./graphs/index.ts"
+      },
+      "require": {
+        "default": "./graphs/index.ts",
+        "types": "./graphs/index.ts"
+      }
+    },
+    "./meta": {
+      "default": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      },
+      "import": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      },
+      "require": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      }
+    },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*"
+    "./patterns": {
+      "default": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "import": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "require": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      }
+    },
+    "./primitives": {
+      "default": {
+        "default": "./primitives/index.ts",
+        "types": "./primitives/index.ts"
+      },
+      "import": {
+        "default": "./primitives/index.ts",
+        "types": "./primitives/index.ts"
+      },
+      "require": {
+        "default": "./primitives/index.ts",
+        "types": "./primitives/index.ts"
+      }
+    },
+    "./probabilistics": {
+      "default": {
+        "default": "./probabilistics/index.ts",
+        "types": "./probabilistics/index.ts"
+      },
+      "import": {
+        "default": "./probabilistics/index.ts",
+        "types": "./probabilistics/index.ts"
+      },
+      "require": {
+        "default": "./probabilistics/index.ts",
+        "types": "./probabilistics/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*",
+    "./structures": {
+      "default": {
+        "default": "./structures/index.ts",
+        "types": "./structures/index.ts"
+      },
+      "import": {
+        "default": "./structures/index.ts",
+        "types": "./structures/index.ts"
+      },
+      "require": {
+        "default": "./structures/index.ts",
+        "types": "./structures/index.ts"
+      }
+    },
+    "./translators": {
+      "default": {
+        "default": "./translators/index.ts",
+        "types": "./translators/index.ts"
+      },
+      "import": {
+        "default": "./translators/index.ts",
+        "types": "./translators/index.ts"
+      },
+      "require": {
+        "default": "./translators/index.ts",
+        "types": "./translators/index.ts"
+      }
+    }
   },
   "files": [
     "*"
@@ -49,8 +203,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
