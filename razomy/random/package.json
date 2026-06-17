@@ -39,6 +39,7 @@
     "createFloatRange",
     "createFloat",
     "createGuid",
+    "createId",
     "createInt",
     "createIpv4",
     "createLightHexColor",

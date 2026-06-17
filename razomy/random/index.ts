@@ -1,3 +1,4 @@
+export { BitSize, createId } from './create_id';
 export { GuidFactory, createGuid } from './create_guid';
 export { createCssGradient } from './create_css_gradient';
 export { createDate } from './create_date';

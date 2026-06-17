@@ -25,41 +25,40 @@
       }
     },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*",
-    "./generated/*": "./generated/*"
+    "./specifications/*": "./specifications/*"
   },
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-prisma#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-domains#readme",
   "keywords": [
     "razomy",
     "db",
-    "prisma"
+    "domains",
+    "addDeleteAt",
+    "createAt",
+    "updateAt"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/db-prisma",
+  "name": "@razomy/db-domains",
   "peerDependencies": {
-    "@prisma/adapter-pg": "^7.5.0",
-    "@prisma/client": "^7.5.0",
-    "@types/pg": "^8.18.0",
-    "prisma": "^7.5.0",
-    "pg": "^8.20.0"
+    "@razomy/abstracts": "*",
+    "@razomy/random": "*"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/db-prisma",
+    "directory": "razomy/db-domains",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "reset": "prisma migrate reset",
-    "build": "prisma generate && prisma migrate dev --create-only --name init",
-    "release": "prisma migrate deploy && prisma generate"
+    "build": "tsdown index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
   "type": "module",
