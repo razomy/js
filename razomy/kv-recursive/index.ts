@@ -1,8 +1,42 @@
-export { get } from './get';
-export { getItemByPath } from './get_item_by_path';
-export { getItemByPathFromValue } from './get_item_by_path_from_value';
-export { getKey, type ListItem, type ListKey, type RecursiveList } from './get_key';
-export { getValue } from './get_value';
-export { listToFlatDict } from './list_to_flat_dict';
-export { renameToSnakeCaseRecursive } from './rename_to_snake_case_recursive';
-export { valueOrListToFlatDict } from './value_or_list_to_flat_dict';
+// Imports
+import { get } from './get';
+import { getItemByPath } from './get_item_by_path';
+import { getItemByPathFromValue } from './get_item_by_path_from_value';
+import { getKey } from './get_key';
+import type { ListItem, ListKey, RecursiveList } from './get_key';
+import { getValue } from './get_value';
+import { listToFlatDict } from './list_to_flat_dict';
+import { renameToSnakeCaseRecursive } from './rename_to_snake_case_recursive';
+import { valueOrListToFlatDict } from './value_or_list_to_flat_dict';
+
+// Named exports
+export {
+  get,
+  getItemByPath,
+  getItemByPathFromValue,
+  getKey,
+  getValue,
+  listToFlatDict,
+  renameToSnakeCaseRecursive,
+  valueOrListToFlatDict
+};
+export type {
+  ListItem,
+  ListKey,
+  RecursiveList
+};
+
+// Default export
+const kvRecursive = {
+  get,
+  getItemByPath,
+  getItemByPathFromValue,
+  getKey,
+  getValue,
+  listToFlatDict,
+  renameToSnakeCaseRecursive,
+  valueOrListToFlatDict,
+};
+
+
+export default kvRecursive;

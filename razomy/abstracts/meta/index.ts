@@ -1,3 +1,16 @@
-export { type Alias, type DeepReadonly } from './alias';
-export { type Brand, type DataStructure, type LogicalTopology, type MemoryLayout } from './ts_workarounds';
-export { type LateInit } from './late_init';
+// Imports
+import type { Alias, DeepReadonly } from './alias';
+import type { LateInit } from './late_init';
+import type { Brand, DataStructure, LogicalTopology, MemoryLayout } from './ts_workarounds';
+
+// Named exports
+export type {
+  Alias,
+  Brand,
+  DataStructure,
+  DeepReadonly,
+  LateInit,
+  LogicalTopology,
+  MemoryLayout
+};
+

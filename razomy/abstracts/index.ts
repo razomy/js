@@ -1,11 +1,44 @@
-export * as arrays from './arrays';
-export * as collections from './collections';
-export * as domains from './domains';
-export * as functions from './functions';
-export * as graphs from './graphs';
-export * as meta from './meta';
-export * as patterns from './patterns';
-export * as primitives from './primitives';
-export * as probabilistics from './probabilistics';
-export * as structures from './structures';
-export * as translators from './translators';
+// Imports
+import * as arrays from './arrays';
+import * as collections from './collections';
+import * as domains from './domains';
+import * as functions from './functions';
+import * as graphs from './graphs';
+import * as meta from './meta';
+import * as patterns from './patterns';
+import * as primitives from './primitives';
+import * as probabilistics from './probabilistics';
+import * as structures from './structures';
+import * as translators from './translators';
+
+// Named exports
+export {
+  arrays,
+  collections,
+  domains,
+  functions,
+  graphs,
+  meta,
+  patterns,
+  primitives,
+  probabilistics,
+  structures,
+  translators
+};
+
+// Default export
+const abstracts = {
+  arrays,
+  collections,
+  domains,
+  functions,
+  graphs,
+  meta,
+  patterns,
+  primitives,
+  probabilistics,
+  structures,
+  translators,
+};
+
+export default abstracts;

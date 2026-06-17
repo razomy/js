@@ -1,24 +1,74 @@
+// Imports
+import { arrayToJson } from './array_to_json';
+import type { Ctx } from './ctx';
+import { dictToJson } from './dict_to_json';
+import { getDetailedDiff } from './get_detailed_diff';
+import type { DiffCreated, DiffDeleted, DiffEntry, DiffNested, DiffNode, DiffUpdated } from './get_detailed_diff';
+import { getValueFromDiff } from './get_value_from_diff';
+import { isObject } from './is_object';
+import type { PlainObject } from './is_object';
+import { iterate } from './iterate';
+import type { JsonIterateCallback } from './iterate';
+import type { Json } from './json';
+import { JsonCodec } from './json_codec';
+import { jsonToCtx } from './json_to_ctx';
+import { jsonToObject } from './json_to_object';
+import type { JsonToken, JsonTokenType } from './json_to_object';
+import { jsonToString } from './json_to_string';
+import { sort } from './sort';
+import { stringToJson } from './string_to_json';
+import { toJson } from './to_json';
+import { tryJsonToCtx } from './try_json_to_ctx';
+
+// Named exports
 export {
+  JsonCodec,
+  arrayToJson,
+  dictToJson,
   getDetailedDiff,
-  type DiffCreated,
-  type DiffDeleted,
-  type DiffEntry,
-  type DiffNested,
-  type DiffNode,
-  type DiffUpdated,
-} from './get_detailed_diff';
-export { JsonCodec } from './json_codec';
-export { arrayToJson } from './array_to_json';
-export { dictToJson } from './dict_to_json';
-export { getValueFromDiff } from './get_value_from_diff';
-export { isObject, type PlainObject } from './is_object';
-export { iterate, type JsonIterateCallback } from './iterate';
-export { jsonToCtx } from './json_to_ctx';
-export { jsonToObject, type JsonToken, type JsonTokenType } from './json_to_object';
-export { jsonToString } from './json_to_string';
-export { sort } from './sort';
-export { stringToJson } from './string_to_json';
-export { toJson } from './to_json';
-export { tryJsonToCtx } from './try_json_to_ctx';
-export { type Ctx } from './ctx';
-export { type Json } from './json';
+  getValueFromDiff,
+  isObject,
+  iterate,
+  jsonToCtx,
+  jsonToObject,
+  jsonToString,
+  sort,
+  stringToJson,
+  toJson,
+  tryJsonToCtx
+};
+export type {
+  Ctx,
+  DiffCreated,
+  DiffDeleted,
+  DiffEntry,
+  DiffNested,
+  DiffNode,
+  DiffUpdated,
+  Json,
+  JsonIterateCallback,
+  JsonToken,
+  JsonTokenType,
+  PlainObject
+};
+
+// Default export
+const json = {
+  arrayToJson,
+  dictToJson,
+  getDetailedDiff,
+  getValueFromDiff,
+  isObject,
+  iterate,
+  JsonCodec,
+  jsonToCtx,
+  jsonToObject,
+  jsonToString,
+  sort,
+  stringToJson,
+  toJson,
+  tryJsonToCtx,
+};
+
+
+export default json;

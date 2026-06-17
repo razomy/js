@@ -1,2 +1,17 @@
-export { generateFile } from './generate_file';
-export { insertTotalCount } from './insert_total_count';
+// Imports
+import { generateFile } from './generate_file';
+import { insertTotalCount } from './insert_total_count';
+
+// Named exports
+export {
+  generateFile,
+  insertTotalCount
+};
+
+// Default export
+const mocks = {
+  generateFile,
+  insertTotalCount,
+};
+
+export default mocks;

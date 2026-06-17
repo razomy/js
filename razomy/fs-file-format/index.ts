@@ -1,7 +1,12 @@
-export {
-  type ExtensionResult,
-  type FileCategory,
-  type FileExtensionType,
-  type FileFormat,
-  type MediaType,
-} from './file_extension';
+// Imports
+import type { ExtensionResult, FileCategory, FileExtensionType, FileFormat, MediaType } from './file_extension';
+
+// Named exports
+export type {
+  ExtensionResult,
+  FileCategory,
+  FileExtensionType,
+  FileFormat,
+  MediaType
+};
+

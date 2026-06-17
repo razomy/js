@@ -1,5 +1,19 @@
-export { type Action, type Callback } from './action';
-export { type Call, type Construct } from './functions';
-export { type Dispose } from './dispose';
-export { type Future, type FutureCallback } from './future';
-export { type Stream } from './stream';
+// Imports
+import type { Action, Callback } from './action';
+import type { Dispose } from './dispose';
+import type { Call, Construct } from './functions';
+import type { Future, FutureCallback } from './future';
+import type { Stream } from './stream';
+
+// Named exports
+export type {
+  Action,
+  Call,
+  Callback,
+  Construct,
+  Dispose,
+  Future,
+  FutureCallback,
+  Stream
+};
+

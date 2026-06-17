@@ -1,8 +1,42 @@
-export { SHARED_NODE, iterate, type IterateNode } from './iterate';
-export { cliCopy } from './cli_copy';
-export { copy } from './copy';
-export { delete_ } from './delete_';
-export { get } from './get';
-export { getAllFlat } from './get_all_flat';
-export { move } from './move';
-export { toDict } from './to_dict';
+// Imports
+import { cliCopy } from './cli_copy';
+import { copy } from './copy';
+import { delete_ } from './delete_';
+import { get } from './get';
+import { getAllFlat } from './get_all_flat';
+import { SHARED_NODE, iterate } from './iterate';
+import type { IterateNode } from './iterate';
+import { move } from './move';
+import { toDict } from './to_dict';
+
+// Named exports
+export {
+  SHARED_NODE,
+  cliCopy,
+  copy,
+  delete_,
+  get,
+  getAllFlat,
+  iterate,
+  move,
+  toDict
+};
+export type {
+  IterateNode
+};
+
+// Default export
+const fsRecursive = {
+  cliCopy,
+  copy,
+  delete_,
+  get,
+  getAllFlat,
+  SHARED_NODE,
+  iterate,
+  move,
+  toDict,
+};
+
+
+export default fsRecursive;

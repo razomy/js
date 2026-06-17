@@ -1,1 +1,14 @@
-export { KnowledgeGraph } from './knowledge_graph';
+// Imports
+import { KnowledgeGraph } from './knowledge_graph';
+
+// Named exports
+export {
+  KnowledgeGraph
+};
+
+// Default export
+const rala = {
+  KnowledgeGraph,
+};
+
+export default rala;

@@ -1,3 +1,27 @@
-export * as query from './query';
-export * as storage from './storage';
-export { type Edge, type EdgeKey, type Id, type Node, type Tag, type Value } from './type';
+// Imports
+import * as query from './query';
+import * as storage from './storage';
+import type { Edge, EdgeKey, Id, Node, Tag, Value } from './type';
+
+// Named exports
+export {
+  query,
+  storage
+};
+export type {
+  Edge,
+  EdgeKey,
+  Id,
+  Node,
+  Tag,
+  Value
+};
+
+// Default export
+const dbGraph = {
+  query,
+  storage,
+};
+
+
+export default dbGraph;

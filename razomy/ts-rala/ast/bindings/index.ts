@@ -1,15 +1,56 @@
-export { getPackage } from './get_package';
-export { getPublicOnlyMut } from './get_public_only_mut';
-export { isBindings } from './is_bindings';
-export { parse } from './parse';
-export { parseEnum } from './parse_enum';
-export { parseEnumProperty } from './parse_enum_property';
-export { parseExport } from './parse_export';
-export { parseFunction } from './parse_function';
-export { parseIdentifier } from './parse_identifier';
-export { parseModule } from './parse_module';
-export { parseModuleBody } from './parse_module_body';
-export { parseParameter } from './parse_parameter';
-export { parseProperty } from './parse_property';
-export { parseStatement } from './parse_statement';
-export { parseVariable } from './parse_variable';
+// Imports
+import { getPackage } from './get_package';
+import { getPublicOnlyMut } from './get_public_only_mut';
+import { isBindings } from './is_bindings';
+import { parse } from './parse';
+import { parseEnum } from './parse_enum';
+import { parseEnumProperty } from './parse_enum_property';
+import { parseExport } from './parse_export';
+import { parseFunction } from './parse_function';
+import { parseIdentifier } from './parse_identifier';
+import { parseModule } from './parse_module';
+import { parseModuleBody } from './parse_module_body';
+import { parseParameter } from './parse_parameter';
+import { parseProperty } from './parse_property';
+import { parseStatement } from './parse_statement';
+import { parseVariable } from './parse_variable';
+
+// Named exports
+export {
+  getPackage,
+  getPublicOnlyMut,
+  isBindings,
+  parse,
+  parseEnum,
+  parseEnumProperty,
+  parseExport,
+  parseFunction,
+  parseIdentifier,
+  parseModule,
+  parseModuleBody,
+  parseParameter,
+  parseProperty,
+  parseStatement,
+  parseVariable
+};
+
+// Default export
+const bindings = {
+  getPackage,
+  getPublicOnlyMut,
+  isBindings,
+  parse,
+  parseEnum,
+  parseEnumProperty,
+  parseExport,
+  parseFunction,
+  parseIdentifier,
+  parseModule,
+  parseModuleBody,
+  parseParameter,
+  parseProperty,
+  parseStatement,
+  parseVariable,
+};
+
+export default bindings;

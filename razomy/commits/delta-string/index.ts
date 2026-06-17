@@ -1,9 +1,44 @@
-export { addssToString, type ActorDatetimeDeltaString } from './addss_to_string';
-export { deltaStringsToString } from './delta_strings_to_string';
-export { findRepetitions } from './find_repetitions';
-export { iterateCommit } from './iterate_commit';
-export { mapCommit } from './map_commit';
-export { removeDuplicatedChanges } from './remove_duplicated_changes';
-export { squashChanges } from './squash_changes';
-export { stringsToDeltaStrings } from './strings_to_delta_strings';
-export { type AddDeltaString, type DeltaString, type RemoveDeltaString } from './delta_string';
+// Imports
+import { addssToString } from './addss_to_string';
+import type { ActorDatetimeDeltaString } from './addss_to_string';
+import type { AddDeltaString, DeltaString, RemoveDeltaString } from './delta_string';
+import { deltaStringsToString } from './delta_strings_to_string';
+import { findRepetitions } from './find_repetitions';
+import { iterateCommit } from './iterate_commit';
+import { mapCommit } from './map_commit';
+import { removeDuplicatedChanges } from './remove_duplicated_changes';
+import { squashChanges } from './squash_changes';
+import { stringsToDeltaStrings } from './strings_to_delta_strings';
+
+// Named exports
+export {
+  addssToString,
+  deltaStringsToString,
+  findRepetitions,
+  iterateCommit,
+  mapCommit,
+  removeDuplicatedChanges,
+  squashChanges,
+  stringsToDeltaStrings
+};
+export type {
+  ActorDatetimeDeltaString,
+  AddDeltaString,
+  DeltaString,
+  RemoveDeltaString
+};
+
+// Default export
+const deltaString = {
+  addssToString,
+  deltaStringsToString,
+  findRepetitions,
+  iterateCommit,
+  mapCommit,
+  removeDuplicatedChanges,
+  squashChanges,
+  stringsToDeltaStrings,
+};
+
+
+export default deltaString;

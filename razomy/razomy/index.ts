@@ -1,1 +1,8 @@
-export { type Razomy } from './razomy';
+// Imports
+import type { Razomy } from './razomy';
+
+// Named exports
+export type {
+  Razomy
+};
+

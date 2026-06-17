@@ -1,6 +1,29 @@
-export { blend } from './blend';
-export { composite } from './composite';
-export { drawCircle } from './draw_circle';
-export { drawLine } from './draw_line';
-export { drawRectangle } from './draw_rectangle';
-export { join } from './join';
+// Imports
+import { blend } from './blend';
+import { composite } from './composite';
+import { drawCircle } from './draw_circle';
+import { drawLine } from './draw_line';
+import { drawRectangle } from './draw_rectangle';
+import { join } from './join';
+
+// Named exports
+export {
+  blend,
+  composite,
+  drawCircle,
+  drawLine,
+  drawRectangle,
+  join
+};
+
+// Default export
+const compositing = {
+  blend,
+  composite,
+  drawCircle,
+  drawLine,
+  drawRectangle,
+  join,
+};
+
+export default compositing;

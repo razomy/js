@@ -1,1 +1,8 @@
-export { type Transitions } from './ecs';
+// Imports
+import type { Transitions } from './ecs';
+
+// Named exports
+export type {
+  Transitions
+};
+

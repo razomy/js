@@ -1,13 +1,32 @@
-export {
-  type DoublyLinkedList,
-  type DoublyLinkedListNode,
-  type HashTable,
-  type LinkedList,
-  type LinkedListNode,
-  type Node,
-} from './structures';
-export { type Context, type Value } from './value';
-export { type Dict, type RecursiveDict } from './dict';
-export { type DisjointSet, type RingBuffer, type SkipList, type SkipListNode } from './structures_advanced';
-export { type Key, type KeyValue, type KeyValueArray, type KvaOrValue } from './kva';
-export { type Vrd, type VrdOrValue } from './vrd';
+// Imports
+import type { Dict, RecursiveDict } from './dict';
+import type { Key, KeyValue, KeyValueArray, KvaOrValue } from './kva';
+import type { DoublyLinkedList, DoublyLinkedListNode, HashTable, LinkedList, LinkedListNode, Node } from './structures';
+import type { DisjointSet, RingBuffer, SkipList, SkipListNode } from './structures_advanced';
+import type { Context, Value } from './value';
+import type { Vrd, VrdOrValue } from './vrd';
+
+// Named exports
+export type {
+  Context,
+  Dict,
+  DisjointSet,
+  DoublyLinkedList,
+  DoublyLinkedListNode,
+  HashTable,
+  Key,
+  KeyValue,
+  KeyValueArray,
+  KvaOrValue,
+  LinkedList,
+  LinkedListNode,
+  Node,
+  RecursiveDict,
+  RingBuffer,
+  SkipList,
+  SkipListNode,
+  Value,
+  Vrd,
+  VrdOrValue
+};
+

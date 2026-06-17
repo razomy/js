@@ -1,29 +1,112 @@
-export { IterateBreaks, iterateVrd, type Iterate } from './iterate_vrd';
-export { Vrd, type VrdOrValue, vrd } from './vrd';
-export { differencesDict } from './differences_dict';
-export { differencesVrd, type P, type ReplaceDifference } from './differences_vrd';
-export { filterVrd } from './filter_vrd';
-export { flatten } from './flatten';
-export { getByPath } from './get_by_path';
-export { getMatchesKey } from './get_matches_key';
-export { getParents } from './get_parents';
-export { getVrd } from './get_vrd';
-export { isVrd } from './is_vrd';
-export { iterateBreak } from './iterate_break';
-export { iterateSkip } from './iterate_skip';
-export { kvToVrd } from './kv_to_vrd';
-export { mapVrd } from './map_vrd';
-export { mergeDict } from './merge_dict';
-export { mergeVrd } from './merge_vrd';
-export { merges } from './merges';
-export { orderVrd } from './order_vrd';
-export { pathToVrd } from './path_to_vrd';
-export { pvaToVrd } from './pva_to_vrd';
-export { rdToVrd } from './rd_to_vrd';
-export { setVrd } from './set_vrd';
-export { test } from './test';
-export { unflatten } from './unflatten';
-export { vrdToAbsolutePath } from './vrd_to_absolute_path';
-export { vrdToPath } from './vrd_to_path';
-export { vrdToPva } from './vrd_to_pva';
-export { vrlToVrd } from './vrl_to_vrd';
+// Imports
+import { differencesDict } from './differences_dict';
+import { differencesVrd } from './differences_vrd';
+import type { P, ReplaceDifference } from './differences_vrd';
+import { filterVrd } from './filter_vrd';
+import { flatten } from './flatten';
+import { getByPath } from './get_by_path';
+import { getMatchesKey } from './get_matches_key';
+import { getParents } from './get_parents';
+import { getVrd } from './get_vrd';
+import { isVrd } from './is_vrd';
+import { iterateBreak } from './iterate_break';
+import { iterateSkip } from './iterate_skip';
+import { IterateBreaks, iterateVrd } from './iterate_vrd';
+import type { Iterate } from './iterate_vrd';
+import { kvToVrd } from './kv_to_vrd';
+import { mapVrd } from './map_vrd';
+import { mergeDict } from './merge_dict';
+import { mergeVrd } from './merge_vrd';
+import { merges } from './merges';
+import { orderVrd } from './order_vrd';
+import { pathToVrd } from './path_to_vrd';
+import { pvaToVrd } from './pva_to_vrd';
+import { rdToVrd } from './rd_to_vrd';
+import { setVrd } from './set_vrd';
+import { test } from './test';
+import { unflatten } from './unflatten';
+import { Vrd, create } from './vrd';
+import type { VrdOrValue } from './vrd';
+import { vrdToAbsolutePath } from './vrd_to_absolute_path';
+import { vrdToPath } from './vrd_to_path';
+import { vrdToPva } from './vrd_to_pva';
+import { vrlToVrd } from './vrl_to_vrd';
+
+// Named exports
+export {
+  IterateBreaks,
+  Vrd,
+  create,
+  differencesDict,
+  differencesVrd,
+  filterVrd,
+  flatten,
+  getByPath,
+  getMatchesKey,
+  getParents,
+  getVrd,
+  isVrd,
+  iterateBreak,
+  iterateSkip,
+  iterateVrd,
+  kvToVrd,
+  mapVrd,
+  mergeDict,
+  mergeVrd,
+  merges,
+  orderVrd,
+  pathToVrd,
+  pvaToVrd,
+  rdToVrd,
+  setVrd,
+  test,
+  unflatten,
+  vrdToAbsolutePath,
+  vrdToPath,
+  vrdToPva,
+  vrlToVrd
+};
+export type {
+  Iterate,
+  P,
+  ReplaceDifference,
+  VrdOrValue
+};
+
+// Default export
+const vrd = {
+  differencesDict,
+  differencesVrd,
+  filterVrd,
+  flatten,
+  getByPath,
+  getMatchesKey,
+  getParents,
+  getVrd,
+  isVrd,
+  iterateBreak,
+  iterateSkip,
+  IterateBreaks,
+  iterateVrd,
+  kvToVrd,
+  mapVrd,
+  mergeDict,
+  mergeVrd,
+  merges,
+  orderVrd,
+  pathToVrd,
+  pvaToVrd,
+  rdToVrd,
+  setVrd,
+  test,
+  unflatten,
+  Vrd,
+  create,
+  vrdToAbsolutePath,
+  vrdToPath,
+  vrdToPva,
+  vrlToVrd,
+};
+
+
+export default vrd;

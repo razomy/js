@@ -8,6 +8,6 @@ export class Vrd<T> {
   }
 }
 
-export function vrd<T = unknown, T1 = object>(_: T1 = {} as T1): Vrd<T> & T1 {
+export function create<T = unknown, T1 = object>(_: T1 = {} as T1): Vrd<T> & T1 {
   return new Vrd<T>(_) as Vrd<T> & T1;
 }

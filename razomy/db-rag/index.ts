@@ -1,8 +1,40 @@
-export { create } from './create';
-export { deleteFiles } from './delete_files';
-export { getEmbedding } from './get_embedding';
-export { getLastCommitId, type ChunkFile } from './get_last_commit_id';
-export { indexFs } from './index_fs';
-export { reset } from './reset';
-export { search } from './search';
-export { trySetUp } from './try_set_up';
+// Imports
+import { create } from './create';
+import { deleteFiles } from './delete_files';
+import { getEmbedding } from './get_embedding';
+import { getLastCommitId } from './get_last_commit_id';
+import type { ChunkFile } from './get_last_commit_id';
+import { indexFs } from './index_fs';
+import { reset } from './reset';
+import { search } from './search';
+import { trySetUp } from './try_set_up';
+
+// Named exports
+export {
+  create,
+  deleteFiles,
+  getEmbedding,
+  getLastCommitId,
+  indexFs,
+  reset,
+  search,
+  trySetUp
+};
+export type {
+  ChunkFile
+};
+
+// Default export
+const dbRag = {
+  create,
+  deleteFiles,
+  getEmbedding,
+  getLastCommitId,
+  indexFs,
+  reset,
+  search,
+  trySetUp,
+};
+
+
+export default dbRag;

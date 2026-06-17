@@ -1,3 +1,20 @@
-export * as actors from './actors';
-export * as ai from './ai';
-export * as tools from './tools';
+// Imports
+import * as actors from './actors';
+import * as ai from './ai';
+import * as tools from './tools';
+
+// Named exports
+export {
+  actors,
+  ai,
+  tools
+};
+
+// Default export
+const refactor = {
+  actors,
+  ai,
+  tools,
+};
+
+export default refactor;

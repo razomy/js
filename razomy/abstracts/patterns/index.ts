@@ -1,7 +1,26 @@
-export { type ChangeDifference, type Difference, type DifferenceType, type ReplaceDifference } from './difference';
-export { type Codec } from './codec';
-export { type Decode, type HasDecode } from './with_decode';
-export { type Encode, type HasEncode } from './with_encode';
-export { type Execute, type HasExecute } from './with_execute';
-export { type Gate } from './gate';
-export { type HasCreate } from './with_create';
+// Imports
+import type { Codec } from './codec';
+import type { ChangeDifference, Difference, DifferenceType, ReplaceDifference } from './difference';
+import type { Gate } from './gate';
+import type { HasCreate } from './with_create';
+import type { Decode, HasDecode } from './with_decode';
+import type { Encode, HasEncode } from './with_encode';
+import type { Execute, HasExecute } from './with_execute';
+
+// Named exports
+export type {
+  ChangeDifference,
+  Codec,
+  Decode,
+  Difference,
+  DifferenceType,
+  Encode,
+  Execute,
+  Gate,
+  HasCreate,
+  HasDecode,
+  HasEncode,
+  HasExecute,
+  ReplaceDifference
+};
+

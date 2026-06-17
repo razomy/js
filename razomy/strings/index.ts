@@ -1,2 +1,17 @@
-export * as path from './path';
-export { separateStrings } from './separate_strings';
+// Imports
+import * as path from './path';
+import { separateStrings } from './separate_strings';
+
+// Named exports
+export {
+  path,
+  separateStrings
+};
+
+// Default export
+const strings = {
+  path,
+  separateStrings,
+};
+
+export default strings;

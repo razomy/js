@@ -1,4 +1,23 @@
-export * as bound from './bound';
-export * as offset from './offset';
-export * as tokenOffset from './token-offset';
-export * as tokenOffsetDeep from './token-offset-deep';
+// Imports
+import * as bound from './bound';
+import * as offset from './offset';
+import * as tokenOffset from './token-offset';
+import * as tokenOffsetDeep from './token-offset-deep';
+
+// Named exports
+export {
+  bound,
+  offset,
+  tokenOffset,
+  tokenOffsetDeep
+};
+
+// Default export
+const lexemes = {
+  bound,
+  offset,
+  tokenOffset,
+  tokenOffsetDeep,
+};
+
+export default lexemes;

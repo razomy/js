@@ -1,8 +1,35 @@
-export { addDependencies } from './add_dependencies';
-export { autoPatch } from './auto_patch';
-export { createAtChildDirs } from './create_at_child_dirs';
-export { createDist } from './create_dist';
-export { createRoot } from './create_root';
-export { getAll } from './get_all';
-export { isPackageNameSkip } from './is_package_name_skip';
-export { updateByTemplate } from './update_by_template';
+// Imports
+import { addDependencies } from './add_dependencies';
+import { autoPatch } from './auto_patch';
+import { createAtChildDirs } from './create_at_child_dirs';
+import { createDist } from './create_dist';
+import { createRoot } from './create_root';
+import { getAll } from './get_all';
+import { isPackageNameSkip } from './is_package_name_skip';
+import { updateByTemplate } from './update_by_template';
+
+// Named exports
+export {
+  addDependencies,
+  autoPatch,
+  createAtChildDirs,
+  createDist,
+  createRoot,
+  getAll,
+  isPackageNameSkip,
+  updateByTemplate
+};
+
+// Default export
+const packageJson = {
+  addDependencies,
+  autoPatch,
+  createAtChildDirs,
+  createDist,
+  createRoot,
+  getAll,
+  isPackageNameSkip,
+  updateByTemplate,
+};
+
+export default packageJson;

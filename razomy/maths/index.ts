@@ -1,3 +1,9 @@
+// Imports
+import { calculate } from './calculate';
+import { calculateWithParams } from './calculate_with_params';
+import { BILLION, CENTILLION, DECILLION, DUODECILLION, HUNDRED, HUNDRED_MILLION, HUNDRED_THOUSAND, MILLIARD, MILLION, NONILLION, NOVEMDECILLION, OCTILLION, OCTODECILLION, ONE, QUADRILLION, QUATTUORDECILLION, QUINDECILLION, QUINTILLION, SEPTENDECILLION, SEPTILLION, SEXDECILLION, SEXTILLION, TEN, TEN_MILLION, TEN_THOUSAND, THOUSAND, TREDECILLION, TRILLION, UNDECILLION, VIGINTILLION } from './numbers';
+
+// Named exports
 export {
   BILLION,
   CENTILLION,
@@ -29,6 +35,44 @@ export {
   TRILLION,
   UNDECILLION,
   VIGINTILLION,
-} from './numbers';
-export { calculate } from './calculate';
-export { calculateWithParams } from './calculate_with_params';
+  calculate,
+  calculateWithParams
+};
+
+// Default export
+const maths = {
+  calculate,
+  calculateWithParams,
+  BILLION,
+  CENTILLION,
+  DECILLION,
+  DUODECILLION,
+  HUNDRED,
+  HUNDRED_MILLION,
+  HUNDRED_THOUSAND,
+  MILLIARD,
+  MILLION,
+  NONILLION,
+  NOVEMDECILLION,
+  OCTILLION,
+  OCTODECILLION,
+  ONE,
+  QUADRILLION,
+  QUATTUORDECILLION,
+  QUINDECILLION,
+  QUINTILLION,
+  SEPTENDECILLION,
+  SEPTILLION,
+  SEXDECILLION,
+  SEXTILLION,
+  TEN,
+  TEN_MILLION,
+  TEN_THOUSAND,
+  THOUSAND,
+  TREDECILLION,
+  TRILLION,
+  UNDECILLION,
+  VIGINTILLION,
+};
+
+export default maths;

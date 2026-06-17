@@ -1,21 +1,78 @@
-export { BitSize, createId } from './create_id';
-export { GuidFactory, createGuid } from './create_guid';
-export { createCssGradient } from './create_css_gradient';
-export { createDate } from './create_date';
-export { createFloat } from './create_float';
-export { createFloatRange } from './create_float_range';
-export { createInt } from './create_int';
-export { createIpv4 } from './create_ipv_4';
-export { createLightHexColor } from './create_light_hex_color';
-export { createLorem } from './create_lorem';
-export { createMac } from './create_mac';
-export { createPassword } from './create_password';
-export { createPinCode } from './create_pin_code';
-export { createRecoveryKeys } from './create_recovery_keys';
-export { createString } from './create_string';
-export { createUuid } from './create_uuid';
-export { isYesOrNo } from './is_yes_or_no';
-export { pickItem } from './pick_item';
-export { rollDice } from './roll_dice';
-export { shuffleArray } from './shuffle_array';
-export { splitIntoGroups } from './split_into_groups';
+// Imports
+import { createCssGradient } from './create_css_gradient';
+import { createDate } from './create_date';
+import { createFloat } from './create_float';
+import { createFloatRange } from './create_float_range';
+import { GuidFactory, createGuid } from './create_guid';
+import { BitSize, createId } from './create_id';
+import { createInt } from './create_int';
+import { createIpv4 } from './create_ipv_4';
+import { createLightHexColor } from './create_light_hex_color';
+import { createLorem } from './create_lorem';
+import { createMac } from './create_mac';
+import { createPassword } from './create_password';
+import { createPinCode } from './create_pin_code';
+import { createRecoveryKeys } from './create_recovery_keys';
+import { createString } from './create_string';
+import { createUuid } from './create_uuid';
+import { isYesOrNo } from './is_yes_or_no';
+import { pickItem } from './pick_item';
+import { rollDice } from './roll_dice';
+import { shuffleArray } from './shuffle_array';
+import { splitIntoGroups } from './split_into_groups';
+
+// Named exports
+export {
+  BitSize,
+  GuidFactory,
+  createCssGradient,
+  createDate,
+  createFloat,
+  createFloatRange,
+  createGuid,
+  createId,
+  createInt,
+  createIpv4,
+  createLightHexColor,
+  createLorem,
+  createMac,
+  createPassword,
+  createPinCode,
+  createRecoveryKeys,
+  createString,
+  createUuid,
+  isYesOrNo,
+  pickItem,
+  rollDice,
+  shuffleArray,
+  splitIntoGroups
+};
+
+// Default export
+const random = {
+  createCssGradient,
+  createDate,
+  createFloat,
+  createFloatRange,
+  GuidFactory,
+  createGuid,
+  BitSize,
+  createId,
+  createInt,
+  createIpv4,
+  createLightHexColor,
+  createLorem,
+  createMac,
+  createPassword,
+  createPinCode,
+  createRecoveryKeys,
+  createString,
+  createUuid,
+  isYesOrNo,
+  pickItem,
+  rollDice,
+  shuffleArray,
+  splitIntoGroups,
+};
+
+export default random;

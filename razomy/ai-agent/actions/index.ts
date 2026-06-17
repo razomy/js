@@ -1,6 +1,29 @@
-export { askBool } from './ask_bool';
-export { askCompose } from './ask_compose';
-export { askJson } from './ask_json';
-export { askNumber } from './ask_number';
-export { askSwitch } from './ask_switch';
-export { askTaskDecompose } from './ask_task_decompose';
+// Imports
+import { askBool } from './ask_bool';
+import { askCompose } from './ask_compose';
+import { askJson } from './ask_json';
+import { askNumber } from './ask_number';
+import { askSwitch } from './ask_switch';
+import { askTaskDecompose } from './ask_task_decompose';
+
+// Named exports
+export {
+  askBool,
+  askCompose,
+  askJson,
+  askNumber,
+  askSwitch,
+  askTaskDecompose
+};
+
+// Default export
+const actions = {
+  askBool,
+  askCompose,
+  askJson,
+  askNumber,
+  askSwitch,
+  askTaskDecompose,
+};
+
+export default actions;

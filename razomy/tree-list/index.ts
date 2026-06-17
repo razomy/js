@@ -1,16 +1,62 @@
-export * as parent from './parent';
-export { filter } from './filter';
-export { filterFirst } from './filter_first';
-export { get } from './get';
-export { getAll } from './get_all';
-export { getCondition } from './get_condition';
-export { iterate } from './iterate';
-export { iterateReverse } from './iterate_reverse';
-export { last } from './last';
-export { map } from './map';
-export { mapChildren } from './map_children';
-export { nodesArrayToTree } from './nodes_array_to_tree';
-export { splitNodesArrayToTree } from './split_nodes_array_to_tree';
-export { type HasChildrenList } from './with_children_list';
-export { type ListTree } from './list_tree';
-export { type ValueChildren, vrdToTree } from './vrd_to_tree';
+// Imports
+import { filter } from './filter';
+import { filterFirst } from './filter_first';
+import { get } from './get';
+import { getAll } from './get_all';
+import { getCondition } from './get_condition';
+import { iterate } from './iterate';
+import { iterateReverse } from './iterate_reverse';
+import { last } from './last';
+import type { ListTree } from './list_tree';
+import { map } from './map';
+import { mapChildren } from './map_children';
+import { nodesArrayToTree } from './nodes_array_to_tree';
+import * as parent from './parent';
+import { splitNodesArrayToTree } from './split_nodes_array_to_tree';
+import { vrdToTree } from './vrd_to_tree';
+import type { ValueChildren } from './vrd_to_tree';
+import type { HasChildrenList } from './with_children_list';
+
+// Named exports
+export {
+  filter,
+  filterFirst,
+  get,
+  getAll,
+  getCondition,
+  iterate,
+  iterateReverse,
+  last,
+  map,
+  mapChildren,
+  nodesArrayToTree,
+  parent,
+  splitNodesArrayToTree,
+  vrdToTree
+};
+export type {
+  HasChildrenList,
+  ListTree,
+  ValueChildren
+};
+
+// Default export
+const treeList = {
+  filter,
+  filterFirst,
+  get,
+  getAll,
+  getCondition,
+  iterate,
+  iterateReverse,
+  last,
+  map,
+  mapChildren,
+  nodesArrayToTree,
+  parent,
+  splitNodesArrayToTree,
+  vrdToTree,
+};
+
+
+export default treeList;

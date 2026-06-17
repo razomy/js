@@ -1,8 +1,35 @@
-export { isStatement } from './is_statement';
-export { parse } from './parse';
-export { parseBlock } from './parse_block';
-export { parseCondition } from './parse_condition';
-export { parseGo } from './parse_go';
-export { parseLoop } from './parse_loop';
-export { parseReturn } from './parse_return';
-export { parseThrow } from './parse_throw';
+// Imports
+import { isStatement } from './is_statement';
+import { parse } from './parse';
+import { parseBlock } from './parse_block';
+import { parseCondition } from './parse_condition';
+import { parseGo } from './parse_go';
+import { parseLoop } from './parse_loop';
+import { parseReturn } from './parse_return';
+import { parseThrow } from './parse_throw';
+
+// Named exports
+export {
+  isStatement,
+  parse,
+  parseBlock,
+  parseCondition,
+  parseGo,
+  parseLoop,
+  parseReturn,
+  parseThrow
+};
+
+// Default export
+const statements = {
+  isStatement,
+  parse,
+  parseBlock,
+  parseCondition,
+  parseGo,
+  parseLoop,
+  parseReturn,
+  parseThrow,
+};
+
+export default statements;

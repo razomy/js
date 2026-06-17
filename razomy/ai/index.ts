@@ -1,11 +1,39 @@
-export * as apiRun from './api-run';
+// Imports
+import * as apiRun from './api-run';
+import type { AiLlmContext, AiMessage, TextAiMessage, ToolsAiMessage } from './message';
+import { MaxAttemptLlmException, MustUseToolLlmException, PanicAnswerLlmException, ToolExecuteLlmException, TypedAnswerLlmException } from './must_use_tool_llm_exception';
+import { sM } from './s_m';
+import { uM } from './u_m';
+
+// Named exports
 export {
   MaxAttemptLlmException,
   MustUseToolLlmException,
   PanicAnswerLlmException,
   ToolExecuteLlmException,
   TypedAnswerLlmException,
-} from './must_use_tool_llm_exception';
-export { sM } from './s_m';
-export { type AiLlmContext, type AiMessage, type TextAiMessage, type ToolsAiMessage } from './message';
-export { uM } from './u_m';
+  apiRun,
+  sM,
+  uM
+};
+export type {
+  AiLlmContext,
+  AiMessage,
+  TextAiMessage,
+  ToolsAiMessage
+};
+
+// Default export
+const ai = {
+  apiRun,
+  MaxAttemptLlmException,
+  MustUseToolLlmException,
+  PanicAnswerLlmException,
+  ToolExecuteLlmException,
+  TypedAnswerLlmException,
+  sM,
+  uM,
+};
+
+
+export default ai;

@@ -1,4 +1,30 @@
-export { architecture } from './architecture';
-export { businessAnalytic } from './business_analytic';
-export { developerSolve } from './developer_solve';
-export { directorCompany, type ActorContext, type ArchitecturePlan, type DeveloperTask } from './director_company';
+// Imports
+import { architecture } from './architecture';
+import { businessAnalytic } from './business_analytic';
+import { developerSolve } from './developer_solve';
+import { directorCompany } from './director_company';
+import type { ActorContext, ArchitecturePlan, DeveloperTask } from './director_company';
+
+// Named exports
+export {
+  architecture,
+  businessAnalytic,
+  developerSolve,
+  directorCompany
+};
+export type {
+  ActorContext,
+  ArchitecturePlan,
+  DeveloperTask
+};
+
+// Default export
+const actors = {
+  architecture,
+  businessAnalytic,
+  developerSolve,
+  directorCompany,
+};
+
+
+export default actors;

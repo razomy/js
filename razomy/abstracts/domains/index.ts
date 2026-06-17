@@ -1,20 +1,45 @@
-export {
-  type HasSerializable,
-  type Serializable,
-  type SerializablePrimitive,
-  type SerializableValue,
-} from './serializable';
-export { type EntityId, type IEntity } from './i_entity';
-export { type HasClone } from './has_clone';
-export { type HasCreatedAt, type HasDeletedAt, type HasUpdatedAt } from './has_created_at';
-export { type HasDescription } from './has_description';
-export { type HasId } from './has_id';
-export { type HasKind } from './has_kind';
-export { type HasName } from './has_name';
-export { type HasType } from './has_type';
-export { type HasValue } from './has_value';
-export { type IContext } from './i_context';
-export { type IController, type IMachine, type IModule } from './i_module';
-export { type IHas } from './i_has';
-export { type IHasRef, type IdRef } from './i_has_ref';
-export { type IResource } from './i_resource';
+// Imports
+import type { HasClone } from './has_clone';
+import type { HasCreatedAt, HasDeletedAt, HasUpdatedAt } from './has_created_at';
+import type { HasDescription } from './has_description';
+import type { HasId } from './has_id';
+import type { HasKind } from './has_kind';
+import type { HasName } from './has_name';
+import type { HasType } from './has_type';
+import type { HasValue } from './has_value';
+import type { IContext } from './i_context';
+import type { EntityId, IEntity } from './i_entity';
+import type { IHas } from './i_has';
+import type { IHasRef, IdRef } from './i_has_ref';
+import type { IController, IMachine, IModule } from './i_module';
+import type { IResource } from './i_resource';
+import type { HasSerializable, Serializable, SerializablePrimitive, SerializableValue } from './serializable';
+
+// Named exports
+export type {
+  EntityId,
+  HasClone,
+  HasCreatedAt,
+  HasDeletedAt,
+  HasDescription,
+  HasId,
+  HasKind,
+  HasName,
+  HasSerializable,
+  HasType,
+  HasUpdatedAt,
+  HasValue,
+  IContext,
+  IController,
+  IEntity,
+  IHas,
+  IHasRef,
+  IMachine,
+  IModule,
+  IResource,
+  IdRef,
+  Serializable,
+  SerializablePrimitive,
+  SerializableValue
+};
+
