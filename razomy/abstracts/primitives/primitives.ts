@@ -12,7 +12,8 @@ export type I32 = abstracts.meta.Brand<number, 'I32'>;
 export type I64 = abstracts.meta.Brand<bigint, 'I64'>;
 export type I128 = abstracts.meta.Brand<bigint, 'I128'>;
 export type Int = I32;
-export type IntPrimitive = I8 | I16 | I32 | I64 | I128 | Int;
+export type Long = I64;
+export type IntPrimitive = I8 | I16 | I32 | I64 | I128 | Int | Long;
 
 // Беззнаковые целые числа
 export type U8 = abstracts.meta.Brand<number, 'U8'>;
@@ -26,7 +27,8 @@ export type UIntPrimitive = U8 | U16 | U32 | U64 | U128;
 export type F32 = abstracts.meta.Brand<number, 'F32'>;
 export type F64 = abstracts.meta.Brand<number, 'F64'>;
 export type Float = F32;
-export type FloatPrimitive = F32 | F64 | Float;
+export type Double = F32;
+export type FloatPrimitive = F32 | F64 | Float | Double;
 
 export type Number = number;
 export type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive | Number;

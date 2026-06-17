@@ -28,7 +28,7 @@ import * as abstracts from '@razomy/abstracts';
  * The foundational interface for all AST nodes.
  * @abstract
  */
-export interface AstNode {
+export interface CodeNode {
   /**
    * @abstract
    */
@@ -46,7 +46,7 @@ export interface AstNode {
  * ```
  * @abstract
  */
-export interface Expression extends AstNode {
+export interface Expression extends CodeNode {
 }
 
 /**
@@ -61,13 +61,13 @@ export interface Expression extends AstNode {
  * ```
  * @abstract
  */
-export interface Statement extends AstNode {
+export interface Statement extends CodeNode {
 }
 
 /**
  * @final
  */
-export interface Identifier extends AstNode {
+export interface Identifier extends CodeNode {
   kind: 'Identifier';
   name: string;
 }
@@ -83,13 +83,13 @@ export interface Identifier extends AstNode {
  * ```
  * @abstract
  */
-export interface Binding extends AstNode {
+export interface Binding extends CodeNode {
 }
 
 /**
  * @abstract
  */
-export type AstValueType = Expression | Statement | Binding;
+export type CodeValueType = Expression | Statement | Binding;
 
 // region Expression
 
@@ -728,14 +728,14 @@ export type BindingType =
  * ```
  * @abstract
  */
-export interface Shape extends AstNode {
+export interface Shape extends CodeNode {
 }
 
 /*
  * @abstract
  * @deprecated no need
  */
-export interface ShapeStatement extends AstNode {
+export interface ShapeStatement extends CodeNode {
 }
 
 /**
@@ -746,7 +746,7 @@ export interface ShapeStatement extends AstNode {
  * ```
  * @final
  */
-export interface ShapeIdentifier extends AstNode {
+export interface ShapeIdentifier extends CodeNode {
   kind: 'ShapeIdentifier';
   name: string;
 }
@@ -754,10 +754,10 @@ export interface ShapeIdentifier extends AstNode {
 /*
  * @abstract
  */
-export interface ShapeBinding extends AstNode {
+export interface ShapeBinding extends CodeNode {
 }
 
-export type AstShapeType = Shape | ShapeStatement | ShapeBinding;
+export type CodeShapeType = Shape | ShapeStatement | ShapeBinding;
 
 // region ShapeType
 
@@ -986,21 +986,21 @@ export type ShapeBindingType = InterfaceShapeBinding | AliasShapeBinding;
 // ПРОСТРАНСТВО ОНТОЛОГИИ (ТИПЫ И ФАКТЫ) - Concept
 // ==========================================
 
-export interface Concept extends AstNode {
+export interface Concept extends CodeNode {
 }
 
-export interface Clause extends AstNode {
+export interface Clause extends CodeNode {
 }
 
 /**
  * Concept
  */
-export interface ConceptIdentifier extends AstNode {
+export interface ConceptIdentifier extends CodeNode {
   kind: 'ConceptIdentifier';
   name: string; // 'Actor', 'Theme', 'Instrument', 'Location'
 }
 
-export type AstOntologyType = Concept | Clause;
+export type CodeOntologyType = Concept | Clause;
 
 // region Concept
 /**
@@ -1044,7 +1044,7 @@ export interface PredicateConcept extends Concept {
  * "Книга находится на столе" -> predicate: "находится", args: [theme: "Книга", location: "стол"]
  * "Библиотека темная" -> predicate: "темная", args: [theme: "Библиотека"]
  */
-export interface FactConcept extends AstNode {
+export interface FactConcept extends CodeNode {
   kind: 'FactConcept';
   predicate: ConceptIdentifier;
   isNegative: boolean; // true = retract/not
@@ -1135,7 +1135,7 @@ export interface BlockClause extends Clause {
 /**
  * Инвариант. Целостность базы данных.
  */
-export interface InvariantClause extends AstNode {
+export interface InvariantClause extends CodeNode {
   kind: 'InvariantClause';
   conditions: ExpressionType[]; // Если эти условия совпали — откатываем транзакцию
   errorMessage?: string;
@@ -1164,4 +1164,4 @@ export type ClauseType = ActionClause | StateTransitionClause | RuleClause | Blo
 
 export type DeclarationType = StatementType | BindingType | ShapeBindingType;
 
-export type AstType = AstValueType | AstShapeType | AstOntologyType;
+export type CodeType = CodeValueType | CodeShapeType | CodeOntologyType;
