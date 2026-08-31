@@ -2,11 +2,9 @@ order
  config
  description
  index.ts
- token.ts
+ lst.ts
  cst.ts
  ast.ts
- sst.ts
- code_ast.ts
  hir.ts
  validator.ts
  core.ts

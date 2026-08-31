@@ -1,23 +1,15 @@
-### Полный пайплайн компилятора (Архитектурный граф)
-
-toc
-↓ Source Code - raw text string
-↓ Lexer - stream of tokens (keywords, symbols)
-↓ Parser (CST) - concrete syntax tree (keeps exact formatting & punctuation)
-↓ Surface AST - logical tree structure (classes, loops, syntax sugar)
-↓ Desugar & Resolve - remove syntax sugar (e.g., for to while), bind string names to unique IDs
-↓ HIR (Semantic AST) - high-level graph of references via unique Symbol IDs (powers IDEs/LSP)
-↓ Type Checker & Normalizer - validate semantics, prove type safety, pre-calculate static values
-↓ Core AST - pure mathematical model (Calculus of Constructions: Lambdas, Records, no classes/interfaces)
-↓ Optimizer (Low-level IR / SSA) - hardware-agnostic optimizations (Static Single Assignment, dead code removal)
-↓ Code Generator - translate to target CPU instructions (x86, ARM) or bytecode (WASM, JVM)
-↓ Binary Code - final executable (0s and 1s)
-
-detailed
-1 text (source code)
-2 tokens (lexer: splitting text into words and symbols)
-3 AST (parser: tree construction, declarations, statements)
-4 scopes & symbols (name table: registering defined types and variables)
-5 types (type checker: checking predefined types, outputting calculated types)
-6 static values (optimizer: calculating constants before runtime)
-7 dynamic values (code generation/runtime: things that are calculated only when the program runs)
+Пайплайн компилятора
+ ↓Source Code:raw text string
+ ↓Lexer LST:stream of tokens (lexer splitting text into words and symbols)
+ ↓Parser CST:concrete syntax tree (keeps exact formatting & punctuation)
+ ↓Surface AST:logical tree structure (classes, loops, syntax sugar)
+ ↓Semantic HIR:high-level graph of references via unique Symbol IDs (powers IDEs/LSP)
+  scopes & symbols:(name table - registering defined types and variables)
+  types:(type checker - checking predefined types, outputting calculated types)
+  static values:(optimizer - calculating constants before runtime)
+  dynamic values:(code generation/runtime - things that are calculated only when the program runs)
+ ↓Desugar & Resolve:remove syntax sugar (e.g., for to while), bind string names to unique IDs
+ ↓Type Checker & Normalizer:validate semantics, prove type safety, pre-calculate static values
+ ↓Optimizer (Low-level IR / SSA):hardware-agnostic optimizations (Static Single Assignment, dead code removal)
+ ↓Code Generator:translate to target CPU instructions (x86, ARM) or bytecode (WASM, JVM)
+ ↓Binary Code:final executable (0s and 1s)

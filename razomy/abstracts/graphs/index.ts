@@ -5,7 +5,7 @@ import type { Leaf } from './leaf';
 import type { AbsolutePathString, DirPathString, FilePathString, HasPathString, PathString, RelativePathString, Slug, SourcePathString } from './path_string';
 import type { BTree, BalancedTree, BinaryTree, BinaryTreeNode, Heap, SegmentTree, Tree, TreeNode, Trie } from './trees';
 import type { Octree, OctreeNode, QuadTree, QuadTreeNode } from './trees_spatial';
-import type { HasDirPath, HasFileName, HasFilePath, HasSourcePath } from './with_path';
+import type { HasDirPath, HasFileName, HasFilePath, HasSourcePath } from './path_string';
 
 // Named exports
 export type {

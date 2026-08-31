@@ -13,7 +13,7 @@ export interface TypeChecker {
    * Выводит тип \`number\` для выражения \`1\`
    * ```
    */
-  infer(term: abstracts.translators.CoreTerm, env: abstracts.translators.CoreTerm[]): abstracts.translators.CoreTerm;
+  infer(term: abstracts.translators.IdentifierAst, env: abstracts.translators.IdentifierAst[]): abstracts.translators.IdentifierAst;
 
   /**
    * Проверить тип сверху-вниз
@@ -23,9 +23,9 @@ export interface TypeChecker {
    * ```
    */
   check(
-    term: abstracts.translators.CoreTerm,
-    expected: abstracts.translators.CoreTerm,
-    env: abstracts.translators.CoreTerm[],
+    term: abstracts.translators.IdentifierAst,
+    expected: abstracts.translators.IdentifierAst,
+    env: abstracts.translators.IdentifierAst[],
   ): void;
 
   /**
@@ -36,9 +36,9 @@ export interface TypeChecker {
    * ```
    */
   normalize(
-    term: abstracts.translators.CoreTerm,
-    env: abstracts.translators.CoreTerm[],
-  ): abstracts.translators.CoreTerm;
+    term: abstracts.translators.IdentifierAst,
+    env: abstracts.translators.IdentifierAst[],
+  ): abstracts.translators.IdentifierAst;
 
   /**
    * Проверить два типа на математическую эквивалентность
@@ -47,5 +47,5 @@ export interface TypeChecker {
    * Проверяет \`string | number\` эквивалентно \`number | string\`
    * ```
    */
-  equate(a: abstracts.translators.CoreTerm, b: abstracts.translators.CoreTerm): boolean;
+  equate(a: abstracts.translators.IdentifierAst, b: abstracts.translators.IdentifierAst): boolean;
 }

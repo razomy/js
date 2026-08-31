@@ -1,6 +1,6 @@
 // Imports
 import type { Alias, DeepReadonly } from './alias';
-import type { LateInit } from './late_init';
+import type { LateInit, NullOptional } from './late_init';
 import type { Brand, DataStructure, LogicalTopology, MemoryLayout } from './ts_workarounds';
 
 // Named exports
@@ -10,6 +10,7 @@ export type {
   DataStructure,
   DeepReadonly,
   LateInit,
+  NullOptional,
   LogicalTopology,
   MemoryLayout
 };
