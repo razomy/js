@@ -43,7 +43,7 @@
     "./razomy/nuxt",
     "./razomy/vue",
     "./razomy/vue-resource",
-    "./razomy/rala-vue"
+    "./razomy/language-vue"
   ],
   "references": [
     {

@@ -1,7 +1,7 @@
 import { Project } from 'ts-morph';
 import * as fss from '@razomy/fss';
 import path from 'path';
-import * as tsRala from '@razomy/ts-rala';
+import * as tsRala from '@razomy/ts-rl';
 import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function createReadmeAndSpecifications(dirPath) {

@@ -1,3 +1,5 @@
+import type {SyntaxLayer} from "./ast";
+
 /**
  *
  * time:
@@ -9,9 +11,7 @@
  * 6 - Panic
  *
  */
-
 export type SymbolId = number;
-export type SyntaxLayer = 'expression' | 'statement' | 'shape' | 'macro' | 'meta';
 
 export interface NodeHir {
   kind: string;
@@ -19,7 +19,10 @@ export interface NodeHir {
   syntaxLayer: SyntaxLayer;
 }
 
-export interface StateHir extends NodeHir {
+export interface PanicHir extends NodeHir {
+}
+
+export interface ExpressionHir extends NodeHir {
 }
 
 export interface OperationHir extends NodeHir {
@@ -37,35 +40,41 @@ export interface DeclarationHir extends NodeHir {
 export interface AccessHir extends NodeHir {
 }
 
-export interface PanicHir extends NodeHir {
+
+export interface TryCatchHir extends PanicHir {
+  kind: 'TryCatchHir';
+  tryBlock: BlockHir;
+  catches: Array<{ errorSymbol: SymbolId; catchBlock: BlockHir }>;
 }
 
+export interface ThrowHir extends PanicHir {
+  kind: 'ThrowHir';
+  value: NodeHir;
+}
 
-export interface LiteralHir extends StateHir {
+export type PanicHirType =
+  | TryCatchHir
+  | ThrowHir;
+
+export interface LiteralHir extends ExpressionHir {
   kind: 'LiteralHir';
   symbol: SymbolId;
   value: any;
 }
 
-export interface ArrayHir extends StateHir {
+export interface ArrayHir extends ExpressionHir {
   kind: 'ArrayHir';
   elements: NodeHir[];
 }
 
-export interface TupleHir extends StateHir {
-  kind: 'TupleHir';
-  elements: NodeHir[];
-}
-
-export interface ObjectHir extends StateHir {
+export interface ObjectHir extends ExpressionHir {
   kind: 'ObjectHir';
   properties: Record<string, NodeHir>;
 }
 
-export type StateType =
+export type ExpressionHirType =
   | LiteralHir
   | ArrayHir
-  | TupleHir
   | ObjectHir;
 
 export interface UnaryHir extends OperationHir {
@@ -81,49 +90,25 @@ export interface BinaryHir extends OperationHir {
   right: NodeHir;
 }
 
-export type OperationType =
+export type OperationHirType =
   | UnaryHir
   | BinaryHir;
 
 
-export interface IfHir extends LogicHir {
-  kind: 'IfHir';
-  branches: Array<{ condition: NodeHir; body: NodeHir }>;
-  elseBranch: NodeHir | null
-}
-
-export interface SwitchHir extends LogicHir {
+export interface MatchHir extends LogicHir {
   kind: 'SwitchHir';
-  target: NodeHir;
+  target: NodeHir | null;
   cases: Array<{ caseValue: NodeHir; body: NodeHir }>;
   defaultCases: NodeHir | null;
 }
 
 export interface LoopHir extends LogicHir {
-}
-
-export interface ForInHir extends LogicHir {
   kind: 'LoopHir';
   init: NodeHir | null;
   condition: NodeHir | null;
   update: NodeHir | null;
   body: NodeHir;
 }
-
-export interface WhileHir extends LogicHir {
-  kind: 'LoopHir';
-  type: 'while' | 'do_while';
-  condition: NodeHir;
-  body: NodeHir;
-}
-
-export interface ForOfHir extends LogicHir {
-  kind: 'LoopHir';
-  type: 'for_of' | 'for_it';
-  init: NodeHir;
-  body: NodeHir;
-}
-
 
 export interface BlockHir extends LogicHir {
   kind: 'BlockHir';
@@ -136,12 +121,9 @@ export interface BlockHir extends LogicHir {
   statements: NodeHir[];
 }
 
-export type LogicType =
-  IfHir
-  | SwitchHir
-  | ForOfHir
-  | WhileHir
-  | ForInHir
+export type LogicHirType =
+  MatchHir
+  | LogicHir
   | BlockHir
   ;
 
@@ -160,7 +142,7 @@ export interface ReturnHir extends LogicOperatorHir {
   value: NodeHir | null;
 }
 
-export type LogicOperatorType =
+export type LogicOperatorHirType =
   | BreakHir
   | ContinueHir
   | ReturnHir
@@ -213,7 +195,7 @@ export interface ClassHir extends DeclarationHir {
   properties: NodeHir[];
 }
 
-export type DeclarationType =
+export type DeclarationHirType =
   | BindingHir
   | AssignHir
   | FunctionHir
@@ -252,33 +234,18 @@ export interface ReferenceHir extends AccessHir {
   target: SymbolId;
 }
 
-export type AccessType =
+export type AccessHirType =
   CallHir
   | MemberAccessHir
   | ReferenceHir;
 
 
-export interface TryCatchHir extends PanicHir {
-  kind: 'TryCatchHir';
-  tryBlock: BlockHir;
-  catches: Array<{ errorSymbol: SymbolId; catchBlock: BlockHir }>;
-}
-
-export interface ThrowHir extends PanicHir {
-  kind: 'ThrowHir';
-  value: NodeHir;
-}
-
-export type PanicType =
-  | TryCatchHir
-  | ThrowHir;
-
 export type HirType =
-  | StateType
-  | OperationType
-  | LogicType
-  | LogicOperatorType
-  | DeclarationType
-  | AccessType
-  | PanicType
+  | PanicHirType
+  | ExpressionHirType
+  | OperationHirType
+  | LogicHirType
+  | LogicOperatorHirType
+  | DeclarationHirType
+  | AccessHirType
   ;

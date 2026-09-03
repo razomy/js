@@ -66,7 +66,7 @@ export function isSupported(schema: Schema | null): boolean {
       return schema.shape ? isSupported(schema.shape as Schema) : true;
     case 'FunctionBinding':
       return (
-        (schema.return_ ? isSupported(schema.return_ as Schema) : true) &&
+        (schema.returnShape ? isSupported(schema.returnShape as Schema) : true) &&
         schema.parameters.every(isSupported as any)
       );
     case 'ReturnShape':

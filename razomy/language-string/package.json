@@ -30,22 +30,29 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/rala#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/language-string#readme",
   "keywords": [
     "razomy",
-    "rala",
-    "example"
+    "language",
+    "string",
+    "bindingToString",
+    "docToString",
+    "functionToString",
+    "shapeToString"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/rala",
-  "peerDependencies": {},
+  "name": "@razomy/language-string",
+  "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/array": "*"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/rala",
+    "directory": "razomy/language-string",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

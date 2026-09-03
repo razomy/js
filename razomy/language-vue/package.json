@@ -35,19 +35,19 @@
   "engines": {
     "node": ">=18"
   },
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/rala-vue#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/language-vue#readme",
   "keywords": [
     "razomy",
-    "rala",
+    "language",
     "vue"
   ],
   "license": "MIT",
-  "name": "@razomy/rala-vue",
+  "name": "@razomy/language-vue",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/rala-vue",
+    "directory": "razomy/language-vue",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

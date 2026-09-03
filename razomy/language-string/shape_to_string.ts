@@ -33,7 +33,7 @@ export function shapeToString(type: abstracts.translators.ShapeType | null): str
       const params = `(${type.parameters
       .map((p) => `${p.shapeIdentifier.name}: ${shapeToString(p.shape)}`)
       .join(', ')})`;
-      return `${shapes}${params} => ${shapeToString(type.return_)}`;
+      return `${shapes}${params} => ${shapeToString(type.returnShape)}`;
     case 'TemplateShape':
       return `\`${type.template}\``;
     case 'MappedShape':

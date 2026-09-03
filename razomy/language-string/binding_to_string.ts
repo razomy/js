@@ -1,8 +1,8 @@
 import * as abstracts from '@razomy/abstracts';
-import * as ralaString from '@razomy/rala-string';
+import * as ralaString from './';
 
 export function bindingToString(
-  nodes: abstracts.translators.DeclarationType[],
+  nodes: abstracts.translators.DeclarationAstType[],
   currentPath: string[],
   result: ralaString.FlatDeclaration[] = [],
 ) {

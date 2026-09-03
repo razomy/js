@@ -1,4 +1,4 @@
-import * as ralaString from "@razomy/rala-string";
+import * as ralaString from "./";
 
 export function docToString(s: ralaString.FlatDeclaration) {
   let declStr = '';

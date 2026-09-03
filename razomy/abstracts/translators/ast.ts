@@ -111,12 +111,6 @@ export interface LogicOperatorAst extends AstNode {
 /**
  * @abstract
  */
-export interface StructureAst extends AstNode {
-}
-
-/**
- * @abstract
- */
 export interface DeclarationAst extends AstNode {
 }
 
@@ -146,13 +140,12 @@ export interface MetaAst extends AstNode {
 /**
  * @abstract
  */
-export type AstOntologyType =
+export type OntologyAstType =
   | PanicAst
   | ExpressionAst
   | OperationAst
   | LogicAst
   | LogicOperatorAst
-  | StructureAst
   | BindingAst
   | DeclarationAst
   | AccessAst
@@ -785,7 +778,7 @@ export type MetaAtTypes = FunctionDocsAst;
 // endregion Meta
 
 export type AstType =
-  | AstOntologyType
+  | OntologyAstType
   | PanicAstType
   | ExpressionAstType
   | OperationAstType

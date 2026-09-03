@@ -1,4 +1,4 @@
-// @razomy/rala-vue/vite.config.ts
+// @razomy/language-vue/vite.config.ts
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
@@ -17,7 +17,7 @@ export default defineConfig({
       name: 'RazomyRalaVue',
       // 1. Tell Vite to ONLY build ES Modules (Nuxt's preferred format)
       formats: ['es'],
-      fileName: (format) => `razomy-rala-vue.${format}.js`
+      fileName: (format) => `razomy-language-vue.${format}.js`
     },
     rollupOptions: {
       external: ['vue', 'vuetify', /^vuetify\/.*/],

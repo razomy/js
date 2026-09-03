@@ -8,9 +8,9 @@ export {
 };
 
 // Default export
-const rala = {
+const language = {
   KnowledgeGraph,
   example,
 };
 
-export default rala;
+export default language;

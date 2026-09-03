@@ -1,5 +1,5 @@
 import path from 'path';
-import * as tsRala from '@razomy/ts-rala';
+import * as tsRala from "@razomy/ts-rl";
 import * as array from '@razomy/array';
 import * as ai from '@razomy/ai';
 import * as fss from '@razomy/fss';
@@ -18,7 +18,7 @@ export const TOOLS = [
       parameter: {
         filePath: 'Путь к файлу',
       },
-      return_: {
+      returnShape: {
         description: 'Return list of files',
       },
     }),
@@ -37,7 +37,7 @@ export const TOOLS = [
         task: 'Well defined atomic task',
         exctation: 'WEll defined expected result',
       },
-      return_: {
+      returnShape: {
         description: 'Return short Description of task result',
       },
     }),
@@ -69,7 +69,7 @@ export const TOOLS = [
       parameter: {
         filePath: 'Путь к файлу',
       },
-      return_: {
+      returnShape: {
         description: 'Return list of files',
       },
     }),
