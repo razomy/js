@@ -5,8 +5,8 @@ import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstracts.translators.FunctionBinding[],
-): Promise<string | abstracts.translators.PropertyBinding> {
+  toolSpec: abstracts.translators.FunctionDocsAstJoinFunctionAst[],
+): Promise<string | abstracts.translators.PropertyAst> {
   const payload: any = {
     model: aiAnthropic.MODELS.expensive,
     max_tokens: aiAnthropic.MAX_TOKENS,
@@ -15,7 +15,7 @@ export async function askTool(
   payload.tools = toolSpec.map(aiAnthropic.instant.specToTool);
 
   if (toolSpec.length === 1) {
-    payload.tool_choice = { type: 'tool', name: toolSpec[0].identifier.name };
+    payload.tool_choice = { type: 'tool', name: toolSpec[0][1].identifier.name };
   }
 
   const result = await aiAnthropic.CLIENT.messages.create(payload);
@@ -28,7 +28,7 @@ export async function askTool(
   }
 
   const payloadArgs = toolsRequest.map((toolRequest, ix) => {
-    const tool = toolSpec.find((block) => block.identifier.name === toolRequest.type)!;
+    const tool = toolSpec.find((block) => block[1].identifier.name === toolRequest.type)!;
     // const arguments_ =
     // return ({
     //   name: key,
@@ -39,7 +39,7 @@ export async function askTool(
     // } as abstracts.translators.Property)
 
     return {
-      name: tool.identifier.name,
+      name: tool[1].identifier.name,
       arguments_: [],
     };
   });
@@ -52,7 +52,7 @@ export async function askTool(
 //     await askTool(
 //       ['call hello'],
 //       [
-//         tsRala.createPackageFunction({
+//         tsRl.createPackageFunction({
 //           name: 'hello',
 //           description: 'says hello',
 //         }),

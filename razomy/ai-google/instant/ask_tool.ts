@@ -3,7 +3,7 @@ import * as abstracts from '@razomy/abstracts';
 import * as ai from '@razomy/ai';
 import * as aiGoogle from '@razomy/ai-google';
 
-export async function askTool(texts: string[], toolSpec: abstracts.translators.FunctionBinding[]) {
+export async function askTool(texts: string[], toolSpec: abstracts.translators.FunctionDocsAstJoinFunctionAst[]) {
   const tools = [
     {
       functionDeclarations: toolSpec.map(aiGoogle.instant.specToTool),

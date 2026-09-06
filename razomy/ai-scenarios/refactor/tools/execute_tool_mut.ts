@@ -1,5 +1,5 @@
 import path from 'path';
-import * as tsRala from "@razomy/ts-rl";
+import * as tsRl from "@razomy/ts-rl";
 import * as array from '@razomy/array';
 import * as ai from '@razomy/ai';
 import * as fss from '@razomy/fss';
@@ -12,7 +12,7 @@ export type ToolContext = {
 
 export const TOOLS = [
   {
-    spec: tsRala.createPackageFunction({
+    spec: tsRl.createPackageFunction({
       name: 'getAllFlat',
       description: 'Получить список файлов в папке recursive',
       parameter: {
@@ -30,7 +30,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRala.createPackageFunction({
+    spec: tsRl.createPackageFunction({
       name: 'delegate',
       description: 'Delegate tool',
       parameter: {
@@ -63,7 +63,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRala.createPackageFunction({
+    spec: tsRl.createPackageFunction({
       name: 'getFile',
       description: 'Прочитать текст из файла',
       parameter: {
@@ -78,7 +78,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRala.createPackageFunction({
+    spec: tsRl.createPackageFunction({
       name: 'setFile',
       description: 'Записать текст в файла',
       parameter: {
@@ -92,7 +92,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRala.createPackageFunction({
+    spec: tsRl.createPackageFunction({
       name: 'build',
       description: 'Build project',
       parameter: {},
@@ -103,8 +103,8 @@ export const TOOLS = [
   },
 ] as const;
 
-export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec']['identifier']['name'], typeof TOOLS[number]> =
-  array.mapToDictBy(TOOLS as any, (i) => i.spec.identifier.name)
+export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec'][1]['identifier']['name'], typeof TOOLS[number]> =
+  array.mapToDictBy(TOOLS as any, (i) => i.spec[1].identifier.name)
 ;
 
 export async function executeToolMut(ctx: ToolContext, function_: any):Promise<ai.AiMessage> {

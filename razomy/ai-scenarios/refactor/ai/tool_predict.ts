@@ -1,9 +1,9 @@
 import * as ai from '@razomy/ai';
 import * as abstracts from "@razomy/abstracts";
-import * as tsRala from "@razomy/ts-rala";
+import * as tsRl from "@razomy/ts-rl";
 import * as aiScenarios from "@razomy/ai-scenarios";
 
-export async function toolPredict(messages: ai.AiMessage[], tools: abstracts.translators.FunctionBinding[]) {
+export async function toolPredict(messages: ai.AiMessage[], tools: abstracts.translators.FunctionDocsAstJoinFunctionAst[]) {
   return await ai.apiRun.instant.chat.tool.predict(
     null,
     'mlx-community/gemma-4-e2b-it-4bit',
@@ -25,14 +25,14 @@ function testPredictTool() {
   toolPredict(
     [{"sender": "user", type: 'text', "content": "Multiply 12234585 and 48838483920. And say answer."}],
     [
-      tsRala.createPackageFunction({
+      tsRl.createPackageFunction({
         name: 'multiply',
         description: 'Multiply numbers',
         parameter: {
           a: 'First argument',
           b: 'Second argument',
         },
-        return_: {
+        returnShape: {
           description: 'Return multiplication',
         },
       })
