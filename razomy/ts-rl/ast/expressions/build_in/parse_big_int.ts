@@ -1,12 +1,7 @@
 import { BigIntLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseBigInt(node: BigIntLiteral): abstracts.translators.BuildInExpression {
+export function parseBigInt(node: BigIntLiteral): translators.LiteralAst {
   const text = node.getLiteralText();
-  const value = text.endsWith('n') ? text.slice(0, -1) : text;
-  return {
-    kind: 'BuildInExpression',
-    type: 'BigInt',
-    value: BigInt(value),
-  };
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: BigInt(text.endsWith('n') ? text.slice(0, -1) : text) };
 }

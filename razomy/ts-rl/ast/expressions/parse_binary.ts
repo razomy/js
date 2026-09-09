@@ -1,15 +1,13 @@
 import { BinaryExpression } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parse } from './parse';
 
-export function parseBinary(node: BinaryExpression): abstracts.translators.BinaryExpression {
-  // Получаем текстовое представление оператора (например, "+", "===", "<=")
-  const operatorText = node.getOperatorToken().getText();
-
+export function parseBinary(node: BinaryExpression): translators.BinaryAst {
   return {
-    kind: 'BinaryExpression',
-    operator: operatorText as any, // Приводим к any, так как TS-строка должна попасть в ваш union
-    left: tsRl.ast.expressions.parse(node.getLeft())!,
-    right: tsRl.ast.expressions.parse(node.getRight())!,
+    kind: 'BinaryAst',
+    syntaxLayer: 2,
+    operator: node.getOperatorToken().getText() as translators.BinaryAst['operator'],
+    left: parse(node.getLeft())!,
+    right: parse(node.getRight())!,
   };
 }

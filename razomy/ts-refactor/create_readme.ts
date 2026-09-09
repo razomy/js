@@ -1,12 +1,12 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from '@razomy/abstracts';
-import * as ralaString from '@razomy/rala-string';
+import * as languageString from '@razomy/language-string';
 
-export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.PackageBinding) {
-  const scopeName = stringCase.camelCase(packageDeclaration.identifier.name.replace('@razomy/', ''));
+export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.ModuleHir) {
+  const scopeName = stringCase.camelCase(packageDeclaration.identifier.replace('@razomy/', ''));
 
-  const allDecls = ralaString.bindingToString(packageDeclaration.block.declarations, []);
+  const allDecls = languageString.bindingToString(packageDeclaration.block.statements, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -91,10 +91,10 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const typeSpecs = allDecls.filter((i) => i.node.kind !== 'FunctionBinding');
+  const typeSpecs = allDecls.filter((i) => i.node.kind !== 'FunctionHir');
   const functionSpecs = allDecls.filter(
-    (i) => i.node.kind === 'FunctionBinding',
-  ) as ralaString.FlatDeclaration<abstracts.translators.FunctionBinding>[];
+    (i) => i.node.kind === 'FunctionHir',
+  ) as languageString.FlatDeclaration<abstracts.translators.FunctionHir>[];
   const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
 
   const imports = `
@@ -126,9 +126,9 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(ralaString.functionToString).join('\n\n').trim();
+  const functions = functionSpecs.map(languageString.functionToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(ralaString.docToString).join('\n\n').trim();
+  const types = typeSpecs.map(languageString.docToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation

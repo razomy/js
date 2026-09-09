@@ -1,5 +1,16 @@
 import * as abstracts from '@razomy/abstracts';
 import type { Ref } from 'vue';
+import type {
+  HirType,
+  BindingHir,
+  FunctionHir,
+  SequenceHir,
+  StructHir,
+  ObjectHir,
+  ReferenceHir,
+  BinaryHir,
+  LiteralHir,
+} from '@razomy/abstracts/translators';
 
 export const defaultFormKey = 'form';
 export type Path = string[];
@@ -31,11 +42,8 @@ export interface EnumOption {
   items: (string | number)[];
 }
 
-// Обновленные типы в соответствии с новым AST
-export type Schema =
-  | abstracts.translators.ShapeType
-  | abstracts.translators.ParameterBinding
-  | abstracts.translators.FunctionBinding;
+// Теперь Schema опирается на корневые типы HIR, описывающие данные или функции
+export type Schema = HirType;
 
 export const FORM_SUPPORTED_BUILD_IN_KINDS = [
   'String',
@@ -60,62 +68,57 @@ export function isSupported(schema: Schema | null): boolean {
   if (!schema) return true;
 
   switch (schema.kind) {
-    case 'ArrayShape':
-      return schema.shapes.every(isSupported as any);
-    case 'ParameterBinding':
-      return schema.shape ? isSupported(schema.shape as Schema) : true;
-    case 'FunctionBinding':
+    case 'SequenceHir':
+      return (schema as SequenceHir).elements.every(isSupported as any);
+    case 'BindingHir':
+      const binding = schema as BindingHir;
+      return binding.shape ? isSupported(binding.shape as Schema) : true;
+    case 'FunctionHir':
+      const func = schema as FunctionHir;
       return (
-        (schema.returnShape ? isSupported(schema.returnShape as Schema) : true) &&
-        schema.parameters.every(isSupported as any)
+        (func.returnShape ? isSupported(func.returnShape as Schema) : true) &&
+        func.parameters.every(isSupported as any)
       );
-    case 'ReturnShape':
-      return isSupported(schema.shape as Schema);
-    case 'UnionShape':
-      return schema.shapes.every(isSupported as any);
-    case 'BuildInShape':
-      switch (schema.type) {
-        case 'Object': return true;
-        case 'String': return true;
-        case 'Boolean': return true;
-        case 'Number': return true;
-        case 'Bigint': return true;
-        case 'Null': return true;
-        default: return false;
+    case 'BinaryHir':
+      const binary = schema as BinaryHir;
+      // В HIR объединения типов (Union) могут представляться через бинарную операцию '|'
+      if (binary.operator === '|') {
+        return isSupported(binary.left as Schema) && isSupported(binary.right as Schema);
       }
-    case 'ReferenceShape':
-    case 'ShapeIdentifier':
-      return true; // Разрешаем ссылки для последующего резолва
+      return false;
+    case 'LiteralHir':
+    case 'ObjectHir':
+    case 'StructHir':
+    case 'ReferenceHir':
+      // Разрешаем базовые типы, структуры и ссылки
+      return true;
     default:
-      console.error('Unknown type ' + schema.kind);
+      console.error('Unknown HIR type ' + schema.kind);
       return false;
   }
 }
 
-export function getTypeByAstNode(schema: Schema): FormSupportedKind {
+export function getTypeByHirNode(schema: Schema): FormSupportedKind {
   switch (schema.kind) {
-    case 'ArrayShape':
-      switch (schema.type) {
-        case 'Array': return 'Array';
-        case 'Tuple': return 'Tuple';
-        default: throw new Error('Unknown array type ' + schema);
-      }
-    case 'BuildInShape':
-      switch (schema.type) {
-        case 'Object': return 'Object';
-        case 'String': return 'String';
-        case 'Boolean': return 'Boolean';
-        case 'Number': return 'Number';
-        case 'Bigint': return 'Number';
-        case 'Null': return 'Number';
-        default: throw new Error('Unknown BuildInShape ' + schema.type);
-      }
-    case 'ParameterBinding':
-      return getTypeByAstNode(schema.shape as Schema);
-    case 'ReturnShape':
-      return getTypeByAstNode(schema.shape as Schema);
-    case 'ShapeIdentifier':
-      switch (schema.name) {
+    case 'SequenceHir':
+      // SequenceHir объединяет Array и Tuple. Для упрощения определяем как Array,
+      // или можем добавить проверку на Tuple при необходимости (по кол-ву элементов или аннотациям).
+      return 'Array';
+    case 'ObjectHir':
+    case 'StructHir':
+      return 'Object';
+    case 'LiteralHir':
+      const typeStr = typeof (schema as LiteralHir).value;
+      if (typeStr === 'number' || typeStr === 'bigint') return 'Number';
+      if (typeStr === 'boolean') return 'Boolean';
+      return 'String';
+    case 'BindingHir':
+      const binding = schema as BindingHir;
+      return binding.shape ? getTypeByHirNode(binding.shape as Schema) : 'String';
+    case 'ReferenceHir':
+      const ref = schema as ReferenceHir;
+      const refName = (ref as any).syntaxLayer?.name || (ref as any).name;
+      switch (refName) {
         case 'Object': return 'Object';
         case 'String': return 'String';
         case 'Boolean': return 'Boolean';
@@ -133,14 +136,11 @@ export function buildRegistry(schema: any, typeRegistry: Map<string, any>, visit
   if (!schema || typeof schema !== 'object' || visited.has(schema)) return;
   visited.add(schema);
 
-  // Используем switch вместо цепочки if
   switch (schema.kind) {
-    case 'InterfaceShapeBinding':
-    case 'AliasShapeBinding':
-    case 'ClassBinding':
-    case 'ObjectShape': {
-      // Поддержка нового поля shapeIdentifier и старого/существующего identifier
-      const name = schema.shapeIdentifier?.name || schema.identifier?.name;
+    case 'StructHir':
+    case 'ObjectHir':
+    case 'BindingHir': {
+      const name = getNameFromHir(schema);
       if (name && !typeRegistry.has(name)) {
         typeRegistry.set(name, schema);
       }
@@ -165,18 +165,17 @@ export function buildRegistry(schema: any, typeRegistry: Map<string, any>, visit
 export function resolveType(schema: any, typeRegistry: Map<string, any>, visited = new Set()): any {
   if (!schema || visited.has(schema)) return schema;
 
-  // Ранее ReferenceType, теперь ReferenceShape или ShapeIdentifier
   switch (schema.kind) {
-    case 'ReferenceShape':
-    case 'ShapeIdentifier': {
-      const name = schema.shapeIdentifier?.name || schema.name;
+    case 'ReferenceHir': {
+      const name = getNameFromHir(schema);
       if (name && typeRegistry.has(name)) {
         visited.add(schema);
         const resolved = typeRegistry.get(name);
 
         switch (resolved.kind) {
-          case 'AliasShapeBinding':
-            return resolveType(resolved.shape, typeRegistry, visited); // В новом AST это shape, а не type
+          case 'BindingHir':
+            // Для алиасов типов берем их целевой шейп
+            return resolveType(resolved.shape, typeRegistry, visited);
           default:
             return resolveType(resolved, typeRegistry, visited);
         }
@@ -195,40 +194,35 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
     current = resolveType(current, typeRegistry);
     if (!current) break;
 
-    // Шаг 1. Пропускаем обертки-биндинги (PropertyShape, PropertyBinding, ParameterBinding)
-    switch (current.kind) {
-      case 'PropertyShape':
-      case 'PropertyBinding':
-      case 'ParameterBinding':
-        // В новом AST используется `shape` вместо `type` и `expression`
-        current = resolveType(current.shape || current.expression, typeRegistry);
-        break;
+    // Шаг 1. Пропускаем обертки-биндинги (извлекаем внутренний шейп)
+    if (current.kind === 'BindingHir') {
+      current = resolveType(current.shape || current.value, typeRegistry);
     }
 
     if (!current) break;
 
-    // Шаг 2. Ищем следующий элемент по ключу в зависимости от структуры
+    // Шаг 2. Ищем следующий элемент по ключу
     switch (current.kind) {
-      case 'ObjectShape':
-      case 'InterfaceShapeBinding':
-      case 'ClassBinding': {
-        current = current.properties?.find((p: any) =>
-          p.shapeIdentifier?.name === part || p.identifier?.name === part
-        );
+      case 'StructHir': {
+        const struct = current as StructHir;
+        // В StructHir поля хранятся в виде Record<string, HirType>
+        current = struct.fields?.[part as string];
         break;
       }
-      case 'ArrayShape': {
-        switch (current.type) {
-          case 'Tuple':
-            // В новом AST элементы массива/кортежа лежат в массиве shapes
-            current = current.shapes?.[parseInt(part as string, 10)];
-            break;
-          case 'Array':
-            current = current.shapes?.[0]; // Для обычного массива тип всех элементов один и лежит в 0-м индексе
-            break;
-          default:
-            current = null;
-        }
+      case 'ObjectHir': {
+        const obj = current as ObjectHir;
+        current = obj.entries?.find((e: any) => {
+          const keyName = e.key.kind === 'LiteralHir'
+            ? String(e.key.value)
+            : getNameFromHir(e.key);
+          return keyName === part;
+        })?.value;
+        break;
+      }
+      case 'SequenceHir': {
+        const seq = current as SequenceHir;
+        // Если это массив с одним типом (Array), то берем [0]. Если кортеж (Tuple) - берем по индексу part.
+        current = seq.elements?.[parseInt(part as string, 10)] || seq.elements?.[0];
         break;
       }
       default: {
@@ -244,48 +238,67 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
 export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>, typeRegistry: Map<string, any>, path: Path = []) {
   currentSchema = resolveType(currentSchema, typeRegistry);
 
+  if (!currentSchema) return;
+
   switch (currentSchema.kind) {
-    case 'ParameterBinding': {
-      initFormData(data, currentSchema.shape || currentSchema.expression, valuesRef, typeRegistry, path);
-      const datum = currentSchema.expression?.value || null;
-      if (path.length === 0) valuesRef.value = datum;
-      else setByPath(valuesRef.value, path, datum);
-      break;
-    }
-
-    case 'ArrayShape': {
-      const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);
-      if (path.length === 0) valuesRef.value = dataArray;
-      else setByPath(valuesRef.value, path, dataArray);
-
-      switch (currentSchema.type) {
-        case 'Tuple':
-          currentSchema.shapes?.forEach((itemType: any, ix: number) => {
-            initFormData(dataArray[ix], itemType, valuesRef, typeRegistry, [...path, String(ix)]);
-          });
-          break;
-        case 'Array':
-        default:
-          const itemType = currentSchema.shapes?.[0]; // Базовый тип массива
-          dataArray.forEach((item, ix) => {
-            initFormData(item, itemType, valuesRef, typeRegistry, [...path, String(ix)]);
-          });
-          break;
+    case 'BindingHir': {
+      const binding = currentSchema as BindingHir;
+      initFormData(data, binding.shape || binding.value, valuesRef, typeRegistry, path);
+      // Если это литеральная инициализация по умолчанию в схеме
+      const datum = binding.value?.kind === 'LiteralHir' ? (binding.value as LiteralHir).value : null;
+      if (datum !== null && (data === undefined || data === null)) {
+        if (path.length === 0) valuesRef.value = datum;
+        else setByPath(valuesRef.value, path, datum);
       }
       break;
     }
 
-    case 'ObjectShape':
-    case 'InterfaceShapeBinding':
-    case 'ClassBinding': {
+    case 'SequenceHir': {
+      const seq = currentSchema as SequenceHir;
+      const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);
+      if (path.length === 0) valuesRef.value = dataArray;
+      else setByPath(valuesRef.value, path, dataArray);
+
+      // В SequenceHir элементы массива/кортежа лежат в массиве elements
+      if (seq.elements && seq.elements.length > 1) {
+        // Кортеж (Tuple) - каждому элементу свой тип
+        seq.elements.forEach((itemType: any, ix: number) => {
+          initFormData(dataArray[ix], itemType, valuesRef, typeRegistry, [...path, String(ix)]);
+        });
+      } else if (seq.elements && seq.elements.length === 1) {
+        // Массив (Array) - тип всех элементов в elements[0]
+        const itemType = seq.elements[0];
+        dataArray.forEach((item, ix) => {
+          initFormData(item, itemType, valuesRef, typeRegistry, [...path, String(ix)]);
+        });
+      }
+      break;
+    }
+
+    case 'StructHir': {
+      const struct = currentSchema as StructHir;
       const obj = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {};
       if (path.length === 0) valuesRef.value = obj;
       else setByPath(valuesRef.value, path, obj);
 
-      currentSchema.properties?.forEach((prop: any) => {
-        const key = prop.shapeIdentifier?.name || prop.identifier?.name;
+      Object.entries(struct.fields || {}).forEach(([key, fieldShape]) => {
+        initFormData(obj[key], fieldShape, valuesRef, typeRegistry, [...path, key]);
+      });
+      break;
+    }
+
+    case 'ObjectHir': {
+      const objectNode = currentSchema as ObjectHir;
+      const obj = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {};
+      if (path.length === 0) valuesRef.value = obj;
+      else setByPath(valuesRef.value, path, obj);
+
+      objectNode.entries?.forEach((entry: any) => {
+        const key = entry.key.kind === 'LiteralHir'
+          ? String(entry.key.value)
+          : getNameFromHir(entry.key);
         if (key) {
-          initFormData(obj[key], prop.shape || prop.expression, valuesRef, typeRegistry, [...path, key]);
+          initFormData(obj[key], entry.value, valuesRef, typeRegistry, [...path, key]);
         }
       });
       break;
@@ -301,105 +314,39 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
   }
 }
 
-
-export function getNameFromAst(node: any): string {
+export function getNameFromHir(node: any): string {
   if (!node || typeof node !== 'object') return '';
 
-  switch (node.kind) {
-    // 1. Узлы, которые непосредственно содержат имя
-    case 'Identifier':
-    case 'ShapeIdentifier':
-    case 'ConceptIdentifier':
-      return node.name || '';
+  // 1. Пытаемся взять имя из синтаксического слоя
+  if (node.syntaxLayer?.name) return node.syntaxLayer.name;
+  if (node.syntaxLayer?.identifier?.name) return node.syntaxLayer.identifier.name;
 
-    // 2. Биндинги и выражения с полем identifier
-    case 'VariableBinding':
-    case 'AssignBinding':
-    case 'DependencyBinding':
-    case 'PropertyBinding':
-    case 'ParameterBinding':
-    case 'EnumPropertyBinding':
-    case 'EnumBinding':
-    case 'FunctionBinding':
-    case 'ClassBinding':
-    case 'ModuleBinding':
-    case 'PackageBinding':
-    case 'MacroBinding':
-    case 'PropertyExpression':
-    case 'CallExpression':
-    case 'MacroCallExpression':
-    case 'ReferenceExpression':
-      return getNameFromAst(node.identifier);
-
-    // 3. Формы (Shapes) с полем shapeIdentifier
-    case 'MappedShape':
-    case 'PropertyShape':
-    case 'ReferenceShape':
-    case 'AliasShapeBinding':
-    case 'InterfaceShapeBinding':
-      return getNameFromAst(node.shapeIdentifier);
-
-    // 4. Онтология (Концепты и Клаузы)
-    case 'PredicateConcept':
-    case 'FactConcept':
-    case 'PatternConceptExpression':
-    case 'ActionClause':
-      return getNameFromAst(node.predicate);
-
-    case 'TaxonomyConcept':
-      return getNameFromAst(node.subject);
-
-    // 5. Фолбэк для легаси/нестандартных нод
-    default:
-      return node.name || '';
-  }
+  // 2. Фолбэк для прямой совместимости или узлов, у которых поле name лежит на верхнем уровне
+  return node.name || '';
 }
 
-export function getDescriptionFromAst(node: any): string {
+export function getDescriptionFromHir(node: any): string {
   if (!node || typeof node !== 'object') return '';
 
-  switch (node.kind) {
-    // Узлы нового AST, где description хранится строго внутри поля meta
-    case 'VariableStatement':
-    case 'VariableBinding':
-    case 'PropertyBinding':
-    case 'ParameterBinding':
-    case 'EnumPropertyBinding':
-    case 'EnumBinding':
-    case 'FunctionBinding':
-    case 'ClassBinding':
-    case 'ModuleBinding':
-    case 'PackageBinding':
-    case 'PropertyShape':
-    case 'AliasShapeBinding':
-    case 'InterfaceShapeBinding':
-    case 'ReturnShape':
-      return node.meta?.description || '';
+  // Описание может находиться в слое документации/метаданных
+  if (node.layer?.description) return node.layer.description;
+  if (node.syntaxLayer?.description) return node.syntaxLayer.description;
+  if (node.semanticLayer?.description) return node.semanticLayer.description;
 
-    // Если узел это обертка (например, ссылка или свойство),
-    // рекурсивно пытаемся достать описание из её содержимого
-    case 'PropertyExpression':
-    case 'ReferenceExpression':
-      return getDescriptionFromAst(node.expression || node.identifier);
-
-    // Фолбэк для неизвестных или устаревших структур
-    default:
-      return node.meta?.description || node.description || '';
-  }
+  // Фолбэк для легаси/вспомогательных узлов
+  if (node.meta?.description) return node.meta.description;
+  return node.description || '';
 }
-
 
 export function createDefaultMeta(schemaNode: Schema): FormNodeMeta {
-
   return {
     errorMessage: null,
     isValidating: false,
     isDisabled: false,
-    asyncValidate:  async ()=> '',
+    asyncValidate: async () => '',
     isReadonly: false,
-    // Учитываем новые поля shapeIdentifier и identifier
-    name: getNameFromAst(schemaNode),
-    description: getDescriptionFromAst(schemaNode),
+    name: getNameFromHir(schemaNode),
+    description: getDescriptionFromHir(schemaNode),
     options: null,
   };
 }
@@ -422,3 +369,4 @@ export function setByPath(obj: any, path: Path, value: any) {
   }, obj);
   target[last] = value;
 }
+

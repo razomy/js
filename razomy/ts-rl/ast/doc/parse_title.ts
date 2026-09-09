@@ -1,11 +1,5 @@
 import { JSDoc } from 'ts-morph';
-
 export function parseTitle(doc: JSDoc, funcName: string): string {
-  const titleTag = doc.getTags().find((t) => t.getTagName() === 'summary');
-  const title = titleTag?.getCommentText()?.trim();
-  if (!title) {
-    throw new Error(`[Parse Error] Missing or empty @summary in '${funcName}`);
-  }
-
-  return title;
+  const tag = doc.getTags().find((t) => t.getTagName() === 'summary');
+  return tag?.getCommentText()?.trim() || '';
 }

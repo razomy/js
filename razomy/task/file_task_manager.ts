@@ -1,7 +1,7 @@
 import * as abstracts from '@razomy/abstracts';
 import * as task_ from "@razomy/task";
 
-export class FileTaskManager<C extends abstracts.structures.Context> {
+export class FileTaskManager<C extends abstracts.domains.IContext> {
   private currentContext: C | null = null;
 
   constructor(public file_gate: abstracts.patterns.Gate<C>) {}

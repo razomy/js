@@ -1,10 +1,6 @@
 import { NullLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseNull(node: NullLiteral): abstracts.translators.BuildInExpression {
-  return {
-    kind: 'BuildInExpression',
-    type: 'Null',
-    value: null,
-  };
+export function parseNull(node: NullLiteral): translators.LiteralAst {
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: null };
 }

@@ -1,55 +1,65 @@
 import { Project } from 'ts-morph';
-
-import * as abstracts from '@razomy/abstracts';
 import * as path from 'path';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parseModuleBody } from './parse_module_body';
+import { getPublicOnlyMut } from './get_public_only_mut';
 
 export function getPackage(
   project: Project,
   dirPath: string,
   onlyPublic: boolean = true,
-): abstracts.translators.PackageBinding {
-  const packageJson = JSON.parse(project.getSourceFile(path.join(dirPath, 'package.json'))!.getText());
-  if (!packageJson) {
+): translators.ModuleAst {
+  const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
+  if (!packageJsonSource) {
     throw new Error('No package.json found at ' + dirPath);
   }
-  const dependencies = Object.entries({
+
+  const packageJson = JSON.parse(packageJsonSource.getText());
+
+  // Парсим зависимости в новый ImportAst
+  const dependencies: translators.ImportAst[] = Object.entries({
     ...(packageJson.dependencies || {}),
     ...(packageJson.peerDependencies || {}),
   }).map(
     ([k, v]) =>
       ({
-        kind: 'DependencyBinding',
+        kind: 'ImportAst',
+        syntaxLayer: 3,
         path: k,
         version: v as string,
-        identifier: { kind: 'Identifier', name: k },
-      } satisfies abstracts.translators.DependencyBinding),
+        identifier: { name: k },
+      } satisfies translators.ImportAst),
   );
 
-  const packageDeclaration = {
-    kind: 'PackageBinding',
-    identifier: { kind: 'Identifier', name: packageJson.name },
-    meta: {
-      description: packageJson.description,
-    },
+  // Ищем index.* файл в корневой директории пакета
+  const indexFile = project.getDirectory(dirPath)?.getSourceFile((f) => f.getBaseName().startsWith('index.'));
+  const statements = indexFile ? parseModuleBody(indexFile) : [];
+
+  // Создаем корневой модуль, представляющий пакет
+  const packageDeclaration: translators.ModuleAst = {
+    kind: 'ModuleAst',
+    syntaxLayer: 3,
+    identifier: { name: packageJson.name || 'UnknownPackage' },
+    role: 'Root',
+    version: packageJson.version || '0.0.0',
     block: {
-      kind: 'BlockStatement',
-      declarations:tsRl.ast.bindings.parseModuleBody(
-        project.getDirectory(dirPath)!.getSourceFile((f) => f.getBaseName().startsWith('index.'))!,
-      )
+      kind: 'BlockAst',
+      syntaxLayer: 3,
+      statements: statements
     },
-    version: packageJson.version,
     runtime: {
-      kind: 'DependencyBinding',
+      kind: 'ImportAst',
+      syntaxLayer: 3,
       path: '',
-      version: packageJson.engines['node'],
-      identifier: { kind: 'Identifier', name: 'node' },
+      version: packageJson.engines?.['node'] || '',
+      identifier: { name: 'node' },
     },
     dependencies: dependencies,
-  } satisfies abstracts.translators.PackageBinding;
+  };
 
+  // Очищаем приватную реализацию, если запрошено
   if (onlyPublic) {
-    tsRl.ast.bindings.getPublicOnlyMut(packageDeclaration)!;
+    getPublicOnlyMut(packageDeclaration);
   }
 
   return packageDeclaration;

@@ -1,22 +1,36 @@
-import * as ralaString from "./";
+import * as languageString from './';
+import type { ModifierHir, StructHir, BindingHir } from '@razomy/abstracts/translators';
 
-export function docToString(s: ralaString.FlatDeclaration) {
+export function docToString(s: languageString.FlatDeclaration): string {
   let declStr = '';
-  if (s.node.kind === 'InterfaceShapeBinding') {
-    declStr = `interface ${s.node.shapeIdentifier.name} ${s.node.extends_
-      .map((i) => ralaString.shapeToString(i))
-      .join(', ')}`;
-  } else if (s.node.kind === 'AliasShapeBinding') {
-    declStr = `type ${s.node.shapeIdentifier.name} = ${ralaString.shapeToString(s.node.shape)}`;
-  } else if (s.node.kind === 'VariableBinding') {
-    const keyword = s.node.modifiers.length ? s.node.modifiers.join(' ') : '';
-    declStr = `${keyword} ${s.node.identifier.name}: ${ralaString.shapeToString(s.node.shape)}`;
-  } else if (s.node.kind === 'EnumBinding') {
-    declStr = `enum ${s.node.identifier.name}`;
-  }else if (s.node.kind === 'ClassBinding') {
-    declStr = `class ${s.node.identifier.name}`;
+
+  if (s.node.kind === 'StructHir') {
+    const struct = s.node as StructHir;
+    const modifiers = (struct.modifiers || []).map((m: ModifierHir) => m.type).join(' ');
+    const keyword = modifiers ? `${modifiers} ` : '';
+    const extendsClause =
+      struct.extendsShapes && struct.extendsShapes.length > 0
+        ? ` extends ${struct.extendsShapes.map((i) => languageString.shapeToString(i)).join(', ')}`
+        : '';
+    declStr = `${keyword}struct ${s.name}${extendsClause}`;
+  } else if (s.node.kind === 'BindingHir') {
+    const binding = s.node as BindingHir;
+    const modifiers = (binding.modifiers || []).map((m: ModifierHir) => m.type).join(' ');
+    const isConst = modifiers.includes('const');
+    const keyword = modifiers ? `${modifiers} ` : (isConst ? 'const ' : 'let ');
+
+    if (!binding.value && binding.shape) {
+      // Type alias binding
+      declStr = `type ${s.name} = ${languageString.shapeToString(binding.shape)}`;
+    } else {
+      // Variable binding
+      const shapeStr = binding.shape ? `: ${languageString.shapeToString(binding.shape)}` : '';
+      declStr = `${keyword}${s.name}${shapeStr}`;
+    }
+  } else if (s.node.kind === 'FunctionHir') {
+    return languageString.functionToString(s as any);
   } else {
-    throw new Error(`Unknown Doc "${s.node.kind}"`);
+    throw new Error(`Unknown Doc kind "${(s.node as any).kind}"`);
   }
 
   const description = s.description;

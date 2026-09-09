@@ -1,39 +1,21 @@
-import {Block, Node, type Statement} from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
-import * as tsRl from "@razomy/ts-rl";
+import { Block, Node, type Statement } from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
+import { parseModuleBody } from "../bindings/parse_module_body";
+import { parseStatement } from "../bindings/parse_statement";
+import { isStatement } from "./is_statement";
+import { isExpression, parse as parseExpr } from "../expressions";
 
-export function parseBlock(node: Block | Statement | null): abstracts.translators.BlockStatement {
-  if (!node) {
-    return {
-      kind: 'BlockStatement',
-      declarations: [],
-    };
-  }
+export function parseBlock(node: Block | Statement | null): translators.BlockAst {
+  if (!node) return { kind: 'BlockAst', syntaxLayer: 3, statements: [] };
 
   if (Node.isBlock(node)) {
-    const declarations = tsRl.ast.bindings.parseModuleBody(node);
-
-    return {
-      kind: 'BlockStatement',
-      declarations: declarations,
-    };
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: parseModuleBody(node) };
   }
-
-  if (tsRl.ast.statements.isStatement(node)) {
-    const parsedStmt = tsRl.ast.bindings.parseStatement(node);
-    return {
-      kind: 'BlockStatement',
-      declarations: parsedStmt
-    };
+  if (isStatement(node)) {
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: parseStatement(node) };
   }
-
-  if (tsRl.ast.expressions.isExpression(node)) {
-    const parsedStmt = tsRl.ast.expressions.parse(node);
-    return {
-      kind: 'BlockStatement',
-      declarations: [parsedStmt] as any
-    };
+  if (isExpression(node)) {
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: [parseExpr(node)] };
   }
-
-  throw new Error('Unrecognized block statement statement' + node);
+  throw new Error('Unrecognized block statement: ' + node.getText());
 }

@@ -103,8 +103,8 @@ export const TOOLS = [
   },
 ] as const;
 
-export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec'][1]['identifier']['name'], typeof TOOLS[number]> =
-  array.mapToDictBy(TOOLS as any, (i) => i.spec[1].identifier.name)
+export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec'][1]['identifier'], typeof TOOLS[number]> =
+  array.mapToDictBy(TOOLS as any, (i) => i.spec[1].identifier)
 ;
 
 export async function executeToolMut(ctx: ToolContext, function_: any):Promise<ai.AiMessage> {

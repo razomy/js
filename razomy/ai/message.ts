@@ -9,12 +9,12 @@ export interface TextAiMessage {
 export interface ToolsAiMessage {
   sender: 'system' | 'user' | string;
   type: 'tools';
-  tools: abstracts.translators.FunctionAst[];
+  tools: [abstracts.translators.FunctionDocsAst,abstracts.translators.FunctionHir][];
 }
 
 export type AiMessage = TextAiMessage;
 
 export interface AiLlmContext {
   messages: AiMessage[];
-  tools: abstracts.translators.FunctionAst[];
+  tools: [abstracts.translators.FunctionDocsAst,abstracts.translators.FunctionHir][];
 }

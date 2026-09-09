@@ -1,31 +1,19 @@
 import { Node, PropertyAccessExpression, ElementAccessExpression } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parse } from './parse';
 
-export function parseMember(
-  node: PropertyAccessExpression | ElementAccessExpression
-): abstracts.translators.MemberExpression {
-
-  let propertyExpr: abstracts.translators.ExpressionType;
-
-  // Случай 1: obj.property (PropertyAccessExpression)
+export function parseMember(node: PropertyAccessExpression | ElementAccessExpression): translators.MemberAst | translators.ArgumentMemberAst {
   if (Node.isPropertyAccessExpression(node)) {
-    propertyExpr = {
-      kind: 'BuildInExpression',
-      type: 'String',
-      value: node.getName(),
+    return {
+      kind: 'MemberAst', syntaxLayer: 2,
+      object_: parse(node.getExpression())!,
+      property: { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: node.getName() } as translators.LiteralAst,
+    };
+  } else {
+    return {
+      kind: 'ArgumentMemberAst', syntaxLayer: 2,
+      argument: parse(node.getExpression())!,
+      property: parse(node.getArgumentExpressionOrThrow())!,
     };
   }
-
-  // Случай 2: obj[index] (ElementAccessExpression)
-  else {
-    const argNode = node.getArgumentExpressionOrThrow();
-    propertyExpr = tsRl.ast.expressions.parse(argNode)!;
-  }
-
-  return {
-    kind: 'MemberExpression',
-    object_: tsRl.ast.expressions.parse(node.getExpression())!!,
-    property: propertyExpr,
-  };
 }

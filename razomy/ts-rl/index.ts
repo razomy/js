@@ -1,12 +1,13 @@
 // Imports
 import * as ast from './ast';
 import { createPackageFunction } from './create_package_function';
-import { SurfaceToTransformerHir } from './surface_to_transformer_hir';
+import { HirCtx, astToHir } from './ast_to_hir';
 
 // Named exports
 export {
-  SurfaceToTransformerHir,
+  HirCtx,
   ast,
+  astToHir,
   createPackageFunction
 };
 
@@ -14,7 +15,7 @@ export {
 const tsRl = {
   ast,
   createPackageFunction,
-  SurfaceToTransformerHir,
+  SurfaceToTransformerHir: HirCtx,
 };
 
 export default tsRl;

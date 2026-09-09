@@ -1,36 +1,14 @@
-import {CallExpression} from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import { CallExpression } from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
+import { parse } from './parse';
 
-export function parseCall(node: CallExpression): abstracts.translators.CallExpression {
+export function parseCall(node: CallExpression): translators.CallAst {
   const expressionNode = node.getExpression();
-
-  // Имя вызываемой функции (например, "calculateTotal")
-  let identifier: abstracts.translators.Identifier | null = null;
-
-  if (expressionNode.getKindName() === 'Identifier') {
-    identifier = {
-      kind: 'Identifier',
-      name: expressionNode.getText(),
-    };
-  } else {
-    // Обработка сложных вызовов, вроде console.log() или arr[0]()
-    // Пока записываем текст, чтобы не терять данные в рамках вашего текущего интерфейса
-    identifier = {
-      kind: 'Identifier',
-      name: expressionNode.getText(),
-    };
-  }
-
-  // Парсим аргументы вызова функции
-  const args = node.getArguments().map(arg => {
-    return tsRl.ast.expressions.parse(arg as any)!;
-  });
-
+  const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
+  
   return {
-    kind: 'CallExpression',
-    identifier,
-    arguments_: args,
-    modifiers: []
+    kind: 'CallAst', syntaxLayer: 2,
+    identifier: identifierName ? { name: identifierName } : null,
+    arguments_: node.getArguments().map(arg => parse(arg as any)!),
   };
 }

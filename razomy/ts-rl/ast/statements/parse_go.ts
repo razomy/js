@@ -1,29 +1,10 @@
-import {BreakStatement, ContinueStatement, Node} from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import { BreakStatement, ContinueStatement, Node } from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseGo(
-  node: BreakStatement | ContinueStatement
-): abstracts.translators.BreakGoStatement
-  | abstracts.translators.ContinueGoStatement {
+export function parseGo(node: BreakStatement | ContinueStatement): translators.BreakAst | translators.ContinueAst {
   const label = node.getLabel();
   if (Node.isBreakStatement(node)) {
-    return {
-      kind: 'BreakGoStatement',
-      labelIdentifier: {
-        kind: 'Identifier',
-        name: label ? label.getText() : '',
-      },
-    };
+    return { kind: 'BreakAst', syntaxLayer: 3, identifier: label ? { name: label.getText() } : null };
   }
-
-
-  return {
-    kind: 'ContinueGoStatement',
-    labelIdentifier: {
-      kind: 'Identifier',
-      name: label ? label.getText() : '',
-    },
-  };
-
+  return { kind: 'ContinueAst', syntaxLayer: 3, identifier: label ? { name: label.getText() } : null };
 }
-

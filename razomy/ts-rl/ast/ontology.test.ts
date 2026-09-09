@@ -74,7 +74,7 @@ on (кто: Человек) войти_в (дом: Дом)
     console.log(sourceText);
 
 
-    const expectedAst: (abstracts.translators.ConceptType | abstracts.translators.ClauseType)[] = [
+    const expectedAst: (abstracts.translators.IBindingAst | abstracts.translators.FunctionAst)[] = [
 
       // ==========================================
       // 1. КОНЦЕПТЫ (Этап компиляции)

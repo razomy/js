@@ -55,7 +55,7 @@ export type SemanticLayer =
  * The foundational interface for all AST nodes.
  * @abstract
  */
-export interface AstNode {
+export interface IAstNode {
   /**
    * @abstract
    */
@@ -66,7 +66,7 @@ export interface AstNode {
 /**
  * @abstract
  */
-export interface PanicAst extends AstNode {
+export interface IPanicAst extends IAstNode {
 }
 
 /**
@@ -79,13 +79,13 @@ export interface PanicAst extends AstNode {
  * ```
  * @abstract
  */
-export interface StateAst extends AstNode {
+export interface IStateAst extends IAstNode {
 }
 
 /**
  * @abstract
  */
-export interface OperationAst extends AstNode {
+export interface IOperationAst extends IAstNode {
 }
 
 /**
@@ -99,22 +99,22 @@ export interface OperationAst extends AstNode {
  * ```
  * @abstract
  */
-export interface FlowAst extends AstNode {
+export interface IFlowAst extends IAstNode {
 }
 
 /**
  * @abstract
  */
-export interface FlowOperatorAst extends AstNode {
+export interface IFlowOperatorAst extends IAstNode {
 }
 
 /**
  * @abstract
  */
-export interface DeclarationAst extends AstNode {
+export interface IDeclarationAst extends IAstNode {
 }
 
-export interface DeclarationOperatorAst extends AstNode {
+export interface IDeclarationOperatorAst extends IAstNode {
 }
 
 /**
@@ -128,36 +128,36 @@ export interface DeclarationOperatorAst extends AstNode {
  * ```
  * @abstract
  */
-export interface BindingAst extends AstNode {
+export interface IBindingAst extends IAstNode {
 }
 
 /**
  * @abstract
  */
-export interface AccessAst extends AstNode {
+export interface IAccessAst extends IAstNode {
 }
 
-export interface ModifierAst extends AstNode {
+export interface IModifierAst extends IAstNode {
 }
 
-export interface LayerAst extends AstNode {
+export interface ILayerAst extends IAstNode {
 }
 
 /**
  * @abstract
  */
 export type OntologyAstType =
-  | PanicAst
-  | StateAst
-  | OperationAst
-  | FlowAst
-  | FlowOperatorAst
-  | BindingAst
-  | DeclarationAst
-  | DeclarationOperatorAst
-  | AccessAst
-  | ModifierAst
-  | LayerAst
+  | IPanicAst
+  | IStateAst
+  | IOperationAst
+  | IFlowAst
+  | IFlowOperatorAst
+  | IBindingAst
+  | IDeclarationAst
+  | IDeclarationOperatorAst
+  | IAccessAst
+  | IModifierAst
+  | ILayerAst
   ;
 
 // endregion Ontology
@@ -175,7 +175,7 @@ export interface Identifier {
  * @final
  * @complexity danger use only for external system error checks
  */
-export interface ThrowAst extends PanicAst {
+export interface ThrowAst extends IPanicAst {
   kind: 'ThrowAst';
   value: StateAstType;
 }
@@ -184,7 +184,7 @@ export interface ThrowAst extends PanicAst {
  * @final
  * @complexity danger use only for external system error checks
  */
-export interface TryAst extends PanicAst {
+export interface TryAst extends IPanicAst {
   kind: 'TryAst';
   block: BlockAst;
 }
@@ -193,13 +193,13 @@ export interface TryAst extends PanicAst {
  * @final
  * @complexity danger use only for external system error checks
  */
-export interface CatchAst extends PanicAst {
+export interface CatchAst extends IPanicAst {
   kind: 'CatchAst';
   condition: AstType;
   block: BlockAst;
 }
 
-export interface DefaultCatchAst extends PanicAst {
+export interface DefaultCatchAst extends IPanicAst {
   kind: 'DefaultCatchAst';
   block: BlockAst;
 }
@@ -208,7 +208,7 @@ export interface DefaultCatchAst extends PanicAst {
  * @final
  * @complexity danger use only for external system error checks
  */
-export interface FinallyAst extends PanicAst {
+export interface FinallyAst extends IPanicAst {
   kind: 'FinallyAst';
   value: StateAstType;
 }
@@ -225,7 +225,7 @@ export type PanicAstType =
 
 // region State
 
-export interface LiteralAst extends StateAst {
+export interface LiteralAst extends IStateAst {
   kind: 'LiteralAst';
   semanticLayer: SemanticLayer; // 1
   value: any; // 0001-01-01
@@ -240,7 +240,7 @@ export interface LiteralAst extends StateAst {
  * ```
  * @final
  */
-export interface TemplateAst extends StateAst {
+export interface TemplateAst extends IStateAst {
   kind: 'TemplateAst';
   semanticLayer: SemanticLayer;
   values: AstType[];
@@ -254,13 +254,13 @@ export interface TemplateAst extends StateAst {
  * ```
  * @final
  */
-export interface ArrayAst extends StateAst {
+export interface ArrayAst extends IStateAst {
   kind: 'ArrayAst';
   semanticLayer: SemanticLayer;
   values: AstType[];
 }
 
-export interface TupleAst extends StateAst {
+export interface TupleAst extends IStateAst {
   kind: 'TupleAst';
   semanticLayer: SemanticLayer;
   values: AstType[];
@@ -275,7 +275,7 @@ export interface TupleAst extends StateAst {
  * @final
  * @complexity danger use BindingAst instead
  */
-export interface PropertyAst extends StateAst {
+export interface PropertyAst extends IStateAst {
   kind: 'PropertyAst';
   semanticLayer: SemanticLayer;
   identifier: Identifier;
@@ -291,7 +291,7 @@ export interface PropertyAst extends StateAst {
  * ```
  * @final
  */
-export interface ObjectAst extends StateAst {
+export interface ObjectAst extends IStateAst {
   kind: 'ObjectAst';
   semanticLayer: SemanticLayer;
   properties: PropertyAst[];
@@ -305,7 +305,7 @@ export interface ObjectAst extends StateAst {
  * ```
  * @final
  */
-export interface MappedAst extends StateAst {
+export interface MappedAst extends IStateAst {
   kind: 'MappedAst';
   semanticLayer: SemanticLayer;
   constraint: AstType;
@@ -330,7 +330,7 @@ export type StateAstType =
  * Унарные операции: !1, ++1, x--, -5, +x, ~2, typeof x, delete x
  * @final
  */
-export interface UnaryAst extends OperationAst {
+export interface UnaryAst extends IOperationAst {
   kind: 'UnaryAst';
   operator:
     | '&' // AddressOfAst
@@ -347,12 +347,12 @@ export interface UnaryAst extends OperationAst {
 }
 
 
-export interface SpreadAst extends OperationAst {
+export interface SpreadAst extends IOperationAst {
   kind: 'SpreadAst';
   value: StateAstType;
 }
 
-export interface ShapingAst extends OperationAst {
+export interface ShapingAst extends IOperationAst {
   kind: 'ShapingAst';
   operator:
     | 'typeof'
@@ -366,7 +366,7 @@ export interface ShapingAst extends OperationAst {
  * Бинарные операции: 1 + 1, 3 & 4, x === y, a ** b
  * @final
  */
-export interface BinaryAst extends OperationAst {
+export interface BinaryAst extends IOperationAst {
   kind: 'BinaryAst';
   operator: // Арифметика
     | '+'
@@ -412,7 +412,7 @@ export type OperationAstType =
 /**
  * @abstract
  */
-export interface MatchAst extends FlowAst {
+export interface MatchAst extends IFlowAst {
 }
 
 export interface TernaryAst extends MatchAst {
@@ -434,7 +434,7 @@ export interface SwitchAst extends MatchAst {
 /**
  * @abstract
  */
-export interface LoopAst extends FlowAst {
+export interface LoopAst extends IFlowAst {
 }
 
 export interface DoWhileAst extends LoopAst {
@@ -487,16 +487,16 @@ export interface ForItAst extends LoopAst {
  * {...;}, () - return - must use return value
  * @final
  */
-export interface BlockAst extends FlowAst {
+export interface BlockAst extends IFlowAst {
   kind: 'BlockAst';
   statements: AstType[];
 }
 
-export interface QueryAst extends FlowAst {
+export interface QueryAst extends IFlowAst {
   pattern: AstType;
 }
 
-export interface ConstraintAst extends FlowAst {
+export interface ConstraintAst extends IFlowAst {
   pattern: AstType;
 }
 
@@ -518,7 +518,7 @@ export type FlowAstType =
 
 // region FlowOperator
 
-export interface IfBranchAst extends FlowOperatorAst {
+export interface IfBranchAst extends IFlowOperatorAst {
 }
 
 export interface ConditionBranchAst extends IfBranchAst {
@@ -532,7 +532,7 @@ export interface ElseBranchAst extends IfBranchAst {
   value: AstType;
 }
 
-export interface SwitchBranchAst extends FlowOperatorAst {
+export interface SwitchBranchAst extends IFlowOperatorAst {
 }
 
 export interface MatchBranchAst extends SwitchBranchAst {
@@ -552,20 +552,20 @@ export interface DefaultBranchAst extends SwitchBranchAst {
  * return ...;
  * @final
  */
-export interface ReturnAst extends FlowOperatorAst {
+export interface ReturnAst extends IFlowOperatorAst {
   kind: 'ReturnAst';
   // null - void
   value: abstracts.meta.NullOptional<StateAstType>;
 }
 
 
-export interface BreakAst extends FlowOperatorAst {
+export interface BreakAst extends IFlowOperatorAst {
   kind: 'BreakAst';
   identifier: abstracts.meta.NullOptional<Identifier>;
 }
 
 
-export interface ContinueAst extends FlowOperatorAst {
+export interface ContinueAst extends IFlowOperatorAst {
   kind: 'ContinueAst';
   identifier: abstracts.meta.NullOptional<Identifier>;
 }
@@ -595,17 +595,17 @@ export type FlowOperatorAstType =
  * @final
  * @complexity danger use BindingAst instead
  */
-export interface ParameterAst extends DeclarationAst {
+export interface ParameterAst extends IDeclarationAst {
   kind: 'ParameterAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   shape: abstracts.meta.NullOptional<AstType>;
   value: abstracts.meta.NullOptional<StateAstType>;
 }
 
-export interface LambdaAst extends DeclarationAst {
+export interface LambdaAst extends IDeclarationAst {
   kind: 'LambdaAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   parameters: ParameterAst[];
   returnShape: abstracts.meta.NullOptional<AstType>;
   block: BlockAst;
@@ -620,15 +620,14 @@ export interface LambdaAst extends DeclarationAst {
  * @example
  * "Глагол [передать] требует (Кто:Человек, Что:Предмет, Кому:Человек)."
  */
-export interface FunctionAst extends DeclarationAst {
+export interface FunctionAst extends IDeclarationAst {
   kind: 'FunctionAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   parameters: ParameterAst[]; // generics or parameters or shapes
   returnShape: abstracts.meta.NullOptional<AstType>;
   block: BlockAst;
 }
-
 
 /**
  * Represents an interface declaration.
@@ -639,10 +638,10 @@ export interface FunctionAst extends DeclarationAst {
  * @final
  * @complexity danger use ObjectAst instead
  */
-export interface StructAst extends DeclarationAst {
+export interface StructAst extends IDeclarationAst {
   kind: 'StructAst';
   identifier: Identifier;
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   parameters: ParameterAst[];
   properties: PropertyAst[];
 }
@@ -656,17 +655,17 @@ export interface StructAst extends DeclarationAst {
  * @final
  * @complexity danger syntax sugar use ObjectAst instead
  */
-export interface InterfaceAst extends DeclarationAst {
+export interface InterfaceAst extends IDeclarationAst {
   kind: 'InterfaceAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   parameters: ParameterAst[];
   properties: PropertyAst[];
 }
 
-export interface EnumAst extends DeclarationAst {
+export interface EnumAst extends IDeclarationAst {
   kind: 'EnumAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   parameters: ParameterAst[];
   properties: PropertyAst[];
@@ -682,9 +681,9 @@ export interface EnumAst extends DeclarationAst {
  * @final
  * @complexity danger luck of flexibility - dont use
  */
-export interface ClassAst extends DeclarationAst {
+export interface ClassAst extends IDeclarationAst {
   kind: 'ClassAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   parameters: ParameterAst[];
   properties: PropertyAst[];
@@ -703,11 +702,11 @@ export interface ClassAst extends DeclarationAst {
  *                    and path/location as version
  *                    and runtime as imports
  */
-export interface ModuleAst extends DeclarationAst {
+export interface ModuleAst extends IDeclarationAst {
   kind: 'ModuleAst';
   identifier: Identifier;
   block: BlockAst;
-  version: string;
+  version: string | null;
   runtime: ImportAst;
   role: 'Program' | 'SourceFile' | 'Root'
   dependencies: ImportAst[];
@@ -732,7 +731,7 @@ export type DeclarationAstType =
  *
  *  @complexity danger should be part of engine
  */
-export interface AsyncAst extends DeclarationOperatorAst {
+export interface AsyncAst extends IDeclarationOperatorAst {
   kind: 'AsyncAst';
   value: StateAstType;
 }
@@ -741,7 +740,7 @@ export interface AsyncAst extends DeclarationOperatorAst {
  *
  *  @complexity danger should be part of api
  */
-export interface DeleteAst extends DeclarationOperatorAst {
+export interface DeleteAst extends IDeclarationOperatorAst {
   kind: 'DeleteAst';
   value: StateAstType;
 }
@@ -750,7 +749,7 @@ export interface DeleteAst extends DeclarationOperatorAst {
  *
  *  @complexity danger blocks architecture flexibility
  */
-export interface YieldAst extends DeclarationOperatorAst {
+export interface YieldAst extends IDeclarationOperatorAst {
   kind: 'YieldAst';
   value: StateAstType;
 }
@@ -759,10 +758,10 @@ export type DeclarationOperatorAstType =
   | AsyncAst
   | DeleteAst
   | YieldAst
+
 // endregion DeclarationOperator
 
 // region Binding
-
 
 /**
  * Represents a variable declaration or alias.
@@ -777,9 +776,9 @@ export type DeclarationOperatorAstType =
  * ```
  * @final
  */
-export interface InstanceAst extends BindingAst {
+export interface InstanceAst extends IBindingAst {
   kind: 'InstanceAst';
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
   identifier: Identifier;
   shape: abstracts.meta.NullOptional<AstType>;
   value: StateAstType;
@@ -789,18 +788,18 @@ export interface InstanceAst extends BindingAst {
  * a = ... ;
  * @final
  */
-export interface AliasAst extends BindingAst {
-  kind: 'AliesAst';
+export interface AliasAst extends IBindingAst {
+  kind: 'AliasAst';
   identifier: Identifier;
   value: StateAstType;
-  modifiers: ModifierAst[];
+  modifiers: ModifierAstTypes[];
 }
 
 /**
  * a = ... ;
  * @final
  */
-export interface AssignAst extends BindingAst {
+export interface AssignAst extends IBindingAst {
   kind: 'AssignAst';
   identifier: Identifier;
   value: AstType;
@@ -816,13 +815,12 @@ export interface AssignAst extends BindingAst {
  * @complexity danger it should be alias variables `myPkg = npm:My-package:version:relative/path;`
  */
 
-export interface ImportAst extends BindingAst {
+export interface ImportAst extends IBindingAst {
   kind: 'ImportAst';
   identifier: Identifier;
   version: string;
   path: string;
 }
-
 
 export type BindingAstType =
   | InstanceAst
@@ -833,24 +831,24 @@ export type BindingAstType =
 // endregion Binding
 
 // region Access
+
 /** name(1,2) | (1,2)
  * @final
  * @example
  * "Книга находится на столе" -> predicate: "находится", args: [theme: "Книга", location: "стол"]
  * "Библиотека темная" -> predicate: "темная", args: [theme: "Библиотека"]
  */
-export interface CallAst extends AccessAst {
+export interface CallAst extends IAccessAst {
   kind: 'CallAst';
   // null = call()()
   identifier: abstracts.meta.NullOptional<Identifier>;
   arguments_: AstType[];
 }
 
-
 /**
  * @example .a
  */
-export interface MemberAst extends AccessAst {
+export interface MemberAst extends IAccessAst {
   kind: 'MemberAst';
   object_: AstType;
   property: AstType;
@@ -859,18 +857,18 @@ export interface MemberAst extends AccessAst {
 /**
  * @example [1]
  */
-export interface ArgumentMemberAst extends AccessAst {
+export interface ArgumentMemberAst extends IAccessAst {
   kind: 'ArgumentMemberAst';
   argument: AstType;
   property: AstType;
 }
 
-export interface ReferenceAst extends AccessAst {
+export interface ReferenceAst extends IAccessAst {
   kind: 'ReferenceAst';
   identifier: Identifier;
 }
 
-export interface DecoratorAst extends AccessAst {
+export interface DecoratorAst extends IAccessAst {
   kind: 'DecoratorAst';
   identifier: abstracts.meta.NullOptional<Identifier>;
   arguments_: AstType[];
@@ -882,12 +880,11 @@ export interface DecoratorAst extends AccessAst {
  * @example Rust: `println!("{}, {}", x, y)`, `vec![1, 2, 3]`
  * @complexity danger must be code injection as lang plugin not a virtual code
  */
-export interface MacroCallAst extends AccessAst {
+export interface MacroCallAst extends IAccessAst {
   kind: 'MacroCallAst';
   identifier: Identifier;
   arguments_: abstracts.translators.Token[];
 }
-
 
 export type AccessAstType =
   | CallAst
@@ -902,18 +899,17 @@ export type AccessAstType =
 
 // region Modifier
 
-
-export interface ExportModifierAst extends ModifierAst {
+export interface ExportModifierAst extends IModifierAst {
   kind: 'ExportModifierAst';
   value: abstracts.meta.NullOptional<DeclarationAstType>;
 }
 
-export interface OverrideModifierAst extends ModifierAst {
+export interface OverrideModifierAst extends IModifierAst {
   kind: 'OverrideModifierAst';
   value: abstracts.meta.NullOptional<DeclarationAstType>;
 }
 
-export interface FunctionModifierAst extends ModifierAst {
+export interface FunctionModifierAst extends IModifierAst {
   kind: 'FunctionModifierAst';
   operator:
     | 'async'
@@ -921,7 +917,7 @@ export interface FunctionModifierAst extends ModifierAst {
   value: abstracts.meta.NullOptional<DeclarationAstType>;
 }
 
-export interface ParameterModifierAst extends ModifierAst {
+export interface ParameterModifierAst extends IModifierAst {
   kind: 'ParameterModifierAst';
   operator:
     | 'rest'
@@ -929,7 +925,7 @@ export interface ParameterModifierAst extends ModifierAst {
   value: abstracts.meta.NullOptional<DeclarationAstType>;
 }
 
-export interface InheritModifierAst extends ModifierAst {
+export interface InheritModifierAst extends IModifierAst {
   kind: 'InheritModifierAst';
   operator:
     | 'extent'
@@ -937,8 +933,7 @@ export interface InheritModifierAst extends ModifierAst {
   value: abstracts.meta.NullOptional<DeclarationAstType>;
 }
 
-
-export interface InstanceModifierAst extends ModifierAst {
+export interface InstanceModifierAst extends IModifierAst {
   kind: 'InstanceModifierAst';
   operator:
     | 'const'
@@ -954,17 +949,16 @@ export type ModifierAstTypes =
   | InheritModifierAst
   | InstanceModifierAst
 
-
 // endregion Modifier
 
 // region Layer
 
-export interface DocsAst extends LayerAst, abstracts.domains.HasDescription {
+export interface DocsAst extends ILayerAst, abstracts.domains.HasDescription {
   kind: 'DocsAst';
   title: string;
 }
 
-export interface CommentAst extends LayerAst, abstracts.domains.HasDescription {
+export interface CommentAst extends ILayerAst, abstracts.domains.HasDescription {
   kind: 'CommentAst';
 }
 
@@ -973,13 +967,12 @@ export interface CommentAst extends LayerAst, abstracts.domains.HasDescription {
  * style - readability
  * @final
  */
-export interface StyleBlockAst extends LayerAst {
+export interface StyleBlockAst extends ILayerAst {
   kind: 'StyleBlockAst';
   statements: AstType[];
 }
 
-
-export interface FunctionDocsAst extends LayerAst, abstracts.domains.HasDescription {
+export interface FunctionDocsAst extends ILayerAst, abstracts.domains.HasDescription {
   kind: 'FunctionDocsAst';
   title: string;
   parameters: Record<string, string>;
@@ -997,8 +990,8 @@ export type LayerAstTypes =
   | FunctionDocsAst
   | StyleBlockAst
   ;
-// endregion Layer
 
+// endregion Layer
 
 export type AstType =
   | OntologyAstType

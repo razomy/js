@@ -1,25 +1,20 @@
-import {FunctionDeclaration, ParameterDeclaration} from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import {ParameterDeclaration} from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
+import {parse as parseExpr} from "../expressions/parse";
+import {parse as parseShape} from "../shapes/parse";
 
-export function parseParameter(node: ParameterDeclaration): abstracts.translators.ParameterBinding {
-  let description = '';
-  const jsDocs = (node.getParent() as FunctionDeclaration)?.getJsDocs?.();
-  if (jsDocs && jsDocs.length > 0) {
-    const paramTag = jsDocs[0]
-      .getTags()
-      .find((t) => t.getTagName() === 'param' && t.getText().includes(node.getName()));
-    if (paramTag) {
-      description = paramTag.getCommentText()?.replace(/^-\s*/, '').trim() || '';
-    }
-  }
-
+export function parseParameter(node: ParameterDeclaration): translators.ParameterAst {
   return {
-    kind: 'ParameterBinding',
-    identifier: tsRl.ast.bindings.parseIdentifier(node.getNameNode()),
-    shape: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!) : null,
-    expression: node.getInitializer() ? tsRl.ast.expressions.parse(node.getInitializer()!) : null,
-    modifiers: [node.isRestParameter() ? 'rest' as const : null].filter(i => i != null),
-    meta: {description},
+    kind: 'ParameterAst',
+    syntaxLayer: 3,
+    identifier: {name: node.getName()},
+    shape: node.getTypeNode() ? parseShape(node.getTypeNode()!) : null,
+    value: node.getInitializer() ? parseExpr(node.getInitializer()!) as translators.StateAstType : null,
+    modifiers: node.isRestParameter() ? [{
+      kind: 'ParameterModifierAst',
+      syntaxLayer: 1,
+      operator: 'rest',
+      value: null
+    }] : [],
   };
 }

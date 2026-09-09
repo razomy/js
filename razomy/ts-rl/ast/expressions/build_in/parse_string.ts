@@ -1,12 +1,6 @@
 import { StringLiteral, NoSubstitutionTemplateLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseString(
-  node: StringLiteral | NoSubstitutionTemplateLiteral,
-): abstracts.translators.BuildInExpression {
-  return {
-    kind: 'BuildInExpression',
-    type: 'String',
-    value: node.getLiteralValue(),
-  };
+export function parseString(node: StringLiteral | NoSubstitutionTemplateLiteral): translators.LiteralAst {
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: node.getLiteralValue() };
 }

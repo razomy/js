@@ -1,32 +1,23 @@
 import { IfStatement } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parse as parseExpr } from "../expressions/parse";
+import { parseBlock } from "./parse_block";
 
-export function parseCondition(
-  node: IfStatement
-): abstracts.translators.IfConditionalFlowStatement {
-
-  const branches: abstracts.translators.IfBranchFlowStatement[] = [];
-
-  // 1. IF Branch (Then)
+export function parseCondition(node: IfStatement): translators.IfAst {
+  const branches: translators.IfBranchAst[] = [];
   branches.push({
-    kind: 'IfBranchFlowStatement',
-    pattern: tsRl.ast.expressions.parse(node.getExpression()),
-    block: tsRl.ast.statements.parseBlock(node.getThenStatement()),
-  });
+    kind: 'ConditionBranchAst', syntaxLayer: 3,
+    pattern: parseExpr(node.getExpression()),
+    value: parseBlock(node.getThenStatement()),
+  } as translators.ConditionBranchAst);
 
-  // 2. ELSE Branch (if exists)
   const elseNode = node.getElseStatement();
   if (elseNode) {
     branches.push({
-      kind: 'IfBranchFlowStatement',
-      pattern: null, // Else branch has no pattern
-      block: tsRl.ast.statements.parseBlock(elseNode),
-    });
+      kind: 'ElseBranchAst',
+      syntaxLayer: 3,
+      value: parseBlock(elseNode),
+    } as translators.ElseBranchAst);
   }
-
-  return {
-    kind: 'IfConditionalFlowStatement',
-    branches,
-  };
+  return { kind: 'IfAst', syntaxLayer: 3, branches };
 }

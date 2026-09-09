@@ -1,14 +1,12 @@
 import { ArrayLiteralExpression } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parse as parseExpr } from '../parse';
 
-export function parseTuple(node: ArrayLiteralExpression): abstracts.translators.ArrayExpression {
+export function parseTuple(node: ArrayLiteralExpression): translators.TupleAst {
   return {
-    kind: 'ArrayExpression',
-    type: 'Tuple',
-    expressions: node
-      .getElements()
-      .map((element) => tsRl.ast.expressions.parse(element) as any)
-      .filter(Boolean),
+    kind: 'TupleAst',
+    syntaxLayer: 2,
+    semanticLayer: 1,
+    values: node.getElements().map(parseExpr).filter(Boolean) as translators.AstType[],
   };
 }

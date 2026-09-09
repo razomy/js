@@ -150,6 +150,6 @@ describe('parse', () => {
     // 3. Run your parser!
     const modules = tsRl.ast.bindings.getPackage(project, '', false);
 
-    expect(modules).toEqual({} as any satisfies abstracts.translators.PackageBinding);
+    expect(modules).toEqual({} as any satisfies abstracts.translators.ModuleAst);
   });
 });

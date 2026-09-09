@@ -24,7 +24,7 @@ export type SymbolId = number;
  * Каждый узел либо порождает символ, либо привязан к нему.
  * @abstract
  */
-export interface NodeHir {
+export interface IHirNode {
   /**
    * @abstract
    */
@@ -36,54 +36,54 @@ export interface NodeHir {
 /**
  * @abstract
  */
-export interface PanicHir extends NodeHir {}
+export interface IPanicHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface StateHir extends NodeHir {
+export interface IStateHir extends IHirNode {
   semanticLayer: SemanticLayer;
 }
 
 /**
  * @abstract
  */
-export interface OperationHir extends NodeHir {}
+export interface IOperationHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface FlowHir extends NodeHir {}
+export interface IFlowHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface FlowOperatorHir extends NodeHir {}
+export interface IFlowOperatorHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface DeclarationHir extends NodeHir {}
+export interface IDeclarationHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface BindingHirNode extends NodeHir {}
+export interface IBindingHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface AccessHir extends NodeHir {}
+export interface IAccessHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface ModifierHir extends NodeHir {}
+export interface IModifierHir extends IHirNode {}
 
 /**
  * @abstract
  */
-export interface LayerHir extends NodeHir {}
+export interface ILayerHir extends IHirNode {}
 
 // endregion Ontology
 
@@ -93,7 +93,7 @@ export interface LayerHir extends NodeHir {}
  * Унифицированный узел перехвата ошибок.
  * @final
  */
-export interface TryCatchHir extends PanicHir {
+export interface TryCatchHir extends IPanicHir {
   kind: 'TryCatchHir';
   tryBlock: BlockHir;
   catches: Array<{
@@ -108,7 +108,7 @@ export interface TryCatchHir extends PanicHir {
  * Выброс исключения или прерывание выполнения.
  * @final
  */
-export interface ThrowHir extends PanicHir {
+export interface ThrowHir extends IPanicHir {
   kind: 'ThrowHir';
   value: HirType;
 }
@@ -126,7 +126,7 @@ export type PanicHirType =
  * Примитивные константы (строки, числа, булевы значения, даты).
  * @final
  */
-export interface LiteralHir extends StateHir {
+export interface LiteralHir extends IStateHir {
   kind: 'LiteralHir';
   value: any;
 }
@@ -135,7 +135,7 @@ export interface LiteralHir extends StateHir {
  * Интерполированная строка или шаблонный литерал.
  * @final
  */
-export interface TemplateHir extends StateHir {
+export interface TemplateHir extends IStateHir {
   kind: 'TemplateHir';
   values: HirType[];
 }
@@ -144,7 +144,7 @@ export interface TemplateHir extends StateHir {
  * Упорядоченный список значений (объединяет Array и Tuple).
  * @final
  */
-export interface SequenceHir extends StateHir {
+export interface SequenceHir extends IStateHir {
   kind: 'SequenceHir';
   elements: HirType[];
 }
@@ -153,8 +153,8 @@ export interface SequenceHir extends StateHir {
  * Запись / Структура данных в памяти (объединяет Object и Mapped).
  * @final
  */
-export interface RecordHir extends StateHir {
-  kind: 'RecordHir';
+export interface ObjectHir extends IStateHir {
+  kind: 'ObjectHir';
   entries: Array<{
     key: HirType;
     value: HirType;
@@ -165,7 +165,7 @@ export type StateHirType =
   | LiteralHir
   | TemplateHir
   | SequenceHir
-  | RecordHir
+  | ObjectHir
   ;
 
 // endregion State
@@ -176,7 +176,7 @@ export type StateHirType =
  * Унарные операции.
  * @final
  */
-export interface UnaryHir extends OperationHir {
+export interface UnaryHir extends IOperationHir {
   kind: 'UnaryHir';
   operator:
     | '&'
@@ -197,7 +197,7 @@ export interface UnaryHir extends OperationHir {
  * Бинарные вычисления и сравнения.
  * @final
  */
-export interface BinaryHir extends OperationHir {
+export interface BinaryHir extends IOperationHir {
   kind: 'BinaryHir';
   operator:
     | '+' | '-' | '*' | '/' | '%' | '**'
@@ -214,7 +214,7 @@ export interface BinaryHir extends OperationHir {
  * Приведение типов, уточнение шейпа (typeof, as, cast).
  * @final
  */
-export interface CastHir extends OperationHir {
+export interface CastHir extends IOperationHir {
   kind: 'CastHir';
   operator: 'typeof' | 'as' | 'cast';
   targetShape: HirType;
@@ -235,7 +235,7 @@ export type OperationHirType =
  * Узел сопоставления (объединяет if, switch, ternary).
  * @final
  */
-export interface MatchHir extends FlowHir {
+export interface MatchHir extends IFlowHir {
   kind: 'MatchHir';
   target: abstracts.meta.NullOptional<HirType>;
   arms: MatchArmHir[];
@@ -245,12 +245,12 @@ export interface MatchHir extends FlowHir {
  * Универсальный цикл (объединяет for, while, do-while, for..in, for..of).
  * @final
  */
-export interface LoopHir extends FlowHir {
+export interface LoopHir extends IFlowHir {
   kind: 'LoopHir';
   init: abstracts.meta.NullOptional<HirType>;
   condition: abstracts.meta.NullOptional<HirType>;
   update: abstracts.meta.NullOptional<HirType>;
-  body: BlockHir;
+  block: BlockHir;
   isPostCondition: boolean;
 }
 
@@ -258,7 +258,7 @@ export interface LoopHir extends FlowHir {
  * Блок инструкций со своим скоупом видимости.
  * @final
  */
-export interface BlockHir extends FlowHir {
+export interface BlockHir extends IFlowHir {
   kind: 'BlockHir';
   type: 'return' | 'style' | 'value';
   statements: HirType[];
@@ -278,17 +278,17 @@ export type FlowHirType =
  * Ветка условий для MatchHir (заменяет Case, Default, IfBranch, ElseBranch).
  * @final
  */
-export interface MatchArmHir extends FlowOperatorHir {
+export interface MatchArmHir extends IFlowOperatorHir {
   kind: 'MatchArmHir';
   pattern: abstracts.meta.NullOptional<HirType>;
-  body: HirType;
+  block: HirType;
 }
 
 /**
  * Завершение выполнения блока с возвратом значения.
  * @final
  */
-export interface ReturnHir extends FlowOperatorHir {
+export interface ReturnHir extends IFlowOperatorHir {
   kind: 'ReturnHir';
   value: abstracts.meta.NullOptional<HirType>;
 }
@@ -297,17 +297,9 @@ export interface ReturnHir extends FlowOperatorHir {
  * Прерывание цикла.
  * @final
  */
-export interface BreakHir extends FlowOperatorHir {
-  kind: 'BreakHir';
-  targetLoopSymbol: abstracts.meta.NullOptional<SymbolId>;
-}
-
-/**
- * Переход на следующую итерацию.
- * @final
- */
-export interface ContinueHir extends FlowOperatorHir {
-  kind: 'ContinueHir';
+export interface GoHir extends IFlowOperatorHir {
+  kind: 'GoHir';
+  type: 'break'| 'continue' | 'yield',
   targetLoopSymbol: abstracts.meta.NullOptional<SymbolId>;
 }
 
@@ -315,7 +307,7 @@ export interface ContinueHir extends FlowOperatorHir {
  * Приостановка генератора / корутины.
  * @final
  */
-export interface YieldHir extends FlowOperatorHir {
+export interface YieldHir extends IFlowOperatorHir {
   kind: 'YieldHir';
   value: abstracts.meta.NullOptional<HirType>;
   isDelegate: boolean;
@@ -324,8 +316,7 @@ export interface YieldHir extends FlowOperatorHir {
 export type FlowOperatorHirType =
   | MatchArmHir
   | ReturnHir
-  | BreakHir
-  | ContinueHir
+  | GoHir
   | YieldHir
   ;
 
@@ -334,34 +325,24 @@ export type FlowOperatorHirType =
 // region Declaration
 
 /**
- * Параметр сигнатуры функции.
- * @final
- */
-export interface ParameterHir extends DeclarationHir {
-  kind: 'ParameterHir';
-  modifiers: ModifierHir[];
-  shape: abstracts.meta.NullOptional<HirType>;
-  defaultValue: abstracts.meta.NullOptional<HirType>;
-}
-
-/**
  * Унифицированная функция (объединяет функции, методы, лямбды).
  * @final
  */
-export interface FunctionHir extends DeclarationHir {
+export interface FunctionHir extends IDeclarationHir {
   kind: 'FunctionHir';
+  identifier: string;
   modifiers: ModifierHir[];
-  parameters: ParameterHir[];
+  parameters: BindingHir[];
   returnShape: abstracts.meta.NullOptional<HirType>;
-  body: BlockHir;
+  block: BlockHir;
 }
 
 /**
  * Описание формы данных (объединяет Struct, Interface, Class).
  * @final
  */
-export interface ShapeDeclarationHir extends DeclarationHir {
-  kind: 'ShapeDeclarationHir';
+export interface StructHir extends IDeclarationHir {
+  kind: 'StructHir';
   modifiers: ModifierHir[];
   extendsShapes: HirType[];
   fields: Record<string, HirType>;
@@ -372,17 +353,17 @@ export interface ShapeDeclarationHir extends DeclarationHir {
  * Модуль / Корневой блок компиляции.
  * @final
  */
-export interface ModuleHir extends DeclarationHir {
+export interface ModuleHir extends IDeclarationHir {
   kind: 'ModuleHir';
+  identifier: string;
   role: 'Program' | 'SourceFile' | 'Root';
   version: string;
   block: BlockHir;
 }
 
 export type DeclarationHirType =
-  | ParameterHir
   | FunctionHir
-  | ShapeDeclarationHir
+  | StructHir
   | ModuleHir
   ;
 
@@ -394,9 +375,10 @@ export type DeclarationHirType =
  * Связывание символа со значением или типом (const, let, type alias, import).
  * @final
  */
-export interface BindingHir extends BindingHirNode {
+export interface BindingHir extends IBindingHir {
   kind: 'BindingHir';
   modifiers: ModifierHir[];
+  identifier: string;
   shape: abstracts.meta.NullOptional<HirType>;
   value: abstracts.meta.NullOptional<HirType>;
   externalSource: abstracts.meta.NullOptional<{
@@ -409,9 +391,9 @@ export interface BindingHir extends BindingHirNode {
  * Мутация / переприсваивание уже объявленному символу или пути доступа.
  * @final
  */
-export interface AssignHir extends BindingHirNode {
+export interface AssignHir extends IBindingHir {
   kind: 'AssignHir';
-  target: AccessHir;
+  target: IAccessHir;
   value: HirType;
 }
 
@@ -428,7 +410,7 @@ export type BindingHirType =
  * Ссылка на идентификатор (Go to definition target).
  * @final
  */
-export interface ReferenceHir extends AccessHir {
+export interface ReferenceHir extends IAccessHir {
   kind: 'ReferenceHir';
   targetSymbol: SymbolId;
 }
@@ -437,7 +419,7 @@ export interface ReferenceHir extends AccessHir {
  * Доступ к члену структуры (объединяет Member .a и Index [x]).
  * @final
  */
-export interface MemberHir extends AccessHir {
+export interface MemberHir extends IAccessHir {
   kind: 'MemberHir';
   target: HirType;
   property: HirType;
@@ -447,7 +429,7 @@ export interface MemberHir extends AccessHir {
  * Вызов процедуры / макроса / декоратора.
  * @final
  */
-export interface CallHir extends AccessHir {
+export interface CallHir extends IAccessHir {
   kind: 'CallHir';
   callee: HirType;
   arguments_: HirType[];
@@ -467,9 +449,9 @@ export type AccessHirType =
  * Модификаторы семантики символов (export, async, static, visibility).
  * @final
  */
-export interface AttributeModifierHir extends ModifierHir {
-  kind: 'AttributeModifierHir';
-  name:
+export interface ModifierHir extends IModifierHir {
+  kind: 'ModifierHir';
+  type:
     | 'export'
     | 'override'
     | 'async'
@@ -484,7 +466,7 @@ export interface AttributeModifierHir extends ModifierHir {
 }
 
 export type ModifierHirType =
-  | AttributeModifierHir
+  | ModifierHir
   ;
 
 // endregion Modifier
@@ -495,15 +477,15 @@ export type ModifierHirType =
  * Документация и аннотации, прикрепленные к символам.
  * @final
  */
-export interface MetaLayerHir extends LayerHir {
-  kind: 'MetaLayerHir';
+export interface LayerHir extends ILayerHir {
+  kind: 'LayerHir';
   title: string;
   description: abstracts.meta.NullOptional<string>;
   annotations: Record<string, any>;
 }
 
 export type LayerHirType =
-  | MetaLayerHir
+  | LayerHir
   ;
 
 // endregion Layer

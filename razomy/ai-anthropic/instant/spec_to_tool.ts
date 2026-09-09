@@ -2,24 +2,24 @@ import * as abstracts from '@razomy/abstracts';
 
 // --- Helper to convert your Spec to Anthropic Tool Schema ---
 
-export function specToTool([doc, fn]: abstracts.translators.FunctionDocsAstJoinFunctionAst) {
+export function specToTool([doc, fn]: [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir]) {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 
   for (const param of fn.parameters) {
-    properties[param.identifier.name] = {
+    properties[param.identifier] = {
       type: param.shape?.kind, // Note: Anthropic expects JSON Schema types (string, number, boolean, object, array)
-      description: doc[param.identifier.name].description,
+      description: doc[param.identifier].description,
     };
 
     // If there is no default value, we assume the parameter is required
     if (param.value === null || param.value === undefined) {
-      required.push(param.identifier.name);
+      required.push(param.identifier);
     }
   }
 
   return {
-    name: fn.identifier.name,
+    name: fn.identifier,
     description: doc.description,
     input_schema: {
       type: 'object',

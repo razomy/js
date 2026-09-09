@@ -17,7 +17,7 @@ export type {
 };
 
 // Default export
-const ralaString = {
+const languageString = {
   bindingToString,
   docToString,
   functionToString,
@@ -25,4 +25,4 @@ const ralaString = {
 };
 
 
-export default ralaString;
+export default languageString;

@@ -1,45 +1,24 @@
-import * as abstracts from "@razomy/abstracts";
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parseModuleBody } from "./parse_module_body";
+import { parseModule } from "./parse_module";
 
-export function parseExport(exportDecl) {
-  // Пытаемся получить `as ast` (NamespaceExport)
+export function parseExport(exportDecl: any): translators.AstType[] {
   const namespaceExport = exportDecl.getNamespaceExport();
-
-  // Получаем файл, на который ссылается экспорт (from './ast' или from './get_package_specifications')
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile();
 
   if (namespaceExport && targetSourceFile) {
-    // 1. КЕЙС: export * as ast from './ast'; (ПОДМОДУЛЬ)
-    const subModuleName = namespaceExport.getName();
-
-    // Проверяем, указывает ли экспорт на index-файл в другой папке
-    const isTargetIndex = targetSourceFile.getBaseName().startsWith('index.');
-
-    if (isTargetIndex) {
-      // Если это папка с index.ts внутри, рекурсивно парсим саму папку
-      const subDir = targetSourceFile.getDirectory();
-      const subModule = tsRl.ast.bindings.parseModule(subDir);
-      return ([subModule]);
+    if (targetSourceFile.getBaseName().startsWith('index.')) {
+      return [parseModule(targetSourceFile.getDirectory())];
     } else {
-      // Если это экспорт конкретного файла как подмодуля (export * as types from './types.ts')
-      // Оборачиваем его содержимое в ModuleDeclaration
-      const items = tsRl.ast.bindings.parseModuleBody(targetSourceFile);
-      return [({
-        kind: 'ModuleBinding',
-        identifier: {kind: 'Identifier', name: subModuleName},
-        block: {
-          kind: 'BlockStatement',
-          declarations: items
-        },
-        meta: {description: ''},
-      }) as abstracts.translators.ModuleBinding];
+      return [{
+        kind: 'ModuleAst', syntaxLayer: 3,
+        identifier: { name: namespaceExport.getName() },
+        block: { kind: 'BlockAst', syntaxLayer: 3, statements: parseModuleBody(targetSourceFile) },
+        version: '', role: 'SourceFile', dependencies: [], runtime: { kind: 'ImportAst', syntaxLayer: 3, identifier: { name: '' }, path: '', version: '' }
+      }];
     }
-  } else {
-    // 2. КЕЙС: export { getPackageSpecifications } from './...'; (ФАЙЛЫ В BODY)
-    // Парсим исходный файл
-    const items = tsRl.ast.bindings.parseModuleBody(targetSourceFile);
-
-    // Распаковываем все найденные декларации напрямую в текущий body
-    return items;
+  } else if (targetSourceFile) {
+    return parseModuleBody(targetSourceFile);
   }
+  return [];
 }

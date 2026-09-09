@@ -1,12 +1,6 @@
 import type { BooleanLiteral, TrueLiteral, FalseLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseBoolean(
-  node: BooleanLiteral | TrueLiteral | FalseLiteral,
-): abstracts.translators.BuildInExpression {
-  return {
-    kind: 'BuildInExpression',
-    type: 'Boolean',
-    value: node.getLiteralValue(),
-  };
+export function parseBoolean(node: BooleanLiteral | TrueLiteral | FalseLiteral): translators.LiteralAst {
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: node.getLiteralValue() };
 }

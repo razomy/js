@@ -1,35 +1,53 @@
-import * as abstracts from '@razomy/abstracts';
-import * as array from '@razomy/array';
-import * as ralaString from "./";
+import * as languageString from './';
+import type { FunctionHir, HirType, ModifierHir } from '@razomy/abstracts/translators';
 
-export function functionToString(s: FlatDeclaration<abstracts.translators.FunctionBinding>) {
-  const shapes = s.node.shapes.length ?
-    `<${s.node.shapes.map(i => i.shapeIdentifier.name).join(', ')}>`
+export type FlatDeclaration<T = HirType> = {
+  node: T;
+  description: string;
+  name: string;
+  path: string[];
+};
+
+export function functionToString(s: FlatDeclaration<FunctionHir>): string {
+  const modifiers = (s.node.modifiers || []).map((m: ModifierHir) => m.type);
+  const isAsync = modifiers.includes('async') ? 'async ' : '';
+
+  // Generic-параметры (если переданы в метаданных/синтаксисе)
+  const generics = (s.node as any).typeParameters || (s.node as any).shapes;
+  const shapesStr = Array.isArray(generics) && generics.length
+    ? `<${generics.map((g: any) => g.name || languageString.shapeToString(g)).join(', ')}>`
     : '';
-  const paramsStr = s.node.parameters
+
+  const paramsStr = (s.node.parameters || [])
     .map((p) => {
-      const rest = array.includes (p.modifiers, 'rest') ? '...' : '';
-      const typeStr = ralaString.shapeToString(p.shape);
-      return `${rest}${p.identifier.name}: ${typeStr}`;
+      const pModifiers = (p.modifiers || []).map((m: ModifierHir) => m.type);
+      const isRest = pModifiers.includes('rest') ? '...' : '';
+      const isOptional = pModifiers.includes('optional') ? '?' : '';
+      const pName = (p as any).syntaxLayer?.name || (p as any).name || 'arg';
+      const typeStr = languageString.shapeToString(p.shape);
+      return `${isRest}${pName}${isOptional}: ${typeStr}`;
     })
     .join(', ');
-  const returnStr = ralaString.shapeToString(s.node.returnShape?.shape || null);
-  const isAsync = s.node.modifiers.join(' ');
-  const declaration = `\`${isAsync}${s.path.join('.')}${shapes}(${paramsStr}): ${returnStr}\``;
-  const description = [(s.node as any).title, s.node.meta.description].filter(Boolean).join('\n');
-  const examples = (s.node.meta.examples || [])
-    .map((e) => {
+
+  const returnStr = languageString.shapeToString(s.node.returnShape);
+  const declaration = `\`${isAsync}${s.path.join('.')}${shapesStr}(${paramsStr}): ${returnStr}\``;
+
+  const syntax = (s.node as any).syntaxLayer;
+  const meta = (s.node as any).meta;
+  const title = (s.node as any).title || syntax?.title;
+  const description = [title, s.description].filter(Boolean).join('\n');
+
+  const rawExamples = meta?.examples || syntax?.examples || [];
+  const examples = rawExamples
+    .map((e: any) => {
       const comment = e.expected ? ` // ${e.expected}` : '';
-      return `
-\`\`\`ts
-${e.code}${comment}
-\`\`\`
-`.trim();
+      return `\`\`\`ts\n${e.code}${comment}\n\`\`\``;
     })
     .join('\n\n')
     .trim();
+
   return `
-#### ${s.node.identifier.name}
+#### ${s.name}
 
 ${declaration}
 
@@ -37,10 +55,3 @@ ${description}
 ${examples ? '\nExamples\n\n' + examples : ''}
 `.trim();
 }
-
-export type FlatDeclaration<T = abstracts.translators.DeclarationAst> = {
-  node: T;
-  description: string;
-  name: string;
-  path: string[];
-};

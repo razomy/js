@@ -1,10 +1,6 @@
 import { NumericLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseNumber(node: NumericLiteral): abstracts.translators.BuildInExpression {
-  return {
-    kind: 'BuildInExpression',
-    type: 'Number',
-    value: node.getLiteralValue(),
-  };
+export function parseNumber(node: NumericLiteral): translators.LiteralAst {
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: node.getLiteralValue() };
 }

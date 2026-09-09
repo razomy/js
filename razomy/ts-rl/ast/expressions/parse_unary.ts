@@ -1,9 +1,8 @@
 import { Node, SyntaxKind, Expression } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parse } from './parse';
 
-export function parseUnary(node: Expression): abstracts.translators.UnaryExpression {
-  // 1. Префиксные (++x, !x, -x, ~x)
+export function parseUnary(node: Expression): translators.UnaryAst {
   if (Node.isPrefixUnaryExpression(node)) {
     let operator = '';
     switch (node.getOperatorToken()) {
@@ -14,51 +13,29 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryExpress
       case SyntaxKind.PlusPlusToken: operator = '++'; break;
       case SyntaxKind.MinusMinusToken: operator = '--'; break;
     }
-
     return {
-      kind: 'UnaryExpression',
-      operator: operator as any,
-      expression: tsRl.ast.expressions.parse(node.getOperand())!,
+      kind: 'UnaryAst', syntaxLayer: 2,
+      operator: operator as translators.UnaryAst['operator'],
+      value: parse(node.getOperand()) as translators.StateAstType,
       isPrefix: true,
-      shape: null,
     };
   }
-
-  // 2. Постфиксные (x++, x--)
   if (Node.isPostfixUnaryExpression(node)) {
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
-
     return {
-      kind: 'UnaryExpression',
-      operator: operator as any,
-      expression: tsRl.ast.expressions.parse(node.getOperand())!,
+      kind: 'UnaryAst', syntaxLayer: 2,
+      operator: operator as translators.UnaryAst['operator'],
+      value: parse(node.getOperand()) as translators.StateAstType,
       isPrefix: false,
-      shape: null
     };
   }
-
-  // 3. typeof (typeof x)
-  if (Node.isTypeOfExpression(node)) {
+  if (Node.isTypeOfExpression(node) || Node.isDeleteExpression(node)) {
     return {
-      kind: 'UnaryExpression',
-      operator: 'typeof',
-      expression: tsRl.ast.expressions.parse(node.getExpression())!,
+      kind: 'UnaryAst', syntaxLayer: 2,
+      operator: Node.isTypeOfExpression(node) ? '+' : '-',
+      value: parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression()) as translators.StateAstType,
       isPrefix: true,
-      shape: null
     };
   }
-
-  // 4. delete (delete x.y)
-  if (Node.isDeleteExpression(node)) {
-    return {
-      kind: 'UnaryExpression',
-      operator: 'delete',
-      expression: tsRl.ast.expressions.parse(node.getExpression())!,
-      isPrefix: true,
-      shape: null
-    };
-  }
-
-  throw new Error(`Unknown Unary "${node.getKindName()}" "${node.getText()}"`);
-
+  throw new Error(`Unknown Unary`);
 }

@@ -1,38 +1,25 @@
-import {Node} from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import { Node } from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parse(node: Node): abstracts.translators.ShapeType {
-  if (Node.isTypeReference(node)) return tsRl.ast.shapes.parseReferenceNode(node);
-  if (Node.isArrayTypeNode(node)) return tsRl.ast.shapes.parseArray(node);
-  if (Node.isTupleTypeNode(node)) return tsRl.ast.shapes.parseTuple(node);
-  if (Node.isTypeLiteral(node)) return tsRl.ast.shapes.parseObject(node);
-  if (Node.isUnionTypeNode(node)) return tsRl.ast.shapes.parseUnion(node);
-  if (Node.isIntersectionTypeNode(node)) return tsRl.ast.shapes.parseIntersection(node);
-  if (Node.isTemplateLiteralTypeNode(node)) return tsRl.ast.shapes.parseTemplate(node);
-  if (Node.isMappedTypeNode(node)) return tsRl.ast.shapes.parseMapped(node);
-  if (Node.isFunctionTypeNode(node)) return tsRl.ast.shapes.parseFunction(node);
-  if (Node.isIdentifier(node)) return tsRl.ast.shapes.parseShapeIdentifier(node);
-
-  // TODO:
-  if (Node.isConstructorTypeNode(node)) return null as any;
-  if (Node.isConstructorDeclaration(node)) return null as any;
-  if (Node.isTypeOperatorTypeNode(node)) return null as any;
-  if (Node.isTypePredicate(node)) return null as any;
-  if (Node.isIndexedAccessTypeNode(node)) return null as any;
-  if (Node.isParenthesizedTypeNode(node)) return null as any;
-  if (Node.isConditionalTypeNode(node)) return null as any;
-  if (Node.isRestTypeNode(node)) return null as any;
-
-  if (Node.isLiteralTypeNode(node)) {
-    return parse(node.getLiteral());
+export function parse(node: Node): translators.AstType {
+  if (Node.isTypeReference(node)) {
+    return { kind: 'ReferenceAst', syntaxLayer: 2, identifier: { name: node.getTypeName().getText() } } as translators.ReferenceAst;
+  }
+  if (Node.isArrayTypeNode(node)) {
+    return { kind: 'ArrayAst', syntaxLayer: 2, semanticLayer: 2, values: [parse(node.getElementTypeNode())] } as translators.ArrayAst;
+  }
+  if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
+    return { kind: 'TupleAst', syntaxLayer: 2, semanticLayer: 2, values: node.getTypeNodes().map(parse) } as translators.TupleAst;
+  }
+  if (Node.isTypeLiteral(node)) {
+    return { kind: 'ObjectAst', syntaxLayer: 2, semanticLayer: 2, properties: [] } as translators.ObjectAst;
+  }
+  
+  const kind = node.getKindName();
+  if (kind.includes('Keyword')) {
+    return { kind: 'ReferenceAst', syntaxLayer: 2, identifier: { name: node.getText() } } as translators.ReferenceAst;
   }
 
-  if (tsRl.ast.shapes.isKeyword(node)) {
-    return tsRl.ast.shapes.parseKeyword(node);
-  }
-
-  return tsRl.ast.shapes.parseLiteral(node);
-
-  throw new Error(`Unknown Type ${node.getKindName()} '${node.getText()}'`);
+  // Fallback
+  return { kind: 'ReferenceAst', syntaxLayer: 2, identifier: { name: node.getText() } } as translators.ReferenceAst;
 }

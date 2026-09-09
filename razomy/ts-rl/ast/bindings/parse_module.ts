@@ -1,23 +1,18 @@
 import { Directory } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as translators from '@razomy/abstracts/translators';
+import { parseModuleBody } from "./parse_module_body";
 
-export function parseModule(node: Directory): abstracts.translators.ModuleBinding {
+export function parseModule(node: Directory): translators.ModuleAst {
   const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
-  if (!indexFile) {
-    throw new Error('NO index file');
-  }
-  const body = tsRl.ast.bindings.parseModuleBody(indexFile);
-  // Имя модуля: либо переданное (для подмодулей), либо имя папки
-  const moduleName = node.getBaseName() || '';
-
+  if (!indexFile) throw new Error('NO index file');
+  
   return {
-    kind: 'ModuleBinding',
-    identifier: { kind: 'Identifier', name: moduleName },
-    block: {
-      kind: 'BlockStatement',
-      declarations: body
-    },
-    meta: { description: '' },
+    kind: 'ModuleAst', syntaxLayer: 3,
+    identifier: { name: node.getBaseName() || '' },
+    block: { kind: 'BlockAst', syntaxLayer: 3, statements: parseModuleBody(indexFile) },
+    version: null,
+    role: 'SourceFile',
+    dependencies: [],
+    runtime: { kind: 'ImportAst', syntaxLayer: 3, identifier: { name: 'node' }, path: '', version: '' }
   };
 }

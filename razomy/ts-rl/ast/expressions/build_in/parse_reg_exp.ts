@@ -1,11 +1,6 @@
 import { RegularExpressionLiteral } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as translators from '@razomy/abstracts/translators';
 
-export function parseRegExp(node: RegularExpressionLiteral): abstracts.translators.BuildInExpression {
-  const text = node.getLiteralText();
-  return {
-    kind: 'BuildInExpression',
-    type: 'RegExp',
-    value: text,
-  };
+export function parseRegExp(node: RegularExpressionLiteral): translators.LiteralAst {
+  return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: node.getLiteralText() };
 }

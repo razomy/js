@@ -1,68 +1,32 @@
-import {Node, Statement} from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import { Node, Statement } from 'ts-morph';
+import * as translators from '@razomy/abstracts/translators';
+import { parseBlock } from './parse_block';
+import { parseCondition } from './parse_condition';
+import { parseLoop } from './parse_loop';
+import { parseReturn } from './parse_return';
+import { parseGo } from './parse_go';
+import { parseThrow } from './parse_throw';
+import { parseVariable } from '../bindings/parse_variable';
+import { parseCall } from '../expressions/parse_call';
+import { parseUnary } from '../expressions/parse_unary';
 
-// Импорты ниже мы реализуем в следующих шагах
-
-export function parse(node: Statement): abstracts.translators.DeclarationAstType {
-  if (Node.isBlock(node)) {
-    return tsRl.ast.statements.parseBlock(node);
-  }
-
-  if (Node.isIfStatement(node)) {
-    return tsRl.ast.statements.parseCondition(node);
-  }
-
-  if (Node.isTryStatement(node)) {
-    return null as any;
-  }
-
-  if (
-    Node.isForStatement(node) ||
-    Node.isForInStatement(node) ||
-    Node.isForOfStatement(node) ||
-    Node.isWhileStatement(node) ||
-    Node.isDoStatement(node)
-  ) {
-    return tsRl.ast.statements.parseLoop(node);
-  }
-
-  if (Node.isReturnStatement(node)) {
-    // Кастуем как any, так как в текущей онтологии ReturnExpression не входит в DeclarationType
-    return tsRl.ast.statements.parseReturn(node) as any;
-  }
-
-  if (Node.isBreakStatement(node) || Node.isContinueStatement(node)) {
-    return tsRl.ast.statements.parseGo(node);
-  }
-
-  if (Node.isThrowStatement(node)) {
-    return tsRl.ast.statements.parseThrow(node);
-  }
-
+export function parse(node: Statement): translators.AstType {
+  if (Node.isBlock(node)) return parseBlock(node);
+  if (Node.isIfStatement(node)) return parseCondition(node);
+  if (Node.isTryStatement(node)) return { kind: 'TryAst', syntaxLayer: 3, block: parseBlock(node.getTryBlock()) } as translators.TryAst; // Basic Try mapping
+  if (Node.isForStatement(node) || Node.isForInStatement(node) || Node.isForOfStatement(node) || Node.isWhileStatement(node) || Node.isDoStatement(node)) return parseLoop(node);
+  if (Node.isReturnStatement(node)) return parseReturn(node);
+  if (Node.isBreakStatement(node) || Node.isContinueStatement(node)) return parseGo(node);
+  if (Node.isThrowStatement(node)) return parseThrow(node);
   if (Node.isVariableStatement(node)) {
-    // В TS VariableStatement может содержать несколько деклараций (let a = 1, b = 2).
-    // По вашей архитектуре это должно обрабатываться через parseVariableBinding
-    // Для простоты берем первую декларацию (или можно возвращать массив и делать flatMap)
-    const declarations = node.getDeclarations();
-    if (declarations.length > 0) {
-      return tsRl.ast.bindings.parseVariable(declarations[0] as any);
-    }
+    const decls = node.getDeclarations();
+    return decls.length > 0 ? parseVariable(decls[0] as any) : { kind: 'BlockAst', syntaxLayer: 3, statements: [] } as translators.BlockAst;
   }
-
   if (Node.isExpressionStatement(node)) {
-    const node2 = node.getExpression();
-    if (Node.isCallExpression(node2)) {
-      //TODO: add bridge;
-      return tsRl.ast.expressions.parseCall(node2) as any;
-    }
-    if (Node.isUnaryExpression(node2)) {
-      //TODO: add bridge;
-      return tsRl.ast.expressions.parseUnary(node2) as any;
-    }
-    throw new Error(`Unknown Expression "${node2.getKindName()}" "${node2.getText()}"`);
+    const expr = node.getExpression();
+    if (Node.isCallExpression(expr)) return parseCall(expr);
+    if (Node.isUnaryExpression(expr)) return parseUnary(expr);
+    throw new Error(`Unknown ExpressionStmt "${expr.getKindName()}"`);
   }
-
-  throw new Error(`Unknown Statements "${node.getKindName()}" "${node.getText()}"`);
+  throw new Error(`Unknown Statement "${node.getKindName()}"`);
 }
-
