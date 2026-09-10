@@ -1,7 +1,6 @@
 import * as abstracts from "@razomy/abstracts";
 
 // join functions
-
 export interface IModule extends abstracts.domains.IContext {
 }
 

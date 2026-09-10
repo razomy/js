@@ -1,4 +1,5 @@
 import * as abstracts from "@razomy/abstracts";
+import type {IEntity} from "@razomy/abstracts/domains";
 
 // region Ontology
 
@@ -55,7 +56,7 @@ export type SemanticLayer =
  * The foundational interface for all AST nodes.
  * @abstract
  */
-export interface IAstNode {
+export interface IAstNode extends IEntity {
   /**
    * @abstract
    */
