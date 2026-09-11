@@ -1,7 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
-import type { HirType, FunctionHir, StructHir, ModifierHir } from '@razomy/abstracts/translators';
 
-export function shapeToString(type: abstracts.meta.NullOptional<HirType>): string {
+export function shapeToString(type: abstracts.meta.NullOptional<abstracts.translators.HirType>): string {
   if (!type) return 'any';
 
   switch (type.kind) {
@@ -35,7 +34,7 @@ export function shapeToString(type: abstracts.meta.NullOptional<HirType>): strin
         .join(', ')} }`;
 
     case 'StructHir': {
-      const struct = type as StructHir;
+      const struct = type as abstracts.translators.StructHir;
       const fieldEntries = Object.entries(struct.fields || {}).map(
         ([fieldName, fieldShape]) => `${fieldName}: ${shapeToString(fieldShape)}`
       );
@@ -54,12 +53,12 @@ export function shapeToString(type: abstracts.meta.NullOptional<HirType>): strin
       return `${type.operator}${shapeToString(type.operand)}`;
 
     case 'FunctionHir': {
-      const fn = type as FunctionHir;
+      const fn = type as abstracts.translators.FunctionHir;
       const params = fn.parameters
         .map((p) => {
           const pName = (p as any).syntaxLayer?.name || (p as any).name || 'arg';
           const pShape = shapeToString(p.shape);
-          const isRest = p.modifiers?.some((m: ModifierHir) => m.type === 'rest');
+          const isRest = p.modifiers?.some((m: abstracts.translators.ModifierHir) => m.type === 'rest');
           return `${isRest ? '...' : ''}${pName}: ${pShape}`;
         })
         .join(', ');

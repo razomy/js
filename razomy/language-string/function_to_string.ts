@@ -1,15 +1,15 @@
-import * as languageString from './';
-import type { FunctionHir, HirType, ModifierHir } from '@razomy/abstracts/translators';
+import * as languageString from "@razomy/language-string";
+import * as abstracts from "@razomy/abstracts";
 
-export type FlatDeclaration<T = HirType> = {
+export type FlatDeclaration<T = abstracts.translators.HirType> = {
   node: T;
   description: string;
   name: string;
   path: string[];
 };
 
-export function functionToString(s: FlatDeclaration<FunctionHir>): string {
-  const modifiers = (s.node.modifiers || []).map((m: ModifierHir) => m.type);
+export function functionToString(s: FlatDeclaration<abstracts.translators.FunctionHir>): string {
+  const modifiers = (s.node.modifiers || []).map((m: abstracts.translators.ModifierHir) => m.type);
   const isAsync = modifiers.includes('async') ? 'async ' : '';
 
   // Generic-параметры (если переданы в метаданных/синтаксисе)
@@ -20,7 +20,7 @@ export function functionToString(s: FlatDeclaration<FunctionHir>): string {
 
   const paramsStr = (s.node.parameters || [])
     .map((p) => {
-      const pModifiers = (p.modifiers || []).map((m: ModifierHir) => m.type);
+      const pModifiers = (p.modifiers || []).map((m: abstracts.translators.ModifierHir) => m.type);
       const isRest = pModifiers.includes('rest') ? '...' : '';
       const isOptional = pModifiers.includes('optional') ? '?' : '';
       const pName = (p as any).syntaxLayer?.name || (p as any).name || 'arg';

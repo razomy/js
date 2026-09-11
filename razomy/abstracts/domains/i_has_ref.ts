@@ -1,13 +1,13 @@
-import type {IResource, IContext, HasId} from "@razomy/abstracts/domains";
+import * as abstracts from "@razomy/abstracts";
 
-export interface IHasRef extends IResource {
+export interface IHasRef extends abstracts.domains.IResource {
 }
 
-export type IdRef<T extends IContext = IContext> = HasId & T;
+export type IdRef<T extends abstracts.domains.IContext = abstracts.domains.IContext> = abstracts.domains.HasId & T;
 
 // S shared keys
-export type OneOfIdRef<T extends IContext = IContext, S extends IContext = IContext> = T extends any
+export type OneOfIdRef<T extends abstracts.domains.IContext = abstracts.domains.IContext, S extends abstracts.domains.IContext = abstracts.domains.IContext> = T extends any
   ? IdRef<T & S>
   : never;
 
-export type IdRefArray<T extends IContext = IContext, S extends IContext = IContext> = OneOfIdRef<T, S>[];
+export type IdRefArray<T extends abstracts.domains.IContext = abstracts.domains.IContext, S extends abstracts.domains.IContext = abstracts.domains.IContext> = OneOfIdRef<T, S>[];

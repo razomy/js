@@ -15,6 +15,45 @@ function buildPropertyAccess(base: string, paths: string[]): string {
   }, base);
 }
 
+function processReference(ref: Node, searchName: string, replacementStr: string) {
+  const parent = ref.getParent();
+  if (!parent) return;
+
+  // 1. Обработка сокращенных свойств объекта (const obj = { ASSIGN })
+  if (Node.isShorthandPropertyAssignment(parent)) {
+    parent.replaceWithText(`${searchName}: ${replacementStr}`);
+  }
+  // 2. Обработка реэкспортов (export { ASSIGN })
+  else if (Node.isExportSpecifier(parent)) {
+    const exportDecl = parent.getFirstAncestorByKind(SyntaxKind.ExportDeclaration);
+    if (exportDecl) {
+      // Проверяем, является ли это экспортом типа
+      const isType = parent.isTypeOnly() || exportDecl.isTypeOnly();
+      const exportName = parent.getAliasNode() ? parent.getAliasNode()!.getText() : searchName;
+
+      // Генерируем новое независимое объявление вместо неймспейса в фигурных скобках
+      const newStatement = isType
+        ? `export type ${exportName} = ${replacementStr};`
+        : `export const ${exportName} = ${replacementStr};`;
+
+      // Вставляем сразу после текущего блока export
+      exportDecl.getSourceFile().insertStatements(exportDecl.getChildIndex() + 1, newStatement);
+
+      // Удаляем старый спецификатор (слово из export {})
+      parent.remove();
+
+      // Если после удаления блок export {} остался пустым — удаляем его целиком
+      if (exportDecl.getNamedExports().length === 0) {
+        exportDecl.remove();
+      }
+    }
+  }
+  // 3. Во всех остальных случаях просто заменяем текст
+  else {
+    ref.replaceWithText(replacementStr);
+  }
+}
+
 export async function replaceInjectImportWithDefaultImport(projectPath: string) {
   console.log('Инициализация проекта...');
   const tsConfigPath = projectPath.endsWith('/') ? projectPath + 'tsconfig.json' : projectPath + '/tsconfig.json';
@@ -26,6 +65,10 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
   const sourceFiles = project.getSourceFiles();
 
   for (const file of sourceFiles) {
+    if (file.getBaseName() === 'index.ts') continue;
+    if (file.getBaseName() === 'index.node.ts') continue;
+    if (file.getBaseName() === 'index.browser.ts') continue;
+    if (file.getBaseName() === 'index.remote.ts') continue;
     try {
       let hasChanges = false;
       const namespacesToAdd = new Map<string, string>();
@@ -110,12 +153,10 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         // === ПРОВЕРКА: ЕСЛИ ИМПОРТ УЖЕ ПРАВИЛЬНЫЙ ===
         // ==========================================================
         if (namedImports.length === 0 && namespaceImport && moduleSpecifier === rootPackageImport) {
-          // Если это УЖЕ корректный namespace импорт корневого пакета
-          // (например, import * as videosNode from '@razomy/videos/node')
           if (!namespacesToAdd.has(rootPackageImport)) {
             namespacesToAdd.set(rootPackageImport, namespaceImport.getText());
           }
-          continue; // Идем к следующему импорту, этот не удаляем и не помечаем файл как измененный
+          continue;
         }
 
         // ==========================================================
@@ -132,7 +173,6 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           if (existingNamespace) {
             aliasName = existingNamespace.getText();
           } else {
-            // Генерируем имя (videos -> videos; videos_node -> videosNode)
             const aliasBase = stringCase.camelCase(rootPkgName);
             aliasName = tsRefactor.toSafeName(aliasBase);
 
@@ -143,8 +183,6 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           }
           namespacesToAdd.set(rootPackageImport, aliasName);
         }
-
-        const propertyAccessPrefix = buildPropertyAccess(aliasName, subPathParts);
 
         // ==========================================================
         // === ЗАМЕНА NAMED ИМПОРТОВ (import { X }) ===
@@ -162,18 +200,22 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          const replacementStr = subPathParts.length > 0
-            ? `${propertyAccessPrefix}.${importedName}`
+          // Убираем дублирование вида parseBlock.parseBlock
+          let currentSubPathParts = [...subPathParts];
+          const lastPart = currentSubPathParts[currentSubPathParts.length - 1];
+
+          if (lastPart && stringCase.camelCase(lastPart) === stringCase.camelCase(importedName)) {
+            currentSubPathParts.pop(); // Удаляем имя файла из пути, так как оно совпадает с именем функции
+          }
+
+          const customPrefix = buildPropertyAccess(aliasName, currentSubPathParts);
+
+          const replacementStr = currentSubPathParts.length > 0
+            ? `${customPrefix}.${importedName}`
             : `${aliasName}.${importedName}`;
 
           for (const ref of localRefs) {
-            const parent = ref.getParent();
-
-            if (parent && Node.isShorthandPropertyAssignment(parent)) {
-              parent.replaceWithText(`${searchNode.getText()}: ${replacementStr}`);
-            } else {
-              ref.replaceWithText(replacementStr);
-            }
+            processReference(ref, searchNode.getText(), replacementStr);
           }
         }
 
@@ -191,15 +233,10 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
-          const replacementStr = propertyAccessPrefix;
+          const replacementStr = buildPropertyAccess(aliasName, subPathParts);
 
           for (const ref of localRefs) {
-            const parent = ref.getParent();
-            if (parent && Node.isShorthandPropertyAssignment(parent)) {
-              parent.replaceWithText(`${nsName}: ${replacementStr}`);
-            } else {
-              ref.replaceWithText(replacementStr);
-            }
+            processReference(ref, nsName, replacementStr);
           }
         }
 

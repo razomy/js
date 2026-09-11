@@ -82,6 +82,7 @@
     "tryGetLastEqual",
     "tryGetLast",
     "union",
+    "uniqBy",
     "uniq",
     "zip"
   ],

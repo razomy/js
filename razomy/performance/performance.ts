@@ -2,7 +2,7 @@ import perf_hooks from 'perf_hooks';
 
 const { performance } = perf_hooks;
 
-export const performance_ = performance;
+export const PERFORMANCE = performance;
 
 export class Performance {
   startTime: number;

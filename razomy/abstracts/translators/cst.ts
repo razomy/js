@@ -1,6 +1,4 @@
 import * as abstracts from '@razomy/abstracts';
-import type {IEntity} from "@razomy/abstracts/domains";
-
 // ==========================================
 // СЛОЙ 1.1: CST (Concrete Syntax Tree) - Чистая геометрия текста
 // Сохраняет всё: пробелы, комментарии, ошибки парсинга.
@@ -12,7 +10,7 @@ import type {IEntity} from "@razomy/abstracts/domains";
  * @example
  *  Any token, whitespace, or grouped block in the source file.
  */
-export interface CstNode extends IEntity {
+export interface CstNode extends abstracts.domains.IEntity {
   kind: string;
 }
 

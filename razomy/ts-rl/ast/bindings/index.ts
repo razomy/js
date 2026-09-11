@@ -1,11 +1,50 @@
-export * from './parse_variable';
-export * from './parse_function';
-export * from './parse_parameter';
-export * from './parse_property';
-export * from './parse_module_body';
-export * from './parse_module';
-export * from './parse_export';
-export * from './parse_statement';
-export * from './parse_enum';
-export * from './get_package';
-export * from './is_bindings';
+// Imports
+import { getPackage } from './get_package';
+import { getPublicOnlyMut } from './get_public_only_mut';
+import { isBindings } from './is_bindings';
+import { parse } from './parse';
+import { parseEnum } from './parse_enum';
+import { parseExport } from './parse_export';
+import { parseFunction } from './parse_function';
+import { parseModule } from './parse_module';
+import { parseModuleBody } from './parse_module_body';
+import { parseParameter } from './parse_parameter';
+import { parseProperty } from './parse_property';
+import { parseStatement } from './parse_statement';
+import { parseVariable } from './parse_variable';
+
+// Named exports
+export {
+  getPackage,
+  getPublicOnlyMut,
+  isBindings,
+  parse,
+  parseEnum,
+  parseExport,
+  parseFunction,
+  parseModule,
+  parseModuleBody,
+  parseParameter,
+  parseProperty,
+  parseStatement,
+  parseVariable
+};
+
+// Default export
+const bindings = {
+  getPackage,
+  getPublicOnlyMut,
+  isBindings,
+  parse,
+  parseEnum,
+  parseExport,
+  parseFunction,
+  parseModule,
+  parseModuleBody,
+  parseParameter,
+  parseProperty,
+  parseStatement,
+  parseVariable,
+};
+
+export default bindings;

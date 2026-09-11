@@ -1,6 +1,6 @@
 import {InMemoryFileSystemHost, Project} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "..";
+import * as tsRl from "@razomy/ts-rl";
 
 describe('parse', () => {
   it('parse', () => {

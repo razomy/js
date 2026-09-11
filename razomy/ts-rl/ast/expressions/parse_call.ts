@@ -1,14 +1,14 @@
 import { CallExpression } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parse } from './parse';
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseCall(node: CallExpression): translators.CallAst {
+export function parseCall(node: CallExpression): abstracts.translators.CallAst {
   const expressionNode = node.getExpression();
   const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
   
   return {
     kind: 'CallAst', syntaxLayer: 2,
     identifier: identifierName ? { name: identifierName } : null,
-    arguments_: node.getArguments().map(arg => parse(arg as any)!),
+    arguments_: node.getArguments().map(arg => tsRl.ast.expressions.parse(arg as any)!),
   };
 }

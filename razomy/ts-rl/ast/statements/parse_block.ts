@@ -1,21 +1,18 @@
 import { Block, Node, type Statement } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parseModuleBody } from "../bindings/parse_module_body";
-import { parseStatement } from "../bindings/parse_statement";
-import { isStatement } from "./is_statement";
-import { isExpression, parse as parseExpr } from "../expressions";
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseBlock(node: Block | Statement | null): translators.BlockAst {
+export function parseBlock(node: Block | Statement | null): abstracts.translators.BlockAst {
   if (!node) return { kind: 'BlockAst', syntaxLayer: 3, statements: [] };
 
   if (Node.isBlock(node)) {
-    return { kind: 'BlockAst', syntaxLayer: 3, statements: parseModuleBody(node) };
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: tsRl.ast.bindings.parseModuleBody(node) };
   }
-  if (isStatement(node)) {
-    return { kind: 'BlockAst', syntaxLayer: 3, statements: parseStatement(node) };
+  if (tsRl.ast.statements.isStatement(node)) {
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: tsRl.ast.bindings.parseStatement(node) };
   }
-  if (isExpression(node)) {
-    return { kind: 'BlockAst', syntaxLayer: 3, statements: [parseExpr(node)] };
+  if (tsRl.ast.expressions.isExpression(node)) {
+    return { kind: 'BlockAst', syntaxLayer: 3, statements: [tsRl.ast.expressions.parse(node)] };
   }
   throw new Error('Unrecognized block statement: ' + node.getText());
 }

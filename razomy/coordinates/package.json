@@ -54,6 +54,20 @@
       }
     },
     "./specifications/*": "./specifications/*",
+    "./vector": {
+      "default": {
+        "default": "./vector/index.ts",
+        "types": "./vector/index.ts"
+      },
+      "import": {
+        "default": "./vector/index.ts",
+        "types": "./vector/index.ts"
+      },
+      "require": {
+        "default": "./vector/index.ts",
+        "types": "./vector/index.ts"
+      }
+    },
     "./x": {
       "default": {
         "default": "./x/index.ts",
@@ -89,7 +103,8 @@
   "homepage": "https://github.com/razomy/js/tree/main/razomy/coordinates#readme",
   "keywords": [
     "razomy",
-    "coordinates"
+    "coordinates",
+    "similarity"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -105,8 +120,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts length/index.ts rectangle/index.ts x/index.ts y/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts length/index.ts rectangle/index.ts x/index.ts y/index.ts --watch",
+    "build": "tsdown index.ts length/index.ts rectangle/index.ts vector/index.ts x/index.ts y/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts length/index.ts rectangle/index.ts vector/index.ts x/index.ts y/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

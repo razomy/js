@@ -21,7 +21,7 @@
  * @complexity time O(m + n log n) where m = newOrder.length, n = oldOrder.length
  * @complexity memory O(m)
  */
-export function sortByArrayMut<T extends string>(oldOrder: T[], newOrder: T[]): T[] {
+export function sortByArrayMut<T>(oldOrder: T[], newOrder: T[]): T[] {
   const orderMap = new Map<T, number>();
 
   for (let i = 0; i < newOrder.length; i++) {

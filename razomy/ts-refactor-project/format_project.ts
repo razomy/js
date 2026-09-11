@@ -19,13 +19,14 @@ export async function formatProject(projectPath: string, prefix: string) {
   await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.fileRenameVariablesAndPropsFunctions);
   console.info('createIndexFiles.start');
   await tsRefactorProject.createIndexFiles(projectPath);
-  console.info('createPackageJsonAtChildDirs.start');
+
+  console.info('packageJson.createAtChildDirs.start');
   await tsRefactorProject.packageJson.createAtChildDirs(projectPath + prefix + '/', prefix);
-  console.info('createPackage.start');
+  console.info('packageJson.createRoot.start');
   await tsRefactorProject.packageJson.createRoot(projectPath);
-  console.info('addDependencies.start');
+  console.info('packageJson.addDependencies.start');
   await tsRefactorProject.packageJson.addDependencies(projectPath, prefix);
-  console.info('updatePackages.start');
+  console.info('packageJson.updateByTemplate.start');
   await tsRefactorProject.packageJson.updateByTemplate(projectPath, prefix);
 }
 

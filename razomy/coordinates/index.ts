@@ -1,6 +1,7 @@
 // Imports
 import * as length from './length';
 import * as rectangle from './rectangle';
+import * as vector from './vector';
 import * as x from './x';
 import * as y from './y';
 
@@ -8,6 +9,7 @@ import * as y from './y';
 export {
   length,
   rectangle,
+  vector,
   x,
   y
 };
@@ -16,6 +18,7 @@ export {
 const coordinates = {
   length,
   rectangle,
+  vector,
   x,
   y,
 };

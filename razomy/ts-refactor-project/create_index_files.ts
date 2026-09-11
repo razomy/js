@@ -3,6 +3,7 @@ import * as fsFile from '@razomy/fs-file';
 import * as path from 'path';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from '@razomy/string-case';
+import array from "@razomy/array";
 
 // Типы платформ
 type Platform = 'default' | 'node' | 'browser' | 'remote';
@@ -43,11 +44,11 @@ export async function createIndexFiles(projectPath_: string) {
       const platforms = getDirPlatforms(subDir.getPath());
       const subBaseName = subDir.getBaseName();
 
-      platforms.forEach((platform) => {
-        if (!platform) return;
+      for (const platform of platforms) {
+        if (!platform) continue;
         const meta = generateDirExportMeta(subDir.getPath(), subBaseName, platform);
         exportsMeta[platform].push(meta);
-      });
+      }
     }
 
     // 2. Обработка файлов
@@ -73,7 +74,7 @@ export async function createIndexFiles(projectPath_: string) {
     }
 
     // A. index.node.ts
-    const nodeMeta = [...exportsMeta.default, ...exportsMeta.node];
+    const nodeMeta = array.uniqBy([...exportsMeta.node, ...exportsMeta.default], i=>getFilePathWithoutPlatform(i.importPath));
     if (nodeMeta.length > 0 && exportsMeta.node.length > 0) {
       const content = buildIndexContent(dirBaseName, nodeMeta);
       saveIndexFile(project, `${dirPath}/index.node.ts`, content);
@@ -112,6 +113,13 @@ function getFilePlatform(fileName: string): Platform {
   if (fileName.includes('.node')) return 'node';
   if (fileName.includes('.remote')) return 'remote';
   return 'default';
+}
+
+function getFilePathWithoutPlatform(fileName: string): string {
+  if (fileName.includes('.browser')) return fileName.replace('/index.browser', '');
+  if (fileName.includes('.node')) return fileName.replace('/index.node', '');
+  if (fileName.includes('.remote')) return fileName.replace('/index.remote', '');
+  return fileName;
 }
 
 function getDirPlatforms(fullPath: string): (Platform | null)[] {

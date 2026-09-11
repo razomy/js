@@ -1,4 +1,4 @@
-import type {IEntity} from "@razomy/abstracts/domains";
+import * as abstracts from "@razomy/abstracts";
 
 export interface HasTokenType<T = Token> {
   tokenType: T;
@@ -14,7 +14,7 @@ export interface HasTokens<TToken extends HasTokenType<any> = HasTokenType<Token
 
 export type Token = never;
 
-export interface TokenNode extends IEntity {
+export interface TokenNode extends abstracts.domains.IEntity {
   kind: Token;
 }
 

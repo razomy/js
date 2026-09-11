@@ -1,13 +1,13 @@
 import { BinaryExpression } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parse } from './parse';
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseBinary(node: BinaryExpression): translators.BinaryAst {
+export function parseBinary(node: BinaryExpression): abstracts.translators.BinaryAst {
   return {
     kind: 'BinaryAst',
     syntaxLayer: 2,
-    operator: node.getOperatorToken().getText() as translators.BinaryAst['operator'],
-    left: parse(node.getLeft())!,
-    right: parse(node.getRight())!,
+    operator: node.getOperatorToken().getText() as abstracts.translators.BinaryAst['operator'],
+    left: tsRl.ast.expressions.parse(node.getLeft())!,
+    right: tsRl.ast.expressions.parse(node.getRight())!,
   };
 }

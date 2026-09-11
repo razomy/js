@@ -1,6 +1,6 @@
 import { Identifier as TsIdentifier, Node } from "ts-morph";
-import * as translators from '@razomy/abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
-export function parseReference(node: TsIdentifier | Node): translators.ReferenceAst {
+export function parseReference(node: TsIdentifier | Node): abstracts.translators.ReferenceAst {
   return { kind: 'ReferenceAst', syntaxLayer: 2, identifier: { name: node.getText() } };
 }

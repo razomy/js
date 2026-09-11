@@ -1,10 +1,10 @@
 import { ReturnStatement } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parse as parseExpr } from "../expressions/parse";
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseReturn(node: ReturnStatement): translators.ReturnAst {
+export function parseReturn(node: ReturnStatement): abstracts.translators.ReturnAst {
   return {
     kind: 'ReturnAst', syntaxLayer: 3,
-    value: node.getExpression() ? parseExpr(node.getExpression()!) as translators.StateAstType : null,
+    value: node.getExpression() ? tsRl.ast.expressions.parse(node.getExpression()!) as abstracts.translators.StateAstType : null,
   };
 }

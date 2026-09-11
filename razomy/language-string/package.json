@@ -45,8 +45,7 @@
   "module": "./index.ts",
   "name": "@razomy/language-string",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/array": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

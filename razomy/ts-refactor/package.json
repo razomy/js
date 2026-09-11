@@ -65,10 +65,10 @@
     "@razomy/array": "*",
     "@razomy/fss": "*",
     "@razomy/kv-recursive": "*",
+    "@razomy/language-string": "*",
     "@razomy/languages-programming-fs": "*",
-    "@razomy/rala-string": "*",
     "@razomy/string-case": "*",
-    "@razomy/ts-rala": "*"
+    "@razomy/ts-rl": "*"
   },
   "publishConfig": {
     "access": "public"

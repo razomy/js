@@ -1,7 +1,7 @@
 import { BreakStatement, ContinueStatement, Node } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
-export function parseGo(node: BreakStatement | ContinueStatement): translators.BreakAst | translators.ContinueAst {
+export function parseGo(node: BreakStatement | ContinueStatement): abstracts.translators.BreakAst | abstracts.translators.ContinueAst {
   const label = node.getLabel();
   if (Node.isBreakStatement(node)) {
     return { kind: 'BreakAst', syntaxLayer: 3, identifier: label ? { name: label.getText() } : null };

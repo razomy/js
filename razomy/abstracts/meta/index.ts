@@ -10,8 +10,8 @@ export type {
   DataStructure,
   DeepReadonly,
   LateInit,
-  NullOptional,
   LogicalTopology,
-  MemoryLayout
+  MemoryLayout,
+  NullOptional
 };
 

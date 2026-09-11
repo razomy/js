@@ -2,14 +2,13 @@ import {Project} from 'ts-morph';
 import * as fss from '@razomy/fss';
 import path from 'path';
 import * as tsRl from '@razomy/ts-rl';
-import {astToHir, HirCtx} from '@razomy/ts-rl';
 import * as tsRefactor from '@razomy/ts-refactor';
-import type {ModuleHir} from "@razomy/abstracts/translators";
+import * as abstracts from "@razomy/abstracts";
 
 export async function createReadmeAndSpecifications(dirPath) {
   const project = new Project({tsConfigFilePath: '../../' + 'tsconfig.json'});
   project.addSourceFileAtPath(path.join(dirPath, 'package.json'));
-  const files = astToHir(new HirCtx(), tsRl.ast.bindings.getPackage(project, dirPath)) as ModuleHir;
+  const files = tsRl.astToHir(new tsRl.HirCtx(), tsRl.ast.bindings.getPackage(project, dirPath)) as abstracts.translators.ModuleHir;
 
   const str = `${JSON.stringify(files, null, 2)}`;
   fss.directory.tryCreate(`${dirPath}/dist/specifications`);

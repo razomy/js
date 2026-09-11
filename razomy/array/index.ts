@@ -48,6 +48,7 @@ import { tryGetLast } from './try_get_last';
 import { tryGetLastEqual } from './try_get_last_equal';
 import { union } from './union';
 import { uniq } from './uniq';
+import { uniqBy } from './uniq_by';
 import { zip } from './zip';
 
 // Named exports
@@ -101,6 +102,7 @@ export {
   tryGetLastEqual,
   union,
   uniq,
+  uniqBy,
   zip
 };
 
@@ -155,6 +157,7 @@ const array = {
   tryGetLastEqual,
   union,
   uniq,
+  uniqBy,
   zip,
 };
 

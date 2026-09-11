@@ -1,10 +1,10 @@
 import { ThrowStatement } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parse as parseExpr } from "../expressions/parse";
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseThrow(node: ThrowStatement): translators.ThrowAst {
+export function parseThrow(node: ThrowStatement): abstracts.translators.ThrowAst {
   return {
     kind: 'ThrowAst', syntaxLayer: 3,
-    value: node.getExpression() ? parseExpr(node.getExpression()!) as translators.StateAstType : { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: undefined },
+    value: node.getExpression() ? tsRl.ast.expressions.parse(node.getExpression()!) as abstracts.translators.StateAstType : { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: undefined },
   };
 }

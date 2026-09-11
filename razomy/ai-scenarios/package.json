@@ -116,7 +116,7 @@
     "@razomy/fss": "*",
     "@razomy/main": "*",
     "@razomy/shell": "*",
-    "@razomy/ts-rala": "*"
+    "@razomy/ts-rl": "*"
   },
   "publishConfig": {
     "access": "public"

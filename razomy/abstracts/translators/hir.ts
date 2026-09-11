@@ -1,7 +1,4 @@
 import * as abstracts from "@razomy/abstracts";
-import type { SemanticLayer, SyntaxLayer } from "./ast";
-import type {IEntity} from "@razomy/abstracts/domains";
-
 // region Ontology
 
 /**
@@ -25,13 +22,13 @@ export type SymbolId = number;
  * Каждый узел либо порождает символ, либо привязан к нему.
  * @abstract
  */
-export interface IHirNode extends IEntity {
+export interface IHirNode extends abstracts.domains.IEntity {
   /**
    * @abstract
    */
   kind: string;
   symbolId: SymbolId;
-  syntaxLayer: SyntaxLayer;
+  syntaxLayer: abstracts.translators.SyntaxLayer;
 }
 
 /**
@@ -43,7 +40,7 @@ export interface IPanicHir extends IHirNode {}
  * @abstract
  */
 export interface IStateHir extends IHirNode {
-  semanticLayer: SemanticLayer;
+  semanticLayer: abstracts.translators.SemanticLayer;
 }
 
 /**

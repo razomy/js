@@ -5,7 +5,7 @@ import { formatMemory } from './format_memory';
 import { formatTime } from './format_time';
 import { measureComplexity } from './measure_complexity';
 import { nStringTestCasesRecordPerformance } from './n_string_test_cases_record_performance';
-import { Performance, performance_ } from './performance';
+import { PERFORMANCE, Performance } from './performance';
 import type { HardwareLimitation, OptimizationTradeoff } from './performance';
 import { performanceCb } from './performance_cb';
 import { recordPerformance } from './record_performance';
@@ -14,6 +14,7 @@ import type { PerformanceRecord, Prediction } from './weighted_moving_average_re
 
 // Named exports
 export {
+  PERFORMANCE,
   Performance,
   WeightedMovingAverageRecorder,
   bigO,
@@ -22,7 +23,6 @@ export {
   formatTime,
   measureComplexity,
   nStringTestCasesRecordPerformance,
-  performance_,
   performanceCb,
   recordPerformance
 };
@@ -41,8 +41,8 @@ const performance = {
   formatTime,
   measureComplexity,
   nStringTestCasesRecordPerformance,
+  PERFORMANCE,
   Performance,
-  performance_,
   performanceCb,
   recordPerformance,
   WeightedMovingAverageRecorder,

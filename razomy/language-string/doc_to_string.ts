@@ -1,12 +1,12 @@
-import * as languageString from './';
-import type { ModifierHir, StructHir, BindingHir } from '@razomy/abstracts/translators';
+import * as languageString from "@razomy/language-string";
+import * as abstracts from "@razomy/abstracts";
 
 export function docToString(s: languageString.FlatDeclaration): string {
   let declStr = '';
 
   if (s.node.kind === 'StructHir') {
-    const struct = s.node as StructHir;
-    const modifiers = (struct.modifiers || []).map((m: ModifierHir) => m.type).join(' ');
+    const struct = s.node as abstracts.translators.StructHir;
+    const modifiers = (struct.modifiers || []).map((m: abstracts.translators.ModifierHir) => m.type).join(' ');
     const keyword = modifiers ? `${modifiers} ` : '';
     const extendsClause =
       struct.extendsShapes && struct.extendsShapes.length > 0
@@ -14,8 +14,8 @@ export function docToString(s: languageString.FlatDeclaration): string {
         : '';
     declStr = `${keyword}struct ${s.name}${extendsClause}`;
   } else if (s.node.kind === 'BindingHir') {
-    const binding = s.node as BindingHir;
-    const modifiers = (binding.modifiers || []).map((m: ModifierHir) => m.type).join(' ');
+    const binding = s.node as abstracts.translators.BindingHir;
+    const modifiers = (binding.modifiers || []).map((m: abstracts.translators.ModifierHir) => m.type).join(' ');
     const isConst = modifiers.includes('const');
     const keyword = modifiers ? `${modifiers} ` : (isConst ? 'const ' : 'let ');
 

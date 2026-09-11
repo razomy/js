@@ -1,16 +1,10 @@
-import * as languageString from './';
-import type {
-  HirType,
-  ModuleHir,
-  FunctionHir,
-  StructHir,
-  BindingHir,
-} from '@razomy/abstracts/translators';
+import * as languageString from "@razomy/language-string";
+import * as abstracts from "@razomy/abstracts";
 
 /**
  * Извлекает имя узла из доступных слоёв (syntaxLayer / identifier).
  */
-function getNodeName(node: HirType, fallback: string = 'anonymous'): string {
+function getNodeName(node: abstracts.translators.HirType, fallback: string = 'anonymous'): string {
   const syntax = (node as any).syntaxLayer;
   if (syntax?.name) return syntax.name;
   if (syntax?.identifier?.name) return syntax.identifier.name;
@@ -21,7 +15,7 @@ function getNodeName(node: HirType, fallback: string = 'anonymous'): string {
 /**
  * Извлекает описание из метаслоя / LayerHir / аннотаций.
  */
-function getNodeDescription(node: HirType): string {
+function getNodeDescription(node: abstracts.translators.HirType): string {
   const meta = (node as any).meta;
   if (meta?.description) return meta.description;
 
@@ -35,17 +29,17 @@ function getNodeDescription(node: HirType): string {
 }
 
 export function bindingToString(
-  nodes: HirType[],
+  nodes: abstracts.translators.HirType[],
   currentPath: string[] = [],
   result: languageString.FlatDeclaration[] = [],
 ): languageString.FlatDeclaration[] {
   for (const node of nodes) {
     if (node.kind === 'ModuleHir') {
-      const moduleNode = node as ModuleHir;
+      const moduleNode = node as abstracts.translators.ModuleHir;
       const moduleName = getNodeName(moduleNode, 'module');
       bindingToString(moduleNode.block.statements, [...currentPath, moduleName], result);
     } else if (node.kind === 'FunctionHir') {
-      const funcNode = node as FunctionHir;
+      const funcNode = node as abstracts.translators.FunctionHir;
       const name = getNodeName(funcNode);
       result.push({
         node: funcNode,
@@ -54,7 +48,7 @@ export function bindingToString(
         path: [...currentPath, name],
       });
     } else if (node.kind === 'StructHir') {
-      const structNode = node as StructHir;
+      const structNode = node as abstracts.translators.StructHir;
       const name = getNodeName(structNode);
       result.push({
         node: structNode,
@@ -63,7 +57,7 @@ export function bindingToString(
         path: [...currentPath, name],
       });
     } else if (node.kind === 'BindingHir') {
-      const bindingNode = node as BindingHir;
+      const bindingNode = node as abstracts.translators.BindingHir;
       // Внешние импорты (dependency binding) пропускаем в документации
       if (bindingNode.externalSource) {
         continue;

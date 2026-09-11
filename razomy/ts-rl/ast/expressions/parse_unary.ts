@@ -1,8 +1,8 @@
 import { Node, SyntaxKind, Expression } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
-import { parse } from './parse';
+import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseUnary(node: Expression): translators.UnaryAst {
+export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
   if (Node.isPrefixUnaryExpression(node)) {
     let operator = '';
     switch (node.getOperatorToken()) {
@@ -15,8 +15,8 @@ export function parseUnary(node: Expression): translators.UnaryAst {
     }
     return {
       kind: 'UnaryAst', syntaxLayer: 2,
-      operator: operator as translators.UnaryAst['operator'],
-      value: parse(node.getOperand()) as translators.StateAstType,
+      operator: operator as abstracts.translators.UnaryAst['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
       isPrefix: true,
     };
   }
@@ -24,8 +24,8 @@ export function parseUnary(node: Expression): translators.UnaryAst {
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
     return {
       kind: 'UnaryAst', syntaxLayer: 2,
-      operator: operator as translators.UnaryAst['operator'],
-      value: parse(node.getOperand()) as translators.StateAstType,
+      operator: operator as abstracts.translators.UnaryAst['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
       isPrefix: false,
     };
   }
@@ -33,7 +33,7 @@ export function parseUnary(node: Expression): translators.UnaryAst {
     return {
       kind: 'UnaryAst', syntaxLayer: 2,
       operator: Node.isTypeOfExpression(node) ? '+' : '-',
-      value: parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression()) as translators.StateAstType,
+      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression()) as abstracts.translators.StateAstType,
       isPrefix: true,
     };
   }

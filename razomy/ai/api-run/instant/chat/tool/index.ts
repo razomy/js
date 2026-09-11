@@ -1,20 +1,20 @@
 // Imports
 import { mapMessage } from './map_message';
 import { predict } from './predict';
-import { predict_cache_string } from './predict_cache_string';
+import { predictCacheString } from './predict_cache_string';
 
 // Named exports
 export {
   mapMessage,
   predict,
-  predict_cache_string
+  predictCacheString
 };
 
 // Default export
 const tool = {
   mapMessage,
   predict,
-  predict_cache_string,
+  predictCacheString,
 };
 
 export default tool;

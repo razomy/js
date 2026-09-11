@@ -1,4 +1,4 @@
-import * as translators from '@razomy/abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
 export function createPackageFunction(
   f: Partial<{
@@ -13,7 +13,7 @@ export function createPackageFunction(
     parameter: Record<string, string>;
     returnShape: { description: string; type?: string };
   }>,
-): [translators.FunctionDocsAst, translators.FunctionHir] {
+): [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir] {
   return [
     {
       kind: 'FunctionDocsAst',
@@ -35,7 +35,7 @@ export function createPackageFunction(
       modifiers: [
         f.isAsync ? {kind: 'ModifierHir', type: 'async'} : null,
         f.isGenerator ? {kind: 'ModifierHir', type: 'generator'} : null,
-      ] as translators.ModifierHir[],
+      ] as abstracts.translators.ModifierHir[],
       identifier: f.name || '',
       parameters: Object.entries(f.parameter || {}).map(
         ([k, v]) =>
@@ -50,11 +50,11 @@ export function createPackageFunction(
               targetSymbol: 0,
               syntaxLayer: 2,
               identifier: 'String'
-            } as translators.ReferenceHir,
+            } as abstracts.translators.ReferenceHir,
             value: null,
             symbolId: 0,
             externalSource: null,
-          } as translators.BindingHir),
+          } as abstracts.translators.BindingHir),
       ),
       block: {kind: 'BlockHir', symbolId: 0, type: 'return', syntaxLayer: 3, statements: f.body || []},
       returnShape: f.returnShape?.type
@@ -64,7 +64,7 @@ export function createPackageFunction(
           symbolId: 0,
           targetSymbol: 0,
           identifier: f.returnShape.type
-        } as translators.ReferenceHir)
+        } as abstracts.translators.ReferenceHir)
         : null,
     },
   ];

@@ -1,16 +1,16 @@
 import * as run from "@razomy/run";
 
-export async function predict_cache_string(cache_id: string | null, model_id: string, text: string, opts: {
-      "max_tokens": number,
-      'verbose': boolean,
-      'update_cache': boolean,
+export async function predictCacheString(cacheId: string | null, modelId: string, text: string, opts: {
+      maxTokens: number,
+      verbose: boolean,
+      updateCache: boolean,
     }) {
     return await (run.server.call(
     'razomy.ai_hugging_face.chat.tool.predict',
     'predict_cache_string',
     [
-      cache_id,
-      model_id,
+      cacheId,
+      modelId,
       text,
       opts
     ],

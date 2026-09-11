@@ -1,6 +1,6 @@
 import { NullLiteral } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
-export function parseNull(node: NullLiteral): translators.LiteralAst {
+export function parseNull(node: NullLiteral): abstracts.translators.LiteralAst {
   return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: null };
 }

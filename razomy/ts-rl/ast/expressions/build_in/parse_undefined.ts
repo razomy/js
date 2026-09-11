@@ -1,6 +1,6 @@
 import { Identifier } from 'ts-morph';
-import * as translators from '@razomy/abstracts/translators';
+import * as abstracts from "@razomy/abstracts";
 
-export function parseUndefined(node: Identifier): translators.LiteralAst {
+export function parseUndefined(node: Identifier): abstracts.translators.LiteralAst {
   return { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: undefined };
 }
