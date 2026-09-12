@@ -8,7 +8,7 @@
 - Updated dependencies
   - @razomy/context@0.0.1-alpha.0
   - @razomy/offset@0.0.1-alpha.0
-  - @razomy/pipes@0.0.1-alpha.0
+  - @razomy/functions@0.0.1-alpha.0
   - @razomy/result-null@0.0.1-alpha.0
   - @razomy/token@0.0.1-alpha.0
   - @razomy/token-offset@0.0.1-alpha.0

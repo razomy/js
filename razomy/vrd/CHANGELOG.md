@@ -15,5 +15,5 @@
   - @razomy/key@0.0.1-alpha.0
   - @razomy/list-value_recursive@0.0.1-alpha.0
   - @razomy/path-string@0.0.1-alpha.0
-  - @razomy/pipes-booleans@0.0.1-alpha.0
+  - @razomy/function-booleans@0.0.1-alpha.0
   - @razomy/string@0.0.1-alpha.0

@@ -2,15 +2,16 @@ import path from 'node:path';
 import * as main from '@razomy/main';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import * as tsRefactor from '@razomy/ts-refactor';
 
 export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));
   // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
-  tsRefactorProject.packageJson.createDist(path.resolve(path_));
-  // await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
+  // tsRefactorProject.packageJson.createDist(path.resolve(path_));
+  await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
 
-  const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
-  console.info(`Выполняем: ${publishCommand}`);
+  // const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
+  // console.info(`Выполняем: ${publishCommand}`);
 
   // Раскомментируйте, когда будете готовы к реальному деплою
   // await shell.execute(publishCommand, path.resolve(path_, 'dist'));
@@ -20,7 +21,7 @@ main.ifMain(import.meta.url, async () => {
   // Выносим список пакетов в отдельный массив
   const packagesToDeploy = [
     // '../abstracts',
-    // '../string-case',
+    '../string-case',
     // '../array',
     // '../exceptions',
     // '../random',
@@ -41,10 +42,10 @@ main.ifMain(import.meta.url, async () => {
     // '../server',
     // '../google-auth',
     // '../vrd',
-    // '../pipes-booleans',
+    // '../function-booleans',
     // '../object',
     // '../kv',
-    '../socket-server',
+    // '../socket-server',
     // '../undefined',
     // '../fns',
     // '../char',
@@ -54,7 +55,7 @@ main.ifMain(import.meta.url, async () => {
     // '../main',
     // '../json',
     // '../async',
-    // '../pipes',
+    // '../functions',
   ];
 
   // Сначала проверяем, все ли нужные зависимости есть в этом списке

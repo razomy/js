@@ -127,8 +127,8 @@
   - @razomy/path@0.0.1-alpha.0
   - @razomy/path-string@0.0.1-alpha.0
   - @razomy/performance@0.0.1-alpha.0
-  - @razomy/pipes@0.0.1-alpha.0
-  - @razomy/pipes-booleans@0.0.1-alpha.0
+  - @razomy/functions@0.0.1-alpha.0
+  - @razomy/function-booleans@0.0.1-alpha.0
   - @razomy/random@0.0.1-alpha.0
   - @razomy/razomy@0.0.1-alpha.0
   - @razomy/recursive@0.0.1-alpha.0

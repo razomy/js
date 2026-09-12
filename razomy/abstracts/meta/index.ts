@@ -1,17 +1,18 @@
 // Imports
-import type { Alias, DeepReadonly } from './alias';
-import type { LateInit, NullOptional } from './late_init';
-import type { Brand, DataStructure, LogicalTopology, MemoryLayout } from './ts_workarounds';
+import type { Alias } from './alias';
+import type { Brand } from './brand';
+import type { IHas } from './i_has';
+import type { IResource } from './i_resource';
+import type { DeepReadonly, LateInit, NullOptional } from './late_init';
 
 // Named exports
 export type {
   Alias,
   Brand,
-  DataStructure,
   DeepReadonly,
+  IHas,
+  IResource,
   LateInit,
-  LogicalTopology,
-  MemoryLayout,
   NullOptional
 };
 

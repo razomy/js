@@ -8,7 +8,7 @@ Contains all core reusable types and interfaces.
 
 **System Layer** (Performance, Execution, Data Layout)
 
-1. ~~**hardware** hardware structures, including CPU, GPU, TPU,~~
+1. **hardware** hardware structures, including CPU, GPU, TPU,
 2. **primitives** — Abstractions defining low-level and memory/processing units.
 3. ~~**memory** — аллокаторы, указатели, буферы.~~
 4. ~~**concurrency** — потоки, мьютексы, event loops, promises.~~

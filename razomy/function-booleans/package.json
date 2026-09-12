@@ -30,10 +30,10 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/pipes-booleans#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/function-booleans#readme",
   "keywords": [
     "razomy",
-    "pipes",
+    "function",
     "booleans",
     "all",
     "any",
@@ -43,7 +43,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/pipes-booleans",
+  "name": "@razomy/function-booleans",
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/exceptions": "*",
@@ -53,7 +53,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/pipes-booleans",
+    "directory": "razomy/function-booleans",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

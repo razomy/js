@@ -4,6 +4,8 @@ import * as collections from './collections';
 import * as domains from './domains';
 import * as functions from './functions';
 import * as graphs from './graphs';
+import * as hardwares from './hardwares';
+import * as machines from './machines';
 import * as meta from './meta';
 import * as patterns from './patterns';
 import * as primitives from './primitives';
@@ -18,6 +20,8 @@ export {
   domains,
   functions,
   graphs,
+  hardwares,
+  machines,
   meta,
   patterns,
   primitives,
@@ -33,6 +37,8 @@ const abstracts = {
   domains,
   functions,
   graphs,
+  hardwares,
+  machines,
   meta,
   patterns,
   primitives,

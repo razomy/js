@@ -4,7 +4,7 @@ import * as abstracts from '@razomy/abstracts';
  * @memoryLayout Composite
  * @topology N:M_Network
  */
-export interface Graph<T> extends abstracts.meta.DataStructure<T> {
+export interface Graph<T> extends abstracts.arrays.DataStructure<T> {
   isDirected: boolean;
   isWeighted: boolean;
 }

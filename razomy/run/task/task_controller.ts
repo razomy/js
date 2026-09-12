@@ -1,5 +1,5 @@
 import * as run from '@razomy/run';
-
+// todo:refactor with razomy task
 export type TaskStatus = 'pending' | 'processing' | 'completed' | 'error' | 'cancelled';
 
 export interface Task {

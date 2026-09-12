@@ -15,7 +15,6 @@ import * as parent from './parent';
 import { splitNodesArrayToTree } from './split_nodes_array_to_tree';
 import { vrdToTree } from './vrd_to_tree';
 import type { ValueChildren } from './vrd_to_tree';
-import type { HasChildrenList } from './with_children_list';
 
 // Named exports
 export {
@@ -35,7 +34,6 @@ export {
   vrdToTree
 };
 export type {
-  HasChildrenList,
   ListTree,
   ValueChildren
 };

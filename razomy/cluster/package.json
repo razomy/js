@@ -43,9 +43,7 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/cluster",
-  "peerDependencies": {
-    "@razomy/future": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

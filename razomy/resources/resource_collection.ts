@@ -5,7 +5,7 @@ import * as resources from '@razomy/resources';
 export interface INodeResourceCollection {
   nodes?: resources.EntityResource[];
 }
-
+// todo:remove
 export interface IResourceCollection<T extends resources.EntityResource> {
   getAll(): T[];
 

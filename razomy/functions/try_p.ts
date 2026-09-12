@@ -1,5 +1,5 @@
 export type NotNullPipe<T, R> = (arg: NonNullable<T>) => R;
-
+// todo:remove
 export function tryP<T, A>(arg: T, ...fns: [NotNullPipe<T, A>]): NonNullable<A> | null;
 export function tryP<T, A, B>(arg: T, ...fns: [NotNullPipe<T, A>, NotNullPipe<A, B>]): NonNullable<B> | null;
 export function tryP<T, A, B, C>(arg: T, ...fns: [NotNullPipe<T, A>, NotNullPipe<A, B>]): NonNullable<B> | null;
@@ -13,3 +13,4 @@ export function tryP(initialValue: any, ...fns: NotNullPipe<any, any>[]) {
   }
   return result;
 }
+

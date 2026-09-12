@@ -1,7 +1,7 @@
 import * as abstracts from '@razomy/abstracts';
 
-export type Execute<I extends any[], O> = abstracts.functions.Call<I, O>;
+export type Execute<TA extends any[], TR> = abstracts.functions.Function<TA, TR>;
 
-export interface HasExecute<I extends any[], O> {
-  execute: Execute<I, O>;
+export interface HasExecute<TA extends any[], TR = Promise<void>> extends abstracts.meta.IHas {
+  execute: Execute<TA, TR>;
 }

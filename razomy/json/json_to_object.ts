@@ -1,4 +1,3 @@
-import * as pipes from '@razomy/pipes';
 import * as functions from '@razomy/functions';
 import * as resources from '@razomy/resources';
 import * as resources_ from '@razomy/resources';
@@ -8,7 +7,7 @@ import * as lexemes from "@razomy/lexemes";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = abstracts.translators.HasTokenType<JsonTokenType> &
-  abstracts.domains.HasValue<string> &
+  abstracts.structures.HasValue<string> &
   lexemes.tokenOffsetDeep.HasDeep;
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
@@ -20,37 +19,37 @@ export function jsonToObject(jsonTokens: JsonToken[]) {
   ) satisfies abstracts.translators.HasTokens<JsonToken> & abstracts.arrays.HasOffset;
   const rs = {
     // Primitives
-    key: (c) => pipes.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'value')),
-    scalar: (c) => pipes.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'value')),
-    assign: (c) => pipes.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'assign')),
-    break_: (c) => pipes.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'break')),
-    optBreak: (c) => pipes.tryP(c, functions.f(resources.optinal, rs.break_, { offset: 0, result: null })),
+    key: (c) => functions.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'value')),
+    scalar: (c) => functions.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'value')),
+    assign: (c) => functions.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'assign')),
+    break_: (c) => functions.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'break')),
+    optBreak: (c) => functions.tryP(c, functions.f(resources.optinal, rs.break_, { offset: 0, result: null })),
     // Recursion / Alternatives
-    tail: (c) => pipes.tryP(c, functions.f(resources.any, [rs.inlineEntry, rs.scalar])),
+    tail: (c) => functions.tryP(c, functions.f(functions.any, [rs.inlineEntry, rs.scalar])),
     nestedBlock: (c) =>
-      pipes.tryP(
+      functions.tryP(
         c,
         functions.f(lexemes.tokenOffsetDeep.tryScope, rs.statement),
         resources_.fMutResult((c, ...results) => Object.assign({}, ...results)),
       ),
     // Sequences
     inlineEntry: (c) =>
-      pipes.tryP(
+      functions.tryP(
         c,
         functions.f(lexemes.tokenOffset.tryAll, [rs.key, rs.assign, rs.tail, rs.optBreak]),
         resources_.fMutResult((c, [key, a, tail]) => ({ [key]: tail })),
       ),
     blockEntry: (c) =>
-      pipes.tryP(
+      functions.tryP(
         c,
         functions.f(lexemes.tokenOffset.tryAll, [rs.key, rs.assign, rs.break_, rs.nestedBlock]),
         resources_.fMutResult((c, [key, a, b, blk]) => ({ [key]: blk })),
       ),
     // region
-    statement: (c) => pipes.tryP(c, functions.f(resources.any, [rs.inlineEntry, rs.blockEntry])),
+    statement: (c) => functions.tryP(c, functions.f(functions.any, [rs.inlineEntry, rs.blockEntry])),
     // start
     root: (c) =>
-      pipes.tryP(
+      functions.tryP(
         c,
         functions.f(lexemes.tokenOffsetDeep.tryScope, rs.statement),
         resources_.fMutResult((c, ...results) => Object.assign({}, ...results)),

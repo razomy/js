@@ -1,7 +1,7 @@
 import * as object_ from '@razomy/object';
 import * as exceptions from '@razomy/exceptions';
 import * as resources from '@razomy/resources';
-
+// todo:remove
 export class EntityResource extends resources.AObjectResource implements resources.IEntityResource {
   protected resources: resources.IResourceMap = {};
 

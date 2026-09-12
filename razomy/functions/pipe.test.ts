@@ -1,8 +1,8 @@
-import * as pipes from '@razomy/pipes';
+import * as functions from '@razomy/functions';
 
 describe('pipe', () => {
   it('pipe', () => {
-    const worldLine = pipes.pipeSync(
+    const worldLine = functions.pipeSync(
       'hello',
       (prefix: string) => prefix + ' world',
       (prefix) => prefix + '!',

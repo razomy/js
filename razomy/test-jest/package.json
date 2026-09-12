@@ -42,8 +42,7 @@
   "module": "./index.ts",
   "name": "@razomy/test-jest",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/functions": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

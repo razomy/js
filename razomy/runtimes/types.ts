@@ -2,7 +2,7 @@ export interface DownloadInfo {
   filename: string;
   url: string;
 }
-
+// todo:improve
 export interface RuntimeProvider {
   defaultVersion: string;
   getDownloadInfo(version: string, platform: string, arch: string): Promise<DownloadInfo>;

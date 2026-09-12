@@ -1,6 +1,6 @@
-import * as treeList from '@razomy/tree-list';
+import * as abstracts from '@razomy/abstracts';
 
-export function getCondition<T extends treeList.HasChildrenList<any>>(node: T, path: string[], match) {
+export function getCondition<T extends abstracts.graphs.HasChildren<any[]>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {
     return null;
   }

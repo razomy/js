@@ -1,3 +1,4 @@
+// todo:remove
 // То, как факт хранится в памяти движка
 interface RuntimeFact {
   predicate: string; // "заперта", "открыть", "внутри"

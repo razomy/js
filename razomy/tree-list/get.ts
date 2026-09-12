@@ -1,6 +1,6 @@
-import * as treeList from '@razomy/tree-list';
+import * as abstracts from '@razomy/abstracts';
 
-export function get<T extends treeList.HasChildrenList<any>>(node: T, path: string[], offset: number): T {
+export function get<T extends abstracts.graphs.HasChildren<any[]>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }

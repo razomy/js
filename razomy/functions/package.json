@@ -34,15 +34,27 @@
   "keywords": [
     "razomy",
     "functions",
+    "any",
     "fMut",
     "f",
-    "isFunction"
+    "functionPipe",
+    "isFunction",
+    "pipeSync",
+    "pipe",
+    "fnPipe",
+    "tryP",
+    "fP",
+    "pS",
+    "p"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/functions",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@razomy/abstracts": "*",
+    "@razomy/resources": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

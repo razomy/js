@@ -36,7 +36,6 @@
     "future",
     "create",
     "delay",
-    "eventToPromise",
     "freeze",
     "isPromise",
     "loop",

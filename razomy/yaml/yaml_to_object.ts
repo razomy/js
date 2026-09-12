@@ -1,12 +1,12 @@
 import * as abstracts from '@razomy/abstracts';
-import * as pipes from '@razomy/pipes';
+import * as functions from '@razomy/functions';
 import * as dict from "@razomy/dict";
 import * as resources from "@razomy/resources";
 import * as lexemes from "@razomy/lexemes";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = abstracts.translators.HasTokenType<JsonTokenType> &
-  abstracts.domains.HasValue<string> &
+  abstracts.structures.HasValue<string> &
   lexemes.tokenOffsetDeep.HasDeep;
 
 function ifR<T, r2>(res: T, fn: (r: NonNullable<T>) => NonNullable<r2>) {
@@ -36,8 +36,8 @@ export function yamlToObject(jsonTokens: JsonToken[]) {
 
   const rs = {
     root: (c) => ifR(lexemes.tokenOffsetDeep.tryScope(c, rs.line), mergeResults),
-    line: (c) => pipes.tryP(lexemes.tokenOffset.tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
-    safe_word: (c) => pipes.tryP(lexemes.tokenOffset.tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
+    line: (c) => functions.tryP(lexemes.tokenOffset.tryAll(c, [rs.safe_word, rs.opt_break]), resultsToFirstResult),
+    safe_word: (c) => functions.tryP(lexemes.tokenOffset.tryAll(c, [rs.aligned, rs.word]), resultsToFirstResult),
     aligned: (c) => lexemes.tokenOffsetDeep.tryAligned(c, { offset: 0, result: null }),
     word: (c) => lexemes.tokenOffset.tryTokenValue(c, 'value'),
     opt_break: (c) => resources.optinal(c, rs.break, { offset: 0, result: null }),

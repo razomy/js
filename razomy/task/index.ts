@@ -1,7 +1,7 @@
 // Imports
 import { AbstractBatchLoader } from './abstract_batch_loader';
 import type { QueueItem } from './abstract_batch_loader';
-import type { AsyncTask, Context, HasAsyncCancel, HasAsyncExecute, HasAsyncRollback, HasContext, HasValidate } from './async_task';
+import type { RollbackCancelValidateTask } from './async_task';
 import { AsyncTaskList } from './async_task_list';
 import { create } from './create';
 import { FileTaskManager } from './file_task_manager';
@@ -14,14 +14,8 @@ export {
   create
 };
 export type {
-  AsyncTask,
-  Context,
-  HasAsyncCancel,
-  HasAsyncExecute,
-  HasAsyncRollback,
-  HasContext,
-  HasValidate,
-  QueueItem
+  QueueItem,
+  RollbackCancelValidateTask
 };
 
 // Default export

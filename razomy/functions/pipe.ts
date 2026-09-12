@@ -2,6 +2,10 @@ import * as abstracts from '@razomy/abstracts';
 
 export type PipeAsync<T, R> = (arg: T) => R | Promise<R>;
 
+export interface HasPipes<T> {
+  functions: PipeAsync<T, T>[];
+}
+
 export async function pipe<T, A>(arg: T, f1: PipeAsync<T, A>): Promise<A>;
 export async function pipe<T, A, B>(arg: T, f1: PipeAsync<T, A>, f2: PipeAsync<A, B>): Promise<B>;
 export async function pipe<T, A, B, C>(

@@ -1,5 +1,8 @@
 import * as abstracts from '@razomy/abstracts';
 
+export interface HasChildren<T> {
+  children: T;
+}
 export interface TreeNode<T> extends abstracts.structures.Node<T> {
   children: TreeNode<T>[];
 }
@@ -8,7 +11,7 @@ export interface TreeNode<T> extends abstracts.structures.Node<T> {
  * @memoryLayout Pointer
  * @topology 1:N_Hierarchical
  */
-export interface Tree<T> extends abstracts.meta.DataStructure<T> {
+export interface Tree<T> extends abstracts.arrays.DataStructure<T> {
   root: TreeNode<T> | null;
 }
 
@@ -21,7 +24,7 @@ export interface BinaryTreeNode<T> extends abstracts.structures.Node<T> {
  * @memoryLayout Pointer
  * @topology 1:N_Hierarchical
  */
-export interface BinaryTree<T> extends abstracts.meta.DataStructure<T> {
+export interface BinaryTree<T> extends abstracts.arrays.DataStructure<T> {
   root: BinaryTreeNode<T> | null;
 }
 
@@ -54,7 +57,7 @@ export interface Trie<T> extends Tree<T> {
  * @memoryLayout Contiguous
  * @topology 1:N_Hierarchical
  */
-export interface Heap<T> extends abstracts.meta.DataStructure<T> {
+export interface Heap<T> extends abstracts.arrays.DataStructure<T> {
   type: 'Min-Heap' | 'Max-Heap';
   array: abstracts.arrays.DynamicArray<T>;
   heapifyAlgorithm: () => void;
@@ -64,7 +67,7 @@ export interface Heap<T> extends abstracts.meta.DataStructure<T> {
  * @memoryLayout Contiguous
  * @topology 1:N_Hierarchical
  */
-export interface SegmentTree<T> extends abstracts.meta.DataStructure<T> {
+export interface SegmentTree<T> extends abstracts.arrays.DataStructure<T> {
   build: (arr: T[]) => void;
   queryRange: (start: number, end: number) => T;
   update: (index: number, value: T) => void;

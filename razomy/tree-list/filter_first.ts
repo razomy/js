@@ -1,6 +1,6 @@
-import * as treeList from '@razomy/tree-list';
+import * as abstracts from '@razomy/abstracts';
 
-export function filterFirst<T extends treeList.HasChildrenList<any>>(node: T, cb: (node: T) => boolean): T[] {
+export function filterFirst<T extends abstracts.graphs.HasChildren<any[]>>(node: T, cb: (node: T) => boolean): T[] {
   let res: T[] = [];
 
   if (cb(node)) {

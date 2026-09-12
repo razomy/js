@@ -35,7 +35,8 @@
     "razomy",
     "exceptions",
     "assertUnreachable",
-    "assert"
+    "assert",
+    "throwException"
   ],
   "license": "MIT",
   "main": "./index.ts",

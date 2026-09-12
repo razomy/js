@@ -1,10 +1,13 @@
 import * as abstracts from '@razomy/abstracts';
 
+export interface DataStructure<T> extends abstracts.meta.IResource {
+}
+
 /**
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface TypedMemoryView<T> extends abstracts.meta.DataStructure<T> {
+export interface TypedMemoryView<T> extends DataStructure<T> {
   buffer: abstracts.arrays.RawBuffer;
   byteLength: number;
   byteOffset: number;
@@ -20,7 +23,7 @@ export type Tuple<T extends unknown[]> = T;
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface StaticArray<T> extends abstracts.meta.DataStructure<T> {
+export interface StaticArray<T> extends DataStructure<T> {
   readonly length: number;
 
   [index: number]: T;
@@ -30,7 +33,7 @@ export interface StaticArray<T> extends abstracts.meta.DataStructure<T> {
  * @memoryLayout Contiguous
  * @topology 1:1_Linear
  */
-export interface DynamicArray<T> extends abstracts.meta.DataStructure<T> {
+export interface DynamicArray<T> extends DataStructure<T> {
   capacity: number;
   length: number;
   resizeAlgorithm: () => void;

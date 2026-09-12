@@ -1,4 +1,4 @@
-# @razomy/pipes-booleans
+# @razomy/function-booleans
 
 ## 0.0.1-alpha.0
 

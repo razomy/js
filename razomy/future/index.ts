@@ -2,8 +2,6 @@
 import { create } from './create';
 import { Debounce } from './debounce';
 import { delay } from './delay';
-import { eventToPromise } from './event_to_promise';
-import type { Event } from './event_to_promise';
 import { freeze } from './freeze';
 import { isPromise } from './is_promise';
 import { loop } from './loop';
@@ -16,7 +14,6 @@ export {
   Debounce,
   create,
   delay,
-  eventToPromise,
   freeze,
   isPromise,
   loop,
@@ -24,16 +21,12 @@ export {
   sequentially,
   tryPromise
 };
-export type {
-  Event
-};
 
 // Default export
 const future = {
   create,
   Debounce,
   delay,
-  eventToPromise,
   freeze,
   isPromise,
   loop,
@@ -41,6 +34,5 @@ const future = {
   sequentially,
   tryPromise,
 };
-
 
 export default future;

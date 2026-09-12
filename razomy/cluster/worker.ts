@@ -1,10 +1,8 @@
-import * as future from '@razomy/future';
-
 export interface HasWorkerId {
   workerId: string;
 }
 
-export interface WorkerEvent<T> extends future.Event<T> {
+export interface WorkerEvent<T> {
   id: 'get' | 'set';
   ctx: T;
 }

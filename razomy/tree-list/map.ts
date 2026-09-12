@@ -1,6 +1,7 @@
-import * as treeList from '@razomy/tree-list';
+import * as abstracts from '@razomy/abstracts';
+import treeList from "@razomy/tree-list";
 
-export function map<I extends treeList.HasChildrenList<any>, O extends treeList.HasChildrenList<any>>(
+export function map<I extends abstracts.graphs.HasChildren<any[]>, O extends abstracts.graphs.HasChildren<any[]>>(
   input: I,
   cb: (input: I) => O,
 ): O {

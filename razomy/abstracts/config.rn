@@ -4,6 +4,7 @@ order
  description
  index.ts
  meta
+ hardwares
  primitives
  functions
  arrays

@@ -94,6 +94,34 @@
         "types": "./graphs/index.ts"
       }
     },
+    "./hardwares": {
+      "default": {
+        "default": "./hardwares/index.ts",
+        "types": "./hardwares/index.ts"
+      },
+      "import": {
+        "default": "./hardwares/index.ts",
+        "types": "./hardwares/index.ts"
+      },
+      "require": {
+        "default": "./hardwares/index.ts",
+        "types": "./hardwares/index.ts"
+      }
+    },
+    "./machines": {
+      "default": {
+        "default": "./machines/index.ts",
+        "types": "./machines/index.ts"
+      },
+      "import": {
+        "default": "./machines/index.ts",
+        "types": "./machines/index.ts"
+      },
+      "require": {
+        "default": "./machines/index.ts",
+        "types": "./machines/index.ts"
+      }
+    },
     "./meta": {
       "default": {
         "default": "./meta/index.ts",
@@ -203,8 +231,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
+    "build": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

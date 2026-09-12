@@ -60,7 +60,6 @@
     "@razomy/functions": "*",
     "@razomy/lexemes": "*",
     "@razomy/object": "*",
-    "@razomy/pipes": "*",
     "@razomy/resources": "*"
   },
   "publishConfig": {

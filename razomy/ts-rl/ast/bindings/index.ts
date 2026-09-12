@@ -1,5 +1,5 @@
 // Imports
-import { getPackage } from './get_package';
+import { getPackage } from '../get_package';
 import { getPublicOnlyMut } from './get_public_only_mut';
 import { isBindings } from './is_bindings';
 import { parse } from './parse';

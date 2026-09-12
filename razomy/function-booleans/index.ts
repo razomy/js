@@ -1,7 +1,7 @@
 // Imports
 import { all } from './all';
 import { any } from './any';
-import type { ArrayBoolPipe, BoolExecute, BoolPipe, BoolPipeable } from './bool_execute';
+import type { ArrayBoolPipe, BoolExecute, BoolPipe, BoolPipeType } from './bool_execute';
 import { pipeableKvToPipeline } from './pipeable_kv_to_pipeline';
 import type { PipeableKv } from './pipeable_kv_to_pipeline';
 import { while_ } from './while_';
@@ -17,12 +17,12 @@ export type {
   ArrayBoolPipe,
   BoolExecute,
   BoolPipe,
-  BoolPipeable,
+  BoolPipeType,
   PipeableKv
 };
 
 // Default export
-const pipesBooleans = {
+const functionBooleans = {
   all,
   any,
   pipeableKvToPipeline,
@@ -30,4 +30,4 @@ const pipesBooleans = {
 };
 
 
-export default pipesBooleans;
+export default functionBooleans;

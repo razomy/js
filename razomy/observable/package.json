@@ -34,7 +34,6 @@
   "keywords": [
     "razomy",
     "observable",
-    "throwException",
     "toPromise"
   ],
   "license": "MIT",

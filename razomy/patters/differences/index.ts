@@ -1,20 +1,20 @@
 // Imports
-import { differences } from './differences';
 import { differencesString } from './differences_string';
 import { getDifference } from './get_difference';
+import { getDifferences } from './get_differences';
 
 // Named exports
 export {
-  differences,
   differencesString,
-  getDifference
+  getDifference,
+  getDifferences
 };
 
 // Default export
 const differences = {
-  differences,
   differencesString,
   getDifference,
+  getDifferences,
 };
 
 export default differences;

@@ -12,7 +12,7 @@ export interface IResourceMap {
 export interface IEntityResourceMap {
   resources: IResourceMap;
 }
-
+// todo:remove
 export interface IEntityResource {
   add<T extends resources.AObjectResource>(obj: T): void;
 

@@ -49,8 +49,8 @@
     "razomy",
     "patters",
     "differencesString",
-    "differences",
-    "getDifference"
+    "getDifference",
+    "getDifferences"
   ],
   "license": "MIT",
   "main": "./index.ts",

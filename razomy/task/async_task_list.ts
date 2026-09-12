@@ -1,12 +1,14 @@
-import * as task_ from "@razomy/task";
+import * as abstracts from "@razomy/abstracts";
 
-interface AsyncTaskListState<C extends task_.Context> {
+interface AsyncTaskListState<C extends abstracts.domains.Context> {
   startedTaskIndex: number;
-  tasks: task_.AsyncTask<C>[];
+  tasks: any[];
 }
 
-export class AsyncTaskList<C extends task_.Context> {
-  constructor(public ctx: AsyncTaskListState<C>) {}
+// todo:remove
+export class AsyncTaskList<C extends abstracts.domains.Context> {
+  constructor(public ctx: AsyncTaskListState<C>) {
+  }
 
   public async cancelStarted(): Promise<void> {
     const task = this.ctx.tasks[this.ctx.startedTaskIndex];

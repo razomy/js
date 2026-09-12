@@ -9,3 +9,4 @@ export function optinal<C extends abstracts.domains.IContext, R, D>(
   const res = rule(ctx);
   return res === null ? default_ : res;
 }
+// todo:remove

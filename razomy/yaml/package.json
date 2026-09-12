@@ -43,8 +43,8 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/dict": "*",
+    "@razomy/functions": "*",
     "@razomy/lexemes": "*",
-    "@razomy/pipes": "*",
     "@razomy/resources": "*"
   },
   "publishConfig": {

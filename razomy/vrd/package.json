@@ -72,10 +72,10 @@
     "@razomy/abstracts": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
+    "@razomy/function-booleans": "*",
     "@razomy/kv": "*",
     "@razomy/kv-recursive": "*",
     "@razomy/object": "*",
-    "@razomy/pipes-booleans": "*",
     "@razomy/string": "*"
   },
   "publishConfig": {

@@ -11,6 +11,6 @@ export function parseStatement(statement: Node): abstracts.translators.AstType[]
   } else if (tsRl.ast.statements.isStatement(statement as any)) {
     return [tsRl.ast.statements.parse(statement as any)];
   } else {
-    throw new Error(`Unexpected statement type "${statement.getKindName()}"`);
+    throw new Error(`Unexpected statement type "${statement.getKindName()}":"${statement.getText()}"`);
   }
 }

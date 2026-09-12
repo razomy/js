@@ -7,3 +7,4 @@ export type FnResultNull<T> = T extends (c: any) => infer R ? Exclude<R, null | 
 export interface ResultNullRegistry<C> {
   [key: string]: ResultNullFn<C, any>;
 }
+// todo:remove
