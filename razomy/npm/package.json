@@ -47,6 +47,7 @@
   "peerDependencies": {
     "@razomy/main": "*",
     "@razomy/shell": "*",
+    "@razomy/ts-refactor": "*",
     "@razomy/ts-refactor-project": "*"
   },
   "publishConfig": {

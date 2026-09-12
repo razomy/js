@@ -136,6 +136,20 @@
         "types": "./ast/statements/index.ts"
       }
     },
+    "./hir": {
+      "default": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "import": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "require": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -147,13 +161,11 @@
     "razomy",
     "ts",
     "rl",
-    "createPackageFunction",
-    "astToHir",
-    "modifiersAstToHir",
     "getPackage",
     "getPublicOnlyMut",
     "isBindings",
     "parseEnum",
+    "parseExportAssignment",
     "parseExport",
     "parseFunction",
     "parseModuleBody",
@@ -195,14 +207,25 @@
     "parseBlock",
     "parseGo",
     "parseLoop",
-    "parseThrow"
+    "parseThrow",
+    "addEdge",
+    "astToHirNode",
+    "createPackageFunction",
+    "getEdge",
+    "getEdges",
+    "indexNodes",
+    "joinDocs",
+    "linkHirTree",
+    "removeEdge",
+    "walkHirChildren"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ts-rl",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/random": "*"
   },
   "publishConfig": {
     "access": "public"
@@ -213,8 +236,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts --watch",
+    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

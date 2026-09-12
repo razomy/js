@@ -1,10 +1,11 @@
 // Imports
-import { getPackage } from '../get_package';
+import { getPackage } from './get_package';
 import { getPublicOnlyMut } from './get_public_only_mut';
 import { isBindings } from './is_bindings';
 import { parse } from './parse';
 import { parseEnum } from './parse_enum';
 import { parseExport } from './parse_export';
+import { parseExportAssignment } from './parse_export_assignment';
 import { parseFunction } from './parse_function';
 import { parseModule } from './parse_module';
 import { parseModuleBody } from './parse_module_body';
@@ -21,6 +22,7 @@ export {
   parse,
   parseEnum,
   parseExport,
+  parseExportAssignment,
   parseFunction,
   parseModule,
   parseModuleBody,
@@ -38,6 +40,7 @@ const bindings = {
   parse,
   parseEnum,
   parseExport,
+  parseExportAssignment,
   parseFunction,
   parseModule,
   parseModuleBody,

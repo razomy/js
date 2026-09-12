@@ -38,11 +38,11 @@ export class Pipeline<TA, TR = TA> {
   };
 }
 
-export function fnPipe<TR>(fn: () => TR): Pipeline<void, TR>;
-export function fnPipe<TA, TR>(fn: (input: TA) => TR): Pipeline<TA, TR>;
-export function fnPipe<TA, Args extends any[], TR>(fn: (input: TA, ...args: Args) => TR, ...args: Args): Pipeline<TA, TR>;
-export function fnPipe(): Pipeline<void, void>;
-export function fnPipe(fn?: any, ...args: any[]): any {
+export function pl<TR>(fn: () => TR): Pipeline<void, TR>;
+export function pl<TA, TR>(fn: (input: TA) => TR): Pipeline<TA, TR>;
+export function pl<TA, Args extends any[], TR>(fn: (input: TA, ...args: Args) => TR, ...args: Args): Pipeline<TA, TR>;
+export function pl(): Pipeline<void, void>;
+export function pl(fn?: any, ...args: any[]): any {
   if (!fn) {
     return new Pipeline<void, void>([]);
   }

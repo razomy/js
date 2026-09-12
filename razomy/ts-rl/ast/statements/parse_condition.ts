@@ -3,7 +3,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
 export function parseCondition(node: IfStatement): abstracts.translators.IfAst {
-  const branches: abstracts.translators.IfBranchAst[] = [];
+  const branches: abstracts.translators.IfBranchAstType[] = [];
   branches.push({
     kind: 'ConditionBranchAst', syntaxLayer: 3,
     pattern: tsRl.ast.expressions.parse(node.getExpression()),

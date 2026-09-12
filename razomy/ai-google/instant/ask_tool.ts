@@ -56,11 +56,9 @@ async function test() {
       { name: "city", type: "string", description: "City name", defaultValue: null }
     ],
     returns: { type: "string", description: "JSON weather" },
-    performance: {
-        timeDataSizeComplexityFn: "O(1)",
-        memoryDataSizeComplexityFn: "O(1)",
-        history: []
-    },
+    timeDataSizeComplexityFn: "O(1)",
+    memoryDataSizeComplexityFn: "O(1)",
+    history: []
     examples: []
   };
 

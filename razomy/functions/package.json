@@ -41,7 +41,7 @@
     "isFunction",
     "pipeSync",
     "pipe",
-    "fnPipe",
+    "pl",
     "tryP",
     "fP",
     "pS",

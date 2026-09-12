@@ -15,7 +15,7 @@ export async function askTool(
   payload.tools = toolSpec.map(aiAnthropic.instant.specToTool);
 
   if (toolSpec.length === 1) {
-    payload.tool_choice = { type: 'tool', name: toolSpec[0][1].identifier };
+    payload.tool_choice = { type: 'tool', name: toolSpec[0][1].name };
   }
 
   const result = await aiAnthropic.CLIENT.messages.create(payload);
@@ -28,7 +28,7 @@ export async function askTool(
   }
 
   const payloadArgs = toolsRequest.map((toolRequest, ix) => {
-    const tool = toolSpec.find((block) => block[1].identifier === toolRequest.type)!;
+    const tool = toolSpec.find((block) => block[1].name === toolRequest.type)!;
     // const arguments_ =
     // return ({
     //   name: key,
@@ -39,7 +39,7 @@ export async function askTool(
     // } as abstracts.translators.Property)
 
     return {
-      name: tool[1].identifier,
+      name: tool[1].name,
       arguments_: [],
     };
   });

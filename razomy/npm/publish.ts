@@ -7,7 +7,7 @@ import * as tsRefactor from '@razomy/ts-refactor';
 export async function publish(path_: string) {
   await shell.execute('npm run build', path.resolve(path_));
   // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
-  // tsRefactorProject.packageJson.createDist(path.resolve(path_));
+  tsRefactorProject.packageJson.createDist(path.resolve(path_));
   await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
 
   // const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;

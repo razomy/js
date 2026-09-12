@@ -7,19 +7,19 @@ export function specToTool([doc, fn]: [abstracts.translators.FunctionDocsAst, ab
   const required: string[] = [];
 
   for (const param of fn.parameters) {
-    properties[param.identifier] = {
+    properties[param.name!] = {
       type: param.shape?.kind, // Note: Anthropic expects JSON Schema types (string, number, boolean, object, array)
-      description: doc[param.identifier].description,
+      description: doc[param.name!].description,
     };
 
     // If there is no default value, we assume the parameter is required
     if (param.value === null || param.value === undefined) {
-      required.push(param.identifier);
+      required.push(param.name!);
     }
   }
 
   return {
-    name: fn.identifier,
+    name: fn.name,
     description: doc.description,
     input_schema: {
       type: 'object',

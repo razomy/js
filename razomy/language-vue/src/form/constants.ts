@@ -4,12 +4,12 @@ import type {
   HirType,
   BindingHir,
   FunctionHir,
-  SequenceHir,
+  BlockHir,
   StructHir,
-  ObjectHir,
   ReferenceHir,
-  BinaryHir,
+  BranchHir,
   LiteralHir,
+  OperatorHir,
 } from '@razomy/abstracts/translators';
 
 export const defaultFormKey = 'form';
@@ -68,8 +68,8 @@ export function isSupported(schema: Schema | null): boolean {
   if (!schema) return true;
 
   switch (schema.kind) {
-    case 'SequenceHir':
-      return (schema as SequenceHir).elements.every(isSupported as any);
+    case 'BlockHir':
+      return (schema as BlockHir).statements.every(isSupported as any);
     case 'BindingHir':
       const binding = schema as BindingHir;
       return binding.shape ? isSupported(binding.shape as Schema) : true;
@@ -79,15 +79,14 @@ export function isSupported(schema: Schema | null): boolean {
         (func.returnShape ? isSupported(func.returnShape as Schema) : true) &&
         func.parameters.every(isSupported as any)
       );
-    case 'BinaryHir':
-      const binary = schema as BinaryHir;
+    case 'OperatorHir':
+      const binary = schema as OperatorHir;
       // В HIR объединения типов (Union) могут представляться через бинарную операцию '|'
-      if (binary.operator === '|') {
-        return isSupported(binary.left as Schema) && isSupported(binary.right as Schema);
+      if (binary.name === '|') {
+        return isSupported(binary.operands[0] as Schema) && isSupported(binary.operands[1] as Schema);
       }
       return false;
     case 'LiteralHir':
-    case 'ObjectHir':
     case 'StructHir':
     case 'ReferenceHir':
       // Разрешаем базовые типы, структуры и ссылки
@@ -100,11 +99,10 @@ export function isSupported(schema: Schema | null): boolean {
 
 export function getTypeByHirNode(schema: Schema): FormSupportedKind {
   switch (schema.kind) {
-    case 'SequenceHir':
+    case 'BlockHir':
       // SequenceHir объединяет Array и Tuple. Для упрощения определяем как Array,
       // или можем добавить проверку на Tuple при необходимости (по кол-ву элементов или аннотациям).
       return 'Array';
-    case 'ObjectHir':
     case 'StructHir':
       return 'Object';
     case 'LiteralHir':
@@ -204,14 +202,8 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
     // Шаг 2. Ищем следующий элемент по ключу
     switch (current.kind) {
       case 'StructHir': {
-        const struct = current as StructHir;
-        // В StructHir поля хранятся в виде Record<string, HirType>
-        current = struct.fields?.[part as string];
-        break;
-      }
-      case 'ObjectHir': {
-        const obj = current as ObjectHir;
-        current = obj.entries?.find((e: any) => {
+        const obj = current as StructHir;
+        current = obj.properties?.find((e: any) => {
           const keyName = e.key.kind === 'LiteralHir'
             ? String(e.key.value)
             : getNameFromHir(e.key);
@@ -220,9 +212,9 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
         break;
       }
       case 'SequenceHir': {
-        const seq = current as SequenceHir;
+        const seq = current as BlockHir;
         // Если это массив с одним типом (Array), то берем [0]. Если кортеж (Tuple) - берем по индексу part.
-        current = seq.elements?.[parseInt(part as string, 10)] || seq.elements?.[0];
+        current = seq.statements?.[parseInt(part as string, 10)] || seq.statements?.[0];
         break;
       }
       default: {
@@ -253,21 +245,21 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
       break;
     }
 
-    case 'SequenceHir': {
-      const seq = currentSchema as SequenceHir;
+    case 'BlockHir': {
+      const seq = currentSchema as BlockHir;
       const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);
       if (path.length === 0) valuesRef.value = dataArray;
       else setByPath(valuesRef.value, path, dataArray);
 
       // В SequenceHir элементы массива/кортежа лежат в массиве elements
-      if (seq.elements && seq.elements.length > 1) {
+      if (seq.statements && seq.statements.length > 1) {
         // Кортеж (Tuple) - каждому элементу свой тип
-        seq.elements.forEach((itemType: any, ix: number) => {
+        seq.statements.forEach((itemType: any, ix: number) => {
           initFormData(dataArray[ix], itemType, valuesRef, typeRegistry, [...path, String(ix)]);
         });
-      } else if (seq.elements && seq.elements.length === 1) {
+      } else if (seq.statements && seq.statements.length === 1) {
         // Массив (Array) - тип всех элементов в elements[0]
-        const itemType = seq.elements[0];
+        const itemType = seq.statements[0];
         dataArray.forEach((item, ix) => {
           initFormData(item, itemType, valuesRef, typeRegistry, [...path, String(ix)]);
         });
@@ -281,19 +273,7 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
       if (path.length === 0) valuesRef.value = obj;
       else setByPath(valuesRef.value, path, obj);
 
-      Object.entries(struct.fields || {}).forEach(([key, fieldShape]) => {
-        initFormData(obj[key], fieldShape, valuesRef, typeRegistry, [...path, key]);
-      });
-      break;
-    }
-
-    case 'ObjectHir': {
-      const objectNode = currentSchema as ObjectHir;
-      const obj = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {};
-      if (path.length === 0) valuesRef.value = obj;
-      else setByPath(valuesRef.value, path, obj);
-
-      objectNode.entries?.forEach((entry: any) => {
+      struct.properties?.forEach((entry: any) => {
         const key = entry.key.kind === 'LiteralHir'
           ? String(entry.key.value)
           : getNameFromHir(entry.key);

@@ -11,11 +11,8 @@ export function parseFunction(node: FunctionDeclaration): abstracts.translators.
     title: doc ? tsRl.ast.doc.parseTitle(doc, funcName) : '',
     description: doc ? tsRl.ast.doc.parseFunctionDescription(doc) : '',
     parameters: {}, // Fill logically based on JSDoc parsing if needed
-    performance: {
-       timeDataSizeComplexityFn: doc ? tsRl.ast.doc.parseComplexity(doc, funcName).time : '',
-       memoryDataSizeComplexityFn: doc ? tsRl.ast.doc.parseComplexity(doc, funcName).memory : '',
-       history: []
-    },
+    timeDataSizeComplexityFn: doc ? tsRl.ast.doc.parseComplexity(doc, funcName).time : '',
+    memoryDataSizeComplexityFn: doc ? tsRl.ast.doc.parseComplexity(doc, funcName).memory : '',
     examples: doc ? tsRl.ast.doc.parseExamples(doc, funcName) : []
   };
 

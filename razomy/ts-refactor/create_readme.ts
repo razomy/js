@@ -2,11 +2,13 @@ import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstracts from '@razomy/abstracts';
 import * as languageString from '@razomy/language-string';
+import * as tsRl from "@razomy/ts-rl";
 
-export function createReadme(path: string, packageJson: any, packageDeclaration: abstracts.translators.ModuleHir) {
-  const scopeName = stringCase.camelCase(packageDeclaration.identifier.replace('@razomy/', ''));
+export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.HirCtx) {
+  const packageDeclaration = ctx.root as abstracts.translators.StructHir;
+  const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
 
-  const allDecls = languageString.bindingToString(packageDeclaration.block.statements, []);
+  const allDecls = languageString.bindingToString(packageDeclaration.properties, []);
   allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -14,7 +16,7 @@ export function createReadme(path: string, packageJson: any, packageDeclaration:
   const vision = `
 ## 🕊️ Vision
 
-> "Razomy" means Together—you and me.  
+> "Razomy" means Together — you and me.  
 > We act as catalysts, turning natural chaos into clarity through open collaboration.  
 > By building honest, reliable systems, we empower humanity and create a foundation for peace.  
 > We foster a borderless environment driven by quality code and mutual support.  
@@ -102,6 +104,8 @@ razomy cli add ${packageJson.name}
 
 \`\`\`ts
 import * as ${scopeName} from '${packageJson.name}';
+// or
+import ${scopeName} from '${packageJson.name}';
 // or
 import * as ${scopeName} from "npm:${packageJson.name}";
 // or

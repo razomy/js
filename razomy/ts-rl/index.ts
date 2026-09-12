@@ -1,25 +1,17 @@
 // Imports
 import * as ast from './ast';
-import { createPackageFunction } from './create_package_function';
-import { HirCtx, astToHir } from './hir_ctx';
-import { modifiersAstToHir } from './modifiers_ast_to_hir';
+import * as hir from './hir';
 
 // Named exports
 export {
-  HirCtx,
   ast,
-  astToHir,
-  createPackageFunction,
-  modifiersAstToHir
+  hir
 };
 
 // Default export
 const tsRl = {
   ast,
-  createPackageFunction,
-  HirCtx,
-  astToHir,
-  modifiersAstToHir,
+  hir,
 };
 
 export default tsRl;

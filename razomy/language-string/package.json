@@ -24,6 +24,20 @@
         "types": "./index.ts"
       }
     },
+    "./ast": {
+      "default": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      },
+      "import": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      },
+      "require": {
+        "default": "./ast/index.ts",
+        "types": "./ast/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -56,8 +70,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts --watch",
+    "build": "tsdown index.ts ast/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts ast/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

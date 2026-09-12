@@ -34,10 +34,10 @@ export function bindingToString(
   result: languageString.FlatDeclaration[] = [],
 ): languageString.FlatDeclaration[] {
   for (const node of nodes) {
-    if (node.kind === 'ModuleHir') {
-      const moduleNode = node as abstracts.translators.ModuleHir;
+    if (node.kind === 'StructHir') {
+      const moduleNode = node as abstracts.translators.StructHir;
       const moduleName = getNodeName(moduleNode, 'module');
-      bindingToString(moduleNode.block.statements, [...currentPath, moduleName], result);
+      bindingToString(moduleNode.properties, [...currentPath, moduleName], result);
     } else if (node.kind === 'FunctionHir') {
       const funcNode = node as abstracts.translators.FunctionHir;
       const name = getNodeName(funcNode);

@@ -13,57 +13,51 @@ export function createPackageFunction(
     parameter: Record<string, string>;
     returnShape: { description: string; type?: string };
   }>,
-): [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir] {
+): [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionAst] {
   return [
     {
       kind: 'FunctionDocsAst',
       syntaxLayer: 1,
       title: f.title || f.name || '',
       description: f.description || '',
-      performance: {
-        timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
-        memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-        history: f.performance?.history || [],
-      },
+      timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
+      memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
       parameters: f.parameter || {},
       examples: f.examples || [],
     },
     {
-      kind: 'FunctionHir',
+      kind: 'FunctionAst',
       syntaxLayer: 3,
-      symbolId: 0,
       modifiers: [
-        f.isAsync ? {kind: 'ModifierHir', type: 'async'} : null,
-        f.isGenerator ? {kind: 'ModifierHir', type: 'generator'} : null,
-      ] as abstracts.translators.ModifierHir[],
-      identifier: f.name || '',
+        f.isAsync ? {id:0,kind: 'LiteralHir', value: 'async'} : null,
+        f.isGenerator ? {id:0,kind: 'LiteralHir', value: 'generator'} : null,
+      ] satisfies abstracts.translators.LiteralHir[],
+      name: f.name || '',
       parameters: Object.entries(f.parameter || {}).map(
         ([k, v]) =>
           ({
             kind: 'BindingHir',
             syntaxLayer: 3,
+            semanticLayer: 3,
             modifiers: [],
             identifier: k,
             shape: {
               kind: 'ReferenceHir',
-              symbolId: 0,
-              targetSymbol: 0,
+              target: 'String',
               syntaxLayer: 2,
-              identifier: 'String'
+              semanticLayer: 2,
             } as abstracts.translators.ReferenceHir,
             value: null,
-            symbolId: 0,
             externalSource: null,
           } as abstracts.translators.BindingHir),
       ),
-      block: {kind: 'BlockHir', symbolId: 0, type: 'return', syntaxLayer: 3, statements: f.body || []},
+      semanticLayer: 3,
+      block: null,
       returnShape: f.returnShape?.type
         ? ({
           kind: 'ReferenceHir',
           syntaxLayer: 2,
-          symbolId: 0,
-          targetSymbol: 0,
-          identifier: f.returnShape.type
+          target: f.returnShape.type
         } as abstracts.translators.ReferenceHir)
         : null,
     },

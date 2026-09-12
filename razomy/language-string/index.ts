@@ -1,28 +1,14 @@
 // Imports
-import { bindingToString } from './binding_to_string';
-import { docToString } from './doc_to_string';
-import { functionToString } from './function_to_string';
-import type { FlatDeclaration } from './function_to_string';
-import { shapeToString } from './shape_to_string';
+import * as ast from './ast';
 
 // Named exports
 export {
-  bindingToString,
-  docToString,
-  functionToString,
-  shapeToString
-};
-export type {
-  FlatDeclaration
+  ast
 };
 
 // Default export
 const languageString = {
-  bindingToString,
-  docToString,
-  functionToString,
-  shapeToString,
+  ast,
 };
-
 
 export default languageString;

@@ -79,6 +79,7 @@ export interface IPanicAst extends IAstNode {
  * @abstract
  */
 export interface IStateAst extends IAstNode {
+  semanticLayer: SemanticLayer; // 1
 }
 
 /**
@@ -209,7 +210,7 @@ export interface DefaultCatchAst extends IPanicAst {
  */
 export interface FinallyAst extends IPanicAst {
   kind: 'FinallyAst';
-  value: StateAstType;
+  block: StateAstType;
 }
 
 export type PanicAstType =
@@ -226,7 +227,6 @@ export type PanicAstType =
 
 export interface LiteralAst extends IStateAst {
   kind: 'LiteralAst';
-  semanticLayer: SemanticLayer; // 1
   value: any; // 0001-01-01
 }
 
@@ -241,7 +241,6 @@ export interface LiteralAst extends IStateAst {
  */
 export interface TemplateAst extends IStateAst {
   kind: 'TemplateAst';
-  semanticLayer: SemanticLayer;
   values: AstType[];
 }
 
@@ -255,13 +254,11 @@ export interface TemplateAst extends IStateAst {
  */
 export interface ArrayAst extends IStateAst {
   kind: 'ArrayAst';
-  semanticLayer: SemanticLayer;
   values: AstType[];
 }
 
 export interface TupleAst extends IStateAst {
   kind: 'TupleAst';
-  semanticLayer: SemanticLayer;
   values: AstType[];
 }
 
@@ -276,7 +273,6 @@ export interface TupleAst extends IStateAst {
  */
 export interface PropertyAst extends IStateAst {
   kind: 'PropertyAst';
-  semanticLayer: SemanticLayer;
   identifier: Identifier;
   value: AstType;
 }
@@ -292,7 +288,6 @@ export interface PropertyAst extends IStateAst {
  */
 export interface ObjectAst extends IStateAst {
   kind: 'ObjectAst';
-  semanticLayer: SemanticLayer;
   properties: PropertyAst[];
 }
 
@@ -306,7 +301,6 @@ export interface ObjectAst extends IStateAst {
  */
 export interface MappedAst extends IStateAst {
   kind: 'MappedAst';
-  semanticLayer: SemanticLayer;
   constraint: AstType;
   value: StateAstType;
 }
@@ -416,18 +410,18 @@ export interface MatchAst extends IFlowAst {
 
 export interface TernaryAst extends MatchAst {
   kind: 'TernaryAst';
-  branches: IfBranchAst[];
+  branches: IfBranchAstType[];
 }
 
 export interface IfAst extends MatchAst {
   kind: 'IfAst';
-  branches: IfBranchAst[];
+  branches: IfBranchAstType[];
 }
 
 export interface SwitchAst extends MatchAst {
   kind: 'SwitchAst';
   target: AstType;
-  branches: SwitchBranchAst[];
+  branches: SwitchBranchAstType[];
 }
 
 /**
@@ -492,10 +486,12 @@ export interface BlockAst extends IFlowAst {
 }
 
 export interface QueryAst extends IFlowAst {
+  kind: 'QueryAst';
   pattern: AstType;
 }
 
 export interface ConstraintAst extends IFlowAst {
+  kind: 'ConstraintAst';
   pattern: AstType;
 }
 
@@ -517,34 +513,38 @@ export type FlowAstType =
 
 // region FlowOperator
 
-export interface IfBranchAst extends IFlowOperatorAst {
+export interface IIfBranchAst extends IFlowOperatorAst {
 }
 
-export interface ConditionBranchAst extends IfBranchAst {
+export interface ConditionBranchAst extends IIfBranchAst {
   kind: 'ConditionBranchAst';
   pattern: AstType;
   value: AstType;
 }
 
-export interface ElseBranchAst extends IfBranchAst {
+export interface ElseBranchAst extends IIfBranchAst {
   kind: 'ElseBranchAst';
   value: AstType;
 }
 
-export interface SwitchBranchAst extends IFlowOperatorAst {
+export type IfBranchAstType = ConditionBranchAst | ElseBranchAst;
+
+export interface ISwitchBranchAst extends IFlowOperatorAst {
 }
 
-export interface MatchBranchAst extends SwitchBranchAst {
-  kind: 'SwitchBranchAst';
+export interface MatchBranchAst extends ISwitchBranchAst {
+  kind: 'MatchBranchAst';
   pattern: AstType;
   value: AstType;
 }
 
 
-export interface DefaultBranchAst extends SwitchBranchAst {
+export interface DefaultBranchAst extends ISwitchBranchAst {
   kind: 'DefaultBranchAst';
   value: AstType;
 }
+
+export type SwitchBranchAstType = MatchBranchAst | DefaultBranchAst;
 
 /**
  * Represents a return expression.
@@ -572,7 +572,6 @@ export interface ContinueAst extends IFlowOperatorAst {
 export type FlowOperatorAstType =
   | ConditionBranchAst
   | ElseBranchAst
-  | SwitchBranchAst
   | MatchBranchAst
   | DefaultBranchAst
   | ReturnAst
@@ -685,8 +684,7 @@ export interface ClassAst extends IDeclarationAst {
   modifiers: ModifierAstTypes[];
   identifier: Identifier;
   parameters: ParameterAst[];
-  properties: PropertyAst[];
-  methods: FunctionAst[];
+  properties: (PropertyAst | FunctionAst)[];
 }
 
 /**
@@ -975,11 +973,8 @@ export interface FunctionDocsAst extends ILayerAst, abstracts.domains.HasDescrip
   kind: 'FunctionDocsAst';
   title: string;
   parameters: Record<string, string>;
-  performance: {
-    timeDataSizeComplexityFn: string;
-    memoryDataSizeComplexityFn: string;
-    history: string[];
-  };
+  timeDataSizeComplexityFn: string;
+  memoryDataSizeComplexityFn: string;
   examples: { code: string; expected: string }[];
 }
 
@@ -993,7 +988,6 @@ export type LayerAstTypes =
 // endregion Layer
 
 export type AstType =
-  | OntologyAstType
   | PanicAstType
   | StateAstType
   | OperationAstType
