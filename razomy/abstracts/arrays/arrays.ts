@@ -1,5 +1,12 @@
 import * as abstracts from '@razomy/abstracts';
 
+export interface IIterator<T> {
+  /**
+   * @throws {Error}
+   */
+  next(): T;
+}
+
 export interface DataStructure<T> extends abstracts.meta.IResource {
 }
 

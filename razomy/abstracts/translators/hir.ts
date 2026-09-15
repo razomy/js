@@ -48,7 +48,7 @@ export interface LiteralHir extends IHirNode {
  */
 export interface OperatorHir extends IHirNode {
   kind: 'OperatorHir';
-  name: string;
+  operator: string;
   operands: abstracts.domains.IdRef<HirType>[]; // Массив решает проблему унарных, бинарных и n-арных операций
 }
 
@@ -157,6 +157,7 @@ export interface BindingHir extends IIdentityHir {
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
   value: abstracts.domains.IdRef<HirType> | null; // Значение
+  description: abstracts.domains.IdRef<BindingHir>;
 }
 
 /**
@@ -169,8 +170,10 @@ export interface FunctionHir extends IIdentityHir {
   kind: 'FunctionHir';
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
-  block: abstracts.domains.IdRef<HirType> | null; // Значение
-  // Тело функции лежит в унаследованном поле `value` (обычно это SequenceHir)
+  block: abstracts.domains.IdRef<HirType> | null;
+  title: abstracts.domains.IdRef<BindingHir>;
+  description: abstracts.domains.IdRef<BindingHir>;
+  examples: abstracts.domains.IdRef<BindingHir>[];
 }
 
 /**
