@@ -1,12 +1,12 @@
 import * as abstracts from "@razomy/abstracts";
 
-export function specToTool([docs, fn]: [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir]) {
+export function specToTool(fn: abstracts.translators.FunctionHir) {
   const properties: Record<string, any> = {};
   const required: string[] = [];
   fn.parameters.forEach((param) => {
-    properties[param.identifier] = {
+    properties[param.name!] = {
       type: param.kind.toLowerCase(),
-      description: docs.parameters[param.identifier],
+      description: param.description!.value!.value,
     };
 
     if (param.value === null) {
@@ -16,8 +16,8 @@ export function specToTool([docs, fn]: [abstracts.translators.FunctionDocsAst, a
   return {
     type: 'function',
     function: {
-      name: fn.identifier,
-      description: `${docs.description}.`,
+      name: fn.name!,
+      description: `${fn.description!.value!.value}.`,
       parameters: {
         type: 'object',
         properties,

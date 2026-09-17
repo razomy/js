@@ -34,6 +34,10 @@
   "keywords": [
     "razomy",
     "buffer",
+    "resizeFloat32",
+    "resizeUint32Fill",
+    "resizeUint32",
+    "resizeUint8",
     "toCodec",
     "toString"
   ],

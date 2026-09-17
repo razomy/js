@@ -14,14 +14,14 @@ function mapType(type: string): Type {
 /**
  * Конвертирует вашу FunctionSpecification в формат Google Gemini
  */
-export function specToTool([docs,fn]: [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir]): FunctionDeclaration {
+export function specToTool(fn: abstracts.translators.FunctionHir): FunctionDeclaration {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 
   fn.parameters.forEach((param) => {
-    properties[param.identifier] = {
+    properties[param.name!] = {
       type: mapType(param.kind),
-      description: docs.parameters[param.identifier],
+      description: param.description.value,
     };
 
     // Если нет дефолтного значения, считаем обязательным
@@ -31,8 +31,8 @@ export function specToTool([docs,fn]: [abstracts.translators.FunctionDocsAst, ab
   });
 
   return {
-    name: fn.identifier,
-    description: `${docs.description}.`,
+    name: fn.name!,
+    description: `${fn.description.value}.`,
     parameters: {
       type: Type.OBJECT,
       properties,

@@ -24,63 +24,187 @@
         "types": "./index.ts"
       }
     },
-    "./package.json": "./package.json",
-    "./query": {
+    "./column": {
       "default": {
-        "default": "./query/index.ts",
-        "types": "./query/index.ts"
+        "default": "./column/index.ts",
+        "types": "./column/index.ts"
       },
       "import": {
-        "default": "./query/index.ts",
-        "types": "./query/index.ts"
+        "default": "./column/index.ts",
+        "types": "./column/index.ts"
       },
       "require": {
-        "default": "./query/index.ts",
-        "types": "./query/index.ts"
+        "default": "./column/index.ts",
+        "types": "./column/index.ts"
       }
     },
-    "./specifications/*": "./specifications/*",
-    "./storage": {
+    "./column/array": {
       "default": {
-        "default": "./storage/index.ts",
-        "types": "./storage/index.ts"
+        "default": "./column/array/index.ts",
+        "types": "./column/array/index.ts"
       },
       "import": {
-        "default": "./storage/index.ts",
-        "types": "./storage/index.ts"
+        "default": "./column/array/index.ts",
+        "types": "./column/array/index.ts"
       },
       "require": {
-        "default": "./storage/index.ts",
-        "types": "./storage/index.ts"
+        "default": "./column/array/index.ts",
+        "types": "./column/array/index.ts"
+      }
+    },
+    "./column/chunk": {
+      "default": {
+        "default": "./column/chunk/index.ts",
+        "types": "./column/chunk/index.ts"
+      },
+      "import": {
+        "default": "./column/chunk/index.ts",
+        "types": "./column/chunk/index.ts"
+      },
+      "require": {
+        "default": "./column/chunk/index.ts",
+        "types": "./column/chunk/index.ts"
+      }
+    },
+    "./column/chunk2d": {
+      "default": {
+        "default": "./column/chunk2d/index.ts",
+        "types": "./column/chunk2d/index.ts"
+      },
+      "import": {
+        "default": "./column/chunk2d/index.ts",
+        "types": "./column/chunk2d/index.ts"
+      },
+      "require": {
+        "default": "./column/chunk2d/index.ts",
+        "types": "./column/chunk2d/index.ts"
+      }
+    },
+    "./core": {
+      "default": {
+        "default": "./core/index.ts",
+        "types": "./core/index.ts"
+      },
+      "import": {
+        "default": "./core/index.ts",
+        "types": "./core/index.ts"
+      },
+      "require": {
+        "default": "./core/index.ts",
+        "types": "./core/index.ts"
+      }
+    },
+    "./event": {
+      "default": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "import": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "require": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*",
+    "./store": {
+      "default": {
+        "default": "./store/index.ts",
+        "types": "./store/index.ts"
+      },
+      "import": {
+        "default": "./store/index.ts",
+        "types": "./store/index.ts"
+      },
+      "require": {
+        "default": "./store/index.ts",
+        "types": "./store/index.ts"
+      }
+    },
+    "./topology": {
+      "default": {
+        "default": "./topology/index.ts",
+        "types": "./topology/index.ts"
+      },
+      "import": {
+        "default": "./topology/index.ts",
+        "types": "./topology/index.ts"
+      },
+      "require": {
+        "default": "./topology/index.ts",
+        "types": "./topology/index.ts"
+      }
+    },
+    "./wal": {
+      "default": {
+        "default": "./wal/index.ts",
+        "types": "./wal/index.ts"
+      },
+      "import": {
+        "default": "./wal/index.ts",
+        "types": "./wal/index.ts"
+      },
+      "require": {
+        "default": "./wal/index.ts",
+        "types": "./wal/index.ts"
       }
     }
   },
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-graph#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/db#readme",
   "keywords": [
     "razomy",
     "db",
-    "graph",
-    "filterHasTag",
-    "startQuery",
-    "stepIn",
-    "stepOut",
-    "yieldIds",
-    "yieldVertices",
-    "addEdgeMut",
-    "addVertexMut",
-    "createGraphStorage",
-    "getIncomingEdges",
-    "getOutgoingEdges",
-    "getVertex"
+    "clearElement",
+    "createColumn",
+    "get",
+    "reset",
+    "resize",
+    "set",
+    "createChunkConfig",
+    "createChunk",
+    "createChunkedColumn",
+    "forEachChunk",
+    "clearCell",
+    "createChunkConfig2D",
+    "createChunkedGrid2D",
+    "getChunkKey",
+    "addNodeCore",
+    "commitCore",
+    "createCoreDb",
+    "registerField",
+    "setFieldCore",
+    "createEventsContext",
+    "flushEvents",
+    "markDirty",
+    "allocate",
+    "createStore",
+    "freeId",
+    "registerColumn",
+    "addGraphNode",
+    "applyConnect",
+    "commitGraph",
+    "connectGraph",
+    "createGraphTopology",
+    "clearWal",
+    "createWal",
+    "pushWal",
+    "opCode",
+    "layer",
+    "nullEdge",
+    "systemFields"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/db-graph",
+  "name": "@razomy/db",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "neo4j-driver": "^6.0.1",
     "ollama": "^0.6.3"
   },
@@ -88,13 +212,13 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/db-graph",
+    "directory": "razomy/db",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts query/index.ts storage/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts query/index.ts storage/index.ts --watch",
+    "build": "tsdown index.ts column/index.ts column/array/index.ts column/chunk/index.ts column/chunk2d/index.ts core/index.ts event/index.ts store/index.ts topology/index.ts wal/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts column/index.ts column/array/index.ts column/chunk/index.ts column/chunk2d/index.ts core/index.ts event/index.ts store/index.ts topology/index.ts wal/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

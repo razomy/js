@@ -7,6 +7,15 @@ export interface TreeNode<T> extends abstracts.structures.Node<T> {
   children: TreeNode<T>[];
 }
 
+export interface HasOrder<T> {
+  prev: T;
+  next: T;
+}
+
+export interface HasParent<T> {
+  parent: T;
+}
+
 /**
  * @memoryLayout Pointer
  * @topology 1:N_Hierarchical

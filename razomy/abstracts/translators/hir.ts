@@ -1,4 +1,5 @@
 import * as abstracts from "@razomy/abstracts";
+import type {HasOrder, HasParent} from "../graphs/trees";
 
 /**
  * HIR Ontology
@@ -15,7 +16,7 @@ import * as abstracts from "@razomy/abstracts";
  */
 
 
-export interface IHirNode extends abstracts.domains.IEntity {
+export interface IHirNode extends abstracts.domains.IEntity, HasOrder<HirType | null>, HasParent<HirType | null> {
   id: string;
   kind: string;
   syntaxLayer: abstracts.translators.SyntaxLayer;
@@ -153,11 +154,11 @@ export interface IIdentityHir extends IHirNode {
  * @replaces ParameterAst - используется внутри FunctionHir.parameters
  * @replaces PropertyAst - используется внутри StructHir.properties
  */
-export interface BindingHir extends IIdentityHir {
+export interface BindingHir<T extends HirType = HirType> extends IIdentityHir {
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
-  value: abstracts.domains.IdRef<HirType> | null; // Значение
-  description: abstracts.domains.IdRef<BindingHir>;
+  value: abstracts.domains.IdRef<T> | null; // Значение
+  description: abstracts.domains.IdRef<BindingHir<LiteralHir>> | null;
 }
 
 /**
@@ -171,8 +172,8 @@ export interface FunctionHir extends IIdentityHir {
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
   block: abstracts.domains.IdRef<HirType> | null;
-  title: abstracts.domains.IdRef<BindingHir>;
-  description: abstracts.domains.IdRef<BindingHir>;
+  title: abstracts.domains.IdRef<BindingHir> | null;
+  description: abstracts.domains.IdRef<BindingHir<LiteralHir>> | null;
   examples: abstracts.domains.IdRef<BindingHir>[];
 }
 
