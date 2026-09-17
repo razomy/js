@@ -23,9 +23,9 @@ export type {
   EdgeId,
   FieldId,
   IColumn,
-  OpCode,
   Layer,
   NodeId,
+  OpCode,
   TypedArray,
   TypedArrayConstructor
 };

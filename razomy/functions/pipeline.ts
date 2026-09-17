@@ -7,16 +7,16 @@ export class Pipeline<TA, TR = TA> {
 
   public p<TN, TR2 = TR>(pipeline: Pipeline<TR2, TN>): Pipeline<TA, TN>;
   public p<TN>(fn: (input: TR) => TN): Pipeline<TA, TN>;
-  public p<Item, Res, TN>(this: Pipeline<TA, Item[]>,
-                          fn: (array: Item[], callback: (item: Item, index: number, array: Item[]) => Res) => TN,
-                          callback: (item: Item, index: number, array: Item[]) => Res
-  ): Pipeline<TA, TN>;
-  public p<Item, Acc>(
-    this: Pipeline<TA, Item[]>,
-    fn: (array: Item[], reducer: (acc: Acc, item: Item, index: number) => Acc, initial: Acc) => Acc,
-    reducer: (acc: Acc, item: Item, index: number) => Acc,
-    initial: Acc
-  ): Pipeline<TA, Acc>;
+  // public p<Item, Res, TN>(this: Pipeline<TA, Item[]>,
+  //                         fn: (array: Item[], callback: (item: Item, index: number, array: Item[]) => Res) => TN,
+  //                         callback: (item: Item, index: number, array: Item[]) => Res
+  // ): Pipeline<TA, TN>;
+  // public p<Item, Acc>(
+  //   this: Pipeline<TA, Item[]>,
+  //   fn: (array: Item[], reducer: (acc: Acc, item: Item, index: number) => Acc, initial: Acc) => Acc,
+  //   reducer: (acc: Acc, item: Item, index: number) => Acc,
+  //   initial: Acc
+  // ): Pipeline<TA, Acc>;
   public p<A1, TN>(fn: (input: TR, a1: A1) => TN, a1: A1): Pipeline<TA, TN>;
   public p<A1, A2, TN>(fn: (input: TR, a1: A1, a2: A2) => TN, a1: A1, a2: A2): Pipeline<TA, TN>;
   public p<Args extends any[], TN>(fn: (input: TR, ...args: Args) => TN, ...args: Args): Pipeline<TA, TN>;

@@ -12,9 +12,9 @@ export function linkHirTree(
   prev: abstracts.translators.HirType | null = null,
   next: abstracts.translators.HirType | null = null
 ): void {
-  if (parent) tsRl.hir.addEdge(ctx, node, parent, 'parent')
-  if (prev) tsRl.hir.addEdge(ctx, node, prev, 'prev')
-  if (next) tsRl.hir.addEdge(ctx, node, next, 'next')
+  if (parent) node.parent = parent
+  if (prev) node.prev = prev
+  if (next) node.next = next
 
   // 2. Рекурсивно обходим детей с помощью нашей компактной утилиты
   tsRl.hir.walkHirChildren(

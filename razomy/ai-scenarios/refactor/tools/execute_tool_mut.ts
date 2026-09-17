@@ -12,7 +12,7 @@ export type ToolContext = {
 
 export const TOOLS = [
   {
-    spec: tsRl.createPackageFunction({
+    spec: tsRl.hir.createPackageFunction({
       name: 'getAllFlat',
       description: 'Получить список файлов в папке recursive',
       parameter: {
@@ -30,7 +30,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRl.createPackageFunction({
+    spec: tsRl.hir.createPackageFunction({
       name: 'delegate',
       description: 'Delegate tool',
       parameter: {
@@ -63,7 +63,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRl.createPackageFunction({
+    spec: tsRl.hir.createPackageFunction({
       name: 'getFile',
       description: 'Прочитать текст из файла',
       parameter: {
@@ -78,7 +78,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRl.createPackageFunction({
+    spec: tsRl.hir.createPackageFunction({
       name: 'setFile',
       description: 'Записать текст в файла',
       parameter: {
@@ -92,7 +92,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRl.createPackageFunction({
+    spec: tsRl.hir.createPackageFunction({
       name: 'build',
       description: 'Build project',
       parameter: {},
@@ -103,7 +103,7 @@ export const TOOLS = [
   },
 ] as const;
 
-export const TOOL_REGISTRY: Record<typeof TOOLS[number]['spec'][1]['identifier'], typeof TOOLS[number]> =
+export const TOOL_REGISTRY: Record<string, typeof TOOLS[number]> =
   array.mapToDictBy(TOOLS as any, (i) => i.spec[1].identifier)
 ;
 

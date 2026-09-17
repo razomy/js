@@ -1,5 +1,4 @@
 import * as abstracts from "@razomy/abstracts";
-import type {HasOrder, HasParent} from "../graphs/trees";
 
 /**
  * HIR Ontology
@@ -16,7 +15,7 @@ import type {HasOrder, HasParent} from "../graphs/trees";
  */
 
 
-export interface IHirNode extends abstracts.domains.IEntity, HasOrder<HirType | null>, HasParent<HirType | null> {
+export interface IHirNode extends abstracts.domains.IEntity, abstracts.graphs.HasOrder<HirType | null>, abstracts.graphs.HasParent<HirType | null> {
   id: string;
   kind: string;
   syntaxLayer: abstracts.translators.SyntaxLayer;
@@ -154,11 +153,11 @@ export interface IIdentityHir extends IHirNode {
  * @replaces ParameterAst - используется внутри FunctionHir.parameters
  * @replaces PropertyAst - используется внутри StructHir.properties
  */
-export interface BindingHir<T extends HirType = HirType> extends IIdentityHir {
+export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>> extends IIdentityHir {
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
-  value: abstracts.domains.IdRef<T> | null; // Значение
-  description: abstracts.domains.IdRef<BindingHir<LiteralHir>> | null;
+  value: T | null; // Значение
+  description: abstracts.domains.IdRef<LiteralHir> | null;
 }
 
 /**
@@ -172,9 +171,9 @@ export interface FunctionHir extends IIdentityHir {
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
   block: abstracts.domains.IdRef<HirType> | null;
-  title: abstracts.domains.IdRef<BindingHir> | null;
-  description: abstracts.domains.IdRef<BindingHir<LiteralHir>> | null;
-  examples: abstracts.domains.IdRef<BindingHir>[];
+  title: abstracts.domains.IdRef<LiteralHir> | null;
+  description: abstracts.domains.IdRef<LiteralHir> | null;
+  examples: abstracts.domains.IdRef<LiteralHir> | null;
 }
 
 /**
@@ -187,7 +186,7 @@ export interface FunctionHir extends IIdentityHir {
  */
 export interface StructHir extends IIdentityHir {
   kind: 'StructHir';
-  properties: abstracts.domains.IdRef<BindingHir>[]; // Поля, методы, элементы массива
+  properties: abstracts.domains.IdRef<HirType>[]; // Поля, методы, элементы массива
 }
 
 // endregion Declarations & Entities

@@ -2,7 +2,7 @@ import { Node, Statement } from 'ts-morph';
 import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseLoop(node: Statement): abstracts.translators.IFlowAst {
+export function parseLoop(node: Statement): abstracts.translators.FlowAstType {
   if (Node.isForStatement(node)) {
     return {
       kind: 'ForItAst', syntaxLayer: 3,

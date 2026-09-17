@@ -6,7 +6,8 @@ export function parse(node: Statement): abstracts.translators.AstType {
   if (Node.isBlock(node)) return tsRl.ast.statements.parseBlock(node);
   if (Node.isIfStatement(node)) return tsRl.ast.statements.parseCondition(node);
   if (Node.isTryStatement(node)) return { kind: 'TryAst', syntaxLayer: 3, block: tsRl.ast.statements.parseBlock(node.getTryBlock()) } as abstracts.translators.TryAst; // Basic Try mapping
-  if (Node.isForStatement(node) || Node.isForInStatement(node) || Node.isForOfStatement(node) || Node.isWhileStatement(node) || Node.isDoStatement(node)) return tsRl.ast.statements.parseLoop(node);
+  if (Node.isForStatement(node) || Node.isForInStatement(node) || Node.isForOfStatement(node) || Node.isWhileStatement(node) || Node.isDoStatement(node))
+    return tsRl.ast.statements.parseLoop(node);
   if (Node.isReturnStatement(node)) return tsRl.ast.statements.parseReturn(node);
   if (Node.isBreakStatement(node) || Node.isContinueStatement(node)) return tsRl.ast.statements.parseGo(node);
   if (Node.isThrowStatement(node)) return tsRl.ast.statements.parseThrow(node);

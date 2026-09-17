@@ -3,7 +3,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 import * as aiScenarios from "@razomy/ai-scenarios";
 
-export async function toolPredict(messages: ai.AiMessage[], tools: [abstracts.translators.FunctionDocsAst,abstracts.translators.FunctionHir][]) {
+export async function toolPredict(messages: ai.AiMessage[], tools: abstracts.translators.FunctionHir[]) {
   return await ai.apiRun.instant.chat.tool.predict(
     null,
     'mlx-community/gemma-4-e2b-it-4bit',
@@ -25,7 +25,7 @@ function testPredictTool() {
   toolPredict(
     [{"sender": "user", type: 'text', "content": "Multiply 12234585 and 48838483920. And say answer."}],
     [
-      tsRl.createPackageFunction({
+      tsRl.hir.createPackageFunction({
         name: 'multiply',
         description: 'Multiply numbers',
         parameter: {

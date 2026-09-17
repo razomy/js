@@ -1,14 +1,14 @@
 // Imports
-import * as ast from './ast';
+import * as md from './md';
 
 // Named exports
 export {
-  ast
+  md
 };
 
 // Default export
 const languageString = {
-  ast,
+  md,
 };
 
 export default languageString;

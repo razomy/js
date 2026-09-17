@@ -4,18 +4,18 @@ import * as abstracts from "@razomy/abstracts";
 export function joinDocs(ctx: tsRl.hir.HirCtx, node: abstracts.translators.HirType): void {
   // 1. Бизнес-логика текущей фазы
   if (node.kind === 'FunctionHir') {
-    const docs = tsRl.hir.getEdge(ctx, node, 'prev');
+    const docs = node.prev
+    if (docs && docs.kind === 'BlockHir' && docs.syntaxLayer === 1) {
+      const statements = (docs.statements || []) as abstracts.translators.BindingHir<abstracts.translators.LiteralHir>[];
+      node.title = statements.find(i => i.name === 'title')?.value || null;
+      node.description = statements.find(i => i.name === 'description')?.value || null;
+      node.examples = statements.find(i => i.name === 'examples')?.value || null;
 
-    if (docs?.kind === 'BlockHir' && docs.syntaxLayer === 1) {
-      tsRl.hir.addEdge(ctx, node, docs, 'description')
-      // Защита от пустых массивов на всякий случай
       const params = node.parameters || [];
-      const statements = docs.statements || [];
-
-      for (const child of params) {
-        for (const doc of statements) {
-          if (child.name === (doc as any)?.name) {
-            tsRl.hir.addEdge(ctx, child, doc, 'description')
+      for (const param of params) {
+        for (const paramDoc of statements) {
+          if (param.name === (paramDoc as any)?.name) {
+            param.description = paramDoc.value;
           }
         }
       }

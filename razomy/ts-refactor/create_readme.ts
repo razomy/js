@@ -3,13 +3,20 @@ import * as stringCase from '@razomy/string-case';
 import * as abstracts from '@razomy/abstracts';
 import * as languageString from '@razomy/language-string';
 import * as tsRl from "@razomy/ts-rl";
+import type {HirType} from "@razomy/abstracts/translators";
+
+export function getPath(node:HirType) {
+  const path = [] as string[];
+  while (node.parent){
+    path.push(node['name'] || null)
+    node = node.parent
+  }
+  return path.filter(Boolean)
+}
 
 export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.HirCtx) {
   const packageDeclaration = ctx.root as abstracts.translators.StructHir;
   const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
-
-  const allDecls = languageString.bindingToString(packageDeclaration.properties, []);
-  allDecls.sort((a, b) => a.path.join('.').localeCompare(b.path.join('.')));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
 
@@ -93,11 +100,13 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const typeSpecs = allDecls.filter((i) => i.node.kind !== 'FunctionHir');
-  const functionSpecs = allDecls.filter(
-    (i) => i.node.kind === 'FunctionHir',
-  ) as languageString.FlatDeclaration<abstracts.translators.FunctionHir>[];
-  const functionPath = allDecls.length > 0 ? allDecls[0].path : ['functionName'];
+  const allDecls = packageDeclaration.properties
+    .filter((i) => i.kind === 'StructHir').flatMap(i=>i.properties);
+  allDecls.sort((a, b) => getPath(a).join('').localeCompare(getPath(b).join('')));
+  const typeSpecs = ctx.nodes.values().filter(i => i.kind === 'StructHir').toArray();
+  const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHir');
+  const functionPath = allDecls.length > 0 ? getPath(allDecls[0]) : ['functionName'];
+
 
   const imports = `
 ### Import
@@ -120,8 +129,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${s.path.join('.')}](#${s.name.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${s.path.join('.')}](#${s.name.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
@@ -130,9 +139,9 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(languageString.functionToString).join('\n\n').trim();
+  const functions = functionSpecs.map(languageString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(languageString.docToString).join('\n\n').trim();
+  const types = typeSpecs.map(languageString.md.hirToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation

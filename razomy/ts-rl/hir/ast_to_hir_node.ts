@@ -290,7 +290,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         block: astToHirNode(node.block),
         description: null,
         title: null,
-        examples: [],
+        examples: null,
       };
 
     // --- STRUCTS ---

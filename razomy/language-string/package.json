@@ -70,8 +70,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts ast/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts ast/index.ts --watch",
+    "build": "tsdown index.ts md/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts md/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

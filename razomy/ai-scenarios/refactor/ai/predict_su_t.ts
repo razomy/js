@@ -2,7 +2,7 @@ import * as ai from "@razomy/ai";
 import * as abstracts from "@razomy/abstracts";
 import * as aiScenarios from "@razomy/ai-scenarios";
 
-export async function predictSuT(ctx, systemMessage: string, userMessage: string, tools: [abstracts.translators.FunctionDocsAst, abstracts.translators.FunctionHir][]) {
+export async function predictSuT(ctx, systemMessage: string, userMessage: string, tools: abstracts.translators.FunctionHir[]) {
   const result = await aiScenarios.refactor.ai.toolPredict([
       ai.sM(systemMessage.trim()),
       ai.uM(userMessage.trim())

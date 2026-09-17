@@ -52,7 +52,7 @@ export async function askTool(
 //     await askTool(
 //       ['call hello'],
 //       [
-//         tsRl.createPackageFunction({
+//         tsRl.hir.createPackageFunction({
 //           name: 'hello',
 //           description: 'says hello',
 //         }),

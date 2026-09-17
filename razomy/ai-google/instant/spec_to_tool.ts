@@ -21,7 +21,7 @@ export function specToTool(fn: abstracts.translators.FunctionHir): FunctionDecla
   fn.parameters.forEach((param) => {
     properties[param.name!] = {
       type: mapType(param.kind),
-      description: param.description.value,
+      description: param.description!.value,
     };
 
     // Если нет дефолтного значения, считаем обязательным
@@ -32,7 +32,7 @@ export function specToTool(fn: abstracts.translators.FunctionHir): FunctionDecla
 
   return {
     name: fn.name!,
-    description: `${fn.description.value}.`,
+    description: `${fn.description!.value}.`,
     parameters: {
       type: Type.OBJECT,
       properties,

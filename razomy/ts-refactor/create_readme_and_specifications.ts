@@ -11,17 +11,15 @@ export async function createReadmeAndSpecifications(dirPath) {
   const ctx: tsRl.hir.HirCtx = {
     root: null,
     nodes: new Map(),
-    outEdges: new Map(),
-    inEdges: new Map()
   };
   ctx.root = tsRl.hir.astToHirNode(ast);
   tsRl.hir.indexNodes(ctx, ctx.root);
   tsRl.hir.linkHirTree(ctx, ctx.root);
   tsRl.hir.joinDocs(ctx, ctx.root);
 
-  const str = `${JSON.stringify(ctx.root, null, 2)}`;
-  fss.directory.tryCreate(`${dirPath}/dist/specifications`);
-  fss.file.setSync(`${dirPath}/dist/specifications/packageDeclaration.json`, str);
+  // const str = `${JSON.stringify(ctx.root, null, 2)}`;
+  // fss.directory.tryCreate(`${dirPath}/dist/specifications`);
+  // fss.file.setSync(`${dirPath}/dist/specifications/packageDeclaration.json`, str);
   tsRefactor.createReadme(dirPath, fss.file.getJson(dirPath + '/package.json'), ctx);
   return ctx;
 }
