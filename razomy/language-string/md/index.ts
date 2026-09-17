@@ -6,11 +6,9 @@ export {
   hirToString
 };
 
-
 // Default export
 const md = {
-  shapeToString: hirToString,
+  hirToString,
 };
-
 
 export default md;

@@ -1,8 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
-import type {BindingHir, FunctionHir, StructHir} from "@razomy/abstracts/translators";
 
-
-function modifiersToLiterals(struct: (FunctionHir | BindingHir | StructHir)) {
+function modifiersToLiterals(struct: (abstracts.translators.FunctionHir | abstracts.translators.BindingHir | abstracts.translators.StructHir)) {
   return struct.modifiers
     .filter(i => i.kind === 'LiteralHir')
     .map(i => i.value)

@@ -1,7 +1,6 @@
 import * as exceptions from '@razomy/exceptions';
-import * as string from '@razomy/string';
 
-export function preExtractPath(filePath: string.String, equalPath: string.String): string.String {
+export function preExtractPath(filePath: string, equalPath: string): string {
   const parts: string[] = filePath.split('/');
   const startIndex: number = parts.indexOf(equalPath);
   if (startIndex !== -1) {

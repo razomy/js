@@ -3,16 +3,7 @@ import * as stringCase from '@razomy/string-case';
 import * as abstracts from '@razomy/abstracts';
 import * as languageString from '@razomy/language-string';
 import * as tsRl from "@razomy/ts-rl";
-import type {HirType} from "@razomy/abstracts/translators";
-
-export function getPath(node:HirType) {
-  const path = [] as string[];
-  while (node.parent){
-    path.push(node['name'] || null)
-    node = node.parent
-  }
-  return path.filter(Boolean)
-}
+import * as tsRefactor from "@razomy/ts-refactor";
 
 export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.HirCtx) {
   const packageDeclaration = ctx.root as abstracts.translators.StructHir;
@@ -102,10 +93,10 @@ razomy cli add ${packageJson.name}
 
   const allDecls = packageDeclaration.properties
     .filter((i) => i.kind === 'StructHir').flatMap(i=>i.properties);
-  allDecls.sort((a, b) => getPath(a).join('').localeCompare(getPath(b).join('')));
+  allDecls.sort((a, b) => tsRefactor.getPath(a).join('').localeCompare(tsRefactor.getPath(b).join('')));
   const typeSpecs = ctx.nodes.values().filter(i => i.kind === 'StructHir').toArray();
   const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHir');
-  const functionPath = allDecls.length > 0 ? getPath(allDecls[0]) : ['functionName'];
+  const functionPath = allDecls.length > 0 ? tsRefactor.getPath(allDecls[0]) : ['functionName'];
 
 
   const imports = `
@@ -129,8 +120,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 

@@ -1,4 +1,3 @@
-import * as string from '@razomy/string';
 import * as abstracts from '@razomy/abstracts';
 
 /**
@@ -23,6 +22,6 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function addByIndexString(text: string.String, index: abstracts.arrays.Index, insertion: string): string.String {
+export function addByIndexString(text: string, index: abstracts.arrays.Index, insertion: string): string {
   return text.substring(0, index) + insertion + text.substring(index);
 }

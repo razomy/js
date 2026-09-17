@@ -1,6 +1,5 @@
 import * as abstracts from "@razomy/abstracts";
 import * as random from "@razomy/random";
-import type {BindingHir, HirType} from "@razomy/abstracts/translators";
 
 function getBase() {
   return {
@@ -40,7 +39,7 @@ export function createPackageFunction(
     modifiers: [
       f.isAsync ? {...getBase(), kind: 'LiteralHir', value: 'async'} : null,
       f.isGenerator ? {...getBase(), kind: 'LiteralHir', value: 'generator'} : null,
-    ].filter(i => i != null) as HirType[],
+    ].filter(i => i != null) as abstracts.translators.HirType[],
     parameters: Object.entries(f.parameter || {}).map(
       ([k, v]) => ({
         ...getBase(),
@@ -64,7 +63,7 @@ export function createPackageFunction(
         value: null,
         externalSource: null,
       } as abstracts.translators.BindingHir),
-    ) as BindingHir[],
+    ) as abstracts.translators.BindingHir[],
     semanticLayer: 3,
     block: null,
     returnShape: f.returnShape?.type

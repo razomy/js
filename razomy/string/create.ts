@@ -22,4 +22,3 @@ export function create(value: unknown): string {
   return String(value);
 }
 
-export type String = string;

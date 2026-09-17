@@ -28,6 +28,15 @@ export async function formatProject(projectPath: string, prefix: string) {
   await tsRefactorProject.packageJson.addDependencies(projectPath, prefix);
   console.info('packageJson.updateByTemplate.start');
   await tsRefactorProject.packageJson.updateByTemplate(projectPath, prefix);
+  console.info('generateAllExtensions.start');
+  await tsRefactor.generateAllExtensions(
+    projectPath,
+    [
+      {name: 'string', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
+      {name: 'string-case', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
+      {name: 'array', pkgType: 'array', targetObject: 'Array', targetPrototype: 'Array<T>'}
+    ]
+  );
 }
 
 main.ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then();

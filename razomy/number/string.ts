@@ -1,5 +1,3 @@
-import * as string_ from '@razomy/string';
-
-export function string(number: number): string_.String {
+export function string(number: number): string {
   return number.toFixed(2);
 }

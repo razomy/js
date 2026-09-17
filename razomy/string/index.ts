@@ -10,7 +10,6 @@ import { countSpaceMargin } from './count_space_margin';
 import { countSpaceMarginByArray } from './count_space_margin_by_array';
 import { countString } from './count_string';
 import { create } from './create';
-import type { String } from './create';
 import { escapeByString } from './escape_by_string';
 import { getSimilar } from './get_similar';
 import { getWords } from './get_words';
@@ -96,8 +95,7 @@ export {
   unescapeMdCode
 };
 export type {
-  HasString,
-  String
+  HasString
 };
 
 // Default export

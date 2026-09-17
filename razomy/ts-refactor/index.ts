@@ -2,6 +2,7 @@
 import { createReadme } from './create_readme';
 import { createReadmeAndSpecifications } from './create_readme_and_specifications';
 import { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
+import { generateAllExtensions } from './generate_all_extensions';
 import { getExportedClasses } from './get_exported_classes';
 import { getExportedConstants } from './get_exported_constants';
 import { getExportedFunctions } from './get_exported_functions';
@@ -9,6 +10,7 @@ import { getExportedTypes } from './get_exported_types';
 import { getFilteredSourceFiles } from './get_filtered_source_files';
 import { getFirstLevelElementsTextFromSource } from './get_first_level_elements_text_from_source';
 import { getNameAndExt } from './get_name_and_ext';
+import { getPath } from './get_path';
 import { isNameTaken } from './is_name_taken';
 import { iterateSourceFilesAndSave } from './iterate_source_files_and_save';
 import type { IterateSourceFileState } from './iterate_source_files_and_save';
@@ -26,6 +28,7 @@ export {
   createReadme,
   createReadmeAndSpecifications,
   fileRenameVariablesAndPropsFunctions,
+  generateAllExtensions,
   getExportedClasses,
   getExportedConstants,
   getExportedFunctions,
@@ -33,6 +36,7 @@ export {
   getFilteredSourceFiles,
   getFirstLevelElementsTextFromSource,
   getNameAndExt,
+  getPath,
   isNameTaken,
   iterateSourceFilesAndSave,
   renameFileBasedOnFirstChild,
@@ -53,6 +57,7 @@ const tsRefactor = {
   createReadme,
   createReadmeAndSpecifications,
   fileRenameVariablesAndPropsFunctions,
+  generateAllExtensions,
   getExportedClasses,
   getExportedConstants,
   getExportedFunctions,
@@ -60,6 +65,7 @@ const tsRefactor = {
   getFilteredSourceFiles,
   getFirstLevelElementsTextFromSource,
   getNameAndExt,
+  getPath,
   isNameTaken,
   iterateSourceFilesAndSave,
   renameFileBasedOnFirstChild,

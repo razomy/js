@@ -1,5 +1,3 @@
-import * as string from '@razomy/string';
-
 /**
  * @summary Interface defining an object structure containing a string property.
  * @description Interface defining an object structure containing a string property.
@@ -29,5 +27,5 @@ import * as string from '@razomy/string';
  * @complexity memory O(n)
  */
 export interface HasString {
-  string: string.String;
+  string: string;
 }

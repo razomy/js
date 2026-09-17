@@ -113,6 +113,7 @@
     "./razomy/primitives",
     "./razomy/random",
     "./razomy/razomy",
+    "./razomy/razomy-extensions",
     "./razomy/regexes",
     "./razomy/resources",
     "./razomy/respect",

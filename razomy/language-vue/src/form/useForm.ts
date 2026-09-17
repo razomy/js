@@ -8,7 +8,7 @@ import {
   type FormSupportedKind,
   getByPath,
   getSchemaByPath,
-  getTypeByAstNode,
+  getTypeByHirNode,
   initFormData,
   type Path,
   type Schema,
@@ -171,7 +171,7 @@ export function useForm(): Form {
   const getComponent = (path: Path) => {
     const s = getSchema(path);
     if (!s) return null;
-    return defaultTypeMap[getTypeByAstNode(s)];
+    return defaultTypeMap[getTypeByHirNode(s)];
   }
 
   return {

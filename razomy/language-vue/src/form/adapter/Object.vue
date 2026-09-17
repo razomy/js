@@ -35,7 +35,7 @@ import type {FormNode} from "../constants";
 const props = defineProps<FormNode<Record<string, any>>>();
 
 const form = useFormInject();
-const schema = computed(() => form.getSchema<abstracts.translators.ObjectShape>(props.path));
+const schema = computed(() => form.getSchema<abstracts.translators.StructHir>(props.path));
 const properties = computed(() => schema.value?.properties || []);
 const hasProperties = computed(() => properties.value.length > 0);
 </script>

@@ -82,7 +82,7 @@ export function isSupported(schema: Schema | null): boolean {
     case 'OperatorHir':
       const binary = schema as OperatorHir;
       // В HIR объединения типов (Union) могут представляться через бинарную операцию '|'
-      if (binary.name === '|') {
+      if (binary.operator === '|') {
         return isSupported(binary.operands[0] as Schema) && isSupported(binary.operands[1] as Schema);
       }
       return false;
@@ -203,10 +203,12 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
     switch (current.kind) {
       case 'StructHir': {
         const obj = current as StructHir;
-        current = obj.properties?.find((e: any) => {
-          const keyName = e.key.kind === 'LiteralHir'
-            ? String(e.key.value)
-            : getNameFromHir(e.key);
+        current = obj.properties
+          .filter(i =>i.kind === 'LiteralHir')
+          ?.find((e) => {
+          const keyName = e.kind === 'LiteralHir'
+            ? String(e.value)
+            : getNameFromHir(e);
           return keyName === part;
         })?.value;
         break;

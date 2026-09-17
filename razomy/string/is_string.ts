@@ -1,5 +1,3 @@
-import * as string from '@razomy/string';
-
 /**
  * @summary Check if the value is a string.
  * @description Checks if the provided value is a string.
@@ -20,6 +18,6 @@ import * as string from '@razomy/string';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function isString(value: unknown): value is string.String {
+export function isString(value: unknown): value is string {
   return typeof value === 'string';
 }

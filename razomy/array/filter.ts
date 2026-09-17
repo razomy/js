@@ -19,6 +19,21 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function filter<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): T[] {
+export function filter<T, S extends T>(
+  array: T[],
+  predicate: (value: T, index: number, array: T[]) => value is S
+): S[];
+
+// Overload 2: For Standard Boolean returns (e.g., n % 2 === 0)
+export function filter<T>(
+  array: T[],
+  predicate: (value: T, index: number, array: T[]) => unknown
+): T[];
+
+// Implementation
+export function filter(
+  array: any[],
+  predicate: (value: any, index: number, array: any[]) => any
+): any[] {
   return array.filter(predicate);
 }

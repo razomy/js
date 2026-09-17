@@ -12,10 +12,10 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useFormInject} from "../useForm";
-import type {WithPath} from "../constants";
+import {HasPath} from "../constants";
 
 const form = useFormInject()
-const props = defineProps<WithPath>();
+const props = defineProps<HasPath>();
 const meta = computed(() => form.getMeta(props.path))
 const schema = computed(() => form.getSchema(props.path))
 const resolvedComponent = computed(() => form.getComponent(props.path));

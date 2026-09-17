@@ -119,7 +119,7 @@ razomy run @razomy/string addByIndexString
 
 #### addByIndexString
 
-`addByIndexString(text: string.String, index: abstracts.arrays.Index, insertion: String): string.String`
+`addByIndexString(text: string, index: abstracts.arrays.Index, insertion: String): string`
 
 Insert a string into another string at a specific index.
 Insert a string into another string at a specific index.
@@ -478,7 +478,7 @@ isStartsWith('razomy', 'z', 2); // true
 
 #### isString
 
-`isString(value: unknown): value is string.String`
+`isString(value: unknown): value is string`
 
 Check if the value is a string.
 Check if the value is a string.

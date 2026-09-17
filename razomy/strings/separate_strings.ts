@@ -1,11 +1,10 @@
-import * as string from '@razomy/string';
 import * as abstracts from "@razomy/abstracts";
 
 export function separateStrings(
-  string: string.String,
+  string: string,
   offset: abstracts.arrays.Offset,
-  separateString: string.String,
-  strings: string.String[],
+  separateString: string,
+  strings: string[],
 ) {
   let ix = string.indexOf(separateString, offset);
   while (ix !== -1) {

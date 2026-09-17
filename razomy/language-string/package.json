@@ -24,18 +24,18 @@
         "types": "./index.ts"
       }
     },
-    "./ast": {
+    "./md": {
       "default": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
       },
       "import": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
       },
       "require": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
       }
     },
     "./package.json": "./package.json",
@@ -49,10 +49,7 @@
     "razomy",
     "language",
     "string",
-    "bindingToString",
-    "docToString",
-    "functionToString",
-    "shapeToString"
+    "hirToString"
   ],
   "license": "MIT",
   "main": "./index.ts",
