@@ -1,8 +1,8 @@
-import { TypeAliasDeclaration as TsTypeAliasDeclaration } from 'ts-morph';
+import { TypeAliasDeclaration } from 'ts-morph';
 import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseAlias(node: TsTypeAliasDeclaration): abstracts.translators.AliasAst {
+export function parseAlias(node: TypeAliasDeclaration): abstracts.translators.AliasAst {
   return {
     kind: 'AliasAst',
     syntaxLayer: 3,

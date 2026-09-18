@@ -134,7 +134,7 @@ export interface GoHir extends IHirNode {
  * Базовый интерфейс для идентификаторов (деклараций).
  *
  * @replaces ModifierAstTypes - ВСЕ модификаторы вынесены в массив (const, let, export, override, async и т.д.)
- * @replaces AsyncAst - превращается в строковый модификатор 'async'
+ * @replaces AwaitAst - превращается в строковый модификатор 'async'
  * @replaces ExportModifierAst, OverrideModifierAst, FunctionModifierAst,
  *           ParameterModifierAst, InheritModifierAst, InstanceModifierAst -> все становятся строками в `modifiers`
  * @replaces MappedAst - уходит в `shape`

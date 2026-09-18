@@ -7,7 +7,7 @@ import * as tsRefactor from '@razomy/ts-refactor';
 export async function createReadmeAndSpecifications(dirPath) {
   const project = new Project({tsConfigFilePath: '../../' + 'tsconfig.json'});
   project.addSourceFileAtPath(path.join(dirPath, 'package.json'));
-  const ast = tsRl.ast.bindings.getPackage(project, dirPath);
+  const ast = tsRl.ast.declarations.getPackage(project, dirPath);
   const ctx: tsRl.hir.HirCtx = {
     root: null,
     nodes: new Map(),

@@ -29,6 +29,15 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
       isPrefix: false,
     };
   }
+  if (Node.isPostfixUnaryExpression(node)) {
+    const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
+    return {
+      kind: 'UnaryAst', syntaxLayer: 2,
+      operator: operator as abstracts.translators.UnaryAst['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
+      isPrefix: false,
+    };
+  }
   if (Node.isTypeOfExpression(node) || Node.isDeleteExpression(node)) {
     return {
       kind: 'UnaryAst', syntaxLayer: 2,
@@ -37,5 +46,5 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
       isPrefix: true,
     };
   }
-  throw new Error(`Unknown Unary`);
+  throw new tsRl.ast.UnknownNodeException(node)
 }

@@ -4,14 +4,13 @@ import * as npm from '@razomy/npm';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
-import {isPackageNameSkip} from "@razomy/ts-refactor-project/package_json";
 
 export async function publish(path_: string) {
   console.info(path_);
   await shell.execute('npm run build', path.resolve(path_));
   // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
   tsRefactorProject.packageJson.createDist(path.resolve(path_));
-  if (!isPackageNameSkip(path_.replace('../', 'razomy/'))) {
+  if (!tsRefactor.isPackageNameSkip(path_.replace('../', 'razomy/'))) {
     await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
   }
 

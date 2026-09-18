@@ -52,6 +52,20 @@
         "types": "./ast/bindings/index.ts"
       }
     },
+    "./ast/declarations": {
+      "default": {
+        "default": "./ast/declarations/index.ts",
+        "types": "./ast/declarations/index.ts"
+      },
+      "import": {
+        "default": "./ast/declarations/index.ts",
+        "types": "./ast/declarations/index.ts"
+      },
+      "require": {
+        "default": "./ast/declarations/index.ts",
+        "types": "./ast/declarations/index.ts"
+      }
+    },
     "./ast/doc": {
       "default": {
         "default": "./ast/doc/index.ts",
@@ -92,20 +106,6 @@
       "require": {
         "default": "./ast/expressions/build_in/index.ts",
         "types": "./ast/expressions/build_in/index.ts"
-      }
-    },
-    "./ast/shapeBindings": {
-      "default": {
-        "default": "./ast/shapeBindings/index.ts",
-        "types": "./ast/shapeBindings/index.ts"
-      },
-      "import": {
-        "default": "./ast/shapeBindings/index.ts",
-        "types": "./ast/shapeBindings/index.ts"
-      },
-      "require": {
-        "default": "./ast/shapeBindings/index.ts",
-        "types": "./ast/shapeBindings/index.ts"
       }
     },
     "./ast/shapes": {
@@ -161,20 +161,24 @@
     "razomy",
     "ts",
     "rl",
-    "getPackage",
-    "getPublicOnlyMut",
+    "parse",
     "isBindings",
-    "parseEnum",
+    "parseAlias",
     "parseExportAssignment",
     "parseExport",
-    "parseFunction",
-    "parseModuleBody",
-    "parseModule",
+    "parseMethod",
     "parseParameter",
     "parseProperty",
-    "parseStatement",
     "parseVariable",
-    "parse",
+    "getPackage",
+    "getPublicOnlyMut",
+    "isDeclarations",
+    "parseClass",
+    "parseEnum",
+    "parseFunction",
+    "parseInterface",
+    "parseModuleBody",
+    "parseModule",
     "parseComplexity",
     "parseExamples",
     "parseFunctionDescription",
@@ -191,6 +195,7 @@
     "parseNew",
     "parseReference",
     "parseUnary",
+    "parseunctionExpression",
     "parseArray",
     "parseBigInt",
     "parseBoolean",
@@ -200,13 +205,9 @@
     "parseString",
     "parseTuple",
     "parseUndefined",
-    "parseAlias",
-    "parseClass",
-    "parseInterface",
+    "isShape",
     "isStatement",
-    "parseBlock",
-    "parseGo",
-    "parseLoop",
+    "parseSwitch",
     "parseThrow",
     "astToHirNode",
     "createPackageFunction",
@@ -232,8 +233,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapeBindings/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --watch",
+    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/declarations/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/declarations/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

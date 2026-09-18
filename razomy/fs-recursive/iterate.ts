@@ -1,10 +1,9 @@
 import fs, { Dirent } from 'fs';
 import * as path from 'path';
+import * as abstracts from "@razomy/abstracts";
 
-export interface IterateNode {
+export interface IterateNode extends abstracts.graphs.HasPath, abstracts.graphs.HasSlug {
   stats: Dirent;
-  slug: string;
-  path: string;
 }
 
 // 1. Pre-allocate the object we will pass to the callback.

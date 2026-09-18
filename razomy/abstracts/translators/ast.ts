@@ -274,7 +274,8 @@ export interface TupleAst extends IStateAst {
 export interface PropertyAst extends IStateAst {
   kind: 'PropertyAst';
   identifier: Identifier;
-  value: AstType;
+  shape: AstType | null;
+  value: AstType | null;
 }
 
 /**
@@ -334,6 +335,7 @@ export interface UnaryAst extends IOperationAst {
     | '~' // Побитовое НЕ
     | '++' // Инкремент
     | '--' // Декремент
+    | 'rest'
   ;
   value: StateAstType;
   isPrefix: boolean; // true для ++x, false для x++
@@ -386,7 +388,8 @@ export interface BinaryAst extends IOperationAst {
     | '>'
     | '>='
     // Проверка наличия/типа
-    | 'in';
+    | 'in'
+    | 'is';
   left: AstType;
   right: AstType;
 }
@@ -607,6 +610,7 @@ export interface LambdaAst extends IDeclarationAst {
   parameters: ParameterAst[];
   returnShape: abstracts.meta.NullOptional<AstType>;
   block: BlockAst;
+  semanticLayer: SemanticLayer;
 }
 
 /**
@@ -728,8 +732,8 @@ export type DeclarationAstType =
  *
  *  @complexity danger should be part of engine
  */
-export interface AsyncAst extends IDeclarationOperatorAst {
-  kind: 'AsyncAst';
+export interface AwaitAst extends IDeclarationOperatorAst {
+  kind: 'AwaitAst';
   value: StateAstType;
 }
 
@@ -752,7 +756,7 @@ export interface YieldAst extends IDeclarationOperatorAst {
 }
 
 export type DeclarationOperatorAstType =
-  | AsyncAst
+  | AwaitAst
   | DeleteAst
   | YieldAst
 
@@ -782,7 +786,7 @@ export interface InstanceAst extends IBindingAst {
 }
 
 /**
- * a = ... ;
+ * type a = ... ;
  * @final
  */
 export interface AliasAst extends IBindingAst {
@@ -909,6 +913,7 @@ export interface OverrideModifierAst extends IModifierAst {
 export interface FunctionModifierAst extends IModifierAst {
   kind: 'FunctionModifierAst';
   operator:
+    | 'new'
     | 'async'
     | 'generator';
   value: abstracts.meta.NullOptional<DeclarationAstType>;

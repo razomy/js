@@ -9,8 +9,9 @@ export function parseClass(node: ClassDeclaration): abstracts.translators.ClassA
     modifiers: [],
     parameters: [],
     properties: [
-      ...node.getProperties()
-      // TODO:Требуется парсинг методов аналогично функциям methods: []
-    ].map(tsRl.ast.bindings.parseProperty),
+      ...node.getProperties(),
+      ...node.getMethods()
+    ].map(tsRl.ast.bindings.parse)
+      .flat() as (abstracts.translators.PropertyAst | abstracts.translators.FunctionAst)[],
   };
 }

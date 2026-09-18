@@ -1,4 +1,15 @@
-import { Node, type Statement } from "ts-morph";
-export function isBindings(node: Statement): boolean {
-    return Node.isVariableDeclaration(node) || Node.isTypeAliasDeclaration(node) || Node.isInterfaceDeclaration(node) || Node.isEnumDeclaration(node) || Node.isFunctionDeclaration(node) || Node.isClassDeclaration(node) || Node.isImportDeclaration(node) || (Node.isExpressionStatement(node) && Node.isBinaryExpression(node.getExpression()));
+import { Node } from 'ts-morph';
+
+export function isBindings(node: Node): boolean {
+  return (
+    Node.isVariableStatement(node) ||
+    Node.isTypeAliasDeclaration(node) ||
+    Node.isImportDeclaration(node) ||
+    Node.isVariableDeclaration(node) ||
+    Node.isVariableDeclarationList(node) ||
+    Node.isExportDeclaration(node) ||
+    Node.isExportAssignment(node) ||
+    Node.isExpressionStatement(node) ||
+    (Node.isExpressionStatement(node) && Node.isBinaryExpression(node.getExpression()))
+  );
 }

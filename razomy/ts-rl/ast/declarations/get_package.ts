@@ -32,7 +32,7 @@ export function getPackage(
 
   // Ищем index.* файл в корневой директории пакета
   const indexFile = project.getDirectory(dirPath)?.getSourceFile((f) => f.getBaseName().startsWith('index.'));
-  const statements = indexFile ? tsRl.ast.bindings.parseModuleBody(indexFile) : [];
+  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile) : [];
 
   // Создаем корневой модуль, представляющий пакет
   const packageDeclaration: abstracts.translators.ModuleAst = {
@@ -58,7 +58,7 @@ export function getPackage(
 
   // Очищаем приватную реализацию, если запрошено
   if (onlyPublic) {
-    tsRl.ast.bindings.getPublicOnlyMut(packageDeclaration);
+    tsRl.ast.declarations.getPublicOnlyMut(packageDeclaration);
   }
 
   return packageDeclaration;

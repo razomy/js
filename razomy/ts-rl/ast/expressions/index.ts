@@ -10,6 +10,7 @@ import { parseMember } from './parse_member';
 import { parseNew } from './parse_new';
 import { parseReference } from './parse_reference';
 import { parseUnary } from './parse_unary';
+import { parseunctionExpression } from './parseunction_expression';
 
 // Named exports
 export {
@@ -23,7 +24,8 @@ export {
   parseMember,
   parseNew,
   parseReference,
-  parseUnary
+  parseUnary,
+  parseunctionExpression
 };
 
 // Default export
@@ -39,6 +41,7 @@ const expressions = {
   parseNew,
   parseReference,
   parseUnary,
+  parseunctionExpression,
 };
 
 export default expressions;

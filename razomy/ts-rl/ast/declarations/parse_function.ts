@@ -25,7 +25,7 @@ export function parseFunction(node: FunctionDeclaration): abstracts.translators.
     ].filter(Boolean) as abstracts.translators.FunctionModifierAst[],
     parameters: node.getParameters().map(tsRl.ast.bindings.parseParameter),
     returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!) : null,
-    block: tsRl.ast.statements.parseBlock(node.getBody() as any),
+    block: node.getBody()? tsRl.ast.statements.parse(node.getBody() as any) as any : { kind: 'BlockAst', syntaxLayer: 3, statements: [] },
   };
 
   return [docs, func];

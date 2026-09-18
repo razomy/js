@@ -1,17 +1,20 @@
 // Imports
 import * as bindings from './bindings';
+import * as declarations from './declarations';
 import * as doc from './doc';
 import * as expressions from './expressions';
-import * as shapeBindings from './shapeBindings';
 import * as shapes from './shapes';
 import * as statements from './statements';
+import { UnknownNodeException, parse } from './unknown_node_exception';
 
 // Named exports
 export {
+  UnknownNodeException,
   bindings,
+  declarations,
   doc,
   expressions,
-  shapeBindings,
+  parse,
   shapes,
   statements
 };
@@ -19,11 +22,13 @@ export {
 // Default export
 const ast = {
   bindings,
+  declarations,
   doc,
   expressions,
-  shapeBindings,
   shapes,
   statements,
+  UnknownNodeException,
+  parse,
 };
 
 export default ast;

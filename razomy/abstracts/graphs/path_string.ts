@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 export type Slug = string;
 export type AbsolutePathString = Slug;
@@ -9,8 +9,12 @@ export type FilePathString = PathString;
 export type DirPathString = PathString;
 export type SourcePathString = DirPathString;
 
-export interface HasPathString  extends abstracts.meta.IHas{
-  pathString: PathString;
+export interface HasPath extends abstracts.meta.IHas {
+  path: string;
+}
+
+export interface HasSlug extends abstracts.meta.IHas {
+  slug: string;
 }
 
 export interface HasDirPath extends abstracts.meta.IHas {

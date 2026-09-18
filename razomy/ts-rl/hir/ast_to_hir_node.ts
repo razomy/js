@@ -1,12 +1,10 @@
-import * as abstracts from "@razomy/abstracts";
-import * as random from "@razomy/random";
+import * as abstracts from '@razomy/abstracts';
+import * as random from '@razomy/random';
 
 /**
  * Строгое извлечение базовых полей. Теперь не генерирует ID (это делает индексатор).
  */
-function getBase(
-  node: abstracts.translators.AstType,
-) {
+function getBase(node: abstracts.translators.AstType) {
   return {
     id: random.createUuid(),
     syntaxLayer: node.syntaxLayer,
@@ -24,7 +22,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'LiteralHir',
-        value: node.value
+        value: node.value,
       };
 
     case 'TemplateAst':
@@ -32,7 +30,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'OperatorHir',
         operator: '+',
-        operands: node.values.map(astToHirNode)
+        operands: node.values.map(astToHirNode),
       };
 
     case 'SpreadAst':
@@ -40,7 +38,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'OperatorHir',
         operator: '...',
-        operands: [astToHirNode(node.value)]
+        operands: [astToHirNode(node.value)],
       };
     case 'UnaryAst':
     case 'ShapingAst':
@@ -48,24 +46,21 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'OperatorHir',
         operator: node.operator,
-        operands: [astToHirNode(node.value)]
+        operands: [astToHirNode(node.value)],
       };
     case 'DeleteAst':
       return {
         ...getBase(node),
         kind: 'OperatorHir',
         operator: 'delete',
-        operands: [astToHirNode(node.value)]
+        operands: [astToHirNode(node.value)],
       };
     case 'BinaryAst':
       return {
         ...getBase(node),
         kind: 'OperatorHir',
         operator: node.operator,
-        operands: [
-          astToHirNode(node.left),
-          astToHirNode(node.right)
-        ]
+        operands: [astToHirNode(node.left), astToHirNode(node.right)],
       };
     case 'AssignAst':
       return {
@@ -76,13 +71,13 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
           {
             ...getBase(node),
             kind: 'ReferenceHir',
-            target: {...getBase(node), kind: 'LiteralHir', value: node.identifier.name},
+            target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
             property: null,
             arguments_: [],
-            modifiers: []
+            modifiers: [],
           },
-          astToHirNode(node.value)
-        ]
+          astToHirNode(node.value),
+        ],
       };
 
     case 'MappedAst':
@@ -93,7 +88,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         value: astToHirNode(node.value),
         modifiers: [],
         name: null,
-        description: null
+        description: null,
       };
 
     case 'PropertyAst':
@@ -102,9 +97,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         kind: 'BindingHir',
         description: null,
         name: node.identifier.name,
-        value: astToHirNode(node.value),
+        value: node.value ? astToHirNode(node.value) : null,
         modifiers: [],
-        shape: null
+        shape: null,
       };
 
     case 'BlockAst':
@@ -112,7 +107,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        statements: node.statements.map(astToHirNode)
+        statements: node.statements.map(astToHirNode),
       };
 
     case 'IfAst':
@@ -123,9 +118,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: {
           ...getBase(node),
           kind: 'LiteralHir',
-          value: true
+          value: true,
         },
-        branches: node.branches.map(b => astToHirNode(b) as abstracts.translators.BranchHir)
+        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHir),
       };
 
     case 'SwitchAst':
@@ -133,7 +128,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'MatchHir',
         target: astToHirNode(node.target),
-        branches: node.branches.map(b => astToHirNode(b) as abstracts.translators.BranchHir)
+        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHir),
       };
 
     case 'ConditionBranchAst':
@@ -142,14 +137,14 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'BranchHir',
         pattern: astToHirNode(node.pattern),
-        value: astToHirNode(node.value)
+        value: astToHirNode(node.value),
       };
     case 'CatchAst':
       return {
         ...getBase(node),
         kind: 'BranchHir',
         pattern: astToHirNode(node.condition),
-        value: astToHirNode(node.block)
+        value: astToHirNode(node.block),
       };
 
     case 'ElseBranchAst':
@@ -160,9 +155,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         pattern: {
           ...getBase(node),
           kind: 'LiteralHir',
-          value: true
+          value: true,
         },
-        value: astToHirNode(node.value)
+        value: astToHirNode(node.value),
       };
 
     case 'TryAst':
@@ -173,9 +168,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
           ...getBase(node),
           kind: 'OperatorHir',
           operator: 'try',
-          operands: [astToHirNode(node.block)]
+          operands: [astToHirNode(node.block)],
         },
-        branches: []
+        branches: [],
       };
 
     case 'DefaultCatchAst':
@@ -186,9 +181,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         pattern: {
           ...getBase(node),
           kind: 'LiteralHir',
-          value: node.kind === 'FinallyAst' ? 'finally' : true
+          value: node.kind === 'FinallyAst' ? 'finally' : true,
         },
-        value: astToHirNode(node.block)
+        value: astToHirNode(node.block),
       };
 
     // --- LOOPS ---
@@ -198,7 +193,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'LoopHir',
         condition: astToHirNode(node.condition),
-        block: astToHirNode(node.block) as abstracts.translators.BlockHir
+        block: astToHirNode(node.block) as abstracts.translators.BlockHir,
       };
 
     case 'ForInAst':
@@ -207,35 +202,41 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       if (node.update) {
         const updateHir = astToHirNode(node.update);
         if (bodyHir.kind === 'BlockHir') bodyHir.statements.push(updateHir);
-        else bodyHir = {
-          ...getBase(node.block),
-          kind: 'BlockHir',
-          statements: [bodyHir, updateHir]
-        };
+        else
+          bodyHir = {
+            ...getBase(node.block),
+            kind: 'BlockHir',
+            statements: [bodyHir, updateHir],
+          };
       }
       const loop: abstracts.translators.LoopHir = {
         ...getBase(node),
         kind: 'LoopHir',
         condition: node.condition ? astToHirNode(node.condition) : null,
-        block: bodyHir
+        block: bodyHir,
       };
-      return node.init ? ({
-        ...getBase(node),
-        kind: 'BlockHir',
-        statements: [astToHirNode(node.init), loop]
-      }) : loop;
+      return node.init
+        ? {
+            ...getBase(node),
+            kind: 'BlockHir',
+            statements: [astToHirNode(node.init), loop],
+          }
+        : loop;
     }
 
     case 'ForOfAst':
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        statements: [astToHirNode(node.init), {
-          ...getBase(node),
-          kind: 'LoopHir',
-          block: astToHirNode(node.block) as abstracts.translators.BlockHir,
-          condition: null
-        }]
+        statements: [
+          astToHirNode(node.init),
+          {
+            ...getBase(node),
+            kind: 'LoopHir',
+            block: astToHirNode(node.block) as abstracts.translators.BlockHir,
+            condition: null,
+          },
+        ],
       };
 
     // --- JUMPS ---
@@ -245,14 +246,16 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'GoHir',
         operator: node.kind === 'BreakAst' ? 'break' : 'continue',
-        value: node.identifier ? {
-          ...getBase(node),
-          kind: 'ReferenceHir',
-          target: {...getBase(node), kind: 'LiteralHir', value: node.identifier.name},
-          modifiers: [],
-          arguments_: [],
-          property: null
-        } : null
+        value: node.identifier
+          ? {
+              ...getBase(node),
+              kind: 'ReferenceHir',
+              target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
+              modifiers: [],
+              arguments_: [],
+              property: null,
+            }
+          : null,
       };
 
     case 'YieldAst':
@@ -262,7 +265,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'GoHir',
         operator: node.kind.replace('Ast', '').toLowerCase() as any,
-        value: node.value ? astToHirNode(node.value) : null
+        value: node.value ? astToHirNode(node.value) : null,
       };
 
     // --- DECLARATIONS & ENTITIES ---
@@ -274,8 +277,8 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         description: null,
         name: node.identifier.name,
         modifiers: node.modifiers.map(astToHirNode),
-        shape: node.shape ? astToHirNode(node.shape) as abstracts.translators.ReferenceHir : null,
-        value: node.value ? astToHirNode(node.value) : null
+        shape: node.shape ? (astToHirNode(node.shape) as abstracts.translators.ReferenceHir) : null,
+        value: node.value ? astToHirNode(node.value) : null,
       };
 
     case 'LambdaAst':
@@ -285,8 +288,8 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         kind: 'FunctionHir',
         name: node.kind === 'FunctionAst' ? node.identifier.name : null,
         modifiers: node.modifiers.map(astToHirNode),
-        returnShape: node.returnShape ? astToHirNode(node.returnShape) as abstracts.translators.ReferenceHir : null,
-        parameters: node.parameters.map(p => astToHirNode(p) as abstracts.translators.BindingHir),
+        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstracts.translators.ReferenceHir) : null,
+        parameters: node.parameters.map((p) => astToHirNode(p) as abstracts.translators.BindingHir),
         block: astToHirNode(node.block),
         description: null,
         title: null,
@@ -299,15 +302,16 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'StructHir',
         name: node.identifier.name,
-        modifiers: [{
-          ...getBase(node),
-          kind: 'LiteralHir',
-          value: 'module'
-        }],
-        properties: [
-          ...node.dependencies,
-          ...node.block.statements
-        ].map(astToHirNode) as abstracts.translators.BindingHir[]
+        modifiers: [
+          {
+            ...getBase(node),
+            kind: 'LiteralHir',
+            value: 'module',
+          },
+        ],
+        properties: [...node.dependencies, ...node.block.statements].map(
+          astToHirNode,
+        ) as abstracts.translators.BindingHir[],
       };
 
     case 'ArrayAst':
@@ -317,7 +321,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         kind: 'StructHir',
         name: null,
         modifiers: [],
-        properties: node.values.map(astToHirNode) as abstracts.translators.BindingHir[]
+        properties: node.values.map(astToHirNode) as abstracts.translators.BindingHir[],
       };
 
     case 'ObjectAst':
@@ -328,9 +332,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'StructHir',
-        name: ('identifier' in node && node.identifier) ? node.identifier.name : null,
+        name: 'identifier' in node && node.identifier ? node.identifier.name : null,
         modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
-        properties: node.properties.map(p => astToHirNode(p) as abstracts.translators.BindingHir)
+        properties: node.properties.map((p) => astToHirNode(p) as abstracts.translators.BindingHir),
       };
 
     // --- ACCESS & INTERACTIONS ---
@@ -340,10 +344,10 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'ReferenceHir',
-        target: {...getBase(node), kind: 'LiteralHir', value: node.identifier.name},
+        target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
         modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
         arguments_: [],
-        property: null
+        property: null,
       };
 
     case 'MemberAst':
@@ -353,7 +357,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: astToHirNode(node.object_),
         property: astToHirNode(node.property),
         arguments_: [],
-        modifiers: []
+        modifiers: [],
       };
     case 'ArgumentMemberAst':
       return {
@@ -362,7 +366,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: astToHirNode(node.argument),
         property: astToHirNode(node.property),
         arguments_: [],
-        modifiers: []
+        modifiers: [],
       };
 
     case 'CallAst':
@@ -370,10 +374,10 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'ReferenceHir',
-        target: node.identifier ? {...getBase(node), kind: 'LiteralHir', value: node.identifier.name} : null,
+        target: node.identifier ? { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name } : null,
         arguments_: node.arguments_.map(astToHirNode),
         property: null,
-        modifiers: []
+        modifiers: [],
       };
 
     case 'ImportAst':
@@ -387,15 +391,17 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         value: {
           ...getBase(node),
           kind: 'ReferenceHir',
-          target: {...getBase(node), kind: 'LiteralHir', value: 'import'},
+          target: { ...getBase(node), kind: 'LiteralHir', value: 'import' },
           modifiers: [],
-          arguments_: [{
-            ...getBase(node),
-            kind: 'LiteralHir',
-            value: node.path
-          }],
-          property: null
-        }
+          arguments_: [
+            {
+              ...getBase(node),
+              kind: 'LiteralHir',
+              value: node.path,
+            },
+          ],
+          property: null,
+        },
       };
 
     // --- LAYERS & METADATA ---
@@ -411,8 +417,8 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             modifiers: [],
             description: null,
             shape: null,
-            value: {...getBase(node), kind: 'LiteralHir', value: node.title},
-            name: 'title'
+            value: { ...getBase(node), kind: 'LiteralHir', value: node.title },
+            name: 'title',
           },
           {
             ...getBase(node),
@@ -420,13 +426,13 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.description
+              value: node.description,
             },
             description: null,
             name: 'description',
             modifiers: [],
             shape: null,
-          }
+          },
         ],
       };
     case 'CommentAst':
@@ -442,13 +448,13 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.description
+              value: node.description,
             },
             modifiers: [],
             shape: null,
-            name: 'description'
-          }
-        ]
+            name: 'description',
+          },
+        ],
       };
     case 'FunctionDocsAst':
       return {
@@ -465,9 +471,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.title
+              value: node.title,
             },
-            name: 'title'
+            name: 'title',
           },
           {
             ...getBase(node),
@@ -478,9 +484,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.description
+              value: node.description,
             },
-            name: 'description'
+            name: 'description',
           },
           {
             ...getBase(node),
@@ -491,9 +497,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.memoryDataSizeComplexityFn
+              value: node.memoryDataSizeComplexityFn,
             },
-            name: 'memoryDataSizeComplexityFn'
+            name: 'memoryDataSizeComplexityFn',
           },
           {
             ...getBase(node),
@@ -504,9 +510,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.timeDataSizeComplexityFn
+              value: node.timeDataSizeComplexityFn,
             },
-            name: 'timeDataSizeComplexityFn'
+            name: 'timeDataSizeComplexityFn',
           },
           {
             ...getBase(node),
@@ -517,11 +523,11 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: {
               ...getBase(node),
               kind: 'LiteralHir',
-              value: node.examples
+              value: node.examples,
             },
-            name: 'examples'
+            name: 'examples',
           },
-        ]
+        ],
       };
     case 'QueryAst':
     case 'ConstraintAst':
@@ -529,14 +535,14 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'OperatorHir',
         operator: node.kind === 'QueryAst' ? 'query' : 'constraint',
-        operands: [astToHirNode(node.pattern)]
+        operands: [astToHirNode(node.pattern)],
       };
 
     default:
       return {
         ...getBase(node),
         kind: 'LiteralHir',
-        value: null
+        value: null,
       };
   }
 }

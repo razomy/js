@@ -8,6 +8,6 @@ export function parseInterface(node: TsInterfaceDeclaration): abstracts.translat
     identifier: { name: node.getName() },
     modifiers: [],
     parameters: [],
-    properties: node.getProperties().map(tsRl.ast.bindings.parseProperty) as abstracts.translators.PropertyAst[],
+    properties: node.getProperties().map(tsRl.ast.shapes.parse) as abstracts.translators.PropertyAst[],
   };
 }

@@ -3,11 +3,12 @@ import * as path from 'path';
 import * as fss from '@razomy/fss';
 import * as json from '@razomy/json';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import tsRefactor from "@razomy/ts-refactor";
 
 export function addDependencies(projectPath: string, prefix) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => !tsRefactorProject.packageJson.isPackageNameSkip(i.name));
+    .filter((i) => !tsRefactor.isPackageNameSkip(i.name));
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names

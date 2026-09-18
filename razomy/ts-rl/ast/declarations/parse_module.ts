@@ -9,7 +9,7 @@ export function parseModule(node: Directory): abstracts.translators.ModuleAst {
   return {
     kind: 'ModuleAst', syntaxLayer: 3,
     identifier: { name: node.getBaseName() || '' },
-    block: { kind: 'BlockAst', syntaxLayer: 3, statements: tsRl.ast.bindings.parseModuleBody(indexFile) },
+    block: { kind: 'BlockAst', syntaxLayer: 3, statements: tsRl.ast.declarations.parseModuleBody(indexFile) },
     version: null,
     role: 'SourceFile',
     dependencies: [],

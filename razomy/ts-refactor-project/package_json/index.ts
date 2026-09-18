@@ -5,7 +5,6 @@ import { createAtChildDirs } from './create_at_child_dirs';
 import { createDist } from './create_dist';
 import { createRoot } from './create_root';
 import { getAll } from './get_all';
-import { isPackageNameSkip } from '../../ts-refactor/is_package_name_skip';
 import { updateByTemplate } from './update_by_template';
 
 // Named exports
@@ -16,7 +15,6 @@ export {
   createDist,
   createRoot,
   getAll,
-  isPackageNameSkip,
   updateByTemplate
 };
 
@@ -28,7 +26,6 @@ const packageJson = {
   createDist,
   createRoot,
   getAll,
-  isPackageNameSkip,
   updateByTemplate,
 };
 
