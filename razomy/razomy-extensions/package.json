@@ -26,6 +26,7 @@
   "module": "./index.ts",
   "name": "@razomy/razomy-extensions",
   "peerDependencies": {
+    "@razomy/abstracts": "*",
     "@razomy/array": "*",
     "@razomy/string": "*",
     "@razomy/string-case": "*"

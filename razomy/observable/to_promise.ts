@@ -1,6 +1,6 @@
-import * as observable from '@razomy/observable';
+import * as abstracts from "@razomy/abstracts";
 
-export function toPromise<T>(observable: observable.Observable<T>) {
+export function toPromise<T>(observable: abstracts.patterns.IObservable<T>) {
   return new Promise<T>((resolve, reject) => {
     observable.next = (data) => {
       observable.dispose();

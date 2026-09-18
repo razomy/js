@@ -1,52 +1,21 @@
 {
-  "author": {
-    "email": "yevhenii.kamenskyi+js@razomy.org",
-    "name": "Yevhenii Kamenskyi",
-    "url": "https://id.razomy.org/yevhenii-kamenskyi"
-  },
-  "dependencies": {},
-  "description": "",
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.6",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.8",
-    "vite-plugin-dts": "^4.5.4",
-    "vue": "^3.5.32"
-  },
-  "engines": {
-    "node": ">=18"
-  },
+  "main": "./razomy-vue-resource.umd.js",
+  "module": "./razomy-vue-resource.es.js",
+  "types": "./src/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*",
-    "./src": {
-      "default": {
-        "default": "./src/index.ts",
-        "types": "./src/index.ts"
-      },
-      "import": {
-        "default": "./src/index.ts",
-        "types": "./src/index.ts"
-      },
-      "require": {
-        "default": "./src/index.ts",
-        "types": "./src/index.ts"
-      }
-    }
+    ".": {
+      "import": "./razomy-vue-resource.es.js",
+      "require": "./razomy-vue-resource.umd.js",
+      "types": "./src/index.d.ts"
+    },
+    "./style.css": "./style.css"
   },
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/vue-resource#readme",
-  "keywords": [
-    "razomy",
-    "vue",
-    "resource"
-  ],
-  "license": "MIT",
-  "main": "./index.ts",
-  "module": "./index.ts",
-  "name": "@razomy/vue-resource",
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build && cp package.json ./dist/package.json"
+  },
   "peerDependencies": {
     "@razomy/array": "*",
     "@razomy/dict": "*",
@@ -54,6 +23,30 @@
     "@razomy/server": "*",
     "vue": "^3.0.0"
   },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.32"
+  },
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/vue-resource#readme",
+  "keywords": [
+    "razomy",
+    "vue",
+    "resource"
+  ],
+  "license": "MIT",
+  "name": "@razomy/vue-resource",
   "publishConfig": {
     "access": "public"
   },
@@ -62,20 +55,7 @@
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
-  "scripts": {
-    "build": "tsdown src/index.ts --format esm,cjs --dts",
-    "dev": "tsdown src/index.ts --watch",
-    "prepublishOnly": "npm run build"
-  },
   "sideEffects": false,
   "type": "module",
-  "types": "./index.ts",
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./index.ts"
-      ]
-    }
-  },
   "version": "1.0.0"
 }

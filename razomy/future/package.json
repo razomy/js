@@ -47,9 +47,7 @@
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/future",
-  "peerDependencies": {
-    "@razomy/logging": "*"
-  },
+  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

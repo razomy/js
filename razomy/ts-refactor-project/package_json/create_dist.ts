@@ -61,6 +61,7 @@ export function createDist(packageDirPath: string) {
     if (v1.endsWith('.json')) return v1.replace('src/', '');
     if (v1.endsWith('.wasm')) return v1.replace('src/', '');
     if (v1.endsWith('.svg')) return v1.replace('src/', '');
+    if (v1.endsWith('.css')) return v1.replace('src/', '');
     if (v1.endsWith('.ts')) return dmj(v1);
     throw new Error(`Unknown key "${ck}" "${pk}":"${v1}"`);
   }

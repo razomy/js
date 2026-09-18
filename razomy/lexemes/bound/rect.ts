@@ -1,11 +1,10 @@
-import * as coordinates from '@razomy/coordinates';
 import * as abstracts from "@razomy/abstracts";
 import * as lexemes from "@razomy/lexemes";
 
 export function rect(
   delta: string,
   str: string,
-): abstracts.arrays.HasOffset & coordinates.length.HasLength & coordinates.rectangle.BoundRectangle {
+): abstracts.arrays.HasOffset & abstracts.coordinates.HasLength & abstracts.coordinates.BoundRectangle {
   const start = lexemes.bound.size(delta);
   const end = lexemes.bound.size(str);
   return {

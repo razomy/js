@@ -59,7 +59,6 @@
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/array": "*",
-    "@razomy/shell": "*",
     "@razomy/string": "*",
     "@razomy/strings": "*"
   },

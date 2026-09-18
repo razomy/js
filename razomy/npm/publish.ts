@@ -4,13 +4,16 @@ import * as npm from '@razomy/npm';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
+import {isPackageNameSkip} from "@razomy/ts-refactor-project/package_json";
 
 export async function publish(path_: string) {
   console.info(path_);
   await shell.execute('npm run build', path.resolve(path_));
   // tsRefactorProject.packageJson.autoPatch(path.resolve(path_));
   tsRefactorProject.packageJson.createDist(path.resolve(path_));
-  // await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
+  if (!isPackageNameSkip(path_.replace('../', 'razomy/'))) {
+    await tsRefactor.createReadmeAndSpecifications(path.resolve(path_));
+  }
 
   // const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
   // console.info(`Выполняем: ${publishCommand}`);
@@ -43,23 +46,27 @@ main.ifMain(import.meta.url, async () => {
     '../vue',
     '../razomy',
     '../server',
+    '../socket',
     '../vue-resource',
-    // '../express',
-    // '../socket',
-    // '../google-auth',
-    // '../vrd',
-    // '../function-booleans',
-    // '../object',
-    // '../kv',
-    // '../socket-server',
-    // '../undefined',
-    // '../fns',
-    // '../key',
-    // '../videos',
-    // '../audios',
-    // '../main',
-    // '../json',
-    // '../functions',
+    // other
+    '../future',
+    '../datetimes',
+    '../primitives',
+    '../kv',
+    '../fs-recursive',
+    '../kv-recursive',
+    '../vrd',
+    '../object',
+    '../resources',
+    '../lexemes',
+    '../functions',
+    '../json',
+    '../vrd',
+    '../kv',
+    '../main',
+    '../function-booleans',
+    '../videos',
+    '../audios',
   ];
 
   // Сначала проверяем, все ли нужные зависимости есть в этом списке

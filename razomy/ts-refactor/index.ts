@@ -18,6 +18,7 @@ import { renameFileBasedOnFirstChild } from './rename_file_based_on_first_child'
 import { renameFoldersRecursively } from './rename_folders_recursively';
 import { renameNamespaceImport } from './rename_namespace_import';
 import { renameNode } from './rename_node';
+import { renameToSnakeCaseRecursive } from './rename_to_snake_case_recursive';
 import { renameToSnakeCaseRecursiveTs } from './rename_to_snake_case_recursive_ts';
 import { splitFunctions } from './split_functions';
 import { toSafeFilename } from './to_safe_filename';
@@ -43,6 +44,7 @@ export {
   renameFoldersRecursively,
   renameNamespaceImport,
   renameNode,
+  renameToSnakeCaseRecursive,
   renameToSnakeCaseRecursiveTs,
   splitFunctions,
   toSafeFilename,
@@ -72,6 +74,7 @@ const tsRefactor = {
   renameFoldersRecursively,
   renameNamespaceImport,
   renameNode,
+  renameToSnakeCaseRecursive,
   renameToSnakeCaseRecursiveTs,
   splitFunctions,
   toSafeFilename,

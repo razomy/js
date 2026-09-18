@@ -1,6 +1,5 @@
 // Imports
 import { betweenNodes } from './between_nodes';
-import type { NodeBound } from './node_bound';
 import { rect } from './rect';
 import { size } from './size';
 
@@ -10,9 +9,6 @@ export {
   rect,
   size
 };
-export type {
-  NodeBound
-};
 
 // Default export
 const bound = {
@@ -20,6 +16,5 @@ const bound = {
   rect,
   size,
 };
-
 
 export default bound;

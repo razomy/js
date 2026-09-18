@@ -52,6 +52,20 @@
         "types": "./collections/index.ts"
       }
     },
+    "./coordinates": {
+      "default": {
+        "default": "./coordinates/index.ts",
+        "types": "./coordinates/index.ts"
+      },
+      "import": {
+        "default": "./coordinates/index.ts",
+        "types": "./coordinates/index.ts"
+      },
+      "require": {
+        "default": "./coordinates/index.ts",
+        "types": "./coordinates/index.ts"
+      }
+    },
     "./domains": {
       "default": {
         "default": "./domains/index.ts",
@@ -231,8 +245,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts arrays/index.ts collections/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
+    "build": "tsdown index.ts arrays/index.ts collections/index.ts coordinates/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts arrays/index.ts collections/index.ts coordinates/index.ts domains/index.ts functions/index.ts graphs/index.ts hardwares/index.ts machines/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

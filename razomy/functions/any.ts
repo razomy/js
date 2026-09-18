@@ -1,11 +1,10 @@
-import * as resources from "@razomy/resources";
 import * as abstracts from "@razomy/abstracts";
 
-export function any<C extends abstracts.domains.IContext, R = any>(ctx: C, rules: resources.ResultNullFn<C, R>[]) {
-    for (const rule of rules) {
+export function any<C extends abstracts.domains.IContext, R = any>(ctx: C, rules: abstracts.functions.Function<[C], R | null>[]) {
+  for (const rule of rules) {
     const res = rule(ctx);
     if (res) return res;
-    }
+  }
 
-    return null;
+  return null;
 }

@@ -8,7 +8,7 @@ import * as lexemes from "@razomy/lexemes";
 export type JsonTokenType = 'value' | 'break' | 'assign';
 export type JsonToken = abstracts.translators.HasTokenType<JsonTokenType> &
   abstracts.structures.HasValue<string> &
-  lexemes.tokenOffsetDeep.HasDeep;
+  abstracts.translators.HasDeep;
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
   const c = dict.create(

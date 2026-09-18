@@ -58,8 +58,7 @@
   "name": "@razomy/strings",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/exceptions": "*",
-    "@razomy/string": "*"
+    "@razomy/exceptions": "*"
   },
   "publishConfig": {
     "access": "public"

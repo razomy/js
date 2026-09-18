@@ -1,6 +1,7 @@
 import * as vue from 'vue';
 import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
+import * as abstracts from '@razomy/abstracts';
 import {Razomy} from "@razomy/razomy";
 
 export class RemoteResource {

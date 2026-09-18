@@ -4,4 +4,5 @@ export function isPackageNameSkip(name: string) {
     || name === 'razomy/nuxt'
     || name === 'razomy/vue'
     || name === 'razomy/language-vue'
+    || name === 'razomy/vue-resource'
 }

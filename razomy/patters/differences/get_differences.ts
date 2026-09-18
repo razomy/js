@@ -1,4 +1,3 @@
-import * as shell from '@razomy/shell';
 import * as abstracts from "@razomy/abstracts";
 import * as array from "@razomy/array";
 
@@ -20,7 +19,6 @@ export function getDifferences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
   let bI = 0;
 
   while (aI < a.length && bI < b.length) {
-    shell.progress(bI, b.length);
     if (a[aI] === b[bI]) {
       addDiff('unchanged', a[aI]);
       aI++;

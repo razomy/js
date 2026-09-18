@@ -6,7 +6,6 @@ import { getKey } from './get_key';
 import type { ListItem, ListKey, RecursiveList } from './get_key';
 import { getValue } from './get_value';
 import { listToFlatDict } from './list_to_flat_dict';
-import { renameToSnakeCaseRecursive } from './rename_to_snake_case_recursive';
 import { valueOrListToFlatDict } from './value_or_list_to_flat_dict';
 
 // Named exports
@@ -17,7 +16,6 @@ export {
   getKey,
   getValue,
   listToFlatDict,
-  renameToSnakeCaseRecursive,
   valueOrListToFlatDict
 };
 export type {
@@ -34,7 +32,6 @@ const kvRecursive = {
   getKey,
   getValue,
   listToFlatDict,
-  renameToSnakeCaseRecursive,
   valueOrListToFlatDict,
 };
 

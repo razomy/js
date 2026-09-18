@@ -2,6 +2,7 @@ import {Project, TypeFormatFlags} from 'ts-morph';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as stringCase from "@razomy/string-case";
+import * as tsRefactor from "@razomy/ts-refactor";
 
 // --- ОПТИМИЗИРОВАННЫЙ КОНФИГ ---
 interface ExtensionConfig {
@@ -90,16 +91,16 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
         console.log(`[ADD] ${name} успешно добавлена.`);
       }
     }
-
-    const importsCode = `import * as pkg from '${packageName}';\n\n`;
+    const name = tsRefactor.toSafeName(stringCase.camelCase(ext.name));
+    const importsCode = `import * as ${name} from '${packageName}';\n\n`;
     let runtimeCode = `// --- RUNTIME BINDINGS ---\n`;
     let typesCode = `// --- TYPESCRIPT DECLARATIONS ---\ndeclare global {\n  interface ${ext.targetPrototype} {\n`;
 
     for (const fn of functionsToBind) {
       runtimeCode += `if (!${ext.targetObject}.prototype.${fn.name}) {\n`;
       runtimeCode += `  Object.defineProperty(${ext.targetObject}.prototype, '${fn.name}', {\n`;
-      runtimeCode += `    value: function(...args: any[]) {\n`;
-      runtimeCode += `      return (pkg as any).${fn.name}(this as any, ...args);\n`;
+      runtimeCode += `    value: function (...args: any[]) {\n`;
+      runtimeCode += `      return (${name} as any).${fn.name}(this as any, ...args);\n`;
       runtimeCode += `    },\n`;
       runtimeCode += `    writable: true,\n`;
       runtimeCode += `    configurable: true\n`;

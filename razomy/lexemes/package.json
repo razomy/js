@@ -114,7 +114,6 @@
   "name": "@razomy/lexemes",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/coordinates": "*",
     "@razomy/resources": "*",
     "@razomy/string": "*"
   },

@@ -3,6 +3,16 @@ import * as tsRefactor from '@razomy/ts-refactor';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 
 export async function formatProject(projectPath: string, prefix: string) {
+  console.info('generateAllExtensions.start');
+  await tsRefactor.generateAllExtensions(
+    projectPath,
+    [
+      {name: 'string', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
+      {name: 'string-case', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
+      {name: 'array', pkgType: 'array', targetObject: 'Array', targetPrototype: 'Array<T>'}
+    ]
+  );
+
   console.info('splitFunctions.start');
   await tsRefactor.iterateSourceFilesAndSave(projectPath, tsRefactor.splitFunctions);
   console.info('renameFiles.start');
@@ -28,15 +38,6 @@ export async function formatProject(projectPath: string, prefix: string) {
   await tsRefactorProject.packageJson.addDependencies(projectPath, prefix);
   console.info('packageJson.updateByTemplate.start');
   await tsRefactorProject.packageJson.updateByTemplate(projectPath, prefix);
-  console.info('generateAllExtensions.start');
-  await tsRefactor.generateAllExtensions(
-    projectPath,
-    [
-      {name: 'string', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
-      {name: 'string-case', pkgType: 'string', targetObject: 'String', targetPrototype: 'String'},
-      {name: 'array', pkgType: 'array', targetObject: 'Array', targetPrototype: 'Array<T>'}
-    ]
-  );
 }
 
 main.ifMain(import.meta.url || module.path, () => formatProject('../../', 'razomy')).then();

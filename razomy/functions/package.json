@@ -52,8 +52,7 @@
   "module": "./index.ts",
   "name": "@razomy/functions",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/resources": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

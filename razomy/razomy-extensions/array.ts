@@ -1,11 +1,11 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
-import * as array_ from '@razomy/array';
+import * as array from '@razomy/array';
 
 // --- RUNTIME BINDINGS ---
 if (!Array.prototype.addAllMut) {
   Object.defineProperty(Array.prototype, 'addAllMut', {
     value: function (...args: any[]) {
-      return (array_ as any).addAllMut(this as any, ...args);
+      return (array as any).addAllMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -15,7 +15,7 @@ if (!Array.prototype.addAllMut) {
 if (!Array.prototype.addMut) {
   Object.defineProperty(Array.prototype, 'addMut', {
     value: function (...args: any[]) {
-      return (array_ as any).addMut(this as any, ...args);
+      return (array as any).addMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -25,7 +25,7 @@ if (!Array.prototype.addMut) {
 if (!Array.prototype.and) {
   Object.defineProperty(Array.prototype, 'and', {
     value: function (...args: any[]) {
-      return (array_ as any).and(this as any, ...args);
+      return (array as any).and(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -35,7 +35,7 @@ if (!Array.prototype.and) {
 if (!Array.prototype.chunk) {
   Object.defineProperty(Array.prototype, 'chunk', {
     value: function (...args: any[]) {
-      return (array_ as any).chunk(this as any, ...args);
+      return (array as any).chunk(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -45,7 +45,7 @@ if (!Array.prototype.chunk) {
 if (!Array.prototype.countBy) {
   Object.defineProperty(Array.prototype, 'countBy', {
     value: function (...args: any[]) {
-      return (array_ as any).countBy(this as any, ...args);
+      return (array as any).countBy(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -55,7 +55,7 @@ if (!Array.prototype.countBy) {
 if (!Array.prototype.difference) {
   Object.defineProperty(Array.prototype, 'difference', {
     value: function (...args: any[]) {
-      return (array_ as any).difference(this as any, ...args);
+      return (array as any).difference(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -65,7 +65,7 @@ if (!Array.prototype.difference) {
 if (!Array.prototype.drop) {
   Object.defineProperty(Array.prototype, 'drop', {
     value: function (...args: any[]) {
-      return (array_ as any).drop(this as any, ...args);
+      return (array as any).drop(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -75,7 +75,7 @@ if (!Array.prototype.drop) {
 if (!Array.prototype.every) {
   Object.defineProperty(Array.prototype, 'every', {
     value: function (...args: any[]) {
-      return (array_ as any).every(this as any, ...args);
+      return (array as any).every(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -85,7 +85,7 @@ if (!Array.prototype.every) {
 if (!Array.prototype.filter) {
   Object.defineProperty(Array.prototype, 'filter', {
     value: function (...args: any[]) {
-      return (array_ as any).filter(this as any, ...args);
+      return (array as any).filter(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -95,7 +95,7 @@ if (!Array.prototype.filter) {
 if (!Array.prototype.findIndex) {
   Object.defineProperty(Array.prototype, 'findIndex', {
     value: function (...args: any[]) {
-      return (array_ as any).findIndex(this as any, ...args);
+      return (array as any).findIndex(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -105,7 +105,7 @@ if (!Array.prototype.findIndex) {
 if (!Array.prototype.find) {
   Object.defineProperty(Array.prototype, 'find', {
     value: function (...args: any[]) {
-      return (array_ as any).find(this as any, ...args);
+      return (array as any).find(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -115,7 +115,7 @@ if (!Array.prototype.find) {
 if (!Array.prototype.firstEqualIndexes) {
   Object.defineProperty(Array.prototype, 'firstEqualIndexes', {
     value: function (...args: any[]) {
-      return (array_ as any).firstEqualIndexes(this as any, ...args);
+      return (array as any).firstEqualIndexes(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -125,7 +125,7 @@ if (!Array.prototype.firstEqualIndexes) {
 if (!Array.prototype.flat) {
   Object.defineProperty(Array.prototype, 'flat', {
     value: function (...args: any[]) {
-      return (array_ as any).flat(this as any, ...args);
+      return (array as any).flat(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -135,7 +135,7 @@ if (!Array.prototype.flat) {
 if (!Array.prototype.getFirst) {
   Object.defineProperty(Array.prototype, 'getFirst', {
     value: function (...args: any[]) {
-      return (array_ as any).getFirst(this as any, ...args);
+      return (array as any).getFirst(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -145,7 +145,7 @@ if (!Array.prototype.getFirst) {
 if (!Array.prototype.getLast) {
   Object.defineProperty(Array.prototype, 'getLast', {
     value: function (...args: any[]) {
-      return (array_ as any).getLast(this as any, ...args);
+      return (array as any).getLast(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -155,7 +155,7 @@ if (!Array.prototype.getLast) {
 if (!Array.prototype.groupBy) {
   Object.defineProperty(Array.prototype, 'groupBy', {
     value: function (...args: any[]) {
-      return (array_ as any).groupBy(this as any, ...args);
+      return (array as any).groupBy(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -165,7 +165,7 @@ if (!Array.prototype.groupBy) {
 if (!Array.prototype.hasArray) {
   Object.defineProperty(Array.prototype, 'hasArray', {
     value: function (...args: any[]) {
-      return (array_ as any).hasArray(this as any, ...args);
+      return (array as any).hasArray(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -175,7 +175,7 @@ if (!Array.prototype.hasArray) {
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, 'includes', {
     value: function (...args: any[]) {
-      return (array_ as any).includes(this as any, ...args);
+      return (array as any).includes(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -185,7 +185,7 @@ if (!Array.prototype.includes) {
 if (!Array.prototype.insertMut) {
   Object.defineProperty(Array.prototype, 'insertMut', {
     value: function (...args: any[]) {
-      return (array_ as any).insertMut(this as any, ...args);
+      return (array as any).insertMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -195,7 +195,7 @@ if (!Array.prototype.insertMut) {
 if (!Array.prototype.intersection) {
   Object.defineProperty(Array.prototype, 'intersection', {
     value: function (...args: any[]) {
-      return (array_ as any).intersection(this as any, ...args);
+      return (array as any).intersection(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -205,7 +205,7 @@ if (!Array.prototype.intersection) {
 if (!Array.prototype.isArrayEqual) {
   Object.defineProperty(Array.prototype, 'isArrayEqual', {
     value: function (...args: any[]) {
-      return (array_ as any).isArrayEqual(this as any, ...args);
+      return (array as any).isArrayEqual(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -215,7 +215,7 @@ if (!Array.prototype.isArrayEqual) {
 if (!Array.prototype.isEmpty) {
   Object.defineProperty(Array.prototype, 'isEmpty', {
     value: function (...args: any[]) {
-      return (array_ as any).isEmpty(this as any, ...args);
+      return (array as any).isEmpty(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -225,7 +225,7 @@ if (!Array.prototype.isEmpty) {
 if (!Array.prototype.mapToDictBy) {
   Object.defineProperty(Array.prototype, 'mapToDictBy', {
     value: function (...args: any[]) {
-      return (array_ as any).mapToDictBy(this as any, ...args);
+      return (array as any).mapToDictBy(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -235,7 +235,7 @@ if (!Array.prototype.mapToDictBy) {
 if (!Array.prototype.mapToDict) {
   Object.defineProperty(Array.prototype, 'mapToDict', {
     value: function (...args: any[]) {
-      return (array_ as any).mapToDict(this as any, ...args);
+      return (array as any).mapToDict(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -245,7 +245,7 @@ if (!Array.prototype.mapToDict) {
 if (!Array.prototype.map) {
   Object.defineProperty(Array.prototype, 'map', {
     value: function (...args: any[]) {
-      return (array_ as any).map(this as any, ...args);
+      return (array as any).map(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -255,7 +255,7 @@ if (!Array.prototype.map) {
 if (!Array.prototype.reduce) {
   Object.defineProperty(Array.prototype, 'reduce', {
     value: function (...args: any[]) {
-      return (array_ as any).reduce(this as any, ...args);
+      return (array as any).reduce(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -265,7 +265,7 @@ if (!Array.prototype.reduce) {
 if (!Array.prototype.removeAllMut) {
   Object.defineProperty(Array.prototype, 'removeAllMut', {
     value: function (...args: any[]) {
-      return (array_ as any).removeAllMut(this as any, ...args);
+      return (array as any).removeAllMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -275,7 +275,7 @@ if (!Array.prototype.removeAllMut) {
 if (!Array.prototype.removeAtMut) {
   Object.defineProperty(Array.prototype, 'removeAtMut', {
     value: function (...args: any[]) {
-      return (array_ as any).removeAtMut(this as any, ...args);
+      return (array as any).removeAtMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -285,7 +285,7 @@ if (!Array.prototype.removeAtMut) {
 if (!Array.prototype.removeFirstMut) {
   Object.defineProperty(Array.prototype, 'removeFirstMut', {
     value: function (...args: any[]) {
-      return (array_ as any).removeFirstMut(this as any, ...args);
+      return (array as any).removeFirstMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -295,7 +295,7 @@ if (!Array.prototype.removeFirstMut) {
 if (!Array.prototype.removeLast) {
   Object.defineProperty(Array.prototype, 'removeLast', {
     value: function (...args: any[]) {
-      return (array_ as any).removeLast(this as any, ...args);
+      return (array as any).removeLast(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -305,7 +305,7 @@ if (!Array.prototype.removeLast) {
 if (!Array.prototype.removeMut) {
   Object.defineProperty(Array.prototype, 'removeMut', {
     value: function (...args: any[]) {
-      return (array_ as any).removeMut(this as any, ...args);
+      return (array as any).removeMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -315,7 +315,7 @@ if (!Array.prototype.removeMut) {
 if (!Array.prototype.reverseMut) {
   Object.defineProperty(Array.prototype, 'reverseMut', {
     value: function (...args: any[]) {
-      return (array_ as any).reverseMut(this as any, ...args);
+      return (array as any).reverseMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -325,7 +325,7 @@ if (!Array.prototype.reverseMut) {
 if (!Array.prototype.reverse) {
   Object.defineProperty(Array.prototype, 'reverse', {
     value: function (...args: any[]) {
-      return (array_ as any).reverse(this as any, ...args);
+      return (array as any).reverse(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -335,7 +335,7 @@ if (!Array.prototype.reverse) {
 if (!Array.prototype.setLastMut) {
   Object.defineProperty(Array.prototype, 'setLastMut', {
     value: function (...args: any[]) {
-      return (array_ as any).setLastMut(this as any, ...args);
+      return (array as any).setLastMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -345,7 +345,7 @@ if (!Array.prototype.setLastMut) {
 if (!Array.prototype.set) {
   Object.defineProperty(Array.prototype, 'set', {
     value: function (...args: any[]) {
-      return (array_ as any).set(this as any, ...args);
+      return (array as any).set(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -355,7 +355,7 @@ if (!Array.prototype.set) {
 if (!Array.prototype.some) {
   Object.defineProperty(Array.prototype, 'some', {
     value: function (...args: any[]) {
-      return (array_ as any).some(this as any, ...args);
+      return (array as any).some(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -365,7 +365,7 @@ if (!Array.prototype.some) {
 if (!Array.prototype.sortByArrayMut) {
   Object.defineProperty(Array.prototype, 'sortByArrayMut', {
     value: function (...args: any[]) {
-      return (array_ as any).sortByArrayMut(this as any, ...args);
+      return (array as any).sortByArrayMut(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -375,7 +375,7 @@ if (!Array.prototype.sortByArrayMut) {
 if (!Array.prototype.sortByFrequencyAndUnique) {
   Object.defineProperty(Array.prototype, 'sortByFrequencyAndUnique', {
     value: function (...args: any[]) {
-      return (array_ as any).sortByFrequencyAndUnique(this as any, ...args);
+      return (array as any).sortByFrequencyAndUnique(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -385,7 +385,7 @@ if (!Array.prototype.sortByFrequencyAndUnique) {
 if (!Array.prototype.sortBy) {
   Object.defineProperty(Array.prototype, 'sortBy', {
     value: function (...args: any[]) {
-      return (array_ as any).sortBy(this as any, ...args);
+      return (array as any).sortBy(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -395,7 +395,7 @@ if (!Array.prototype.sortBy) {
 if (!Array.prototype.take) {
   Object.defineProperty(Array.prototype, 'take', {
     value: function (...args: any[]) {
-      return (array_ as any).take(this as any, ...args);
+      return (array as any).take(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -405,7 +405,7 @@ if (!Array.prototype.take) {
 if (!Array.prototype.toggle) {
   Object.defineProperty(Array.prototype, 'toggle', {
     value: function (...args: any[]) {
-      return (array_ as any).toggle(this as any, ...args);
+      return (array as any).toggle(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -415,7 +415,7 @@ if (!Array.prototype.toggle) {
 if (!Array.prototype.tryFirstEqual) {
   Object.defineProperty(Array.prototype, 'tryFirstEqual', {
     value: function (...args: any[]) {
-      return (array_ as any).tryFirstEqual(this as any, ...args);
+      return (array as any).tryFirstEqual(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -425,7 +425,7 @@ if (!Array.prototype.tryFirstEqual) {
 if (!Array.prototype.tryGetLastEqual) {
   Object.defineProperty(Array.prototype, 'tryGetLastEqual', {
     value: function (...args: any[]) {
-      return (array_ as any).tryGetLastEqual(this as any, ...args);
+      return (array as any).tryGetLastEqual(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -435,7 +435,7 @@ if (!Array.prototype.tryGetLastEqual) {
 if (!Array.prototype.tryGetLast) {
   Object.defineProperty(Array.prototype, 'tryGetLast', {
     value: function (...args: any[]) {
-      return (array_ as any).tryGetLast(this as any, ...args);
+      return (array as any).tryGetLast(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -445,7 +445,7 @@ if (!Array.prototype.tryGetLast) {
 if (!Array.prototype.union) {
   Object.defineProperty(Array.prototype, 'union', {
     value: function (...args: any[]) {
-      return (array_ as any).union(this as any, ...args);
+      return (array as any).union(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -455,7 +455,7 @@ if (!Array.prototype.union) {
 if (!Array.prototype.uniqBy) {
   Object.defineProperty(Array.prototype, 'uniqBy', {
     value: function (...args: any[]) {
-      return (array_ as any).uniqBy(this as any, ...args);
+      return (array as any).uniqBy(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -465,7 +465,7 @@ if (!Array.prototype.uniqBy) {
 if (!Array.prototype.uniq) {
   Object.defineProperty(Array.prototype, 'uniq', {
     value: function (...args: any[]) {
-      return (array_ as any).uniq(this as any, ...args);
+      return (array as any).uniq(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -475,7 +475,7 @@ if (!Array.prototype.uniq) {
 if (!Array.prototype.zip) {
   Object.defineProperty(Array.prototype, 'zip', {
     value: function (...args: any[]) {
-      return (array_ as any).zip(this as any, ...args);
+      return (array as any).zip(this as any, ...args);
     },
     writable: true,
     configurable: true
@@ -550,13 +550,13 @@ declare global {
      } */
     every<T>(this: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean;
 
-    /** Based on: export function filter<T, S extends T>(
-     array: T[],
-     predicate: (value: T, index: number, array: T[]) => value is S
-     ): S[]{
+    /** Based on: export function filter(
+     array: any[],
+     predicate: (value: any, index: number, array: any[]) => any
+     ): any[] {
      return array.filter(predicate);
      } */
-    filter<T, S extends T>(this: T[], predicate: (value: T, index: number, array: T[]) => value is S): S[];
+    filter(this: any[], predicate: (value: any, index: number, array: any[]) => any): any[];
 
     /** Based on: export function findIndex<T>(array: T[], predicate: (item: T, index: number, array: T[]) => boolean): number {
      const index = array.findIndex(predicate);

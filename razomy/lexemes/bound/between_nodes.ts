@@ -1,12 +1,11 @@
-import * as coordinates from '@razomy/coordinates';
-import * as lexemes from "@razomy/lexemes";
+import * as abstracts from "@razomy/abstracts";
 
-export function betweenNodes(nodes: lexemes.bound.NodeBound[], root: lexemes.bound.NodeBound) {
+export function betweenNodes(nodes: abstracts.coordinates.NodeBound[], root: abstracts.coordinates.NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }
 
-  const places: coordinates.rectangle.BoundRectangle[] = [];
+  const places: abstracts.coordinates.BoundRectangle[] = [];
 
   // Add starting place
   const firstNode = nodes[0];

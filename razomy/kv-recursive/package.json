@@ -41,7 +41,6 @@
     "getValue",
     "get",
     "listToFlatDict",
-    "renameToSnakeCaseRecursive",
     "valueOrListToFlatDict"
   ],
   "license": "MIT",
@@ -52,9 +51,7 @@
     "@razomy/abstracts": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
-    "@razomy/fs-recursive": "*",
-    "@razomy/string": "*",
-    "@razomy/string-case": "*"
+    "@razomy/string": "*"
   },
   "publishConfig": {
     "access": "public"

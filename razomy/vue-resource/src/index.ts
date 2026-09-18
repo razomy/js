@@ -3,13 +3,13 @@ import { RemoteNode } from './remote_node';
 import { RemoteResource } from './remote_resource';
 import { SocketStore } from './socket_store';
 import { type Resource } from './resource';
-import * as socketWeb from 'socket/socket-web';
+import * as socketWeb from '@razomy/socket';
 import * as server from '@razomy/server';
 import * as razomy from '@razomy/razomy';
 
 // @ts-ignore
 export declare module '@razomy/razomy' {
-  export interface Razomy extends socketWeb.HasWebsocket, server.HasUrl {
+  export interface Razomy extends socketWeb.client.HasWebsocket, server.HasUrl {
     id: string;
     resource: Resource;
     rG: (string: string) => string;

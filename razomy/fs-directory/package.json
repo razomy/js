@@ -46,9 +46,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-directory",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
-    "@razomy/observable": "*",
-    "@razomy/shell": "*"
+    "@razomy/abstracts": "*"
   },
   "publishConfig": {
     "access": "public"

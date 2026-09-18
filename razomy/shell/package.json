@@ -64,7 +64,6 @@
   "name": "@razomy/shell",
   "peerDependencies": {
     "@razomy/abstracts": "*",
-    "@razomy/observable": "*",
     "@razomy/test": "*"
   },
   "publishConfig": {

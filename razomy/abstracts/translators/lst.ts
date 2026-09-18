@@ -1,5 +1,13 @@
 import * as abstracts from "@razomy/abstracts";
 
+export interface HasDeep {
+  deep: number;
+}
+
+export interface HasStack {
+  stack: number[];
+}
+
 export interface HasTokenType<T = Token> {
   tokenType: T;
 }
