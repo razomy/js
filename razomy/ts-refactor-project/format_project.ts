@@ -1,6 +1,7 @@
 import * as main from '@razomy/main';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import '@razomy/razomy/extensions';
 
 export async function formatProject(projectPath: string, prefix: string) {
   console.info('generateAllExtensions.start');

@@ -38,22 +38,25 @@ function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
     const hasBrowser = fs.existsSync(path.join(dir, 'index.browser.ts'));
     const hasNode = fs.existsSync(path.join(dir, 'index.node.ts'));
     const hasRemote = fs.existsSync(path.join(dir, 'index.remote.ts'));
+    const hasExtensions = fs.existsSync(path.join(dir, 'extensions.ts'));
 
     // Пропускаем папки, в которых нет нужных файлов
     if (!hasIndex && !hasBrowser && !hasNode && !hasRemote) continue;
 
     // 3. Записываем их как экспорт
     const currentExport: any = {};
-    function makeCond (ext: string) { return ({
-            types: `${prefixPath}index${ext}.ts`,
-            import: `${prefixPath}index${ext}.ts`,
-            require: `${prefixPath}index${ext}.ts`,
-          }); }
+    function makeCond(ext: string, idxText = 'index.') {
+      return {
+        types: `${prefixPath}${idxText}${ext}.ts`,
+        import: `${prefixPath}${idxText}${ext}.ts`,
+        require: `${prefixPath}${idxText}${ext}.ts`,
+      };
+    }
 
     if (hasBrowser) {
-      currentExport.vue = makeCond('.browser');
-      currentExport.edge = makeCond('.browser');
-      currentExport.browser = makeCond('.browser');
+      currentExport.vue = makeCond('browser');
+      currentExport.edge = makeCond('browser');
+      currentExport.browser = makeCond('browser');
     }
 
     if (hasIndex) {
@@ -63,16 +66,17 @@ function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
     }
 
     if (hasNode) {
-      currentExport.node = makeCond('.node');
+      currentExport.node = makeCond('node');
     }
 
     // Сохраняем главный экспорт для папки ('.' или './subfolder')
     generatedExports[exportKey] = currentExport;
 
     // Сохраняем именованные экспорты ('./browser' или './subfolder/browser')
-    if (hasBrowser) generatedExports[isRoot ? './browser' : `${exportKey}/browser`] = makeCond('.browser');
-    if (hasNode) generatedExports[isRoot ? './node' : `${exportKey}/node`] = makeCond('.node');
-    if (hasRemote) generatedExports[isRoot ? './remote' : `${exportKey}/remote`] = makeCond('.remote');
+    if (hasBrowser) generatedExports[isRoot ? './browser' : `${exportKey}/browser`] = makeCond('browser');
+    if (hasNode) generatedExports[isRoot ? './node' : `${exportKey}/node`] = makeCond('node');
+    if (hasRemote) generatedExports[isRoot ? './remote' : `${exportKey}/remote`] = makeCond('remote');
+    if (hasExtensions) generatedExports[isRoot ? './extensions' : `${exportKey}/extensions`] = makeCond('extensions', '');
 
     // 4. Собираем массив файлов для команды билда
     const buildPrefix = isRoot ? '' : `${relativePath}/`;

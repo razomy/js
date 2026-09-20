@@ -102,6 +102,7 @@ function shouldIgnorePath(p: string, projectPath: string): boolean {
     p.includes('/node_modules/') ||
     p.includes('/tmp/') ||
     p.includes('/dist/') ||
+    p.includes('/extensions.ts') ||
     p.includes('/bin/') ||
     p === projectPath ||
     p === projectPath + '/razomy'

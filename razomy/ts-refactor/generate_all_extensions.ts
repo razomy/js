@@ -1,4 +1,4 @@
-import {Project, TypeFormatFlags} from 'ts-morph';
+import {type FunctionDeclaration, Project, TypeFormatFlags} from 'ts-morph';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as stringCase from "@razomy/string-case";
@@ -26,7 +26,7 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
     // Формируем пути программно на основе имени
     const packageDir = path.resolve(projectPath, `razomy/${ext.name}`).replace(/\\/g, '/');
     const packageName = `@razomy/${ext.name}`;
-    const outputFile = path.resolve(projectPath, `razomy/razomy-extensions/${stringCase.snakeCase(ext.name)}.ts`);
+    const outputFile = path.resolve(projectPath, `razomy/${ext.name}/extensions.ts`);
 
     // Фильтруем файлы ТОЛЬКО для текущего пакета
     const packageFiles = allFiles.filter(file => file.getFilePath().startsWith(packageDir));
@@ -36,10 +36,10 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
       continue;
     }
 
-    const functionsToBind = [] as any[];
+    const functionsToBind = [] as {name:string, originalSignature:string, interfaceSignature:string}[];
 
     for (const file of packageFiles) {
-      const exportedFunctions = file.getFunctions().filter((f) => f.isExported() && f.getName());
+      const exportedFunctions: FunctionDeclaration[] = file.getFunctions().filter((f) => f.isExported() && f.getName());
 
       for (const func of exportedFunctions) {
         const name = func.getName()!;
@@ -80,11 +80,12 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
         const returnType = func.getReturnTypeNode()?.getText() || func.getReturnType().getText(func, TypeFormatFlags.NoTruncation);
 
         // ИСПОЛЬЗУЕМ ОРИГИНАЛЬНЫЙ ТИП для this (теперь тут будет this: T[] вместо any[])
-        const interfaceSignature = `${name}${genericStr}(this: ${firstParamOriginalType}, ${remainingParams.join(', ')}): ${returnType};`;
+        const allParams =  [ `this: ${firstParamOriginalType}`, ...remainingParams];
+        const interfaceSignature = `${name}${genericStr}(${allParams.join(', ')}): ${returnType};`;
 
         functionsToBind.push({
           name,
-          originalSignature: func.getSignature().getDeclaration().getText(),
+          originalSignature: func.getJsDocs().map(d=>d.getText()).join(''),
           interfaceSignature,
         });
 
@@ -103,10 +104,9 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
       runtimeCode += `      return (${name} as any).${fn.name}(this as any, ...args);\n`;
       runtimeCode += `    },\n`;
       runtimeCode += `    writable: true,\n`;
-      runtimeCode += `    configurable: true\n`;
+      runtimeCode += `    configurable: true,\n`;
       runtimeCode += `  });\n}\n\n`;
-
-      typesCode += `    /** Based on: ${fn.originalSignature} */\n`;
+      typesCode += `${fn.originalSignature.prefixLines('    ')}\n`;
       typesCode += `    ${fn.interfaceSignature}\n`;
     }
 
