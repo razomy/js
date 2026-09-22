@@ -30,10 +30,9 @@
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/razomy/db-domains#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/razomy/domains#readme",
   "keywords": [
     "razomy",
-    "db",
     "domains",
     "addDeleteAt",
     "createAt",
@@ -42,7 +41,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/db-domains",
+  "name": "@razomy/domains",
   "peerDependencies": {
     "@razomy/abstracts": "*",
     "@razomy/random": "*"
@@ -51,7 +50,7 @@
     "access": "public"
   },
   "repository": {
-    "directory": "razomy/db-domains",
+    "directory": "razomy/domains",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
