@@ -1,3 +1,5 @@
+import * as abstracts from "@razomy/abstracts";
+
 export type SerializablePrimitive = string | number | boolean | null;
 
 export type SerializableValue<T = SerializablePrimitive> =
@@ -12,3 +14,9 @@ export interface HasSerializable {
 }
 
 export type Serializable = SerializableValue<SerializablePrimitive | HasSerializable>;
+
+export type Json<T = abstracts.domains.SerializableValue> = T;
+
+export interface HasMetadata{
+  metadata:Json
+}

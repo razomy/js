@@ -1,13 +1,24 @@
 import * as abstracts from "@razomy/abstracts";
 
+export type DateTime = Date;
+
 export interface HasCreatedAt extends abstracts.meta.IHas {
-  createdAt: Date;
+  /**
+   * @default createdAt()
+   */
+  createdAt: DateTime;
 }
 
 export interface HasUpdatedAt extends abstracts.meta.IHas {
-  updatedAt: Date;
+  /**
+   * @default updatedAt()
+   */
+  updatedAt: DateTime;
 }
 
 export interface HasDeletedAt extends abstracts.meta.IHas {
-  deletedAt: Date;
+  deletedAt: DateTime | null;
+}
+
+export interface CudDateTime extends HasCreatedAt, HasUpdatedAt, HasDeletedAt{
 }

@@ -18,7 +18,7 @@ export function toYaml(nodes: abstracts.structures.KeyValueArray<string, string>
       continue;
     }
 
-    const valStr = String(value).trim();
+    const valStr = String(value);
     const isNewLine = valStr.includes('\n') || valStr.endsWith(':');
     const break_ = isNewLine ? ':\n' : ': ';
     const childIndent = ' '.repeat((indentLevel + 1) * indentSize);

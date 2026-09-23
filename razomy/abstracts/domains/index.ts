@@ -1,8 +1,8 @@
 // Imports
 import type { HasClone } from './has_clone';
-import type { HasCreatedAt, HasDeletedAt, HasUpdatedAt } from './has_created_at';
+import type { HasCreatedAt, HasDeletedAt, HasUpdatedAt,DateTime , CudDateTime} from './has_created_at';
 import type { HasDescription } from './has_description';
-import type { HasId, Id } from './has_id';
+import type { HasId, Id,Primary, Uuid } from './has_id';
 import type { HasKind } from './has_kind';
 import type { HasName } from './has_name';
 import type { HasType } from './has_type';
@@ -18,6 +18,8 @@ export type {
   ContextKey,
   EntityId,
   HasC,
+  DateTime,
+  CudDateTime,
   HasClone,
   HasCreatedAt,
   HasDeletedAt,
@@ -35,6 +37,8 @@ export type {
   IMachine,
   IModule,
   Id,
+  Uuid,
+  Primary,
   IdRef,
   IdRefArray,
   OneOfIdRef,

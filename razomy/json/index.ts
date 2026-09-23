@@ -9,7 +9,6 @@ import { isObject } from './is_object';
 import type { PlainObject } from './is_object';
 import { iterate } from './iterate';
 import type { JsonIterateCallback } from './iterate';
-import type { Json } from './json';
 import { JsonCodec } from './json_codec';
 import { jsonToCtx } from './json_to_ctx';
 import { jsonToObject } from './json_to_object';
@@ -45,7 +44,6 @@ export type {
   DiffNested,
   DiffNode,
   DiffUpdated,
-  Json,
   JsonIterateCallback,
   JsonToken,
   JsonTokenType,

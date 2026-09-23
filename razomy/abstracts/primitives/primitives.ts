@@ -35,6 +35,10 @@ export type NumberPrimitive = IntPrimitive | UIntPrimitive | FloatPrimitive | Nu
 
 // Строки
 export type Char = abstracts.meta.Brand<string, 'Char'>;
+export type Char64 = string;
+export type Char128 = string;
+export type Char256 = string;
+export type Vector128 = number[];
 export type InlineString = string;
 export type FixedString = string;
 export type MultilineString = string;

@@ -4,6 +4,7 @@ export type Slug = string;
 export type AbsolutePathString = Slug;
 export type RelativePathString = Slug;
 export type PathString = AbsolutePathString | RelativePathString;
+export type Url = string;
 
 export type FilePathString = PathString;
 export type DirPathString = PathString;

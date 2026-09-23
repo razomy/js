@@ -2,7 +2,7 @@ import * as abstracts from "@razomy/abstracts";
 
 export type Thunk = () => void;
 export type Action<TA extends any[]> = (...args: TA) => void;
-export type Function<TA extends any[], TR> = (...args: TA) => TR;
+export type Function<TA extends any[], TR = void> = (...args: TA) => TR;
 export type Method<TC extends any, TA extends any[], TR> = (this: TC, ...args: TA) => TR;
 
 export type Callback = () => void;

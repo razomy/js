@@ -5,3 +5,4 @@ export type EntityId<EntityName extends string, Type = string> = abstracts.meta.
 // join has
 export interface IEntity extends abstracts.domains.IContext {
 }
+

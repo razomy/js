@@ -2,17 +2,17 @@ export interface HasLength {
   length: number;
 }
 
-export interface BoundRectangle extends BoundX, BoundY {}
+export interface HasX {
+  x: number;
+}
 
-export interface HasRectangle extends HasX, HasY {}
+export interface HasY {
+  y: number;
+}
 
 export interface BoundX {
   startX: number;
   finishX: number;
-}
-
-export interface HasX {
-  x: number;
 }
 
 export interface BoundY {
@@ -20,9 +20,10 @@ export interface BoundY {
   finishY: number;
 }
 
-export interface HasY {
-  y: number;
-}
+export interface Position2d extends HasX, HasY {}
+
+export interface BoundRectangle extends BoundX, BoundY {}
+
 
 export interface NodeBound {
   fullRect: BoundY & HasX;
