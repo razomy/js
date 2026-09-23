@@ -8,7 +8,10 @@ import { getJson } from './get_json';
 import { getSync } from './get_sync';
 import { isEmpty } from './is_empty';
 import { isExist } from './is_exist';
+import { name } from './name';
 import { set } from './set';
+import { setByContext } from './set_by_context';
+import type { FileContext } from './set_by_context';
 import { setJson } from './set_json';
 import { setSync } from './set_sync';
 import { tryGetJson } from './try_get_json';
@@ -26,12 +29,17 @@ export {
   getSync,
   isEmpty,
   isExist,
+  name,
   set,
+  setByContext,
   setJson,
   setSync,
   tryGetJson,
   tryGetSync,
   trySet
+};
+export type {
+  FileContext
 };
 
 // Default export
@@ -45,12 +53,15 @@ const fsFile = {
   getSync,
   isEmpty,
   isExist,
+  name,
   set,
+  setByContext,
   setJson,
   setSync,
   tryGetJson,
   tryGetSync,
   trySet,
 };
+
 
 export default fsFile;

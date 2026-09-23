@@ -28,6 +28,7 @@ import { nextMarginIndex } from './next_margin_index';
 import { padEnd } from './pad_end';
 import { padStart } from './pad_start';
 import { prefixLines } from './prefix_lines';
+import { prefixLinesAndSkipEmpty } from './prefix_lines_and_skip_empty';
 import { removeIndex } from './remove_index';
 import { repeat } from './repeat';
 import { replace } from './replace';
@@ -77,6 +78,7 @@ export {
   padEnd,
   padStart,
   prefixLines,
+  prefixLinesAndSkipEmpty,
   removeIndex,
   repeat,
   replace,
@@ -129,6 +131,7 @@ const string = {
   padEnd,
   padStart,
   prefixLines,
+  prefixLinesAndSkipEmpty,
   removeIndex,
   repeat,
   replace,

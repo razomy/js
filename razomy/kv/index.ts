@@ -3,6 +3,7 @@ import { Akv, akv } from './akv';
 import { createByPath } from './create_by_path';
 import { filter } from './filter';
 import { get } from './get';
+import { toYaml } from './to_yaml';
 import { getParents } from './get_parents';
 import { getWithPath } from './get_with_path';
 import { isAkv } from './is_akv';
@@ -19,6 +20,7 @@ import type { HasKv } from './with_kv';
 export {
   Akv,
   Kv,
+  toYaml,
   akv,
   createByPath,
   filter,

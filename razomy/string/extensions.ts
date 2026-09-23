@@ -213,6 +213,16 @@ if (!String.prototype.padStart) {
   });
 }
 
+if (!String.prototype.prefixLinesAndSkipEmpty) {
+  Object.defineProperty(String.prototype, 'prefixLinesAndSkipEmpty', {
+    value: function (...args: any[]) {
+      return (string as any).prefixLinesAndSkipEmpty(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
 if (!String.prototype.prefixLines) {
   Object.defineProperty(String.prototype, 'prefixLines', {
     value: function (...args: any[]) {
@@ -1036,6 +1046,28 @@ declare global {
      * @complexity memory O(n)
      */
     padStart(this: string, length: number, chars?: string): string;
+    /**
+     * @summary Add margin to every line of the string except empty.
+     * @description Adds a specified prefix to the beginning of every line in the input string.
+     * @param text The input string to be prefixed.
+     * @param prefix The string to prepend to the beginning of each line.
+     * @returns The string with the prefix applied to every line.
+     * @example
+     * ```ts
+     * prefixLinesAndSkipEmpty('Hello', '  '); // => '  Hello'
+     * ```
+     * @example
+     * ```ts
+     * prefixLinesAndSkipEmpty('Line 1\n\nLine 2', '> '); // => '> Line 1\n\n> Line 2'
+     * ```
+     * @example
+     * ```ts
+     * prefixLinesAndSkipEmpty('Code', '\t'); // => '\tCode'
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(n)
+     */
+    prefixLinesAndSkipEmpty(this: string, prefix: string): string;
     /**
      * @summary Add margin to every line of the string.
      * @description Adds a specified prefix to the beginning of every line in the input string.

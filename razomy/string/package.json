@@ -67,6 +67,7 @@
     "nextMarginIndex",
     "padEnd",
     "padStart",
+    "prefixLinesAndSkipEmpty",
     "prefixLines",
     "removeIndex",
     "repeat",
