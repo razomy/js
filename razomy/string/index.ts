@@ -42,6 +42,8 @@ import { takeBefore } from './take_before';
 import { takeBetween } from './take_between';
 import { toBuffer } from './to_buffer';
 import { trim } from './trim';
+import { trimIndent } from './trim_indent';
+import { trimLines } from './trim_lines';
 import { truncate } from './truncate';
 import { unescapeByString } from './unescape_by_string';
 import { unescapeMdCode } from './unescape_md_code';
@@ -92,6 +94,8 @@ export {
   takeBetween,
   toBuffer,
   trim,
+  trimIndent,
+  trimLines,
   truncate,
   unescapeByString,
   unescapeMdCode
@@ -145,6 +149,8 @@ const string = {
   takeBetween,
   toBuffer,
   trim,
+  trimIndent,
+  trimLines,
   truncate,
   unescapeByString,
   unescapeMdCode,

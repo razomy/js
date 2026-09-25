@@ -1,8 +1,5 @@
-import type {UserChild} from "../identitys/user";
-import type { CudDateTime, IdRef } from '@razomy/abstracts/domains';
-import type {Json} from "../../abstracts/domains/serializable";
-import type {KeyEdge} from "../../abstracts/graphs/edge_list_graph";
-import type {AnyEntityType} from "../domian";
+import * as domains from "@razomy/domains";
+import * as abstracts from "@razomy/abstracts";
 
 export enum DifferenceType {
   CREATED = 'CREATED',
@@ -14,14 +11,14 @@ export enum DifferenceType {
  * @index createdAt
  * @index createdAt
  */
-export interface Commit extends UserChild, CudDateTime{
-  entity: KeyEdge<AnyEntityType>;
+export interface Commit extends domains.identitys.UserChild, abstracts.domains.CudDateTime{
+  entity: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
 
   differenceType: DifferenceType;
-  difference: Json;
+  difference: abstracts.domains.Json;
   /** @uniq */
   commitHash: string;
   /** @uniq */
-  previous: IdRef<Commit>;
+  previous: abstracts.domains.IdRef<Commit>;
   userId: string;
 }

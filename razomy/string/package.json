@@ -81,6 +81,8 @@
     "takeBefore",
     "takeBetween",
     "toBuffer",
+    "trimIndent",
+    "trimLines",
     "trim",
     "truncate",
     "unescapeByString",

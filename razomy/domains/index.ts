@@ -1,45 +1,45 @@
 // Imports
-import { addDeleteAt } from './add_delete_at';
-import { createAt } from './create_at';
-import type { HasDisplayName, HasFamilyName, HasFirstName, HasFullName, HasGenerationalSuffix, HasHonorificPrefix, HasLastName, HasLegalName, HasMaidenName, HasMiddleName, HasName, HasNamingConvention, HasNickName, HasParentName, HasPatronymic, HasSortingName, NamingConventionType } from './has_name';
-import { EntityType } from './schema';
-import type { ModelMetadata } from './schema';
-import { updateAt } from './update_at';
+import * as abstracts from './abstracts';
+import * as acls from './acls';
+import * as auths from './auths';
+import * as domain from './domain';
+import type { AnyEntityType } from './domian';
+import * as event from './event';
+import * as fs from './fs';
+import * as games from './games';
+import * as git from './git';
+import * as identitys from './identitys';
+import * as tx from './tx';
 
 // Named exports
 export {
-  EntityType,
-  addDeleteAt,
-  createAt,
-  updateAt
+  abstracts,
+  acls,
+  auths,
+  domain,
+  event,
+  fs,
+  games,
+  git,
+  identitys,
+  tx
 };
 export type {
-  HasDisplayName,
-  HasFamilyName,
-  HasFirstName,
-  HasFullName,
-  HasGenerationalSuffix,
-  HasHonorificPrefix,
-  HasLastName,
-  HasLegalName,
-  HasMaidenName,
-  HasMiddleName,
-  HasName,
-  HasNamingConvention,
-  HasNickName,
-  HasParentName,
-  HasPatronymic,
-  HasSortingName,
-  ModelMetadata,
-  NamingConventionType
+  AnyEntityType
 };
 
 // Default export
 const domains = {
-  addDeleteAt,
-  createAt,
-  EntityType,
-  updateAt,
+  abstracts,
+  acls,
+  auths,
+  domain,
+  event,
+  fs,
+  games,
+  git,
+  identitys,
+  tx,
 };
 
 

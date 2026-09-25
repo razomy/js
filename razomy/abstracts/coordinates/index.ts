@@ -1,5 +1,5 @@
 // Imports
-import type { BoundRectangle, BoundX, BoundY, HasLength, Position2d, HasX, HasY, NodeBound } from './types';
+import type { BoundRectangle, BoundX, BoundY, HasLength, HasX, HasY, NodeBound, Position2d } from './types';
 
 // Named exports
 export type {
@@ -7,9 +7,9 @@ export type {
   BoundX,
   BoundY,
   HasLength,
-  Position2d,
   HasX,
   HasY,
-  NodeBound
+  NodeBound,
+  Position2d
 };
 

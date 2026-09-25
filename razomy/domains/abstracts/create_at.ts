@@ -1,18 +1,7 @@
-import type { Table } from '../../abstracts/machines/table';
+import * as abstracts from "@razomy/abstracts";
 
-export function createAt(ctx: { sourceTable: Table }) {
+export function createAt(ctx: { sourceTable: abstracts.machines.Table }) {
   ctx.sourceTable.onCreate.push((entity) => {
     entity.createdAt = new Date();
   });
-}
-
-export function stringDefault() {
-  return '';
-}
-
-export function intDefault() {
-  return 0;
-}
-export function boolDefault() {
-  return false;
 }

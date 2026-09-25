@@ -1,40 +1,37 @@
-import type { Int } from '@razomy/abstracts/primitives';
-import type { CudDateTime, DateTime, IdRef, Primary } from '@razomy/abstracts/domains';
-import type { UserChild } from '../identitys/user';
-import type { HasMetadata, Json } from '../../abstracts/domains/serializable';
-import type { HasPrimaryId } from '../../abstracts/domains/has_id';
+import * as abstracts from "@razomy/abstracts";
+import * as domains from "@razomy/domains";
 
-export interface UserAuth extends UserChild, CudDateTime {
-  securitys: IdRef<Security>[];
-  providers: IdRef<Provider>[];
-  sessions: IdRef<Session>[];
-  recoveryCodes: IdRef<RecoveryCode>[];
-  authEvents: IdRef<AuthEvent>[];
+export interface UserAuth extends domains.identitys.UserChild, abstracts.domains.CudDateTime {
+  securitys: abstracts.domains.IdRef<Security>[];
+  providers: abstracts.domains.IdRef<Provider>[];
+  sessions: abstracts.domains.IdRef<Session>[];
+  recoveryCodes: abstracts.domains.IdRef<RecoveryCode>[];
+  authEvents: abstracts.domains.IdRef<AuthEvent>[];
 }
 
-export interface UserAuthChild extends HasPrimaryId {
+export interface UserAuthChild extends abstracts.domains.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  userAuth: IdRef<UserAuth>;
+  userAuth: abstracts.domains.IdRef<UserAuth>;
 }
 
-export interface Security extends UserAuthChild, CudDateTime {
+export interface Security extends UserAuthChild, abstracts.domains.CudDateTime {
   isBanned: boolean;
   banReason: string;
-  failedLoginAttempts: Int;
-  lockedUntil: DateTime | null;
+  failedLoginAttempts: abstracts.primitives.Int;
+  lockedUntil: abstracts.domains.DateTime | null;
   twoFactorEnabled: boolean;
   twoFactorSecret: string;
-  passwordChangedAt: DateTime | null;
+  passwordChangedAt: abstracts.domains.DateTime | null;
 }
 
 /**
  * @title Провайдеры (OAuth, Пароли) - Страницы auth/login, auth/callback
  * @unique provider, providerAccountId
  */
-export interface Provider extends UserAuthChild, CudDateTime {
+export interface Provider extends UserAuthChild, abstracts.domains.CudDateTime {
   provider: 'google' | 'apple' | 'credentials' | string;
   // ID из Google ИЛИ Email пользователя (для credentials)
   providerAccountId: string;
@@ -44,14 +41,14 @@ export interface Provider extends UserAuthChild, CudDateTime {
 }
 
 export interface Credential {
-  provider: Primary<IdRef<Provider>>;
+  provider: abstracts.domains.Primary<abstracts.domains.IdRef<Provider>>;
   passwordHash?: string;
 }
 
 /**
  * @title Управление сессиями - Страница account/security/sessions
  */
-export interface Session extends UserAuthChild, CudDateTime {
+export interface Session extends UserAuthChild, abstracts.domains.CudDateTime {
   /**
    * @uniq
    */
@@ -67,7 +64,7 @@ export interface Session extends UserAuthChild, CudDateTime {
 /**
  * @title Резервные коды для 2FA - Страница auth/recovery-code
  */
-export interface RecoveryCode extends UserAuthChild, CudDateTime {
+export interface RecoveryCode extends UserAuthChild, abstracts.domains.CudDateTime {
   // Хеш кода, чтобы даже при сливе БД коды не утекли
   codeHash: string;
   isUsed: boolean;
@@ -86,7 +83,7 @@ export enum TokenType {
    Токены верификации (Magic Links, Сброс пароля, Подтверждение Email)
    Страницы: auth/magic-link, auth/forgot-password, auth/verify-email
  */
-export interface VerificationToken extends UserAuthChild, CudDateTime {
+export interface VerificationToken extends UserAuthChild, abstracts.domains.CudDateTime {
   /**
    * @title Email или номер телефона
    * @index
@@ -97,7 +94,7 @@ export interface VerificationToken extends UserAuthChild, CudDateTime {
    */
   token: string;
   type: TokenType;
-  payload?: Json;
+  payload?: abstracts.domains.Json;
   expiresAt: Date;
 }
 
@@ -117,7 +114,7 @@ export enum AuthAction {
  * Аудит событий - логируем подозрительную активность и входы
  * Используется для аналитики и защиты от брутфорса
  */
-export interface AuthEvent extends UserAuthChild, CudDateTime, HasMetadata {
+export interface AuthEvent extends UserAuthChild, abstracts.domains.CudDateTime, abstracts.domains.HasMetadata {
   action: AuthAction;
   /**
    * @index

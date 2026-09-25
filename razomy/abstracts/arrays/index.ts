@@ -1,7 +1,7 @@
 // Imports
 import type { DataStructure, DynamicArray, F64Array, IIterator, SequenceArray, StaticArray, Tuple, TypedMemoryView, U8Array } from './arrays';
 import type { RawBuffer } from './buffer';
-import type { HasOffset, HasPrevOffset, Index, IndexOrOut, Offset, OutIndex } from './offest';
+import type { HasOffset, HasPrevOffset, Index, IndexOrOut, IndexType, Offset, OrderDirection, OutIndex } from './offest';
 
 // Named exports
 export type {
@@ -13,7 +13,9 @@ export type {
   IIterator,
   Index,
   IndexOrOut,
+  IndexType,
   Offset,
+  OrderDirection,
   OutIndex,
   RawBuffer,
   SequenceArray,

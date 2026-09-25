@@ -1,6 +1,6 @@
-import type { Table } from '../../abstracts/machines/table';
+import * as abstracts from "@razomy/abstracts";
 
-export function updateAt(ctx: { sourceTable: Table }) {
+export function updateAt(ctx: { sourceTable: abstracts.machines.Table }) {
   ctx.sourceTable.onUpdate.push((entity) => {
     entity.updatedAt = new Date();
   });

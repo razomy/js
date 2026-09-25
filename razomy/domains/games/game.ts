@@ -1,13 +1,8 @@
-import type { HasPrimaryId } from '../../abstracts/domains/has_id';
-import type { Char128, Char64, Vector128 } from '../../abstracts/primitives/primitives';
-import type { HasNickName } from '../identitys/has_name';
-import type { CudDateTime, HasName, IdRef } from '@razomy/abstracts/domains';
-import type { Url } from '../../abstracts/graphs/path_string';
-import type { BoundRectangle } from '@razomy/abstracts/coordinates';
-import type {KeyEdge} from "../../abstracts/graphs/edge_list_graph";
+import * as abstracts from "@razomy/abstracts";
+import * as domains from "@razomy/domains";
 
 export interface HasImageUrl {
-  imageUrl: Url;
+  imageUrl: abstracts.graphs.Url;
 }
 
 export interface HasTitle {
@@ -15,42 +10,42 @@ export interface HasTitle {
 }
 
 
-export interface UserGame extends HasPrimaryId, CudDateTime, HasNickName {
+export interface UserGame extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime, domains.identitys.HasNickName {
   /*
    * @uniq
    */
-  nickName: Char64;
+  nickName: abstracts.primitives.Char64;
   // game: Char64,
 }
 
-export interface UserGameChild extends HasPrimaryId {
+export interface UserGameChild extends abstracts.domains.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  userGame: IdRef<UserGame>;
-  games: IdRef<Game>[];
+  userGame: abstracts.domains.IdRef<UserGame>;
+  games: abstracts.domains.IdRef<Game>[];
 }
 
-export interface Game extends HasPrimaryId, CudDateTime {
-  title: Char128;
+export interface Game extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime {
+  title: abstracts.primitives.Char128;
 }
 
-export interface GameChild extends HasPrimaryId {
+export interface GameChild extends abstracts.domains.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  game: IdRef<Game>;
+  game: abstracts.domains.IdRef<Game>;
 }
 
 export interface Reward {}
 
-export interface Achievement extends HasPrimaryId, HasImageUrl, HasTitle, HasName {
-  reward: IdRef<Reward>;
+export interface Achievement extends abstracts.domains.HasPrimaryId, HasImageUrl, HasTitle, abstracts.domains.HasName {
+  reward: abstracts.domains.IdRef<Reward>;
 }
 
-export interface UserGameAchievement extends UserGameChild, GameChild, HasImageUrl, HasTitle, HasName {
+export interface UserGameAchievement extends UserGameChild, GameChild, HasImageUrl, HasTitle, abstracts.domains.HasName {
   isViewed: boolean;
   isTouched: boolean;
   isReceived: boolean;
@@ -63,18 +58,18 @@ export interface FriendEdge {
 }
 
 export interface Player {
-  friendTo: KeyEdge<Player>[];
+  friendTo: abstracts.graphs.KeyEdge<Player>[];
 }
 
 export interface Location extends GameChild {
   name: string;
-  boundaries: BoundRectangle;
+  boundaries: abstracts.coordinates.BoundRectangle;
 }
 
 export interface Item extends GameChild {
   name: string;
 }
 
-export interface PlayerMatch extends GameChild, UserGameChild, CudDateTime {
-  userSkill: Vector128;
+export interface PlayerMatch extends GameChild, UserGameChild, abstracts.domains.CudDateTime {
+  userSkill: abstracts.primitives.Vector128;
 }

@@ -3,7 +3,6 @@ import { Akv, akv } from './akv';
 import { createByPath } from './create_by_path';
 import { filter } from './filter';
 import { get } from './get';
-import { toYaml } from './to_yaml';
 import { getParents } from './get_parents';
 import { getWithPath } from './get_with_path';
 import { isAkv } from './is_akv';
@@ -13,6 +12,7 @@ import { k } from './k';
 import { Kv, isKv } from './kv';
 import { map } from './map';
 import { set } from './set';
+import { toYaml } from './to_yaml';
 import { valueIterate } from './value_iterate';
 import type { HasKv } from './with_kv';
 
@@ -20,7 +20,6 @@ import type { HasKv } from './with_kv';
 export {
   Akv,
   Kv,
-  toYaml,
   akv,
   createByPath,
   filter,
@@ -34,6 +33,7 @@ export {
   k,
   map,
   set,
+  toYaml,
   valueIterate
 };
 export type {
@@ -57,6 +57,7 @@ const kv = {
   isKv,
   map,
   set,
+  toYaml,
   valueIterate,
 };
 

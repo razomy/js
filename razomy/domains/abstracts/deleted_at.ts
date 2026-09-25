@@ -1,6 +1,6 @@
-import type { Table } from '../../abstracts/machines/table';
+import * as abstracts from "@razomy/abstracts";
 
-export function deletedAt(ctx: { sourceTable: Table }) {
+export function deletedAt(ctx: { sourceTable: abstracts.machines.Table }) {
   ctx.sourceTable.onDelete.push((entity) => {
     entity.deletedAt = new Date();
   });

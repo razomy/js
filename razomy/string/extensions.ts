@@ -353,6 +353,26 @@ if (!String.prototype.toBuffer) {
   });
 }
 
+if (!String.prototype.trimIndent) {
+  Object.defineProperty(String.prototype, 'trimIndent', {
+    value: function (...args: any[]) {
+      return (string as any).trimIndent(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
+if (!String.prototype.trimLines) {
+  Object.defineProperty(String.prototype, 'trimLines', {
+    value: function (...args: any[]) {
+      return (string as any).trimLines(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
 if (!String.prototype.trim) {
   Object.defineProperty(String.prototype, 'trim', {
     value: function (...args: any[]) {
@@ -1337,6 +1357,46 @@ declare global {
      * @complexity memory O(n)
      */
     toBuffer(this: string, encoding: BufferEncoding): Buffer;
+    /**
+     * @summary Removes the smallest common leading whitespace (indent) from all lines.
+     * @description Finds the minimum indentation among all non-empty lines and removes exactly that many space/tab characters from the beginning of every line.
+     * @param text - The multiline string to dedent.
+     * @returns The string with the common indent removed.
+     * @example
+     * ```ts
+     * // Removes 2 spaces from all lines
+     * trimIndent('  foo\n    bar\n  baz'); // => 'foo\n  bar\nbaz'
+     * ```
+     * @example
+     * ```ts
+     * // Ignores empty lines when calculating the minimum indent
+     * trimIndent('    foo\n\n      bar'); // => 'foo\n\n  bar'
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(n)
+     */
+    trimIndent(this: string): string;
+    /**
+     * @summary Removes whitespace from both ends of each line in the string.
+     * @description Splits the string into lines, removes whitespace from both ends of every line, and joins them back together.
+     * @param text - The multiline string to process.
+     * @returns The string with trimmed lines.
+     * @example
+     * ```ts
+     * trimLines('  foo  \n  bar  '); // => 'foo\nbar'
+     * ```
+     * @example
+     * ```ts
+     * trimLines('\tline 1\r\n  line 2 \n'); // => 'line 1\nline 2\n'
+     * ```
+     * @example
+     * ```ts
+     * trimLines('   \n  '); // => '\n'
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(n)
+     */
+    trimLines(this: string): string;
     /**
      * @summary Removes whitespace from both ends of the string.
      * @description Removes whitespace from both ends of the string.

@@ -1,7 +1,7 @@
-import type {Json} from "../../abstracts/domains/serializable";
+import * as abstracts from "@razomy/abstracts";
 
 export interface Task{
   taskKey:string,
   status:string,
-  payload:Json,
+  payload:abstracts.domains.Json,
 }

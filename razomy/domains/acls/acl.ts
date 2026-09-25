@@ -1,5 +1,5 @@
-import type {AnyEntityType} from "../domian";
-import type {KeyEdge} from "../../abstracts/graphs/edge_list_graph";
+import * as domains from "@razomy/domains";
+import * as abstracts from "@razomy/abstracts";
 
 export enum AccessLevel {
   DENIED = 'DENIED',
@@ -15,7 +15,7 @@ export interface AccessPolicy {
   /**
    * @index
    */
-  subject: KeyEdge<AnyEntityType>;
+  subject: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
   accessLevel: AccessLevel;
-  resource: KeyEdge<AnyEntityType>;
+  resource: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
 }

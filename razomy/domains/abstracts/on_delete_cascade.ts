@@ -1,9 +1,9 @@
-import type { Table } from '../../abstracts/machines/table';
+import * as abstracts from "@razomy/abstracts";
 
 export interface Cascade {
-  sourceTable: Table;
+  sourceTable: abstracts.machines.Table;
   sourceProperty: string;
-  targetTable: Table;
+  targetTable: abstracts.machines.Table;
   targetProperty: string;
 }
 

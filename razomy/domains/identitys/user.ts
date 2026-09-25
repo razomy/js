@@ -1,23 +1,21 @@
-import type { CudDateTime, IdRef } from '@razomy/abstracts/domains';
-import type { UserAuth } from '../auths/auth';
-import type { HasPrimaryId } from '../../abstracts/domains/has_id';
-import type {UserGame} from "../games/game";
+import * as abstracts from "@razomy/abstracts";
+import * as domains from "@razomy/domains";
 
-export interface User extends HasPrimaryId, CudDateTime {
-  userProfiles: IdRef<UserProfile>[];
-  userGames: IdRef<UserGame>[];
-  userAuths: IdRef<UserAuth>[];
+export interface User extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime {
+  userProfiles: abstracts.domains.IdRef<UserProfile>[];
+  userGames: abstracts.domains.IdRef<domains.games.UserGame>[];
+  userAuths: abstracts.domains.IdRef<domains.auths.UserAuth>[];
 }
 
-export interface UserChild extends HasPrimaryId {
+export interface UserChild extends abstracts.domains.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  user: IdRef<User>;
+  user: abstracts.domains.IdRef<User>;
 }
 
-export interface UserProfile extends UserChild, CudDateTime {
+export interface UserProfile extends UserChild, abstracts.domains.CudDateTime {
   name: string;
   avatar: string;
   contactEmail: string;

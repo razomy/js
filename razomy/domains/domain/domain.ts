@@ -1,9 +1,9 @@
-import type { IdRef } from '@razomy/abstracts/domains';
+import * as abstracts from "@razomy/abstracts";
 
 export interface Domain {
   name: string;
   type: string;
-  company: IdRef<Company>;
+  company: abstracts.domains.IdRef<Company>;
 }
 
 export interface Company {

@@ -1,8 +1,4 @@
-import type { HasPrimaryId } from '../../abstracts/domains/has_id';
-import type { Char256 } from '../../abstracts/primitives/primitives';
-import type { Json } from '../../abstracts/domains/serializable';
-import type { CudDateTime, IdRef } from '@razomy/abstracts/domains';
-import type { Url } from '../../abstracts/graphs/path_string';
+import * as abstracts from "@razomy/abstracts";
 
 export enum FsNodeType {
   DIRECTORY = 'DIRECTORY',
@@ -11,22 +7,22 @@ export enum FsNodeType {
   FILE_BINARY = 'FILE_BINARY',
 }
 
-export interface FsNode extends HasPrimaryId, CudDateTime {
+export interface FsNode extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime {
   fsNodeType: FsNodeType;
-  name: Char256;
+  name: abstracts.primitives.Char256;
   /*
    * @index
    */
-  contentJson?: Json | Json<{ url: Url }>;
+  contentJson?: abstracts.domains.Json | abstracts.domains.Json<{ url: abstracts.graphs.Url }>;
   contentBinary?: Buffer;
   /*
    * @index
    */
-  parentId?: IdRef<FsNode>;
+  parentId?: abstracts.domains.IdRef<FsNode>;
   /*
    * @index
    */
-  ancestors: IdRef<FsNode>[];
+  ancestors: abstracts.domains.IdRef<FsNode>[];
 }
 
 /**

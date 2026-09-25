@@ -1,8 +1,8 @@
-import type { Table } from '../../abstracts/machines/table';
-import { createUuid } from '@razomy/random';
+import * as abstracts from "@razomy/abstracts";
+import * as random from "@razomy/random";
 
-export function id(ctx: { sourceTable: Table }) {
+export function id(ctx: { sourceTable: abstracts.machines.Table }) {
   ctx.sourceTable.onDelete.push((entity) => {
-    entity.id = createUuid();
+    entity.id = random.createUuid();
   });
 }
