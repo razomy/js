@@ -3,7 +3,7 @@ import type { Alias } from './alias';
 import type { Brand } from './brand';
 import type { IHas } from './i_has';
 import type { IResource, Razomy } from './i_resource';
-import type { DeepReadonly, LateInit, NullOptional } from './late_init';
+import type { DeepReadonly, LateInit, NullOptional, Prettify } from './late_init';
 
 // Named exports
 export type {
@@ -14,6 +14,7 @@ export type {
   IResource,
   LateInit,
   NullOptional,
+  Prettify,
   Razomy
 };
 

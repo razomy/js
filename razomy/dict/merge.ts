@@ -1,7 +1,6 @@
+import * as abstracts from "@razomy/abstracts";
+
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
-export type Prettify<T> = {
-  [K in keyof T]: T[K];
-} & {};
 
 /**
  * @summary Merge an array of dictionaries into a single dictionary.
@@ -25,7 +24,7 @@ export type Prettify<T> = {
  */
 export function merge<T extends readonly Record<PropertyKey, unknown>[]>(
   dicts: [...T],
-): Prettify<UnionToIntersection<T[number]>> {
+): abstracts.meta.Prettify<UnionToIntersection<T[number]>> {
   const result = {} as Record<PropertyKey, unknown>;
 
   for (const dict of dicts) {
@@ -34,5 +33,5 @@ export function merge<T extends readonly Record<PropertyKey, unknown>[]>(
     }
   }
 
-  return result as Prettify<UnionToIntersection<T[number]>>;
+  return result as abstracts.meta.Prettify<UnionToIntersection<T[number]>>;
 }

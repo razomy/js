@@ -12,7 +12,7 @@ import { iterate } from './iterate';
 import { map } from './map';
 import { mapToArray } from './map_to_array';
 import { merge } from './merge';
-import type { Prettify, UnionToIntersection } from './merge';
+import type { UnionToIntersection } from './merge';
 import { take } from './take';
 import type { SomeOf } from './take';
 import { toString_ } from './to_string';
@@ -38,7 +38,6 @@ export {
   toString_
 };
 export type {
-  Prettify,
   SomeOf,
   UnionToIntersection
 };

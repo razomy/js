@@ -28,9 +28,9 @@ export type {
 const abstracts = {
   boolDefault,
   createAt,
-  intDefault,
   deletedAt,
   id,
+  intDefault,
   onDeleteCascade,
   stringDefault,
   updateAt,

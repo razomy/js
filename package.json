@@ -43,6 +43,7 @@
     "./razomy/commits",
     "./razomy/components",
     "./razomy/compression",
+    "./razomy/context",
     "./razomy/coordinates",
     "./razomy/datetimes",
     "./razomy/db",
