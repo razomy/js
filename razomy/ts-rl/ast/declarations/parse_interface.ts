@@ -4,7 +4,8 @@ import * as tsRl from "@razomy/ts-rl";
 
 export function parseInterface(node: TsInterfaceDeclaration): abstracts.translators.InterfaceAst {
   return {
-    kind: 'InterfaceAst', syntaxLayer: 3,
+    kind: 'InterfaceAst',
+    syntaxLayer: 'statement',
     identifier: { name: node.getName() },
     modifiers: [],
     parameters: [],

@@ -3,9 +3,11 @@ import * as bindings from './bindings';
 import * as declarations from './declarations';
 import * as doc from './doc';
 import * as expressions from './expressions';
+import { parseNode } from './parse_node';
+import { parsePackage } from './parse_package';
 import * as shapes from './shapes';
 import * as statements from './statements';
-import { UnknownNodeException, parse } from './unknown_node_exception';
+import { UnknownNodeException } from './unknown_node_exception';
 
 // Named exports
 export {
@@ -14,7 +16,8 @@ export {
   declarations,
   doc,
   expressions,
-  parse,
+  parseNode,
+  parsePackage,
   shapes,
   statements
 };
@@ -25,10 +28,11 @@ const ast = {
   declarations,
   doc,
   expressions,
+  parseNode,
+  parsePackage,
   shapes,
   statements,
   UnknownNodeException,
-  parse,
 };
 
 export default ast;

@@ -5,7 +5,8 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseCondition(node: IfStatement): abstracts.translators.IfAst {
   const branches: abstracts.translators.IfBranchAstType[] = [];
   branches.push({
-    kind: 'ConditionBranchAst', syntaxLayer: 3,
+    kind: 'ConditionBranchAst',
+    syntaxLayer: 'statement',
     pattern: tsRl.ast.expressions.parse(node.getExpression()),
     value: tsRl.ast.statements.parse(node.getThenStatement()),
   } as abstracts.translators.ConditionBranchAst);
@@ -14,11 +15,9 @@ export function parseCondition(node: IfStatement): abstracts.translators.IfAst {
   if (elseNode) {
     branches.push({
       kind: 'ElseBranchAst',
-      syntaxLayer: 3,
+      syntaxLayer: 'statement',
       value: tsRl.ast.statements.parse(elseNode),
     } as abstracts.translators.ElseBranchAst);
   }
-  return { kind: 'IfAst', syntaxLayer: 3, branches };
+  return { kind: 'IfAst', syntaxLayer: 'statement', branches };
 }
-
-

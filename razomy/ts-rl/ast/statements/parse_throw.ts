@@ -5,7 +5,7 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseThrow(node: ThrowStatement): abstracts.translators.ThrowAst {
   return {
     kind: 'ThrowAst',
-    syntaxLayer: 3,
+    syntaxLayer: 'statement',
     value: tsRl.ast.expressions.parse(node.getExpression()!) as abstracts.translators.StateAstType,
   };
 }

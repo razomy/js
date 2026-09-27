@@ -148,7 +148,7 @@ describe('parse', () => {
     );
 
     // 3. Run your parser!
-    const modules = tsRl.ast.declarations.getPackage(project, '', false);
+    const modules = tsRl.ast.parsePackage(project, '');
 
     expect(modules).toEqual({} as any satisfies abstracts.translators.ModuleAst);
   });

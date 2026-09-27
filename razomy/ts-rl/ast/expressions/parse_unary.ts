@@ -14,7 +14,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
       case SyntaxKind.MinusMinusToken: operator = '--'; break;
     }
     return {
-      kind: 'UnaryAst', syntaxLayer: 2,
+      kind: 'UnaryAst', syntaxLayer: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
       value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
       isPrefix: true,
@@ -23,7 +23,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
   if (Node.isPostfixUnaryExpression(node)) {
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
     return {
-      kind: 'UnaryAst', syntaxLayer: 2,
+      kind: 'UnaryAst', syntaxLayer: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
       value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
       isPrefix: false,
@@ -32,7 +32,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
   if (Node.isPostfixUnaryExpression(node)) {
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
     return {
-      kind: 'UnaryAst', syntaxLayer: 2,
+      kind: 'UnaryAst', syntaxLayer: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
       value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
       isPrefix: false,
@@ -40,7 +40,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
   }
   if (Node.isTypeOfExpression(node) || Node.isDeleteExpression(node)) {
     return {
-      kind: 'UnaryAst', syntaxLayer: 2,
+      kind: 'UnaryAst', syntaxLayer: 'expression',
       operator: Node.isTypeOfExpression(node) ? '+' : '-',
       value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression()) as abstracts.translators.StateAstType,
       isPrefix: true,

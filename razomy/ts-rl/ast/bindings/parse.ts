@@ -31,10 +31,11 @@ export function parse(node: Node): abstracts.translators.AstType[] {
     return [
       {
         kind: 'ImportAst',
-        syntaxLayer: 3,
+        syntaxLayer: 'statement',
         identifier: { name },
         version: '',
         path: node.getModuleSpecifierValue(),
+        modifiers: []
       },
     ];
   }

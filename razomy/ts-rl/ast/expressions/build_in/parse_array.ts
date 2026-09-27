@@ -5,8 +5,8 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseArray(node: ArrayLiteralExpression): abstracts.translators.ArrayAst {
   return {
     kind: 'ArrayAst',
-    syntaxLayer: 2,
-    semanticLayer: 1,
+    syntaxLayer: 'expression',
+    semanticLayer: 'state',
     values: node.getElements().map(tsRl.ast.expressions.parse).filter(Boolean) as abstracts.translators.AstType[],
   };
 }

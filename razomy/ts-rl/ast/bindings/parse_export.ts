@@ -1,5 +1,5 @@
-import * as abstracts from "@razomy/abstracts";
-import * as tsRl from "@razomy/ts-rl";
+import * as abstracts from '@razomy/abstracts';
+import * as tsRl from '@razomy/ts-rl';
 
 export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
@@ -10,12 +10,20 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
     if (targetSourceFile.getBaseName().startsWith('index.')) {
       return [tsRl.ast.declarations.parseModule(targetSourceFile.getDirectory())];
     } else {
-      return [{
-        kind: 'ModuleAst', syntaxLayer: 3,
-        identifier: { name: namespaceExport.getName() },
-        block: { kind: 'BlockAst', syntaxLayer: 3, statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile) },
-        version: '', role: 'SourceFile', dependencies: [], runtime: { kind: 'ImportAst', syntaxLayer: 3, identifier: { name: '' }, path: '', version: '' }
-      }];
+      return [
+        {
+          kind: 'ModuleAst',
+          syntaxLayer: 'statement',
+          identifier: { name: namespaceExport.getName() },
+          block: {
+            kind: 'BlockAst',
+            syntaxLayer: 'statement',
+            statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile),
+          },
+          version: '',
+          role: 'SourceFile',
+        },
+      ];
     }
   }
   // 2. Обработка: export * from './module';
@@ -48,23 +56,15 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
 
             results.push({
               kind: 'ModuleAst',
-              syntaxLayer: 3,
+              syntaxLayer: 'statement',
               identifier: { name: moduleName },
               block: {
                 kind: 'BlockAst',
-                syntaxLayer: 3,
-                statements: tsRl.ast.declarations.parseModuleBody(originSourceFile)
+                syntaxLayer: 'statement',
+                statements: tsRl.ast.declarations.parseModuleBody(originSourceFile),
               },
               version: '',
               role: 'SourceFile',
-              dependencies: [],
-              runtime: {
-                kind: 'ImportAst',
-                syntaxLayer: 3,
-                identifier: { name: '' },
-                path: '',
-                version: ''
-              }
             });
           }
         }

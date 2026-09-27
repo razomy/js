@@ -1,5 +1,4 @@
 // Imports
-import { getPackage } from './get_package';
 import { getPublicOnlyMut } from './get_public_only_mut';
 import { isDeclarations } from './is_declarations';
 import { parseClass } from './parse_class';
@@ -11,7 +10,6 @@ import { parseModuleBody } from './parse_module_body';
 
 // Named exports
 export {
-  getPackage,
   getPublicOnlyMut,
   isDeclarations,
   parseClass,
@@ -24,7 +22,6 @@ export {
 
 // Default export
 const declarations = {
-  getPackage,
   getPublicOnlyMut,
   isDeclarations,
   parseClass,

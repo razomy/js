@@ -8,10 +8,8 @@ function getBase(node: abstracts.translators.AstType) {
   return {
     id: random.createUuid(),
     syntaxLayer: node.syntaxLayer,
-    semanticLayer: 'semanticLayer' in node ? node.semanticLayer : 1,
-    prev: null,
-    next: null,
-    parent: null,
+    semanticLayer: 'semanticLayer' in node ? node.semanticLayer : 'state',
+    layers: [],
   };
 }
 
@@ -88,14 +86,12 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         value: astToHirNode(node.value),
         modifiers: [],
         name: null,
-        description: null,
       };
 
     case 'PropertyAst':
       return {
         ...getBase(node),
         kind: 'BindingHir',
-        description: null,
         name: node.identifier.name,
         value: node.value ? astToHirNode(node.value) : null,
         modifiers: [],
@@ -274,7 +270,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'BindingHir',
-        description: null,
         name: node.identifier.name,
         modifiers: node.modifiers.map(astToHirNode),
         shape: node.shape ? (astToHirNode(node.shape) as abstracts.translators.ReferenceHir) : null,
@@ -291,9 +286,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstracts.translators.ReferenceHir) : null,
         parameters: node.parameters.map((p) => astToHirNode(p) as abstracts.translators.BindingHir),
         block: astToHirNode(node.block),
-        description: null,
-        title: null,
-        examples: null,
       };
 
     // --- STRUCTS ---
@@ -309,7 +301,7 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             value: 'module',
           },
         ],
-        properties: [...node.dependencies, ...node.block.statements].map(
+        properties: [...node.block.statements].map(
           astToHirNode,
         ) as abstracts.translators.BindingHir[],
       };
@@ -387,7 +379,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         modifiers: [],
         shape: null,
         name: node.identifier.name,
-        description: null,
         value: {
           ...getBase(node),
           kind: 'ReferenceHir',
@@ -405,129 +396,34 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       };
 
     // --- LAYERS & METADATA ---
+    case 'TagAst':
+      return {
+        ...getBase(node),
+        kind: 'BindingHir',
+        modifiers: [],
+        shape: null,
+        value: astToHirNode(node.value),
+        name: node.identifier.name,
+      };
+    case 'TextAst':
+      return {
+        ...getBase(node),
+        kind: 'LiteralHir',
+        value: node.value,
+      };
     case 'DocsAst':
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        syntaxLayer: 1,
-        statements: [
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            description: null,
-            shape: null,
-            value: { ...getBase(node), kind: 'LiteralHir', value: node.title },
-            name: 'title',
-          },
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.description,
-            },
-            description: null,
-            name: 'description',
-            modifiers: [],
-            shape: null,
-          },
-        ],
+        syntaxLayer: 'text',
+        statements: node.block.map(astToHirNode),
       };
     case 'CommentAst':
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        syntaxLayer: 1,
-        statements: [
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            description: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.description,
-            },
-            modifiers: [],
-            shape: null,
-            name: 'description',
-          },
-        ],
-      };
-    case 'FunctionDocsAst':
-      return {
-        ...getBase(node),
-        kind: 'BlockHir',
-        syntaxLayer: 1,
-        statements: [
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            shape: null,
-            description: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.title,
-            },
-            name: 'title',
-          },
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            shape: null,
-            description: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.description,
-            },
-            name: 'description',
-          },
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            description: null,
-            shape: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.memoryDataSizeComplexityFn,
-            },
-            name: 'memoryDataSizeComplexityFn',
-          },
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            description: null,
-            shape: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.timeDataSizeComplexityFn,
-            },
-            name: 'timeDataSizeComplexityFn',
-          },
-          {
-            ...getBase(node),
-            kind: 'BindingHir',
-            modifiers: [],
-            description: null,
-            shape: null,
-            value: {
-              ...getBase(node),
-              kind: 'LiteralHir',
-              value: node.examples,
-            },
-            name: 'examples',
-          },
-        ],
+        syntaxLayer: 'text',
+        statements: [astToHirNode(node.value)],
       };
     case 'QueryAst':
     case 'ConstraintAst':

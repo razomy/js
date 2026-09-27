@@ -5,7 +5,7 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseModuleBody(file: SourceFile | Block): abstracts.translators.AstType[] {
   const body: abstracts.translators.AstType[] = [];
   for (const statement of file.getStatements()) {
-    body.push(...tsRl.ast.parse(statement));
+    body.push(...tsRl.ast.parseNode(statement));
   }
   return body;
 }

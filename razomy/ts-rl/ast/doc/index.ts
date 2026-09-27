@@ -1,31 +1,22 @@
 // Imports
-import { parseComplexity } from './parse_complexity';
+import { parseCommentRange } from './parse_comment_range';
 import { parseExamples } from './parse_examples';
-import { parseFunctionDescription } from './parse_function_description';
-import { parseReturn } from './parse_return';
-import { parseTitle } from './parse_title';
-import { tryParseDescription } from './try_parse_description';
+import { parseJsDoc } from './parse_js_doc';
 import { tryParseJsDoc } from './try_parse_js_doc';
 
 // Named exports
 export {
-  parseComplexity,
+  parseCommentRange,
   parseExamples,
-  parseFunctionDescription,
-  parseReturn,
-  parseTitle,
-  tryParseDescription,
+  parseJsDoc,
   tryParseJsDoc
 };
 
 // Default export
 const doc = {
-  parseComplexity,
+  parseCommentRange,
   parseExamples,
-  parseFunctionDescription,
-  parseReturn,
-  parseTitle,
-  tryParseDescription,
+  parseJsDoc,
   tryParseJsDoc,
 };
 

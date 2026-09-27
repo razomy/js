@@ -1,11 +1,12 @@
 import * as abstracts from '@razomy/abstracts';
+import { ExportAssignment } from 'ts-morph';
 
-export function parseExportAssignment(node: any): abstracts.translators.AstType {
+export function parseExportAssignment(node: ExportAssignment): abstracts.translators.AstType {
   const expression = node.getExpression();
   return {
     kind: 'MemberAst',
-    syntaxLayer: 3,
-    object_: { kind: 'LiteralAst', value: expression, syntaxLayer: 3, semanticLayer: 1 },
-    property: { kind: 'LiteralAst', value: '', syntaxLayer: 3, semanticLayer: 1 },
+    syntaxLayer: 'statement',
+    object_: { kind: 'LiteralAst', value: expression, syntaxLayer: 'statement', semanticLayer: 'state' },
+    property: { kind: 'LiteralAst', value: '', syntaxLayer: 'statement', semanticLayer: 'state' },
   };
 }

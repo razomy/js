@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * HIR Ontology
@@ -14,12 +14,12 @@ import * as abstracts from "@razomy/abstracts";
  * 9. Layer: Meta, Docs, Annotations
  */
 
-
-export interface IHirNode extends abstracts.domains.IEntity, abstracts.graphs.HasOrder<HirType | null>, abstracts.graphs.HasParent<HirType | null> {
+export interface IHirNode extends abstracts.domains.IEntity {
   id: string;
   kind: string;
   syntaxLayer: abstracts.translators.SyntaxLayer;
   semanticLayer: abstracts.translators.SemanticLayer;
+  layers: abstracts.domains.IdRef<HirType>[]; // shape docs modifies meta ...
 }
 
 // region Data & Expressions
@@ -157,7 +157,6 @@ export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
   value: T | null; // Значение
-  description: abstracts.domains.IdRef<LiteralHir> | null;
 }
 
 /**
@@ -171,9 +170,6 @@ export interface FunctionHir extends IIdentityHir {
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
   block: abstracts.domains.IdRef<HirType> | null;
-  title: abstracts.domains.IdRef<LiteralHir> | null;
-  description: abstracts.domains.IdRef<LiteralHir> | null;
-  examples: abstracts.domains.IdRef<LiteralHir> | null;
 }
 
 /**

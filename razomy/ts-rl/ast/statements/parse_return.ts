@@ -4,7 +4,7 @@ import * as tsRl from "@razomy/ts-rl";
 
 export function parseReturn(node: ReturnStatement): abstracts.translators.ReturnAst {
   return {
-    kind: 'ReturnAst', syntaxLayer: 3,
+    kind: 'ReturnAst', syntaxLayer: 'statement',
     value: node.getExpression() ? tsRl.ast.expressions.parse(node.getExpression()!) as abstracts.translators.StateAstType : null,
   };
 }

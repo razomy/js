@@ -4,8 +4,8 @@ import * as random from "@razomy/random";
 function getBase() {
   return {
     id: random.createUuid(),
-    syntaxLayer: 3,
-    semanticLayer: 1,
+    syntaxLayer: 'statement',
+    semanticLayer: 'state',
     prev: null,
     next: null,
     parent: null,
@@ -29,7 +29,7 @@ export function createPackageFunction(
   return {
     ...getBase(),
     kind: 'FunctionHir',
-    syntaxLayer: 3,
+    syntaxLayer: 'statement',
     name: f.name || '',
     title: {...getBase(), kind: "LiteralHir", value: f.title},
     description: {...getBase(), kind: "LiteralHir", value: f.description},
@@ -44,8 +44,8 @@ export function createPackageFunction(
       ([k, v]) => ({
         ...getBase(),
         kind: 'BindingHir',
-        syntaxLayer: 3,
-        semanticLayer: 3,
+        syntaxLayer: 'statement',
+        semanticLayer: 'generic',
         modifiers: [],
         name: k,
         description: {...getBase(), kind: 'LiteralHir', value: v},
@@ -53,8 +53,8 @@ export function createPackageFunction(
         shape: {
           ...getBase(),
           kind: 'ReferenceHir',
-          syntaxLayer: 2,
-          semanticLayer: 2,
+          syntaxLayer: 'expression',
+          semanticLayer: 'shape',
           target: null,
           property: null,
           arguments_: [],
@@ -64,13 +64,13 @@ export function createPackageFunction(
         externalSource: null,
       } as abstracts.translators.BindingHir),
     ) as abstracts.translators.BindingHir[],
-    semanticLayer: 3,
+    semanticLayer: 'generic',
     block: null,
     returnShape: f.returnShape?.type
       ? ({
         ...getBase(),
         kind: 'ReferenceHir',
-        syntaxLayer: 2,
+        syntaxLayer: 'expression',
         property: null,
         arguments_: [],
         modifiers: [],

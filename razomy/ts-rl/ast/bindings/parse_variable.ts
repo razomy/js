@@ -11,10 +11,10 @@ export function parseVariable(node: TsVariableDeclaration): abstracts.translator
 
   return {
     kind: 'InstanceAst',
-    syntaxLayer: 3,
-    modifiers: isConst ? [{ kind: 'InstanceModifierAst', syntaxLayer: 1, operator: 'const', value: null }] : [],
+    syntaxLayer: 'statement',
+    modifiers: isConst ? [{ kind: 'InstanceModifierAst', syntaxLayer: 'text', operator: 'const', value: null }] : [],
     identifier: { name: node.getName() },
     shape: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!) : null,
-    value: node.getInitializer() ? tsRl.ast.expressions.parse(node.getInitializer()!) as abstracts.translators.StateAstType : { kind: 'LiteralAst', syntaxLayer: 2, semanticLayer: 1, value: undefined },
+    value: node.getInitializer() ? tsRl.ast.expressions.parse(node.getInitializer()!) as abstracts.translators.StateAstType : { kind: 'LiteralAst', syntaxLayer: 'expression', semanticLayer: 'state', value: undefined },
   };
 }
