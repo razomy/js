@@ -17,9 +17,8 @@ import * as abstracts from '@razomy/abstracts';
 export interface IHirNode extends abstracts.domains.IEntity {
   id: string;
   kind: string;
-  syntaxLayer: abstracts.translators.SyntaxLayer;
+  syntaxRole: abstracts.translators.SyntaxRole;
   semanticLayer: abstracts.translators.SemanticLayer;
-  layers: abstracts.domains.IdRef<HirType>[]; // shape docs modifies meta ...
 }
 
 // region Data & Expressions
@@ -157,6 +156,7 @@ export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
   value: T | null; // Значение
+  docs: abstracts.domains.IdRef<DocsHir> | null;
 }
 
 /**
@@ -170,6 +170,7 @@ export interface FunctionHir extends IIdentityHir {
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
   block: abstracts.domains.IdRef<HirType> | null;
+  docs: abstracts.domains.IdRef<DocsHir> | null;
 }
 
 /**
@@ -183,6 +184,7 @@ export interface FunctionHir extends IIdentityHir {
 export interface StructHir extends IIdentityHir {
   kind: 'StructHir';
   properties: abstracts.domains.IdRef<HirType>[]; // Поля, методы, элементы массива
+  docs: abstracts.domains.IdRef<DocsHir> | null;
 }
 
 // endregion Declarations & Entities
@@ -203,7 +205,12 @@ export interface ReferenceHir extends IHirNode {
   target: abstracts.domains.IdRef<HirType> | null; // Название переменной ИЛИ узел (например, результат функции)
   property: abstracts.domains.IdRef<HirType> | null; // Для obj.prop или arr[1]
   arguments_: abstracts.domains.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
-  modifiers: abstracts.domains.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
+}
+
+export interface DocsHir extends IHirNode {
+  title: string;
+  description: string;
+  examples: { code: string; result: string }[];
 }
 
 // endregion Access & Interactions

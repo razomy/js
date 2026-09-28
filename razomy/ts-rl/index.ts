@@ -1,7 +1,7 @@
 // Imports
 import * as ast from './ast';
 import * as hir from './hir';
-import * as sg from './sg';
+import * as sg from './st';
 
 // Named exports
 export {

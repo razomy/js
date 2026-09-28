@@ -13,11 +13,11 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
       return [
         {
           kind: 'ModuleAst',
-          syntaxLayer: 'statement',
+          syntaxRole: 'statement',
           identifier: { name: namespaceExport.getName() },
           block: {
             kind: 'BlockAst',
-            syntaxLayer: 'statement',
+            syntaxRole: 'statement',
             statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile),
           },
           version: '',
@@ -56,11 +56,11 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
 
             results.push({
               kind: 'ModuleAst',
-              syntaxLayer: 'statement',
+              syntaxRole: 'statement',
               identifier: { name: moduleName },
               block: {
                 kind: 'BlockAst',
-                syntaxLayer: 'statement',
+                syntaxRole: 'statement',
                 statements: tsRl.ast.declarations.parseModuleBody(originSourceFile),
               },
               version: '',

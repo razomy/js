@@ -9,19 +9,19 @@ export function parseMethod(node: MethodDeclaration) {
 
   const func: abstracts.translators.FunctionAst = {
     kind: 'FunctionAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     identifier: { name: funcName },
     modifiers: [
-      node.isAsync() ? { kind: 'FunctionModifierAst', syntaxLayer: 'text', operator: 'async', value: null } : null,
+      node.isAsync() ? { kind: 'FunctionModifierAst', syntaxRole: 'modifier', operator: 'async', value: null } : null,
       node.isGenerator()
-        ? { kind: 'FunctionModifierAst', syntaxLayer: 'text', operator: 'generator', value: null }
+        ? { kind: 'FunctionModifierAst', syntaxRole: 'modifier', operator: 'generator', value: null }
         : null,
     ].filter(Boolean) as abstracts.translators.FunctionModifierAst[],
     parameters: node.getParameters().map(tsRl.ast.bindings.parseParameter),
     returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!) : null,
     block: node.getBody()
       ? (tsRl.ast.statements.parse(node.getBody() as any) as any)
-      : { kind: 'BlockAst', syntaxLayer: 'statement', statements: [] },
+      : { kind: 'BlockAst', syntaxRole: 'statement', statements: [] },
   };
   return [docs, func].filter(Boolean);
 }

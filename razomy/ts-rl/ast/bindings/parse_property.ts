@@ -5,7 +5,7 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseProperty(node: PropertyDeclaration): abstracts.translators.PropertyAst {
   return {
     kind: 'PropertyAst',
-    syntaxLayer: 'expression',
+    syntaxRole: 'expression',
     semanticLayer: 'state',
     identifier: { name: node.getName() },
     shape: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!) : null,

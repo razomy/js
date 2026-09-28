@@ -6,7 +6,7 @@ export function parseCondition(node: IfStatement): abstracts.translators.IfAst {
   const branches: abstracts.translators.IfBranchAstType[] = [];
   branches.push({
     kind: 'ConditionBranchAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     pattern: tsRl.ast.expressions.parse(node.getExpression()),
     value: tsRl.ast.statements.parse(node.getThenStatement()),
   } as abstracts.translators.ConditionBranchAst);
@@ -15,9 +15,9 @@ export function parseCondition(node: IfStatement): abstracts.translators.IfAst {
   if (elseNode) {
     branches.push({
       kind: 'ElseBranchAst',
-      syntaxLayer: 'statement',
+      syntaxRole: 'statement',
       value: tsRl.ast.statements.parse(elseNode),
     } as abstracts.translators.ElseBranchAst);
   }
-  return { kind: 'IfAst', syntaxLayer: 'statement', branches };
+  return { kind: 'IfAst', syntaxRole: 'statement', branches };
 }

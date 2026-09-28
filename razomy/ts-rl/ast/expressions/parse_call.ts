@@ -7,7 +7,7 @@ export function parseCall(node: CallExpression): abstracts.translators.CallAst {
   const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
   
   return {
-    kind: 'CallAst', syntaxLayer: 'expression',
+    kind: 'CallAst', syntaxRole: 'expression',
     identifier: identifierName ? { name: identifierName } : null,
     arguments_: node.getArguments().map(arg => tsRl.ast.expressions.parse(arg as any)!),
   };

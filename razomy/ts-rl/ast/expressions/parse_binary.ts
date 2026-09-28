@@ -5,7 +5,7 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseBinary(node: BinaryExpression): abstracts.translators.BinaryAst {
   return {
     kind: 'BinaryAst',
-    syntaxLayer: 'expression',
+    syntaxRole: 'expression',
     operator: node.getOperatorToken().getText() as abstracts.translators.BinaryAst['operator'],
     left: tsRl.ast.expressions.parse(node.getLeft())!,
     right: tsRl.ast.expressions.parse(node.getRight())!,

@@ -5,7 +5,7 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseAlias(node: TypeAliasDeclaration): abstracts.translators.AliasAst {
   return {
     kind: 'AliasAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     identifier: { name: node.getName() },
     value: tsRl.ast.shapes.parse(node.getTypeNode()!) as abstracts.translators.StateAstType,
     modifiers: []

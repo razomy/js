@@ -18,10 +18,10 @@ export function parsePackage(project: Project, dirPath: string): abstracts.trans
     ([k, v]) =>
       ({
         kind: 'ImportAst',
-        syntaxLayer: 'statement',
+        syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAst', syntaxLayer: 'text', value: null, operator: 'dependency' }],
+        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
         identifier: { name: k },
       } satisfies abstracts.translators.ImportAst),
   );
@@ -32,10 +32,10 @@ export function parsePackage(project: Project, dirPath: string): abstracts.trans
     ([k, v]) =>
       ({
         kind: 'ImportAst',
-        syntaxLayer: 'statement',
+        syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAst', syntaxLayer: 'text', value: null, operator: 'peerDependency' }],
+        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
         identifier: { name: k },
       } satisfies abstracts.translators.ImportAst),
   );
@@ -43,11 +43,11 @@ export function parsePackage(project: Project, dirPath: string): abstracts.trans
   const runtimes: abstracts.translators.ImportAst[] = [
     {
       kind: 'ImportAst',
-      syntaxLayer: 'statement',
+      syntaxRole: 'statement',
       path: '',
       version: packageJson.engines?.['node'] || '',
       identifier: { name: 'node' },
-      modifiers: [{ kind: 'DependencyModifierAst', syntaxLayer: 'text', value: null, operator: 'runtime' }],
+      modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
     },
   ];
 
@@ -58,13 +58,13 @@ export function parsePackage(project: Project, dirPath: string): abstracts.trans
   // Создаем корневой модуль, представляющий пакет
   const packageDeclaration: abstracts.translators.ModuleAst = {
     kind: 'ModuleAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     identifier: { name: packageJson.name || 'UnknownPackage' },
     role: 'SourceFile',
     version: packageJson.version || '0.0.0',
     block: {
       kind: 'BlockAst',
-      syntaxLayer: 'statement',
+      syntaxRole: 'statement',
       statements: [...runtimes, ...dependencies, ...peerDependencies, ...statements],
     },
   };

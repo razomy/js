@@ -5,17 +5,17 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseCondition(node: ConditionalExpression): abstracts.translators.TernaryAst {
   return {
     kind: 'TernaryAst',
-    syntaxLayer: 'expression',
+    syntaxRole: 'expression',
     branches: [
       {
         kind: 'ConditionBranchAst',
-        syntaxLayer: 'expression',
+        syntaxRole: 'expression',
         pattern: tsRl.ast.expressions.parse(node.getCondition())!,
         value: tsRl.ast.expressions.parse(node.getWhenTrue())!,
       } as abstracts.translators.ConditionBranchAst,
       {
         kind: 'ElseBranchAst',
-        syntaxLayer: 'expression',
+        syntaxRole: 'expression',
         value: tsRl.ast.expressions.parse(node.getWhenFalse())!,
       } as abstracts.translators.ElseBranchAst,
     ],

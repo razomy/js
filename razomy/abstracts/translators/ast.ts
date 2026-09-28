@@ -36,14 +36,15 @@ import * as abstracts from '@razomy/abstracts';
 
 export type AstKey = string;
 
-// Syntactic role: execution & parsing intent
-export type SyntaxLayer =
+// Syntactic parallel: role of text
+export type SyntaxRole =
   | 'text' // Docs, comments, markdown
   | 'expression' // Evaluates to a value (literals, calls)
   | 'statement' // Control flow & side effects (if, loops)
-  | 'declaration'; // Bindings (vars, functions, classes)
+  | 'declaration' // Bindings (vars, functions, classes)
+  | 'modifier'; // options like public
 
-// Semantic depth: level of abstraction & typing
+// Semantic depth: level of abstraction
 export type SemanticLayer =
   | 'state' // Runtime values, memory, state
   | 'shape' // Types, interfaces, schemas
@@ -59,7 +60,7 @@ export interface IAstNode extends abstracts.domains.IEntity {
    * @abstract
    */
   kind: AstKey;
-  syntaxLayer: SyntaxLayer;
+  syntaxRole: SyntaxRole;
 }
 
 /**
@@ -774,7 +775,6 @@ export interface AliasAst extends IBindingAst {
   kind: 'AliasAst';
   identifier: Identifier;
   value: StateAstType;
-  modifiers: ModifierAstTypes[];
 }
 
 /**

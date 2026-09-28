@@ -5,7 +5,7 @@ export function parseBigInt(node: BigIntLiteral): abstracts.translators.LiteralA
   const text = node.getLiteralText();
   return {
     kind: 'LiteralAst',
-    syntaxLayer: 'expression',
+    syntaxRole: 'expression',
     semanticLayer: 'state',
     value: BigInt(text.endsWith('n') ? text.slice(0, -1) : text),
   };

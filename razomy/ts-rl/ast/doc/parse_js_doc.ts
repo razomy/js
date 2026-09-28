@@ -24,11 +24,11 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
           identifier: {
             name: 'title',
           },
-          syntaxLayer: 'text',
+          syntaxRole: 'text',
           value: {
             kind: 'LiteralAst',
             value: child.getCommentText()?.trim() ?? '',
-            syntaxLayer: 'text',
+            syntaxRole: 'text',
             semanticLayer: 'state',
           },
         });
@@ -40,21 +40,21 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
           identifier: {
             name: child.getTagName(),
           },
-          syntaxLayer: 'text',
+          syntaxRole: 'text',
           value: {
             kind: 'BlockAst',
-            syntaxLayer: 'text',
+            syntaxRole: 'text',
             statements: [
               {
                 kind: 'LiteralAst',
                 value: example.code,
-                syntaxLayer: 'text',
+                syntaxRole: 'text',
                 semanticLayer: 'state',
               },
               {
                 kind: 'LiteralAst',
                 value: example.code,
-                syntaxLayer: 'text',
+                syntaxRole: 'text',
                 semanticLayer: 'state',
               },
             ],
@@ -66,11 +66,11 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
           identifier: {
             name: child.getTagName(),
           },
-          syntaxLayer: 'text',
+          syntaxRole: 'text',
           value: {
             kind: 'LiteralAst',
             value: child.getCommentText()?.trim() ?? '',
-            syntaxLayer: 'text',
+            syntaxRole: 'text',
             semanticLayer: 'state',
           },
         });
@@ -85,10 +85,10 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
           value: {
             kind: 'LiteralAst',
             value,
-            syntaxLayer: 'text',
+            syntaxRole: 'text',
             semanticLayer: 'state',
           },
-          syntaxLayer: 'text',
+          syntaxRole: 'text',
         });
       }
     }
@@ -97,6 +97,6 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
   return {
     kind: 'DocsAst',
     block,
-    syntaxLayer: 'text',
+    syntaxRole: 'text',
   };
 }

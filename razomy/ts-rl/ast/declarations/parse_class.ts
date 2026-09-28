@@ -5,7 +5,7 @@ import * as tsRl from "@razomy/ts-rl";
 export function parseClass(node: ClassDeclaration): abstracts.translators.ClassAst {
   return {
     kind: 'ClassAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     identifier: {name: node.getName() || 'Anonymous'},
     modifiers: [],
     parameters: [],

@@ -8,11 +8,11 @@ export function parseModule(node: Directory): abstracts.translators.ModuleAst {
 
   return {
     kind: 'ModuleAst',
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     identifier: { name: node.getBaseName() || '' },
     block: {
       kind: 'BlockAst',
-      syntaxLayer: 'statement',
+      syntaxRole: 'statement',
       statements: [...tsRl.ast.declarations.parseModuleBody(indexFile)],
     },
     version: null,

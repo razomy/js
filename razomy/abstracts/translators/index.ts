@@ -1,9 +1,9 @@
 // Imports
-import type { AccessAstType, AliasAst, ArgumentMemberAst, ArrayAst, AssignAst, AstKey, AstType, AwaitAst, BinaryAst, BindingAstType, BlockAst, BreakAst, CallAst, CatchAst, ClassAst, CommentAst, ConditionBranchAst, ConstraintAst, ContinueAst, DeclarationAstType, DeclarationOperatorAstType, DecoratorAst, DefaultBranchAst, DefaultCatchAst, DeleteAst, DependencyModifierAst, DoWhileAst, DocsAst, ElseBranchAst, EnumAst, ExportModifierAst, FinallyAst, FlowAstType, FlowOperatorAstType, ForIAst, ForItAst, ForOfAst, FunctionAst, FunctionModifierAst, IAccessAst, IAstNode, IBindingAst, IDeclarationAst, IDeclarationOperatorAst, IFlowAst, IFlowOperatorAst, IIfBranchAst, ILayerAst, IModifierAst, IOperationAst, IPanicAst, IStateAst, ISwitchBranchAst, Identifier, IfAst, IfBranchAstType, ImportAst, InheritModifierAst, InstanceAst, InstanceModifierAst, InterfaceAst, LambdaAst, LayerAstTypes, LayerOperatorAstTypes, LiteralAst, LoopAst, MacroCallAst, MappedAst, MatchAst, MatchBranchAst, MemberAst, ModifierAstTypes, ModuleAst, ObjectAst, OntologyAstType, OperationAstType, OverrideModifierAst, PanicAstType, ParameterAst, ParameterModifierAst, PropertyAst, QueryAst, ReferenceAst, ReturnAst, SemanticLayer, ShapingAst, SpreadAst, StateAstType, StructAst, StyleBlockAst, SwitchAst, SwitchBranchAstType, SyntaxLayer, TagAst, TemplateAst, TernaryAst, TextAst, ThrowAst, TryAst, TupleAst, UnaryAst, WhileDoAst, YieldAst } from './ast';
+import type { AccessAstType, AliasAst, ArgumentMemberAst, ArrayAst, AssignAst, AstKey, AstType, AwaitAst, BinaryAst, BindingAstType, BlockAst, BreakAst, CallAst, CatchAst, ClassAst, CommentAst, ConditionBranchAst, ConstraintAst, ContinueAst, DeclarationAstType, DeclarationOperatorAstType, DecoratorAst, DefaultBranchAst, DefaultCatchAst, DeleteAst, DependencyModifierAst, DoWhileAst, DocsAst, ElseBranchAst, EnumAst, ExportModifierAst, FinallyAst, FlowAstType, FlowOperatorAstType, ForIAst, ForItAst, ForOfAst, FunctionAst, FunctionModifierAst, IAccessAst, IAstNode, IBindingAst, IDeclarationAst, IDeclarationOperatorAst, IFlowAst, IFlowOperatorAst, IIfBranchAst, ILayerAst, IModifierAst, IOperationAst, IPanicAst, IStateAst, ISwitchBranchAst, Identifier, IfAst, IfBranchAstType, ImportAst, InheritModifierAst, InstanceAst, InstanceModifierAst, InterfaceAst, LambdaAst, LayerAstTypes, LayerOperatorAstTypes, LiteralAst, LoopAst, MacroCallAst, MappedAst, MatchAst, MatchBranchAst, MemberAst, ModifierAstTypes, ModuleAst, ObjectAst, OntologyAstType, OperationAstType, OverrideModifierAst, PanicAstType, ParameterAst, ParameterModifierAst, PropertyAst, QueryAst, ReferenceAst, ReturnAst, SemanticLayer, ShapingAst, SpreadAst, StateAstType, StructAst, StyleBlockAst, SwitchAst, SwitchBranchAstType, SyntaxRole, TagAst, TemplateAst, TernaryAst, TextAst, ThrowAst, TryAst, TupleAst, UnaryAst, WhileDoAst, YieldAst } from './ast';
 import type { CstNode, GroupCst, TokenCst } from './cst';
 import type { BindingHir, BlockHir, BranchHir, FunctionHir, GoHir, HirType, IHirNode, IIdentityHir, LiteralHir, LoopHir, MatchHir, OperatorHir, ReferenceHir, StructHir } from './hir';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, Span, Token, TokenNode } from './lst';
-import type { ISemanticNode } from './st';
+import type { ISemanticNode, FunctionSt } from './st';
 import type { TypeChecker } from './validator';
 
 // Named exports
@@ -75,6 +75,7 @@ export type {
   IOperationAst,
   IPanicAst,
   ISemanticNode,
+  FunctionSt,
   IStateAst,
   ISwitchBranchAst,
   Identifier,
@@ -123,7 +124,7 @@ export type {
   StyleBlockAst,
   SwitchAst,
   SwitchBranchAstType,
-  SyntaxLayer,
+  SyntaxRole,
   TagAst,
   TemplateAst,
   TernaryAst,

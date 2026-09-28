@@ -75,7 +75,7 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
       //     const pModifiers = (p.modifiers || []).map((m) => m.type);
       //     const isRest = pModifiers.includes('rest') ? '...' : '';
       //     const isOptional = pModifiers.includes('optional') ? '?' : '';
-      //     const pName = (p).syntaxLayer?.name || (p).name || 'arg';
+      //     const pName = (p).syntaxRole?.name || (p).name || 'arg';
       //     const typeStr = hirToString(p.shape);
       //     return `${isRest}${pName}${isOptional}: ${typeStr}`;
       //   })

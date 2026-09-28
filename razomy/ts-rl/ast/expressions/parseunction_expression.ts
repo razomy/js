@@ -5,9 +5,9 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseunctionExpression(node: FunctionExpression): abstracts.translators.LambdaAst {
   return {
     kind: 'LambdaAst',
-    syntaxLayer: 'expression',
+    syntaxRole: 'expression',
     modifiers: node.isAsync()
-      ? [{ kind: 'FunctionModifierAst', syntaxLayer: 'text', operator: 'async', value: null }]
+      ? [{ kind: 'FunctionModifierAst', syntaxRole: 'modifier', operator: 'async', value: null }]
       : [],
     parameters: node.getParameters().map(tsRl.ast.bindings.parseParameter),
     returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!) : null,

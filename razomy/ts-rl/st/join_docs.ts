@@ -1,11 +1,11 @@
 import * as tsRl from "@razomy/ts-rl";
 import * as abstracts from "@razomy/abstracts";
 
-export function joinDocs(ctx: tsRl.hir.HirCtx, node: abstracts.translators.HirType): void {
+export function joinDocs(ctx: tsRl.sg.HirCtx, node: abstracts.translators.HirType): void {
   // 1. Бизнес-логика текущей фазы
   if (node.kind === 'FunctionHir') {
     const docs = node.prev
-    if (docs && docs.kind === 'BlockHir' && docs.syntaxLayer === 1) {
+    if (docs && docs.kind === 'BlockHir' && docs.syntaxRole === 1) {
       const statements = (docs.statements || []) as abstracts.translators.BindingHir<abstracts.translators.LiteralHir>[];
       node.title = statements.find(i => i.name === 'title')?.value || null;
       node.description = statements.find(i => i.name === 'description')?.value || null;

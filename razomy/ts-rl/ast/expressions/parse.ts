@@ -15,12 +15,12 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isRegularExpressionLiteral(node)) return tsRl.ast.expressions.buildIn.parseRegExp(node);
   if (Node.isArrayLiteralExpression(node)) return tsRl.ast.expressions.buildIn.parseArray(node);
   if (Node.isObjectLiteralExpression(node)) {
-    return { kind: 'ObjectAst', syntaxLayer: 'expression', semanticLayer: 'state', properties: [] }; // Expand as needed
+    return { kind: 'ObjectAst', syntaxRole: 'expression', semanticLayer: 'state', properties: [] }; // Expand as needed
   }
   if (Node.isIdentifier(node)) {
     return {
       kind: 'LiteralAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       semanticLayer: 'shape',
       value: node.getText(),
     };
@@ -28,7 +28,7 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isBinaryExpression(node)) {
     return {
       kind: 'BinaryAst',
-      syntaxLayer: 'statement',
+      syntaxRole: 'statement',
       operator: node.getOperatorToken() as any,
       left: tsRl.ast.expressions.parse(node.getLeft()),
       right: tsRl.ast.expressions.parse(node.getRight()),
@@ -54,7 +54,7 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isAsExpression(node)) {
     return {
       kind: 'ShapingAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       semanticLayer: 'state',
       operator: 'as',
       value: parse(node.getExpression()) as abstracts.translators.StateAstType,
@@ -63,14 +63,14 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isSpreadElement(node)) {
     return {
       kind: 'SpreadAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       value: parse(node.getExpression()) as abstracts.translators.StateAstType,
     };
   }
   if (Node.isAwaitExpression(node)) {
     return {
       kind: 'AwaitAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       value: parse(node.getExpression()) as abstracts.translators.StateAstType,
     };
   }
@@ -80,7 +80,7 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isTemplateExpression(node)) {
     return {
       kind: 'TemplateAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       semanticLayer: 'state',
       values: node.getTemplateSpans().map((s) => parse(s.getExpression())),
     } as abstracts.translators.TemplateAst;
@@ -88,7 +88,7 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isThisExpression(node)) {
     return {
       kind: 'LiteralAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       semanticLayer: 'state',
       value: node.getText(),
     };
@@ -96,10 +96,10 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isYieldExpression(node)) {
     return {
       kind: 'YieldAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       value: {
         kind: 'LiteralAst',
-        syntaxLayer: 'expression',
+        syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),
       }
@@ -108,10 +108,10 @@ export function parse(node: Node): abstracts.translators.AstType {
   if (Node.isSatisfiesExpression(node)) {
     return {
       kind: 'YieldAst',
-      syntaxLayer: 'expression',
+      syntaxRole: 'expression',
       value: {
         kind: 'LiteralAst',
-        syntaxLayer: 'expression',
+        syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),
       }

@@ -115,7 +115,7 @@ export function getTypeByHirNode(schema: Schema): FormSupportedKind {
       return binding.shape ? getTypeByHirNode(binding.shape as Schema) : 'String';
     case 'ReferenceHir':
       const ref = schema as ReferenceHir;
-      const refName = (ref as any).syntaxLayer?.name || (ref as any).name;
+      const refName = (ref as any).syntaxRole?.name || (ref as any).name;
       switch (refName) {
         case 'Object': return 'Object';
         case 'String': return 'String';
@@ -300,8 +300,8 @@ export function getNameFromHir(node: any): string {
   if (!node || typeof node !== 'object') return '';
 
   // 1. Пытаемся взять имя из синтаксического слоя
-  if (node.syntaxLayer?.name) return node.syntaxLayer.name;
-  if (node.syntaxLayer?.identifier?.name) return node.syntaxLayer.identifier.name;
+  if (node.syntaxRole?.name) return node.syntaxRole.name;
+  if (node.syntaxRole?.identifier?.name) return node.syntaxRole.identifier.name;
 
   // 2. Фолбэк для прямой совместимости или узлов, у которых поле name лежит на верхнем уровне
   return node.name || '';
@@ -312,7 +312,7 @@ export function getDescriptionFromHir(node: any): string {
 
   // Описание может находиться в слое документации/метаданных
   if (node.layer?.description) return node.layer.description;
-  if (node.syntaxLayer?.description) return node.syntaxLayer.description;
+  if (node.syntaxRole?.description) return node.syntaxRole.description;
   if (node.semanticLayer?.description) return node.semanticLayer.description;
 
   // Фолбэк для легаси/вспомогательных узлов

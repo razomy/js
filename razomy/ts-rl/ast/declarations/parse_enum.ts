@@ -4,14 +4,14 @@ import * as tsRl from "@razomy/ts-rl";
 
 export function parseEnum(node: TsEnumDeclaration): abstracts.translators.EnumAst {
   return {
-    kind: 'EnumAst', syntaxLayer: 'statement',
+    kind: 'EnumAst', syntaxRole: 'statement',
     identifier: { name: node.getName() },
     modifiers: [],
     parameters: [],
     properties: node.getMembers().map(m => ({
-      kind: 'PropertyAst', syntaxLayer: 'expression', semanticLayer: 'state',
+      kind: 'PropertyAst', syntaxRole: 'expression', semanticLayer: 'state',
       identifier: { name: m.getName() },
-      value: m.getInitializer() ? tsRl.ast.expressions.parse(m.getInitializer()!) : { kind: 'LiteralAst', syntaxLayer: 'expression', semanticLayer: 'state', value: m.getValue() }
+      value: m.getInitializer() ? tsRl.ast.expressions.parse(m.getInitializer()!) : { kind: 'LiteralAst', syntaxRole: 'expression', semanticLayer: 'state', value: m.getValue() }
     } as abstracts.translators.PropertyAst))
   };
 }

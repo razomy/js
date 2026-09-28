@@ -31,7 +31,7 @@ export function parse(node: Node): abstracts.translators.AstType[] {
     return [
       {
         kind: 'ImportAst',
-        syntaxLayer: 'statement',
+        syntaxRole: 'statement',
         identifier: { name },
         version: '',
         path: node.getModuleSpecifierValue(),

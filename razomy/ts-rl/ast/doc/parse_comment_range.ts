@@ -15,11 +15,11 @@ export function parseCommentRange(comment: CommentRange): abstracts.translators.
 
   return {
     kind: 'CommentAst',
-    syntaxLayer: 'text',
+    syntaxRole: 'text',
     value: {
       kind: 'LiteralAst',
       value: cleanText,
-      syntaxLayer: 'text',
+      syntaxRole: 'text',
       semanticLayer: 'state',
     },
   };

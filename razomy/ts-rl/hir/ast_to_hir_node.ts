@@ -7,10 +7,16 @@ import * as random from '@razomy/random';
 function getBase(node: abstracts.translators.AstType) {
   return {
     id: random.createUuid(),
-    syntaxLayer: node.syntaxLayer,
+    syntaxRole: node.syntaxRole,
     semanticLayer: 'semanticLayer' in node ? node.semanticLayer : 'state',
-    layers: [],
-  };
+    roles: {
+      modifier: [],
+      text: [],
+      expression: [],
+      statement: [],
+      declaration: []
+    },
+  } satisfies Partial<abstracts.translators.HirType>;
 }
 
 export function astToHirNode(node: abstracts.translators.AstType): abstracts.translators.HirType {
@@ -72,7 +78,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
             target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
             property: null,
             arguments_: [],
-            modifiers: [],
           },
           astToHirNode(node.value),
         ],
@@ -247,7 +252,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
               ...getBase(node),
               kind: 'ReferenceHir',
               target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
-              modifiers: [],
               arguments_: [],
               property: null,
             }
@@ -337,11 +341,9 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ...getBase(node),
         kind: 'ReferenceHir',
         target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
-        modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
         arguments_: [],
         property: null,
       };
-
     case 'MemberAst':
       return {
         ...getBase(node),
@@ -349,7 +351,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: astToHirNode(node.object_),
         property: astToHirNode(node.property),
         arguments_: [],
-        modifiers: [],
       };
     case 'ArgumentMemberAst':
       return {
@@ -358,7 +359,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: astToHirNode(node.argument),
         property: astToHirNode(node.property),
         arguments_: [],
-        modifiers: [],
       };
 
     case 'CallAst':
@@ -369,7 +369,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         target: node.identifier ? { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name } : null,
         arguments_: node.arguments_.map(astToHirNode),
         property: null,
-        modifiers: [],
       };
 
     case 'ImportAst':
@@ -383,7 +382,6 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
           ...getBase(node),
           kind: 'ReferenceHir',
           target: { ...getBase(node), kind: 'LiteralHir', value: 'import' },
-          modifiers: [],
           arguments_: [
             {
               ...getBase(node),
@@ -415,14 +413,14 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        syntaxLayer: 'text',
+        syntaxRole: 'text',
         statements: node.block.map(astToHirNode),
       };
     case 'CommentAst':
       return {
         ...getBase(node),
         kind: 'BlockHir',
-        syntaxLayer: 'text',
+        syntaxRole: 'text',
         statements: [astToHirNode(node.value)],
       };
     case 'QueryAst':

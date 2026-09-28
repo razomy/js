@@ -5,8 +5,8 @@ export function parseExportAssignment(node: ExportAssignment): abstracts.transla
   const expression = node.getExpression();
   return {
     kind: 'MemberAst',
-    syntaxLayer: 'statement',
-    object_: { kind: 'LiteralAst', value: expression, syntaxLayer: 'statement', semanticLayer: 'state' },
-    property: { kind: 'LiteralAst', value: '', syntaxLayer: 'statement', semanticLayer: 'state' },
+    syntaxRole: 'statement',
+    object_: { kind: 'LiteralAst', value: expression, syntaxRole: 'statement', semanticLayer: 'state' },
+    property: { kind: 'LiteralAst', value: '', syntaxRole: 'statement', semanticLayer: 'state' },
   };
 }

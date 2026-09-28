@@ -24,7 +24,7 @@ export function parseSwitch(node: SwitchStatement): abstracts.translators.Switch
     if (Node.isCaseClause(clause)) {
       branches.push({
         kind: 'MatchBranchAst',
-        syntaxLayer: 'statement',
+        syntaxRole: 'statement',
         // pattern — это условие (значение после слова case)
         pattern: tsRl.ast.expressions.parse(clause.getExpression()),
         // value — это список стейтментов на выполнение
@@ -37,7 +37,7 @@ export function parseSwitch(node: SwitchStatement): abstracts.translators.Switch
     } else if (Node.isDefaultClause(clause)) {
       branches.push({
         kind: 'DefaultBranchAst',
-        syntaxLayer: 'statement',
+        syntaxRole: 'statement',
         // у default нет pattern, только value
         value: {
           kind: 'BlockAst',
@@ -50,7 +50,7 @@ export function parseSwitch(node: SwitchStatement): abstracts.translators.Switch
   return {
     kind: 'SwitchAst',
     target: targetExpression,
-    syntaxLayer: 'statement',
+    syntaxRole: 'statement',
     branches,
   };
 }
