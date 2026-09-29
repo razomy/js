@@ -156,7 +156,9 @@ export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>
   kind: 'BindingHir';
   shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
   value: T | null; // Значение
-  docs: abstracts.domains.IdRef<DocsHir> | null;
+  doc: {
+    description: string;
+  };
 }
 
 /**
@@ -170,7 +172,12 @@ export interface FunctionHir extends IIdentityHir {
   parameters: abstracts.domains.IdRef<BindingHir>[];
   returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
   block: abstracts.domains.IdRef<HirType> | null;
-  docs: abstracts.domains.IdRef<DocsHir> | null;
+  doc: {
+    title: string | null;
+    description: string | null;
+    returnDescription: string | null;
+    examples: { code: string; result: string }[];
+  };
 }
 
 /**
@@ -184,7 +191,9 @@ export interface FunctionHir extends IIdentityHir {
 export interface StructHir extends IIdentityHir {
   kind: 'StructHir';
   properties: abstracts.domains.IdRef<HirType>[]; // Поля, методы, элементы массива
-  docs: abstracts.domains.IdRef<DocsHir> | null;
+  doc: {
+    description: string;
+  };
 }
 
 // endregion Declarations & Entities
@@ -205,12 +214,6 @@ export interface ReferenceHir extends IHirNode {
   target: abstracts.domains.IdRef<HirType> | null; // Название переменной ИЛИ узел (например, результат функции)
   property: abstracts.domains.IdRef<HirType> | null; // Для obj.prop или arr[1]
   arguments_: abstracts.domains.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
-}
-
-export interface DocsHir extends IHirNode {
-  title: string;
-  description: string;
-  examples: { code: string; result: string }[];
 }
 
 // endregion Access & Interactions

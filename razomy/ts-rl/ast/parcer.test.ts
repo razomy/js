@@ -1,12 +1,12 @@
-import {InMemoryFileSystemHost, Project} from 'ts-morph';
+import { InMemoryFileSystemHost, Project } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
-import * as tsRl from "@razomy/ts-rl";
+import * as tsRl from '@razomy/ts-rl';
 
 describe('parse', () => {
   it('parse', () => {
     // 1. Initialize ts-morph project
     const fileSystem = new InMemoryFileSystemHost();
-    const project = new Project({fileSystem});
+    const project = new Project({ fileSystem });
     project.createSourceFile(
       'package.json',
       `{
@@ -139,7 +139,7 @@ describe('parse', () => {
             let y = count;
         } while (count < 5);
     }
-`
+`,
     );
 
     project.createSourceFile(
@@ -148,7 +148,10 @@ describe('parse', () => {
     );
 
     // 3. Run your parser!
-    const modules = tsRl.ast.parsePackage(project, '');
+    const modules = tsRl.ast.parsePackage(project, '', {
+      leave: (a) => a,
+      enter: (a) => a,
+    });
 
     expect(modules).toEqual({} as any satisfies abstracts.translators.ModuleAst);
   });

@@ -84,10 +84,10 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
       // const returnStr = hirToString(node.returnShape);
       // const declaration = `\`${isAsync}${s.path.join('.')}${shapesStr}(${paramsStr}): ${returnStr}\``;
 
-      const title = node.title?.value;
-      const description = node.description?.value;
+      const title = node.doc.title;
+      const description = node.doc.description;
 
-      const rawExamples = node?.examples?.value || [] as any[];
+      const rawExamples = node.doc?.examples || [] as any[];
       const examples = rawExamples
         .map((e: any) => {
           const comment = e.expected ? ` // ${e.expected}` : '';

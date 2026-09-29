@@ -6,7 +6,7 @@ import * as tsRl from "@razomy/ts-rl";
 /**
  * Парсит JSDoc узел ts-morph в DocsAst
  */
-export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
+export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.DocsAst {
   const block: (abstracts.translators.TextAst | abstracts.translators.TagAst)[] = [];
 
   // Дочерние узлы JSDoc в AST TypeScript
@@ -33,7 +33,7 @@ export function parseJsDoc(jsDoc: JSDoc): abstracts.translators.DocsAst {
           },
         });
       } else if (name === 'example') {
-        const example = tsRl.ast.doc.parseExamples(child.getCommentText()?.trim()!);
+        const example = tsRl.ast.doc.parseExamples(child.getCommentText()?.trim()!, ctx);
 
         block.push({
           kind: 'TagAst',

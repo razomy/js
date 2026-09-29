@@ -1,17 +1,39 @@
-import { Project } from 'ts-morph';
+import type { Project } from 'ts-morph';
 import * as path from 'path';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parsePackage(project: Project, dirPath: string): abstracts.translators.ModuleAst {
+export function parsePackage(
+  project: Project,
+  dirPath: string,
+  ctx: tsRl.ast.HasEnterLeaveProduce,
+): abstracts.translators.ModuleAst | null {
   const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
   if (!packageJsonSource) {
-    throw new Error('No package.json found at ' + dirPath);
+    return null;
   }
 
   const packageJson = JSON.parse(packageJsonSource.getText());
+  const indexFile = project.getDirectory(dirPath)?.getSourceFile((f) => f.getBaseName().startsWith('index.'));
+  const origin = indexFile || packageJsonSource;
 
-  // Парсим зависимости в новый ImportAst
+  // 1. Создаем AST-каркас модуля
+  const moduleAst: abstracts.translators.ModuleAst = {
+    kind: 'ModuleAst',
+    syntaxRole: 'statement',
+    identifier: { name: packageJson.name || 'UnknownPackage' },
+    role: 'SourceFile',
+    version: packageJson.version || '0.0.0',
+    block: null as any, // Заполняется после подтверждения вхождения через ctx.enter
+  };
+
+  // 2. Входим в контекст обхода
+  const isAccepted = ctx.enter(moduleAst, origin);
+  if (!isAccepted) {
+    return null;
+  }
+
+  // 3. Парсим зависимости (dependencies, peerDependencies, runtimes)
   const dependencies: abstracts.translators.ImportAst[] = Object.entries({
     ...(packageJson.dependencies || {}),
   }).map(
@@ -51,23 +73,16 @@ export function parsePackage(project: Project, dirPath: string): abstracts.trans
     },
   ];
 
-  // Ищем index.* файл в корневой директории пакета
-  const indexFile = project.getDirectory(dirPath)?.getSourceFile((f) => f.getBaseName().startsWith('index.'));
-  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile) : [];
+  // 4. Парсим тело модуля из index-файла (если найден)
+  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile,ctx) : [];
 
-  // Создаем корневой модуль, представляющий пакет
-  const packageDeclaration: abstracts.translators.ModuleAst = {
-    kind: 'ModuleAst',
+  // 5. Формируем тело модуля
+  moduleAst.block = {
+    kind: 'BlockAst',
     syntaxRole: 'statement',
-    identifier: { name: packageJson.name || 'UnknownPackage' },
-    role: 'SourceFile',
-    version: packageJson.version || '0.0.0',
-    block: {
-      kind: 'BlockAst',
-      syntaxRole: 'statement',
-      statements: [...runtimes, ...dependencies, ...peerDependencies, ...statements],
-    },
+    statements: [...runtimes, ...dependencies, ...peerDependencies, ...statements],
   };
 
-  return packageDeclaration;
+  // 6. Завершаем обход узла
+  return ctx.leave(moduleAst, origin);
 }

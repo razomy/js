@@ -5,7 +5,7 @@ import * as languageString from '@razomy/language-string';
 import * as tsRl from "@razomy/ts-rl";
 import * as tsRefactor from "@razomy/ts-refactor";
 
-export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.HirCtx) {
+export function createReadme(path: string, packageJson: any, ctx: tsRl.st.SemanticContext) {
   const packageDeclaration = ctx.root as abstracts.translators.StructHir;
   const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
 
@@ -94,7 +94,7 @@ razomy cli add ${packageJson.name}
   const allDecls = packageDeclaration.properties
     .filter((i) => i.kind === 'StructHir').flatMap(i=>i.properties);
   allDecls.sort((a, b) => tsRefactor.getPath(a).join('').localeCompare(tsRefactor.getPath(b).join('')));
-  const typeSpecs = ctx.nodes.values().filter(i => i.kind === 'StructHir').toArray();
+  const typeSpecs = ctx.semanticMap.values().filter(i => i.kind === 'StructHir').toArray();
   const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHir');
   const functionPath = allDecls.length > 0 ? tsRefactor.getPath(allDecls[0]) : ['functionName'];
 
@@ -120,7 +120,7 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.hir.name?.toLowerCase()})`).join('\n');
   const functionsToc = functionSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
@@ -130,9 +130,9 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(languageString.md.hirToString).join('\n\n').trim();
+  const functions = functionSpecs.map(i=>i.hir).map(languageString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(languageString.md.hirToString).join('\n\n').trim();
+  const types = typeSpecs.map(i=>i.hir).map(languageString.md.hirToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation

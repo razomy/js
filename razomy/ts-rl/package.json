@@ -151,21 +151,21 @@
       }
     },
     "./package.json": "./package.json",
-    "./sg": {
+    "./specifications/*": "./specifications/*",
+    "./st": {
       "default": {
-        "default": "./sg/index.ts",
-        "types": "./sg/index.ts"
+        "default": "./st/index.ts",
+        "types": "./st/index.ts"
       },
       "import": {
-        "default": "./sg/index.ts",
-        "types": "./sg/index.ts"
+        "default": "./st/index.ts",
+        "types": "./st/index.ts"
       },
       "require": {
-        "default": "./sg/index.ts",
-        "types": "./sg/index.ts"
+        "default": "./st/index.ts",
+        "types": "./st/index.ts"
       }
-    },
-    "./specifications/*": "./specifications/*"
+    }
   },
   "files": [
     "*"

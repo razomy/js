@@ -6,7 +6,7 @@ export function specToTool(fn: abstracts.translators.FunctionHir) {
   fn.parameters.forEach((param) => {
     properties[param.name!] = {
       type: param.kind.toLowerCase(),
-      description: param.description!.value!.value,
+      description: param.doc.description!,
     };
 
     if (param.value === null) {
@@ -17,7 +17,7 @@ export function specToTool(fn: abstracts.translators.FunctionHir) {
     type: 'function',
     function: {
       name: fn.name!,
-      description: `${fn.description!.value!.value}.`,
+      description: `${fn.doc!.description!}.`,
       parameters: {
         type: 'object',
         properties,

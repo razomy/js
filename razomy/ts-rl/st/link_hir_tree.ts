@@ -6,18 +6,18 @@ import * as abstracts from "@razomy/abstracts";
  * Обязательно вызываем после генерации сырого HIR.
  */
 export function linkHirTree(
-  ctx: tsRl.sg.HirCtx,
+  ctx: tsRl.st.SemanticContext,
   node: abstracts.translators.ISemanticNode,
-  parent: abstracts.translators.HirType | null = null,
-  prev: abstracts.translators.HirType | null = null,
-  next: abstracts.translators.HirType | null = null
+  parent: abstracts.translators.ISemanticNode | null = null,
+  prev: abstracts.translators.ISemanticNode | null = null,
+  next: abstracts.translators.ISemanticNode | null = null
 ): void {
   if (parent) node.parent = parent
   if (prev) node.prev = prev
   if (next) node.next = next
 
   // 2. Рекурсивно обходим детей с помощью нашей компактной утилиты
-  tsRl.sg.walkHirChildren(
+  tsRl.st.walkHirChildren(
     node,
     (child) => {
       // Для одиночных узлов (например block или returnShape) prev/next нет

@@ -2,12 +2,12 @@ import * as tsRl from "@razomy/ts-rl";
 import * as abstracts from "@razomy/abstracts";
 
 export function indexNodes(
-  ctx: tsRl.sg.HirCtx,
-  node: abstracts.translators.HirType
+  ctx: tsRl.st.SemanticContext,
+  node: abstracts.translators.ISemanticNode
 ): void {
-  ctx.nodes.set(node.id, node);
+  ctx.set(node.hir);
 
-  tsRl.sg.walkHirChildren(
+  tsRl.st.walkHirChildren(
     node,
     (child) => {
       indexNodes(ctx, child);

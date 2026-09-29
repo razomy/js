@@ -3,7 +3,7 @@ import type { AccessAstType, AliasAst, ArgumentMemberAst, ArrayAst, AssignAst, A
 import type { CstNode, GroupCst, TokenCst } from './cst';
 import type { BindingHir, BlockHir, BranchHir, FunctionHir, GoHir, HirType, IHirNode, IIdentityHir, LiteralHir, LoopHir, MatchHir, OperatorHir, ReferenceHir, StructHir } from './hir';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, Span, Token, TokenNode } from './lst';
-import type { ISemanticNode, FunctionSt } from './st';
+import type { ISemanticCtx, ISemanticNode } from './st';
 import type { TypeChecker } from './validator';
 
 // Named exports
@@ -74,8 +74,8 @@ export type {
   IModifierAst,
   IOperationAst,
   IPanicAst,
+  ISemanticCtx,
   ISemanticNode,
-  FunctionSt,
   IStateAst,
   ISwitchBranchAst,
   Identifier,

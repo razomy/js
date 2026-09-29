@@ -1,26 +1,26 @@
-import { Node } from 'ts-morph';
+import {Node} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseNode(node: Node): abstracts.translators.AstType[] {
+export function parseNode(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce,): abstracts.translators.AstType[] {
   if (tsRl.ast.statements.isStatement(node)) {
-    return [tsRl.ast.statements.parse(node)];
+    return [tsRl.ast.statements.parse(node, ctx)];
   }
 
   if (tsRl.ast.bindings.isBindings(node)) {
-    return tsRl.ast.bindings.parse(node);
+    return tsRl.ast.bindings.parse(node, ctx);
   }
 
   if (tsRl.ast.declarations.isDeclarations(node)) {
-    return tsRl.ast.bindings.parse(node);
+    return tsRl.ast.bindings.parse(node, ctx);
   }
 
   if (tsRl.ast.shapes.isShape(node)) {
-    return [tsRl.ast.shapes.parse(node)];
+    return [tsRl.ast.shapes.parse(node, ctx)];
   }
 
   if (tsRl.ast.expressions.isExpression(node)) {
-    return [tsRl.ast.expressions.parse(node)];
+    return [tsRl.ast.expressions.parse(node, ctx)];
   }
 
   throw new tsRl.ast.UnknownNodeException(node);

@@ -1,4 +1,6 @@
-export function parseExamples(text: string) {
+import * as tsRl from "@razomy/ts-rl";
+
+export function parseExamples(text: string, ctx: tsRl.ast.HasEnterLeaveProduce) {
   const cleanText = text.replace(/^\s*\*\s?/gm, '');
   const codeMatch = cleanText.match(/```[a-z]*\n([\s\S]*?)```/);
   if (!codeMatch) return { code: '', expected: '' };

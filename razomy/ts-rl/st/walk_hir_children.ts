@@ -1,22 +1,23 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstracts from '@razomy/abstracts';
 
 /**
  * ЕДИНАЯ БАЗА ОБХОДА (УТИЛИТА):
  * Отвечает ТОЛЬКО за знание того, в каких полях лежат дочерние узлы.
  * Используйте эту функцию во всех фазах, чтобы не дублировать огромный switch.
  */
-export function walkHirChildren<T extends abstracts.translators.HirType>(
-  node: T,
+export function walkHirChildren<T extends abstracts.translators.ISemanticNode>(
+  sNode: T,
   onChild: (child: T) => void,
-  onArray: (children: T[]) => void
+  onArray: (children: T[]) => void,
 ) {
   // Локальные помощники делают код компактным
-  function walk (child?: any) {
-        if (child) onChild(child as T);
-      }
-  function walkArr (children?: any[]) {
-        if (children && children.length > 0) onArray(children as T[]);
-      }
+  function walk(child?: any) {
+    if (child) onChild(child as T);
+  }
+  function walkArr(children?: any[]) {
+    if (children && children.length > 0) onArray(children as T[]);
+  }
+  const node = sNode.hir;
 
   switch (node.kind) {
     case 'BlockHir':
@@ -62,5 +63,3 @@ export function walkHirChildren<T extends abstracts.translators.HirType>(
       break;
   }
 }
-
-

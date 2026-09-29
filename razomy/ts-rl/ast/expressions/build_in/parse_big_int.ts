@@ -1,7 +1,8 @@
 import { BigIntLiteral } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseBigInt(node: BigIntLiteral): abstracts.translators.LiteralAst {
+export function parseBigInt(node: BigIntLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LiteralAst {
   const text = node.getLiteralText();
   return {
     kind: 'LiteralAst',

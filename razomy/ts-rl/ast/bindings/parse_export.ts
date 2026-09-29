@@ -1,14 +1,14 @@
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
+export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AstType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile?.();
 
   // 1. Обработка: export * as ns from './module';
   if (namespaceExport && targetSourceFile) {
     if (targetSourceFile.getBaseName().startsWith('index.')) {
-      return [tsRl.ast.declarations.parseModule(targetSourceFile.getDirectory())];
+      return [tsRl.ast.declarations.parseModule(targetSourceFile.getDirectory(), ctx)];
     } else {
       return [
         {
@@ -18,7 +18,7 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
           block: {
             kind: 'BlockAst',
             syntaxRole: 'statement',
-            statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile),
+            statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx),
           },
           version: '',
           role: 'SourceFile',
@@ -28,7 +28,7 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
   }
   // 2. Обработка: export * from './module';
   else if (targetSourceFile) {
-    return tsRl.ast.declarations.parseModuleBody(targetSourceFile);
+    return tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx);
   }
   // 3. Обработка: export { a, b, c }; (Именованные локальные экспорты)
   else if (exportDecl.getNamedExports && exportDecl.getNamedExports().length > 0) {
@@ -61,7 +61,7 @@ export function parseExport(exportDecl: any): abstracts.translators.AstType[] {
               block: {
                 kind: 'BlockAst',
                 syntaxRole: 'statement',
-                statements: tsRl.ast.declarations.parseModuleBody(originSourceFile),
+                statements: tsRl.ast.declarations.parseModuleBody(originSourceFile, ctx),
               },
               version: '',
               role: 'SourceFile',

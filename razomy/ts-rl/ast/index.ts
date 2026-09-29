@@ -8,6 +8,7 @@ import { parsePackage } from './parse_package';
 import * as shapes from './shapes';
 import * as statements from './statements';
 import { UnknownNodeException } from './unknown_node_exception';
+import type { HasEnterLeaveProduce, Produce } from './unknown_node_exception';
 
 // Named exports
 export {
@@ -20,6 +21,10 @@ export {
   parsePackage,
   shapes,
   statements
+};
+export type {
+  HasEnterLeaveProduce,
+  Produce
 };
 
 // Default export
@@ -34,5 +39,6 @@ const ast = {
   statements,
   UnknownNodeException,
 };
+
 
 export default ast;

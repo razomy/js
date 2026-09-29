@@ -1,6 +1,7 @@
 import { NullLiteral } from 'ts-morph';
 import * as abstracts from "@razomy/abstracts";
+import * as tsRl from "@razomy/ts-rl";
 
-export function parseNull(node: NullLiteral): abstracts.translators.LiteralAst {
+export function parseNull(node: NullLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LiteralAst {
   return { kind: 'LiteralAst', syntaxRole: 'expression', semanticLayer: 'state', value: null };
 }

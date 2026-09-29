@@ -1,20 +1,20 @@
 // Imports
 import * as ast from './ast';
 import * as hir from './hir';
-import * as sg from './st';
+import * as st from './st';
 
 // Named exports
 export {
   ast,
   hir,
-  sg
+  st
 };
 
 // Default export
 const tsRl = {
   ast,
   hir,
-  sg,
+  st,
 };
 
 export default tsRl;

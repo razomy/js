@@ -2,7 +2,7 @@ import { Node, SyntaxKind, Expression } from 'ts-morph';
 import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
+export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.UnaryAst {
   if (Node.isPrefixUnaryExpression(node)) {
     let operator = '';
     switch (node.getOperatorToken()) {
@@ -16,7 +16,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
     return {
       kind: 'UnaryAst', syntaxRole: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAstType,
       isPrefix: true,
     };
   }
@@ -25,7 +25,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
     return {
       kind: 'UnaryAst', syntaxRole: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAstType,
       isPrefix: false,
     };
   }
@@ -34,7 +34,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
     return {
       kind: 'UnaryAst', syntaxRole: 'expression',
       operator: operator as abstracts.translators.UnaryAst['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand()) as abstracts.translators.StateAstType,
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAstType,
       isPrefix: false,
     };
   }
@@ -42,7 +42,7 @@ export function parseUnary(node: Expression): abstracts.translators.UnaryAst {
     return {
       kind: 'UnaryAst', syntaxRole: 'expression',
       operator: Node.isTypeOfExpression(node) ? '+' : '-',
-      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression()) as abstracts.translators.StateAstType,
+      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstracts.translators.StateAstType,
       isPrefix: true,
     };
   }

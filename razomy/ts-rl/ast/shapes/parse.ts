@@ -2,8 +2,9 @@ import { Node, SyntaxKind } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 import type { StateAstType } from '@razomy/abstracts/translators';
+import type { HasEnterLeaveProduce } from '../unknown_node_exception';
 
-export function parse(node: Node): abstracts.translators.AstType {
+export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translators.AstType {
   if (Node.isLiteralTypeNode(node)) {
     return {
       kind: 'LiteralAst',
@@ -18,7 +19,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       syntaxRole: 'expression',
       isPrefix: true,
       operator: SyntaxKind[node.getOperator()] as any,
-      value: parse(node.getTypeNode()) as StateAstType,
+      value: parse(node.getTypeNode(),ctx) as StateAstType,
     };
   }
   if (Node.isRestTypeNode(node)) {
@@ -27,7 +28,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       syntaxRole: 'expression',
       isPrefix: true,
       operator: 'rest',
-      value: parse(node.getTypeNode()) as StateAstType,
+      value: parse(node.getTypeNode(),ctx) as StateAstType,
     };
   }
   if (Node.isTypeQuery(node)) {
@@ -46,7 +47,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       modifiers: [],
       identifier: { name: node.getName() },
       shape: null,
-      value: node.getInitializer() ? (parse(node.getInitializer()!) as abstracts.translators.StateAstType) : null,
+      value: node.getInitializer() ? (parse(node.getInitializer()!,ctx) as abstracts.translators.StateAstType) : null,
     };
   }
   if (Node.isConstructorTypeNode(node)) {
@@ -54,8 +55,8 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'LambdaAst',
       syntaxRole: 'expression',
       modifiers: [{ kind: 'FunctionModifierAst', operator: 'new', syntaxRole: 'modifier', value: null }],
-      parameters: node.getParameters().map((param) => parse(param)) as any,
-      returnShape: node.getReturnTypeNode() ? parse(node.getReturnTypeNode()!) : null,
+      parameters: node.getParameters().map((param) => parse(param,ctx)) as any,
+      returnShape: node.getReturnTypeNode() ? parse(node.getReturnTypeNode()!,ctx) : null,
       block: {
         kind: 'BlockAst',
         syntaxRole: 'expression',
@@ -69,7 +70,7 @@ export function parse(node: Node): abstracts.translators.AstType {
     return {
       kind: 'TernaryAst',
       syntaxRole: 'expression',
-      branches: [parse(node.getTrueType()!), parse(node.getFalseType()!)] as any,
+      branches: [parse(node.getTrueType()!,ctx), parse(node.getFalseType()!,ctx)] as any,
     };
   }
   if (Node.isPropertySignature(node)) {
@@ -79,7 +80,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       semanticLayer: 'state',
       shape: null,
       identifier: { name: node.getName() },
-      value: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!) : null,
+      value: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!,ctx) : null,
     };
   }
   if (Node.isArrayTypeNode(node)) {
@@ -87,7 +88,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'ArrayAst',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: [parse(node.getElementTypeNode())],
+      values: [parse(node.getElementTypeNode(),ctx)],
     } as abstracts.translators.ArrayAst;
   }
   if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
@@ -95,7 +96,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'TupleAst',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: node.getTypeNodes().map(parse),
+      values: node.getTypeNodes().map((i) => parse(i, ctx)),
     } as abstracts.translators.TupleAst;
   }
   if (Node.isTypeLiteral(node)) {
@@ -103,7 +104,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'StyleBlockAst', // или ваш вид узла
       syntaxRole: 'expression',
       // Получаем все свойства, сигнатуры вызовов и методов внутри { ... }
-      statements: node.getMembers().map((member) => parse(member)),
+      statements: node.getMembers().map((member) => parse(member, ctx)),
     };
   }
   if (Node.isTupleTypeNode(node)) {
@@ -111,7 +112,7 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'TupleAst',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: node.getElements().map(parse).filter(Boolean) as abstracts.translators.AstType[],
+      values: node.getElements().map(i=>parse(i,ctx)).filter(Boolean) as abstracts.translators.AstType[],
     };
   }
   if (Node.isMappedTypeNode(node)) {
@@ -125,7 +126,7 @@ export function parse(node: Node): abstracts.translators.AstType {
         syntaxRole: 'expression',
         semanticLayer: 'shape',
       } as any,
-      value: parse(node.getTypeNode()!) as any,
+      value: parse(node.getTypeNode()!, ctx) as any,
     };
   }
   if (Node.isFunctionTypeNode(node)) {
@@ -133,8 +134,8 @@ export function parse(node: Node): abstracts.translators.AstType {
       kind: 'LambdaAst',
       syntaxRole: 'expression',
       modifiers: [],
-      parameters: node.getParameters().map(tsRl.ast.bindings.parseParameter),
-      returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!) : null,
+      parameters: node.getParameters().map(i=>tsRl.ast.bindings.parseParameter(i,ctx)),
+      returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!,ctx) : null,
       block: {
         kind: 'BlockAst',
         syntaxRole: 'expression',
@@ -156,8 +157,8 @@ export function parse(node: Node): abstracts.translators.AstType {
     return {
       kind: 'MemberAst',
       syntaxRole: 'expression',
-      object_: parse(node.getObjectTypeNode()),
-      property: parse(node.getIndexTypeNode()),
+      object_: parse(node.getObjectTypeNode(),ctx),
+      property: parse(node.getIndexTypeNode(),ctx),
     };
   }
   if (Node.isIndexSignatureDeclaration(node)) {
@@ -171,14 +172,14 @@ export function parse(node: Node): abstracts.translators.AstType {
         syntaxRole: 'expression',
         semanticLayer: 'shape',
       },
-      value: parse(node.getKeyTypeNode()) as any,
+      value: parse(node.getKeyTypeNode(),ctx) as any,
     };
   }
   if (Node.isParenthesizedTypeNode(node)) {
     return {
       kind: 'BlockAst',
       syntaxRole: 'expression',
-      statements: node.getDescendantStatements().map(parse),
+      statements: node.getDescendantStatements().map(i=>parse(i,ctx)),
     };
   }
   if (Node.isTypePredicate(node)) {
