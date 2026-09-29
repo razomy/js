@@ -1,8 +1,8 @@
 // Imports
 import * as apiRun from './api-run';
-import type { AiLlmContext, AiMessage, TextAiMessage, ToolsAiMessage } from './message';
 import { MaxAttemptLlmException, MustUseToolLlmException, PanicAnswerLlmException, ToolExecuteLlmException, TypedAnswerLlmException } from './must_use_tool_llm_exception';
 import { sM } from './s_m';
+import type { AiLlmContext, AiMessage, TextAiMessage, ToolsAiMessage } from './text_ai_message';
 import { uM } from './u_m';
 
 // Named exports

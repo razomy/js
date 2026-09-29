@@ -1,6 +1,6 @@
 // Imports
 import { clearElement } from './clear_element';
-import type { Column, ColumnConfig } from './column';
+import type { Column, ColumnConfig } from './column_config';
 import { createColumn } from './create_column';
 import { get } from './get';
 import { reset } from './reset';

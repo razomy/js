@@ -1,7 +1,7 @@
 // Imports
 import { echo } from './echo';
+import type { HasServer, HasUrl } from './has_server';
 import { CONSOLE_TRANSPORT, IS_PRODUCTION, LOGGER } from './logger';
-import type { HasServer, HasUrl } from './server';
 import { shutdownFunction } from './shutdown_function';
 import { staticHtml } from './static_html';
 

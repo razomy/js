@@ -3,7 +3,6 @@ import { createCssGradient } from './create_css_gradient';
 import { createDate } from './create_date';
 import { createFloat } from './create_float';
 import { createFloatRange } from './create_float_range';
-import { GuidFactory, createGuid } from './create_guid';
 import { BitSize, createId } from './create_id';
 import { createInt } from './create_int';
 import { createIpv4 } from './create_ipv_4';
@@ -15,6 +14,7 @@ import { createPinCode } from './create_pin_code';
 import { createRecoveryKeys } from './create_recovery_keys';
 import { createString } from './create_string';
 import { createUuid } from './create_uuid';
+import { GuidFactory, createGuid } from './guid_factory';
 import { isYesOrNo } from './is_yes_or_no';
 import { pickItem } from './pick_item';
 import { rollDice } from './roll_dice';
@@ -54,8 +54,6 @@ const random = {
   createDate,
   createFloat,
   createFloatRange,
-  GuidFactory,
-  createGuid,
   BitSize,
   createId,
   createInt,
@@ -68,6 +66,8 @@ const random = {
   createRecoveryKeys,
   createString,
   createUuid,
+  GuidFactory,
+  createGuid,
   isYesOrNo,
   pickItem,
   rollDice,

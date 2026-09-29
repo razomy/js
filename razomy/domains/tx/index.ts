@@ -1,5 +1,5 @@
 // Imports
-import type { Account, Bank, Company, Person, Shareholder, Transaction } from './tx';
+import type { Account, Bank, Company, Person, Shareholder, Transaction } from './account';
 
 // Named exports
 export type {

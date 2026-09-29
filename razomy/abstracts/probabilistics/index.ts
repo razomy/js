@@ -1,5 +1,5 @@
 // Imports
-import type { BloomFilter, HyperLogLog, ProbabilisticDataStructure } from './probabilistics';
+import type { BloomFilter, HyperLogLog, ProbabilisticDataStructure } from './probabilistic_data_structure';
 
 // Named exports
 export type {

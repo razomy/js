@@ -1,6 +1,6 @@
 // Imports
+import { CloudFileStore, downloadFileRecursiveFile } from './cloud_file_store';
 import { downloadFile } from './download_file';
-import { CloudFileStore, downloadFileRecursiveFile } from './download_file_recursive_file';
 import { downloadFilesFromStorage } from './download_files_from_storage';
 import { downloadFilesRecursive } from './download_files_recursive';
 import { exportFiles } from './export_files';
@@ -23,9 +23,9 @@ export {
 
 // Default export
 const storageGoogle = {
-  downloadFile,
   CloudFileStore,
   downloadFileRecursiveFile,
+  downloadFile,
   downloadFilesFromStorage,
   downloadFilesRecursive,
   exportFiles,

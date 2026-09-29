@@ -1,11 +1,11 @@
 // Imports
 import { cronStringToDate } from './cron_string_to_date';
-import type { HasDatetime } from './datetime';
 import { ExpiringInMemoryCache } from './expiring_in_memory_cache';
 import type { CacheEntry } from './expiring_in_memory_cache';
 import { DAY_MS, HOUR_MS, MINUTE_MS, SECOND_MS, formatDuration } from './format_duration';
 import { formatMilliseconds } from './format_milliseconds';
 import { formatTimeLength } from './format_time_length';
+import type { HasDatetime } from './has_datetime';
 import { isDateToday } from './is_date_today';
 import { stringToDate } from './string_to_date';
 

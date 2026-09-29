@@ -8,7 +8,7 @@ import type { IEntityResource, IEntityResourceMap, IResourceMap } from './node_p
 import { optinal } from './optinal';
 import { ResourceCollection } from './resource_collection';
 import type { INodeResourceCollection, IResourceCollection } from './resource_collection';
-import type { FnResultNull, ResultNull, ResultNullFn, ResultNullRegistry } from './result';
+import type { FnResultNull, ResultNull, ResultNullFn, ResultNullRegistry } from './result_null_registry';
 
 // Named exports
 export {

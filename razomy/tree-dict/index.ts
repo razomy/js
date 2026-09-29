@@ -5,6 +5,7 @@ import { get } from './get';
 import { getByString } from './get_by_string';
 import { getPath } from './get_path';
 import { getValue } from './get_value';
+import type { HasChildrenDict } from './has_children_dict';
 import { iterate } from './iterate';
 import { iterateChildren } from './iterate_children';
 import { leafTreeAbsolutePath } from './leaf_tree_absolute_path';
@@ -12,7 +13,6 @@ import type { AbsolutePathBranch, AbsolutePathDictLeafOrRoot, AbsolutePathDictRo
 import { mapBranch } from './map_branch';
 import type { BranchDict, BranchDictOrLeaf, RootDict, RootDictOrLeaf, RootOrBranchDict } from './map_branch';
 import { mapRoot } from './map_root';
-import type { HasChildrenDict } from './with_children_dict';
 
 // Named exports
 export {

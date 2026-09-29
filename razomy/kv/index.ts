@@ -5,6 +5,7 @@ import { filter } from './filter';
 import { get } from './get';
 import { getParents } from './get_parents';
 import { getWithPath } from './get_with_path';
+import type { HasKv } from './has_kv';
 import { isAkv } from './is_akv';
 import { isValueListItem } from './is_value_list_item';
 import { iterate } from './iterate';
@@ -14,7 +15,6 @@ import { map } from './map';
 import { set } from './set';
 import { toYaml } from './to_yaml';
 import { valueIterate } from './value_iterate';
-import type { HasKv } from './with_kv';
 
 // Named exports
 export {

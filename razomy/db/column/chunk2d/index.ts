@@ -1,9 +1,9 @@
 // Imports
+import type { Chunk, ChunkedGrid2D } from './chunked_grid_2_d';
 import { clearCell } from './clear_cell';
 import { createChunk } from './create_chunk';
 import { createChunkConfig2D } from './create_chunk_config_2_d';
 import type { ChunkConfig2D } from './create_chunk_config_2_d';
-import type { Chunk, ChunkedGrid2D } from './create_chunked_column';
 import { createChunkedGrid2D } from './create_chunked_grid_2_d';
 import { forEachChunk } from './for_each_chunk';
 import { get } from './get';

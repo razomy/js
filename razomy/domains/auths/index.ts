@@ -1,6 +1,6 @@
 // Imports
-import { AuthAction, TokenType } from './auth';
-import type { AuthEvent, Credential, Provider, RecoveryCode, Security, Session, UserAuth, UserAuthChild, VerificationToken } from './auth';
+import { AuthAction, TokenType } from './user_auth';
+import type { AuthEvent, Credential, Provider, RecoveryCode, Security, Session, UserAuth, UserAuthChild, VerificationToken } from './user_auth';
 
 // Named exports
 export {

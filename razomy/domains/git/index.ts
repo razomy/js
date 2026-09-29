@@ -1,6 +1,6 @@
 // Imports
-import { DifferenceType } from './git';
-import type { Commit } from './git';
+import { DifferenceType } from './commit';
+import type { Commit } from './commit';
 
 // Named exports
 export {

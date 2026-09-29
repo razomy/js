@@ -1,6 +1,6 @@
 // Imports
-import { TokenType } from './cursor';
-import type { Token } from './cursor';
+import { TokenType } from './token';
+import type { Token } from './token';
 import { tryAligned } from './try_aligned';
 import { tryScope } from './try_scope';
 

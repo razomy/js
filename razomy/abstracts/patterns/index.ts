@@ -2,11 +2,11 @@
 import type { Codec } from './codec';
 import type { ChangeDifference, Difference, DifferenceType, ReplaceDifference } from './difference';
 import type { Gate } from './gate';
-import type { IObservable, IObservableFactory } from './observable';
-import type { HasCreate } from './with_create';
-import type { Decode, HasDecode } from './with_decode';
-import type { Encode, HasEncode } from './with_encode';
-import type { Execute, HasExecute } from './with_execute';
+import type { HasCreate } from './has_create';
+import type { Decode, HasDecode } from './has_decode';
+import type { Encode, HasEncode } from './has_encode';
+import type { Execute, HasExecute } from './has_execute';
+import type { IObservable, IObservableFactory } from './i_observable';
 
 // Named exports
 export type {

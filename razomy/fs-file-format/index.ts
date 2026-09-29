@@ -1,5 +1,5 @@
 // Imports
-import type { ExtensionResult, FileCategory, FileExtensionType, FileFormat, MediaType } from './file_extension';
+import type { ExtensionResult, FileCategory, FileExtensionType, FileFormat, MediaType } from './file_format';
 
 // Named exports
 export type {

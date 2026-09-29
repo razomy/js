@@ -1,6 +1,6 @@
 // Imports
 import { DWebBrowserInput, Drag, Drop, Group, History, HotkeyInput, InputConfig, KonvaNodeEvent, Log, Move, SSystemEvents, WebBrowserInput, ZoomInOut } from './d_web_browser_input';
-import type { IInputAttribute, IIoAttribute, IOutputAttribute } from './io_attribute';
+import type { IInputAttribute, IIoAttribute, IOutputAttribute } from './i_input_attribute';
 
 // Named exports
 export {

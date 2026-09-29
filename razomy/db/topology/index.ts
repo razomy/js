@@ -4,8 +4,8 @@ import { applyConnect } from './apply_connect';
 import { commitGraph } from './commit_graph';
 import { connectGraph } from './connect_graph';
 import { createGraphTopology } from './create_graph_topology';
-import { NULL_EDGE, SYSTEM_FIELDS } from './topology';
-import type { GraphTopology } from './topology';
+import { NULL_EDGE, SYSTEM_FIELDS } from './graph_topology';
+import type { GraphTopology } from './graph_topology';
 
 // Named exports
 export {

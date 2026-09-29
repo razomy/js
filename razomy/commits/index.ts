@@ -1,8 +1,8 @@
 // Imports
 import type { DatetimeActor } from './datetime_actor';
 import * as deltaString from './delta-string';
+import type { HasActor } from './has_actor';
 import * as vrd from './vrd';
-import type { HasActor } from './with_actor';
 
 // Named exports
 export {

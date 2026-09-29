@@ -1,10 +1,11 @@
 // Imports
+import { BuildTarget, CpuArchitecture, OperatingSystem, PackageFormat } from './build_config';
+import type { BuildConfig, IoEnvironment } from './build_config';
 import { cleanupExtractedStructure } from './cleanup_extracted_structure.node';
 import { DEFAULT_PACKAGE, RUNTIME_REGISTRY } from './constants.node';
 import { createSymlink } from './create_symlink.node';
 import { downloadFile } from './download_file.node';
-import { BuildTarget, CpuArchitecture, OperatingSystem, PackageFormat } from './environment';
-import type { BuildConfig, IoEnvironment } from './environment';
+import type { DownloadInfo, RuntimeProvider } from './download_info';
 import { execCmd } from './exec_cmd.node';
 import { extractArchive } from './extract_archive.node';
 import { IS_MAC, IS_WIN, getExePath } from './get_exe_path.node';
@@ -15,7 +16,6 @@ import { NODE_RUNTIME } from './node.node';
 import { PODMAN_RUNTIME } from './podman.node';
 import { PYTHON_RUNTIME } from './python.node';
 import { RUST_RUNTIME } from './rust.node';
-import type { DownloadInfo, RuntimeProvider } from './types';
 
 // Named exports
 export {
@@ -50,15 +50,15 @@ export type {
 
 // Default export
 const runtimes = {
+  BuildTarget,
+  CpuArchitecture,
+  OperatingSystem,
+  PackageFormat,
   cleanupExtractedStructure,
   DEFAULT_PACKAGE,
   RUNTIME_REGISTRY,
   createSymlink,
   downloadFile,
-  BuildTarget,
-  CpuArchitecture,
-  OperatingSystem,
-  PackageFormat,
   execCmd,
   extractArchive,
   IS_MAC,

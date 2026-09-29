@@ -1,6 +1,6 @@
 // Imports
 import { createEventsContext } from './create_events_context';
-import type { EventsContext } from './event';
+import type { EventsContext } from './events_context';
 import { flushEvents } from './flush_events';
 import { markDirty } from './mark_dirty';
 

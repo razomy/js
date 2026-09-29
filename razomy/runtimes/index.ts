@@ -1,8 +1,8 @@
 // Imports
-import { BuildTarget, CpuArchitecture, OperatingSystem, PackageFormat } from './environment';
-import type { BuildConfig, IoEnvironment } from './environment';
+import { BuildTarget, CpuArchitecture, OperatingSystem, PackageFormat } from './build_config';
+import type { BuildConfig, IoEnvironment } from './build_config';
+import type { DownloadInfo, RuntimeProvider } from './download_info';
 import type { HardwareResourceLimit } from './hardware_resource_limit';
-import type { DownloadInfo, RuntimeProvider } from './types';
 
 // Named exports
 export {

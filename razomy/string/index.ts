@@ -13,6 +13,7 @@ import { create } from './create';
 import { escapeByString } from './escape_by_string';
 import { getSimilar } from './get_similar';
 import { getWords } from './get_words';
+import type { HasString } from './has_string';
 import { indentLines } from './indent_lines';
 import { isEndsWith } from './is_ends_with';
 import { isEndsWithAny } from './is_ends_with_any';
@@ -47,7 +48,6 @@ import { trimLines } from './trim_lines';
 import { truncate } from './truncate';
 import { unescapeByString } from './unescape_by_string';
 import { unescapeMdCode } from './unescape_md_code';
-import type { HasString } from './with_string';
 
 // Named exports
 export {

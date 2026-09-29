@@ -1,6 +1,6 @@
 // Imports
-import { AccessLevel } from './acl';
-import type { AccessPolicy } from './acl';
+import { AccessLevel } from './access_policy';
+import type { AccessPolicy } from './access_policy';
 
 // Named exports
 export {

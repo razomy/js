@@ -1,6 +1,6 @@
 // Imports
 import { first } from './first';
-import type { HasParent } from './parent';
+import type { HasParent } from './has_parent';
 
 // Named exports
 export {

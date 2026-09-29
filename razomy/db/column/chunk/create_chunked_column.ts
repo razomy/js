@@ -1,4 +1,4 @@
-import type {TypedArray, TypedArrayConstructor} from "../../type";
+import type {TypedArray, TypedArrayConstructor} from "../../i_column";
 import type {ChunkConfig} from "./create_chunk_config";
 import {clearElement} from "./clear_element";
 import {set} from "./set";

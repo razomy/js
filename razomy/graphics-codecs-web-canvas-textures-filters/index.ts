@@ -14,7 +14,7 @@ import { erodeMask } from './erode_mask';
 import { GrayscaleTextureFilter } from './grayscale_texture_filter';
 import { HslTextureFilter } from './hsl_texture_filter';
 import { HsvTextureFilter } from './hsv_texture_filter';
-import type { IFilter, ITextureFilter } from './i_texture_filter';
+import type { IFilter, ITextureFilter } from './i_filter';
 import { InvertTextureFilter } from './invert_texture_filter';
 import { KaleidoscopeTextureFilter } from './kaleidoscope_texture_filter';
 import { MaskTextureFilter } from './mask_texture_filter';

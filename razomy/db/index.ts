@@ -2,10 +2,10 @@
 import * as column from './column';
 import * as core from './core';
 import * as event from './event';
+import { LAYER, OP_CODE } from './i_column';
+import type { EdgeId, FieldId, IColumn, Layer, NodeId, OpCode, TypedArray, TypedArrayConstructor } from './i_column';
 import * as store from './store';
 import * as topology from './topology';
-import { LAYER, OP_CODE } from './type';
-import type { EdgeId, FieldId, IColumn, Layer, NodeId, OpCode, TypedArray, TypedArrayConstructor } from './type';
 import * as wal from './wal';
 
 // Named exports
@@ -35,10 +35,10 @@ const db = {
   column,
   core,
   event,
-  store,
-  topology,
   LAYER,
   OP_CODE,
+  store,
+  topology,
   wal,
 };
 

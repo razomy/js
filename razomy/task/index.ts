@@ -1,10 +1,10 @@
 // Imports
 import { AbstractBatchLoader } from './abstract_batch_loader';
 import type { QueueItem } from './abstract_batch_loader';
-import type { RollbackCancelValidateTask } from './async_task';
 import { AsyncTaskList } from './async_task_list';
 import { create } from './create';
 import { FileTaskManager } from './file_task_manager';
+import type { RollbackCancelValidateTask } from './rollback_cancel_validate_task';
 
 // Named exports
 export {

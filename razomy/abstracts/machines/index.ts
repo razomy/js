@@ -1,6 +1,6 @@
 // Imports
+import type { HasCancel, HasRollback, HasValidate, IEvent } from './has_cancel';
 import type { Table } from './table';
-import type { HasCancel, HasRollback, HasValidate, IEvent } from './tasks';
 
 // Named exports
 export type {
