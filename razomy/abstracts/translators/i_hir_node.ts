@@ -161,6 +161,8 @@ export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>
   };
 }
 
+export interface FunctionDocExampleHir { code: string; expected: string }
+
 /**
  * Функции и Лямбды.
  *
@@ -176,7 +178,7 @@ export interface FunctionHir extends IIdentityHir {
     title: string | null;
     description: string | null;
     returnDescription: string | null;
-    examples: { code: string; result: string }[];
+    examples: FunctionDocExampleHir[];
   };
 }
 

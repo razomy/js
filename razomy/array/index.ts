@@ -32,6 +32,7 @@ import { removeAllMut } from './remove_all_mut';
 import { removeAtMut } from './remove_at_mut';
 import { removeFirstMut } from './remove_first_mut';
 import { removeLast } from './remove_last';
+import { removeLastMut } from './remove_last_mut';
 import { removeMut } from './remove_mut';
 import { reverse } from './reverse';
 import { reverseMut } from './reverse_mut';
@@ -86,6 +87,7 @@ export {
   removeAtMut,
   removeFirstMut,
   removeLast,
+  removeLastMut,
   removeMut,
   reverse,
   reverseMut,
@@ -141,6 +143,7 @@ const array = {
   removeAtMut,
   removeFirstMut,
   removeLast,
+  removeLastMut,
   removeMut,
   reverse,
   reverseMut,

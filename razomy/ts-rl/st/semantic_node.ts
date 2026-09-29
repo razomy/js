@@ -57,11 +57,11 @@ export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHir
   }
 
   get returnType(): SemanticNode<any> | null {
-    return this.ctx.getSemantic(this.hir.returnShape);
+    return this.ctx.getSemantic(this.hir.returnShape!);
   }
 
   get body(): SemanticNode<any> | null {
-    return this.ctx.getSemantic(this.hir.block);
+    return this.ctx.getSemantic(this.hir.block!);
   }
 
   // Человекочитаемая документация сразу строками
@@ -87,11 +87,11 @@ export class BindingNode extends SemanticNode<abstracts.translators.BindingHir> 
   }
 
   get type(): SemanticNode<any> | null {
-    return this.ctx.getSemantic(this.hir.shape);
+    return this.ctx.getSemantic(this.hir.shape!);
   }
 
   get value(): SemanticNode<any> | null {
-    return this.ctx.getSemantic(this.hir.value);
+    return this.ctx.getSemantic(this.hir.value!);
   }
 }
 

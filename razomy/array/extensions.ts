@@ -292,6 +292,16 @@ if (!Array.prototype.removeFirstMut) {
   });
 }
 
+if (!Array.prototype.removeLastMut) {
+  Object.defineProperty(Array.prototype, 'removeLastMut', {
+    value: function (...args: any[]) {
+      return (array as any).removeLastMut(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
 if (!Array.prototype.removeLast) {
   Object.defineProperty(Array.prototype, 'removeLast', {
     value: function (...args: any[]) {
@@ -1123,6 +1133,28 @@ declare global {
     removeFirstMut<T>(this: T[], value: T): void;
     /**
      * @summary Remove elements from the end of an array.
+     * @description Update same array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
+     * @param arr The source array.
+     * @param deltaIndex Offset applied to the slice end. Defaults to `0` (remove last element). Negative values remove additional elements.
+     * @returns A new array with the trailing element(s) removed.
+     * @example
+     * ```ts
+     * removeLastMut([1, 2, 3]); // => [1, 2]
+     * ```
+     * @example
+     * ```ts
+     * removeLastMut([1, 2, 3], -1); // => [1]
+     * ```
+     * @example
+     * ```ts
+     * removeLastMut(['a', 'b', 'c', 'd'], 0); // => ['a', 'b', 'c']
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(n)
+     */
+    removeLastMut<T>(this: Array<T>, deltaIndex?: number): T[];
+    /**
+     * @summary Remove elements from the end of an array.
      * @description Returns a new array with the last element(s) removed. An optional `deltaIndex` adjusts how many elements are kept relative to removing just the last one.
      * @param arr The source array.
      * @param deltaIndex Offset applied to the slice end. Defaults to `0` (remove last element). Negative values remove additional elements.
@@ -1142,7 +1174,7 @@ declare global {
      * @complexity time O(n)
      * @complexity memory O(n)
      */
-    removeLast<T>(this: ReadonlyArray<T>, deltaIndex?: number): T[];
+    removeLast<T>(this: Array<T>, deltaIndex?: number): T[];
     
     removeMut<T>(this: T[], item: T): T | undefined;
     /**

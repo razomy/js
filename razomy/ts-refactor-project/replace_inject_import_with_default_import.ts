@@ -131,6 +131,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           if (cleanPath.endsWith('/index')) {
             cleanPath = cleanPath.slice(0, -6);
           }
+          cleanPath = cleanPath.split('/').removeLastMut().join('/')
 
           const parts = cleanPath.split('/'); // ['videos', 'node', 'utils']
           let rootEndIndex = 1; // По умолчанию: 'videos'

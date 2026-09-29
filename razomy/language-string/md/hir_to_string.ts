@@ -89,7 +89,7 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
 
       const rawExamples = node.doc?.examples || [] as any[];
       const examples = rawExamples
-        .map((e: any) => {
+        .map((e) => {
           const comment = e.expected ? ` // ${e.expected}` : '';
           return `\`\`\`ts\n${e.code}${comment}\n\`\`\``;
         })

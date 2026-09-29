@@ -62,16 +62,19 @@ export function parsePackage(
       } satisfies abstracts.translators.ImportAst),
   );
 
-  const runtimes: abstracts.translators.ImportAst[] = [
-    {
-      kind: 'ImportAst',
-      syntaxRole: 'statement',
-      path: '',
-      version: packageJson.engines?.['node'] || '',
-      identifier: { name: 'node' },
-      modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
-    },
-  ];
+  const runtimes: abstracts.translators.ImportAst[] = Object.entries({
+    ...(packageJson.engines || {}),
+  }).map(
+    ([k, v]) =>
+      ({
+        kind: 'ImportAst',
+        syntaxRole: 'statement',
+        path: k,
+        version: v as string,
+        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
+        identifier: { name: k },
+      } satisfies abstracts.translators.ImportAst),
+  );
 
   // 4. Парсим тело модуля из index-файла (если найден)
   const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile,ctx) : [];

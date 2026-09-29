@@ -2,7 +2,7 @@
 import type { CstNode, GroupCst, TokenCst } from './cst_node';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, Span, Token, TokenNode } from './has_deep';
 import type { AccessAstType, AliasAst, ArgumentMemberAst, ArrayAst, AssignAst, AstKey, AstType, AwaitAst, BinaryAst, BindingAstType, BlockAst, BreakAst, CallAst, CatchAst, ClassAst, CommentAst, ConditionBranchAst, ConstraintAst, ContinueAst, DeclarationAstType, DeclarationOperatorAstType, DecoratorAst, DefaultBranchAst, DefaultCatchAst, DeleteAst, DependencyModifierAst, DoWhileAst, DocsAst, ElseBranchAst, EnumAst, ExportModifierAst, FinallyAst, FlowAstType, FlowOperatorAstType, ForIAst, ForItAst, ForOfAst, FunctionAst, FunctionModifierAst, IAccessAst, IAstNode, IBindingAst, IDeclarationAst, IDeclarationOperatorAst, IFlowAst, IFlowOperatorAst, IIfBranchAst, ILayerAst, IModifierAst, IOperationAst, IPanicAst, IStateAst, ISwitchBranchAst, Identifier, IfAst, IfBranchAstType, ImportAst, InheritModifierAst, InstanceAst, InstanceModifierAst, InterfaceAst, LambdaAst, LayerAstTypes, LayerOperatorAstTypes, LiteralAst, LoopAst, MacroCallAst, MappedAst, MatchAst, MatchBranchAst, MemberAst, ModifierAstTypes, ModuleAst, ObjectAst, OntologyAstType, OperationAstType, OverrideModifierAst, PanicAstType, ParameterAst, ParameterModifierAst, PropertyAst, QueryAst, ReferenceAst, ReturnAst, SemanticLayer, ShapingAst, SpreadAst, StateAstType, StructAst, StyleBlockAst, SwitchAst, SwitchBranchAstType, SyntaxRole, TagAst, TemplateAst, TernaryAst, TextAst, ThrowAst, TryAst, TupleAst, UnaryAst, WhileDoAst, YieldAst } from './i_ast_node';
-import type { BindingHir, BlockHir, BranchHir, FunctionHir, GoHir, HirType, IHirNode, IIdentityHir, LiteralHir, LoopHir, MatchHir, OperatorHir, ReferenceHir, StructHir } from './i_hir_node';
+import type { BindingHir, BlockHir, BranchHir, FunctionDocExampleHir, FunctionHir, GoHir, HirType, IHirNode, IIdentityHir, LiteralHir, LoopHir, MatchHir, OperatorHir, ReferenceHir, StructHir } from './i_hir_node';
 import type { ISemanticCtx, ISemanticNode } from './i_semantic_node';
 import type { TypeChecker } from './type_checker';
 
@@ -50,6 +50,7 @@ export type {
   ForItAst,
   ForOfAst,
   FunctionAst,
+  FunctionDocExampleHir,
   FunctionHir,
   FunctionModifierAst,
   GoHir,
