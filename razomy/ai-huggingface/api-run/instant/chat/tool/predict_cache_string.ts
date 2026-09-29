@@ -1,4 +1,5 @@
 import * as run from "@razomy/run";
+import * as json from "@razomy/json";
 
 export async function predictCacheString(cacheId: string | null, modelId: string, text: string, opts: {
       maxTokens: number,
@@ -6,13 +7,13 @@ export async function predictCacheString(cacheId: string | null, modelId: string
       updateCache: boolean,
     }) {
     return await (run.server.call(
-    'razomy.ai_hugging_face.chat.tool.predict',
+    'razomy.ai_huggingface.chat.tool.predict',
     'predict_cache_string',
     [
       cacheId,
       modelId,
       text,
-      opts
+      json.snakeCaseKeys(opts)
     ],
     )) as string
 }

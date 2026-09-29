@@ -38,6 +38,20 @@
         "types": "./analytics-token/index.ts"
       }
     },
+    "./chats": {
+      "default": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      },
+      "import": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      },
+      "require": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -49,14 +63,17 @@
     "razomy",
     "ais",
     "filePathCount",
-    "projectDirCount"
+    "projectDirCount",
+    "sM",
+    "uM"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
   "name": "@razomy/ais",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstracts": "*",
+    "@razomy/ai": "*"
   },
   "publishConfig": {
     "access": "public"
@@ -67,8 +84,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts analytics-token/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts analytics-token/index.ts --watch",
+    "build": "tsdown index.ts analytics-token/index.ts chats/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts analytics-token/index.ts chats/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

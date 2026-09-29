@@ -29,7 +29,7 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
     const outputFile = path.resolve(projectPath, `razomy/${ext.name}/extensions.ts`);
 
     // Фильтруем файлы ТОЛЬКО для текущего пакета
-    const packageFiles = allFiles.filter(file => file.getFilePath().startsWith(packageDir));
+    const packageFiles = allFiles.filter(file => file.getFilePath().startsWith(packageDir + '/'));
 
     if (packageFiles.length === 0) {
       console.warn(`[WARNING] Файлы не найдены в: ${packageDir}`);

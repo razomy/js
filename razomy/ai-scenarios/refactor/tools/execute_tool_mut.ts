@@ -113,6 +113,6 @@ export async function executeToolMut(ctx: ToolContext, function_: any):Promise<a
     return {sender: 'tool', type: 'response', content: JSON.stringify(toolREs)}
   } catch (error: any) {
     console.error(`Ошибка в инструменте ${function_.name}:`, error.message);
-    throw new ai.ToolExecuteLlmException(error.toString(), 'No error expected');
+    throw new ai.exceptions.ToolExecuteLlmException(error.toString(), 'No error expected');
   }
 }

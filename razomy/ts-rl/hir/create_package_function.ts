@@ -1,12 +1,11 @@
 import * as abstracts from '@razomy/abstracts';
 import * as random from '@razomy/random';
-import type {FunctionDocExampleHir} from "@razomy/abstracts/translators";
 
 export function createPackageFunction(
   f: Partial<{
     title: string;
     performance: string;
-    examples: FunctionDocExampleHir[];
+    examples: abstracts.translators.FunctionDocExampleHir[];
     isAsync: boolean;
     isGenerator: boolean;
     name: string;
@@ -71,7 +70,7 @@ export function createPackageFunction(
       returnDescription: '',
       // timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
       // memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-      examples: f.examples! || [] as FunctionDocExampleHir[],
+      examples: f.examples! || [] as abstracts.translators.FunctionDocExampleHir[],
     },
   };
 }

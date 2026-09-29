@@ -1,5 +1,5 @@
-import * as ai from '@razomy/ai';
+import * as ais from '@razomy/ais';
 
 export function getBoolPrompt() {
-  return [ai.sM(`You are a strict logic analyzer. Answer ONLY "TRUE", "FALSE", or "PANIC". No extra words.`)];
+  return [ais.chats.sM(`You are a strict logic analyzer. Answer ONLY "TRUE", "FALSE", or "PANIC". No extra words.`)];
 }

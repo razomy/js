@@ -1,14 +1,14 @@
 // Imports
-import { MODEL } from './ask';
+import * as apiRun from './api-run';
 
 // Named exports
 export {
-  MODEL
+  apiRun
 };
 
 // Default export
 const aiHuggingface = {
-  MODEL,
+  apiRun,
 };
 
 export default aiHuggingface;

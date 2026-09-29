@@ -24,7 +24,7 @@ export async function askTool(
 
   if (toolsRequest.length === 0) {
     const textBlock = result.content.find((block: any) => block.type === 'text') as any;
-    throw new ai.MustUseToolLlmException(textBlock, '');
+    throw new ai.exceptions.MustUseToolLlmException(textBlock, '');
   }
 
   const payloadArgs = toolsRequest.map((toolRequest, ix) => {

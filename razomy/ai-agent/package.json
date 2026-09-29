@@ -142,6 +142,7 @@
     "@razomy/ai": "*",
     "@razomy/ai-anthropic": "*",
     "@razomy/ai-scenarios": "*",
+    "@razomy/ais": "*",
     "@razomy/array": "*",
     "@razomy/db-rag": "*",
     "@razomy/fss": "*",

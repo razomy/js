@@ -1,5 +1,5 @@
-import * as ai from "@razomy/ai";
+import * as ais from "@razomy/ais";
 
 export function getDonePrompt() {
-  return [ai.sM(`If you complete task. Answer ONLY "DONE". No extra words.`)];
+  return [ais.chats.sM(`If you complete task. Answer ONLY "DONE". No extra words.`)];
 }

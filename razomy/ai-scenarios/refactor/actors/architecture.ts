@@ -1,4 +1,4 @@
-import * as ai from '@razomy/ai';
+import * as ais from '@razomy/ais';
 import * as aiScenarios from "@razomy/ai-scenarios";
 import * as aiAgent from "@razomy/ai-agent";
 
@@ -14,10 +14,10 @@ export async function architecture(
   };
 
   ctx.llm.messages = [
-    ai.sM(`Ты — Software Architect. У тебя есть план от Бизнес-аналитика.
+    ais.chats.sM(`Ты — Software Architect. У тебя есть план от Бизнес-аналитика.
       1. Твоя задача — использовать инструменты (getDirFiles), чтобы понять структуру проекта, 
      `),
-    ai.uM(baPlan),
+    ais.chats.uM(baPlan),
   ];
   // ctx.llm.tools = [aiScenarios.refactor.tools.TOOL_REGISTRY.getDirFiles];
 
@@ -30,7 +30,7 @@ export async function architecture(
   };
 
   ctx2.llm.messages = [
-    ai.sM(`Ты — Software Architect. У тебя есть план от Бизнес-аналитика.
+    ais.chats.sM(`Ты — Software Architect. У тебя есть план от Бизнес-аналитика.
       1.
       ВНИМАНИЕ: Во избежание конфликтов при записи (race conditions), старайся назначать 
       ОДИН файл только ОДНОМУ разработчику (в одной задаче).
@@ -45,7 +45,7 @@ export async function architecture(
           }
         ]
       }`),
-    ai.uM(rawResponse),
+    ais.chats.uM(rawResponse),
   ];
   ctx2.llm.tools = [];
 

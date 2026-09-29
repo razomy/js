@@ -1,5 +1,5 @@
 // 2. Бизнес-Аналитик (Остается почти без изменений)
-import * as ai from '@razomy/ai';
+import * as ais from '@razomy/ais';
 import * as aiScenarios from "@razomy/ai-scenarios";
 
 export async function businessAnalytic(task: string, parentCtx: aiScenarios.refactor.actors.ActorContext): Promise<string> {
@@ -11,13 +11,13 @@ export async function businessAnalytic(task: string, parentCtx: aiScenarios.refa
   };
 
   ctx.llm.messages = [
-    ai.sM(
+    ais.chats.sM(
       `Ты — Senior Бизнес-аналитик. Твоя задача — расписать задачу пользователя по шагам. 
 Опиши, что именно нужно сделать, какие возможны edge-cases (особые случаи). 
 Отвечай кратко, по делу, в формате Markdown.
 `,
     ),
-    ai.uM(task),
+    ais.chats.uM(task),
   ];
 
   // await aiScenarios.refactor.think(ctx);

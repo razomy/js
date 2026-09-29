@@ -8,7 +8,7 @@ export async function callTool({ messages, tools }: ai.AiLlmContext) {
   );
 
   if (typeof response === 'string') {
-    throw new ai.MustUseToolLlmException(response, 'Expected one of call tobe called');
+    throw new ai.exceptions.MustUseToolLlmException(response, 'Expected one of call tobe called');
   }
 
   return response;

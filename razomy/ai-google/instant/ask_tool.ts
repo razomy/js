@@ -32,7 +32,7 @@ export async function askTool(texts: string[], toolSpec: abstracts.translators.F
 
   // Проверка: вызвал ли AI инструмент
   if (!functionCalls || functionCalls.length === 0) {
-    throw new ai.MustUseToolLlmException(result.text!, 'Expected at least one tool call');
+    throw new ai.exceptions.MustUseToolLlmException(result.text!, 'Expected at least one tool call');
   }
 
   // Возвращаем массив вызовов (совместимо с логикой Ollama/OpenAI)

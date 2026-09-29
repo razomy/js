@@ -8,6 +8,6 @@ export function parseJson<T>(text: string): T {
     }
     return JSON.parse(text);
   } catch {
-    throw new ai.TypedAnswerLlmException(text, 'АNot a valid JSON');
+    throw new ai.exceptions.TypedAnswerLlmException(text, 'АNot a valid JSON');
   }
 }

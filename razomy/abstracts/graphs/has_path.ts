@@ -33,3 +33,16 @@ export interface HasFilePath extends abstracts.meta.IHas {
 export interface HasSourcePath extends abstracts.meta.IHas {
   sourcePath: string;
 }
+
+
+export interface HasStartDir extends abstracts.meta.IHas {
+  startDir: string;
+}
+
+export interface HasCurrentDir extends abstracts.meta.IHas {
+  currentDir: string;
+}
+
+export interface HasSourceDir extends abstracts.meta.IHas {
+  sourceDir: string;
+}

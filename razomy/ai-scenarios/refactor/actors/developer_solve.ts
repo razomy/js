@@ -1,4 +1,4 @@
-import * as ai from '@razomy/ai';
+import * as ais from '@razomy/ais';
 import * as aiScenarios from "@razomy/ai-scenarios";
 
 export async function developerSolve(
@@ -13,7 +13,7 @@ export async function developerSolve(
     llm: { messages: [], tools: [] },
   };
   ctx.llm.messages = [
-    ai.sM(`Ты — Senior Developer. Твоя цель — выполнить свою часть работы в рамках большой задачи.
+    ais.chats.sM(`Ты — Senior Developer. Твоя цель — выполнить свою часть работы в рамках большой задачи.
 
 Глобальная стратегия проекта: 
 ${globalStrategy}

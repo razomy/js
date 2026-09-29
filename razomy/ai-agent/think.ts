@@ -31,12 +31,12 @@ export async function think(ctx: aiScenarios.refactor.actors.ActorContext) {
   //       }
   //       break;
   //     } else {
-  //       ctx.llm.messages.push(ai.sM(result));
+  //       ctx.llm.messages.push(ais.chats.sM(result));
   //       console.log(`  [AGENT FINISH] Ответ: ${result}`);
   //       break;
   //     }
   //   } catch (error) {
-  //     ctx.llm.messages.push(ai.sM( 'System Error executing tool: ' + error));
+  //     ctx.llm.messages.push(ais.chats.sM( 'System Error executing tool: ' + error));
   //     console.error('Ошибка при работе агента:', error);
   //     break;
   //   }

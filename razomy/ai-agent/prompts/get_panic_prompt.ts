@@ -1,6 +1,6 @@
-import * as ai from '@razomy/ai';
+import * as ais from '@razomy/ais';
 
 export function getPanicPrompt() {
-  return [ai.sM(`If you cannot answer. Answer ONLY "PANIC". No extra words.`)];
+  return [ais.chats.sM(`If you cannot answer. Answer ONLY "PANIC". No extra words.`)];
 }
 

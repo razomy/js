@@ -6,6 +6,8 @@ import { isObject } from './is_object';
 import { ObjectExtended } from './object_extended';
 import { objectToBytes } from './object_to_bytes';
 import { objectToFormattedString } from './object_to_formatted_string';
+import { switch_ } from './switch_';
+import type { Switch } from './switch_';
 import { toFormattedString } from './to_formatted_string';
 
 // Named exports
@@ -15,12 +17,14 @@ export {
   isObject,
   objectToBytes,
   objectToFormattedString,
+  switch_,
   toFormattedString
 };
 export type {
   Constructor,
   IObject,
-  IObjectConstructor
+  IObjectConstructor,
+  Switch
 };
 
 // Default export
@@ -30,6 +34,7 @@ const object_ = {
   ObjectExtended,
   objectToBytes,
   objectToFormattedString,
+  switch_,
   toFormattedString,
 };
 

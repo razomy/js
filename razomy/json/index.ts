@@ -14,6 +14,7 @@ import { jsonToCtx } from './json_to_ctx';
 import { jsonToObject } from './json_to_object';
 import type { JsonToken, JsonTokenType } from './json_to_object';
 import { jsonToString } from './json_to_string';
+import { snakeCaseKeys } from './snake_case_keys';
 import { sort } from './sort';
 import { stringToJson } from './string_to_json';
 import { toJson } from './to_json';
@@ -31,6 +32,7 @@ export {
   jsonToCtx,
   jsonToObject,
   jsonToString,
+  snakeCaseKeys,
   sort,
   stringToJson,
   toJson,
@@ -62,6 +64,7 @@ const json = {
   jsonToCtx,
   jsonToObject,
   jsonToString,
+  snakeCaseKeys,
   sort,
   stringToJson,
   toJson,

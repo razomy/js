@@ -112,6 +112,7 @@
     "@razomy/abstracts": "*",
     "@razomy/ai": "*",
     "@razomy/ai-agent": "*",
+    "@razomy/ais": "*",
     "@razomy/array": "*",
     "@razomy/fss": "*",
     "@razomy/main": "*",
