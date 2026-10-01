@@ -1,6 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
 
-export function snakeCaseKeys(obj: abstracts.domains.Json): abstracts.domains.Json {
+export function snakeCaseKeys(obj: abstracts.patterns.Json): abstracts.patterns.Json {
   // Handle arrays
   if (Array.isArray(obj)) {
     return obj.map(snakeCaseKeys);

@@ -15,10 +15,10 @@ export interface Commit extends domains.identitys.UserChild, abstracts.domains.C
   entity: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
 
   differenceType: DifferenceType;
-  difference: abstracts.domains.Json;
+  difference: abstracts.patterns.Json;
   /** @uniq */
   commitHash: string;
   /** @uniq */
-  previous: abstracts.domains.IdRef<Commit>;
+  previous: abstracts.patterns.IdRef<Commit>;
   userId: string;
 }

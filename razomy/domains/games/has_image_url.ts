@@ -2,7 +2,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as domains from "@razomy/domains";
 
 export interface HasImageUrl {
-  imageUrl: abstracts.graphs.Url;
+  imageUrl: abstracts.domains.Url;
 }
 
 export interface HasTitle {
@@ -10,7 +10,7 @@ export interface HasTitle {
 }
 
 
-export interface UserGame extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime, domains.identitys.HasNickName {
+export interface UserGame extends abstracts.patterns.HasPrimaryId, abstracts.domains.CudDateTime, domains.identitys.HasNickName {
   /*
    * @uniq
    */
@@ -18,34 +18,34 @@ export interface UserGame extends abstracts.domains.HasPrimaryId, abstracts.doma
   // game: Char64,
 }
 
-export interface UserGameChild extends abstracts.domains.HasPrimaryId {
+export interface UserGameChild extends abstracts.patterns.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  userGame: abstracts.domains.IdRef<UserGame>;
-  games: abstracts.domains.IdRef<Game>[];
+  userGame: abstracts.patterns.IdRef<UserGame>;
+  games: abstracts.patterns.IdRef<Game>[];
 }
 
-export interface Game extends abstracts.domains.HasPrimaryId, abstracts.domains.CudDateTime {
+export interface Game extends abstracts.patterns.HasPrimaryId, abstracts.domains.CudDateTime {
   title: abstracts.primitives.Char128;
 }
 
-export interface GameChild extends abstracts.domains.HasPrimaryId {
+export interface GameChild extends abstracts.patterns.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  game: abstracts.domains.IdRef<Game>;
+  game: abstracts.patterns.IdRef<Game>;
 }
 
 export interface Reward {}
 
-export interface Achievement extends abstracts.domains.HasPrimaryId, HasImageUrl, HasTitle, abstracts.domains.HasName {
-  reward: abstracts.domains.IdRef<Reward>;
+export interface Achievement extends abstracts.patterns.HasPrimaryId, HasImageUrl, HasTitle, abstracts.patterns.HasName {
+  reward: abstracts.patterns.IdRef<Reward>;
 }
 
-export interface UserGameAchievement extends UserGameChild, GameChild, HasImageUrl, HasTitle, abstracts.domains.HasName {
+export interface UserGameAchievement extends UserGameChild, GameChild, HasImageUrl, HasTitle, abstracts.patterns.HasName {
   isViewed: boolean;
   isTouched: boolean;
   isReceived: boolean;
@@ -63,7 +63,7 @@ export interface Player {
 
 export interface Location extends GameChild {
   name: string;
-  boundaries: abstracts.coordinates.BoundRectangle;
+  boundaries: abstracts.domains.BoundRectangle;
 }
 
 export interface Item extends GameChild {

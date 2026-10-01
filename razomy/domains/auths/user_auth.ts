@@ -2,19 +2,19 @@ import * as abstracts from "@razomy/abstracts";
 import * as domains from "@razomy/domains";
 
 export interface UserAuth extends domains.identitys.UserChild, abstracts.domains.CudDateTime {
-  securitys: abstracts.domains.IdRef<Security>[];
-  providers: abstracts.domains.IdRef<Provider>[];
-  sessions: abstracts.domains.IdRef<Session>[];
-  recoveryCodes: abstracts.domains.IdRef<RecoveryCode>[];
-  authEvents: abstracts.domains.IdRef<AuthEvent>[];
+  securitys: abstracts.patterns.IdRef<Security>[];
+  providers: abstracts.patterns.IdRef<Provider>[];
+  sessions: abstracts.patterns.IdRef<Session>[];
+  recoveryCodes: abstracts.patterns.IdRef<RecoveryCode>[];
+  authEvents: abstracts.patterns.IdRef<AuthEvent>[];
 }
 
-export interface UserAuthChild extends abstracts.domains.HasPrimaryId {
+export interface UserAuthChild extends abstracts.patterns.HasPrimaryId {
   /**
    * @uniq
    * @onDeleteCascade
    */
-  userAuth: abstracts.domains.IdRef<UserAuth>;
+  userAuth: abstracts.patterns.IdRef<UserAuth>;
 }
 
 export interface Security extends UserAuthChild, abstracts.domains.CudDateTime {
@@ -41,7 +41,7 @@ export interface Provider extends UserAuthChild, abstracts.domains.CudDateTime {
 }
 
 export interface Credential {
-  provider: abstracts.domains.Primary<abstracts.domains.IdRef<Provider>>;
+  provider: abstracts.patterns.Primary<abstracts.patterns.IdRef<Provider>>;
   passwordHash?: string;
 }
 
@@ -94,7 +94,7 @@ export interface VerificationToken extends UserAuthChild, abstracts.domains.CudD
    */
   token: string;
   type: TokenType;
-  payload?: abstracts.domains.Json;
+  payload?: abstracts.patterns.Json;
   expiresAt: Date;
 }
 
@@ -114,7 +114,7 @@ export enum AuthAction {
  * Аудит событий - логируем подозрительную активность и входы
  * Используется для аналитики и защиты от брутфорса
  */
-export interface AuthEvent extends UserAuthChild, abstracts.domains.CudDateTime, abstracts.domains.HasMetadata {
+export interface AuthEvent extends UserAuthChild, abstracts.domains.CudDateTime, abstracts.patterns.HasMetadata {
   action: AuthAction;
   /**
    * @index

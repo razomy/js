@@ -1,12 +1,12 @@
 import * as abstracts from "@razomy/abstracts";
 
-interface AsyncTaskListState<C extends abstracts.domains.Context> {
+interface AsyncTaskListState<C extends abstracts.patterns.Context> {
   startedTaskIndex: number;
   tasks: any[];
 }
 
 // todo:remove
-export class AsyncTaskList<C extends abstracts.domains.Context> {
+export class AsyncTaskList<C extends abstracts.patterns.Context> {
   constructor(public ctx: AsyncTaskListState<C>) {
   }
 

@@ -2,7 +2,7 @@ import * as array from '@razomy/array';
 import * as object_ from '@razomy/object';
 import * as abstracts from "@razomy/abstracts";
 
-export function sort<T extends abstracts.domains.Json>(object__: T): T {
+export function sort<T extends abstracts.patterns.Json>(object__: T): T {
   if (object__ === undefined || object__ === null) {
     return object__;
   }

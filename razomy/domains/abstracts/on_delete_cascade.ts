@@ -1,9 +1,9 @@
 import * as abstracts from "@razomy/abstracts";
 
 export interface Cascade {
-  sourceTable: abstracts.machines.Table;
+  sourceTable: abstracts.collections.Collection;
   sourceProperty: string;
-  targetTable: abstracts.machines.Table;
+  targetTable: abstracts.collections.Collection;
   targetProperty: string;
 }
 

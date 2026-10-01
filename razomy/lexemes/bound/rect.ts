@@ -4,7 +4,7 @@ import * as lexemes from "@razomy/lexemes";
 export function rect(
   delta: string,
   str: string,
-): abstracts.arrays.HasOffset & abstracts.coordinates.HasLength & abstracts.coordinates.BoundRectangle {
+): abstracts.arrays.HasOffset & abstracts.domains.HasLength & abstracts.domains.BoundRectangle {
   const start = lexemes.bound.size(delta);
   const end = lexemes.bound.size(str);
   return {

@@ -5,7 +5,7 @@ import * as datetimes from "@razomy/datetimes";
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,
-  callback: abstracts.functions.Callback | abstracts.functions.FutureCallback,
+  callback: abstracts.patterns.Callback | abstracts.functions.FutureCallback,
 ) {
   const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();

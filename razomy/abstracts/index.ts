@@ -1,12 +1,10 @@
 // Imports
 import * as arrays from './arrays';
 import * as collections from './collections';
-import * as coordinates from './coordinates';
 import * as domains from './domains';
 import * as functions from './functions';
 import * as graphs from './graphs';
 import * as hardwares from './hardwares';
-import * as machines from './machines';
 import * as meta from './meta';
 import * as patterns from './patterns';
 import * as primitives from './primitives';
@@ -18,12 +16,10 @@ import * as translators from './translators';
 export {
   arrays,
   collections,
-  coordinates,
   domains,
   functions,
   graphs,
   hardwares,
-  machines,
   meta,
   patterns,
   primitives,
@@ -36,12 +32,10 @@ export {
 const abstracts = {
   arrays,
   collections,
-  coordinates,
   domains,
   functions,
   graphs,
   hardwares,
-  machines,
   meta,
   patterns,
   primitives,

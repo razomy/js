@@ -3,7 +3,7 @@ import * as abstracts from "@razomy/abstracts";
 export interface Domain {
   name: string;
   type: string;
-  company: abstracts.domains.IdRef<Company>;
+  company: abstracts.patterns.IdRef<Company>;
 }
 
 export interface Company {

@@ -1,11 +1,11 @@
 import * as abstracts from "@razomy/abstracts";
 
-export function betweenNodes(nodes: abstracts.coordinates.NodeBound[], root: abstracts.coordinates.NodeBound) {
+export function betweenNodes(nodes: abstracts.domains.NodeBound[], root: abstracts.domains.NodeBound) {
   if (nodes.length === 0) {
     return [{ start_y: root.fullRect.startY, finish_y: root.fullRect.finishY }];
   }
 
-  const places: abstracts.coordinates.BoundRectangle[] = [];
+  const places: abstracts.domains.BoundRectangle[] = [];
 
   // Add starting place
   const firstNode = nodes[0];

@@ -14,7 +14,7 @@ export class SemanticContext {
    * Разрешает IdRef или саму ноду в специализированный Семантический Узел
    */
   public getSemantic<T extends tsRl.st.SemanticNode<any> = any>(
-    target: abstracts.domains.IdRef<abstracts.translators.HirType>,
+    target: abstracts.patterns.IdRef<abstracts.translators.HirType>,
   ): T {
     const rawNode = this.nodeMap.get(target.id)!;
     if (this.semanticMap.has(rawNode.id)) {

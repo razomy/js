@@ -23,7 +23,7 @@ export abstract class SemanticNode<T extends abstracts.translators.IHirNode>
   }
 
   // Извлечение текстовых модификаторов (async, export, const...)
-  protected extractModifiers(modifiers: abstracts.domains.IdRef<abstracts.translators.HirType>[]): string[] {
+  protected extractModifiers(modifiers: abstracts.patterns.IdRef<abstracts.translators.HirType>[]): string[] {
     return (modifiers || [])
       .map((m) => this.ctx.getSemantic(m))
       .filter((m): m is LiteralNode => m instanceof LiteralNode)

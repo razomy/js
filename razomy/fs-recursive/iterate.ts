@@ -2,7 +2,7 @@ import fs, { Dirent } from 'fs';
 import * as path from 'path';
 import * as abstracts from "@razomy/abstracts";
 
-export interface IterateNode extends abstracts.graphs.HasPath, abstracts.graphs.HasSlug {
+export interface IterateNode extends abstracts.domains.HasPath, abstracts.domains.HasSlug {
   stats: Dirent;
 }
 

@@ -2,10 +2,11 @@ order
  config
  description
  index.ts
- lst.ts
- cst.ts
- ast.ts
- hir.ts
- st.ts
+ i_lexer_node.ts
+ i_cst_node.ts
+ i_ast_node.ts
+ i_hir_node.ts
+ i_semantic_node.ts
+ i_process_node.ts
  validator.ts
  core.ts

@@ -55,7 +55,7 @@ export type SemanticLayer =
  * The foundational interface for all AST nodes.
  * @abstract
  */
-export interface IAstNode extends abstracts.domains.IEntity {
+export interface IAstNode extends abstracts.patterns.IEntity {
   /**
    * @abstract
    */

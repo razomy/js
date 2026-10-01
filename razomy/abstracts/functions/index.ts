@@ -1,24 +1,20 @@
 // Imports
-import type { Future, FutureCallback } from './future';
-import type { Action, Call, CallArs, Callback, Construct, Dispose, Function, HasArgs, HasCall, HasFn, HasMethod, HasPipe, Method, Thunk } from './has_args';
-import type { Stream } from './stream';
+import type { Future, FutureCallback, Stream } from './future';
+import type { Action, Construct, Extension, ExtensionByGenerics, ExtensionGenerics, Function, HasArgs, HasFn, HasMethod, Method, Thunk } from './has_args';
 
 // Named exports
 export type {
   Action,
-  Call,
-  CallArs,
-  Callback,
   Construct,
-  Dispose,
+  Extension,
+  ExtensionByGenerics,
+  ExtensionGenerics,
   Function,
   Future,
   FutureCallback,
   HasArgs,
-  HasCall,
   HasFn,
   HasMethod,
-  HasPipe,
   Method,
   Stream,
   Thunk

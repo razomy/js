@@ -1,55 +1,42 @@
 // Imports
-import type { HasClone } from './has_clone';
 import type { CudDateTime, DateTime, HasCreatedAt, HasDeletedAt, HasUpdatedAt } from './has_created_at';
 import type { HasDescription } from './has_description';
-import type { CallEntity, CallRef, HasFunctionHir, IController, IMachine, IModule } from './has_function_hir';
-import type { HasId, HasPrimaryId, Id, Primary, Uuid } from './has_id';
-import type { HasKind } from './has_kind';
-import type { HasName } from './has_name';
-import type { HasMetadata, HasSerializable, Json, Serializable, SerializablePrimitive, SerializableValue } from './has_serializable';
-import type { HasType } from './has_type';
-import type { Context, ContextKey, HasC, IContext } from './i_context';
-import type { EntityId, IEntity } from './i_entity';
-import type { IHasRef, IdRef, IdRefArray, OneOfIdRef } from './i_has_ref';
+import type { BoundRectangle, BoundX, BoundY, HasDimension, HasLength, HasX, HasY, NodeBound, Position2d } from './has_dimension';
+import type { AbsolutePathString, DirPathString, FilePathString, HasCurrentDir, HasDirPath, HasFileName, HasFilePath, HasPath, HasSlug, HasSourceDir, HasSourcePath, HasStartDir, PathString, RelativePathString, Slug, SourcePathString, Url } from './has_path';
 
 // Named exports
 export type {
-  CallEntity,
-  CallRef,
-  Context,
-  ContextKey,
+  AbsolutePathString,
+  BoundRectangle,
+  BoundX,
+  BoundY,
   CudDateTime,
   DateTime,
-  EntityId,
-  HasC,
-  HasClone,
+  DirPathString,
+  FilePathString,
   HasCreatedAt,
+  HasCurrentDir,
   HasDeletedAt,
   HasDescription,
-  HasFunctionHir,
-  HasId,
-  HasKind,
-  HasMetadata,
-  HasName,
-  HasPrimaryId,
-  HasSerializable,
-  HasType,
+  HasDimension,
+  HasDirPath,
+  HasFileName,
+  HasFilePath,
+  HasLength,
+  HasPath,
+  HasSlug,
+  HasSourceDir,
+  HasSourcePath,
+  HasStartDir,
   HasUpdatedAt,
-  IContext,
-  IController,
-  IEntity,
-  IHasRef,
-  IMachine,
-  IModule,
-  Id,
-  IdRef,
-  IdRefArray,
-  Json,
-  OneOfIdRef,
-  Primary,
-  Serializable,
-  SerializablePrimitive,
-  SerializableValue,
-  Uuid
+  HasX,
+  HasY,
+  NodeBound,
+  PathString,
+  Position2d,
+  RelativePathString,
+  Slug,
+  SourcePathString,
+  Url
 };
 

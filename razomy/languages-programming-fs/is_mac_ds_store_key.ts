@@ -1,6 +1,6 @@
 import * as abstracts from '@razomy/abstracts';
 import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
-export function isMacDsStoreKey(slug: abstracts.graphs.Slug) {
+export function isMacDsStoreKey(slug: abstracts.domains.Slug) {
   return slug.endsWith(languagesProgrammingFs.MAC_DS_STORE_FILE);
 }

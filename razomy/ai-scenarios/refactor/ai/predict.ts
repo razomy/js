@@ -1,7 +1,8 @@
 import * as ai from '@razomy/ai';
+import * as aiHuggingface from '@razomy/ai-huggingface';
 
 export async function predict(messages: ai.AiMessage[]) {
-  return await ai.apiRun.instant.chat.logic.predict(null, 'mlx-community/gemma-4-e2b-it-4bit', messages)
+  return await aiHuggingface.apiRun.instant.chat.logic.predict(null, 'mlx-community/gemma-4-e2b-it-4bit', messages)
 }
 
 // @ts-ignore

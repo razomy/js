@@ -14,9 +14,8 @@ import * as abstracts from '@razomy/abstracts';
  * 9. Layer: Meta, Docs, Annotations
  */
 
-export interface IHirNode extends abstracts.domains.IEntity {
+export interface IHirNode extends abstracts.patterns.IEntity, abstracts.patterns.HasKind {
   id: string;
-  kind: string;
   syntaxRole: abstracts.translators.SyntaxRole;
   semanticLayer: abstracts.translators.SemanticLayer;
 }
@@ -48,7 +47,7 @@ export interface LiteralHir extends IHirNode {
 export interface OperatorHir extends IHirNode {
   kind: 'OperatorHir';
   operator: string;
-  operands: abstracts.domains.IdRef<HirType>[]; // Массив решает проблему унарных, бинарных и n-арных операций
+  operands: abstracts.patterns.IdRef<HirType>[]; // Массив решает проблему унарных, бинарных и n-арных операций
 }
 
 // endregion Data & Expressions
@@ -64,7 +63,7 @@ export interface OperatorHir extends IHirNode {
  */
 export interface BlockHir extends IHirNode {
   kind: 'BlockHir';
-  statements: abstracts.domains.IdRef<HirType>[];
+  statements: abstracts.patterns.IdRef<HirType>[];
 }
 
 /**
@@ -77,8 +76,8 @@ export interface BlockHir extends IHirNode {
  */
 export interface MatchHir extends IHirNode {
   kind: 'MatchHir';
-  target: abstracts.domains.IdRef<HirType>;
-  branches: abstracts.domains.IdRef<BranchHir>[];
+  target: abstracts.patterns.IdRef<HirType>;
+  branches: abstracts.patterns.IdRef<BranchHir>[];
 }
 
 /**
@@ -94,8 +93,8 @@ export interface MatchHir extends IHirNode {
  */
 export interface BranchHir extends IHirNode {
   kind: 'BranchHir';
-  pattern: abstracts.domains.IdRef<HirType>; // Условие срабатывания ветки
-  value: abstracts.domains.IdRef<HirType>; // Значение или SequenceHir (блок кода)
+  pattern: abstracts.patterns.IdRef<HirType>; // Условие срабатывания ветки
+  value: abstracts.patterns.IdRef<HirType>; // Значение или SequenceHir (блок кода)
 }
 
 /**
@@ -106,8 +105,8 @@ export interface BranchHir extends IHirNode {
  */
 export interface LoopHir extends IHirNode {
   kind: 'LoopHir';
-  condition: abstracts.domains.IdRef<HirType> | null; // Если undefined — бесконечный цикл
-  block: abstracts.domains.IdRef<BlockHir>; // Тело цикла
+  condition: abstracts.patterns.IdRef<HirType> | null; // Если undefined — бесконечный цикл
+  block: abstracts.patterns.IdRef<BlockHir>; // Тело цикла
 }
 
 /**
@@ -122,7 +121,7 @@ export interface LoopHir extends IHirNode {
 export interface GoHir extends IHirNode {
   kind: 'GoHir';
   operator: 'break' | 'continue' | 'yield' | 'return' | 'throw';
-  value: abstracts.domains.IdRef<HirType> | null; // Возвращаемое значение для yield, return, throw
+  value: abstracts.patterns.IdRef<HirType> | null; // Возвращаемое значение для yield, return, throw
 }
 
 // endregion Control Flow
@@ -141,7 +140,7 @@ export interface GoHir extends IHirNode {
  */
 export interface IIdentityHir extends IHirNode {
   name: string | null; // Optional: для анонимных сущностей (лямбды, элементы массивов)
-  modifiers: abstracts.domains.IdRef<HirType>[]; // 'const', 'export', 'async', 'generator' и т.д.
+  modifiers: abstracts.patterns.IdRef<HirType>[]; // 'const', 'export', 'async', 'generator' и т.д.
 }
 
 /**
@@ -152,9 +151,9 @@ export interface IIdentityHir extends IHirNode {
  * @replaces ParameterAst - используется внутри FunctionHir.parameters
  * @replaces PropertyAst - используется внутри StructHir.properties
  */
-export interface BindingHir<T extends HirType = abstracts.domains.IdRef<HirType>> extends IIdentityHir {
+export interface BindingHir<T extends HirType = abstracts.patterns.IdRef<HirType>> extends IIdentityHir {
   kind: 'BindingHir';
-  shape: abstracts.domains.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
+  shape: abstracts.patterns.IdRef<ReferenceHir> | null; // Type/Interface/Constraint
   value: T | null; // Значение
   doc: {
     description: string;
@@ -171,9 +170,9 @@ export interface FunctionDocExampleHir { code: string; expected: string }
  */
 export interface FunctionHir extends IIdentityHir {
   kind: 'FunctionHir';
-  parameters: abstracts.domains.IdRef<BindingHir>[];
-  returnShape: abstracts.domains.IdRef<ReferenceHir> | null;
-  block: abstracts.domains.IdRef<HirType> | null;
+  parameters: abstracts.patterns.IdRef<BindingHir>[];
+  returnShape: abstracts.patterns.IdRef<ReferenceHir> | null;
+  block: abstracts.patterns.IdRef<HirType> | null;
   doc: {
     title: string | null;
     description: string | null;
@@ -192,7 +191,7 @@ export interface FunctionHir extends IIdentityHir {
  */
 export interface StructHir extends IIdentityHir {
   kind: 'StructHir';
-  properties: abstracts.domains.IdRef<HirType>[]; // Поля, методы, элементы массива
+  properties: abstracts.patterns.IdRef<HirType>[]; // Поля, методы, элементы массива
   doc: {
     description: string;
   };
@@ -213,9 +212,9 @@ export interface StructHir extends IIdentityHir {
  */
 export interface ReferenceHir extends IHirNode {
   kind: 'ReferenceHir';
-  target: abstracts.domains.IdRef<HirType> | null; // Название переменной ИЛИ узел (например, результат функции)
-  property: abstracts.domains.IdRef<HirType> | null; // Для obj.prop или arr[1]
-  arguments_: abstracts.domains.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
+  target: abstracts.patterns.IdRef<HirType> | null; // Название переменной ИЛИ узел (например, результат функции)
+  property: abstracts.patterns.IdRef<HirType> | null; // Для obj.prop или arr[1]
+  arguments_: abstracts.patterns.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
 }
 
 // endregion Access & Interactions

@@ -1,4 +1,4 @@
 export interface IResource {
 }
 
-export interface Razomy {}
+export interface Razomy extends IResource {}
