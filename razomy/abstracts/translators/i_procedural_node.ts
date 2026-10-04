@@ -1,5 +1,4 @@
 import * as abstracts from '@razomy/abstracts';
-import type { Transform3d, Vector3d } from '../domains/has_dimension';
 
 /**
  * PCG (Procedural Content Generation) Ontology
@@ -84,14 +83,14 @@ export interface IPcgNode extends IProceduralNode {
  * Атомарная точка генерации (аналог FPCGPoint в Unreal Engine или Point в Houdini).
  */
 export interface PcgPoint {
-  transform: Transform3d;
+  transform: abstracts.domains.Transform3d;
   density: number;        // Плотность от 0.0 до 1.0 (для отсева и масок)
   steepness: number;      // Наклон поверхности под точкой
-  boundsMin: Vector3d;     // Локальный AABB бокс для коллизий
-  boundsMax: Vector3d;
+  boundsMin: abstracts.domains.Vector3d;     // Локальный AABB бокс для коллизий
+  boundsMax: abstracts.domains.Vector3d;
   seed: number;           // Локальный детерминированный сид
   color?: [number, number, number, number];
-  attributes: Record<string, number | string | boolean | Vector3d>; // Кастомные атрибуты (как @attrib в VEX)
+  attributes: Record<string, number | string | boolean | abstracts.domains.Vector3d>; // Кастомные атрибуты (как @attrib в VEX)
 }
 
 /**
@@ -100,7 +99,7 @@ export interface PcgPoint {
 export interface PcgPointData extends IProceduralNode {
   kind: 'PcgPointData';
   points: PcgPoint[];
-  spatialBounds: { min: Vector3d; max: Vector3d };
+  spatialBounds: { min: abstracts.domains.Vector3d; max: abstracts.domains.Vector3d };
 }
 
 /**
@@ -117,7 +116,7 @@ export interface PcgSurfaceData extends IProceduralNode {
  */
 export interface PcgSplineData extends IProceduralNode {
   kind: 'PcgSplineData';
-  controlPoints: Vector3d[];
+  controlPoints: abstracts.domains.Vector3d[];
   isClosed: boolean;
   splineWidth: number;
 }
@@ -134,7 +133,7 @@ export interface SurfaceSamplerNode extends IPcgNode {
   kind: 'SurfaceSamplerNode';
   samplingMethod: 'PoissonDisk' | 'Grid' | 'UniformRandom';
   pointsPerSquaredMeter: number;
-  pointExtents: Vector3d;
+  pointExtents: abstracts.domains.Vector3d;
   looseness: number;
 }
 
@@ -172,13 +171,13 @@ export interface NoiseFieldNode extends IPcgNode {
  */
 export interface TransformPointsNode extends IPcgNode {
   kind: 'TransformPointsNode';
-  offsetMin: Vector3d;
-  offsetMax: Vector3d;
-  rotationMin: Vector3d; // углы Эйлера
-  rotationMax: Vector3d;
+  offsetMin: abstracts.domains.Vector3d;
+  offsetMax: abstracts.domains.Vector3d;
+  rotationMin: abstracts.domains.Vector3d; // углы Эйлера
+  rotationMax: abstracts.domains.Vector3d;
   uniformScale: boolean;
-  scaleMin: Vector3d;
-  scaleMax: Vector3d;
+  scaleMin: abstracts.domains.Vector3d;
+  scaleMax: abstracts.domains.Vector3d;
 }
 
 /**
@@ -187,7 +186,7 @@ export interface TransformPointsNode extends IPcgNode {
  */
 export interface ProjectToSurfaceNode extends IPcgNode {
   kind: 'ProjectToSurfaceNode';
-  rayDirection: Vector3d; // обычно [0, -1, 0]
+  rayDirection: abstracts.domains.Vector3d; // обычно [0, -1, 0]
   maxRayDistance: number;
   alignToSurfaceNormal: boolean;
   retainOriginalZ: boolean;
@@ -240,7 +239,7 @@ export interface AttributeFilterNode extends IPcgNode {
 export interface WaveFunctionCollapseNode extends IPcgNode {
   kind: 'WaveFunctionCollapseNode';
   gridSize: [number, number, number];
-  tileSize: Vector3d;
+  tileSize: abstracts.domains.Vector3d;
   adjacencyRuleSetAsset: string; // ссылка на таблицу разрешенных стыковок
   periodicWrap: boolean; // зацикливание краев
 }
@@ -281,7 +280,7 @@ export interface SpatialBooleanNode extends IPcgNode {
 export interface MeshSpawnEntry {
   meshAssetPath: string; // URI ассета (.fbx, .uasset, .prefab, .usd)
   weight: number;        // Вес вероятности выбора
-  scaleAdjustment?: Vector3d;
+  scaleAdjustment?: abstracts.domains.Vector3d;
   collisionPreset?: string;
 }
 

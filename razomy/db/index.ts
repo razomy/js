@@ -2,6 +2,8 @@
 import * as column from './column';
 import * as core from './core';
 import * as event from './event';
+import { EventSourcing } from './event_sourcing';
+import type { ActionType, ConfigEvent } from './event_sourcing';
 import { LAYER, OP_CODE } from './i_column';
 import type { EdgeId, FieldId, IColumn, Layer, NodeId, OpCode, TypedArray, TypedArrayConstructor } from './i_column';
 import * as store from './store';
@@ -10,6 +12,7 @@ import * as wal from './wal';
 
 // Named exports
 export {
+  EventSourcing,
   LAYER,
   OP_CODE,
   column,
@@ -20,6 +23,8 @@ export {
   wal
 };
 export type {
+  ActionType,
+  ConfigEvent,
   EdgeId,
   FieldId,
   IColumn,
@@ -35,6 +40,7 @@ const db = {
   column,
   core,
   event,
+  EventSourcing,
   LAYER,
   OP_CODE,
   store,

@@ -18,26 +18,6 @@
  */
 
 import * as abstracts from '@razomy/abstracts';
-import type { MetricUnit } from '../domains/has_dimension';
-import type {
-  FlexItemPlacement,
-  GridItemPlacement,
-  HasArguments,
-  HasCallRef,
-  HasCodeLanguage,
-  HasEntityRef,
-  HasResult,
-  HasSender,
-  HasTask,
-  HasTaskType,
-  HasText,
-  HasTextType,
-  Typography,
-  UIInteractionSpec,
-  UILayoutEngine,
-  UIPaint,
-  UIStyleBag,
-} from '../domains/ui';
 
 export interface IUiNode {}
 
@@ -58,13 +38,13 @@ export interface IUIBaseNode extends abstracts.patterns.IEntity {
   name?: string;
   parent?: abstracts.patterns.IdRef<UINode>;
   children?: abstracts.patterns.IdRef<UINode>[];
-  containerLayout?: UILayoutEngine;
+  containerLayout?: abstracts.domains.UILayoutEngine;
   itemPlacement?: {
-    grid?: GridItemPlacement;
-    flex?: FlexItemPlacement;
+    grid?: abstracts.domains.GridItemPlacement;
+    flex?: abstracts.domains.FlexItemPlacement;
   };
-  style?: UIStyleBag;
-  interaction?: UIInteractionSpec;
+  style?: abstracts.domains.UIStyleBag;
+  interaction?: abstracts.domains.UIInteractionSpec;
   metadata?: {
     htmlTag?: string;
     ariaRole?: string;
@@ -79,8 +59,8 @@ export interface IUIBaseNode extends abstracts.patterns.IEntity {
 export interface SurfaceNode extends IUIBaseNode {
   kind: 'SurfaceNode';
   pageSize?: {
-    width: MetricUnit;
-    height: MetricUnit;
+    width: abstracts.domains.MetricUnit;
+    height: abstracts.domains.MetricUnit;
     orientation: 'portrait' | 'landscape';
   };
   dpi?: number;
@@ -95,7 +75,7 @@ export interface ContainerNode extends IUIBaseNode {
 export interface TextLeafNode extends IUIBaseNode {
   kind: 'TextLeafNode';
   content: string;
-  typography: Typography;
+  typography: abstracts.domains.Typography;
 }
 
 /** 4. Векторная графика (SVG d-path, DrawingML, PDF Path) */
@@ -104,9 +84,9 @@ export interface VectorShapeNode extends IUIBaseNode {
   role: 'vector';
   pathCommands: string;
   fillRule?: 'nonzero' | 'evenodd';
-  fillPaint?: UIPaint;
-  strokePaint?: UIPaint;
-  strokeWidth?: MetricUnit;
+  fillPaint?: abstracts.domains.UIPaint;
+  strokePaint?: abstracts.domains.UIPaint;
+  strokeWidth?: abstracts.domains.MetricUnit;
 }
 
 /** 5. Растровый медиа-ассет */
@@ -123,7 +103,7 @@ export interface MediaAssetNode extends IUIBaseNode {
 export interface TableContainerNode extends IUIBaseNode {
   kind: 'TableContainerNode';
   role: 'tabular';
-  columnWidths: MetricUnit[];
+  columnWidths: abstracts.domains.MetricUnit[];
 }
 
 export interface TableRowNode extends IUIBaseNode {
@@ -199,18 +179,18 @@ export type HasInteractionInsRef = InformationNode& abstracts.patterns.IHasRef &
 export type InteractionIn = abstracts.patterns.IEntity &{
 }
 
-export type TextIn = InteractionIn & HasText & HasTextType & { kind: 'TextIn' };
-export type CodeIn = InteractionIn & HasText & HasCodeLanguage & { kind: 'CodeIn' };
+export type TextIn = InteractionIn & abstracts.domains.HasText & abstracts.domains.HasTextType & { kind: 'TextIn' };
+export type CodeIn = InteractionIn & abstracts.domains.HasText & abstracts.domains.HasCodeLanguage & { kind: 'CodeIn' };
 
-export type EntityIn = InteractionIn & HasEntityRef & { kind: 'EntityIn' };
+export type EntityIn = InteractionIn & abstracts.domains.HasEntityRef & { kind: 'EntityIn' };
 
-export type TaskIn = InteractionIn & HasTaskType & HasTask & HasTasksRef & { kind: 'TaskIn' };
+export type TaskIn = InteractionIn & abstracts.domains.HasTaskType & abstracts.domains.HasTask & HasTasksRef & { kind: 'TaskIn' };
 
-export type CallIn = InteractionIn & HasCallRef & HasArguments & { kind: 'CallIn' };
-export type ResultIn = InteractionIn & HasCallRef & HasResult & { kind: 'ResultIn' };
-export type ToolIn = InteractionIn & HasCallRef & { kind: 'ToolIn' };
+export type CallIn = InteractionIn & abstracts.domains.HasCallRef & abstracts.domains.HasArguments & { kind: 'CallIn' };
+export type ResultIn = InteractionIn & abstracts.domains.HasCallRef & abstracts.domains.HasResult & { kind: 'ResultIn' };
+export type ToolIn = InteractionIn & abstracts.domains.HasCallRef & { kind: 'ToolIn' };
 
-export type InteractionTurnIn = InteractionIn & HasSender & HasInteractionInsRef & {
+export type InteractionTurnIn = InteractionIn & abstracts.domains.HasSender & HasInteractionInsRef & {
   kind: 'InteractionTurnIn'
 };
 

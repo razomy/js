@@ -1,35 +1,50 @@
 // Imports
-import {
-  type ApplyPipeline,
-  type ChildPipe,
-  type ChildPipeGenerics,
-  ContextPipeline,
-  cpl,
-  type NextPipe,
-  type NextPipeGenerics,
-  type PipelineGenerics,
-  type PipelineKindMap,
-  type PipelineURI
-} from './context_pipeline';
-
-import {DockerPipeline, dockerPipeline,} from '../container/docker_pipeline';
-import type {ActionType, ConfigEvent} from '../db/event_sourcing';
-import {EventSourcing} from '../db/event_sourcing';
+import { assignPipelineChild } from './assign_pipeline_child';
+import { assignPipelineMount } from './assign_pipeline_mount';
+import { assignPipelineNext } from './assign_pipeline_next';
+import { assignPipelineSwitch } from './assign_pipeline_switch';
+import { cPl } from './c_pl';
+import { ContextFactory } from './context_factory';
+import type { ApplyPipeline, ContextFactoryKey, ContextFactoryMap } from './context_factory';
+import { ContextPipeline } from './context_pipeline';
+import type { ChildPipe, ChildPipeCbGenerics, ChildPipeGenerics, NextPipe, NextPipeGenerics, PipelineGenerics, PipelineState } from './context_pipeline';
+import { createPipelineGetter } from './create_pipeline_getter';
 
 // Named exports
-export { ContextPipeline, EventSourcing, cpl, dockerPipeline };
-export type { ActionType,
+export {
+  ContextFactory,
+  ContextPipeline,
+  assignPipelineChild,
+  assignPipelineMount,
+  assignPipelineNext,
+  assignPipelineSwitch,
+  cPl,
+  createPipelineGetter
+};
+export type {
   ApplyPipeline,
-  PipelineKindMap,
-  PipelineURI,
-  ChildPipeGenerics, ConfigEvent, NextPipeGenerics, NextPipe, PipelineGenerics, ChildPipe };
+  ChildPipe,
+  ChildPipeCbGenerics,
+  ChildPipeGenerics,
+  ContextFactoryKey,
+  ContextFactoryMap,
+  NextPipe,
+  NextPipeGenerics,
+  PipelineGenerics,
+  PipelineState
+};
 
 // Default export
 const context = {
+  assignPipelineChild,
+  assignPipelineMount,
+  assignPipelineNext,
+  assignPipelineSwitch,
+  cPl,
+  ContextFactory,
   ContextPipeline,
-  DockerPipeline,
-  cpl,
-  EventSourcing,
+  createPipelineGetter,
 };
+
 
 export default context;

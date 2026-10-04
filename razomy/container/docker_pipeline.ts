@@ -1,6 +1,5 @@
 import * as context from '@razomy/context';
 import * as abstracts from '@razomy/abstracts';
-import type { PipelineGenerics, ChildPipe } from '../context/context_pipeline';
 
 export interface Credential {
   login: string;
@@ -21,13 +20,7 @@ function setCredential(login: string, password: string): HasCredential {
   };
 }
 
-declare module '../context/context_pipeline' {
-  interface PipelineKindMap<Pgs extends PipelineGenerics> {
-    docker: DockerPipeline<Pgs>;
-  }
-}
-
-export class DockerPipeline<Pgs extends PipelineGenerics = PipelineGenerics> extends context.ContextPipeline<Pgs, 'docker'> {
+export class DockerPipeline<Pgs extends context.PipelineGenerics = context.PipelineGenerics> extends context.ContextPipeline<Pgs, 'dockerPipeline'> {
 
   // =========================================================
   // 1. Кастомные свойства со сложными типами
@@ -70,20 +63,16 @@ export class DockerPipeline<Pgs extends PipelineGenerics = PipelineGenerics> ext
   // =========================================================
   // 4. Вложенные пайплайны (тип cb выводится автоматически из ChildMethod)
   // =========================================================
-  services: ChildPipe<Pgs, 'docker', 'services'> = (cb) => this.c('services', cb);
-  postgres: ChildPipe<Pgs, 'docker', 'postgres'> = (cb) => this.c('postgres', cb);
-  image: ChildPipe<Pgs, 'docker', 'image'> = (cb) => this.c('image', cb);
-  docker: ChildPipe<Pgs, 'docker', 'docker'> = (cb) => this.c('docker', cb);
-  environment2: ChildPipe<Pgs, 'docker', 'environment2'> = (cb) => this.c('environment2', cb);
-  production: ChildPipe<Pgs, 'docker', 'production'> = (cb) => this.c('production', cb);
-  local: ChildPipe<Pgs, 'docker', 'local'> = (cb) => this.c('local', cb);
-  bouncer: ChildPipe<Pgs, 'docker', 'bouncer'> = (cb) => this.c('bouncer', cb);
-  scheduler: ChildPipe<Pgs, 'docker', 'scheduler'> = (cb) => this.c('scheduler', cb);
-  volumes: ChildPipe<Pgs, 'docker', 'volumes'> = (cb) => this.c('volumes', cb);
-  dockerCompose: ChildPipe<Pgs, 'docker', 'dockerCompose'> = (cb) => this.c('dockerCompose', cb);
-  command: ChildPipe<Pgs, 'docker', 'command'> = (cb) => this.c('command', cb);
-}
-
-export function dockerPipeline() {
-  return new DockerPipeline(null!);
+  services = this.cM('services');
+  postgres = this.cM('postgres');
+  image = this.cM('image');
+  docker = this.cM('docker');
+  environment2 = this.cM('environment2');
+  production = this.cM('production');
+  local = this.cM('local');
+  bouncer = this.cM('bouncer');
+  scheduler = this.cM('scheduler');
+  volumes = this.cM('volumes');
+  dockerCompose = this.cM('dockerCompose');
+  command = this.cM('command');
 }

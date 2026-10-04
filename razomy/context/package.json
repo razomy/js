@@ -24,11 +24,6 @@
         "types": "./index.ts"
       }
     },
-    "./extensions": {
-      "import": "./extensions.ts",
-      "require": "./extensions.ts",
-      "types": "./extensions.ts"
-    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
@@ -39,7 +34,12 @@
   "keywords": [
     "razomy",
     "context",
-    "cpl"
+    "assignPipelineChild",
+    "assignPipelineMount",
+    "assignPipelineNext",
+    "assignPipelineSwitch",
+    "cPl",
+    "createPipelineGetter"
   ],
   "license": "MIT",
   "main": "./index.ts",

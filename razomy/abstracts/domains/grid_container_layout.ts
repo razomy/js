@@ -1,13 +1,10 @@
-import type { BoundRectangle, BoundRectangleMetric, MetricUnit, Position2dMetric } from './has_dimension';
-import type { ILayout } from '../translators/i_ui_node';
-
 /**
  * Спецификация размеров дорожек (Track Sizing) для CSS Grid, OpenXML Tables и PDF.
  */
 export type GridTrackSize =
-  | ({ kind: 'xy' } & MetricUnit)
-  | { kind: 'minmax'; min: MetricUnit; max: MetricUnit }
-  | { kind: 'fit-content'; limit: MetricUnit }
+  | ({ kind: 'xy' } & abstracts.domains.MetricUnit)
+  | { kind: 'minmax'; min: abstracts.domains.MetricUnit; max: abstracts.domains.MetricUnit }
+  | { kind: 'fit-content'; limit: abstracts.domains.MetricUnit }
   | { kind: 'repeat'; count: number | 'auto-fill' | 'auto-fit'; track: GridTrackSize };
 
 /**
@@ -17,7 +14,7 @@ export type GridTrackSize =
  * PDF: Математическая разбивка ширины страницы на X-координаты
  * Unity: UI Toolkit Grid Layout
  */
-export interface GridContainerLayout extends ILayout {
+export interface GridContainerLayout extends abstracts.translators.ILayout {
   kind: 'grid';
   columns: GridTrackSize[];
   rows: GridTrackSize[];
@@ -25,8 +22,8 @@ export interface GridContainerLayout extends ILayout {
   autoRows?: GridTrackSize[];
   autoFlow?: 'row' | 'column' | 'row-dense' | 'column-dense';
   templateAreas?: string[];
-  columnGap?: MetricUnit;
-  rowGap?: MetricUnit;
+  columnGap?: abstracts.domains.MetricUnit;
+  rowGap?: abstracts.domains.MetricUnit;
   justifyContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-around' | 'space-between' | 'space-evenly';
   alignContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-around' | 'space-between' | 'space-evenly';
   justifyItems?: 'start' | 'end' | 'center' | 'stretch';
@@ -49,20 +46,20 @@ export interface GridItemPlacement {
  * Unity: UI Toolkit (Yoga Layout Engine)
  * Word/PDF: Эмулируется через выравнивание строчных блоков
  */
-export interface FlexLayout extends ILayout {
+export interface FlexLayout extends abstracts.translators.ILayout {
   kind: 'flex';
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   justifyContent?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
   alignContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-between' | 'space-around';
-  gap?: { row: MetricUnit; column: MetricUnit };
+  gap?: { row: abstracts.domains.MetricUnit; column: abstracts.domains.MetricUnit };
 }
 
 export interface FlexItemPlacement {
   grow?: number;
   shrink?: number;
-  basis?: MetricUnit;
+  basis?: abstracts.domains.MetricUnit;
   order?: number;
   alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch';
 }
@@ -71,7 +68,7 @@ export interface FlexItemPlacement {
  * Потоковый макет (Flow Layout).
  * Базовый для Word (w:p, w:r) и HTML Inline/Block.
  */
-export interface FlowLayout extends ILayout {
+export interface FlowLayout extends abstracts.translators.ILayout {
   kind: 'flow';
   display: 'block' | 'inline' | 'inline-block' | 'none';
   float?: 'left' | 'right' | 'none';
@@ -85,7 +82,7 @@ export interface FlowLayout extends ILayout {
  * Якорное позиционирование (Anchored Layout).
  * Нативный макет Unity uGUI (RectTransform).
  */
-export interface AnchoredLayout extends ILayout {
+export interface AnchoredLayout extends abstracts.translators.ILayout {
   kind: 'anchored';
   anchorMin: [x: number, y: number]; // [0..1, 0..1]
   anchorMax: [x: number, y: number];
@@ -98,12 +95,12 @@ export interface AnchoredLayout extends ILayout {
  * Фиксированное позиционирование (Fixed Layout).
  * Нативный макет PDF страниц (ISO 32000 MediaBox / CropBox) и абсолютных оверлеев.
  */
-export interface FixedLayout extends ILayout {
+export interface FixedLayout extends abstracts.translators.ILayout {
   kind: 'fixed';
-  x: MetricUnit;
-  y: MetricUnit;
-  width: MetricUnit;
-  height: MetricUnit;
+  x: abstracts.domains.MetricUnit;
+  y: abstracts.domains.MetricUnit;
+  width: abstracts.domains.MetricUnit;
+  height: abstracts.domains.MetricUnit;
 }
 
 export type UILayoutEngine = GridContainerLayout | FlexLayout | FlowLayout | AnchoredLayout | FixedLayout;
@@ -113,19 +110,19 @@ export type UILayoutEngine = GridContainerLayout | FlexLayout | FlowLayout | Anc
 // ============================================================================
 
 export interface UISizing {
-  width?: MetricUnit;
-  height?: MetricUnit;
-  minWidth?: MetricUnit;
-  maxWidth?: MetricUnit;
-  minHeight?: MetricUnit;
-  maxHeight?: MetricUnit;
+  width?: abstracts.domains.MetricUnit;
+  height?: abstracts.domains.MetricUnit;
+  minWidth?: abstracts.domains.MetricUnit;
+  maxWidth?: abstracts.domains.MetricUnit;
+  minHeight?: abstracts.domains.MetricUnit;
+  maxHeight?: abstracts.domains.MetricUnit;
   aspectRatio?: number;
   boxSizing?: 'content-box' | 'border-box';
 }
 
 export interface UIPositioning {
   mode: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
-  insets?: Partial<BoundRectangleMetric>;
+  insets?: Partial<abstracts.domains.BoundRectangleMetric>;
   zIndex?: number;
 }
 
@@ -175,39 +172,39 @@ export interface ImagePaint {
   kind: 'image';
   uri: string;
   fit: 'cover' | 'contain' | 'fill' | 'tile' | 'none';
-  position?: Position2dMetric;
+  position?: abstracts.domains.Position2dMetric;
   repeat?: 'no-repeat' | 'repeat' | 'repeat-x' | 'repeat-y';
 }
 
 export type UIPaint = SolidPaint | GradientPaint | ImagePaint;
 
 export interface BorderSide {
-  width: MetricUnit;
+  width: abstracts.domains.MetricUnit;
   style: 'none' | 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge';
   color: ColorRGBA;
 }
 
 export interface UIBorders {
-  sides?: Partial<BoundRectangle<BorderSide>>;
+  sides?: Partial<abstracts.domains.BoundRectangle<BorderSide>>;
   radii?: {
-    topLeft?: Position2dMetric;
-    topRight?: Position2dMetric;
-    bottomRight?: Position2dMetric;
-    bottomLeft?: Position2dMetric;
+    topLeft?: abstracts.domains.Position2dMetric;
+    topRight?: abstracts.domains.Position2dMetric;
+    bottomRight?: abstracts.domains.Position2dMetric;
+    bottomLeft?: abstracts.domains.Position2dMetric;
   };
 }
 
 export interface UIShadow {
   kind: 'drop' | 'inner';
-  offset: Position2dMetric;
-  blurRadius: MetricUnit;
-  spreadRadius?: MetricUnit;
+  offset: abstracts.domains.Position2dMetric;
+  blurRadius: abstracts.domains.MetricUnit;
+  spreadRadius?: abstracts.domains.MetricUnit;
   color: ColorRGBA;
 }
 
 export interface UIFilters {
-  blur?: MetricUnit;
-  backdropBlur?: MetricUnit; // Glassmorphism
+  blur?: abstracts.domains.MetricUnit;
+  backdropBlur?: abstracts.domains.MetricUnit; // Glassmorphism
   opacity?: number;
   grayscale?: number;
   contrast?: number;
@@ -221,8 +218,8 @@ export interface UIFilters {
 // ============================================================================
 
 export interface UITransforms {
-  origin?: { x: MetricUnit; y: MetricUnit; z?: MetricUnit };
-  translate?: { x: MetricUnit; y: MetricUnit; z?: MetricUnit };
+  origin?: { x: abstracts.domains.MetricUnit; y: abstracts.domains.MetricUnit; z?: abstracts.domains.MetricUnit };
+  translate?: { x: abstracts.domains.MetricUnit; y: abstracts.domains.MetricUnit; z?: abstracts.domains.MetricUnit };
   scale?: { x: number; y: number; z?: number };
   rotate?: { x?: number; y?: number; z: number };
   skew?: { x: number; y: number };
@@ -230,7 +227,7 @@ export interface UITransforms {
    * Аффинная матрица 4x4 в формате Column-Major:
    * Прямой маппинг в PDF оператор `cm`, Unity `Matrix4x4` и CSS `matrix3d()`.
    */
-  rawMatrix4x4?: [
+  rawMatrix4X4?: [
     number,
     number,
     number,
@@ -259,12 +256,12 @@ export interface UITransforms {
 
 export interface Typography {
   fontFamily: string[];
-  fontSize: MetricUnit;
+  fontSize: abstracts.domains.MetricUnit;
   fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   fontStyle: 'normal' | 'italic' | 'oblique';
-  lineHeight: MetricUnit;
-  letterSpacing?: MetricUnit;
-  wordSpacing?: MetricUnit;
+  lineHeight: abstracts.domains.MetricUnit;
+  letterSpacing?: abstracts.domains.MetricUnit;
+  wordSpacing?: abstracts.domains.MetricUnit;
   textAlign: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end';
   verticalAlign?: 'baseline' | 'sub' | 'super' | 'top' | 'middle' | 'bottom';
   textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
@@ -306,8 +303,8 @@ export interface UITransition {
 export interface UIStyleBag {
   sizing?: UISizing;
   positioning?: UIPositioning;
-  margin?: Partial<BoundRectangleMetric>;
-  padding?: Partial<BoundRectangleMetric>;
+  margin?: Partial<abstracts.domains.BoundRectangleMetric>;
+  padding?: Partial<abstracts.domains.BoundRectangleMetric>;
   overflow?: UIOverflow;
   backgrounds?: UIPaint[];
   borders?: UIBorders;
@@ -354,9 +351,6 @@ export interface UIInteractionSpec {
 }
 
 import * as abstracts from "@razomy/abstracts";
-import type {HasExtension} from "../functions/has_args";
-
-
 export type Text = string;
 
 export interface HasText extends abstracts.meta.IHas {
@@ -389,7 +383,7 @@ export interface HasTaskType extends abstracts.meta.IHas {
   taskType: TaskType;
 }
 
-export type CallEntity<A extends abstracts.functions.ExtensionGenerics = abstracts.functions.ExtensionGenerics> = abstracts.patterns.IEntity & HasFunctionHir & HasExtension<A>
+export type CallEntity<A extends abstracts.functions.ExtensionGenerics = abstracts.functions.ExtensionGenerics> = abstracts.patterns.IEntity & HasFunctionHir & abstracts.functions.HasExtension<A>
 export type CallRef<A extends abstracts.functions.ExtensionGenerics = abstracts.functions.ExtensionGenerics> = abstracts.patterns.IdRef<CallEntity<A>>
 
 export interface HasCallRef extends abstracts.patterns.IHasRef {
