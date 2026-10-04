@@ -1,108 +1,160 @@
 import * as abstracts from '@razomy/abstracts';
 
-/** Добавление свойств в текущий контекст без накопления WithProperty */
-export type NextCtx<
-  TC extends object,
-  TP extends ContextPipeline,
-  TCh extends Record<PropertyKey, ContextPipeline>,
-  TCA extends object,
-  TNew extends object,
-> = ContextPipeline<
-  abstracts.meta.Prettify<TC & TNew>,
-  TP,
-  TCh,
-  abstracts.meta.Prettify<TCA & TNew>
->;
-
-/** Добавление дочернего пайплайна */
-export type NextChild<
-  TC extends object,
-  TP extends ContextPipeline,
-  TCh extends Record<PropertyKey, ContextPipeline>,
-  TCA extends object,
-  K extends string,
-  R extends ContextPipeline,
-> = ContextPipeline<
-  abstracts.meta.Prettify<TC & { [P in K]: R['ctx'] }>,
-  TP,
-  abstracts.meta.Prettify<TCh & { [P in K]: R }>,
-  abstracts.meta.Prettify<TCA & { [P in K]: R['ctx'] }>
->;
-
-/** Сигнатура колбэка создания дочернего контекста */
-export type ChildCb<
-  TC extends object,
-  TP extends ContextPipeline,
-  TCh extends Record<PropertyKey, ContextPipeline>,
-  TCA extends object,
-  K extends string,
-  R extends ContextPipeline,
-> = (_: ContextPipeline<{ name: K }, ContextPipeline<TC, TP, TCh, TCA>, {}, TCA>) => R;
-
-/** Утилита: объявление метода простого поля в интерфейсе в 1 строку */
-export type Field<
-  TC extends object,
-  TP extends ContextPipeline,
-  TCh extends Record<PropertyKey, ContextPipeline>,
-  TCA extends object,
-  K extends PropertyKey,
-  V = string,
-> = (val: V) => NextCtx<TC, TP, TCh, TCA, { [P in K]: V }>;
-
-/** Утилита: объявление вложенного пайплайна в интерфейсе в 1 строку */
-export type ChildMethod<
-  TC extends object,
-  TP extends ContextPipeline,
-  TCh extends Record<PropertyKey, ContextPipeline>,
-  TCA extends object,
-  K extends string,
-> = <R extends ContextPipeline>(cb: ChildCb<TC, TP, TCh, TCA, K, R>) => NextChild<TC, TP, TCh, TCA, K, R>;
-
-export class ContextPipeline<
+export type PipelineGenerics<
   TC extends object = {},
   TP extends ContextPipeline = any,
-  TCh extends Record<PropertyKey, ContextPipeline> = any,
+  TCh extends Record<PropertyKey, ContextPipeline> = {},
   TCA extends object = {},
-> {
-  public ctx: TC = {} as TC;
-  public children: TCh = {} as TCh;
+> = { c: TC; p: TP; ch: TCh; ca: TCA };
 
-  public constructor(public parent: TP) {}
+export interface PipelineKindMap<Pgs extends PipelineGenerics> {
+  base: ContextPipeline<Pgs, 'base'>;
+}
+export type PipelineURI = keyof PipelineKindMap<any>;
 
-  public get get() {
-    return new Proxy({} as TCA, {
-      get: (_, prop: string) => {
-        // 1. Ищем в текущем контексте
-        if (prop in this.ctx) {
-          return this.ctx[prop as keyof TC];
-        }
-        // 2. Ищем у родителя (если он есть)
-        if (this.parent) {
-          return this.parent.get[prop];
-        }
-        return undefined;
-      },
-    });
+export type ApplyPipeline<URI extends PipelineURI, Pgs extends PipelineGenerics> = PipelineKindMap<Pgs>[URI];
+
+/** Добавление свойств в текущий контекст без накопления WithProperty */
+export type NextPipeGenerics<Pgs extends PipelineGenerics, TNew extends object> = PipelineGenerics<
+  abstracts.meta.Prettify<Pgs['c'] & TNew>,
+  Pgs['p'],
+  Pgs['ch'],
+  abstracts.meta.Prettify<Pgs['ca'] & TNew>
+>;
+
+/** Утилита: объявление метода простого поля в интерфейсе в 1 строку */
+export type NextPipe<Pgs extends PipelineGenerics, K extends PropertyKey, V = string> = (
+  val: V,
+) => NextPipeGenerics<Pgs, { [P in K]: V }>;
+
+/** Добавление дочернего пайплайна */
+export type ChildPipeGenerics<
+  Pgs extends PipelineGenerics,
+  K extends string,
+  R extends ContextPipeline,
+> = PipelineGenerics<
+  abstracts.meta.Prettify<Pgs['c'] & { [P in K]: R['ctx'] }>,
+  Pgs['p'],
+  abstracts.meta.Prettify<Pgs['ch'] & { [P in K]: R }>,
+  abstracts.meta.Prettify<Pgs['ca'] & { [P in K]: R['ctx'] }>
+>;
+
+/** Утилита: объявление вложенного пайплайна в интерфейсе в 1 строку */
+export type ChildPipe<Pgs extends PipelineGenerics, URI extends PipelineURI, K extends string> = <
+  R extends ApplyPipeline<URI, any>,
+>(
+  cb: (
+    _: ApplyPipeline<
+      URI,
+      {
+        c: { name: K };
+        p: ContextPipeline<Pgs>;
+        ch: {};
+        ca: Pgs['ca'];
+      }
+    >,
+  ) => R,
+) => ApplyPipeline<URI, ChildPipeGenerics<Pgs, K, R>>;
+
+/**
+ * Интерфейс минимального состояния, необходимого для работы утилит
+ */
+export interface PipelineState {
+  ctx: Record<PropertyKey, any>;
+  children: Record<PropertyKey, any>;
+  parent?: any;
+  get?: any;
+}
+
+/**
+ * Создает Proxy для каскадного чтения свойств (текущий ctx -> parent.get)
+ */
+export function createPipelineGetter<TContextAccess extends object>(
+  instance: PipelineState
+): TContextAccess {
+  return new Proxy({} as TContextAccess, {
+    get: (_, prop: string) => {
+      // 1. Ищем в текущем контексте
+      if (prop in instance.ctx) {
+        return instance.ctx[prop];
+      }
+      // 2. Ищем у родителя (если он есть)
+      if (instance.parent && instance.parent.get) {
+        return instance.parent.get[prop];
+      }
+      return undefined;
+    },
+  });
+}
+
+/**
+ * Мутирует текущий контекст, добавляя новые поля
+ */
+export function assignPipelineNext<T extends PipelineState>(
+  instance: T,
+  args: object
+): T {
+  Object.assign(instance.ctx, args);
+  return instance;
+}
+
+/**
+ * Создает дочерний пайплайн через полиморфный вызов конструктора и связывает контексты
+ */
+export function assignPipelineChild<T extends PipelineState>(
+  instance: T,
+  propName: string,
+  cb: (child: any) => any
+): T {
+  // Полиморфный new: создает инстанс того же класса, что и текущий объект
+  const Ctor = (instance as any).constructor as new (parent: any) => any;
+  const child = new Ctor(instance);
+
+  child.ctx.name = propName;
+  const childResult = cb(child);
+
+  instance.children[propName] = childResult;
+  Object.assign(instance.ctx, { [propName]: childResult.ctx });
+
+  return instance;
+}
+
+export class ContextPipeline<Pgs extends PipelineGenerics = PipelineGenerics, URI extends PipelineURI = 'base'> {
+  public ctx: Pgs['c'] = {} as Pgs['c'];
+  public children: Pgs['ch'] = {} as Pgs['ch'];
+
+  public constructor(public parent: Pgs['p']) {}
+
+  public get get(): Pgs['ca'] {
+    return createPipelineGetter<Pgs['ca']>(this);
   }
 
-  public m<TNew extends object>(args: TNew): NextCtx<TC, TP, TCh, TCA, TNew> {
-    Object.assign(this.ctx, args);
-    return this as any;
+  // Используем вынесенную логику next
+  public n<TNew extends object>(
+    args: TNew
+  ): ApplyPipeline<URI, NextPipeGenerics<Pgs, TNew>> {
+    return assignPipelineNext(this, args) as any;
   }
 
-  public c<K extends string, R extends ContextPipeline>(
+  // Используем вынесенную логику child
+  public c<K extends string, R extends ContextPipeline<any, any>>(
     propName: K,
-    c: ChildCb<TC, TP, TCh, TCA, K, R>,
-  ): NextChild<TC, TP, TCh, TCA, K, R> {
-    const child = new ContextPipeline<{ name: K }, this, {}, TCA>(this);
-    (child.ctx as any).name = propName;
-    const childR = c(child as any);
-    (this.children as any)[propName] = childR;
-    Object.assign(this.ctx, { [propName]: childR.ctx });
-    return this as any;
+    cb: (
+      _: ApplyPipeline<
+        URI,
+        {
+          c: { name: K };
+          p: ContextPipeline<Pgs>;
+          ch: {};
+          ca: Pgs['ca'];
+        }
+      >
+    ) => R
+  ): ApplyPipeline<URI, ChildPipeGenerics<Pgs, K, R>> {
+    return assignPipelineChild(this, propName, cb) as any;
   }
 }
 
-export function cpl() {
-  return new ContextPipeline<{}>(null!);
+export function cPl() {
+  return new ContextPipeline(null!);
 }
