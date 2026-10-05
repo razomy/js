@@ -7,12 +7,12 @@ export function createPipelineGetter<TContextAccess extends object>(instance: co
     return new Proxy({} as TContextAccess, {
     get: (_, prop: string) => {
       // 1. Ищем в текущем контексте
-      if (prop in instance.ctx) {
-        return instance.ctx[prop];
+      if (prop in (instance.value as {})) {
+        return (instance.value as any)[prop];
       }
       // 2. Ищем у родителя (если он есть)
-      if (instance.parent && instance.parent.get) {
-        return instance.parent.get[prop];
+      if (instance.parent && (instance.parent as context.PipelineState).get) {
+        return (instance.parent as any).get[prop];
       }
       return undefined;
     },

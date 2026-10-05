@@ -24,11 +24,6 @@
         "types": "./index.ts"
       }
     },
-    "./extensions": {
-      "import": "./extensions.ts",
-      "require": "./extensions.ts",
-      "types": "./extensions.ts"
-    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },

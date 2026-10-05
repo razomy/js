@@ -9,8 +9,8 @@ export function assignPipelineMount<T extends context.PipelineState, P extends c
   target: P,
 ): T {
   target.parent = instance;
-  instance.children[propName] = target;
-  Object.assign(instance.ctx, { [propName]: target.ctx });
+  (instance.children as {})[propName] = target;
+  Object.assign(instance.value as {}, { [propName]: target.value });
   return instance;
 }
 

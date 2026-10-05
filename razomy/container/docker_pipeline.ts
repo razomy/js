@@ -20,59 +20,62 @@ function setCredential(login: string, password: string): HasCredential {
   };
 }
 
-export class DockerPipeline<Pgs extends context.PipelineGenerics = context.PipelineGenerics> extends context.ContextPipeline<Pgs, 'dockerPipeline'> {
-
+export class DockerPipeline extends context.ContextPipeline {
   // =========================================================
   // 1. Кастомные свойства со сложными типами
   // =========================================================
-  name = (val: string) => this.n({ name: val });
-  folderPath = (val: string) => this.n({ folderPath: val });
-  labels = (val: string) => this.n({ labels: val });
-  logging = (val: string) => this.n({ logging: val });
-  age = (val: string) => this.n({ age: val });
-  stat = (val: string) => this.n({ stat: val });
-  backup = (val: string) => this.n({ backup: val });
-  volumes2 = (val: string) => this.n({ volumes2: val });
-  performanceSetup = (val: string) => this.n({ performanceSetup: val });
-  restart = (val: string) => this.n({ restart: val });
-  content = (val: string) => this.n({ content: val });
-  ports = (val: string) => this.n({ ports: val });
-  extension = (val: string) => this.n({ extension: val });
-  platform = (val: string) => this.n({ platform: val });
-  build = (val: string) => this.n({ build: val });
-  libraries = (val: string) => this.n({ libraries: val });
-  containerName = (val: string) => this.n({ containerName: val });
+  name = this.nextFactory((name: string) => ({ name: name }));
+  folderPath = this.nextFactory((val: string) => ({ folderPath: val }));
+  labels = this.nextFactory((val: string) => ({ labels: val }));
+  logging = this.nextFactory((val: string) => ({ logging: val }));
+  age = this.nextFactory((val: string) => ({ age: val }));
+  stat = this.nextFactory((val: string) => ({ stat: val }));
+  backup = this.nextFactory((val: string) => ({ backup: val }));
+  volumes2 = this.nextFactory((val: string) => ({ volumes2: val }));
+  performanceSetup = this.nextFactory((val: string) => ({ performanceSetup: val }));
+  restart = this.nextFactory((val: string) => ({ restart: val }));
+  content = this.nextFactory((val: string) => ({ content: val }));
+  ports = this.nextFactory((val: string) => ({ ports: val }));
+  extension = this.nextFactory((val: string) => ({ extension: val }));
+  platform = this.nextFactory((val: string) => ({ platform: val }));
+  build = this.nextFactory((val: string) => ({ build: val }));
+  libraries = this.nextFactory((val: string) => ({ libraries: val }));
+  containerName = this.nextFactory((val: string) => ({ containerName: val }));
   //complex
-  current = (val: 'production' | 'local') => this.n({ current: val });
-  credential = (login: string, password: string) => this.n(setCredential(login, password));
+  current = this.nextFactory((val: 'production' | 'local') => ({ current: val }));
+  credential = this.nextFactory((login: string, password: string) => setCredential(login, password));
   //callbacks
-  environment = (environment: (t: this) => string) => this.n({ environment: environment(this) });
-  healthcheck = (healthcheck: (t: Pgs['c'], p: this) => string) =>
-    this.n({ healthcheck: () => healthcheck(this.ctx, this) });
-  inheritFolderPath = (inheritFolderPath: (t: Pgs['c'], p: this) => void) =>
-    this.n({ inheritFolderPath: () => inheritFolderPath(this.ctx, this) });
-  content2 = (content2: (t: Pgs['c'], p: this) => string) => this.n({ content2: () => content2(this.ctx, this) });
-  schema = (schema: (t: Pgs['c'], p: this) => abstracts.structures.KeyValueArray<string, string>) =>
-    this.n({ schema: () => schema(this.ctx, this) });
-  load = (load: (t: Pgs['c'], p: this) => void) => this.n({ load: () => load(this.ctx, this) });
-  save = (save: (t: Pgs['c']) => void) => this.n({ save: () => save(this.ctx) });
-  combineContent = (combineContent: (t: Pgs['c']) => void) =>
-    this.n({ combineContent: () => combineContent(this.ctx) });
-  onStart = (onStart: (t: Pgs['c']) => void) => this.n({ onStart: () => onStart(this.ctx) });
+  environment = this.nCb((environment: (t: this) => string) => ({ environment: environment(this) }));
+  healthcheck = this.nCb((healthcheck: (p: this) => string) => ({
+    healthcheck: () => healthcheck(this),
+  }));
+  inheritFolderPath = this.nCb((inheritFolderPath: (t: this) => void) => ({
+    inheritFolderPath: () => inheritFolderPath(this),
+  }));
+  content2 = this.nCb((content2: (t: this) => string) => ({ content2: () => content2(this) }));
+  schema = this.nCb((schema: (t: this) => abstracts.structures.KeyValueArray<string, string>) => ({
+    schema: () => schema(this),
+  }));
+  load = this.nCb((load: (t: this) => void) => ({ load: () => load(this) }));
+  save = this.nCb((save: (t: this) => void) => ({ save: () => save(this) }));
+  combineContent = this.nCb((combineContent: (t: this) => void) => ({
+    combineContent: () => combineContent(this),
+  }));
+  onStart = this.nCb((onStart: (t: this) => void) => ({ onStart: () => onStart(this) }));
 
   // =========================================================
   // 4. Вложенные пайплайны (тип cb выводится автоматически из ChildMethod)
   // =========================================================
-  services = this.cM('services');
-  postgres = this.cM('postgres');
-  image = this.cM('image');
-  docker = this.cM('docker');
-  environment2 = this.cM('environment2');
-  production = this.cM('production');
-  local = this.cM('local');
-  bouncer = this.cM('bouncer');
-  scheduler = this.cM('scheduler');
-  volumes = this.cM('volumes');
-  dockerCompose = this.cM('dockerCompose');
-  command = this.cM('command');
+  services = this.childFactory('services');
+  postgres = this.childFactory('postgres');
+  image = this.childFactory('image');
+  docker = this.childFactory('docker');
+  environment2 = this.childFactory('environment2');
+  production = this.childFactory('production');
+  local = this.childFactory('local');
+  bouncer = this.childFactory('bouncer');
+  scheduler = this.childFactory('scheduler');
+  volumes = this.childFactory('volumes');
+  dockerCompose = this.childFactory('dockerCompose');
+  command = this.childFactory('command');
 }

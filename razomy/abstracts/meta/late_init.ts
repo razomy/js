@@ -7,3 +7,10 @@ export type DeepReadonly<T> = {
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+
+/**
+ * 2. Безопасное слияние: свойства из B перезаписывают свойства из A,
+ * предотвращая превращение типа в `never` при совпадении имен полей.
+ */
+export type Merge<A, B> = Prettify<Omit<A, keyof B> & B>;
