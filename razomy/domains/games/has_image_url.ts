@@ -2,7 +2,7 @@ import * as abstracts from "@razomy/abstracts";
 import * as domains from "@razomy/domains";
 
 export interface HasImageUrl {
-  imageUrl: abstracts.domains.Url;
+  imageUrl: abstracts.components.Url;
 }
 
 export interface HasTitle {
@@ -10,7 +10,7 @@ export interface HasTitle {
 }
 
 
-export interface UserGame extends abstracts.patterns.HasPrimaryId, abstracts.domains.CudDateTime, domains.identitys.HasNickName {
+export interface UserGame extends abstracts.patterns.HasPrimaryId, abstracts.components.CrudDateTime, domains.identitys.HasNickName {
   /*
    * @uniq
    */
@@ -27,7 +27,7 @@ export interface UserGameChild extends abstracts.patterns.HasPrimaryId {
   games: abstracts.patterns.IdRef<Game>[];
 }
 
-export interface Game extends abstracts.patterns.HasPrimaryId, abstracts.domains.CudDateTime {
+export interface Game extends abstracts.patterns.HasPrimaryId, abstracts.components.CrudDateTime {
   title: abstracts.primitives.Char128;
 }
 
@@ -39,7 +39,7 @@ export interface GameChild extends abstracts.patterns.HasPrimaryId {
   game: abstracts.patterns.IdRef<Game>;
 }
 
-export interface Reward {}
+export interface Reward extends abstracts.patterns.IEntity{}
 
 export interface Achievement extends abstracts.patterns.HasPrimaryId, HasImageUrl, HasTitle, abstracts.patterns.HasName {
   reward: abstracts.patterns.IdRef<Reward>;
@@ -63,13 +63,13 @@ export interface Player {
 
 export interface Location extends GameChild {
   name: string;
-  boundaries: abstracts.domains.BoundRectangle;
+  boundaries: abstracts.components.BoundRectangle;
 }
 
 export interface Item extends GameChild {
   name: string;
 }
 
-export interface PlayerMatch extends GameChild, UserGameChild, abstracts.domains.CudDateTime {
+export interface PlayerMatch extends GameChild, UserGameChild, abstracts.components.CrudDateTime {
   userSkill: abstracts.primitives.Vector128;
 }

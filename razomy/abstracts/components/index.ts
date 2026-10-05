@@ -1,9 +1,10 @@
 // Imports
-import type { AnchoredLayout, BlendMode, BorderSide, CallEntity, CallRef, CodeLanguage, ColorRGBA, FixedLayout, FlexItemPlacement, FlexLayout, FlowLayout, GradientPaint, GradientStop, GridContainerLayout, GridItemPlacement, GridTrackSize, HasArguments, HasCallRef, HasCodeLanguage, HasEntityRef, HasFunctionHir, HasResult, HasSender, HasTask, HasTaskType, HasText, HasTextType, ImagePaint, InteractionTurnSender, SolidPaint, TaskType, Text, TextType, Typography, UIBorders, UIEventBinding, UIEventType, UIFilters, UIInteractionSpec, UILayoutEngine, UIOverflow, UIPaint, UIPositioning, UIShadow, UISizing, UIStyleBag, UITransforms, UITransition } from './grid_container_layout';
-import type { CudDateTime, DateTime, HasCreatedAt, HasDeletedAt, HasUpdatedAt } from './has_created_at';
+import type { CrudDateTime, CudDateTime, DateTime, HasCreatedAt, HasDeletedAt, HasReadAt, HasUpdatedAt } from './has_created_at';
 import type { HasDescription } from './has_description';
-import type { BoundRectangle, BoundRectangleMetric, BoundX, BoundY, HasDimension, HasLength, HasX, HasY, MetricType, MetricUnit, NodeBound, Position2d, Position2dMetric, Quaternion, Transform3d, Vector3d } from './has_dimension';
+import type { BoundRectangle, BoundRectangleMetric, BoundX, BoundY, HasDimension, HasLength, HasX, HasY, HasZ, MetricType, MetricUnit, NodeBound, Quaternion, Transform3, Vector2, Vector2Metric, Vector3 } from './has_dimension';
 import type { AbsolutePathString, DirPathString, FilePathString, HasCurrentDir, HasDirPath, HasFileName, HasFilePath, HasPath, HasSlug, HasSourceDir, HasSourcePath, HasStartDir, PathString, RelativePathString, Slug, SourcePathString, Url } from './has_path';
+import type { CodeLanguageType, HasCodeLanguage, HasEntity, HasFn, HasFunctionHirn, HasResult, HasSender, HasSenderType, HasTask, HasTaskType, HasText, HasTextType, SenderType, TaskType, Text, TextType } from './has_text';
+import type { AnchoredLayout, BlendMode, BorderSide, ColorRGBA, FixedLayout, FlexItemPlacement, FlexLayout, FlowLayout, GradientPaint, GradientStop, GridContainerLayout, GridItemPlacement, GridTrackSize, ILayout, ImagePaint, SolidPaint, Typography, UIBorders, UIEventBinding, UIEventType, UIFilters, UIInteractionSpec, UILayoutEngine, UIOverflow, UIPaint, UIPositioning, UIShadow, UISizing, UIStyleBag, UITransforms, UITransition } from './i_layout';
 
 // Named exports
 export type {
@@ -15,10 +16,9 @@ export type {
   BoundRectangleMetric,
   BoundX,
   BoundY,
-  CallEntity,
-  CallRef,
-  CodeLanguage,
+  CodeLanguageType,
   ColorRGBA,
+  CrudDateTime,
   CudDateTime,
   DateTime,
   DirPathString,
@@ -32,8 +32,6 @@ export type {
   GridContainerLayout,
   GridItemPlacement,
   GridTrackSize,
-  HasArguments,
-  HasCallRef,
   HasCodeLanguage,
   HasCreatedAt,
   HasCurrentDir,
@@ -41,14 +39,17 @@ export type {
   HasDescription,
   HasDimension,
   HasDirPath,
-  HasEntityRef,
+  HasEntity,
   HasFileName,
   HasFilePath,
-  HasFunctionHir,
+  HasFn,
+  HasFunctionHirn,
   HasLength,
   HasPath,
+  HasReadAt,
   HasResult,
   HasSender,
+  HasSenderType,
   HasSlug,
   HasSourceDir,
   HasSourcePath,
@@ -60,23 +61,23 @@ export type {
   HasUpdatedAt,
   HasX,
   HasY,
+  HasZ,
+  ILayout,
   ImagePaint,
-  InteractionTurnSender,
   MetricType,
   MetricUnit,
   NodeBound,
   PathString,
-  Position2d,
-  Position2dMetric,
   Quaternion,
   RelativePathString,
+  SenderType,
   Slug,
   SolidPaint,
   SourcePathString,
   TaskType,
   Text,
   TextType,
-  Transform3d,
+  Transform3,
   Typography,
   UIBorders,
   UIEventBinding,
@@ -93,6 +94,8 @@ export type {
   UITransforms,
   UITransition,
   Url,
-  Vector3d
+  Vector2,
+  Vector2Metric,
+  Vector3
 };
 

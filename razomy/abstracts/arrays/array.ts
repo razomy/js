@@ -1,6 +1,8 @@
 import * as abstracts from '@razomy/abstracts';
 
-export interface Array {}
+export interface Array<T = any> extends DataStructure<T>{}
+
+export interface DataStructure<T> extends abstracts.meta.IResource {}
 
 export interface IIterator<T> {
   /**
@@ -8,8 +10,6 @@ export interface IIterator<T> {
    */
   next(): T;
 }
-
-export interface DataStructure<T> extends abstracts.meta.IResource {}
 
 /**
  * @memoryLayout Contiguous

@@ -1,7 +1,7 @@
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AstType[] {
+export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile?.();
 
@@ -12,11 +12,11 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
     } else {
       return [
         {
-          kind: 'ModuleAst',
+          kind: 'ModuleAsn',
           syntaxRole: 'statement',
           identifier: { name: namespaceExport.getName() },
           block: {
-            kind: 'BlockAst',
+            kind: 'BlockAsn',
             syntaxRole: 'statement',
             statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx),
           },
@@ -32,7 +32,7 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
   }
   // 3. Обработка: export { a, b, c }; (Именованные локальные экспорты)
   else if (exportDecl.getNamedExports && exportDecl.getNamedExports().length > 0) {
-    const results: abstracts.translators.AstType[] = [];
+    const results: abstracts.translators.AsnType[] = [];
     const processedFiles = new Set<string>();
 
     for (const namedExport of exportDecl.getNamedExports()) {
@@ -55,11 +55,11 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
             const moduleName = namedExport.getName();
 
             results.push({
-              kind: 'ModuleAst',
+              kind: 'ModuleAsn',
               syntaxRole: 'statement',
               identifier: { name: moduleName },
               block: {
-                kind: 'BlockAst',
+                kind: 'BlockAsn',
                 syntaxRole: 'statement',
                 statements: tsRl.ast.declarations.parseModuleBody(originSourceFile, ctx),
               },

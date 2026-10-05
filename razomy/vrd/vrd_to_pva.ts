@@ -3,11 +3,11 @@ import * as vrd_ from '@razomy/vrd';
 
 export function vrdToPva<T>(
   input: vrd_.VrdOrValue<T>,
-  absolutePath: abstracts.domains.AbsolutePathString,
+  absolutePath: abstracts.components.AbsolutePathString,
   separator: string,
 ) {
-  const result: { path: abstracts.domains.AbsolutePathString; value: T }[] = [];
-  const stack: { path: abstracts.domains.AbsolutePathString; vrd: vrd_.VrdOrValue<T> }[] = [
+  const result: { path: abstracts.components.AbsolutePathString; value: T }[] = [];
+  const stack: { path: abstracts.components.AbsolutePathString; vrd: vrd_.VrdOrValue<T> }[] = [
     { vrd: input, path: absolutePath },
   ];
 

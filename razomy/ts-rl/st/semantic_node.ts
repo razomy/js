@@ -31,7 +31,7 @@ export abstract class SemanticNode<T extends abstracts.translators.IHirNode>
   }
 }
 
-export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHir> {
+export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHirn> {
   get name(): string | null {
     return this.hir.name;
   }
@@ -74,7 +74,7 @@ export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHir
   }
 }
 
-export class BindingNode extends SemanticNode<abstracts.translators.BindingHir> {
+export class BindingNode extends SemanticNode<abstracts.translators.BindingHirn> {
   get name(): string {
     return this.hir.name ?? '';
   }
@@ -95,7 +95,7 @@ export class BindingNode extends SemanticNode<abstracts.translators.BindingHir> 
   }
 }
 
-export class ModuleNode extends SemanticNode<abstracts.translators.StructHir> {
+export class ModuleNode extends SemanticNode<abstracts.translators.StructHirn> {
   get name(): string {
     return this.hir.name ?? 'anonymous_module';
   }
@@ -121,7 +121,7 @@ export class ModuleNode extends SemanticNode<abstracts.translators.StructHir> {
   }
 }
 
-export class ClassNode extends SemanticNode<abstracts.translators.StructHir> {
+export class ClassNode extends SemanticNode<abstracts.translators.StructHirn> {
   get name(): string {
     return this.hir.name ?? 'AnonymousClass';
   }
@@ -134,12 +134,12 @@ export class ClassNode extends SemanticNode<abstracts.translators.StructHir> {
     return this.hir.properties.map((p) => this.ctx.getSemantic(p)).filter((p): p is SemanticNode<any> => p !== null);
   }
 
-  // Поля класса (BindingHir)
+  // Поля класса (BindingHirn)
   get fields(): BindingNode[] {
     return this.members.filter((m): m is BindingNode => m instanceof BindingNode);
   }
 
-  // Методы класса (FunctionHir)
+  // Методы класса (FunctionHirn)
   get methods(): FunctionNode[] {
     return this.members.filter((m): m is FunctionNode => m instanceof FunctionNode);
   }
@@ -149,7 +149,7 @@ export class ClassNode extends SemanticNode<abstracts.translators.StructHir> {
   }
 }
 
-export class ArrayNode extends SemanticNode<abstracts.translators.StructHir> {
+export class ArrayNode extends SemanticNode<abstracts.translators.StructHirn> {
   get elements(): SemanticNode<any>[] {
     return this.hir.properties.map((p) => this.ctx.getSemantic(p)).filter((p): p is SemanticNode<any> => p !== null);
   }
@@ -159,7 +159,7 @@ export class ArrayNode extends SemanticNode<abstracts.translators.StructHir> {
   }
 }
 
-export class LiteralNode extends SemanticNode<abstracts.translators.LiteralHir> {
+export class LiteralNode extends SemanticNode<abstracts.translators.LiteralHirn> {
   get value(): any {
     return this.hir.value;
   }
@@ -176,16 +176,16 @@ export function createSemanticNode(
   ctx: tsRl.st.SemanticContext,
 ): SemanticNode<abstracts.translators.HirType> {
   switch (node.kind) {
-    case 'FunctionHir':
+    case 'FunctionHirn':
       return new FunctionNode(node, ctx);
 
-    case 'BindingHir':
+    case 'BindingHirn':
       return new BindingNode(node, ctx);
 
-    case 'LiteralHir':
+    case 'LiteralHirn':
       return new LiteralNode(node, ctx);
 
-    case 'StructHir': {
+    case 'StructHirn': {
       // 1. Проверяем модификаторы на маркер модуля
       const isModule = node.modifiers.some((m) => {
         const res = ctx.getSemantic<LiteralNode>(m);

@@ -158,7 +158,7 @@ export function example() {
   graph.assert("тип", {subject: "ВходнаяДверь", object: "Дверь"});
 
 // Настраиваем движок
-  const rulesAst = [
+  const rulesAsn = [
     {
       trigger: {predicate: "открыть", args: {actor: "?кто", theme: "?что"}},
       conditions: [
@@ -171,7 +171,7 @@ export function example() {
     }
   ];
 
-  const engine = new RuleEngine(graph, query, rulesAst);
+  const engine = new RuleEngine(graph, query, rulesAsn);
 
 // ИГРОК ДЕЛАЕТ ДЕЙСТВИЕ
   engine.dispatchAction("открыть", {actor: "Джон", theme: "ВходнаяДверь"});

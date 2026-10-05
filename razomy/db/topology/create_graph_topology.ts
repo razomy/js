@@ -3,7 +3,7 @@ import * as db from "@razomy/db";
 export function createGraphTopology(core: db.core.CoreDB): db.topology.GraphTopology {
     return {
     core,
-    nodesAst: [],
+    nodesAsn: [],
 
     // Регистрируем колонки в Ядре. Узлы получают stride = Layer._COUNT!
     nodeFirstOut: core.registerField(core.nodeStore, "nFirstOut", Uint32Array, db.topology.NULL_EDGE, db.LAYER._COUNT),

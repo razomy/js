@@ -7,7 +7,7 @@ export function parsePackage(
   project: Project,
   dirPath: string,
   ctx: tsRl.ast.HasEnterLeaveProduce,
-): abstracts.translators.ModuleAst | null {
+): abstracts.translators.ModuleAsn | null {
   const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
   if (!packageJsonSource) {
     return null;
@@ -18,8 +18,8 @@ export function parsePackage(
   const origin = indexFile || packageJsonSource;
 
   // 1. Создаем AST-каркас модуля
-  const moduleAst: abstracts.translators.ModuleAst = {
-    kind: 'ModuleAst',
+  const moduleAsn: abstracts.translators.ModuleAsn = {
+    kind: 'ModuleAsn',
     syntaxRole: 'statement',
     identifier: { name: packageJson.name || 'UnknownPackage' },
     role: 'SourceFile',
@@ -28,64 +28,64 @@ export function parsePackage(
   };
 
   // 2. Входим в контекст обхода
-  const isAccepted = ctx.enter(moduleAst, origin);
+  const isAccepted = ctx.enter(moduleAsn, origin);
   if (!isAccepted) {
     return null;
   }
 
   // 3. Парсим зависимости (dependencies, peerDependencies, runtimes)
-  const dependencies: abstracts.translators.ImportAst[] = Object.entries({
+  const dependencies: abstracts.translators.ImportAsn[] = Object.entries({
     ...(packageJson.dependencies || {}),
   }).map(
     ([k, v]) =>
       ({
-        kind: 'ImportAst',
+        kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
+        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAst),
+      } satisfies abstracts.translators.ImportAsn),
   );
 
-  const peerDependencies: abstracts.translators.ImportAst[] = Object.entries({
+  const peerDependencies: abstracts.translators.ImportAsn[] = Object.entries({
     ...(packageJson.peerDependencies || {}),
   }).map(
     ([k, v]) =>
       ({
-        kind: 'ImportAst',
+        kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
+        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAst),
+      } satisfies abstracts.translators.ImportAsn),
   );
 
-  const runtimes: abstracts.translators.ImportAst[] = Object.entries({
+  const runtimes: abstracts.translators.ImportAsn[] = Object.entries({
     ...(packageJson.engines || {}),
   }).map(
     ([k, v]) =>
       ({
-        kind: 'ImportAst',
+        kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAst', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
+        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAst),
+      } satisfies abstracts.translators.ImportAsn),
   );
 
   // 4. Парсим тело модуля из index-файла (если найден)
   const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile,ctx) : [];
 
   // 5. Формируем тело модуля
-  moduleAst.block = {
-    kind: 'BlockAst',
+  moduleAsn.block = {
+    kind: 'BlockAsn',
     syntaxRole: 'statement',
     statements: [...runtimes, ...dependencies, ...peerDependencies, ...statements],
   };
 
   // 6. Завершаем обход узла
-  return ctx.leave(moduleAst, origin);
+  return ctx.leave(moduleAsn, origin);
 }

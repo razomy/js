@@ -4,7 +4,7 @@ import * as abstracts from '@razomy/abstracts';
 
 export function getParents<T>(
   valueRecursive: abstracts.structures.KvaOrValue<T, T>,
-  path: abstracts.domains.Slug[],
+  path: abstracts.components.Slug[],
   pathOffset: number,
 ): abstracts.structures.KvaOrValue<T, T>[] {
   if (kv.isAkv(valueRecursive)) {

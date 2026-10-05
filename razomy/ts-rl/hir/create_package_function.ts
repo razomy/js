@@ -13,56 +13,56 @@ export function createPackageFunction(
     parameter: Record<string, string>;
     returnShape: { description: string; type?: string };
   }>,
-): abstracts.translators.FunctionHir {
+): abstracts.translators.FunctionHirn {
   return {
     id: random.createUuid(),
     syntaxRole: 'declaration',
     semanticLayer: 'state',
-    kind: 'FunctionHir',
+    kind: 'FunctionHirn',
     name: f.name || '',
     modifiers: [
-      f.isAsync ? { kind: 'LiteralHir', value: 'async' } : null,
-      f.isGenerator ? { kind: 'LiteralHir', value: 'generator' } : null,
+      f.isAsync ? { kind: 'LiteralHirn', value: 'async' } : null,
+      f.isGenerator ? { kind: 'LiteralHirn', value: 'generator' } : null,
     ].filter((i) => i != null) as abstracts.translators.HirType[],
     parameters: Object.entries(f.parameter || {}).map(
       ([k, v]) =>
         ({
           id: random.createUuid(),
-          kind: 'BindingHir',
+          kind: 'BindingHirn',
           syntaxRole: 'statement',
           semanticLayer: 'state',
           modifiers: [],
           name: k,
           shape: {
             id: random.createUuid(),
-            kind: 'ReferenceHir',
+            kind: 'ReferenceHirn',
             syntaxRole: 'expression',
             semanticLayer: 'shape',
             target: null,
             property: null,
             arguments_: [],
-          } satisfies abstracts.translators.ReferenceHir,
+          } satisfies abstracts.translators.ReferenceHirn,
           doc:{description: v,},
           value: null,
-        } satisfies abstracts.translators.BindingHir),
-    ) satisfies abstracts.translators.BindingHir[],
+        } satisfies abstracts.translators.BindingHirn),
+    ) satisfies abstracts.translators.BindingHirn[],
     block: null,
     returnShape: f.returnShape?.type
       ? ({
           id: random.createUuid(),
-          kind: 'ReferenceHir',
+          kind: 'ReferenceHirn',
           syntaxRole: 'expression',
           semanticLayer: 'shape',
           property: null,
           arguments_: [],
           target: {
             id: random.createUuid(),
-            kind: 'LiteralHir',
+            kind: 'LiteralHirn',
             syntaxRole: 'expression',
             semanticLayer: 'shape',
             value: f.returnShape.type,
           },
-        } as abstracts.translators.ReferenceHir)
+        } as abstracts.translators.ReferenceHirn)
       : null,
     doc: {
       title: f.title!,

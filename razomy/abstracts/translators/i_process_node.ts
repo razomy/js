@@ -9,11 +9,7 @@ import * as abstracts from '@razomy/abstracts';
  * @replaces bpmn:BaseElement
  * @replaces bpmn:FlowNode (без привязки к визуальным координатам BPMNDI)
  */
-export interface IProcessNode extends abstracts.patterns.IEntity {
-  /** Уникальный идентификатор узла в рамках схемы */
-  id: string;
-  /** Дискриминатор типа сущности для сериализации, парсинга и type narrowing */
-  kind: string;
+export interface IProcessNode extends abstracts.patterns.ISyntax {
   /** Человекочитаемое имя узла */
   name?: string;
   /** Развернутое описание назначения узла */

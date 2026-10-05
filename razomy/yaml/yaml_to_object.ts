@@ -27,6 +27,7 @@ function resultsToFirstResult<T extends { results: D[] }, D = any>(res: T) {
 
 export function yamlToObject(jsonTokens: JsonToken[]) {
   const c = dict.create(
+    {id:''},
     { tokens: jsonTokens },
     { offset: 0 },
     { stack: [] as number[] },

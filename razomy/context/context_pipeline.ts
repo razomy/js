@@ -63,12 +63,34 @@ export class ContextPipeline<
     return context.assignPipelineNext(this as any, args) as any;
   }
 
+  public nextFactory<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
+    return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
+      return (this as any).next(mapper(...args));
+    };
+  }
+
   public child<K extends string, R extends PipelineState, This extends PipelineState>(
     this: This,
     n: K,
     cb: (_: AsChildContext<This, K>) => R,
   ): WithChild<This, K, R> {
     return context.assignPipelineChild(this as any, n, cb) as any;
+  }
+
+
+  public nCb<TNew extends object, TRes = void>(mapper: (cb: (state: any) => TRes) => TNew) {
+    return function <This extends PipelineState>(this: This, cb: (state: This) => TRes): WithNext<This, TNew> {
+      return (this as any).next(mapper(cb));
+    };
+  }
+
+  public childFactory<K extends string>(n: K) {
+    return function <This extends PipelineState, R extends PipelineState>(
+      this: This,
+      cb: (_: AsChildContext<This, K>) => R,
+    ): WithChild<This, K, R> {
+      return (this as any).child(n, cb);
+    };
   }
 
   public switch_<Target>(Ctor: new (parent: any) => Target): Target {
@@ -85,24 +107,13 @@ export class ContextPipeline<
     return context.assignPipelineMount(this as any, n, nextInstance) as any;
   }
 
-  public nextFactory<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
+  /**
+   * Map data for different templates
+   */
+  public adapt<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
     return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
       return (this as any).next(mapper(...args));
     };
   }
 
-  public nCb<TNew extends object, TRes = void>(mapper: (cb: (state: any) => TRes) => TNew) {
-    return function <This extends PipelineState>(this: This, cb: (state: This) => TRes): WithNext<This, TNew> {
-      return (this as any).next(mapper(cb));
-    };
-  }
-
-  public childFactory<K extends string>(n: K) {
-    return function <This extends PipelineState, R extends PipelineState>(
-      this: This,
-      cb: (_: AsChildContext<This, K>) => R,
-    ): WithChild<This, K, R> {
-      return (this as any).child(n, cb);
-    };
-  }
 }

@@ -2,7 +2,7 @@ import { Node } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AstType[] {
+export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType[] {
   // declarations
   if (Node.isInterfaceDeclaration(node)) return [tsRl.ast.declarations.parseInterface(node, ctx)];
   if (Node.isInterfaceDeclaration(node)) return [tsRl.ast.declarations.parseInterface(node, ctx)];
@@ -30,7 +30,7 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
       '';
     return [
       {
-        kind: 'ImportAst',
+        kind: 'ImportAsn',
         syntaxRole: 'statement',
         identifier: { name },
         version: '',

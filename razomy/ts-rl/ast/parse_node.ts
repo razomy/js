@@ -2,7 +2,7 @@ import {Node} from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseNode(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce,): abstracts.translators.AstType[] {
+export function parseNode(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce,): abstracts.translators.AsnType[] {
   if (tsRl.ast.statements.isStatement(node)) {
     return [tsRl.ast.statements.parse(node, ctx)];
   }

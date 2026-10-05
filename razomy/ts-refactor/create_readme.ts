@@ -6,7 +6,7 @@ import * as tsRl from "@razomy/ts-rl";
 import * as tsRefactor from "@razomy/ts-refactor";
 
 export function createReadme(path: string, packageJson: any, ctx: tsRl.st.SemanticContext) {
-  const packageDeclaration = ctx.root as abstracts.translators.StructHir;
+  const packageDeclaration = ctx.root as abstracts.translators.StructHirn;
   const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
@@ -92,10 +92,10 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   const allDecls = packageDeclaration.properties
-    .filter((i) => i.kind === 'StructHir').flatMap(i=>i.properties);
+    .filter((i) => i.kind === 'StructHirn').flatMap(i=>i.properties);
   allDecls.sort((a, b) => tsRefactor.getPath(a).join('').localeCompare(tsRefactor.getPath(b).join('')));
-  const typeSpecs = ctx.semanticMap.values().filter(i => i.kind === 'StructHir').toArray();
-  const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHir');
+  const typeSpecs = ctx.semanticMap.values().filter(i => i.kind === 'StructHirn').toArray();
+  const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHirn');
   const functionPath = allDecls.length > 0 ? tsRefactor.getPath(allDecls[0]) : ['functionName'];
 
 

@@ -1,7 +1,7 @@
 // Imports
 import * as arrays from './arrays';
 import * as collections from './collections';
-import * as domains from './domains';
+import * as components from './components';
 import * as functions from './functions';
 import * as graphs from './graphs';
 import * as hardwares from './hardwares';
@@ -16,7 +16,7 @@ import * as translators from './translators';
 export {
   arrays,
   collections,
-  domains,
+  components,
   functions,
   graphs,
   hardwares,
@@ -32,7 +32,7 @@ export {
 const abstracts = {
   arrays,
   collections,
-  domains,
+  components,
   functions,
   graphs,
   hardwares,

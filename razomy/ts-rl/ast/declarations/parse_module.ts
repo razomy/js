@@ -2,16 +2,16 @@ import { Directory } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ModuleAst {
+export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ModuleAsn {
   const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
   if (!indexFile) throw new Error('NO index file');
 
   return {
-    kind: 'ModuleAst',
+    kind: 'ModuleAsn',
     syntaxRole: 'statement',
     identifier: { name: node.getBaseName() || '' },
     block: {
-      kind: 'BlockAst',
+      kind: 'BlockAsn',
       syntaxRole: 'statement',
       statements: [...tsRl.ast.declarations.parseModuleBody(indexFile, ctx)],
     },

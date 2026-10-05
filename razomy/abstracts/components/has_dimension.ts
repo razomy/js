@@ -1,3 +1,5 @@
+import * as abstracts from "@razomy/abstracts";
+
 export interface HasDimension {}
 
 /**
@@ -34,46 +36,50 @@ export interface MetricUnit {
   type: MetricType;
 }
 
-export interface HasLength<U = number> {
+export interface HasLength<U = number> extends abstracts.patterns.IComponent {
   length: U;
 }
 
-export interface HasX<U = number> {
+export interface HasX<U = number> extends abstracts.patterns.IComponent {
   x: U;
 }
 
-export interface HasY<U = number> {
+export interface HasY<U = number> extends abstracts.patterns.IComponent {
   y: U;
 }
 
-export interface BoundX<U = number> {
+export interface HasZ<U = number>  extends abstracts.patterns.IComponent{
+  z: U;
+}
+
+export interface BoundX<U = number> extends abstracts.patterns.IComponent {
   startX: U;
   finishX: U;
 }
 
-export interface BoundY<U = number> {
+export interface BoundY<U = number> extends abstracts.patterns.IComponent {
   startY: U;
   finishY: U;
 }
 
-export interface Position2d<U = number> extends HasX<U>, HasY<U> {}
+export interface Vector2<U = number> extends HasX<U>, HasY<U> {}
 
 export interface BoundRectangle<U = number> extends BoundX<U>, BoundY<U> {}
 
-export interface NodeBound<U = number> {
+export interface NodeBound<U = number> extends abstracts.patterns.IComponent {
   fullRect: BoundY<U> & HasX<U>;
 }
 
-export interface Vector3d { x: number; y: number; z: number; }
-export interface Quaternion { x: number; y: number; z: number; w: number; }
-export interface Transform3d {
-  position: Vector3d;
+export interface Vector3<U = number> extends Vector2<U> , HasZ<U> {}
+export interface Quaternion<U = number> extends Vector3<U> {  w: number; }
+export interface Transform3 extends abstracts.patterns.IEntity {
+  position: Vector3;
   rotation: Quaternion;
-  scale: Vector3d;
+  scale: Vector3;
 }
 
 /**
  * Двухмерный вектор физических смещений (X/Y или Horizontal/Vertical).
  */
-export interface Position2dMetric extends Position2d<MetricUnit> {}
+export interface Vector2Metric extends Vector2<MetricUnit> {}
 export interface BoundRectangleMetric extends BoundRectangle<MetricUnit> {}

@@ -12,3 +12,5 @@ export interface Store {
 
   free(id: db.NodeId): void;
 }
+
+

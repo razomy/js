@@ -3,9 +3,9 @@ import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
 /**
- * Парсит обычный комментарий (// или /* ... *\/) в CommentAst
+ * Парсит обычный комментарий (// или /* ... *\/) в CommentAsn
  */
-export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.CommentAst {
+export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.CommentAsn {
   // Убираем маркеры комментариев //, /*, */
   const rawText = comment.getText();
   const cleanText = rawText
@@ -15,10 +15,10 @@ export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterL
     .trim();
 
   return {
-    kind: 'CommentAst',
+    kind: 'CommentAsn',
     syntaxRole: 'text',
     value: {
-      kind: 'LiteralAst',
+      kind: 'LiteralAsn',
       value: cleanText,
       syntaxRole: 'text',
       semanticLayer: 'state',

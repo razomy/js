@@ -1,50 +1,37 @@
 /**
- * ============================================================================
- * UNIVERSAL UI INTERMEDIATE REPRESENTATION (UI-IR)
- * Package: @razomy/abstracts-ui
- * ============================================================================
- *
- * Архитектурные инварианты:
- * 1. Normalized Graph (Плоское хранилище): узлы ссылаются друг на друга через
- *    `IdRef<T>`. Это гарантирует O(1) доступ, нулевую стоимость циклических
- *    зависимостей, простую сериализацию в JSON/Protobuf/WASM и отсутствие утечек GC.
- * 2. Orthogonal Separation: Свойства геометрии (Layout), внешнего вида (Paint/Style),
- *    интерактивности (State/Events) и семантики (Role/Kind) изолированы друг от друга.
- * 3. 100% Cross-Target Coverage: Любое свойство транслируется без потерь в:
- *    - HTML5 / CSS3 / Web Components (Shadow DOM, Slots, CSS Grid)
- *    - Microsoft Word OpenXML (w:tbl, w:p, w:r, w:drawing, a:xfrm)
- *    - PDF Reference (Fixed MediaBox, Content Streams, CTM, ExtGState, Type3/TrueType)
- *    - Unity Engine (uGUI RectTransform, UI Toolkit Yoga, TextMeshPro, Shaders)
+ * Ontology
+ * Components
+ *  Color
+ *  Shape
+ *  Position
+ * Entities
+ *  Layout
+ *  Embedding
+ *  Interaction
  */
 
 import * as abstracts from '@razomy/abstracts';
 
 export interface IUiNode {}
 
-export interface ILayout extends IUiNode {}
-// ============================================================================
 // 2. ДВИЖКИ КОМПОНОВКИ (Layout Engines)
-// ============================================================================
 
-// ============================================================================
-// 8. СЕРИЯ УНИВЕРСАЛЬНЫХ УЗЛОВ (Discriminated Nodes)
-// ============================================================================
+// 8. СЕРИЯ УНИВЕРСАЛЬНЫХ УЗЛОВ (Discriminated Uins)
 
-export type UINodeId = string;
+export type UIUinId = string;
 
-export interface IUIBaseNode extends abstracts.patterns.IEntity {
-  id: UINodeId;
-  kind: string;
+export interface IUIBaseUin extends abstracts.patterns.ISyntax {
+  id: UIUinId;
   name?: string;
-  parent?: abstracts.patterns.IdRef<UINode>;
-  children?: abstracts.patterns.IdRef<UINode>[];
-  containerLayout?: abstracts.domains.UILayoutEngine;
+  parent?: abstracts.patterns.IdRef<UIUin>;
+  children?: abstracts.patterns.IdRef<UIUin>[];
+  containerLayout?: abstracts.components.UILayoutEngine;
   itemPlacement?: {
-    grid?: abstracts.domains.GridItemPlacement;
-    flex?: abstracts.domains.FlexItemPlacement;
+    grid?: abstracts.components.GridItemPlacement;
+    flex?: abstracts.components.FlexItemPlacement;
   };
-  style?: abstracts.domains.UIStyleBag;
-  interaction?: abstracts.domains.UIInteractionSpec;
+  style?: abstracts.components.UIStyleBag;
+  interaction?: abstracts.components.UIInteractionSpec;
   metadata?: {
     htmlTag?: string;
     ariaRole?: string;
@@ -56,42 +43,42 @@ export interface IUIBaseNode extends abstracts.patterns.IEntity {
 }
 
 /** 1. Поверхность документа / Страница */
-export interface SurfaceNode extends IUIBaseNode {
-  kind: 'SurfaceNode';
+export interface SurfaceUin extends IUIBaseUin {
+  kind: 'SurfaceUin';
   pageSize?: {
-    width: abstracts.domains.MetricUnit;
-    height: abstracts.domains.MetricUnit;
+    width: abstracts.components.MetricUnit;
+    height: abstracts.components.MetricUnit;
     orientation: 'portrait' | 'landscape';
   };
   dpi?: number;
 }
 
 /** 2. Контейнер общего назначения */
-export interface ContainerNode extends IUIBaseNode {
-  kind: 'ContainerNode';
+export interface ContainerUin extends IUIBaseUin {
+  kind: 'ContainerUin';
 }
 
 /** 3. Текстовый узел (Лист дерева) */
-export interface TextLeafNode extends IUIBaseNode {
-  kind: 'TextLeafNode';
+export interface TextLeafUin extends IUIBaseUin {
+  kind: 'TextLeafUin';
   content: string;
-  typography: abstracts.domains.Typography;
+  typography: abstracts.components.Typography;
 }
 
 /** 4. Векторная графика (SVG d-path, DrawingML, PDF Path) */
-export interface VectorShapeNode extends IUIBaseNode {
-  kind: 'VectorShapeNode';
+export interface VectorShapeUin extends IUIBaseUin {
+  kind: 'VectorShapeUin';
   role: 'vector';
   pathCommands: string;
   fillRule?: 'nonzero' | 'evenodd';
-  fillPaint?: abstracts.domains.UIPaint;
-  strokePaint?: abstracts.domains.UIPaint;
-  strokeWidth?: abstracts.domains.MetricUnit;
+  fillPaint?: abstracts.components.UIPaint;
+  strokePaint?: abstracts.components.UIPaint;
+  strokeWidth?: abstracts.components.MetricUnit;
 }
 
 /** 5. Растровый медиа-ассет */
-export interface MediaAssetNode extends IUIBaseNode {
-  kind: 'MediaAssetNode';
+export interface MediaAssetUin extends IUIBaseUin {
+  kind: 'MediaAssetUin';
   role: 'media';
   sourceUri: string;
   intrinsicWidth?: number;
@@ -100,20 +87,20 @@ export interface MediaAssetNode extends IUIBaseNode {
 }
 
 /** 6. Таблицы (Word, PDF Report, HTML) */
-export interface TableContainerNode extends IUIBaseNode {
-  kind: 'TableContainerNode';
+export interface TableContainerUin extends IUIBaseUin {
+  kind: 'TableContainerUin';
   role: 'tabular';
-  columnWidths: abstracts.domains.MetricUnit[];
+  columnWidths: abstracts.components.MetricUnit[];
 }
 
-export interface TableRowNode extends IUIBaseNode {
-  kind: 'TableRowNode';
+export interface TableRowUin extends IUIBaseUin {
+  kind: 'TableRowUin';
   role: 'tabular';
   isHeader?: boolean;
 }
 
-export interface TableCellNode extends IUIBaseNode {
-  kind: 'TableCellNode';
+export interface TableCellUin extends IUIBaseUin {
+  kind: 'TableCellUin';
   role: 'tabular';
   colSpan?: number;
   rowSpan?: number;
@@ -122,8 +109,8 @@ export interface TableCellNode extends IUIBaseNode {
 /** 7. Интерактивные контролы ввода */
 export type UIControlType = 'button' | 'text-input' | 'checkbox' | 'radio' | 'select' | 'slider';
 
-export interface ControlNode extends IUIBaseNode {
-  kind: 'ControlNode';
+export interface ControlUin extends IUIBaseUin {
+  kind: 'ControlUin';
   role: 'control';
   controlType: UIControlType;
   value?: unknown;
@@ -133,86 +120,35 @@ export interface ControlNode extends IUIBaseNode {
 }
 
 /** 8. Проекция компонентов (Web Component <slot>, Unity Prefab, Word Merge) */
-export interface ProjectionNode extends IUIBaseNode {
-  kind: 'ProjectionNode';
+export interface ProjectionUin extends IUIBaseUin {
+  kind: 'ProjectionUin';
   role: 'projection';
   slotName?: string;
   componentDefinitionId?: string;
 }
 
-export type UINode =
-  | SurfaceNode
-  | ContainerNode
-  | TextLeafNode
-  | VectorShapeNode
-  | MediaAssetNode
-  | TableContainerNode
-  | TableRowNode
-  | TableCellNode
-  | ControlNode
-  | ProjectionNode;
+export type UIUin =
+  | SurfaceUin
+  | ContainerUin
+  | TextLeafUin
+  | VectorShapeUin
+  | MediaAssetUin
+  | TableContainerUin
+  | TableRowUin
+  | TableCellUin
+  | ControlUin
+  | ProjectionUin;
 
-// ============================================================================
 // 9. НОРМАЛИЗОВАННЫЙ ДОКУМЕНТ (Root Store)
-// ============================================================================
 
-export interface UIDocument {
+export interface UIDocumentUin {
   id: string;
   title: string;
-  rootId: UINodeId;
-  nodes: Readonly<Record<UINodeId, UINode>>;
+  rootId: UIUinId;
+  nodes: Readonly<Record<UIUinId, UIUin>>;
   resources: {
     fonts: Readonly<Record<string, { uri: string; format: 'woff2' | 'ttf' | 'otf' }>>;
     images: Readonly<Record<string, { base64OrUri: string; mime: string }>>;
   };
 }
 
-
-export type InformationNode = abstracts.meta.IHas &{
-  kind: string;
-}
-
-export type HasInteractionInsRef = InformationNode& abstracts.patterns.IHasRef &{
-  interactionIns: abstracts.patterns.IdRefArray<AnyIn>;
-}
-
-export type InteractionIn = abstracts.patterns.IEntity &{
-}
-
-export type TextIn = InteractionIn & abstracts.domains.HasText & abstracts.domains.HasTextType & { kind: 'TextIn' };
-export type CodeIn = InteractionIn & abstracts.domains.HasText & abstracts.domains.HasCodeLanguage & { kind: 'CodeIn' };
-
-export type EntityIn = InteractionIn & abstracts.domains.HasEntityRef & { kind: 'EntityIn' };
-
-export type TaskIn = InteractionIn & abstracts.domains.HasTaskType & abstracts.domains.HasTask & HasTasksRef & { kind: 'TaskIn' };
-
-export type CallIn = InteractionIn & abstracts.domains.HasCallRef & abstracts.domains.HasArguments & { kind: 'CallIn' };
-export type ResultIn = InteractionIn & abstracts.domains.HasCallRef & abstracts.domains.HasResult & { kind: 'ResultIn' };
-export type ToolIn = InteractionIn & abstracts.domains.HasCallRef & { kind: 'ToolIn' };
-
-export type InteractionTurnIn = InteractionIn & abstracts.domains.HasSender & HasInteractionInsRef & {
-  kind: 'InteractionTurnIn'
-};
-
-export type AnyIn = TextIn
-  | CodeIn
-  | EntityIn
-  | TaskIn
-  | CallIn
-  | ResultIn
-  | ToolIn
-  | InteractionTurnIn;
-
-export type HasInteractionTurns = InformationNode &{
-  interactionTurns: abstracts.patterns.IdRefArray<InteractionTurnIn>,
-}
-
-export type InteractionEntity = abstracts.patterns.IEntity & HasInteractionTurns;
-
-export type HasInteractionEntityRef = InformationNode& abstracts.patterns.IHasRef &{
-  interactionEntity: abstracts.patterns.IdRef<InteractionEntity>;
-}
-
-export interface HasTasksRef extends abstracts.meta.IHas, abstracts.patterns.IHasRef {
-  tasks: abstracts.patterns.IdRefArray<TaskIn>;
-}

@@ -2,9 +2,9 @@ import {ClassDeclaration} from "ts-morph";
 import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ClassAst {
+export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ClassAsn {
   return {
-    kind: 'ClassAst',
+    kind: 'ClassAsn',
     syntaxRole: 'statement',
     identifier: {name: node.getName() || 'Anonymous'},
     modifiers: [],
@@ -13,6 +13,6 @@ export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeavePr
       ...node.getProperties(),
       ...node.getMethods()
     ].map(i=>tsRl.ast.bindings.parse(i,ctx))
-      .flat() as (abstracts.translators.PropertyAst | abstracts.translators.FunctionAst)[],
+      .flat() as (abstracts.translators.PropertyAsn | abstracts.translators.FunctionAsn)[],
   };
 }

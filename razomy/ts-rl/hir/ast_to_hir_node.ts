@@ -4,7 +4,7 @@ import * as random from '@razomy/random';
 /**
  * Строгое извлечение базовых полей. Теперь не генерирует ID (это делает индексатор).
  */
-function getBase(node: abstracts.translators.AstType) {
+function getBase(node: abstracts.translators.AsnType) {
   return {
     id: random.createUuid(),
     syntaxRole: node.syntaxRole,
@@ -12,63 +12,63 @@ function getBase(node: abstracts.translators.AstType) {
   } satisfies Partial<abstracts.translators.HirType>;
 }
 
-export function astToHirNode(node: abstracts.translators.AstType): abstracts.translators.HirType {
+export function astToHirNode(node: abstracts.translators.AsnType): abstracts.translators.HirType {
   switch (node.kind) {
     // --- DATA & EXPRESSIONS ---
-    case 'LiteralAst':
+    case 'LiteralAsn':
       return {
         ...getBase(node),
-        kind: 'LiteralHir',
+        kind: 'LiteralHirn',
         value: node.value,
       };
 
-    case 'TemplateAst':
+    case 'TemplateAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: '+',
         operands: node.values.map(astToHirNode),
       };
 
-    case 'SpreadAst':
+    case 'SpreadAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: '...',
         operands: [astToHirNode(node.value)],
       };
-    case 'UnaryAst':
-    case 'ShapingAst':
+    case 'UnaryAsn':
+    case 'ShapingAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: node.operator,
         operands: [astToHirNode(node.value)],
       };
-    case 'DeleteAst':
+    case 'DeleteAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: 'delete',
         operands: [astToHirNode(node.value)],
       };
-    case 'BinaryAst':
+    case 'BinaryAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: node.operator,
         operands: [astToHirNode(node.left), astToHirNode(node.right)],
       };
-    case 'AssignAst':
+    case 'AssignAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
+        kind: 'OperatorHirn',
         operator: '=',
         operands: [
           {
             ...getBase(node),
-            kind: 'ReferenceHir',
-            target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
+            kind: 'ReferenceHirn',
+            target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
             property: null,
             arguments_: [],
           },
@@ -76,215 +76,215 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
         ],
       };
 
-    case 'MappedAst':
+    case 'MappedAsn':
       return {
         ...getBase(node),
-        kind: 'BindingHir',
-        shape: astToHirNode(node.constraint) as abstracts.translators.ReferenceHir,
+        kind: 'BindingHirn',
+        shape: astToHirNode(node.constraint) as abstracts.translators.ReferenceHirn,
         value: astToHirNode(node.value),
         modifiers: [],
         name: null,
         doc: { description: '' },
       };
 
-    case 'PropertyAst':
+    case 'PropertyAsn':
       return {
         ...getBase(node),
         doc: { description: '' },
-        kind: 'BindingHir',
+        kind: 'BindingHirn',
         name: node.identifier.name,
         value: node.value ? astToHirNode(node.value) : null,
         modifiers: [],
         shape: null,
       };
 
-    case 'BlockAst':
-    case 'StyleBlockAst':
+    case 'BlockAsn':
+    case 'StyleBlockAsn':
       return {
         ...getBase(node),
-        kind: 'BlockHir',
+        kind: 'BlockHirn',
         statements: node.statements.map(astToHirNode),
       };
 
-    case 'IfAst':
-    case 'TernaryAst':
+    case 'IfAsn':
+    case 'TernaryAsn':
       return {
         ...getBase(node),
-        kind: 'MatchHir',
+        kind: 'MatchHirn',
         target: {
           ...getBase(node),
-          kind: 'LiteralHir',
+          kind: 'LiteralHirn',
           value: true,
         },
-        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHir),
+        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHirn),
       };
 
-    case 'SwitchAst':
+    case 'SwitchAsn':
       return {
         ...getBase(node),
-        kind: 'MatchHir',
+        kind: 'MatchHirn',
         target: astToHirNode(node.target),
-        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHir),
+        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHirn),
       };
 
-    case 'ConditionBranchAst':
-    case 'MatchBranchAst':
+    case 'ConditionBranchAsn':
+    case 'MatchBranchAsn':
       return {
         ...getBase(node),
-        kind: 'BranchHir',
+        kind: 'BranchHirn',
         pattern: astToHirNode(node.pattern),
         value: astToHirNode(node.value),
       };
-    case 'CatchAst':
+    case 'CatchAsn':
       return {
         ...getBase(node),
-        kind: 'BranchHir',
+        kind: 'BranchHirn',
         pattern: astToHirNode(node.condition),
         value: astToHirNode(node.block),
       };
 
-    case 'ElseBranchAst':
-    case 'DefaultBranchAst':
+    case 'ElseBranchAsn':
+    case 'DefaultBranchAsn':
       return {
         ...getBase(node),
-        kind: 'BranchHir',
+        kind: 'BranchHirn',
         pattern: {
           ...getBase(node),
-          kind: 'LiteralHir',
+          kind: 'LiteralHirn',
           value: true,
         },
         value: astToHirNode(node.value),
       };
 
-    case 'TryAst':
+    case 'TryAsn':
       return {
         ...getBase(node),
-        kind: 'MatchHir',
+        kind: 'MatchHirn',
         target: {
           ...getBase(node),
-          kind: 'OperatorHir',
+          kind: 'OperatorHirn',
           operator: 'try',
           operands: [astToHirNode(node.block)],
         },
         branches: [],
       };
 
-    case 'DefaultCatchAst':
-    case 'FinallyAst':
+    case 'DefaultCatchAsn':
+    case 'FinallyAsn':
       return {
         ...getBase(node),
-        kind: 'BranchHir',
+        kind: 'BranchHirn',
         pattern: {
           ...getBase(node),
-          kind: 'LiteralHir',
-          value: node.kind === 'FinallyAst' ? 'finally' : true,
+          kind: 'LiteralHirn',
+          value: node.kind === 'FinallyAsn' ? 'finally' : true,
         },
         value: astToHirNode(node.block),
       };
 
     // --- LOOPS ---
-    case 'WhileDoAst':
-    case 'DoWhileAst':
+    case 'WhileDoAsn':
+    case 'DoWhileAsn':
       return {
         ...getBase(node),
-        kind: 'LoopHir',
+        kind: 'LoopHirn',
         condition: astToHirNode(node.condition),
-        block: astToHirNode(node.block) as abstracts.translators.BlockHir,
+        block: astToHirNode(node.block) as abstracts.translators.BlockHirn,
       };
 
-    case 'ForInAst':
-    case 'ForItAst': {
-      let bodyHir = astToHirNode(node.block) as abstracts.translators.BlockHir;
+    case 'ForInAsn':
+    case 'ForItAsn': {
+      let bodyHirn = astToHirNode(node.block) as abstracts.translators.BlockHirn;
       if (node.update) {
-        const updateHir = astToHirNode(node.update);
-        if (bodyHir.kind === 'BlockHir') bodyHir.statements.push(updateHir);
+        const updateHirn = astToHirNode(node.update);
+        if (bodyHirn.kind === 'BlockHirn') bodyHirn.statements.push(updateHirn);
         else
-          bodyHir = {
+          bodyHirn = {
             ...getBase(node.block),
-            kind: 'BlockHir',
-            statements: [bodyHir, updateHir],
+            kind: 'BlockHirn',
+            statements: [bodyHirn, updateHirn],
           };
       }
-      const loop: abstracts.translators.LoopHir = {
+      const loop: abstracts.translators.LoopHirn = {
         ...getBase(node),
-        kind: 'LoopHir',
+        kind: 'LoopHirn',
         condition: node.condition ? astToHirNode(node.condition) : null,
-        block: bodyHir,
+        block: bodyHirn,
       };
       return node.init
         ? {
             ...getBase(node),
-            kind: 'BlockHir',
+            kind: 'BlockHirn',
             statements: [astToHirNode(node.init), loop],
           }
         : loop;
     }
 
-    case 'ForOfAst':
+    case 'ForOfAsn':
       return {
         ...getBase(node),
-        kind: 'BlockHir',
+        kind: 'BlockHirn',
         statements: [
           astToHirNode(node.init),
           {
             ...getBase(node),
-            kind: 'LoopHir',
-            block: astToHirNode(node.block) as abstracts.translators.BlockHir,
+            kind: 'LoopHirn',
+            block: astToHirNode(node.block) as abstracts.translators.BlockHirn,
             condition: null,
           },
         ],
       };
 
     // --- JUMPS ---
-    case 'BreakAst':
-    case 'ContinueAst':
+    case 'BreakAsn':
+    case 'ContinueAsn':
       return {
         ...getBase(node),
-        kind: 'GoHir',
-        operator: node.kind === 'BreakAst' ? 'break' : 'continue',
+        kind: 'GoHirn',
+        operator: node.kind === 'BreakAsn' ? 'break' : 'continue',
         value: node.identifier
           ? {
               ...getBase(node),
-              kind: 'ReferenceHir',
-              target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
+              kind: 'ReferenceHirn',
+              target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
               arguments_: [],
               property: null,
             }
           : null,
       };
 
-    case 'YieldAst':
-    case 'ReturnAst':
-    case 'ThrowAst':
+    case 'YieldAsn':
+    case 'ReturnAsn':
+    case 'ThrowAsn':
       return {
         ...getBase(node),
-        kind: 'GoHir',
-        operator: node.kind.replace('Ast', '').toLowerCase() as any,
+        kind: 'GoHirn',
+        operator: node.kind.replace('Asn', '').toLowerCase() as any,
         value: node.value ? astToHirNode(node.value) : null,
       };
 
     // --- DECLARATIONS & ENTITIES ---
-    case 'InstanceAst':
-    case 'ParameterAst':
+    case 'InstanceAsn':
+    case 'ParameterAsn':
       return {
         ...getBase(node),
-        kind: 'BindingHir',
+        kind: 'BindingHirn',
         name: node.identifier.name,
         modifiers: node.modifiers.map(astToHirNode),
-        shape: node.shape ? (astToHirNode(node.shape) as abstracts.translators.ReferenceHir) : null,
+        shape: node.shape ? (astToHirNode(node.shape) as abstracts.translators.ReferenceHirn) : null,
         value: node.value ? astToHirNode(node.value) : null,
         doc: { description: '' },
       };
 
-    case 'LambdaAst':
-    case 'FunctionAst':
+    case 'LambdaAsn':
+    case 'FunctionAsn':
       return {
         ...getBase(node),
-        kind: 'FunctionHir',
-        name: node.kind === 'FunctionAst' ? node.identifier.name : null,
+        kind: 'FunctionHirn',
+        name: node.kind === 'FunctionAsn' ? node.identifier.name : null,
         modifiers: node.modifiers.map(astToHirNode),
-        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstracts.translators.ReferenceHir) : null,
-        parameters: node.parameters.map((p) => astToHirNode(p) as abstracts.translators.BindingHir),
+        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstracts.translators.ReferenceHirn) : null,
+        parameters: node.parameters.map((p) => astToHirNode(p) as abstracts.translators.BindingHirn),
         block: astToHirNode(node.block),
         doc: {
           description: '',
@@ -295,101 +295,101 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       };
 
     // --- STRUCTS ---
-    case 'ModuleAst':
+    case 'ModuleAsn':
       return {
         ...getBase(node),
-        kind: 'StructHir',
+        kind: 'StructHirn',
         name: node.identifier.name,
         doc: { description: '' },
         modifiers: [
           {
             ...getBase(node),
-            kind: 'LiteralHir',
+            kind: 'LiteralHirn',
             value: 'module',
           },
         ],
-        properties: [...node.block.statements].map(astToHirNode) as abstracts.translators.BindingHir[],
+        properties: [...node.block.statements].map(astToHirNode) as abstracts.translators.BindingHirn[],
       };
 
-    case 'ArrayAst':
-    case 'TupleAst':
+    case 'ArrayAsn':
+    case 'TupleAsn':
       return {
         ...getBase(node),
-        kind: 'StructHir',
+        kind: 'StructHirn',
         doc: { description: '' },
         name: null,
         modifiers: [],
-        properties: node.values.map(astToHirNode) as abstracts.translators.BindingHir[],
+        properties: node.values.map(astToHirNode) as abstracts.translators.BindingHirn[],
       };
 
-    case 'ObjectAst':
-    case 'StructAst':
-    case 'InterfaceAst':
-    case 'ClassAst':
-    case 'EnumAst':
+    case 'ObjectAsn':
+    case 'StructAsn':
+    case 'InterfaceAsn':
+    case 'ClassAsn':
+    case 'EnumAsn':
       return {
         ...getBase(node),
-        kind: 'StructHir',
+        kind: 'StructHirn',
         doc: { description: '' },
         name: 'identifier' in node && node.identifier ? node.identifier.name : null,
         modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
-        properties: node.properties.map((p) => astToHirNode(p) as abstracts.translators.BindingHir),
+        properties: node.properties.map((p) => astToHirNode(p) as abstracts.translators.BindingHirn),
       };
 
     // --- ACCESS & INTERACTIONS ---
-    case 'ReferenceAst':
-    case 'AliasAst':
-    case 'MacroCallAst':
+    case 'ReferenceAsn':
+    case 'AliasAsn':
+    case 'MacroCallAsn':
       return {
         ...getBase(node),
-        kind: 'ReferenceHir',
-        target: { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name },
+        kind: 'ReferenceHirn',
+        target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
         arguments_: [],
         property: null,
       };
-    case 'MemberAst':
+    case 'MemberAsn':
       return {
         ...getBase(node),
-        kind: 'ReferenceHir',
+        kind: 'ReferenceHirn',
         target: astToHirNode(node.object_),
         property: astToHirNode(node.property),
         arguments_: [],
       };
-    case 'ArgumentMemberAst':
+    case 'ArgumentMemberAsn':
       return {
         ...getBase(node),
-        kind: 'ReferenceHir',
+        kind: 'ReferenceHirn',
         target: astToHirNode(node.argument),
         property: astToHirNode(node.property),
         arguments_: [],
       };
 
-    case 'CallAst':
-    case 'DecoratorAst':
+    case 'CallAsn':
+    case 'DecoratorAsn':
       return {
         ...getBase(node),
-        kind: 'ReferenceHir',
-        target: node.identifier ? { ...getBase(node), kind: 'LiteralHir', value: node.identifier.name } : null,
+        kind: 'ReferenceHirn',
+        target: node.identifier ? { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name } : null,
         arguments_: node.arguments_.map(astToHirNode),
         property: null,
       };
 
-    case 'ImportAst':
+    case 'ImportAsn':
       return {
         ...getBase(node),
-        kind: 'BindingHir',
+        kind: 'BindingHirn',
         modifiers: [],
         shape: null,
         doc: { description: '' },
         name: node.identifier.name,
         value: {
           ...getBase(node),
-          kind: 'ReferenceHir',
-          target: { ...getBase(node), kind: 'LiteralHir', value: 'import' },
+          kind: 'ReferenceHirn',
+          target: { ...getBase(node), kind: 'LiteralHirn', value: 'import' },
           arguments_: [
             {
               ...getBase(node),
-              kind: 'LiteralHir',
+              kind: 'LiteralHirn',
               value: node.path,
             },
           ],
@@ -398,49 +398,49 @@ export function astToHirNode(node: abstracts.translators.AstType): abstracts.tra
       };
 
     // --- LAYERS & METADATA ---
-    case 'TagAst':
+    case 'TagAsn':
       return {
         ...getBase(node),
-        kind: 'BindingHir',
+        kind: 'BindingHirn',
         modifiers: [],
         shape: null,
         doc: { description: '' },
         value: astToHirNode(node.value),
         name: node.identifier.name,
       };
-    case 'TextAst':
+    case 'TextAsn':
       return {
         ...getBase(node),
-        kind: 'LiteralHir',
+        kind: 'LiteralHirn',
         value: node.value,
       };
-    case 'DocsAst':
+    case 'DocsAsn':
       return {
         ...getBase(node),
-        kind: 'BlockHir',
+        kind: 'BlockHirn',
         syntaxRole: 'text',
         statements: node.block.map(astToHirNode),
       };
-    case 'CommentAst':
+    case 'CommentAsn':
       return {
         ...getBase(node),
-        kind: 'BlockHir',
+        kind: 'BlockHirn',
         syntaxRole: 'text',
         statements: [astToHirNode(node.value)],
       };
-    case 'QueryAst':
-    case 'ConstraintAst':
+    case 'QueryAsn':
+    case 'ConstraintAsn':
       return {
         ...getBase(node),
-        kind: 'OperatorHir',
-        operator: node.kind === 'QueryAst' ? 'query' : 'constraint',
+        kind: 'OperatorHirn',
+        operator: node.kind === 'QueryAsn' ? 'query' : 'constraint',
         operands: [astToHirNode(node.pattern)],
       };
 
     default:
       return {
         ...getBase(node),
-        kind: 'LiteralHir',
+        kind: 'LiteralHirn',
         value: null,
       };
   }

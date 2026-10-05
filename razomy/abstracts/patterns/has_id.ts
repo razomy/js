@@ -6,7 +6,7 @@ export type Id = string;
  */
 export type Uuid = Id;
 
-export interface HasId<T = Id> extends abstracts.meta.IHas {
+export interface HasId<T = Id> extends abstracts.patterns.IComponent {
   /**
    * @default id()
    */

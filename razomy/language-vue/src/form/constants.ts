@@ -2,14 +2,14 @@ import * as abstracts from '@razomy/abstracts';
 import type { Ref } from 'vue';
 import type {
   HirType,
-  BindingHir,
-  FunctionHir,
-  BlockHir,
-  StructHir,
-  ReferenceHir,
-  BranchHir,
-  LiteralHir,
-  OperatorHir,
+  BindingHirn,
+  FunctionHirn,
+  BlockHirn,
+  StructHirn,
+  ReferenceHirn,
+  BranchHirn,
+  LiteralHirn,
+  OperatorHirn,
 } from '@razomy/abstracts/translators';
 
 export const defaultFormKey = 'form';
@@ -68,27 +68,27 @@ export function isSupported(schema: Schema | null): boolean {
   if (!schema) return true;
 
   switch (schema.kind) {
-    case 'BlockHir':
-      return (schema as BlockHir).statements.every(isSupported as any);
-    case 'BindingHir':
-      const binding = schema as BindingHir;
+    case 'BlockHirn':
+      return (schema as BlockHirn).statements.every(isSupported as any);
+    case 'BindingHirn':
+      const binding = schema as BindingHirn;
       return binding.shape ? isSupported(binding.shape as Schema) : true;
-    case 'FunctionHir':
-      const func = schema as FunctionHir;
+    case 'FunctionHirn':
+      const func = schema as FunctionHirn;
       return (
         (func.returnShape ? isSupported(func.returnShape as Schema) : true) &&
         func.parameters.every(isSupported as any)
       );
-    case 'OperatorHir':
-      const binary = schema as OperatorHir;
+    case 'OperatorHirn':
+      const binary = schema as OperatorHirn;
       // В HIR объединения типов (Union) могут представляться через бинарную операцию '|'
       if (binary.operator === '|') {
         return isSupported(binary.operands[0] as Schema) && isSupported(binary.operands[1] as Schema);
       }
       return false;
-    case 'LiteralHir':
-    case 'StructHir':
-    case 'ReferenceHir':
+    case 'LiteralHirn':
+    case 'StructHirn':
+    case 'ReferenceHirn':
       // Разрешаем базовые типы, структуры и ссылки
       return true;
     default:
@@ -99,22 +99,22 @@ export function isSupported(schema: Schema | null): boolean {
 
 export function getTypeByHirNode(schema: Schema): FormSupportedKind {
   switch (schema.kind) {
-    case 'BlockHir':
-      // SequenceHir объединяет Array и Tuple. Для упрощения определяем как Array,
+    case 'BlockHirn':
+      // SequenceHirn объединяет Array и Tuple. Для упрощения определяем как Array,
       // или можем добавить проверку на Tuple при необходимости (по кол-ву элементов или аннотациям).
       return 'Array';
-    case 'StructHir':
+    case 'StructHirn':
       return 'Object';
-    case 'LiteralHir':
-      const typeStr = typeof (schema as LiteralHir).value;
+    case 'LiteralHirn':
+      const typeStr = typeof (schema as LiteralHirn).value;
       if (typeStr === 'number' || typeStr === 'bigint') return 'Number';
       if (typeStr === 'boolean') return 'Boolean';
       return 'String';
-    case 'BindingHir':
-      const binding = schema as BindingHir;
+    case 'BindingHirn':
+      const binding = schema as BindingHirn;
       return binding.shape ? getTypeByHirNode(binding.shape as Schema) : 'String';
-    case 'ReferenceHir':
-      const ref = schema as ReferenceHir;
+    case 'ReferenceHirn':
+      const ref = schema as ReferenceHirn;
       const refName = (ref as any).syntaxRole?.name || (ref as any).name;
       switch (refName) {
         case 'Object': return 'Object';
@@ -135,9 +135,9 @@ export function buildRegistry(schema: any, typeRegistry: Map<string, any>, visit
   visited.add(schema);
 
   switch (schema.kind) {
-    case 'StructHir':
-    case 'ObjectHir':
-    case 'BindingHir': {
+    case 'StructHirn':
+    case 'ObjectHirn':
+    case 'BindingHirn': {
       const name = getNameFromHir(schema);
       if (name && !typeRegistry.has(name)) {
         typeRegistry.set(name, schema);
@@ -164,14 +164,14 @@ export function resolveType(schema: any, typeRegistry: Map<string, any>, visited
   if (!schema || visited.has(schema)) return schema;
 
   switch (schema.kind) {
-    case 'ReferenceHir': {
+    case 'ReferenceHirn': {
       const name = getNameFromHir(schema);
       if (name && typeRegistry.has(name)) {
         visited.add(schema);
         const resolved = typeRegistry.get(name);
 
         switch (resolved.kind) {
-          case 'BindingHir':
+          case 'BindingHirn':
             // Для алиасов типов берем их целевой шейп
             return resolveType(resolved.shape, typeRegistry, visited);
           default:
@@ -193,7 +193,7 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
     if (!current) break;
 
     // Шаг 1. Пропускаем обертки-биндинги (извлекаем внутренний шейп)
-    if (current.kind === 'BindingHir') {
+    if (current.kind === 'BindingHirn') {
       current = resolveType(current.shape || current.value, typeRegistry);
     }
 
@@ -201,20 +201,20 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
 
     // Шаг 2. Ищем следующий элемент по ключу
     switch (current.kind) {
-      case 'StructHir': {
-        const obj = current as StructHir;
+      case 'StructHirn': {
+        const obj = current as StructHirn;
         current = obj.properties
-          .filter(i =>i.kind === 'LiteralHir')
+          .filter(i =>i.kind === 'LiteralHirn')
           ?.find((e) => {
-          const keyName = e.kind === 'LiteralHir'
+          const keyName = e.kind === 'LiteralHirn'
             ? String(e.value)
             : getNameFromHir(e);
           return keyName === part;
         })?.value;
         break;
       }
-      case 'SequenceHir': {
-        const seq = current as BlockHir;
+      case 'SequenceHirn': {
+        const seq = current as BlockHirn;
         // Если это массив с одним типом (Array), то берем [0]. Если кортеж (Tuple) - берем по индексу part.
         current = seq.statements?.[parseInt(part as string, 10)] || seq.statements?.[0];
         break;
@@ -235,11 +235,11 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
   if (!currentSchema) return;
 
   switch (currentSchema.kind) {
-    case 'BindingHir': {
-      const binding = currentSchema as BindingHir;
+    case 'BindingHirn': {
+      const binding = currentSchema as BindingHirn;
       initFormData(data, binding.shape || binding.value, valuesRef, typeRegistry, path);
       // Если это литеральная инициализация по умолчанию в схеме
-      const datum = binding.value?.kind === 'LiteralHir' ? (binding.value as LiteralHir).value : null;
+      const datum = binding.value?.kind === 'LiteralHirn' ? (binding.value as LiteralHirn).value : null;
       if (datum !== null && (data === undefined || data === null)) {
         if (path.length === 0) valuesRef.value = datum;
         else setByPath(valuesRef.value, path, datum);
@@ -247,13 +247,13 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
       break;
     }
 
-    case 'BlockHir': {
-      const seq = currentSchema as BlockHir;
+    case 'BlockHirn': {
+      const seq = currentSchema as BlockHirn;
       const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);
       if (path.length === 0) valuesRef.value = dataArray;
       else setByPath(valuesRef.value, path, dataArray);
 
-      // В SequenceHir элементы массива/кортежа лежат в массиве elements
+      // В SequenceHirn элементы массива/кортежа лежат в массиве elements
       if (seq.statements && seq.statements.length > 1) {
         // Кортеж (Tuple) - каждому элементу свой тип
         seq.statements.forEach((itemType: any, ix: number) => {
@@ -269,14 +269,14 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
       break;
     }
 
-    case 'StructHir': {
-      const struct = currentSchema as StructHir;
+    case 'StructHirn': {
+      const struct = currentSchema as StructHirn;
       const obj = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {};
       if (path.length === 0) valuesRef.value = obj;
       else setByPath(valuesRef.value, path, obj);
 
       struct.properties?.forEach((entry: any) => {
-        const key = entry.key.kind === 'LiteralHir'
+        const key = entry.key.kind === 'LiteralHirn'
           ? String(entry.key.value)
           : getNameFromHir(entry.key);
         if (key) {

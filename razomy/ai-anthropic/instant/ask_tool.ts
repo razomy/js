@@ -5,8 +5,8 @@ import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstracts.translators.FunctionHir[],
-): Promise<string | abstracts.translators.PropertyAst> {
+  toolSpec: abstracts.translators.FunctionHirn[],
+): Promise<string | abstracts.translators.PropertyAsn> {
   const payload: any = {
     model: aiAnthropic.MODELS.expensive,
     max_tokens: aiAnthropic.MAX_TOKENS,

@@ -5,7 +5,7 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseVariable(
   node: TsVariableDeclaration,
   ctx: tsRl.ast.HasEnterLeaveProduce,
-): abstracts.translators.InstanceAst {
+): abstracts.translators.InstanceAsn {
   // FIX: In a `for` loop, there is no VariableStatement. We check the parent List instead.
   const parent = node.getParent();
   const isConst = Node.isVariableDeclarationList(parent)
@@ -13,13 +13,13 @@ export function parseVariable(
     : node.getVariableStatement()?.getDeclarationKind() === 'const';
 
   return ctx.leave({
-    kind: 'InstanceAst',
+    kind: 'InstanceAsn',
     syntaxRole: 'statement',
-    modifiers: isConst ? [{ kind: 'InstanceModifierAst', syntaxRole: 'modifier', operator: 'const', value: null }] : [],
+    modifiers: isConst ? [{ kind: 'InstanceModifierAsn', syntaxRole: 'modifier', operator: 'const', value: null }] : [],
     identifier: { name: node.getName() },
     shape: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null,
     value: node.getInitializer()
-      ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstracts.translators.StateAstType)
-      : { kind: 'LiteralAst', syntaxRole: 'expression', semanticLayer: 'state', value: undefined },
+      ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstracts.translators.StateAsnType)
+      : { kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: undefined },
   }, node);
 }

@@ -74,7 +74,7 @@ on (кто: Человек) войти_в (дом: Дом)
     console.log(sourceText);
 
 
-    const expectedAst: (abstracts.translators.IBindingAst | abstracts.translators.FunctionAst)[] = [
+    const expectedAsn: (abstracts.translators.IBindingAsn | abstracts.translators.FunctionAsn)[] = [
 
       // ==========================================
       // 1. КОНЦЕПТЫ (Этап компиляции)
@@ -224,6 +224,6 @@ on (кто: Человек) войти_в (дом: Дом)
 
     ];
 
-    expect(expectedAst.length).toBe(6);
+    expect(expectedAsn.length).toBe(6);
   });
 });

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as abstracts from '@razomy/abstracts';
 
-export function setSync(filePath: abstracts.domains.FilePathString, content: string) {
+export function setSync(filePath: abstracts.components.FilePathString, content: string) {
   return fs.writeFileSync(filePath, content, 'utf8');
 }

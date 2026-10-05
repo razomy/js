@@ -1,20 +1,13 @@
 import * as context from '@razomy/context';
 import * as abstracts from '@razomy/abstracts';
 
-export interface Credential {
-  login: string;
-  password: string;
-}
-
 export interface HasCredential {
-  credential: Credential;
   login: string;
   password: string;
 }
 
 function setCredential(login: string, password: string): HasCredential {
   return {
-    credential: { login, password },
     login,
     password,
   };

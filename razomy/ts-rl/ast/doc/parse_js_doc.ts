@@ -4,10 +4,10 @@ import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
 /**
- * Парсит JSDoc узел ts-morph в DocsAst
+ * Парсит JSDoc узел ts-morph в DocsAsn
  */
-export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.DocsAst {
-  const block: (abstracts.translators.TextAst | abstracts.translators.TagAst)[] = [];
+export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.DocsAsn {
+  const block: (abstracts.translators.TextAsn | abstracts.translators.TagAsn)[] = [];
 
   // Дочерние узлы JSDoc в AST TypeScript
   // jsDoc.getChildren() возвращает синтаксические узлы: JSDocComment, JSDocTag, etc.
@@ -20,13 +20,13 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
 
       if (name === 'summary') {
         block.push({
-          kind: 'TagAst',
+          kind: 'TagAsn',
           identifier: {
             name: 'title',
           },
           syntaxRole: 'text',
           value: {
-            kind: 'LiteralAst',
+            kind: 'LiteralAsn',
             value: child.getCommentText()?.trim() ?? '',
             syntaxRole: 'text',
             semanticLayer: 'state',
@@ -36,23 +36,23 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
         const example = tsRl.ast.doc.parseExamples(child.getCommentText()?.trim()!, ctx);
 
         block.push({
-          kind: 'TagAst',
+          kind: 'TagAsn',
           identifier: {
             name: child.getTagName(),
           },
           syntaxRole: 'text',
           value: {
-            kind: 'BlockAst',
+            kind: 'BlockAsn',
             syntaxRole: 'text',
             statements: [
               {
-                kind: 'LiteralAst',
+                kind: 'LiteralAsn',
                 value: example.code,
                 syntaxRole: 'text',
                 semanticLayer: 'state',
               },
               {
-                kind: 'LiteralAst',
+                kind: 'LiteralAsn',
                 value: example.code,
                 syntaxRole: 'text',
                 semanticLayer: 'state',
@@ -62,13 +62,13 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
         });
       } else {
         block.push({
-          kind: 'TagAst',
+          kind: 'TagAsn',
           identifier: {
             name: child.getTagName(),
           },
           syntaxRole: 'text',
           value: {
-            kind: 'LiteralAst',
+            kind: 'LiteralAsn',
             value: child.getCommentText()?.trim() ?? '',
             syntaxRole: 'text',
             semanticLayer: 'state',
@@ -81,9 +81,9 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
       const value = child.getText().trim();
       if (value) {
         block.push({
-          kind: 'TextAst',
+          kind: 'TextAsn',
           value: {
-            kind: 'LiteralAst',
+            kind: 'LiteralAsn',
             value,
             syntaxRole: 'text',
             semanticLayer: 'state',
@@ -95,7 +95,7 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
   }
 
   return {
-    kind: 'DocsAst',
+    kind: 'DocsAsn',
     block,
     syntaxRole: 'text',
   };

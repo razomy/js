@@ -12,6 +12,7 @@ export type JsonToken = abstracts.translators.HasTokenType<JsonTokenType> &
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
   const c = dict.create(
+    { id: '' },
     { tokens: jsonTokens },
     { offset: 0 },
     { stack: [] as number[] },

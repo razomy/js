@@ -11,7 +11,7 @@ export enum DifferenceType {
  * @index createdAt
  * @index createdAt
  */
-export interface Commit extends domains.identitys.UserChild, abstracts.domains.CudDateTime{
+export interface Commit extends domains.identitys.UserChild, abstracts.components.CrudDateTime{
   entity: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
 
   differenceType: DifferenceType;

@@ -20,45 +20,45 @@ export function walkHirChildren<T extends abstracts.translators.ISemanticNode>(
   const node = sNode.hir;
 
   switch (node.kind) {
-    case 'BlockHir':
+    case 'BlockHirn':
       walkArr(node.statements);
       break;
-    case 'FunctionHir':
+    case 'FunctionHirn':
       walkArr(node.modifiers);
       walk(node.returnShape);
       walkArr(node.parameters);
       walk(node.block);
       break;
-    case 'StructHir':
+    case 'StructHirn':
       walkArr(node.modifiers);
       walkArr(node.properties);
       break;
-    case 'BindingHir':
+    case 'BindingHirn':
       walkArr(node.modifiers);
       walk(node.shape);
       walk(node.value);
       break;
-    case 'OperatorHir':
+    case 'OperatorHirn':
       walkArr(node.operands);
       break;
-    case 'ReferenceHir':
+    case 'ReferenceHirn':
       if (typeof node.target !== 'string') walk(node.target);
       walk(node.property);
       walkArr(node.arguments_);
       break;
-    case 'MatchHir':
+    case 'MatchHirn':
       walk(node.target);
       walkArr(node.branches);
       break;
-    case 'BranchHir':
+    case 'BranchHirn':
       walk(node.pattern);
       walk(node.value);
       break;
-    case 'LoopHir':
+    case 'LoopHirn':
       walk(node.condition);
       walk(node.block);
       break;
-    case 'GoHir':
+    case 'GoHirn':
       walk(node.value);
       break;
   }

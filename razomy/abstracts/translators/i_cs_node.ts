@@ -10,7 +10,7 @@ import * as abstracts from '@razomy/abstracts';
  * @example
  *  Any token, whitespace, or grouped block in the source file.
  */
-export interface ICstNode extends abstracts.patterns.IEntity, abstracts.patterns.HasKind {
+export interface ICsNode extends abstracts.patterns.ISyntax {
 }
 
 /**
@@ -20,8 +20,8 @@ export interface ICstNode extends abstracts.patterns.IEntity, abstracts.patterns
  *  `const`, `// comment`, or a space `" "`
  * ```
  */
-export interface TokenCst extends ICstNode {
-  kind: 'TokenCst';
+export interface TokenCsn extends ICsNode {
+  kind: 'TokenCsn';
   token: abstracts.translators.Token;
   span: abstracts.translators.Span;
 }
@@ -33,7 +33,7 @@ export interface TokenCst extends ICstNode {
  * `{ let a = 1; }` or `(a + b)`
  * ```
  */
-export interface GroupCst extends ICstNode {
-  kind: 'GroupCst';
-  children: Array<TokenCst | GroupCst>;
+export interface GroupCsn extends ICsNode {
+  kind: 'GroupCsn';
+  children: Array<TokenCsn | GroupCsn>;
 }

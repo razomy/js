@@ -47,14 +47,3 @@ export interface Set<T>
   has: (item: T) => boolean;
   delete_: (item: T) => boolean;
 }
-
-export interface Collection<T = any> {
-  onDelete: abstracts.functions.Function<[T]>[];
-  onUpdate: abstracts.functions.Function<[T]>[];
-  onCreate: abstracts.functions.Function<[T]>[];
-
-  create(t: T);
-  update(t: T);
-  delete(t: T);
-}
-

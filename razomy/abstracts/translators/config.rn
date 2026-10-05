@@ -2,11 +2,15 @@ order
  config
  description
  index.ts
+ i_information_node.ts
  i_lexer_node.ts
- i_cst_node.ts
- i_ast_node.ts
+ i_cs_node.ts
+ i_as_node.ts
  i_hir_node.ts
  i_semantic_node.ts
+ i_scene_node.ts
+ i_ui_node.ts
+ i_message_node.ts
  i_process_node.ts
- validator.ts
- core.ts
+ i_procedural_node.ts
+ type_checker.ts

@@ -13,15 +13,14 @@ export interface HasChildren<T> {
   children: T;
 }
 
-export interface TreeNode<T> extends abstracts.structures.Node<T> {
-  children: TreeNode<T>[];
+export interface TreeNode<T, R = TreeNode<T, any>[]> extends abstracts.structures.Node<T>, HasChildren<R> {
 }
 /**
  * @memoryLayout Pointer
  * @topology 1:N_Hierarchical
  */
-export interface Tree<T> extends abstracts.arrays.DataStructure<T> {
-  root: TreeNode<T> | null;
+export interface Tree<T, R = TreeNode<T, any>[]> extends abstracts.arrays.DataStructure<T> {
+  root: TreeNode<T, R> | null;
 }
 
 export interface BinaryTreeNode<T> extends abstracts.structures.Node<T> {

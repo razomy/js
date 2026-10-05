@@ -2,9 +2,9 @@ import { ReturnStatement } from 'ts-morph';
 import * as abstracts from "@razomy/abstracts";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseReturn(node: ReturnStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ReturnAst {
+export function parseReturn(node: ReturnStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ReturnAsn {
   return {
-    kind: 'ReturnAst', syntaxRole: 'statement',
-    value: node.getExpression() ? tsRl.ast.expressions.parse(node.getExpression()!, ctx) as abstracts.translators.StateAstType : null,
+    kind: 'ReturnAsn', syntaxRole: 'statement',
+    value: node.getExpression() ? tsRl.ast.expressions.parse(node.getExpression()!, ctx) as abstracts.translators.StateAsnType : null,
   };
 }

@@ -2,7 +2,7 @@ import { Node } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AstType {
+export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node))
     return tsRl.ast.expressions.buildIn.parseString(node, ctx);
   if (Node.isNumericLiteral(node)) return tsRl.ast.expressions.buildIn.parseNumber(node, ctx);
@@ -15,11 +15,11 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   if (Node.isRegularExpressionLiteral(node)) return tsRl.ast.expressions.buildIn.parseRegExp(node, ctx);
   if (Node.isArrayLiteralExpression(node)) return tsRl.ast.expressions.buildIn.parseArray(node, ctx);
   if (Node.isObjectLiteralExpression(node)) {
-    return { kind: 'ObjectAst', syntaxRole: 'expression', semanticLayer: 'state', properties: [] }; // Expand as needed
+    return { kind: 'ObjectAsn', syntaxRole: 'expression', semanticLayer: 'state', properties: [] }; // Expand as needed
   }
   if (Node.isIdentifier(node)) {
     return {
-      kind: 'LiteralAst',
+      kind: 'LiteralAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       value: node.getText(),
@@ -27,7 +27,7 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   }
   if (Node.isBinaryExpression(node)) {
     return {
-      kind: 'BinaryAst',
+      kind: 'BinaryAsn',
       syntaxRole: 'statement',
       operator: node.getOperatorToken() as any,
       left: tsRl.ast.expressions.parse(node.getLeft(), ctx),
@@ -53,25 +53,25 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   if (Node.isConditionalExpression(node)) return tsRl.ast.expressions.parseCondition(node, ctx);
   if (Node.isAsExpression(node)) {
     return {
-      kind: 'ShapingAst',
+      kind: 'ShapingAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       operator: 'as',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAstType,
+      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
     };
   }
   if (Node.isSpreadElement(node)) {
     return {
-      kind: 'SpreadAst',
+      kind: 'SpreadAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAstType,
+      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
     };
   }
   if (Node.isAwaitExpression(node)) {
     return {
-      kind: 'AwaitAst',
+      kind: 'AwaitAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAstType,
+      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
     };
   }
   if (Node.isNonNullExpression(node)) {
@@ -79,15 +79,15 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   }
   if (Node.isTemplateExpression(node)) {
     return {
-      kind: 'TemplateAst',
+      kind: 'TemplateAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       values: node.getTemplateSpans().map((s) => parse(s.getExpression(), ctx)),
-    } as abstracts.translators.TemplateAst;
+    } as abstracts.translators.TemplateAsn;
   }
   if (Node.isThisExpression(node)) {
     return {
-      kind: 'LiteralAst',
+      kind: 'LiteralAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       value: node.getText(),
@@ -95,10 +95,10 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   }
   if (Node.isYieldExpression(node)) {
     return {
-      kind: 'YieldAst',
+      kind: 'YieldAsn',
       syntaxRole: 'expression',
       value: {
-        kind: 'LiteralAst',
+        kind: 'LiteralAsn',
         syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),
@@ -107,10 +107,10 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
   }
   if (Node.isSatisfiesExpression(node)) {
     return {
-      kind: 'YieldAst',
+      kind: 'YieldAsn',
       syntaxRole: 'expression',
       value: {
-        kind: 'LiteralAst',
+        kind: 'LiteralAsn',
         syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),

@@ -21,6 +21,11 @@ export type HasArgs<TA extends any[]> = abstracts.meta.IHas & {
   args: TA;
 };
 
+export type HasFnHashId = {
+  // Workaround to get uniq function location id
+  fnHashId: string;
+}
+
 export type HasFn<TA extends any[], TR> = abstracts.meta.IHas & {
   fn: (...value: TA) => TR;
 };
@@ -30,5 +35,5 @@ export type HasMethod<TC extends any, TA extends any[], TR> = abstracts.meta.IHa
 };
 
 export type HasExtension<Egs extends ExtensionGenerics = ExtensionGenerics> = abstracts.meta.IHas & {
-  call: ExtensionByGenerics<Egs>;
+  extension: ExtensionByGenerics<Egs>;
 };

@@ -1,11 +1,11 @@
 // Imports
-import type { AbstractDataType, Collection, Deque, DictionaryMap, DictionaryObject, PriorityQueue, Queue, Set, Stack } from './abstract_data_type';
+import type { AbstractDataType, Deque, DictionaryMap, DictionaryObject, PriorityQueue, Queue, Set, Stack } from './abstract_data_type';
 import type { LRUCache, LRUCacheInternalMemory } from './lru_cache';
+import type { ReactiveCollection } from './reactive_collection';
 
 // Named exports
 export type {
   AbstractDataType,
-  Collection,
   Deque,
   DictionaryMap,
   DictionaryObject,
@@ -13,6 +13,7 @@ export type {
   LRUCacheInternalMemory,
   PriorityQueue,
   Queue,
+  ReactiveCollection,
   Set,
   Stack
 };

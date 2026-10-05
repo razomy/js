@@ -2,9 +2,9 @@ import { PropertyDeclaration } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseProperty(node: PropertyDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.PropertyAst {
+export function parseProperty(node: PropertyDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.PropertyAsn {
   return {
-    kind: 'PropertyAst',
+    kind: 'PropertyAsn',
     syntaxRole: 'expression',
     semanticLayer: 'state',
     identifier: { name: node.getName() },

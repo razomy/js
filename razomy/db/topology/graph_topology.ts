@@ -6,7 +6,7 @@ export const SYSTEM_FIELDS = {NODE: 0 as db.FieldId, EDGE: 1 as db.FieldId};
 
 export interface GraphTopology {
   core: db.core.CoreDB;
-  nodesAst: (abstracts.translators.HirType | null)[];
+  nodesAsn: (abstracts.translators.HirType | null)[];
 
   // Колонки топологии
   nodeFirstOut: db.column.array.Column;

@@ -1,6 +1,6 @@
 import * as abstracts from "@razomy/abstracts";
 
-export function specToTool(fn: abstracts.translators.FunctionHir) {
+export function specToTool(fn: abstracts.translators.FunctionHirn) {
   const properties: Record<string, any> = {};
   const required: string[] = [];
   fn.parameters.forEach((param) => {

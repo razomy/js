@@ -4,10 +4,10 @@ import * as abstracts from "@razomy/abstracts";
 export function joinDocs(ctx: tsRl.st.SemanticContext, sNode: abstracts.translators.ISemanticNode): void {
   const node = sNode.hir;
   // 1. Бизнес-логика текущей фазы
-  if (node.kind === 'FunctionHir') {
+  if (node.kind === 'FunctionHirn') {
     const docs = sNode.prev?.hir ;
-    if (docs && docs.kind === 'BlockHir' && docs.syntaxRole === 'declaration') {
-      const statements = (docs.statements || []) as abstracts.translators.BindingHir<abstracts.translators.LiteralHir>[];
+    if (docs && docs.kind === 'BlockHirn' && docs.syntaxRole === 'declaration') {
+      const statements = (docs.statements || []) as abstracts.translators.BindingHirn<abstracts.translators.LiteralHirn>[];
       node.doc.title = statements.find(i => i.name === 'title')?.value?.value || null;
       node.doc.description = statements.find(i => i.name === 'description')?.value?.value || null;
       node.doc.examples = statements.find(i => i.name === 'examples')?.value?.value || null;

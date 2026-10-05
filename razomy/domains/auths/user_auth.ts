@@ -1,7 +1,7 @@
 import * as abstracts from "@razomy/abstracts";
 import * as domains from "@razomy/domains";
 
-export interface UserAuth extends domains.identitys.UserChild, abstracts.domains.CudDateTime {
+export interface UserAuth extends domains.identitys.UserChild, abstracts.components.CrudDateTime {
   securitys: abstracts.patterns.IdRef<Security>[];
   providers: abstracts.patterns.IdRef<Provider>[];
   sessions: abstracts.patterns.IdRef<Session>[];
@@ -17,21 +17,21 @@ export interface UserAuthChild extends abstracts.patterns.HasPrimaryId {
   userAuth: abstracts.patterns.IdRef<UserAuth>;
 }
 
-export interface Security extends UserAuthChild, abstracts.domains.CudDateTime {
+export interface Security extends UserAuthChild, abstracts.components.CrudDateTime {
   isBanned: boolean;
   banReason: string;
   failedLoginAttempts: abstracts.primitives.Int;
-  lockedUntil: abstracts.domains.DateTime | null;
+  lockedUntil: abstracts.components.DateTime | null;
   twoFactorEnabled: boolean;
   twoFactorSecret: string;
-  passwordChangedAt: abstracts.domains.DateTime | null;
+  passwordChangedAt: abstracts.components.DateTime | null;
 }
 
 /**
  * @title Провайдеры (OAuth, Пароли) - Страницы auth/login, auth/callback
  * @unique provider, providerAccountId
  */
-export interface Provider extends UserAuthChild, abstracts.domains.CudDateTime {
+export interface Provider extends UserAuthChild, abstracts.components.CrudDateTime {
   provider: 'google' | 'apple' | 'credentials' | string;
   // ID из Google ИЛИ Email пользователя (для credentials)
   providerAccountId: string;
@@ -48,7 +48,7 @@ export interface Credential {
 /**
  * @title Управление сессиями - Страница account/security/sessions
  */
-export interface Session extends UserAuthChild, abstracts.domains.CudDateTime {
+export interface Session extends UserAuthChild, abstracts.components.CrudDateTime {
   /**
    * @uniq
    */
@@ -64,7 +64,7 @@ export interface Session extends UserAuthChild, abstracts.domains.CudDateTime {
 /**
  * @title Резервные коды для 2FA - Страница auth/recovery-code
  */
-export interface RecoveryCode extends UserAuthChild, abstracts.domains.CudDateTime {
+export interface RecoveryCode extends UserAuthChild, abstracts.components.CrudDateTime {
   // Хеш кода, чтобы даже при сливе БД коды не утекли
   codeHash: string;
   isUsed: boolean;
@@ -83,7 +83,7 @@ export enum TokenType {
    Токены верификации (Magic Links, Сброс пароля, Подтверждение Email)
    Страницы: auth/magic-link, auth/forgot-password, auth/verify-email
  */
-export interface VerificationToken extends UserAuthChild, abstracts.domains.CudDateTime {
+export interface VerificationToken extends UserAuthChild, abstracts.components.CrudDateTime {
   /**
    * @title Email или номер телефона
    * @index
@@ -114,7 +114,7 @@ export enum AuthAction {
  * Аудит событий - логируем подозрительную активность и входы
  * Используется для аналитики и защиты от брутфорса
  */
-export interface AuthEvent extends UserAuthChild, abstracts.domains.CudDateTime, abstracts.patterns.HasMetadata {
+export interface AuthEvent extends UserAuthChild, abstracts.components.CrudDateTime, abstracts.patterns.HasMetadata {
   action: AuthAction;
   /**
    * @index

@@ -1,10 +1,15 @@
+import * as abstracts from '@razomy/abstracts';
+
+export interface ILayout extends abstracts.patterns.IComponent {}
+
+//region layout
 /**
  * Спецификация размеров дорожек (Track Sizing) для CSS Grid, OpenXML Tables и PDF.
  */
 export type GridTrackSize =
-  | ({ kind: 'xy' } & abstracts.domains.MetricUnit)
-  | { kind: 'minmax'; min: abstracts.domains.MetricUnit; max: abstracts.domains.MetricUnit }
-  | { kind: 'fit-content'; limit: abstracts.domains.MetricUnit }
+  | ({ kind: 'xy' } & abstracts.components.MetricUnit)
+  | { kind: 'minmax'; min: abstracts.components.MetricUnit; max: abstracts.components.MetricUnit }
+  | { kind: 'fit-content'; limit: abstracts.components.MetricUnit }
   | { kind: 'repeat'; count: number | 'auto-fill' | 'auto-fit'; track: GridTrackSize };
 
 /**
@@ -14,7 +19,7 @@ export type GridTrackSize =
  * PDF: Математическая разбивка ширины страницы на X-координаты
  * Unity: UI Toolkit Grid Layout
  */
-export interface GridContainerLayout extends abstracts.translators.ILayout {
+export interface GridContainerLayout extends ILayout {
   kind: 'grid';
   columns: GridTrackSize[];
   rows: GridTrackSize[];
@@ -22,8 +27,8 @@ export interface GridContainerLayout extends abstracts.translators.ILayout {
   autoRows?: GridTrackSize[];
   autoFlow?: 'row' | 'column' | 'row-dense' | 'column-dense';
   templateAreas?: string[];
-  columnGap?: abstracts.domains.MetricUnit;
-  rowGap?: abstracts.domains.MetricUnit;
+  columnGap?: abstracts.components.MetricUnit;
+  rowGap?: abstracts.components.MetricUnit;
   justifyContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-around' | 'space-between' | 'space-evenly';
   alignContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-around' | 'space-between' | 'space-evenly';
   justifyItems?: 'start' | 'end' | 'center' | 'stretch';
@@ -46,20 +51,20 @@ export interface GridItemPlacement {
  * Unity: UI Toolkit (Yoga Layout Engine)
  * Word/PDF: Эмулируется через выравнивание строчных блоков
  */
-export interface FlexLayout extends abstracts.translators.ILayout {
+export interface FlexLayout extends ILayout {
   kind: 'flex';
   direction: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   justifyContent?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
   alignContent?: 'start' | 'end' | 'center' | 'stretch' | 'space-between' | 'space-around';
-  gap?: { row: abstracts.domains.MetricUnit; column: abstracts.domains.MetricUnit };
+  gap?: { row: abstracts.components.MetricUnit; column: abstracts.components.MetricUnit };
 }
 
 export interface FlexItemPlacement {
   grow?: number;
   shrink?: number;
-  basis?: abstracts.domains.MetricUnit;
+  basis?: abstracts.components.MetricUnit;
   order?: number;
   alignSelf?: 'auto' | 'start' | 'end' | 'center' | 'baseline' | 'stretch';
 }
@@ -68,7 +73,7 @@ export interface FlexItemPlacement {
  * Потоковый макет (Flow Layout).
  * Базовый для Word (w:p, w:r) и HTML Inline/Block.
  */
-export interface FlowLayout extends abstracts.translators.ILayout {
+export interface FlowLayout extends ILayout {
   kind: 'flow';
   display: 'block' | 'inline' | 'inline-block' | 'none';
   float?: 'left' | 'right' | 'none';
@@ -82,7 +87,7 @@ export interface FlowLayout extends abstracts.translators.ILayout {
  * Якорное позиционирование (Anchored Layout).
  * Нативный макет Unity uGUI (RectTransform).
  */
-export interface AnchoredLayout extends abstracts.translators.ILayout {
+export interface AnchoredLayout extends ILayout {
   kind: 'anchored';
   anchorMin: [x: number, y: number]; // [0..1, 0..1]
   anchorMax: [x: number, y: number];
@@ -95,34 +100,34 @@ export interface AnchoredLayout extends abstracts.translators.ILayout {
  * Фиксированное позиционирование (Fixed Layout).
  * Нативный макет PDF страниц (ISO 32000 MediaBox / CropBox) и абсолютных оверлеев.
  */
-export interface FixedLayout extends abstracts.translators.ILayout {
+export interface FixedLayout extends ILayout {
   kind: 'fixed';
-  x: abstracts.domains.MetricUnit;
-  y: abstracts.domains.MetricUnit;
-  width: abstracts.domains.MetricUnit;
-  height: abstracts.domains.MetricUnit;
+  x: abstracts.components.MetricUnit;
+  y: abstracts.components.MetricUnit;
+  width: abstracts.components.MetricUnit;
+  height: abstracts.components.MetricUnit;
 }
 
 export type UILayoutEngine = GridContainerLayout | FlexLayout | FlowLayout | AnchoredLayout | FixedLayout;
 
-// ============================================================================
-// 3. БОКС-МОДЕЛЬ, РАЗМЕРЫ И ПОЗИЦИОНИРОВАНИЕ
-// ============================================================================
+//endregion
+
+// region Position and size
 
 export interface UISizing {
-  width?: abstracts.domains.MetricUnit;
-  height?: abstracts.domains.MetricUnit;
-  minWidth?: abstracts.domains.MetricUnit;
-  maxWidth?: abstracts.domains.MetricUnit;
-  minHeight?: abstracts.domains.MetricUnit;
-  maxHeight?: abstracts.domains.MetricUnit;
+  width?: abstracts.components.MetricUnit;
+  height?: abstracts.components.MetricUnit;
+  minWidth?: abstracts.components.MetricUnit;
+  maxWidth?: abstracts.components.MetricUnit;
+  minHeight?: abstracts.components.MetricUnit;
+  maxHeight?: abstracts.components.MetricUnit;
   aspectRatio?: number;
   boxSizing?: 'content-box' | 'border-box';
 }
 
 export interface UIPositioning {
   mode: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
-  insets?: Partial<abstracts.domains.BoundRectangleMetric>;
+  insets?: Partial<abstracts.components.BoundRectangleMetric>;
   zIndex?: number;
 }
 
@@ -131,9 +136,9 @@ export interface UIOverflow {
   y: 'visible' | 'hidden' | 'scroll' | 'auto' | 'clip';
 }
 
-// ============================================================================
-// 4. ГРАФИЧЕСКИЙ СТЕК: ЦВЕТ, ЗАЛИВКА, ГРАНИЦЫ, ТЕНИ, ФИЛЬТРЫ
-// ============================================================================
+//endregion
+
+//region Color
 
 export type ColorRGBA = [r: number, g: number, b: number, a: number];
 
@@ -172,39 +177,39 @@ export interface ImagePaint {
   kind: 'image';
   uri: string;
   fit: 'cover' | 'contain' | 'fill' | 'tile' | 'none';
-  position?: abstracts.domains.Position2dMetric;
+  position?: abstracts.components.Vector2Metric;
   repeat?: 'no-repeat' | 'repeat' | 'repeat-x' | 'repeat-y';
 }
 
 export type UIPaint = SolidPaint | GradientPaint | ImagePaint;
 
 export interface BorderSide {
-  width: abstracts.domains.MetricUnit;
+  width: abstracts.components.MetricUnit;
   style: 'none' | 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge';
   color: ColorRGBA;
 }
 
 export interface UIBorders {
-  sides?: Partial<abstracts.domains.BoundRectangle<BorderSide>>;
+  sides?: Partial<abstracts.components.BoundRectangle<BorderSide>>;
   radii?: {
-    topLeft?: abstracts.domains.Position2dMetric;
-    topRight?: abstracts.domains.Position2dMetric;
-    bottomRight?: abstracts.domains.Position2dMetric;
-    bottomLeft?: abstracts.domains.Position2dMetric;
+    topLeft?: abstracts.components.Vector2Metric;
+    topRight?: abstracts.components.Vector2Metric;
+    bottomRight?: abstracts.components.Vector2Metric;
+    bottomLeft?: abstracts.components.Vector2Metric;
   };
 }
 
 export interface UIShadow {
   kind: 'drop' | 'inner';
-  offset: abstracts.domains.Position2dMetric;
-  blurRadius: abstracts.domains.MetricUnit;
-  spreadRadius?: abstracts.domains.MetricUnit;
+  offset: abstracts.components.Vector2Metric;
+  blurRadius: abstracts.components.MetricUnit;
+  spreadRadius?: abstracts.components.MetricUnit;
   color: ColorRGBA;
 }
 
 export interface UIFilters {
-  blur?: abstracts.domains.MetricUnit;
-  backdropBlur?: abstracts.domains.MetricUnit; // Glassmorphism
+  blur?: abstracts.components.MetricUnit;
+  backdropBlur?: abstracts.components.MetricUnit; // Glassmorphism
   opacity?: number;
   grayscale?: number;
   contrast?: number;
@@ -213,13 +218,13 @@ export interface UIFilters {
   blendMode?: BlendMode;
 }
 
-// ============================================================================
-// 5. 2D / 3D ТРАНСФОРМАЦИИ (Матричный аппарат PDF/Unity/CSS)
-// ============================================================================
+//endregion
+
+//region ТРАНСФОРМАЦИИ 2D / 3D
 
 export interface UITransforms {
-  origin?: { x: abstracts.domains.MetricUnit; y: abstracts.domains.MetricUnit; z?: abstracts.domains.MetricUnit };
-  translate?: { x: abstracts.domains.MetricUnit; y: abstracts.domains.MetricUnit; z?: abstracts.domains.MetricUnit };
+  origin?: { x: abstracts.components.MetricUnit; y: abstracts.components.MetricUnit; z?: abstracts.components.MetricUnit };
+  translate?: { x: abstracts.components.MetricUnit; y: abstracts.components.MetricUnit; z?: abstracts.components.MetricUnit };
   scale?: { x: number; y: number; z?: number };
   rotate?: { x?: number; y?: number; z: number };
   skew?: { x: number; y: number };
@@ -250,18 +255,18 @@ export interface UITransforms {
   ];
 }
 
-// ============================================================================
-// 6. ТИПОГРАФИКА И ШРИФТОВОЙ ШЕЙПИНГ (Advanced Typography)
-// ============================================================================
+//endregion
+
+//region Typography
 
 export interface Typography {
   fontFamily: string[];
-  fontSize: abstracts.domains.MetricUnit;
+  fontSize: abstracts.components.MetricUnit;
   fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   fontStyle: 'normal' | 'italic' | 'oblique';
-  lineHeight: abstracts.domains.MetricUnit;
-  letterSpacing?: abstracts.domains.MetricUnit;
-  wordSpacing?: abstracts.domains.MetricUnit;
+  lineHeight: abstracts.components.MetricUnit;
+  letterSpacing?: abstracts.components.MetricUnit;
+  wordSpacing?: abstracts.components.MetricUnit;
   textAlign: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end';
   verticalAlign?: 'baseline' | 'sub' | 'super' | 'top' | 'middle' | 'bottom';
   textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
@@ -283,9 +288,9 @@ export interface Typography {
   color: UIPaint;
 }
 
-// ============================================================================
-// 7. СТЕК СТИЛЯ И ИНТЕРАКТИВНОСТЬ
-// ============================================================================
+//endregion
+
+//region Animation
 
 export interface UITransition {
   property: string;
@@ -300,11 +305,15 @@ export interface UITransition {
     | { cubicBezier: [number, number, number, number] };
 }
 
+//endregion
+
+//region Events
+
 export interface UIStyleBag {
   sizing?: UISizing;
   positioning?: UIPositioning;
-  margin?: Partial<abstracts.domains.BoundRectangleMetric>;
-  padding?: Partial<abstracts.domains.BoundRectangleMetric>;
+  margin?: Partial<abstracts.components.BoundRectangleMetric>;
+  padding?: Partial<abstracts.components.BoundRectangleMetric>;
   overflow?: UIOverflow;
   backgrounds?: UIPaint[];
   borders?: UIBorders;
@@ -350,60 +359,4 @@ export interface UIInteractionSpec {
   };
 }
 
-import * as abstracts from "@razomy/abstracts";
-export type Text = string;
-
-export interface HasText extends abstracts.meta.IHas {
-  text: Text;
-}
-
-export type TextType = 'thinking' | 'text' | 'channel' | 'example';
-
-export interface HasTextType extends abstracts.meta.IHas {
-  textType: TextType;
-}
-
-export type CodeLanguage = 'ts' | 'py' | 'js' | 'sh';
-
-export interface HasCodeLanguage extends abstracts.meta.IHas {
-  codeLanguage: CodeLanguage;
-}
-
-export interface HasEntityRef extends abstracts.meta.IHas, abstracts.patterns.IHasRef {
-  entity: abstracts.patterns.IdRef<abstracts.patterns.IEntity>;
-}
-
-export interface HasTask extends abstracts.meta.IHas {
-  task: Text;
-}
-
-export type TaskType = 'do' | 'goto' | 'task' | 'loop' | 'task_done' | 'subtask';
-
-export interface HasTaskType extends abstracts.meta.IHas {
-  taskType: TaskType;
-}
-
-export type CallEntity<A extends abstracts.functions.ExtensionGenerics = abstracts.functions.ExtensionGenerics> = abstracts.patterns.IEntity & HasFunctionHir & abstracts.functions.HasExtension<A>
-export type CallRef<A extends abstracts.functions.ExtensionGenerics = abstracts.functions.ExtensionGenerics> = abstracts.patterns.IdRef<CallEntity<A>>
-
-export interface HasCallRef extends abstracts.patterns.IHasRef {
-  call: CallRef;
-}
-
-export interface HasArguments extends abstracts.meta.IHas {
-  arguments_: any[];
-}
-
-export interface HasResult extends abstracts.meta.IHas {
-  result: any;
-}
-
-export type InteractionTurnSender = 'SYSTEM' | 'USER' | 'MODEL' | 'TOOL';
-
-export interface HasSender extends abstracts.meta.IHas {
-  sender: InteractionTurnSender;
-}
-
-export interface HasFunctionHir extends abstracts.meta.IHas {
-  functionHir: abstracts.translators.FunctionHir;
-}
+//endregion

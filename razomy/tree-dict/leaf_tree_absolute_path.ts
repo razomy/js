@@ -2,7 +2,7 @@ import * as treeDict from '@razomy/tree-dict';
 import * as abstracts from '@razomy/abstracts';
 
 export interface HasAbsolutePath {
-  absolutePath: abstracts.domains.AbsolutePathString;
+  absolutePath: abstracts.components.AbsolutePathString;
 }
 
 export interface AbsolutePathDictRoot<T> extends treeDict.RootDict<T, AbsolutePathDictRoot<T>>, HasAbsolutePath {}

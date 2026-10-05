@@ -1,8 +1,8 @@
 import * as abstracts from '@razomy/abstracts';
 
-function modifiersToLiterals(struct: (abstracts.translators.FunctionHir | abstracts.translators.BindingHir | abstracts.translators.StructHir)) {
+function modifiersToLiterals(struct: (abstracts.translators.FunctionHirn | abstracts.translators.BindingHirn | abstracts.translators.StructHirn)) {
   return struct.modifiers
-    .filter(i => i.kind === 'LiteralHir')
+    .filter(i => i.kind === 'LiteralHirn')
     .map(i => i.value)
     .join(' ')
     ;
@@ -14,13 +14,13 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
   }
 
   switch (node.kind) {
-    case 'LiteralHir': {
+    case 'LiteralHirn': {
       if (typeof node.value === 'string') {
         return `"${node.value}"`;
       }
       return String(node.value);
     }
-    case 'OperatorHir': {
+    case 'OperatorHirn': {
       if (node.operands.length === 1) {
         return `${node.operator}${hirToString(node.operands[0])}`;
       }
@@ -29,7 +29,7 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
       }
       return `${node.operator}`;
     }
-    case 'BindingHir': {
+    case 'BindingHirn': {
       const prefix = node.name;
       const postfix = node.value;
       const modifiers = modifiersToLiterals(node);
@@ -46,8 +46,8 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
       }
       return '';
     }
-    case 'StructHir': {
-      const struct = node as abstracts.translators.StructHir;
+    case 'StructHirn': {
+      const struct = node as abstracts.translators.StructHirn;
       const fieldEntries = Object.entries(struct.properties || {}).map(
         ([fieldName, fieldShape]) => `${fieldName}: ${hirToString(fieldShape)}`
       );
@@ -60,7 +60,7 @@ export function hirToString(node: abstracts.meta.NullOptional<abstracts.translat
       return `\n${keyword}${struct.name}${extendsClause} \n{ ${fieldEntries.join(', ')} }\n`;
     }
 
-    case 'FunctionHir': {
+    case 'FunctionHirn': {
       // const modifiers = modifiersToLiterals(node);
       // const isAsync = modifiers.includes('async') ? 'async ' : '';
 
@@ -103,19 +103,19 @@ ${title ? title + '\n' : ''}${description ? description + '\n' : ''}${examples ?
 `.trim();
     }
 
-    case 'ReferenceHir':
+    case 'ReferenceHirn':
       if (node.arguments_.length > 0) {
         return `${node.target}<${node.arguments_.map(hirToString).join(', ')}>`;
       }
       return `${node.target}`;
 
-    case 'BlockHir': {
+    case 'BlockHirn': {
       return ''
     }
-    case 'BranchHir':
-    case 'LoopHir':
-    case 'GoHir':
-    case 'MatchHir':
+    case 'BranchHirn':
+    case 'LoopHirn':
+    case 'GoHirn':
+    case 'MatchHirn':
     default:
       throw new Error("Unknown Type");
   }

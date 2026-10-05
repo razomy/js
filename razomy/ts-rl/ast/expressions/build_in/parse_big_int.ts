@@ -2,10 +2,10 @@ import { BigIntLiteral } from 'ts-morph';
 import * as abstracts from '@razomy/abstracts';
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseBigInt(node: BigIntLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LiteralAst {
+export function parseBigInt(node: BigIntLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LiteralAsn {
   const text = node.getLiteralText();
   return {
-    kind: 'LiteralAst',
+    kind: 'LiteralAsn',
     syntaxRole: 'expression',
     semanticLayer: 'state',
     value: BigInt(text.endsWith('n') ? text.slice(0, -1) : text),
