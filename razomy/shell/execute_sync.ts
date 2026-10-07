@@ -7,13 +7,14 @@ export type ShellCommand = StringCommand;
 
 export const START_DIR = path.resolve(process.argv[1], '../');
 
-export function executeSync(shellCommand: ShellCommand, dirPath: abstracts.components.DirPathString = START_DIR) {
+export function executeSync(
+  shellCommand: ShellCommand,
+  dirPath: abstracts.components.DirPathString = START_DIR,
+) {
   const path_ = path.resolve(dirPath);
-  console.info(START_DIR, shellCommand);
   const result = execSync(shellCommand, {
     cwd: path_,
     encoding: 'utf-8',
   });
-  console.info(result);
   return result;
 }

@@ -93,7 +93,7 @@ export class ContextPipeline<
     };
   }
 
-  public switch_<Target>(Ctor: new (parent: any) => Target): Target {
+  public switch_<TNew extends PipelineState, This extends PipelineState>(this: This, Ctor: new (p?)=> TNew): WithNext<TNew, This["value"]>    {
     const nextInstance = new Ctor(this.parent);
     return context.assignPipelineSwitch(this as any, nextInstance as any) as any;
   }
