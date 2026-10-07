@@ -3,23 +3,7 @@ import type { AccessAsnType, AliasAsn, ArgumentMemberAsn, ArrayAsn, AsnKey, AsnT
 import type { GroupCsn, ICsNode, TokenCsn } from './i_cs_node';
 import type { BindingHirn, BlockHirn, BranchHirn, FunctionDocExampleHirn, FunctionHirn, GoHirn, HirType, IHirNode, IIdentityHirn, LiteralHirn, LoopHirn, MatchHirn, OperatorHirn, ReferenceHirn, StructHirn } from './i_hir_node';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, ILexerNode, Span, Token } from './i_lexer_node';
-import type {
-  AnyMn,
-  CodeMn,
-  EntityMn,
-  HasMessages,
-  IMessageNode,
-  ITool,
-  RequestMn,
-  ResultMn,
-  SenderMn,
-  TaskMn,
-  TextMn,
-  ToolMn,
-  HasInteractionEntity,
-  InteractionEntity,
-  InteractionTurn,
-} from './i_message_node';
+import type { AnyMn, CodeMn, EntityMn, HasInteractionEntity, HasMessages, IMessageNode, ITool, InteractionEntity, InteractionTurn, RequestMn, ResultMn, SenderMn, TaskMn, TextMn, ToolMn } from './i_message_node';
 import type { AttributeFilterNode, DensityFilterNode, IPcgNode, IProceduralNode, LSystemGrammarNode, MeshSpawnEntry, NoiseFieldNode, PcgDataType, PcgEdge, PcgExecutionContext, PcgGraph, PcgPin, PcgPinDirection, PcgPoint, PcgPointData, PcgSplineData, PcgSurfaceData, ProjectToSurfaceNode, SpatialBooleanNode, SpatialDistanceFilterNode, SpatialSetOperation, SplineSamplerNode, StaticMeshSpawnerNode, SurfaceSamplerNode, TransformPointsNode, WaveFunctionCollapseNode } from './i_procedural_node';
 import type { DataMappingPn, DataSlotPn, EventChannel, EventPn, ExecutionActor, FlowNodePn, ForkStrategy, IProcessNode, IterationPolicyPn, JoinStrategy, RetryPolicyPn, RouterPn, ScopePn, StepPn, TransitionPn, TrapPn } from './i_process_node';
 import type { ApiSchemaIn, AssetResolverIn, AttributeIn, CompositionArcIn, ISceneNode, InModelKind, InSpecifier, InheritArcIn, InstanceablePrimIn, LayerIn, PayloadArcIn, PointInstancerIn, PrimAdapterIn, PrimIn, PrimvarIn, PrimvarInterpolation, PropertyIn, ReferenceArcIn, RelationshipIn, RenderDelegateIn, SceneDelegateIn, SpecializeArcIn, StageIn, SublayerArcIn, TimeSamplesIn, TypedSchemaIn, VariantSetIn } from './i_scene_node';
@@ -38,8 +22,6 @@ export type {
   AsnKey,
   AsnType,
   AssetResolverIn,
-  HasInteractionEntity,InteractionEntity,
-  InteractionTurn,
   AssignAsn,
   AttributeFilterNode,
   AttributeIn,
@@ -96,6 +78,7 @@ export type {
   GoHirn,
   GroupCsn,
   HasDeep,
+  HasInteractionEntity,
   HasMessages,
   HasStack,
   HasToken,
@@ -141,6 +124,8 @@ export type {
   InstanceAsn,
   InstanceModifierAsn,
   InstanceablePrimIn,
+  InteractionEntity,
+  InteractionTurn,
   InterfaceAsn,
   IterationPolicyPn,
   JoinStrategy,

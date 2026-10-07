@@ -1,6 +1,4 @@
 import * as abstracts from '@razomy/abstracts';
-import type { IdRef } from '@razomy/abstracts/patterns';
-
 export type IMessageNode = abstracts.patterns.IEntity;
 
 // ui
@@ -18,7 +16,7 @@ export type EntityMn = IMessageNode &
 // process
 export type TaskMn = IMessageNode &
   abstracts.components.HasTaskType &
-  abstracts.components.HasTask &{tasks: IdRef<TaskMn>[]} & { kind: 'TaskMn' };
+  abstracts.components.HasTask &{tasks: abstracts.patterns.IdRef<TaskMn>[]} & { kind: 'TaskMn' };
 export type SenderMn = IMessageNode &
   abstracts.components.HasSenderType & { kind: 'SenderMs' };
 
@@ -46,5 +44,5 @@ export type InteractionEntity = abstracts.patterns.IEntity &
   };
 
 export type HasInteractionEntity = {
-  interactionEntity: IdRef<InteractionEntity>;
+  interactionEntity: abstracts.patterns.IdRef<InteractionEntity>;
 };

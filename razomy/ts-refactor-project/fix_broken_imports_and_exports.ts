@@ -156,5 +156,4 @@ export async function fixBrokenImportsAndExports(projectPath: string) {
   }
 
   await project.save();
-  console.log('Done.');
 }

@@ -13,7 +13,9 @@ export async function getStatus(dirPath: string) {
   return new Promise<Status>((resolve, reject) => {
     const cmd = 'git status --porcelain -b';
     exec(cmd, { cwd: dirPath }, function (err, stdout) {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
       resolve(git.parseStatus(stdout));
     });
   });

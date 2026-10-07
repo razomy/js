@@ -1,8 +1,7 @@
 import * as vue from 'vue';
-import * as dict from '@razomy/dict';
 import * as array from '@razomy/array';
 import * as abstracts from '@razomy/abstracts';
-import {Razomy} from "@razomy/razomy";
+import { Razomy } from '@razomy/abstracts/meta';
 
 export class RemoteResource {
   ctx: Razomy = undefined as any as Razomy;
@@ -17,11 +16,13 @@ export class RemoteResource {
   set = (notation: abstracts.structures.Dict<string>) => {
     this.state.notation = notation;
     this.state.listeners.forEach((i) => i());
-  }
+  };
 
   get(key: string) {
     // ЗАЩИТА ОТ NULL: Если данные еще не загрузились, возвращаем пустую строку
-    if (!this.state.notation) return '';
+    if (!this.state.notation) {
+      return '';
+    }
     return this.state.notation[key] || '';
   }
 

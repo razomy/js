@@ -11,7 +11,9 @@ export function tryAll<
 
   for (const rule of rules) {
     const res = rule({ ...ctx, offset: ctx.offset + totalOffset });
-    if (!res) return null;
+    if (!res) {
+      return null;
+    }
 
     totalOffset += res.offset;
     if (res.result) {
@@ -23,7 +25,7 @@ export function tryAll<
 
 //
 // function liftContext<C extends patterns.IContext & HasOffset>(ctx: C, delta: number): C {
-//   if (delta === 0) return ctx;
+//   if (delta === 0) {return ctx;}
 //   return { ...ctx, offset: ctx.offset + delta };
 // }
 //
@@ -61,7 +63,7 @@ export function tryAll<
 //       const res = rule(nextCtx);
 //
 //       // 3. Short Circuit (The "Maybe" check)
-//       if (!res) return null;
+//       if (!res) {return null;}
 //
 //       // 4. Merge State
 //       mergeFn(state, res);

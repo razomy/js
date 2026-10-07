@@ -200,8 +200,6 @@ export async function flattenPackages(tsConfigPath: string, targetDir: string) {
 
   // 2. Fix anything that broke
   await fixBrokenImportsAndExports(project);
-
-  console.log('Done.');
 }
 
 // ifMain(import.meta.url || module.path, () => flattenPackages('../../', 'razomy')).then()

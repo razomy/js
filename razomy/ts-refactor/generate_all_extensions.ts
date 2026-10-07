@@ -21,7 +21,7 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
   const allFiles = project.getSourceFiles();
 
   for (const ext of extensions) {
-    console.log(`\n--- Processing @razomy/${ext.name} ---`);
+    console.log(`Processing @razomy/${ext.name}`);
 
     // Формируем пути программно на основе имени
     const packageDir = path.resolve(projectPath, `razomy/${ext.name}`).replace(/\\/g, '/');
@@ -89,7 +89,7 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
           interfaceSignature,
         });
 
-        console.log(`[ADD] ${name} успешно добавлена.`);
+        // console.log(`[ADD] ${name} успешно добавлена.`);
       }
     }
     const name = tsRefactor.toSafeName(stringCase.camelCase(ext.name));
@@ -122,6 +122,4 @@ export async function generateAllExtensions(projectPath: string, extensions: Ext
     fs.writeFileSync(outputFile, finalCode, 'utf-8');
     console.log(`[SUCCESS] Сохранено в: ${outputFile}`);
   }
-
-  console.log('\nAll done!');
 }

@@ -1,20 +1,13 @@
+import "./extensions";
+
 import { REACTIVE_DIRECTIVE } from './reactive_directive';
 import { RemoteNode } from './remote_node';
 import { RemoteResource } from './remote_resource';
 import { SocketStore } from './socket_store';
 import { type Resource } from './resource';
-import * as socketWeb from '@razomy/socket';
-import * as server from '@razomy/server';
-import * as razomy from '@razomy/razomy';
+import * as razomy from '@razomy/abstracts/meta';
 
-// @ts-ignore
-export declare module '@razomy/razomy' {
-  export interface Razomy extends socketWeb.client.HasWebsocket, server.HasUrl {
-    id: string;
-    resource: Resource;
-    rG: (string: string) => string;
-  }
-}
+
 
 export {
   REACTIVE_DIRECTIVE,

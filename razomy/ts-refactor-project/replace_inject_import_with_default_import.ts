@@ -65,10 +65,18 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
   const sourceFiles = project.getSourceFiles();
 
   for (const file of sourceFiles) {
-    if (file.getBaseName() === 'index.ts') continue;
-    if (file.getBaseName() === 'index.node.ts') continue;
-    if (file.getBaseName() === 'index.browser.ts') continue;
-    if (file.getBaseName() === 'index.remote.ts') continue;
+    if (file.getBaseName() === 'index.ts') {
+      continue;
+    }
+    if (file.getBaseName() === 'index.node.ts') {
+      continue;
+    }
+    if (file.getBaseName() === 'index.browser.ts') {
+      continue;
+    }
+    if (file.getBaseName() === 'index.remote.ts') {
+      continue;
+    }
     try {
       let hasChanges = false;
       const namespacesToAdd = new Map<string, string>();
@@ -95,7 +103,9 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
         // 1. АБСОЛЮТНЫЙ ИМПОРТ (@razomy/videos/node/utils)
         if (moduleSpecifier.startsWith('@razomy/')) {
           const parts = moduleSpecifier.split('/');
-          if (parts.length < 2) continue;
+          if (parts.length < 2) {
+            continue;
+          }
 
           let rootEndIndex = 2; // По умолчанию корень: '@razomy/videos'
 
@@ -123,7 +133,9 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           const rootFolderName = '/razomy/';
           const matchIndex = targetFilePath.lastIndexOf(rootFolderName);
 
-          if (matchIndex === -1) continue;
+          if (matchIndex === -1) {
+            continue;
+          }
 
           const packageRelativePath = targetFilePath.substring(matchIndex + rootFolderName.length);
 
@@ -131,7 +143,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           if (cleanPath.endsWith('/index')) {
             cleanPath = cleanPath.slice(0, -6);
           }
-          cleanPath = cleanPath.split('/').removeLastMut().join('/')
+          cleanPath = cleanPath.split('/').removeLastMut().join('/');
 
           const parts = cleanPath.split('/'); // ['videos', 'node', 'utils']
           let rootEndIndex = 1; // По умолчанию: 'videos'
@@ -211,9 +223,8 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
 
           const customPrefix = buildPropertyAccess(aliasName, currentSubPathParts);
 
-          const replacementStr = currentSubPathParts.length > 0
-            ? `${customPrefix}.${importedName}`
-            : `${aliasName}.${importedName}`;
+          const replacementStr =
+            currentSubPathParts.length > 0 ? `${customPrefix}.${importedName}` : `${aliasName}.${importedName}`;
 
           for (const ref of localRefs) {
             processReference(ref, searchNode.getText(), replacementStr);
@@ -228,9 +239,7 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
           const nsName = nsNameNode.getText();
           const references = nsNameNode['findReferencesAsNodes']();
 
-          const localRefs = references.filter(
-            (ref) => ref.getSourceFile() === file && ref !== nsNameNode
-          );
+          const localRefs = references.filter((ref) => ref.getSourceFile() === file && ref !== nsNameNode);
 
           localRefs.sort((a, b) => b.getStart() - a.getStart());
 
@@ -268,7 +277,5 @@ export async function replaceInjectImportWithDefaultImport(projectPath: string) 
     }
   }
 
-  console.log('Сохранение изменений...');
   await project.save();
-  console.log('Готово!');
 }

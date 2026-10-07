@@ -1,8 +1,7 @@
 import * as object_ from '@razomy/object';
 
-// 1. Выносим сигнатуры методов в общий интерфейс
 interface PipeableMethods {
-  switch_<T, R = never>(this: T): object_.Switch<T, T, R>;
+  match_<T, R = never>(this: T): object_.Match<T, T, R>;
   pipe<T, R = never>(this: T, cb: (_: T) => R): R;
   pipeMut<T>(this: T, cb: (_: T) => void): T;
 }
@@ -14,10 +13,10 @@ declare global {
 }
 
 // 3. В рантайме (JS) определяем ВСЁ ТОЛЬКО ОДИН РАЗ на Object.prototype:
-if (!Object.prototype.hasOwnProperty('switch_')) {
-  Object.defineProperty(Object.prototype, 'switch_', {
+if (!Object.prototype.hasOwnProperty('match_')) {
+  Object.defineProperty(Object.prototype, 'match_', {
     value: function () {
-      return object_.switch_(this);
+      return object_.match(this);
     },
     writable: true,
     configurable: true,

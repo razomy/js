@@ -2,7 +2,9 @@ import * as ai from '@razomy/ai';
 
 export function parseArray(text: string): string[] {
   const jsonMatch = text.match(/\[.*]/s);
-  if (!jsonMatch) throw new ai.exceptions.TypedAnswerLlmException(text, 'A valid JSON array pattern');
+  if (!jsonMatch) {
+    throw new ai.exceptions.TypedAnswerLlmException(text, 'A valid JSON array pattern');
+  }
   let parsed;
   try {
     parsed = JSON.parse(jsonMatch[0]);

@@ -47,7 +47,9 @@ class QueryEngine {
 
     // Перебираем все факты в базе
     for (const fact of this.graph.facts) {
-      if (fact.predicate !== patternPred) continue;
+      if (fact.predicate !== patternPred) {
+        continue;
+      }
 
       let isMatch = true;
       let newContext = {...currentContext};
@@ -76,7 +78,9 @@ class QueryEngine {
         }
       }
 
-      if (isMatch) results.push(newContext);
+      if (isMatch) {
+        results.push(newContext);
+      }
     }
 
     return results;
@@ -96,7 +100,9 @@ class RuleEngine {
   dispatchAction(actionPred: string, actionArgs: Record<string, string>) {
     // 1. Ищем правила, которые реагируют на это действие
     for (const rule of this.rulesAST) {
-      if (rule.trigger.predicate !== actionPred) continue;
+      if (rule.trigger.predicate !== actionPred) {
+        continue;
+      }
 
       // 2. Матчим триггер (кто: Джон, что: ВходнаяДверь) -> создаем начальный контекст
       let contexts = this.query.match(
@@ -106,7 +112,9 @@ class RuleEngine {
       );
 
       // Если контекст пустой, значит триггер не подошел
-      if (contexts.length === 0) continue;
+      if (contexts.length === 0) {
+        continue;
+      }
 
       // 3. Проверяем условия (if) для каждого найденного контекста
       for (const condition of rule.conditions) {

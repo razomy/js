@@ -1,13 +1,13 @@
 // Imports
-import type { Constructor } from './constructor_';
+import type { Constructor } from './constructor';
 import type { IObject, IObjectConstructor } from './i_object';
 import { isClassConstructor } from './is_class_constructor';
 import { isObject } from './is_object';
+import { match } from './match';
+import type { Match } from './match';
 import { ObjectExtended } from './object_extended';
 import { objectToBytes } from './object_to_bytes';
 import { objectToFormattedString } from './object_to_formatted_string';
-import { switch_ } from './switch_';
-import type { Switch } from './switch_';
 import { toFormattedString } from './to_formatted_string';
 
 // Named exports
@@ -15,26 +15,26 @@ export {
   ObjectExtended,
   isClassConstructor,
   isObject,
+  match,
   objectToBytes,
   objectToFormattedString,
-  switch_,
   toFormattedString
 };
 export type {
   Constructor,
   IObject,
   IObjectConstructor,
-  Switch
+  Match
 };
 
 // Default export
 const object_ = {
   isClassConstructor,
   isObject,
+  match,
   ObjectExtended,
   objectToBytes,
   objectToFormattedString,
-  switch_,
   toFormattedString,
 };
 

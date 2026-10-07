@@ -83,10 +83,16 @@ function performSafeRename(node: Node & { rename: (text: string) => void }, orig
     isExportableVariable() ? stringCase.constantCase(originalName) : stringCase.camelCase(originalName),
   );
 
-  if (originalName === newName) return;
+  if (originalName === newName) {
+    return;
+  }
 
   if (tsRefactor.isNameTaken(node as any, newName)) {
     newName = newName + '_';
+  }
+
+  if (originalName === newName) {
+    return;
   }
 
   console.info(`Rename ${originalName} -> ${newName}`);

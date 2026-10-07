@@ -15,8 +15,12 @@ export async function consensusCall<T>(ctx: ai.AiLlmContext, call: (ctx: ai.AiLl
       // }
       return await call(ctx);
     } catch (e) {
-      if (e instanceof ai.exceptions.PanicAnswerLlmException) throw e;
-      if (e instanceof ai.exceptions.MaxAttemptLlmException) throw e;
+      if (e instanceof ai.exceptions.PanicAnswerLlmException){
+        throw e;
+      }
+      if (e instanceof ai.exceptions.MaxAttemptLlmException) {
+        throw e;
+      }
 
       if (
         e instanceof ai.exceptions.TypedAnswerLlmException ||

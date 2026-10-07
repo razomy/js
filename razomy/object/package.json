@@ -43,9 +43,9 @@
     "object",
     "isClassConstructor",
     "isObject",
+    "match",
     "objectToBytes",
     "objectToFormattedString",
-    "switch",
     "toFormattedString"
   ],
   "license": "MIT",

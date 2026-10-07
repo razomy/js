@@ -37,32 +37,74 @@ export function createDist(packageDirPath: string) {
     if (object_.isObject(v1)) {
       return dict.map(v1, (v2, k3) => mD(v2, k3, ck));
     }
-    if (pk === 'require' && ck === 'default') return cj(v1);
-    if (pk === 'require' && ck === 'types') return dcj(v1);
-    if (pk === 'vue' && ck === 'types') return dmj(v1);
-    if (pk === 'browser' && ck === 'types') return dmj(v1);
-    if (pk === 'default' && ck === 'types') return dmj(v1);
+    if (pk === 'require' && ck === 'default') {
+      return cj(v1);
+    }
+    if (pk === 'require' && ck === 'types') {
+      return dcj(v1);
+    }
+    if (pk === 'vue' && ck === 'types') {
+      return dmj(v1);
+    }
+    if (pk === 'browser' && ck === 'types') {
+      return dmj(v1);
+    }
+    if (pk === 'default' && ck === 'types') {
+      return dmj(v1);
+    }
 
-    if (ck === 'types') return dmj(v1);
+    if (ck === 'types') {
+      return dmj(v1);
+    }
 
-    if (ck === 'vue') return mj(v1);
-    if (ck === 'types') return mj(v1);
-    if (ck === 'browser') return mj(v1);
+    if (ck === 'vue') {
+      return mj(v1);
+    }
+    if (ck === 'types') {
+      return mj(v1);
+    }
+    if (ck === 'browser') {
+      return mj(v1);
+    }
 
-    if (ck === 'default') return mj(v1);
-    if (ck === 'module') return mj(v1);
-    if (ck === 'node') return mj(v1);
+    if (ck === 'default') {
+      return mj(v1);
+    }
+    if (ck === 'module') {
+      return mj(v1);
+    }
+    if (ck === 'node') {
+      return mj(v1);
+    }
 
-    if (ck === 'import') return mj(v1);
-    if (ck === 'main') return cj(v1);
-    if (ck === 'require') return cj(v1);
+    if (ck === 'import') {
+      return mj(v1);
+    }
+    if (ck === 'main') {
+      return cj(v1);
+    }
+    if (ck === 'require') {
+      return cj(v1);
+    }
 
-    if (v1.endsWith('/*')) return v1.replace('src/', '');
-    if (v1.endsWith('.json')) return v1.replace('src/', '');
-    if (v1.endsWith('.wasm')) return v1.replace('src/', '');
-    if (v1.endsWith('.svg')) return v1.replace('src/', '');
-    if (v1.endsWith('.css')) return v1.replace('src/', '');
-    if (v1.endsWith('.ts')) return dmj(v1);
+    if (v1.endsWith('/*')) {
+      return v1.replace('src/', '');
+    }
+    if (v1.endsWith('.json')) {
+      return v1.replace('src/', '');
+    }
+    if (v1.endsWith('.wasm')) {
+      return v1.replace('src/', '');
+    }
+    if (v1.endsWith('.svg')) {
+      return v1.replace('src/', '');
+    }
+    if (v1.endsWith('.css')) {
+      return v1.replace('src/', '');
+    }
+    if (v1.endsWith('.ts')) {
+      return dmj(v1);
+    }
     throw new Error(`Unknown key "${ck}" "${pk}":"${v1}"`);
   }
 

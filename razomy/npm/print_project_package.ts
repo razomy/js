@@ -70,7 +70,9 @@ function printTree(
   visitedStack: Set<string> = new Set(),
 ) {
   const workspace = map.get(pkgName);
-  if (!workspace) return; // Should not happen given our filter
+  if (!workspace) {
+    return;
+  } // Should not happen given our filter
 
   // Visual Setup
   const marker = isLast ? '└── ' : '├── ';
@@ -81,7 +83,9 @@ function printTree(
     `${dim}${prefix}${marker}${reset}${green}${pkgName}${reset}${isCircular ? ` ${cyan}(circular)${reset}` : ''}`,
   );
 
-  if (isCircular) return; // Stop recursion
+  if (isCircular) {
+    return;
+  } // Stop recursion
 
   // Prepare for children
   visitedStack.add(pkgName);

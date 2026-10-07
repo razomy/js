@@ -192,7 +192,11 @@ export function updateByTemplate(projectPath: string, prefix: string) {
     pkgData = json.sort(pkgData);
     // pkgData.exports = rawPkgData.exports
     // pkgData.publishConfig.exports = rawPkgData.publishConfig.exports;
-    fs.writeFileSync(folder.path, JSON.stringify(pkgData, null, 2) + '\n');
+    const contentF = JSON.stringify(pkgData, null, 2) + '\n';
+    if (fs.readFileSync(folder.path, 'utf-8') === contentF) {
+      return;
+    }
+    fs.writeFileSync(folder.path, contentF);
     console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
   });
 }

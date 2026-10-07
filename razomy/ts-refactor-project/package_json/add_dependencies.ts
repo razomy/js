@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fss from '@razomy/fss';
 import * as json from '@razomy/json';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
-import tsRefactor from "@razomy/ts-refactor";
+import tsRefactor from '@razomy/ts-refactor';
 
 export function addDependencies(projectPath: string, prefix) {
   const packages = tsRefactorProject.packageJson
@@ -42,7 +42,7 @@ export function addDependencies(projectPath: string, prefix) {
       const newImports = pkgSource
         .matchAll(importRegex)
         .map((m) => m[1])
-        .map((m) => m.split('/').slice(0,2).join('/'))
+        .map((m) => m.split('/').slice(0, 2).join('/'))
         // .filter((m) => !m.endsWith('/node'))
         // .filter((m) => !m.endsWith('/remote'))
         .toArray();
@@ -72,10 +72,14 @@ export function addDependencies(projectPath: string, prefix) {
       // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
       //   .replace(prefix, '')
       //   .replaceAll('.', '/'));
-      console.log(`[${pkgJson.name}] Added dependency: ${depName}`);
     });
     pkgJson.peerDependencies = json.sort(pkgJson.peerDependencies);
 
-    fs.writeFileSync(folder.path, JSON.stringify(pkgJson, null, 2) + '\n');
+    const contentF = JSON.stringify(pkgJson, null, 2) + '\n';
+    if (fs.readFileSync(folder.path, 'utf-8') === contentF) {
+      return;
+    }
+    fs.writeFileSync(folder.path, contentF);
+    console.log(`[${pkgJson.name}] Added dependency`);
   });
 }

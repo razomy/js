@@ -14,7 +14,9 @@ class ProcessManager {
   }
 
   static killTree(child: ChildProcess) {
-    if (child.killed || child.exitCode !== null) return;
+    if (child.killed || child.exitCode !== null) {
+      return;
+    }
     if (platform() === 'win32' && child.pid) {
       try {
         execSync(`taskkill /pid ${child.pid} /T /F`, { stdio: 'ignore' });
@@ -46,7 +48,9 @@ function parseCliResult(output: string): any {
     if (lines[i].startsWith('__CLI_RESULT__:')) {
       const jsonStr = lines[i].replace('__CLI_RESULT__:', '');
       const parsed = JSON.parse(jsonStr);
-      if (parsed.status === 'success') return parsed.result;
+      if (parsed.status === 'success') {
+        return parsed.result;
+      }
       throw new Error(parsed.message);
     }
   }

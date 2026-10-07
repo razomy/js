@@ -1,9 +1,9 @@
-import {Project, SourceFile, SyntaxKind} from 'ts-morph';
+import { Project, SourceFile, SyntaxKind } from 'ts-morph';
 import * as fsFile from '@razomy/fs-file';
 import * as path from 'path';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as stringCase from '@razomy/string-case';
-import array from "@razomy/array";
+import array from '@razomy/array';
 
 // Типы платформ
 type Platform = 'default' | 'node' | 'browser' | 'remote';
@@ -19,7 +19,7 @@ interface ExportMeta {
 
 export async function createIndexFiles(projectPath_: string) {
   const projectPath = path.resolve(projectPath_);
-  const project = new Project({tsConfigFilePath: path.join(projectPath, 'tsconfig.json')});
+  const project = new Project({ tsConfigFilePath: path.join(projectPath, 'tsconfig.json') });
 
   const directories = project.getDirectories();
 
@@ -27,7 +27,9 @@ export async function createIndexFiles(projectPath_: string) {
     const dirPath = dir.getPath();
     const dirBaseName = dir.getBaseName();
 
-    if (shouldIgnorePath(dirPath, projectPath)) continue;
+    if (shouldIgnorePath(dirPath, projectPath)) {
+      continue;
+    }
 
     // Бакетирование по платформам (теперь храним объекты, а не строки)
     const exportsMeta = {
@@ -39,13 +41,17 @@ export async function createIndexFiles(projectPath_: string) {
 
     // 1. Обработка подпапок
     for (const subDir of dir.getDirectories()) {
-      if (shouldIgnorePath(subDir.getPath(), projectPath)) continue;
+      if (shouldIgnorePath(subDir.getPath(), projectPath)) {
+        continue;
+      }
 
       const platforms = getDirPlatforms(subDir.getPath());
       const subBaseName = subDir.getBaseName();
 
       for (const platform of platforms) {
-        if (!platform) continue;
+        if (!platform) {
+          continue;
+        }
         const meta = generateDirExportMeta(subDir.getPath(), subBaseName, platform);
         exportsMeta[platform].push(meta);
       }
@@ -53,15 +59,21 @@ export async function createIndexFiles(projectPath_: string) {
 
     // 2. Обработка файлов
     for (const sourceFile of dir.getSourceFiles()) {
-      if (shouldIgnorePath(sourceFile.getFilePath(), projectPath)) continue;
+      if (shouldIgnorePath(sourceFile.getFilePath(), projectPath)) {
+        continue;
+      }
 
       const baseName = sourceFile.getBaseNameWithoutExtension();
       const fullName = sourceFile.getBaseName();
 
-      if (fullName.startsWith('index.') || fullName.match(/\.(spec|test)\./)) continue;
+      if (fullName.startsWith('index.') || fullName.match(/\.(spec|test)\./)) {
+        continue;
+      }
 
       const meta = generateFileExportMeta(sourceFile, baseName);
-      if (!meta) continue;
+      if (!meta) {
+        continue;
+      }
 
       const platform = getFilePlatform(baseName);
       exportsMeta[platform].push(meta);
@@ -74,7 +86,9 @@ export async function createIndexFiles(projectPath_: string) {
     }
 
     // A. index.node.ts
-    const nodeMeta = array.uniqBy([...exportsMeta.node, ...exportsMeta.default], i=>getFilePathWithoutPlatform(i.importPath));
+    const nodeMeta = array.uniqBy([...exportsMeta.node, ...exportsMeta.default], (i) =>
+      getFilePathWithoutPlatform(i.importPath),
+    );
     if (nodeMeta.length > 0 && exportsMeta.node.length > 0) {
       const content = buildIndexContent(dirBaseName, nodeMeta);
       saveIndexFile(project, `${dirPath}/index.node.ts`, content);
@@ -110,16 +124,28 @@ function shouldIgnorePath(p: string, projectPath: string): boolean {
 }
 
 function getFilePlatform(fileName: string): Platform {
-  if (fileName.includes('.browser')) return 'browser';
-  if (fileName.includes('.node')) return 'node';
-  if (fileName.includes('.remote')) return 'remote';
+  if (fileName.includes('.browser')) {
+    return 'browser';
+  }
+  if (fileName.includes('.node')) {
+    return 'node';
+  }
+  if (fileName.includes('.remote')) {
+    return 'remote';
+  }
   return 'default';
 }
 
 function getFilePathWithoutPlatform(fileName: string): string {
-  if (fileName.includes('.browser')) return fileName.replace('/index.browser', '');
-  if (fileName.includes('.node')) return fileName.replace('/index.node', '');
-  if (fileName.includes('.remote')) return fileName.replace('/index.remote', '');
+  if (fileName.includes('.browser')) {
+    return fileName.replace('/index.browser', '');
+  }
+  if (fileName.includes('.node')) {
+    return fileName.replace('/index.node', '');
+  }
+  if (fileName.includes('.remote')) {
+    return fileName.replace('/index.remote', '');
+  }
   return fileName;
 }
 
@@ -161,7 +187,9 @@ function generateDirExportMeta(fullPath: string, baseName: string, platform: Pla
  */
 function generateFileExportMeta(sourceFile: SourceFile, baseName: string): ExportMeta | null {
   const exportedDeclarations = sourceFile.getExportedDeclarations();
-  if (exportedDeclarations.size === 0) return null;
+  if (exportedDeclarations.size === 0) {
+    return null;
+  }
 
   let hasTypesOrClasses = false;
   const values: string[] = [];
@@ -170,10 +198,7 @@ function generateFileExportMeta(sourceFile: SourceFile, baseName: string): Expor
   for (const [name, decls] of exportedDeclarations) {
     const kind = decls[0].getKind();
 
-    if (
-      kind === SyntaxKind.InterfaceDeclaration ||
-      kind === SyntaxKind.TypeAliasDeclaration
-    ) {
+    if (kind === SyntaxKind.InterfaceDeclaration || kind === SyntaxKind.TypeAliasDeclaration) {
       hasTypesOrClasses = true;
       types.push(name);
     } else if (
@@ -289,6 +314,10 @@ function buildIndexContent(dirBaseName: string, itemsMeta: ExportMeta[]): string
  */
 function saveIndexFile(project: Project, filePath: string, lines: string[]) {
   const content = lines.join('\n') + '\n';
-  project.createSourceFile(filePath, content, {overwrite: true});
+  const prev = project.getSourceFile(filePath);
+  if (prev && prev.getFullText() === content) {
+    return;
+  }
+  project.createSourceFile(filePath, content, { overwrite: true });
   console.log(`[GENERATED] ${filePath}`);
 }

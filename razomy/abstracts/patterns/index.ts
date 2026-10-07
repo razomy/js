@@ -12,7 +12,7 @@ import type { HasMetadata } from './has_metadata';
 import type { HasName } from './has_name';
 import type { HasPipe } from './has_pipe';
 import type { HasSerializable, Serializable, SerializablePrimitive, SerializableValue } from './has_serializable';
-import type { Context, ContextKey, HasC, IContext, IPipeline, IModule } from './i_context';
+import type { Context, ContextKey, HasC, IContext, IModule, IPipeline } from './i_context';
 import type { IHasRef, IdRef, IdRefArray, OneOfIdRef } from './i_has_ref';
 import type { EntityId, IAdapter, IAttribute, ICommand, IComponent, IEdge, IEntity, IEvent, IInformation, IInfrastructure, IProperty, IQuery, IShape, ISyntax } from './i_information';
 import type { Dispose, IObservable, IObservableFactory } from './i_observable';
@@ -60,11 +60,11 @@ export type {
   IHasRef,
   IInformation,
   IInfrastructure,
+  IModule,
   IObservable,
   IObservableFactory,
   IPipeline,
   IProperty,
-  IModule,
   IQuery,
   IShape,
   ISyntax,
