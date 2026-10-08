@@ -6,6 +6,7 @@ import { assertUnreachable } from './assert_unreachable';
 import { CancelException } from './cancel_exception';
 import { CollectException } from './collect_exception';
 import type { CatchFn } from './collect_exception';
+import { isError } from './is_error';
 import { MultipleException } from './multiple_exception';
 import { NotImplementedException } from './not_implemented_exception';
 import { NotSupportedException } from './not_supported_exception';
@@ -26,6 +27,7 @@ export {
   UnknownTypeArgumentException,
   assert,
   assertUnreachable,
+  isError,
   throwException
 };
 export type {
@@ -40,6 +42,7 @@ const exceptions = {
   assertUnreachable,
   CancelException,
   CollectException,
+  isError,
   MultipleException,
   NotImplementedException,
   NotSupportedException,

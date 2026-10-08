@@ -36,6 +36,7 @@
     "exceptions",
     "assertUnreachable",
     "assert",
+    "isError",
     "throwException"
   ],
   "license": "MIT",
