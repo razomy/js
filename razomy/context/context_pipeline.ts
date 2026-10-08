@@ -56,16 +56,31 @@ export class ContextPipeline<
   public constructor(public parent: TParent = null as TParent) {}
 
   public get get(): TGet {
-    return context.createPipelineGetter(this as any);
+    return context.createPipelineGetter(this as PipelineState);
   }
 
-  public next<TNew extends object, This extends PipelineState>(this: This, args: TNew): WithNext<This, TNew> {
-    return context.assignPipelineNext(this as any, args) as any;
+  public add<TNew extends object, This extends PipelineState>(this: This, args: TNew): WithNext<This, TNew> {
+    return context.assignPipelineNext(this as PipelineState, args) as any;
   }
 
-  public nextFactory<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
+  public addPipe<TNew extends object, TRes = void>(mapper: (cb: (state: any) => TRes) => TNew) {
+    return function <This extends PipelineState>(this: This, cb: (state: This) => TRes): WithNext<This, TNew> {
+      return (this as any).add(mapper(cb));
+    };
+  }
+
+  /**
+   * Map data for different templates
+   */
+  public addMap<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
     return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
-      return (this as any).next(mapper(...args));
+      return (this as any).add(mapper(...args));
+    };
+  }
+
+  public addFactory<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
+    return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
+      return (this as any).add(mapper(...args));
     };
   }
 
@@ -77,13 +92,6 @@ export class ContextPipeline<
     return context.assignPipelineChild(this as any, n, cb) as any;
   }
 
-
-  public nCb<TNew extends object, TRes = void>(mapper: (cb: (state: any) => TRes) => TNew) {
-    return function <This extends PipelineState>(this: This, cb: (state: This) => TRes): WithNext<This, TNew> {
-      return (this as any).next(mapper(cb));
-    };
-  }
-
   public childFactory<K extends string>(n: K) {
     return function <This extends PipelineState, R extends PipelineState>(
       this: This,
@@ -93,12 +101,12 @@ export class ContextPipeline<
     };
   }
 
-  public switch_<TNew extends PipelineState, This extends PipelineState>(this: This, Ctor: new (p?)=> TNew): WithNext<TNew, This["value"]>    {
+  public line<TNew extends PipelineState, This extends PipelineState>(this: This, Ctor: new (p?)=> TNew): WithNext<TNew, This["value"]>    {
     const nextInstance = new Ctor(this.parent);
     return context.assignPipelineSwitch(this as any, nextInstance as any) as any;
   }
 
-  public mount<K extends string, Target extends PipelineState, This extends PipelineState>(
+  public lineChild<K extends string, Target extends PipelineState, This extends PipelineState>(
     this: This,
     n: K,
     Ctor: new (parent: any) => Target,
@@ -106,14 +114,4 @@ export class ContextPipeline<
     const nextInstance = new Ctor(this.parent);
     return context.assignPipelineMount(this as any, n, nextInstance) as any;
   }
-
-  /**
-   * Map data for different templates
-   */
-  public adapt<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
-    return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
-      return (this as any).next(mapper(...args));
-    };
-  }
-
 }
