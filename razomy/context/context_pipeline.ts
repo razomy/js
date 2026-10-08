@@ -1,66 +1,32 @@
 import * as context from '@razomy/context';
-import * as abstracts from "@razomy/abstracts";
+import type { DefaultPipelineDef, PipelineDef, PipelineState } from './PipelineDef';
+import type { AsChildContext, Line, WithChild, WithNext } from './Mutations';
+import { isFunction } from '@razomy/functions';
+import { type Function } from '@razomy/abstracts/functions';
 
-/**
- * Минимальный интерфейс состояния теперь параметризован (по умолчанию безопасные типы).
- */
-export interface PipelineState<
-  TValue = Record<string, unknown>,
-  TGet = Record<string, unknown>,
-  TChildren = Record<string, unknown>,
-  TParent = unknown,
-> {
-  value: TValue;
-  get: TGet;
-  children: TChildren;
-  parent: TParent;
-}
+export class ContextPipeline<TDef extends PipelineDef = DefaultPipelineDef> implements PipelineState<TDef> {
+  public value: TDef['value'] = {} as TDef['value'];
+  public children: TDef['children'] = {} as TDef['children'];
 
-/**
- * Мутации типов с использованием Merge и Prettify
- */
-export type WithNext<Self extends PipelineState, TNew extends object> = Omit<Self, 'value' | 'get'> & {
-  value: abstracts.meta.Prettify<abstracts.meta.Merge<Self['value'], TNew>>;
-  get: abstracts.meta.Prettify<abstracts.meta.Merge<Self['get'], TNew>>;
-};
+  public constructor(public parent: TDef['parent'] = null! as TDef['parent']) {}
 
-export type WithChild<Self extends PipelineState, K extends string, R extends PipelineState> = Omit<
-  Self,
-  'value' | 'get' | 'children'
-> & {
-  value: abstracts.meta.Prettify<abstracts.meta.Merge<Self['value'], { [P in K]: R['value'] }>>;
-  get: abstracts.meta.Prettify<abstracts.meta.Merge<Self['get'], { [P in K]: R['get'] }>>;
-  children: abstracts.meta.Prettify<abstracts.meta.Merge<Self['children'], { [P in K]: R }>>;
-};
-
-export type AsChildContext<Self extends PipelineState, K extends string> = Omit<
-  Self,
-  'value' | 'get' | 'parent' | 'children'
-> & {
-  value: { name: K };
-  get: abstracts.meta.Prettify<abstracts.meta.Merge<Self['get'], { name: K }>>;
-  parent: Self;
-  children: {};
-};
-
-export class ContextPipeline<
-  TValue extends object = {},
-  TGet extends object = {},
-  TChildren extends object = {},
-  TParent = unknown,
-> implements PipelineState<TValue, TGet, TChildren, TParent>
-{
-  public value: TValue = {} as TValue;
-  public children: TChildren = {} as TChildren;
-
-  public constructor(public parent: TParent = null as TParent) {}
-
-  public get get(): TGet {
-    return context.createPipelineGetter(this as PipelineState);
+  public get get(): TDef['get'] {
+    return context.createPipelineGetter(this as unknown as PipelineState);
   }
 
-  public add<TNew extends object, This extends PipelineState>(this: This, args: TNew): WithNext<This, TNew> {
-    return context.assignPipelineNext(this as PipelineState, args) as any;
+  public add<TNew extends object, This extends PipelineState>(
+    this: This,
+    args: (_: This) => TNew,
+  ): WithNext<This, TNew>;
+  public add<TNew extends object, This extends PipelineState>(this: This, args: TNew): WithNext<This, TNew>;
+  public add<TNew extends object, This extends PipelineState>(
+    this: This,
+    args: TNew | Function<[This], TNew>,
+  ): WithNext<This, TNew> {
+    if (isFunction<Function<[This], TNew>>(args)) {
+      return context.assignPipelineNext(this as unknown as PipelineState, args(this)) as any;
+    }
+    return context.assignPipelineNext(this as unknown as PipelineState, args) as any;
   }
 
   public addPipe<TNew extends object, TRes = void>(mapper: (cb: (state: any) => TRes) => TNew) {
@@ -69,9 +35,6 @@ export class ContextPipeline<
     };
   }
 
-  /**
-   * Map data for different templates
-   */
   public addMap<Args extends any[], TNew extends object>(mapper: (...args: Args) => TNew) {
     return function <This extends PipelineState>(this: This, ...args: Args): WithNext<This, TNew> {
       return (this as any).add(mapper(...args));
@@ -101,7 +64,10 @@ export class ContextPipeline<
     };
   }
 
-  public line<TNew extends PipelineState, This extends PipelineState>(this: This, Ctor: new (p?)=> TNew): WithNext<TNew, This["value"]>    {
+  public line<TNew extends PipelineState, This extends PipelineState>(
+    this: This,
+    Ctor: new (p?: any) => TNew,
+  ): Line<TNew, This> {
     const nextInstance = new Ctor(this.parent);
     return context.assignPipelineSwitch(this as any, nextInstance as any) as any;
   }
