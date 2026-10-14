@@ -25,7 +25,7 @@ export function filePathCount(filePath: abstracts.components.FilePathString) {
   }
 }
 
-// const filePath = '/Users/kamensky/Documents/_@razomy/games/c.r.g.battlefield/@razomy/@razomy/Ai/ChatGpt/code_refactor/from.txt';
+// const filePath = '';
 // if (!filePath) {
 //   console.error('Please provide the path to the JavaScript file as an argument.');
 //   process.exit(1);

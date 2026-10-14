@@ -83,7 +83,7 @@
   "module": "./index.ts",
   "name": "@razomy/ai-google",
   "peerDependencies": {
-    "@google/genai": "^1.44.0",
+    "@google/genai": "^2.30.0",
     "@razomy/abstracts": "*",
     "@razomy/ai": "*",
     "@razomy/fs-file": "*"

@@ -34,3 +34,18 @@ export function projectDirCount(
   // Return the total token count
   return tokenCount;
 }
+
+// const projectDir = '';
+// const tokenCount = projectDirCount(
+//   projectDir,
+//   /\.cs$/,
+//   /^\.|node_modules|dist/,
+// );
+//
+// const tockenFormated = new Intl.NumberFormat('en-US', {
+//   style: 'decimal',
+//   minimumFractionDigits: 2,
+//   maximumFractionDigits: 2,
+// }).format;
+// // Log the total token count to the console
+// console.log(`Total token count in ${projectDir}: ${tockenFormated(tokenCount)}`);
