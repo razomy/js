@@ -38,6 +38,20 @@
         "types": "./batch/index.ts"
       }
     },
+    "./cache": {
+      "default": {
+        "default": "./cache/index.ts",
+        "types": "./cache/index.ts"
+      },
+      "import": {
+        "default": "./cache/index.ts",
+        "types": "./cache/index.ts"
+      },
+      "require": {
+        "default": "./cache/index.ts",
+        "types": "./cache/index.ts"
+      }
+    },
     "./instant": {
       "default": {
         "default": "./instant/index.ts",
@@ -50,6 +64,20 @@
       "require": {
         "default": "./instant/index.ts",
         "types": "./instant/index.ts"
+      }
+    },
+    "./refactor": {
+      "default": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
+      },
+      "import": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
+      },
+      "require": {
+        "default": "./refactor/index.ts",
+        "types": "./refactor/index.ts"
       }
     },
     "./package.json": "./package.json",
@@ -74,6 +102,9 @@
     "wait",
     "askTool",
     "specToTool",
+    "streamWithContinuation",
+    "cache",
+    "refactor",
     "client",
     "models",
     "prices"
@@ -97,8 +128,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts batch/index.ts instant/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts batch/index.ts instant/index.ts --watch",
+    "build": "tsdown index.ts batch/index.ts cache/index.ts instant/index.ts refactor/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts batch/index.ts cache/index.ts instant/index.ts refactor/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
