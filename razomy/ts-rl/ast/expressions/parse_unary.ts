@@ -1,8 +1,8 @@
 import { Node, SyntaxKind, Expression } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.UnaryAsn {
+export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.UnaryAsn {
   if (Node.isPrefixUnaryExpression(node)) {
     let operator = '';
     switch (node.getOperatorToken()) {
@@ -15,8 +15,8 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
     }
     return {
       kind: 'UnaryAsn', syntaxRole: 'expression',
-      operator: operator as abstracts.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAsnType,
+      operator: operator as abstractions.translators.UnaryAsn['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
       isPrefix: true,
     };
   }
@@ -24,8 +24,8 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
     return {
       kind: 'UnaryAsn', syntaxRole: 'expression',
-      operator: operator as abstracts.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAsnType,
+      operator: operator as abstractions.translators.UnaryAsn['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
       isPrefix: false,
     };
   }
@@ -33,8 +33,8 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
     return {
       kind: 'UnaryAsn', syntaxRole: 'expression',
-      operator: operator as abstracts.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstracts.translators.StateAsnType,
+      operator: operator as abstractions.translators.UnaryAsn['operator'],
+      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
       isPrefix: false,
     };
   }
@@ -42,7 +42,7 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
     return {
       kind: 'UnaryAsn', syntaxRole: 'expression',
       operator: Node.isTypeOfExpression(node) ? '+' : '-',
-      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstracts.translators.StateAsnType,
+      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstractions.translators.StateAsnType,
       isPrefix: true,
     };
   }

@@ -1,9 +1,9 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export function tryTokenValue<
-  TToken extends abstracts.translators.HasTokenType<any> & abstracts.structures.HasValue<string>,
+  TToken extends abstractions.translators.HasTokenType<any> & abstractions.structures.HasValue<string>,
   TTokenType extends TToken['tokenType'],
->(ctx: abstracts.translators.HasTokens<TToken> & abstracts.arrays.HasOffset, targetType: TTokenType) {
+>(ctx: abstractions.translators.HasTokens<TToken> & abstractions.arrays.HasOffset, targetType: TTokenType) {
   const t = ctx.tokens[ctx.offset];
   if (!t) return null;
 

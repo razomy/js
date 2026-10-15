@@ -1,8 +1,8 @@
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function getWithPath<T>(valueRecursive: abstracts.structures.KeyValueArray<T, T>, path: T[]) {
-  const pathed = kv.createByPath(path) as abstracts.structures.KeyValueArray<T, T>;
+export function getWithPath<T>(valueRecursive: abstractions.structures.KeyValueArray<T, T>, path: T[]) {
+  const pathed = kv.createByPath(path) as abstractions.structures.KeyValueArray<T, T>;
   const node = kv.get(valueRecursive, path, 0);
   kv.set(pathed, path, node);
   return pathed;

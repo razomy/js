@@ -1,8 +1,8 @@
 import { Node } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType[] {
+export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType[] {
   // declarations
   if (Node.isInterfaceDeclaration(node)) return [tsRl.ast.declarations.parseInterface(node, ctx)];
   if (Node.isInterfaceDeclaration(node)) return [tsRl.ast.declarations.parseInterface(node, ctx)];

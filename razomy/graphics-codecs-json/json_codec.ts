@@ -1,5 +1,5 @@
 import * as exceptions from '@razomy/exceptions';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as object_ from '@razomy/object';
 import * as graphicsAttributes from '@razomy/graphics-attributes';
 import * as resources from '@razomy/resources';
@@ -59,7 +59,7 @@ export const EXAMPLE: ResourceDescription = {
   },
 };
 
-export class JsonCodec implements abstracts.patterns.Codec<graphicsElements.ElementView, Node> {
+export class JsonCodec implements abstractions.patterns.Codec<graphicsElements.ElementView, Node> {
   private codecFactory: any;
 
   constructor() {

@@ -1,8 +1,8 @@
 import { FunctionExpression } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseunctionExpression(node: FunctionExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LambdaAsn {
+export function parseunctionExpression(node: FunctionExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LambdaAsn {
   return {
     kind: 'LambdaAsn',
     syntaxRole: 'expression',

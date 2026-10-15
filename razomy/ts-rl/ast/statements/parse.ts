@@ -1,8 +1,8 @@
 import { Node, Statement } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType {
+export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType {
   if (Node.isBlock(node)) {
     return ctx.leave(
       { kind: 'BlockAsn', syntaxRole: 'statement', statements: tsRl.ast.declarations.parseModuleBody(node,ctx) },
@@ -16,7 +16,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       kind: 'TryAsn',
       syntaxRole: 'statement',
       block: tsRl.ast.statements.parse(node.getTryBlock(), ctx),
-    } as abstracts.translators.TryAsn;
+    } as abstractions.translators.TryAsn;
   if (Node.isForStatement(node)) {
     return {
       kind: 'ForItAsn',
@@ -25,7 +25,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       condition: node.getCondition() ? tsRl.ast.expressions.parse(node.getCondition()!, ctx) : null,
       update: node.getIncrementor() ? tsRl.ast.expressions.parse(node.getIncrementor()!, ctx) : null,
       block: tsRl.ast.statements.parse(node.getStatement(), ctx),
-    } as abstracts.translators.ForItAsn;
+    } as abstractions.translators.ForItAsn;
   }
   if (Node.isWhileStatement(node)) {
     return {
@@ -33,7 +33,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       syntaxRole: 'statement',
       condition: tsRl.ast.expressions.parse(node.getExpression(), ctx),
       block: tsRl.ast.statements.parse(node.getStatement(), ctx),
-    } as abstracts.translators.WhileDoAsn;
+    } as abstractions.translators.WhileDoAsn;
   }
   if (Node.isDoStatement(node)) {
     return {
@@ -41,7 +41,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       syntaxRole: 'statement',
       condition: tsRl.ast.expressions.parse(node.getExpression(), ctx),
       block: tsRl.ast.statements.parse(node.getStatement(), ctx),
-    } as abstracts.translators.DoWhileAsn;
+    } as abstractions.translators.DoWhileAsn;
   }
   if (Node.isForOfStatement(node)) {
     return {
@@ -49,7 +49,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       syntaxRole: 'statement',
       init: tsRl.ast.expressions.parse(node.getExpression(), ctx),
       block: tsRl.ast.statements.parse(node.getStatement(), ctx),
-    } as abstracts.translators.ForOfAsn;
+    } as abstractions.translators.ForOfAsn;
   }
   if (Node.isForInStatement(node)) {
     return {
@@ -59,7 +59,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       condition: null,
       update: null,
       block: tsRl.ast.statements.parse(node.getStatement(), ctx),
-    } as abstracts.translators.ForIAsn;
+    } as abstractions.translators.ForIAsn;
   }
   if (Node.isReturnStatement(node)) return tsRl.ast.statements.parseReturn(node,ctx);
   if (Node.isBreakStatement(node)) {
@@ -80,7 +80,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
           kind: 'BlockAsn',
           syntaxRole: 'statement',
           statements: [],
-        } as abstracts.translators.BlockAsn);
+        } as abstractions.translators.BlockAsn);
   }
   if (Node.isCallExpression(node)) {
     const expression = node.getExpression();

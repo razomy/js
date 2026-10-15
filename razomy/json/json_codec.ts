@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as json from '@razomy/json';
 
-export class JsonCodec<T extends abstracts.patterns.Json> implements abstracts.patterns.Codec<T, string> {
+export class JsonCodec<T extends abstractions.patterns.Json> implements abstractions.patterns.Codec<T, string> {
   encode(state: T): string {
     return json.jsonToString(state);
   }

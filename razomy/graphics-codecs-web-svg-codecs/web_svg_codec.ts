@@ -1,10 +1,10 @@
 import * as exceptions from '@razomy/exceptions';
 import * as graphicsElements from '@razomy/graphics-elements';
 import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as resources from '@razomy/resources';
 
-export class WebSvgCodec implements abstracts.patterns.Codec<graphicsElements.ElementView, Node> {
+export class WebSvgCodec implements abstractions.patterns.Codec<graphicsElements.ElementView, Node> {
   constructor(private codecFactory: graphicsCodecsWebSvgCodecs.CodecFactory) {}
 
   decode(value: Node): graphicsElements.ElementView {

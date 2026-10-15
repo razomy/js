@@ -1,10 +1,10 @@
 import { Node, SyntaxKind } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
-import type { StateAsnType } from '@razomy/abstracts/translators';
+import type { StateAsnType } from '@razomy/abstractions/translators';
 import type { HasEnterLeaveProduce } from '../unknown_node_exception';
 
-export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translators.AsnType {
+export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.translators.AsnType {
   if (Node.isLiteralTypeNode(node)) {
     return {
       kind: 'LiteralAsn',
@@ -47,7 +47,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       modifiers: [],
       identifier: { name: node.getName() },
       shape: null,
-      value: node.getInitializer() ? (parse(node.getInitializer()!,ctx) as abstracts.translators.StateAsnType) : null,
+      value: node.getInitializer() ? (parse(node.getInitializer()!,ctx) as abstractions.translators.StateAsnType) : null,
     };
   }
   if (Node.isConstructorTypeNode(node)) {
@@ -89,7 +89,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       values: [parse(node.getElementTypeNode(),ctx)],
-    } as abstracts.translators.ArrayAsn;
+    } as abstractions.translators.ArrayAsn;
   }
   if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
     return {
@@ -97,7 +97,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       values: node.getTypeNodes().map((i) => parse(i, ctx)),
-    } as abstracts.translators.TupleAsn;
+    } as abstractions.translators.TupleAsn;
   }
   if (Node.isTypeLiteral(node)) {
     return {
@@ -112,7 +112,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       kind: 'TupleAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: node.getElements().map(i=>parse(i,ctx)).filter(Boolean) as abstracts.translators.AsnType[],
+      values: node.getElements().map(i=>parse(i,ctx)).filter(Boolean) as abstractions.translators.AsnType[],
     };
   }
   if (Node.isMappedTypeNode(node)) {
@@ -150,7 +150,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       identifier: { name: node.getTypeName().getText() },
-    } as abstracts.translators.ReferenceAsn;
+    } as abstractions.translators.ReferenceAsn;
   }
 
   if (Node.isIndexedAccessTypeNode(node)) {
@@ -216,7 +216,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       identifier: { name: node.getText() },
-    } as abstracts.translators.ReferenceAsn;
+    } as abstractions.translators.ReferenceAsn;
   }
   const kind = node.getKindName();
   if (kind.includes('Keyword')) {
@@ -225,7 +225,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstracts.translat
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       identifier: { name: node.getText() },
-    } as abstracts.translators.ReferenceAsn;
+    } as abstractions.translators.ReferenceAsn;
   }
   throw new tsRl.ast.UnknownNodeException(node);
 }

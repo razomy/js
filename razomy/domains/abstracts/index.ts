@@ -25,7 +25,7 @@ export type {
 };
 
 // Default export
-const abstracts = {
+const abstractions = {
   boolDefault,
   createAt,
   deletedAt,
@@ -37,4 +37,4 @@ const abstracts = {
 };
 
 
-export default abstracts;
+export default abstractions;

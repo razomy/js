@@ -1,11 +1,11 @@
 import * as future from '@razomy/future';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as main from '@razomy/main';
 import * as datetimes from "@razomy/datetimes";
 
 export async function ifMain(
   importMetaUrlOrModulePath: string,
-  callback: abstracts.patterns.Callback | abstracts.functions.FutureCallback,
+  callback: abstractions.patterns.Callback | abstractions.functions.FutureCallback,
 ) {
   const path = `${importMetaUrlOrModulePath} if_main`;
   const startDate = Date.now();

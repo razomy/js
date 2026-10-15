@@ -1,11 +1,11 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export interface Domain extends abstracts.patterns.IEntity {
+export interface Domain extends abstractions.patterns.IEntity {
   name: string;
   type: string;
-  company: abstracts.patterns.IdRef<Company>;
+  company: abstractions.patterns.IdRef<Company>;
 }
 
-export interface Company extends abstracts.patterns.IEntity{
+export interface Company extends abstractions.patterns.IEntity{
   name: string;
 }

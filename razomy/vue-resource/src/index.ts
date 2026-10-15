@@ -5,7 +5,7 @@ import { RemoteNode } from './remote_node';
 import { RemoteResource } from './remote_resource';
 import { SocketStore } from './socket_store';
 import { type Resource } from './resource';
-import * as razomy from '@razomy/abstracts/meta';
+import * as razomy from '@razomy/abstractions/meta';
 
 
 

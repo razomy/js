@@ -1,14 +1,14 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as exceptions from "@razomy/exceptions";
 
 // todo:remove
 export class Observable<T, E = exceptions.CancelException> {
-  disposeFn: abstracts.patterns.Dispose | null = null;
-  next: abstracts.functions.Action<[T]> | undefined;
-  exception: abstracts.functions.Action<[E]> = exceptions.throwException;
-  factory: (resolve: abstracts.functions.Action<[T]>) => abstracts.patterns.Dispose;
+  disposeFn: abstractions.patterns.Dispose | null = null;
+  next: abstractions.functions.Action<[T]> | undefined;
+  exception: abstractions.functions.Action<[E]> = exceptions.throwException;
+  factory: (resolve: abstractions.functions.Action<[T]>) => abstractions.patterns.Dispose;
 
-  constructor(factory: (resolve: abstracts.functions.Action<[T]>) => abstracts.patterns.Dispose) {
+  constructor(factory: (resolve: abstractions.functions.Action<[T]>) => abstractions.patterns.Dispose) {
     this.factory = factory;
   }
 

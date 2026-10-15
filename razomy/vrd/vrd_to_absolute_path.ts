@@ -1,9 +1,9 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 
 export function vrdToAbsolutePath<T>(
   input: vrd.VrdOrValue<T>,
-  absolutePath: abstracts.components.AbsolutePathString,
+  absolutePath: abstractions.components.AbsolutePathString,
   separator: string,
 ): vrd.VrdOrValue<T> {
   if (vrd.isVrd(input)) {

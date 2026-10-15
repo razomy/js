@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import type { Ref } from 'vue';
 import type {
   HirType,
@@ -10,7 +10,7 @@ import type {
   BranchHirn,
   LiteralHirn,
   OperatorHirn,
-} from '@razomy/abstracts/translators';
+} from '@razomy/abstractions/translators';
 
 export const defaultFormKey = 'form';
 export type Path = string[];

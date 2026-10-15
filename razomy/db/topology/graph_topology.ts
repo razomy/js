@@ -1,12 +1,12 @@
 import * as db from "@razomy/db";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export const NULL_EDGE = 0xFFFFFFFF;
 export const SYSTEM_FIELDS = {NODE: 0 as db.FieldId, EDGE: 1 as db.FieldId};
 
 export interface GraphTopology {
   core: db.core.CoreDB;
-  nodesAsn: (abstracts.translators.HirType | null)[];
+  nodesAsn: (abstractions.translators.HirType | null)[];
 
   // Колонки топологии
   nodeFirstOut: db.column.array.Column;
@@ -18,7 +18,7 @@ export interface GraphTopology {
   edgeNextIn: db.column.array.Column;
 
   // Методы делегируют работу
-  addNode(astData: abstracts.translators.HirType): db.NodeId;
+  addNode(astData: abstractions.translators.HirType): db.NodeId;
 
   connect(from: db.NodeId, to: db.NodeId, layer: db.Layer): db.NodeId;
 

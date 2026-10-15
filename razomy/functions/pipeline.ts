@@ -1,8 +1,8 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export class Pipeline<TA, TR = TA> {
   public constructor(
-    private readonly pipes: abstracts.patterns.HasPipe<any, any>[] = []) {
+    private readonly pipes: abstractions.patterns.HasPipe<any, any>[] = []) {
   }
 
   public p<TN, TR2 = TR>(pipeline: Pipeline<TR2, TN>): Pipeline<TA, TN>;

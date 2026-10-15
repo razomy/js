@@ -29,13 +29,13 @@
 import {computed} from 'vue';
 import Any from './Any.vue';
 import { useFormInject } from '../useForm';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import type {FormNode} from "../constants";
 
 const props = defineProps<FormNode<any[]>>();
 
 const form = useFormInject();
-const schema = computed(() => form.getSchema<abstracts.translators.StructHirn>(props.path));
+const schema = computed(() => form.getSchema<abstractions.translators.StructHirn>(props.path));
 const types = computed(() => schema.value?.shapes || []);
 
 </script>

@@ -53,7 +53,7 @@
   "module": "./index.ts",
   "name": "@razomy/object",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/random": "*"
   },
   "publishConfig": {

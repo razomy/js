@@ -72,7 +72,7 @@
   "module": "./index.ts",
   "name": "@razomy/ais",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/ai": "*"
   },
   "publishConfig": {

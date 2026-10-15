@@ -1,7 +1,7 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export interface Task{
   taskKey:string,
   status:string,
-  payload:abstracts.patterns.Json,
+  payload:abstractions.patterns.Json,
 }

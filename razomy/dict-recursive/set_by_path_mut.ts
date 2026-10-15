@@ -1,5 +1,5 @@
 import * as dict from '@razomy/dict';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Set a value in a nested dictionary by dot-separated path.
@@ -30,7 +30,7 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n) for intermediate objects created along the path
  */
-export function setByPathMut(obj: abstracts.structures.RecursiveDict, path: string, value: unknown): void {
+export function setByPathMut(obj: abstractions.structures.RecursiveDict, path: string, value: unknown): void {
   const parts: string[] = path.split('.');
   const last: string | undefined = parts.pop();
 
@@ -38,11 +38,11 @@ export function setByPathMut(obj: abstracts.structures.RecursiveDict, path: stri
     throw new Error('Path must be a non-empty string');
   }
 
-  const target: abstracts.structures.RecursiveDict = parts.reduce<abstracts.structures.RecursiveDict>((acc, part) => {
+  const target: abstractions.structures.RecursiveDict = parts.reduce<abstractions.structures.RecursiveDict>((acc, part) => {
     if (!acc[part] || !dict.isPlainObject(acc[part])) {
       acc[part] = {};
     }
-    return acc[part] as abstracts.structures.RecursiveDict;
+    return acc[part] as abstractions.structures.RecursiveDict;
   }, obj);
 
   target[last!] = value as any;

@@ -24,18 +24,18 @@
         "types": "./index.ts"
       }
     },
-    "./abstracts": {
+    "./abstractions": {
       "default": {
-        "default": "./abstracts/index.ts",
-        "types": "./abstracts/index.ts"
+        "default": "./abstractions/index.ts",
+        "types": "./abstractions/index.ts"
       },
       "import": {
-        "default": "./abstracts/index.ts",
-        "types": "./abstracts/index.ts"
+        "default": "./abstractions/index.ts",
+        "types": "./abstractions/index.ts"
       },
       "require": {
-        "default": "./abstracts/index.ts",
-        "types": "./abstracts/index.ts"
+        "default": "./abstractions/index.ts",
+        "types": "./abstractions/index.ts"
       }
     },
     "./acls": {
@@ -189,7 +189,7 @@
   "module": "./index.ts",
   "name": "@razomy/domains",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/random": "*"
   },
   "publishConfig": {
@@ -201,8 +201,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts abstracts/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts abstracts/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --watch",
+    "build": "tsdown index.ts abstractions/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts abstractions/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

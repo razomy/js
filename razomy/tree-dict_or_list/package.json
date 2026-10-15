@@ -41,7 +41,7 @@
   "module": "./index.ts",
   "name": "@razomy/tree-dict_or_list",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/tree-dict": "*"
   },
   "publishConfig": {

@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Delete a nested property from a recursive dictionary by dot-separated path.
@@ -29,7 +29,7 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n)
  */
-export function deleteByPathMut(obj: abstracts.structures.RecursiveDict, path: string): void {
+export function deleteByPathMut(obj: abstractions.structures.RecursiveDict, path: string): void {
   if (path === '') {
     throw new Error('Path must not be empty');
   }
@@ -37,7 +37,7 @@ export function deleteByPathMut(obj: abstracts.structures.RecursiveDict, path: s
   const parts: string[] = path.split('.');
   const last: string = parts.pop()!;
 
-  let target: abstracts.structures.RecursiveDict = obj;
+  let target: abstractions.structures.RecursiveDict = obj;
 
   for (const part of parts) {
     const next: unknown = target[part];
@@ -46,7 +46,7 @@ export function deleteByPathMut(obj: abstracts.structures.RecursiveDict, path: s
       return;
     }
 
-    target = next as abstracts.structures.RecursiveDict;
+    target = next as abstractions.structures.RecursiveDict;
   }
 
   delete target[last];

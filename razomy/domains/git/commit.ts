@@ -1,5 +1,5 @@
 import * as domains from "@razomy/domains";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export enum DifferenceType {
   CREATED = 'CREATED',
@@ -11,14 +11,14 @@ export enum DifferenceType {
  * @index createdAt
  * @index createdAt
  */
-export interface Commit extends domains.identitys.UserChild, abstracts.components.CrudDateTime{
-  entity: abstracts.graphs.KeyEdge<domains.AnyEntityType>;
+export interface Commit extends domains.identitys.UserChild, abstractions.components.CrudDateTime{
+  entity: abstractions.graphs.KeyEdge<domains.AnyEntityType>;
 
   differenceType: DifferenceType;
-  difference: abstracts.patterns.Json;
+  difference: abstractions.patterns.Json;
   /** @uniq */
   commitHash: string;
   /** @uniq */
-  previous: abstracts.patterns.IdRef<Commit>;
+  previous: abstractions.patterns.IdRef<Commit>;
   userId: string;
 }

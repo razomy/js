@@ -1,5 +1,5 @@
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as primitives from "@razomy/primitives";
 
 /**
@@ -7,8 +7,8 @@ import * as primitives from "@razomy/primitives";
  * false - break
  */
 export function iterate<K, V>(
-  value: abstracts.structures.KeyValue<K, V> | abstracts.structures.KeyValueArray<K, V>,
-  nodeCb: abstracts.functions.Function<[abstracts.structures.KeyValue<K, V>], boolean | undefined>,
+  value: abstractions.structures.KeyValue<K, V> | abstractions.structures.KeyValueArray<K, V>,
+  nodeCb: abstractions.functions.Function<[abstractions.structures.KeyValue<K, V>], boolean | undefined>,
 ): boolean {
   if (kv.isKv(value)) {
     const res = primitives.booleanUndefined(nodeCb(value));
@@ -16,7 +16,7 @@ export function iterate<K, V>(
     if (!res) {
       return false;
     }
-    return iterate(value[1] as abstracts.structures.KeyValueArray<K, V>, nodeCb);
+    return iterate(value[1] as abstractions.structures.KeyValueArray<K, V>, nodeCb);
   } else if (kv.isAkv(value)) {
     for (const child of value) {
       const res = iterate(child, nodeCb);

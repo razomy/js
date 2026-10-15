@@ -1,6 +1,6 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function getAll<T extends abstracts.graphs.HasChildren<any[]>>(node: T, path: string[], match) {
+export function getAll<T extends abstractions.graphs.HasChildren<any[]>>(node: T, path: string[], match) {
   if (path.length === 0) {
     return [];
   }

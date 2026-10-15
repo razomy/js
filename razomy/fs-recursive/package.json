@@ -50,7 +50,7 @@
   "module": "./index.ts",
   "name": "@razomy/fs-recursive",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstractions": "*"
   },
   "publishConfig": {
     "access": "public"

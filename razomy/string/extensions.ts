@@ -1,6 +1,6 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 import * as string from '@razomy/string';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 // --- RUNTIME BINDINGS ---
 if (!String.prototype.addByIndexString) {
@@ -438,7 +438,7 @@ declare global {
      * @complexity time O(n)
      * @complexity memory O(n)
      */
-    addByIndexString(this: string, index: abstracts.arrays.Index, insertion: string): string;
+    addByIndexString(this: string, index: abstractions.arrays.Index, insertion: string): string;
     /**
      * @summary Split string into chunks by maximum byte length.
      * @description Iterates over Unicode characters and groups them into chunks ensuring that each chunk's UTF-8 byte size does not exceed the specified maximum bytes.
@@ -733,9 +733,9 @@ declare global {
      */
     isStartsWith(this: string, target: string, position?: number): boolean;
     
-    isStringsAnyIndex(this: string, equalStrings: Set<string>, offset?: abstracts.arrays.Offset, maxOffset?: abstracts.arrays.Offset): boolean;
+    isStringsAnyIndex(this: string, equalStrings: Set<string>, offset?: abstractions.arrays.Offset, maxOffset?: abstractions.arrays.Offset): boolean;
     
-    lastIndex(this: string, equalString: string, offset?: abstracts.arrays.Offset, maxOffset?: abstracts.arrays.Offset): abstracts.arrays.Index;
+    lastIndex(this: string, equalString: string, offset?: abstractions.arrays.Offset, maxOffset?: abstractions.arrays.Offset): abstractions.arrays.Index;
     /**
      * @summary Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
      * @description Calculates the Levenshtein distance between two strings using the iterative approach with memory optimization.
@@ -759,7 +759,7 @@ declare global {
      */
     levenshteinDistance(this: string, b: string): number;
     
-    nextMarginIndex(this: string, equalString: string, offset?: abstracts.arrays.Offset, maxOffset?: abstracts.arrays.Offset): abstracts.arrays.Index;
+    nextMarginIndex(this: string, equalString: string, offset?: abstractions.arrays.Offset, maxOffset?: abstractions.arrays.Offset): abstractions.arrays.Index;
     /**
      * @summary Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
      * @description Pads the end of a string with a given string (repeated, if needed) so that the resulting string reaches a given length.
@@ -985,7 +985,7 @@ declare global {
      */
     split(this: string, splitter: string | RegExp, limit?: number): string[];
     
-    stringsAnyIndex(this: string, chars: Set<string>, offset?: abstracts.arrays.Offset, maxOffset?: abstracts.arrays.Offset): abstracts.arrays.Index;
+    stringsAnyIndex(this: string, chars: Set<string>, offset?: abstractions.arrays.Offset, maxOffset?: abstractions.arrays.Offset): abstractions.arrays.Index;
     /**
      * @summary Strip HTML tags from a string.
      * @description Removes all HTML tags from a given string.

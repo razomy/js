@@ -1,8 +1,8 @@
 import * as treeDict from '@razomy/tree-dict';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export function iterateChildren<T>(
-  graph: abstracts.graphs.EdgeListGraph<treeDict.BranchDictOrLeaf<T>>,
+  graph: abstractions.graphs.EdgeListGraph<treeDict.BranchDictOrLeaf<T>>,
   branch: treeDict.BranchDictOrLeaf<T>,
 ) {
   graph.nodes.push(branch);

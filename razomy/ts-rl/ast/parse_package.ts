@@ -1,13 +1,13 @@
 import type { Project } from 'ts-morph';
 import * as path from 'path';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
 export function parsePackage(
   project: Project,
   dirPath: string,
   ctx: tsRl.ast.HasEnterLeaveProduce,
-): abstracts.translators.ModuleAsn | null {
+): abstractions.translators.ModuleAsn | null {
   const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
   if (!packageJsonSource) {
     return null;
@@ -18,7 +18,7 @@ export function parsePackage(
   const origin = indexFile || packageJsonSource;
 
   // 1. Создаем AST-каркас модуля
-  const moduleAsn: abstracts.translators.ModuleAsn = {
+  const moduleAsn: abstractions.translators.ModuleAsn = {
     kind: 'ModuleAsn',
     syntaxRole: 'statement',
     identifier: { name: packageJson.name || 'UnknownPackage' },
@@ -34,7 +34,7 @@ export function parsePackage(
   }
 
   // 3. Парсим зависимости (dependencies, peerDependencies, runtimes)
-  const dependencies: abstracts.translators.ImportAsn[] = Object.entries({
+  const dependencies: abstractions.translators.ImportAsn[] = Object.entries({
     ...(packageJson.dependencies || {}),
   }).map(
     ([k, v]) =>
@@ -45,10 +45,10 @@ export function parsePackage(
         version: v as string,
         modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAsn),
+      } satisfies abstractions.translators.ImportAsn),
   );
 
-  const peerDependencies: abstracts.translators.ImportAsn[] = Object.entries({
+  const peerDependencies: abstractions.translators.ImportAsn[] = Object.entries({
     ...(packageJson.peerDependencies || {}),
   }).map(
     ([k, v]) =>
@@ -59,10 +59,10 @@ export function parsePackage(
         version: v as string,
         modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAsn),
+      } satisfies abstractions.translators.ImportAsn),
   );
 
-  const runtimes: abstracts.translators.ImportAsn[] = Object.entries({
+  const runtimes: abstractions.translators.ImportAsn[] = Object.entries({
     ...(packageJson.engines || {}),
   }).map(
     ([k, v]) =>
@@ -73,7 +73,7 @@ export function parsePackage(
         version: v as string,
         modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
         identifier: { name: k },
-      } satisfies abstracts.translators.ImportAsn),
+      } satisfies abstractions.translators.ImportAsn),
   );
 
   // 4. Парсим тело модуля из index-файла (если найден)

@@ -1,5 +1,5 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export interface HasChildrenDict<T> {
-  children: abstracts.structures.Dict<T>;
+  children: abstractions.structures.Dict<T>;
 }

@@ -1,7 +1,7 @@
 import fs from 'fs';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export class FileGate<T extends string> implements abstracts.patterns.Gate<T> {
+export class FileGate<T extends string> implements abstractions.patterns.Gate<T> {
   constructor(private readonly file_path: string) {}
 
   get(): T {

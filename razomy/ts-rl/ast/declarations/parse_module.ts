@@ -1,8 +1,8 @@
 import { Directory } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ModuleAsn {
+export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ModuleAsn {
   const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
   if (!indexFile) throw new Error('NO index file');
 

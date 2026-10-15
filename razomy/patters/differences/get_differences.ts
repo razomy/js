@@ -1,12 +1,12 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as array from "@razomy/array";
 
 /** a was, b become */
 export function getDifferences<T>(a: T[], b: T[], sum: (...as: T[]) => T) {
-  const diffs = [] as abstracts.patterns.Difference<T>[];
-  let last: abstracts.patterns.Difference<T> | null = null;
+  const diffs = [] as abstractions.patterns.Difference<T>[];
+  let last: abstractions.patterns.Difference<T> | null = null;
 
-  function addDiff(type: abstracts.patterns.DifferenceType, value: T) {
+  function addDiff(type: abstractions.patterns.DifferenceType, value: T) {
     if (last?.type === type) {
       last.value = sum(last.value, value);
     } else {

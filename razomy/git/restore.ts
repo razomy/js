@@ -1,9 +1,9 @@
 import { execSync } from 'node:child_process';
 import * as treeList from '@razomy/tree-list';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as git from '@razomy/git';
 
-export function restore(sourcePath: abstracts.components.SourcePathString) {
+export function restore(sourcePath: abstractions.components.SourcePathString) {
   const { files, repos } = git.getRecursiveStatuses(sourcePath);
   const tree = treeList.nodesArrayToTree(repos, files);
   treeList.iterateReverse(tree[0], (node) => {

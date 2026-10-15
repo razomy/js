@@ -1,5 +1,5 @@
 import * as dict_ from '@razomy/dict';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Recursively find all paths in a nested dict where the specified keys exist.
@@ -24,7 +24,7 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n * k) where n is total number of nodes and k is length of keys
  * @complexity memory O(n * d) where d is max depth of nesting
  */
-export function getAnyAll(dict: abstracts.structures.Dict<unknown>, keys: string[]): string[] {
+export function getAnyAll(dict: abstractions.structures.Dict<unknown>, keys: string[]): string[] {
   const result: string[] = [];
 
   if (dict_.isKeys(dict, keys)) {
@@ -33,7 +33,7 @@ export function getAnyAll(dict: abstracts.structures.Dict<unknown>, keys: string
 
   if (Array.isArray(dict)) {
     for (let i = 0; i < dict.length; i++) {
-      const children = getAnyAll(dict[i] as abstracts.structures.Dict<unknown>, keys);
+      const children = getAnyAll(dict[i] as abstractions.structures.Dict<unknown>, keys);
       for (const child of children) {
         result.push(`${i}${child}`);
       }
@@ -41,7 +41,7 @@ export function getAnyAll(dict: abstracts.structures.Dict<unknown>, keys: string
   } else if (dict_.isPlainObject(dict)) {
     for (const key in dict) {
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
-        const children = getAnyAll(dict[key] as abstracts.structures.Dict<unknown>, keys);
+        const children = getAnyAll(dict[key] as abstractions.structures.Dict<unknown>, keys);
         for (const child of children) {
           result.push(`${key}:${child}`);
         }

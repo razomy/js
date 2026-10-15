@@ -1,12 +1,12 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from "@razomy/ts-rl";
 
 export class SemanticContext {
-  public nodeMap = new Map<string, abstracts.translators.HirType>();
-  public root : abstracts.translators.HirType = null as any;
+  public nodeMap = new Map<string, abstractions.translators.HirType>();
+  public root : abstractions.translators.HirType = null as any;
   public semanticMap = new Map<string, tsRl.st.SemanticNode<any>>();
 
-  public set(node: abstracts.translators.HirType): void {
+  public set(node: abstractions.translators.HirType): void {
     this.nodeMap.set(node.id, node);
   }
 
@@ -14,7 +14,7 @@ export class SemanticContext {
    * Разрешает IdRef или саму ноду в специализированный Семантический Узел
    */
   public getSemantic<T extends tsRl.st.SemanticNode<any> = any>(
-    target: abstracts.patterns.IdRef<abstracts.translators.HirType>,
+    target: abstractions.patterns.IdRef<abstractions.translators.HirType>,
   ): T {
     const rawNode = this.nodeMap.get(target.id)!;
     if (this.semanticMap.has(rawNode.id)) {

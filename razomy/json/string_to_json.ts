@@ -1,5 +1,5 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export function stringToJson<T extends abstracts.patterns.Json>(data: string): T {
+export function stringToJson<T extends abstractions.patterns.Json>(data: string): T {
   return JSON.parse(data);
 }

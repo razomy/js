@@ -1,13 +1,13 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from "@razomy/ts-rl";
 
-export abstract class SemanticNode<T extends abstracts.translators.IHirNode>
-  implements abstracts.translators.ISemanticNode<T>
+export abstract class SemanticNode<T extends abstractions.translators.IHirNode>
+  implements abstractions.translators.ISemanticNode<T>
 {
-   children: abstracts.translators.ISemanticNode[] | null = null;
-   next: abstracts.translators.ISemanticNode | null = null;
-   parent: abstracts.translators.ISemanticNode | null = null;
-   prev: abstracts.translators.ISemanticNode | null = null;
+   children: abstractions.translators.ISemanticNode[] | null = null;
+   next: abstractions.translators.ISemanticNode | null = null;
+   parent: abstractions.translators.ISemanticNode | null = null;
+   prev: abstractions.translators.ISemanticNode | null = null;
 
   constructor(
     public hir: T,
@@ -23,7 +23,7 @@ export abstract class SemanticNode<T extends abstracts.translators.IHirNode>
   }
 
   // Извлечение текстовых модификаторов (async, export, const...)
-  protected extractModifiers(modifiers: abstracts.patterns.IdRef<abstracts.translators.HirType>[]): string[] {
+  protected extractModifiers(modifiers: abstractions.patterns.IdRef<abstractions.translators.HirType>[]): string[] {
     return (modifiers || [])
       .map((m) => this.ctx.getSemantic(m))
       .filter((m): m is LiteralNode => m instanceof LiteralNode)
@@ -31,7 +31,7 @@ export abstract class SemanticNode<T extends abstracts.translators.IHirNode>
   }
 }
 
-export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHirn> {
+export class FunctionNode extends SemanticNode<abstractions.translators.FunctionHirn> {
   get name(): string | null {
     return this.hir.name;
   }
@@ -74,7 +74,7 @@ export class FunctionNode extends SemanticNode<abstracts.translators.FunctionHir
   }
 }
 
-export class BindingNode extends SemanticNode<abstracts.translators.BindingHirn> {
+export class BindingNode extends SemanticNode<abstractions.translators.BindingHirn> {
   get name(): string {
     return this.hir.name ?? '';
   }
@@ -95,7 +95,7 @@ export class BindingNode extends SemanticNode<abstracts.translators.BindingHirn>
   }
 }
 
-export class ModuleNode extends SemanticNode<abstracts.translators.StructHirn> {
+export class ModuleNode extends SemanticNode<abstractions.translators.StructHirn> {
   get name(): string {
     return this.hir.name ?? 'anonymous_module';
   }
@@ -121,7 +121,7 @@ export class ModuleNode extends SemanticNode<abstracts.translators.StructHirn> {
   }
 }
 
-export class ClassNode extends SemanticNode<abstracts.translators.StructHirn> {
+export class ClassNode extends SemanticNode<abstractions.translators.StructHirn> {
   get name(): string {
     return this.hir.name ?? 'AnonymousClass';
   }
@@ -149,7 +149,7 @@ export class ClassNode extends SemanticNode<abstracts.translators.StructHirn> {
   }
 }
 
-export class ArrayNode extends SemanticNode<abstracts.translators.StructHirn> {
+export class ArrayNode extends SemanticNode<abstractions.translators.StructHirn> {
   get elements(): SemanticNode<any>[] {
     return this.hir.properties.map((p) => this.ctx.getSemantic(p)).filter((p): p is SemanticNode<any> => p !== null);
   }
@@ -159,7 +159,7 @@ export class ArrayNode extends SemanticNode<abstracts.translators.StructHirn> {
   }
 }
 
-export class LiteralNode extends SemanticNode<abstracts.translators.LiteralHirn> {
+export class LiteralNode extends SemanticNode<abstractions.translators.LiteralHirn> {
   get value(): any {
     return this.hir.value;
   }
@@ -172,9 +172,9 @@ export class LiteralNode extends SemanticNode<abstracts.translators.LiteralHirn>
 }
 
 export function createSemanticNode(
-  node: abstracts.translators.HirType,
+  node: abstractions.translators.HirType,
   ctx: tsRl.st.SemanticContext,
-): SemanticNode<abstracts.translators.HirType> {
+): SemanticNode<abstractions.translators.HirType> {
   switch (node.kind) {
     case 'FunctionHirn':
       return new FunctionNode(node, ctx);

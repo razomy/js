@@ -1,5 +1,5 @@
 import { InMemoryFileSystemHost, Project } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
 describe('parse', () => {
@@ -153,6 +153,6 @@ describe('parse', () => {
       enter: (a) => a,
     });
 
-    expect(modules).toEqual({} as any satisfies abstracts.translators.ModuleAsn);
+    expect(modules).toEqual({} as any satisfies abstractions.translators.ModuleAsn);
   });
 });

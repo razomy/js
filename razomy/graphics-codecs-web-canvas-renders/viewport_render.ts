@@ -3,7 +3,7 @@ import * as graphicsRenderes from '@razomy/graphics-renderes';
 import * as graphicsElements from '@razomy/graphics-elements';
 import * as graphicsShapes from '@razomy/graphics-shapes';
 import * as exceptions from '@razomy/exceptions';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export class ViewportRender {
   constructor() {}
@@ -19,7 +19,7 @@ export class TextRender {
 
 export class CanvasRectangle {}
 
-export class RenderFactory implements abstracts.patterns.HasCreate<graphicsRenderes.IRender<any>> {
+export class RenderFactory implements abstractions.patterns.HasCreate<graphicsRenderes.IRender<any>> {
   constructor(public ctx: CanvasRenderingContext2D) {}
 
   public create(element?: graphicsElements.ElementView): graphicsRenderes.IRender<any> {

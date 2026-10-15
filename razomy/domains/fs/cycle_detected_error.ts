@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export enum FsNodeType {
   DIRECTORY = 'DIRECTORY',
@@ -7,22 +7,22 @@ export enum FsNodeType {
   FILE_BINARY = 'FILE_BINARY',
 }
 
-export interface FsNode extends abstracts.patterns.HasPrimaryId, abstracts.components.CrudDateTime {
+export interface FsNode extends abstractions.patterns.HasPrimaryId, abstractions.components.CrudDateTime {
   fsNodeType: FsNodeType;
-  name: abstracts.primitives.Char256;
+  name: abstractions.primitives.Char256;
   /*
    * @index
    */
-  contentJson?: abstracts.patterns.Json | abstracts.patterns.Json<{ url: abstracts.components.Url }>;
+  contentJson?: abstractions.patterns.Json | abstractions.patterns.Json<{ url: abstractions.components.Url }>;
   contentBinary?: Buffer;
   /*
    * @index
    */
-  parentId?: abstracts.patterns.IdRef<FsNode>;
+  parentId?: abstractions.patterns.IdRef<FsNode>;
   /*
    * @index
    */
-  ancestors: abstracts.patterns.IdRef<FsNode>[];
+  ancestors: abstractions.patterns.IdRef<FsNode>[];
 }
 
 /**

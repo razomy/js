@@ -1,11 +1,11 @@
 import { Node, VariableDeclaration as TsVariableDeclaration } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
 export function parseVariable(
   node: TsVariableDeclaration,
   ctx: tsRl.ast.HasEnterLeaveProduce,
-): abstracts.translators.InstanceAsn {
+): abstractions.translators.InstanceAsn {
   // FIX: In a `for` loop, there is no VariableStatement. We check the parent List instead.
   const parent = node.getParent();
   const isConst = Node.isVariableDeclarationList(parent)
@@ -19,7 +19,7 @@ export function parseVariable(
     identifier: { name: node.getName() },
     shape: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null,
     value: node.getInitializer()
-      ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstracts.translators.StateAsnType)
+      ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType)
       : { kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: undefined },
   }, node);
 }

@@ -1,5 +1,5 @@
 import * as object_ from '@razomy/object';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export type DiffCreated = { type: 'CREATED'; newValue: any };
 export type DiffDeleted = { type: 'DELETED'; prevValue: any };
@@ -9,7 +9,7 @@ export type DiffNested = { type: 'NESTED_UPDATE'; children: DiffNode };
 export type DiffEntry = DiffCreated | DiffDeleted | DiffUpdated | DiffNested;
 export type DiffNode = Record<string, DiffEntry>;
 
-export function getDetailedDiff(oldObj: abstracts.structures.RecursiveDict, newObj: abstracts.structures.RecursiveDict): DiffNode {
+export function getDetailedDiff(oldObj: abstractions.structures.RecursiveDict, newObj: abstractions.structures.RecursiveDict): DiffNode {
   const diff: DiffNode = {};
 
   // Get all unique keys from both objects

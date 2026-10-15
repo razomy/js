@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as string from '@razomy/string';
 
-export function getDifference(oldArray: string[], newArray: string[]): abstracts.patterns.ChangeDifference<string>[] {
+export function getDifference(oldArray: string[], newArray: string[]): abstractions.patterns.ChangeDifference<string>[] {
   const newSet = new Set(newArray);
   const oldSet = new Set(oldArray);
 
@@ -10,7 +10,7 @@ export function getDifference(oldArray: string[], newArray: string[]): abstracts
   const deletedItems = oldArray.filter((item) => !newSet.has(item));
 
   // Identify renamed items
-  const renamedItems: abstracts.patterns.ReplaceDifference<string>[] = [];
+  const renamedItems: abstractions.patterns.ReplaceDifference<string>[] = [];
   const remainingNewItems = new Set(newItems);
 
   deletedItems.forEach((deletedItem) => {
@@ -25,9 +25,9 @@ export function getDifference(oldArray: string[], newArray: string[]): abstracts
   // Remove renamed items from new and deleted lists
   const finalNewItems = newItems
     .filter((item) => !renamedItems.some((pair) => pair.value === item))
-    .map((item) => ({ value: item, type: 'added' } as abstracts.patterns.Difference<string>));
+    .map((item) => ({ value: item, type: 'added' } as abstractions.patterns.Difference<string>));
   const finalDeletedItems = deletedItems
     .filter((item) => !renamedItems.some((pair) => pair.prevValue === item))
-    .map((item) => ({ value: item, type: 'removed' } as abstracts.patterns.Difference<string>));
+    .map((item) => ({ value: item, type: 'removed' } as abstractions.patterns.Difference<string>));
   return [...finalNewItems, ...finalDeletedItems, ...renamedItems];
 }

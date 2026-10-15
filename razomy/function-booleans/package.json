@@ -45,7 +45,7 @@
   "module": "./index.ts",
   "name": "@razomy/function-booleans",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/exceptions": "*",
     "@razomy/kv": "*"
   },

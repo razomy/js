@@ -1,11 +1,11 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export function stringsAnyIndex(
   string: string,
   chars: Set<string>,
-  offset: abstracts.arrays.Offset = 0,
-  maxOffset: abstracts.arrays.Offset = string.length,
-): abstracts.arrays.Index {
+  offset: abstractions.arrays.Offset = 0,
+  maxOffset: abstractions.arrays.Offset = string.length,
+): abstractions.arrays.Index {
   for (let i = offset; i < maxOffset; i++) {
     if (chars.has(string[i])) {
       return i;

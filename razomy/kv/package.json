@@ -55,7 +55,7 @@
   "module": "./index.ts",
   "name": "@razomy/kv",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/exceptions": "*",
     "@razomy/primitives": "*"
   },

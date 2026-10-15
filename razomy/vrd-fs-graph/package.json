@@ -44,7 +44,7 @@
   "module": "./index.ts",
   "name": "@razomy/vrd-fs-graph",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/vrd": "*"
   },
   "publishConfig": {

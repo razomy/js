@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function tryAligned<TToken extends abstracts.translators.HasTokenType<any> & abstracts.translators.HasDeep, D extends object>(
-  ctx: abstracts.translators.HasTokens<TToken> & abstracts.arrays.HasOffset & abstracts.translators. HasStack,
+export function tryAligned<TToken extends abstractions.translators.HasTokenType<any> & abstractions.translators.HasDeep, D extends object>(
+  ctx: abstractions.translators.HasTokens<TToken> & abstractions.arrays.HasOffset & abstractions.translators. HasStack,
   deafult: D = {} as D,
 ) {
   const t = ctx.tokens[ctx.offset];

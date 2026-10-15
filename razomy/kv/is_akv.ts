@@ -1,6 +1,6 @@
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function isAkv<K, V>(obj: abstracts.structures.KeyValueArray<K, V> | unknown): obj is abstracts.structures.KeyValueArray<K, V> {
+export function isAkv<K, V>(obj: abstractions.structures.KeyValueArray<K, V> | unknown): obj is abstractions.structures.KeyValueArray<K, V> {
   return obj instanceof kv.Akv;
 }

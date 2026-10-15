@@ -204,7 +204,7 @@
   "module": "./index.ts",
   "name": "@razomy/db",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "neo4j-driver": "^6.0.1",
     "ollama": "^0.6.3"
   },

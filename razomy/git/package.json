@@ -65,7 +65,7 @@
   "module": "./index.ts",
   "name": "@razomy/git",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/commits": "*",
     "@razomy/fs-file": "*",
     "@razomy/future": "*",

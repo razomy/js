@@ -1,5 +1,5 @@
 import { Type, type FunctionDeclaration } from '@google/genai';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 function mapType(type: string): Type {
   const t = type.toLowerCase();
@@ -14,7 +14,7 @@ function mapType(type: string): Type {
 /**
  * Конвертирует вашу FunctionSpecification в формат Google Gemini
  */
-export function specToTool(fn: abstracts.translators.FunctionHirn): FunctionDeclaration {
+export function specToTool(fn: abstractions.translators.FunctionHirn): FunctionDeclaration {
   const properties: Record<string, any> = {};
   const required: string[] = [];
 

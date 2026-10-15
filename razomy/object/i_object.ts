@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 //TODO:rename
-export interface IObject extends abstracts.patterns.HasId {
+export interface IObject extends abstractions.patterns.HasId {
   type:string
 }
 

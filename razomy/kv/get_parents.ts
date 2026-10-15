@@ -1,12 +1,12 @@
 import * as exceptions from '@razomy/exceptions';
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export function getParents<T>(
-  valueRecursive: abstracts.structures.KvaOrValue<T, T>,
-  path: abstracts.components.Slug[],
+  valueRecursive: abstractions.structures.KvaOrValue<T, T>,
+  path: abstractions.components.Slug[],
   pathOffset: number,
-): abstracts.structures.KvaOrValue<T, T>[] {
+): abstractions.structures.KvaOrValue<T, T>[] {
   if (kv.isAkv(valueRecursive)) {
     for (const [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {

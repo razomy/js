@@ -1,10 +1,10 @@
 import * as exceptions from '@razomy/exceptions';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 
 export function getParents<T>(
   valueRecursive: vrd.VrdOrValue<T>,
-  path: abstracts.structures.Key[],
+  path: abstractions.structures.Key[],
   pathOffset: number,
 ): vrd.VrdOrValue<T>[] {
   for (const key in valueRecursive!) {

@@ -25,7 +25,7 @@
   "version": "0.0.0",
   "workspaces": [
     "./razomy/_razomy",
-    "./razomy/abstracts",
+    "./razomy/abstractions",
     "./razomy/ai",
     "./razomy/ai-agent",
     "./razomy/ai-anthropic",

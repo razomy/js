@@ -1,13 +1,13 @@
 // doc-parser.ts
 import { JSDoc, JSDocTag, JSDocText, Node, SyntaxKind } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
 /**
  * Парсит JSDoc узел ts-morph в DocsAsn
  */
-export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.DocsAsn {
-  const block: (abstracts.translators.TextAsn | abstracts.translators.TagAsn)[] = [];
+export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.DocsAsn {
+  const block: (abstractions.translators.TextAsn | abstractions.translators.TagAsn)[] = [];
 
   // Дочерние узлы JSDoc в AST TypeScript
   // jsDoc.getChildren() возвращает синтаксические узлы: JSDocComment, JSDocTag, etc.

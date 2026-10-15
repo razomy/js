@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 export interface TextAiMessage {
   sender: 'system' | 'user' | 'assistant' | 'tool' | string;
@@ -9,12 +9,12 @@ export interface TextAiMessage {
 export interface ToolsAiMessage {
   sender: 'system' | 'user' | string;
   type: 'tools';
-  tools: abstracts.translators.FunctionHirn[];
+  tools: abstractions.translators.FunctionHirn[];
 }
 
 export type AiMessage = TextAiMessage;
 
 export interface AiLlmContext {
   messages: AiMessage[];
-  tools: abstracts.translators.FunctionHirn[];
+  tools: abstractions.translators.FunctionHirn[];
 }

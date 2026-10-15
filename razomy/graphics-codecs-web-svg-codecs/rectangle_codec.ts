@@ -1,11 +1,11 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as graphicsAttributes from '@razomy/graphics-attributes';
 import * as graphicsStyles from '@razomy/graphics-styles';
 import * as graphicsShapes from '@razomy/graphics-shapes';
 import * as graphicsCodecsWebSvgColor from '@razomy/graphics-codecs-web-svg-color';
 import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
 
-export class RectangleCodec implements abstracts.patterns.Codec<graphicsShapes.RectangleShape, SVGRectElement> {
+export class RectangleCodec implements abstractions.patterns.Codec<graphicsShapes.RectangleShape, SVGRectElement> {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
 
   public encode(node: graphicsShapes.RectangleShape): SVGRectElement {

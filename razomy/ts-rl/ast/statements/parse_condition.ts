@@ -1,15 +1,15 @@
 import {IfStatement} from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.IfAsn {
-  const branches: abstracts.translators.IfBranchAsnType[] = [];
+export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.IfAsn {
+  const branches: abstractions.translators.IfBranchAsnType[] = [];
   branches.push({
     kind: 'ConditionBranchAsn',
     syntaxRole: 'statement',
     pattern: tsRl.ast.expressions.parse(node.getExpression(), ctx),
     value: tsRl.ast.statements.parse(node.getThenStatement(), ctx),
-  } as abstracts.translators.ConditionBranchAsn);
+  } as abstractions.translators.ConditionBranchAsn);
 
   const elseNode = node.getElseStatement();
   if (elseNode) {
@@ -17,7 +17,7 @@ export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeavePro
       kind: 'ElseBranchAsn',
       syntaxRole: 'statement',
       value: tsRl.ast.statements.parse(elseNode, ctx),
-    } as abstracts.translators.ElseBranchAsn);
+    } as abstractions.translators.ElseBranchAsn);
   }
   return { kind: 'IfAsn', syntaxRole: 'statement', branches };
 }

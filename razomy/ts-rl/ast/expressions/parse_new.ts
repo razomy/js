@@ -1,8 +1,8 @@
 import { NewExpression } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseNew(node: NewExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.CallAsn {
+export function parseNew(node: NewExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.CallAsn {
   const expressionNode = node.getExpression();
   return {
     kind: 'CallAsn', syntaxRole: 'expression',

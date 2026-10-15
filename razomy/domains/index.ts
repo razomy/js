@@ -1,5 +1,5 @@
 // Imports
-import * as abstracts from './abstracts';
+import * as abstractions from './abstractions';
 import * as acls from './acls';
 import * as auths from './auths';
 import * as domain from './domain';
@@ -13,7 +13,7 @@ import * as tx from './tx';
 
 // Named exports
 export {
-  abstracts,
+  abstractions,
   acls,
   auths,
   domain,
@@ -30,7 +30,7 @@ export type {
 
 // Default export
 const domains = {
-  abstracts,
+  abstractions,
   acls,
   auths,
   domain,

@@ -109,7 +109,7 @@
   "module": "./index.ts",
   "name": "@razomy/ai-scenarios",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/ai": "*",
     "@razomy/ai-agent": "*",
     "@razomy/ai-huggingface": "*",

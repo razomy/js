@@ -1,11 +1,11 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * ЕДИНАЯ БАЗА ОБХОДА (УТИЛИТА):
  * Отвечает ТОЛЬКО за знание того, в каких полях лежат дочерние узлы.
  * Используйте эту функцию во всех фазах, чтобы не дублировать огромный switch.
  */
-export function walkHirChildren<T extends abstracts.translators.ISemanticNode>(
+export function walkHirChildren<T extends abstractions.translators.ISemanticNode>(
   sNode: T,
   onChild: (child: T) => void,
   onArray: (children: T[]) => void,

@@ -1,9 +1,9 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export class FileTaskManager<C extends abstracts.patterns.IContext> {
+export class FileTaskManager<C extends abstractions.patterns.IContext> {
   private currentContext: C | null = null;
 
-  constructor(public file_gate: abstracts.patterns.Gate<C>) {}
+  constructor(public file_gate: abstractions.patterns.Gate<C>) {}
 
   /**
    * 1. Load state if exists (Continue)

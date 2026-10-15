@@ -2,7 +2,7 @@ import * as context from '@razomy/context';
 import type { DefaultPipelineDef, PipelineDef, PipelineState } from './PipelineDef';
 import type { AsChildContext, Line, WithChild, WithNext } from './Mutations';
 import { isFunction } from '@razomy/functions';
-import { type Function } from '@razomy/abstracts/functions';
+import { type Function } from '@razomy/abstractions/functions';
 
 export class ContextPipeline<TDef extends PipelineDef = DefaultPipelineDef> implements PipelineState<TDef> {
   public value: TDef['value'] = {} as TDef['value'];

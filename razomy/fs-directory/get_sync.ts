@@ -1,6 +1,6 @@
 import fs from 'fs';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function getSync(dirPath: abstracts.components.DirPathString): string[] {
+export function getSync(dirPath: abstractions.components.DirPathString): string[] {
   return fs.readdirSync(dirPath);
 }

@@ -1,8 +1,8 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 
 export function iterateChildren<T>(
-  graph: abstracts.graphs.EdgeListGraph<vrd.VrdOrValue<T>>,
+  graph: abstractions.graphs.EdgeListGraph<vrd.VrdOrValue<T>>,
   branch: vrd.VrdOrValue<T>,
 ) {
   graph.nodes.push(branch);

@@ -40,7 +40,7 @@
   "module": "./index.ts",
   "name": "@razomy/container",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/context": "*"
   },
   "publishConfig": {

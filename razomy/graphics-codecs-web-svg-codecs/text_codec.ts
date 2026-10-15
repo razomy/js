@@ -1,9 +1,9 @@
 import * as graphicsCodecsWebSvgCodecs from '@razomy/graphics-codecs-web-svg-codecs';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as graphicsAttributes from '@razomy/graphics-attributes';
 import * as graphicsElements from '@razomy/graphics-elements';
 
-export class TextCodec implements abstracts.patterns.Codec<graphicsElements.TextElement, SVGTextElement> {
+export class TextCodec implements abstractions.patterns.Codec<graphicsElements.TextElement, SVGTextElement> {
   constructor(private encodeNodeFactory: graphicsCodecsWebSvgCodecs.EncodeNodeFactory) {}
 
   public encode(node: graphicsElements.TextElement): SVGTextElement {

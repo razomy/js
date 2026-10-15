@@ -1,8 +1,8 @@
 import fs, { Dirent } from 'fs';
 import * as path from 'path';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export interface IterateNode extends abstracts.components.HasPath, abstracts.components.HasSlug {
+export interface IterateNode extends abstractions.components.HasPath, abstractions.components.HasSlug {
   stats: Dirent;
 }
 

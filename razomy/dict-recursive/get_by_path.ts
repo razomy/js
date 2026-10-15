@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Get a value from a nested dictionary by dot-separated path.
@@ -22,7 +22,7 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n) where n is the number of segments in the path
  * @complexity memory O(1)
  */
-export function getByPath(dict: abstracts.structures.RecursiveDict, path: string): unknown {
+export function getByPath(dict: abstractions.structures.RecursiveDict, path: string): unknown {
   let current: unknown = dict;
 
   const segments: string[] = path.split('.');
@@ -32,7 +32,7 @@ export function getByPath(dict: abstracts.structures.RecursiveDict, path: string
       return undefined;
     }
 
-    current = (current as abstracts.structures.RecursiveDict)[segments[i]];
+    current = (current as abstractions.structures.RecursiveDict)[segments[i]];
   }
 
   return current;

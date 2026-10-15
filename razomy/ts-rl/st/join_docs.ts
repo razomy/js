@@ -1,13 +1,13 @@
 import * as tsRl from "@razomy/ts-rl";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export function joinDocs(ctx: tsRl.st.SemanticContext, sNode: abstracts.translators.ISemanticNode): void {
+export function joinDocs(ctx: tsRl.st.SemanticContext, sNode: abstractions.translators.ISemanticNode): void {
   const node = sNode.hir;
   // 1. Бизнес-логика текущей фазы
   if (node.kind === 'FunctionHirn') {
     const docs = sNode.prev?.hir ;
     if (docs && docs.kind === 'BlockHirn' && docs.syntaxRole === 'declaration') {
-      const statements = (docs.statements || []) as abstracts.translators.BindingHirn<abstracts.translators.LiteralHirn>[];
+      const statements = (docs.statements || []) as abstractions.translators.BindingHirn<abstractions.translators.LiteralHirn>[];
       node.doc.title = statements.find(i => i.name === 'title')?.value?.value || null;
       node.doc.description = statements.find(i => i.name === 'description')?.value?.value || null;
       node.doc.examples = statements.find(i => i.name === 'examples')?.value?.value || null;

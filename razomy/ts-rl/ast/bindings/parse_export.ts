@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType[] {
+export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile?.();
 
@@ -32,7 +32,7 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
   }
   // 3. Обработка: export { a, b, c }; (Именованные локальные экспорты)
   else if (exportDecl.getNamedExports && exportDecl.getNamedExports().length > 0) {
-    const results: abstracts.translators.AsnType[] = [];
+    const results: abstractions.translators.AsnType[] = [];
     const processedFiles = new Set<string>();
 
     for (const namedExport of exportDecl.getNamedExports()) {

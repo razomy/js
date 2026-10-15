@@ -54,7 +54,7 @@
   "module": "./index.ts",
   "name": "@razomy/json",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/array": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",

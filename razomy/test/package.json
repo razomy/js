@@ -50,7 +50,7 @@
   "module": "./index.ts",
   "name": "@razomy/test",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/array": "*"
   },
   "publishConfig": {

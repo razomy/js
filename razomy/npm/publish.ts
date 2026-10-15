@@ -24,7 +24,7 @@ export async function publish(path_: string) {
 main.ifMain(import.meta.url, async () => {
   // Выносим список пакетов в отдельный массив
   const packagesToDeploy = [
-    '../abstracts',
+    '../abstractions',
     '../string-case',
     '../array',
     '../exceptions',

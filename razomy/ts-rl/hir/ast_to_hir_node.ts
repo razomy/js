@@ -1,18 +1,18 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as random from '@razomy/random';
 
 /**
  * Строгое извлечение базовых полей. Теперь не генерирует ID (это делает индексатор).
  */
-function getBase(node: abstracts.translators.AsnType) {
+function getBase(node: abstractions.translators.AsnType) {
   return {
     id: random.createUuid(),
     syntaxRole: node.syntaxRole,
     semanticLayer: 'semanticLayer' in node ? node.semanticLayer : 'state',
-  } satisfies Partial<abstracts.translators.HirType>;
+  } satisfies Partial<abstractions.translators.HirType>;
 }
 
-export function astToHirNode(node: abstracts.translators.AsnType): abstracts.translators.HirType {
+export function astToHirNode(node: abstractions.translators.AsnType): abstractions.translators.HirType {
   switch (node.kind) {
     // --- DATA & EXPRESSIONS ---
     case 'LiteralAsn':
@@ -80,7 +80,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
       return {
         ...getBase(node),
         kind: 'BindingHirn',
-        shape: astToHirNode(node.constraint) as abstracts.translators.ReferenceHirn,
+        shape: astToHirNode(node.constraint) as abstractions.translators.ReferenceHirn,
         value: astToHirNode(node.value),
         modifiers: [],
         name: null,
@@ -116,7 +116,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
           kind: 'LiteralHirn',
           value: true,
         },
-        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHirn),
+        branches: node.branches.map((b) => astToHirNode(b) as abstractions.translators.BranchHirn),
       };
 
     case 'SwitchAsn':
@@ -124,7 +124,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         ...getBase(node),
         kind: 'MatchHirn',
         target: astToHirNode(node.target),
-        branches: node.branches.map((b) => astToHirNode(b) as abstracts.translators.BranchHirn),
+        branches: node.branches.map((b) => astToHirNode(b) as abstractions.translators.BranchHirn),
       };
 
     case 'ConditionBranchAsn':
@@ -189,12 +189,12 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         ...getBase(node),
         kind: 'LoopHirn',
         condition: astToHirNode(node.condition),
-        block: astToHirNode(node.block) as abstracts.translators.BlockHirn,
+        block: astToHirNode(node.block) as abstractions.translators.BlockHirn,
       };
 
     case 'ForInAsn':
     case 'ForItAsn': {
-      let bodyHirn = astToHirNode(node.block) as abstracts.translators.BlockHirn;
+      let bodyHirn = astToHirNode(node.block) as abstractions.translators.BlockHirn;
       if (node.update) {
         const updateHirn = astToHirNode(node.update);
         if (bodyHirn.kind === 'BlockHirn') bodyHirn.statements.push(updateHirn);
@@ -205,7 +205,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
             statements: [bodyHirn, updateHirn],
           };
       }
-      const loop: abstracts.translators.LoopHirn = {
+      const loop: abstractions.translators.LoopHirn = {
         ...getBase(node),
         kind: 'LoopHirn',
         condition: node.condition ? astToHirNode(node.condition) : null,
@@ -229,7 +229,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
           {
             ...getBase(node),
             kind: 'LoopHirn',
-            block: astToHirNode(node.block) as abstracts.translators.BlockHirn,
+            block: astToHirNode(node.block) as abstractions.translators.BlockHirn,
             condition: null,
           },
         ],
@@ -271,7 +271,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         kind: 'BindingHirn',
         name: node.identifier.name,
         modifiers: node.modifiers.map(astToHirNode),
-        shape: node.shape ? (astToHirNode(node.shape) as abstracts.translators.ReferenceHirn) : null,
+        shape: node.shape ? (astToHirNode(node.shape) as abstractions.translators.ReferenceHirn) : null,
         value: node.value ? astToHirNode(node.value) : null,
         doc: { description: '' },
       };
@@ -283,8 +283,8 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         kind: 'FunctionHirn',
         name: node.kind === 'FunctionAsn' ? node.identifier.name : null,
         modifiers: node.modifiers.map(astToHirNode),
-        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstracts.translators.ReferenceHirn) : null,
-        parameters: node.parameters.map((p) => astToHirNode(p) as abstracts.translators.BindingHirn),
+        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstractions.translators.ReferenceHirn) : null,
+        parameters: node.parameters.map((p) => astToHirNode(p) as abstractions.translators.BindingHirn),
         block: astToHirNode(node.block),
         doc: {
           description: '',
@@ -308,7 +308,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
             value: 'module',
           },
         ],
-        properties: [...node.block.statements].map(astToHirNode) as abstracts.translators.BindingHirn[],
+        properties: [...node.block.statements].map(astToHirNode) as abstractions.translators.BindingHirn[],
       };
 
     case 'ArrayAsn':
@@ -319,7 +319,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         doc: { description: '' },
         name: null,
         modifiers: [],
-        properties: node.values.map(astToHirNode) as abstracts.translators.BindingHirn[],
+        properties: node.values.map(astToHirNode) as abstractions.translators.BindingHirn[],
       };
 
     case 'ObjectAsn':
@@ -333,7 +333,7 @@ export function astToHirNode(node: abstracts.translators.AsnType): abstracts.tra
         doc: { description: '' },
         name: 'identifier' in node && node.identifier ? node.identifier.name : null,
         modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
-        properties: node.properties.map((p) => astToHirNode(p) as abstracts.translators.BindingHirn),
+        properties: node.properties.map((p) => astToHirNode(p) as abstractions.translators.BindingHirn),
       };
 
     // --- ACCESS & INTERACTIONS ---

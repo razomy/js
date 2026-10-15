@@ -83,7 +83,7 @@
   "module": "./index.ts",
   "name": "@razomy/languages-programming-fs",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/array": "*",
     "@razomy/exceptions": "*",
     "@razomy/fs": "*",

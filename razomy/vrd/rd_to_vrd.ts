@@ -1,10 +1,10 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 import * as object_ from '@razomy/object';
 
 export function rdToVrd(
-  dict: abstracts.structures.RecursiveDict,
-  isValue: (t: abstracts.structures.RecursiveDict) => boolean = (i: abstracts.structures.RecursiveDict) => !object_.isObject(i),
+  dict: abstractions.structures.RecursiveDict,
+  isValue: (t: abstractions.structures.RecursiveDict) => boolean = (i: abstractions.structures.RecursiveDict) => !object_.isObject(i),
 ): vrd.VrdOrValue<string> {
   if (isValue(dict)) {
     return dict;

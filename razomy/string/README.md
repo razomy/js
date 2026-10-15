@@ -119,7 +119,7 @@ razomy run @razomy/string addByIndexString
 
 #### addByIndexString
 
-`addByIndexString(text: string, index: abstracts.arrays.Index, insertion: String): string`
+`addByIndexString(text: string, index: abstractions.arrays.Index, insertion: String): string`
 
 Insert a string into another string at a specific index.
 Insert a string into another string at a specific index.

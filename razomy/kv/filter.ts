@@ -1,17 +1,17 @@
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function filter<V>(input: abstracts.structures.Value<V>, isKeep: abstracts.functions.Function<[abstracts.structures.Value<V>], boolean>): abstracts.structures.Value<V>;
+export function filter<V>(input: abstractions.structures.Value<V>, isKeep: abstractions.functions.Function<[abstractions.structures.Value<V>], boolean>): abstractions.structures.Value<V>;
 export function filter<K, V>(
-  input: abstracts.structures.KeyValueArray<K, V>,
-  isKeep: abstracts.functions.Function<[abstracts.structures.KeyValueArray<K, V>], boolean>,
-): abstracts.structures.KeyValueArray<K, V>;
+  input: abstractions.structures.KeyValueArray<K, V>,
+  isKeep: abstractions.functions.Function<[abstractions.structures.KeyValueArray<K, V>], boolean>,
+): abstractions.structures.KeyValueArray<K, V>;
 export function filter<K, V>(
-  value: abstracts.structures.KeyValueArray<K, V> | abstracts.structures.KeyValue<K, V>,
-  isKeep: abstracts.functions.Function<[abstracts.structures.KeyValueArray<K, V> | abstracts.structures.KeyValue<K, V>], boolean>,
-): abstracts.structures.KeyValueArray<K, V> | abstracts.structures.KeyValue<K, V> {
+  value: abstractions.structures.KeyValueArray<K, V> | abstractions.structures.KeyValue<K, V>,
+  isKeep: abstractions.functions.Function<[abstractions.structures.KeyValueArray<K, V> | abstractions.structures.KeyValue<K, V>], boolean>,
+): abstractions.structures.KeyValueArray<K, V> | abstractions.structures.KeyValue<K, V> {
   if (kv.isKv(value)) {
-    const val = value[1] as abstracts.structures.KeyValueArray<K, V>;
+    const val = value[1] as abstractions.structures.KeyValueArray<K, V>;
     value[1] = filter(val, isKeep);
     return value;
   } else if (kv.isAkv<K, V>(value)) {

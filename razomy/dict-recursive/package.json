@@ -49,7 +49,7 @@
   "module": "./index.ts",
   "name": "@razomy/dict-recursive",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/dict": "*"
   },
   "publishConfig": {

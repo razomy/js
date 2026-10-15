@@ -1,12 +1,12 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-// import * as serializable from '@razomy/abstracts';
+// import * as serializable from '@razomy/abstractions';
 // todo:remove
 
-export interface RollbackCancelValidateTask<C extends abstracts.patterns.Context>
-  extends abstracts.patterns.HasC<C>,
-    abstracts.patterns.HasValidate<[C]>,
-    abstracts.patterns.HasExecute<[C]>,
-    abstracts.patterns.HasCancel<[C]>,
-    abstracts.patterns.HasRollback<[C]> {
+export interface RollbackCancelValidateTask<C extends abstractions.patterns.Context>
+  extends abstractions.patterns.HasC<C>,
+    abstractions.patterns.HasValidate<[C]>,
+    abstractions.patterns.HasExecute<[C]>,
+    abstractions.patterns.HasCancel<[C]>,
+    abstractions.patterns.HasRollback<[C]> {
 }

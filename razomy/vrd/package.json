@@ -69,7 +69,7 @@
   "module": "./index.ts",
   "name": "@razomy/vrd",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/dict": "*",
     "@razomy/exceptions": "*",
     "@razomy/function-booleans": "*",

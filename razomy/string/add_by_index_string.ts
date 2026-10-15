@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Insert a string into another string at a specific index.
@@ -22,6 +22,6 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function addByIndexString(text: string, index: abstracts.arrays.Index, insertion: string): string {
+export function addByIndexString(text: string, index: abstractions.arrays.Index, insertion: string): string {
   return text.substring(0, index) + insertion + text.substring(index);
 }

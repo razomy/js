@@ -1,11 +1,11 @@
 import * as string_ from '@razomy/string';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export function isStringsAnyIndex(
   string: string,
   equalStrings: Set<string>,
-  offset: abstracts.arrays.Offset = 0,
-  maxOffset: abstracts.arrays.Offset = string.length,
+  offset: abstractions.arrays.Offset = 0,
+  maxOffset: abstractions.arrays.Offset = string.length,
 ): boolean {
   return string_.stringsAnyIndex(string, equalStrings, offset, maxOffset) !== -1;
 }

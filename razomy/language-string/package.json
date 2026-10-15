@@ -56,7 +56,7 @@
   "module": "./index.ts",
   "name": "@razomy/language-string",
   "peerDependencies": {
-    "@razomy/abstracts": "*"
+    "@razomy/abstractions": "*"
   },
   "publishConfig": {
     "access": "public"

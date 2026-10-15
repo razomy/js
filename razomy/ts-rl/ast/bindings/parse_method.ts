@@ -1,5 +1,5 @@
 import { type MethodDeclaration } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
 export function parseMethod(node: MethodDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce) {
@@ -7,7 +7,7 @@ export function parseMethod(node: MethodDeclaration, ctx: tsRl.ast.HasEnterLeave
   const jsDoc = tsRl.ast.doc.tryParseJsDoc(node, ctx);
   const docs = jsDoc ? tsRl.ast.doc.parseJsDoc(jsDoc, ctx) : null;
 
-  const func: abstracts.translators.FunctionAsn = {
+  const func: abstractions.translators.FunctionAsn = {
     kind: 'FunctionAsn',
     syntaxRole: 'statement',
     identifier: { name: funcName },
@@ -16,7 +16,7 @@ export function parseMethod(node: MethodDeclaration, ctx: tsRl.ast.HasEnterLeave
       node.isGenerator()
         ? { kind: 'FunctionModifierAsn', syntaxRole: 'modifier', operator: 'generator', value: null }
         : null,
-    ].filter(Boolean) as abstracts.translators.FunctionModifierAsn[],
+    ].filter(Boolean) as abstractions.translators.FunctionModifierAsn[],
     parameters: node.getParameters().map(i=>tsRl.ast.bindings.parseParameter(i,ctx)),
     returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!, ctx) : null,
     block: node.getBody()

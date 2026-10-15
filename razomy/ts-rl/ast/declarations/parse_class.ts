@@ -1,8 +1,8 @@
 import {ClassDeclaration} from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.ClassAsn {
+export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ClassAsn {
   return {
     kind: 'ClassAsn',
     syntaxRole: 'statement',
@@ -13,6 +13,6 @@ export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeavePr
       ...node.getProperties(),
       ...node.getMethods()
     ].map(i=>tsRl.ast.bindings.parse(i,ctx))
-      .flat() as (abstracts.translators.PropertyAsn | abstracts.translators.FunctionAsn)[],
+      .flat() as (abstractions.translators.PropertyAsn | abstractions.translators.FunctionAsn)[],
   };
 }

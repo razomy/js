@@ -1,8 +1,8 @@
 import { Node } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.AsnType {
+export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node))
     return tsRl.ast.expressions.buildIn.parseString(node, ctx);
   if (Node.isNumericLiteral(node)) return tsRl.ast.expressions.buildIn.parseNumber(node, ctx);
@@ -57,21 +57,21 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
       syntaxRole: 'expression',
       semanticLayer: 'state',
       operator: 'as',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
+      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
     };
   }
   if (Node.isSpreadElement(node)) {
     return {
       kind: 'SpreadAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
+      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
     };
   }
   if (Node.isAwaitExpression(node)) {
     return {
       kind: 'AwaitAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstracts.translators.StateAsnType,
+      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
     };
   }
   if (Node.isNonNullExpression(node)) {
@@ -83,7 +83,7 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts
       syntaxRole: 'expression',
       semanticLayer: 'state',
       values: node.getTemplateSpans().map((s) => parse(s.getExpression(), ctx)),
-    } as abstracts.translators.TemplateAsn;
+    } as abstractions.translators.TemplateAsn;
   }
   if (Node.isThisExpression(node)) {
     return {

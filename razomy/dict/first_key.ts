@@ -1,5 +1,5 @@
 import * as exceptions from '@razomy/exceptions';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * @summary Get the first own key of a dictionary.
@@ -23,7 +23,7 @@ import * as abstracts from '@razomy/abstracts';
  * @complexity memory O(1)
  */
 
-export function firstKey<T>(obj: abstracts.structures.Dict<T>): string {
+export function firstKey<T>(obj: abstractions.structures.Dict<T>): string {
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       return key;

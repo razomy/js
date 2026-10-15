@@ -1,12 +1,12 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as languageString from '@razomy/language-string';
 import * as tsRl from "@razomy/ts-rl";
 import * as tsRefactor from "@razomy/ts-refactor";
 
 export function createReadme(path: string, packageJson: any, ctx: tsRl.st.SemanticContext) {
-  const packageDeclaration = ctx.root as abstracts.translators.StructHirn;
+  const packageDeclaration = ctx.root as abstractions.translators.StructHirn;
   const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;

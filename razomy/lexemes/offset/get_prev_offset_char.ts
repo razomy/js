@@ -1,6 +1,6 @@
 import * as string from '@razomy/string';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export function getPrevOffsetChar(ctx: string.HasString & abstracts.arrays.HasOffset) {
+export function getPrevOffsetChar(ctx: string.HasString & abstractions.arrays.HasOffset) {
   return ctx.string[ctx.offset - 1];
 }

@@ -1,5 +1,5 @@
 import * as tsRl from "@razomy/ts-rl";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 /**
  * PHASE 3: Устанавливает связи parent, prev, next
@@ -7,10 +7,10 @@ import * as abstracts from "@razomy/abstracts";
  */
 export function linkHirTree(
   ctx: tsRl.st.SemanticContext,
-  node: abstracts.translators.ISemanticNode,
-  parent: abstracts.translators.ISemanticNode | null = null,
-  prev: abstracts.translators.ISemanticNode | null = null,
-  next: abstracts.translators.ISemanticNode | null = null
+  node: abstractions.translators.ISemanticNode,
+  parent: abstractions.translators.ISemanticNode | null = null,
+  prev: abstractions.translators.ISemanticNode | null = null,
+  next: abstractions.translators.ISemanticNode | null = null
 ): void {
   if (parent) node.parent = parent
   if (prev) node.prev = prev

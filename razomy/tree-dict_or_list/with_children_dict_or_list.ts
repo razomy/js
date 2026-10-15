@@ -1,4 +1,4 @@
 import * as treeDict from '@razomy/tree-dict';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export type HasChildrenDictOrList<T> = abstracts.graphs.HasChildren<T[]> | treeDict.HasChildrenDict<T>;
+export type HasChildrenDictOrList<T> = abstractions.graphs.HasChildren<T[]> | treeDict.HasChildrenDict<T>;

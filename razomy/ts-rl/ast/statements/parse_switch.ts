@@ -1,9 +1,9 @@
 import { SwitchStatement, Node } from "ts-morph";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseSwitch(node: SwitchStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.SwitchAsn {
-  const branches: abstracts.translators.SwitchBranchAsnType[] = [];
+export function parseSwitch(node: SwitchStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.SwitchAsn {
+  const branches: abstractions.translators.SwitchBranchAsnType[] = [];
 
   // Целевое выражение, которое находится в switch (...)
   const targetExpression = tsRl.ast.expressions.parse(node.getExpression(), ctx);
@@ -32,7 +32,7 @@ export function parseSwitch(node: SwitchStatement, ctx: tsRl.ast.HasEnterLeavePr
           kind: 'BlockAsn',
           statements: parsedValue
         },
-      } as abstracts.translators.MatchBranchAsn);
+      } as abstractions.translators.MatchBranchAsn);
 
     } else if (Node.isDefaultClause(clause)) {
       branches.push({
@@ -43,7 +43,7 @@ export function parseSwitch(node: SwitchStatement, ctx: tsRl.ast.HasEnterLeavePr
           kind: 'BlockAsn',
           statements: parsedValue
         },
-      } as abstracts.translators.DefaultBranchAsn);
+      } as abstractions.translators.DefaultBranchAsn);
     }
   }
 

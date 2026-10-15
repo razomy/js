@@ -1,8 +1,8 @@
 import * as test from '@razomy/test';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export function testSync<I extends Array<any>, O>(
-  cb: abstracts.functions.Function<I, O>,
+  cb: abstractions.functions.Function<I, O>,
   req: I,
   res: O | null = null,
   err: Error | null = null,

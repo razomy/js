@@ -1,7 +1,7 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as fsRecursive from "@razomy/fs-recursive";
 
-export function getAllFlat(dir: abstracts.components.DirPathString): string[] {
+export function getAllFlat(dir: abstractions.components.DirPathString): string[] {
   const files: string[] = [];
 
   for (const file of fsRecursive.get(dir)) {

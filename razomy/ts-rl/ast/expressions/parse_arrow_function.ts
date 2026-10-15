@@ -1,8 +1,8 @@
 import { ArrowFunction } from 'ts-morph';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseArrowFunction(node: ArrowFunction, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.LambdaAsn {
+export function parseArrowFunction(node: ArrowFunction, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LambdaAsn {
   return {
     kind: 'LambdaAsn',
     syntaxRole: 'expression',

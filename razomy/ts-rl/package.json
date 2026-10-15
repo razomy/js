@@ -235,7 +235,7 @@
   "module": "./index.ts",
   "name": "@razomy/ts-rl",
   "peerDependencies": {
-    "@razomy/abstracts": "*",
+    "@razomy/abstractions": "*",
     "@razomy/random": "*"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export function iterateReverse<T extends abstracts.graphs.HasChildren<any[]>>(node: T, cb: (node: T) => void) {
+export function iterateReverse<T extends abstractions.graphs.HasChildren<any[]>>(node: T, cb: (node: T) => void) {
   for (const n of node.children) {
     iterateReverse(n, cb);
   }

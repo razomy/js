@@ -1,14 +1,14 @@
 import * as functions from '@razomy/functions';
 import * as resources from '@razomy/resources';
 import * as resources_ from '@razomy/resources';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as dict from "@razomy/dict";
 import * as lexemes from "@razomy/lexemes";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = abstracts.translators.HasTokenType<JsonTokenType> &
-  abstracts.structures.HasValue<string> &
-  abstracts.translators.HasDeep;
+export type JsonToken = abstractions.translators.HasTokenType<JsonTokenType> &
+  abstractions.structures.HasValue<string> &
+  abstractions.translators.HasDeep;
 
 export function jsonToObject(jsonTokens: JsonToken[]) {
   const c = dict.create(
@@ -17,7 +17,7 @@ export function jsonToObject(jsonTokens: JsonToken[]) {
     { offset: 0 },
     { stack: [] as number[] },
     { deep: 0 },
-  ) satisfies abstracts.translators.HasTokens<JsonToken> & abstracts.arrays.HasOffset;
+  ) satisfies abstractions.translators.HasTokens<JsonToken> & abstractions.arrays.HasOffset;
   const rs = {
     // Primitives
     key: (c) => functions.tryP(c, functions.f(lexemes.tokenOffset.tryTokenValue, 'value')),

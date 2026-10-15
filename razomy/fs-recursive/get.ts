@@ -1,6 +1,6 @@
 import { type Dirent, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * Recursively scans a directory and yields absolute file paths using a synchronous generator.
@@ -33,7 +33,7 @@ import * as abstracts from '@razomy/abstracts';
  * const [...files] = get('./dist');
  * ```
  */
-export function* get(dir: abstracts.components.DirPathString): Generator<abstracts.components.FilePathString, void, void> {
+export function* get(dir: abstractions.components.DirPathString): Generator<abstractions.components.FilePathString, void, void> {
   const dirents: Dirent[] = readdirSync(dir, { withFileTypes: true });
 
   for (const dirent of dirents) {
@@ -42,7 +42,7 @@ export function* get(dir: abstracts.components.DirPathString): Generator<abstrac
     if (dirent.isDirectory()) {
       yield* get(res);
     } else {
-      yield res as abstracts.components.FilePathString;
+      yield res as abstractions.components.FilePathString;
     }
   }
 }

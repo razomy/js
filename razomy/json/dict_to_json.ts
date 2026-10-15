@@ -1,7 +1,7 @@
 import * as json from '@razomy/json';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export function dictToJson(ctx: { [key: string]: abstracts.patterns.Serializable }): abstracts.patterns.Json {
+export function dictToJson(ctx: { [key: string]: abstractions.patterns.Serializable }): abstractions.patterns.Json {
   const result = {};
   for (const [k, v] of Object.entries(ctx)) {
     const s = json.toJson(v);

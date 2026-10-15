@@ -1,30 +1,30 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
 /**
  * Unique identifier / Full representation
  */
-export interface HasFullName extends abstracts.meta.IHas {
+export interface HasFullName extends abstractions.meta.IHas {
   fullName: string; // исправлен camelCase (было fullname)
 }
 
 /**
  * Short personal identifier / Alias
  */
-export interface HasNickName extends abstracts.meta.IHas {
+export interface HasNickName extends abstractions.meta.IHas {
   nickName: string;
 }
 
 /**
  * Display name for UI / Public profile
  */
-export interface HasDisplayName extends abstracts.meta.IHas {
+export interface HasDisplayName extends abstractions.meta.IHas {
   displayName: string;
 }
 
 /**
  * Minimal legal name
  */
-export interface HasLegalName extends abstracts.meta.IHas {
+export interface HasLegalName extends abstractions.meta.IHas {
   legalName: string;
 }
 
@@ -32,54 +32,54 @@ export interface HasLegalName extends abstracts.meta.IHas {
    Основные компоненты имени (Name Parts)
    ========================================================================== */
 
-export interface HasFirstName extends abstracts.meta.IHas {
+export interface HasFirstName extends abstractions.meta.IHas {
   firstName: string;
 }
 
-export interface HasMiddleName extends abstracts.meta.IHas {
+export interface HasMiddleName extends abstractions.meta.IHas {
   middleName: string;
 }
 
 /**
  * Inherited surname / Family name
  */
-export interface HasFamilyName extends abstracts.meta.IHas {
+export interface HasFamilyName extends abstractions.meta.IHas {
   familyName: string;
 }
 
-export interface HasLastName extends abstracts.meta.IHas {
+export interface HasLastName extends abstractions.meta.IHas {
   lastName: string;
 }
 
 /**
  * Father's/Mother's name or Patronymic (Отчество)
  */
-export interface HasPatronymic extends abstracts.meta.IHas {
+export interface HasPatronymic extends abstractions.meta.IHas {
   patronymic: string;
 }
 
-export interface HasParentName extends abstracts.meta.IHas {
+export interface HasParentName extends abstractions.meta.IHas {
   parentName: string;
 }
 
 /**
  * Name before marriage
  */
-export interface HasMaidenName extends abstracts.meta.IHas {
+export interface HasMaidenName extends abstractions.meta.IHas {
   maidenName: string;
 }
 
 /**
  * Titles: Mr., Ms., Dr., Prof., Sheikh, etc.
  */
-export interface HasHonorificPrefix extends abstracts.meta.IHas {
+export interface HasHonorificPrefix extends abstractions.meta.IHas {
   honorificPrefix: string;
 }
 
 /**
  * Generational suffixes: Jr., Sr., III, Esq., etc.
  */
-export interface HasGenerationalSuffix extends abstracts.meta.IHas {
+export interface HasGenerationalSuffix extends abstractions.meta.IHas {
   generationalSuffix: string;
 }
 
@@ -87,7 +87,7 @@ export interface HasGenerationalSuffix extends abstracts.meta.IHas {
  * For East Asian / Hungarian structures or phonebooks
  * e.g., "Yao, Ming" or "Kim, Jong-un" for alphabetical lists
  */
-export interface HasSortingName extends abstracts.meta.IHas {
+export interface HasSortingName extends abstractions.meta.IHas {
   sortingName: string;
 }
 
@@ -101,6 +101,6 @@ export type NamingConventionType =
   | 'mononym' // Only single name (e.g. Plato, Zendaya)
   | 'spanish'; // [Given] [Paternal] [Maternal]
 
-export interface HasNamingConvention extends abstracts.meta.IHas {
+export interface HasNamingConvention extends abstractions.meta.IHas {
   namingConventionType: NamingConventionType;
 }

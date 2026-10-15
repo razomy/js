@@ -1,8 +1,8 @@
 import { CallExpression } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
-export function parseCall(node: CallExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.CallAsn {
+export function parseCall(node: CallExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.CallAsn {
   const expressionNode = node.getExpression();
   const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
   

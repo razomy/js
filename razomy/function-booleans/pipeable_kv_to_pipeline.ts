@@ -1,9 +1,9 @@
 import * as functionBooleans from '@razomy/function-booleans';
 import * as exceptions from '@razomy/exceptions';
 import * as kv from '@razomy/kv';
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 
-export type PipeableKv<T extends any[]> = abstracts.structures.KeyValue<functionBooleans.BoolPipeType<T>, functionBooleans.BoolPipeType<T>>;
+export type PipeableKv<T extends any[]> = abstractions.structures.KeyValue<functionBooleans.BoolPipeType<T>, functionBooleans.BoolPipeType<T>>;
 
 export function pipeableKvToPipeline<T extends any[]>(pipeableKv: PipeableKv<T>| PipeableKv<T>[]): functionBooleans.BoolExecute<T> {
   if (!kv.isKv<functionBooleans.BoolPipeType<T>, functionBooleans.BoolPipeType<T>>(pipeableKv)) {

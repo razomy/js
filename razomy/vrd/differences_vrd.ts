@@ -1,4 +1,4 @@
-import * as abstracts from '@razomy/abstracts';
+import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 import * as dict from '@razomy/dict';
 
@@ -8,7 +8,7 @@ export interface ReplaceDifference<T> {
   value: T;
 }
 
-export type P<T> = (ReplaceDifference<vrd.VrdOrValue<T>> | abstracts.patterns.ChangeDifference<vrd.VrdOrValue<T>>) & {
+export type P<T> = (ReplaceDifference<vrd.VrdOrValue<T>> | abstractions.patterns.ChangeDifference<vrd.VrdOrValue<T>>) & {
   path: string;
 };
 

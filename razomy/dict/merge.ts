@@ -1,4 +1,4 @@
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
@@ -24,7 +24,7 @@ export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) ex
  */
 export function merge<T extends readonly Record<PropertyKey, unknown>[]>(
   dicts: [...T],
-): abstracts.meta.Prettify<UnionToIntersection<T[number]>> {
+): abstractions.meta.Prettify<UnionToIntersection<T[number]>> {
   const result = {} as Record<PropertyKey, unknown>;
 
   for (const dict of dicts) {
@@ -33,5 +33,5 @@ export function merge<T extends readonly Record<PropertyKey, unknown>[]>(
     }
   }
 
-  return result as abstracts.meta.Prettify<UnionToIntersection<T[number]>>;
+  return result as abstractions.meta.Prettify<UnionToIntersection<T[number]>>;
 }

@@ -1,11 +1,11 @@
 import { CommentRange } from 'ts-morph';
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 
 /**
  * Парсит обычный комментарий (// или /* ... *\/) в CommentAsn
  */
-export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterLeaveProduce): abstracts.translators.CommentAsn {
+export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.CommentAsn {
   // Убираем маркеры комментариев //, /*, */
   const rawText = comment.getText();
   const cleanText = rawText

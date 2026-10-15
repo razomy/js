@@ -1,7 +1,7 @@
 import * as db from "@razomy/db";
-import * as abstracts from "@razomy/abstracts";
+import * as abstractions from "@razomy/abstractions";
 
-export function addGraphNode(ctx: db.topology.GraphTopology, astData: abstracts.translators.HirType): db.NodeId {
+export function addGraphNode(ctx: db.topology.GraphTopology, astData: abstractions.translators.HirType): db.NodeId {
     const id = ctx.core.addNode(ctx.nodeFirstOut.id);
     ctx.nodesAsn[id] = astData;
     return id;

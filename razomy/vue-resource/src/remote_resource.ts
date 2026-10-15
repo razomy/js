@@ -1,19 +1,19 @@
 import * as vue from 'vue';
 import * as array from '@razomy/array';
-import * as abstracts from '@razomy/abstracts';
-import { Razomy } from '@razomy/abstracts/meta';
+import * as abstractions from '@razomy/abstractions';
+import { Razomy } from '@razomy/abstractions/meta';
 
 export class RemoteResource {
   ctx: Razomy = undefined as any as Razomy;
 
   state = vue.reactive({
-    notation: null as abstracts.structures.Dict<string> | null,
+    notation: null as abstractions.structures.Dict<string> | null,
     listeners: [] as (() => void)[],
   });
 
   // Привязываем контекст с помощью стрелочной функции,
   // чтобы this не терялся при вызове из сокета
-  set = (notation: abstracts.structures.Dict<string>) => {
+  set = (notation: abstractions.structures.Dict<string>) => {
     this.state.notation = notation;
     this.state.listeners.forEach((i) => i());
   };
