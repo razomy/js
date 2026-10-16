@@ -1,10 +1,10 @@
 // Imports
+import { createChunkedColumn } from './chunked_column';
+import type { Chunk, ChunkedColumn } from './chunked_column';
 import { clearElement } from './clear_element';
 import { createChunk } from './create_chunk';
 import { createChunkConfig } from './create_chunk_config';
 import type { ChunkConfig } from './create_chunk_config';
-import { createChunkedColumn } from './create_chunked_column';
-import type { Chunk, ChunkedColumn } from './create_chunked_column';
 import { forEachChunk } from './for_each_chunk';
 import { get } from './get';
 import { set } from './set';
@@ -27,10 +27,10 @@ export type {
 
 // Default export
 const chunk = {
+  createChunkedColumn,
   clearElement,
   createChunk,
   createChunkConfig,
-  createChunkedColumn,
   forEachChunk,
   get,
   set,
