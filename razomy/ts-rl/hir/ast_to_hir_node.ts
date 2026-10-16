@@ -281,6 +281,7 @@ export function astToHirNode(node: abstractions.translators.AsnType): abstractio
       return {
         ...getBase(node),
         kind: 'FunctionHirn',
+        fnHashId: random.createUuid(),
         name: node.kind === 'FunctionAsn' ? node.identifier.name : null,
         modifiers: node.modifiers.map(astToHirNode),
         returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstractions.translators.ReferenceHirn) : null,

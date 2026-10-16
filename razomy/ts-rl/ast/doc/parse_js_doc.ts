@@ -1,31 +1,37 @@
-// doc-parser.ts
 import { JSDoc, JSDocTag, JSDocText, Node, SyntaxKind } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
+import * as random from "@razomy/random";
 
-/**
- * Парсит JSDoc узел ts-morph в DocsAsn
- */
 export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.DocsAsn {
-  const block: (abstractions.translators.TextAsn | abstractions.translators.TagAsn)[] = [];
+  const docsAsn: abstractions.translators.DocsAsn = {
+    id: random.createUuid(),
+    kind: 'DocsAsn',
+    block: [],
+    syntaxRole: 'text',
+  };
 
-  // Дочерние узлы JSDoc в AST TypeScript
-  // jsDoc.getChildren() возвращает синтаксические узлы: JSDocComment, JSDocTag, etc.
+  if (!ctx.enter(docsAsn, jsDoc)) {
+    return docsAsn;
+  }
+
+  const block: (abstractions.translators.TextAsn | abstractions.translators.TagAsn)[] = [];
   const children = jsDoc.getChildren() as (JSDocTag | JSDocText)[];
 
   for (const child of children) {
-    // Если это тег (например, JSDocParameterTag, JSDocReturnTag или просто JSDocTag)
     if (Node.isJSDocTag(child)) {
       const name = child.getTagName();
 
       if (name === 'summary') {
         block.push({
+          id: random.createUuid(),
           kind: 'TagAsn',
           identifier: {
             name: 'title',
           },
           syntaxRole: 'text',
           value: {
+            id: random.createUuid(),
             kind: 'LiteralAsn',
             value: child.getCommentText()?.trim() ?? '',
             syntaxRole: 'text',
@@ -36,24 +42,28 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
         const example = tsRl.ast.doc.parseExamples(child.getCommentText()?.trim()!, ctx);
 
         block.push({
+          id: random.createUuid(),
           kind: 'TagAsn',
           identifier: {
             name: child.getTagName(),
           },
           syntaxRole: 'text',
           value: {
+            id: random.createUuid(),
             kind: 'BlockAsn',
             syntaxRole: 'text',
             statements: [
               {
+                id: random.createUuid(),
                 kind: 'LiteralAsn',
                 value: example.code,
                 syntaxRole: 'text',
                 semanticLayer: 'state',
               },
               {
+                id: random.createUuid(),
                 kind: 'LiteralAsn',
-                value: example.code,
+                value: example.expected,
                 syntaxRole: 'text',
                 semanticLayer: 'state',
               },
@@ -62,12 +72,14 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
         });
       } else {
         block.push({
+          id: random.createUuid(),
           kind: 'TagAsn',
           identifier: {
             name: child.getTagName(),
           },
           syntaxRole: 'text',
           value: {
+            id: random.createUuid(),
             kind: 'LiteralAsn',
             value: child.getCommentText()?.trim() ?? '',
             syntaxRole: 'text',
@@ -75,14 +87,14 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
           },
         });
       }
-    }
-    // Если это текстовая часть (в ts-morph это может быть SyntaxList или JSDocText)
-    else if (child.getKind() === SyntaxKind.JSDocText || child.getKind() === SyntaxKind.JSDocComment) {
+    } else if (child.getKind() === SyntaxKind.JSDocText || child.getKind() === SyntaxKind.JSDocComment) {
       const value = child.getText().trim();
       if (value) {
         block.push({
+          id: random.createUuid(),
           kind: 'TextAsn',
           value: {
+            id: random.createUuid(),
             kind: 'LiteralAsn',
             value,
             syntaxRole: 'text',
@@ -94,9 +106,6 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
     }
   }
 
-  return {
-    kind: 'DocsAsn',
-    block,
-    syntaxRole: 'text',
-  };
+  docsAsn.block = block;
+  return ctx.leave(docsAsn, jsDoc);
 }

@@ -1,113 +1,24 @@
-import * as aiGoogle from '../index';
-import { appendOperationJsonl, appendRawLog, initBackupSession } from './backup';
-import { executeOperationOnDisk, readFileSafe, walkDirectoryStream } from './fs_utils';
-import { OperationStreamParser } from './operation_stream_parser';
-import { buildFileIterationPrompt, buildFullSystemPrompt, buildScalableRepositoryContext } from './prompts';
-import {
-  DEFAULT_IGNORE_LIST,
-  type BackupPaths,
-  type FileEntry,
-  type FileOperation,
-  type RefactorConfig,
-} from './types';
+import * as aiGoogle from "@razomy/ai-google";
 
 export interface ProcessSingleFileParams {
-  fileEntry: FileEntry;
+  fileEntry: aiGoogle.refactor.FileEntry;
   fileIndex: number;
   totalFiles: number;
-  config: Required<RefactorConfig>;
+  config: Required<aiGoogle.refactor.RefactorConfig>;
   fullSystemPrompt: string;
-  cacheName?: string;
+  cacheName: string | undefined;
   fallbackRepoContext: string;
-  backupPaths: BackupPaths;
+  backupPaths: aiGoogle.refactor.BackupPaths;
   recentPathsSummary: string[];
-}
-
-/**
- * Полный цикл обработки одного файла: чтение -> стрим ИИ -> потоковый парсинг -> запись на диск
- */
-export async function processSingleFile(params: ProcessSingleFileParams): Promise<FileOperation[]> {
-  const {
-    fileEntry,
-    fileIndex,
-    totalFiles,
-    config,
-    fullSystemPrompt,
-    cacheName,
-    fallbackRepoContext,
-    backupPaths,
-    recentPathsSummary,
-  } = params;
-
-  const content = readFileSafe(fileEntry.fullPath);
-  if (content === null) return [];
-
-  await appendRawLog(backupPaths.rawLogPath, `\n\n### ITERATION ${fileIndex}: ${fileEntry.relativePath} ###\n`);
-
-  const iterationPrompt = buildFileIterationPrompt(
-    fileIndex,
-    totalFiles,
-    fileEntry.relativePath,
-    content,
-    recentPathsSummary,
-  );
-
-  const streamParser = new OperationStreamParser();
-  const pendingDeletes: FileOperation[] = [];
-  const executedOps: FileOperation[] = [];
-  let createdOrUpdatedCount = 0;
-
-  await aiGoogle.instant.streamWithContinuation({
-    model: config.model,
-    systemInstruction: fullSystemPrompt,
-    cacheName,
-    fallbackContext: fallbackRepoContext,
-    initialPrompt: iterationPrompt,
-    maxTurns: config.maxContinuationTurns,
-    isDone: () => streamParser.isComplete(),
-    getUnfinishedTail: () => streamParser.getTailContext(),
-    onChunk: async (chunkText: string) => {
-      await appendRawLog(backupPaths.rawLogPath, chunkText);
-
-      const readyOperations = streamParser.feedChunk(chunkText);
-
-      for (const op of readyOperations) {
-        executedOps.push(op);
-        await appendOperationJsonl(backupPaths.jsonlOpsPath, op);
-
-        if (config.applyImmediately) {
-          if (op.action === 'delete') {
-            pendingDeletes.push(op);
-          } else {
-            const ok = await executeOperationOnDisk(config.targetDir, op);
-            if (ok) createdOrUpdatedCount++;
-          }
-        }
-      }
-    },
-  });
-
-  if (config.applyImmediately && pendingDeletes.length > 0) {
-    const hadCreateIntent = executedOps.some((o) => o.action === 'create');
-    for (const delOp of pendingDeletes) {
-      if (hadCreateIntent && createdOrUpdatedCount === 0) {
-        console.warn(`⚠️ Защита: Отмена удаления ${delOp.path}, т.к. новые файлы не были записаны.`);
-        continue;
-      }
-      await executeOperationOnDisk(config.targetDir, delOp);
-    }
-  }
-
-  return executedOps;
 }
 
 /**
  * Главная функция запуска процесса пофайлового рефакторинга репозитория
  */
-export async function processRepository(userConfig: RefactorConfig): Promise<void> {
-  const config: Required<RefactorConfig> = {
+export async function processRepository(userConfig: aiGoogle.refactor.RefactorConfig): Promise<void> {
+  const config: Required<aiGoogle.refactor.RefactorConfig> = {
     model: aiGoogle.MODELS.cheap,
-    ignoreList: DEFAULT_IGNORE_LIST,
+    ignoreList: aiGoogle.refactor.DEFAULT_IGNORE_LIST,
     applyImmediately: true,
     cleanupCacheAfterRun: true,
     maxContinuationTurns: 10,
@@ -116,10 +27,10 @@ export async function processRepository(userConfig: RefactorConfig): Promise<voi
     ...userConfig,
   };
 
-  const backupPaths = await initBackupSession(config.targetDir, config.backupDirName);
-  const fullSystemPrompt = buildFullSystemPrompt(config.systemPrompt, config.taskPrompt);
+  const backupPaths = await aiGoogle.refactor.initBackupSession(config.targetDir, config.backupDirName);
+  const fullSystemPrompt = aiGoogle.refactor.buildFullSystemPrompt(config.systemPrompt, config.taskPrompt);
 
-  const { contextText, totalFilesCount } = await buildScalableRepositoryContext(
+  const { contextText, totalFilesCount } = await aiGoogle.refactor.buildScalableRepositoryContext(
     config.targetDir,
     config.ignoreList,
     config.maxFullFilesInCache,
@@ -139,11 +50,11 @@ export async function processRepository(userConfig: RefactorConfig): Promise<voi
   let currentIndex = 0;
 
   try {
-    for await (const fileEntry of walkDirectoryStream(config.targetDir, config.targetDir, config.ignoreList)) {
+    for await (const fileEntry of aiGoogle.refactor.walkDirectoryStream(config.targetDir, config.targetDir, config.ignoreList)) {
       currentIndex++;
 
       try {
-        const ops = await processSingleFile({
+        const ops = await aiGoogle.refactor.processSingleFile({
           fileEntry,
           fileIndex: currentIndex,
           totalFiles: totalFilesCount,

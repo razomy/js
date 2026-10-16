@@ -6,9 +6,9 @@ import type { MergeHasValueGet } from './assign_pipeline_next';
 import { assignPipelineSwitch } from './assign_pipeline_switch';
 import { cPl } from './c_pl';
 import { ContextPipeline } from './context_pipeline';
-import type { AsChildContext, Line, WithChild, WithNext } from './Mutations';
-import type { PipelineState } from './PipelineDef';
 import { createPipelineGetter } from './create_pipeline_getter';
+import type { AsChildContext, Line, WithChild, WithNext } from './mutations';
+import type { DefaultPipelineDef, PipelineDef, PipelineState } from './pipeline_def';
 
 // Named exports
 export {
@@ -22,11 +22,13 @@ export {
 };
 export type {
   AsChildContext,
+  DefaultPipelineDef,
+  Line,
   MergeHasValueGet,
+  PipelineDef,
   PipelineState,
   WithChild,
-  WithNext,
-  Line
+  WithNext
 };
 
 // Default export

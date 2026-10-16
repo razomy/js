@@ -1,4 +1,4 @@
-import * as aiGoogle from '../index';
+import * as aiGoogle from '@razomy/ai-google';
 
 /**
  * Безопасно удаляет кэш с серверов Google AI

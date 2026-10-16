@@ -1,6 +1,7 @@
 import { Node, SyntaxKind, Expression } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
+import * as random from "@razomy/random";
 
 export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.UnaryAsn {
   if (Node.isPrefixUnaryExpression(node)) {
@@ -13,38 +14,44 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
       case SyntaxKind.PlusPlusToken: operator = '++'; break;
       case SyntaxKind.MinusMinusToken: operator = '--'; break;
     }
-    return {
-      kind: 'UnaryAsn', syntaxRole: 'expression',
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
+      kind: 'UnaryAsn',
+      syntaxRole: 'expression',
       operator: operator as abstractions.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
       isPrefix: true,
     };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    unaryAsn.value = tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(unaryAsn, node);
   }
   if (Node.isPostfixUnaryExpression(node)) {
     const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
-    return {
-      kind: 'UnaryAsn', syntaxRole: 'expression',
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
+      kind: 'UnaryAsn',
+      syntaxRole: 'expression',
       operator: operator as abstractions.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
       isPrefix: false,
     };
-  }
-  if (Node.isPostfixUnaryExpression(node)) {
-    const operator = node.getOperatorToken() === SyntaxKind.PlusPlusToken ? '++' : '--';
-    return {
-      kind: 'UnaryAsn', syntaxRole: 'expression',
-      operator: operator as abstractions.translators.UnaryAsn['operator'],
-      value: tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType,
-      isPrefix: false,
-    };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    unaryAsn.value = tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(unaryAsn, node);
   }
   if (Node.isTypeOfExpression(node) || Node.isDeleteExpression(node)) {
-    return {
-      kind: 'UnaryAsn', syntaxRole: 'expression',
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
+      kind: 'UnaryAsn',
+      syntaxRole: 'expression',
       operator: Node.isTypeOfExpression(node) ? '+' : '-',
-      value: tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
       isPrefix: true,
     };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    unaryAsn.value = tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(unaryAsn, node);
   }
-  throw new tsRl.ast.UnknownNodeException(node)
+  throw new tsRl.ast.UnknownNodeException(node);
 }

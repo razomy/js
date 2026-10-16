@@ -1,9 +1,8 @@
-import * as abstracts_ from '@razomy/abstractions';
 import * as resources from '@razomy/resources';
 import * as abstractions from "@razomy/abstractions";
 
 export function tryAll<
-  C extends abstracts_.patterns.IContext & abstractions.arrays.HasOffset,
+  C extends abstractions.patterns.IContext & abstractions.arrays.HasOffset,
   R extends readonly resources.ResultNullFn<C, { offset: number; result: any }>[],
 >(ctx: C, rules: R) {
   let totalOffset = 0;

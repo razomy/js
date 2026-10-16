@@ -1,231 +1,319 @@
 import { Node, SyntaxKind } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
+import * as random from '@razomy/random';
 import type { StateAsnType } from '@razomy/abstractions/translators';
 import type { HasEnterLeaveProduce } from '../unknown_node_exception';
 
 export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.translators.AsnType {
   if (Node.isLiteralTypeNode(node)) {
-    return {
+    const literalAsn: abstractions.translators.LiteralAsn = {
+      id: random.createUuid(),
       kind: 'LiteralAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       value: node.getText(),
     };
+    if (!ctx.enter(literalAsn, node)) return literalAsn;
+    return ctx.leave(literalAsn, node);
   }
   if (Node.isTypeOperatorTypeNode(node)) {
-    return {
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
       isPrefix: true,
       operator: SyntaxKind[node.getOperator()] as any,
-      value: parse(node.getTypeNode(),ctx) as StateAsnType,
+      value: null as any,
     };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    unaryAsn.value = parse(node.getTypeNode(), ctx) as StateAsnType;
+    return ctx.leave(unaryAsn, node);
   }
   if (Node.isRestTypeNode(node)) {
-    return {
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
       isPrefix: true,
       operator: 'rest',
-      value: parse(node.getTypeNode(),ctx) as StateAsnType,
+      value: null as any,
     };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    unaryAsn.value = parse(node.getTypeNode(), ctx) as StateAsnType;
+    return ctx.leave(unaryAsn, node);
   }
   if (Node.isTypeQuery(node)) {
-    return {
+    const unaryAsn: abstractions.translators.UnaryAsn = {
+      id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
       isPrefix: true,
       operator: 'rest',
-      value: { kind: 'LiteralAsn', value: node.getText(), syntaxRole: 'text', semanticLayer: 'state' },
+      value: { id: random.createUuid(), kind: 'LiteralAsn', value: node.getText(), syntaxRole: 'text', semanticLayer: 'state' },
     };
+    if (!ctx.enter(unaryAsn, node)) return unaryAsn;
+    return ctx.leave(unaryAsn, node);
   }
   if (Node.isParameterDeclaration(node)) {
-    return {
+    const paramAsn: abstractions.translators.ParameterAsn = {
+      id: random.createUuid(),
       kind: 'ParameterAsn',
       syntaxRole: 'expression',
       modifiers: [],
       identifier: { name: node.getName() },
       shape: null,
-      value: node.getInitializer() ? (parse(node.getInitializer()!,ctx) as abstractions.translators.StateAsnType) : null,
+      value: null,
     };
+    if (!ctx.enter(paramAsn, node)) return paramAsn;
+    paramAsn.value = node.getInitializer() ? (parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType) : null;
+    return ctx.leave(paramAsn, node);
   }
   if (Node.isConstructorTypeNode(node)) {
-    return {
+    const lambdaAsn: abstractions.translators.LambdaAsn = {
+      id: random.createUuid(),
       kind: 'LambdaAsn',
       syntaxRole: 'expression',
-      modifiers: [{ kind: 'FunctionModifierAsn', operator: 'new', syntaxRole: 'modifier', value: null }],
-      parameters: node.getParameters().map((param) => parse(param,ctx)) as any,
-      returnShape: node.getReturnTypeNode() ? parse(node.getReturnTypeNode()!,ctx) : null,
+      modifiers: [{ id: random.createUuid(), kind: 'FunctionModifierAsn', operator: 'new', syntaxRole: 'modifier', value: null }],
+      parameters: [],
+      returnShape: null,
       block: {
+        id: random.createUuid(),
         kind: 'BlockAsn',
         syntaxRole: 'expression',
         statements: [],
       },
       semanticLayer: 'shape',
     };
+    if (!ctx.enter(lambdaAsn, node)) return lambdaAsn;
+    lambdaAsn.parameters = node.getParameters().map((param) => parse(param, ctx)) as any;
+    lambdaAsn.returnShape = node.getReturnTypeNode() ? parse(node.getReturnTypeNode()!, ctx) : null;
+    return ctx.leave(lambdaAsn, node);
   }
 
   if (Node.isConditionalTypeNode(node)) {
-    return {
+    const ternaryAsn: abstractions.translators.TernaryAsn = {
+      id: random.createUuid(),
       kind: 'TernaryAsn',
       syntaxRole: 'expression',
-      branches: [parse(node.getTrueType()!,ctx), parse(node.getFalseType()!,ctx)] as any,
+      branches: [],
     };
+    if (!ctx.enter(ternaryAsn, node)) return ternaryAsn;
+    ternaryAsn.branches = [parse(node.getTrueType()!, ctx), parse(node.getFalseType()!, ctx)] as any;
+    return ctx.leave(ternaryAsn, node);
   }
   if (Node.isPropertySignature(node)) {
-    return {
+    const propAsn: abstractions.translators.PropertyAsn = {
+      id: random.createUuid(),
       kind: 'PropertyAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       shape: null,
       identifier: { name: node.getName() },
-      value: node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!,ctx) : null,
+      value: null,
     };
+    if (!ctx.enter(propAsn, node)) return propAsn;
+    propAsn.value = node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null;
+    return ctx.leave(propAsn, node);
   }
   if (Node.isArrayTypeNode(node)) {
-    return {
+    const arrayAsn: abstractions.translators.ArrayAsn = {
+      id: random.createUuid(),
       kind: 'ArrayAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: [parse(node.getElementTypeNode(),ctx)],
-    } as abstractions.translators.ArrayAsn;
+      values: [],
+    };
+    if (!ctx.enter(arrayAsn, node)) return arrayAsn;
+    arrayAsn.values = [parse(node.getElementTypeNode(), ctx)];
+    return ctx.leave(arrayAsn, node);
   }
   if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
-    return {
+    const tupleAsn: abstractions.translators.TupleAsn = {
+      id: random.createUuid(),
       kind: 'TupleAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: node.getTypeNodes().map((i) => parse(i, ctx)),
-    } as abstractions.translators.TupleAsn;
+      values: [],
+    };
+    if (!ctx.enter(tupleAsn, node)) return tupleAsn;
+    tupleAsn.values = node.getTypeNodes().map((i) => parse(i, ctx));
+    return ctx.leave(tupleAsn, node);
   }
   if (Node.isTypeLiteral(node)) {
-    return {
-      kind: 'StyleBlockAsn', // или ваш вид узла
+    const styleBlockAsn: abstractions.translators.StyleBlockAsn = {
+      id: random.createUuid(),
+      kind: 'StyleBlockAsn',
       syntaxRole: 'expression',
-      // Получаем все свойства, сигнатуры вызовов и методов внутри { ... }
-      statements: node.getMembers().map((member) => parse(member, ctx)),
+      statements: [],
     };
+    if (!ctx.enter(styleBlockAsn, node)) return styleBlockAsn;
+    styleBlockAsn.statements = node.getMembers().map((member) => parse(member, ctx));
+    return ctx.leave(styleBlockAsn, node);
   }
   if (Node.isTupleTypeNode(node)) {
-    return {
+    const tupleAsn: abstractions.translators.TupleAsn = {
+      id: random.createUuid(),
       kind: 'TupleAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
-      values: node.getElements().map(i=>parse(i,ctx)).filter(Boolean) as abstractions.translators.AsnType[],
+      values: [],
     };
+    if (!ctx.enter(tupleAsn, node)) return tupleAsn;
+    tupleAsn.values = node.getElements().map((i) => parse(i, ctx)).filter(Boolean) as abstractions.translators.AsnType[];
+    return ctx.leave(tupleAsn, node);
   }
   if (Node.isMappedTypeNode(node)) {
-    return {
+    const mappedAsn: abstractions.translators.MappedAsn = {
+      id: random.createUuid(),
       kind: 'MappedAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       constraint: {
+        id: random.createUuid(),
         kind: 'LiteralAsn',
         value: '',
         syntaxRole: 'expression',
         semanticLayer: 'shape',
       } as any,
-      value: parse(node.getTypeNode()!, ctx) as any,
+      value: null as any,
     };
+    if (!ctx.enter(mappedAsn, node)) return mappedAsn;
+    mappedAsn.value = parse(node.getTypeNode()!, ctx) as any;
+    return ctx.leave(mappedAsn, node);
   }
   if (Node.isFunctionTypeNode(node)) {
-    return {
+    const lambdaAsn: abstractions.translators.LambdaAsn = {
+      id: random.createUuid(),
       kind: 'LambdaAsn',
       syntaxRole: 'expression',
       modifiers: [],
-      parameters: node.getParameters().map(i=>tsRl.ast.bindings.parseParameter(i,ctx)),
-      returnShape: node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!,ctx) : null,
+      parameters: [],
+      returnShape: null,
       block: {
+        id: random.createUuid(),
         kind: 'BlockAsn',
         syntaxRole: 'expression',
         statements: [],
       },
       semanticLayer: 'shape',
     };
+    if (!ctx.enter(lambdaAsn, node)) return lambdaAsn;
+    lambdaAsn.parameters = node.getParameters().map((i) => tsRl.ast.bindings.parseParameter(i, ctx));
+    lambdaAsn.returnShape = node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
+    return ctx.leave(lambdaAsn, node);
   }
   if (Node.isTypeReference(node)) {
-    return {
+    const refAsn: abstractions.translators.ReferenceAsn = {
+      id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',
-      semanticLayer: 'shape',
       identifier: { name: node.getTypeName().getText() },
-    } as abstractions.translators.ReferenceAsn;
+    };
+    if (!ctx.enter(refAsn, node)) return refAsn;
+    return ctx.leave(refAsn, node);
   }
 
   if (Node.isIndexedAccessTypeNode(node)) {
-    return {
+    const memberAsn: abstractions.translators.MemberAsn = {
+      id: random.createUuid(),
       kind: 'MemberAsn',
       syntaxRole: 'expression',
-      object_: parse(node.getObjectTypeNode(),ctx),
-      property: parse(node.getIndexTypeNode(),ctx),
+      object_: null as any,
+      property: null as any,
     };
+    if (!ctx.enter(memberAsn, node)) return memberAsn;
+    memberAsn.object_ = parse(node.getObjectTypeNode(), ctx);
+    memberAsn.property = parse(node.getIndexTypeNode(), ctx);
+    return ctx.leave(memberAsn, node);
   }
   if (Node.isIndexSignatureDeclaration(node)) {
-    return {
+    const mappedAsn: abstractions.translators.MappedAsn = {
+      id: random.createUuid(),
       kind: 'MappedAsn',
       syntaxRole: 'expression',
       semanticLayer: 'shape',
       constraint: {
+        id: random.createUuid(),
         kind: 'LiteralAsn',
         value: node.getKeyName(),
         syntaxRole: 'expression',
         semanticLayer: 'shape',
       },
-      value: parse(node.getKeyTypeNode(),ctx) as any,
+      value: null as any,
     };
+    if (!ctx.enter(mappedAsn, node)) return mappedAsn;
+    mappedAsn.value = parse(node.getKeyTypeNode(), ctx) as any;
+    return ctx.leave(mappedAsn, node);
   }
   if (Node.isParenthesizedTypeNode(node)) {
-    return {
+    const blockAsn: abstractions.translators.BlockAsn = {
+      id: random.createUuid(),
       kind: 'BlockAsn',
       syntaxRole: 'expression',
-      statements: node.getDescendantStatements().map(i=>parse(i,ctx)),
+      statements: [],
     };
+    if (!ctx.enter(blockAsn, node)) return blockAsn;
+    blockAsn.statements = node.getDescendantStatements().map((i) => parse(i, ctx));
+    return ctx.leave(blockAsn, node);
   }
   if (Node.isTypePredicate(node)) {
-    return {
+    const binaryAsn: abstractions.translators.BinaryAsn = {
+      id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
-      left: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
-      right: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      left: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      right: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
       operator: 'is',
     };
+    if (!ctx.enter(binaryAsn, node)) return binaryAsn;
+    return ctx.leave(binaryAsn, node);
   }
   if (Node.isTemplateLiteralTypeNode(node)) {
-    return {
+    const binaryAsn: abstractions.translators.BinaryAsn = {
+      id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
-      left: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
-      right: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      left: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      right: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
       operator: 'is',
     };
+    if (!ctx.enter(binaryAsn, node)) return binaryAsn;
+    return ctx.leave(binaryAsn, node);
   }
   if (Node.isNamedTupleMember(node)) {
-    return {
+    const binaryAsn: abstractions.translators.BinaryAsn = {
+      id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
-      left: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
-      right: { kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      left: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
+      right: { id: random.createUuid(), kind: 'LiteralAsn', semanticLayer: 'shape', syntaxRole: 'expression', value: node.getText() },
       operator: 'is',
     };
+    if (!ctx.enter(binaryAsn, node)) return binaryAsn;
+    return ctx.leave(binaryAsn, node);
   }
 
   if (Node.isThisTypeNode(node)) {
-    return {
+    const refAsn: abstractions.translators.ReferenceAsn = {
+      id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',
-      semanticLayer: 'shape',
       identifier: { name: node.getText() },
-    } as abstractions.translators.ReferenceAsn;
+    };
+    if (!ctx.enter(refAsn, node)) return refAsn;
+    return ctx.leave(refAsn, node);
   }
   const kind = node.getKindName();
   if (kind.includes('Keyword')) {
-    return {
+    const refAsn: abstractions.translators.ReferenceAsn = {
+      id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',
-      semanticLayer: 'shape',
       identifier: { name: node.getText() },
-    } as abstractions.translators.ReferenceAsn;
+    };
+    if (!ctx.enter(refAsn, node)) return refAsn;
+    return ctx.leave(refAsn, node);
   }
   throw new tsRl.ast.UnknownNodeException(node);
 }

@@ -46,7 +46,8 @@
   "module": "./index.ts",
   "name": "@razomy/context",
   "peerDependencies": {
-    "@razomy/abstractions": "*"
+    "@razomy/abstractions": "*",
+    "@razomy/functions": "*"
   },
   "publishConfig": {
     "access": "public"

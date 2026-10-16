@@ -1,9 +1,9 @@
-import * as aiGoogle from '../index';
+import * as aiGoogle from '@razomy/ai-google';
 
 export interface StreamWithContinuationParams {
   model?: string;
   systemInstruction?: string;
-  cacheName?: string;
+  cacheName: string | undefined;
   fallbackContext?: string;
   initialPrompt: string;
   maxTurns?: number;
@@ -15,11 +15,10 @@ export interface StreamWithContinuationParams {
   buildContinuationPrompt?: (tailContext: string) => string;
 }
 
-const DEFAULT_CONTINUATION_PROMPT = (tailContext: string) =>
-  `You reached the output token limit before finishing.
+function defaultContinuationPrompt (tailContext: string) { return `You reached the output token limit before finishing.
 Continue generating the output IMMEDIATELY from the exact character where you stopped.
 Do NOT repeat already completed blocks.
-Here is the exact tail of where you stopped:\n---\n${tailContext}\n---\nContinue:`;
+Here is the exact tail of where you stopped:\n---\n${tailContext}\n---\nContinue:`; }
 
 /**
  * Генерирует потоковый ответ с поддержкой мульти-продолжения (Auto-Continuation).
@@ -39,7 +38,7 @@ export async function streamWithContinuation(params: StreamWithContinuationParam
     onChunk,
     isDone,
     getUnfinishedTail,
-    buildContinuationPrompt = DEFAULT_CONTINUATION_PROMPT,
+    buildContinuationPrompt = defaultContinuationPrompt,
   } = params;
 
   const conversationHistory: any[] =

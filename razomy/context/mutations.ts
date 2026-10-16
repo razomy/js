@@ -1,13 +1,12 @@
-import type {PipelineState} from "./PipelineDef";
 import * as abstractions from "@razomy/abstractions";
+import * as context from "@razomy/context";
 
-
-export type WithNext<Self extends PipelineState, TNew extends object> = Omit<Self, 'value' | 'get'> & {
+export type WithNext<Self extends context.PipelineState, TNew extends object> = Omit<Self, 'value' | 'get'> & {
   value: abstractions.meta.Prettify<abstractions.meta.Merge<Self['value'], TNew>>;
   get: abstractions.meta.Prettify<abstractions.meta.Merge<Self['get'], TNew>>;
 };
 
-export type WithChild<Self extends PipelineState, K extends string, R extends PipelineState> = Omit<
+export type WithChild<Self extends context.PipelineState, K extends string, R extends context.PipelineState> = Omit<
   Self,
   'value' | 'get' | 'children'
 > & {
@@ -16,7 +15,7 @@ export type WithChild<Self extends PipelineState, K extends string, R extends Pi
   children: abstractions.meta.Prettify<abstractions.meta.Merge<Self['children'], { [P in K]: R }>>;
 };
 
-export type AsChildContext<Self extends PipelineState, K extends string> = Omit<
+export type AsChildContext<Self extends context.PipelineState, K extends string> = Omit<
   Self,
   'value' | 'get' | 'parent' | 'children'
 > & {
@@ -26,7 +25,7 @@ export type AsChildContext<Self extends PipelineState, K extends string> = Omit<
   children: {};
 };
 
-export type Line<Core extends PipelineState, Source extends PipelineState> = Omit<Core,
+export type Line<Core extends context.PipelineState, Source extends context.PipelineState> = Omit<Core,
   'value' | 'get' | 'parent' | 'children'> & {
   value: Source['value'],
   get: Source['get'],

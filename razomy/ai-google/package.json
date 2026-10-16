@@ -66,6 +66,7 @@
         "types": "./instant/index.ts"
       }
     },
+    "./package.json": "./package.json",
     "./refactor": {
       "default": {
         "default": "./refactor/index.ts",
@@ -80,7 +81,6 @@
         "types": "./refactor/index.ts"
       }
     },
-    "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
   "files": [
@@ -100,14 +100,36 @@
     "get",
     "printPrice",
     "wait",
+    "createSafe",
+    "deleteSafe",
     "askTool",
     "specToTool",
     "streamWithContinuation",
-    "cache",
-    "refactor",
+    "appendOperationJsonl",
+    "appendRawLog",
+    "applyFromBackupFile",
+    "applyFromBackupStream",
+    "applyOperationsToDisk",
+    "buildDirectoryBatchPrompt",
+    "buildFileIterationPrompt",
+    "buildFullSystemPrompt",
+    "buildScalableRepositoryContext",
+    "executeOperationOnDisk",
+    "getAllFiles",
+    "initBackupSession",
+    "isPathSafe",
+    "parseOperations",
+    "parseSingleOperationBlock",
+    "processDirectory",
+    "processRepository",
+    "processSingleFile",
+    "readFileSafe",
+    "shouldIgnoreEntry",
+    "walkDirectoryStream",
     "client",
     "models",
-    "prices"
+    "prices",
+    "defaultIgnoreList"
   ],
   "license": "MIT",
   "main": "./index.ts",

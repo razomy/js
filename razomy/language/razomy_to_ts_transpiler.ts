@@ -400,16 +400,17 @@ export class RazomyInterpreter {
         if (node.left.type === "CallExpr" && node.right) {
           const fnName = node.left.path.value;
           const paramNames = node.left.args.items.map((i: any) => i.left.value);
-          const fn = (...args: any[]) => {
-            const callEnv = new Environment({}, env);
-            paramNames.forEach((p: string, idx: number) => {
-              callEnv.define(p, args[idx]);
-              if (typeof args[idx] === "object") {
-                callEnv.pipelineContext = args[idx];
-              }
-            });
-            return this.eval(node.right, callEnv);
-          };
+          const self = this;
+          function fn (...args: any[]) {
+                        const callEnv = new Environment({}, env);
+                        paramNames.forEach((p: string, idx: number) => {
+                          callEnv.define(p, args[idx]);
+                          if (typeof args[idx] === 'object') {
+                            callEnv.pipelineContext = args[idx];
+                          }
+                        });
+                        return self.eval(node.right, callEnv);
+                      }
           env.define(fnName, fn);
           return fn;
         }

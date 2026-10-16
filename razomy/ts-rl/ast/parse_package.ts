@@ -2,6 +2,7 @@ import type { Project } from 'ts-morph';
 import * as path from 'path';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
+import * as random from '@razomy/random';
 
 export function parsePackage(
   project: Project,
@@ -19,12 +20,13 @@ export function parsePackage(
 
   // 1. Создаем AST-каркас модуля
   const moduleAsn: abstractions.translators.ModuleAsn = {
+    id: random.createUuid(),
     kind: 'ModuleAsn',
     syntaxRole: 'statement',
     identifier: { name: packageJson.name || 'UnknownPackage' },
     role: 'SourceFile',
     version: packageJson.version || '0.0.0',
-    block: null as any, // Заполняется после подтверждения вхождения через ctx.enter
+    block: null as any,
   };
 
   // 2. Входим в контекст обхода
@@ -39,11 +41,12 @@ export function parsePackage(
   }).map(
     ([k, v]) =>
       ({
+        id: random.createUuid(),
         kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
+        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
         identifier: { name: k },
       } satisfies abstractions.translators.ImportAsn),
   );
@@ -53,11 +56,12 @@ export function parsePackage(
   }).map(
     ([k, v]) =>
       ({
+        id: random.createUuid(),
         kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
+        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
         identifier: { name: k },
       } satisfies abstractions.translators.ImportAsn),
   );
@@ -67,20 +71,22 @@ export function parsePackage(
   }).map(
     ([k, v]) =>
       ({
+        id: random.createUuid(),
         kind: 'ImportAsn',
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
+        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
         identifier: { name: k },
       } satisfies abstractions.translators.ImportAsn),
   );
 
   // 4. Парсим тело модуля из index-файла (если найден)
-  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile,ctx) : [];
+  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile, ctx) : [];
 
   // 5. Формируем тело модуля
   moduleAsn.block = {
+    id: random.createUuid(),
     kind: 'BlockAsn',
     syntaxRole: 'statement',
     statements: [...runtimes, ...dependencies, ...peerDependencies, ...statements],

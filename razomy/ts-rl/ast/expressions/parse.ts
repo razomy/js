@@ -1,6 +1,7 @@
 import { Node } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
+import * as random from '@razomy/random';
 
 export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node))
@@ -15,25 +16,17 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracti
   if (Node.isRegularExpressionLiteral(node)) return tsRl.ast.expressions.buildIn.parseRegExp(node, ctx);
   if (Node.isArrayLiteralExpression(node)) return tsRl.ast.expressions.buildIn.parseArray(node, ctx);
   if (Node.isObjectLiteralExpression(node)) {
-    return { kind: 'ObjectAsn', syntaxRole: 'expression', semanticLayer: 'state', properties: [] }; // Expand as needed
-  }
-  if (Node.isIdentifier(node)) {
-    return {
-      kind: 'LiteralAsn',
+    const objAsn: abstractions.translators.ObjectAsn = {
+      id: random.createUuid(),
+      kind: 'ObjectAsn',
       syntaxRole: 'expression',
-      semanticLayer: 'shape',
-      value: node.getText(),
+      semanticLayer: 'state',
+      properties: [],
     };
+    if (!ctx.enter(objAsn, node)) return objAsn;
+    return ctx.leave(objAsn, node);
   }
-  if (Node.isBinaryExpression(node)) {
-    return {
-      kind: 'BinaryAsn',
-      syntaxRole: 'statement',
-      operator: node.getOperatorToken() as any,
-      left: tsRl.ast.expressions.parse(node.getLeft(), ctx),
-      right: tsRl.ast.expressions.parse(node.getRight(), ctx),
-    };
-  }
+  if (Node.isBinaryExpression(node)) return tsRl.ast.expressions.parseBinary(node, ctx);
   if (Node.isCallExpression(node)) return tsRl.ast.expressions.parseCall(node, ctx);
   if (
     Node.isPrefixUnaryExpression(node) ||
@@ -43,83 +36,107 @@ export function parse(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstracti
   )
     return tsRl.ast.expressions.parseUnary(node, ctx);
   if (Node.isParenthesizedExpression(node)) return parse(node.getExpression(), ctx);
-  if (Node.isIdentifier(node)) return tsRl.ast.expressions.parseReference(node, ctx);
   if (Node.isPropertyAccessExpression(node) || Node.isElementAccessExpression(node))
     return tsRl.ast.expressions.parseMember(node, ctx);
   if (Node.isNewExpression(node)) return tsRl.ast.expressions.parseNew(node, ctx);
-  if (Node.isCallExpression(node)) return tsRl.ast.expressions.parseCall(node, ctx);
   if (Node.isArrowFunction(node)) return tsRl.ast.expressions.parseArrowFunction(node, ctx);
   if (Node.isFunctionExpression(node)) return tsRl.ast.expressions.parseunctionExpression(node, ctx);
   if (Node.isConditionalExpression(node)) return tsRl.ast.expressions.parseCondition(node, ctx);
   if (Node.isAsExpression(node)) {
-    return {
+    const shapeAsn: abstractions.translators.ShapingAsn = {
+      id: random.createUuid(),
       kind: 'ShapingAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       operator: 'as',
-      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
     };
+    if (!ctx.enter(shapeAsn, node)) return shapeAsn;
+    shapeAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(shapeAsn, node);
   }
   if (Node.isSpreadElement(node)) {
-    return {
+    const spreadAsn: abstractions.translators.SpreadAsn = {
+      id: random.createUuid(),
       kind: 'SpreadAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
     };
+    if (!ctx.enter(spreadAsn, node)) return spreadAsn;
+    spreadAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(spreadAsn, node);
   }
   if (Node.isAwaitExpression(node)) {
-    return {
+    const awaitAsn: abstractions.translators.AwaitAsn = {
+      id: random.createUuid(),
       kind: 'AwaitAsn',
       syntaxRole: 'expression',
-      value: parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType,
+      value: null as any,
     };
+    if (!ctx.enter(awaitAsn, node)) return awaitAsn;
+    awaitAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    return ctx.leave(awaitAsn, node);
   }
   if (Node.isNonNullExpression(node)) {
     return parse(node.getExpression(), ctx);
   }
   if (Node.isTemplateExpression(node)) {
-    return {
+    const templateAsn: abstractions.translators.TemplateAsn = {
+      id: random.createUuid(),
       kind: 'TemplateAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
-      values: node.getTemplateSpans().map((s) => parse(s.getExpression(), ctx)),
-    } as abstractions.translators.TemplateAsn;
+      values: [],
+    };
+    if (!ctx.enter(templateAsn, node)) return templateAsn;
+    templateAsn.values = node.getTemplateSpans().map((s) => parse(s.getExpression(), ctx));
+    return ctx.leave(templateAsn, node);
   }
   if (Node.isThisExpression(node)) {
-    return {
+    const thisAsn: abstractions.translators.LiteralAsn = {
+      id: random.createUuid(),
       kind: 'LiteralAsn',
       syntaxRole: 'expression',
       semanticLayer: 'state',
       value: node.getText(),
     };
+    if (!ctx.enter(thisAsn, node)) return thisAsn;
+    return ctx.leave(thisAsn, node);
   }
   if (Node.isYieldExpression(node)) {
-    return {
+    const yieldAsn: abstractions.translators.YieldAsn = {
+      id: random.createUuid(),
       kind: 'YieldAsn',
       syntaxRole: 'expression',
       value: {
+        id: random.createUuid(),
         kind: 'LiteralAsn',
         syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),
-      }
+      },
     };
+    if (!ctx.enter(yieldAsn, node)) return yieldAsn;
+    return ctx.leave(yieldAsn, node);
   }
   if (Node.isSatisfiesExpression(node)) {
-    return {
+    const satisfiesAsn: abstractions.translators.YieldAsn = {
+      id: random.createUuid(),
       kind: 'YieldAsn',
       syntaxRole: 'expression',
       value: {
+        id: random.createUuid(),
         kind: 'LiteralAsn',
         syntaxRole: 'expression',
         semanticLayer: 'state',
         value: node.getText(),
-      }
+      },
     };
+    if (!ctx.enter(satisfiesAsn, node)) return satisfiesAsn;
+    return ctx.leave(satisfiesAsn, node);
   }
+  if (Node.isIdentifier(node)) return tsRl.ast.expressions.parseReference(node, ctx);
   if (Node.isUnaryExpression(node)) return tsRl.ast.expressions.parseUnary(node, ctx);
-  if (Node.isBinaryExpression(node)) return tsRl.ast.expressions.parseBinary(node,ctx);
-
 
   throw new tsRl.ast.UnknownNodeException(node);
 }

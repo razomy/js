@@ -1,5 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
+import * as random from '@razomy/random';
 
 export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
@@ -10,20 +11,22 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
     if (targetSourceFile.getBaseName().startsWith('index.')) {
       return [tsRl.ast.declarations.parseModule(targetSourceFile.getDirectory(), ctx)];
     } else {
-      return [
-        {
-          kind: 'ModuleAsn',
+      const mod: abstractions.translators.ModuleAsn = {
+        id: random.createUuid(),
+        kind: 'ModuleAsn',
+        syntaxRole: 'statement',
+        identifier: { name: namespaceExport.getName() },
+        block: {
+          id: random.createUuid(),
+          kind: 'BlockAsn',
           syntaxRole: 'statement',
-          identifier: { name: namespaceExport.getName() },
-          block: {
-            kind: 'BlockAsn',
-            syntaxRole: 'statement',
-            statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx),
-          },
-          version: '',
-          role: 'SourceFile',
+          statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx),
         },
-      ];
+        version: '',
+        role: 'SourceFile',
+      };
+      if (!ctx.enter(mod, exportDecl)) return [];
+      return [ctx.leave(mod, exportDecl)];
     }
   }
   // 2. Обработка: export * from './module';
@@ -46,26 +49,28 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
         if (originSourceFile && originSourceFile !== exportDecl.getSourceFile()) {
           const filePath = originSourceFile.getFilePath();
 
-          // Проверяем, не парсили ли мы уже этот файл (на случай если из одного файла экспортируются несколько сущностей)
           if (!processedFiles.has(filePath)) {
             processedFiles.add(filePath);
 
-            // В качестве имени модуля берем имя самого экспорта (например, 'abbreviation').
-            // (Альтернатива: originSourceFile.getBaseNameWithoutExtension() чтобы получить имя файла)
             const moduleName = namedExport.getName();
 
-            results.push({
+            const mod: abstractions.translators.ModuleAsn = {
+              id: random.createUuid(),
               kind: 'ModuleAsn',
               syntaxRole: 'statement',
               identifier: { name: moduleName },
               block: {
+                id: random.createUuid(),
                 kind: 'BlockAsn',
                 syntaxRole: 'statement',
                 statements: tsRl.ast.declarations.parseModuleBody(originSourceFile, ctx),
               },
               version: '',
               role: 'SourceFile',
-            });
+            };
+            if (ctx.enter(mod, originSourceFile)) {
+              results.push(ctx.leave(mod, originSourceFile));
+            }
           }
         }
       }

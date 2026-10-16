@@ -1,7 +1,20 @@
 import { NullLiteral } from 'ts-morph';
-import * as abstractions from "@razomy/abstractions";
-import * as tsRl from "@razomy/ts-rl";
+import * as abstractions from '@razomy/abstractions';
+import * as tsRl from '@razomy/ts-rl';
+import * as random from '@razomy/random';
 
 export function parseNull(node: NullLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LiteralAsn {
-  return { kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: null };
+  const literalAsn: abstractions.translators.LiteralAsn = {
+    id: random.createUuid(),
+    kind: 'LiteralAsn',
+    syntaxRole: 'expression',
+    semanticLayer: 'state',
+    value: null,
+  };
+
+  if (!ctx.enter(literalAsn, node)) {
+    return literalAsn;
+  }
+
+  return ctx.leave(literalAsn, node);
 }

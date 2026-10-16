@@ -1,20 +1,15 @@
 import * as fs from 'fs/promises';
-import * as aiGoogle from '../index';
-import { appendRawLog, initBackupSession } from './backup';
-import { applyOperationsToDisk, getAllFiles } from './fs_utils';
-import { parseOperations } from './operation_stream_parser';
-import { buildDirectoryBatchPrompt } from './prompts';
-import { DEFAULT_IGNORE_LIST, type DirectoryRefactorConfig, type FileOperation } from './types';
+import * as aiGoogle from "@razomy/ai-google";
 
 /**
  * Обрабатывает всю директорию целиком за один многошаговый диалог со стримингом,
  * мгновенным живым бэкапом на диск и автоматическим продолжением при обрыве токенов.
  */
 export async function processDirectory(
-  targetDirOrConfig: string | DirectoryRefactorConfig,
+  targetDirOrConfig: string | aiGoogle.refactor.DirectoryRefactorConfig,
   taskPromptArg?: string,
-): Promise<FileOperation[]> {
-  const userConfig: DirectoryRefactorConfig =
+): Promise<aiGoogle.refactor.FileOperation[]> {
+  const userConfig: aiGoogle.refactor.DirectoryRefactorConfig =
     typeof targetDirOrConfig === 'string'
       ? { targetDir: targetDirOrConfig, taskPrompt: taskPromptArg || '' }
       : targetDirOrConfig;
@@ -24,7 +19,7 @@ export async function processDirectory(
     taskPrompt,
     systemPrompt,
     model = aiGoogle.MODELS.expensive,
-    ignoreList = DEFAULT_IGNORE_LIST,
+    ignoreList = aiGoogle.refactor.DEFAULT_IGNORE_LIST,
     temperature = 0.8,
     maxOutputTokens = 65536,
     maxTurns = 10,
@@ -32,21 +27,21 @@ export async function processDirectory(
     applyChanges = true,
   } = userConfig;
 
-  const files = await getAllFiles(targetDir, targetDir, ignoreList);
+  const files = await aiGoogle.refactor.getAllFiles(targetDir, targetDir, ignoreList);
   if (files.length === 0) {
     return [];
   }
 
-  const backupPaths = await initBackupSession(targetDir, backupDirName);
-  const basePrompt = buildDirectoryBatchPrompt(files, taskPrompt, systemPrompt);
+  const backupPaths = await aiGoogle.refactor.initBackupSession(targetDir, backupDirName);
+  const basePrompt = aiGoogle.refactor.buildDirectoryBatchPrompt(files, taskPrompt, systemPrompt);
 
-  const allOperationsMap = new Map<string, FileOperation>();
+  const allOperationsMap = new Map<string, aiGoogle.refactor.FileOperation>();
   const contents: any[] = [{ role: 'user', parts: [{ text: basePrompt }] }];
   let turn = 1;
 
   while (turn <= maxTurns) {
     if (turn > 1) {
-      await appendRawLog(backupPaths.rawLogPath, `\n\n--- AUTO CONTINUE TURN ${turn} ---\n\n`);
+      await aiGoogle.refactor.appendRawLog(backupPaths.rawLogPath, `\n\n--- AUTO CONTINUE TURN ${turn} ---\n\n`);
     }
 
     let chunkText = '';
@@ -67,7 +62,7 @@ export async function processDirectory(
       for await (const chunk of responseStream) {
         if (chunk.text) {
           chunkText += chunk.text;
-          await appendRawLog(backupPaths.rawLogPath, chunk.text);
+          await aiGoogle.refactor.appendRawLog(backupPaths.rawLogPath, chunk.text);
         }
         if (chunk.candidates?.[0]?.finishReason) {
           finishReason = chunk.candidates[0].finishReason;
@@ -79,7 +74,7 @@ export async function processDirectory(
     }
 
     if (chunkText) {
-      const { operations, hasUnfinishedBlock } = parseOperations(chunkText);
+      const { operations, hasUnfinishedBlock } = aiGoogle.refactor.parseOperations(chunkText);
 
       for (const op of operations) {
         allOperationsMap.set(op.path, op);
@@ -126,7 +121,7 @@ Write ===ALL_DONE=== when completely finished.`,
   const finalOperations = Array.from(allOperationsMap.values());
 
   if (applyChanges) {
-    await applyOperationsToDisk(targetDir, finalOperations);
+    await aiGoogle.refactor.applyOperationsToDisk(targetDir, finalOperations);
   }
 
   return finalOperations;

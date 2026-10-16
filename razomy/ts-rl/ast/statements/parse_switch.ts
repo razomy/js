@@ -1,56 +1,59 @@
 import { SwitchStatement, Node } from "ts-morph";
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
+import * as random from "@razomy/random";
 
 export function parseSwitch(node: SwitchStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.SwitchAsn {
-  const branches: abstractions.translators.SwitchBranchAsnType[] = [];
+  const switchAsn: abstractions.translators.SwitchAsn = {
+    id: random.createUuid(),
+    kind: 'SwitchAsn',
+    target: null as any,
+    syntaxRole: 'statement',
+    branches: [],
+  };
 
-  // Целевое выражение, которое находится в switch (...)
+  if (!ctx.enter(switchAsn, node)) {
+    return switchAsn;
+  }
+
   const targetExpression = tsRl.ast.expressions.parse(node.getExpression(), ctx);
-
-  // Получаем все ветки case и default
+  const branches: abstractions.translators.SwitchBranchAsnType[] = [];
   const clauses = node.getCaseBlock().getClauses();
 
   for (const clause of clauses) {
-    // Получаем стейтменты (тело) конкретной ветки
     const statements = clause.getStatements();
-
-    // Парсим массив стейтментов.
-    // Если tsRl требует именно BlockAsn, возможно понадобится обернуть их вручную,
-    // но обычно в таких трансляторах делают map по списку или используют специальный метод (например, parseList/parseStatements).
-    // Для примера я предполагаю, что value принимает массив StatementAsn (или нужно собрать их в Block).
     const parsedValue = statements.map(stmt => tsRl.ast.statements.parse(stmt, ctx));
 
     if (Node.isCaseClause(clause)) {
       branches.push({
+        id: random.createUuid(),
         kind: 'MatchBranchAsn',
         syntaxRole: 'statement',
-        // pattern — это условие (значение после слова case)
         pattern: tsRl.ast.expressions.parse(clause.getExpression(), ctx),
-        // value — это список стейтментов на выполнение
         value: {
+          id: random.createUuid(),
           kind: 'BlockAsn',
-          statements: parsedValue
+          syntaxRole: 'statement',
+          statements: parsedValue,
         },
       } as abstractions.translators.MatchBranchAsn);
-
     } else if (Node.isDefaultClause(clause)) {
       branches.push({
+        id: random.createUuid(),
         kind: 'DefaultBranchAsn',
         syntaxRole: 'statement',
-        // у default нет pattern, только value
         value: {
+          id: random.createUuid(),
           kind: 'BlockAsn',
-          statements: parsedValue
+          syntaxRole: 'statement',
+          statements: parsedValue,
         },
       } as abstractions.translators.DefaultBranchAsn);
     }
   }
 
-  return {
-    kind: 'SwitchAsn',
-    target: targetExpression,
-    syntaxRole: 'statement',
-    branches,
-  };
+  switchAsn.target = targetExpression;
+  switchAsn.branches = branches;
+
+  return ctx.leave(switchAsn, node);
 }

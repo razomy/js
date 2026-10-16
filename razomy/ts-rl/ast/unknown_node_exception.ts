@@ -1,10 +1,10 @@
 import { Node } from 'ts-morph';
 
-export type Produce = <T>(product: T, source: Node) => T;
+export type Produce = <T>(product: T, source?: any) => T;
 
 export interface HasEnterLeaveProduce {
-  enter: Produce;
-  leave: Produce;
+  enter: <T>(product: T, source?: any) => T | boolean | null | undefined;
+  leave: <T>(product: T, source?: any) => T;
 }
 
 export class UnknownNodeException extends Error {

@@ -12,7 +12,7 @@ export {
   batch,
   cache,
   instant,
-  refactor,
+  refactor
 };
 
 // Default export

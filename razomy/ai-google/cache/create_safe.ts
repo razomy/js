@@ -1,4 +1,4 @@
-import * as aiGoogle from '../index';
+import * as aiGoogle from '@razomy/ai-google';
 
 export interface CreateCacheOptions {
   model?: string;
@@ -22,7 +22,7 @@ export async function createSafe(options: CreateCacheOptions): Promise<string | 
     const cache = await aiGoogle.CLIENT.caches.create({
       model,
       config: {
-        systemInstruction,
+        systemInstruction: systemInstruction!,
         contents: [{ role: 'user', parts: [{ text: cachedText }] }],
         ttl,
       },

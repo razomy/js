@@ -5,7 +5,7 @@ export function createPackageFunction(
   f: Partial<{
     title: string;
     performance: string;
-    examples: abstractions.translators.FunctionDocExampleHir[];
+    examples: abstractions.translators.FunctionDocExampleHirn[];
     isAsync: boolean;
     isGenerator: boolean;
     name: string;
@@ -16,6 +16,7 @@ export function createPackageFunction(
 ): abstractions.translators.FunctionHirn {
   return {
     id: random.createUuid(),
+    fnHashId: random.createUuid(),
     syntaxRole: 'declaration',
     semanticLayer: 'state',
     kind: 'FunctionHirn',
@@ -42,7 +43,7 @@ export function createPackageFunction(
             property: null,
             arguments_: [],
           } satisfies abstractions.translators.ReferenceHirn,
-          doc:{description: v,},
+          doc: { description: v },
           value: null,
         } satisfies abstractions.translators.BindingHirn),
     ) satisfies abstractions.translators.BindingHirn[],
@@ -70,7 +71,7 @@ export function createPackageFunction(
       returnDescription: '',
       // timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
       // memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-      examples: f.examples! || [] as abstractions.translators.FunctionDocExampleHir[],
+      examples: f.examples! || ([] as abstractions.translators.FunctionDocExampleHirn[]),
     },
   };
 }
