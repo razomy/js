@@ -15,7 +15,6 @@
     "@vueuse/core": "^14.2.1",
     "changelogen": "^0.6.2",
     "nuxt": "^4.4.2",
-    "typescript": "^5.9.3",
     "vitest": "^4.1.0",
     "vue-tsc": "^3.2.5"
   },

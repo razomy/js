@@ -4,12 +4,10 @@
   "verbose": false,
   "roots": ["razomy"],
   "moduleNameMapper": {
-    "^@chevrotain/(.*)$": "<rootDir>/node_modules/@chevrotain/$1/lib/src/api.js",
     "^@razomy/(.*)/node": "<rootDir>/razomy/$1/index.node",
     "^@razomy/(.*)": "<rootDir>/razomy/$1"
   },
   "transformIgnorePatterns": [
-    "node_modules/(?!(chevrotain|@chevrotain)/)"
   ],
   "modulePathIgnorePatterns": ["/dist/"],
   "transform": {

@@ -4,9 +4,7 @@
     "name": "Yevhenii Kamenskyi",
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
-  "dependencies": {
-    "ts-morph": "27.0.2"
-  },
+  "dependencies": {},
   "description": "",
   "engines": {
     "node": ">=18"
