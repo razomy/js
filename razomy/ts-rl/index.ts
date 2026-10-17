@@ -1,5 +1,5 @@
 // Imports
-import * as ast from './ast';
+import * as ast from './as';
 import * as hir from './hir';
 import * as st from './st';
 

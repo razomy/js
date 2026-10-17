@@ -247,8 +247,8 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/declarations/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts st/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts ast/index.ts ast/bindings/index.ts ast/declarations/index.ts ast/doc/index.ts ast/expressions/index.ts ast/expressions/build_in/index.ts ast/shapes/index.ts ast/statements/index.ts hir/index.ts st/index.ts --watch",
+    "build": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts st/index.ts --format esm,cjs --dts",
+    "dev": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts st/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,

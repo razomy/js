@@ -100,7 +100,7 @@ function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
 export function updateByTemplate(projectPath: string, prefix: string) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => !tsRefactor.isPackageNameSkip(i.name));
+    .filter((i) => !tsRefactor.isPackageNameSkipGeneratingPackageJsonAndReadme(i.name));
   const project = new Project({ tsConfigFilePath: projectPath + '/' + 'tsconfig.json' });
 
   packages.forEach((folder) => {
