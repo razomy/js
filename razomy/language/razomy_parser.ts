@@ -1,7 +1,6 @@
 // =============================================================================
 // 1. ТИПЫ И ЛЕКСЕР (Razomy Pure TS Lexer V4.0)
 // =============================================================================
-
 export type TokenType =
   | "WhiteSpace" | "DocComment" | "LineComment" | "CRLF2"
   | "LBrace" | "RBrace" | "LBracket" | "RBracket" | "LParen" | "RParen"
@@ -27,14 +26,14 @@ export interface LexerError {
   column: number;
 }
 
-interface TokenDef {
+export interface TokenDef {
   type: TokenType;
   regex: RegExp;
   skip?: boolean;
 }
 
 // Порядок правил строго соответствует ALL_TOKENS из оригинала
-const TOKEN_DEFS: TokenDef[] = [
+export const TOKEN_DEFS: TokenDef[] = [
   { type: "WhiteSpace", regex: /^[ \t\f\r]+/, skip: true },
   { type: "DocComment", regex: /^#[^#]*#/, skip: true },
   { type: "LineComment", regex: /^\/\/[^\r\n]*/, skip: true },
@@ -97,57 +96,6 @@ const TOKEN_DEFS: TokenDef[] = [
   // Обычная точка
   { type: "Dot", regex: /^\./ }
 ];
-
-export function tokenize(text: string): { tokens: Token[]; errors: LexerError[] } {
-  const tokens: Token[] = [];
-  const errors: LexerError[] = [];
-  let offset = 0;
-  let line = 1;
-  let column = 1;
-
-  while (offset < text.length) {
-    const slice = text.slice(offset);
-    let matched = false;
-
-    for (const def of TOKEN_DEFS) {
-      const match = def.regex.exec(slice);
-      if (match) {
-        const image = match[0];
-        if (!def.skip) {
-          tokens.push({ type: def.type, image, offset, line, column });
-        }
-
-        // Обновляем координаты строк и колонок
-        const lines = image.split(/\r?\n/);
-        if (lines.length > 1) {
-          line += lines.length - 1;
-          column = lines[lines.length - 1].length + 1;
-        } else {
-          column += image.length;
-        }
-
-        offset += image.length;
-        matched = true;
-        break;
-      }
-    }
-
-    if (!matched) {
-      errors.push({
-        message: `Неизвестный символ: '${text[offset]}'`,
-        offset,
-        line,
-        column
-      });
-      offset++;
-      column++;
-    }
-  }
-
-  tokens.push({ type: "EOF", image: "", offset, line, column });
-  return { tokens, errors };
-}
-
 // =============================================================================
 // 2. СИНТАКСИЧЕСКИЙ АНАЛИЗАТОР (Recursive Descent -> AST V4.0)
 // =============================================================================
@@ -166,7 +114,7 @@ export class RazomyParser {
 
   // --- Утилиты навигации по токенам ---
 
-  private LA(howMuch = 1): Token {
+  private la(howMuch = 1): Token {
     const idx = this.pos + howMuch - 1;
     if (idx >= this.tokens.length) {
       return this.tokens[this.tokens.length - 1]; // EOF
@@ -175,12 +123,12 @@ export class RazomyParser {
   }
 
   private match(...types: TokenType[]): boolean {
-    const current = this.LA(1).type;
+    const current = this.la(1).type;
     return types.includes(current);
   }
 
   private consume(...expected: TokenType[]): Token {
-    const tok = this.LA(1);
+    const tok = this.la(1);
     if (expected.length === 0 || expected.includes(tok.type)) {
       this.pos++;
       return tok;
@@ -195,10 +143,10 @@ export class RazomyParser {
   // Аналог GATE: () => this.isOperatorAhead(...)
   private isOperatorAhead(expectedTokens: TokenType[]): boolean {
     let idx = 1;
-    let tok = this.LA(idx);
+    let tok = this.la(idx);
     while (tok.type === "CRLF2") {
       idx++;
-      tok = this.LA(idx);
+      tok = this.la(idx);
     }
     return expectedTokens.includes(tok.type);
   }
@@ -520,17 +468,3 @@ export class RazomyParser {
 // =============================================================================
 
 export const PARSER = new RazomyParser();
-
-export function parseRazomyCode(text: string) {
-  const lexResult = tokenize(text);
-  if (lexResult.errors.length > 0) {
-    console.error("Ошибки лексера:", lexResult.errors);
-    return null;
-  }
-  const ast = PARSER.parse(lexResult.tokens);
-  if (PARSER.errors.length > 0) {
-    console.error("ОШИБКИ ПАРСИНГА:", PARSER.errors);
-    return null;
-  }
-  return ast;
-}
