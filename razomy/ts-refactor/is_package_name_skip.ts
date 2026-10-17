@@ -1,5 +1,5 @@
 
-export function isPackageNameSkip(name: string) {
+export function isPackageNameSkipGeneratingPackageJsonAndReadme(name: string) {
     return name === 'razomy/_razomy'
     || name === 'razomy/nuxt'
     || name === 'razomy/vue'
