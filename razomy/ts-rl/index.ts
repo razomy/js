@@ -1,20 +1,20 @@
 // Imports
-import * as ast from './as';
+import * as as from './as';
 import * as hir from './hir';
-import * as st from './st';
+import * as tsMorph from './tsMorph';
 
 // Named exports
 export {
-  ast,
+  as,
   hir,
-  st
+  tsMorph
 };
 
 // Default export
 const tsRl = {
-  ast,
+  as,
   hir,
-  st,
+  tsMorph,
 };
 
 export default tsRl;

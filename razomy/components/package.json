@@ -35,11 +35,12 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown  --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown  --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

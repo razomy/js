@@ -1,5 +1,5 @@
 
-import type {Razomy} from "@razomy/razomy";
+import type {Razomy} from "@razomy/abstractions/meta";
 
 declare global {
   interface Window {

@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.DocsAsn {
+export function parseJsDoc(jsDoc: JSDoc, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.DocsAsn {
   const docsAsn: abstractions.translators.DocsAsn = {
     id: random.createUuid(),
     kind: 'DocsAsn',
@@ -39,7 +39,7 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: tsRl.ast.HasEnterLeaveProduce): ab
           },
         });
       } else if (name === 'example') {
-        const example = tsRl.ast.doc.parseExamples(child.getCommentText()?.trim()!, ctx);
+        const example = tsRl.as.doc.parseExamples(child.getCommentText()?.trim()!, ctx);
 
         block.push({
           id: random.createUuid(),

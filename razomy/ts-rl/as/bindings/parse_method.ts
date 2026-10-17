@@ -3,10 +3,10 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseMethod(node: MethodDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce) {
+export function parseMethod(node: MethodDeclaration, ctx: abstractions.patterns.HasEnterLeave) {
   const funcName = node.getName();
-  const jsDoc = tsRl.ast.doc.tryParseJsDoc(node, ctx);
-  const docs = jsDoc ? tsRl.ast.doc.parseJsDoc(jsDoc, ctx) : null;
+  const jsDoc = tsRl.as.doc.tryParseJsDoc(node, ctx);
+  const docs = jsDoc ? tsRl.as.doc.parseJsDoc(jsDoc, ctx) : null;
 
   const func: abstractions.translators.FunctionAsn = {
     id: random.createUuid(),
@@ -28,10 +28,10 @@ export function parseMethod(node: MethodDeclaration, ctx: tsRl.ast.HasEnterLeave
     return [];
   }
 
-  func.parameters = node.getParameters().map(i => tsRl.ast.bindings.parseParameter(i, ctx));
-  func.returnShape = node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
+  func.parameters = node.getParameters().map(i => tsRl.as.bindings.parseParameter(i, ctx));
+  func.returnShape = node.getReturnTypeNode() ? tsRl.as.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
   func.block = node.getBody()
-    ? (tsRl.ast.statements.parse(node.getBody() as any, ctx) as any)
+    ? (tsRl.as.statements.parse(node.getBody() as any, ctx) as any)
     : { id: random.createUuid(), kind: 'BlockAsn', syntaxRole: 'statement', statements: [] };
 
   return [docs, ctx.leave(func, node)].filter(Boolean);

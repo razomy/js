@@ -8,7 +8,7 @@ import tsRefactor from '@razomy/ts-refactor';
 export function addDependencies(projectPath: string, prefix) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => !tsRefactor.isPackageNameSkip(i.name));
+    .filter((i) => !tsRefactor.isPackageNameSkipGeneratingPackageJsonAndReadme(i.name));
 
   const scope = '@' + prefix;
   // 1. Get list of all available package names

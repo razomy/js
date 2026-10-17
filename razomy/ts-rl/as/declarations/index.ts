@@ -2,6 +2,7 @@
 import { getPublicOnlyMut } from './get_public_only_mut';
 import { isDeclarations } from './is_declarations';
 import { parseClass } from './parse_class';
+import { parseDirectory } from './parse_directory';
 import { parseEnum } from './parse_enum';
 import { parseFunction } from './parse_function';
 import { parseInterface } from './parse_interface';
@@ -13,6 +14,7 @@ export {
   getPublicOnlyMut,
   isDeclarations,
   parseClass,
+  parseDirectory,
   parseEnum,
   parseFunction,
   parseInterface,
@@ -25,6 +27,7 @@ const declarations = {
   getPublicOnlyMut,
   isDeclarations,
   parseClass,
+  parseDirectory,
   parseEnum,
   parseFunction,
   parseInterface,

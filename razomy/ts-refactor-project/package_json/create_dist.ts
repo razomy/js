@@ -1,143 +1,113 @@
-// scripts/build-package.js
 import fs from 'node:fs';
 import path from 'node:path';
-import * as dict from '@razomy/dict';
-import * as abstractions from '@razomy/abstractions';
-import * as array from '@razomy/array';
-import * as object_ from '@razomy/object';
+
+// 1. Хелперы трансформации
+function clean (t: string) { return t.replace('src/', ''); }
+function ext (e: string) { return (t: string) => clean(t).replace(/\.ts$/, e); }
+
+const js = ext('.js');
+const dts = ext('.d.ts');
+const cjs = ext('.cjs');
+const mjs = ext('.mjs');
+const dmts = ext('.d.mts');
+const dcts = ext('.d.cts');
+
+// 2. Плоский список правил по путям (от более конкретных к общим)
+const pathRules: [string, (v: string) => string][] = [
+  ['default.default', js],
+  ['default.types', dts],
+
+  ['import.default', js],
+  ['import.types', dts],
+
+  ['node.import', mjs],
+  ['node.require', cjs],
+  ['node.types', dmts],
+
+  ['./node.import', mjs],
+  ['./node.require', cjs],
+  ['./node.types', dmts],
+
+  ['require.default', cjs],
+  ['require.types', dcts],
+
+  ['import', js],
+  ['require', cjs],
+  ['types', dts],
+];
+
+// 3. Правила по самому значению файла (если путь нестандартный, например "./package.json")
+const valueRules: [RegExp, (v: string) => string][] = [
+  [/\.(json|wasm|svg|css)$|\/\*$/, clean],
+  [/\.ts$/, dmts],
+];
+
+function transformTree(node: any, currentPath = ''): any {
+  if (!node) return node;
+
+  // Если массив (например, в typesVersions: { "*": { ".": ["./src/index.ts"] } })
+  // индекс в путь не добавляем, чтобы путь оставался чистым
+  if (Array.isArray(node)) {
+    return node.map((item) => transformTree(item, currentPath));
+  }
+
+  // Если объект — рекурсивно идем вглубь, склеивая путь через точку
+  if (typeof node === 'object') {
+    return Object.fromEntries(
+      Object.entries(node).map(([k, v]) => [
+        k,
+        transformTree(v, currentPath ? `${currentPath}.${k}` : k),
+      ]),
+    );
+  }
+
+  // Если дошли до строки — ищем правило
+  if (typeof node === 'string') {
+    // Особый случай для typesVersions
+    if (currentPath.startsWith('typesVersions')) {
+      if (node.endsWith('/*')) return node;
+      if (node.endsWith('.ts')) return dmts(node);
+    }
+
+    // 1. Ищем совпадение по пути (например "exports...require.types" совпадет с "require.types")
+    const pathRule = pathRules.find(
+      ([pattern]) => currentPath === pattern || currentPath.endsWith(`${pattern}`),
+    );
+    if (pathRule) return pathRule[1](node);
+
+    // 2. Ищем совпадение по значению (расширению файла)
+    const valRule = valueRules.find(([regex]) => regex.test(node));
+    if (valRule) return valRule[1](node);
+
+    throw new Error(`Unknown path "${currentPath}" with value "${node}"`);
+  }
+
+  return node;
+}
 
 export function createDist(packageDirPath: string) {
   const jsonPath = path.join(packageDirPath, './package.json');
-  // Read root package.json
   const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-  function cj(t: string) {
-    return t.replace('.ts', '.cjs').replace('src/', '');
-  }
-
-  function mj(t: string) {
-    return t.replace('.ts', '.mjs').replace('src/', '');
-  }
-
-  function dmj(t: string) {
-    return t.replace('.ts', '.d.mts').replace('src/', '');
-  }
-
-  function dcj(t: string) {
-    return t.replace('.ts', '.d.cts').replace('src/', '');
-  }
-
-  function mD(v1: abstractions.structures.Dict<string> | string | undefined, ck, pk = '') {
-    if (!v1) {
-      return v1;
-    }
-    if (array.isArray(v1)) {
-      return array.map(v1, (v2, k3) => mD(v2 as any, k3, ck));
-    }
-    if (object_.isObject(v1)) {
-      return dict.map(v1, (v2, k3) => mD(v2, k3, ck));
-    }
-    if (pk === 'require' && ck === 'default') {
-      return cj(v1);
-    }
-    if (pk === 'require' && ck === 'types') {
-      return dcj(v1);
-    }
-    if (pk === 'vue' && ck === 'types') {
-      return dmj(v1);
-    }
-    if (pk === 'browser' && ck === 'types') {
-      return dmj(v1);
-    }
-    if (pk === 'default' && ck === 'types') {
-      return dmj(v1);
-    }
-
-    if (ck === 'types') {
-      return dmj(v1);
-    }
-
-    if (ck === 'vue') {
-      return mj(v1);
-    }
-    if (ck === 'types') {
-      return mj(v1);
-    }
-    if (ck === 'browser') {
-      return mj(v1);
-    }
-
-    if (ck === 'default') {
-      return mj(v1);
-    }
-    if (ck === 'module') {
-      return mj(v1);
-    }
-    if (ck === 'node') {
-      return mj(v1);
-    }
-
-    if (ck === 'import') {
-      return mj(v1);
-    }
-    if (ck === 'main') {
-      return cj(v1);
-    }
-    if (ck === 'require') {
-      return cj(v1);
-    }
-
-    if (v1.endsWith('/*')) {
-      return v1.replace('src/', '');
-    }
-    if (v1.endsWith('.json')) {
-      return v1.replace('src/', '');
-    }
-    if (v1.endsWith('.wasm')) {
-      return v1.replace('src/', '');
-    }
-    if (v1.endsWith('.svg')) {
-      return v1.replace('src/', '');
-    }
-    if (v1.endsWith('.css')) {
-      return v1.replace('src/', '');
-    }
-    if (v1.endsWith('.ts')) {
-      return dmj(v1);
-    }
-    throw new Error(`Unknown key "${ck}" "${pk}":"${v1}"`);
-  }
-
-  function mDt(v1: abstractions.structures.Dict<string> | string | undefined, k2, k1 = '') {
-    if (!v1) {
-      return v1;
-    }
-    if (array.isArray(v1)) {
-      return array.map(v1, (v2, k3) => mDt(v2 as any, k3, k2));
-    }
-    if (object_.isObject(v1)) {
-      return dict.map(v1, (v2, k3) => mDt(v2, k3, k2));
-    }
-    if (v1.endsWith('/*')) return v1;
-    if (v1.endsWith('.ts')) return dmj(v1);
-    throw new Error(`Unknown key "${k2}" "${k1}":"${v1}"`);
-  }
-
   if (pkg.files) pkg.files = ['*'];
-  if (pkg.main) pkg.main = mD(pkg.main, 'main');
-  if (pkg.module) pkg.module = mD(pkg.module, 'module');
-  if (pkg.types) pkg.types = dcj(pkg.types);
   if (pkg.scripts) pkg.scripts = {};
-  if (pkg.exports) pkg.exports = mD(pkg.exports, 'exports');
-  if (pkg.typesVersions) pkg.typesVersions = mDt(pkg.typesVersions, 'typesVersions');
+
+  if (pkg.main) pkg.main = js(pkg.main);
+  if (pkg.module) pkg.module = mjs(pkg.module);
+  if (pkg.types) pkg.types = dcts(pkg.types);
+  if (pkg.exports) pkg.exports = transformTree(pkg.exports, 'exports');
+  if (pkg.typesVersions) pkg.typesVersions = transformTree(pkg.typesVersions, 'typesVersions');
 
   let res = JSON.stringify(pkg, null, 2);
-  // WORKAROUND: nuxt not comple child import.ts
-  const isNuxt = pkg.name.includes('nuxt');
-  if (isNuxt) {
+
+  // WORKAROUND: nuxt not compile child import.ts
+  if (pkg.name?.includes('nuxt')) {
     res = res.replaceAll('/index.d.mts', '/index.d.ts').replaceAll('/index.mjs', '/index.js');
   }
 
   fs.writeFileSync(path.join(packageDirPath, 'dist/package.json'), res);
-  fs.copyFileSync(path.resolve(packageDirPath, '../../LICENSE'), path.resolve(packageDirPath, 'dist/LICENSE'));
+  fs.copyFileSync(
+    path.resolve(packageDirPath, '../../LICENSE'),
+    path.resolve(packageDirPath, 'dist/LICENSE'),
+  );
 }

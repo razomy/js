@@ -3,7 +3,7 @@ import * as vrd from '@razomy/vrd';
 
 export function vrdToAbsolutePath<T>(
   input: vrd.VrdOrValue<T>,
-  absolutePath: abstractions.components.AbsolutePathString,
+  absolutePath: abstractions.components.AbsolutePath,
   separator: string,
 ): vrd.VrdOrValue<T> {
   if (vrd.isVrd(input)) {

@@ -18,9 +18,7 @@
   },
   "peerDependencies": {
     "@razomy/array": "*",
-    "@razomy/dict": "*",
-    "@razomy/razomy": "*",
-    "@razomy/server": "*",
+    "@razomy/abstractions": "*",
     "vue": "^3.0.0"
   },
   "devDependencies": {

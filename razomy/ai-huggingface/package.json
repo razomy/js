@@ -143,11 +143,27 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts api-run/index.ts api-run/batch/index.ts api-run/instant/index.ts api-run/instant/chat/index.ts api-run/instant/chat/logic/index.ts api-run/instant/chat/tool/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts api-run/index.ts api-run/batch/index.ts api-run/instant/index.ts api-run/instant/chat/index.ts api-run/instant/chat/logic/index.ts api-run/instant/chat/tool/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "api-run/index.ts",
+        "api-run/batch/index.ts",
+        "api-run/instant/index.ts",
+        "api-run/instant/chat/index.ts",
+        "api-run/instant/chat/logic/index.ts",
+        "api-run/instant/chat/tool/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

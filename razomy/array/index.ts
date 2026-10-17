@@ -17,6 +17,7 @@ import { flat } from './flat';
 import { getFirst } from './get_first';
 import { getLast } from './get_last';
 import { groupBy } from './group_by';
+import { has } from './has';
 import { hasArray } from './has_array';
 import { includes } from './includes';
 import { insertMut } from './insert_mut';
@@ -44,6 +45,8 @@ import { sortByArrayMut } from './sort_by_array_mut';
 import { sortByFrequencyAndUnique } from './sort_by_frequency_and_unique';
 import { take } from './take';
 import { toggle } from './toggle';
+import { tryFind } from './try_find';
+import { tryFindIndex } from './try_find_index';
 import { tryFirstEqual } from './try_first_equal';
 import { tryGetLast } from './try_get_last';
 import { tryGetLastEqual } from './try_get_last_equal';
@@ -72,6 +75,7 @@ export {
   getFirst,
   getLast,
   groupBy,
+  has,
   hasArray,
   includes,
   insertMut,
@@ -99,6 +103,8 @@ export {
   sortByFrequencyAndUnique,
   take,
   toggle,
+  tryFind,
+  tryFindIndex,
   tryFirstEqual,
   tryGetLast,
   tryGetLastEqual,
@@ -128,6 +134,7 @@ const array = {
   getFirst,
   getLast,
   groupBy,
+  has,
   hasArray,
   includes,
   insertMut,
@@ -155,6 +162,8 @@ const array = {
   sortByFrequencyAndUnique,
   take,
   toggle,
+  tryFind,
+  tryFindIndex,
   tryFirstEqual,
   tryGetLast,
   tryGetLastEqual,

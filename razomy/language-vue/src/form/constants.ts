@@ -1,7 +1,7 @@
 import * as abstractions from '@razomy/abstractions';
 import type { Ref } from 'vue';
 import type {
-  HirType,
+  HirnType,
   BindingHirn,
   FunctionHirn,
   BlockHirn,
@@ -43,7 +43,7 @@ export interface EnumOption {
 }
 
 // Теперь Schema опирается на корневые типы HIR, описывающие данные или функции
-export type Schema = HirType;
+export type Schema = HirnType;
 
 export const FORM_SUPPORTED_BUILD_IN_KINDS = [
   'String',
@@ -247,6 +247,7 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
       break;
     }
 
+    case 'ModuleHirn':
     case 'BlockHirn': {
       const seq = currentSchema as BlockHirn;
       const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);

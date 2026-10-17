@@ -1,17 +1,17 @@
-import { Directory } from 'ts-morph';
+import { ModuleDeclaration } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ModuleAsn {
-  const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
-  if (!indexFile) throw new Error('NO index file');
-
+export function parseModule(
+  node: ModuleDeclaration,
+  ctx: abstractions.patterns.HasEnterLeave,
+): abstractions.translators.ModuleAsn {
   const moduleAsn: abstractions.translators.ModuleAsn = {
     id: random.createUuid(),
     kind: 'ModuleAsn',
     syntaxRole: 'statement',
-    identifier: { name: node.getBaseName() || '' },
+    identifier: { name: node.getName() || '' },
     block: null as any,
     version: null,
     role: 'SourceFile',
@@ -25,7 +25,7 @@ export function parseModule(node: Directory, ctx: tsRl.ast.HasEnterLeaveProduce)
     id: random.createUuid(),
     kind: 'BlockAsn',
     syntaxRole: 'statement',
-    statements: [...tsRl.ast.declarations.parseModuleBody(indexFile, ctx)],
+    statements: [...tsRl.as.declarations.parseModuleBody(node, ctx)],
   };
 
   return ctx.leave(moduleAsn, node);

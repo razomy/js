@@ -2,6 +2,7 @@
 import * as arrays from './arrays';
 import * as collections from './collections';
 import * as components from './components';
+import * as fs from './fs';
 import * as functions from './functions';
 import * as graphs from './graphs';
 import * as hardwares from './hardwares';
@@ -17,6 +18,7 @@ export {
   arrays,
   collections,
   components,
+  fs,
   functions,
   graphs,
   hardwares,
@@ -33,6 +35,7 @@ const abstractions = {
   arrays,
   collections,
   components,
+  fs,
   functions,
   graphs,
   hardwares,

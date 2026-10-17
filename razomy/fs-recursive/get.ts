@@ -33,7 +33,7 @@ import * as abstractions from '@razomy/abstractions';
  * const [...files] = get('./dist');
  * ```
  */
-export function* get(dir: abstractions.components.DirPathString): Generator<abstractions.components.FilePathString, void, void> {
+export function* get(dir: abstractions.fs.DirPath): Generator<abstractions.fs.FilePath, void, void> {
   const dirents: Dirent[] = readdirSync(dir, { withFileTypes: true });
 
   for (const dirent of dirents) {
@@ -42,7 +42,7 @@ export function* get(dir: abstractions.components.DirPathString): Generator<abst
     if (dirent.isDirectory()) {
       yield* get(res);
     } else {
-      yield res as abstractions.components.FilePathString;
+      yield res as abstractions.fs.FilePath;
     }
   }
 }

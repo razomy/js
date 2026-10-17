@@ -6,3 +6,5 @@ export interface IObject extends abstractions.patterns.HasId {
 }
 
 export interface IObjectConstructor {type:string}
+
+export const LATE_INIT = '__LATE_INIT__' as any;

@@ -1,9 +1,9 @@
 // Imports
 import type { BrowserEsmShFetchRunProvider, BrowserRunProvider, BrowserTaskProvider, RunProvider, ServerEsmShFetchRunProvider, ServerJobProvider, ServerRunProvider } from './browser_run_provider';
 import * as cli from './cli/index.node';
-import { createRunner } from './create_runner';
-import { resolveAndRun } from './resolve_and_run';
-import type { RunRequest } from './resolve_and_run';
+import { createRunner } from './create_runner.node';
+import { resolveAndRun } from './resolve_and_run.node';
+import type { RunRequest } from './resolve_and_run.node';
 import { resolveFilePathOrPackageName } from './resolve_file_path_or_package_name.node';
 import { runFunctionInstant } from './run_function_instant';
 import type { RunFunctionTask } from './run_function_task';

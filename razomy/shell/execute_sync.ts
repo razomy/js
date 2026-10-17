@@ -9,7 +9,7 @@ export const START_DIR = path.resolve(process.argv[1], '../');
 
 export function executeSync(
   shellCommand: ShellCommand,
-  dirPath: abstractions.components.DirPathString = START_DIR,
+  dirPath: abstractions.fs.DirPath = START_DIR,
 ) {
   const path_ = path.resolve(dirPath);
   const result = execSync(shellCommand, {

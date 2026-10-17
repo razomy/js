@@ -5,6 +5,7 @@ export function isDeclarations(node: Node): boolean {
     Node.isInterfaceDeclaration(node) ||
     Node.isEnumDeclaration(node) ||
     Node.isFunctionDeclaration(node) ||
-    Node.isClassDeclaration(node)
+    Node.isClassDeclaration(node) ||
+    Node.isModuleDeclaration(node)
   );
 }

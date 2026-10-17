@@ -10,9 +10,8 @@ import { getExportedTypes } from './get_exported_types';
 import { getFilteredSourceFiles } from './get_filtered_source_files';
 import { getFirstLevelElementsTextFromSource } from './get_first_level_elements_text_from_source';
 import { getNameAndExt } from './get_name_and_ext';
-import { getPath } from './get_path';
 import { isNameTaken } from './is_name_taken';
-import { isPackageNameSkipGeneratingPackageJsonAndReadme } from './is_package_name_skip';
+import { isPackageNameSkipGeneratingPackageJsonAndReadme } from './is_package_name_skip_generating_package_json_and_readme';
 import { iterateSourceFilesAndSave } from './iterate_source_files_and_save';
 import type { IterateSourceFileState } from './iterate_source_files_and_save';
 import { renameFileBasedOnFirstChild } from './rename_file_based_on_first_child';
@@ -38,7 +37,6 @@ export {
   getFilteredSourceFiles,
   getFirstLevelElementsTextFromSource,
   getNameAndExt,
-  getPath,
   isNameTaken,
   isPackageNameSkipGeneratingPackageJsonAndReadme,
   iterateSourceFilesAndSave,
@@ -69,9 +67,8 @@ const tsRefactor = {
   getFilteredSourceFiles,
   getFirstLevelElementsTextFromSource,
   getNameAndExt,
-  getPath,
   isNameTaken,
-  isPackageNameSkip: isPackageNameSkipGeneratingPackageJsonAndReadme,
+  isPackageNameSkipGeneratingPackageJsonAndReadme,
   iterateSourceFilesAndSave,
   renameFileBasedOnFirstChild,
   renameFoldersRecursively,

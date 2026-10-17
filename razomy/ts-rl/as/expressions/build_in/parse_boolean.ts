@@ -1,9 +1,8 @@
 import { type BooleanLiteral, Node } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
-import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseBoolean(node: BooleanLiteral | Node, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LiteralAsn {
+export function parseBoolean(node: BooleanLiteral | Node, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.LiteralAsn {
   const literalAsn: abstractions.translators.LiteralAsn = {
     id: random.createUuid(),
     kind: 'LiteralAsn',

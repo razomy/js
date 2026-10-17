@@ -3,13 +3,15 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ClassAsn {
+export function parseClass(node: ClassDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.ClassAsn {
   const classAsn: abstractions.translators.ClassAsn = {
     id: random.createUuid(),
     kind: 'ClassAsn',
     syntaxRole: 'statement',
     identifier: { name: node.getName() || 'Anonymous' },
-    modifiers: [],
+    modifiers: [
+      node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
+    ].filter(Boolean),
     parameters: [],
     properties: [],
   };
@@ -21,7 +23,7 @@ export function parseClass(node: ClassDeclaration, ctx: tsRl.ast.HasEnterLeavePr
   classAsn.properties = [
     ...node.getProperties(),
     ...node.getMethods()
-  ].map(i => tsRl.ast.bindings.parse(i, ctx))
+  ].map(i => tsRl.as.bindings.parse(i, ctx))
     .flat() as (abstractions.translators.PropertyAsn | abstractions.translators.FunctionAsn)[];
 
   return ctx.leave(classAsn, node);

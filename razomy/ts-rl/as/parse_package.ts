@@ -7,7 +7,7 @@ import * as random from '@razomy/random';
 export function parsePackage(
   project: Project,
   dirPath: string,
-  ctx: tsRl.ast.HasEnterLeaveProduce,
+  ctx: abstractions.patterns.HasEnterLeave,
 ): abstractions.translators.ModuleAsn | null {
   const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
   if (!packageJsonSource) {
@@ -46,9 +46,24 @@ export function parsePackage(
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'dependency' }],
+        modifiers: [
+          {
+            id: random.createUuid(),
+            kind: 'DependencyModifierAsn',
+            syntaxRole: 'modifier',
+            value: null,
+            operator: 'dependency',
+          },
+          {
+            id: random.createUuid(),
+            kind: 'AccessModifierAsn',
+            syntaxRole: 'modifier',
+            operator: 'public',
+            value: null,
+          },
+        ],
         identifier: { name: k },
-      } satisfies abstractions.translators.ImportAsn),
+      }) satisfies abstractions.translators.ImportAsn,
   );
 
   const peerDependencies: abstractions.translators.ImportAsn[] = Object.entries({
@@ -61,9 +76,17 @@ export function parsePackage(
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'peerDependency' }],
+        modifiers: [
+          {
+            id: random.createUuid(),
+            kind: 'DependencyModifierAsn',
+            syntaxRole: 'modifier',
+            value: null,
+            operator: 'peerDependency',
+          },
+        ],
         identifier: { name: k },
-      } satisfies abstractions.translators.ImportAsn),
+      }) satisfies abstractions.translators.ImportAsn,
   );
 
   const runtimes: abstractions.translators.ImportAsn[] = Object.entries({
@@ -76,13 +99,21 @@ export function parsePackage(
         syntaxRole: 'statement',
         path: k,
         version: v as string,
-        modifiers: [{ id: random.createUuid(), kind: 'DependencyModifierAsn', syntaxRole: 'modifier', value: null, operator: 'runtime' }],
+        modifiers: [
+          {
+            id: random.createUuid(),
+            kind: 'DependencyModifierAsn',
+            syntaxRole: 'modifier',
+            value: null,
+            operator: 'runtime',
+          },
+        ],
         identifier: { name: k },
-      } satisfies abstractions.translators.ImportAsn),
+      }) satisfies abstractions.translators.ImportAsn,
   );
 
   // 4. Парсим тело модуля из index-файла (если найден)
-  const statements = indexFile ? tsRl.ast.declarations.parseModuleBody(indexFile, ctx) : [];
+  const statements = indexFile ? tsRl.as.declarations.parseModuleBody(indexFile, ctx) : [];
 
   // 5. Формируем тело модуля
   moduleAsn.block = {

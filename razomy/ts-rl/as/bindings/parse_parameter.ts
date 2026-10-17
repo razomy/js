@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseParameter(node: ParameterDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ParameterAsn {
+export function parseParameter(node: ParameterDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.ParameterAsn {
   const paramAsn: abstractions.translators.ParameterAsn = {
     id: random.createUuid(),
     kind: 'ParameterAsn',
@@ -24,8 +24,8 @@ export function parseParameter(node: ParameterDeclaration, ctx: tsRl.ast.HasEnte
     return paramAsn;
   }
 
-  paramAsn.shape = node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null;
-  paramAsn.value = node.getInitializer() ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType) : null;
+  paramAsn.shape = node.getTypeNode() ? tsRl.as.shapes.parse(node.getTypeNode()!, ctx) : null;
+  paramAsn.value = node.getInitializer() ? (tsRl.as.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType) : null;
 
   return ctx.leave(paramAsn, node);
 }

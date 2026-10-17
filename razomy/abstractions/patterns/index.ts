@@ -5,6 +5,7 @@ import type { ChangeDifference, Difference, DifferenceType, ReplaceDifference } 
 import type { Gate } from './gate';
 import type { HasClone } from './has_clone';
 import type { HasCreate } from './has_create';
+import type { HasEnterLeave } from './has_enter_leave';
 import type { Execute, HasCancel, HasExecute, HasRollback, HasValidate } from './has_execute';
 import type { HasId, HasPrimaryId, Id, Primary, Uuid } from './has_id';
 import type { HasKind } from './has_kind';
@@ -39,6 +40,7 @@ export type {
   HasCreate,
   HasDecode,
   HasEncode,
+  HasEnterLeave,
   HasExecute,
   HasId,
   HasKind,

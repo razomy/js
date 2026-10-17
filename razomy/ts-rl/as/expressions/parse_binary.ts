@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseBinary(node: BinaryExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.BinaryAsn {
+export function parseBinary(node: BinaryExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.BinaryAsn {
   const binaryAsn: abstractions.translators.BinaryAsn = {
     id: random.createUuid(),
     kind: 'BinaryAsn',
@@ -17,8 +17,8 @@ export function parseBinary(node: BinaryExpression, ctx: tsRl.ast.HasEnterLeaveP
     return binaryAsn;
   }
 
-  binaryAsn.left = tsRl.ast.expressions.parse(node.getLeft(), ctx)!;
-  binaryAsn.right = tsRl.ast.expressions.parse(node.getRight(), ctx)!;
+  binaryAsn.left = tsRl.as.expressions.parse(node.getLeft(), ctx)!;
+  binaryAsn.right = tsRl.as.expressions.parse(node.getRight(), ctx)!;
 
   return ctx.leave(binaryAsn, node);
 }

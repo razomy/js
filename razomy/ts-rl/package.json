@@ -24,116 +24,116 @@
         "types": "./index.ts"
       }
     },
-    "./ast": {
+    "./as": {
       "default": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
       },
       "import": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
       },
       "require": {
-        "default": "./ast/index.ts",
-        "types": "./ast/index.ts"
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
       }
     },
-    "./ast/bindings": {
+    "./as/bindings": {
       "default": {
-        "default": "./ast/bindings/index.ts",
-        "types": "./ast/bindings/index.ts"
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
       },
       "import": {
-        "default": "./ast/bindings/index.ts",
-        "types": "./ast/bindings/index.ts"
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
       },
       "require": {
-        "default": "./ast/bindings/index.ts",
-        "types": "./ast/bindings/index.ts"
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
       }
     },
-    "./ast/declarations": {
+    "./as/declarations": {
       "default": {
-        "default": "./ast/declarations/index.ts",
-        "types": "./ast/declarations/index.ts"
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
       },
       "import": {
-        "default": "./ast/declarations/index.ts",
-        "types": "./ast/declarations/index.ts"
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
       },
       "require": {
-        "default": "./ast/declarations/index.ts",
-        "types": "./ast/declarations/index.ts"
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
       }
     },
-    "./ast/doc": {
+    "./as/doc": {
       "default": {
-        "default": "./ast/doc/index.ts",
-        "types": "./ast/doc/index.ts"
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
       },
       "import": {
-        "default": "./ast/doc/index.ts",
-        "types": "./ast/doc/index.ts"
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
       },
       "require": {
-        "default": "./ast/doc/index.ts",
-        "types": "./ast/doc/index.ts"
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
       }
     },
-    "./ast/expressions": {
+    "./as/expressions": {
       "default": {
-        "default": "./ast/expressions/index.ts",
-        "types": "./ast/expressions/index.ts"
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
       },
       "import": {
-        "default": "./ast/expressions/index.ts",
-        "types": "./ast/expressions/index.ts"
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
       },
       "require": {
-        "default": "./ast/expressions/index.ts",
-        "types": "./ast/expressions/index.ts"
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
       }
     },
-    "./ast/expressions/build_in": {
+    "./as/expressions/build_in": {
       "default": {
-        "default": "./ast/expressions/build_in/index.ts",
-        "types": "./ast/expressions/build_in/index.ts"
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
       },
       "import": {
-        "default": "./ast/expressions/build_in/index.ts",
-        "types": "./ast/expressions/build_in/index.ts"
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
       },
       "require": {
-        "default": "./ast/expressions/build_in/index.ts",
-        "types": "./ast/expressions/build_in/index.ts"
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
       }
     },
-    "./ast/shapes": {
+    "./as/shapes": {
       "default": {
-        "default": "./ast/shapes/index.ts",
-        "types": "./ast/shapes/index.ts"
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
       },
       "import": {
-        "default": "./ast/shapes/index.ts",
-        "types": "./ast/shapes/index.ts"
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
       },
       "require": {
-        "default": "./ast/shapes/index.ts",
-        "types": "./ast/shapes/index.ts"
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
       }
     },
-    "./ast/statements": {
+    "./as/statements": {
       "default": {
-        "default": "./ast/statements/index.ts",
-        "types": "./ast/statements/index.ts"
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
       },
       "import": {
-        "default": "./ast/statements/index.ts",
-        "types": "./ast/statements/index.ts"
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
       },
       "require": {
-        "default": "./ast/statements/index.ts",
-        "types": "./ast/statements/index.ts"
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
       }
     },
     "./hir": {
@@ -150,20 +150,34 @@
         "types": "./hir/index.ts"
       }
     },
-    "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*",
-    "./st": {
+    "./hir/iterator": {
       "default": {
-        "default": "./st/index.ts",
-        "types": "./st/index.ts"
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
       },
       "import": {
-        "default": "./st/index.ts",
-        "types": "./st/index.ts"
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
       },
       "require": {
-        "default": "./st/index.ts",
-        "types": "./st/index.ts"
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*",
+    "./tsMorph": {
+      "default": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
+      },
+      "import": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
+      },
+      "require": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
       }
     }
   },
@@ -189,6 +203,7 @@
     "getPublicOnlyMut",
     "isDeclarations",
     "parseClass",
+    "parseDirectory",
     "parseEnum",
     "parseFunction",
     "parseInterface",
@@ -224,11 +239,18 @@
     "parseThrow",
     "astToHirNode",
     "createPackageFunction",
+    "hirToJsonString",
+    "semanticContextFromTsPackageFolder",
+    "computeSemanticLayers",
+    "findExported",
+    "findHirNodes",
     "indexNodes",
     "joinDocs",
     "linkHirTree",
-    "createSemanticNode",
-    "walkHirChildren"
+    "resolveReferences",
+    "walkHirChildren",
+    "findNodeById",
+    "getNodeId"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -236,6 +258,7 @@
   "name": "@razomy/ts-rl",
   "peerDependencies": {
     "@razomy/abstractions": "*",
+    "@razomy/object": "*",
     "@razomy/random": "*"
   },
   "publishConfig": {
@@ -247,11 +270,32 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts st/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts st/index.ts --watch",
+    "build": "tsdown",
+    "dev": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts hir/iterator/index.ts tsMorph/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "as/index.ts",
+        "as/bindings/index.ts",
+        "as/declarations/index.ts",
+        "as/doc/index.ts",
+        "as/expressions/index.ts",
+        "as/expressions/build_in/index.ts",
+        "as/shapes/index.ts",
+        "as/statements/index.ts",
+        "hir/index.ts",
+        "hir/iterator/index.ts",
+        "tsMorph/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

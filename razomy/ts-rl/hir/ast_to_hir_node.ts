@@ -1,448 +1,612 @@
 import * as abstractions from '@razomy/abstractions';
-import * as random from '@razomy/random';
+import * as tsRl from "@razomy/ts-rl";
 
-/**
- * Строгое извлечение базовых полей. Теперь не генерирует ID (это делает индексатор).
- */
-function getBase(node: abstractions.translators.AsnType) {
-  return {
-    id: random.createUuid(),
-    syntaxRole: node.syntaxRole,
-    semanticLayer: 'semanticLayer' in node ? node.semanticLayer : 'state',
-  } satisfies Partial<abstractions.translators.HirType>;
-}
+export function astToHirNode(
+  ctx: tsRl.hir.SemanticContext,
+  iter: abstractions.patterns.HasEnterLeave,
+  node: abstractions.translators.AsnType,
+): abstractions.translators.HirnType {
+  function recurse(child: abstractions.translators.AsnType) {
+    return astToHirNode(ctx, iter, child);
+  }
 
-export function astToHirNode(node: abstractions.translators.AsnType): abstractions.translators.HirType {
+  let hir: abstractions.translators.HirnType;
+
   switch (node.kind) {
-    // --- DATA & EXPRESSIONS ---
-    case 'LiteralAsn':
-      return {
-        ...getBase(node),
-        kind: 'LiteralHirn',
-        value: node.value,
-      };
+    // region Modifiers (были потеряны — падали в default)
+    case 'InstanceModifierAsn':
+    case 'FunctionModifierAsn':
+    case 'ParameterModifierAsn':
+    case 'InheritModifierAsn':
+    case 'DependencyModifierAsn': {
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.operator;
+      lit.syntaxRole = 'modifier';
+      lit.semanticLayer = 'meta';
+      hir = lit;
+      break;
+    }
 
-    case 'TemplateAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: '+',
-        operands: node.values.map(astToHirNode),
-      };
+    case 'AccessModifierAsn':{
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.operator;
+      lit.syntaxRole = 'modifier';
+      lit.semanticLayer = 'meta';
+      hir = lit;
+      break;
+    }
+    case 'OverrideModifierAsn': {
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = 'override';
+      lit.syntaxRole = 'modifier';
+      lit.semanticLayer = 'meta';
+      hir = lit;
+      break;
+    }
+    // endregion Modifiers
 
-    case 'SpreadAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: '...',
-        operands: [astToHirNode(node.value)],
-      };
-    case 'UnaryAsn':
-    case 'ShapingAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: node.operator,
-        operands: [astToHirNode(node.value)],
-      };
-    case 'DeleteAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: 'delete',
-        operands: [astToHirNode(node.value)],
-      };
-    case 'BinaryAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: node.operator,
-        operands: [astToHirNode(node.left), astToHirNode(node.right)],
-      };
-    case 'AssignAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: '=',
-        operands: [
-          {
-            ...getBase(node),
-            kind: 'ReferenceHirn',
-            target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
-            property: null,
-            arguments_: [],
-          },
-          astToHirNode(node.value),
-        ],
-      };
+    case 'LiteralAsn': {
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.value;
+      hir = lit;
+      break;
+    }
 
-    case 'MappedAsn':
-      return {
-        ...getBase(node),
-        kind: 'BindingHirn',
-        shape: astToHirNode(node.constraint) as abstractions.translators.ReferenceHirn,
-        value: astToHirNode(node.value),
-        modifiers: [],
-        name: null,
-        doc: { description: '' },
-      };
+    case 'TemplateAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = '+';
+      op.operands = node.values.map(recurse);
+      hir = op;
+      break;
+    }
 
-    case 'PropertyAsn':
-      return {
-        ...getBase(node),
-        doc: { description: '' },
-        kind: 'BindingHirn',
-        name: node.identifier.name,
-        value: node.value ? astToHirNode(node.value) : null,
-        modifiers: [],
-        shape: null,
-      };
+    case 'SpreadAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = '...';
+      op.operands = [recurse(node.value)];
+      hir = op;
+      break;
+    }
+
+    case 'UnaryAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      // Сохраняем информацию о префиксной/постфиксной форме
+      op.operator = node.isPrefix ? `${node.operator}_pre` : `${node.operator}_post`;
+      op.operands = [recurse(node.value)];
+      hir = op;
+      break;
+    }
+
+    case 'ShapingAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = node.operator;
+      op.operands = [recurse(node.value)];
+      hir = op;
+      break;
+    }
+
+    case 'DeleteAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = 'delete';
+      op.operands = [recurse(node.value)];
+      hir = op;
+      break;
+    }
+
+    case 'BinaryAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = node.operator;
+      op.operands = [recurse(node.left), recurse(node.right)];
+      hir = op;
+      break;
+    }
+
+    case 'AssignAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = '=';
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.identifier.name;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'state';
+      ref.target = lit;
+      ref.property = null;
+      ref.arguments_ = [];
+      ref.syntaxRole = 'expression';
+      ref.semanticLayer = 'state';
+
+      op.operands = [ref, recurse(node.value)];
+      hir = op;
+      break;
+    }
+
+    case 'MappedAsn': {
+      const b = new tsRl.hir.BindingSn(ctx);
+      b.name = null;
+      b.modifiers = [];
+      b.shape = recurse(node.constraint) as abstractions.translators.ReferenceHirn;
+      b.value = recurse(node.value);
+      b.doc = { description: '' };
+      hir = b;
+      break;
+    }
+
+    case 'PropertyAsn': {
+      const b = new tsRl.hir.BindingSn(ctx);
+      b.name = node.identifier.name;
+      b.modifiers = [];
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.translators.ReferenceHirn) : null;
+      b.value = node.value ? recurse(node.value) : null;
+      b.doc = { description: '' };
+      hir = b;
+      break;
+    }
 
     case 'BlockAsn':
-    case 'StyleBlockAsn':
-      return {
-        ...getBase(node),
-        kind: 'BlockHirn',
-        statements: node.statements.map(astToHirNode),
-      };
+    case 'StyleBlockAsn': {
+      const b = new tsRl.hir.BlockSn(ctx);
+      b.statements = node.statements.map(recurse);
+      hir = b;
+      break;
+    }
 
     case 'IfAsn':
-    case 'TernaryAsn':
-      return {
-        ...getBase(node),
-        kind: 'MatchHirn',
-        target: {
-          ...getBase(node),
-          kind: 'LiteralHirn',
-          value: true,
-        },
-        branches: node.branches.map((b) => astToHirNode(b) as abstractions.translators.BranchHirn),
-      };
+    case 'TernaryAsn': {
+      const m = new tsRl.hir.MatchSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = true;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'state';
+      m.target = lit;
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.translators.BranchHirn);
+      hir = m;
+      break;
+    }
 
-    case 'SwitchAsn':
-      return {
-        ...getBase(node),
-        kind: 'MatchHirn',
-        target: astToHirNode(node.target),
-        branches: node.branches.map((b) => astToHirNode(b) as abstractions.translators.BranchHirn),
-      };
+    case 'SwitchAsn': {
+      const m = new tsRl.hir.MatchSn(ctx);
+      m.target = recurse(node.target);
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.translators.BranchHirn);
+      hir = m;
+      break;
+    }
 
     case 'ConditionBranchAsn':
-    case 'MatchBranchAsn':
-      return {
-        ...getBase(node),
-        kind: 'BranchHirn',
-        pattern: astToHirNode(node.pattern),
-        value: astToHirNode(node.value),
-      };
-    case 'CatchAsn':
-      return {
-        ...getBase(node),
-        kind: 'BranchHirn',
-        pattern: astToHirNode(node.condition),
-        value: astToHirNode(node.block),
-      };
+    case 'MatchBranchAsn': {
+      const br = new tsRl.hir.BranchSn(ctx);
+      br.pattern = recurse(node.pattern);
+      br.value = recurse(node.value);
+      hir = br;
+      break;
+    }
+
+    case 'CatchAsn': {
+      const br = new tsRl.hir.BranchSn(ctx);
+      br.pattern = recurse(node.condition);
+      br.value = recurse(node.block);
+      hir = br;
+      break;
+    }
 
     case 'ElseBranchAsn':
-    case 'DefaultBranchAsn':
-      return {
-        ...getBase(node),
-        kind: 'BranchHirn',
-        pattern: {
-          ...getBase(node),
-          kind: 'LiteralHirn',
-          value: true,
-        },
-        value: astToHirNode(node.value),
-      };
+    case 'DefaultBranchAsn': {
+      const br = new tsRl.hir.BranchSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = true;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'state';
+      br.pattern = lit;
+      br.value = recurse(node.value);
+      hir = br;
+      break;
+    }
 
-    case 'TryAsn':
-      return {
-        ...getBase(node),
-        kind: 'MatchHirn',
-        target: {
-          ...getBase(node),
-          kind: 'OperatorHirn',
-          operator: 'try',
-          operands: [astToHirNode(node.block)],
-        },
-        branches: [],
-      };
+    case 'TryAsn': {
+      const m = new tsRl.hir.MatchSn(ctx);
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = 'try';
+      op.syntaxRole = 'statement';
+      op.semanticLayer = 'state';
+      op.operands = [recurse(node.block)];
+      m.target = op;
+      m.branches = 'branches' in node && Array.isArray((node as any).branches)
+        ? (node as any).branches.map((b: any) => recurse(b) as abstractions.translators.BranchHirn)
+        : [];
+      hir = m;
+      break;
+    }
 
     case 'DefaultCatchAsn':
-    case 'FinallyAsn':
-      return {
-        ...getBase(node),
-        kind: 'BranchHirn',
-        pattern: {
-          ...getBase(node),
-          kind: 'LiteralHirn',
-          value: node.kind === 'FinallyAsn' ? 'finally' : true,
-        },
-        value: astToHirNode(node.block),
-      };
+    case 'FinallyAsn': {
+      const br = new tsRl.hir.BranchSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.kind === 'FinallyAsn' ? 'finally' : true;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'state';
+      br.pattern = lit;
+      br.value = recurse(node.block);
+      hir = br;
+      break;
+    }
 
-    // --- LOOPS ---
-    case 'WhileDoAsn':
-    case 'DoWhileAsn':
-      return {
-        ...getBase(node),
-        kind: 'LoopHirn',
-        condition: astToHirNode(node.condition),
-        block: astToHirNode(node.block) as abstractions.translators.BlockHirn,
-      };
+    case 'WhileDoAsn': {
+      const loop = new tsRl.hir.LoopSn(ctx);
+      loop.condition = recurse(node.condition);
+      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
+      hir = loop;
+      break;
+    }
+
+    case 'DoWhileAsn': {
+      // Сохраняем семантику do-while через модификатор/обертку
+      const loop = new tsRl.hir.LoopSn(ctx);
+      loop.condition = recurse(node.condition);
+      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
+      const doMod = new tsRl.hir.LiteralSn(ctx);
+      doMod.value = 'do_while';
+      doMod.syntaxRole = 'modifier';
+      doMod.semanticLayer = 'meta';
+      (loop as any).modifiers = [doMod];
+      hir = loop;
+      break;
+    }
 
     case 'ForInAsn':
     case 'ForItAsn': {
-      let bodyHirn = astToHirNode(node.block) as abstractions.translators.BlockHirn;
+      const loop = new tsRl.hir.LoopSn(ctx);
+      const rootBlock = node.init ? new tsRl.hir.BlockSn(ctx) : null;
+
+      let bodyHirn = recurse(node.block) as abstractions.translators.BlockHirn;
       if (node.update) {
-        const updateHirn = astToHirNode(node.update);
-        if (bodyHirn.kind === 'BlockHirn') bodyHirn.statements.push(updateHirn);
-        else
-          bodyHirn = {
-            ...getBase(node.block),
-            kind: 'BlockHirn',
-            statements: [bodyHirn, updateHirn],
-          };
+        const updateHirn = recurse(node.update);
+        if (bodyHirn.kind === 'BlockHirn') {
+          bodyHirn.statements.push(updateHirn);
+        } else {
+          const wrapper = new tsRl.hir.BlockSn(ctx);
+          wrapper.syntaxRole = 'statement';
+          wrapper.semanticLayer = 'state';
+          wrapper.statements = [bodyHirn, updateHirn];
+          bodyHirn = wrapper;
+        }
       }
-      const loop: abstractions.translators.LoopHirn = {
-        ...getBase(node),
-        kind: 'LoopHirn',
-        condition: node.condition ? astToHirNode(node.condition) : null,
-        block: bodyHirn,
-      };
-      return node.init
-        ? {
-            ...getBase(node),
-            kind: 'BlockHirn',
-            statements: [astToHirNode(node.init), loop],
-          }
-        : loop;
+
+      loop.condition = node.condition ? recurse(node.condition) : null;
+      loop.block = bodyHirn;
+      loop.syntaxRole = node.syntaxRole;
+      loop.semanticLayer = 'state';
+
+      if (rootBlock) {
+        rootBlock.syntaxRole = node.syntaxRole;
+        rootBlock.semanticLayer = 'state';
+        rootBlock.statements = [recurse(node.init!), loop];
+        hir = rootBlock;
+      } else {
+        hir = loop;
+      }
+      break;
     }
 
-    case 'ForOfAsn':
-      return {
-        ...getBase(node),
-        kind: 'BlockHirn',
-        statements: [
-          astToHirNode(node.init),
-          {
-            ...getBase(node),
-            kind: 'LoopHirn',
-            block: astToHirNode(node.block) as abstractions.translators.BlockHirn,
-            condition: null,
-          },
-        ],
-      };
+    case 'ForOfAsn': {
+      const blk = new tsRl.hir.BlockSn(ctx);
+      const loop = new tsRl.hir.LoopSn(ctx);
+      loop.condition = null;
+      loop.syntaxRole = node.syntaxRole;
+      loop.semanticLayer = 'state';
+      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
 
-    // --- JUMPS ---
+      blk.statements = [recurse(node.init), loop];
+      hir = blk;
+      break;
+    }
+
     case 'BreakAsn':
-    case 'ContinueAsn':
-      return {
-        ...getBase(node),
-        kind: 'GoHirn',
-        operator: node.kind === 'BreakAsn' ? 'break' : 'continue',
-        value: node.identifier
-          ? {
-              ...getBase(node),
-              kind: 'ReferenceHirn',
-              target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
-              arguments_: [],
-              property: null,
-            }
-          : null,
-      };
+    case 'ContinueAsn': {
+      const go = new tsRl.hir.GoSn(ctx);
+      go.operator = node.kind === 'BreakAsn' ? 'break' : 'continue';
+      if (node.identifier) {
+        const ref = new tsRl.hir.ReferenceSn(ctx);
+        const lit = new tsRl.hir.LiteralSn(ctx);
+        lit.value = node.identifier.name;
+        lit.syntaxRole = 'expression';
+        lit.semanticLayer = 'state';
+        ref.target = lit;
+        ref.property = null;
+        ref.arguments_ = [];
+        ref.syntaxRole = 'expression';
+        ref.semanticLayer = 'state';
+        go.value = ref;
+      } else {
+        go.value = null;
+      }
+      hir = go;
+      break;
+    }
 
     case 'YieldAsn':
     case 'ReturnAsn':
-    case 'ThrowAsn':
-      return {
-        ...getBase(node),
-        kind: 'GoHirn',
-        operator: node.kind.replace('Asn', '').toLowerCase() as any,
-        value: node.value ? astToHirNode(node.value) : null,
-      };
+    case 'ThrowAsn': {
+      const go = new tsRl.hir.GoSn(ctx);
+      go.operator = node.kind.replace('Asn', '').toLowerCase() as any;
+      go.value = node.value ? recurse(node.value) : null;
+      hir = go;
+      break;
+    }
 
-    // --- DECLARATIONS & ENTITIES ---
     case 'InstanceAsn':
-    case 'ParameterAsn':
-      return {
-        ...getBase(node),
-        kind: 'BindingHirn',
-        name: node.identifier.name,
-        modifiers: node.modifiers.map(astToHirNode),
-        shape: node.shape ? (astToHirNode(node.shape) as abstractions.translators.ReferenceHirn) : null,
-        value: node.value ? astToHirNode(node.value) : null,
-        doc: { description: '' },
-      };
+    case 'ParameterAsn': {
+      const b = new tsRl.hir.BindingSn(ctx);
+      b.name = node.identifier.name;
+      b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.translators.ReferenceHirn) : null;
+      b.value = node.value ? recurse(node.value) : null;
+      b.doc = { description: '' };
+      hir = b;
+      break;
+    }
 
     case 'LambdaAsn':
-    case 'FunctionAsn':
-      return {
-        ...getBase(node),
-        kind: 'FunctionHirn',
-        fnHashId: random.createUuid(),
-        name: node.kind === 'FunctionAsn' ? node.identifier.name : null,
-        modifiers: node.modifiers.map(astToHirNode),
-        returnShape: node.returnShape ? (astToHirNode(node.returnShape) as abstractions.translators.ReferenceHirn) : null,
-        parameters: node.parameters.map((p) => astToHirNode(p) as abstractions.translators.BindingHirn),
-        block: astToHirNode(node.block),
-        doc: {
-          description: '',
-          examples: [],
-          returnDescription: '',
-          title: '',
-        },
+    case 'FunctionAsn': {
+      const fn = new tsRl.hir.FunctionSn(ctx);
+      fn.name = node.kind === 'FunctionAsn' && node.identifier ? node.identifier.name : null;
+      fn.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.translators.ReferenceHirn) : null;
+      fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.translators.BindingHirn);
+      fn.block = node.block ? recurse(node.block) : null;
+      fn.doc = {
+        title: null,
+        description: null,
+        returnDescription: null,
+        examples: [],
       };
+      hir = fn;
+      break;
+    }
 
-    // --- STRUCTS ---
-    case 'ModuleAsn':
-      return {
-        ...getBase(node),
-        kind: 'StructHirn',
-        name: node.identifier.name,
-        doc: { description: '' },
-        modifiers: [
-          {
-            ...getBase(node),
-            kind: 'LiteralHirn',
-            value: 'module',
-          },
-        ],
-        properties: [...node.block.statements].map(astToHirNode) as abstractions.translators.BindingHirn[],
-      };
+    case 'ModuleAsn': {
+      const s = new tsRl.hir.ModuleSn(ctx);
+      s.name = node.identifier.name;
+
+      const modLit = new tsRl.hir.LiteralSn(ctx);
+      modLit.value = 'module';
+      modLit.syntaxRole = 'modifier';
+      modLit.semanticLayer = 'meta';
+
+      const roleLit = new tsRl.hir.LiteralSn(ctx);
+      roleLit.value = node.role;
+      roleLit.syntaxRole = 'modifier';
+      roleLit.semanticLayer = 'meta';
+
+      s.modifiers = [modLit, roleLit];
+
+      // Сохраняем версию модуля, если присутствует
+      if (node.version) {
+        const verLit = new tsRl.hir.LiteralSn(ctx);
+        verLit.value = `version:${node.version}`;
+        verLit.syntaxRole = 'modifier';
+        verLit.semanticLayer = 'meta';
+        s.modifiers.push(verLit);
+      }
+
+      s.properties = node.block?.statements ? [...node.block.statements].map(recurse) : [];
+      s.doc = { description: '' };
+      hir = s;
+      break;
+    }
 
     case 'ArrayAsn':
-    case 'TupleAsn':
-      return {
-        ...getBase(node),
-        kind: 'StructHirn',
-        doc: { description: '' },
-        name: null,
-        modifiers: [],
-        properties: node.values.map(astToHirNode) as abstractions.translators.BindingHirn[],
-      };
+    case 'TupleAsn': {
+      const s = new tsRl.hir.StructSn(ctx);
+      s.name = null;
+      s.modifiers = [];
+      s.properties = node.values.map(recurse);
+      s.doc = { description: '' };
+      hir = s;
+      break;
+    }
 
     case 'ObjectAsn':
     case 'StructAsn':
     case 'InterfaceAsn':
     case 'ClassAsn':
-    case 'EnumAsn':
-      return {
-        ...getBase(node),
-        kind: 'StructHirn',
-        doc: { description: '' },
-        name: 'identifier' in node && node.identifier ? node.identifier.name : null,
-        modifiers: 'modifiers' in node ? node.modifiers.map(astToHirNode) : [],
-        properties: node.properties.map((p) => astToHirNode(p) as abstractions.translators.BindingHirn),
-      };
+    case 'EnumAsn': {
+      const s = new tsRl.hir.StructSn(ctx);
+      s.name = 'identifier' in node && node.identifier ? node.identifier.name : null;
 
-    // --- ACCESS & INTERACTIONS ---
+      const kindModifier = new tsRl.hir.LiteralSn(ctx);
+      kindModifier.value = node.kind.replace('Asn', '').toLowerCase();
+      kindModifier.syntaxRole = 'modifier';
+      kindModifier.semanticLayer = 'shape';
+
+      const baseModifiers =
+        'modifiers' in node && node.modifiers
+          ? (node.modifiers as abstractions.translators.AsnType[]).map(recurse)
+          : [];
+
+      // Переносим параметры типов/дженерики (parameters), которые раньше терялись
+      const genericModifiers =
+        'parameters' in node && node.parameters
+          ? (node.parameters as abstractions.translators.AsnType[]).map(recurse)
+          : [];
+
+      s.modifiers = [kindModifier, ...baseModifiers, ...genericModifiers];
+      s.properties = node.properties.map(recurse);
+      s.doc = { description: '' };
+      hir = s;
+      break;
+    }
+
     case 'ReferenceAsn':
-    case 'AliasAsn':
-    case 'MacroCallAsn':
-      return {
-        ...getBase(node),
-        kind: 'ReferenceHirn',
-        target: { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name },
-        arguments_: [],
-        property: null,
-      };
-    case 'MemberAsn':
-      return {
-        ...getBase(node),
-        kind: 'ReferenceHirn',
-        target: astToHirNode(node.object_),
-        property: astToHirNode(node.property),
-        arguments_: [],
-      };
-    case 'ArgumentMemberAsn':
-      return {
-        ...getBase(node),
-        kind: 'ReferenceHirn',
-        target: astToHirNode(node.argument),
-        property: astToHirNode(node.property),
-        arguments_: [],
-      };
+    case 'AliasAsn': {
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.identifier.name;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'state';
+      ref.target = lit;
+      ref.property = null;
+      ref.arguments_ = [];
+      hir = ref;
+      break;
+    }
+
+    case 'MacroCallAsn': {
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.identifier.name;
+      lit.syntaxRole = 'expression';
+      lit.semanticLayer = 'meta';
+      ref.target = lit;
+      ref.property = null;
+      // Переносим аргументы/токены макроса
+      ref.arguments_ = (node.arguments_ || []).map((token) => {
+        const tokenLit = new tsRl.hir.LiteralSn(ctx);
+        tokenLit.value = (token as any).value ?? token;
+        tokenLit.syntaxRole = 'expression';
+        tokenLit.semanticLayer = 'meta';
+        return tokenLit;
+      });
+      hir = ref;
+      break;
+    }
+
+    case 'MemberAsn': {
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      ref.target = recurse(node.object_);
+      ref.property = recurse(node.property);
+      ref.arguments_ = [];
+      hir = ref;
+      break;
+    }
+
+    case 'ArgumentMemberAsn': {
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      ref.target = recurse(node.argument);
+      ref.property = recurse(node.property);
+      ref.arguments_ = [];
+      hir = ref;
+      break;
+    }
 
     case 'CallAsn':
-    case 'DecoratorAsn':
-      return {
-        ...getBase(node),
-        kind: 'ReferenceHirn',
-        target: node.identifier ? { ...getBase(node), kind: 'LiteralHirn', value: node.identifier.name } : null,
-        arguments_: node.arguments_.map(astToHirNode),
-        property: null,
-      };
+    case 'DecoratorAsn': {
+      const ref = new tsRl.hir.ReferenceSn(ctx);
+      if (node.identifier) {
+        const lit = new tsRl.hir.LiteralSn(ctx);
+        lit.value = node.identifier.name;
+        lit.syntaxRole = 'expression';
+        lit.semanticLayer = node.kind === 'DecoratorAsn' ? 'meta' : 'state';
+        ref.target = lit;
+      } else {
+        ref.target = null;
+      }
+      ref.property = null;
+      ref.arguments_ = (node.arguments_ || []).map(recurse);
+      hir = ref;
+      break;
+    }
 
-    case 'ImportAsn':
-      return {
-        ...getBase(node),
-        kind: 'BindingHirn',
-        modifiers: [],
-        shape: null,
-        doc: { description: '' },
-        name: node.identifier.name,
-        value: {
-          ...getBase(node),
-          kind: 'ReferenceHirn',
-          target: { ...getBase(node), kind: 'LiteralHirn', value: 'import' },
-          arguments_: [
-            {
-              ...getBase(node),
-              kind: 'LiteralHirn',
-              value: node.path,
-            },
-          ],
-          property: null,
-        },
-      };
+    case 'ImportAsn': {
+      const b = new tsRl.hir.BindingSn(ctx);
+      b.name = node.identifier.name;
+      // Сохраняем модификаторы импорта
+      b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      b.shape = null;
+      b.doc = { description: '' };
 
-    // --- LAYERS & METADATA ---
-    case 'TagAsn':
-      return {
-        ...getBase(node),
-        kind: 'BindingHirn',
-        modifiers: [],
-        shape: null,
-        doc: { description: '' },
-        value: astToHirNode(node.value),
-        name: node.identifier.name,
-      };
-    case 'TextAsn':
-      return {
-        ...getBase(node),
-        kind: 'LiteralHirn',
-        value: node.value,
-      };
-    case 'DocsAsn':
-      return {
-        ...getBase(node),
-        kind: 'BlockHirn',
-        syntaxRole: 'text',
-        statements: node.block.map(astToHirNode),
-      };
-    case 'CommentAsn':
-      return {
-        ...getBase(node),
-        kind: 'BlockHirn',
-        syntaxRole: 'text',
-        statements: [astToHirNode(node.value)],
-      };
+      const importRef = new tsRl.hir.ReferenceSn(ctx);
+      const targetLit = new tsRl.hir.LiteralSn(ctx);
+      targetLit.value = 'import';
+      targetLit.syntaxRole = node.syntaxRole;
+      targetLit.semanticLayer = 'meta';
+      importRef.target = targetLit;
+
+      const pathLit = new tsRl.hir.LiteralSn(ctx);
+      pathLit.value = node.path;
+      pathLit.syntaxRole = 'expression';
+      pathLit.semanticLayer = 'meta';
+
+      importRef.arguments_ = [pathLit];
+
+      // Сохраняем версию импорта в аргументы вызова import(...)
+      if (node.version) {
+        const verLit = new tsRl.hir.LiteralSn(ctx);
+        verLit.value = node.version;
+        verLit.syntaxRole = 'expression';
+        verLit.semanticLayer = 'meta';
+        importRef.arguments_.push(verLit);
+      }
+
+      importRef.property = null;
+      importRef.syntaxRole = 'expression';
+      importRef.semanticLayer = 'meta';
+
+      b.value = importRef;
+      hir = b;
+      break;
+    }
+
+    case 'TagAsn': {
+      const b = new tsRl.hir.BindingSn(ctx);
+      b.name = node.identifier.name;
+      b.modifiers = [];
+      b.shape = null;
+      b.value = recurse(node.value);
+      b.doc = { description: '' };
+      hir = b;
+      break;
+    }
+
+    case 'TextAsn': {
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = node.value;
+      hir = lit;
+      break;
+    }
+
+    case 'DocsAsn': {
+      const blk = new tsRl.hir.BlockSn(ctx);
+      blk.statements = node.block.map(recurse);
+      hir = blk;
+      break;
+    }
+
+    case 'CommentAsn': {
+      const blk = new tsRl.hir.BlockSn(ctx);
+      blk.statements = [recurse(node.value)];
+      hir = blk;
+      break;
+    }
+
     case 'QueryAsn':
-    case 'ConstraintAsn':
-      return {
-        ...getBase(node),
-        kind: 'OperatorHirn',
-        operator: node.kind === 'QueryAsn' ? 'query' : 'constraint',
-        operands: [astToHirNode(node.pattern)],
-      };
+    case 'ConstraintAsn': {
+      const op = new tsRl.hir.OperatorSn(ctx);
+      op.operator = node.kind === 'QueryAsn' ? 'query' : 'constraint';
+      op.operands = [recurse(node.pattern)];
+      hir = op;
+      break;
+    }
 
-    default:
-      return {
-        ...getBase(node),
-        kind: 'LiteralHirn',
-        value: null,
-      };
+    default: {
+      const lit = new tsRl.hir.LiteralSn(ctx);
+      lit.value = null;
+      hir = lit;
+      break;
+    }
   }
+
+  // Перенос системных метаданных
+  if ('syntaxRole' in node && node.syntaxRole) {
+    hir.syntaxRole = node.syntaxRole;
+  } else if (!hir.syntaxRole) {
+    hir.syntaxRole = 'expression';
+  }
+
+  if ('semanticLayer' in node && (node as any).semanticLayer) {
+    hir.semanticLayer = (node as any).semanticLayer;
+  } else if (!hir.semanticLayer) {
+    hir.semanticLayer = 'state';
+  }
+
+  if (!iter.enter(hir, node)) return hir;
+  return iter.leave(hir, node);
 }

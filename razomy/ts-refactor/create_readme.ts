@@ -2,16 +2,8 @@ import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstractions from '@razomy/abstractions';
 import * as languageString from '@razomy/language-string';
-import * as tsRl from "@razomy/ts-rl";
-import * as tsRefactor from "@razomy/ts-refactor";
-
-export function createReadme(path: string, packageJson: any, ctx: tsRl.st.SemanticContext) {
-  const packageDeclaration = ctx.root as abstractions.translators.StructHirn;
-  const scopeName = stringCase.camelCase(packageDeclaration.name!.replace('@razomy/', ''));
-
-  const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
-
-  const vision = `
+import * as tsRl from '@razomy/ts-rl';
+const vision = `
 ## 🕊️ Vision
 
 > "Razomy" means Together — you and me.  
@@ -21,7 +13,7 @@ export function createReadme(path: string, packageJson: any, ctx: tsRl.st.Semant
 > Join us to build this future—one commit at a time.
   `.trim();
 
-  const report = `
+const report = `
 ## 🐛 Reporting Issues
 
 We use GitHub Issues as the official bug tracker for this project.
@@ -35,6 +27,37 @@ When reporting a bug, please include:
 - Steps to reproduce the bug.
 - Your current environment (Node version, OS, etc.).
 `.trim();
+
+const donate = `
+## 💖 Fuel Our Shared Future
+
+If this library has saved you time,
+ please consider backing the developers behind it. 
+
+- [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
+- [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
+- [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
+- [🚀 Beacon of Excellence](https://donate.stripe.com/6oU9AS0UX8EFerQc2d0Jq07)
+`.trim();
+
+const licenseAndContributing = `
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+Feel free to check [issues page](https://github.com/razomy/js/issues).
+
+## 📝 License
+
+Copyright © ${new Date().getFullYear()} [Razomy](https://github.com/razomy).
+This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
+`.trim();
+
+export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.SemanticContext) {
+  const hirRoot = ctx.hirRoot as abstractions.translators.StructHirn;
+  const scopeName = stringCase.camelCase(hirRoot.name!.replace('@razomy/', ''));
+
+  const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;
+
   const s = 'https://img.shields.io/';
   const title = `
 # ${packageJson.name}
@@ -61,24 +84,6 @@ When reporting a bug, please include:
 > ${packageJson.description}
 `.trim();
 
-  const donate = `
-## 💖 Fuel Our Shared Future
-
-We can't build this without you.
-If this library has saved you time or helped turn chaos into clarity in your own projects,
- please consider backing the developers behind it. 
- Building reliable, open-source tools takes immense time and energy.
-Your sponsorship isn't just a donation; 
-it’s the fuel that keeps this project actively maintained, bug-free, and thriving for everyone who relies on it.
-
-Help us keep the momentum going. Choose how you want to light the way:
-
-- [✨ Spark of Creativity](https://donate.stripe.com/28EbJ07jlbQR83sc2d0Jq08)
-- [🌟 Flame of Innovation (Recommended)](https://donate.stripe.com/3cI6oGbzB1cddnMc2d0Jq06)
-- [🔥 Torch of Progress](https://donate.stripe.com/28EcN48np9IJ6Zo9U50Jq09)
-- [🚀 Beacon of Excellence](https://donate.stripe.com/6oU9AS0UX8EFerQc2d0Jq07)
-`.trim();
-
   const install = `
 ### Install
 
@@ -91,13 +96,14 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const allDecls = packageDeclaration.properties
-    .filter((i) => i.kind === 'StructHirn').flatMap(i=>i.properties);
-  allDecls.sort((a, b) => tsRefactor.getPath(a).join('').localeCompare(tsRefactor.getPath(b).join('')));
-  const typeSpecs = ctx.semanticMap.values().filter(i => i.kind === 'StructHirn').toArray();
-  const functionSpecs = allDecls.filter(i => i.kind === 'FunctionHirn');
-  const functionPath = allDecls.length > 0 ? tsRefactor.getPath(allDecls[0]) : ['functionName'];
-
+  const allDecls = tsRl.hir.iterator.findExported(hirRoot as any).filter(i=>!!i.name);
+  allDecls.sort((a, b) => languageString.md.getNamePath(a).join('').localeCompare(languageString.md.getNamePath(b).join('')));
+  const typeSpecs = allDecls
+    .values()
+    .filter((i) => i.kind === 'StructHirn')
+    .toArray();
+  const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
+  const functionPath = allDecls.length > 0 ? languageString.md.getNamePath(allDecls[0]) : ['functionName'];
 
   const imports = `
 ### Import
@@ -120,8 +126,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.hir.name?.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${tsRefactor.getPath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${languageString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${languageString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
@@ -130,26 +136,14 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(i=>i.hir).map(languageString.md.hirToString).join('\n\n').trim();
+  const functions = functionSpecs.map(languageString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(i=>i.hir).map(languageString.md.hirToString).join('\n\n').trim();
+  const types = typeSpecs.map(languageString.md.hirToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation
 
 ${types.length ? '### Types\n\n' + types + '\n\n' : ''}${functions.length ? '### Functions\n\n' + functions : ''}
-`.trim();
-
-  const licenseAndContributing = `
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!
-Feel free to check [issues page](https://github.com/razomy/js/issues).
-
-## 📝 License
-
-Copyright © ${new Date().getFullYear()} [Razomy](https://github.com/razomy).
-This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 `.trim();
 
   const readme =

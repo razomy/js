@@ -148,7 +148,7 @@ describe('parse', () => {
     );
 
     // 3. Run your parser!
-    const modules = tsRl.ast.parsePackage(project, '', {
+    const modules = tsRl.as.parsePackage(project, '', {
       leave: (a) => a,
       enter: (a) => a,
     });

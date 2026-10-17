@@ -201,11 +201,28 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts advanced/index.ts color/index.ts compositing/index.ts export_/index.ts filter/index.ts geometry/index.ts import_/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts advanced/index.ts color/index.ts compositing/index.ts export_/index.ts filter/index.ts geometry/index.ts import_/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "advanced/index.ts",
+        "color/index.ts",
+        "compositing/index.ts",
+        "export_/index.ts",
+        "filter/index.ts",
+        "geometry/index.ts",
+        "import_/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

@@ -5,7 +5,7 @@ import * as random from '@razomy/random';
 
 export function parseVariable(
   node: TsVariableDeclaration,
-  ctx: tsRl.ast.HasEnterLeaveProduce,
+  ctx: abstractions.patterns.HasEnterLeave,
 ): abstractions.translators.InstanceAsn {
   const parent = node.getParent();
   const isConst = Node.isVariableDeclarationList(parent)
@@ -16,7 +16,11 @@ export function parseVariable(
     id: random.createUuid(),
     kind: 'InstanceAsn',
     syntaxRole: 'statement',
-    modifiers: isConst ? [{ id: random.createUuid(), kind: 'InstanceModifierAsn', syntaxRole: 'modifier', operator: 'const', value: null }] : [],
+    modifiers: [
+      node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
+      isConst ? { id: random.createUuid(), kind: 'InstanceModifierAsn', syntaxRole: 'modifier', operator: 'const', value: null } : null,
+    ].filter(Boolean),
+
     identifier: { name: node.getName() },
     shape: null,
     value: null as any,
@@ -26,9 +30,9 @@ export function parseVariable(
     return instanceAsn;
   }
 
-  instanceAsn.shape = node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null;
+  instanceAsn.shape = node.getTypeNode() ? tsRl.as.shapes.parse(node.getTypeNode()!, ctx) : null;
   instanceAsn.value = node.getInitializer()
-    ? (tsRl.ast.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType)
+    ? (tsRl.as.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType)
     : { id: random.createUuid(), kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: undefined };
 
   return ctx.leave(instanceAsn, node);

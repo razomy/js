@@ -172,6 +172,16 @@ if (!Array.prototype.hasArray) {
   });
 }
 
+if (!Array.prototype.has) {
+  Object.defineProperty(Array.prototype, 'has', {
+    value: function (...args: any[]) {
+      return (array as any).has(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, 'includes', {
     value: function (...args: any[]) {
@@ -416,6 +426,26 @@ if (!Array.prototype.toggle) {
   Object.defineProperty(Array.prototype, 'toggle', {
     value: function (...args: any[]) {
       return (array as any).toggle(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
+if (!Array.prototype.tryFindIndex) {
+  Object.defineProperty(Array.prototype, 'tryFindIndex', {
+    value: function (...args: any[]) {
+      return (array as any).tryFindIndex(this as any, ...args);
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
+if (!Array.prototype.tryFind) {
+  Object.defineProperty(Array.prototype, 'tryFind', {
+    value: function (...args: any[]) {
+      return (array as any).tryFind(this as any, ...args);
     },
     writable: true,
     configurable: true,
@@ -832,6 +862,29 @@ declare global {
      * @complexity memory O(n)
      */
     hasArray<T>(this: T[], array: T[]): boolean;
+    /**
+     * @summary Checks if an item matching the predicate exists in the array.
+     * @description Checks if an item in an array matches the predicate. Returns `true` if found, otherwise `false`.
+     * @template T
+     * @param array The array to search.
+     * @param predicate The function invoked per iteration.
+     * @returns True if a matching item is found, otherwise false.
+     * @example
+     * ```ts
+     * has([1, 2, 3], (n) => n === 2); // => true
+     * ```
+     * @example
+     * ```ts
+     * has([{ id: 1 }, { id: 2 }], (o) => o.id === 1); // => true
+     * ```
+     * @example
+     * ```ts
+     * has([1, 2, 3], (n) => n === 4); // => false
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(1)
+     */
+    has<T>(this: T[], predicate: (item: T, index: number, array: T[]) => boolean): boolean;
     /**
      * @summary Checks if value is in array.
      * @description Checks if value is in array.
@@ -1401,6 +1454,52 @@ declare global {
      * @complexity memory O(n)
      */
     toggle<T>(this: T[], item: T): T[];
+    /**
+     * @summary Returns the index of the first element in the array that satisfies the provided testing function.
+     * @description Returns the index of the first element in the array that satisfies the provided testing function.
+     * @template T
+     * @param array The array to search.
+     * @param predicate The function to execute on each value.
+     * @returns The index of the first element that passes the test, otherwise return null.
+     * @example
+     * ```ts
+     * tryFindIndex([1, 2, 3], (x) => x === 2); // => 1
+     * ```
+     * @example
+     * ```ts
+     * tryFindIndex(['a', 'b', 'c'], (x) => x !== 'b'); // => 0
+     * ```
+     * @example
+     * ```ts
+     * tryFindIndex([1, 2, 3], (x) => x > 5); // => -1
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(n)
+     */
+    tryFindIndex<T>(this: T[], predicate: (item: T, index: number, array: T[]) => boolean): number | null;
+    /**
+     * @summary Find an item in an array that matches the predicate.
+     * @description Find an item in an array that matches the predicate. Returns null if no item is found.
+     * @template T
+     * @param array The array to search.
+     * @param predicate The function invoked per iteration.
+     * @returns The found item, or null if not found.
+     * @example
+     * ```ts
+     * tryFind([1, 2, 3], (n) => n === 2); // => 2
+     * ```
+     * @example
+     * ```ts
+     * tryFind([{ id: 1 }, { id: 2 }], (o) => o.id === 1); // => { id: 1 }
+     * ```
+     * @example
+     * ```ts
+     * tryFind([1, 2, 3], (n) => n === 4); // => null
+     * ```
+     * @complexity time O(n)
+     * @complexity memory O(1)
+     */
+    tryFind<T>(this: T[], predicate: (item: T, index: number, array: T[]) => boolean): T | null;
     /**
      * @summary Find the first element in array2 that also exists in array1.
      * @description Iterates through array2 and for each element checks if it exists in array1 using strict equality. Returns the first matching element, or null if no match is found.

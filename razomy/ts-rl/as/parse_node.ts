@@ -2,26 +2,27 @@ import {Node} from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 
-export function parseNode(node: Node, ctx: tsRl.ast.HasEnterLeaveProduce,): abstractions.translators.AsnType[] {
-  if (tsRl.ast.statements.isStatement(node)) {
-    return [tsRl.ast.statements.parse(node, ctx)];
+export function parseNode(node: Node, ctx: abstractions.patterns.HasEnterLeave,): abstractions.translators.AsnType[] {
+  if (tsRl.as.statements.isStatement(node)) {
+    return [tsRl.as.statements.parse(node, ctx)];
   }
 
-  if (tsRl.ast.bindings.isBindings(node)) {
-    return tsRl.ast.bindings.parse(node, ctx);
+  if (tsRl.as.bindings.isBindings(node)) {
+    return tsRl.as.bindings.parse(node, ctx);
   }
 
-  if (tsRl.ast.declarations.isDeclarations(node)) {
-    return tsRl.ast.bindings.parse(node, ctx);
+  if (tsRl.as.declarations.isDeclarations(node)) {
+    return tsRl.as.bindings.parse(node, ctx);
   }
 
-  if (tsRl.ast.shapes.isShape(node)) {
-    return [tsRl.ast.shapes.parse(node, ctx)];
+  if (tsRl.as.shapes.isShape(node)) {
+    return [tsRl.as.shapes.parse(node, ctx)];
   }
 
-  if (tsRl.ast.expressions.isExpression(node)) {
-    return [tsRl.ast.expressions.parse(node, ctx)];
+  if (tsRl.as.expressions.isExpression(node)) {
+    return [tsRl.as.expressions.parse(node, ctx)];
   }
 
-  throw new tsRl.ast.UnknownNodeException(node);
+  throw new tsRl.as.UnknownNodeException(node);
 }
+

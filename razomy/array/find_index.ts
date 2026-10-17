@@ -30,3 +30,4 @@ export function findIndex<T>(array: T[], predicate: (item: T, index: number, arr
 
   return index;
 }
+

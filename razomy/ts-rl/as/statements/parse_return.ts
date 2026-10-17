@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseReturn(node: ReturnStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.ReturnAsn {
+export function parseReturn(node: ReturnStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.ReturnAsn {
   const returnAsn: abstractions.translators.ReturnAsn = {
     id: random.createUuid(),
     kind: 'ReturnAsn',
@@ -15,7 +15,7 @@ export function parseReturn(node: ReturnStatement, ctx: tsRl.ast.HasEnterLeavePr
     return returnAsn;
   }
 
-  returnAsn.value = node.getExpression() ? (tsRl.ast.expressions.parse(node.getExpression()!, ctx) as abstractions.translators.StateAsnType) : null;
+  returnAsn.value = node.getExpression() ? (tsRl.as.expressions.parse(node.getExpression()!, ctx) as abstractions.translators.StateAsnType) : null;
 
   return ctx.leave(returnAsn, node);
 }

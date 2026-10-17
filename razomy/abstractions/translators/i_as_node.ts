@@ -898,9 +898,10 @@ export interface DependencyModifierAsn extends IModifierAsn {
   value: abstractions.meta.NullOptional<DeclarationAsnType>;
 }
 
-export interface ExportModifierAsn extends IModifierAsn {
-  kind: 'ExportModifierAsn';
-  value: abstractions.meta.NullOptional<DeclarationAsnType>; // export fun
+export interface AccessModifierAsn extends IModifierAsn {
+  kind: 'AccessModifierAsn';
+  operator: 'public' | 'private' | 'protected';
+  value: abstractions.meta.NullOptional<DeclarationAsnType>;
 }
 
 export interface OverrideModifierAsn extends IModifierAsn {
@@ -934,7 +935,7 @@ export interface InstanceModifierAsn extends IModifierAsn {
 
 export type ModifierAsnTypes =
   | DependencyModifierAsn
-  | ExportModifierAsn
+  | AccessModifierAsn
   | OverrideModifierAsn
   | FunctionModifierAsn
   | ParameterModifierAsn

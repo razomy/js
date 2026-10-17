@@ -3,9 +3,9 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 import type { StateAsnType } from '@razomy/abstractions/translators';
-import type { HasEnterLeaveProduce } from '../unknown_node_exception';
+import type {HasEnterLeave} from "@razomy/abstractions/patterns";
 
-export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.translators.AsnType {
+export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.AsnType {
   if (Node.isLiteralTypeNode(node)) {
     const literalAsn: abstractions.translators.LiteralAsn = {
       id: random.createUuid(),
@@ -113,7 +113,7 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.trans
       value: null,
     };
     if (!ctx.enter(propAsn, node)) return propAsn;
-    propAsn.value = node.getTypeNode() ? tsRl.ast.shapes.parse(node.getTypeNode()!, ctx) : null;
+    propAsn.value = node.getTypeNode() ? tsRl.as.shapes.parse(node.getTypeNode()!, ctx) : null;
     return ctx.leave(propAsn, node);
   }
   if (Node.isArrayTypeNode(node)) {
@@ -199,8 +199,8 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.trans
       semanticLayer: 'shape',
     };
     if (!ctx.enter(lambdaAsn, node)) return lambdaAsn;
-    lambdaAsn.parameters = node.getParameters().map((i) => tsRl.ast.bindings.parseParameter(i, ctx));
-    lambdaAsn.returnShape = node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
+    lambdaAsn.parameters = node.getParameters().map((i) => tsRl.as.bindings.parseParameter(i, ctx));
+    lambdaAsn.returnShape = node.getReturnTypeNode() ? tsRl.as.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
     return ctx.leave(lambdaAsn, node);
   }
   if (Node.isTypeReference(node)) {
@@ -315,5 +315,5 @@ export function parse(node: Node, ctx: HasEnterLeaveProduce): abstractions.trans
     if (!ctx.enter(refAsn, node)) return refAsn;
     return ctx.leave(refAsn, node);
   }
-  throw new tsRl.ast.UnknownNodeException(node);
+  throw new tsRl.as.UnknownNodeException(node);
 }

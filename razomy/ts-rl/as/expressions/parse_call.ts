@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseCall(node: CallExpression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.CallAsn {
+export function parseCall(node: CallExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.CallAsn {
   const expressionNode = node.getExpression();
   const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
 
@@ -19,7 +19,7 @@ export function parseCall(node: CallExpression, ctx: tsRl.ast.HasEnterLeaveProdu
     return callAsn;
   }
 
-  callAsn.arguments_ = node.getArguments().map(arg => tsRl.ast.expressions.parse(arg as any, ctx)!);
+  callAsn.arguments_ = node.getArguments().map(arg => tsRl.as.expressions.parse(arg as any, ctx)!);
 
   return ctx.leave(callAsn, node);
 }

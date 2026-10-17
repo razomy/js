@@ -3,13 +3,15 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseInterface(node: TsInterfaceDeclaration, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.InterfaceAsn {
+export function parseInterface(node: TsInterfaceDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.InterfaceAsn {
   const interfaceAsn: abstractions.translators.InterfaceAsn = {
     id: random.createUuid(),
     kind: 'InterfaceAsn',
     syntaxRole: 'statement',
     identifier: { name: node.getName() },
-    modifiers: [],
+    modifiers: [
+      node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
+    ].filter(Boolean),
     parameters: [],
     properties: [],
   };
@@ -18,7 +20,7 @@ export function parseInterface(node: TsInterfaceDeclaration, ctx: tsRl.ast.HasEn
     return interfaceAsn;
   }
 
-  interfaceAsn.properties = node.getProperties().map(i => tsRl.ast.shapes.parse(i, ctx)) as abstractions.translators.PropertyAsn[];
+  interfaceAsn.properties = node.getProperties().map(i => tsRl.as.shapes.parse(i, ctx)) as abstractions.translators.PropertyAsn[];
 
   return ctx.leave(interfaceAsn, node);
 }

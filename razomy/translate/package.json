@@ -120,11 +120,33 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts index.remote.ts de/index.ts en/index.ts fr/index.ts ru/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts de/index.ts en/index.ts fr/index.ts ru/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "de/index.ts",
+        "en/index.ts",
+        "fr/index.ts",
+        "ru/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    },
+    {
+      "dts": true,
+      "entry": [
+        "index.remote.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

@@ -3,7 +3,7 @@ import * as treeList from '@razomy/tree-list';
 import * as abstractions from '@razomy/abstractions';
 import * as git from '@razomy/git';
 
-export function restore(sourcePath: abstractions.components.SourcePathString) {
+export function restore(sourcePath: abstractions.components.SourcePath) {
   const { files, repos } = git.getRecursiveStatuses(sourcePath);
   const tree = treeList.nodesArrayToTree(repos, files);
   treeList.iterateReverse(tree[0], (node) => {

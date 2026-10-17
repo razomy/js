@@ -2,14 +2,17 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType[] {
+export function parseExport(
+  exportDecl: any,
+  ctx: abstractions.patterns.HasEnterLeave,
+): abstractions.translators.AsnType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile?.();
 
   // 1. Обработка: export * as ns from './module';
   if (namespaceExport && targetSourceFile) {
     if (targetSourceFile.getBaseName().startsWith('index.')) {
-      return [tsRl.ast.declarations.parseModule(targetSourceFile.getDirectory(), ctx)];
+      return [tsRl.as.declarations.parseModule(targetSourceFile.getDirectory(), ctx)];
     } else {
       const mod: abstractions.translators.ModuleAsn = {
         id: random.createUuid(),
@@ -20,7 +23,7 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
           id: random.createUuid(),
           kind: 'BlockAsn',
           syntaxRole: 'statement',
-          statements: tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx),
+          statements: tsRl.as.declarations.parseModuleBody(targetSourceFile, ctx),
         },
         version: '',
         role: 'SourceFile',
@@ -31,7 +34,7 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
   }
   // 2. Обработка: export * from './module';
   else if (targetSourceFile) {
-    return tsRl.ast.declarations.parseModuleBody(targetSourceFile, ctx);
+    return tsRl.as.declarations.parseModuleBody(targetSourceFile, ctx);
   }
   // 3. Обработка: export { a, b, c }; (Именованные локальные экспорты)
   else if (exportDecl.getNamedExports && exportDecl.getNamedExports().length > 0) {
@@ -49,28 +52,34 @@ export function parseExport(exportDecl: any, ctx: tsRl.ast.HasEnterLeaveProduce)
         if (originSourceFile && originSourceFile !== exportDecl.getSourceFile()) {
           const filePath = originSourceFile.getFilePath();
 
+          // if (!processedFiles.has(filePath)) {
+          //   processedFiles.add(filePath);
+          //
+          //   const moduleName = namedExport.getName();
+          //
+          //   const mod: abstractions.translators.ModuleAsn = {
+          //     id: random.createUuid(),
+          //     kind: 'ModuleAsn',
+          //     syntaxRole: 'statement',
+          //     identifier: { name: moduleName },
+          //     block: {
+          //       id: random.createUuid(),
+          //       kind: 'BlockAsn',
+          //       syntaxRole: 'statement',
+          //       statements: tsRl.as.declarations.parseModuleBody(originSourceFile, ctx),
+          //     },
+          //     version: '',
+          //     role: 'SourceFile',
+          //   };
+          //   if (ctx.enter(mod, originSourceFile)) {
+          //     results.push(ctx.leave(mod, originSourceFile));
+          //   }
+          // }
+
+          // ignore virtual module
           if (!processedFiles.has(filePath)) {
             processedFiles.add(filePath);
-
-            const moduleName = namedExport.getName();
-
-            const mod: abstractions.translators.ModuleAsn = {
-              id: random.createUuid(),
-              kind: 'ModuleAsn',
-              syntaxRole: 'statement',
-              identifier: { name: moduleName },
-              block: {
-                id: random.createUuid(),
-                kind: 'BlockAsn',
-                syntaxRole: 'statement',
-                statements: tsRl.ast.declarations.parseModuleBody(originSourceFile, ctx),
-              },
-              version: '',
-              role: 'SourceFile',
-            };
-            if (ctx.enter(mod, originSourceFile)) {
-              results.push(ctx.leave(mod, originSourceFile));
-            }
+            results.push(...tsRl.as.declarations.parseModuleBody(originSourceFile, ctx));
           }
         }
       }

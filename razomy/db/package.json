@@ -217,11 +217,30 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts column/index.ts column/array/index.ts column/chunk/index.ts column/chunk2d/index.ts core/index.ts event/index.ts store/index.ts topology/index.ts wal/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts column/index.ts column/array/index.ts column/chunk/index.ts column/chunk2d/index.ts core/index.ts event/index.ts store/index.ts topology/index.ts wal/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "column/index.ts",
+        "column/array/index.ts",
+        "column/chunk/index.ts",
+        "column/chunk2d/index.ts",
+        "core/index.ts",
+        "event/index.ts",
+        "store/index.ts",
+        "topology/index.ts",
+        "wal/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

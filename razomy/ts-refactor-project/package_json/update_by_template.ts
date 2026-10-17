@@ -23,7 +23,13 @@ function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
   const allDirs = getDirectoriesRecursive(folderPath);
 
   const generatedExports: Record<string, any> = {};
-  const buildFiles: string[] = [];
+  const buildFiles = {
+    browser: [] as string[],
+    node: [] as string[],
+    default: [] as string[],
+    remote: [] as string[],
+    extensions: [] as string[],
+  };
   const devFiles: string[] = [];
 
   for (const dir of allDirs) {
@@ -73,27 +79,69 @@ function generatePackageExportsAndBuild(folderPath: string, srcPrefix: string) {
     generatedExports[exportKey] = currentExport;
 
     // Сохраняем именованные экспорты ('./browser' или './subfolder/browser')
-    if (hasBrowser) generatedExports[isRoot ? './browser' : `${exportKey}/browser`] = makeCond('browser');
-    if (hasNode) generatedExports[isRoot ? './node' : `${exportKey}/node`] = makeCond('node');
-    if (hasRemote) generatedExports[isRoot ? './remote' : `${exportKey}/remote`] = makeCond('remote');
-    if (hasExtensions) generatedExports[isRoot ? './extensions' : `${exportKey}/extensions`] = makeCond('extensions', '');
+    if (hasBrowser) {
+      generatedExports[isRoot ? './browser' : `${exportKey}/browser`] = makeCond('browser');
+    }
+    if (hasNode) {
+      generatedExports[isRoot ? './node' : `${exportKey}/node`] = makeCond('node');
+    }
+    if (hasRemote) {
+      generatedExports[isRoot ? './remote' : `${exportKey}/remote`] = makeCond('remote');
+    }
+    if (hasExtensions) {
+      generatedExports[isRoot ? './extensions' : `${exportKey}/extensions`] = makeCond('extensions', '');
+    }
 
     // 4. Собираем массив файлов для команды билда
     const buildPrefix = isRoot ? '' : `${relativePath}/`;
     if (hasIndex) {
-      buildFiles.push(`${buildPrefix}index.ts`);
+      buildFiles.default.push(`${buildPrefix}index.ts`);
       devFiles.push(`${buildPrefix}index.ts`); // В dev крутим только основные файлы
     }
-    if (hasBrowser) buildFiles.push(`${buildPrefix}index.browser.ts`);
-    if (hasNode) buildFiles.push(`${buildPrefix}index.node.ts`);
-    if (hasRemote) buildFiles.push(`${buildPrefix}index.remote.ts`);
+    if (hasBrowser) buildFiles.browser.push(`${buildPrefix}index.browser.ts`);
+    if (hasNode) buildFiles.node.push(`${buildPrefix}index.node.ts`);
+    if (hasRemote) buildFiles.remote.push(`${buildPrefix}index.remote.ts`);
+    if (hasExtensions) buildFiles.extensions.push(`${buildPrefix}extensions.ts`);
   }
+
+  type NpmCommandName = string;
+  // const buildMap: Record<keyof typeof buildFiles, NpmCommandName> = {
+  //   browser: 'build:browser',
+  //   node: 'build:node',
+  //   default: 'build:default',
+  //   remote: 'build:remote',
+  // };
+
+  const buildPlatformMap: Record<keyof typeof buildFiles, NpmCommandName> = {
+    browser: 'browser',
+    node: 'node',
+    default: 'neutral',
+    extensions: 'neutral',
+    remote: 'neutral',
+  };
+
+  const activeBuild = Object.entries(buildFiles).filter(([, entry]) => entry.length > 0);
+
+  const buildCmd = {
+    build: `tsdown`,
+  };
+  const otherCmd = {
+    tsdown: activeBuild.map(([_, e]) => ({
+      entry: e,
+      platform: buildPlatformMap[_],
+      format: 'esm,cjs',
+      dts: true,
+    })),
+  };
 
   // Обновляем билд команды
   return {
     exports: generatedExports,
-    buildCmd: `tsdown ${buildFiles.join(' ')} --format esm,cjs --dts`,
-    devCmd: `tsdown ${devFiles.join(' ')} --watch`,
+    buildCmd,
+    devCmd: {
+      dev: `tsdown ${devFiles.join(' ')} --watch`,
+    },
+    otherCmd,
   };
 }
 
@@ -117,8 +165,8 @@ export function updateByTemplate(projectPath: string, prefix: string) {
     const dynamicData = generatePackageExportsAndBuild(folderPath, srcPrefix);
 
     const defaultBuild = {
-      build: dynamicData.buildCmd,
-      dev: dynamicData.devCmd,
+      ...dynamicData.buildCmd,
+      ...dynamicData.devCmd,
       prepublishOnly: 'npm run build',
     };
 
@@ -176,6 +224,7 @@ export function updateByTemplate(projectPath: string, prefix: string) {
       engines: {
         node: '>=18',
       },
+      ...dynamicData.otherCmd,
     };
 
     let pkgData = {
@@ -200,4 +249,3 @@ export function updateByTemplate(projectPath: string, prefix: string) {
     console.log(`✓ Create: ${folder.name} -> ${pkgData.name}`);
   });
 }
-

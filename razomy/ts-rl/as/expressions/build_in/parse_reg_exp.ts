@@ -1,9 +1,8 @@
 import { RegularExpressionLiteral } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
-import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseRegExp(node: RegularExpressionLiteral, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LiteralAsn {
+export function parseRegExp(node: RegularExpressionLiteral, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.LiteralAsn {
   const literalAsn: abstractions.translators.LiteralAsn = {
     id: random.createUuid(),
     kind: 'LiteralAsn',

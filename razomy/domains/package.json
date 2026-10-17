@@ -201,11 +201,31 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts abstractions/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts abstractions/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "abstractions/index.ts",
+        "acls/index.ts",
+        "auths/index.ts",
+        "domain/index.ts",
+        "event/index.ts",
+        "fs/index.ts",
+        "games/index.ts",
+        "git/index.ts",
+        "identitys/index.ts",
+        "tx/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

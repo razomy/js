@@ -6,7 +6,7 @@ export const SYSTEM_FIELDS = {NODE: 0 as db.FieldId, EDGE: 1 as db.FieldId};
 
 export interface GraphTopology {
   core: db.core.CoreDB;
-  nodesAsn: (abstractions.translators.HirType | null)[];
+  nodesAsn: (abstractions.translators.HirnType | null)[];
 
   // Колонки топологии
   nodeFirstOut: db.column.array.Column;
@@ -18,7 +18,7 @@ export interface GraphTopology {
   edgeNextIn: db.column.array.Column;
 
   // Методы делегируют работу
-  addNode(astData: abstractions.translators.HirType): db.NodeId;
+  addNode(astData: abstractions.translators.HirnType): db.NodeId;
 
   connect(from: db.NodeId, to: db.NodeId, layer: db.Layer): db.NodeId;
 

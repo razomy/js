@@ -161,11 +161,26 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts actions/index.ts llms/index.ts parsers/index.ts prompts/index.ts rags/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts actions/index.ts llms/index.ts parsers/index.ts prompts/index.ts rags/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "actions/index.ts",
+        "llms/index.ts",
+        "parsers/index.ts",
+        "prompts/index.ts",
+        "rags/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

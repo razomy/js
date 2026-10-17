@@ -1,7 +1,7 @@
 import * as array_ from '@razomy/array';
 
 describe('array', () => {
-  describe('findIndex', () => {
+  describe('findIndex_', () => {
     // 1. Standard cases
     it('returns the index of the first element that satisfies the predicate', () => {
       expect(array_.findIndex([1, 2, 3], (x) => x === 2)).toBe(1);

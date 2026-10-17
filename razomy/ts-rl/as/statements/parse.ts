@@ -4,7 +4,7 @@ import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 import type {BlockAsn} from "@razomy/abstractions/translators";
 
-export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.AsnType {
+export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType {
   if (Node.isBlock(node)) {
     const blockAsn: abstractions.translators.BlockAsn = {
       id: random.createUuid(),
@@ -13,11 +13,11 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       statements: [],
     };
     if (!ctx.enter(blockAsn, node)) return blockAsn;
-    blockAsn.statements = tsRl.ast.declarations.parseModuleBody(node, ctx);
+    blockAsn.statements = tsRl.as.declarations.parseModuleBody(node, ctx);
     return ctx.leave(blockAsn, node);
   }
-  if (Node.isIfStatement(node)) return tsRl.ast.statements.parseCondition(node, ctx);
-  if (Node.isSwitchStatement(node)) return tsRl.ast.statements.parseSwitch(node, ctx);
+  if (Node.isIfStatement(node)) return tsRl.as.statements.parseCondition(node, ctx);
+  if (Node.isSwitchStatement(node)) return tsRl.as.statements.parseSwitch(node, ctx);
   if (Node.isTryStatement(node)) {
     const tryAsn: abstractions.translators.TryAsn = {
       id: random.createUuid(),
@@ -26,7 +26,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       block: null as any,
     };
     if (!ctx.enter(tryAsn, node)) return tryAsn;
-    tryAsn.block = tsRl.ast.statements.parse(node.getTryBlock(), ctx)  as BlockAsn;
+    tryAsn.block = tsRl.as.statements.parse(node.getTryBlock(), ctx)  as BlockAsn;
     return ctx.leave(tryAsn, node);
   }
   if (Node.isForStatement(node)) {
@@ -34,15 +34,15 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       id: random.createUuid(),
       kind: 'ForItAsn',
       syntaxRole: 'statement',
-      init: node.getInitializer() ? tsRl.ast.parseNode(node.getInitializer()!, ctx) as any : null,
+      init: node.getInitializer() ? tsRl.as.parseNode(node.getInitializer()!, ctx) as any : null,
       condition: null,
       update: null,
       block: null as any,
     };
     if (!ctx.enter(forAsn, node)) return forAsn;
-    forAsn.condition = node.getCondition() ? tsRl.ast.expressions.parse(node.getCondition()!, ctx) : null;
-    forAsn.update = node.getIncrementor() ? tsRl.ast.expressions.parse(node.getIncrementor()!, ctx) : null;
-    forAsn.block = tsRl.ast.statements.parse(node.getStatement(), ctx) as BlockAsn;
+    forAsn.condition = node.getCondition() ? tsRl.as.expressions.parse(node.getCondition()!, ctx) : null;
+    forAsn.update = node.getIncrementor() ? tsRl.as.expressions.parse(node.getIncrementor()!, ctx) : null;
+    forAsn.block = tsRl.as.statements.parse(node.getStatement(), ctx) as BlockAsn;
     return ctx.leave(forAsn, node);
   }
   if (Node.isWhileStatement(node)) {
@@ -54,8 +54,8 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       block: null as any,
     };
     if (!ctx.enter(whileAsn, node)) return whileAsn;
-    whileAsn.condition = tsRl.ast.expressions.parse(node.getExpression(), ctx);
-    whileAsn.block = tsRl.ast.statements.parse(node.getStatement(), ctx)  as BlockAsn;
+    whileAsn.condition = tsRl.as.expressions.parse(node.getExpression(), ctx);
+    whileAsn.block = tsRl.as.statements.parse(node.getStatement(), ctx)  as BlockAsn;
     return ctx.leave(whileAsn, node);
   }
   if (Node.isDoStatement(node)) {
@@ -67,8 +67,8 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       block: null as any,
     };
     if (!ctx.enter(doAsn, node)) return doAsn;
-    doAsn.condition = tsRl.ast.expressions.parse(node.getExpression(), ctx);
-    doAsn.block = tsRl.ast.statements.parse(node.getStatement(), ctx)  as BlockAsn;
+    doAsn.condition = tsRl.as.expressions.parse(node.getExpression(), ctx);
+    doAsn.block = tsRl.as.statements.parse(node.getStatement(), ctx)  as BlockAsn;
     return ctx.leave(doAsn, node);
   }
   if (Node.isForOfStatement(node)) {
@@ -80,8 +80,8 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       block: null as any,
     };
     if (!ctx.enter(forOfAsn, node)) return forOfAsn;
-    forOfAsn.init = tsRl.ast.expressions.parse(node.getExpression(), ctx);
-    forOfAsn.block = tsRl.ast.statements.parse(node.getStatement(), ctx)  as BlockAsn;
+    forOfAsn.init = tsRl.as.expressions.parse(node.getExpression(), ctx);
+    forOfAsn.block = tsRl.as.statements.parse(node.getStatement(), ctx)  as BlockAsn;
     return ctx.leave(forOfAsn, node);
   }
   if (Node.isForInStatement(node)) {
@@ -95,10 +95,10 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
       block: null as any,
     };
     if (!ctx.enter(forInAsn, node)) return forInAsn;
-    forInAsn.block = tsRl.ast.statements.parse(node.getStatement(), ctx)  as BlockAsn;
+    forInAsn.block = tsRl.as.statements.parse(node.getStatement(), ctx)  as BlockAsn;
     return ctx.leave(forInAsn, node);
   }
-  if (Node.isReturnStatement(node)) return tsRl.ast.statements.parseReturn(node, ctx);
+  if (Node.isReturnStatement(node)) return tsRl.as.statements.parseReturn(node, ctx);
   if (Node.isBreakStatement(node)) {
     const label = node.getLabel();
     const breakAsn: abstractions.translators.BreakAsn = {
@@ -122,11 +122,11 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
     if (!ctx.enter(continueAsn, node)) return continueAsn;
     return ctx.leave(continueAsn, node);
   }
-  if (Node.isThrowStatement(node)) return tsRl.ast.statements.parseThrow(node, ctx);
+  if (Node.isThrowStatement(node)) return tsRl.as.statements.parseThrow(node, ctx);
   if (Node.isVariableStatement(node)) {
     const decls = node.getDeclarations();
     if (decls.length > 0) {
-      return tsRl.ast.bindings.parseVariable(decls[0] as any, ctx);
+      return tsRl.as.bindings.parseVariable(decls[0] as any, ctx);
     }
     const emptyBlock: abstractions.translators.BlockAsn = {
       id: random.createUuid(),
@@ -155,7 +155,7 @@ export function parse(node: Statement, ctx: tsRl.ast.HasEnterLeaveProduce): abst
 
   if (Node.isExpressionStatement(node)) {
     const expr = node.getExpression();
-    return tsRl.ast.expressions.parse(expr, ctx);
+    return tsRl.as.expressions.parse(expr, ctx);
   }
-  throw new tsRl.ast.UnknownNodeException(node);
+  throw new tsRl.as.UnknownNodeException(node);
 }

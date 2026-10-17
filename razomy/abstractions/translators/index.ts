@@ -1,19 +1,19 @@
 // Imports
-import type { AccessAsnType, AliasAsn, ArgumentMemberAsn, ArrayAsn, AsnKey, AsnType, AssignAsn, AwaitAsn, BinaryAsn, BindingAsnType, BlockAsn, BreakAsn, CallAsn, CatchAsn, ClassAsn, CommentAsn, ConditionBranchAsn, ConstraintAsn, ContinueAsn, DeclarationAsnType, DeclarationOperatorAsnType, DecoratorAsn, DefaultBranchAsn, DefaultCatchAsn, DeleteAsn, DependencyModifierAsn, DoWhileAsn, DocsAsn, ElseBranchAsn, EnumAsn, ExportModifierAsn, FinallyAsn, FlowAsnType, FlowOperatorAsnType, ForIAsn, ForItAsn, ForOfAsn, FunctionAsn, FunctionModifierAsn, IAccessAsn, IAsNode, IBindingAsn, IDeclarationAsn, IDeclarationOperatorAsn, IFlowAsn, IFlowOperatorAsn, IIfBranchAsn, ILayerAsn, IModifierAsn, IOperationAsn, IPanicAsn, IStateAsn, ISwitchBranchAsn, Identifier, IfAsn, IfBranchAsnType, ImportAsn, InheritModifierAsn, InstanceAsn, InstanceModifierAsn, InterfaceAsn, LambdaAsn, LayerAsnTypes, LayerOperatorAsnTypes, LiteralAsn, LoopAsn, MacroCallAsn, MappedAsn, MatchAsn, MatchBranchAsn, MemberAsn, ModifierAsnTypes, ModuleAsn, ObjectAsn, OntologyAsnType, OperationAsnType, OverrideModifierAsn, PanicAsnType, ParameterAsn, ParameterModifierAsn, PropertyAsn, QueryAsn, ReferenceAsn, ReturnAsn, SemanticLayer, ShapingAsn, SpreadAsn, StateAsnType, StructAsn, StyleBlockAsn, SwitchAsn, SwitchBranchAsnType, SyntaxRole, TagAsn, TemplateAsn, TernaryAsn, TextAsn, ThrowAsn, TryAsn, TupleAsn, UnaryAsn, WhileDoAsn, YieldAsn } from './i_as_node';
+import type { AccessAsnType, AccessModifierAsn, AliasAsn, ArgumentMemberAsn, ArrayAsn, AsnKey, AsnType, AssignAsn, AwaitAsn, BinaryAsn, BindingAsnType, BlockAsn, BreakAsn, CallAsn, CatchAsn, ClassAsn, CommentAsn, ConditionBranchAsn, ConstraintAsn, ContinueAsn, DeclarationAsnType, DeclarationOperatorAsnType, DecoratorAsn, DefaultBranchAsn, DefaultCatchAsn, DeleteAsn, DependencyModifierAsn, DoWhileAsn, DocsAsn, ElseBranchAsn, EnumAsn, FinallyAsn, FlowAsnType, FlowOperatorAsnType, ForIAsn, ForItAsn, ForOfAsn, FunctionAsn, FunctionModifierAsn, IAccessAsn, IAsNode, IBindingAsn, IDeclarationAsn, IDeclarationOperatorAsn, IFlowAsn, IFlowOperatorAsn, IIfBranchAsn, ILayerAsn, IModifierAsn, IOperationAsn, IPanicAsn, IStateAsn, ISwitchBranchAsn, Identifier, IfAsn, IfBranchAsnType, ImportAsn, InheritModifierAsn, InstanceAsn, InstanceModifierAsn, InterfaceAsn, LambdaAsn, LayerAsnTypes, LayerOperatorAsnTypes, LiteralAsn, LoopAsn, MacroCallAsn, MappedAsn, MatchAsn, MatchBranchAsn, MemberAsn, ModifierAsnTypes, ModuleAsn, ObjectAsn, OntologyAsnType, OperationAsnType, OverrideModifierAsn, PanicAsnType, ParameterAsn, ParameterModifierAsn, PropertyAsn, QueryAsn, ReferenceAsn, ReturnAsn, SemanticLayer, ShapingAsn, SpreadAsn, StateAsnType, StructAsn, StyleBlockAsn, SwitchAsn, SwitchBranchAsnType, SyntaxRole, TagAsn, TemplateAsn, TernaryAsn, TextAsn, ThrowAsn, TryAsn, TupleAsn, UnaryAsn, WhileDoAsn, YieldAsn } from './i_as_node';
 import type { GroupCsn, ICsNode, TokenCsn } from './i_cs_node';
-import type { BindingHirn, BlockHirn, BranchHirn, FunctionDocExampleHirn, FunctionHirn, GoHirn, HirType, IHirNode, IIdentityHirn, LiteralHirn, LoopHirn, MatchHirn, OperatorHirn, ReferenceHirn, StructHirn } from './i_hir_node';
+import type { BindingHirn, BlockHirn, BranchHirn, FunctionDocExampleHirn, FunctionHirn, GoHirn, HirnType, IHirNode, IHirnCtx, IIdentityHirn, LiteralHirn, LoopHirn, MatchHirn, ModuleHirn, OperatorHirn, ReferenceHirn, StructHirn } from './i_hir_node';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, ILexerNode, Span, Token } from './i_lexer_node';
 import type { AnyMn, CodeMn, EntityMn, HasInteractionEntity, HasMessages, IMessageNode, ITool, InteractionEntity, InteractionTurn, RequestMn, ResultMn, SenderMn, TaskMn, TextMn, ToolMn } from './i_message_node';
 import type { AttributeFilterNode, DensityFilterNode, IPcgNode, IProceduralNode, LSystemGrammarNode, MeshSpawnEntry, NoiseFieldNode, PcgDataType, PcgEdge, PcgExecutionContext, PcgGraph, PcgPin, PcgPinDirection, PcgPoint, PcgPointData, PcgSplineData, PcgSurfaceData, ProjectToSurfaceNode, SpatialBooleanNode, SpatialDistanceFilterNode, SpatialSetOperation, SplineSamplerNode, StaticMeshSpawnerNode, SurfaceSamplerNode, TransformPointsNode, WaveFunctionCollapseNode } from './i_procedural_node';
 import type { DataMappingPn, DataSlotPn, EventChannel, EventPn, ExecutionActor, FlowNodePn, ForkStrategy, IProcessNode, IterationPolicyPn, JoinStrategy, RetryPolicyPn, RouterPn, ScopePn, StepPn, TransitionPn, TrapPn } from './i_process_node';
 import type { ApiSchemaIn, AssetResolverIn, AttributeIn, CompositionArcIn, ISceneNode, InModelKind, InSpecifier, InheritArcIn, InstanceablePrimIn, LayerIn, PayloadArcIn, PointInstancerIn, PrimAdapterIn, PrimIn, PrimvarIn, PrimvarInterpolation, PropertyIn, ReferenceArcIn, RelationshipIn, RenderDelegateIn, SceneDelegateIn, SpecializeArcIn, StageIn, SublayerArcIn, TimeSamplesIn, TypedSchemaIn, VariantSetIn } from './i_scene_node';
-import type { ISemanticCtx, ISemanticNode } from './i_semantic_node';
 import type { ContainerUin, ControlUin, IUIBaseUin, IUiNode, MediaAssetUin, ProjectionUin, SurfaceUin, TableCellUin, TableContainerUin, TableRowUin, TextLeafUin, UIControlType, UIDocumentUin, UIUin, UIUinId, VectorShapeUin } from './i_ui_node';
 import type { TypeChecker } from './type_checker';
 
 // Named exports
 export type {
   AccessAsnType,
+  AccessModifierAsn,
   AliasAsn,
   AnyMn,
   ApiSchemaIn,
@@ -62,7 +62,6 @@ export type {
   EventChannel,
   EventPn,
   ExecutionActor,
-  ExportModifierAsn,
   FinallyAsn,
   FlowAsnType,
   FlowNodePn,
@@ -84,7 +83,7 @@ export type {
   HasToken,
   HasTokenType,
   HasTokens,
-  HirType,
+  HirnType,
   IAccessAsn,
   IAsNode,
   IBindingAsn,
@@ -94,6 +93,7 @@ export type {
   IFlowAsn,
   IFlowOperatorAsn,
   IHirNode,
+  IHirnCtx,
   IIdentityHirn,
   IIfBranchAsn,
   ILayerAsn,
@@ -106,8 +106,6 @@ export type {
   IProceduralNode,
   IProcessNode,
   ISceneNode,
-  ISemanticCtx,
-  ISemanticNode,
   IStateAsn,
   ISwitchBranchAsn,
   ITool,
@@ -148,6 +146,7 @@ export type {
   MeshSpawnEntry,
   ModifierAsnTypes,
   ModuleAsn,
+  ModuleHirn,
   NoiseFieldNode,
   ObjectAsn,
   OntologyAsnType,

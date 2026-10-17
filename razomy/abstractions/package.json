@@ -66,6 +66,20 @@
         "types": "./components/index.ts"
       }
     },
+    "./fs": {
+      "default": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "import": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "require": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      }
+    },
     "./functions": {
       "default": {
         "default": "./functions/index.ts",
@@ -217,11 +231,34 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts arrays/index.ts collections/index.ts components/index.ts functions/index.ts graphs/index.ts hardwares/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --format esm,cjs --dts",
-    "dev": "tsdown index.ts arrays/index.ts collections/index.ts components/index.ts functions/index.ts graphs/index.ts hardwares/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
+    "build": "tsdown",
+    "dev": "tsdown index.ts arrays/index.ts collections/index.ts components/index.ts fs/index.ts functions/index.ts graphs/index.ts hardwares/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "arrays/index.ts",
+        "collections/index.ts",
+        "components/index.ts",
+        "fs/index.ts",
+        "functions/index.ts",
+        "graphs/index.ts",
+        "hardwares/index.ts",
+        "meta/index.ts",
+        "patterns/index.ts",
+        "primitives/index.ts",
+        "probabilistics/index.ts",
+        "structures/index.ts",
+        "translators/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

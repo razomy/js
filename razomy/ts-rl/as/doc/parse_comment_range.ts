@@ -1,9 +1,8 @@
 import { CommentRange } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
-import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseCommentRange(comment: CommentRange, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.CommentAsn {
+export function parseCommentRange(comment: CommentRange, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.CommentAsn {
   const rawText = comment.getText();
   const cleanText = rawText
     .replace(/^\/\/\s?/, '')

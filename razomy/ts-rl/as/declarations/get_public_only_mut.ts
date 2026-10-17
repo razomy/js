@@ -1,11 +1,10 @@
 import * as abstractions from '@razomy/abstractions';
-import * as tsRl from "@razomy/ts-rl";
 
 /**
  * Рекурсивно очищает тела функций, оставляя только сигнатуры (AST-интерфейсы).
  * Полезно для генерации "заголовочных" файлов или публичных API.
  */
-export function getPublicOnlyMut<T extends abstractions.translators.AsnType>(node: T, ctx: tsRl.ast.HasEnterLeaveProduce): T {
+export function getPublicOnlyMut<T extends abstractions.translators.AsnType>(node: T, ctx: abstractions.patterns.HasEnterLeave): T {
   if (!node) return node;
 
   // Если это функция, удаляем внутренности её блока

@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.UnaryAsn {
+export function parseUnary(node: Expression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.UnaryAsn {
   if (Node.isPrefixUnaryExpression(node)) {
     let operator = '';
     switch (node.getOperatorToken()) {
@@ -23,7 +23,7 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
       isPrefix: true,
     };
     if (!ctx.enter(unaryAsn, node)) return unaryAsn;
-    unaryAsn.value = tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
+    unaryAsn.value = tsRl.as.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
     return ctx.leave(unaryAsn, node);
   }
   if (Node.isPostfixUnaryExpression(node)) {
@@ -37,7 +37,7 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
       isPrefix: false,
     };
     if (!ctx.enter(unaryAsn, node)) return unaryAsn;
-    unaryAsn.value = tsRl.ast.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
+    unaryAsn.value = tsRl.as.expressions.parse(node.getOperand(), ctx) as abstractions.translators.StateAsnType;
     return ctx.leave(unaryAsn, node);
   }
   if (Node.isTypeOfExpression(node) || Node.isDeleteExpression(node)) {
@@ -50,8 +50,8 @@ export function parseUnary(node: Expression, ctx: tsRl.ast.HasEnterLeaveProduce)
       isPrefix: true,
     };
     if (!ctx.enter(unaryAsn, node)) return unaryAsn;
-    unaryAsn.value = tsRl.ast.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstractions.translators.StateAsnType;
+    unaryAsn.value = tsRl.as.expressions.parse(Node.isTypeOfExpression(node) ? node.getExpression() : (node as any).getExpression(), ctx) as abstractions.translators.StateAsnType;
     return ctx.leave(unaryAsn, node);
   }
-  throw new tsRl.ast.UnknownNodeException(node);
+  throw new tsRl.as.UnknownNodeException(node);
 }

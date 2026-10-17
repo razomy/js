@@ -3,7 +3,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.IfAsn {
+export function parseCondition(node: IfStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.IfAsn {
   const ifAsn: abstractions.translators.IfAsn = {
     id: random.createUuid(),
     kind: 'IfAsn',
@@ -20,8 +20,8 @@ export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeavePro
     id: random.createUuid(),
     kind: 'ConditionBranchAsn',
     syntaxRole: 'statement',
-    pattern: tsRl.ast.expressions.parse(node.getExpression(), ctx),
-    value: tsRl.ast.statements.parse(node.getThenStatement(), ctx),
+    pattern: tsRl.as.expressions.parse(node.getExpression(), ctx),
+    value: tsRl.as.statements.parse(node.getThenStatement(), ctx),
   } as abstractions.translators.ConditionBranchAsn);
 
   const elseNode = node.getElseStatement();
@@ -30,7 +30,7 @@ export function parseCondition(node: IfStatement, ctx: tsRl.ast.HasEnterLeavePro
       id: random.createUuid(),
       kind: 'ElseBranchAsn',
       syntaxRole: 'statement',
-      value: tsRl.ast.statements.parse(elseNode, ctx),
+      value: tsRl.as.statements.parse(elseNode, ctx),
     } as abstractions.translators.ElseBranchAsn);
   }
 

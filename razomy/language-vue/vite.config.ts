@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'RazomyRalaVue',
+      name: 'RazomyLanguageVue',
       // 1. Tell Vite to ONLY build ES Modules (Nuxt's preferred format)
       formats: ['es'],
       fileName: (format) => `razomy-language-vue.${format}.js`

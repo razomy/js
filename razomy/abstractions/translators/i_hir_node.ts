@@ -14,7 +14,12 @@ import * as abstractions from '@razomy/abstractions';
  * 9. Layer: Meta, Docs, Annotations
  */
 
-export interface IHirNode extends abstractions.patterns.ISyntax {
+export interface IHirNode
+  extends
+    abstractions.patterns.ISyntax,
+    abstractions.graphs.HasOrder<abstractions.patterns.IdRef<abstractions.translators.IHirNode> | null>,
+    abstractions.graphs.HasParent<abstractions.patterns.IdRef<abstractions.translators.IHirNode> | null>,
+    abstractions.graphs.HasChildren<abstractions.patterns.IdRef<abstractions.translators.IHirNode>[]> {
   syntaxRole: abstractions.translators.SyntaxRole;
   semanticLayer: abstractions.translators.SemanticLayer;
 }
@@ -46,7 +51,7 @@ export interface LiteralHirn extends IHirNode {
 export interface OperatorHirn extends IHirNode {
   kind: 'OperatorHirn';
   operator: string;
-  operands: abstractions.patterns.IdRef<HirType>[]; // Массив решает проблему унарных, бинарных и n-арных операций
+  operands: abstractions.patterns.IdRef<HirnType>[]; // Массив решает проблему унарных, бинарных и n-арных операций
 }
 
 /**
@@ -62,8 +67,8 @@ export interface OperatorHirn extends IHirNode {
  */
 export interface BranchHirn extends IHirNode {
   kind: 'BranchHirn';
-  pattern: abstractions.patterns.IdRef<HirType>; // Условие срабатывания ветки
-  value: abstractions.patterns.IdRef<HirType>; // Значение или SequenceHirn (блок кода)
+  pattern: abstractions.patterns.IdRef<HirnType>; // Условие срабатывания ветки
+  value: abstractions.patterns.IdRef<HirnType>; // Значение или SequenceHirn (блок кода)
 }
 
 /**
@@ -76,7 +81,7 @@ export interface BranchHirn extends IHirNode {
  */
 export interface MatchHirn extends IHirNode {
   kind: 'MatchHirn';
-  target: abstractions.patterns.IdRef<HirType>;
+  target: abstractions.patterns.IdRef<HirnType>;
   branches: abstractions.patterns.IdRef<BranchHirn>[];
 }
 
@@ -92,7 +97,7 @@ export interface MatchHirn extends IHirNode {
 export interface GoHirn extends IHirNode {
   kind: 'GoHirn';
   operator: 'break' | 'continue' | 'yield' | 'return' | 'throw';
-  value: abstractions.patterns.IdRef<HirType> | null; // Возвращаемое значение для yield, return, throw
+  value: abstractions.patterns.IdRef<HirnType> | null; // Возвращаемое значение для yield, return, throw
 }
 
 /**
@@ -103,7 +108,7 @@ export interface GoHirn extends IHirNode {
  */
 export interface LoopHirn extends IHirNode {
   kind: 'LoopHirn';
-  condition: abstractions.patterns.IdRef<HirType> | null; // Если undefined — бесконечный цикл
+  condition: abstractions.patterns.IdRef<HirnType> | null; // Если undefined — бесконечный цикл
   block: abstractions.patterns.IdRef<BlockHirn>; // Тело цикла
 }
 
@@ -116,7 +121,7 @@ export interface LoopHirn extends IHirNode {
  */
 export interface BlockHirn extends IHirNode {
   kind: 'BlockHirn';
-  statements: abstractions.patterns.IdRef<HirType>[];
+  statements: abstractions.patterns.IdRef<HirnType>[];
 }
 
 // endregion Control Flow & FLow
@@ -128,14 +133,14 @@ export interface BlockHirn extends IHirNode {
  *
  * @replaces ModifierAsnTypes - ВСЕ модификаторы вынесены в массив (const, let, export, override, async и т.д.)
  * @replaces AwaitAsn - превращается в строковый модификатор 'async'
- * @replaces ExportModifierAsn, OverrideModifierAsn, FunctionModifierAsn,
+ * @replaces AccessModifierAsn, OverrideModifierAsn, FunctionModifierAsn,
  *           ParameterModifierAsn, InheritModifierAsn, InstanceModifierAsn -> все становятся строками в `modifiers`
  * @replaces MappedAsn - уходит в `shape`
  * @replaces ILayerAsn (DocsAsn, CommentAsn, FunctionDocsAsn) - уходят в метаданные движка (не являются исполняемым кодом)
  */
 export interface IIdentityHirn extends IHirNode {
   name: string | null; // Optional: для анонимных сущностей (лямбды, элементы массивов)
-  modifiers: abstractions.patterns.IdRef<HirType>[]; // 'const', 'export', 'async', 'generator' и т.д.
+  modifiers: abstractions.patterns.IdRef<HirnType>[]; // 'const', 'export', 'async', 'generator' и т.д.
 }
 
 /**
@@ -146,7 +151,7 @@ export interface IIdentityHirn extends IHirNode {
  * @replaces ParameterAsn - используется внутри FunctionHirn.parameters
  * @replaces PropertyAsn - используется внутри StructHirn.properties
  */
-export interface BindingHirn<T extends HirType = abstractions.patterns.IdRef<HirType>> extends IIdentityHirn {
+export interface BindingHirn<T extends HirnType = abstractions.patterns.IdRef<HirnType>> extends IIdentityHirn {
   kind: 'BindingHirn';
   shape: abstractions.patterns.IdRef<ReferenceHirn> | null; // Type/Interface/Constraint
   value: T | null; // Значение
@@ -155,7 +160,10 @@ export interface BindingHirn<T extends HirType = abstractions.patterns.IdRef<Hir
   };
 }
 
-export interface FunctionDocExampleHirn { code: string; expected: string }
+export interface FunctionDocExampleHirn {
+  code: string;
+  expected: string;
+}
 
 /**
  * Функции и Лямбды.
@@ -167,7 +175,7 @@ export interface FunctionHirn extends IIdentityHirn, abstractions.functions.HasF
   kind: 'FunctionHirn';
   parameters: abstractions.patterns.IdRef<BindingHirn>[];
   returnShape: abstractions.patterns.IdRef<ReferenceHirn> | null;
-  block: abstractions.patterns.IdRef<HirType> | null;
+  block: abstractions.patterns.IdRef<HirnType> | null;
   doc: {
     title: string | null;
     description: string | null;
@@ -182,15 +190,28 @@ export interface FunctionHirn extends IIdentityHirn, abstractions.functions.HasF
  * @replaces ObjectAsn - свойства описаны в properties (BindingHirn)
  * @replaces ArrayAsn, TupleAsn - properties содержат BindingHirn без `name`
  * @replaces StructAsn, InterfaceAsn, ClassAsn, EnumAsn
- * @replaces ModuleAsn - модуль это просто корневой StructHirn
  */
 export interface StructHirn extends IIdentityHirn {
   kind: 'StructHirn';
-  properties: abstractions.patterns.IdRef<HirType>[]; // Поля, методы, элементы массива
+  properties: abstractions.patterns.IdRef<HirnType>[]; // Поля, методы, элементы массива
   doc: {
     description: string;
   };
 }
+
+/**
+ * Сложные структуры данных (объекты, классы, массивы, модули).
+ *
+ * @replaces ModuleAsn - модуль это просто корневой StructHirn
+ */
+export interface ModuleHirn extends IIdentityHirn {
+  kind: 'ModuleHirn';
+  properties: abstractions.patterns.IdRef<HirnType>[]; // Поля, методы, элементы массива
+  doc: {
+    description: string;
+  };
+}
+
 
 /**
  * Чтение значений, обращение к свойствам, вызовы функций.
@@ -203,9 +224,9 @@ export interface StructHirn extends IIdentityHirn {
  */
 export interface ReferenceHirn extends IHirNode {
   kind: 'ReferenceHirn';
-  target: abstractions.patterns.IdRef<HirType> | null; // Название переменной ИЛИ узел (например, результат функции)
-  property: abstractions.patterns.IdRef<HirType> | null; // Для obj.prop или arr[1]
-  arguments_: abstractions.patterns.IdRef<HirType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
+  target: abstractions.patterns.IdRef<HirnType> | null; // Название переменной ИЛИ узел (например, результат функции)
+  property: abstractions.patterns.IdRef<HirnType> | null; // Для obj.prop или arr[1]
+  arguments_: abstractions.patterns.IdRef<HirnType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
 }
 
 // endregion Declarations & Entities
@@ -213,7 +234,7 @@ export interface ReferenceHirn extends IHirNode {
 /**
  * Итоговое объединение всех доступных узлов Hirn.
  */
-export type HirType =
+export type HirnType =
   | LiteralHirn
   | OperatorHirn
   | BlockHirn
@@ -223,5 +244,17 @@ export type HirType =
   | GoHirn
   | BindingHirn
   | FunctionHirn
+  | ModuleHirn
   | StructHirn
   | ReferenceHirn;
+
+export interface IHirnCtx extends abstractions.patterns.IContext {
+  asnRoot: abstractions.translators.AsnType;
+  hirRoot: abstractions.translators.HirnType;
+
+  asnToHirn: Map<string, abstractions.patterns.IdRef<abstractions.translators.HirnType>>;
+  hirnToAsn: Map<string, abstractions.patterns.IdRef<abstractions.translators.AsnType>>;
+
+  asnMap: Map<string, abstractions.translators.AsnType>;
+  hirnMap: Map<string, abstractions.translators.HirnType>;
+}

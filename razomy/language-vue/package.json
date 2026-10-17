@@ -1,11 +1,11 @@
 {
-  "main": "./my-vue-package.umd.js",
-  "module": "./my-vue-package.es.js",
+  "main": "./razomy-language-vue.umd.js",
+  "module": "./razomy-language-vue.es.js",
   "types": "./src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./my-vue-package.es.js",
-      "require": "./my-vue-package.umd.js",
+      "import": "./razomy-language-vue.es.js",
+      "require": "./razomy-language-vue.umd.js",
       "types": "./src/index.d.ts"
     },
     "./style.css": "./style.css"

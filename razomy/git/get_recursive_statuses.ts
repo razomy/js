@@ -3,7 +3,7 @@ import * as git from '@razomy/git';
 import * as abstractions from '@razomy/abstractions';
 import * as languagesProgrammingFs from '@razomy/languages-programming-fs';
 
-export function getRecursiveStatuses(sourcePath: abstractions.components.SourcePathString) {
+export function getRecursiveStatuses(sourcePath: abstractions.components.SourcePath) {
   const repos: string[] = [];
   const files: string[] = [];
   const paths = [path.join(sourcePath)];

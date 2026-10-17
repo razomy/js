@@ -1,4 +1,4 @@
-import {Razomy} from "@razomy/razomy";
+import {Razomy} from "@razomy/abstractions/meta";
 
 export class SocketStore {
   ctx: Razomy = undefined as any as Razomy;

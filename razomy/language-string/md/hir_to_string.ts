@@ -1,16 +1,25 @@
 import * as abstractions from '@razomy/abstractions';
+import * as languageString from "@razomy/language-string";
 
-function modifiersToLiterals(struct: (abstractions.translators.FunctionHirn | abstractions.translators.BindingHirn | abstractions.translators.StructHirn)) {
+function modifiersToLiterals(
+  struct:
+    abstractions.translators.FunctionHirn | abstractions.translators.BindingHirn | abstractions.translators.StructHirn,
+) {
   return struct.modifiers
-    .filter(i => i.kind === 'LiteralHirn')
-    .map(i => i.value)
-    .join(' ')
-    ;
+    .filter((i) => i.kind === 'LiteralHirn')
+    .map((i) => i.value)
+    .map((i) => {
+      if (i === 'public') {
+        return '';
+      }
+      return i;
+    })
+    .join(' ');
 }
 
-export function hirToString(node: abstractions.meta.NullOptional<abstractions.translators.HirType>): string {
+export function hirToString(node: abstractions.meta.NullOptional<abstractions.translators.HirnType>): string {
   if (!node) {
-    throw new Error("Unknown Type");
+    throw new Error('Unknown Type');
   }
 
   switch (node.kind) {
@@ -34,7 +43,7 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
       const postfix = node.value;
       const modifiers = modifiersToLiterals(node);
       const isConst = modifiers.includes('const');
-      const keyword = modifiers ? `${modifiers} ` : (isConst ? 'const ' : 'let ');
+      const keyword = modifiers ? `${modifiers} ` : isConst ? 'const ' : 'let ';
       const shape = node.shape ? hirToString(node.shape) : '';
 
       if (prefix && postfix) {
@@ -49,7 +58,7 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
     case 'StructHirn': {
       const struct = node as abstractions.translators.StructHirn;
       const fieldEntries = Object.entries(struct.properties || {}).map(
-        ([fieldName, fieldShape]) => `${fieldName}: ${hirToString(fieldShape)}`
+        ([fieldName, fieldShape]) => `${fieldName}: ${hirToString(fieldShape)}`,
       );
       const modifiers = modifiersToLiterals(struct);
       const keyword = modifiers ? `${modifiers} ` : '';
@@ -61,33 +70,32 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
     }
 
     case 'FunctionHirn': {
-      // const modifiers = modifiersToLiterals(node);
-      // const isAsync = modifiers.includes('async') ? 'async ' : '';
+      const modifiers = modifiersToLiterals(node);
+      const isAsync = modifiers.includes('async') ? 'async ' : '';
 
       // Generic-параметры (если переданы в метаданных/синтаксисе)
-      // const generics = node.typeParameters || node.shapes;
-      // const shapesStr = Array.isArray(generics) && generics.length
-      //   ? `<${generics.map((g: any) => g.name || hirToString(g)).join(', ')}>`
-      //   : '';
+      const generics = node.parameters.filter((i) => i.semanticLayer == 'generic');
+      const shapesStr = generics.length ? `<${generics.map((g: any) => g.name || hirToString(g)).join(', ')}>` : '';
 
-      // const paramsStr = (node.parameters || [])
-      //   .map((p) => {
-      //     const pModifiers = (p.modifiers || []).map((m) => m.type);
-      //     const isRest = pModifiers.includes('rest') ? '...' : '';
-      //     const isOptional = pModifiers.includes('optional') ? '?' : '';
-      //     const pName = (p).syntaxRole?.name || (p).name || 'arg';
-      //     const typeStr = hirToString(p.shape);
-      //     return `${isRest}${pName}${isOptional}: ${typeStr}`;
-      //   })
-      //   .join(', ');
+      const paramsStr = node.parameters
+        .filter((i) => i.semanticLayer == 'state')
+        .map((p) => {
+          const pModifiers = (p.modifiers || []).map((m) => m.type);
+          const isRest = pModifiers.includes('rest') ? '...' : '';
+          const isOptional = pModifiers.includes('optional') ? '?' : '';
+          const pName = p.syntaxRole?.name || p.name || 'arg';
+          const typeStr = hirToString(p.shape);
+          return `${isRest}${pName}${isOptional}: ${typeStr}`;
+        })
+        .join(', ');
 
-      // const returnStr = hirToString(node.returnShape);
-      // const declaration = `\`${isAsync}${s.path.join('.')}${shapesStr}(${paramsStr}): ${returnStr}\``;
+      const returnStr = node.returnShape ? ': ' + hirToString(node.returnShape) : '';
+      const declaration = `\`${isAsync}${shapesStr}${languageString.md.getNamePath(node).join('.')}(${paramsStr})${returnStr}\``;
 
       const title = node.doc.title;
-      const description = node.doc.description;
+      // const description = node.doc.description;
 
-      const rawExamples = node.doc?.examples || [] as any[];
+      const rawExamples = node.doc?.examples || ([] as any[]);
       const examples = rawExamples
         .map((e) => {
           const comment = e.expected ? ` // ${e.expected}` : '';
@@ -99,7 +107,8 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
       return `
 #### ${node.name}
 
-${title ? title + '\n' : ''}${description ? description + '\n' : ''}${examples ? '\nExamples\n\n' + examples + '\n' : ''}
+${title ? title + '\n' : ''}${examples ? '\nExamples\n\n' + examples + '\n' : ''}
+${declaration}
 `.trim();
     }
 
@@ -107,16 +116,17 @@ ${title ? title + '\n' : ''}${description ? description + '\n' : ''}${examples ?
       if (node.arguments_.length > 0) {
         return `${node.target}<${node.arguments_.map(hirToString).join(', ')}>`;
       }
-      return `${node.target}`;
+      return `${node.target!['value']}`;
 
     case 'BlockHirn': {
-      return ''
+      return '';
     }
     case 'BranchHirn':
+    case 'ModuleHirn':
     case 'LoopHirn':
     case 'GoHirn':
     case 'MatchHirn':
     default:
-      throw new Error("Unknown Type");
+      throw new Error('Unknown Type');
   }
 }

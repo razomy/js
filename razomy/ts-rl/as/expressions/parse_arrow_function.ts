@@ -3,7 +3,7 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseArrowFunction(node: ArrowFunction, ctx: tsRl.ast.HasEnterLeaveProduce): abstractions.translators.LambdaAsn {
+export function parseArrowFunction(node: ArrowFunction, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.LambdaAsn {
   const lambdaAsn: abstractions.translators.LambdaAsn = {
     id: random.createUuid(),
     kind: 'LambdaAsn',
@@ -19,9 +19,9 @@ export function parseArrowFunction(node: ArrowFunction, ctx: tsRl.ast.HasEnterLe
     return lambdaAsn;
   }
 
-  lambdaAsn.parameters = node.getParameters().map(i => tsRl.ast.bindings.parseParameter(i, ctx));
-  lambdaAsn.returnShape = node.getReturnTypeNode() ? tsRl.ast.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
-  lambdaAsn.block = tsRl.ast.parseNode(node.getBody() as any, ctx) as any;
+  lambdaAsn.parameters = node.getParameters().map(i => tsRl.as.bindings.parseParameter(i, ctx));
+  lambdaAsn.returnShape = node.getReturnTypeNode() ? tsRl.as.shapes.parse(node.getReturnTypeNode()!, ctx) : null;
+  lambdaAsn.block = tsRl.as.parseNode(node.getBody() as any, ctx) as any;
 
   return ctx.leave(lambdaAsn, node);
 }

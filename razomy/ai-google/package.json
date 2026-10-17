@@ -150,11 +150,25 @@
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
-    "build": "tsdown index.ts batch/index.ts cache/index.ts instant/index.ts refactor/index.ts --format esm,cjs --dts",
+    "build": "tsdown",
     "dev": "tsdown index.ts batch/index.ts cache/index.ts instant/index.ts refactor/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "batch/index.ts",
+        "cache/index.ts",
+        "instant/index.ts",
+        "refactor/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
   "type": "module",
   "types": "./index.ts",
   "typesVersions": {

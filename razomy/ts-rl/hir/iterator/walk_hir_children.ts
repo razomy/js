@@ -5,19 +5,17 @@ import * as abstractions from '@razomy/abstractions';
  * Отвечает ТОЛЬКО за знание того, в каких полях лежат дочерние узлы.
  * Используйте эту функцию во всех фазах, чтобы не дублировать огромный switch.
  */
-export function walkHirChildren<T extends abstractions.translators.ISemanticNode>(
-  sNode: T,
+export function walkHirChildren<T extends abstractions.translators.HirnType>(
+  node: T,
   onChild: (child: T) => void,
   onArray: (children: T[]) => void,
-) {
-  // Локальные помощники делают код компактным
+): void {
   function walk(child?: any) {
     if (child) onChild(child as T);
   }
   function walkArr(children?: any[]) {
     if (children && children.length > 0) onArray(children as T[]);
   }
-  const node = sNode.hir;
 
   switch (node.kind) {
     case 'BlockHirn':
@@ -33,6 +31,10 @@ export function walkHirChildren<T extends abstractions.translators.ISemanticNode
       walkArr(node.modifiers);
       walkArr(node.properties);
       break;
+    case 'ModuleHirn':
+      walkArr(node.modifiers);
+      walkArr(node.properties);
+      break;
     case 'BindingHirn':
       walkArr(node.modifiers);
       walk(node.shape);
@@ -42,7 +44,7 @@ export function walkHirChildren<T extends abstractions.translators.ISemanticNode
       walkArr(node.operands);
       break;
     case 'ReferenceHirn':
-      if (typeof node.target !== 'string') walk(node.target);
+      if (node.target && typeof node.target !== 'string') walk(node.target);
       walk(node.property);
       walkArr(node.arguments_);
       break;
@@ -60,6 +62,8 @@ export function walkHirChildren<T extends abstractions.translators.ISemanticNode
       break;
     case 'GoHirn':
       walk(node.value);
+      break;
+    case 'LiteralHirn':
       break;
   }
 }

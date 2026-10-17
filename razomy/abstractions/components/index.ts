@@ -2,13 +2,14 @@
 import type { CrudDateTime, CudDateTime, DateTime, HasCreatedAt, HasDeletedAt, HasReadAt, HasUpdatedAt } from './has_created_at';
 import type { HasDescription } from './has_description';
 import type { BoundRectangle, BoundRectangleMetric, BoundX, BoundY, HasDimension, HasLength, HasX, HasY, HasZ, MetricType, MetricUnit, NodeBound, Quaternion, Transform3, Vector2, Vector2Metric, Vector3 } from './has_dimension';
-import type { AbsolutePathString, DirPathString, FilePathString, HasCurrentDir, HasDirPath, HasFileName, HasFilePath, HasPath, HasSlug, HasSourceDir, HasSourcePath, HasStartDir, PathString, RelativePathString, Slug, SourcePathString, Url } from './has_path';
+import type { AbsolutePath, HasPath, HasSlug, HasSourcePath, Path, RelativePath, Slug, SourcePath } from './has_path';
 import type { CodeLanguageType, HasCodeLanguage, HasEntity, HasFn, HasFunctionHirn, HasResult, HasSender, HasSenderType, HasTask, HasTaskType, HasText, HasTextType, SenderType, TaskType, Text, TextType } from './has_text';
+import type { Domain, Fragment, HasUrl, Protocol, Query, Url } from './has_url';
 import type { AnchoredLayout, BlendMode, BorderSide, ColorRGBA, FixedLayout, FlexItemPlacement, FlexLayout, FlowLayout, GradientPaint, GradientStop, GridContainerLayout, GridItemPlacement, GridTrackSize, ILayout, ImagePaint, SolidPaint, Typography, UIBorders, UIEventBinding, UIEventType, UIFilters, UIInteractionSpec, UILayoutEngine, UIOverflow, UIPaint, UIPositioning, UIShadow, UISizing, UIStyleBag, UITransforms, UITransition } from './i_layout';
 
 // Named exports
 export type {
-  AbsolutePathString,
+  AbsolutePath,
   AnchoredLayout,
   BlendMode,
   BorderSide,
@@ -21,12 +22,12 @@ export type {
   CrudDateTime,
   CudDateTime,
   DateTime,
-  DirPathString,
-  FilePathString,
+  Domain,
   FixedLayout,
   FlexItemPlacement,
   FlexLayout,
   FlowLayout,
+  Fragment,
   GradientPaint,
   GradientStop,
   GridContainerLayout,
@@ -34,14 +35,10 @@ export type {
   GridTrackSize,
   HasCodeLanguage,
   HasCreatedAt,
-  HasCurrentDir,
   HasDeletedAt,
   HasDescription,
   HasDimension,
-  HasDirPath,
   HasEntity,
-  HasFileName,
-  HasFilePath,
   HasFn,
   HasFunctionHirn,
   HasLength,
@@ -51,14 +48,13 @@ export type {
   HasSender,
   HasSenderType,
   HasSlug,
-  HasSourceDir,
   HasSourcePath,
-  HasStartDir,
   HasTask,
   HasTaskType,
   HasText,
   HasTextType,
   HasUpdatedAt,
+  HasUrl,
   HasX,
   HasY,
   HasZ,
@@ -67,13 +63,15 @@ export type {
   MetricType,
   MetricUnit,
   NodeBound,
-  PathString,
+  Path,
+  Protocol,
   Quaternion,
-  RelativePathString,
+  Query,
+  RelativePath,
   SenderType,
   Slug,
   SolidPaint,
-  SourcePathString,
+  SourcePath,
   TaskType,
   Text,
   TextType,

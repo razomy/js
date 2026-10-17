@@ -1,5 +1,6 @@
 // Imports
 import type { Constructor } from './constructor';
+import { LATE_INIT } from './i_object';
 import type { IObject, IObjectConstructor } from './i_object';
 import { isClassConstructor } from './is_class_constructor';
 import { isObject } from './is_object';
@@ -12,6 +13,7 @@ import { toFormattedString } from './to_formatted_string';
 
 // Named exports
 export {
+  LATE_INIT,
   ObjectExtended,
   isClassConstructor,
   isObject,
@@ -29,6 +31,7 @@ export type {
 
 // Default export
 const object_ = {
+  LATE_INIT,
   isClassConstructor,
   isObject,
   match,

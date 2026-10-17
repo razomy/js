@@ -1,5 +1,5 @@
 import {RemoteNode} from "./remote_node";
-import {Razomy} from "@razomy/razomy";
+import {Razomy} from "@razomy/abstractions/meta";
 
 export const REACTIVE_DIRECTIVE = {
   mounted(el, binding, vnode) {
