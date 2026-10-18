@@ -22,7 +22,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n) where n is the number of segments in the path
  * @complexity memory O(1)
  */
-export function getByPath(dict: abstractions.structures.RecursiveDict, path: string): unknown {
+export function getByPath(dict: abstractions.structure.RecursiveDict, path: string): unknown {
   let current: unknown = dict;
 
   const segments: string[] = path.split('.');
@@ -32,7 +32,7 @@ export function getByPath(dict: abstractions.structures.RecursiveDict, path: str
       return undefined;
     }
 
-    current = (current as abstractions.structures.RecursiveDict)[segments[i]];
+    current = (current as abstractions.structure.RecursiveDict)[segments[i]];
   }
 
   return current;

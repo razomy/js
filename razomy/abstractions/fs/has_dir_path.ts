@@ -1,10 +1,10 @@
 import * as abstractions from "@razomy/abstractions";
-export type FileName<T = string> = abstractions.components.Path<T>;
-export type FileContent<T = string> = abstractions.components.Path<T>;
-export type FileExtension<T = string> = abstractions.components.Path<T>;
+export type FileName<T = string> = abstractions.path.Path<T>;
+export type FileContent<T = string> = abstractions.path.Path<T>;
+export type FileExtension<T = string> = abstractions.path.Path<T>;
 
-export type FilePath<T = string> = abstractions.components.Path<T>;
-export type DirPath<T = string> = abstractions.components.Path<T>;
+export type FilePath<T = string> = abstractions.path.Path<T>;
+export type DirPath<T = string> = abstractions.path.Path<T>;
 
 export interface HasDirPath extends abstractions.patterns.IComponent {
   dirPath: DirPath;
@@ -30,3 +30,7 @@ export interface HasFileName extends abstractions.patterns.IComponent {
   fileName: string;
 }
 
+
+export interface HasAbsolutePath {
+  absolutePath: abstractions.path.AbsolutePath;
+}

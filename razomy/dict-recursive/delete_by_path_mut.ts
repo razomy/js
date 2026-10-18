@@ -29,7 +29,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n)
  */
-export function deleteByPathMut(obj: abstractions.structures.RecursiveDict, path: string): void {
+export function deleteByPathMut(obj: abstractions.structure.RecursiveDict, path: string): void {
   if (path === '') {
     throw new Error('Path must not be empty');
   }
@@ -37,7 +37,7 @@ export function deleteByPathMut(obj: abstractions.structures.RecursiveDict, path
   const parts: string[] = path.split('.');
   const last: string = parts.pop()!;
 
-  let target: abstractions.structures.RecursiveDict = obj;
+  let target: abstractions.structure.RecursiveDict = obj;
 
   for (const part of parts) {
     const next: unknown = target[part];
@@ -46,7 +46,7 @@ export function deleteByPathMut(obj: abstractions.structures.RecursiveDict, path
       return;
     }
 
-    target = next as abstractions.structures.RecursiveDict;
+    target = next as abstractions.structure.RecursiveDict;
   }
 
   delete target[last];

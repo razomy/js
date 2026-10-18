@@ -19,9 +19,9 @@ export class ContextPipeline<TDef extends context.PipelineDef = context.DefaultP
   public add<TNew extends object, This extends context.PipelineState>(this: This, args: TNew): context.WithNext<This, TNew>;
   public add<TNew extends object, This extends context.PipelineState>(
     this: This,
-    args: TNew | abstractions.functions.Function<[This], TNew>,
+    args: TNew | abstractions.function_.Function<[This], TNew>,
   ): context.WithNext<This, TNew> {
-    if (functions.isFunction<abstractions.functions.Function<[This], TNew>>(args)) {
+    if (functions.isFunction<abstractions.function_.Function<[This], TNew>>(args)) {
       return context.assignPipelineNext(this as unknown as context.PipelineState, args(this)) as any;
     }
     return context.assignPipelineNext(this as unknown as context.PipelineState, args) as any;

@@ -23,7 +23,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity memory O(1)
  */
 
-export function firstKey<T>(obj: abstractions.structures.Dict<T>): string {
+export function firstKey<T>(obj: abstractions.structure.Dict<T>): string {
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       return key;

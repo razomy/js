@@ -21,6 +21,6 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n)
  * @complexity memory O(1)
  */
-export function isKeys<T>(dict: abstractions.structures.Dict<T>, keys: readonly string[]): boolean {
+export function isKeys<T>(dict: abstractions.structure.Dict<T>, keys: readonly string[]): boolean {
   return keys.some((key) => key in dict);
 }

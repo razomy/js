@@ -2,12 +2,12 @@ import { Node, SyntaxKind } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
-import type { StateAsnType } from '@razomy/abstractions/translators';
+import type { StateAsnType } from '@razomy/abstractions/translator';
 import type {HasEnterLeave} from "@razomy/abstractions/patterns";
 
-export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.AsnType {
+export function parse(node: Node, ctx: HasEnterLeave): abstractions.translator.AsnType {
   if (Node.isLiteralTypeNode(node)) {
-    const literalAsn: abstractions.translators.LiteralAsn = {
+    const literalAsn: abstractions.translator.LiteralAsn = {
       id: random.createUuid(),
       kind: 'LiteralAsn',
       syntaxRole: 'expression',
@@ -18,7 +18,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(literalAsn, node);
   }
   if (Node.isTypeOperatorTypeNode(node)) {
-    const unaryAsn: abstractions.translators.UnaryAsn = {
+    const unaryAsn: abstractions.translator.UnaryAsn = {
       id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
@@ -31,7 +31,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(unaryAsn, node);
   }
   if (Node.isRestTypeNode(node)) {
-    const unaryAsn: abstractions.translators.UnaryAsn = {
+    const unaryAsn: abstractions.translator.UnaryAsn = {
       id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
@@ -44,7 +44,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(unaryAsn, node);
   }
   if (Node.isTypeQuery(node)) {
-    const unaryAsn: abstractions.translators.UnaryAsn = {
+    const unaryAsn: abstractions.translator.UnaryAsn = {
       id: random.createUuid(),
       kind: 'UnaryAsn',
       syntaxRole: 'expression',
@@ -56,7 +56,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(unaryAsn, node);
   }
   if (Node.isParameterDeclaration(node)) {
-    const paramAsn: abstractions.translators.ParameterAsn = {
+    const paramAsn: abstractions.translator.ParameterAsn = {
       id: random.createUuid(),
       kind: 'ParameterAsn',
       syntaxRole: 'expression',
@@ -66,11 +66,11 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
       value: null,
     };
     if (!ctx.enter(paramAsn, node)) return paramAsn;
-    paramAsn.value = node.getInitializer() ? (parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType) : null;
+    paramAsn.value = node.getInitializer() ? (parse(node.getInitializer()!, ctx) as abstractions.translator.StateAsnType) : null;
     return ctx.leave(paramAsn, node);
   }
   if (Node.isConstructorTypeNode(node)) {
-    const lambdaAsn: abstractions.translators.LambdaAsn = {
+    const lambdaAsn: abstractions.translator.LambdaAsn = {
       id: random.createUuid(),
       kind: 'LambdaAsn',
       syntaxRole: 'expression',
@@ -92,7 +92,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
   }
 
   if (Node.isConditionalTypeNode(node)) {
-    const ternaryAsn: abstractions.translators.TernaryAsn = {
+    const ternaryAsn: abstractions.translator.TernaryAsn = {
       id: random.createUuid(),
       kind: 'TernaryAsn',
       syntaxRole: 'expression',
@@ -103,7 +103,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(ternaryAsn, node);
   }
   if (Node.isPropertySignature(node)) {
-    const propAsn: abstractions.translators.PropertyAsn = {
+    const propAsn: abstractions.translator.PropertyAsn = {
       id: random.createUuid(),
       kind: 'PropertyAsn',
       syntaxRole: 'expression',
@@ -117,7 +117,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(propAsn, node);
   }
   if (Node.isArrayTypeNode(node)) {
-    const arrayAsn: abstractions.translators.ArrayAsn = {
+    const arrayAsn: abstractions.translator.ArrayAsn = {
       id: random.createUuid(),
       kind: 'ArrayAsn',
       syntaxRole: 'expression',
@@ -129,7 +129,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(arrayAsn, node);
   }
   if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
-    const tupleAsn: abstractions.translators.TupleAsn = {
+    const tupleAsn: abstractions.translator.TupleAsn = {
       id: random.createUuid(),
       kind: 'TupleAsn',
       syntaxRole: 'expression',
@@ -141,7 +141,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(tupleAsn, node);
   }
   if (Node.isTypeLiteral(node)) {
-    const styleBlockAsn: abstractions.translators.StyleBlockAsn = {
+    const styleBlockAsn: abstractions.translator.StyleBlockAsn = {
       id: random.createUuid(),
       kind: 'StyleBlockAsn',
       syntaxRole: 'expression',
@@ -152,7 +152,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(styleBlockAsn, node);
   }
   if (Node.isTupleTypeNode(node)) {
-    const tupleAsn: abstractions.translators.TupleAsn = {
+    const tupleAsn: abstractions.translator.TupleAsn = {
       id: random.createUuid(),
       kind: 'TupleAsn',
       syntaxRole: 'expression',
@@ -160,11 +160,11 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
       values: [],
     };
     if (!ctx.enter(tupleAsn, node)) return tupleAsn;
-    tupleAsn.values = node.getElements().map((i) => parse(i, ctx)).filter(Boolean) as abstractions.translators.AsnType[];
+    tupleAsn.values = node.getElements().map((i) => parse(i, ctx)).filter(Boolean) as abstractions.translator.AsnType[];
     return ctx.leave(tupleAsn, node);
   }
   if (Node.isMappedTypeNode(node)) {
-    const mappedAsn: abstractions.translators.MappedAsn = {
+    const mappedAsn: abstractions.translator.MappedAsn = {
       id: random.createUuid(),
       kind: 'MappedAsn',
       syntaxRole: 'expression',
@@ -183,7 +183,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(mappedAsn, node);
   }
   if (Node.isFunctionTypeNode(node)) {
-    const lambdaAsn: abstractions.translators.LambdaAsn = {
+    const lambdaAsn: abstractions.translator.LambdaAsn = {
       id: random.createUuid(),
       kind: 'LambdaAsn',
       syntaxRole: 'expression',
@@ -204,7 +204,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(lambdaAsn, node);
   }
   if (Node.isTypeReference(node)) {
-    const refAsn: abstractions.translators.ReferenceAsn = {
+    const refAsn: abstractions.translator.ReferenceAsn = {
       id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',
@@ -215,7 +215,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
   }
 
   if (Node.isIndexedAccessTypeNode(node)) {
-    const memberAsn: abstractions.translators.MemberAsn = {
+    const memberAsn: abstractions.translator.MemberAsn = {
       id: random.createUuid(),
       kind: 'MemberAsn',
       syntaxRole: 'expression',
@@ -228,7 +228,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(memberAsn, node);
   }
   if (Node.isIndexSignatureDeclaration(node)) {
-    const mappedAsn: abstractions.translators.MappedAsn = {
+    const mappedAsn: abstractions.translator.MappedAsn = {
       id: random.createUuid(),
       kind: 'MappedAsn',
       syntaxRole: 'expression',
@@ -247,7 +247,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(mappedAsn, node);
   }
   if (Node.isParenthesizedTypeNode(node)) {
-    const blockAsn: abstractions.translators.BlockAsn = {
+    const blockAsn: abstractions.translator.BlockAsn = {
       id: random.createUuid(),
       kind: 'BlockAsn',
       syntaxRole: 'expression',
@@ -258,7 +258,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(blockAsn, node);
   }
   if (Node.isTypePredicate(node)) {
-    const binaryAsn: abstractions.translators.BinaryAsn = {
+    const binaryAsn: abstractions.translator.BinaryAsn = {
       id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
@@ -270,7 +270,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(binaryAsn, node);
   }
   if (Node.isTemplateLiteralTypeNode(node)) {
-    const binaryAsn: abstractions.translators.BinaryAsn = {
+    const binaryAsn: abstractions.translator.BinaryAsn = {
       id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
@@ -282,7 +282,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
     return ctx.leave(binaryAsn, node);
   }
   if (Node.isNamedTupleMember(node)) {
-    const binaryAsn: abstractions.translators.BinaryAsn = {
+    const binaryAsn: abstractions.translator.BinaryAsn = {
       id: random.createUuid(),
       kind: 'BinaryAsn',
       syntaxRole: 'expression',
@@ -295,7 +295,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
   }
 
   if (Node.isThisTypeNode(node)) {
-    const refAsn: abstractions.translators.ReferenceAsn = {
+    const refAsn: abstractions.translator.ReferenceAsn = {
       id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',
@@ -306,7 +306,7 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translators.
   }
   const kind = node.getKindName();
   if (kind.includes('Keyword')) {
-    const refAsn: abstractions.translators.ReferenceAsn = {
+    const refAsn: abstractions.translator.ReferenceAsn = {
       id: random.createUuid(),
       kind: 'ReferenceAsn',
       syntaxRole: 'expression',

@@ -4,9 +4,9 @@ import * as exceptions from '@razomy/exceptions';
 import * as kv_ from '@razomy/kv';
 import * as abstractions from '@razomy/abstractions';
 
-export function toKv<T = abstractions.structures.KeyValueArray<string, Buffer>>(dirPath: string): T;
-export function toKv<T = abstractions.structures.KeyValue<string, Buffer>>(filePath: string): T;
-export function toKv<T extends abstractions.structures.KeyValueArray<string, Buffer> | abstractions.structures.KeyValue<string, Buffer>>(directory: string): T {
+export function toKv<T = abstractions.structure.KeyValueArray<string, Buffer>>(dirPath: string): T;
+export function toKv<T = abstractions.structure.KeyValue<string, Buffer>>(filePath: string): T;
+export function toKv<T extends abstractions.structure.KeyValueArray<string, Buffer> | abstractions.structure.KeyValue<string, Buffer>>(directory: string): T {
   const stat = fs.statSync(directory);
   const kv = kv_.k(path.basename(directory), null as any) as T;
 

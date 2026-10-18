@@ -1,6 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 
-export function toYaml(nodes: abstractions.structures.KeyValueArray<string, string>, indentLevel = 0, indentSize = 2) {
+export function toYaml(nodes: abstractions.structure.KeyValueArray<string, string>, indentLevel = 0, indentSize = 2) {
   const currentIndent = ' '.repeat(indentLevel * indentSize);
   const lines: string[] = [];
 

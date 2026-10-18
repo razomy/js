@@ -6,13 +6,13 @@ import * as random from '@razomy/random';
 export function parseVariable(
   node: TsVariableDeclaration,
   ctx: abstractions.patterns.HasEnterLeave,
-): abstractions.translators.InstanceAsn {
+): abstractions.translator.InstanceAsn {
   const parent = node.getParent();
   const isConst = Node.isVariableDeclarationList(parent)
     ? parent.getDeclarationKind() === 'const'
     : node.getVariableStatement()?.getDeclarationKind() === 'const';
 
-  const instanceAsn: abstractions.translators.InstanceAsn = {
+  const instanceAsn: abstractions.translator.InstanceAsn = {
     id: random.createUuid(),
     kind: 'InstanceAsn',
     syntaxRole: 'statement',
@@ -32,7 +32,7 @@ export function parseVariable(
 
   instanceAsn.shape = node.getTypeNode() ? tsRl.as.shapes.parse(node.getTypeNode()!, ctx) : null;
   instanceAsn.value = node.getInitializer()
-    ? (tsRl.as.expressions.parse(node.getInitializer()!, ctx) as abstractions.translators.StateAsnType)
+    ? (tsRl.as.expressions.parse(node.getInitializer()!, ctx) as abstractions.translator.StateAsnType)
     : { id: random.createUuid(), kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: undefined };
 
   return ctx.leave(instanceAsn, node);

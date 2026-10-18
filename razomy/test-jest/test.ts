@@ -1,7 +1,7 @@
 import * as abstractions from "@razomy/abstractions";
 
 export async function test<I extends Array<any>, O>(
-  cb: abstractions.functions.Function<I, O>,
+  cb: abstractions.function_.Function<I, O>,
   req: I,
   res: O | null = null,
   err: Error | null = null,

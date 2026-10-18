@@ -4,7 +4,7 @@ import * as server from '@razomy/server';
 import * as expressAuth from "@razomy/express-auth";
 import * as abstractions from "@razomy/abstractions";
 
-export interface Ctx extends server.HasServer, abstractions.components.HasUrl {
+export interface Ctx extends server.HasServer, abstractions.path.HasUrl {
   isProdSecure: boolean;
   google: expressAuth.googleAuth.Google;
   app: Express;

@@ -21,8 +21,8 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function filter<T>(dict: abstractions.structures.Dict<T>, predicate: (value: T, key: string) => boolean): abstractions.structures.Dict<T> {
-  const result: abstractions.structures.Dict<T> = {};
+export function filter<T>(dict: abstractions.structure.Dict<T>, predicate: (value: T, key: string) => boolean): abstractions.structure.Dict<T> {
+  const result: abstractions.structure.Dict<T> = {};
 
   for (const key in dict) {
     if (predicate(dict[key], key)) {

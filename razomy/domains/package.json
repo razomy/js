@@ -24,76 +24,6 @@
         "types": "./index.ts"
       }
     },
-    "./abstractions": {
-      "default": {
-        "default": "./abstractions/index.ts",
-        "types": "./abstractions/index.ts"
-      },
-      "import": {
-        "default": "./abstractions/index.ts",
-        "types": "./abstractions/index.ts"
-      },
-      "require": {
-        "default": "./abstractions/index.ts",
-        "types": "./abstractions/index.ts"
-      }
-    },
-    "./acls": {
-      "default": {
-        "default": "./acls/index.ts",
-        "types": "./acls/index.ts"
-      },
-      "import": {
-        "default": "./acls/index.ts",
-        "types": "./acls/index.ts"
-      },
-      "require": {
-        "default": "./acls/index.ts",
-        "types": "./acls/index.ts"
-      }
-    },
-    "./auths": {
-      "default": {
-        "default": "./auths/index.ts",
-        "types": "./auths/index.ts"
-      },
-      "import": {
-        "default": "./auths/index.ts",
-        "types": "./auths/index.ts"
-      },
-      "require": {
-        "default": "./auths/index.ts",
-        "types": "./auths/index.ts"
-      }
-    },
-    "./domain": {
-      "default": {
-        "default": "./domain/index.ts",
-        "types": "./domain/index.ts"
-      },
-      "import": {
-        "default": "./domain/index.ts",
-        "types": "./domain/index.ts"
-      },
-      "require": {
-        "default": "./domain/index.ts",
-        "types": "./domain/index.ts"
-      }
-    },
-    "./event": {
-      "default": {
-        "default": "./event/index.ts",
-        "types": "./event/index.ts"
-      },
-      "import": {
-        "default": "./event/index.ts",
-        "types": "./event/index.ts"
-      },
-      "require": {
-        "default": "./event/index.ts",
-        "types": "./event/index.ts"
-      }
-    },
     "./fs": {
       "default": {
         "default": "./fs/index.ts",
@@ -108,64 +38,22 @@
         "types": "./fs/index.ts"
       }
     },
-    "./games": {
-      "default": {
-        "default": "./games/index.ts",
-        "types": "./games/index.ts"
-      },
-      "import": {
-        "default": "./games/index.ts",
-        "types": "./games/index.ts"
-      },
-      "require": {
-        "default": "./games/index.ts",
-        "types": "./games/index.ts"
-      }
-    },
-    "./git": {
-      "default": {
-        "default": "./git/index.ts",
-        "types": "./git/index.ts"
-      },
-      "import": {
-        "default": "./git/index.ts",
-        "types": "./git/index.ts"
-      },
-      "require": {
-        "default": "./git/index.ts",
-        "types": "./git/index.ts"
-      }
-    },
-    "./identitys": {
-      "default": {
-        "default": "./identitys/index.ts",
-        "types": "./identitys/index.ts"
-      },
-      "import": {
-        "default": "./identitys/index.ts",
-        "types": "./identitys/index.ts"
-      },
-      "require": {
-        "default": "./identitys/index.ts",
-        "types": "./identitys/index.ts"
-      }
-    },
     "./package.json": "./package.json",
-    "./specifications/*": "./specifications/*",
-    "./tx": {
+    "./patterns": {
       "default": {
-        "default": "./tx/index.ts",
-        "types": "./tx/index.ts"
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
       },
       "import": {
-        "default": "./tx/index.ts",
-        "types": "./tx/index.ts"
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
       },
       "require": {
-        "default": "./tx/index.ts",
-        "types": "./tx/index.ts"
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
       }
-    }
+    },
+    "./specifications/*": "./specifications/*"
   },
   "files": [
     "*"
@@ -174,6 +62,7 @@
   "keywords": [
     "razomy",
     "domains",
+    "validateFsNodeCycle",
     "boolDefault",
     "createAt",
     "deletedAt",
@@ -181,8 +70,7 @@
     "intDefault",
     "onDeleteCascade",
     "stringDefault",
-    "updateAt",
-    "validateFsNodeCycle"
+    "updateAt"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -202,7 +90,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown index.ts abstractions/index.ts acls/index.ts auths/index.ts domain/index.ts event/index.ts fs/index.ts games/index.ts git/index.ts identitys/index.ts tx/index.ts --watch",
+    "dev": "tsdown index.ts fs/index.ts patterns/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
@@ -211,16 +99,8 @@
       "dts": true,
       "entry": [
         "index.ts",
-        "abstractions/index.ts",
-        "acls/index.ts",
-        "auths/index.ts",
-        "domain/index.ts",
-        "event/index.ts",
         "fs/index.ts",
-        "games/index.ts",
-        "git/index.ts",
-        "identitys/index.ts",
-        "tx/index.ts"
+        "patterns/index.ts"
       ],
       "format": "esm,cjs",
       "platform": "neutral"

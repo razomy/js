@@ -5,8 +5,8 @@ import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstractions.translators.FunctionHirn[],
-): Promise<string | abstractions.translators.PropertyAsn> {
+  toolSpec: abstractions.translator.FunctionHirn[],
+): Promise<string | abstractions.translator.PropertyAsn> {
   const payload: any = {
     model: aiAnthropic.MODELS.expensive,
     max_tokens: aiAnthropic.MAX_TOKENS,
@@ -36,7 +36,7 @@ export async function askTool(
     //   item: toolSpec[ix],
     //   // Your interface expects the value as a string. We stringify it if it's an object/number.
     //   value: typeof val === 'string' ? val : JSON.stringify(val),
-    // } as abstractions.translators.Property)
+    // } as abstractions.translator.Property)
 
     return {
       name: tool[1].name,

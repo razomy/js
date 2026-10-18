@@ -2,7 +2,7 @@ import * as abstractions from '@razomy/abstractions';
 import * as vrd from '@razomy/vrd';
 
 export function iterateChildren<T>(
-  graph: abstractions.graphs.EdgeListGraph<vrd.VrdOrValue<T>>,
+  graph: abstractions.graph.EdgeListGraph<vrd.VrdOrValue<T>>,
   branch: vrd.VrdOrValue<T>,
 ) {
   graph.nodes.push(branch);

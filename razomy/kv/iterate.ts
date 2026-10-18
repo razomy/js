@@ -7,8 +7,8 @@ import * as primitives from "@razomy/primitives";
  * false - break
  */
 export function iterate<K, V>(
-  value: abstractions.structures.KeyValue<K, V> | abstractions.structures.KeyValueArray<K, V>,
-  nodeCb: abstractions.functions.Function<[abstractions.structures.KeyValue<K, V>], boolean | undefined>,
+  value: abstractions.structure.KeyValue<K, V> | abstractions.structure.KeyValueArray<K, V>,
+  nodeCb: abstractions.function_.Function<[abstractions.structure.KeyValue<K, V>], boolean | undefined>,
 ): boolean {
   if (kv.isKv(value)) {
     const res = primitives.booleanUndefined(nodeCb(value));
@@ -16,7 +16,7 @@ export function iterate<K, V>(
     if (!res) {
       return false;
     }
-    return iterate(value[1] as abstractions.structures.KeyValueArray<K, V>, nodeCb);
+    return iterate(value[1] as abstractions.structure.KeyValueArray<K, V>, nodeCb);
   } else if (kv.isAkv(value)) {
     for (const child of value) {
       const res = iterate(child, nodeCb);

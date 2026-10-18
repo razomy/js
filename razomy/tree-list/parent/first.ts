@@ -1,6 +1,6 @@
-import * as treeList from '@razomy/tree-list';
+import * as abstractions from "@razomy/abstractions";
 
-export function first<T extends treeList.parent.HasParent>(node: T, cb: (node: T) => boolean) {
+export function first<T extends abstractions.graph.HasParent<T | null>>(node: T, cb: (node: T) => boolean) {
   if (cb(node)) {
     return node;
   }

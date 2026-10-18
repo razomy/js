@@ -3,8 +3,8 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseEnum(node: TsEnumDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.EnumAsn {
-  const enumAsn: abstractions.translators.EnumAsn = {
+export function parseEnum(node: TsEnumDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.EnumAsn {
+  const enumAsn: abstractions.translator.EnumAsn = {
     id: random.createUuid(),
     kind: 'EnumAsn',
     syntaxRole: 'statement',
@@ -21,7 +21,7 @@ export function parseEnum(node: TsEnumDeclaration, ctx: abstractions.patterns.Ha
   }
 
   enumAsn.properties = node.getMembers().map(m => {
-    const prop: abstractions.translators.PropertyAsn = {
+    const prop: abstractions.translator.PropertyAsn = {
       id: random.createUuid(),
       kind: 'PropertyAsn',
       syntaxRole: 'expression',

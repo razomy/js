@@ -3,14 +3,14 @@ import * as abstractions from '@razomy/abstractions';
 
 export function resolveReferences(
   ctx: tsRl.hir.SemanticContext,
-  node: abstractions.translators.HirnType,
-  scope: Map<string, abstractions.translators.HirnType> = new Map(),
+  node: abstractions.translator.HirnType,
+  scope: Map<string, abstractions.translator.HirnType> = new Map(),
 ): void {
   // Копируем скоуп для текущего уровня видимости (лексическое замыкание)
   const currentScope = new Map(scope);
 
   // 1. Hoisting-фаза: сначала регистрируем все объявления на текущем уровне
-  function registerDeclaration (item: abstractions.translators.HirnType) {
+  function registerDeclaration (item: abstractions.translator.HirnType) {
         if ('name' in item && typeof (item as any).name === 'string' && (item as any).name) {
           currentScope.set((item as any).name, item);
         }

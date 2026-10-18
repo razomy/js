@@ -3,8 +3,8 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseJsDoc(jsDoc: JSDoc, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.DocsAsn {
-  const docsAsn: abstractions.translators.DocsAsn = {
+export function parseJsDoc(jsDoc: JSDoc, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.DocsAsn {
+  const docsAsn: abstractions.translator.DocsAsn = {
     id: random.createUuid(),
     kind: 'DocsAsn',
     block: [],
@@ -15,7 +15,7 @@ export function parseJsDoc(jsDoc: JSDoc, ctx: abstractions.patterns.HasEnterLeav
     return docsAsn;
   }
 
-  const block: (abstractions.translators.TextAsn | abstractions.translators.TagAsn)[] = [];
+  const block: (abstractions.translator.TextAsn | abstractions.translator.TagAsn)[] = [];
   const children = jsDoc.getChildren() as (JSDocTag | JSDocText)[];
 
   for (const child of children) {

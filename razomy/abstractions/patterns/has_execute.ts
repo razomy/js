@@ -1,6 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 
-export type Execute<TA extends any[], TR> = abstractions.functions.Function<TA, TR>;
+export type Execute<TA extends any[], TR> = abstractions.function_.Function<TA, TR>;
 
 export interface HasExecute<TA extends any[], TR = Promise<void>> extends abstractions.meta.IHas {
   execute: Execute<TA, TR>;

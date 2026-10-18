@@ -4,6 +4,7 @@ export type FileCategory = 'image' | 'video' | 'audio' | 'document';
 export type FileExtensionType = string;
 export type MediaType = string;
 
+// TODO: make abstract and extend with dynamic
 export interface FileFormat {
   fileExtensionType: FileExtensionType;
   mediaType: MediaType;

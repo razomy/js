@@ -3,8 +3,8 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseAlias(node: TypeAliasDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AliasAsn {
-  const aliasAsn: abstractions.translators.AliasAsn = {
+export function parseAlias(node: TypeAliasDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AliasAsn {
+  const aliasAsn: abstractions.translator.AliasAsn = {
     id: random.createUuid(),
     kind: 'AliasAsn',
     syntaxRole: 'statement',
@@ -16,7 +16,7 @@ export function parseAlias(node: TypeAliasDeclaration, ctx: abstractions.pattern
     return aliasAsn;
   }
 
-  aliasAsn.value = tsRl.as.shapes.parse(node.getTypeNode()!, ctx) as abstractions.translators.StateAsnType;
+  aliasAsn.value = tsRl.as.shapes.parse(node.getTypeNode()!, ctx) as abstractions.translator.StateAsnType;
 
   return ctx.leave(aliasAsn, node);
 }

@@ -15,7 +15,7 @@ export interface HirSerializeOptions {
 /**
  * Serializes a HIR node or SemanticContext's hirRoot into a JSON string.
  */
-export function hirToJsonString(root: abstractions.translators.IHirNode, options: HirSerializeOptions = {}): string {
+export function hirToJsonString(root: abstractions.translator.IHirNode, options: HirSerializeOptions = {}): string {
   const { includeIds = false, includeLinksAsIds = false, includeGenericChildren = false, space = 2 } = options;
   const seen = new WeakSet();
   const replacer = function (this: any, key: string, value: any) {

@@ -2,9 +2,9 @@ import * as abstractions from '@razomy/abstractions';
 import { ExportAssignment } from 'ts-morph';
 import * as random from "@razomy/random";
 
-export function parseExportAssignment(node: ExportAssignment, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType {
+export function parseExportAssignment(node: ExportAssignment, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AsnType {
   const expression = node.getExpression();
-  const memberAsn: abstractions.translators.MemberAsn = {
+  const memberAsn: abstractions.translator.MemberAsn = {
     id: random.createUuid(),
     kind: 'MemberAsn',
     syntaxRole: 'statement',

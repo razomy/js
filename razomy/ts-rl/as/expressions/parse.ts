@@ -3,7 +3,7 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType {
+export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AsnType {
   if (Node.isStringLiteral(node) || Node.isNoSubstitutionTemplateLiteral(node))
     return tsRl.as.expressions.buildIn.parseString(node, ctx);
   if (Node.isNumericLiteral(node)) return tsRl.as.expressions.buildIn.parseNumber(node, ctx);
@@ -16,7 +16,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
   if (Node.isRegularExpressionLiteral(node)) return tsRl.as.expressions.buildIn.parseRegExp(node, ctx);
   if (Node.isArrayLiteralExpression(node)) return tsRl.as.expressions.buildIn.parseArray(node, ctx);
   if (Node.isObjectLiteralExpression(node)) {
-    const objAsn: abstractions.translators.ObjectAsn = {
+    const objAsn: abstractions.translator.ObjectAsn = {
       id: random.createUuid(),
       kind: 'ObjectAsn',
       syntaxRole: 'expression',
@@ -43,7 +43,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
   if (Node.isFunctionExpression(node)) return tsRl.as.expressions.parseunctionExpression(node, ctx);
   if (Node.isConditionalExpression(node)) return tsRl.as.expressions.parseCondition(node, ctx);
   if (Node.isAsExpression(node)) {
-    const shapeAsn: abstractions.translators.ShapingAsn = {
+    const shapeAsn: abstractions.translator.ShapingAsn = {
       id: random.createUuid(),
       kind: 'ShapingAsn',
       syntaxRole: 'expression',
@@ -52,36 +52,36 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
       value: null as any,
     };
     if (!ctx.enter(shapeAsn, node)) return shapeAsn;
-    shapeAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    shapeAsn.value = parse(node.getExpression(), ctx) as abstractions.translator.StateAsnType;
     return ctx.leave(shapeAsn, node);
   }
   if (Node.isSpreadElement(node)) {
-    const spreadAsn: abstractions.translators.SpreadAsn = {
+    const spreadAsn: abstractions.translator.SpreadAsn = {
       id: random.createUuid(),
       kind: 'SpreadAsn',
       syntaxRole: 'expression',
       value: null as any,
     };
     if (!ctx.enter(spreadAsn, node)) return spreadAsn;
-    spreadAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    spreadAsn.value = parse(node.getExpression(), ctx) as abstractions.translator.StateAsnType;
     return ctx.leave(spreadAsn, node);
   }
   if (Node.isAwaitExpression(node)) {
-    const awaitAsn: abstractions.translators.AwaitAsn = {
+    const awaitAsn: abstractions.translator.AwaitAsn = {
       id: random.createUuid(),
       kind: 'AwaitAsn',
       syntaxRole: 'expression',
       value: null as any,
     };
     if (!ctx.enter(awaitAsn, node)) return awaitAsn;
-    awaitAsn.value = parse(node.getExpression(), ctx) as abstractions.translators.StateAsnType;
+    awaitAsn.value = parse(node.getExpression(), ctx) as abstractions.translator.StateAsnType;
     return ctx.leave(awaitAsn, node);
   }
   if (Node.isNonNullExpression(node)) {
     return parse(node.getExpression(), ctx);
   }
   if (Node.isTemplateExpression(node)) {
-    const templateAsn: abstractions.translators.TemplateAsn = {
+    const templateAsn: abstractions.translator.TemplateAsn = {
       id: random.createUuid(),
       kind: 'TemplateAsn',
       syntaxRole: 'expression',
@@ -93,7 +93,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
     return ctx.leave(templateAsn, node);
   }
   if (Node.isThisExpression(node)) {
-    const thisAsn: abstractions.translators.LiteralAsn = {
+    const thisAsn: abstractions.translator.LiteralAsn = {
       id: random.createUuid(),
       kind: 'LiteralAsn',
       syntaxRole: 'expression',
@@ -104,7 +104,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
     return ctx.leave(thisAsn, node);
   }
   if (Node.isYieldExpression(node)) {
-    const yieldAsn: abstractions.translators.YieldAsn = {
+    const yieldAsn: abstractions.translator.YieldAsn = {
       id: random.createUuid(),
       kind: 'YieldAsn',
       syntaxRole: 'expression',
@@ -120,7 +120,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
     return ctx.leave(yieldAsn, node);
   }
   if (Node.isSatisfiesExpression(node)) {
-    const satisfiesAsn: abstractions.translators.YieldAsn = {
+    const satisfiesAsn: abstractions.translator.YieldAsn = {
       id: random.createUuid(),
       kind: 'YieldAsn',
       syntaxRole: 'expression',

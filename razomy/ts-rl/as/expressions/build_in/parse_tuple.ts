@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseTuple(node: ArrayLiteralExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.TupleAsn {
-  const tupleAsn: abstractions.translators.TupleAsn = {
+export function parseTuple(node: ArrayLiteralExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.TupleAsn {
+  const tupleAsn: abstractions.translator.TupleAsn = {
     id: random.createUuid(),
     kind: 'TupleAsn',
     syntaxRole: 'expression',

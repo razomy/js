@@ -9,7 +9,7 @@ export type DiffNested = { type: 'NESTED_UPDATE'; children: DiffNode };
 export type DiffEntry = DiffCreated | DiffDeleted | DiffUpdated | DiffNested;
 export type DiffNode = Record<string, DiffEntry>;
 
-export function getDetailedDiff(oldObj: abstractions.structures.RecursiveDict, newObj: abstractions.structures.RecursiveDict): DiffNode {
+export function getDetailedDiff(oldObj: abstractions.structure.RecursiveDict, newObj: abstractions.structure.RecursiveDict): DiffNode {
   const diff: DiffNode = {};
 
   // Get all unique keys from both objects

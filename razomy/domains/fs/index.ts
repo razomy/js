@@ -1,7 +1,6 @@
 // Imports
 import { CycleDetectedError, FsNodeType, validateFsNodeCycle } from './cycle_detected_error';
 import type { FsNode } from './cycle_detected_error';
-import type { Media } from './media';
 
 // Named exports
 export {
@@ -10,8 +9,7 @@ export {
   validateFsNodeCycle
 };
 export type {
-  FsNode,
-  Media
+  FsNode
 };
 
 // Default export

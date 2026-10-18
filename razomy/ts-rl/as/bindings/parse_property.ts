@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseProperty(node: PropertyDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.PropertyAsn {
-  const propAsn: abstractions.translators.PropertyAsn = {
+export function parseProperty(node: PropertyDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.PropertyAsn {
+  const propAsn: abstractions.translator.PropertyAsn = {
     id: random.createUuid(),
     kind: 'PropertyAsn',
     syntaxRole: 'expression',

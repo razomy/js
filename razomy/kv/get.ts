@@ -2,7 +2,7 @@ import * as exceptions from '@razomy/exceptions';
 import * as kv from '@razomy/kv';
 import * as abstractions from '@razomy/abstractions';
 
-export function get<T>(valueRecursive: abstractions.structures.KeyValueArray<T, T>, path: T[], pathOffset: number): abstractions.structures.KvaOrValue<T, T> {
+export function get<T>(valueRecursive: abstractions.structure.KeyValueArray<T, T>, path: T[], pathOffset: number): abstractions.structure.KvaOrValue<T, T> {
   if (kv.isAkv(valueRecursive)) {
     for (const [key, value] of valueRecursive!) {
       if (key !== path[pathOffset]) {
@@ -14,7 +14,7 @@ export function get<T>(valueRecursive: abstractions.structures.KeyValueArray<T, 
         return value;
       }
 
-      return get(value as abstractions.structures.KeyValueArray<T, T>, path, pathOffset);
+      return get(value as abstractions.structure.KeyValueArray<T, T>, path, pathOffset);
     }
   }
 

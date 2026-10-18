@@ -6,8 +6,8 @@ import * as random from '@razomy/random';
 export function parseModule(
   node: ModuleDeclaration,
   ctx: abstractions.patterns.HasEnterLeave,
-): abstractions.translators.ModuleAsn {
-  const moduleAsn: abstractions.translators.ModuleAsn = {
+): abstractions.translator.ModuleAsn {
+  const moduleAsn: abstractions.translator.ModuleAsn = {
     id: random.createUuid(),
     kind: 'ModuleAsn',
     syntaxRole: 'statement',

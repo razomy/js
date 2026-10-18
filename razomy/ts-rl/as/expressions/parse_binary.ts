@@ -3,12 +3,12 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseBinary(node: BinaryExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.BinaryAsn {
-  const binaryAsn: abstractions.translators.BinaryAsn = {
+export function parseBinary(node: BinaryExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.BinaryAsn {
+  const binaryAsn: abstractions.translator.BinaryAsn = {
     id: random.createUuid(),
     kind: 'BinaryAsn',
     syntaxRole: 'expression',
-    operator: node.getOperatorToken().getText() as abstractions.translators.BinaryAsn['operator'],
+    operator: node.getOperatorToken().getText() as abstractions.translator.BinaryAsn['operator'],
     left: null as any,
     right: null as any,
   };

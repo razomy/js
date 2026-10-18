@@ -31,16 +31,16 @@ export type ISyntax = IEntity;
 export type IShape = IEntity;
 
 // delta entity in time
-export type IEvent = abstractions.patterns.IEntity
+export type IEvent = abstractions.patterns.IEntity;
 
 // entity join
-export type  IEdge = abstractions.patterns.IEntity
+export type IEdge = abstractions.patterns.IEntity;
 
 // getting data from space
-export type  IQuery = abstractions.patterns.IEntity
+export type IQuery = abstractions.patterns.IEntity;
 
 // setting data to space
-export type  ICommand = abstractions.patterns.IEntity
+export type ICommand = abstractions.patterns.IEntity;
 
 // map data different types
 export type IAdapter = IEntity;

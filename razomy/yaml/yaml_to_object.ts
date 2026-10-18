@@ -5,9 +5,9 @@ import * as resources from "@razomy/resources";
 import * as lexemes from "@razomy/lexemes";
 
 export type JsonTokenType = 'value' | 'break' | 'assign';
-export type JsonToken = abstractions.translators.HasTokenType<JsonTokenType> &
-  abstractions.structures.HasValue<string> &
-  abstractions.translators.HasDeep;
+export type JsonToken = abstractions.translator.HasTokenType<JsonTokenType> &
+  abstractions.structure.HasValue<string> &
+  abstractions.translator.HasDeep;
 
 function ifR<T, r2>(res: T, fn: (r: NonNullable<T>) => NonNullable<r2>) {
   if (res != null) {
@@ -33,7 +33,7 @@ export function yamlToObject(jsonTokens: JsonToken[]) {
     { stack: [] as number[] },
     { deep: 0 },
     { children: [] as any },
-  ) satisfies abstractions.translators.HasTokens<JsonToken> & abstractions.arrays.HasOffset;
+  ) satisfies abstractions.translator.HasTokens<JsonToken> & abstractions.array.HasOffset;
 
   const rs = {
     root: (c) => ifR(lexemes.tokenOffsetDeep.tryScope(c, rs.line), mergeResults),

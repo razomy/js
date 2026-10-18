@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseCondition(node: ConditionalExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.TernaryAsn {
-  const ternaryAsn: abstractions.translators.TernaryAsn = {
+export function parseCondition(node: ConditionalExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.TernaryAsn {
+  const ternaryAsn: abstractions.translator.TernaryAsn = {
     id: random.createUuid(),
     kind: 'TernaryAsn',
     syntaxRole: 'expression',
@@ -22,13 +22,13 @@ export function parseCondition(node: ConditionalExpression, ctx: abstractions.pa
       syntaxRole: 'expression',
       pattern: tsRl.as.expressions.parse(node.getCondition(), ctx)!,
       value: tsRl.as.expressions.parse(node.getWhenTrue(), ctx)!,
-    } as abstractions.translators.ConditionBranchAsn,
+    } as abstractions.translator.ConditionBranchAsn,
     {
       id: random.createUuid(),
       kind: 'ElseBranchAsn',
       syntaxRole: 'expression',
       value: tsRl.as.expressions.parse(node.getWhenFalse(), ctx)!,
-    } as abstractions.translators.ElseBranchAsn,
+    } as abstractions.translator.ElseBranchAsn,
   ];
 
   return ctx.leave(ternaryAsn, node);

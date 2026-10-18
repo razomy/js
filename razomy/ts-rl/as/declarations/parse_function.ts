@@ -3,12 +3,12 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseFunction(node: FunctionDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType[] {
+export function parseFunction(node: FunctionDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AsnType[] {
   const funcName = node.getNameOrThrow();
   const jsDoc = tsRl.as.doc.tryParseJsDoc(node, ctx);
   const docs = jsDoc ? tsRl.as.doc.parseJsDoc(jsDoc, ctx) : null;
 
-  const func: abstractions.translators.FunctionAsn = {
+  const func: abstractions.translator.FunctionAsn = {
     id: random.createUuid(),
     kind: 'FunctionAsn',
     syntaxRole: 'statement',
@@ -17,7 +17,7 @@ export function parseFunction(node: FunctionDeclaration, ctx: abstractions.patte
       node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
       node.isAsync() ? { id: random.createUuid(), kind: 'FunctionModifierAsn', syntaxRole: 'modifier', operator: 'async', value: null } : null,
       node.isGenerator() ? { id: random.createUuid(), kind: 'FunctionModifierAsn', syntaxRole: 'modifier', operator: 'generator', value: null } : null,
-    ].filter(Boolean) as abstractions.translators.FunctionModifierAsn[],
+    ].filter(Boolean) as abstractions.translator.FunctionModifierAsn[],
     parameters: [],
     returnShape: null,
     block: null as any,
@@ -33,5 +33,5 @@ export function parseFunction(node: FunctionDeclaration, ctx: abstractions.patte
     ? (tsRl.as.statements.parse(node.getBody() as any, ctx) as any)
     : { id: random.createUuid(), kind: 'BlockAsn', syntaxRole: 'statement', statements: [] };
 
-  return [docs, ctx.leave(func, node)].filter(Boolean) as abstractions.translators.AsnType[];
+  return [docs, ctx.leave(func, node)].filter(Boolean) as abstractions.translator.AsnType[];
 }

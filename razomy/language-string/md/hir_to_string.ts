@@ -3,7 +3,7 @@ import * as languageString from "@razomy/language-string";
 
 function modifiersToLiterals(
   struct:
-    abstractions.translators.FunctionHirn | abstractions.translators.BindingHirn | abstractions.translators.StructHirn,
+    abstractions.translator.FunctionHirn | abstractions.translator.BindingHirn | abstractions.translator.StructHirn,
 ) {
   return struct.modifiers
     .filter((i) => i.kind === 'LiteralHirn')
@@ -17,7 +17,7 @@ function modifiersToLiterals(
     .join(' ');
 }
 
-export function hirToString(node: abstractions.meta.NullOptional<abstractions.translators.HirnType>): string {
+export function hirToString(node: abstractions.meta.NullOptional<abstractions.translator.HirnType>): string {
   if (!node) {
     throw new Error('Unknown Type');
   }
@@ -56,7 +56,7 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
       return '';
     }
     case 'StructHirn': {
-      const struct = node as abstractions.translators.StructHirn;
+      const struct = node as abstractions.translator.StructHirn;
       const fieldEntries = Object.entries(struct.properties || {}).map(
         ([fieldName, fieldShape]) => `${fieldName}: ${hirToString(fieldShape)}`,
       );

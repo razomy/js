@@ -4,13 +4,13 @@ import * as tsRl from "@razomy/ts-rl";
 export function astToHirNode(
   ctx: tsRl.hir.SemanticContext,
   iter: abstractions.patterns.HasEnterLeave,
-  node: abstractions.translators.AsnType,
-): abstractions.translators.HirnType {
-  function recurse(child: abstractions.translators.AsnType) {
+  node: abstractions.translator.AsnType,
+): abstractions.translator.HirnType {
+  function recurse(child: abstractions.translator.AsnType) {
     return astToHirNode(ctx, iter, child);
   }
 
-  let hir: abstractions.translators.HirnType;
+  let hir: abstractions.translator.HirnType;
 
   switch (node.kind) {
     // region Modifiers (были потеряны — падали в default)
@@ -124,7 +124,7 @@ export function astToHirNode(
       const b = new tsRl.hir.BindingSn(ctx);
       b.name = null;
       b.modifiers = [];
-      b.shape = recurse(node.constraint) as abstractions.translators.ReferenceHirn;
+      b.shape = recurse(node.constraint) as abstractions.translator.ReferenceHirn;
       b.value = recurse(node.value);
       b.doc = { description: '' };
       hir = b;
@@ -135,7 +135,7 @@ export function astToHirNode(
       const b = new tsRl.hir.BindingSn(ctx);
       b.name = node.identifier.name;
       b.modifiers = [];
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.translators.ReferenceHirn) : null;
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.translator.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -158,7 +158,7 @@ export function astToHirNode(
       lit.syntaxRole = 'expression';
       lit.semanticLayer = 'state';
       m.target = lit;
-      m.branches = node.branches.map((b) => recurse(b) as abstractions.translators.BranchHirn);
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.translator.BranchHirn);
       hir = m;
       break;
     }
@@ -166,7 +166,7 @@ export function astToHirNode(
     case 'SwitchAsn': {
       const m = new tsRl.hir.MatchSn(ctx);
       m.target = recurse(node.target);
-      m.branches = node.branches.map((b) => recurse(b) as abstractions.translators.BranchHirn);
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.translator.BranchHirn);
       hir = m;
       break;
     }
@@ -210,7 +210,7 @@ export function astToHirNode(
       op.operands = [recurse(node.block)];
       m.target = op;
       m.branches = 'branches' in node && Array.isArray((node as any).branches)
-        ? (node as any).branches.map((b: any) => recurse(b) as abstractions.translators.BranchHirn)
+        ? (node as any).branches.map((b: any) => recurse(b) as abstractions.translator.BranchHirn)
         : [];
       hir = m;
       break;
@@ -232,7 +232,7 @@ export function astToHirNode(
     case 'WhileDoAsn': {
       const loop = new tsRl.hir.LoopSn(ctx);
       loop.condition = recurse(node.condition);
-      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
       hir = loop;
       break;
     }
@@ -241,7 +241,7 @@ export function astToHirNode(
       // Сохраняем семантику do-while через модификатор/обертку
       const loop = new tsRl.hir.LoopSn(ctx);
       loop.condition = recurse(node.condition);
-      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
       const doMod = new tsRl.hir.LiteralSn(ctx);
       doMod.value = 'do_while';
       doMod.syntaxRole = 'modifier';
@@ -256,7 +256,7 @@ export function astToHirNode(
       const loop = new tsRl.hir.LoopSn(ctx);
       const rootBlock = node.init ? new tsRl.hir.BlockSn(ctx) : null;
 
-      let bodyHirn = recurse(node.block) as abstractions.translators.BlockHirn;
+      let bodyHirn = recurse(node.block) as abstractions.translator.BlockHirn;
       if (node.update) {
         const updateHirn = recurse(node.update);
         if (bodyHirn.kind === 'BlockHirn') {
@@ -292,7 +292,7 @@ export function astToHirNode(
       loop.condition = null;
       loop.syntaxRole = node.syntaxRole;
       loop.semanticLayer = 'state';
-      loop.block = recurse(node.block) as abstractions.translators.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
 
       blk.statements = [recurse(node.init), loop];
       hir = blk;
@@ -337,7 +337,7 @@ export function astToHirNode(
       const b = new tsRl.hir.BindingSn(ctx);
       b.name = node.identifier.name;
       b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.translators.ReferenceHirn) : null;
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.translator.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -349,8 +349,8 @@ export function astToHirNode(
       const fn = new tsRl.hir.FunctionSn(ctx);
       fn.name = node.kind === 'FunctionAsn' && node.identifier ? node.identifier.name : null;
       fn.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
-      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.translators.ReferenceHirn) : null;
-      fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.translators.BindingHirn);
+      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.translator.ReferenceHirn) : null;
+      fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.translator.BindingHirn);
       fn.block = node.block ? recurse(node.block) : null;
       fn.doc = {
         title: null,
@@ -419,13 +419,13 @@ export function astToHirNode(
 
       const baseModifiers =
         'modifiers' in node && node.modifiers
-          ? (node.modifiers as abstractions.translators.AsnType[]).map(recurse)
+          ? (node.modifiers as abstractions.translator.AsnType[]).map(recurse)
           : [];
 
       // Переносим параметры типов/дженерики (parameters), которые раньше терялись
       const genericModifiers =
         'parameters' in node && node.parameters
-          ? (node.parameters as abstractions.translators.AsnType[]).map(recurse)
+          ? (node.parameters as abstractions.translator.AsnType[]).map(recurse)
           : [];
 
       s.modifiers = [kindModifier, ...baseModifiers, ...genericModifiers];

@@ -8,7 +8,7 @@ export function valueOrListToFlatDict(
   input: kvRecursive.RecursiveList | string,
   parent: string,
   separator: string,
-): abstractions.structures.Dict<string> {
+): abstractions.structure.Dict<string> {
   if (string.isString(input)) {
     dict[parent] = input;
   } else {

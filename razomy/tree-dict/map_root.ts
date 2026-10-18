@@ -3,7 +3,7 @@ import * as treeDict from '@razomy/tree-dict';
 
 export function mapRoot<I, O>(
   input: treeDict.RootDict<I>,
-  leafValueCb: (input: abstractions.graphs.Leaf<I>, parent: treeDict.RootOrBranchDict<I>) => O,
+  leafValueCb: (input: abstractions.graph.Leaf<I>, parent: treeDict.RootOrBranchDict<I>) => O,
 ) {
   const otput: treeDict.RootDict<O> = {
     children: {},

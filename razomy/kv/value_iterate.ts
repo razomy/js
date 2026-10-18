@@ -6,8 +6,8 @@ import * as abstractions from "@razomy/abstractions";
  * false - break
  */
 export function valueIterate<K, V>(
-  value: abstractions.structures.KeyValue<K, V>,
-  valueCb: abstractions.functions.Function<[abstractions.structures.KeyValue<K, V>], boolean | undefined>,
+  value: abstractions.structure.KeyValue<K, V>,
+  valueCb: abstractions.function_.Function<[abstractions.structure.KeyValue<K, V>], boolean | undefined>,
 ): boolean {
   return kv_.iterate(value, (kv) => {
     if (!kv_.isKv(kv[0]) && !kv_.isAkv(kv[0])) {

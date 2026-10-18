@@ -46,7 +46,7 @@ export class DockerPipeline extends context.ContextPipeline {
     inheritFolderPath: () => inheritFolderPath(this),
   }));
   content2 = this.addPipe((content2: (t: this) => string) => ({ content2: () => content2(this) }));
-  schema = this.addPipe((schema: (t: this) => abstractions.structures.KeyValueArray<string, string>) => ({
+  schema = this.addPipe((schema: (t: this) => abstractions.structure.KeyValueArray<string, string>) => ({
     schema: () => schema(this),
   }));
   load = this.addPipe((load: (t: this) => void) => ({ load: () => load(this) }));

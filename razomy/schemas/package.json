@@ -42,7 +42,6 @@
   "module": "./index.ts",
   "name": "@razomy/schemas",
   "peerDependencies": {
-    "@razomy/abstractions": "*",
     "@razomy/schema": "*"
   },
   "publishConfig": {

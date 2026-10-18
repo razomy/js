@@ -1,7 +1,8 @@
 import * as exceptions from '@razomy/exceptions';
 import * as treeDict from '@razomy/tree-dict';
+import * as abstractions from "@razomy/abstractions";
 
-export function getValue<T extends treeDict.HasChildrenDict<T>>(value: T, path: string[], offset: number) {
+export function getValue<T extends abstractions.graph.HasChildrenDict<T>>(value: T, path: string[], offset: number) {
   for (const key in value.children) {
     if (key !== path[offset]) {
       continue;

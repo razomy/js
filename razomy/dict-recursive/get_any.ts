@@ -26,7 +26,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n) where n is the total number of nodes in the nested structure
  * @complexity memory O(d) where d is the maximum depth of the nested structure
  */
-export function getAny(dict: abstractions.structures.Dict<unknown>, keys: string[]): string[] {
+export function getAny(dict: abstractions.structure.Dict<unknown>, keys: string[]): string[] {
   if (dict_.isKeys(dict, keys)) {
     return [''];
   }
@@ -34,7 +34,7 @@ export function getAny(dict: abstractions.structures.Dict<unknown>, keys: string
   if (Array.isArray(dict)) {
     const result: string[] = [];
     for (let index = 0; index < dict.length; index++) {
-      const children = getAny(dict[index] as abstractions.structures.Dict<unknown>, keys);
+      const children = getAny(dict[index] as abstractions.structure.Dict<unknown>, keys);
       for (const child of children) {
         result.push(`${index}:${child}`);
       }
@@ -46,7 +46,7 @@ export function getAny(dict: abstractions.structures.Dict<unknown>, keys: string
     const result: string[] = [];
     for (const key in dict) {
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
-        const children = getAny(dict[key] as abstractions.structures.Dict<unknown>, keys);
+        const children = getAny(dict[key] as abstractions.structure.Dict<unknown>, keys);
         for (const child of children) {
           result.push(`${key}:${child}`);
         }

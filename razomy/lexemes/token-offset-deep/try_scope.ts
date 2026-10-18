@@ -2,7 +2,7 @@ import * as resources from '@razomy/resources';
 import * as abstractions from '@razomy/abstractions';
 
 export function tryScope<
-  C extends abstractions.patterns.IContext & abstractions.translators.HasTokens<any> & abstractions.arrays.HasOffset & abstractions.translators.HasStack,
+  C extends abstractions.patterns.IContext & abstractions.translator.HasTokens<any> & abstractions.array.HasOffset & abstractions.translator.HasStack,
   T extends { offset: number; result: R2 } | null,
   R2 = any,
 >(ctx: C, rule: resources.ResultNullFn<C, T>) {

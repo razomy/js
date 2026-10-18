@@ -5,7 +5,7 @@ import * as random from '@razomy/random';
 export function parseExport(
   exportDecl: any,
   ctx: abstractions.patterns.HasEnterLeave,
-): abstractions.translators.AsnType[] {
+): abstractions.translator.AsnType[] {
   const namespaceExport = exportDecl.getNamespaceExport?.();
   const targetSourceFile = exportDecl.getModuleSpecifierSourceFile?.();
 
@@ -14,7 +14,7 @@ export function parseExport(
     if (targetSourceFile.getBaseName().startsWith('index.')) {
       return [tsRl.as.declarations.parseModule(targetSourceFile.getDirectory(), ctx)];
     } else {
-      const mod: abstractions.translators.ModuleAsn = {
+      const mod: abstractions.translator.ModuleAsn = {
         id: random.createUuid(),
         kind: 'ModuleAsn',
         syntaxRole: 'statement',
@@ -38,7 +38,7 @@ export function parseExport(
   }
   // 3. Обработка: export { a, b, c }; (Именованные локальные экспорты)
   else if (exportDecl.getNamedExports && exportDecl.getNamedExports().length > 0) {
-    const results: abstractions.translators.AsnType[] = [];
+    const results: abstractions.translator.AsnType[] = [];
     const processedFiles = new Set<string>();
 
     for (const namedExport of exportDecl.getNamedExports()) {
@@ -57,7 +57,7 @@ export function parseExport(
           //
           //   const moduleName = namedExport.getName();
           //
-          //   const mod: abstractions.translators.ModuleAsn = {
+          //   const mod: abstractions.translator.ModuleAsn = {
           //     id: random.createUuid(),
           //     kind: 'ModuleAsn',
           //     syntaxRole: 'statement',

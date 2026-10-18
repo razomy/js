@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseArray(node: ArrayLiteralExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.ArrayAsn {
-  const arrayAsn: abstractions.translators.ArrayAsn = {
+export function parseArray(node: ArrayLiteralExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.ArrayAsn {
+  const arrayAsn: abstractions.translator.ArrayAsn = {
     id: random.createUuid(),
     kind: 'ArrayAsn',
     syntaxRole: 'expression',

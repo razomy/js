@@ -3,10 +3,10 @@ import * as abstractions from '@razomy/abstractions';
 
 export function computeSemanticLayers(
   ctx: tsRl.hir.SemanticContext,
-  node: abstractions.translators.HirnType,
-  parentLayer: abstractions.translators.SemanticLayer = 'state',
+  node: abstractions.translator.HirnType,
+  parentLayer: abstractions.translator.SemanticLayer = 'state',
 ): void {
-  let layer: abstractions.translators.SemanticLayer = parentLayer;
+  let layer: abstractions.translator.SemanticLayer = parentLayer;
 
   // 1. Определение слоя на основе роли и типа узла HIR
   if (node.syntaxRole === 'modifier' || (node.kind === 'ReferenceHirn' && (node as any).target?.value === 'import')) {

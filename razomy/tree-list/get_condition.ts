@@ -1,6 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 
-export function getCondition<T extends abstractions.graphs.HasChildren<any[]>>(node: T, path: string[], match) {
+export function getCondition<T extends abstractions.graph.HasChildren<any[]>>(node: T, path: string[], match) {
   if (path.length === 0 || !match(node, path[0])) {
     return null;
   }

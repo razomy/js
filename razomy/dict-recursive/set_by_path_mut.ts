@@ -30,7 +30,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n) where n is the number of path segments
  * @complexity memory O(n) for intermediate objects created along the path
  */
-export function setByPathMut(obj: abstractions.structures.RecursiveDict, path: string, value: unknown): void {
+export function setByPathMut(obj: abstractions.structure.RecursiveDict, path: string, value: unknown): void {
   const parts: string[] = path.split('.');
   const last: string | undefined = parts.pop();
 
@@ -38,11 +38,11 @@ export function setByPathMut(obj: abstractions.structures.RecursiveDict, path: s
     throw new Error('Path must be a non-empty string');
   }
 
-  const target: abstractions.structures.RecursiveDict = parts.reduce<abstractions.structures.RecursiveDict>((acc, part) => {
+  const target: abstractions.structure.RecursiveDict = parts.reduce<abstractions.structure.RecursiveDict>((acc, part) => {
     if (!acc[part] || !dict.isPlainObject(acc[part])) {
       acc[part] = {};
     }
-    return acc[part] as abstractions.structures.RecursiveDict;
+    return acc[part] as abstractions.structure.RecursiveDict;
   }, obj);
 
   target[last!] = value as any;

@@ -53,7 +53,7 @@ This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 `.trim();
 
 export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.SemanticContext) {
-  const hirRoot = ctx.hirRoot as abstractions.translators.StructHirn;
+  const hirRoot = ctx.hirRoot as abstractions.translator.StructHirn;
   const scopeName = stringCase.camelCase(hirRoot.name!.replace('@razomy/', ''));
 
   const description = fss.file.tryGetSync(path + '/description.rn')?.replaceAll('md {', '') || null;

@@ -5,6 +5,8 @@ import type { ChangeDifference, Difference, DifferenceType, ReplaceDifference } 
 import type { Gate } from './gate';
 import type { HasClone } from './has_clone';
 import type { HasCreate } from './has_create';
+import type { CrudDateTime, CudDateTime, HasCreatedAt, HasDeletedAt, HasReadAt, HasUpdatedAt } from './has_created_at';
+import type { HasDescription } from './has_description';
 import type { HasEnterLeave } from './has_enter_leave';
 import type { Execute, HasCancel, HasExecute, HasRollback, HasValidate } from './has_execute';
 import type { HasId, HasPrimaryId, Id, Primary, Uuid } from './has_id';
@@ -26,6 +28,8 @@ export type {
   Codec,
   Context,
   ContextKey,
+  CrudDateTime,
+  CudDateTime,
   Decode,
   Difference,
   DifferenceType,
@@ -38,7 +42,10 @@ export type {
   HasCancel,
   HasClone,
   HasCreate,
+  HasCreatedAt,
   HasDecode,
+  HasDeletedAt,
+  HasDescription,
   HasEncode,
   HasEnterLeave,
   HasExecute,
@@ -48,8 +55,10 @@ export type {
   HasName,
   HasPipe,
   HasPrimaryId,
+  HasReadAt,
   HasRollback,
   HasSerializable,
+  HasUpdatedAt,
   HasValidate,
   IAdapter,
   IAttribute,

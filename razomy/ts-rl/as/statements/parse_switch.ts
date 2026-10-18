@@ -3,8 +3,8 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseSwitch(node: SwitchStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.SwitchAsn {
-  const switchAsn: abstractions.translators.SwitchAsn = {
+export function parseSwitch(node: SwitchStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.SwitchAsn {
+  const switchAsn: abstractions.translator.SwitchAsn = {
     id: random.createUuid(),
     kind: 'SwitchAsn',
     target: null as any,
@@ -17,7 +17,7 @@ export function parseSwitch(node: SwitchStatement, ctx: abstractions.patterns.Ha
   }
 
   const targetExpression = tsRl.as.expressions.parse(node.getExpression(), ctx);
-  const branches: abstractions.translators.SwitchBranchAsnType[] = [];
+  const branches: abstractions.translator.SwitchBranchAsnType[] = [];
   const clauses = node.getCaseBlock().getClauses();
 
   for (const clause of clauses) {
@@ -36,7 +36,7 @@ export function parseSwitch(node: SwitchStatement, ctx: abstractions.patterns.Ha
           syntaxRole: 'statement',
           statements: parsedValue,
         },
-      } as abstractions.translators.MatchBranchAsn);
+      } as abstractions.translator.MatchBranchAsn);
     } else if (Node.isDefaultClause(clause)) {
       branches.push({
         id: random.createUuid(),
@@ -48,7 +48,7 @@ export function parseSwitch(node: SwitchStatement, ctx: abstractions.patterns.Ha
           syntaxRole: 'statement',
           statements: parsedValue,
         },
-      } as abstractions.translators.DefaultBranchAsn);
+      } as abstractions.translator.DefaultBranchAsn);
     }
   }
 

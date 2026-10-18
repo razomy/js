@@ -3,7 +3,7 @@ import * as abstractions from '@razomy/abstractions';
 
 export function indexNodes(
   ctx: tsRl.hir.SemanticContext,
-  node: abstractions.translators.HirnType,
+  node: abstractions.translator.HirnType,
 ): void {
   ctx.hirnMap.set(node.id, node);
 

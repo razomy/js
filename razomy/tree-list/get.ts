@@ -1,6 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 
-export function get<T extends abstractions.graphs.HasChildren<any[]>>(node: T, path: string[], offset: number): T {
+export function get<T extends abstractions.graph.HasChildren<any[]>>(node: T, path: string[], offset: number): T {
   if (offset >= path.length) {
     return node;
   }

@@ -2,11 +2,11 @@ import { Node, Statement } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
-import type {BlockAsn} from "@razomy/abstractions/translators";
+import type {BlockAsn} from "@razomy/abstractions/translator";
 
-export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType {
+export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AsnType {
   if (Node.isBlock(node)) {
-    const blockAsn: abstractions.translators.BlockAsn = {
+    const blockAsn: abstractions.translator.BlockAsn = {
       id: random.createUuid(),
       kind: 'BlockAsn',
       syntaxRole: 'statement',
@@ -19,7 +19,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
   if (Node.isIfStatement(node)) return tsRl.as.statements.parseCondition(node, ctx);
   if (Node.isSwitchStatement(node)) return tsRl.as.statements.parseSwitch(node, ctx);
   if (Node.isTryStatement(node)) {
-    const tryAsn: abstractions.translators.TryAsn = {
+    const tryAsn: abstractions.translator.TryAsn = {
       id: random.createUuid(),
       kind: 'TryAsn',
       syntaxRole: 'statement',
@@ -30,7 +30,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     return ctx.leave(tryAsn, node);
   }
   if (Node.isForStatement(node)) {
-    const forAsn: abstractions.translators.ForItAsn = {
+    const forAsn: abstractions.translator.ForItAsn = {
       id: random.createUuid(),
       kind: 'ForItAsn',
       syntaxRole: 'statement',
@@ -46,7 +46,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     return ctx.leave(forAsn, node);
   }
   if (Node.isWhileStatement(node)) {
-    const whileAsn: abstractions.translators.WhileDoAsn = {
+    const whileAsn: abstractions.translator.WhileDoAsn = {
       id: random.createUuid(),
       kind: 'WhileDoAsn',
       syntaxRole: 'statement',
@@ -59,7 +59,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     return ctx.leave(whileAsn, node);
   }
   if (Node.isDoStatement(node)) {
-    const doAsn: abstractions.translators.DoWhileAsn = {
+    const doAsn: abstractions.translator.DoWhileAsn = {
       id: random.createUuid(),
       kind: 'DoWhileAsn',
       syntaxRole: 'statement',
@@ -72,7 +72,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     return ctx.leave(doAsn, node);
   }
   if (Node.isForOfStatement(node)) {
-    const forOfAsn: abstractions.translators.ForOfAsn = {
+    const forOfAsn: abstractions.translator.ForOfAsn = {
       id: random.createUuid(),
       kind: 'ForOfAsn',
       syntaxRole: 'statement',
@@ -85,7 +85,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     return ctx.leave(forOfAsn, node);
   }
   if (Node.isForInStatement(node)) {
-    const forInAsn: abstractions.translators.ForIAsn = {
+    const forInAsn: abstractions.translator.ForIAsn = {
       id: random.createUuid(),
       kind: 'ForInAsn',
       syntaxRole: 'statement',
@@ -101,7 +101,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
   if (Node.isReturnStatement(node)) return tsRl.as.statements.parseReturn(node, ctx);
   if (Node.isBreakStatement(node)) {
     const label = node.getLabel();
-    const breakAsn: abstractions.translators.BreakAsn = {
+    const breakAsn: abstractions.translator.BreakAsn = {
       id: random.createUuid(),
       kind: 'BreakAsn',
       syntaxRole: 'statement',
@@ -113,7 +113,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
 
   if (Node.isContinueStatement(node)) {
     const label = node.getLabel();
-    const continueAsn: abstractions.translators.ContinueAsn = {
+    const continueAsn: abstractions.translator.ContinueAsn = {
       id: random.createUuid(),
       kind: 'ContinueAsn',
       syntaxRole: 'statement',
@@ -128,7 +128,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     if (decls.length > 0) {
       return tsRl.as.bindings.parseVariable(decls[0] as any, ctx);
     }
-    const emptyBlock: abstractions.translators.BlockAsn = {
+    const emptyBlock: abstractions.translator.BlockAsn = {
       id: random.createUuid(),
       kind: 'BlockAsn',
       syntaxRole: 'statement',
@@ -141,7 +141,7 @@ export function parse(node: Statement, ctx: abstractions.patterns.HasEnterLeave)
     const expression = node.getExpression();
     const identifier = Node.isIdentifier(expression) ? { name: expression.getText() } : null;
 
-    const callAsn: abstractions.translators.CallAsn = {
+    const callAsn: abstractions.translator.CallAsn = {
       id: random.createUuid(),
       kind: 'CallAsn',
       syntaxRole: 'statement',

@@ -6,11 +6,11 @@ import * as tsRl from '@razomy/ts-rl';
 export function parseDirectory(
   node: Directory,
   ctx: abstractions.patterns.HasEnterLeave,
-): abstractions.translators.ModuleAsn {
+): abstractions.translator.ModuleAsn {
   const indexFile = node.getSourceFile((f) => f.getBaseName().startsWith('index.'))!;
   if (!indexFile) throw new Error('NO index file');
 
-  const moduleAsn: abstractions.translators.ModuleAsn = {
+  const moduleAsn: abstractions.translator.ModuleAsn = {
     id: random.createUuid(),
     kind: 'ModuleAsn',
     syntaxRole: 'statement',

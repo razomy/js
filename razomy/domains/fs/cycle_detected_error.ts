@@ -7,13 +7,13 @@ export enum FsNodeType {
   FILE_BINARY = 'FILE_BINARY',
 }
 
-export interface FsNode extends abstractions.patterns.HasPrimaryId, abstractions.components.CrudDateTime {
+export interface FsNode extends abstractions.patterns.HasPrimaryId, abstractions.patterns.CrudDateTime {
   fsNodeType: FsNodeType;
-  name: abstractions.primitives.Char256;
+  name: abstractions.primitive.Char256;
   /*
    * @index
    */
-  contentJson?: abstractions.patterns.Json | abstractions.patterns.Json<{ url: abstractions.components.Url }>;
+  contentJson?: abstractions.patterns.Json | abstractions.patterns.Json<{ url: abstractions.path.Url }>;
   contentBinary?: Buffer;
   /*
    * @index

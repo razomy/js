@@ -3,11 +3,11 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseCall(node: CallExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.CallAsn {
+export function parseCall(node: CallExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.CallAsn {
   const expressionNode = node.getExpression();
   const identifierName = expressionNode.getKindName() === 'Identifier' ? expressionNode.getText() : null;
 
-  const callAsn: abstractions.translators.CallAsn = {
+  const callAsn: abstractions.translator.CallAsn = {
     id: random.createUuid(),
     kind: 'CallAsn',
     syntaxRole: 'expression',

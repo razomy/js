@@ -1,6 +1,6 @@
 import * as abstractions from '@razomy/abstractions';
 
-export function getNamePath(node: abstractions.translators.IHirNode) {
+export function getNamePath(node: abstractions.translator.IHirNode) {
   const path = [] as string[];
   while (node.parent) {
     if (node['name'] && node['modifiers'] && node['modifiers'].has(i=>i.value === 'public')) {

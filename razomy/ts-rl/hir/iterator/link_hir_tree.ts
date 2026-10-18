@@ -7,10 +7,10 @@ import * as abstractions from '@razomy/abstractions';
  */
 export function linkHirTree(
   ctx: tsRl.hir.SemanticContext,
-  node: abstractions.translators.HirnType,
-  parent: abstractions.translators.HirnType | null = null,
-  prev: abstractions.translators.HirnType | null = null,
-  next: abstractions.translators.HirnType | null = null,
+  node: abstractions.translator.HirnType,
+  parent: abstractions.translator.HirnType | null = null,
+  prev: abstractions.translator.HirnType | null = null,
+  next: abstractions.translator.HirnType | null = null,
 ): void {
   node.parent = parent;
   node.prev = prev;

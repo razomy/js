@@ -5,7 +5,7 @@ import * as abstractions from '@razomy/abstractions';
  * Отвечает ТОЛЬКО за знание того, в каких полях лежат дочерние узлы.
  * Используйте эту функцию во всех фазах, чтобы не дублировать огромный switch.
  */
-export function walkHirChildren<T extends abstractions.translators.HirnType>(
+export function walkHirChildren<T extends abstractions.translator.HirnType>(
   node: T,
   onChild: (child: T) => void,
   onArray: (children: T[]) => void,

@@ -2,11 +2,11 @@ import * as abstractions from '@razomy/abstractions';
 
 /** Key recursive value */
   //@ts-ignore
-export class Kv<KT, VT> extends Array<any> implements abstractions.structures.KeyValue <KT, VT> {
-  [0]: abstractions.structures.Key<KT>;
-  [1]: abstractions.structures.KvaOrValue<KT, VT>;
+export class Kv<KT, VT> extends Array<any> implements abstractions.structure.KeyValue <KT, VT> {
+  [0]: abstractions.structure.Key<KT>;
+  [1]: abstractions.structure.KvaOrValue<KT, VT>;
 
-  constructor(...kv: [abstractions.structures.Key<KT>, abstractions.structures.KvaOrValue<KT, VT>]) {
+  constructor(...kv: [abstractions.structure.Key<KT>, abstractions.structure.KvaOrValue<KT, VT>]) {
     super(2);
     this[0] = kv[0];
     this[1] = kv[1];

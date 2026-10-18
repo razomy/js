@@ -3,17 +3,17 @@ import * as abstractions from '@razomy/abstractions';
 
 export function joinDocs(
   ctx: tsRl.hir.SemanticContext,
-  node: abstractions.translators.HirnType,
+  node: abstractions.translator.HirnType,
 ): void {
   // 1. Бизнес-логика текущей фазы
   if (node.kind === 'FunctionHirn') {
-    const docs = node.prev as abstractions.translators.HirnType | null;
+    const docs = node.prev as abstractions.translator.HirnType | null;
     if (
       docs &&
       docs.kind === 'BlockHirn' &&
       (docs.syntaxRole === 'text' || docs.syntaxRole === 'declaration')
     ) {
-      const statements = (docs.statements || []) as abstractions.translators.BindingHirn<abstractions.translators.LiteralHirn>[];
+      const statements = (docs.statements || []) as abstractions.translator.BindingHirn<abstractions.translator.LiteralHirn>[];
 
       node.doc.title = statements.find((i) => i.name === 'title')?.value?.value ?? null;
       node.doc.description = statements.find((i) => i.name === 'description')?.value?.value ?? null;

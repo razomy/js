@@ -24,46 +24,88 @@
         "types": "./index.ts"
       }
     },
-    "./arrays": {
+    "./acl": {
       "default": {
-        "default": "./arrays/index.ts",
-        "types": "./arrays/index.ts"
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
       },
       "import": {
-        "default": "./arrays/index.ts",
-        "types": "./arrays/index.ts"
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
       },
       "require": {
-        "default": "./arrays/index.ts",
-        "types": "./arrays/index.ts"
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
       }
     },
-    "./collections": {
+    "./array": {
       "default": {
-        "default": "./collections/index.ts",
-        "types": "./collections/index.ts"
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
       },
       "import": {
-        "default": "./collections/index.ts",
-        "types": "./collections/index.ts"
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
       },
       "require": {
-        "default": "./collections/index.ts",
-        "types": "./collections/index.ts"
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
       }
     },
-    "./components": {
+    "./auth": {
       "default": {
-        "default": "./components/index.ts",
-        "types": "./components/index.ts"
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
       },
       "import": {
-        "default": "./components/index.ts",
-        "types": "./components/index.ts"
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
       },
       "require": {
-        "default": "./components/index.ts",
-        "types": "./components/index.ts"
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
+      }
+    },
+    "./collection": {
+      "default": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      },
+      "import": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      },
+      "require": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      }
+    },
+    "./domain": {
+      "default": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      },
+      "import": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      },
+      "require": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      }
+    },
+    "./event": {
+      "default": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "import": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "require": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
       }
     },
     "./fs": {
@@ -80,46 +122,102 @@
         "types": "./fs/index.ts"
       }
     },
-    "./functions": {
+    "./function": {
       "default": {
-        "default": "./functions/index.ts",
-        "types": "./functions/index.ts"
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
       },
       "import": {
-        "default": "./functions/index.ts",
-        "types": "./functions/index.ts"
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
       },
       "require": {
-        "default": "./functions/index.ts",
-        "types": "./functions/index.ts"
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
       }
     },
-    "./graphs": {
+    "./game": {
       "default": {
-        "default": "./graphs/index.ts",
-        "types": "./graphs/index.ts"
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
       },
       "import": {
-        "default": "./graphs/index.ts",
-        "types": "./graphs/index.ts"
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
       },
       "require": {
-        "default": "./graphs/index.ts",
-        "types": "./graphs/index.ts"
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
       }
     },
-    "./hardwares": {
+    "./git": {
       "default": {
-        "default": "./hardwares/index.ts",
-        "types": "./hardwares/index.ts"
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
       },
       "import": {
-        "default": "./hardwares/index.ts",
-        "types": "./hardwares/index.ts"
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
       },
       "require": {
-        "default": "./hardwares/index.ts",
-        "types": "./hardwares/index.ts"
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
+      }
+    },
+    "./graph": {
+      "default": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      },
+      "import": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      },
+      "require": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      }
+    },
+    "./hardware": {
+      "default": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      },
+      "import": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      },
+      "require": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      }
+    },
+    "./identity": {
+      "default": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      },
+      "import": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      },
+      "require": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      }
+    },
+    "./math": {
+      "default": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
+      },
+      "import": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
+      },
+      "require": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
       }
     },
     "./meta": {
@@ -137,6 +235,20 @@
       }
     },
     "./package.json": "./package.json",
+    "./path": {
+      "default": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      },
+      "import": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      },
+      "require": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      }
+    },
     "./patterns": {
       "default": {
         "default": "./patterns/index.ts",
@@ -151,61 +263,145 @@
         "types": "./patterns/index.ts"
       }
     },
-    "./primitives": {
+    "./primitive": {
       "default": {
-        "default": "./primitives/index.ts",
-        "types": "./primitives/index.ts"
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
       },
       "import": {
-        "default": "./primitives/index.ts",
-        "types": "./primitives/index.ts"
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
       },
       "require": {
-        "default": "./primitives/index.ts",
-        "types": "./primitives/index.ts"
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
       }
     },
-    "./probabilistics": {
+    "./probabilistic": {
       "default": {
-        "default": "./probabilistics/index.ts",
-        "types": "./probabilistics/index.ts"
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
       },
       "import": {
-        "default": "./probabilistics/index.ts",
-        "types": "./probabilistics/index.ts"
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
       },
       "require": {
-        "default": "./probabilistics/index.ts",
-        "types": "./probabilistics/index.ts"
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
+      }
+    },
+    "./process": {
+      "default": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      },
+      "import": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      },
+      "require": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      }
+    },
+    "./scene": {
+      "default": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      },
+      "import": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      },
+      "require": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      }
+    },
+    "./schema": {
+      "default": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
+      },
+      "import": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
+      },
+      "require": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
       }
     },
     "./specifications/*": "./specifications/*",
-    "./structures": {
+    "./structure": {
       "default": {
-        "default": "./structures/index.ts",
-        "types": "./structures/index.ts"
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
       },
       "import": {
-        "default": "./structures/index.ts",
-        "types": "./structures/index.ts"
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
       },
       "require": {
-        "default": "./structures/index.ts",
-        "types": "./structures/index.ts"
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
       }
     },
-    "./translators": {
+    "./time": {
       "default": {
-        "default": "./translators/index.ts",
-        "types": "./translators/index.ts"
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
       },
       "import": {
-        "default": "./translators/index.ts",
-        "types": "./translators/index.ts"
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
       },
       "require": {
-        "default": "./translators/index.ts",
-        "types": "./translators/index.ts"
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
+      }
+    },
+    "./translator": {
+      "default": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      },
+      "import": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      },
+      "require": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      }
+    },
+    "./tx": {
+      "default": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      },
+      "import": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      },
+      "require": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      }
+    },
+    "./ui": {
+      "default": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
+      },
+      "import": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
+      },
+      "require": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
       }
     }
   },
@@ -232,7 +428,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown index.ts arrays/index.ts collections/index.ts components/index.ts fs/index.ts functions/index.ts graphs/index.ts hardwares/index.ts meta/index.ts patterns/index.ts primitives/index.ts probabilistics/index.ts structures/index.ts translators/index.ts --watch",
+    "dev": "tsdown index.ts acl/index.ts array/index.ts auth/index.ts collection/index.ts domain/index.ts event/index.ts fs/index.ts function/index.ts game/index.ts git/index.ts graph/index.ts hardware/index.ts identity/index.ts math/index.ts meta/index.ts path/index.ts patterns/index.ts primitive/index.ts probabilistic/index.ts process/index.ts scene/index.ts schema/index.ts structure/index.ts time/index.ts translator/index.ts tx/index.ts ui/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
@@ -241,19 +437,33 @@
       "dts": true,
       "entry": [
         "index.ts",
-        "arrays/index.ts",
-        "collections/index.ts",
-        "components/index.ts",
+        "acl/index.ts",
+        "array/index.ts",
+        "auth/index.ts",
+        "collection/index.ts",
+        "domain/index.ts",
+        "event/index.ts",
         "fs/index.ts",
-        "functions/index.ts",
-        "graphs/index.ts",
-        "hardwares/index.ts",
+        "function/index.ts",
+        "game/index.ts",
+        "git/index.ts",
+        "graph/index.ts",
+        "hardware/index.ts",
+        "identity/index.ts",
+        "math/index.ts",
         "meta/index.ts",
+        "path/index.ts",
         "patterns/index.ts",
-        "primitives/index.ts",
-        "probabilistics/index.ts",
-        "structures/index.ts",
-        "translators/index.ts"
+        "primitive/index.ts",
+        "probabilistic/index.ts",
+        "process/index.ts",
+        "scene/index.ts",
+        "schema/index.ts",
+        "structure/index.ts",
+        "time/index.ts",
+        "translator/index.ts",
+        "tx/index.ts",
+        "ui/index.ts"
       ],
       "format": "esm,cjs",
       "platform": "neutral"

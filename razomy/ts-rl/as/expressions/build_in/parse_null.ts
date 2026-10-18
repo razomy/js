@@ -2,8 +2,8 @@ import { NullLiteral } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as random from '@razomy/random';
 
-export function parseNull(node: NullLiteral, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.LiteralAsn {
-  const literalAsn: abstractions.translators.LiteralAsn = {
+export function parseNull(node: NullLiteral, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.LiteralAsn {
+  const literalAsn: abstractions.translator.LiteralAsn = {
     id: random.createUuid(),
     kind: 'LiteralAsn',
     syntaxRole: 'expression',

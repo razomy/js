@@ -3,7 +3,7 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.AsnType[] {
+export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.AsnType[] {
   // declarations
   if (Node.isInterfaceDeclaration(node)) return [tsRl.as.declarations.parseInterface(node, ctx)];
   if (Node.isClassDeclaration(node)) return [tsRl.as.declarations.parseClass(node, ctx)];
@@ -29,7 +29,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
       node.getNamedImports()?.[0]?.getName() ||
       node.getDefaultImport()?.getText() ||
       '';
-    const importAsn: abstractions.translators.ImportAsn = {
+    const importAsn: abstractions.translator.ImportAsn = {
       id: random.createUuid(),
       kind: 'ImportAsn',
       syntaxRole: 'statement',

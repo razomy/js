@@ -20,7 +20,7 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(k) where k is number of keys
  * @complexity memory O(k)
  */
-export function toString_<T extends string>(dict: abstractions.structures.Dict<T>): string {
+export function toString_<T extends string>(dict: abstractions.structure.Dict<T>): string {
   let result: string = '{';
   for (const key in dict) {
     result += `${key}:${dict[key]};`;

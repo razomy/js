@@ -8,7 +8,7 @@ export function parsePackage(
   project: Project,
   dirPath: string,
   ctx: abstractions.patterns.HasEnterLeave,
-): abstractions.translators.ModuleAsn | null {
+): abstractions.translator.ModuleAsn | null {
   const packageJsonSource = project.getSourceFile(path.join(dirPath, 'package.json'));
   if (!packageJsonSource) {
     return null;
@@ -19,7 +19,7 @@ export function parsePackage(
   const origin = indexFile || packageJsonSource;
 
   // 1. Создаем AST-каркас модуля
-  const moduleAsn: abstractions.translators.ModuleAsn = {
+  const moduleAsn: abstractions.translator.ModuleAsn = {
     id: random.createUuid(),
     kind: 'ModuleAsn',
     syntaxRole: 'statement',
@@ -36,7 +36,7 @@ export function parsePackage(
   }
 
   // 3. Парсим зависимости (dependencies, peerDependencies, runtimes)
-  const dependencies: abstractions.translators.ImportAsn[] = Object.entries({
+  const dependencies: abstractions.translator.ImportAsn[] = Object.entries({
     ...(packageJson.dependencies || {}),
   }).map(
     ([k, v]) =>
@@ -63,10 +63,10 @@ export function parsePackage(
           },
         ],
         identifier: { name: k },
-      }) satisfies abstractions.translators.ImportAsn,
+      }) satisfies abstractions.translator.ImportAsn,
   );
 
-  const peerDependencies: abstractions.translators.ImportAsn[] = Object.entries({
+  const peerDependencies: abstractions.translator.ImportAsn[] = Object.entries({
     ...(packageJson.peerDependencies || {}),
   }).map(
     ([k, v]) =>
@@ -86,10 +86,10 @@ export function parsePackage(
           },
         ],
         identifier: { name: k },
-      }) satisfies abstractions.translators.ImportAsn,
+      }) satisfies abstractions.translator.ImportAsn,
   );
 
-  const runtimes: abstractions.translators.ImportAsn[] = Object.entries({
+  const runtimes: abstractions.translator.ImportAsn[] = Object.entries({
     ...(packageJson.engines || {}),
   }).map(
     ([k, v]) =>
@@ -109,7 +109,7 @@ export function parsePackage(
           },
         ],
         identifier: { name: k },
-      }) satisfies abstractions.translators.ImportAsn,
+      }) satisfies abstractions.translator.ImportAsn,
   );
 
   // 4. Парсим тело модуля из index-файла (если найден)

@@ -3,20 +3,20 @@ import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
 
-export function parseMember(node: PropertyAccessExpression | ElementAccessExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.MemberAsn | abstractions.translators.ArgumentMemberAsn {
+export function parseMember(node: PropertyAccessExpression | ElementAccessExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.MemberAsn | abstractions.translator.ArgumentMemberAsn {
   if (Node.isPropertyAccessExpression(node)) {
-    const memberAsn: abstractions.translators.MemberAsn = {
+    const memberAsn: abstractions.translator.MemberAsn = {
       id: random.createUuid(),
       kind: 'MemberAsn',
       syntaxRole: 'expression',
       object_: null as any,
-      property: { id: random.createUuid(), kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: node.getName() } as abstractions.translators.LiteralAsn,
+      property: { id: random.createUuid(), kind: 'LiteralAsn', syntaxRole: 'expression', semanticLayer: 'state', value: node.getName() } as abstractions.translator.LiteralAsn,
     };
     if (!ctx.enter(memberAsn, node)) return memberAsn;
     memberAsn.object_ = tsRl.as.expressions.parse(node.getExpression(), ctx)!;
     return ctx.leave(memberAsn, node);
   } else {
-    const argMemberAsn: abstractions.translators.ArgumentMemberAsn = {
+    const argMemberAsn: abstractions.translator.ArgumentMemberAsn = {
       id: random.createUuid(),
       kind: 'ArgumentMemberAsn',
       syntaxRole: 'expression',

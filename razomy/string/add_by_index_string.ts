@@ -22,6 +22,6 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function addByIndexString(text: string, index: abstractions.arrays.Index, insertion: string): string {
+export function addByIndexString(text: string, index: abstractions.array.Index, insertion: string): string {
   return text.substring(0, index) + insertion + text.substring(index);
 }

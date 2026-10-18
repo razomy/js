@@ -1,17 +1,39 @@
 order
- package.json
- config
- description
+ config.rn
+ description.rn
  index.ts
+ // system
  meta
- hardwares
- primitives
- functions
- arrays
- structures
- collections
- graphs
- probabilistics
+ hardware
+ primitive
+ function
+ array
+ structure
+ collection
+ graph
+ probabilistic
  patterns
- components
- translators
+ translator
+ // io
+ math
+ path
+ schema
+ fs
+ // ui
+ ui
+ scene
+ process
+ // domain
+ time
+ git
+ event
+ factory
+ game
+ acl
+ auth
+ cloud
+ domain
+ identity
+ tx
+ // dist
+ dist

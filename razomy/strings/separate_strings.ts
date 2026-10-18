@@ -2,7 +2,7 @@ import * as abstractions from "@razomy/abstractions";
 
 export function separateStrings(
   string: string,
-  offset: abstractions.arrays.Offset,
+  offset: abstractions.array.Offset,
   separateString: string,
   strings: string[],
 ) {

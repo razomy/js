@@ -1,7 +1,7 @@
 import * as abstractions from '@razomy/abstractions';
 import * as kvRecursive from '@razomy/kv-recursive';
 
-export function listToFlatDict(dict: {}, input: kvRecursive.RecursiveList, separator: string): abstractions.structures.Dict<string> {
+export function listToFlatDict(dict: {}, input: kvRecursive.RecursiveList, separator: string): abstractions.structure.Dict<string> {
   for (const inputKey of input) {
     kvRecursive.valueOrListToFlatDict(dict, inputKey[1], inputKey[0], separator);
   }

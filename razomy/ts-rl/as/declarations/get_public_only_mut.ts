@@ -4,12 +4,12 @@ import * as abstractions from '@razomy/abstractions';
  * Рекурсивно очищает тела функций, оставляя только сигнатуры (AST-интерфейсы).
  * Полезно для генерации "заголовочных" файлов или публичных API.
  */
-export function getPublicOnlyMut<T extends abstractions.translators.AsnType>(node: T, ctx: abstractions.patterns.HasEnterLeave): T {
+export function getPublicOnlyMut<T extends abstractions.translator.AsnType>(node: T, ctx: abstractions.patterns.HasEnterLeave): T {
   if (!node) return node;
 
   // Если это функция, удаляем внутренности её блока
   if (node.kind === 'FunctionAsn') {
-    (node as abstractions.translators.FunctionAsn).block.statements = [];
+    (node as abstractions.translator.FunctionAsn).block.statements = [];
   }
 
   // Если это лямбда (стрелочная функция), тоже удаляем тело
@@ -21,14 +21,14 @@ export function getPublicOnlyMut<T extends abstractions.translators.AsnType>(nod
 
   // Если это модуль (включая Root пакет), рекурсивно проходимся по его телу
   if (node.kind === 'ModuleAsn') {
-    const mod = node as abstractions.translators.ModuleAsn;
+    const mod = node as abstractions.translator.ModuleAsn;
     mod.block.statements = mod.block.statements.map((stmt) => getPublicOnlyMut(stmt, ctx));
   }
 
   // Если это просто блок (например, внутри If/While), можно при желании очищать и его,
   // но обычно getPublicOnlyMut применяется на верхнем уровне модуля.
   if (node.kind === 'BlockAsn') {
-    const block = node as abstractions.translators.BlockAsn;
+    const block = node as abstractions.translator.BlockAsn;
     block.statements = block.statements.map((stmt) => getPublicOnlyMut(stmt, ctx));
   }
 

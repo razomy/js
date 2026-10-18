@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from "@razomy/random";
 
-export function parseThrow(node: ThrowStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.ThrowAsn {
-  const throwAsn: abstractions.translators.ThrowAsn = {
+export function parseThrow(node: ThrowStatement, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.ThrowAsn {
+  const throwAsn: abstractions.translator.ThrowAsn = {
     id: random.createUuid(),
     kind: 'ThrowAsn',
     syntaxRole: 'statement',
@@ -15,7 +15,7 @@ export function parseThrow(node: ThrowStatement, ctx: abstractions.patterns.HasE
     return throwAsn;
   }
 
-  throwAsn.value = tsRl.as.expressions.parse(node.getExpression()!, ctx) as abstractions.translators.StateAsnType;
+  throwAsn.value = tsRl.as.expressions.parse(node.getExpression()!, ctx) as abstractions.translator.StateAsnType;
 
   return ctx.leave(throwAsn, node);
 }

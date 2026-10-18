@@ -10,7 +10,7 @@ import type {
   BranchHirn,
   LiteralHirn,
   OperatorHirn,
-} from '@razomy/abstractions/translators';
+} from '@razomy/abstractions/translator';
 
 export const defaultFormKey = 'form';
 export type Path = string[];

@@ -3,7 +3,7 @@ import { Node, Project } from 'ts-morph';
 import path from 'path';
 import * as tsRl from '@razomy/ts-rl';
 
-class TsMorphIterator implements abstractions.patterns.HasEnterLeave<abstractions.translators.AsnType> {
+class TsMorphIterator implements abstractions.patterns.HasEnterLeave<abstractions.translator.AsnType> {
   constructor(public ctx: tsRl.hir.SemanticContext) {}
   enter(p, s: Node) {
     this.ctx.tsMorphMap.set(tsRl.tsMorph.getNodeId(s), s);
@@ -17,9 +17,9 @@ class TsMorphIterator implements abstractions.patterns.HasEnterLeave<abstraction
   }
 }
 
-class AsnIterator implements abstractions.patterns.HasEnterLeave<abstractions.translators.HirnType> {
+class AsnIterator implements abstractions.patterns.HasEnterLeave<abstractions.translator.HirnType> {
   constructor(public ctx: tsRl.hir.SemanticContext) {}
-  enter(p, s: abstractions.translators.AsnType) {
+  enter(p, s: abstractions.translator.AsnType) {
     this.ctx.asnToHirn.set(s.id, p);
     this.ctx.hirnToAsn.set(p.id, s);
     return p;

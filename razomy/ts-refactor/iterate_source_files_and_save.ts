@@ -8,7 +8,7 @@ export interface IterateSourceFileState {
 
 export async function iterateSourceFilesAndSave(
   projectPath: string,
-  action: abstractions.functions.Action<[IterateSourceFileState]>,
+  action: abstractions.function_.Action<[IterateSourceFileState]>,
 ) {
   const project = new Project({
     tsConfigFilePath: projectPath + 'tsconfig.json',

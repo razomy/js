@@ -1,20 +1,19 @@
-import * as treeDict from '@razomy/tree-dict';
 import * as abstractions from '@razomy/abstractions';
 
 export interface BranchDict<T, R = BranchDictOrLeaf<T>> extends RootDict<T, R> {
   value: string;
 }
 
-export type BranchDictOrLeaf<T> = BranchDict<T> | abstractions.graphs.Leaf<T>;
+export type BranchDictOrLeaf<T> = BranchDict<T> | abstractions.graph.Leaf<T>;
 export type RootOrBranchDict<T> = RootDict<T> | BranchDict<T>;
-export type RootDictOrLeaf<T> = RootDict<T> | abstractions.graphs.Leaf<T>;
+export type RootDictOrLeaf<T> = RootDict<T> | abstractions.graph.Leaf<T>;
 
-export interface RootDict<T, R = unknown> extends treeDict.HasChildrenDict<R> {}
+export interface RootDict<T, R = unknown> extends abstractions.graph.HasChildrenDict<R> {}
 
 export function mapBranch<I, O>(
   parent: RootDict<O>,
   input: BranchDictOrLeaf<I>,
-  leafValueCb: (input: abstractions.graphs.Leaf<I>, parent: RootOrBranchDict<I>) => O,
+  leafValueCb: (input: abstractions.graph.Leaf<I>, parent: RootOrBranchDict<I>) => O,
 ): BranchDictOrLeaf<O> {
   if ('children' in input) {
     const otput: BranchDict<O> = {

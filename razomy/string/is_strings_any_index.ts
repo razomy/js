@@ -4,8 +4,8 @@ import * as abstractions from "@razomy/abstractions";
 export function isStringsAnyIndex(
   string: string,
   equalStrings: Set<string>,
-  offset: abstractions.arrays.Offset = 0,
-  maxOffset: abstractions.arrays.Offset = string.length,
+  offset: abstractions.array.Offset = 0,
+  maxOffset: abstractions.array.Offset = string.length,
 ): boolean {
   return string_.stringsAnyIndex(string, equalStrings, offset, maxOffset) !== -1;
 }

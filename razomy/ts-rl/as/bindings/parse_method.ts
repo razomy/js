@@ -8,7 +8,7 @@ export function parseMethod(node: MethodDeclaration, ctx: abstractions.patterns.
   const jsDoc = tsRl.as.doc.tryParseJsDoc(node, ctx);
   const docs = jsDoc ? tsRl.as.doc.parseJsDoc(jsDoc, ctx) : null;
 
-  const func: abstractions.translators.FunctionAsn = {
+  const func: abstractions.translator.FunctionAsn = {
     id: random.createUuid(),
     kind: 'FunctionAsn',
     syntaxRole: 'statement',
@@ -18,7 +18,7 @@ export function parseMethod(node: MethodDeclaration, ctx: abstractions.patterns.
       node.isGenerator()
         ? { id: random.createUuid(), kind: 'FunctionModifierAsn', syntaxRole: 'modifier', operator: 'generator', value: null }
         : null,
-    ].filter(Boolean) as abstractions.translators.FunctionModifierAsn[],
+    ].filter(Boolean) as abstractions.translator.FunctionModifierAsn[],
     parameters: [],
     returnShape: null,
     block: null as any,

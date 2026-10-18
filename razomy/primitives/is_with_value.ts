@@ -1,7 +1,7 @@
 import * as exceptions from '@razomy/exceptions';
 import * as abstractions from '@razomy/abstractions';
 
-export function isWithValue<T extends abstractions.structures.HasValue<T>>(node: T): node is T {
+export function isWithValue<T extends abstractions.structure.HasValue<T>>(node: T): node is T {
   if ('value' in node) {
     return true;
   }

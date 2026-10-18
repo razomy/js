@@ -3,8 +3,8 @@ import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
 
-export function parseunctionExpression(node: FunctionExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.LambdaAsn {
-  const lambdaAsn: abstractions.translators.LambdaAsn = {
+export function parseunctionExpression(node: FunctionExpression, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.LambdaAsn {
+  const lambdaAsn: abstractions.translator.LambdaAsn = {
     id: random.createUuid(),
     kind: 'LambdaAsn',
     syntaxRole: 'expression',

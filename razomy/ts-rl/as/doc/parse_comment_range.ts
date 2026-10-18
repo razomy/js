@@ -2,7 +2,7 @@ import { CommentRange } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
 import * as random from "@razomy/random";
 
-export function parseCommentRange(comment: CommentRange, ctx: abstractions.patterns.HasEnterLeave): abstractions.translators.CommentAsn {
+export function parseCommentRange(comment: CommentRange, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.CommentAsn {
   const rawText = comment.getText();
   const cleanText = rawText
     .replace(/^\/\/\s?/, '')
@@ -10,7 +10,7 @@ export function parseCommentRange(comment: CommentRange, ctx: abstractions.patte
     .replace(/\*\/$/, '')
     .trim();
 
-  const commentAsn: abstractions.translators.CommentAsn = {
+  const commentAsn: abstractions.translator.CommentAsn = {
     id: random.createUuid(),
     kind: 'CommentAsn',
     syntaxRole: 'text',

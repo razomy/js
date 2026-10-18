@@ -153,6 +153,6 @@ describe('parse', () => {
       enter: (a) => a,
     });
 
-    expect(modules).toEqual({} as any satisfies abstractions.translators.ModuleAsn);
+    expect(modules).toEqual({} as any satisfies abstractions.translator.ModuleAsn);
   });
 });

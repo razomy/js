@@ -74,7 +74,7 @@ on (кто: Человек) войти_в (дом: Дом)
     console.log(sourceText);
 
 
-    const expectedAsn: (abstractions.translators.IBindingAsn | abstractions.translators.FunctionAsn)[] = [
+    const expectedAsn: (abstractions.translator.IBindingAsn | abstractions.translator.FunctionAsn)[] = [
 
       // ==========================================
       // 1. КОНЦЕПТЫ (Этап компиляции)
@@ -86,7 +86,7 @@ on (кто: Человек) войти_в (дом: Дом)
       //   subject: { kind: 'Identifier', name: 'Дверь' },
       //   relation: 'subclass',
       //   base: { kind: 'Identifier', name: 'Предмет' }
-      // } satisfies abstractions.translators.TaxonomyConcept,
+      // } satisfies abstractions.translator.TaxonomyConcept,
       //
       // // Джон = instance Человек;
       // {
@@ -94,7 +94,7 @@ on (кто: Человек) войти_в (дом: Дом)
       //   subject: { kind: 'Identifier', name: 'Джон' },
       //   relation: 'instance',
       //   base: { kind: 'Identifier', name: 'Человек' }
-      // } satisfies abstractions.translators.TaxonomyConcept,
+      // } satisfies abstractions.translator.TaxonomyConcept,
       //
       // // predicate открыть(кто: Человек, что: Предмет);
       // {
@@ -110,7 +110,7 @@ on (кто: Человек) войти_в (дом: Дом)
       //       constraint: { kind: 'Identifier', name: 'Предмет' }
       //     }
       //   ]
-      // } satisfies abstractions.translators.PredicateConcept,
+      // } satisfies abstractions.translator.PredicateConcept,
       //
       // // fact заперта(цель = ВходнаяДверь);
       // {
@@ -121,10 +121,10 @@ on (кто: Человек) войти_в (дом: Дом)
       //     {
       //       semanticIdentifier: { kind: 'SemanticIdentifier', name: 'цель' },
       //       // Знак '=' транслируется как передача конкретного объекта через ReferenceExpression
-      //       expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'ВходнаяДверь' } } as abstractions.translators.ReferenceExpression
+      //       expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'ВходнаяДверь' } } as abstractions.translator.ReferenceExpression
       //     }
       //   ]
-      // } satisfies abstractions.translators.FactConcept,
+      // } satisfies abstractions.translator.FactConcept,
       //
       // // ==========================================
       // // 2. КЛАУЗЫ (Этап выполнения)
@@ -151,7 +151,7 @@ on (кто: Человек) войти_в (дом: Дом)
       //         value: { kind: 'Identifier', name: 'что' } // Переменная 'что'
       //       }
       //     ]
-      //   } satisfies abstractions.translators.ActionClause,
+      //   } satisfies abstractions.translator.ActionClause,
       //
       //   // conditions: if fact заперта(цель == что)
       //   conditions: [
@@ -163,10 +163,10 @@ on (кто: Человек) войти_в (дом: Дом)
       //         {
       //           semanticIdentifier: { kind: 'SemanticIdentifier', name: 'цель' },
       //           // Знак '==' компилируется в то, что мы ищем факт, где выражение совпадает с переменной 'что'
-      //           expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translators.ReferenceExpression
+      //           expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translator.ReferenceExpression
       //         }
       //       ]
-      //     } satisfies abstractions.translators.FactConcept
+      //     } satisfies abstractions.translator.FactConcept
       //   ],
       //
       //   blockClause: {
@@ -183,7 +183,7 @@ on (кто: Человек) войти_в (дом: Дом)
       //           arguments_: [{
       //             semanticIdentifier: { kind: 'SemanticIdentifier', name: 'цель' },
       //             // Передаем переменную 'что'
-      //             expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translators.ReferenceExpression
+      //             expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translator.ReferenceExpression
       //           }]
       //         }
       //       },
@@ -197,13 +197,13 @@ on (кто: Человек) войти_в (дом: Дом)
       //           isNegative: false,
       //           arguments_: [{
       //             semanticIdentifier: { kind: 'SemanticIdentifier', name: 'цель' },
-      //             expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translators.ReferenceExpression
+      //             expression: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'что' } } as abstractions.translator.ReferenceExpression
       //           }]
       //         }
       //       }
       //     ]
-      //   } satisfies abstractions.translators.BlockClause
-      // } satisfies abstractions.translators.RuleClause,
+      //   } satisfies abstractions.translator.BlockClause
+      // } satisfies abstractions.translator.RuleClause,
       //
       // // action открыть(кто=Джон, что=ВходнаяДверь);
       // {
@@ -213,14 +213,14 @@ on (кто: Человек) войти_в (дом: Дом)
       //     {
       //       role: { kind: 'SemanticIdentifier', name: 'кто' } as any,
       //       // Знак '=' означает передачу значения Джон
-      //       value: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'Джон' } } as abstractions.translators.ReferenceExpression
+      //       value: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'Джон' } } as abstractions.translator.ReferenceExpression
       //     },
       //     {
       //       role: { kind: 'SemanticIdentifier', name: 'что' } as any,
-      //       value: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'ВходнаяДверь' } } as abstractions.translators.ReferenceExpression
+      //       value: { kind: 'ReferenceExpression', identifier: { kind: 'Identifier', name: 'ВходнаяДверь' } } as abstractions.translator.ReferenceExpression
       //     }
       //   ]
-      // } satisfies abstractions.translators.ActionClause
+      // } satisfies abstractions.translator.ActionClause
 
     ];
 

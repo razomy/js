@@ -1,6 +1,6 @@
 import * as abstractions from "@razomy/abstractions";
 
-export function specToTool(fn: abstractions.translators.FunctionHirn) {
+export function specToTool(fn: abstractions.translator.FunctionHirn) {
   const properties: Record<string, any> = {};
   const required: string[] = [];
   fn.parameters.forEach((param) => {

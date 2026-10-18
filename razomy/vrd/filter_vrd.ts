@@ -3,16 +3,16 @@ import * as vrd from '@razomy/vrd';
 
 export function filterVrd<I>(
   input: vrd.Vrd<I>,
-  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structures.Key) => boolean,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structure.Key) => boolean,
 ): vrd.Vrd<I>;
-export function filterVrd<I>(input: I, isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structures.Key) => boolean): I;
+export function filterVrd<I>(input: I, isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structure.Key) => boolean): I;
 export function filterVrd<I>(
   input: vrd.VrdOrValue<I>,
-  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structures.Key) => boolean,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structure.Key) => boolean,
 ): vrd.VrdOrValue<I>;
 export function filterVrd<I>(
   input: vrd.VrdOrValue<I>,
-  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structures.Key) => boolean,
+  isKeep: (input: vrd.VrdOrValue<I>, parent: abstractions.structure.Key) => boolean,
 ): vrd.VrdOrValue<I> {
   if (vrd.isVrd(input)) {
     for (const inputKey in input) {

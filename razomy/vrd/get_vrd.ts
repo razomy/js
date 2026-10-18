@@ -4,7 +4,7 @@ import * as abstractions from '@razomy/abstractions';
 
 export function getVrd<T>(
   valueRecursive: vrd.VrdOrValue<T>,
-  path: abstractions.structures.Key[],
+  path: abstractions.structure.Key[],
   pathOffset: number,
 ): vrd.VrdOrValue<T> {
   for (const key in valueRecursive!) {

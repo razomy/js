@@ -22,9 +22,9 @@ import * as abstractions from '@razomy/abstractions';
  * @complexity time O(n) where n is total number of keys across all sources
  * @complexity memory O(d) where d is the maximum nesting depth (recursion stack)
  */
-export function mergeMut<T extends abstractions.structures.RecursiveDict>(
+export function mergeMut<T extends abstractions.structure.RecursiveDict>(
   target: T,
-  ...sources: abstractions.structures.RecursiveDict[]
+  ...sources: abstractions.structure.RecursiveDict[]
 ): T {
   for (const source of sources) {
     if (!dict.isPlainObject(source)) continue;
@@ -34,11 +34,11 @@ export function mergeMut<T extends abstractions.structures.RecursiveDict>(
 
       if (dict.isPlainObject(sourceValue)) {
         if (!dict.isPlainObject(target[key])) {
-          (target as abstractions.structures.RecursiveDict)[key] = {};
+          (target as abstractions.structure.RecursiveDict)[key] = {};
         }
-        mergeMut(target[key] as abstractions.structures.RecursiveDict, sourceValue as abstractions.structures.RecursiveDict);
+        mergeMut(target[key] as abstractions.structure.RecursiveDict, sourceValue as abstractions.structure.RecursiveDict);
       } else {
-        (target as abstractions.structures.RecursiveDict)[key] = sourceValue;
+        (target as abstractions.structure.RecursiveDict)[key] = sourceValue;
       }
     }
   }
