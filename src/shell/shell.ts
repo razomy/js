@@ -21,4 +21,5 @@ export interface Shell {
   progress: typeof shell.progress;
   tryCommand: typeof shell.tryCommand;
   tryOrConfirm: typeof shell.tryOrConfirm;
+  tryExecuteSync: typeof shell.tryExecuteSync;
 }

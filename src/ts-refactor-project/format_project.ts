@@ -37,7 +37,7 @@ export async function formatProject(projectPath: string, sourcePath:string, scop
   console.info('packageJson.createRoot.start');
   await tsRefactorProject.packageJson.createRoot(projectPath);
   console.info('packageJson.addDependencies.start');
-  await tsRefactorProject.packageJson.addDependencies(projectPath, scopeName);
+  await tsRefactorProject.packageJson.addDependencies(projectPath, sourcePath, scopeName);
   console.info('packageJson.updateByTemplate.start');
   await tsRefactorProject.packageJson.updateByTemplate(projectPath, sourcePath, scopeName);
 }

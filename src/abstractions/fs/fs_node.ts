@@ -1,4 +1,5 @@
 import * as abstractions from "@razomy/abstractions";
+import type {RawBuffer} from "@razomy/abstractions/array";
 
 export enum FsNodeType {
   DIRECTORY = 'DIRECTORY',
@@ -14,7 +15,7 @@ export interface FsNode extends abstractions.patterns.HasPrimaryId, abstractions
    * @index
    */
   contentJson?: abstractions.patterns.Json | abstractions.patterns.Json<{ url: abstractions.path.Url }>;
-  contentBinary?: Buffer;
+  contentBinary?: RawBuffer;
   /*
    * @index
    */

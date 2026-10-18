@@ -77,7 +77,7 @@
   "name": "@razomy/commits",
   "peerDependencies": {
     "@razomy/datetimes": "*",
-    "@razomy/patters": "*",
+    "@razomy/patterns": "*",
     "@razomy/shell": "*",
     "@razomy/string": "*",
     "@razomy/vrd": "*"

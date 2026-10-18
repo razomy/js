@@ -90,17 +90,17 @@ order
   videos
   // language & code
   // natural & general language
-  language
-  language-string
-  languages
   lexemes
+  languages
   // programming & refactoring
-  eslint-config
-  language-vue
   languages-programming-fs
+  rl
+  rl-string
+  rl-vue
   ts-refactor
   ts-refactor-project
   ts-rl
+  eslint-config
   // ui & graphics
   // frameworks
   components

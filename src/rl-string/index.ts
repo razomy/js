@@ -7,8 +7,8 @@ export {
 };
 
 // Default export
-const languageString = {
+const rlString = {
   md,
 };
 
-export default languageString;
+export default rlString;

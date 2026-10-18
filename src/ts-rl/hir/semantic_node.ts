@@ -32,18 +32,18 @@ export abstract class IdentityNode extends SemanticNode implements abstractions.
 }
 
 export class LiteralSn extends SemanticNode implements abstractions.translator.LiteralHirn {
-  public override kind: 'LiteralHirn' = 'LiteralHirn';
+  public override kind: 'LiteralHirn' = 'LiteralHirn' as const;
   public value: any = object_.LATE_INIT;
 }
 
 export class OperatorSn extends SemanticNode implements abstractions.translator.OperatorHirn {
-  public override kind: 'OperatorHirn' = 'OperatorHirn';
+  public override kind: 'OperatorHirn' = 'OperatorHirn' as const;
   public operator: string = object_.LATE_INIT;
   public operands: abstractions.translator.HirnType[] = object_.LATE_INIT;
 }
 
 export class ReferenceSn extends SemanticNode implements abstractions.translator.ReferenceHirn {
-  public override kind: 'ReferenceHirn' = 'ReferenceHirn';
+  public override kind: 'ReferenceHirn' = 'ReferenceHirn' as const;
   public target: abstractions.translator.HirnType | null = object_.LATE_INIT;
   public property: abstractions.translator.HirnType | null = object_.LATE_INIT;
   public arguments_: abstractions.translator.HirnType[] = object_.LATE_INIT;
@@ -74,43 +74,43 @@ export class ReferenceSn extends SemanticNode implements abstractions.translator
 }
 
 export class BlockSn extends SemanticNode implements abstractions.translator.BlockHirn {
-  public override kind: 'BlockHirn' = 'BlockHirn';
+  public override kind: 'BlockHirn' = 'BlockHirn' as const;
   public statements: abstractions.translator.HirnType[] = object_.LATE_INIT;
 }
 
 export class MatchSn extends SemanticNode implements abstractions.translator.MatchHirn {
-  public override kind: 'MatchHirn' = 'MatchHirn';
+  public override kind: 'MatchHirn' = 'MatchHirn' as const;
   public target: abstractions.translator.HirnType = object_.LATE_INIT;
   public branches: abstractions.translator.BranchHirn[] = object_.LATE_INIT;
 }
 
 export class BranchSn extends SemanticNode implements abstractions.translator.BranchHirn {
-  public override kind: 'BranchHirn' = 'BranchHirn';
+  public override kind: 'BranchHirn' = 'BranchHirn' as const;
   public pattern: abstractions.translator.HirnType = object_.LATE_INIT;
   public value: abstractions.translator.HirnType = object_.LATE_INIT;
 }
 
 export class LoopSn extends SemanticNode implements abstractions.translator.LoopHirn {
-  public override kind: 'LoopHirn' = 'LoopHirn';
+  public override kind: 'LoopHirn' = 'LoopHirn' as const;
   public condition: abstractions.translator.HirnType | null = object_.LATE_INIT;
   public block: abstractions.translator.BlockHirn = object_.LATE_INIT;
 }
 
 export class GoSn extends SemanticNode implements abstractions.translator.GoHirn {
-  public override kind: 'GoHirn' = 'GoHirn';
+  public override kind: 'GoHirn' = 'GoHirn' as const;
   public operator: 'break' | 'continue' | 'yield' | 'return' | 'throw' = object_.LATE_INIT;
   public value: abstractions.translator.HirnType | null = object_.LATE_INIT;
 }
 
 export class BindingSn extends IdentityNode implements abstractions.translator.BindingHirn {
-  public override kind: 'BindingHirn' = 'BindingHirn';
+  public override kind: 'BindingHirn' = 'BindingHirn' as const;
   public shape: abstractions.translator.ReferenceHirn | null = object_.LATE_INIT;
   public value: abstractions.translator.HirnType | null = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 
 export class FunctionSn extends IdentityNode implements abstractions.translator.FunctionHirn {
-  public override kind: 'FunctionHirn' = 'FunctionHirn';
+  public override kind: 'FunctionHirn' = 'FunctionHirn' as const;
   public fnHashId: string = random.createUuid();
   public returnShape: abstractions.translator.ReferenceHirn | null = object_.LATE_INIT;
   public parameters: abstractions.translator.BindingHirn[] = object_.LATE_INIT;
@@ -124,13 +124,13 @@ export class FunctionSn extends IdentityNode implements abstractions.translator.
 }
 
 export class StructSn extends IdentityNode implements abstractions.translator.StructHirn {
-  public override kind: 'StructHirn' = 'StructHirn';
+  public override kind: 'StructHirn' = 'StructHirn' as const;
   public properties: abstractions.translator.HirnType[] = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 
 export class ModuleSn extends IdentityNode implements abstractions.translator.ModuleHirn {
-  public override kind: 'ModuleHirn' = 'ModuleHirn';
+  public override kind: 'ModuleHirn' = 'ModuleHirn' as const;
   public properties: abstractions.translator.HirnType[] = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }

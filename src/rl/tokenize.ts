@@ -1,4 +1,4 @@
-import * as language from "@razomy/language";
+import * as rl from "@razomy/rl";
 
 // Порядок правил строго соответствует ALL_TOKENS из оригинала
 const tokenDefs: TokenDef[] = [
@@ -67,14 +67,14 @@ const tokenDefs: TokenDef[] = [
 
 
 interface TokenDef {
-  type: language.TokenType;
+  type: rl.TokenType;
   regex: RegExp;
   skip?: boolean;
 }
 
-export function tokenize(text: string): { tokens: language.Token[]; errors: language.LexerError[] } {
-    const tokens: language.Token[] = [];
-    const errors: language.LexerError[] = [];
+export function tokenize(text: string): { tokens: rl.Token[]; errors: rl.LexerError[] } {
+    const tokens: rl.Token[] = [];
+    const errors: rl.LexerError[] = [];
     let offset = 0;
     let line = 1;
     let column = 1;

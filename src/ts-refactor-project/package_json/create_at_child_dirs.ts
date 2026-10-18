@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as fsFile from '@razomy/fs-file';
-import * as fsDirectory from '@razomy/fs-directory';
 
 export function createAtChildDirs(projectPath: string, scopeName:string) {
   const rootDir: string = path.resolve(projectPath);
@@ -23,7 +22,7 @@ export function createAtChildDirs(projectPath: string, scopeName:string) {
     pkgData = { ...content, ...pkgData };
 
     const contentF = JSON.stringify(pkgData, null, 2) + '\n';
-    if (fsFile.tryGetSync(pkgPath, 'utf-8') === contentF) {
+    if (fsFile.tryGetSync(pkgPath) === contentF) {
       return;
     }
     fs.writeFileSync(pkgPath, contentF);

@@ -1,8 +1,7 @@
 
 export function isPackageNameSkipGeneratingPackageJsonAndReadme(name: string) {
-    return name === '@razomy/_razomy'
-    || name === '@razomy/nuxt'
+    return name === '@razomy/nuxt'
     || name === '@razomy/vue'
-    || name === '@razomy/language-vue'
+    || name === '@razomy/rl-vue'
     || name === '@razomy/vue-resource'
 }

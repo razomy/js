@@ -5,14 +5,13 @@ import * as json from '@razomy/json';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import tsRefactor from '@razomy/ts-refactor';
 
-export function addDependencies(projectPath: string, prefix:string) {
+export function addDependencies(projectPath: string, sourcePath:string, scopeName:string) {
   const packages = tsRefactorProject.packageJson
     .getAll(projectPath)
-    .filter((i) => !tsRefactor.isPackageNameSkipGeneratingPackageJsonAndReadme(i.name));
+    .filter((i) => !tsRefactor.isPackageNameSkipGeneratingPackageJsonAndReadme(i.name.replace(sourcePath, scopeName)));
 
-  const scope = '@' + prefix;
   // 1. Get list of all available package names
-  const importRegex = new RegExp(`from ['"](\\@${prefix}[^'"]+)['"]`, 'g');
+  const importRegex = new RegExp(`from ['"](${scopeName}[^'"]+)['"]`, 'g');
 
   packages.forEach((folder) => {
     const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
@@ -53,19 +52,19 @@ export function addDependencies(projectPath: string, prefix:string) {
     // 3. Update dependencies
     pkgJson.dependencies = pkgJson.dependencies || {};
     Object.keys(pkgJson.dependencies)
-      .filter((i) => i.startsWith(scope))
+      .filter((i) => i.startsWith(scopeName))
       .forEach((i) => {
         delete pkgJson.dependencies[i];
       });
 
     pkgJson.peerDependencies = pkgJson.peerDependencies || {};
     Object.keys(pkgJson.peerDependencies)
-      .filter((i) => i.startsWith(scope))
+      .filter((i) => i.startsWith(scopeName))
       .forEach((i) => {
         delete pkgJson.peerDependencies[i];
       });
     matches.forEach((depName) => {
-      if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
+      if (depName === folder.name.replaceAll('/', '-').replace(sourcePath + '-', scopeName + '/')) {
         return;
       }
       pkgJson.peerDependencies[depName] = '*';

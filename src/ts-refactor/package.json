@@ -68,8 +68,8 @@
     "@razomy/array": "*",
     "@razomy/fs-recursive": "*",
     "@razomy/fss": "*",
-    "@razomy/language-string": "*",
     "@razomy/languages-programming-fs": "*",
+    "@razomy/rl-string": "*",
     "@razomy/string-case": "*",
     "@razomy/ts-rl": "*"
   },

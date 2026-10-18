@@ -46,7 +46,7 @@ export type {
 };
 
 // Default export
-const shell: Shell & { START_DIR: string } = {
+const shell: Shell & { START_DIR: typeof START_DIR} = {
   checkbox,
   confirm,
   editor,

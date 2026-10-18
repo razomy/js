@@ -1,11 +1,11 @@
 {
-  "main": "./razomy-language-vue.umd.js",
-  "module": "./razomy-language-vue.es.js",
+  "main": "./rl-vue.umd.js",
+  "module": "./rl-vue.es.js",
   "types": "./src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./razomy-language-vue.es.js",
-      "require": "./razomy-language-vue.umd.js",
+      "import": "./rl-vue.es.js",
+      "require": "./rl-vue.umd.js",
       "types": "./src/index.d.ts"
     },
     "./style.css": "./style.css"
@@ -35,19 +35,19 @@
   "engines": {
     "node": ">=18"
   },
-  "homepage": "https://github.com/razomy/js/tree/main/src/language-vue#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/src/rl-vue#readme",
   "keywords": [
     "razomy",
-    "language",
+    "rl",
     "vue"
   ],
   "license": "MIT",
-  "name": "@razomy/language-vue",
+  "name": "@razomy/rl-vue",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "src/language-vue",
+    "directory": "src/rl-vue",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },

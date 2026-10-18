@@ -1,3 +1,7 @@
+import * as npm from "@razomy/npm";
+
 export async function isPackageToUpdate(path: string) {
-  return getPackageJsonVersion(path) !== (await getPublishVersion(path));
+  const localVersion = npm.getPackageJsonVersion(path);
+  const remoteVersion = await npm.getPublishVersion(path);
+  return localVersion !== remoteVersion
 }

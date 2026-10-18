@@ -24,38 +24,52 @@
         "types": "./index.ts"
       }
     },
+    "./md": {
+      "default": {
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
+      },
+      "import": {
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
+      },
+      "require": {
+        "default": "./md/index.ts",
+        "types": "./md/index.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./specifications/*": "./specifications/*"
   },
   "files": [
     "*"
   ],
-  "homepage": "https://github.com/razomy/js/tree/main/src/language#readme",
+  "homepage": "https://github.com/razomy/js/tree/main/src/rl-string#readme",
   "keywords": [
     "razomy",
-    "language",
-    "example",
-    "parseRazomyCode",
-    "tokenize",
-    "tokenDefs",
-    "parser"
+    "rl",
+    "string",
+    "getNamePath",
+    "hirToString"
   ],
   "license": "MIT",
   "main": "./index.ts",
   "module": "./index.ts",
-  "name": "@razomy/language",
-  "peerDependencies": {},
+  "name": "@razomy/rl-string",
+  "peerDependencies": {
+    "@razomy/abstractions": "*"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
-    "directory": "src/language",
+    "directory": "src/rl-string",
     "type": "git",
     "url": "git+https://github.com/razomy/js.git"
   },
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown index.ts --watch",
+    "dev": "tsdown index.ts md/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
@@ -63,7 +77,8 @@
     {
       "dts": true,
       "entry": [
-        "index.ts"
+        "index.ts",
+        "md/index.ts"
       ],
       "format": "esm,cjs",
       "platform": "neutral"

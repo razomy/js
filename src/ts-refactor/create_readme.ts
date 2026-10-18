@@ -1,8 +1,9 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstractions from '@razomy/abstractions';
-import * as languageString from '@razomy/language-string';
 import * as tsRl from '@razomy/ts-rl';
+import * as rlString from "@razomy/rl-string";
+
 const vision = `
 ## 🕊️ Vision
 
@@ -97,13 +98,13 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   const allDecls = tsRl.hir.iterator.findExported(hirRoot as any).filter(i=>!!i.name);
-  allDecls.sort((a, b) => languageString.md.getNamePath(a).join('').localeCompare(languageString.md.getNamePath(b).join('')));
+  allDecls.sort((a, b) => rlString.md.getNamePath(a).join('').localeCompare(rlString.md.getNamePath(b).join('')));
   const typeSpecs = allDecls
     .values()
     .filter((i) => i.kind === 'StructHirn')
     .toArray();
   const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
-  const functionPath = allDecls.length > 0 ? languageString.md.getNamePath(allDecls[0]) : ['functionName'];
+  const functionPath = allDecls.length > 0 ? rlString.md.getNamePath(allDecls[0]) : ['functionName'];
 
   const imports = `
 ### Import
@@ -126,8 +127,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${languageString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${languageString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${rlString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${rlString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
@@ -136,9 +137,9 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(languageString.md.hirToString).join('\n\n').trim();
+  const functions = functionSpecs.map(rlString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(languageString.md.hirToString).join('\n\n').trim();
+  const types = typeSpecs.map(rlString.md.hirToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation

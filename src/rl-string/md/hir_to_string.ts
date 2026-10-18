@@ -1,5 +1,5 @@
 import * as abstractions from '@razomy/abstractions';
-import * as languageString from "@razomy/language-string";
+import * as rlString from "@razomy/rl-string";
 
 function modifiersToLiterals(
   struct:
@@ -90,7 +90,7 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
         .join(', ');
 
       const returnStr = node.returnShape ? ': ' + hirToString(node.returnShape) : '';
-      const declaration = `\`${isAsync}${shapesStr}${languageString.md.getNamePath(node).join('.')}(${paramsStr})${returnStr}\``;
+      const declaration = `\`${isAsync}${shapesStr}${rlString.md.getNamePath(node).join('.')}(${paramsStr})${returnStr}\``;
 
       const title = node.doc.title;
       // const description = node.doc.description;

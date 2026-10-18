@@ -48,6 +48,7 @@
   "module": "./index.ts",
   "name": "@razomy/npm",
   "peerDependencies": {
+    "@razomy/fss": "*",
     "@razomy/main": "*",
     "@razomy/shell": "*",
     "@razomy/ts-refactor": "*",

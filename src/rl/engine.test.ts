@@ -1,4 +1,4 @@
-import * as language from "@razomy/language";
+import * as rl from "@razomy/rl";
 
 describe("Razomy V4.0 Language Engine", () => {
   it("1. Transpiles type algebra (A B & C) and morphism chains (A [[_ + C] . [_ + E]]) cleanly", () => {
@@ -7,10 +7,10 @@ A B & C
 
 Morphism [[_ + C] . [_ + E]]
 `;
-    const ast = language.parseRazomyCode(code);
+    const ast = rl.parseRazomyCode(code);
     expect(ast).not.toBeNull();
 
-    const transpiler = new language.RazomyToTSTranspiler();
+    const transpiler = new rl.RazomyToTSTranspiler();
     const tsCode = transpiler.transpile(ast);
 
     expect(tsCode).toBe(
@@ -35,10 +35,10 @@ Main [
     .> Shell.Log
 ]
 `;
-    const ast = language.parseRazomyCode(code);
+    const ast = rl.parseRazomyCode(code);
     expect(ast).not.toBeNull();
 
-    const transpiler = new language.RazomyToTSTranspiler();
+    const transpiler = new rl.RazomyToTSTranspiler();
     const tsCode = transpiler.transpile(ast);
 
     expect(tsCode).toBe(
@@ -52,7 +52,7 @@ Main [
       ].join("\n")
     );
 
-    const interpreter = new language.RazomyInterpreter();
+    const interpreter = new rl.RazomyInterpreter();
     const result = interpreter.run(ast);
     expect(result).toBe("Это результат из Flow-блока");
   });
@@ -75,17 +75,17 @@ Sample {
 FirstVal Sample.0
 LastVal Sample.-1
 `;
-    const ast = language.parseRazomyCode(code);
+    const ast = rl.parseRazomyCode(code);
     expect(ast).not.toBeNull();
 
-    const transpiler = new language.RazomyToTSTranspiler();
+    const transpiler = new rl.RazomyToTSTranspiler();
     const tsCode = transpiler.transpile(ast);
 
     expect(tsCode).toContain(`export type PublicUser = Omit<User, "PasswordHash">;`);
     expect(tsCode).toContain(`export const FirstVal = Sample[0];`);
     expect(tsCode).toContain(`export const LastVal = Sample.at(-1);`);
 
-    const interpreter = new language.RazomyInterpreter();
+    const interpreter = new rl.RazomyInterpreter();
     const lastResult = interpreter.run(ast);
     expect(lastResult).toBe("Omega");
   });

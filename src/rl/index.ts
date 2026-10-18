@@ -26,7 +26,7 @@ export type {
 };
 
 // Default export
-const language = {
+const rl = {
   KnowledgeGraph,
   example,
   parseRazomyCode,
@@ -39,4 +39,4 @@ const language = {
 };
 
 
-export default language;
+export default rl;
