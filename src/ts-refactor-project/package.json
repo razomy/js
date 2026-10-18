@@ -1,0 +1,119 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {
+    "ts-morph": "28.0.0"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./package_json": {
+      "default": {
+        "default": "./package_json/index.ts",
+        "types": "./package_json/index.ts"
+      },
+      "import": {
+        "default": "./package_json/index.ts",
+        "types": "./package_json/index.ts"
+      },
+      "require": {
+        "default": "./package_json/index.ts",
+        "types": "./package_json/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ts-refactor-project#readme",
+  "keywords": [
+    "razomy",
+    "ts",
+    "refactor",
+    "project",
+    "convertLambdasToNamedFunctions",
+    "createIndexFiles",
+    "fixBrokenImportsAndExports",
+    "flattenPackages",
+    "formatProject",
+    "renameFiles",
+    "replaceInjectImportWithDefaultImport",
+    "addDependencies",
+    "autoPatch",
+    "createAtChildDirs",
+    "createDist",
+    "createRoot",
+    "getAll",
+    "updateByTemplate"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ts-refactor-project",
+  "peerDependencies": {
+    "@razomy/array": "*",
+    "@razomy/fs-file": "*",
+    "@razomy/fss": "*",
+    "@razomy/json": "*",
+    "@razomy/main": "*",
+    "@razomy/string": "*",
+    "@razomy/string-case": "*",
+    "@razomy/ts-refactor": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ts-refactor-project",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts package_json/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "package_json/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

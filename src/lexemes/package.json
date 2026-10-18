@@ -1,0 +1,158 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./bound": {
+      "default": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      },
+      "import": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      },
+      "require": {
+        "default": "./bound/index.ts",
+        "types": "./bound/index.ts"
+      }
+    },
+    "./offset": {
+      "default": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      },
+      "import": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      },
+      "require": {
+        "default": "./offset/index.ts",
+        "types": "./offset/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*",
+    "./token-offset": {
+      "default": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      },
+      "import": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      },
+      "require": {
+        "default": "./token-offset/index.ts",
+        "types": "./token-offset/index.ts"
+      }
+    },
+    "./token-offset-deep": {
+      "default": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      },
+      "import": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      },
+      "require": {
+        "default": "./token-offset-deep/index.ts",
+        "types": "./token-offset-deep/index.ts"
+      }
+    }
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/lexemes#readme",
+  "keywords": [
+    "razomy",
+    "lexemes",
+    "betweenNodes",
+    "rect",
+    "size",
+    "defaultOffset",
+    "defaultPrevOffset",
+    "getNextOffsetChar",
+    "getOffsetChar",
+    "getPrevOffsetChar",
+    "isEnd",
+    "setPrevOffset",
+    "tryAnyOfChar",
+    "tryBeforeAnyOfChar",
+    "tryRegex",
+    "tryAll",
+    "tryTokenValue",
+    "tryAligned",
+    "tryScope"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/lexemes",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/resources": "*",
+    "@razomy/string": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/lexemes",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts bound/index.ts offset/index.ts token-offset/index.ts token-offset-deep/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "bound/index.ts",
+        "offset/index.ts",
+        "token-offset/index.ts",
+        "token-offset-deep/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

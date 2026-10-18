@@ -1,0 +1,110 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {
+    "simple-git": "3.33.0"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/git#readme",
+  "keywords": [
+    "razomy",
+    "git",
+    "commit",
+    "compareVersions",
+    "findGitRoot",
+    "getChangedFilesBetweenCommitsOrAll",
+    "getChangedFilesBetweenCommits",
+    "getCommitsHash",
+    "getCommitsId",
+    "getLastCommitId",
+    "getRecursiveStatuses",
+    "getStatusFileChanges",
+    "getStatusSync",
+    "getStatus",
+    "gitFileCommitsToCommitJsonFile",
+    "gitFileToNewGitFile",
+    "initWithFile",
+    "init",
+    "isStatusClean",
+    "parseStatusRef",
+    "parseStatus",
+    "restoreSpaces",
+    "restore",
+    "statusFilesToFileChangesMut",
+    "vcsCommitsToGitFile"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/git",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/commits": "*",
+    "@razomy/fs-file": "*",
+    "@razomy/future": "*",
+    "@razomy/languages-programming-fs": "*",
+    "@razomy/shell": "*",
+    "@razomy/tree-list": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/git",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

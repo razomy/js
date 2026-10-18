@@ -1,0 +1,130 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./batch": {
+      "default": {
+        "default": "./batch/index.ts",
+        "types": "./batch/index.ts"
+      },
+      "import": {
+        "default": "./batch/index.ts",
+        "types": "./batch/index.ts"
+      },
+      "require": {
+        "default": "./batch/index.ts",
+        "types": "./batch/index.ts"
+      }
+    },
+    "./instant": {
+      "default": {
+        "default": "./instant/index.ts",
+        "types": "./instant/index.ts"
+      },
+      "import": {
+        "default": "./instant/index.ts",
+        "types": "./instant/index.ts"
+      },
+      "require": {
+        "default": "./instant/index.ts",
+        "types": "./instant/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ai-anthropic#readme",
+  "keywords": [
+    "razomy",
+    "ai",
+    "anthropic",
+    "asks",
+    "cancel",
+    "continue",
+    "delete",
+    "getResult",
+    "get",
+    "printPrice",
+    "wait",
+    "askTool",
+    "ask",
+    "specToTool",
+    "models",
+    "maxTokens",
+    "client",
+    "m",
+    "batchSale",
+    "pricing"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ai-anthropic",
+  "peerDependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@razomy/abstractions": "*",
+    "@razomy/ai": "*",
+    "@razomy/main": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ai-anthropic",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts batch/index.ts instant/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "batch/index.ts",
+        "instant/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

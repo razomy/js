@@ -1,0 +1,177 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./api-run": {
+      "default": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      },
+      "import": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      },
+      "require": {
+        "default": "./api-run/index.ts",
+        "types": "./api-run/index.ts"
+      }
+    },
+    "./api-run/batch": {
+      "default": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      },
+      "import": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      },
+      "require": {
+        "default": "./api-run/batch/index.ts",
+        "types": "./api-run/batch/index.ts"
+      }
+    },
+    "./api-run/instant": {
+      "default": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/index.ts",
+        "types": "./api-run/instant/index.ts"
+      }
+    },
+    "./api-run/instant/chat": {
+      "default": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/index.ts",
+        "types": "./api-run/instant/chat/index.ts"
+      }
+    },
+    "./api-run/instant/chat/logic": {
+      "default": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/logic/index.ts",
+        "types": "./api-run/instant/chat/logic/index.ts"
+      }
+    },
+    "./api-run/instant/chat/tool": {
+      "default": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      },
+      "import": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      },
+      "require": {
+        "default": "./api-run/instant/chat/tool/index.ts",
+        "types": "./api-run/instant/chat/tool/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ai-huggingface#readme",
+  "keywords": [
+    "razomy",
+    "ai",
+    "huggingface",
+    "predict",
+    "mapMessageBack",
+    "mapMessage",
+    "predictCacheString"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ai-huggingface",
+  "peerDependencies": {
+    "@mlx-node/lm": "^0.0.6",
+    "@razomy/ai": "*",
+    "@razomy/json": "*",
+    "@razomy/run": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ai-huggingface",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts api-run/index.ts api-run/batch/index.ts api-run/instant/index.ts api-run/instant/chat/index.ts api-run/instant/chat/logic/index.ts api-run/instant/chat/tool/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "api-run/index.ts",
+        "api-run/batch/index.ts",
+        "api-run/instant/index.ts",
+        "api-run/instant/chat/index.ts",
+        "api-run/instant/chat/logic/index.ts",
+        "api-run/instant/chat/tool/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

@@ -23,8 +23,8 @@
 
 ##### Layers
 
-1. Abstractions: Logics, Contracts, Layers at [./razomy/abstractions](./razomy/abstractions).
-2. Packages: Modules and Domains [./razomy](./razomy).
+1. Abstractions: Logics, Contracts, Layers at [./src/abstractions](./src/abstractions).
+2. Packages: Modules and Domains [./src](./src).
 3. Images: Applications, Services and Databases https://github.com/razomy.
 4. Orchestration: ...
 
@@ -58,9 +58,9 @@ npm run publish
 
 | directory                                         | npm                                                                            |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [./razomy/string](/razomy/string)                 | [@razomy/string](https://www.npmjs.com/package/@razomy/string)                 |
-| [./razomy/string-case](/razomy/string-case)       | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case)       |
-| [./razomy/dict](/razomy/dict)                     | [@razomy/dict](https://www.npmjs.com/package/@razomy/dict)                     |
-| [./razomy/dict-recursive](/razomy/dict-recursive) | [@razomy/dict-recursive](https://www.npmjs.com/package/@razomy/dict-recursive) |
-| [./razomy/random](/razomy/random)                 | [@razomy/random](https://www.npmjs.com/package/@razomy/random)                 |
-| [./razomy/array](/razomy/array)                   | [@razomy/array](https://www.npmjs.com/package/@razomy/array)                   |
+| [./src/string](/razomy/string)                 | [@razomy/string](https://www.npmjs.com/package/@razomy/string)                 |
+| [./src/string-case](/razomy/string-case)       | [@razomy/string-case](https://www.npmjs.com/package/@razomy/string-case)       |
+| [./src/dict](/razomy/dict)                     | [@razomy/dict](https://www.npmjs.com/package/@razomy/dict)                     |
+| [./src/dict-recursive](/razomy/dict-recursive) | [@razomy/dict-recursive](https://www.npmjs.com/package/@razomy/dict-recursive) |
+| [./src/random](/razomy/random)                 | [@razomy/random](https://www.npmjs.com/package/@razomy/random)                 |
+| [./src/array](/razomy/array)                   | [@razomy/array](https://www.npmjs.com/package/@razomy/array)                   |

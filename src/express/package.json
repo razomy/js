@@ -1,0 +1,101 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {
+    "@types/passport": "^1.0.12",
+    "body-parser": "^1.20.2",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "16.4.5",
+    "esprima": "^4.0.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.8.1",
+    "express-session": "^1.17.3",
+    "fs-extra": "^11.2.0",
+    "helmet": "^7.0.0",
+    "memorystore": "^1.6.7",
+    "method-override": "^3.0.0",
+    "nodemon": "^3.1.3",
+    "passport": "^0.6.0",
+    "passport-custom": "^1.1.1",
+    "winston": "^3.8.2"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/express#readme",
+  "keywords": [
+    "razomy",
+    "express",
+    "create"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/express",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/express-auth": "*",
+    "@razomy/server": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/express",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

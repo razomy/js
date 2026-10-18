@@ -1,0 +1,114 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./analytics-token": {
+      "default": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      },
+      "import": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      },
+      "require": {
+        "default": "./analytics-token/index.ts",
+        "types": "./analytics-token/index.ts"
+      }
+    },
+    "./chats": {
+      "default": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      },
+      "import": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      },
+      "require": {
+        "default": "./chats/index.ts",
+        "types": "./chats/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ais#readme",
+  "keywords": [
+    "razomy",
+    "ais",
+    "filePathCount",
+    "projectDirCount",
+    "sM",
+    "uM"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ais",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/ai": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ais",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts analytics-token/index.ts chats/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "analytics-token/index.ts",
+        "chats/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

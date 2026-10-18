@@ -29,10 +29,10 @@
     "target": "esnext",
     "paths": {
       "razomy": [
-        "./razomy/index.ts"
+        "./src/index.ts"
       ],
       "@razomy/*": [
-        "./razomy/*/index.ts"
+        "./src/*/index.ts"
       ]
     }
   },
@@ -40,14 +40,14 @@
     "**/node_modules",
     "**/dist",
     "**/coverage",
-    "./razomy/nuxt",
-    "./razomy/vue",
-    "./razomy/vue-resource",
-    "./razomy/language-vue"
+    "./src/nuxt",
+    "./src/vue",
+    "./src/vue-resource",
+    "./src/language-vue"
   ],
   "references": [
     {
-      "path": "./razomy/nuxt/tsconfig.json"
+      "path": "./src/nuxt/tsconfig.json"
     }
   ]
 }

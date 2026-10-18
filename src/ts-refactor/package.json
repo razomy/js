@@ -1,0 +1,110 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ts-refactor#readme",
+  "keywords": [
+    "razomy",
+    "ts",
+    "refactor",
+    "createReadmeAndSpecifications",
+    "createReadme",
+    "fileRenameVariablesAndPropsFunctions",
+    "generateAllExtensions",
+    "getExportedClasses",
+    "getExportedConstants",
+    "getExportedFunctions",
+    "getExportedTypes",
+    "getFilteredSourceFiles",
+    "getFirstLevelElementsTextFromSource",
+    "getNameAndExt",
+    "isNameTaken",
+    "isPackageNameSkipGeneratingPackageJsonAndReadme",
+    "iterateSourceFilesAndSave",
+    "renameFileBasedOnFirstChild",
+    "renameFoldersRecursively",
+    "renameNamespaceImport",
+    "renameNode",
+    "renameToSnakeCaseRecursiveTs",
+    "renameToSnakeCaseRecursive",
+    "splitFunctions",
+    "toSafeFilename",
+    "toSafeName"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ts-refactor",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/array": "*",
+    "@razomy/fs-recursive": "*",
+    "@razomy/fss": "*",
+    "@razomy/language-string": "*",
+    "@razomy/languages-programming-fs": "*",
+    "@razomy/string-case": "*",
+    "@razomy/ts-rl": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ts-refactor",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

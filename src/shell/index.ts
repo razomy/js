@@ -1,0 +1,75 @@
+// Imports
+import { checkbox, confirm, editor, expand, input, number, password, rawlist, search, select } from './commands';
+import { execute } from './execute';
+import { START_DIR, executeSync } from './execute_sync';
+import type { ShellCommand, StringCommand } from './execute_sync';
+import { get } from './get';
+import { getBool } from './get_bool';
+import { log } from './log';
+import { logInline } from './log_inline';
+import { observe } from './observe';
+import { progress } from './progress';
+import type { Shell } from './shell';
+import { tryCommand } from './try_command';
+import { tryExecuteSync } from './try_execute_sync';
+import { tryOrConfirm } from './try_or_confirm';
+
+// Named exports
+export {
+  START_DIR,
+  checkbox,
+  confirm,
+  editor,
+  execute,
+  executeSync,
+  expand,
+  get,
+  getBool,
+  input,
+  log,
+  logInline,
+  number,
+  observe,
+  password,
+  progress,
+  rawlist,
+  search,
+  select,
+  tryCommand,
+  tryExecuteSync,
+  tryOrConfirm
+};
+export type {
+  Shell,
+  ShellCommand,
+  StringCommand
+};
+
+// Default export
+const shell: Shell & { START_DIR: string } = {
+  checkbox,
+  confirm,
+  editor,
+  expand,
+  input,
+  number,
+  password,
+  rawlist,
+  search,
+  select,
+  execute,
+  START_DIR,
+  executeSync,
+  get,
+  getBool,
+  log,
+  logInline,
+  observe,
+  progress,
+  tryCommand,
+  tryExecuteSync,
+  tryOrConfirm,
+};
+
+
+export default shell;

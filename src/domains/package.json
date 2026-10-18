@@ -1,0 +1,119 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./fs": {
+      "default": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "import": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "require": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./patterns": {
+      "default": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "import": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "require": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/domains#readme",
+  "keywords": [
+    "razomy",
+    "domains",
+    "validateFsNodeCycle",
+    "boolDefault",
+    "createAt",
+    "deletedAt",
+    "id",
+    "intDefault",
+    "onDeleteCascade",
+    "stringDefault",
+    "updateAt"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/domains",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/random": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/domains",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts fs/index.ts patterns/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "fs/index.ts",
+        "patterns/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

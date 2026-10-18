@@ -1,0 +1,85 @@
+import fs from 'fs';
+import * as path from 'path';
+import * as fss from '@razomy/fss';
+import * as json from '@razomy/json';
+import * as tsRefactorProject from '@razomy/ts-refactor-project';
+import tsRefactor from '@razomy/ts-refactor';
+
+export function addDependencies(projectPath: string, prefix:string) {
+  const packages = tsRefactorProject.packageJson
+    .getAll(projectPath)
+    .filter((i) => !tsRefactor.isPackageNameSkipGeneratingPackageJsonAndReadme(i.name));
+
+  const scope = '@' + prefix;
+  // 1. Get list of all available package names
+  const importRegex = new RegExp(`from ['"](\\@${prefix}[^'"]+)['"]`, 'g');
+
+  packages.forEach((folder) => {
+    const pkgJson = JSON.parse(fs.readFileSync(folder.path, 'utf8'));
+    let matches: string[] = [];
+    fss.recursive.iterate(path.dirname(folder.path), (iterate_node) => {
+      if (iterate_node.path.includes('node_modules')) {
+        return true;
+      }
+      if (iterate_node.path.includes('dist')) {
+        return true;
+      }
+
+      if (iterate_node.path.includes('.test.')) {
+        return true;
+      }
+
+      if (iterate_node.path.includes('.spec.')) {
+        return true;
+      }
+
+      if (iterate_node.stats.isDirectory()) {
+        return undefined;
+      }
+
+      const pkgSource = fs.readFileSync(iterate_node.path, 'utf8');
+      // 2. Regex to find imports like: from '@my-org/auth'
+      const newImports = pkgSource
+        .matchAll(importRegex)
+        .map((m) => m[1])
+        .map((m) => m.split('/').slice(0, 2).join('/'))
+        // .filter((m) => !m.endsWith('/node'))
+        // .filter((m) => !m.endsWith('/remote'))
+        .toArray();
+      matches = [...matches, ...newImports];
+      return undefined;
+    });
+
+    // 3. Update dependencies
+    pkgJson.dependencies = pkgJson.dependencies || {};
+    Object.keys(pkgJson.dependencies)
+      .filter((i) => i.startsWith(scope))
+      .forEach((i) => {
+        delete pkgJson.dependencies[i];
+      });
+
+    pkgJson.peerDependencies = pkgJson.peerDependencies || {};
+    Object.keys(pkgJson.peerDependencies)
+      .filter((i) => i.startsWith(scope))
+      .forEach((i) => {
+        delete pkgJson.peerDependencies[i];
+      });
+    matches.forEach((depName) => {
+      if (depName === folder.name.replaceAll('/', '-').replace(prefix + '-', scope + '/')) {
+        return;
+      }
+      pkgJson.peerDependencies[depName] = '*';
+      // path.join(path.relative(path.join(folder.path, '../../'), projectPath), depName
+      //   .replace(prefix, '')
+      //   .replaceAll('.', '/'));
+    });
+    pkgJson.peerDependencies = json.sort(pkgJson.peerDependencies);
+
+    const contentF = JSON.stringify(pkgJson, null, 2) + '\n';
+    if (fs.readFileSync(folder.path, 'utf-8') === contentF) {
+      return;
+    }
+    fs.writeFileSync(folder.path, contentF);
+    console.log(`[${pkgJson.name}] Added dependency`);
+  });
+}

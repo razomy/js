@@ -1,0 +1,482 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./acl": {
+      "default": {
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
+      },
+      "import": {
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
+      },
+      "require": {
+        "default": "./acl/index.ts",
+        "types": "./acl/index.ts"
+      }
+    },
+    "./array": {
+      "default": {
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
+      },
+      "import": {
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
+      },
+      "require": {
+        "default": "./array/index.ts",
+        "types": "./array/index.ts"
+      }
+    },
+    "./auth": {
+      "default": {
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
+      },
+      "import": {
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
+      },
+      "require": {
+        "default": "./auth/index.ts",
+        "types": "./auth/index.ts"
+      }
+    },
+    "./collection": {
+      "default": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      },
+      "import": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      },
+      "require": {
+        "default": "./collection/index.ts",
+        "types": "./collection/index.ts"
+      }
+    },
+    "./domain": {
+      "default": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      },
+      "import": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      },
+      "require": {
+        "default": "./domain/index.ts",
+        "types": "./domain/index.ts"
+      }
+    },
+    "./event": {
+      "default": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "import": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      },
+      "require": {
+        "default": "./event/index.ts",
+        "types": "./event/index.ts"
+      }
+    },
+    "./fs": {
+      "default": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "import": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      },
+      "require": {
+        "default": "./fs/index.ts",
+        "types": "./fs/index.ts"
+      }
+    },
+    "./function": {
+      "default": {
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
+      },
+      "import": {
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
+      },
+      "require": {
+        "default": "./function/index.ts",
+        "types": "./function/index.ts"
+      }
+    },
+    "./game": {
+      "default": {
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
+      },
+      "import": {
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
+      },
+      "require": {
+        "default": "./game/index.ts",
+        "types": "./game/index.ts"
+      }
+    },
+    "./git": {
+      "default": {
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
+      },
+      "import": {
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
+      },
+      "require": {
+        "default": "./git/index.ts",
+        "types": "./git/index.ts"
+      }
+    },
+    "./graph": {
+      "default": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      },
+      "import": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      },
+      "require": {
+        "default": "./graph/index.ts",
+        "types": "./graph/index.ts"
+      }
+    },
+    "./hardware": {
+      "default": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      },
+      "import": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      },
+      "require": {
+        "default": "./hardware/index.ts",
+        "types": "./hardware/index.ts"
+      }
+    },
+    "./identity": {
+      "default": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      },
+      "import": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      },
+      "require": {
+        "default": "./identity/index.ts",
+        "types": "./identity/index.ts"
+      }
+    },
+    "./math": {
+      "default": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
+      },
+      "import": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
+      },
+      "require": {
+        "default": "./math/index.ts",
+        "types": "./math/index.ts"
+      }
+    },
+    "./meta": {
+      "default": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      },
+      "import": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      },
+      "require": {
+        "default": "./meta/index.ts",
+        "types": "./meta/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./path": {
+      "default": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      },
+      "import": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      },
+      "require": {
+        "default": "./path/index.ts",
+        "types": "./path/index.ts"
+      }
+    },
+    "./patterns": {
+      "default": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "import": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      },
+      "require": {
+        "default": "./patterns/index.ts",
+        "types": "./patterns/index.ts"
+      }
+    },
+    "./primitive": {
+      "default": {
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
+      },
+      "import": {
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
+      },
+      "require": {
+        "default": "./primitive/index.ts",
+        "types": "./primitive/index.ts"
+      }
+    },
+    "./probabilistic": {
+      "default": {
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
+      },
+      "import": {
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
+      },
+      "require": {
+        "default": "./probabilistic/index.ts",
+        "types": "./probabilistic/index.ts"
+      }
+    },
+    "./process": {
+      "default": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      },
+      "import": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      },
+      "require": {
+        "default": "./process/index.ts",
+        "types": "./process/index.ts"
+      }
+    },
+    "./scene": {
+      "default": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      },
+      "import": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      },
+      "require": {
+        "default": "./scene/index.ts",
+        "types": "./scene/index.ts"
+      }
+    },
+    "./schema": {
+      "default": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
+      },
+      "import": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
+      },
+      "require": {
+        "default": "./schema/index.ts",
+        "types": "./schema/index.ts"
+      }
+    },
+    "./specifications/*": "./specifications/*",
+    "./structure": {
+      "default": {
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
+      },
+      "import": {
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
+      },
+      "require": {
+        "default": "./structure/index.ts",
+        "types": "./structure/index.ts"
+      }
+    },
+    "./time": {
+      "default": {
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
+      },
+      "import": {
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
+      },
+      "require": {
+        "default": "./time/index.ts",
+        "types": "./time/index.ts"
+      }
+    },
+    "./translator": {
+      "default": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      },
+      "import": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      },
+      "require": {
+        "default": "./translator/index.ts",
+        "types": "./translator/index.ts"
+      }
+    },
+    "./tx": {
+      "default": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      },
+      "import": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      },
+      "require": {
+        "default": "./tx/index.ts",
+        "types": "./tx/index.ts"
+      }
+    },
+    "./ui": {
+      "default": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
+      },
+      "import": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
+      },
+      "require": {
+        "default": "./ui/index.ts",
+        "types": "./ui/index.ts"
+      }
+    }
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/abstractions#readme",
+  "keywords": [
+    "razomy",
+    "abstractions"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/abstractions",
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/abstractions",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts acl/index.ts array/index.ts auth/index.ts collection/index.ts domain/index.ts event/index.ts fs/index.ts function/index.ts game/index.ts git/index.ts graph/index.ts hardware/index.ts identity/index.ts math/index.ts meta/index.ts path/index.ts patterns/index.ts primitive/index.ts probabilistic/index.ts process/index.ts scene/index.ts schema/index.ts structure/index.ts time/index.ts translator/index.ts tx/index.ts ui/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "acl/index.ts",
+        "array/index.ts",
+        "auth/index.ts",
+        "collection/index.ts",
+        "domain/index.ts",
+        "event/index.ts",
+        "fs/index.ts",
+        "function/index.ts",
+        "game/index.ts",
+        "git/index.ts",
+        "graph/index.ts",
+        "hardware/index.ts",
+        "identity/index.ts",
+        "math/index.ts",
+        "meta/index.ts",
+        "path/index.ts",
+        "patterns/index.ts",
+        "primitive/index.ts",
+        "probabilistic/index.ts",
+        "process/index.ts",
+        "scene/index.ts",
+        "schema/index.ts",
+        "structure/index.ts",
+        "time/index.ts",
+        "translator/index.ts",
+        "tx/index.ts",
+        "ui/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.7"
+}

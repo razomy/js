@@ -1,0 +1,115 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {
+    "extract-zip": "^2.0.1"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "node": {
+        "import": "./index.node.ts",
+        "require": "./index.node.ts",
+        "types": "./index.node.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./node": {
+      "import": "./index.node.ts",
+      "require": "./index.node.ts",
+      "types": "./index.node.ts"
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/runtimes#readme",
+  "keywords": [
+    "razomy",
+    "runtimes",
+    "cleanupExtractedStructure",
+    "createSymlink",
+    "downloadFile",
+    "execCmd",
+    "extractArchive",
+    "getExePath",
+    "linkExists",
+    "defaultPackage",
+    "runtimeRegistry",
+    "isWin",
+    "isMac",
+    "javaRuntime",
+    "nodeRuntime",
+    "podmanRuntime",
+    "pythonRuntime",
+    "rustRuntime"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/runtimes",
+  "peerDependencies": {
+    "@razomy/run": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/runtimes",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.node.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "node"
+    },
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

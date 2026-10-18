@@ -1,0 +1,140 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "Comprehensive utility functions for string formatting, joining, and parsing",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./extensions": {
+      "import": "./extensions.ts",
+      "require": "./extensions.ts",
+      "types": "./extensions.ts"
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/string#readme",
+  "keywords": [
+    "razomy",
+    "string",
+    "addByIndexString",
+    "chunkByByteLength",
+    "chunk",
+    "containsAny",
+    "contains",
+    "countChar",
+    "countOccurrences",
+    "countSpaceMarginByArray",
+    "countSpaceMargin",
+    "countString",
+    "create",
+    "escapeByString",
+    "getSimilar",
+    "getWords",
+    "indentLines",
+    "isEndsWithAny",
+    "isEndsWith",
+    "isNullOrEmpty",
+    "isStartsWith",
+    "isString",
+    "isStringsAnyIndex",
+    "join",
+    "lastIndex",
+    "levenshteinDistance",
+    "merge",
+    "nextMarginIndex",
+    "padEnd",
+    "padStart",
+    "prefixLinesAndSkipEmpty",
+    "prefixLines",
+    "removeIndex",
+    "repeat",
+    "replace",
+    "similarity",
+    "splitLines",
+    "split",
+    "stringsAnyIndex",
+    "stripTags",
+    "takeAfter",
+    "takeBefore",
+    "takeBetween",
+    "toBuffer",
+    "trimIndent",
+    "trimLines",
+    "trim",
+    "truncate",
+    "unescapeByString",
+    "unescapeMdCode"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/string",
+  "peerDependencies": {
+    "@razomy/abstractions": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/string",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    },
+    {
+      "dts": true,
+      "entry": [
+        "extensions.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.7"
+}

@@ -1,0 +1,126 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/languages-programming-fs#readme",
+  "keywords": [
+    "razomy",
+    "languages",
+    "programming",
+    "fs",
+    "isCacheGetPathComponents",
+    "isCacheHasSubArray",
+    "isCacheIsInCache",
+    "isGitKey",
+    "isInOutput",
+    "isInPackages",
+    "isMacDsStoreKey",
+    "isOutputGetPathComponents",
+    "isPackageGetPathComponents",
+    "isWithGit",
+    "isWithoutGit",
+    "renameSlugToRazomy",
+    "pythonCache",
+    "jsAngularCache",
+    "csharpCache",
+    "dartCache",
+    "nextCache",
+    "nxCache",
+    "ideaCache",
+    "nuxtCache",
+    "pulumiCache",
+    "dartFirebaseCache",
+    "unityCache",
+    "javaCache",
+    "knownCache",
+    "pythonDependencies",
+    "nodejsDependencies",
+    "unityDependencies",
+    "knownDependencies",
+    "gitSlug",
+    "macDsStoreFile",
+    "jsOutput",
+    "javaOutput",
+    "pythonOutput",
+    "nuxtOutput",
+    "rustOutput",
+    "e2Eoutput",
+    "razomyOutput",
+    "cOutput",
+    "knownOutput",
+    "reservedNamesJs"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/languages-programming-fs",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/array": "*",
+    "@razomy/exceptions": "*",
+    "@razomy/fs": "*",
+    "@razomy/fs-file": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/languages-programming-fs",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}
