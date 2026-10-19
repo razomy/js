@@ -60,6 +60,7 @@ export class DockerPipeline extends context.ContextPipeline {
   // 4. Вложенные пайплайны (тип cb выводится автоматически из ChildMethod)
   // =========================================================
   services = this.childFactory('services');
+  migration = this.childFactory('migration');
   postgres = this.childFactory('postgres');
   image = this.childFactory('image');
   docker = this.childFactory('docker');

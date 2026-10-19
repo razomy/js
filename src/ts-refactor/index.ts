@@ -3,6 +3,7 @@ import { createReadme } from './create_readme';
 import { createReadmeAndSpecifications } from './create_readme_and_specifications';
 import { fileRenameVariablesAndPropsFunctions } from './file_rename_variables_and_props_functions';
 import { generateAllExtensions } from './generate_all_extensions';
+import type { ExtensionConfig } from './generate_all_extensions';
 import { getExportedClasses } from './get_exported_classes';
 import { getExportedConstants } from './get_exported_constants';
 import { getExportedFunctions } from './get_exported_functions';
@@ -51,6 +52,7 @@ export {
   toSafeName
 };
 export type {
+  ExtensionConfig,
   IterateSourceFileState
 };
 

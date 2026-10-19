@@ -2,6 +2,7 @@ import { ClassDeclaration } from "ts-morph";
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
+import type {ModifierAsnTypes} from "@razomy/abstractions/translator";
 
 export function parseClass(node: ClassDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.ClassAsn {
   const classAsn: abstractions.translator.ClassAsn = {
@@ -11,7 +12,7 @@ export function parseClass(node: ClassDeclaration, ctx: abstractions.patterns.Ha
     identifier: { name: node.getName() || 'Anonymous' },
     modifiers: [
       node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
-    ].filter(Boolean),
+    ].filter(Boolean) as ModifierAsnTypes[],
     parameters: [],
     properties: [],
   };

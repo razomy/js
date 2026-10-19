@@ -2,6 +2,7 @@
 import { addAllMut } from './add_all_mut';
 import { addMut } from './add_mut';
 import { and } from './and';
+import { ArrayExtension } from './array_extension';
 import { chunk } from './chunk';
 import { countBy } from './count_by';
 import { create } from './create';
@@ -57,6 +58,7 @@ import { zip } from './zip';
 
 // Named exports
 export {
+  ArrayExtension,
   addAllMut,
   addMut,
   and,
@@ -119,6 +121,7 @@ const array = {
   addAllMut,
   addMut,
   and,
+  ArrayExtension,
   chunk,
   countBy,
   create,

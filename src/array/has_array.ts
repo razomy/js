@@ -2,7 +2,7 @@
  * @summary Check if the source array contains all elements of the sub array in the same relative order.
  * @description Check if the source array contains all elements of the sub array in the same relative order.
  * @param source The array to search in.
- * @param array The sequence of elements to look for.
+ * @param target The sequence of elements to look for.
  * @returns True if the subsequence exists.
  * @example
  * ```ts
@@ -19,10 +19,10 @@
  * @complexity time O(n)
  * @complexity memory O(n)
  */
-export function hasArray<T>(source: T[], array: T[]): boolean {
+export function hasArray<T>(source: T[], target: T[]): boolean {
   let offset = 0;
 
-  for (const item of array) {
+  for (const item of target) {
     const foundIndex = source.indexOf(item, offset);
 
     if (foundIndex === -1) {

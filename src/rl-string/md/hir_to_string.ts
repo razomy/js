@@ -80,12 +80,12 @@ export function hirToString(node: abstractions.meta.NullOptional<abstractions.tr
       const paramsStr = node.parameters
         .filter((i) => i.semanticLayer == 'state')
         .map((p) => {
-          const pModifiers = (p.modifiers || []).map((m) => m.type);
-          const isRest = pModifiers.includes('rest') ? '...' : '';
-          const isOptional = pModifiers.includes('optional') ? '?' : '';
-          const pName = p.syntaxRole?.name || p.name || 'arg';
-          const typeStr = hirToString(p.shape);
-          return `${isRest}${pName}${isOptional}: ${typeStr}`;
+          // const pModifiers = (p.modifiers || []).map((m) => m.type);
+          // const isRest = pModifiers.includes('rest') ? '...' : '';
+          // const isOptional = pModifiers.includes('optional') ? '?' : '';
+          // const pName = p.syntaxRole?.name || p.name || 'arg';
+          // const typeStr = hirToString(p.shape);
+          // return `${isRest}${pName}${isOptional}: ${typeStr}`;
         })
         .join(', ');
 

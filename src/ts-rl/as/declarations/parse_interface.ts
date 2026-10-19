@@ -2,6 +2,7 @@ import { InterfaceDeclaration as TsInterfaceDeclaration } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
+import type {AccessModifierAsn} from "@razomy/abstractions/translator";
 
 export function parseInterface(node: TsInterfaceDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.InterfaceAsn {
   const interfaceAsn: abstractions.translator.InterfaceAsn = {
@@ -11,7 +12,7 @@ export function parseInterface(node: TsInterfaceDeclaration, ctx: abstractions.p
     identifier: { name: node.getName() },
     modifiers: [
       node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
-    ].filter(Boolean),
+    ].filter(Boolean) as AccessModifierAsn[],
     parameters: [],
     properties: [],
   };

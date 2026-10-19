@@ -36,6 +36,7 @@ import { replace } from './replace';
 import { similarity } from './similarity';
 import { split } from './split';
 import { splitLines } from './split_lines';
+import { StringExtension } from './string_extension';
 import { stringsAnyIndex } from './strings_any_index';
 import { stripTags } from './strip_tags';
 import { takeAfter } from './take_after';
@@ -51,6 +52,7 @@ import { unescapeMdCode } from './unescape_md_code';
 
 // Named exports
 export {
+  StringExtension,
   addByIndexString,
   chunk,
   chunkByByteLength,
@@ -142,6 +144,7 @@ const string = {
   similarity,
   split,
   splitLines,
+  StringExtension,
   stringsAnyIndex,
   stripTags,
   takeAfter,

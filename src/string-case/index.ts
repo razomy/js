@@ -19,12 +19,14 @@ import { reverse } from './reverse';
 import { sentenceCase } from './sentence_case';
 import { slugify } from './slugify';
 import { snakeCase } from './snake_case';
+import { StringCaseExtension } from './string_case_extension';
 import { swapCase } from './swap_case';
 import { titleCase } from './title_case';
 import { upperCase } from './upper_case';
 
 // Named exports
 export {
+  StringCaseExtension,
   abbreviation,
   alternatingCase,
   camelCase,
@@ -72,6 +74,7 @@ const stringCase = {
   sentenceCase,
   slugify,
   snakeCase,
+  StringCaseExtension,
   swapCase,
   titleCase,
   upperCase,

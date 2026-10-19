@@ -97,7 +97,7 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const allDecls = tsRl.hir.iterator.findExported(hirRoot as any).filter(i=>!!i.name);
+  const allDecls = tsRl.hir.iterator.findExported(hirRoot as any).filter(i=>!!i['name']);
   allDecls.sort((a, b) => rlString.md.getNamePath(a).join('').localeCompare(rlString.md.getNamePath(b).join('')));
   const typeSpecs = allDecls
     .values()

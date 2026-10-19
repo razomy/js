@@ -2,6 +2,7 @@ import { EnumDeclaration as TsEnumDeclaration } from 'ts-morph';
 import * as abstractions from "@razomy/abstractions";
 import * as tsRl from "@razomy/ts-rl";
 import * as random from "@razomy/random";
+import type {ModifierAsnTypes} from "@razomy/abstractions/translator";
 
 export function parseEnum(node: TsEnumDeclaration, ctx: abstractions.patterns.HasEnterLeave): abstractions.translator.EnumAsn {
   const enumAsn: abstractions.translator.EnumAsn = {
@@ -11,7 +12,7 @@ export function parseEnum(node: TsEnumDeclaration, ctx: abstractions.patterns.Ha
     identifier: { name: node.getName() },
     modifiers: [
       node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
-    ].filter(Boolean),
+    ].filter(Boolean) as ModifierAsnTypes[],
     parameters: [],
     properties: [],
   };

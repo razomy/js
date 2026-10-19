@@ -2,6 +2,7 @@ import { Node, VariableDeclaration as TsVariableDeclaration } from 'ts-morph';
 import * as abstractions from '@razomy/abstractions';
 import * as tsRl from '@razomy/ts-rl';
 import * as random from '@razomy/random';
+import type {ModifierAsnTypes} from "@razomy/abstractions/translator";
 
 export function parseVariable(
   node: TsVariableDeclaration,
@@ -19,7 +20,7 @@ export function parseVariable(
     modifiers: [
       node.isExported() ? { id: random.createUuid(), kind: 'AccessModifierAsn', syntaxRole: 'modifier', operator: 'public', value: null } : null,
       isConst ? { id: random.createUuid(), kind: 'InstanceModifierAsn', syntaxRole: 'modifier', operator: 'const', value: null } : null,
-    ].filter(Boolean),
+    ].filter(Boolean) as ModifierAsnTypes[],
 
     identifier: { name: node.getName() },
     shape: null,
