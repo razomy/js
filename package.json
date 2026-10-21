@@ -15,10 +15,10 @@
   "packageManager": "npm@11.5.1",
   "private": true,
   "scripts": {
-    "format": "cd src/ts-refactor-project && tsx ./format_project.ts && cd ../../ && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js . && prettier --write .",
+    "format": "cd src/code && tsx ./format_project.ts && cd ../../ && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js . && prettier --write .",
     "build": "tsc --project tsconfig.json",
     "test": "jest . --coverage --collectCoverageFrom='src/**/*.{js,jsx,ts,tsx,vue}'",
-    "release": "cd src/npm && tsx ./publish.ts"
+    "release": "cd src/code && tsx ./publish.ts"
   },
   "type": "module",
   "version": "0.0.0",
@@ -38,6 +38,7 @@
     "./src/char",
     "./src/cli-ais",
     "./src/cluster",
+    "./src/code",
     "./src/commits",
     "./src/components",
     "./src/compression",

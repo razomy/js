@@ -4,7 +4,6 @@ import { getPackageJsonVersion } from './get_package_json_version';
 import { getPublishVersion } from './get_publish_version';
 import { isPackageToUpdate } from './is_package_to_update';
 import { printProjectPackage } from './print_project_package';
-import { publish } from './publish';
 
 // Named exports
 export {
@@ -12,8 +11,7 @@ export {
   getPackageJsonVersion,
   getPublishVersion,
   isPackageToUpdate,
-  printProjectPackage,
-  publish
+  printProjectPackage
 };
 
 // Default export
@@ -23,7 +21,6 @@ const npm = {
   getPublishVersion,
   isPackageToUpdate,
   printProjectPackage,
-  publish,
 };
 
 export default npm;

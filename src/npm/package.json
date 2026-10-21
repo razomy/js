@@ -40,8 +40,7 @@
     "getPackageJsonVersion",
     "getPublishVersion",
     "isPackageToUpdate",
-    "printProjectPackage",
-    "publish"
+    "printProjectPackage"
   ],
   "license": "MIT",
   "main": "./index.ts",
@@ -49,10 +48,7 @@
   "name": "@razomy/npm",
   "peerDependencies": {
     "@razomy/fss": "*",
-    "@razomy/main": "*",
-    "@razomy/shell": "*",
-    "@razomy/ts-refactor": "*",
-    "@razomy/ts-refactor-project": "*"
+    "@razomy/shell": "*"
   },
   "publishConfig": {
     "access": "public"

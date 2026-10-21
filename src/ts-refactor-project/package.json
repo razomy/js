@@ -56,7 +56,6 @@
     "createIndexFiles",
     "fixBrokenImportsAndExports",
     "flattenPackages",
-    "formatProject",
     "renameFiles",
     "replaceInjectImportWithDefaultImport",
     "addDependencies",
@@ -76,7 +75,6 @@
     "@razomy/fs-file": "*",
     "@razomy/fss": "*",
     "@razomy/json": "*",
-    "@razomy/main": "*",
     "@razomy/string": "*",
     "@razomy/string-case": "*",
     "@razomy/ts-refactor": "*"
