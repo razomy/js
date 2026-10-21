@@ -101,6 +101,14 @@ export function astToHirNode(
       break;
     }
 
+    case 'RangeOperationAsn': {
+      const op = new tsHir.hir.OperatorSn(ctx);
+      op.operator = node.operator;
+      op.operands = node.values.map(recurse);
+      hir = op;
+      break;
+    }
+
     case 'AssignAsn': {
       const op = new tsHir.hir.OperatorSn(ctx);
       op.operator = '=';
@@ -395,7 +403,7 @@ export function astToHirNode(
         s.modifiers.version = node.version;
       }
 
-      s.properties = node.block?.statements ? [...node.block.statements].map(recurse) as any[] : [];
+      s.statements = node.block?.statements ? [...node.block.statements].map(recurse) as any[] : [];
       s.doc = { description: '' };
       hir = s;
       break;

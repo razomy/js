@@ -13,3 +13,5 @@ reports
 .nx/workspace-data
 
 .nuxt
+
+package-lock.json

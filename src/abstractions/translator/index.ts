@@ -1,5 +1,5 @@
 // Imports
-import type { AccessAsnType, AccessModifierAsn, AliasAsn, ArgumentMemberAsn, ArrayAsn, AsnKey, AsnType, AssignAsn, AwaitAsn, BinaryAsn, BindingAsnType, BlockAsn, BreakAsn, CallAsn, CatchAsn, ClassAsn, CommentAsn, ConditionBranchAsn, ConstraintAsn, ContinueAsn, DeclarationAsnType, DeclarationOperatorAsnType, DecoratorAsn, DefaultBranchAsn, DefaultCatchAsn, DeleteAsn, DependencyModifierAsn, DoWhileAsn, DocsAsn, ElseBranchAsn, EnumAsn, FinallyAsn, FlowAsnType, FlowOperatorAsnType, ForIAsn, ForItAsn, ForOfAsn, FunctionAsn, FunctionModifierAsn, IAccessAsn, IAsNode, IBindingAsn, IDeclarationAsn, IDeclarationOperatorAsn, IFlowAsn, IFlowOperatorAsn, IIfBranchAsn, ILayerAsn, IModifierAsn, IOperationAsn, IPanicAsn, IStateAsn, ISwitchBranchAsn, Identifier, IfAsn, IfBranchAsnType, ImportAsn, InheritModifierAsn, InstanceAsn, InstanceModifierAsn, InterfaceAsn, LambdaAsn, LayerAsnTypes, LayerOperatorAsnTypes, LiteralAsn, LoopAsn, MacroCallAsn, MappedAsn, MatchAsn, MatchBranchAsn, MemberAsn, ModifierAsnTypes, ModuleAsn, ObjectAsn, OntologyAsnType, OperationAsnType, OverrideModifierAsn, PanicAsnType, ParameterAsn, ParameterModifierAsn, PropertyAsn, QueryAsn, ReferenceAsn, ReturnAsn, SemanticLayer, ShapingAsn, SpreadAsn, StateAsnType, StructAsn, StyleBlockAsn, SwitchAsn, SwitchBranchAsnType, SyntaxRole, TagAsn, TemplateAsn, TernaryAsn, TextAsn, ThrowAsn, TryAsn, TupleAsn, UnaryAsn, WhileDoAsn, YieldAsn } from './i_as_node';
+import type { AccessAsnType, AccessModifierAsn, AliasAsn, ArgumentMemberAsn, ArrayAsn, AsnKey, AsnType, AssignAsn, AwaitAsn, BinaryAsn, BindingAsnType, BlockAsn, BreakAsn, CallAsn, CatchAsn, ClassAsn, CommentAsn, ConditionBranchAsn, ConstraintAsn, ContinueAsn, DeclarationAsnType, DeclarationOperatorAsnType, DecoratorAsn, DefaultBranchAsn, DefaultCatchAsn, DeleteAsn, DependencyModifierAsn, DoWhileAsn, DocsAsn, ElseBranchAsn, EnumAsn, FinallyAsn, FlowAsnType, FlowOperatorAsnType, ForIAsn, ForItAsn, ForOfAsn, FunctionAsn, FunctionModifierAsn, IAccessAsn, IAsNode, IBindingAsn, IDeclarationAsn, IDeclarationOperatorAsn, IFlowAsn, IFlowOperatorAsn, IIfBranchAsn, ILayerAsn, IModifierAsn, IOperationAsn, IPanicAsn, IStateAsn, ISwitchBranchAsn, Identifier, IfAsn, IfBranchAsnType, ImportAsn, InheritModifierAsn, InstanceAsn, InstanceModifierAsn, InterfaceAsn, LambdaAsn, LayerAsnTypes, LayerOperatorAsnTypes, LiteralAsn, LoopAsn, MacroCallAsn, MappedAsn, MatchAsn, MatchBranchAsn, MemberAsn, ModifierAsnTypes, ModuleAsn, ObjectAsn, OntologyAsnType, OperationAsnType, Operator, OverrideModifierAsn, PanicAsnType, ParameterAsn, ParameterModifierAsn, PropertyAsn, QueryAsn, RangeOperationAsn, ReferenceAsn, ReturnAsn, SemanticLayer, ShapingAsn, SpreadAsn, StateAsnType, StructAsn, StyleBlockAsn, SwitchAsn, SwitchBranchAsnType, SyntaxRole, TagAsn, TemplateAsn, TernaryAsn, TextAsn, ThrowAsn, TryAsn, TupleAsn, UnaryAsn, WhileDoAsn, YieldAsn } from './i_as_node';
 import type { GroupCsn, ICsNode, TokenCsn } from './i_cs_node';
 import type { HasDeep, HasStack, HasToken, HasTokenType, HasTokens, ILexerNode, Span, Token } from './i_lexer_node';
 import type { TypeChecker } from './type_checker';
@@ -90,12 +90,14 @@ export type {
   ObjectAsn,
   OntologyAsnType,
   OperationAsnType,
+  Operator,
   OverrideModifierAsn,
   PanicAsnType,
   ParameterAsn,
   ParameterModifierAsn,
   PropertyAsn,
   QueryAsn,
+  RangeOperationAsn,
   ReferenceAsn,
   ReturnAsn,
   SemanticLayer,

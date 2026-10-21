@@ -26,6 +26,9 @@ export interface IHirNode
 
 // region Data & Expressions & FLow
 
+export type Text = string;
+export type ValueShape = 'string' | 'boolean' | 'number' | 'bigint';
+export type ValueExpression = false | true | number | Text;
 /**
  * Базовые примитивные значения.
  *
@@ -33,7 +36,7 @@ export interface IHirNode
  */
 export interface LiteralHirn extends IHirNode {
   kind: 'LiteralHirn';
-  value: any; // string, number, boolean, null
+  value: ValueShape | ValueExpression;
 }
 
 /**
@@ -143,6 +146,9 @@ export interface IIdentityHirn extends IHirNode {
   modifiers: {
     isPublic: boolean | null;
   }; // 'const', 'export', 'async', 'generator' и т.д.
+  doc: {
+    description: string | null;
+  };
 }
 
 /**
@@ -160,9 +166,6 @@ export interface BindingHirn<T extends HirnType = abstractions.patterns.IdRef<Hi
   modifiers: {
     isPublic: boolean | null;
     isConst: boolean | null;
-  }
-  doc: {
-    description: string;
   };
 }
 
@@ -186,7 +189,7 @@ export interface FunctionHirn extends IIdentityHirn, abstractions.function_.HasF
     isPublic: boolean | null;
     isAsync: boolean | null;
     isGenerator: boolean | null;
-  }
+  };
   doc: {
     title: string | null;
     description: string | null;
@@ -208,7 +211,7 @@ export interface StructHirn extends IIdentityHirn {
   modifiers: {
     isPublic: boolean | null;
     isEnum: boolean | null;
-  }
+  };
   doc: {
     description: string;
   };
@@ -221,7 +224,7 @@ export interface StructHirn extends IIdentityHirn {
  */
 export interface ModuleHirn extends IIdentityHirn {
   kind: 'ModuleHirn';
-  properties: abstractions.patterns.IdRef<IdentityHirnType>[]; // Поля, методы, элементы массива
+  statements: abstractions.patterns.IdRef<IdentityHirnType>[]; // Поля, методы, элементы массива
   modifiers: {
     version: string | null;
     isSourceFile: boolean | null;
@@ -250,12 +253,7 @@ export interface ReferenceHirn extends IHirNode {
 
 // endregion Declarations & Entities
 
-export type IdentityHirnType =
-  | BindingHirn
-  | FunctionHirn
-  | ModuleHirn
-  | StructHirn
-  ;
+export type IdentityHirnType = BindingHirn | FunctionHirn | ModuleHirn | StructHirn;
 
 /**
  * Итоговое объединение всех доступных узлов Hirn.

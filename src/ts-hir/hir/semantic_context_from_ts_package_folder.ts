@@ -42,10 +42,11 @@ export function semanticContextFromTsPackageFolder(dirPath: abstractions.fs.DirP
   ctx.hirRoot = tsHir.hir.astToHirNode(ctx, new AsnIterator(ctx), ctx.asnRoot);
 
   // 3. Последовательные фазы семантических вычислений:
+  tsHir.hir.iterator.removePrivateDeclarations(ctx.hirRoot); // 5. Привязка документации к сущностям
+  tsHir.hir.iterator.inlineReferences(ctx.hirRoot); // 5. Привязка документации к сущностям
   tsHir.hir.iterator.indexNodes(ctx, ctx.hirRoot); // 1. Индексация ID и карт
   tsHir.hir.iterator.computeSemanticLayers(ctx, ctx.hirRoot); // 3. Вычисление semanticLayer (state / shape / generic / meta)
   tsHir.hir.iterator.resolveReferences(ctx, ctx.hirRoot); // 4. Разрешение ReferenceSn -> resolvedDeclaration
-  tsHir.hir.iterator.removePrivateDeclarations(ctx.hirRoot); // 5. Привязка документации к сущностям
   tsHir.hir.iterator.removeUnusedDeclarations(ctx.hirRoot); // 5. Привязка документации к сущностям
   tsHir.hir.iterator.linkHirTree(ctx, ctx.hirRoot); // 2. Связывание графа: parent / next / prev / children
   tsHir.hir.iterator.joinDocs(ctx, ctx.hirRoot); // 5. Привязка документации к сущностям

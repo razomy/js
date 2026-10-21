@@ -1,0 +1,57 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/nuxt/test/fixtures/basic#readme",
+  "keywords": [
+    "razomy",
+    "nuxt",
+    "test",
+    "fixtures",
+    "basic"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/nuxt-test-fixtures-basic",
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/nuxt/test/fixtures/basic",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown  --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

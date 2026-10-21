@@ -30,7 +30,7 @@ export function walkHirChildren<T extends abstractions.hir.HirnType>(
       walkArr(node.properties);
       break;
     case 'ModuleHirn':
-      walkArr(node.properties);
+      walkArr(node.statements);
       break;
     case 'BindingHirn':
       walk(node.shape);

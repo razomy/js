@@ -43,7 +43,9 @@
     "./src/nuxt",
     "./src/vue",
     "./src/vue-resource",
-    "./src/hir-vue"
+    "./src/hir-vue",
+    "./src/code-vue-playground",
+    "./src/code-nuxt-playground"
   ],
   "references": [
     {

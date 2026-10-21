@@ -16,7 +16,7 @@
     "changelogen": "^0.6.2",
     "nuxt": "^4.4.2",
     "vitest": "^4.1.0",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.3.13"
   },
   "engines": {
     "node": ">=18"
@@ -62,7 +62,7 @@
     "@vite-pwa/nuxt": "^1.1.1",
     "@vueuse/core": "^14.2.0",
     "@vueuse/nuxt": "^14.2.0",
-    "nuxt": "^4.3.0",
+    "nuxt": "^4.6.2",
     "nuxt-gtag": "^4.1.0",
     "vue": "^3.5.27",
     "vue-i18n": "11.2.8",

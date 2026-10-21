@@ -26,6 +26,7 @@ export abstract class SemanticNode implements abstractions.hir.IHirNode {
 export abstract class IdentityNode extends SemanticNode implements abstractions.hir.IIdentityHirn {
   public name: string | null = object_.LATE_INIT;
   public abstract modifiers: abstractions.hir.IIdentityHirn['modifiers'];
+  public abstract doc: { description: string | null };
 }
 
 export class LiteralSn extends SemanticNode implements abstractions.hir.LiteralHirn {
@@ -131,7 +132,7 @@ export class StructSn extends IdentityNode implements abstractions.hir.StructHir
 
 export class ModuleSn extends IdentityNode implements abstractions.hir.ModuleHirn {
   public override kind: 'ModuleHirn' = 'ModuleHirn' as const;
-  public properties: abstractions.hir.ModuleHirn['properties'] = object_.LATE_INIT;
+  public statements: abstractions.hir.ModuleHirn['statements'] = object_.LATE_INIT;
   public modifiers: abstractions.hir.ModuleHirn['modifiers'] = object_.LATE_INIT;
   public doc: abstractions.hir.ModuleHirn['doc'] = object_.LATE_INIT;
 }

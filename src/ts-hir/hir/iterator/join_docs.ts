@@ -1,6 +1,5 @@
 import * as abstractions from '@razomy/abstractions';
 import * as tsHir from '@razomy/ts-hir';
-import type { LiteralHirn } from '@razomy/abstractions/hir';
 
 export function joinDocs(ctx: tsHir.hir.SemanticContext, node: abstractions.hir.HirnType): void {
   // 1. Бизнес-логика текущей фазы
@@ -9,15 +8,15 @@ export function joinDocs(ctx: tsHir.hir.SemanticContext, node: abstractions.hir.
     if (docs && docs.kind === 'BlockHirn' && (docs.syntaxRole === 'text' || docs.syntaxRole === 'declaration')) {
       const statements = (docs.statements || []) as abstractions.hir.BindingHirn<abstractions.hir.LiteralHirn>[];
 
-      node.doc.title = statements.find((i) => i.name === 'title')?.value?.value ?? null;
-      node.doc.description = statements.find((i) => i.name === 'description')?.value?.value ?? null;
+      node.doc.title = statements.find((i) => i.name === 'title')?.value?.value as string ?? null;
+      node.doc.description = statements.find((i) => i.name === 'description')?.value?.value as string ?? null;
       node.doc.returnDescription =
-        statements.find((i) => i.name === 'returns' || i.name === 'return')?.value?.value ?? null;
+        statements.find((i) => i.name === 'returns' || i.name === 'return')?.value?.value as string ?? null;
       node.doc.examples = statements
         .filter((i) => i.name === 'example')
         .map((i) => ({
-          code: (i.value?.children[0] as LiteralHirn)?.value,
-          expected: (i.value?.children[1] as LiteralHirn)?.value,
+          code: (i.value?.children[0] as abstractions.hir.LiteralHirn)?.value as string,
+          expected: (i.value?.children[1] as abstractions.hir.LiteralHirn)?.value as string,
         }));
 
       const params = node.parameters || [];
@@ -27,7 +26,7 @@ export function joinDocs(ctx: tsHir.hir.SemanticContext, node: abstractions.hir.
             if (!param.doc) {
               param.doc = { description: '' };
             }
-            param.doc.description = paramDoc.value?.value ?? '';
+            param.doc.description = paramDoc.value?.value as string ?? '';
           }
         }
       }

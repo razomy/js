@@ -329,44 +329,51 @@ export interface ShapingAsn extends IOperationAsn {
   value: StateAsnType;
 }
 
+export type Operator = // Арифметика
+  | '+'
+| '-'
+| '*'
+| '/'
+| '%'
+| '**'
+// Побитовые операции
+| '&'
+| '|'
+| '^'
+| '<<'
+| '>>'
+| '>>>'
+// Сравнение (строгое и нестрогое)
+| '=='
+| '!='
+| '==='
+| '!=='
+// Отношение
+| '<'
+| '<='
+| '>'
+| '>='
+// Проверка наличия/типа
+| 'in'
+| 'is';
 /**
  * Бинарные операции: 1 + 1, 3 & 4, x === y, a ** b
  * @final
  */
 export interface BinaryAsn extends IOperationAsn {
   kind: 'BinaryAsn';
-  operator: // Арифметика
-  | '+'
-    | '-'
-    | '*'
-    | '/'
-    | '%'
-    | '**'
-    // Побитовые операции
-    | '&'
-    | '|'
-    | '^'
-    | '<<'
-    | '>>'
-    | '>>>'
-    // Сравнение (строгое и нестрогое)
-    | '=='
-    | '!='
-    | '==='
-    | '!=='
-    // Отношение
-    | '<'
-    | '<='
-    | '>'
-    | '>='
-    // Проверка наличия/типа
-    | 'in'
-    | 'is';
+  operator: Operator;
   left: AsnType;
   right: AsnType;
 }
 
-export type OperationAsnType = UnaryAsn | SpreadAsn | ShapingAsn | BinaryAsn;
+export interface RangeOperationAsn extends IOperationAsn {
+  kind: 'RangeOperationAsn';
+  operator: Operator;
+  values: AsnType[];
+}
+
+export type OperationAsnType = UnaryAsn | SpreadAsn | ShapingAsn | BinaryAsn | RangeOperationAsn;
 
 // endregion Operation
 

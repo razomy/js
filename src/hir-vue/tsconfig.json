@@ -4,8 +4,8 @@
     "useDefineForClassFields": false,
     "module": "ESNext",
     "lib": ["esnext", "DOM", "DOM.Iterable"],
-    "rootDir": "../",
     "skipLibCheck": true,
+    "preserveSymlinks": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,

@@ -129,16 +129,16 @@ export function parse(node: Node, ctx: HasEnterLeave): abstractions.translator.A
     return ctx.leave(arrayAsn, node);
   }
   if (Node.isUnionTypeNode(node) || Node.isIntersectionTypeNode(node)) {
-    const tupleAsn: abstractions.translator.TupleAsn = {
-      id: random.createUuid(),
-      kind: 'TupleAsn',
-      syntaxRole: 'expression',
-      semanticLayer: 'shape',
+    const asn: abstractions.translator.RangeOperationAsn = {
       values: [],
+      operator: node.getKindName() === 'UnionType'? '|' : '&',
+      id: random.createUuid(),
+      kind: 'RangeOperationAsn',
+      syntaxRole: 'expression'
     };
-    if (!ctx.enter(tupleAsn, node)) return tupleAsn;
-    tupleAsn.values = node.getTypeNodes().map((i) => parse(i, ctx));
-    return ctx.leave(tupleAsn, node);
+    if (!ctx.enter(asn, node)) return asn;
+    asn.values = node.getTypeNodes().map((i) => parse(i, ctx));
+    return ctx.leave(asn, node);
   }
   if (Node.isTypeLiteral(node)) {
     const styleBlockAsn: abstractions.translator.StyleBlockAsn = {
