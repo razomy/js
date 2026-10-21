@@ -123,7 +123,10 @@ export function astToHirNode(
     case 'MappedAsn': {
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = null;
-      b.modifiers = [];
+      b.modifiers = {
+        isPublic: null,
+        isConst: null
+      };
       b.shape = recurse(node.constraint) as abstractions.hir.ReferenceHirn;
       b.value = recurse(node.value);
       b.doc = { description: '' };
@@ -134,7 +137,10 @@ export function astToHirNode(
     case 'PropertyAsn': {
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
-      b.modifiers = [];
+      b.modifiers = {
+        isPublic: null,
+        isConst: null
+      };
       b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
@@ -336,7 +342,10 @@ export function astToHirNode(
     case 'ParameterAsn': {
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
-      b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      b.modifiers = {
+        isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
+        isConst: node.modifiers.has(i=>i.kind === 'InstanceModifierAsn' && i.operator === 'const'),
+      }
       b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
@@ -348,7 +357,11 @@ export function astToHirNode(
     case 'FunctionAsn': {
       const fn = new tsHir.hir.FunctionSn(ctx);
       fn.name = node.kind === 'FunctionAsn' && node.identifier ? node.identifier.name : null;
-      fn.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      fn.modifiers = {
+        isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
+        isAsync: node.modifiers.has(i=>i.kind === 'FunctionModifierAsn' && i.operator === 'async'),
+        isGenerator: node.modifiers.has(i=>i.kind === 'FunctionModifierAsn' && i.operator === 'generator'),
+      }
       fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.hir.ReferenceHirn) : null;
       fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.hir.BindingHirn);
       fn.block = node.block ? recurse(node.block) : null;
@@ -366,28 +379,23 @@ export function astToHirNode(
       const s = new tsHir.hir.ModuleSn(ctx);
       s.name = node.identifier.name;
 
-      const modLit = new tsHir.hir.LiteralSn(ctx);
-      modLit.value = 'module';
-      modLit.syntaxRole = 'modifier';
-      modLit.semanticLayer = 'meta';
-
       const roleLit = new tsHir.hir.LiteralSn(ctx);
       roleLit.value = node.role;
       roleLit.syntaxRole = 'modifier';
       roleLit.semanticLayer = 'meta';
 
-      s.modifiers = [modLit, roleLit];
+      s.modifiers = {
+        isPublic: true,
+        isSourceFile: node.role === 'SourceFile',
+        version: null
+      };
 
       // Сохраняем версию модуля, если присутствует
       if (node.version) {
-        const verLit = new tsHir.hir.LiteralSn(ctx);
-        verLit.value = `version:${node.version}`;
-        verLit.syntaxRole = 'modifier';
-        verLit.semanticLayer = 'meta';
-        s.modifiers.push(verLit);
+        s.modifiers.version = node.version;
       }
 
-      s.properties = node.block?.statements ? [...node.block.statements].map(recurse) : [];
+      s.properties = node.block?.statements ? [...node.block.statements].map(recurse) as any[] : [];
       s.doc = { description: '' };
       hir = s;
       break;
@@ -397,8 +405,11 @@ export function astToHirNode(
     case 'TupleAsn': {
       const s = new tsHir.hir.StructSn(ctx);
       s.name = null;
-      s.modifiers = [];
-      s.properties = node.values.map(recurse);
+      s.modifiers = {
+        isPublic: null,
+        isEnum: false,
+      };
+      s.properties = node.values.map(recurse) as any[];
       s.doc = { description: '' };
       hir = s;
       break;
@@ -407,29 +418,27 @@ export function astToHirNode(
     case 'ObjectAsn':
     case 'StructAsn':
     case 'InterfaceAsn':
-    case 'ClassAsn':
+    case 'ClassAsn':{
+      const s = new tsHir.hir.StructSn(ctx);
+      s.name = 'identifier' in node && node.identifier ? node.identifier.name : null;
+      s.modifiers = {
+        isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
+        isEnum: false,
+      };
+      s.properties = node.properties.map(recurse) as any[];
+      s.doc = { description: '' };
+      hir = s;
+      break;
+    }
     case 'EnumAsn': {
       const s = new tsHir.hir.StructSn(ctx);
       s.name = 'identifier' in node && node.identifier ? node.identifier.name : null;
-
-      const kindModifier = new tsHir.hir.LiteralSn(ctx);
-      kindModifier.value = node.kind.replace('Asn', '').toLowerCase();
-      kindModifier.syntaxRole = 'modifier';
-      kindModifier.semanticLayer = 'shape';
-
-      const baseModifiers =
-        'modifiers' in node && node.modifiers
-          ? (node.modifiers as abstractions.translator.AsnType[]).map(recurse)
-          : [];
-
-      // Переносим параметры типов/дженерики (parameters), которые раньше терялись
-      const genericModifiers =
-        'parameters' in node && node.parameters
-          ? (node.parameters as abstractions.translator.AsnType[]).map(recurse)
-          : [];
-
-      s.modifiers = [kindModifier, ...baseModifiers, ...genericModifiers];
-      s.properties = node.properties.map(recurse);
+      s.modifiers = {
+        isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
+        isEnum: true,
+      };
+      s.properties = node.properties.map(recurse) as any;
+      s.properties.map(i=>(i as abstractions.hir.BindingHirn).modifiers.isConst = true);
       s.doc = { description: '' };
       hir = s;
       break;
@@ -471,7 +480,7 @@ export function astToHirNode(
 
     case 'MemberAsn': {
       const ref = new tsHir.hir.ReferenceSn(ctx);
-      ref.target = recurse(node.object_);
+      ref.target = recurse(node.object_) as any;
       ref.property = recurse(node.property);
       ref.arguments_ = [];
       hir = ref;
@@ -480,7 +489,7 @@ export function astToHirNode(
 
     case 'ArgumentMemberAsn': {
       const ref = new tsHir.hir.ReferenceSn(ctx);
-      ref.target = recurse(node.argument);
+      ref.target = recurse(node.argument) as any;
       ref.property = recurse(node.property);
       ref.arguments_ = [];
       hir = ref;
@@ -509,7 +518,10 @@ export function astToHirNode(
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
       // Сохраняем модификаторы импорта
-      b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
+      b.modifiers = {
+        isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
+        isConst: node.modifiers.has(i=>i.kind === 'InstanceModifierAsn' && i.operator === 'const'),
+      }
       b.shape = null;
       b.doc = { description: '' };
 
@@ -548,7 +560,10 @@ export function astToHirNode(
     case 'TagAsn': {
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
-      b.modifiers = [];
+      b.modifiers = {
+        isPublic: null,
+        isConst: null
+      };
       b.shape = null;
       b.value = recurse(node.value);
       b.doc = { description: '' };

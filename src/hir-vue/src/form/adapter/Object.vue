@@ -12,10 +12,10 @@
       <v-row>
         <v-col
           v-for="subParam in properties"
-          :key="subParam.shapeIdentifier?.name"
+          :key="subParam.name"
           cols="12"
         >
-          <Any :path="[...(path || []), subParam.shapeIdentifier?.name]"/>
+          <Any :path="[...(path || []), subParam.name]"/>
         </v-col>
       </v-row>
     </div>

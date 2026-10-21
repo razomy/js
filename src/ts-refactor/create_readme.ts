@@ -98,13 +98,13 @@ razomy cli add ${packageJson.name}
 `.trim();
 
   const allDecls = tsHir.hir.iterator.findExported(hirRoot as any).filter(i=>!!i['name']);
-  allDecls.sort((a, b) => hirString.md.getNamePath(a).join('').localeCompare(hirString.md.getNamePath(b).join('')));
+  allDecls.sort((a, b) => hirString.md.getNamePath(a as any).join('').localeCompare(hirString.md.getNamePath(b as any).join('')));
   const typeSpecs = allDecls
     .values()
     .filter((i) => i.kind === 'StructHirn')
     .toArray();
   const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
-  const functionPath = allDecls.length > 0 ? hirString.md.getNamePath(allDecls[0]) : ['functionName'];
+  const functionPath = allDecls.length > 0 ? hirString.md.getNamePath(allDecls[0] as any) : ['functionName'];
 
   const imports = `
 ### Import

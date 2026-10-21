@@ -17,9 +17,7 @@ export function computeSemanticLayers(
     switch (node.kind) {
       // Структуры: интерфейсы являются типами (shape), классы/объекты — state
       case 'StructHirn': {
-        const isTypeDefinition = node.modifiers.some(
-          (m: any) => m.kind === 'LiteralHirn' && (m.value === 'interface' || m.value === 'type'),
-        );
+        const isTypeDefinition = node.semanticLayer === 'shape';
         layer = isTypeDefinition ? 'shape' : 'state';
         break;
       }

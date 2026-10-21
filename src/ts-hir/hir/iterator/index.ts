@@ -6,6 +6,8 @@ import type { HirnFilter } from './find_hir_nodes';
 import { indexNodes } from './index_nodes';
 import { joinDocs } from './join_docs';
 import { linkHirTree } from './link_hir_tree';
+import { removePrivateDeclarations } from './removePrivateDeclarations';
+import { removeUnusedDeclarations } from './removeUnusedDeclarations';
 import { resolveReferences } from './resolve_references';
 import { walkHirChildren } from './walk_hir_children';
 
@@ -18,6 +20,8 @@ export {
   joinDocs,
   linkHirTree,
   resolveReferences,
+  removeUnusedDeclarations,
+  removePrivateDeclarations,
   walkHirChildren
 };
 export type {
@@ -34,6 +38,8 @@ const iterator = {
   linkHirTree,
   resolveReferences,
   walkHirChildren,
+  removeUnusedDeclarations,
+  removePrivateDeclarations,
 };
 
 

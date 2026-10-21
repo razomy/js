@@ -273,6 +273,7 @@ export interface PropertyAsn extends IStateAsn {
  */
 export interface ObjectAsn extends IStateAsn {
   kind: 'ObjectAsn';
+  modifiers: ModifierAsnTypes[];
   properties: PropertyAsn[];
 }
 

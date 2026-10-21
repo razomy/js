@@ -1,20 +1,20 @@
 {
-  "main": "./hir-vue.umd.js",
-  "module": "./hir-vue.es.js",
-  "types": "./src/index.d.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "import": "./hir-vue.es.js",
-      "require": "./hir-vue.umd.js",
-      "types": "./src/index.d.ts"
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
     },
     "./style.css": "./style.css"
   },
   "files": [
-    "*"
+    "src"
   ],
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build && cp package.json ./dist/package.json"
+    "build": "vue-tsc --noEmit && vite build && cp package_dist.json ./dist/package.json"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

@@ -3,11 +3,8 @@
     "target": "esnext",
     "useDefineForClassFields": false,
     "module": "ESNext",
-    "lib": [
-      "esnext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "rootDir": "../",
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -5,16 +5,8 @@ function modifiersToLiterals(
   struct:
     abstractions.hir.FunctionHirn | abstractions.hir.BindingHirn | abstractions.hir.StructHirn,
 ) {
-  return struct.modifiers
-    .filter((i) => i.kind === 'LiteralHirn')
-    .map((i) => i.value)
-    .map((i) => {
-      if (i === 'public') {
-        return '';
-      }
-      return i;
-    })
-    .join(' ');
+  const p = struct.modifiers.isPublic ? '': '';
+  return [p].join(' ');
 }
 
 export function hirToString(node: abstractions.meta.NullOptional<abstractions.hir.HirnType>): string {

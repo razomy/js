@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'RazomyRlVue',
+      name: 'RazomyHirVue',
       // 1. Tell Vite to ONLY build ES Modules (Nuxt's preferred format)
       formats: ['es'],
       fileName: (format) => `hir-vue.${format}.js`

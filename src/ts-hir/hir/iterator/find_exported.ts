@@ -5,6 +5,6 @@ export function findExported(root: tsHir.hir.SnType): tsHir.hir.SnType[] {
     return (node.kind === 'StructHirn'
       || node.kind === 'FunctionHirn'
       || node.kind === 'BindingHirn'
-    ) && node.isPublic();
+    ) && node.modifiers.isPublic!!;
     });
 }

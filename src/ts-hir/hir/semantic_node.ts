@@ -25,10 +25,7 @@ export abstract class SemanticNode implements abstractions.hir.IHirNode {
 
 export abstract class IdentityNode extends SemanticNode implements abstractions.hir.IIdentityHirn {
   public name: string | null = object_.LATE_INIT;
-  public modifiers: abstractions.hir.HirnType[] = object_.LATE_INIT;
-  isPublic(): boolean {
-    return this.modifiers.has((i) => i.kind === 'LiteralHirn' && i.value === 'public');
-  }
+  public abstract modifiers: abstractions.hir.IIdentityHirn['modifiers'];
 }
 
 export class LiteralSn extends SemanticNode implements abstractions.hir.LiteralHirn {
@@ -44,7 +41,7 @@ export class OperatorSn extends SemanticNode implements abstractions.hir.Operato
 
 export class ReferenceSn extends SemanticNode implements abstractions.hir.ReferenceHirn {
   public override kind: 'ReferenceHirn' = 'ReferenceHirn' as const;
-  public target: abstractions.hir.HirnType | null = object_.LATE_INIT;
+  public target: abstractions.hir.ReferenceHirn['target'] = object_.LATE_INIT;
   public property: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public arguments_: abstractions.hir.HirnType[] = object_.LATE_INIT;
 
@@ -107,6 +104,7 @@ export class BindingSn extends IdentityNode implements abstractions.hir.BindingH
   public shape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
   public value: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
+  public modifiers: abstractions.hir.BindingHirn['modifiers'] = object_.LATE_INIT;
 }
 
 export class FunctionSn extends IdentityNode implements abstractions.hir.FunctionHirn {
@@ -114,6 +112,7 @@ export class FunctionSn extends IdentityNode implements abstractions.hir.Functio
   public fnHashId: string = random.createUuid();
   public returnShape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
   public parameters: abstractions.hir.BindingHirn[] = object_.LATE_INIT;
+  public modifiers: abstractions.hir.FunctionHirn['modifiers'] = object_.LATE_INIT;
   public block: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public doc: {
     title: string | null;
@@ -125,14 +124,16 @@ export class FunctionSn extends IdentityNode implements abstractions.hir.Functio
 
 export class StructSn extends IdentityNode implements abstractions.hir.StructHirn {
   public override kind: 'StructHirn' = 'StructHirn' as const;
-  public properties: abstractions.hir.HirnType[] = object_.LATE_INIT;
+  public properties: abstractions.hir.StructHirn['properties'] = object_.LATE_INIT;
+  public modifiers: abstractions.hir.StructHirn['modifiers'] = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 
 export class ModuleSn extends IdentityNode implements abstractions.hir.ModuleHirn {
   public override kind: 'ModuleHirn' = 'ModuleHirn' as const;
-  public properties: abstractions.hir.HirnType[] = object_.LATE_INIT;
-  public doc: { description: string } = object_.LATE_INIT;
+  public properties: abstractions.hir.ModuleHirn['properties'] = object_.LATE_INIT;
+  public modifiers: abstractions.hir.ModuleHirn['modifiers'] = object_.LATE_INIT;
+  public doc: abstractions.hir.ModuleHirn['doc'] = object_.LATE_INIT;
 }
 
 

@@ -36,6 +36,6 @@ const props = defineProps<FormNode<any[]>>();
 
 const form = useFormInject();
 const schema = computed(() => form.getSchema<abstractions.hir.StructHirn>(props.path));
-const types = computed(() => schema.value?.shapes || []);
+const types = computed(() => schema.value?.properties || []);
 
 </script>

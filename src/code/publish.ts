@@ -4,6 +4,7 @@ import * as npm from '@razomy/npm';
 import * as shell from '@razomy/shell';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import * as tsRefactor from '@razomy/ts-refactor';
+import '@razomy/razomy/extensions';
 
 export async function publish(path_: string) {
   console.info(path_);

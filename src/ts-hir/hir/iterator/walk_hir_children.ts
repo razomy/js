@@ -22,21 +22,17 @@ export function walkHirChildren<T extends abstractions.hir.HirnType>(
       walkArr(node.statements);
       break;
     case 'FunctionHirn':
-      walkArr(node.modifiers);
       walk(node.returnShape);
       walkArr(node.parameters);
       walk(node.block);
       break;
     case 'StructHirn':
-      walkArr(node.modifiers);
       walkArr(node.properties);
       break;
     case 'ModuleHirn':
-      walkArr(node.modifiers);
       walkArr(node.properties);
       break;
     case 'BindingHirn':
-      walkArr(node.modifiers);
       walk(node.shape);
       walk(node.value);
       break;

@@ -20,6 +20,7 @@ export function parse(node: Node, ctx: abstractions.patterns.HasEnterLeave): abs
       id: random.createUuid(),
       kind: 'ObjectAsn',
       syntaxRole: 'expression',
+      modifiers: [],
       semanticLayer: 'state',
       properties: [],
     };

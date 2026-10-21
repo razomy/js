@@ -25,10 +25,11 @@ export function createPackageFunction(
     children: [],
     parent: null,
     prev: null,
-    modifiers: [
-      f.isAsync ? { kind: 'LiteralHirn', value: 'async' } : null,
-      f.isGenerator ? { kind: 'LiteralHirn', value: 'generator' } : null,
-    ].filter((i) => i != null) as abstractions.hir.HirnType[],
+    modifiers: {
+      isPublic: null,
+      isAsync: f.isAsync!!,
+      isGenerator: f.isGenerator!!,
+    },
     parameters: Object.entries(f.parameter || {}).map(
       ([k, v]) =>
         ({
@@ -36,7 +37,10 @@ export function createPackageFunction(
           kind: 'BindingHirn',
           syntaxRole: 'statement',
           semanticLayer: 'state',
-          modifiers: [],
+          modifiers: {
+            isPublic: null,
+            isConst: null,
+          },
           name: k,
           shape: {
             id: random.createUuid(),

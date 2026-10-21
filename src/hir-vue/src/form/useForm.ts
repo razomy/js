@@ -32,11 +32,13 @@ import Enum from "./input/Enum.vue";
 import Object from './adapter/Object.vue';
 import Array from './adapter/Array.vue';
 import Tuple from "./adapter/Tuple.vue";
+import Function from "./adapter/Function.vue";
 
 const defaultTypeMap: Record<(typeof FORM_SUPPORTED_BUILD_IN_KINDS)[number], Component> = {
   'String': String,
   'Number': Number_,
   'Boolean': Boolean,
+  'Function': Function,
   'Array<String>': StringArray,
   'Array<Number>': NumberArray,
   'Date': Date,
@@ -92,14 +94,14 @@ export async function processAsyncValidation(
 export interface Form {
   values: any,
   rules: any,
-  schema: any,
+  schema: Schema,
   meta: any,
   setSchema: (...args: any) => any,
   setValue: (...args: any) => any,
   getValue: (...args: any) => any,
   getComponent: (...args: any) => any,
   getMeta: (...args: any) => any,
-  getSchema: <T>(...args: any) => any,
+  getSchema: <T>(...args: any) =>  T,
   create: (...args: any) => any,
 }
 

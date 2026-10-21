@@ -140,7 +140,9 @@ export interface BlockHirn extends IHirNode {
  */
 export interface IIdentityHirn extends IHirNode {
   name: string | null; // Optional: для анонимных сущностей (лямбды, элементы массивов)
-  modifiers: abstractions.patterns.IdRef<HirnType>[]; // 'const', 'export', 'async', 'generator' и т.д.
+  modifiers: {
+    isPublic: boolean | null;
+  }; // 'const', 'export', 'async', 'generator' и т.д.
 }
 
 /**
@@ -155,6 +157,10 @@ export interface BindingHirn<T extends HirnType = abstractions.patterns.IdRef<Hi
   kind: 'BindingHirn';
   shape: abstractions.patterns.IdRef<ReferenceHirn> | null; // Type/Interface/Constraint
   value: T | null; // Значение
+  modifiers: {
+    isPublic: boolean | null;
+    isConst: boolean | null;
+  }
   doc: {
     description: string;
   };
@@ -176,6 +182,11 @@ export interface FunctionHirn extends IIdentityHirn, abstractions.function_.HasF
   parameters: abstractions.patterns.IdRef<BindingHirn>[];
   returnShape: abstractions.patterns.IdRef<ReferenceHirn> | null;
   block: abstractions.patterns.IdRef<HirnType> | null;
+  modifiers: {
+    isPublic: boolean | null;
+    isAsync: boolean | null;
+    isGenerator: boolean | null;
+  }
   doc: {
     title: string | null;
     description: string | null;
@@ -193,7 +204,11 @@ export interface FunctionHirn extends IIdentityHirn, abstractions.function_.HasF
  */
 export interface StructHirn extends IIdentityHirn {
   kind: 'StructHirn';
-  properties: abstractions.patterns.IdRef<HirnType>[]; // Поля, методы, элементы массива
+  properties: abstractions.patterns.IdRef<IdentityHirnType>[]; // Поля, методы, элементы массива
+  modifiers: {
+    isPublic: boolean | null;
+    isEnum: boolean | null;
+  }
   doc: {
     description: string;
   };
@@ -206,12 +221,16 @@ export interface StructHirn extends IIdentityHirn {
  */
 export interface ModuleHirn extends IIdentityHirn {
   kind: 'ModuleHirn';
-  properties: abstractions.patterns.IdRef<HirnType>[]; // Поля, методы, элементы массива
+  properties: abstractions.patterns.IdRef<IdentityHirnType>[]; // Поля, методы, элементы массива
+  modifiers: {
+    version: string | null;
+    isSourceFile: boolean | null;
+    isPublic: boolean | null;
+  };
   doc: {
     description: string;
   };
 }
-
 
 /**
  * Чтение значений, обращение к свойствам, вызовы функций.
@@ -224,12 +243,19 @@ export interface ModuleHirn extends IIdentityHirn {
  */
 export interface ReferenceHirn extends IHirNode {
   kind: 'ReferenceHirn';
-  target: abstractions.patterns.IdRef<HirnType> | null; // Название переменной ИЛИ узел (например, результат функции)
+  target: abstractions.patterns.IdRef<IdentityHirnType | LiteralHirn> | null; // Название переменной ИЛИ узел (например, результат функции)
   property: abstractions.patterns.IdRef<HirnType> | null; // Для obj.prop или arr[1]
   arguments_: abstractions.patterns.IdRef<HirnType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
 }
 
 // endregion Declarations & Entities
+
+export type IdentityHirnType =
+  | BindingHirn
+  | FunctionHirn
+  | ModuleHirn
+  | StructHirn
+  ;
 
 /**
  * Итоговое объединение всех доступных узлов Hirn.
@@ -242,10 +268,7 @@ export type HirnType =
   | BranchHirn
   | LoopHirn
   | GoHirn
-  | BindingHirn
-  | FunctionHirn
-  | ModuleHirn
-  | StructHirn
+  | IdentityHirnType
   | ReferenceHirn;
 
 export interface IHirnCtx extends abstractions.patterns.IContext {

@@ -1,16 +1,14 @@
-import * as abstractions from '@razomy/abstractions';
 import type { Ref } from 'vue';
 import type {
-  HirnType,
   BindingHirn,
-  FunctionHirn,
   BlockHirn,
-  StructHirn,
-  ReferenceHirn,
-  BranchHirn,
+  FunctionHirn,
+  HirnType,
   LiteralHirn,
   OperatorHirn,
-} from '@razomy/abstractions/translator';
+  ReferenceHirn,
+  StructHirn,
+} from '@razomy/abstractions/hir';
 
 export const defaultFormKey = 'form';
 export type Path = string[];
@@ -56,13 +54,14 @@ export const FORM_SUPPORTED_BUILD_IN_KINDS = [
   'File',
   'JsonString',
   'Array<File>',
+  'Function',
   'Enum',
   'Object',
   'Array',
   'Tuple',
 ] as const;
 
-export type FormSupportedKind = typeof FORM_SUPPORTED_BUILD_IN_KINDS[number];
+export type FormSupportedKind = (typeof FORM_SUPPORTED_BUILD_IN_KINDS)[number];
 
 export function isSupported(schema: Schema | null): boolean {
   if (!schema) return true;
@@ -76,8 +75,7 @@ export function isSupported(schema: Schema | null): boolean {
     case 'FunctionHirn':
       const func = schema as FunctionHirn;
       return (
-        (func.returnShape ? isSupported(func.returnShape as Schema) : true) &&
-        func.parameters.every(isSupported as any)
+        (func.returnShape ? isSupported(func.returnShape as Schema) : true) && func.parameters.every(isSupported as any)
       );
     case 'OperatorHirn':
       const binary = schema as OperatorHirn;
@@ -103,6 +101,8 @@ export function getTypeByHirNode(schema: Schema): FormSupportedKind {
       // SequenceHirn объединяет Array и Tuple. Для упрощения определяем как Array,
       // или можем добавить проверку на Tuple при необходимости (по кол-ву элементов или аннотациям).
       return 'Array';
+    case 'FunctionHirn':
+      return 'Function';
     case 'StructHirn':
       return 'Object';
     case 'LiteralHirn':
@@ -117,13 +117,20 @@ export function getTypeByHirNode(schema: Schema): FormSupportedKind {
       const ref = schema as ReferenceHirn;
       const refName = (ref as any).syntaxRole?.name || (ref as any).name;
       switch (refName) {
-        case 'Object': return 'Object';
-        case 'String': return 'String';
-        case 'Boolean': return 'Boolean';
-        case 'Number': return 'Number';
-        case 'Bigint': return 'Number';
-        case 'Null': return 'Number';
-        default: return 'String';
+        case 'Object':
+          return 'Object';
+        case 'String':
+          return 'String';
+        case 'Boolean':
+          return 'Boolean';
+        case 'Number':
+          return 'Number';
+        case 'Bigint':
+          return 'Number';
+        case 'Null':
+          return 'Number';
+        default:
+          return 'String';
       }
     default:
       return 'String';
@@ -137,6 +144,7 @@ export function buildRegistry(schema: any, typeRegistry: Map<string, any>, visit
   switch (schema.kind) {
     case 'StructHirn':
     case 'ObjectHirn':
+    case 'FunctionHirn':
     case 'BindingHirn': {
       const name = getNameFromHir(schema);
       if (name && !typeRegistry.has(name)) {
@@ -204,13 +212,10 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
       case 'StructHirn': {
         const obj = current as StructHirn;
         current = obj.properties
-          .filter(i =>i.kind === 'LiteralHirn')
-          ?.find((e) => {
-          const keyName = e.kind === 'LiteralHirn'
-            ? String(e.value)
-            : getNameFromHir(e);
-          return keyName === part;
-        })?.value;
+          .filter((i) => i.kind === 'BindingHirn')
+          .find((e) => {
+            return getNameFromHir(e) === part;
+          }).value;
         break;
       }
       case 'SequenceHirn': {
@@ -229,7 +234,13 @@ export function getSchemaByPath<T = Schema>(rootSchema: Schema, path: Path, type
   return resolveType(current, typeRegistry) as T;
 }
 
-export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>, typeRegistry: Map<string, any>, path: Path = []) {
+export function initFormData(
+  data: any,
+  currentSchema: any,
+  valuesRef: Ref<any>,
+  typeRegistry: Map<string, any>,
+  path: Path = [],
+) {
   currentSchema = resolveType(currentSchema, typeRegistry);
 
   if (!currentSchema) return;
@@ -250,7 +261,7 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
     case 'ModuleHirn':
     case 'BlockHirn': {
       const seq = currentSchema as BlockHirn;
-      const dataArray = Array.isArray(data) ? data : (data && typeof data === 'object' ? Object.values(data) : []);
+      const dataArray = Array.isArray(data) ? data : data && typeof data === 'object' ? Object.values(data) : [];
       if (path.length === 0) valuesRef.value = dataArray;
       else setByPath(valuesRef.value, path, dataArray);
 
@@ -272,14 +283,12 @@ export function initFormData(data: any, currentSchema: any, valuesRef: Ref<any>,
 
     case 'StructHirn': {
       const struct = currentSchema as StructHirn;
-      const obj = (data && typeof data === 'object' && !Array.isArray(data)) ? data : {};
+      const obj = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
       if (path.length === 0) valuesRef.value = obj;
       else setByPath(valuesRef.value, path, obj);
 
       struct.properties?.forEach((entry: any) => {
-        const key = entry.key.kind === 'LiteralHirn'
-          ? String(entry.key.value)
-          : getNameFromHir(entry.key);
+        const key = entry.key.kind === 'LiteralHirn' ? String(entry.key.value) : getNameFromHir(entry.key);
         if (key) {
           initFormData(obj[key], entry.value, valuesRef, typeRegistry, [...path, key]);
         }
@@ -352,4 +361,3 @@ export function setByPath(obj: any, path: Path, value: any) {
   }, obj);
   target[last] = value;
 }
-
