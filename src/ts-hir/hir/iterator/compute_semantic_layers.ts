@@ -3,7 +3,7 @@ import * as tsHir from "@razomy/ts-hir";
 
 export function computeSemanticLayers(
   ctx: tsHir.hir.SemanticContext,
-  node: abstractions.translator.HirnType,
+  node: abstractions.hir.HirnType,
   parentLayer: abstractions.translator.SemanticLayer = 'state',
 ): void {
   let layer: abstractions.translator.SemanticLayer = parentLayer;

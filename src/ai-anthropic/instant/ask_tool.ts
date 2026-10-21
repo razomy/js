@@ -5,7 +5,7 @@ import * as aiAnthropic from '@razomy/ai-anthropic';
 
 export async function askTool(
   texts: string[],
-  toolSpec: abstractions.translator.FunctionHirn[],
+  toolSpec: abstractions.hir.FunctionHirn[],
 ): Promise<string | abstractions.translator.PropertyAsn> {
   const payload: any = {
     model: aiAnthropic.MODELS.expensive,

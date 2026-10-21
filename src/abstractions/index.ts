@@ -11,6 +11,7 @@ import * as game from './game';
 import * as git from './git';
 import * as graph from './graph';
 import * as hardware from './hardware';
+import * as hir from './hir';
 import * as identity from './identity';
 import * as math from './math';
 import * as meta from './meta';
@@ -41,6 +42,7 @@ export {
   git,
   graph,
   hardware,
+  hir,
   identity,
   math,
   meta,
@@ -72,6 +74,7 @@ const abstractions = {
   git,
   graph,
   hardware,
+  hir,
   identity,
   math,
   meta,

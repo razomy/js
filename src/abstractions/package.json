@@ -192,6 +192,20 @@
         "types": "./hardware/index.ts"
       }
     },
+    "./hir": {
+      "default": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "import": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "require": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      }
+    },
     "./identity": {
       "default": {
         "default": "./identity/index.ts",
@@ -428,7 +442,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown index.ts acl/index.ts array/index.ts auth/index.ts collection/index.ts domain/index.ts event/index.ts fs/index.ts function/index.ts game/index.ts git/index.ts graph/index.ts hardware/index.ts identity/index.ts math/index.ts meta/index.ts path/index.ts patterns/index.ts primitive/index.ts probabilistic/index.ts process/index.ts scene/index.ts schema/index.ts structure/index.ts time/index.ts translator/index.ts tx/index.ts ui/index.ts --watch",
+    "dev": "tsdown index.ts acl/index.ts array/index.ts auth/index.ts collection/index.ts domain/index.ts event/index.ts fs/index.ts function/index.ts game/index.ts git/index.ts graph/index.ts hardware/index.ts hir/index.ts identity/index.ts math/index.ts meta/index.ts path/index.ts patterns/index.ts primitive/index.ts probabilistic/index.ts process/index.ts scene/index.ts schema/index.ts structure/index.ts time/index.ts translator/index.ts tx/index.ts ui/index.ts --watch",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": false,
@@ -449,6 +463,7 @@
         "git/index.ts",
         "graph/index.ts",
         "hardware/index.ts",
+        "hir/index.ts",
         "identity/index.ts",
         "math/index.ts",
         "meta/index.ts",

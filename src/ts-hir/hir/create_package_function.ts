@@ -5,7 +5,7 @@ export function createPackageFunction(
   f: Partial<{
     title: string;
     performance: string;
-    examples: abstractions.translator.FunctionDocExampleHirn[];
+    examples: abstractions.hir.FunctionDocExampleHirn[];
     isAsync: boolean;
     isGenerator: boolean;
     name: string;
@@ -13,7 +13,7 @@ export function createPackageFunction(
     parameter: Record<string, string>;
     returnShape: { description: string; type?: string };
   }>,
-): abstractions.translator.FunctionHirn {
+): abstractions.hir.FunctionHirn {
   return {
     id: random.createUuid(),
     fnHashId: random.createUuid(),
@@ -28,7 +28,7 @@ export function createPackageFunction(
     modifiers: [
       f.isAsync ? { kind: 'LiteralHirn', value: 'async' } : null,
       f.isGenerator ? { kind: 'LiteralHirn', value: 'generator' } : null,
-    ].filter((i) => i != null) as abstractions.translator.HirnType[],
+    ].filter((i) => i != null) as abstractions.hir.HirnType[],
     parameters: Object.entries(f.parameter || {}).map(
       ([k, v]) =>
         ({
@@ -50,15 +50,15 @@ export function createPackageFunction(
             children: [],
             parent: null,
             prev: null,
-          } satisfies abstractions.translator.ReferenceHirn,
+          } satisfies abstractions.hir.ReferenceHirn,
           doc: { description: v },
           value: null,
           next: null,
           children: [],
           parent: null,
           prev: null,
-        } satisfies abstractions.translator.BindingHirn),
-    ) satisfies abstractions.translator.BindingHirn[],
+        } satisfies abstractions.hir.BindingHirn),
+    ) satisfies abstractions.hir.BindingHirn[],
     block: null,
     returnShape: f.returnShape?.type
       ? ({
@@ -83,7 +83,7 @@ export function createPackageFunction(
         children: [],
         parent: null,
         prev: null,
-        } as abstractions.translator.ReferenceHirn)
+        } as abstractions.hir.ReferenceHirn)
       : null,
     doc: {
       title: f.title!,
@@ -91,7 +91,7 @@ export function createPackageFunction(
       returnDescription: '',
       // timeDataSizeComplexityFn: f.performance?.timeDataSizeComplexityFn || '',
       // memoryDataSizeComplexityFn: f.performance?.memoryDataSizeComplexityFn || '',
-      examples: f.examples! || ([] as abstractions.translator.FunctionDocExampleHirn[]),
+      examples: f.examples! || ([] as abstractions.hir.FunctionDocExampleHirn[]),
     },
   };
 }

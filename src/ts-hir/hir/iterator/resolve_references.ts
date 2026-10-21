@@ -3,14 +3,14 @@ import * as tsHir from "@razomy/ts-hir";
 
 export function resolveReferences(
   ctx: tsHir.hir.SemanticContext,
-  node: abstractions.translator.HirnType,
-  scope: Map<string, abstractions.translator.HirnType> = new Map(),
+  node: abstractions.hir.HirnType,
+  scope: Map<string, abstractions.hir.HirnType> = new Map(),
 ): void {
   // Копируем скоуп для текущего уровня видимости (лексическое замыкание)
   const currentScope = new Map(scope);
 
   // 1. Hoisting-фаза: сначала регистрируем все объявления на текущем уровне
-  function registerDeclaration (item: abstractions.translator.HirnType) {
+  function registerDeclaration (item: abstractions.hir.HirnType) {
         if ('name' in item && typeof (item as any).name === 'string' && (item as any).name) {
           currentScope.set((item as any).name, item);
         }

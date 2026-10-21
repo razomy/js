@@ -17,7 +17,7 @@ class TsMorphIterator implements abstractions.patterns.HasEnterLeave<abstraction
   }
 }
 
-class AsnIterator implements abstractions.patterns.HasEnterLeave<abstractions.translator.HirnType> {
+class AsnIterator implements abstractions.patterns.HasEnterLeave<abstractions.hir.HirnType> {
   constructor(public ctx: tsHir.hir.SemanticContext) {}
   enter(p, s: abstractions.translator.AsnType) {
     this.ctx.asnToHirn.set(s.id, p);

@@ -3,15 +3,15 @@ import random from '@razomy/random';
 import * as object_ from '@razomy/object';
 import * as tsHir from "@razomy/ts-hir";
 
-export abstract class SemanticNode implements abstractions.translator.IHirNode {
-  public children: abstractions.meta.LateInit<abstractions.translator.IHirNode[]> = object_.LATE_INIT;
+export abstract class SemanticNode implements abstractions.hir.IHirNode {
+  public children: abstractions.meta.LateInit<abstractions.hir.IHirNode[]> = object_.LATE_INIT;
   public syntaxRole: abstractions.meta.LateInit<abstractions.translator.SyntaxRole> = object_.LATE_INIT;
   public semanticLayer: abstractions.meta.LateInit<abstractions.translator.SemanticLayer> = object_.LATE_INIT;
   public id: string = object_.LATE_INIT;
   public kind: string = object_.LATE_INIT;
-  public next: abstractions.translator.IHirNode | null = object_.LATE_INIT;
-  public prev: abstractions.translator.IHirNode | null = object_.LATE_INIT;
-  public parent: abstractions.translator.IHirNode | null = object_.LATE_INIT;
+  public next: abstractions.hir.IHirNode | null = object_.LATE_INIT;
+  public prev: abstractions.hir.IHirNode | null = object_.LATE_INIT;
+  public parent: abstractions.hir.IHirNode | null = object_.LATE_INIT;
 
   constructor(public ctx: tsHir.hir.SemanticContext) {
     this.id = random.createUuid();
@@ -23,36 +23,36 @@ export abstract class SemanticNode implements abstractions.translator.IHirNode {
   }
 }
 
-export abstract class IdentityNode extends SemanticNode implements abstractions.translator.IIdentityHirn {
+export abstract class IdentityNode extends SemanticNode implements abstractions.hir.IIdentityHirn {
   public name: string | null = object_.LATE_INIT;
-  public modifiers: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public modifiers: abstractions.hir.HirnType[] = object_.LATE_INIT;
   isPublic(): boolean {
     return this.modifiers.has((i) => i.kind === 'LiteralHirn' && i.value === 'public');
   }
 }
 
-export class LiteralSn extends SemanticNode implements abstractions.translator.LiteralHirn {
+export class LiteralSn extends SemanticNode implements abstractions.hir.LiteralHirn {
   public override kind: 'LiteralHirn' = 'LiteralHirn' as const;
   public value: any = object_.LATE_INIT;
 }
 
-export class OperatorSn extends SemanticNode implements abstractions.translator.OperatorHirn {
+export class OperatorSn extends SemanticNode implements abstractions.hir.OperatorHirn {
   public override kind: 'OperatorHirn' = 'OperatorHirn' as const;
   public operator: string = object_.LATE_INIT;
-  public operands: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public operands: abstractions.hir.HirnType[] = object_.LATE_INIT;
 }
 
-export class ReferenceSn extends SemanticNode implements abstractions.translator.ReferenceHirn {
+export class ReferenceSn extends SemanticNode implements abstractions.hir.ReferenceHirn {
   public override kind: 'ReferenceHirn' = 'ReferenceHirn' as const;
-  public target: abstractions.translator.HirnType | null = object_.LATE_INIT;
-  public property: abstractions.translator.HirnType | null = object_.LATE_INIT;
-  public arguments_: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public target: abstractions.hir.HirnType | null = object_.LATE_INIT;
+  public property: abstractions.hir.HirnType | null = object_.LATE_INIT;
+  public arguments_: abstractions.hir.HirnType[] = object_.LATE_INIT;
 
   /**
    * Вычисляемое поле: фактический узел декларации, на который указывает данная ссылка.
    * Вычисляется функцией resolveReferences().
    */
-  public resolvedDeclaration: abstractions.translator.HirnType | null = object_.LATE_INIT;
+  public resolvedDeclaration: abstractions.hir.HirnType | null = object_.LATE_INIT;
 
   /**
    * Имя символа, на который ссылается Reference.
@@ -73,65 +73,65 @@ export class ReferenceSn extends SemanticNode implements abstractions.translator
   }
 }
 
-export class BlockSn extends SemanticNode implements abstractions.translator.BlockHirn {
+export class BlockSn extends SemanticNode implements abstractions.hir.BlockHirn {
   public override kind: 'BlockHirn' = 'BlockHirn' as const;
-  public statements: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public statements: abstractions.hir.HirnType[] = object_.LATE_INIT;
 }
 
-export class MatchSn extends SemanticNode implements abstractions.translator.MatchHirn {
+export class MatchSn extends SemanticNode implements abstractions.hir.MatchHirn {
   public override kind: 'MatchHirn' = 'MatchHirn' as const;
-  public target: abstractions.translator.HirnType = object_.LATE_INIT;
-  public branches: abstractions.translator.BranchHirn[] = object_.LATE_INIT;
+  public target: abstractions.hir.HirnType = object_.LATE_INIT;
+  public branches: abstractions.hir.BranchHirn[] = object_.LATE_INIT;
 }
 
-export class BranchSn extends SemanticNode implements abstractions.translator.BranchHirn {
+export class BranchSn extends SemanticNode implements abstractions.hir.BranchHirn {
   public override kind: 'BranchHirn' = 'BranchHirn' as const;
-  public pattern: abstractions.translator.HirnType = object_.LATE_INIT;
-  public value: abstractions.translator.HirnType = object_.LATE_INIT;
+  public pattern: abstractions.hir.HirnType = object_.LATE_INIT;
+  public value: abstractions.hir.HirnType = object_.LATE_INIT;
 }
 
-export class LoopSn extends SemanticNode implements abstractions.translator.LoopHirn {
+export class LoopSn extends SemanticNode implements abstractions.hir.LoopHirn {
   public override kind: 'LoopHirn' = 'LoopHirn' as const;
-  public condition: abstractions.translator.HirnType | null = object_.LATE_INIT;
-  public block: abstractions.translator.BlockHirn = object_.LATE_INIT;
+  public condition: abstractions.hir.HirnType | null = object_.LATE_INIT;
+  public block: abstractions.hir.BlockHirn = object_.LATE_INIT;
 }
 
-export class GoSn extends SemanticNode implements abstractions.translator.GoHirn {
+export class GoSn extends SemanticNode implements abstractions.hir.GoHirn {
   public override kind: 'GoHirn' = 'GoHirn' as const;
   public operator: 'break' | 'continue' | 'yield' | 'return' | 'throw' = object_.LATE_INIT;
-  public value: abstractions.translator.HirnType | null = object_.LATE_INIT;
+  public value: abstractions.hir.HirnType | null = object_.LATE_INIT;
 }
 
-export class BindingSn extends IdentityNode implements abstractions.translator.BindingHirn {
+export class BindingSn extends IdentityNode implements abstractions.hir.BindingHirn {
   public override kind: 'BindingHirn' = 'BindingHirn' as const;
-  public shape: abstractions.translator.ReferenceHirn | null = object_.LATE_INIT;
-  public value: abstractions.translator.HirnType | null = object_.LATE_INIT;
+  public shape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
+  public value: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 
-export class FunctionSn extends IdentityNode implements abstractions.translator.FunctionHirn {
+export class FunctionSn extends IdentityNode implements abstractions.hir.FunctionHirn {
   public override kind: 'FunctionHirn' = 'FunctionHirn' as const;
   public fnHashId: string = random.createUuid();
-  public returnShape: abstractions.translator.ReferenceHirn | null = object_.LATE_INIT;
-  public parameters: abstractions.translator.BindingHirn[] = object_.LATE_INIT;
-  public block: abstractions.translator.HirnType | null = object_.LATE_INIT;
+  public returnShape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
+  public parameters: abstractions.hir.BindingHirn[] = object_.LATE_INIT;
+  public block: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public doc: {
     title: string | null;
     description: string | null;
     returnDescription: string | null;
-    examples: abstractions.translator.FunctionDocExampleHirn[];
+    examples: abstractions.hir.FunctionDocExampleHirn[];
   } = object_.LATE_INIT;
 }
 
-export class StructSn extends IdentityNode implements abstractions.translator.StructHirn {
+export class StructSn extends IdentityNode implements abstractions.hir.StructHirn {
   public override kind: 'StructHirn' = 'StructHirn' as const;
-  public properties: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public properties: abstractions.hir.HirnType[] = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 
-export class ModuleSn extends IdentityNode implements abstractions.translator.ModuleHirn {
+export class ModuleSn extends IdentityNode implements abstractions.hir.ModuleHirn {
   public override kind: 'ModuleHirn' = 'ModuleHirn' as const;
-  public properties: abstractions.translator.HirnType[] = object_.LATE_INIT;
+  public properties: abstractions.hir.HirnType[] = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
 }
 

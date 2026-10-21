@@ -4,7 +4,7 @@ import * as abstractions from "@razomy/abstractions";
 import * as aiScenarios from "@razomy/ai-scenarios";
 import * as tsHir from "@razomy/ts-hir";
 
-export async function toolPredict(messages: ai.AiMessage[], tools: abstractions.translator.FunctionHirn[]) {
+export async function toolPredict(messages: ai.AiMessage[], tools: abstractions.hir.FunctionHirn[]) {
   return await aiHuggingface.apiRun.instant.chat.tool.predict(
     null,
     'mlx-community/gemma-4-e2b-it-4bit',

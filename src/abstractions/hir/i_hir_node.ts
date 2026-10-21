@@ -17,9 +17,9 @@ import * as abstractions from '@razomy/abstractions';
 export interface IHirNode
   extends
     abstractions.patterns.ISyntax,
-    abstractions.graph.HasOrder<abstractions.patterns.IdRef<abstractions.translator.IHirNode> | null>,
-    abstractions.graph.HasParent<abstractions.patterns.IdRef<abstractions.translator.IHirNode> | null>,
-    abstractions.graph.HasChildren<abstractions.patterns.IdRef<abstractions.translator.IHirNode>[]> {
+    abstractions.graph.HasOrder<abstractions.patterns.IdRef<abstractions.hir.IHirNode> | null>,
+    abstractions.graph.HasParent<abstractions.patterns.IdRef<abstractions.hir.IHirNode> | null>,
+    abstractions.graph.HasChildren<abstractions.patterns.IdRef<abstractions.hir.IHirNode>[]> {
   syntaxRole: abstractions.translator.SyntaxRole;
   semanticLayer: abstractions.translator.SemanticLayer;
 }
@@ -250,11 +250,11 @@ export type HirnType =
 
 export interface IHirnCtx extends abstractions.patterns.IContext {
   asnRoot: abstractions.translator.AsnType;
-  hirRoot: abstractions.translator.HirnType;
+  hirRoot: abstractions.hir.HirnType;
 
-  asnToHirn: Map<string, abstractions.patterns.IdRef<abstractions.translator.HirnType>>;
+  asnToHirn: Map<string, abstractions.patterns.IdRef<abstractions.hir.HirnType>>;
   hirnToAsn: Map<string, abstractions.patterns.IdRef<abstractions.translator.AsnType>>;
 
   asnMap: Map<string, abstractions.translator.AsnType>;
-  hirnMap: Map<string, abstractions.translator.HirnType>;
+  hirnMap: Map<string, abstractions.hir.HirnType>;
 }

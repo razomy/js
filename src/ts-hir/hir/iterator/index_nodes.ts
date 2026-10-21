@@ -3,7 +3,7 @@ import * as tsHir from "@razomy/ts-hir";
 
 export function indexNodes(
   ctx: tsHir.hir.SemanticContext,
-  node: abstractions.translator.HirnType,
+  node: abstractions.hir.HirnType,
 ): void {
   ctx.hirnMap.set(node.id, node);
 

@@ -47,7 +47,7 @@ export interface HasSender<T extends abstractions.patterns.HasId<string>> extend
 }
 
 export interface HasFunctionHirn extends abstractions.patterns.IComponent {
-  functionHirn: abstractions.translator.FunctionHirn;
+  functionHirn: abstractions.hir.FunctionHirn;
 }
 
 export interface HasFn<TA extends any[], TR> extends abstractions.patterns.IComponent,abstractions.function_.HasFnHashId, abstractions.function_.HasFn<TA, TR> {

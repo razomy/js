@@ -1,7 +1,7 @@
 import * as abstractions from '@razomy/abstractions';
 import * as tsHir from "@razomy/ts-hir";
 
-export type HirnFilter<T extends abstractions.translator.HirnType = abstractions.translator.HirnType> = (
+export type HirnFilter<T extends abstractions.hir.HirnType = abstractions.hir.HirnType> = (
   node: T,
   parent?: T,
 ) => boolean;
@@ -9,7 +9,7 @@ export type HirnFilter<T extends abstractions.translator.HirnType = abstractions
 /**
  * Recursively traverses the HIR tree and accumulates nodes matching the predicate.
  */
-export function findHirNodes<T extends abstractions.translator.HirnType>(
+export function findHirNodes<T extends abstractions.hir.HirnType>(
   node: T,
   predicate: HirnFilter<T>,
   acc: T[] = [],

@@ -5,12 +5,12 @@ export function astToHirNode(
   ctx: tsHir.hir.SemanticContext,
   iter: abstractions.patterns.HasEnterLeave,
   node: abstractions.translator.AsnType,
-): abstractions.translator.HirnType {
+): abstractions.hir.HirnType {
   function recurse(child: abstractions.translator.AsnType) {
     return astToHirNode(ctx, iter, child);
   }
 
-  let hir: abstractions.translator.HirnType;
+  let hir: abstractions.hir.HirnType;
 
   switch (node.kind) {
     // region Modifiers (были потеряны — падали в default)
@@ -124,7 +124,7 @@ export function astToHirNode(
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = null;
       b.modifiers = [];
-      b.shape = recurse(node.constraint) as abstractions.translator.ReferenceHirn;
+      b.shape = recurse(node.constraint) as abstractions.hir.ReferenceHirn;
       b.value = recurse(node.value);
       b.doc = { description: '' };
       hir = b;
@@ -135,7 +135,7 @@ export function astToHirNode(
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
       b.modifiers = [];
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.translator.ReferenceHirn) : null;
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -158,7 +158,7 @@ export function astToHirNode(
       lit.syntaxRole = 'expression';
       lit.semanticLayer = 'state';
       m.target = lit;
-      m.branches = node.branches.map((b) => recurse(b) as abstractions.translator.BranchHirn);
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.hir.BranchHirn);
       hir = m;
       break;
     }
@@ -166,7 +166,7 @@ export function astToHirNode(
     case 'SwitchAsn': {
       const m = new tsHir.hir.MatchSn(ctx);
       m.target = recurse(node.target);
-      m.branches = node.branches.map((b) => recurse(b) as abstractions.translator.BranchHirn);
+      m.branches = node.branches.map((b) => recurse(b) as abstractions.hir.BranchHirn);
       hir = m;
       break;
     }
@@ -210,7 +210,7 @@ export function astToHirNode(
       op.operands = [recurse(node.block)];
       m.target = op;
       m.branches = 'branches' in node && Array.isArray((node as any).branches)
-        ? (node as any).branches.map((b: any) => recurse(b) as abstractions.translator.BranchHirn)
+        ? (node as any).branches.map((b: any) => recurse(b) as abstractions.hir.BranchHirn)
         : [];
       hir = m;
       break;
@@ -232,7 +232,7 @@ export function astToHirNode(
     case 'WhileDoAsn': {
       const loop = new tsHir.hir.LoopSn(ctx);
       loop.condition = recurse(node.condition);
-      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.hir.BlockHirn;
       hir = loop;
       break;
     }
@@ -241,7 +241,7 @@ export function astToHirNode(
       // Сохраняем семантику do-while через модификатор/обертку
       const loop = new tsHir.hir.LoopSn(ctx);
       loop.condition = recurse(node.condition);
-      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.hir.BlockHirn;
       const doMod = new tsHir.hir.LiteralSn(ctx);
       doMod.value = 'do_while';
       doMod.syntaxRole = 'modifier';
@@ -256,7 +256,7 @@ export function astToHirNode(
       const loop = new tsHir.hir.LoopSn(ctx);
       const rootBlock = node.init ? new tsHir.hir.BlockSn(ctx) : null;
 
-      let bodyHirn = recurse(node.block) as abstractions.translator.BlockHirn;
+      let bodyHirn = recurse(node.block) as abstractions.hir.BlockHirn;
       if (node.update) {
         const updateHirn = recurse(node.update);
         if (bodyHirn.kind === 'BlockHirn') {
@@ -292,7 +292,7 @@ export function astToHirNode(
       loop.condition = null;
       loop.syntaxRole = node.syntaxRole;
       loop.semanticLayer = 'state';
-      loop.block = recurse(node.block) as abstractions.translator.BlockHirn;
+      loop.block = recurse(node.block) as abstractions.hir.BlockHirn;
 
       blk.statements = [recurse(node.init), loop];
       hir = blk;
@@ -337,7 +337,7 @@ export function astToHirNode(
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
       b.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.translator.ReferenceHirn) : null;
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -349,8 +349,8 @@ export function astToHirNode(
       const fn = new tsHir.hir.FunctionSn(ctx);
       fn.name = node.kind === 'FunctionAsn' && node.identifier ? node.identifier.name : null;
       fn.modifiers = node.modifiers ? node.modifiers.map(recurse) : [];
-      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.translator.ReferenceHirn) : null;
-      fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.translator.BindingHirn);
+      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.hir.ReferenceHirn) : null;
+      fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.hir.BindingHirn);
       fn.block = node.block ? recurse(node.block) : null;
       fn.doc = {
         title: null,
