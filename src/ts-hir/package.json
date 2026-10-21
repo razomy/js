@@ -1,0 +1,309 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./as": {
+      "default": {
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
+      },
+      "import": {
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
+      },
+      "require": {
+        "default": "./as/index.ts",
+        "types": "./as/index.ts"
+      }
+    },
+    "./as/bindings": {
+      "default": {
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
+      },
+      "import": {
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
+      },
+      "require": {
+        "default": "./as/bindings/index.ts",
+        "types": "./as/bindings/index.ts"
+      }
+    },
+    "./as/declarations": {
+      "default": {
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
+      },
+      "import": {
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
+      },
+      "require": {
+        "default": "./as/declarations/index.ts",
+        "types": "./as/declarations/index.ts"
+      }
+    },
+    "./as/doc": {
+      "default": {
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
+      },
+      "import": {
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
+      },
+      "require": {
+        "default": "./as/doc/index.ts",
+        "types": "./as/doc/index.ts"
+      }
+    },
+    "./as/expressions": {
+      "default": {
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
+      },
+      "import": {
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
+      },
+      "require": {
+        "default": "./as/expressions/index.ts",
+        "types": "./as/expressions/index.ts"
+      }
+    },
+    "./as/expressions/build_in": {
+      "default": {
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
+      },
+      "import": {
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
+      },
+      "require": {
+        "default": "./as/expressions/build_in/index.ts",
+        "types": "./as/expressions/build_in/index.ts"
+      }
+    },
+    "./as/shapes": {
+      "default": {
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
+      },
+      "import": {
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
+      },
+      "require": {
+        "default": "./as/shapes/index.ts",
+        "types": "./as/shapes/index.ts"
+      }
+    },
+    "./as/statements": {
+      "default": {
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
+      },
+      "import": {
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
+      },
+      "require": {
+        "default": "./as/statements/index.ts",
+        "types": "./as/statements/index.ts"
+      }
+    },
+    "./hir": {
+      "default": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "import": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      },
+      "require": {
+        "default": "./hir/index.ts",
+        "types": "./hir/index.ts"
+      }
+    },
+    "./hir/iterator": {
+      "default": {
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
+      },
+      "import": {
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
+      },
+      "require": {
+        "default": "./hir/iterator/index.ts",
+        "types": "./hir/iterator/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*",
+    "./tsMorph": {
+      "default": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
+      },
+      "import": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
+      },
+      "require": {
+        "default": "./tsMorph/index.ts",
+        "types": "./tsMorph/index.ts"
+      }
+    }
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/ts-hir#readme",
+  "keywords": [
+    "razomy",
+    "ts",
+    "hir",
+    "parseNode",
+    "parsePackage",
+    "isBindings",
+    "parseAlias",
+    "parseExportAssignment",
+    "parseExport",
+    "parseMethod",
+    "parseParameter",
+    "parseProperty",
+    "parseVariable",
+    "parse",
+    "getPublicOnlyMut",
+    "isDeclarations",
+    "parseClass",
+    "parseDirectory",
+    "parseEnum",
+    "parseFunction",
+    "parseInterface",
+    "parseModuleBody",
+    "parseModule",
+    "parseCommentRange",
+    "parseExamples",
+    "parseJsDoc",
+    "tryParseJsDoc",
+    "isExpression",
+    "parseArrowFunction",
+    "parseBinary",
+    "parseCall",
+    "parseCondition",
+    "parseMember",
+    "parseNew",
+    "parseReference",
+    "parseUnary",
+    "parseunctionExpression",
+    "parseArray",
+    "parseBigInt",
+    "parseBoolean",
+    "parseNull",
+    "parseNumber",
+    "parseRegExp",
+    "parseString",
+    "parseTuple",
+    "parseUndefined",
+    "isShape",
+    "isStatement",
+    "parseReturn",
+    "parseSwitch",
+    "parseThrow",
+    "astToHirNode",
+    "createPackageFunction",
+    "hirToJsonString",
+    "semanticContextFromTsPackageFolder",
+    "computeSemanticLayers",
+    "findExported",
+    "findHirNodes",
+    "indexNodes",
+    "joinDocs",
+    "linkHirTree",
+    "resolveReferences",
+    "walkHirChildren",
+    "findNodeById",
+    "getNodeId"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/ts-hir",
+  "peerDependencies": {
+    "@razomy/abstractions": "*",
+    "@razomy/object": "*",
+    "@razomy/random": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/ts-hir",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts as/index.ts as/bindings/index.ts as/declarations/index.ts as/doc/index.ts as/expressions/index.ts as/expressions/build_in/index.ts as/shapes/index.ts as/statements/index.ts hir/index.ts hir/iterator/index.ts tsMorph/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "as/index.ts",
+        "as/bindings/index.ts",
+        "as/declarations/index.ts",
+        "as/doc/index.ts",
+        "as/expressions/index.ts",
+        "as/expressions/build_in/index.ts",
+        "as/shapes/index.ts",
+        "as/statements/index.ts",
+        "hir/index.ts",
+        "hir/iterator/index.ts",
+        "tsMorph/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}

@@ -1,8 +1,8 @@
 import * as ai from '@razomy/ai';
 import * as aiHuggingface from '@razomy/ai-huggingface';
 import * as abstractions from "@razomy/abstractions";
-import * as tsRl from "@razomy/ts-rl";
 import * as aiScenarios from "@razomy/ai-scenarios";
+import * as tsHir from "@razomy/ts-hir";
 
 export async function toolPredict(messages: ai.AiMessage[], tools: abstractions.translator.FunctionHirn[]) {
   return await aiHuggingface.apiRun.instant.chat.tool.predict(
@@ -26,7 +26,7 @@ function testPredictTool() {
   toolPredict(
     [{"sender": "user", type: 'text', "content": "Multiply 12234585 and 48838483920. And say answer."}],
     [
-      tsRl.hir.createPackageFunction({
+      tsHir.hir.createPackageFunction({
         name: 'multiply',
         description: 'Multiply numbers',
         parameter: {

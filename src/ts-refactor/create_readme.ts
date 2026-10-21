@@ -1,8 +1,8 @@
 import * as fss from '@razomy/fss';
 import * as stringCase from '@razomy/string-case';
 import * as abstractions from '@razomy/abstractions';
-import * as tsRl from '@razomy/ts-rl';
-import * as rlString from "@razomy/rl-string";
+import * as tsHir from "@razomy/ts-hir";
+import * as hirString from "@razomy/hir-string";
 
 const vision = `
 ## 🕊️ Vision
@@ -53,7 +53,7 @@ Copyright © ${new Date().getFullYear()} [Razomy](https://github.com/razomy).
 This project is [MIT](https://github.com/razomy/js/blob/main/LICENSE) licensed.
 `.trim();
 
-export function createReadme(path: string, packageJson: any, ctx: tsRl.hir.SemanticContext) {
+export function createReadme(path: string, packageJson: any, ctx: tsHir.hir.SemanticContext) {
   const hirRoot = ctx.hirRoot as abstractions.translator.StructHirn;
   const scopeName = stringCase.camelCase(hirRoot.name!.replace('@razomy/', ''));
 
@@ -97,14 +97,14 @@ razomy cli add ${packageJson.name}
 \`\`\`
 `.trim();
 
-  const allDecls = tsRl.hir.iterator.findExported(hirRoot as any).filter(i=>!!i['name']);
-  allDecls.sort((a, b) => rlString.md.getNamePath(a).join('').localeCompare(rlString.md.getNamePath(b).join('')));
+  const allDecls = tsHir.hir.iterator.findExported(hirRoot as any).filter(i=>!!i['name']);
+  allDecls.sort((a, b) => hirString.md.getNamePath(a).join('').localeCompare(hirString.md.getNamePath(b).join('')));
   const typeSpecs = allDecls
     .values()
     .filter((i) => i.kind === 'StructHirn')
     .toArray();
   const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
-  const functionPath = allDecls.length > 0 ? rlString.md.getNamePath(allDecls[0]) : ['functionName'];
+  const functionPath = allDecls.length > 0 ? hirString.md.getNamePath(allDecls[0]) : ['functionName'];
 
   const imports = `
 ### Import
@@ -127,8 +127,8 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${rlString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${rlString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const typesToc = typeSpecs.map((s) => `- [${hirString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
+  const functionsToc = functionSpecs.map((s) => `- [${hirString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
   const toc = `
 ## 📑 Table of Contents
 
@@ -137,9 +137,9 @@ ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
   }
   `.trim();
 
-  const functions = functionSpecs.map(rlString.md.hirToString).join('\n\n').trim();
+  const functions = functionSpecs.map(hirString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(rlString.md.hirToString).join('\n\n').trim();
+  const types = typeSpecs.map(hirString.md.hirToString).join('\n\n').trim();
 
   const examples = `
 ## 📚 Documentation

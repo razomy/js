@@ -68,10 +68,10 @@
     "@razomy/array": "*",
     "@razomy/fs-recursive": "*",
     "@razomy/fss": "*",
+    "@razomy/hir-string": "*",
     "@razomy/languages-programming-fs": "*",
-    "@razomy/rl-string": "*",
     "@razomy/string-case": "*",
-    "@razomy/ts-rl": "*"
+    "@razomy/ts-hir": "*"
   },
   "publishConfig": {
     "access": "public"

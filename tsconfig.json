@@ -43,7 +43,7 @@
     "./src/nuxt",
     "./src/vue",
     "./src/vue-resource",
-    "./src/rl-vue"
+    "./src/hir-vue"
   ],
   "references": [
     {

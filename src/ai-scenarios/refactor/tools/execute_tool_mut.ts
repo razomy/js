@@ -1,10 +1,10 @@
 import path from 'path';
-import * as tsRl from "@razomy/ts-rl";
 import * as array from '@razomy/array';
 import * as ai from '@razomy/ai';
 import * as fss from '@razomy/fss';
 import * as shell from '@razomy/shell';
 import * as aiScenarios from "@razomy/ai-scenarios";
+import * as tsHir from "@razomy/ts-hir";
 
 export type ToolContext = {
   project: { dirPath: string };
@@ -12,7 +12,7 @@ export type ToolContext = {
 
 export const TOOLS = [
   {
-    spec: tsRl.hir.createPackageFunction({
+    spec: tsHir.hir.createPackageFunction({
       name: 'getAllFlat',
       description: 'Получить список файлов в папке recursive',
       parameter: {
@@ -30,7 +30,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRl.hir.createPackageFunction({
+    spec: tsHir.hir.createPackageFunction({
       name: 'delegate',
       description: 'Delegate tool',
       parameter: {
@@ -63,7 +63,7 @@ export const TOOLS = [
     },
   },
   {
-    spec: tsRl.hir.createPackageFunction({
+    spec: tsHir.hir.createPackageFunction({
       name: 'getFile',
       description: 'Прочитать текст из файла',
       parameter: {
@@ -78,7 +78,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRl.hir.createPackageFunction({
+    spec: tsHir.hir.createPackageFunction({
       name: 'setFile',
       description: 'Записать текст в файла',
       parameter: {
@@ -92,7 +92,7 @@ export const TOOLS = [
     }
   },
   {
-    spec: tsRl.hir.createPackageFunction({
+    spec: tsHir.hir.createPackageFunction({
       name: 'build',
       description: 'Build project',
       parameter: {},

@@ -95,11 +95,11 @@ order
   // programming & refactoring
   languages-programming-fs
   rl
-  rl-string
-  rl-vue
+  hir-string
+  hir-vue
+  ts-hir
   ts-refactor
   ts-refactor-project
-  ts-rl
   eslint-config
   // ui & graphics
   // frameworks
