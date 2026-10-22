@@ -1,0 +1,140 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./entity": {
+      "default": {
+        "default": "./entity/index.ts",
+        "types": "./entity/index.ts"
+      },
+      "import": {
+        "default": "./entity/index.ts",
+        "types": "./entity/index.ts"
+      },
+      "require": {
+        "default": "./entity/index.ts",
+        "types": "./entity/index.ts"
+      }
+    },
+    "./migration": {
+      "default": {
+        "default": "./migration/index.ts",
+        "types": "./migration/index.ts"
+      },
+      "import": {
+        "default": "./migration/index.ts",
+        "types": "./migration/index.ts"
+      },
+      "require": {
+        "default": "./migration/index.ts",
+        "types": "./migration/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/sql#readme",
+  "keywords": [
+    "razomy",
+    "sql",
+    "defineTable",
+    "i18N",
+    "toSnake",
+    "generateEntitiesFile",
+    "buildCreateTableSql",
+    "generateInitialMigrations",
+    "getTargetStateFromSchema",
+    "getUpFiles",
+    "normalizeField",
+    "replayMigrationsState",
+    "validateSymmetry",
+    "verifyMigrations",
+    "text",
+    "string16",
+    "string32",
+    "string64",
+    "string128",
+    "string255",
+    "char2",
+    "char3",
+    "smallint",
+    "int",
+    "bigint",
+    "decimal",
+    "double",
+    "bool",
+    "date",
+    "timestamp",
+    "uuidPk",
+    "jsonb",
+    "stringArray",
+    "textArray",
+    "typeMap"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/sql",
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/sql",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts entity/index.ts migration/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "entity/index.ts",
+        "migration/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}
