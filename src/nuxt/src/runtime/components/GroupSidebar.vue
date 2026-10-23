@@ -48,7 +48,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useDisplay, useRzmRuntimeConfigState, useI18n, useLocalePath, useRoute, watch } from '#imports';
+import { computed, useRzmRuntimeConfigState, useI18n, useLocalePath, useRoute, watch } from '#imports';
+import { useDisplay } from 'vuetify'
 import { ref } from 'vue';
 
 const { c } = useRzmRuntimeConfigState();

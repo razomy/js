@@ -54,7 +54,7 @@
   "name": "@razomy/nuxt",
   "peerDependencies": {
     "@nuxt/kit": "^4.3.1",
-    "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/robots": "^5.7.0",
     "@nuxtjs/sitemap": "^7.6.0",
     "@razomy/schema": "0.0.1-alpha.4",
@@ -64,11 +64,11 @@
     "@vueuse/nuxt": "^14.2.0",
     "nuxt": "^4.6.2",
     "nuxt-gtag": "^4.1.0",
-    "vue": "^3.5.27",
-    "vue-i18n": "11.2.8",
-    "vue-router": "^5.0.1",
-    "vuetify": "4.0.5",
-    "vuetify-nuxt-module": "^1.0.0-beta.2"
+    "vue": "^3.5.44",
+    "vue-i18n": "11.4.16",
+    "vue-router": "^5.4.0",
+    "vuetify": "4.3.0",
+    "vuetify-nuxt-module": "^1.0.0-rc.6"
   },
   "publishConfig": {
     "access": "public"

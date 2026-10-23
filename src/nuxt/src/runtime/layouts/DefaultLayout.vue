@@ -50,8 +50,8 @@ import {
   useLocaleHead,
   usePreferredDark,
   useRoute,
-  useTheme,
 } from '#imports';
+import { useTheme } from 'vuetify'
 import { onMounted, watchEffect } from 'vue';
 
 const { c } = useRzmRuntimeConfigState();

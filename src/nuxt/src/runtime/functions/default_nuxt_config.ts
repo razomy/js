@@ -17,6 +17,7 @@ export const defaultNuxtConfig = (c: RzmNuxtStaticConfig) =>
     },
     vuetify: {
       moduleOptions: {
+        prefixComposables: true,
         ssrClientHints: {
           reloadOnFirstRequest: false,
           prefersColorScheme: true,
@@ -139,4 +140,4 @@ export const defaultNuxtConfig = (c: RzmNuxtStaticConfig) =>
       '@razomy/nuxt',
       '@vite-pwa/nuxt',
     ],
-  } as const satisfies NuxtConfig & any);
+  }) as const satisfies NuxtConfig & any;

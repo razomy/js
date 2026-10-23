@@ -36,8 +36,8 @@
   </v-app-bar>
 </template>
 <script lang="ts" setup>
-import { createReusableTemplate, ref, useDisplay, useI18n, useLocalePath, useRouter } from '#imports';
-
+import { createReusableTemplate, ref, useI18n, useLocalePath, useRouter } from '#imports';
+import { useDisplay } from 'vuetify'
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate();
 const goHome = () => router.push(localePath('/'));
 const router = useRouter();
