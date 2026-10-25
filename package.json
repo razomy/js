@@ -37,6 +37,7 @@
     "./src/buffer",
     "./src/char",
     "./src/cli-ais",
+    "./src/cloud-db-pg",
     "./src/cluster",
     "./src/code",
     "./src/code-nuxt-playground",

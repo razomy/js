@@ -42,9 +42,11 @@
   "module": "./index.ts",
   "name": "@razomy/code",
   "peerDependencies": {
+    "@razomy/cloud-db-pg": "*",
     "@razomy/main": "*",
     "@razomy/npm": "*",
     "@razomy/shell": "*",
+    "@razomy/sql": "*",
     "@razomy/ts-refactor": "*",
     "@razomy/ts-refactor-project": "*"
   },

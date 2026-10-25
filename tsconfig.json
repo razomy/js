@@ -45,7 +45,9 @@
     "./src/vue-resource",
     "./src/hir-vue",
     "./src/code-vue-playground",
-    "./src/code-nuxt-playground"
+    "./src/code-nuxt-playground",
+    "./src/shell",
+    "./src/cloud-db-pg"
   ],
   "references": [
     {

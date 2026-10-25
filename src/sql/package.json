@@ -65,6 +65,7 @@
     "defineTable",
     "i18N",
     "toSnake",
+    "createEntityProxy",
     "generateEntitiesFile",
     "buildCreateTableSql",
     "generateInitialMigrations",

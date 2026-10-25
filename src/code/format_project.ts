@@ -2,8 +2,12 @@ import * as main from '@razomy/main';
 import * as tsRefactor from '@razomy/ts-refactor';
 import * as tsRefactorProject from '@razomy/ts-refactor-project';
 import '@razomy/razomy/extensions';
+import * as sql from "@razomy/sql";
+import * as cloudDbPg from "@razomy/cloud-db-pg";
 
 export async function formatProject(projectPath: string, sourcePath:string, scopeName: string) {
+  console.info('sql.generateEntitiesFile.start');
+  sql.entity.generateEntitiesFile('../cloud-db-pg/data/create_db_context.ts', cloudDbPg.TABLES);
   console.info('generateAllExtensions.start');
   await tsRefactor.generateAllExtensions(
     projectPath,

@@ -1,0 +1,135 @@
+{
+  "author": {
+    "email": "yevhenii.kamenskyi+js@razomy.org",
+    "name": "Yevhenii Kamenskyi",
+    "url": "https://id.razomy.org/yevhenii-kamenskyi"
+  },
+  "dependencies": {},
+  "description": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "import": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      },
+      "require": {
+        "default": "./index.ts",
+        "types": "./index.ts"
+      }
+    },
+    "./data": {
+      "default": {
+        "default": "./data/index.ts",
+        "types": "./data/index.ts"
+      },
+      "import": {
+        "default": "./data/index.ts",
+        "types": "./data/index.ts"
+      },
+      "require": {
+        "default": "./data/index.ts",
+        "types": "./data/index.ts"
+      }
+    },
+    "./package.json": "./package.json",
+    "./specifications/*": "./specifications/*"
+  },
+  "files": [
+    "*"
+  ],
+  "homepage": "https://github.com/razomy/js/tree/main/src/cloud-db-pg#readme",
+  "keywords": [
+    "razomy",
+    "cloud",
+    "db",
+    "pg",
+    "createDbContext",
+    "mediaTypeDeclaration",
+    "unicodeCharacterDeclaration",
+    "programmingLanguageDeclaration",
+    "countryDeclaration",
+    "localeDeclaration",
+    "occupationDeclaration",
+    "currencyDeclaration",
+    "timezoneDeclaration",
+    "postalFormatDeclaration",
+    "telecomPrefixDeclaration",
+    "colorDeclaration",
+    "topLevelDomainDeclaration",
+    "userAgentDeclaration",
+    "measurementUnitDeclaration",
+    "universityDeclaration",
+    "airportDeclaration",
+    "httpStatusDeclaration",
+    "zodiacSignDeclaration",
+    "tables",
+    "droppedTables",
+    "mediaTypeMeta",
+    "unicodeCharacterMeta",
+    "programmingLanguageMeta",
+    "countryMeta",
+    "localeMeta",
+    "occupationMeta",
+    "currencyMeta",
+    "timezoneMeta",
+    "postalFormatMeta",
+    "telecomPrefixMeta",
+    "colorMeta",
+    "topLevelDomainMeta",
+    "userAgentMeta",
+    "measurementUnitMeta",
+    "universityMeta",
+    "airportMeta",
+    "httpStatusMeta",
+    "zodiacSignMeta"
+  ],
+  "license": "MIT",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "name": "@razomy/cloud-db-pg",
+  "peerDependencies": {
+    "@razomy/sql": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "src/cloud-db-pg",
+    "type": "git",
+    "url": "git+https://github.com/razomy/js.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown index.ts data/index.ts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "sideEffects": false,
+  "tsdown": [
+    {
+      "dts": true,
+      "entry": [
+        "index.ts",
+        "data/index.ts"
+      ],
+      "format": "esm,cjs",
+      "platform": "neutral"
+    }
+  ],
+  "type": "module",
+  "types": "./index.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./index.ts"
+      ]
+    }
+  },
+  "version": "0.0.1-alpha.4"
+}
