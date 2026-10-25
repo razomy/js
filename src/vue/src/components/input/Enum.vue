@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import type {EnumProps} from "../../stores/types";
+import type {EnumProps} from "./input";
 
 const props = defineProps<EnumProps>();
 const emit = defineEmits(['update:modelValue']);

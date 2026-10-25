@@ -1,21 +1,21 @@
 <template>
-  <v-text-field
-    v-model.number="internalValue"
-    type="number"
-    :label="meta.name || 'Number'"
+  <v-file-input
+    v-model="internalValue"
+    :label="meta.name || 'File'"
     :hint="meta.description"
-    :readonly="meta.isReadonly"
-    :disabled="meta.isDisabled"
     persistent-hint
     variant="outlined"
     class="mb-4"
-  ></v-text-field>
+    show-size
+    :readonly="meta.isReadonly"
+    :disabled="meta.isDisabled"
+  ></v-file-input>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { NumberProps } from '../../stores/types';
+import type { FileProps } from './input';
 
-const props = defineProps<NumberProps>();
+const props = defineProps<FileProps>();
 const emit = defineEmits(['update:modelValue']);
 const internalValue = computed({
   get: () => props.modelValue,

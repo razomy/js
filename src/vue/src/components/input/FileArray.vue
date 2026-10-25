@@ -1,21 +1,23 @@
 <template>
-  <v-text-field
+  <v-file-input
     v-model="internalValue"
-    type="color"
-    :label="meta.name || 'Color'"
+    :label="meta.name || 'Files'"
     :hint="meta.description"
     persistent-hint
     variant="outlined"
     class="mb-4"
+    show-size
+    multiple
     :readonly="meta.isReadonly"
     :disabled="meta.isDisabled"
-  ></v-text-field>
+    chips
+  ></v-file-input>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { ColorProps } from '../../stores/types';
+import type { FileArrayProps } from './input';
 
-const props = defineProps<ColorProps>();
+const props = defineProps<FileArrayProps>();
 const emit = defineEmits(['update:modelValue']);
 const internalValue = computed({
   get: () => props.modelValue,

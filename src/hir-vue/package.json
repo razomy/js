@@ -17,7 +17,9 @@
     "build": "vue-tsc --noEmit && vite build && cp package_dist.json ./dist/package.json"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-i18n": "11.4.16",
+    "@razomy/vue": "../vue/dist"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.10",

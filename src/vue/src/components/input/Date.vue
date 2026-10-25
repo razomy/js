@@ -1,23 +1,21 @@
 <template>
-  <v-file-input
+  <v-text-field
     v-model="internalValue"
-    :label="meta.name || 'Files'"
+    type="date"
+    :label="meta.name || 'Date'"
     :hint="meta.description"
     persistent-hint
     variant="outlined"
     class="mb-4"
-    show-size
-    multiple
     :readonly="meta.isReadonly"
     :disabled="meta.isDisabled"
-    chips
-  ></v-file-input>
+  ></v-text-field>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { FileArrayProps } from '../../stores/types';
+import type { DateProps } from './input';
 
-const props = defineProps<FileArrayProps>();
+const props = defineProps<DateProps>();
 const emit = defineEmits(['update:modelValue']);
 const internalValue = computed({
   get: () => props.modelValue,

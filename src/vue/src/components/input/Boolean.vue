@@ -13,7 +13,7 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { BoolProps } from '../../stores/types';
+import type { BoolProps } from './input';
 
 const props = defineProps<BoolProps>();
 const emit = defineEmits(['update:modelValue']);

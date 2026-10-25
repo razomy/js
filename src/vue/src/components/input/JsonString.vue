@@ -16,7 +16,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { JsonStringProps } from '../../stores/types';
+import type { JsonStringProps } from './input';
 
 const props = defineProps<JsonStringProps>();
 const emit = defineEmits(['update:modelValue']);

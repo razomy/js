@@ -1,16 +1,16 @@
 import { type Component } from 'vue';
 
-import String from '../components/input/String.vue';
-import Number_ from '../components/input/Number.vue';
-import Boolean from '../components/input/Boolean.vue';
-import StringArray from '../components/input/StringArray.vue';
-import NumberArray from '../components/input/NumberArray.vue';
-import Date from '../components/input/Date.vue';
-import Color from '../components/input/Color.vue';
-import File from '../components/input/File.vue';
-import JsonString from '../components/input/JsonString.vue';
-import FileArray from '../components/input/FileArray.vue';
-import Enum from '../components/input/Enum.vue';
+import {String} from '@razomy/vue';
+import {Number} from '@razomy/vue';
+import {Boolean} from '@razomy/vue';
+import {StringArray} from '@razomy/vue';
+import {NumberArray} from '@razomy/vue';
+import {Date} from '@razomy/vue';
+import {Color} from '@razomy/vue';
+import {File} from '@razomy/vue';
+import {JsonString} from '@razomy/vue';
+import {FileArray} from '@razomy/vue';
+import { Enum } from '@razomy/vue';
 import Object from '../components/adapter/Object.vue';
 import Array from '../components/adapter/Array.vue';
 import Tuple from '../components/adapter/Tuple.vue';
@@ -44,7 +44,7 @@ export type FormSupportedKind = (typeof FORM_SUPPORTED_BUILD_IN_KINDS)[number];
 
 export const defaultTypeMap: Record<(typeof FORM_SUPPORTED_BUILD_IN_KINDS)[number], Component> = {
   String: String,
-  Number: Number_,
+  Number: Number,
   Boolean: Boolean,
   Function: Function,
   'Array<String>': StringArray,

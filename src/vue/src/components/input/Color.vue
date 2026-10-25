@@ -1,23 +1,21 @@
 <template>
-  <v-textarea
+  <v-text-field
     v-model="internalValue"
-    :label="meta.name || 'String'"
+    type="color"
+    :label="meta.name || 'Color'"
     :hint="meta.description"
-    :readonly="meta.isReadonly"
-    :disabled="meta.isDisabled"
     persistent-hint
     variant="outlined"
     class="mb-4"
-    rows="3"
-    auto-grow
-  ></v-textarea>
+    :readonly="meta.isReadonly"
+    :disabled="meta.isDisabled"
+  ></v-text-field>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { StringProps } from '../../stores/types';
+import type { ColorProps } from './input';
 
-const props = defineProps<StringProps>();
-
+const props = defineProps<ColorProps>();
 const emit = defineEmits(['update:modelValue']);
 const internalValue = computed({
   get: () => props.modelValue,

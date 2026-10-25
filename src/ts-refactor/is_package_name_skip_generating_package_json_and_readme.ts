@@ -7,6 +7,4 @@ export function isPackageNameSkipGeneratingPackageJsonAndReadme(name: string) {
     || name === '@razomy/vue-resource'
     || name === '@razomy/code-vue-playground'
     || name === '@razomy/code-nuxt-playground'
-    || name === '@razomy/shell'
-    || name === '@razomy/cloud-db-pg'
 }

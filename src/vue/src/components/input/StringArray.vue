@@ -24,8 +24,8 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import Copy from '../../components/Copy.vue';
-import type { StringArrayProps } from '../../stores/types';
+import Copy from '../Copy.vue';
+import type { StringArrayProps } from './input';
 
 const props = defineProps<StringArrayProps>();
 

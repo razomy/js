@@ -1,21 +1,23 @@
 <template>
-  <v-file-input
+  <v-textarea
     v-model="internalValue"
-    :label="meta.name || 'File'"
+    :label="meta.name || 'String'"
     :hint="meta.description"
+    :readonly="meta.isReadonly"
+    :disabled="meta.isDisabled"
     persistent-hint
     variant="outlined"
     class="mb-4"
-    show-size
-    :readonly="meta.isReadonly"
-    :disabled="meta.isDisabled"
-  ></v-file-input>
+    rows="3"
+    auto-grow
+  ></v-textarea>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { FileProps } from '../../stores/types';
+import type { StringProps } from './input';
 
-const props = defineProps<FileProps>();
+const props = defineProps<StringProps>();
+
 const emit = defineEmits(['update:modelValue']);
 const internalValue = computed({
   get: () => props.modelValue,

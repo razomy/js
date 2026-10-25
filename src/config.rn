@@ -108,10 +108,6 @@ order
   nuxt
   vue
   vue-resource
-  // graphics codecs
-  graphics-codecs-json
-  graphics-codecs-vue
-  graphics-codecs-xd
   // graphics core
   graphics-attributes
   graphics-elements
@@ -120,6 +116,10 @@ order
   graphics-renderes
   graphics-shapes
   graphics-styles
+  // graphics codecs
+  graphics-codecs-json
+  graphics-codecs-vue
+  graphics-codecs-xd
   // graphics web canvas
   graphics-codecs-web-canvas-renders
   graphics-codecs-web-canvas-renders-shapes

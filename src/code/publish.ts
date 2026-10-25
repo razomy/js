@@ -17,7 +17,8 @@ export async function publish(path_: string) {
 
   if (await npm.isPackageToUpdate(path_)) {
     const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
-    console.info(`Выполняем: ${publishCommand}`);
+    const localVersion = npm.getPackageJsonVersion(path_);
+    console.info(`Выполняем(${localVersion}): ${publishCommand}`);
 
     // Раскомментируйте, когда будете готовы к реальному деплою
     // await shell.execute(publishCommand, path.resolve(path_, 'dist'));
@@ -69,6 +70,9 @@ main.ifMain(import.meta.url, async () => {
     '../function-booleans',
     '../videos',
     '../audios',
+    // products
+    '../sql',
+    '../cloud-db-pg',
   ];
 
   // Сначала проверяем, все ли нужные зависимости есть в этом списке
