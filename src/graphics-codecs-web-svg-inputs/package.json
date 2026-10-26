@@ -5,8 +5,8 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {
-    "@squadette/hammerjs": "2.1.0-pre0",
-    "mousetrap": "1.6.5"
+    "@squadette/hammerjs": "^2.1.0-pre3",
+    "mousetrap": "^1.6.5"
   },
   "description": "",
   "engines": {

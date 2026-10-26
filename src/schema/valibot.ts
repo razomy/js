@@ -38,7 +38,6 @@ export {
   _getByteCount,
   _getGraphemeCount,
   _getLastMetadata,
-  _getStandardProps,
   _getWordCount,
   _isLuhnAlgo,
   _isValidObjectKey,

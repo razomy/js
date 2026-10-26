@@ -1,37 +1,12 @@
 // Imports
-import type {
-  BindingHirn,
-  BlockHirn,
-  BranchHirn,
-  FunctionDocExampleHirn,
-  FunctionHirn,
-  GoHirn,
-  HirnType,
-  IHirNode,
-  IHirnCtx,
-  IIdentityHirn,
-  IdentityHirnType,
-  LiteralHirn,
-  LoopHirn,
-  MatchHirn,
-  ModuleHirn,
-  OperatorHirn,
-  IReferenceHirn,
-  VarRefHirn,
-  CallHirn,
-  MemberAccessHirn,
-  StructHirn,
-  Text,
-  ValueExpression,
-  ValueShape,
-  ReferenceHirnType,
-} from './i_hir_node';
+import type { BindingHirn, BlockHirn, BranchHirn, CallHirn, FunctionDocExampleHirn, FunctionHirn, GoHirn, HirnType, IHirNode, IHirnCtx, IIdentityHirn, IReferenceHirn, IdentityHirnType, LiteralHirn, LoopHirn, MatchHirn, MemberAccessHirn, ModuleHirn, OperatorHirn, ReferenceHirnType, StructHirn, Text, ValueExpression, ValueShape, VarRefHirn } from './i_hir_node';
 
 // Named exports
 export type {
   BindingHirn,
   BlockHirn,
   BranchHirn,
+  CallHirn,
   FunctionDocExampleHirn,
   FunctionHirn,
   GoHirn,
@@ -39,16 +14,19 @@ export type {
   IHirNode,
   IHirnCtx,
   IIdentityHirn,
+  IReferenceHirn,
   IdentityHirnType,
   LiteralHirn,
   LoopHirn,
   MatchHirn,
+  MemberAccessHirn,
   ModuleHirn,
   OperatorHirn,
-  IReferenceHirn,VarRefHirn,CallHirn,MemberAccessHirn,ReferenceHirnType,
+  ReferenceHirnType,
   StructHirn,
   Text,
   ValueExpression,
-  ValueShape
+  ValueShape,
+  VarRefHirn
 };
 

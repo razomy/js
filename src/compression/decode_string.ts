@@ -3,6 +3,6 @@ import * as compression from '@razomy/compression';
 
 export function decodeString(encodedStr: string): string {
   const encodedData = compression.arrayBufferFromBase64(encodedStr);
-  const decodedData = pako.inflate(encodedData, { to: 'string' });
+  const decodedData = pako.inflate(encodedData, { toText: true });
   return decodedData;
 }

@@ -13,7 +13,7 @@ for (const key of Object.getOwnPropertyNames(array.ArrayExtension.prototype)) {
 
 // --- TYPESCRIPT DECLARATIONS ---
 declare global {
-  interface Array<T> extends array.ArrayExtension {}
+  interface Array<T> extends Omit<array.ArrayExtension, 'flat' | 'findIndex' | 'includes' | 'map' | 'reverse' | 'some'> {}
 }
 
 export {};

@@ -1,4 +1,4 @@
-import type { HirnType, OperatorHirn, ReferenceHirn, StructHirn } from '@razomy/abstractions/hir';
+import type { HirnType, OperatorHirn, VarRefHirn, StructHirn } from '@razomy/abstractions/hir';
 import type { PathArray } from '@razomy/abstractions/path';
 
 export interface FormNodeMeta<O = OptionType> {
@@ -21,7 +21,7 @@ export interface FormNode<V = any, O = any> {
 
 export interface BoolProps extends FormNode {
   meta: FormNodeMeta<null>;
-  schema: ReferenceHirn;
+  schema: VarRefHirn;
   modelValue: boolean;
 }
 

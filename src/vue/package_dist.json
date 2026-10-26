@@ -17,13 +17,13 @@
     "build": "vue-tsc --noEmit && vite build && cp package.json ./dist/package.json"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.5.44"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.6",
     "vite": "^8.0.8",
     "vite-plugin-dts": "^4.5.4",
-    "vue": "^3.5.32"
+    "vue": "^3.5.44"
   },
   "author": {
     "email": "yevhenii.kamenskyi+js@razomy.org",

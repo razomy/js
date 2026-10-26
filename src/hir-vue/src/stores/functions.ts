@@ -27,8 +27,10 @@ export function isSchemaValid(node: SchemaType | null): boolean {
       return true;
     case 'StructHirn':
       return node.properties.every(isSchemaValid);
-    case 'ReferenceHirn':
-      return isSchemaValid(node.target);
+    case 'VarRefHirn':
+      if (node.name === 'string' || node.name === 'boolean' || node.name === 'number' || node.name === 'bigint') {
+        return true;
+      }
     default:
       console.error('Unknown HIR type ' + node.kind);
       return false;
@@ -70,8 +72,24 @@ export function getTypeByHirNode(node: SchemaType): FormSupportedKind {
     }
     case 'BindingHirn':
       return 'Binding';
-    case 'ReferenceHirn':
-      return getTypeByHirNode(node.target);
+    case 'VarRefHirn':
+      const typeStr = node.name;
+      switch (typeStr) {
+        case 'object':
+          return 'Object';
+        case 'string':
+          return 'String';
+        case 'boolean':
+          return 'Boolean';
+        case 'number':
+          return 'Number';
+        case 'bigint':
+          return 'Number';
+        case 'null':
+          return 'Number';
+        default:
+          return 'String';
+      }
     default:
       return 'String';
   }
@@ -186,13 +204,12 @@ export function initFormData(
       break;
     }
 
-    case 'ReferenceHirn': {
-      initFormData(data, node.target, valuesRef, typeRegistry, path);
+    case 'VarRefHirn': {
+      initFormData(data, node, valuesRef, typeRegistry, path);
       // Если это литеральная инициализация по умолчанию в схеме
-      const datum = node.target?.kind === 'LiteralHirn' ? (node.target as LiteralHirn).value : null;
-      if (datum !== null && (data === undefined || data === null)) {
-        if (path.length === 0) valuesRef.value = datum;
-        else setByPath(valuesRef.value, path, datum);
+      if (node.name) {
+        if (path.length === 0) valuesRef.value = node.name;
+        else setByPath(valuesRef.value, path, node.name);
       }
       break;
     }

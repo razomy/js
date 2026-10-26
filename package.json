@@ -1,16 +1,17 @@
 {
   "devDependencies": {
-    "@types/node": "26.6.5",
-    "@vitest/coverage-v8": "^4.1.9",
-    "tsdown": "^0.23.1",
-    "typescript": "^6.0.3"
+    "@types/node": "^26.6.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "tsdown": "^0.23.2",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "license": "Apache-2.0",
   "name": "@razomy/code-js",
-  "packageManager": "npm@11.5.1",
+  "packageManager": "npm@12.2.1",
   "private": true,
   "scripts": {
     "format": "cd src/code && tsx ./format_project.ts && cd ../../ && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js . && prettier --write .",
@@ -149,5 +150,9 @@
     "./src/vue",
     "./src/vue-resource",
     "./src/yaml"
-  ]
+  ],
+  "dependencies": {
+    "tsx": "^4.23.15",
+    "vite-plugin-vuetify": "^2.1.3"
+  }
 }

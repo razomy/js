@@ -1,4 +1,4 @@
-import simpleGit from 'simple-git';
+import { simpleGit } from 'simple-git';
 import * as git_ from '@razomy/git';
 import * as commits_ from "@razomy/commits";
 
