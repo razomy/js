@@ -23,7 +23,6 @@ import { pathToVrd } from './path_to_vrd';
 import { pvaToVrd } from './pva_to_vrd';
 import { rdToVrd } from './rd_to_vrd';
 import { setVrd } from './set_vrd';
-import { test } from './test';
 import { unflatten } from './unflatten';
 import { Vrd, create } from './vrd';
 import type { VrdOrValue } from './vrd';
@@ -59,7 +58,6 @@ export {
   pvaToVrd,
   rdToVrd,
   setVrd,
-  test,
   unflatten,
   vrdToAbsolutePath,
   vrdToPath,
@@ -98,7 +96,6 @@ const vrd = {
   pvaToVrd,
   rdToVrd,
   setVrd,
-  test,
   unflatten,
   Vrd,
   create,

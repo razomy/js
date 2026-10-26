@@ -1,4 +1,3 @@
-import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 import * as fsFileFormat from '@razomy/fs-file-format';
 
@@ -28,10 +27,10 @@ import * as fsFileFormat from '@razomy/fs-file-format';
 export function ico(image: images.Image): fsFileFormat.ExtensionResult {
   const resizer = image.thumbnailImage(256, {
     height: 256,
-    size: Vips.Size.both,
+    size: images.export_.SIZE.both,
   });
 
-  const buffer = resizer.pngsaveBuffer({ keep: Vips.ForeignKeep.all });
+  const buffer = resizer.pngsaveBuffer({ keep: images.export_.FOREIGN_KEEP.all });
   resizer.delete();
 
   return images.import_.setFile(buffer, 'ico');

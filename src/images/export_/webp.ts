@@ -1,4 +1,3 @@
-import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 import * as fsFileFormat from '@razomy/fs-file-format';
 
@@ -27,7 +26,7 @@ import * as fsFileFormat from '@razomy/fs-file-format';
 export function webp(image: images.Image): fsFileFormat.ExtensionResult {
   return images.import_.setFile(
     image.webpsaveBuffer({
-      keep: Vips.ForeignKeep.all,
+      keep: images.export_.FOREIGN_KEEP.all,
       Q: 80,
       effort: 4,
       lossless: false,

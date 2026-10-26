@@ -1,4 +1,3 @@
-import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 import * as fsFileFormat from '@razomy/fs-file-format';
 
@@ -26,9 +25,9 @@ export function jpeg(image: images.Image): fsFileFormat.ExtensionResult {
   return images.import_.setFile(
     image.jpegsaveBuffer({
       Q: 80,
-      keep: Vips.ForeignKeep.all,
+      keep: images.export_.FOREIGN_KEEP.all,
       optimize_coding: true,
-      subsample_mode: Vips.ForeignSubsample.off,
+      subsample_mode: images.export_.FOREIGN_SUBSAMPLE.off,
     }),
     'jpeg',
   );

@@ -1,21 +1,5 @@
-import * as runNode from '@razomy/run/node';
-import * as run from '@razomy/run';
+import * as runNode from "@razomy/run/node";
 
 export async function start() {
-  try {
-    run.validateArrayStringThrow(process.argv.slice(2), 'terminalArgs');
-    const filePathOrPackageName = process.argv[2];
-    const pathWithFunctionName = process.argv[3];
-    const rawParams = process.argv[4];
-
-    const params = rawParams ? JSON.parse(rawParams) : [];
-
-    const result = await runNode.resolveAndRun(filePathOrPackageName, pathWithFunctionName, params);
-
-    console.log('__CLI_RESULT__:' + JSON.stringify({ status: 'success', result: result }));
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.log(JSON.stringify({ status: 'error', message }));
-    process.exit(1);
-  }
+  return runNode.cli.startIt(process.argv.slice(2) as [string, string, string]);
 }

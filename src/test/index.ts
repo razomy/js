@@ -6,6 +6,9 @@ import { emptyThrow } from './empty_throw';
 import { falseThrow } from './false_throw';
 import { matchesError } from './matches_error';
 import { notZero } from './not_zero';
+import { testIt } from './test_it';
+import { testIts } from './test_its';
+import type { FunctionSpec } from './test_its';
 import { testSync } from './test_sync';
 import { toStrictEqual } from './to_strict_equal';
 import { toThrow } from './to_throw';
@@ -20,9 +23,14 @@ export {
   matchesError,
   notEmpty,
   notZero,
+  testIt,
+  testIts,
   testSync,
   toStrictEqual,
   toThrow
+};
+export type {
+  FunctionSpec
 };
 
 // Default export
@@ -35,9 +43,12 @@ const test = {
   falseThrow,
   matchesError,
   notZero,
+  testIt,
+  testIts,
   testSync,
   toStrictEqual,
   toThrow,
 };
+
 
 export default test;

@@ -41,6 +41,8 @@
     "falseThrow",
     "matchesError",
     "notZero",
+    "testIt",
+    "testIts",
     "testSync",
     "toStrictEqual",
     "toThrow"

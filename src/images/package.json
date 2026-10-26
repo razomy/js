@@ -182,6 +182,11 @@
     "createBlank",
     "getFile",
     "setFile",
+    "foreignKeep",
+    "foreignSubsample",
+    "foreignHeifCompression",
+    "size",
+    "foreignTiffCompression",
     "imageWriteTargets"
   ],
   "license": "MIT",
@@ -190,7 +195,7 @@
   "name": "@razomy/images",
   "peerDependencies": {
     "@razomy/fs-file-format": "*",
-    "wasm-vips": "^0.0.17"
+    "wasm-vips": "^0.0.19"
   },
   "publishConfig": {
     "access": "public"

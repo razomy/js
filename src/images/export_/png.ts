@@ -1,4 +1,3 @@
-import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 import * as fsFileFormat from '@razomy/fs-file-format';
 
@@ -25,7 +24,7 @@ import * as fsFileFormat from '@razomy/fs-file-format';
 export function png(image: images.Image): fsFileFormat.ExtensionResult {
   return images.import_.setFile(
     image.pngsaveBuffer({
-      keep: Vips.ForeignKeep.all,
+      keep: images.export_.FOREIGN_KEEP.all,
       compression: 8,
       palette: true,
       effort: 7,

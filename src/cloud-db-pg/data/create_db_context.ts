@@ -1,4 +1,3 @@
-/* eslint-disable */
 // ⚠️ АВТОГЕНЕРИРУЕМЫЙ ФАЙЛ ИЗ schema.ts. НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ!
 import * as sql from "@razomy/sql";
 

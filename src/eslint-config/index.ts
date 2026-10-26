@@ -1,20 +1,12 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import jestPlugin from 'eslint-plugin-jest';
 import { default as prettier } from 'eslint-config-prettier';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig(
-  globalIgnores(['**/dist/', '**/coverage/', '**/build/', '**/node_modules/', '**/.turbo/']),
+  globalIgnores(['**/dist/','**/.nuxt/', '**/coverage/', '**/build/', '**/node_modules/', '**/.turbo/']),
   eslint.configs.recommended,
   tseslint.configs.recommended,
-  {
-    files: ['**/*.test.ts', '**/*.spec.ts'],
-    plugins: { jest: jestPlugin as any },
-    languageOptions: {
-      globals: jestPlugin.environments.globals.globals,
-    },
-  },
   prettier,
   {
     rules: {

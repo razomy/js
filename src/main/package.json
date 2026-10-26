@@ -42,7 +42,6 @@
   "module": "./index.ts",
   "name": "@razomy/main",
   "peerDependencies": {
-    "@razomy/abstractions": "*",
     "@razomy/datetimes": "*",
     "@razomy/future": "*"
   },

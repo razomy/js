@@ -8,9 +8,6 @@ const sourceAudio = path.join(__dirname, 'source_audio.mp3');
 const outDir = path.join(__dirname, 'tmp');
 
 describe('audios', () => {
-  // Конвертация может занимать время, увеличиваем таймаут для Jest (по умолчанию 5 сек)
-  jest.setTimeout(30000);
-
   // Выполняется один раз перед запуском всех тестов
   beforeAll(() => {
     // 1. Создаем папку для результатов

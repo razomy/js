@@ -5,7 +5,7 @@
     "url": "https://id.razomy.org/yevhenii-kamenskyi"
   },
   "dependencies": {
-    "@google-cloud/storage": "^7.21.0"
+    "@google-cloud/storage": "^8.4.0"
   },
   "description": "",
   "engines": {

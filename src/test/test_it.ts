@@ -1,6 +1,6 @@
 import * as abstractions from "@razomy/abstractions";
 
-export async function test<I extends Array<any>, O>(
+export async function testIt<I extends Array<any>, O>(
   cb: abstractions.function_.Function<I, O>,
   req: I,
   res: O | null = null,

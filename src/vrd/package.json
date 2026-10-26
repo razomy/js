@@ -56,7 +56,6 @@
     "pvaToVrd",
     "rdToVrd",
     "setVrd",
-    "test",
     "unflatten",
     "vrdToAbsolutePath",
     "vrdToPath",

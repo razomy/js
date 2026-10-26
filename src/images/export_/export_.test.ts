@@ -4,75 +4,84 @@ import { pipeline } from 'node:stream/promises';
 import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 
+// Инициализируем vips один раз для всех тестов
+let vipsInstance: any = null;
+async function getVips() {
+  if (!vipsInstance) {
+    vipsInstance = await Vips();
+  }
+  return vipsInstance;
+}
+// @ts-ignore
 const outDir = path.join(__dirname, 'tmp');
 
 const mapping = {
   avif: images.export_.avif,
   gif: images.export_.gif,
   heic: images.export_.heic,
+  heif: images.export_.heic,
   ico: images.export_.ico,
   jpeg: images.export_.jpeg,
+  jpg: images.export_.jpeg,
   png: images.export_.png,
   tiff: images.export_.tiff,
+  tif: images.export_.tiff,
   webp: images.export_.webp,
 };
-// Увеличиваем таймаут, так как обработка картинок (особенно heic/avif) может быть небыстрой
-jest.setTimeout(30000);
+
+
+const vips = await getVips();
 
 async function createSourceImage(ext: string, filePath: string) {
-  const vips = await Vips();
   const width = 100;
   const height = 100;
 
+  // Для SVG пишем разметку напрямую в файл
   if (ext === 'svg') {
     const svgContent = `<svg width="${width}" height="${height}"><rect width="100%" height="100%" fill="red"/><circle cx="50" cy="50" r="40" fill="blue"/></svg>`;
     fs.writeFileSync(filePath, svgContent);
     return;
   }
 
-  // Создаем красное изображение
-  // .black() создает 1 канал, .add([R, G, B]) делает его цветным
-  let img = vips.Image.black(width, height).add([255, 0, 0]);
+
+  // Создаем RGB изображение без использования SVG оверлея
+  let img = vips.Image.black(width, height)
+    .add([255, 0, 0])
+    .cast(vips.BandFormat.uchar);
   img = img.copy({ interpretation: vips.Interpretation.srgb });
 
-  // Создаем оверлей (синий круг) через SVG буфер
-  const circleSvg = Buffer.from(
-    `<svg width="${width}" height="${height}"><circle cx="50" cy="50" r="40" fill="blue"/></svg>`,
-  );
-  const overlay = vips.Image.newFromBuffer(circleSvg);
-
-  // Композиция
-  const result = img.composite2(overlay, vips.BlendMode.over);
-
   try {
+    let buffer: Uint8Array;
+
     if (ext === 'jpg' || ext === 'jpeg') {
-      result.jpegsave(filePath);
+      buffer = img.jpegsaveBuffer();
     } else if (ext === 'png') {
-      result.pngsave(filePath);
+      buffer = img.pngsaveBuffer();
+    } else if (ext === 'ico') {
+      buffer = img.icosaveBuffer();
+    } else if (ext === 'bmp') {
+      buffer = img.bmpsaveBuffer();
     } else if (ext === 'webp') {
-      result.webpsave(filePath);
+      buffer = img.webpsaveBuffer();
     } else if (ext === 'gif') {
-      result.gifsave(filePath);
+      buffer = img.gifsaveBuffer();
     } else if (ext === 'avif' || ext === 'heic' || ext === 'heif') {
-      result.heifsave(filePath, { compression: vips.ForeignHeifCompression.av1 });
+      buffer = img.heifsaveBuffer({ compression: vips.ForeignHeifCompression.av1 });
     } else if (ext === 'tiff' || ext === 'tif') {
-      result.tiffsave(filePath);
+      buffer = img.tiffsaveBuffer();
     } else {
-      // Для остальных форматов пробуем общий метод vips
-      result.writeToFile(filePath);
+      buffer = img.writeToBuffer(`.${ext}`);
     }
+
+    fs.writeFileSync(filePath, Buffer.from(buffer));
   } catch (e) {
     throw new Error(`SKIP_${ext.toUpperCase()}`);
   } finally {
-    // Чистим память
     img.delete();
-    overlay.delete();
-    result.delete();
   }
 }
 
 describe('images', () => {
-  // Выполняется 1 раз перед всеми тестами: очищаем и создаем папку
   beforeAll(() => {
     if (fs.existsSync(outDir)) {
       fs.rmSync(outDir, { recursive: true, force: true });
@@ -80,11 +89,9 @@ describe('images', () => {
     fs.mkdirSync(outDir, { recursive: true });
   });
 
-  // Динамически создаем блоки тестов на основе массива настроек
   for (const imgConfig of images.export_.IMAGES) {
     const inputExt = imgConfig.fileExtensionType;
 
-    // Если конвертаций нет, пропускаем генерацию describe
     if (!imgConfig.conversions || imgConfig.conversions.length === 0) {
       continue;
     }
@@ -93,24 +100,21 @@ describe('images', () => {
       const inputPath = path.join(outDir, `source_test.${inputExt}`);
       let sourceCreated = false;
 
-      // Перед тестами конкретного формата пытаемся создать для него исходную картинку
       beforeAll(async () => {
         try {
           await createSourceImage(inputExt, inputPath);
           sourceCreated = true;
         } catch (e: any) {
           if (e.message.startsWith('SKIP_')) {
-            console.warn(`[SKIP] Sharp не умеет программно создавать исходники для .${inputExt}`);
+            console.warn(`[SKIP] Не удалось программно создать исходник для .${inputExt}`);
           } else {
             console.error(`Ошибка создания исходника .${inputExt}:`, e.message);
           }
         }
       });
 
-      // Генерируем тест для каждого целевого формата
       for (const targetFormat of imgConfig.conversions) {
         test(`should convert to .${targetFormat}`, async () => {
-          // Если исходник не удалось создать (например, bmp/ico), пропускаем тест зелёным
           if (!sourceCreated) {
             console.warn(`   ⏭️ Пропущен тест конвертации ${inputExt} -> ${targetFormat} (нет исходника)`);
             return;
@@ -120,23 +124,22 @@ describe('images', () => {
           const outputFilename = `result_from_${inputExt}.${targetFormat}`;
           const outputPath = path.join(outDir, outputFilename);
 
-          // Делаем копию исходника, так как функция удаляет входящий файл!
           fs.copyFileSync(inputPath, tempInput);
 
-          try {
-            // Выполняем конвертацию
-            const result = await mapping[targetFormat](tempInput, targetFormat as any);
+          const img = vips.Image.newFromFile(tempInput);
 
-            // Сохраняем стрим в файл
+          try {
+            const result = await mapping[targetFormat](img);
+
             const writeStream = fs.createWriteStream(outputPath);
             await pipeline(result.stream, writeStream);
 
-            // --- ПРОВЕРКИ (Assertions) ---
             expect(fs.existsSync(outputPath)).toBe(true);
             const stats = fs.statSync(outputPath);
             expect(stats.size).toBeGreaterThan(0);
           } finally {
-            // Убираем временный входной файл, если он случайно остался
+            img.delete();
+
             if (fs.existsSync(tempInput)) {
               fs.rmSync(tempInput, { force: true });
             }

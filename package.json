@@ -1,9 +1,7 @@
 {
   "devDependencies": {
-    "@types/jest": "30.0.0",
     "@types/node": "26.6.5",
-    "jest": "^30.5.2",
-    "ts-jest": "^29.4.15",
+    "@vitest/coverage-v8": "^4.1.9",
     "tsdown": "^0.23.1",
     "typescript": "^6.0.3"
   },
@@ -17,7 +15,7 @@
   "scripts": {
     "format": "cd src/code && tsx ./format_project.ts && cd ../../ && node --max-old-space-size=8096 node_modules/eslint/bin/eslint.js . && prettier --write .",
     "build": "tsc --project tsconfig.json",
-    "test": "jest . --coverage --collectCoverageFrom='src/**/*.{js,jsx,ts,tsx,vue}'",
+    "test": "vitest run --coverage --coverage.include=\"src/**/*.{js,jsx,ts,tsx,vue}\"",
     "release": "cd src/code && tsx ./publish.ts"
   },
   "type": "module",
@@ -137,7 +135,6 @@
     "./src/structures",
     "./src/task",
     "./src/test",
-    "./src/test-jest",
     "./src/thread",
     "./src/translate",
     "./src/tree-dict",

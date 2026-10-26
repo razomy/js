@@ -1,4 +1,3 @@
-import Vips from 'wasm-vips';
 import * as images from '@razomy/images';
 import * as fsFileFormat from '@razomy/fs-file-format';
 
@@ -25,8 +24,8 @@ import * as fsFileFormat from '@razomy/fs-file-format';
 export function avif(image: images.Image): fsFileFormat.ExtensionResult {
   return images.import_.setFile(
     image.heifsaveBuffer({
-      keep: Vips.ForeignKeep.all,
-      compression: Vips.ForeignHeifCompression.av1,
+      keep: images.export_.FOREIGN_KEEP.all,
+      compression: images.export_.FOREIGN_HEIF_COMPRESSION.av1,
       Q: 60,
       effort: 4,
     }),

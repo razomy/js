@@ -1,5 +1,6 @@
 // Imports
 import { avif } from './avif';
+import { FOREIGN_HEIF_COMPRESSION, FOREIGN_KEEP, FOREIGN_SUBSAMPLE, FOREIGN_TIFF_COMPRESSION, SIZE } from './constants';
 import { gif } from './gif';
 import { heic } from './heic';
 import { ico } from './ico';
@@ -12,8 +13,13 @@ import { webp } from './webp';
 
 // Named exports
 export {
+  FOREIGN_HEIF_COMPRESSION,
+  FOREIGN_KEEP,
+  FOREIGN_SUBSAMPLE,
+  FOREIGN_TIFF_COMPRESSION,
   IMAGES,
   IMAGE_WRITE_TARGETS,
+  SIZE,
   avif,
   gif,
   heic,
@@ -33,6 +39,11 @@ export type {
 // Default export
 const export_ = {
   avif,
+  FOREIGN_HEIF_COMPRESSION,
+  FOREIGN_KEEP,
+  FOREIGN_SUBSAMPLE,
+  FOREIGN_TIFF_COMPRESSION,
+  SIZE,
   gif,
   heic,
   ico,

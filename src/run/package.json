@@ -100,6 +100,7 @@
     "runFunctionInstant",
     "validateArrayStringThrow",
     "spawnProcess",
+    "startIt",
     "start",
     "call",
     "cancelMut",
@@ -113,7 +114,7 @@
   "peerDependencies": {
     "@razomy/exceptions": "*",
     "@razomy/random": "*",
-    "express": "^5.2.1"
+    "express": "^5.3.0"
   },
   "publishConfig": {
     "access": "public"

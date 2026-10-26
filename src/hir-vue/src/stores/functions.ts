@@ -49,7 +49,7 @@ export function getTypeByHirNode(node: SchemaType): FormSupportedKind {
         return 'Enum';
       }
       return 'Object';
-    case 'LiteralHirn':
+    case 'LiteralHirn': {
       const typeStr = node.value;
       switch (typeStr) {
         case 'object':
@@ -67,6 +67,7 @@ export function getTypeByHirNode(node: SchemaType): FormSupportedKind {
         default:
           return 'String';
       }
+    }
     case 'BindingHirn':
       return 'Binding';
     case 'ReferenceHirn':
@@ -126,7 +127,7 @@ export function getSchemaByPath<T = SchemaType>(
         } else if (current.shape?.['operator']) {
           current = current.shape;
         } else if (part === 'default') {
-          current =  current.value;
+          current = current.value;
         }
         break;
       }
