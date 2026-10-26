@@ -1,22 +1,23 @@
-import * as runNode from "@razomy/run/node";
+import { describe, it, expect, beforeEach, afterEach, vi, type MockInstance } from 'vitest';
+import * as runNode from '@razomy/run/node';
 
 // Мокаем зависимость runNode
-jest.mock('../index.node', () => ({
-  resolveAndRun: jest.fn(),
+vi.mock('../index.node', () => ({
+  resolveAndRun: vi.fn(),
 }));
 
 describe('startIt', () => {
-  let consoleLogSpy: jest.SpyInstance;
-  let processExitSpy: jest.SpyInstance;
+  let consoleLogSpy: MockInstance;
+  let processExitSpy: MockInstance;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
     // Шпионим за console.log, чтобы перехватывать вывод CLI
-    consoleLogSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
-    // Шпионим за process.exit, чтобы тест не завершал работу Jest
-    processExitSpy = jest.spyOn(process, 'exit').mockImplementation((() => {}) as any);
+    // Шпионим за process.exit, чтобы тест не завершал работу Vitest
+    processExitSpy = vi.spyOn(process, 'exit').mockImplementation((() => {}) as any);
   });
 
   afterEach(() => {
@@ -26,7 +27,7 @@ describe('startIt', () => {
 
   it('должен успешно выполнить функцию с параметрами и вывести __CLI_RESULT__', async () => {
     const mockResult = { foo: 'bar' };
-    (runNode.resolveAndRun as jest.Mock).mockResolvedValue(mockResult);
+    vi.mocked(runNode.resolveAndRun).mockResolvedValue(mockResult as never);
 
     const args: [string, string, string] = [
       './src/myModule.ts',
@@ -54,7 +55,7 @@ describe('startIt', () => {
   });
 
   it('должен передавать пустой массив [], если rawParams пустая строка', async () => {
-    (runNode.resolveAndRun as jest.Mock).mockResolvedValue(123);
+    vi.mocked(runNode.resolveAndRun).mockResolvedValue(123 as never);
 
     const args: [string, string, string] = ['./src/myModule.ts', 'runWithoutArgs', ''];
 
@@ -72,7 +73,7 @@ describe('startIt', () => {
 
   it('должен обрабатывать ошибки внутри resolveAndRun и вызывать process.exit(1)', async () => {
     const errorMessage = 'Function not found in module';
-    (runNode.resolveAndRun as jest.Mock).mockRejectedValue(new Error(errorMessage));
+    vi.mocked(runNode.resolveAndRun).mockRejectedValue(new Error(errorMessage));
 
     const args: [string, string, string] = ['./src/myModule.ts', 'notFound', '[]'];
 

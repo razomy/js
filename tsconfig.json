@@ -8,7 +8,7 @@
       "dom"
     ],
     "types": [
-      "jest"
+      "vitest/globals"
     ],
     "module": "esnext",
     "moduleResolution": "bundler",
