@@ -23,7 +23,7 @@ export type GridVariant =
   | 'container';
 
 export type GridGap = 'none' | 'xss' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type GridPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg';
+export type GridPadding = 'none'| 'xss' | 'xs' | 'sm' | 'md' | 'lg';
 export type GridSurface = 'none' | 'default' | 'panel' | 'elevated' | 'background';
 export type GridBorder = 'none' | 'all' | 'b' | 't' | 'l' | 'r';
 export type GridAlign = 'start' | 'center' | 'end' | 'stretch';
@@ -195,6 +195,7 @@ const classes = computed(() =>
 
 /* Paddings */
 .ds-grid--pad-none { padding: 0; }
+.ds-grid--pad-xss { padding: 3px 5px; }
 .ds-grid--pad-xs { padding: 6px 10px; }
 .ds-grid--pad-sm { padding: 10px 14px; }
 .ds-grid--pad-md { padding: 16px; }

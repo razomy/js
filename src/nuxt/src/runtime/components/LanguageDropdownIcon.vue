@@ -4,7 +4,7 @@
     <template v-slot:activator="{ props }">
       <v-btn :class="isVertical ? '' : 'w-100'" align-tabs="center" v-bind="props" variant="text">
         <!-- Display current locale name or code -->
-        <span class="text-truncate" style="max-width: 60px">{{ currentLocaleMeta?.name }}</span>
+        <span class="text-truncate" style="max-width: 60px">{{ currentLocaleMeta?.name?.substring(0,3) }}</span>
         <v-icon end>mdi-chevron-down</v-icon>
       </v-btn>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-card variant="outlined" class="d-flex flex-column" height="500">
+  <v-card variant="outlined" class="d-flex flex-column">
     <v-row no-gutters class="flex-grow-1 overflow-hidden">
 
       <!-- Левая панель -->

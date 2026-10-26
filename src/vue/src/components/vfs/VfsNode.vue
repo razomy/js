@@ -14,7 +14,7 @@
         </v-icon>
       </template>
 
-      <v-list-item-title class="text-body-2">{{ item.name }}</v-list-item-title>
+      <v-list-item-title><Body variant="mRegular">{{ item.name }}</Body></v-list-item-title>
 
       <template #append v-if="loading">
         <v-progress-circular indeterminate size="16" width="2" />
@@ -54,6 +54,7 @@
 import { ref, computed } from 'vue';
 import type { VfsItem, IVfsController } from './types.ts';
 import { useVfsList } from './useVfsList';
+import {Body} from "@razomy/vue";
 
 const props = defineProps<{
   item: VfsItem;

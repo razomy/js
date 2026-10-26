@@ -1,6 +1,6 @@
 <template>
   <Grid variant="y" gap="sm">
-    <!--  <v-col cols="5" class="border-e h-100 d-flex flex-column">-->
+
     <!-- Поиск -->
     <v-toolbar density="compact" color="surface" class="border-b px-2">
       <v-text-field
@@ -53,7 +53,6 @@ const props = defineProps<{
   controller: IVfsController;
 }>();
 
-// Именованный defineModel для v-model:selectedItem
 const selectedItem = defineModel<VfsItem | null>('selectedItem', { default: null });
 
 const { items, loading, hasMore, searchQuery, fetchItems, loadMore, onSearch } = useVfsList(props.controller, null, 15);

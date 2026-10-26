@@ -1,5 +1,5 @@
 <template>
-  <v-container class="my-12">
+<!--  <v-container class="my-12">-->
     <v-footer class="content-0 py-6">
       <v-row justify="center" no-gutters>
         <template v-for="navigationNodes in c.footerNavigationNodes">
@@ -36,7 +36,7 @@
         </v-col>
       </v-row>
     </v-footer>
-  </v-container>
+<!--  </v-container>-->
 </template>
 <script lang="ts" setup>
 import { useI18n, useLocalePath, useRzmRuntimeConfigState } from '#imports';

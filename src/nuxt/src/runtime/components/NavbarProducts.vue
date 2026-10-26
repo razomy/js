@@ -1,7 +1,7 @@
 <template>
   <v-menu location="bottom center" transition="slide-y-transition">
     <template v-slot:activator="{ props }">
-      <v-btn :class="isVertical ? '' : 'text-center w-100'" density="compact" stacked v-bind="props" variant="plain">
+      <v-btn :class="isVertical ? '' : 'text-center w-100'" density="compact" height="36px" stacked v-bind="props" variant="plain">
         <img
           :alt="t(currentNavigationNode.meta.nameTk)"
           :src="currentNavigationNode.meta.iconName"
@@ -11,7 +11,7 @@
       </v-btn>
     </template>
 
-    <v-list class="rounded-lg" nav>
+    <v-list class="rounded-lg" density="compact" nav>
       <!--      <v-list-subheader class="text-uppercase font-weight-bold text-caption">-->
       <!--        {{ $t('nuxt.breadcrumb.select_category') }}-->
       <!--      </v-list-subheader>-->

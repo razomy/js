@@ -105,8 +105,8 @@ order
   // ui & graphics
   // frameworks
   components
-  nuxt
   vue
+  nuxt
   vue-resource
   // graphics core
   graphics-attributes

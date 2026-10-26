@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-if="!isMobile" :width="100" app border="0" class="content-0 mx-2" color="" permanent>
+  <v-navigation-drawer v-if="!isMobile" :width="64" app border="0" class="content-0" color="" permanent>
     <template v-slot:prepend>
       <rzm-navbar-products />
       <v-divider class="mx-2"></v-divider>
