@@ -161,7 +161,7 @@ export interface IIdentityHirn extends IHirNode {
  */
 export interface BindingHirn<T extends HirnType = abstractions.patterns.IdRef<HirnType>> extends IIdentityHirn {
   kind: 'BindingHirn';
-  shape: abstractions.patterns.IdRef<ReferenceHirn> | null; // Type/Interface/Constraint
+  shape: abstractions.patterns.IdRef<ReferenceHirnType> | null; // Type/Interface/Constraint
   value: T | null; // Значение
   modifiers: {
     isPublic: boolean | null;
@@ -183,7 +183,7 @@ export interface FunctionDocExampleHirn {
 export interface FunctionHirn extends IIdentityHirn, abstractions.function_.HasFnHashId {
   kind: 'FunctionHirn';
   parameters: abstractions.patterns.IdRef<BindingHirn>[];
-  returnShape: abstractions.patterns.IdRef<ReferenceHirn> | null;
+  returnShape: abstractions.patterns.IdRef<ReferenceHirnType> | null;
   block: abstractions.patterns.IdRef<HirnType> | null;
   modifiers: {
     isPublic: boolean | null;
@@ -244,12 +244,29 @@ export interface ModuleHirn extends IIdentityHirn {
  * @replaces ImportAsn - системный вызов (например: target = 'require', arguments = ['module_name'])
  * @replaces MacroCallAsn, DecoratorAsn - разворачиваются в обычный CallHirn
  */
-export interface ReferenceHirn extends IHirNode {
-  kind: 'ReferenceHirn';
-  target: abstractions.patterns.IdRef<IdentityHirnType | LiteralHirn> | null; // Название переменной ИЛИ узел (например, результат функции)
-  property: abstractions.patterns.IdRef<HirnType> | null; // Для obj.prop или arr[1]
-  arguments_: abstractions.patterns.IdRef<HirnType>[]; // Наличие этого массива (даже []) означает Вызов (Call)
+export interface IReferenceHirn extends IHirNode {
 }
+
+export interface VarRefHirn extends IReferenceHirn {
+  kind: 'VarRefHirn';
+  name: string;
+}
+
+// --- Доступ к свойству (заменяет MemberAsn) ---
+export interface MemberAccessHirn extends IReferenceHirn {
+  kind: 'MemberAccessHirn';
+  target: abstractions.patterns.IdRef<HirnType>; // Объект, у которого берем свойство
+  property: abstractions.patterns.IdRef<HirnType>; // Строка для static (`a.b`) или узел для dynamic (`a[i]`)
+}
+
+// --- Вызов (заменяет CallAsn) ---
+export interface CallHirn extends IReferenceHirn {
+  kind: 'CallHirn';
+  callee: abstractions.patterns.IdRef<HirnType> | null; // То, что вызываем (VarRef, MemberAccess, inline lambda)
+  arguments_: abstractions.patterns.IdRef<HirnType>[];
+}
+
+export type ReferenceHirnType =CallHirn | MemberAccessHirn | VarRefHirn;
 
 // endregion Declarations & Entities
 
@@ -267,7 +284,8 @@ export type HirnType =
   | LoopHirn
   | GoHirn
   | IdentityHirnType
-  | ReferenceHirn;
+  | ReferenceHirnType
+  ;
 
 export interface IHirnCtx extends abstractions.patterns.IContext {
   asnRoot: abstractions.translator.AsnType;

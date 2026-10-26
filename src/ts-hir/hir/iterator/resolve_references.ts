@@ -31,13 +31,13 @@ export function resolveReferences(
   }
 
   // 2. Разрешение, если текущий узел — ReferenceSn
-  if (node.kind === 'ReferenceHirn') {
-    const ref = node as tsHir.hir.ReferenceSn;
+  if (node.kind === 'VarRefHirn') {
+    const ref = node as tsHir.hir.VarRefSn;
     const name = ref.getSymbolName();
 
     if (name && currentScope.has(name)) {
       const decl = currentScope.get(name)!;
-      ref.resolvedDeclaration = decl;
+      ref.resolvedDeclaration = decl as any;
 
       // Если ссылка указывает на объявление типа/интерфейса, ее слой становится 'shape'
       if (decl.kind === 'StructHirn' && decl.semanticLayer === 'shape') {

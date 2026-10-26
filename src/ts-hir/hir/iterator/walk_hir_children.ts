@@ -39,10 +39,14 @@ export function walkHirChildren<T extends abstractions.hir.HirnType>(
     case 'OperatorHirn':
       walkArr(node.operands);
       break;
-    case 'ReferenceHirn':
+    case 'CallHirn':
+      walkArr(node.arguments_);
+      break;
+    case 'MemberAccessHirn':
       if (node.target && typeof node.target !== 'string') walk(node.target);
       walk(node.property);
-      walkArr(node.arguments_);
+      break;
+    case 'VarRefHirn':
       break;
     case 'MatchHirn':
       walk(node.target);

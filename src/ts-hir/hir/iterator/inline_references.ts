@@ -12,14 +12,14 @@ function isIdentityHirn(
 }
 
 /**
- * Полностью удаляет ВСЕ узлы ReferenceHirn из дерева,
- * заменяя их на LiteralHirn, StructHirn и другие конкретные типы.
+ * Инлайнит ссылки (VarRefHirn) и вычисляет доступ к полям (MemberAccessHirn),
+ * заменяя их на конкретные значения (LiteralHirn, StructHirn и др.).
  */
 export function inlineReferences(
   root: abstractions.hir.HirnType,
 ): abstractions.hir.HirnType {
   const declarationsByName = new Map<string, abstractions.hir.IdentityHirnType>();
-  const inliningStack = new Set<string>();
+  // const inliningStack = new Set<string>();
 
   // 1. Собираем все объявления (StructHirn, BindingHirn, FunctionHirn) по их имени
   function collectDeclarations(node: abstractions.hir.HirnType): void {
@@ -65,9 +65,16 @@ export function inlineReferences(
         if (node.shape) collectDeclarations(node.shape);
         if (node.value) collectDeclarations(node.value);
         break;
-      case 'ReferenceHirn':
-        if (node.target) collectDeclarations(node.target);
-        if (node.property) collectDeclarations(node.property);
+      case 'VarRefHirn':
+        break;
+      case 'MemberAccessHirn':
+        collectDeclarations(node.target);
+        if (typeof node.property !== 'string') {
+          collectDeclarations(node.property);
+        }
+        break;
+      case 'CallHirn':
+        collectDeclarations(node.callee!);
         node.arguments_.forEach(collectDeclarations);
         break;
     }
@@ -131,7 +138,7 @@ export function inlineReferences(
           },
           parameters: node.parameters.map(cloneNode),
           returnShape: node.returnShape ? cloneNode(node.returnShape) : null,
-          block: node.block ? cloneNode(node.block) : null,
+          block: node.block ? cloneNode(node.block): null
         } as T;
       case 'StructHirn':
         return {
@@ -147,17 +154,28 @@ export function inlineReferences(
           doc: { ...node.doc },
           statements: node.statements.map(cloneNode),
         } as T;
-      case 'ReferenceHirn':
+      case 'VarRefHirn':
         return {
           ...baseClone,
-          target: node.target ? cloneNode(node.target) : null,
-          property: node.property ? cloneNode(node.property) : null,
+          name: node.name,
+          // resolvedDeclaration: node.resolvedDeclaration,
+        } as T;
+      case 'MemberAccessHirn':
+        return {
+          ...baseClone,
+          target: cloneNode(node.target),
+          property: typeof node.property === 'string' ? node.property : cloneNode(node.property),
+        } as T;
+      case 'CallHirn':
+        return {
+          ...baseClone,
+          callee: cloneNode(node.callee!),
           arguments_: node.arguments_.map(cloneNode),
         } as T;
     }
   }
 
-  // Извлекает значение из объявления (для BindingHirn достает его value, для StructHirn — сам StructHirn)
+  // Извлекает значение из объявления (для BindingHirn достает value, для StructHirn — саму структуру)
   function unwrapDeclaration(
     decl: abstractions.hir.IdentityHirnType,
   ): abstractions.hir.HirnType {
@@ -167,28 +185,11 @@ export function inlineReferences(
     return cloneNode(decl);
   }
 
-  // Пытается найти декларацию по имени в LiteralHirn и вернуть её реальный узел
-  function resolveLiteralByName(
-    lit: abstractions.hir.LiteralHirn,
-  ): abstractions.hir.HirnType {
-    if (typeof lit.value === 'string') {
-      const decl = declarationsByName.get(lit.value);
-      if (decl && !inliningStack.has(lit.value)) {
-        inliningStack.add(lit.value);
-        const unwrapped = unwrapDeclaration(decl);
-        const result = transform(unwrapped);
-        inliningStack.delete(lit.value);
-        return result;
-      }
-    }
-    return lit;
-  }
-
-  // 2. Обходим всё дерево и УДАЛЯЕМ ReferenceHirn
+  // 2. Обходим дерево и инлайним обращения
   function transform(node: abstractions.hir.HirnType): abstractions.hir.HirnType {
     switch (node.kind) {
       case 'LiteralHirn':
-        return resolveLiteralByName(node);
+        return node;
 
       case 'OperatorHirn':
         node.operands = node.operands.map(transform);
@@ -221,7 +222,7 @@ export function inlineReferences(
 
       case 'BindingHirn':
         if (node.shape) {
-          node.shape = transform(node.shape) as abstractions.hir.ReferenceHirn;
+          node.shape = transform(node.shape) as any;
         }
         if (node.value) {
           node.value = transform(node.value);
@@ -233,9 +234,7 @@ export function inlineReferences(
           (p) => transform(p) as abstractions.hir.BindingHirn,
         );
         if (node.returnShape) {
-          node.returnShape = transform(
-            node.returnShape,
-          ) as abstractions.hir.ReferenceHirn;
+          node.returnShape = transform(node.returnShape) as any;
         }
         if (node.block) {
           node.block = transform(node.block);
@@ -254,52 +253,54 @@ export function inlineReferences(
         );
         return node;
 
-      case 'ReferenceHirn': {
-        // Рекурсивно резолвим target и property (уничтожая вложенные ReferenceHirn)
-        const resolvedTarget = node.target ? transform(node.target) : null;
-        const resolvedProperty = node.property ? transform(node.property) : null;
+      // --- Инлайнинг обращения к переменной / типу ---
+      case 'VarRefHirn': {
+        // const name = node.name;
+        // const decl = node.resolvedDeclaration ?? declarationsByName.get(name);
+        // if (decl && !inliningStack.has(name)) {
+        //   inliningStack.add(name);
+        //   const unwrapped = unwrapDeclaration(decl);
+        //   const result = transform(unwrapped);
+        //   inliningStack.delete(name);
+        //   return result;
+        // }
+        return node;
+      }
 
-        // 1. Если есть обращение к свойству (например, BitSize.Byte или BitSize.Long)
-        if (resolvedTarget && resolvedProperty) {
-          // Если target превратился в StructHirn, ищем свойство внутри него
-          if (
-            resolvedTarget.kind === 'StructHirn' &&
-            resolvedProperty.kind === 'LiteralHirn' &&
-            typeof resolvedProperty.value === 'string'
-          ) {
-            const propName = resolvedProperty.value;
-            const foundProp = resolvedTarget.properties.find(
-              (p) => p.name === propName,
-            );
+      // --- Инлайнинг обращения к свойству (BitSize.Byte -> 8) ---
+      case 'MemberAccessHirn': {
+        const resolvedTarget = transform(node.target);
+        const resolvedProperty = typeof node.property === 'string'
+          ? node.property
+          : transform(node.property);
+
+        // Если target резолвится в StructHirn, ищем свойство внутри
+        if (resolvedTarget.kind === 'StructHirn') {
+          let propName: string | null = null;
+          if (typeof resolvedProperty === 'string') {
+            propName = resolvedProperty;
+          } else if (resolvedProperty.kind === 'LiteralHirn' && typeof resolvedProperty.value === 'string') {
+            propName = resolvedProperty.value;
+          }
+
+          if (propName) {
+            const foundProp = resolvedTarget.properties.find((p) => p.name === propName);
             if (foundProp) {
-              // Нашли свойство (например, Byte -> возвращаем LiteralHirn 8)
               return transform(unwrapDeclaration(foundProp));
             }
           }
-
-          // Если свойство не найдено (например, Long нет в BitSize),
-          // всё равно УДАЛЯЕМ ReferenceHirn и возвращаем сам LiteralHirn свойства ("Long")
-          return resolvedProperty;
         }
 
-        // 2. Если свойства нет (просто ссылка на тип или переменную) —
-        // УДАЛЯЕМ ReferenceHirn и возвращаем разрезолвленный target (StructHirn или LiteralHirn)
-        if (resolvedTarget) {
-          return resolvedTarget;
-        }
+        node.target = resolvedTarget;
+        node.property = resolvedProperty;
+        return node;
+      }
 
-        // 3. Fallback, если ReferenceHirn был совсем пустым
-        return {
-          prev : null,
-          next: null,
-          id: '',
-          syntaxRole: node.syntaxRole,
-          semanticLayer: node.semanticLayer,
-          kind: 'LiteralHirn',
-          value: '',
-          parent: node.parent,
-          children: [],
-        };
+      // --- Рекурсивная обработка вызова ---
+      case 'CallHirn': {
+        node.callee = node.callee ? transform(node.callee): null;
+        node.arguments_ = node.arguments_.map(transform);
+        return node;
       }
     }
   }

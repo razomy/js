@@ -40,35 +40,33 @@ export class OperatorSn extends SemanticNode implements abstractions.hir.Operato
   public operands: abstractions.hir.HirnType[] = object_.LATE_INIT;
 }
 
-export class ReferenceSn extends SemanticNode implements abstractions.hir.ReferenceHirn {
-  public override kind: 'ReferenceHirn' = 'ReferenceHirn' as const;
-  public target: abstractions.hir.ReferenceHirn['target'] = object_.LATE_INIT;
-  public property: abstractions.hir.HirnType | null = object_.LATE_INIT;
-  public arguments_: abstractions.hir.HirnType[] = object_.LATE_INIT;
+export abstract class IReferenceSn extends SemanticNode implements abstractions.hir.IReferenceHirn {
+}
 
-  /**
-   * Вычисляемое поле: фактический узел декларации, на который указывает данная ссылка.
-   * Вычисляется функцией resolveReferences().
-   */
-  public resolvedDeclaration: abstractions.hir.HirnType | null = object_.LATE_INIT;
 
-  /**
-   * Имя символа, на который ссылается Reference.
-   */
-  public getSymbolName(): string | null {
-    if (!this.target) return null;
-    if (this.target.kind === 'LiteralHirn') {
-      return String((this.target as LiteralSn).value);
-    }
-    return null;
+// 1. Ссылка на переменную
+export class VarRefSn extends SemanticNode implements abstractions.hir.VarRefHirn {
+  public override kind: 'VarRefHirn' = 'VarRefHirn' as const;
+  public name: string = object_.LATE_INIT;
+  public resolvedDeclaration: abstractions.hir.IdentityHirnType | null = null;
+
+  public getSymbolName(): string {
+    return this.name;
   }
+}
 
-  /**
-   * Разрешена ли ссылка в объявление.
-   */
-  public isResolved(): boolean {
-    return this.resolvedDeclaration !== null;
-  }
+// 2. Доступ к свойству
+export class MemberAccessSn extends SemanticNode implements abstractions.hir.MemberAccessHirn {
+  public override kind: 'MemberAccessHirn' = 'MemberAccessHirn' as const;
+  public target: abstractions.hir.HirnType = object_.LATE_INIT;
+  public property: abstractions.hir.HirnType = object_.LATE_INIT;
+}
+
+// 3. Вызов функции / метода
+export class CallSn extends SemanticNode implements abstractions.hir.CallHirn {
+  public override kind: 'CallHirn' = 'CallHirn' as const;
+  public callee: abstractions.hir.HirnType = object_.LATE_INIT;
+  public arguments_: abstractions.hir.HirnType[] = [];
 }
 
 export class BlockSn extends SemanticNode implements abstractions.hir.BlockHirn {
@@ -102,7 +100,7 @@ export class GoSn extends SemanticNode implements abstractions.hir.GoHirn {
 
 export class BindingSn extends IdentityNode implements abstractions.hir.BindingHirn {
   public override kind: 'BindingHirn' = 'BindingHirn' as const;
-  public shape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
+  public shape: abstractions.hir.BindingHirn['shape'] | null = object_.LATE_INIT;
   public value: abstractions.hir.HirnType | null = object_.LATE_INIT;
   public doc: { description: string } = object_.LATE_INIT;
   public modifiers: abstractions.hir.BindingHirn['modifiers'] = object_.LATE_INIT;
@@ -111,7 +109,7 @@ export class BindingSn extends IdentityNode implements abstractions.hir.BindingH
 export class FunctionSn extends IdentityNode implements abstractions.hir.FunctionHirn {
   public override kind: 'FunctionHirn' = 'FunctionHirn' as const;
   public fnHashId: string = random.createUuid();
-  public returnShape: abstractions.hir.ReferenceHirn | null = object_.LATE_INIT;
+  public returnShape: abstractions.hir.FunctionHirn['returnShape'] = object_.LATE_INIT;
   public parameters: abstractions.hir.BindingHirn[] = object_.LATE_INIT;
   public modifiers: abstractions.hir.FunctionHirn['modifiers'] = object_.LATE_INIT;
   public block: abstractions.hir.HirnType | null = object_.LATE_INIT;
@@ -141,7 +139,9 @@ export class ModuleSn extends IdentityNode implements abstractions.hir.ModuleHir
 export type SnType =
   | LiteralSn
   | OperatorSn
-  | ReferenceSn
+  | VarRefSn
+  | MemberAccessSn
+  | CallSn
   | BlockSn
   | MatchSn
   | BranchSn

@@ -14,19 +14,21 @@ function isIdentityHirn(node: abstractions.hir.HirnType): node is abstractions.h
 }
 
 /**
- * 2. Удаляет неиспользуемые объявления (BindingHirn, StructHirn, FunctionHirn).
+ * Удаляет неиспользуемые объявления (BindingHirn, StructHirn, FunctionHirn).
  * Вызывается ПОСЛЕ resolveReferences и (опционально) ПОСЛЕ inlineReferences!
  */
 export function removeUnusedDeclarations(root: abstractions.hir.HirnType): void {
   const usedDeclarations = new Set<abstractions.hir.IdentityHirnType>();
 
-  // 1. Собираем все объявления, на которые реально остались ссылки в ReferenceHirn.target
+  // 1. Собираем все объявления, на которые реально ссылаются узлы VarRefHirn
   function collectUsages(node: abstractions.hir.HirnType): void {
-    if (node.kind === 'ReferenceHirn') {
-      if (node.target !== null && isIdentityHirn(node.target)) {
-        usedDeclarations.add(node.target);
-      }
-    }
+    if (!node) return;
+
+    // if (node.kind === 'VarRefHirn') {
+    //   if (node.resolvedDeclaration && isIdentityHirn(node.resolvedDeclaration)) {
+    //     usedDeclarations.add(node.resolvedDeclaration);
+    //   }
+    // }
 
     tsHir.hir.iterator.walkHirChildren(
       node,
@@ -44,7 +46,7 @@ export function removeUnusedDeclarations(root: abstractions.hir.HirnType): void 
   // Проверка, нужно ли оставить узел в блоке/модуле
   function shouldKeepStatement(stmt: abstractions.hir.HirnType): boolean {
     if (isIdentityHirn(stmt)) {
-      // Анонимные элементы (например, элементы массивов или лямбды без имени) не трогаем
+      // Анонимные элементы (например, элементы кортежей или лямбды без имени) не трогаем
       if (stmt.name !== null && stmt.name.length > 0) {
         // Экспортируемые (публичные) декларации удалять нельзя
         if (stmt.modifiers.isPublic === true) {

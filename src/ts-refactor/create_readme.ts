@@ -79,7 +79,7 @@ export function createReadme(path: string, packageJson: any, ctx: tsHir.hir.Sema
 [Npm](https://www.npmjs.com/package/${packageJson.name}) |
 [Npmx](https://npmx.dev/package/${packageJson.name}) |
 [GitHub](https://github.com/razomy/js/tree/main/${packageJson.repository.directory}) |
-[Razomy Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('razomy', '')}) |
+[Razomy Io](https://io.razomy.org${packageJson.repository.directory.replace('-', '/').replace('src', '')}) |
 [Razomy Cli](https://github.com/razomy/cli)
 
 > ${packageJson.description}
@@ -99,11 +99,11 @@ razomy cli add ${packageJson.name}
 
   const allDecls = tsHir.hir.iterator.findExported(hirRoot as any).filter(i=>!!i['name']);
   allDecls.sort((a, b) => hirString.md.getNamePath(a as any).join('').localeCompare(hirString.md.getNamePath(b as any).join('')));
-  const typeSpecs = allDecls
-    .values()
-    .filter((i) => i.kind === 'StructHirn')
-    .toArray();
-  const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
+  // const typeSpecs = allDecls
+  //   .values()
+  //   .filter((i) => i.kind === 'StructHirn')
+  //   .toArray();
+  // const functionSpecs = allDecls.filter((i) => i.kind === 'FunctionHirn');
   const functionPath = allDecls.length > 0 ? hirString.md.getNamePath(allDecls[0] as any) : ['functionName'];
 
   const imports = `
@@ -127,25 +127,27 @@ razomy run ${packageJson.name} ${functionPath.join(' ')}
 
   `.trim();
 
-  const typesToc = typeSpecs.map((s) => `- [${hirString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
-  const functionsToc = functionSpecs.map((s) => `- [${hirString.md.getNamePath(s).join('.')}](#${s.name?.toLowerCase()})`).join('\n');
-  const toc = `
+  // const createTitle=(s) => `- [${hirString.md.getNamePath(s).join('.')}](#${hirString.md.getNamePath(s).join('_').snakeCase()})`
+
+  // const typesToc = typeSpecs.map(createTitle).join('\n');
+  // const functionsToc = functionSpecs.map(createTitle).join('\n');
+  const toc = '';/* `
 ## 📑 Table of Contents
 
 ${typesToc.length ? '**Types**\n\n' + typesToc + '\n\n' : ''}${
     functionsToc.length ? '**Functions**\n\n' + functionsToc : ''
   }
-  `.trim();
+  `.trim();*/
 
-  const functions = functionSpecs.map(hirString.md.hirToString).join('\n\n').trim();
+  // const functions = functionSpecs.map(hirString.md.hirToString).join('\n\n').trim();
 
-  const types = typeSpecs.map(hirString.md.hirToString).join('\n\n').trim();
+  // const types = typeSpecs.map(hirString.md.hirToString).join('\n\n').trim();
 
-  const examples = `
+  const examples = ''/*`
 ## 📚 Documentation
 
 ${types.length ? '### Types\n\n' + types + '\n\n' : ''}${functions.length ? '### Functions\n\n' + functions : ''}
-`.trim();
+`.trim();*/
 
   const readme =
     `

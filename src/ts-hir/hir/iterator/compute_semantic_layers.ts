@@ -9,7 +9,7 @@ export function computeSemanticLayers(
   let layer: abstractions.translator.SemanticLayer = parentLayer;
 
   // 1. Определение слоя на основе роли и типа узла HIR
-  if (node.syntaxRole === 'modifier' || (node.kind === 'ReferenceHirn' && (node as any).target?.value === 'import')) {
+  if (node.syntaxRole === 'modifier' || (node.kind === 'VarRefHirn' && (node as any).target?.value === 'import')) {
     layer = 'meta';
   } else if (node.syntaxRole === 'text') {
     layer = 'meta';

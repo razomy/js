@@ -112,14 +112,11 @@ export function astToHirNode(
     case 'AssignAsn': {
       const op = new tsHir.hir.OperatorSn(ctx);
       op.operator = '=';
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      const lit = new tsHir.hir.LiteralSn(ctx);
-      lit.value = node.identifier.name;
-      lit.syntaxRole = 'expression';
-      lit.semanticLayer = 'state';
-      ref.target = lit;
-      ref.property = null;
-      ref.arguments_ = [];
+
+      // Левый операнд — это ссылка на переменную (VarRef)
+      const ref = new tsHir.hir.VarRefSn(ctx);
+      ref.name = node.identifier.name;
+      ref.resolvedDeclaration = null;
       ref.syntaxRole = 'expression';
       ref.semanticLayer = 'state';
 
@@ -135,7 +132,7 @@ export function astToHirNode(
         isPublic: null,
         isConst: null
       };
-      b.shape = recurse(node.constraint) as abstractions.hir.ReferenceHirn;
+      b.shape = recurse(node.constraint) as abstractions.hir.ReferenceHirnType;
       b.value = recurse(node.value);
       b.doc = { description: '' };
       hir = b;
@@ -149,7 +146,7 @@ export function astToHirNode(
         isPublic: null,
         isConst: null
       };
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirnType) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -318,14 +315,10 @@ export function astToHirNode(
       const go = new tsHir.hir.GoSn(ctx);
       go.operator = node.kind === 'BreakAsn' ? 'break' : 'continue';
       if (node.identifier) {
-        const ref = new tsHir.hir.ReferenceSn(ctx);
-        const lit = new tsHir.hir.LiteralSn(ctx);
-        lit.value = node.identifier.name;
-        lit.syntaxRole = 'expression';
-        lit.semanticLayer = 'state';
-        ref.target = lit;
-        ref.property = null;
-        ref.arguments_ = [];
+        // Метка перехода (label) — это ссылка на имя
+        const ref = new tsHir.hir.VarRefSn(ctx);
+        ref.name = node.identifier.name;
+        ref.resolvedDeclaration = null;
         ref.syntaxRole = 'expression';
         ref.semanticLayer = 'state';
         go.value = ref;
@@ -353,8 +346,8 @@ export function astToHirNode(
       b.modifiers = {
         isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
         isConst: node.modifiers.has(i=>i.kind === 'InstanceModifierAsn' && i.operator === 'const'),
-      }
-      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirn) : null;
+      };
+      b.shape = node.shape ? (recurse(node.shape) as abstractions.hir.ReferenceHirnType) : null;
       b.value = node.value ? recurse(node.value) : null;
       b.doc = { description: '' };
       hir = b;
@@ -369,8 +362,8 @@ export function astToHirNode(
         isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
         isAsync: node.modifiers.has(i=>i.kind === 'FunctionModifierAsn' && i.operator === 'async'),
         isGenerator: node.modifiers.has(i=>i.kind === 'FunctionModifierAsn' && i.operator === 'generator'),
-      }
-      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.hir.ReferenceHirn) : null;
+      };
+      fn.returnShape = node.returnShape ? (recurse(node.returnShape) as abstractions.hir.ReferenceHirnType) : null;
       fn.parameters = (node.parameters || []).map((p) => recurse(p) as abstractions.hir.BindingHirn);
       fn.block = node.block ? recurse(node.block) : null;
       fn.doc = {
@@ -398,7 +391,6 @@ export function astToHirNode(
         version: null
       };
 
-      // Сохраняем версию модуля, если присутствует
       if (node.version) {
         s.modifiers.version = node.version;
       }
@@ -438,6 +430,7 @@ export function astToHirNode(
       hir = s;
       break;
     }
+
     case 'EnumAsn': {
       const s = new tsHir.hir.StructSn(ctx);
       s.name = 'identifier' in node && node.identifier ? node.identifier.name : null;
@@ -452,115 +445,130 @@ export function astToHirNode(
       break;
     }
 
+    // =========================================================================
+    // 1. ЧТЕНИЕ ПЕРЕМЕННЫХ И ПСЕВДОНИМОВ (VarRef)
+    // =========================================================================
     case 'ReferenceAsn':
     case 'AliasAsn': {
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      const lit = new tsHir.hir.LiteralSn(ctx);
-      lit.value = node.identifier.name;
-      lit.syntaxRole = 'expression';
-      lit.semanticLayer = 'state';
-      ref.target = lit;
-      ref.property = null;
-      ref.arguments_ = [];
+      const ref = new tsHir.hir.VarRefSn(ctx);
+      ref.name = node.identifier.name;
+      ref.resolvedDeclaration = null;
       hir = ref;
       break;
     }
 
+    // =========================================================================
+    // 2. ДОСТУП К СВОЙСТВАМ И ПОЛЯМ (MemberAccess)
+    // =========================================================================
+    case 'MemberAsn': {
+      const member = new tsHir.hir.MemberAccessSn(ctx);
+      member.target = recurse(node.object_) as any;
+      member.property = recurse(node.property);
+      hir = member;
+      break;
+    }
+
+    case 'ArgumentMemberAsn': {
+      const member = new tsHir.hir.MemberAccessSn(ctx);
+      member.target = recurse(node.argument) as any;
+      member.property = recurse(node.property);
+      hir = member;
+      break;
+    }
+
+    // =========================================================================
+    // 3. ВЫЗОВЫ: ФУНКЦИИ, ДЕКОРАТОРЫ, МАКРОСЫ (Call)
+    // =========================================================================
+    case 'CallAsn':
+    case 'DecoratorAsn': {
+      const call = new tsHir.hir.CallSn(ctx);
+
+      if (node.kind === 'DecoratorAsn') {
+        call.semanticLayer = 'meta';
+      }
+
+      // Callee — это ссылка на вызываемый символ или выражение
+      if (node.identifier) {
+        const calleeRef = new tsHir.hir.VarRefSn(ctx);
+        calleeRef.name = node.identifier.name;
+        calleeRef.resolvedDeclaration = null;
+        if (node.kind === 'DecoratorAsn') {
+          calleeRef.semanticLayer = 'meta';
+        }
+        call.callee = calleeRef;
+      } else if ((node as any).callee) {
+        call.callee = recurse((node as any).callee) as any;
+      } else {
+        call.callee = null as any;
+      }
+
+      call.arguments_ = (node.arguments_ || []).map(recurse);
+      hir = call;
+      break;
+    }
+
     case 'MacroCallAsn': {
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      const lit = new tsHir.hir.LiteralSn(ctx);
-      lit.value = node.identifier.name;
-      lit.syntaxRole = 'expression';
-      lit.semanticLayer = 'meta';
-      ref.target = lit;
-      ref.property = null;
-      // Переносим аргументы/токены макроса
-      ref.arguments_ = (node.arguments_ || []).map((token) => {
+      const call = new tsHir.hir.CallSn(ctx);
+      call.syntaxRole = 'expression';
+      call.semanticLayer = 'meta';
+
+      const calleeRef = new tsHir.hir.VarRefSn(ctx);
+      calleeRef.name = node.identifier.name;
+      calleeRef.syntaxRole = 'expression';
+      calleeRef.semanticLayer = 'meta';
+      calleeRef.resolvedDeclaration = null;
+      call.callee = calleeRef;
+
+      call.arguments_ = (node.arguments_ || []).map((token) => {
         const tokenLit = new tsHir.hir.LiteralSn(ctx);
         tokenLit.value = (token as any).value ?? token;
         tokenLit.syntaxRole = 'expression';
         tokenLit.semanticLayer = 'meta';
         return tokenLit;
       });
-      hir = ref;
-      break;
-    }
 
-    case 'MemberAsn': {
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      ref.target = recurse(node.object_) as any;
-      ref.property = recurse(node.property);
-      ref.arguments_ = [];
-      hir = ref;
-      break;
-    }
-
-    case 'ArgumentMemberAsn': {
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      ref.target = recurse(node.argument) as any;
-      ref.property = recurse(node.property);
-      ref.arguments_ = [];
-      hir = ref;
-      break;
-    }
-
-    case 'CallAsn':
-    case 'DecoratorAsn': {
-      const ref = new tsHir.hir.ReferenceSn(ctx);
-      if (node.identifier) {
-        const lit = new tsHir.hir.LiteralSn(ctx);
-        lit.value = node.identifier.name;
-        lit.syntaxRole = 'expression';
-        lit.semanticLayer = node.kind === 'DecoratorAsn' ? 'meta' : 'state';
-        ref.target = lit;
-      } else {
-        ref.target = null;
-      }
-      ref.property = null;
-      ref.arguments_ = (node.arguments_ || []).map(recurse);
-      hir = ref;
+      hir = call;
       break;
     }
 
     case 'ImportAsn': {
       const b = new tsHir.hir.BindingSn(ctx);
       b.name = node.identifier.name;
-      // Сохраняем модификаторы импорта
       b.modifiers = {
         isPublic: node.modifiers.has(i=>i.kind === 'AccessModifierAsn' && i.operator === 'public'),
         isConst: node.modifiers.has(i=>i.kind === 'InstanceModifierAsn' && i.operator === 'const'),
-      }
+      };
       b.shape = null;
       b.doc = { description: '' };
 
-      const importRef = new tsHir.hir.ReferenceSn(ctx);
-      const targetLit = new tsHir.hir.LiteralSn(ctx);
-      targetLit.value = 'import';
-      targetLit.syntaxRole = node.syntaxRole;
-      targetLit.semanticLayer = 'meta';
-      importRef.target = targetLit;
+      // Импорт представлен как вызов системной функции import(path, [version])
+      const importCall = new tsHir.hir.CallSn(ctx);
+      importCall.syntaxRole = 'expression';
+      importCall.semanticLayer = 'meta';
+
+      const calleeRef = new tsHir.hir.VarRefSn(ctx);
+      calleeRef.name = 'import';
+      calleeRef.syntaxRole = 'expression';
+      calleeRef.semanticLayer = 'meta';
+      calleeRef.resolvedDeclaration = null;
+      importCall.callee = calleeRef;
 
       const pathLit = new tsHir.hir.LiteralSn(ctx);
       pathLit.value = node.path;
       pathLit.syntaxRole = 'expression';
       pathLit.semanticLayer = 'meta';
 
-      importRef.arguments_ = [pathLit];
+      importCall.arguments_ = [pathLit];
 
-      // Сохраняем версию импорта в аргументы вызова import(...)
       if (node.version) {
         const verLit = new tsHir.hir.LiteralSn(ctx);
         verLit.value = node.version;
         verLit.syntaxRole = 'expression';
         verLit.semanticLayer = 'meta';
-        importRef.arguments_.push(verLit);
+        importCall.arguments_.push(verLit);
       }
 
-      importRef.property = null;
-      importRef.syntaxRole = 'expression';
-      importRef.semanticLayer = 'meta';
-
-      b.value = importRef;
+      b.value = importCall;
       hir = b;
       break;
     }
