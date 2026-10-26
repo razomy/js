@@ -76,7 +76,7 @@
   },
   "scripts": {
     "build": "nuxt-module-build build && cp -r ./locales ./dist/locales && cp package_dist.json ./dist/package.json",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm stage publish && git push --follow-tags",
     "start": "nuxt-module-build build --stub && nuxt-module-build prepare"
   },
   "sideEffects": false,

@@ -17,7 +17,7 @@ async function build(path_: string) {
 
 async function publishBuild(path_: string, isPublishNpm: boolean) {
   if (await npm.isPackageToUpdate(path_)) {
-    const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm publish . --tag latest`;
+    const publishCommand = `cd ${path.resolve(path_, 'dist')} && npm stage publish . --tag latest`;
     const localVersion = npm.getPackageJsonVersion(path_);
     console.info(`Выполняем(${path_}@${localVersion}): ${publishCommand}`);
 
