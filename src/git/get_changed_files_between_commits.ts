@@ -1,5 +1,5 @@
 import simpleGit from 'simple-git';
-import * as git_ from '@razomy/git';
+import * as git from '@razomy/git';
 
 /**
  * Compares two commits and returns a categorized list of changed files.
@@ -12,7 +12,7 @@ export async function getChangedFilesBetweenCommits(
   repoPath: string,
   fromCommit: string,
   toCommit: string,
-): Promise<git_.FileChanges> {
+): Promise<git.FileChanges> {
   if (fromCommit === toCommit) {
     return {
       created: [],
@@ -21,9 +21,9 @@ export async function getChangedFilesBetweenCommits(
     };
   }
 
-  const git = simpleGit(repoPath);
-  const diffOutput = await git.diff(['--name-status', fromCommit, toCommit]);
-  const result: git_.FileChanges = {
+  const sGit = simpleGit(repoPath);
+  const diffOutput = await sGit.diff(['--name-status', fromCommit, toCommit]);
+  const result: git.FileChanges = {
     created: [],
     modified: [],
     deleted: [],
@@ -34,7 +34,7 @@ export async function getChangedFilesBetweenCommits(
 
   const lines = diffOutput.trim().split('\n');
   for (const line of lines) {
-    git_.statusFilesToFileChangesMut(result, line);
+    git.statusFilesToFileChangesMut(result, line);
   }
 
   return result;
