@@ -1,4 +1,4 @@
-FROM node:25-alpine
+FROM node:26-alpine
 
 # Install git (release tools require git to read/write tags and versioning)
 RUN apk add --no-cache git

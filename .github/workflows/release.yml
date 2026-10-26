@@ -22,12 +22,12 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v4
         with:
-          node-version: '25'
+          node-version: '26'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install
-        run: npm install
+        run: npm -v && npm install
 
       - name: Build
         run: npm run build
