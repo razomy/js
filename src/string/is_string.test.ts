@@ -93,7 +93,7 @@ describe('string', () => {
         // If type guard works, value should be usable as a string
         expect(value.length).toBe(4);
       } else {
-        fail('Expected value to be identified as a string');
+        expect.fail('Expected value to be identified as a string');
       }
     });
   });

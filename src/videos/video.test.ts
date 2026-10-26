@@ -8,10 +8,6 @@ const sourceVideo = path.join(__dirname, 'source_video.mp4');
 const outDir = path.join(__dirname, 'tmp');
 
 describe('Video Converter: toVideoByFormat', () => {
-  // Видео конвертируется долго. Ставим таймаут 60 секунд на каждый тест.
-  // Если у тебя много форматов или слабый ПК, можешь увеличить до 120000 (120 сек).
-  jest.setTimeout(60000);
-
   // Выполняется один раз перед запуском всех тестов
   beforeAll(() => {
     // 1. Создаем папку для результатов
